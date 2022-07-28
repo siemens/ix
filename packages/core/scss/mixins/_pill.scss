@@ -1,0 +1,41 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@use 'sass:meta';
+
+@import '../variables';
+@import '../fonts';
+@import 'state-color';
+
+/** @deprecated - will get renamed to kebab-case with Core UI 7 */
+@mixin cuiPill {
+  $color-map-status: (
+    'undefined': var(--theme-color-neutral),
+    'alert': var(--theme-color-alarm),
+    'critical': var(--theme-color-critical),
+    'warning': var(--theme-color-warning),
+    'success': var(--theme-color-success),
+    'information': var(--theme-color-info),
+    'teal': var(--theme-base-color-teal),
+    'light-teal': var(--theme-base-color-light-teal),
+  ) !default;
+
+  $cui-pill-height: 1.25rem;
+  display: inline-block;
+  position: relative;
+  height: $cui-pill-height;
+  max-height: $cui-pill-height;
+  line-height: $cui-pill-height;
+  border-radius: 6.25rem;
+  background-color: $default-border;
+  color: var(--theme-color-std-text-dark);
+  padding: 0 $default-space;
+
+  @each $key, $value in $color-map-status {
+    &.pill-#{$key} {
+      @include state-color($key);
+      background-color: #{$value};
+    }
+  }
+}

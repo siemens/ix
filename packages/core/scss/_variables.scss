@@ -1,0 +1,221 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@warn "deprecated: Variables will either get converted to custom properties or be removed in Core UI 7.0.0";
+
+@import './theme-base-colors';
+
+/* Fonts */
+$font-path: './fonts/';
+
+/* General */
+$default-border-width: 0.0625rem;
+$default-border-radius: 0.25rem;
+
+$x-large-space: 2rem;
+$large-space: 1.5rem;
+$default-space: 1rem;
+$medium-space: 0.75rem;
+$small-space: 0.5rem;
+$tiny-space: 0.25rem;
+
+$default-control-height: 2rem;
+$large-control-height: 2.5rem;
+$medium-control-height: 1.5rem;
+
+$large-icon-size: 2rem;
+$default-icon-size: 1.5rem;
+$small-icon-size: 1rem;
+
+$default-shadow: 0 0.125rem 1.25rem rgba(0, 0, 0, 0.3);
+$low-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
+
+$disabled-opacity: 0.4;
+$inactive-opacity: 0.1;
+
+$x-slow-time: 1s;
+$slow-time: 500ms;
+$medium-time: 300ms;
+$default-time: 150ms;
+$short-time: 0ms;
+
+$enable-validation-icons: false;
+
+$color-disabled-text: rgba(0, 0, 0, 0.4);
+$color-disabled-text-light: rgba(255, 255, 255, 0.4);
+
+$amount-hover: 5%;
+$amount-active: 10%;
+
+/* Colors */
+/* Basic UI colors */
+
+$dark: #3f484c;
+$dark-grey: #656a6c;
+$steel-grey: #788791;
+$grey: #b4b6b8;
+$light-steel: #e2e4e6;
+$light-grey: #edf0f2;
+$light: #f8f9fa;
+$white: #ffffff;
+$accent: #32a0a0;
+$accent-light: #79bfd3;
+$error: $color-red;
+
+$primary: #0f8287;
+$theme-colors: (
+  'primary': $primary,
+  'secondary': #6c757d,
+  'accent': $accent,
+);
+
+/* Status colors */
+$alert: $color-red;
+$critical: $color-orange;
+$warning: $color-yellow;
+$success: $color-green;
+
+/* Text colors */
+/* Apply theme colors to legacy variables */
+$default-text: rgba(0, 0, 0, 0.75);
+$label: rgba(0, 0, 0, 0.6);
+$disabled-text: $color-disabled-text;
+$default-text-light: #fffffe;
+$label-light: rgba(255, 255, 255, 0.6);
+$disabled-text-light: $color-disabled-text-light;
+
+/* Border colors */
+$default-border: rgba(0, 0, 0, 0.2);
+$soft-border: rgba(1, 1, 1, 0.1);
+$light-border: rgba(255, 255, 255, 0.2);
+$soft-light-border: rgba(255, 255, 255, 0.1);
+
+/* Mouse states*/
+$hover: rgba(0, 0, 0, 0.05);
+$pressed: rgba(0, 0, 0, 0.1);
+$hover-light: rgba(255, 255, 255, 0.06);
+$pressed-light: rgba(255, 255, 255, 0.12);
+
+/* Chart colors */
+$graph1: #aa1d5f;
+$graph1-light: #dda5bf;
+$graph2: #e6752c;
+$graph2-light: #f5c8ab;
+$graph3: #185f84;
+$graph3-light: #a3bfce;
+$graph4: #4caaa8;
+$graph4-light: #b7dddc;
+$graph4-dark: #1f6564;
+$graph5: #711dd0;
+$graph5-light: #be95ec;
+$graph6: #2ae0dc;
+
+/* Navbar */
+$navbar-min-height: 2.5rem;
+
+/* Sidebar */
+$sidebar-padding-top: 3rem;
+$sidebar-item-height: 3.5rem;
+$sidebar-with: 20rem;
+$sidebar-with-sm: 4.5rem;
+$sidebar-legal-bottom: 2.5rem;
+
+/* Checkbox */
+$checkbox-label-padding-left: 1.95em;
+
+/* List group */
+$list-group-item-border-size: 0.125rem;
+
+/* Text formats */
+/* Font sizes */
+$font-size-xs: 0.625rem;
+$font-size-s: 0.75rem;
+$font-size-caption: 0.75rem;
+$font-size-default: 0.875rem;
+$font-size-l: 1rem;
+$font-size-xl: 1.375rem;
+
+/* Line heights */
+$line-height-xs: 1.4em;
+$line-height-s: 1.5em;
+$line-height-caption: 1.5em;
+$line-height-caption-single: 1em;
+$line-height-default: 1.429em;
+$line-height-default-single: 1.143em;
+$line-height-l: 1.5em;
+$line-height-l-single: 1.25em;
+$line-height-h2: 1.455em;
+$line-height-xl: 1.091em;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$enable-shadows: false;
+
+// Button
+$btn-min-width: 5rem;
+$btn-border-width: 0.125rem;
+
+// Dropdown
+$dropdown-link-color: #000000;
+$dropdown-link-hover-color: #000000;
+$dropdown-link-active-bg: #c7ccce;
+$dropdown-link-hover-bg: #ececec;
+$dropdown-item-padding-x: 0.5rem;
+
+// Icons
+$active-padding-left: 0.625rem;
+
+// Modal
+$modal-header-border-width: 0rem;
+$modal-shadow: $default-shadow;
+$modal-md: 40rem;
+
+// Navbar
+$navbar-dark-toggler-border-color: none;
+$navbar-dark-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'%3E%3C/path%3E%3C/svg%3E");
+$navbar-dark-toggler-icon-open-bg: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2237%22%20height=%2224%22%20viewBox=%220%200%2037%2024%22%3E%3Cg%20fill=%22none%22%20fill-rule=%22evenodd%22%3E%3Cpath%20d=%22M0%200h37v24H0z%22/%3E%3Cg%20fill=%22#FFF%22%3E%3Cpath%20d=%22M10.368%201.04L29.46%2020.132l-2.828%202.828L7.54%203.868z%22/%3E%3Cpath%20d=%22M7.54%2020.132L26.632%201.04l2.828%202.828L10.368%2022.96z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+
+// Nav
+$nav-pills-border-radius: 0;
+$nav-pills-item-bg: $grey;
+$nav-pills-link-active-bg: $light-steel;
+
+// Input
+$input-padding-y: 0.5rem;
+$input-padding-x: 0.5rem;
+$input-min-width: 2rem;
+
+$input-border-color: $default-border;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0.25rem 0 $primary;
+
+$input-bg: $white;
+$input-placeholder-color: $default-border;
+
+$input-box-shadow: 0 0 0.25rem 0 $primary;
+$input-focus-width: 0;
+
+$input-transition: border-color $short-time, box-shadow $short-time;
+
+$form-feedback-valid-color: $primary;
+$form-feedback-invalid-color: $alert;
+
+$numeric-split-button-width: 2rem;
+
+// Popover
+$popover-arrow-width: 0.625rem; // Mitigates placement bug in ngb. Should be $default-space.
+$popover-bg: $white;
+$popover-body-padding-x: $default-space;
+$popover-body-padding-y: $default-space;
+$popover-border-color: $default-border;
+
+$table-header-height: 2.5rem;
+$table-hover-bg: $hover;
+$table-cell-height: 2.5rem;
+$focus-border-size: 0.125rem;
+$focus-border: solid $focus-border-size $primary;
+
+// Parameter
+$enable-shadows: false;

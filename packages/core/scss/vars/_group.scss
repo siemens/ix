@@ -1,0 +1,11 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './utils/var-darken';
+
+@mixin group {
+  @include var-darken('group-hover', $color-1, $color-13, 5%);
+  @include var-darken('group-pressed', $color-1, $color-13, 10%);
+}
+
+@include group();

@@ -1,0 +1,34 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import '~animate.css/animate.css';
+
+:root {
+  --animate-duration: 150ms;
+}
+
+@import './vars/zIndex';
+@import './vars.generated';
+
+@import './variables';
+@import './core';
+
+@import './themes/classic-light/classic-light';
+@import './themes/classic-dark/classic-dark';
+@import './themes/brand-dark/brand-dark';
+@import './themes/brand-light/brand-light';
+
+@import './../src/components/toast/styles/toast-container';
+
+/*
+* V7 Theme changes
+*/
+
+@import './v7/brand-dark';
+@import './v7/brand-light';
+@import './v7/classic-dark';
+@import './v7/classic-light';
+
+body {
+  @extend .theme-brand-dark;
+}

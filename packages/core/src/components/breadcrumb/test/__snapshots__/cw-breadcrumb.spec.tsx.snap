@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cw-breadcrumb renders 1`] = `
+<cw-breadcrumb>
+  <!---->
+  <cw-dropdown></cw-dropdown>
+  <div class="crumb-items">
+    <div class="clickable crumb" data-breadcrumb="0" data-testid="item">
+      <span class="crumb-text remove-anchor"></span>
+      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+    </div>
+    <div class="clickable crumb" data-breadcrumb="1" data-testid="item">
+      <span class="crumb-text remove-anchor"></span>
+      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+    </div>
+    <div class="clickable crumb" data-breadcrumb="2" data-testid="item">
+      <span class="crumb-text remove-anchor"></span>
+      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+    </div>
+    <div class="clickable crumb last remove-hover" data-breadcrumb="3" data-testid="item">
+      <span class="crumb-text remove-anchor"></span>
+    </div>
+    <cw-breadcrumb-item label="Test 1">
+      <cw-breadcrumb-item label="Test 2">
+        <cw-breadcrumb-item label="Test 3">
+          <cw-breadcrumb-item label="Test 4"></cw-breadcrumb-item>
+        </cw-breadcrumb-item>
+      </cw-breadcrumb-item>
+    </cw-breadcrumb-item>
+  </div>
+  <cw-dropdown></cw-dropdown>
+</cw-breadcrumb>
+`;

@@ -1,0 +1,54 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './../utils/define-theme-variable';
+
+@mixin variant-border($name, $size, $color-dark, $variant: solid) {
+  --theme-#{$name}: #{$size} #{$variant} #{$color-dark};
+}
+
+@mixin border {
+  @include define-theme-variable('color-weak-bdr-1', var(--theme-color-weak-border));
+
+  @include variant-border('std-bdr-1', 0.0625rem, #{var(--theme-color-standard-border)});
+  @include variant-border('std-bdr-2', 0.125rem, #{var(--theme-color-standard-border)});
+
+  @include variant-border('primary-bdr-1', 0.0625rem, #{var(--theme-color-primary-border)});
+  @include variant-border('primary-bdr-2', 0.125rem, #{var(--theme-color-primary-border)});
+
+  @include variant-border('soft-bdr-1', 0.0625rem, #{var(--theme-color-soft-border)});
+  @include variant-border('soft-bdr-2', 0.125rem, #{var(--theme-color-soft-border)});
+
+  @include variant-border('soft-bdr-1-dashed', 0.0625rem, #{var(--theme-color-soft-border)}, dashed);
+  @include variant-border('soft-bdr-2-dashed', 0.125rem, #{var(--theme-color-soft-border)}, dashed);
+
+  @include variant-border('weak-bdr-1', 0.0625rem, #{var(--theme-color-weak-border)});
+  @include variant-border('weak-bdr-2', 0.125rem, #{var(--theme-color-weak-border)});
+
+  @include variant-border('contrast-bdr-1', 0.0625rem, #{var(--theme-color-contrast-border)});
+  @include variant-border('contrast-bdr-2', 0.125rem, #{var(--theme-color-contrast-border)});
+
+  @include variant-border('inv-contrast-bdr-1', 0.0625rem, #{var(--theme-color-inv-contrast-border)});
+  @include variant-border('inv-contrast-bdr-2', 0.125rem, #{var(--theme-color-inv-contrast-border)});
+
+  @include variant-border('focus-bdr-1', 0.0625rem, #{var(--theme-color-focus-border)});
+  @include variant-border('focus-bdr-2', 0.125rem, #{var(--theme-color-focus-border)});
+
+  @include variant-border('alarm-bdr-1', 0.0625rem, #{var(--theme-color-alarm)});
+  @include variant-border('alarm-bdr-2', 0.125rem, #{var(--theme-color-alarm)});
+
+  @include variant-border('critical-bdr-1', 0.0625rem, #{var(--theme-color-critical)});
+  @include variant-border('critical-bdr-2', 0.125rem, #{var(--theme-color-critical)});
+
+  @include variant-border('info-bdr-1', 0.0625rem, #{var(--theme-color-info)});
+  @include variant-border('info-bdr-2', 0.125rem, #{var(--theme-color-info)});
+
+  @include variant-border('neutral-bdr-1', 0.0625rem, #{var(--theme-color-neutral)});
+  @include variant-border('neutral-bdr-2', 0.125rem, #{var(--theme-color-neutral)});
+
+  @include variant-border('success-bdr-1', 0.0625rem, #{var(--theme-color-success)});
+  @include variant-border('success-bdr-2', 0.125rem, #{var(--theme-color-success)});
+
+  @include variant-border('warning-bdr-1', 0.0625rem, #{var(--theme-color-warning)});
+  @include variant-border('warning-bdr-2', 0.125rem, #{var(--theme-color-warning)});
+}

@@ -1,0 +1,24 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($name, $time: $default-time, $easing-fn) {
+  -webkit-animation: $name $time, $easing-fn;
+  -moz-animation: $name $time, $easing-fn;
+  -o-animation: $name $time, $easing-fn;
+  animation: $name $time, $easing-fn;
+}

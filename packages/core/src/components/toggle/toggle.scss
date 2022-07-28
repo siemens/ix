@@ -1,0 +1,123 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../../../scss/variables';
+@import '../../../scss/colors';
+
+:host {
+  $slide-toggle-width: 3rem;
+
+  .switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: $slide-toggle-width;
+    height: 2rem;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .slider-track {
+      background-color: var(--theme-color-2);
+      border-radius: 2.125rem;
+      border: var(--theme-soft-bdr-1);
+      width: 2.5rem;
+      height: 1rem;
+    }
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 1.5rem;
+    width: 1.5rem;
+    left: 0;
+    background-color: var(--theme-color-1);
+    -webkit-transition: $default-time;
+    transition: $default-time;
+    border-radius: 50%;
+    border: var(--theme-std-bdr-1);
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(1.625rem);
+    -ms-transform: translateX(1.625rem);
+    transform: translateX(1.625rem);
+    left: 0rem;
+  }
+
+  .text {
+    color: var(--theme-color-std-text);
+    position: relative;
+    left: calc(#{$slide-toggle-width} + #{$small-space});
+  }
+
+  @mixin checked-state($key, $value) {
+    .slide-toggle-color-#{$key} {
+      input:checked {
+        & + .slider:before {
+          background-color: $value;
+        }
+
+        &[disabled] + .slider:before {
+          background-color: var(--theme-color-5);
+          border: none;
+        }
+
+        &:hover:not([disabled]) + .slider:before {
+          background-color: darken($color: $value, $amount: 5%);
+        }
+
+        &:active:not([disabled]) + .slider:before {
+          background-color: darken($color: $value, $amount: 10%);
+        }
+      }
+    }
+  }
+
+  @each $key, $value in $color-map-basic-ui {
+    @include checked-state($key, $value);
+  }
+
+  @each $key, $value in $color-map-status {
+    @include checked-state($key, $value);
+  }
+
+  &[disabled],
+  &.disabled {
+    .slider {
+      cursor: initial;
+
+      &:before {
+        background-color: var(--theme-color-2);
+        border-color: var(--theme-weak-bdr);
+      }
+
+      & .slider-track {
+        background-color: var(--theme-ghost-pressed);
+        border-color: var(--theme-color-disabled-btn);
+        border: none;
+      }
+    }
+
+    .text {
+      color: var(--theme-color-weak-text);
+    }
+  }
+}

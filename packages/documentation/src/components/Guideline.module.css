@@ -1,0 +1,14 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+.Guideline {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.Icon {
+  display: flex;
+  margin-inline-end: 0.5rem;
+}

@@ -1,0 +1,78 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+.Card__List {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  width: 19.375rem;
+  min-width: 19.375rem;
+  height: 60px;
+  background-color: var(--theme-color-2);
+  margin: 0 1.25rem 1.25rem 0;
+
+  cursor: pointer;
+}
+
+.Card.With__Icon {
+  height: 19.25rem;
+}
+
+
+.Splitter {
+  height: 2px;
+  width: 100%;
+  background-color: var(--theme-color-1);
+}
+
+.Label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 3.75rem;
+  min-height: 3.75rem;
+  margin-left: 2rem;
+}
+
+.Icon {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.Icon cw-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.Icon cw-icon i {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
+  color: var(--theme-color-std-text) !important;
+}
+
+
+.Card__Primary {
+  background-color: var(--theme-color-primary);
+}
+
+.Card__Primary .Label {
+  color: var(--theme-color-inv-std-text);
+}
+
+.Card__Primary .Icon cw-icon i {
+  color: var(--theme-color-inv-std-text) !important;
+}

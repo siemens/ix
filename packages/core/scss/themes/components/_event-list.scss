@@ -1,0 +1,18 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import './../utils/define-theme-variable';
+
+@mixin event-list-item {
+  --theme-event-list-item-hover: var(--theme-color-1--hover);
+  --theme-event-list-item-pressed: var(--theme-color-1--active);
+}
+
+@mixin event-list {
+  @include event-list-item();
+
+  @include define-theme-variable('event-list-item-border', var(--theme-color-weak-border));
+
+  @include define-theme-variable('event-list-item-bg', var(--theme-color-1));
+}

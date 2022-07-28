@@ -1,0 +1,99 @@
+/**
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+// @import '~bootstrap/scss/bootstrap';
+
+/**
+ * Mixin and Functions
+ */
+@import './mixins/input.scss';
+@import './mixins/fonts.scss';
+@import './mixins/scrollbar.scss';
+@import './mixins/nav.scss';
+@import './mixins/position-sticky.scss';
+
+/**
+ * NG Bootstrap
+ */
+@import './ngb/ngbDatepicker.scss';
+@import './ngb/ngbHighlight.scss';
+@import './ngb/ngbPopover.scss';
+
+/**
+ * Bootstrap
+ */
+@import './alert.scss';
+@import './colors.scss';
+@import './graphics.scss';
+@import './fonts.scss';
+@import './forms.scss';
+@import './radiobuttons.scss';
+@import './checkboxes.scss';
+@import './dropdown.scss';
+@import './tables.scss';
+@import './icons.scss';
+@import './modal.scss';
+@import './navbar.scss';
+@import './nav.scss';
+@import './list-group.scss';
+@import './links.scss';
+@import './shadows.scss';
+
+/**
+ * Core ui basics
+ */
+@import './cui/pill';
+@import './cui/chip';
+@import './cui/menu-item';
+@import './cui/background';
+@import './cui/tile';
+@import './cui/cui-settings';
+@import './cui/cui-popover-news';
+
+/**
+ * Fix
+ */
+@import './fix/button-fix';
+@import './fix/ngbTimepicker';
+
+body {
+  @include text-default();
+  background-color: var(--theme-color-1);
+}
+
+body:not(.disable-scrollbar) {
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background: var(--theme-color-2);
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: var(--theme-color-3);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--theme-color-5);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-color-6);
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+}

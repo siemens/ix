@@ -1,0 +1,26 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+:host {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 2.75rem;
+  padding-left: 1rem;
+
+  color: var(--theme-app-header-logo--color);
+  background-color: var(--theme-app-header--background);
+
+  border-bottom: var(--theme-app-header--border-width) solid var(--theme-app-header--border-color);
+
+  .name {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .logo > path {
+    fill: var(--theme-app-header-logo--color);
+  }
+}

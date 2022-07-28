@@ -1,0 +1,7187 @@
+{
+  "timestamp": "2022-07-28T10:02:26",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.15.2",
+    "typescriptVersion": "4.5.4"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/animated-tab/animated-tab.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-animated-tab",
+      "readme": "# animated-tab\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "count",
+          "type": "number",
+          "mutable": false,
+          "attr": "count",
+          "reflectToAttr": true,
+          "docs": "Show notification number",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of the tab",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-animated-tab"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/animated-tabs/animated-tabs.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-animated-tabs",
+      "readme": "# animated-tabs\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disableAnimations",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disable-animations",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- For debugging purposes only"
+            }
+          ],
+          "default": "false",
+          "deprecation": "- For debugging purposes only",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selectedIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "selected-index",
+          "reflectToAttr": false,
+          "docs": "Current selected tab index",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "tabPlacement",
+          "type": "\"bottom\" | \"top\"",
+          "mutable": false,
+          "attr": "tab-placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the tabs",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "tabClick",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Tab navigated",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "mouseup",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-animated-tabs": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-animated-tabs"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/application-header/application-header.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-application-header",
+      "readme": "# cw-application-header\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "Application name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-basic-navigation"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-basic-navigation": [
+          "cw-application-header"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/basic-navigation/basic-navigation.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-basic-navigation",
+      "readme": "# cw-basic-navigation\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "applicationName",
+          "type": "string",
+          "mutable": false,
+          "attr": "application-name",
+          "reflectToAttr": false,
+          "docs": "Application name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideHeader",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-header",
+          "reflectToAttr": false,
+          "docs": "Hide application header",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-application-header"
+      ],
+      "dependencyGraph": {
+        "cw-basic-navigation": [
+          "cw-application-header"
+        ],
+        "my-component": [
+          "cw-basic-navigation"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/blind/blind.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-blind",
+      "readme": "# cw-blind\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "collapsed",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "collapsed",
+          "reflectToAttr": true,
+          "docs": "Collapsed state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of blind",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "collapsedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Collapsed state changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-blind"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/breadcrumb/breadcrumb.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-breadcrumb",
+      "readme": "# cui-breadcrumb\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "nextItems",
+          "type": "string[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Items will be accessible through a dropdown",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "visibleItemCount",
+          "type": "number",
+          "mutable": false,
+          "attr": "visible-item-count",
+          "reflectToAttr": false,
+          "docs": "Excess items will get hidden inside of dropdown",
+          "docsTags": [],
+          "default": "9",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Crumb item clicked event",
+          "docsTags": []
+        },
+        {
+          "event": "nextClick",
+          "detail": "{ event: UIEvent; item: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Next item clicked event",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-dropdown",
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-breadcrumb": [
+          "cw-icon",
+          "cw-dropdown",
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-breadcrumb"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/breadcrumb-item/breadcrumb-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-breadcrumb-item",
+      "readme": "# cw-breadcrumb-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon to be displayed next ot the label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Breadcrumb label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-breadcrumb-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/button/button.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-button",
+      "readme": "# cw-button\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "invisible",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "invisible",
+          "reflectToAttr": false,
+          "docs": "Invisible button",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "use ghost property"
+            }
+          ],
+          "default": "false",
+          "deprecation": "use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Show button as selected. Should be used with outline or invisible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button varaint",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-modal-example",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-modal-example": [
+          "cw-button"
+        ],
+        "my-component": [
+          "cw-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/category-filter/category-filter.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-category-filter",
+      "readme": "# cw-category-filter\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "categories",
+          "type": "{ [id: string]: { label: string; options: string[]; }; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ [id: string]: { label: string; options: string[]; }; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "filterState",
+          "type": "FilterState",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "A set of search criteria to populate the component with.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "FilterState"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideIcon",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-icon",
+          "reflectToAttr": false,
+          "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPlainText",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-plain-text",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'Filter by text'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "The icon next to the actual text input\nDefaults to 'search'",
+          "docsTags": [],
+          "default": "'search'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initialState",
+          "type": "FilterState",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "When set this will initially populate the component with the provided search criteria.\nThis will trigger all input events accordingly.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will get removed with next major release (7.0.0). Use the member filterState instead."
+            }
+          ],
+          "deprecation": "will get removed with next major release (7.0.0). Use the member filterState instead.",
+          "values": [
+            {
+              "type": "FilterState"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "labelCategories",
+          "type": "string",
+          "mutable": false,
+          "attr": "label-categories",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'Categories'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "nonSelectableCategories",
+          "type": "{ [id: string]: string; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "In certain use cases some categories are not available for selection any more.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
+          "docsTags": [],
+          "default": "{}",
+          "values": [
+            {
+              "type": "{ [id: string]: string; }"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "Placeholder text to be displayed in an empty input field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "repeatCategories",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "repeat-categories",
+          "reflectToAttr": false,
+          "docs": "If set to true allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "suggestions",
+          "type": "string[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "A list of strings that will be supplied as typeahead suggestions not tied to any categories.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "tmpDisableScrollIntoView",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "tmp-disable-scroll-into-view",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "For debugging purposes only!"
+            }
+          ],
+          "default": "true",
+          "deprecation": "For debugging purposes only!",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "filterChanged",
+          "detail": "FilterState",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the filter state changes.",
+          "docsTags": []
+        },
+        {
+          "event": "inputChanged",
+          "detail": "InputState",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the text input changes.",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-icon",
+        "cw-filter-chip"
+      ],
+      "dependencyGraph": {
+        "cw-category-filter": [
+          "cw-icon",
+          "cw-filter-chip"
+        ],
+        "cw-filter-chip": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/chip/chip.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-chip",
+      "readme": "# cui-chip\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Display chip in active state. Only working witht `variant=\"primary\"`",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "background",
+          "type": "string",
+          "mutable": false,
+          "attr": "background",
+          "reflectToAttr": false,
+          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "closable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "closable",
+          "reflectToAttr": false,
+          "docs": "Show close icon",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Show icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Show chip with outline style",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": true,
+          "docs": "Chip variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "custom",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "close",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event if close button is clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-chip": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-chip"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/counter-pill/counter-pill.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-counter-pill",
+      "readme": "# cw-counter-pill\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "alignLeft",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "align-left",
+          "reflectToAttr": false,
+          "docs": "Align pill content left",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "background",
+          "type": "string",
+          "mutable": false,
+          "attr": "background",
+          "reflectToAttr": false,
+          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Show pill as outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": true,
+          "docs": "Pill variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "custom",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-counter-pill"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/drawer/drawer.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-drawer",
+      "readme": "# cw-drawer\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "closeOnClickOutside",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "close-on-click-outside",
+          "reflectToAttr": false,
+          "docs": "Fired in case of an outside click during drawer showed state",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fullHeight",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "full-height",
+          "reflectToAttr": false,
+          "docs": "Render the drawer with maximum height",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxWidth",
+          "type": "number",
+          "mutable": false,
+          "attr": "max-width",
+          "reflectToAttr": false,
+          "docs": "Max width interpreted as REM",
+          "docsTags": [],
+          "default": "28",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minWidth",
+          "type": "number",
+          "mutable": false,
+          "attr": "min-width",
+          "reflectToAttr": false,
+          "docs": "Min width interpreted as REM",
+          "docsTags": [],
+          "default": "16",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "show",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "show",
+          "reflectToAttr": false,
+          "docs": "Show or hide the drawer",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | number",
+          "mutable": false,
+          "attr": "width",
+          "reflectToAttr": false,
+          "docs": "Width interpreted as REM if not set to 'auto'",
+          "docsTags": [],
+          "default": "this.minWidth",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "toggleDrawer",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleDrawer(show: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Toggle or define show state of drawer",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show Overwrite toggle state with boolean"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "close",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event after drawer is close",
+          "docsTags": []
+        },
+        {
+          "event": "open",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event after drawer is open",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-drawer": [
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/dropdown/dropdown.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-dropdown",
+      "readme": "# cw-dropdown\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "adjustDropdownWidthToReferenceWidth",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "adjust-dropdown-width-to-reference-width",
+          "reflectToAttr": false,
+          "docs": "Adjust dropdown width to the parent width",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "adjustDropdownWidthToReferenceWith",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "adjust-dropdown-width-to-reference-with",
+          "reflectToAttr": false,
+          "docs": "Adjust dropdown width to the parent width",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead."
+            }
+          ],
+          "default": "false",
+          "deprecation": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "anchor",
+          "type": "HTMLElement | string",
+          "mutable": false,
+          "attr": "anchor",
+          "reflectToAttr": false,
+          "docs": "Define an anchor element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "HTMLElement"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Close behavior",
+          "docsTags": [],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "mutable": false,
+          "attr": "header",
+          "reflectToAttr": false,
+          "docs": "An optional header shown at the top of the dropdown",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placement",
+          "type": "\"auto\" | \"auto-end\" | \"auto-start\" | \"bottom\" | \"bottom-end\" | \"bottom-start\" | \"left\" | \"left-end\" | \"left-start\" | \"right\" | \"right-end\" | \"right-start\" | \"top\" | \"top-end\" | \"top-start\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the dropdown",
+          "docsTags": [],
+          "default": "'bottom-end'",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "value": "auto-end",
+              "type": "string"
+            },
+            {
+              "value": "auto-start",
+              "type": "string"
+            },
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "bottom-end",
+              "type": "string"
+            },
+            {
+              "value": "bottom-start",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "left-end",
+              "type": "string"
+            },
+            {
+              "value": "left-start",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "right-end",
+              "type": "string"
+            },
+            {
+              "value": "right-start",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            },
+            {
+              "value": "top-end",
+              "type": "string"
+            },
+            {
+              "value": "top-start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "positioningStrategy",
+          "type": "\"absolute\" | \"fixed\"",
+          "mutable": false,
+          "attr": "positioning-strategy",
+          "reflectToAttr": false,
+          "docs": "Position strategy",
+          "docsTags": [],
+          "default": "'fixed'",
+          "values": [
+            {
+              "value": "absolute",
+              "type": "string"
+            },
+            {
+              "value": "fixed",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "show",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "show",
+          "reflectToAttr": true,
+          "docs": "Show dropdown",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "trigger",
+          "type": "HTMLElement | string",
+          "mutable": false,
+          "attr": "trigger",
+          "reflectToAttr": false,
+          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interprated as id attribute or a DOM element.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "HTMLElement"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "updatePosition",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "updatePosition() => Promise<void>",
+          "parameters": [],
+          "docs": "Update position of dropdown",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "showChanged",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event after visibility of dropdown has changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-breadcrumb",
+        "cw-group",
+        "cw-menu",
+        "cw-menu-avatar",
+        "cw-select",
+        "cw-split-button",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-breadcrumb": [
+          "cw-dropdown"
+        ],
+        "cw-group": [
+          "cw-dropdown"
+        ],
+        "cw-menu": [
+          "cw-dropdown"
+        ],
+        "cw-menu-avatar": [
+          "cw-dropdown"
+        ],
+        "cw-select": [
+          "cw-dropdown"
+        ],
+        "cw-split-button": [
+          "cw-dropdown"
+        ],
+        "my-component": [
+          "cw-dropdown"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/dropdown-item/dropdown-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-dropdown-item",
+      "readme": "# cw-dropdown-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "checked",
+          "reflectToAttr": false,
+          "docs": "Whether the item is checked or not. If true a checkmark will mark the item as checked.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable item and remove event listeners",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hover",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hover",
+          "reflectToAttr": false,
+          "docs": "Display hover state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of dropdown item",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of dropdown item",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "emitItemClick",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "emitItemClick() => Promise<void>",
+          "parameters": [],
+          "docs": "Internal usage only",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "HTMLCwDropdownItemElement",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Click on item",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-breadcrumb",
+        "cw-group-dropdown-item",
+        "cw-menu-avatar-item",
+        "cw-select",
+        "cw-select-item",
+        "cw-split-button-item",
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-breadcrumb": [
+          "cw-dropdown-item"
+        ],
+        "cw-group-dropdown-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-menu-avatar-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-select": [
+          "cw-dropdown-item"
+        ],
+        "cw-select-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-split-button-item": [
+          "cw-dropdown-item"
+        ],
+        "my-component": [
+          "cw-dropdown-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/event-list/event-list.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-event-list",
+      "readme": "# cw-event-list\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "animated",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "animated",
+          "reflectToAttr": false,
+          "docs": "Animate state change transitions. Defaults to 'true'.",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "chevron",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "chevron",
+          "reflectToAttr": false,
+          "docs": "Display a chevron icon in list items. Defaults to 'false'",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "compact",
+          "reflectToAttr": false,
+          "docs": "Make event-list items more compact",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemHeight",
+          "type": "\"L\" | \"S\" | number",
+          "mutable": false,
+          "attr": "item-height",
+          "reflectToAttr": false,
+          "docs": "Determines the height of list items.\nThis can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value.\nIn case a number is supplied it will get converted to rem internally.\nDefaults to 'S'.",
+          "docsTags": [],
+          "default": "'S'",
+          "values": [
+            {
+              "value": "L",
+              "type": "string"
+            },
+            {
+              "value": "S",
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/event-list-item/event-list-item.tsx",
+      "encapsulation": "none",
+      "tag": "cw-event-list-item",
+      "readme": "# cw-event-list-item\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "chevron",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "chevron",
+          "reflectToAttr": false,
+          "docs": "Show chevron on right side of the event list item",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Color of the status indicator.\nAllowed values are all Core UI color names.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable event list item",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "opacity",
+          "type": "number",
+          "mutable": false,
+          "attr": "opacity",
+          "reflectToAttr": false,
+          "docs": "Opacity of the status indicator.\nDefaults to 1.0",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 7.0.0. Use color with alpha value."
+            }
+          ],
+          "default": "1",
+          "deprecation": "Will be removed in 7.0.0. Use color with alpha value.",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Show event list item as selected",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event list item click",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/expanding-search/expanding-search.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-expanding-search",
+      "readme": "# expanding-search\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Search icon",
+          "docsTags": [],
+          "default": "'search'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "Placeholder text",
+          "docsTags": [],
+          "default": "'Enter text here'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Default value",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Value changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-expanding-search": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-expanding-search"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/filter-chip/filter-chip.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-filter-chip",
+      "readme": "# cui-filter-chip\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If true the filter chip will be in disabled state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closeClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Close clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-category-filter",
+        "cw-select",
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-filter-chip": [
+          "cw-icon"
+        ],
+        "cw-category-filter": [
+          "cw-filter-chip"
+        ],
+        "cw-select": [
+          "cw-filter-chip"
+        ],
+        "my-component": [
+          "cw-filter-chip"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/flip-tile/flip-tile.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-flip-tile",
+      "readme": "# cw-flip-tile\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "footer",
+          "type": "string",
+          "mutable": false,
+          "attr": "footer",
+          "reflectToAttr": false,
+          "docs": "Tmp property name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "state",
+          "type": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning",
+          "mutable": false,
+          "attr": "state",
+          "reflectToAttr": false,
+          "docs": "Variation of the Flip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "FlipTileState.Alarm"
+            },
+            {
+              "type": "FlipTileState.Info"
+            },
+            {
+              "type": "FlipTileState.None"
+            },
+            {
+              "type": "FlipTileState.Primary"
+            },
+            {
+              "type": "FlipTileState.Warning"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-flip-tile": [
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-flip-tile"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/flip-tile-content/flip-tile-content.tsx",
+      "encapsulation": "shadow",
+      "tag": "cw-flip-tile-content",
+      "readme": "# cw-flip-tile-content\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/group/group.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-group",
+      "readme": "# cw-group\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "collapsed",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "collapsed",
+          "reflectToAttr": true,
+          "docs": "Whether the group is collapsed or expanded. Defaults to true.",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expandOnHeaderClick",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "expand-on-header-click",
+          "reflectToAttr": false,
+          "docs": "Expand the group if the header is clicked",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "mutable": false,
+          "attr": "header",
+          "reflectToAttr": false,
+          "docs": "Group header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "mutable": true,
+          "attr": "index",
+          "reflectToAttr": true,
+          "docs": "The index of the selected group entry.\nIf undefined no group item is selected.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "selected",
+          "reflectToAttr": true,
+          "docs": "Whether the group is selected.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subHeader",
+          "type": "string",
+          "mutable": false,
+          "attr": "sub-header",
+          "reflectToAttr": false,
+          "docs": "Group header subtitle",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "suppressHeaderSelection",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "suppress-header-selection",
+          "reflectToAttr": false,
+          "docs": "Suppress",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "collapsedChanged",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Group collapsed",
+          "docsTags": []
+        },
+        {
+          "event": "selectGroup",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emits when whole group gets selected.",
+          "docsTags": []
+        },
+        {
+          "event": "selectItem",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emits when group item gets selected.",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-icon-button",
+        "cw-dropdown",
+        "cw-group-item"
+      ],
+      "dependencyGraph": {
+        "cw-group": [
+          "cw-icon-button",
+          "cw-dropdown",
+          "cw-group-item"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-group-item": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/group-dropdown-item/group-dropdown-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-group-dropdown-item",
+      "readme": "# cw-group-dropdown-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Group dropdown icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Group dropdown label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-group-dropdown-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/group-item/group-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-group-item",
+      "readme": "# cw-group-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Group item icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "mutable": false,
+          "attr": "index",
+          "reflectToAttr": false,
+          "docs": "Index",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "secondaryText",
+          "type": "string",
+          "mutable": false,
+          "attr": "secondary-text",
+          "reflectToAttr": false,
+          "docs": "Group item secondary text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Show selected state",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "suppressSelection",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "suppress-selection",
+          "reflectToAttr": false,
+          "docs": "Supress the selection of the group",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "mutable": false,
+          "attr": "text",
+          "reflectToAttr": false,
+          "docs": "Group item text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "selectedChanged",
+          "detail": "HTMLCwGroupItemElement",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Selection changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-group"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-group-item": [
+          "cw-icon"
+        ],
+        "cw-group": [
+          "cw-group-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/icon/icon.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-icon",
+      "readme": "# cw-icon\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Color of the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Use one of our defined icon names e.g `copy`.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"16\" | \"24\" | \"32\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            },
+            {
+              "value": "32",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-animated-tabs",
+        "cw-breadcrumb",
+        "cw-category-filter",
+        "cw-chip",
+        "cw-dropdown-item",
+        "cw-expanding-search",
+        "cw-filter-chip",
+        "cw-group-item",
+        "cw-icon-button",
+        "cw-map-navigation-overlay",
+        "cw-menu-about-news",
+        "cw-message-bar",
+        "cw-pill",
+        "cw-select",
+        "cw-split-button",
+        "cw-toast",
+        "cw-tree-item",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-animated-tabs": [
+          "cw-icon"
+        ],
+        "cw-breadcrumb": [
+          "cw-icon"
+        ],
+        "cw-category-filter": [
+          "cw-icon"
+        ],
+        "cw-chip": [
+          "cw-icon"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-expanding-search": [
+          "cw-icon"
+        ],
+        "cw-filter-chip": [
+          "cw-icon"
+        ],
+        "cw-group-item": [
+          "cw-icon"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-map-navigation-overlay": [
+          "cw-icon"
+        ],
+        "cw-menu-about-news": [
+          "cw-icon"
+        ],
+        "cw-message-bar": [
+          "cw-icon"
+        ],
+        "cw-pill": [
+          "cw-icon"
+        ],
+        "cw-select": [
+          "cw-icon"
+        ],
+        "cw-split-button": [
+          "cw-icon"
+        ],
+        "cw-toast": [
+          "cw-icon"
+        ],
+        "cw-tree-item": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/icon-button/icon-button.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-icon-button",
+      "readme": "# cw-icon-button\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Color of icon in  button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button invisible",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Button icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "invisible",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "invisible",
+          "reflectToAttr": false,
+          "docs": "Button invisible",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "use ghost property"
+            }
+          ],
+          "deprecation": "use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Button outline",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "oval",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "oval",
+          "reflectToAttr": false,
+          "docs": "Button in oval shape",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Selected state only working with outline or invisible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"16\" | \"24\" | \"32\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of icon in button",
+          "docsTags": [],
+          "default": "'24'",
+          "values": [
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            },
+            {
+              "value": "32",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of button",
+          "docsTags": [],
+          "default": "'Secondary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-drawer",
+        "cw-expanding-search",
+        "cw-flip-tile",
+        "cw-group",
+        "cw-map-navigation",
+        "cw-map-navigation-overlay",
+        "cw-menu-about",
+        "cw-menu-about-news",
+        "cw-menu-settings",
+        "cw-message-bar",
+        "cw-modal-example",
+        "cw-select",
+        "cw-toast",
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-drawer": [
+          "cw-icon-button"
+        ],
+        "cw-expanding-search": [
+          "cw-icon-button"
+        ],
+        "cw-flip-tile": [
+          "cw-icon-button"
+        ],
+        "cw-group": [
+          "cw-icon-button"
+        ],
+        "cw-map-navigation": [
+          "cw-icon-button"
+        ],
+        "cw-map-navigation-overlay": [
+          "cw-icon-button"
+        ],
+        "cw-menu-about": [
+          "cw-icon-button"
+        ],
+        "cw-menu-about-news": [
+          "cw-icon-button"
+        ],
+        "cw-menu-settings": [
+          "cw-icon-button"
+        ],
+        "cw-message-bar": [
+          "cw-icon-button"
+        ],
+        "cw-modal-example": [
+          "cw-icon-button"
+        ],
+        "cw-select": [
+          "cw-icon-button"
+        ],
+        "cw-toast": [
+          "cw-icon-button"
+        ],
+        "my-component": [
+          "cw-icon-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/input-group/input-group.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-input-group",
+      "readme": "# cw-input-group\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-input-group"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/map-navigation/map-navigation.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-map-navigation",
+      "readme": "# cw-map-navigation\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "appName",
+          "type": "string",
+          "mutable": false,
+          "attr": "app-name",
+          "reflectToAttr": false,
+          "docs": "Application name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideContextMenu",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-context-menu",
+          "reflectToAttr": false,
+          "docs": "Hide the sidebar context menu button when set to true",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "navTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "nav-title",
+          "reflectToAttr": false,
+          "docs": "Navigation title",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "closeOverlay",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "closeOverlay() => Promise<void>",
+          "parameters": [],
+          "docs": "Close current shown overlay",
+          "docsTags": []
+        },
+        {
+          "name": "openOverlay",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "openOverlay(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>",
+          "parameters": [],
+          "docs": "Open a overlay inside content area",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "name"
+            },
+            {
+              "name": "param",
+              "text": "component"
+            },
+            {
+              "name": "param",
+              "text": "icon"
+            },
+            {
+              "name": "param",
+              "text": "color"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "contextMenuClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Context menu clicked",
+          "docsTags": []
+        },
+        {
+          "event": "navigationToggled",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Navigation toggled",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-menu-about",
+        "cw-map-navigation-overlay",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-map-navigation": [
+          "cw-menu-about",
+          "cw-map-navigation-overlay",
+          "cw-icon-button"
+        ],
+        "cw-menu-about": [
+          "cw-icon-button",
+          "cw-menu-about-item"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-map-navigation-overlay": [
+          "cw-icon",
+          "cw-icon-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/map-navigation-overlay/map-navigation-overlay.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-map-navigation-overlay",
+      "readme": "# cw-map-navigation-overlay\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Color of icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of overlay",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "Title of overlay",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closeClick",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event closed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-map-navigation"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-map-navigation-overlay": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-map-navigation": [
+          "cw-map-navigation-overlay"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu/menu.tsx",
+      "encapsulation": "none",
+      "tag": "cw-menu",
+      "readme": "# cw-menu\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "applicationDescription",
+          "type": "string",
+          "mutable": false,
+          "attr": "application-description",
+          "reflectToAttr": false,
+          "docs": "Should only be set if you use cw-menu standalone",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "applicationName",
+          "type": "string",
+          "mutable": false,
+          "attr": "application-name",
+          "reflectToAttr": false,
+          "docs": "Should only be set if you use cw-menu standalone",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "enableMapExpand",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enable-map-expand",
+          "reflectToAttr": false,
+          "docs": "Internal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "enableSettings",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enable-settings",
+          "reflectToAttr": false,
+          "docs": "Is settings tab is visible",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "enableToggleTheme",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enable-toggle-theme",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Show toggle theme button"
+            }
+          ],
+          "default": "false",
+          "deprecation": "Show toggle theme button",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expand",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "expand",
+          "reflectToAttr": true,
+          "docs": "Expand menu",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nCollapse",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-collapse",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Collapse'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nExpand",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-expand",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "' Expand'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nLegal",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-legal",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'About & legal information'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nMore",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-more",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'More…'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nSettings",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-settings",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Settings'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nToggleTheme",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-toggle-theme",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Toggle theme'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxVisibleMenuItems",
+          "type": "number",
+          "mutable": false,
+          "attr": "max-visible-menu-items",
+          "reflectToAttr": false,
+          "docs": "Maximum number of menu items to show in case enough vertical space is available.\nExtra menu items will be collapsed to 'show more' menu item.",
+          "docsTags": [],
+          "default": "9",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showAbout",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "show-about",
+          "reflectToAttr": false,
+          "docs": "Is about tab visible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showSettings",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "show-settings",
+          "reflectToAttr": false,
+          "docs": "Is settings tab visible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "toggleAbout",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleAbout(show: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Toggle About tabs",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show"
+            }
+          ]
+        },
+        {
+          "name": "toggleMapExpand",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleMapExpand(show?: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Toggle map sidebar expand",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show"
+            }
+          ]
+        },
+        {
+          "name": "toggleMenu",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleMenu(show?: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Toggle menu",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show"
+            }
+          ]
+        },
+        {
+          "name": "toggleSettings",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleSettings(show: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Toggle Settings tabs",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "expandChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Menu expanded",
+          "docsTags": []
+        },
+        {
+          "event": "mapExpandChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Map Sidebar expanded",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-menu-item",
+        "cw-dropdown"
+      ],
+      "dependencyGraph": {
+        "cw-menu": [
+          "cw-menu-item",
+          "cw-dropdown"
+        ],
+        "my-component": [
+          "cw-menu"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-about/cw-menu-about.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-about",
+      "readme": "# cw-menu-about\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "activeTabLabel",
+          "type": "string",
+          "mutable": true,
+          "attr": "active-tab-label",
+          "reflectToAttr": true,
+          "docs": "Active tab",
+          "docsTags": [],
+          "default": "this.i18nImprintLabel",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "applicationDescription",
+          "type": "string",
+          "mutable": false,
+          "attr": "application-description",
+          "reflectToAttr": false,
+          "docs": "Should only be set if you use cw-menu standalone",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "applicationName",
+          "type": "string",
+          "mutable": false,
+          "attr": "application-name",
+          "reflectToAttr": false,
+          "docs": "Should only be set if you use cw-menu standalone",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "copyrightYears",
+          "type": "string",
+          "mutable": false,
+          "attr": "copyright-years",
+          "reflectToAttr": false,
+          "docs": "Copyright",
+          "docsTags": [],
+          "default": "'1996 - 2022'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nCookieNoticeLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-cookie-notice-label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Cookie Notice'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nCorporateLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-corporate-label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Corporate Information'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDigitalId",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-digital-id",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Digital ID'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nImprintLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-imprint-label",
+          "reflectToAttr": true,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Imprint'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPrivacyNoticeLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-privacy-notice-label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Privacy Notice'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nTermsOfUseLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-terms-of-use-label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Terms of Use'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "imprintLanguage",
+          "type": "\"cn/zh\" | \"de/de\" | \"global/en\" | \"global/es\"",
+          "mutable": false,
+          "attr": "imprint-language",
+          "reflectToAttr": false,
+          "docs": "Language of the links in the About & Legal Tab",
+          "docsTags": [],
+          "default": "'global/en'",
+          "values": [
+            {
+              "value": "cn/zh",
+              "type": "string"
+            },
+            {
+              "value": "de/de",
+              "type": "string"
+            },
+            {
+              "value": "global/en",
+              "type": "string"
+            },
+            {
+              "value": "global/es",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of first tab",
+          "docsTags": [],
+          "default": "'About & legal information'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "show",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show",
+          "reflectToAttr": false,
+          "docs": "Internal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "close",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "About and Legal closed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-map-navigation"
+      ],
+      "dependencies": [
+        "cw-icon-button",
+        "cw-menu-about-item"
+      ],
+      "dependencyGraph": {
+        "cw-menu-about": [
+          "cw-icon-button",
+          "cw-menu-about-item"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-map-navigation": [
+          "cw-menu-about"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-about-item/cw-menu-about-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-about-item",
+      "readme": "# cw-menu-about-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "About Item label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-menu-about"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-menu-about": [
+          "cw-menu-about-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-about-news/menu-about-news.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-about-news",
+      "readme": "# cw-menu-about-news\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "aboutItemLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "about-item-label",
+          "reflectToAttr": false,
+          "docs": "Subtitle of the about news",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "expanded",
+          "reflectToAttr": false,
+          "docs": "Internal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nShowMore",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-show-more",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Show more'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Title of the about news",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "offsetBottom",
+          "type": "number",
+          "mutable": false,
+          "attr": "offset-bottom",
+          "reflectToAttr": false,
+          "docs": "Bottom offset",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "show",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "show",
+          "reflectToAttr": true,
+          "docs": "Show about news",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closePopover",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Popover closed",
+          "docsTags": []
+        },
+        {
+          "event": "showMore",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Show More button is pressed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-icon",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-menu-about-news": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-avatar/menu-avatar.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-avatar",
+      "readme": "# cw-menu-avatar\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "bottom",
+          "type": "string",
+          "mutable": false,
+          "attr": "bottom",
+          "reflectToAttr": false,
+          "docs": "Second line of text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nLogout",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-logout",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Logout'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "top",
+          "type": "string",
+          "mutable": false,
+          "attr": "top",
+          "reflectToAttr": false,
+          "docs": "First line of text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "logoutClick",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Logout click",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-dropdown",
+        "cw-menu-avatar-item"
+      ],
+      "dependencyGraph": {
+        "cw-menu-avatar": [
+          "cw-dropdown",
+          "cw-menu-avatar-item"
+        ],
+        "cw-menu-avatar-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-avatar-item/menu-avatar-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-avatar-item",
+      "readme": "# cw-menu-avatar-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Avatar dropdown icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Avatar dropdown label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Avatar dropdown item clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-menu-avatar"
+      ],
+      "dependencies": [
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-menu-avatar-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-menu-avatar": [
+          "cw-menu-avatar-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-item/menu-item.tsx",
+      "encapsulation": "none",
+      "tag": "cw-menu-item",
+      "readme": "# cw-menu-item\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "State to display active",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "bottom",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "bottom",
+          "reflectToAttr": false,
+          "docs": "Place tab on bottom",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable tab and remove event handlers",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "home",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "home",
+          "reflectToAttr": false,
+          "docs": "Move the Tab to a top position.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "notifications",
+          "type": "number",
+          "mutable": false,
+          "attr": "notifications",
+          "reflectToAttr": false,
+          "docs": "Show notification cound on tab",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "tabIcon",
+          "type": "string",
+          "mutable": false,
+          "attr": "tab-icon",
+          "reflectToAttr": false,
+          "docs": "Icon name from @siemens/core-ui-icons",
+          "docsTags": [],
+          "default": "'document'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-menu",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-menu": [
+          "cw-menu-item"
+        ],
+        "my-component": [
+          "cw-menu-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-settings/cw-menu-settings.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-settings",
+      "readme": "# cw-menu-settings\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "activeTabLabel",
+          "type": "string",
+          "mutable": true,
+          "attr": "active-tab-label",
+          "reflectToAttr": false,
+          "docs": "active tab",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label",
+          "docsTags": [],
+          "default": "'Settings'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "show",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show",
+          "reflectToAttr": false,
+          "docs": "Internal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "close",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Popover closed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-menu-settings": [
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/menu-settings-item/cw-menu-settings-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-menu-settings-item",
+      "readme": "# cw-menu-settings-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/message-bar/message-bar.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-message-bar",
+      "readme": "# message-bar\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "dismissible",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dismissible",
+          "reflectToAttr": false,
+          "docs": "If true, close button is enabled and alert can be dismissed by the user",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"danger\" | \"info\" | \"warning\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "Specifies the type of the alert.",
+          "docsTags": [],
+          "default": "'info'",
+          "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closedChange",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event emitted when the close button is clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-message-bar": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-message-bar"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/modal/cw-modal.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-modal",
+      "readme": "# cw-modal\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "animation",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "animation",
+          "reflectToAttr": false,
+          "docs": "Should the modal be animtated",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ariaDescribedBy",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-described-by",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ariaLabelledBy",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-labelled-by",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'modal-title'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "backdrop",
+          "type": "\"static\" | boolean",
+          "mutable": false,
+          "attr": "backdrop",
+          "reflectToAttr": false,
+          "docs": "Adds a dimming layer to the modal.\nThis should only be used when it it necessary to focus the user's attention to the dialog content (e.g. errors, warnings, complex tasks).",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "value": "static",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "backdropClass",
+          "type": "string",
+          "mutable": false,
+          "attr": "backdrop-class",
+          "reflectToAttr": false,
+          "docs": "Backdrop class",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "beforeDismiss",
+          "type": "() => boolean | Promise<boolean>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "BeforeDismiss callbacl",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "() => boolean"
+            },
+            {
+              "type": "Promise<boolean>"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "centered",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "centered",
+          "reflectToAttr": false,
+          "docs": "Centered modal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "HTMLElement | string",
+          "mutable": false,
+          "attr": "content",
+          "reflectToAttr": false,
+          "docs": "Content of modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "HTMLElement"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-title",
+          "reflectToAttr": false,
+          "docs": "Header title",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "keyboard",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "keyboard",
+          "reflectToAttr": false,
+          "docs": "ESC close modal dialog",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "modalDialogClass",
+          "type": "string",
+          "mutable": false,
+          "attr": "modal-dialog-class",
+          "reflectToAttr": false,
+          "docs": "Modal dialog class",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "scrollable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "scrollable",
+          "reflectToAttr": false,
+          "docs": "Modal scollable",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"lg\" | \"sm\" | \"xl\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Modal size",
+          "docsTags": [],
+          "default": "'sm'",
+          "values": [
+            {
+              "value": "lg",
+              "type": "string"
+            },
+            {
+              "value": "sm",
+              "type": "string"
+            },
+            {
+              "value": "xl",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "windowClass",
+          "type": "string",
+          "mutable": false,
+          "attr": "window-class",
+          "reflectToAttr": false,
+          "docs": "Window class",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "close",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "close(result: any) => Promise<void>",
+          "parameters": [],
+          "docs": "Close modal",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "result"
+            }
+          ]
+        },
+        {
+          "name": "dismiss",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "dismiss(reason?: any) => Promise<void>",
+          "parameters": [],
+          "docs": "Dismiss modal instance",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "reason"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "closed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Modal closed",
+          "docsTags": []
+        },
+        {
+          "event": "dismissed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Modal dismissed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-modal-container"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-modal-container": [
+          "cw-modal"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/modal-container/modal-container.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-modal-container",
+      "readme": "# overlay-container\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-modal"
+      ],
+      "dependencyGraph": {
+        "cw-modal-container": [
+          "cw-modal"
+        ],
+        "my-component": [
+          "cw-modal-container"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/my-component/example-modal.tsx",
+      "encapsulation": "none",
+      "tag": "cw-modal-example",
+      "readme": "# my-component\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [
+        {
+          "event": "close",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit close modal",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon-button",
+        "cw-button"
+      ],
+      "dependencyGraph": {
+        "cw-modal-example": [
+          "cw-icon-button",
+          "cw-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-modal-example"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/pill/pill.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-pill",
+      "readme": "# cw-pill\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "alignLeft",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "align-left",
+          "reflectToAttr": false,
+          "docs": "Align pill content left",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "background",
+          "type": "string",
+          "mutable": false,
+          "attr": "background",
+          "reflectToAttr": false,
+          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Show icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Show pill as outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": true,
+          "docs": "Pill variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "custom",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-pill": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-pill"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/select/select.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-select",
+      "readme": "# cw-select\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "allowClear",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "allow-clear",
+          "reflectToAttr": false,
+          "docs": "Show clear button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If true the select will be in disabled state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "editable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "editable",
+          "reflectToAttr": false,
+          "docs": "Select is extendable",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPlaceholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-placeholder",
+          "reflectToAttr": false,
+          "docs": "Input field placeholder",
+          "docsTags": [],
+          "default": "'Select an option'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPlaceholderEditable",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-placeholder-editable",
+          "reflectToAttr": false,
+          "docs": "Input field placeholder for editable select",
+          "docsTags": [],
+          "default": "'Type of select option'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nSelectListHeader",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-select-list-header",
+          "reflectToAttr": false,
+          "docs": "Select list header",
+          "docsTags": [],
+          "default": "'Please select an option'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "mode",
+          "type": "\"multiple\" | \"single\"",
+          "mutable": false,
+          "attr": "mode",
+          "reflectToAttr": false,
+          "docs": "Selection mode",
+          "docsTags": [],
+          "default": "'single'",
+          "values": [
+            {
+              "value": "multiple",
+              "type": "string"
+            },
+            {
+              "value": "single",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the select will be in readonly mode",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selectedIndices",
+          "type": "string | string[]",
+          "mutable": true,
+          "attr": "selected-indices",
+          "reflectToAttr": false,
+          "docs": "Indices of selected items",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "addItem",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Item added to selection",
+          "docsTags": []
+        },
+        {
+          "event": "itemSelectionChange",
+          "detail": "string | string[]",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Item selection changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "itemClick",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-select-item",
+        "cw-filter-chip",
+        "cw-icon",
+        "cw-icon-button",
+        "cw-dropdown",
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-select": [
+          "cw-select-item",
+          "cw-filter-chip",
+          "cw-icon",
+          "cw-icon-button",
+          "cw-dropdown",
+          "cw-dropdown-item"
+        ],
+        "cw-select-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-filter-chip": [
+          "cw-icon"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-select"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/select-item/select-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-select-item",
+      "readme": "# cw-select-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "hover",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hover",
+          "reflectToAttr": false,
+          "docs": "***Internal***",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "Displayed name of the item",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Whether the item is selected.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "any",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Item value",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "onItemClick",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "onItemClick(event?: CustomEvent<HTMLCwDropdownItemElement>) => Promise<void>",
+          "parameters": [],
+          "docs": "Internal",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "event"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Item clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-select",
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-select-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-select": [
+          "cw-select-item"
+        ],
+        "my-component": [
+          "cw-select-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/spinner/spinner.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-spinner",
+      "readme": "# cw-spinner\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "size",
+          "type": "\"large\" | \"medium\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of spinner",
+          "docsTags": [],
+          "default": "'medium'",
+          "values": [
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "medium",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"sencodary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of spinner",
+          "docsTags": [],
+          "default": "'secondary'",
+          "values": [
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
+              "type": "string"
+            },
+            {
+              "value": "sencodary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-upload"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "cw-upload": [
+          "cw-spinner"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/split-button/split-button.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-split-button",
+      "readme": "# cw-split-button\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button invisible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Button icon",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "invisible",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "invisible",
+          "reflectToAttr": false,
+          "docs": "Button invisible",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "use ghost property"
+            }
+          ],
+          "default": "false",
+          "deprecation": "use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Button label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Button outline variant",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placement",
+          "type": "\"auto\" | \"auto-end\" | \"auto-start\" | \"bottom\" | \"bottom-end\" | \"bottom-start\" | \"left\" | \"left-end\" | \"left-start\" | \"right\" | \"right-end\" | \"right-start\" | \"top\" | \"top-end\" | \"top-start\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the dropdown",
+          "docsTags": [],
+          "default": "'bottom-start'",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "value": "auto-end",
+              "type": "string"
+            },
+            {
+              "value": "auto-start",
+              "type": "string"
+            },
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "bottom-end",
+              "type": "string"
+            },
+            {
+              "value": "bottom-start",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "left-end",
+              "type": "string"
+            },
+            {
+              "value": "left-start",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "right-end",
+              "type": "string"
+            },
+            {
+              "value": "right-start",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            },
+            {
+              "value": "top-end",
+              "type": "string"
+            },
+            {
+              "value": "top-start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "splitIcon",
+          "type": "string",
+          "mutable": false,
+          "attr": "split-icon",
+          "reflectToAttr": false,
+          "docs": "Splitbutton icon",
+          "docsTags": [],
+          "default": "'context-menu'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Color variant of button",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "buttonClick",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Button clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-dropdown"
+      ],
+      "dependencyGraph": {
+        "cw-split-button": [
+          "cw-icon",
+          "cw-dropdown"
+        ],
+        "my-component": [
+          "cw-split-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/split-button-item/split-button-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-split-button-item",
+      "readme": "# cw-split-button-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Dropdown icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Dropdown label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Dropdown item clicked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "cw-split-button-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-split-button-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/tile/tile.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-tile",
+      "readme": "# cw-tile\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "size",
+          "type": "\"big\" | \"medium\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the tile - one of 'small', 'medium' or 'large'",
+          "docsTags": [],
+          "default": "'medium'",
+          "values": [
+            {
+              "value": "big",
+              "type": "string"
+            },
+            {
+              "value": "medium",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-tile"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/toast/cw-toast.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-toast",
+      "readme": "# cw-toast-container\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autoClose",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "auto-close",
+          "reflectToAttr": false,
+          "docs": "Autoclose behavior",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "autoCloseDelay",
+          "type": "number",
+          "mutable": false,
+          "attr": "auto-close-delay",
+          "reflectToAttr": false,
+          "docs": "Autoclose title after delay",
+          "docsTags": [],
+          "default": "5000",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of toast",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Icon color of toast",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "toastTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "toast-title",
+          "reflectToAttr": false,
+          "docs": "Toast title",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"error\" | \"info\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "Toast type",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "error",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closeToast",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Toast closed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-toast-container"
+      ],
+      "dependencies": [
+        "cw-icon",
+        "cw-icon-button"
+      ],
+      "dependencyGraph": {
+        "cw-toast": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-toast-container": [
+          "cw-toast"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/toast/toast-container.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-toast-container",
+      "readme": "# cw-toast-container\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "containerClass",
+          "type": "string",
+          "mutable": false,
+          "attr": "container-class",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'toast-container'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "containerId",
+          "type": "string",
+          "mutable": false,
+          "attr": "container-id",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'toast-container'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "position",
+          "type": "string",
+          "mutable": false,
+          "attr": "position",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'bottom-right'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEvents",
+          "returns": {
+            "type": "Promise<TypedEvent<ToastConfig>>",
+            "docs": ""
+          },
+          "signature": "getEvents() => Promise<TypedEvent<ToastConfig>>",
+          "parameters": [],
+          "docs": "Internal\nGet event notifier from container element",
+          "docsTags": [
+            {
+              "name": "returns"
+            }
+          ]
+        },
+        {
+          "name": "showToast",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "showToast(config: ToastConfig) => Promise<void>",
+          "parameters": [],
+          "docs": "Display a toast message",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "config"
+            }
+          ]
+        }
+      ],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "cw-toast"
+      ],
+      "dependencyGraph": {
+        "cw-toast-container": [
+          "cw-toast"
+        ],
+        "cw-toast": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "my-component": [
+          "cw-toast-container"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/toggle/toggle.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-toggle",
+      "readme": "# cw-toggle\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Whether the slide-toggle element is checked or not.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Basic and status colors from color palette",
+          "docsTags": [],
+          "default": "'accent'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Whether the slide-toggle element is disabled or not.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideText",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-text",
+          "reflectToAttr": false,
+          "docs": "Hide `on` and `off` text",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textOff",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-off",
+          "reflectToAttr": false,
+          "docs": "Test for toggle off",
+          "docsTags": [],
+          "default": "'Off'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textOn",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-on",
+          "reflectToAttr": false,
+          "docs": "Text for toggle on",
+          "docsTags": [],
+          "default": "'On'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event will be dispatched each time the slide-toggle changes its value.",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/tree/tree.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-tree",
+      "readme": "# cw-tree\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "context",
+          "type": "{ [x: string]: TreeItemContext; }",
+          "mutable": true,
+          "reflectToAttr": false,
+          "docs": "Selection and collapsed state management",
+          "docsTags": [],
+          "default": "{}",
+          "values": [
+            {
+              "type": "{ [x: string]: TreeItemContext; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "model",
+          "type": "{ [x: string]: TreeItem<any>; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Tree modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ [x: string]: TreeItem<any>; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "renderItem",
+          "type": "(index: number, data: any, dataList: any[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Render function of tree items",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(index: number, data: any, dataList: any[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "root",
+          "type": "string",
+          "mutable": false,
+          "attr": "root",
+          "reflectToAttr": false,
+          "docs": "Initial root element will not be rendered",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "contextChange",
+          "detail": "{ [x: string]: TreeItemContext; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Context changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-tree-item"
+      ],
+      "dependencyGraph": {
+        "cw-tree": [
+          "cw-tree-item"
+        ],
+        "cw-tree-item": [
+          "cw-icon"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/tree-item/tree-item.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-tree-item",
+      "readme": "# cw-tree-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "context",
+          "type": "TreeItemContext",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Context",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "TreeItemContext"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hasChildren",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "has-children",
+          "reflectToAttr": false,
+          "docs": "Has tree item children",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "mutable": false,
+          "attr": "text",
+          "reflectToAttr": false,
+          "docs": "Text",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Clicked",
+          "docsTags": []
+        },
+        {
+          "event": "toggle",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Expand/Collapsed toggled",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "cw-tree"
+      ],
+      "dependencies": [
+        "cw-icon"
+      ],
+      "dependencyGraph": {
+        "cw-tree-item": [
+          "cw-icon"
+        ],
+        "cw-tree": [
+          "cw-tree-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/upload/upload.tsx",
+      "encapsulation": "scoped",
+      "tag": "cw-upload",
+      "readme": "# cw-upload\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "accept",
+          "type": "string",
+          "mutable": false,
+          "attr": "accept",
+          "reflectToAttr": false,
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link https ://www.w3schools.com/tags/att_input_accept.asp}",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable all input events",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nUploadFile",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-upload-file",
+          "reflectToAttr": false,
+          "docs": "Label for upload file button",
+          "docsTags": [],
+          "default": "'Upload file...'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loadingText",
+          "type": "string",
+          "mutable": false,
+          "attr": "loading-text",
+          "reflectToAttr": false,
+          "docs": "Will be used by state = UploadFileState.LOADING",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "multiple",
+          "reflectToAttr": false,
+          "docs": "If multiple is true the user can drop or select multiple files",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selectFileText",
+          "type": "string",
+          "mutable": false,
+          "attr": "select-file-text",
+          "reflectToAttr": false,
+          "docs": "Will be used by state = UploadFileState.SELECT_FILE",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "state",
+          "type": "UploadFileState.LOADING | UploadFileState.SELECT_FILE | UploadFileState.UPLOAD_FAILED | UploadFileState.UPLOAD_SUCCESSED",
+          "mutable": false,
+          "attr": "state",
+          "reflectToAttr": false,
+          "docs": "After a file is uploaded you can set the upload component to a defined state",
+          "docsTags": [],
+          "default": "UploadFileState.SELECT_FILE",
+          "values": [
+            {
+              "type": "UploadFileState.LOADING"
+            },
+            {
+              "type": "UploadFileState.SELECT_FILE"
+            },
+            {
+              "type": "UploadFileState.UPLOAD_FAILED"
+            },
+            {
+              "type": "UploadFileState.UPLOAD_SUCCESSED"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "uploadFailedText",
+          "type": "string",
+          "mutable": false,
+          "attr": "upload-failed-text",
+          "reflectToAttr": false,
+          "docs": "Will be used by state = UploadFileState.UPLOAD_FAILED",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "uploadSuccessText",
+          "type": "string",
+          "mutable": false,
+          "attr": "upload-success-text",
+          "reflectToAttr": false,
+          "docs": "Will be used by state = UploadFileState.UPLOAD_SUCCESSED",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "setFilesToUpload",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "setFilesToUpload(obj: any) => Promise<void>",
+          "parameters": [],
+          "docs": "Set files",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "obj"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "filesChanged",
+          "detail": "File[]",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "You get an array of Files after drop-action or browse action is finished",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-spinner"
+      ],
+      "dependencyGraph": {
+        "cw-upload": [
+          "cw-spinner"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/my-component/my-component.tsx",
+      "encapsulation": "scoped",
+      "tag": "my-component",
+      "readme": "# my-component\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "cw-modal-example",
+        "cw-basic-navigation",
+        "cw-menu",
+        "cw-menu-item",
+        "cw-button",
+        "cw-modal-container",
+        "cw-message-bar",
+        "cw-animated-tabs",
+        "cw-animated-tab",
+        "cw-flip-tile",
+        "cw-icon",
+        "cw-tile",
+        "cw-icon-button",
+        "cw-select",
+        "cw-select-item",
+        "cw-filter-chip",
+        "cw-breadcrumb",
+        "cw-breadcrumb-item",
+        "cw-counter-pill",
+        "cw-pill",
+        "cw-chip",
+        "cw-blind",
+        "cw-split-button",
+        "cw-split-button-item",
+        "cw-dropdown",
+        "cw-dropdown-item",
+        "cw-input-group",
+        "cw-expanding-search",
+        "cw-toast-container"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "cw-modal-example",
+          "cw-basic-navigation",
+          "cw-menu",
+          "cw-menu-item",
+          "cw-button",
+          "cw-modal-container",
+          "cw-message-bar",
+          "cw-animated-tabs",
+          "cw-animated-tab",
+          "cw-flip-tile",
+          "cw-icon",
+          "cw-tile",
+          "cw-icon-button",
+          "cw-select",
+          "cw-select-item",
+          "cw-filter-chip",
+          "cw-breadcrumb",
+          "cw-breadcrumb-item",
+          "cw-counter-pill",
+          "cw-pill",
+          "cw-chip",
+          "cw-blind",
+          "cw-split-button",
+          "cw-split-button-item",
+          "cw-dropdown",
+          "cw-dropdown-item",
+          "cw-input-group",
+          "cw-expanding-search",
+          "cw-toast-container"
+        ],
+        "cw-modal-example": [
+          "cw-icon-button",
+          "cw-button"
+        ],
+        "cw-icon-button": [
+          "cw-icon"
+        ],
+        "cw-basic-navigation": [
+          "cw-application-header"
+        ],
+        "cw-menu": [
+          "cw-menu-item",
+          "cw-dropdown"
+        ],
+        "cw-modal-container": [
+          "cw-modal"
+        ],
+        "cw-message-bar": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-animated-tabs": [
+          "cw-icon"
+        ],
+        "cw-flip-tile": [
+          "cw-icon-button"
+        ],
+        "cw-select": [
+          "cw-select-item",
+          "cw-filter-chip",
+          "cw-icon",
+          "cw-icon-button",
+          "cw-dropdown",
+          "cw-dropdown-item"
+        ],
+        "cw-select-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-dropdown-item": [
+          "cw-icon"
+        ],
+        "cw-filter-chip": [
+          "cw-icon"
+        ],
+        "cw-breadcrumb": [
+          "cw-icon",
+          "cw-dropdown",
+          "cw-dropdown-item"
+        ],
+        "cw-pill": [
+          "cw-icon"
+        ],
+        "cw-chip": [
+          "cw-icon"
+        ],
+        "cw-split-button": [
+          "cw-icon",
+          "cw-dropdown"
+        ],
+        "cw-split-button-item": [
+          "cw-dropdown-item"
+        ],
+        "cw-expanding-search": [
+          "cw-icon",
+          "cw-icon-button"
+        ],
+        "cw-toast-container": [
+          "cw-toast"
+        ],
+        "cw-toast": [
+          "cw-icon",
+          "cw-icon-button"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+@import './../../../scss/mixins/hover';
+@import './../../../scss/variables.scss';
+@import './../../../scss/colors.scss';
+@import './../../../scss/mixins/hover';
+@import './../../../scss/mixins/text-truncation';
+
+:host {
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+  width: 100%;
+
+  cursor: pointer;
+
+  &:not(.disabled):not(:disabled):not(.selected) {
+    &.hover,
+    &:hover {
+      background-color: var(--theme-ghost-hover);
+    }
+
+    &.active,
+    &:active {
+      background-color: var(--theme-ghost-pressed);
+    }
+  }
+
+  &.selected {
+    background-color: var(--theme-ghost-selected);
+  }
+
+  .tree-node-container {
+    display: flex;
+    align-items: center;
+    height: $x-large-space;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .icon-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+
+    cw-icon {
+      transition: transform $default-time ease-in-out;
+
+      &.icon-toggle-down {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

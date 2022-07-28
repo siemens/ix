@@ -1,0 +1,39 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './../chip/chip-mixin';
+@import './../../../scss/v7/common-variables';
+@import './../../../scss/v7/mixins/text-truncation';
+
+$border-radius: 100px;
+$chip-height: 1.25rem;
+
+:host {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: $border-radius;
+  padding: 0px 6px;
+  margin-left: 0.25rem;
+  min-width: $large-space;
+  height: $chip-height;
+  min-height: $chip-height;
+  max-height: $chip-height;
+  cursor: auto;
+
+  .with-icon {
+    margin-right: $tiny-space;
+  }
+
+  &.align-left {
+    justify-content: flex-start;
+  }
+
+  @include chip($interaction: false);
+
+  .slot {
+    @include ellipsis;
+  }
+}

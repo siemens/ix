@@ -1,0 +1,10 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './../../utils/define-theme-variable';
+
+@mixin generic-bg-hover {
+  @include define-theme-variable('generic-bg-hover', var(--theme-base-color-1-05));
+  @include define-theme-variable('generic-bg-active', var(--theme-base-color-1-10));
+  @include define-theme-variable('generic-bg-selected', var(--theme-base-color-light-teal-25));
+}

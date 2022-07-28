@@ -1,0 +1,111 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+*/
+
+//                  _                                        _           _            _____   ____    _   _  ____ _______   ______ _____ _____ _______
+//       /\        | |                                      | |         | |          |  __ \ / __ \  | \ | |/ __ \__   __| |  ____|  __ \_   _|__   __|
+//      /  \  _   _| |_ ___   __ _  ___ _ __   ___ _ __ __ _| |_ ___  __| |  ______  | |  | | |  | | |  \| | |  | | | |    | |__  | |  | || |    | |
+//     / /\ \| | | | __/ _ \ / _` |/ _ \ '_ \ / _ \ '__/ _` | __/ _ \/ _` | |______| | |  | | |  | | | . ` | |  | | | |    |  __| | |  | || |    | |
+//    / ____ \ |_| | || (_) | (_| |  __/ | | |  __/ | | (_| | ||  __/ (_| |          | |__| | |__| | | |\  | |__| | | |    | |____| |__| || |_   | |
+//   /_/    \_\__,_|\__\___/ \__, |\___|_| |_|\___|_|  \__,_|\__\___|\__,_|          |_____/ \____/  |_| \_|\____/  |_|    |______|_____/_____|  |_|
+//                            __/ |
+//                           |___/
+
+@import "./mixins/input.scss";
+
+$svg-url-avatar-placeholder: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cg fill-rule='nonzero'%3E %3Cpath fill='%23FFF' fill-opacity='.8' d='M24,1.0658141e-15 C10.745166,-5.32907052e-16 1.0658141e-15,10.745166 0,24 C-1.0658141e-15,37.254834 10.745166,48 24,48 C37.254834,48 48,37.254834 48,24 C48,17.6348042 45.4714358,11.5303103 40.9705627,7.02943725 C36.4696897,2.52856417 30.3651958,5.32907052e-16 24,1.0658141e-15 Z'/%3E %3Cpath fill='%233F484C' d='M23.7316112 3.19142376C29.2544586 3.19142376 33.7316112 7.66857626 33.7316112 13.1914238 33.7316112 18.7142713 29.2544586 23.1914238 23.7316112 23.1914238 18.2087637 23.1914238 13.7316112 18.7142713 13.7316112 13.1914238 13.7316112 7.66857626 18.2087637 3.19142376 23.7316112 3.19142376zM6.9264446 34.4334476C10.1179892 29.6771528 15.4551683 26.838582 21.1544074 26.8663265L26.8455926 26.8663265C32.5448317 26.838582 37.8820108 29.6771528 41.0735554 34.4334476 37.4479649 40.4324208 30.9723178 44.0852153 24 44.0643291 17.0276822 44.0852153 10.5520351 40.4324208 6.9264446 34.4334476z'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-chevron-left-black: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='0.687rem' height='1.125rem' viewBox='0 0 11 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/chevron/ left%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Graphics' transform='translate(-507.000000, -378.000000)' fill='%23000000'%3E %3Cg id='Group-3' transform='translate(160.000000, 376.000000)'%3E %3Cg id='Graphics/icons/UI/chevron/-left/black' transform='translate(347.000000, 2.000000)'%3E %3Cpolygon id='Page-1' transform='translate(5.250000, 9.000000) rotate(-180.000000) translate(-5.250000, -9.000000) ' points='1.5 0 0 1.5 7.499 9 0 16.5 1.5 18 10.5 9'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-chevron-right-black: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='0.687rem' height='1.125rem' viewBox='0 0 11 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/chevron/ right%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Graphics' transform='translate(-539.000000, -378.000000)' fill='%23000000'%3E %3Cg id='Group-3' transform='translate(160.000000, 376.000000)'%3E %3Cg id='Graphics/icons/UI/chevron/-right/black' transform='translate(379.000000, 2.000000)'%3E %3Cpolygon id='Page-1' points='1.5 0 0 1.5 7.499 9 0 16.5 1.5 18 10.5 9'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-context-menu: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cg fill='none' fill-rule='evenodd' opacity='.85'%3E %3Ccircle cx='12' cy='6' r='2' fill='%23000'/%3E %3Ccircle cx='12' cy='18' r='2' fill='%23000'/%3E %3Ccircle cx='12' cy='12' r='2' fill='%23000'/%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-filter-accent: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpolygon fill='%234CA9C4' fill-rule='evenodd' points='2 3 10 13 10 22.5 14 18.5 14 13 22 3'/%3E %3C/svg%3E") !default;
+$svg-url-filter-white: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpolygon fill='%23FFF' fill-rule='evenodd' points='2 3 10 13 10 22.5 14 18.5 14 13 22 3'/%3E %3C/svg%3E") !default;
+$svg-url-filter: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpolygon fill-rule='evenodd' points='2 3 10 13 10 22.5 14 18.5 14 13 22 3' opacity='.85'/%3E %3C/svg%3E") !default;
+$svg-url-invalid-input: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='1.625rem' height='1.625rem' viewBox='0 0 26 26' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EError red%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='event_management_v0.1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Error-red' transform='translate(-3.000000, -3.000000)' fill='%23EC3041' fill-rule='nonzero'%3E %3Cpath d='M16,3 C8.8321429,3 3,8.8321429 3,16 C3,23.167857 8.8321429,29 16,29 C23.167857,29 29,23.167857 29,16 C29,8.8321429 23.167857,3 16,3 Z M16,5 C22.086977,5 27,9.9130231 27,16 C27,22.086977 22.086977,27 16,27 C9.9130231,27 5,22.086977 5,16 C5,9.9130231 9.9130231,5 16,5 Z' id='Shape'%3E%3C/path%3E %3Cpolygon id='Path-4' transform='translate(16.000000, 16.000000) scale(-1, 1) translate(-16.000000, -16.000000) ' points='10.2928932 11.7071068 11.7071068 10.2928932 21.7071068 20.2928932 20.2928932 21.7071068'%3E%3C/polygon%3E %3Cpolygon id='Path-4' points='10.2928932 11.7071068 11.7071068 10.2928932 21.7071068 20.2928932 20.2928932 21.7071068'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-search-black: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='1.125rem' height='1.125rem' viewBox='0 0 18 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/chevron/search/black%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.85'%3E %3Cg id='Graphics' transform='translate(-572.000000, -378.000000)' fill='%23000000'%3E %3Cg id='Group-3' transform='translate(160.000000, 376.000000)'%3E %3Cg id='Graphics/icons/UI/search/black' transform='translate(412.000000, 2.000000)'%3E %3Cpath d='M12.502,6.491 L11.708,6.491 L11.432,6.765 C12.407,7.902 13,9.376 13,10.991 C13,14.581 10.09,17.491 6.5,17.491 C2.91,17.491 0,14.581 0,10.991 C0,7.401 2.91,4.491 6.5,4.491 C8.115,4.491 9.588,5.083 10.725,6.057 L11.001,5.783 L11.001,4.991 L15.999,0 L17.49,1.491 L12.502,6.491 L12.502,6.491 Z M6.5,6.491 C4.014,6.491 2,8.505 2,10.991 C2,13.476 4.014,15.491 6.5,15.491 C8.985,15.491 11,13.476 11,10.991 C11,8.505 8.985,6.491 6.5,6.491 L6.5,6.491 Z' id='Shape' transform='translate(8.745000, 8.745500) scale(1, -1) translate(-8.745000, -8.745500) '%3E%3C/path%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-search-white: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='1.125rem' height='1.125rem' viewBox='0 0 18 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/chevron/search/white%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E%3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Graphics' transform='translate(-905.000000, -660.000000)' fill='%23FFFFFF'%3E %3Cg id='Group-4' transform='translate(162.000000, 657.000000)'%3E %3Cg id='Graphics/icons/UI/search/white' transform='translate(743.000000, 3.000000)'%3E %3Cpath d='M12.502,6.491 L11.708,6.491 L11.432,6.765 C12.407,7.902 13,9.376 13,10.991 C13,14.581 10.09,17.491 6.5,17.491 C2.91,17.491 0,14.581 0,10.991 C0,7.401 2.91,4.491 6.5,4.491 C8.115,4.491 9.588,5.083 10.725,6.057 L11.001,5.783 L11.001,4.991 L15.999,0 L17.49,1.491 L12.502,6.491 L12.502,6.491 Z M6.5,6.491 C4.014,6.491 2,8.505 2,10.991 C2,13.476 4.014,15.491 6.5,15.491 C8.985,15.491 11,13.476 11,10.991 C11,8.505 8.985,6.491 6.5,6.491 L6.5,6.491 Z' id='Shape' transform='translate(8.745000, 8.745500) scale(1, -1) translate(-8.745000, -8.745500) '%3E%3C/path%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-search: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath fill-opacity='.85' fill-rule='evenodd' d='M15.1246465,10.313722 L14.4891197,10.313722 L14.2682061,10.5330347 C15.0486074,11.4431028 15.5232515,12.6229095 15.5232515,13.9155743 C15.5232515,16.7890521 13.1940537,19.11825 10.3205759,19.11825 C7.44709808,19.11825 5.11790021,16.7890521 5.11790021,13.9155743 C5.11790021,11.0420965 7.44709808,8.71289868 10.3205759,8.71289868 C11.6132407,8.71289868 12.792247,9.18674237 13.702315,9.96634331 L13.9232287,9.74703052 L13.9232287,9.1131045 L17.923686,5.11825 L19.1170998,6.31166376 L15.1246465,10.313722 L15.1246465,10.313722 Z M10.3205759,10.313722 C8.33075253,10.313722 6.71872349,11.925751 6.71872349,13.9155743 C6.71872349,15.9045973 8.33075253,17.5174267 10.3205759,17.5174267 C12.3095988,17.5174267 13.9224282,15.9045973 13.9224282,13.9155743 C13.9224282,11.925751 12.3095988,10.313722 10.3205759,10.313722 L10.3205759,10.313722 Z' transform='matrix(1 0 0 -1 0 24.236)'/%3E %3C/svg%3E") !default;
+$svg-url-sorting-indicator-asc: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='0.875rem' height='1rem' viewBox='0 0 14 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' transform='rotate(180, 0, 0)'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/sorting-indicator%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E %3ClinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' id='linearGradient-1'%3E %3Cstop stop-color='%2379BFD3' offset='0%25'%3E%3C/stop%3E %3Cstop stop-color='%234CA9C4' offset='100%25'%3E%3C/stop%3E %3C/linearGradient%3E %3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Graphics' transform='translate(-243.000000, -818.000000)'%3E %3Cg id='Graphics/icons/UI/sorting-indicator' transform='translate(241.000000, 818.000000)'%3E %3Cg id='sorting-indicator'%3E %3Cg id='sort_up_black' opacity='0.2' fill='%23000000'%3E %3Cpolygon id='Path-3' transform='translate(9.000000, 3.000000) rotate(-180.000000) translate(-9.000000, -3.000000) ' points='2.25 0.00470713909 15.75 0 9 6'%3E%3C/polygon%3E %3C/g%3E %3Cg id='sort_down_blue' transform='translate(0.000000, 8.000000)' fill='%234CA9C4'%3E %3Cpolygon id='Path-3' points='2.25 2.00470714 15.75 2 9 8'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+$svg-url-sorting-indicator-desc: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8'?%3E %3Csvg width='0.875rem' height='1rem' viewBox='0 0 14 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E %3C!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch --%3E %3Ctitle%3EGraphics/icons/UI/sorting-indicator%3C/title%3E %3Cdesc%3ECreated with Sketch.%3C/desc%3E %3Cdefs%3E %3ClinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' id='linearGradient-1'%3E %3Cstop stop-color='%2379BFD3' offset='0%25'%3E%3C/stop%3E %3Cstop stop-color='%234CA9C4' offset='100%25'%3E%3C/stop%3E %3C/linearGradient%3E %3C/defs%3E %3Cg id='UI-Elements' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E %3Cg id='Graphics' transform='translate(-243.000000, -818.000000)'%3E %3Cg id='Graphics/icons/UI/sorting-indicator' transform='translate(241.000000, 818.000000)'%3E %3Cg id='sorting-indicator'%3E %3Cg id='sort_up_black' opacity='0.2' fill='%23000000'%3E %3Cpolygon id='Path-3' transform='translate(9.000000, 3.000000) rotate(-180.000000) translate(-9.000000, -3.000000) ' points='2.25 0.00470713909 15.75 0 9 6'%3E%3C/polygon%3E %3C/g%3E %3Cg id='sort_down_blue' transform='translate(0.000000, 8.000000)' fill='%234CA9C4'%3E %3Cpolygon id='Path-3' points='2.25 2.00470714 15.75 2 9 8'%3E%3C/polygon%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/g%3E %3C/svg%3E") !default;
+
+$graphics: (
+  'avatar-placeholder': $svg-url-avatar-placeholder,
+  'chevron-left-black': $svg-url-chevron-left-black,
+  'chevron-right-black': $svg-url-chevron-right-black,
+  'context-menu': $svg-url-context-menu,
+  'filter-accent': $svg-url-filter-accent,
+  'filter-white': $svg-url-filter-white,
+  'filter': $svg-url-filter,
+  'invalid-input': $svg-url-invalid-input,
+  'search-black': $svg-url-search-black,
+  'search-white': $svg-url-search-white,
+  'search': $svg-url-search,
+  'sorting-indicator-asc': $svg-url-sorting-indicator-asc,
+  'sorting-indicator-desc': $svg-url-sorting-indicator-desc,
+);
+
+$svgSizes: (
+  'small': $small-icon-size,
+  'default': $default-icon-size,
+  'large': $large-icon-size,
+);
+
+@mixin inline-svg-container($width, $height) {
+	display: inline-block;
+	background-size: 100%;
+	width: $width;
+	height: $height;
+}
+
+@mixin inline-svg-as-background($name) {
+	background-color: transparent;
+  background-image: $name;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+	background-size: contain;
+}
+
+@mixin svg-x-list {
+	.svg {
+		@include inline-svg-container($default-icon-size, $default-icon-size)
+	}
+
+	@each $name, $value in $svgSizes {
+		.svg-#{$name} {
+			@include inline-svg-container(#{$value}, #{$value})
+		}
+	}
+
+	@each $name, $value in $graphics {
+		.svg-#{$name} {
+			@include inline-svg-as-background($value);
+		}
+  }
+
+  // TODO: Remove class generatation for class="svg image-xx"
+  @each $name, $value in $graphics {
+		.image-#{$name} {
+			@include inline-svg-as-background($value);
+		}
+  }
+}
+
+@mixin svg-input-x-list {
+  @each $name, $value in $graphics {
+		.input-icon-start-#{$name} {
+			@include addIconToInput($value);
+		}
+  }
+}
+
+@include svg-x-list();
+@include svg-input-x-list();
+
+
+//                  _                                        _           _            _____   ____    _   _  ____ _______   ______ _____ _____ _______
+//       /\        | |                                      | |         | |          |  __ \ / __ \  | \ | |/ __ \__   __| |  ____|  __ \_   _|__   __|
+//      /  \  _   _| |_ ___   __ _  ___ _ __   ___ _ __ __ _| |_ ___  __| |  ______  | |  | | |  | | |  \| | |  | | | |    | |__  | |  | || |    | |
+//     / /\ \| | | | __/ _ \ / _` |/ _ \ '_ \ / _ \ '__/ _` | __/ _ \/ _` | |______| | |  | | |  | | | . ` | |  | | | |    |  __| | |  | || |    | |
+//    / ____ \ |_| | || (_) | (_| |  __/ | | |  __/ | | (_| | ||  __/ (_| |          | |__| | |__| | | |\  | |__| | | |    | |____| |__| || |_   | |
+//   /_/    \_\__,_|\__\___/ \__, |\___|_| |_|\___|_|  \__,_|\__\___|\__,_|          |_____/ \____/  |_| \_|\____/  |_|    |______|_____/_____|  |_|
+//                            __/ |
+//                           |___/

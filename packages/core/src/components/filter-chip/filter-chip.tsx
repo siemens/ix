@@ -1,0 +1,42 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+
+@Component({
+  tag: 'cw-filter-chip',
+  styleUrl: 'filter-chip.scss',
+  scoped: true,
+})
+export class FilterChip {
+  @Element() el: HTMLCwFilterChipElement;
+
+  /**
+   * If true the filter chip will be in disabled state
+   */
+  @Prop() disabled = false;
+
+  /**
+   * Close clicked
+   */
+  @Event() closeClick: EventEmitter<void>;
+
+  private onCloseClick(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.closeClick.emit();
+  }
+
+  render() {
+    return (
+      <Host class={{ disabled: this.disabled }} title={this.el.textContent}>
+        <div class="slot-container">
+          <slot></slot>
+        </div>
+        <button disabled={this.disabled} class="btn btn-invisible-secondary btn-oval" onClick={e => this.onCloseClick(e)}>
+          <cw-icon name="close-small" size="16"></cw-icon>
+        </button>
+      </Host>
+    );
+  }
+}

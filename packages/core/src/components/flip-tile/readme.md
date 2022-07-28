@@ -1,0 +1,18 @@
+# cw-flip-tile
+
+
+
+<!-- Auto Generated Below -->
+
+
+## Properties
+
+| Property | Attribute | Description           | Type                                                                                                                | Default     |
+| -------- | --------- | --------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `footer` | `footer`  | Tmp property name     | `string`                                                                                                            | `undefined` |
+| `state`  | `state`   | Variation of the Flip | `FlipTileState.Alarm \| FlipTileState.Info \| FlipTileState.None \| FlipTileState.Primary \| FlipTileState.Warning` | `undefined` |
+
+
+----------------------------------------------
+
+

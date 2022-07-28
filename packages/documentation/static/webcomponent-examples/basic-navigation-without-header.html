@@ -1,0 +1,29 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic navigation without header example</title>
+    <link
+      rel="stylesheet"
+      href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
+    />
+    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <cw-basic-navigation hide-header>
+      <cw-menu>
+        <cw-menu-item>Item 1</cw-menu-item>
+        <cw-menu-item>Item 2</cw-menu-item>
+      </cw-menu>
+    </cw-basic-navigation>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

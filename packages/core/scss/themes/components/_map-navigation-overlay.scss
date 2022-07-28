@@ -1,0 +1,8 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@mixin map-navigation-overlay {
+  @include define-theme-variable('map-navigation-overlay-blur', hsla(var(--theme-color-1--hs), var(--theme-color-1--l), calc(var(--theme-color-1--a) - 30%)));
+  @include define-theme-variable('map-navigation-overlay-header-blur', hsla(var(--theme-color-3--hs), var(--theme-color-3--l), calc(var(--theme-color-3--a) - 30%)));
+}

@@ -1,0 +1,31 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+.cui-popover-news {
+  width: 40vw;
+  background-color: var(--theme-color-1);
+  border: var(--theme-weak-bdr-1);
+
+  .cui-popover-news-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--theme-color-std-text);
+  }
+
+  .popover-body {
+    color: var(--theme-color-std-text);
+  }
+
+  .cui-popover-news-footer {
+    margin-top: 1rem;
+  }
+
+  .arrow::after {
+    border-right-color: var(--theme-color-1) !important;
+  }
+
+  .arrow::before {
+    border-right-color: var(--theme-color-weak-bdr-1) !important;
+  }
+}

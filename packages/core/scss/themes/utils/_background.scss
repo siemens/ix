@@ -1,0 +1,13 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@mixin background($backgrounds) {
+  @if length($backgrounds) != 7 {
+    @error "You need 7 background definitions";
+  }
+
+  @each $background in $backgrounds {
+    --theme-bg-#{index($backgrounds, $background)}: #{$background};
+  }
+}

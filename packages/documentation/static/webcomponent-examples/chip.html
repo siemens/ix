@@ -1,0 +1,126 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chip example</title>
+    <link
+      rel="stylesheet"
+      href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
+    />
+    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+
+    <style>
+      .example {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+
+      cw-chip {
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+
+    <div class="example">
+      <cw-chip variant="alert">Alarm</cw-chip>
+      <cw-chip active variant="alert">Alarm</cw-chip>
+      <cw-chip variant="alert">
+        <span class="glyph glyph-error-filled"></span>
+        <span class="chip-label">Failure</span>
+      </cw-chip>
+      <cw-chip active variant="alert">
+        <span class="glyph glyph-error-filled"></span>
+        <span class="chip-label">Failure</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="critical">Critical</cw-chip>
+      <cw-chip active variant="critical">Critical</cw-chip>
+      <cw-chip variant="critical">
+        <span class="glyph glyph-namur-check-function-filled"></span>
+        <span class="chip-label">Check function</span>
+      </cw-chip>
+      <cw-chip active variant="critical">
+        <span class="glyph glyph-namur-check-function-filled"></span>
+        <span class="chip-label">Check function</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="warning">Warning</cw-chip>
+      <cw-chip active variant="warning">Warning</cw-chip>
+      <cw-chip variant="warning">
+        <span class="glyph glyph-namur-out-of-spec-filled"></span>
+        <span class="chip-label">Out of specification</span>
+      </cw-chip>
+      <cw-chip active variant="warning">
+        <span class="glyph glyph-namur-out-of-spec-filled"></span>
+        <span class="chip-label">Out of specification</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="information">Info</cw-chip>
+      <cw-chip active variant="information">Info</cw-chip>
+      <cw-chip variant="information">
+        <span class="glyph glyph-namur-maintenance-required-filled"></span>
+        <span class="chip-label">Maint. required</span>
+      </cw-chip>
+      <cw-chip active variant="information">
+        <span class="glyph glyph-namur-maintenance-required-filled"></span>
+        <span class="chip-label">Maint. required</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="success">Success</cw-chip>
+      <cw-chip active variant="success">Success</cw-chip>
+      <cw-chip variant="success">
+        <span class="glyph glyph-namur-ok-filled"></span>
+        <span class="chip-label">Normal</span>
+      </cw-chip>
+      <cw-chip active variant="success">
+        <span class="glyph glyph-namur-ok-filled"></span>
+        <span class="chip-label">Normal</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="undefined">Neutral</cw-chip>
+      <cw-chip active variant="undefined">Neutral</cw-chip>
+      <cw-chip variant="undefined">
+        <span class="glyph glyph-cancel"></span>
+        <span class="chip-label">Neutral</span>
+      </cw-chip>
+      <cw-chip active variant="undefined">
+        <span class="glyph glyph-cancel"></span>
+        <span class="chip-label">Neutral</span>
+      </cw-chip>
+    </div>
+
+    <div class="example">
+      <cw-chip variant="teal">Primary</cw-chip>
+      <cw-chip active variant="teal">Primary</cw-chip>
+      <cw-chip variant="teal">
+        <span class="glyph glyph-single-check"></span>
+        <span class="chip-label">Primary</span>
+      </cw-chip>
+      <cw-chip active variant="teal">
+        <span class="glyph glyph-single-check"></span>
+        <span class="chip-label">Primary</span>
+      </cw-chip>
+    </div>
+
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

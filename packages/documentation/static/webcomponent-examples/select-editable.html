@@ -1,0 +1,29 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Select editable example</title>
+    <link
+      rel="stylesheet"
+      href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
+    />
+    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <cw-select editable default-value="1">
+      <cw-select-item label="Item 1" value="1"></cw-select-item>
+      <cw-select-item label="Item 2" value="2"></cw-select-item>
+      <cw-select-item label="Item 3" value="3"></cw-select-item>
+      <cw-select-item label="Item 4" value="4"></cw-select-item>
+    </cw-select>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

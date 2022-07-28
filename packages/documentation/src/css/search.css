@@ -1,0 +1,48 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+.aa-DetachedSearchButton {
+  background-color: var(--theme-color-2) !important;
+  border: none !important;
+
+  cursor: pointer !important;
+}
+
+.aa-DetachedSearchButton:focus {
+  box-shadow: none !important;
+}
+
+.aa-DetachedSearchButtonIcon {
+  color: var(--theme-color-std-text) !important;
+  cursor: pointer !important;
+  display: none !important;
+}
+
+.aa-DetachedSearchButtonPlaceholder {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  background-color: var(--theme-color-1);
+  width: 100%;
+  height: 1.875rem;
+  border-bottom: var(--theme-std-bdr-1);
+  padding-left: 0.5rem;
+
+  font-family: Siemens Sans, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.aa-DetachedSearchButtonPlaceholder:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.aa-Label {
+  margin-bottom: 0px !important;
+}

@@ -1,0 +1,51 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+/** @deprecated - will be removed in Core UI 7 */
+@function add-component-theme($target-theme, $to-merge) {
+  // @warn ('DEPRECATION WARNING: Function will be removed in 7.0.0');
+
+  $to-merge-light: map-get($to-merge, 'light');
+  $to-merge-dark: map-get($to-merge, 'dark');
+
+  $target-light: map-get($target-theme, 'light');
+  $target-dark: map-get($target-theme, 'dark');
+
+  $merged-light: map-merge($target-light, $to-merge-light);
+  $merged-dark: map-merge($target-dark, $to-merge-dark);
+
+  @return (light: $merged-light, dark: $merged-dark);
+}
+
+/** @deprecated - will be removed in Core UI 7 */
+@function new-theme($new-theme-map) {
+  // @warn ('DEPRECATION WARNING: Function will be removed in 7.0.0');
+
+  $created-theme-light-map: ();
+  $created-theme-dark-map: ();
+  @each $name, $colors in $new-theme-map {
+    $created-theme-light-map: map-merge(
+      $created-theme-light-map,
+      (
+        $name: map-get($colors, 'light'),
+      )
+    );
+
+    $created-theme-dark-map: map-merge(
+      $created-theme-dark-map,
+      (
+        $name: map-get($colors, 'dark'),
+      )
+    );
+  }
+
+  @return (light: $created-theme-light-map, dark: $created-theme-dark-map);
+}
+
+/** @deprecated - will be removed in Core UI 7 */
+@function theme-variant($light, $dark) {
+  // @warn ('DEPRECATION WARNING: Function will be removed in 7.0.0');
+
+  @return ('light': $light, 'dark': $dark);
+}

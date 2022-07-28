@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cw-message-bar renders 1`] = `
+<cw-message-bar type="danger">
+  <!---->
+  <div class="danger message-container" role="alert">
+    <cw-icon color="color-alarm" name="alarm-filled" size="32"></cw-icon>
+    <div class="message-content"></div>
+    <cw-icon-button class="btn-close" data-testid="close-btn" icon="close" ghost="" size="24"></cw-icon-button>
+  </div>
+</cw-message-bar>
+`;

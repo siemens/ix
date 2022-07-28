@@ -1,0 +1,67 @@
+/**
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../variables';
+@import '../colors';
+@import '../mixins/hover';
+@import '../mixins/state-color';
+@import '../functions/theme';
+
+/** @deprecated - will get renamed to kebab-case with Core UI 7 */
+@mixin cuiChip {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 0.062rem $small-space;
+  border: dashed 0.062rem rgba(0, 0, 0, 0.2);
+  border-radius: 6.25rem;
+
+  cursor: pointer;
+
+  min-height: 2rem;
+  height: 2rem;
+  max-height: 2rem;
+
+  color: var(--theme-color-std-text);
+
+  @each $key, $value in $color-map-status {
+    &.chip-#{$key} {
+      border: solid 0.062rem $value;
+
+      .glyph {
+        margin-right: 0.25rem;
+        color: $value;
+      }
+
+      &:hover {
+        background-color: var(--theme-ghost-hover);
+      }
+
+      &:active {
+        background-color: var(--theme-ghost-active);
+      }
+
+      &.active {
+        background-color: $value;
+        @include state-color($key);
+
+        .glyph {
+          @include state-color($key);
+        }
+
+        &:hover {
+          background-color: darken($value, 3%);
+          border-color: darken($value, 3%);
+        }
+
+        &:active {
+          background-color: darken($value, 10%);
+          border-color: darken($value, 10%);
+        }
+      }
+    }
+  }
+}

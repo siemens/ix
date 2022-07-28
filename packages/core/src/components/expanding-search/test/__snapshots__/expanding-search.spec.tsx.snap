@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cw-expanding-search renders 1`] = `
+<cw-expanding-search>
+  <div class="exp-container">
+    <button class="btn btn-icon btn-invisible-secondary btn-search" data-testid="button">
+      <cw-icon class="btn-search-icon" name="search" size="24"></cw-icon>
+    </button>
+    <div class="collapsed disable-pointer input-container" data-testid="input-wrapper">
+      <input class="disable-pointer form-control opacityBefore" data-testid="input" placeholder="Enter text here" type="text" value="">
+    </div>
+  </div>
+</cw-expanding-search>
+`;

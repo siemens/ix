@@ -1,0 +1,27 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import '../mixins/hover';
+
+.result-marker {
+  background-color: rgba(50, 160, 160, 0.25);
+}
+
+cui-search {
+  .dropdown-item.active,
+  .dropdown-item:active {
+    color: unset;
+    text-decoration: unset;
+    background-color: unset;
+  }
+
+  .dropdown-item {
+    @include hover {
+      background-color: var(--theme-ghost-hover);
+    }
+
+    @include active {
+      background-color: var(--theme-ghost-pressed);
+    }
+  }
+}

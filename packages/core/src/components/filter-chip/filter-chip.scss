@@ -1,0 +1,52 @@
+/**
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import 'variables';
+@import '../../../scss/v7/mixins/hover';
+@import '../../../scss/v7/mixins/text-truncation';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $large-space;
+  padding-left: $small-space;
+  border: var(--theme-focus--border-thickness) solid transparent;
+  border-radius: $x-large-space;
+  background-color: var(--theme-chip--background);
+  color: var(--theme-chip--color);
+
+  @include hover {
+    background-color: var(--theme-chip--background--hover);
+  }
+
+  @include active {
+    background-color: var(--theme-chip--background--active);
+  }
+
+  @include focus {
+    border-color: #199fff;
+  }
+
+  .slot-container {
+    @include ellipsis;
+
+    :host-context(.disabled) {
+      color: var(--theme-chip--color-diabled);
+    }
+  }
+
+  .btn-oval {
+    height: $large-space;
+    width: $large-space;
+    min-width: $large-space;
+    margin-left: $tiny-space;
+    padding: 0;
+    vertical-align: top;
+
+    @include focus {
+      outline: none;
+      border-color: #199fff;
+    }
+  }
+}

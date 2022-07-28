@@ -1,0 +1,69 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './mixins/fonts';
+
+@include font-face('sisan36', italic, $font-weight-bold);
+@include font-face('sisan33', italic, $font-weight-normal);
+@include font-face('sisan06', normal, $font-weight-bold);
+@include font-face('sisan03', normal, $font-weight-normal);
+
+.text-xs {
+  @include text-xs;
+}
+
+.text-s {
+  @include text-s;
+}
+
+.text-caption {
+  @include text-caption;
+}
+
+.text-caption-single {
+  @include text-caption-single;
+}
+
+.text-default {
+  @include text-default;
+}
+
+.text-default-single {
+  @include text-default-single;
+}
+
+.text-default-title {
+  @include text-default-title;
+}
+
+.text-default-title-single {
+  @include text-default-title-single;
+}
+
+.text-l {
+  @include text-l;
+}
+
+.text-l-single {
+  @include text-l-single;
+}
+
+.text-l-title {
+  @include text-l-title;
+}
+
+.text-l-title-single {
+  @include text-l-title-single;
+}
+
+.text-h2 {
+  @include text-h2;
+}
+
+.text-xl {
+  @include text-xl;
+}
+
+a {
+  color: var(--theme-color-primary);
+}

@@ -1,0 +1,76 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/mixins/text-truncation';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 17.5rem;
+  max-width: 17.5rem;
+  min-height: 3.25rem;
+
+  background-color: var(--theme-toast--background);
+  border-radius: 4px;
+  box-shadow: var(--theme-toast--box-shadow);
+
+  margin-bottom: 1rem;
+
+  --animate-duration: 250ms;
+
+  .toast-body {
+    display: flex;
+    position: relative;
+    width: 100%;
+
+    .toast-icon {
+      display: flex;
+      align-items: flex-start;
+      margin-left: $tiny-space;
+      margin-right: $medium-space;
+    }
+
+    .toast-content {
+      width: 100%;
+    }
+  }
+
+  .toast-close {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: $small-space;
+    margin-top: $small-space;
+  }
+
+  .toast-progress-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: $tiny-space;
+    width: 100%;
+    background-color: var(--theme-toast-timer-value--background);
+    transform-origin: left;
+
+    &--animated {
+      animation: trackProgress linear 1 forwards;
+    }
+
+    &--touched {
+      transition: transform 1s;
+    }
+  }
+
+  @keyframes trackProgress {
+    0% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+  }
+}

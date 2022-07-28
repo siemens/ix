@@ -1,0 +1,20 @@
+@import './../pill/pill.scss';
+@import './../../../scss/v7/common-variables';
+@import './../../../scss/v7/mixins/text-truncation';
+
+:host {
+  .slot-container {
+    @include ellipsis;
+  }
+
+  min-height: 1rem;
+  max-height: 1rem;
+  height: 1rem;
+  font-size: $font-size-s;
+  padding: 0 $tiny-space;
+
+  min-width: 1rem;
+  width: auto;
+
+  padding: 0 4px;
+}

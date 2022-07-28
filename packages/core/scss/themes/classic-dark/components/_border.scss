@@ -1,0 +1,19 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './../../utils/define-theme-variable';
+
+@mixin variant-border($name, $size, $color-dark) {
+  --theme-#{$name}: #{$size} solid #{$color-dark};
+}
+
+@mixin border {
+  @include define-theme-variable('color-weak-bdr-1', var(--theme-base-color-3-15));
+  @include variant-border('std-bdr-1', 0.0625rem, #{var(--theme-base-color-3-60)});
+  @include variant-border('std-bdr-2', 0.125rem, #{var(--theme-base-color-3-60)});
+  @include variant-border('primary-bdr-1', 0.0625rem, #{var(--theme-base-color-light-teal)});
+  @include variant-border('primary-bdr-2', 0.125rem, #{var(--theme-base-color-light-teal)});
+  @include variant-border('soft-bdr-1', 0.0625rem, #{var(--theme-base-color-3-40)});
+  @include variant-border('soft-bdr-2', 0.125rem, #{var(--theme-base-color-3-40)});
+  @include variant-border('weak-bdr-1', 0.0625rem, #{var(--theme-base-color-3-15)});
+}

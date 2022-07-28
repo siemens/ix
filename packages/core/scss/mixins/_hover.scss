@@ -1,0 +1,51 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@mixin hover() {
+  &:not(.disabled):not(:disabled) {
+    cursor: pointer;
+
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin active() {
+  &:not(.disabled):not(:disabled) {
+    cursor: pointer;
+
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin ghost-hover-pressed {
+  &:not(.disabled):not(:disabled) {
+    &.hover,
+    &:hover {
+      background-color: var(--theme-ghost-hover);
+    }
+
+    &.active,
+    &:active {
+      background-color: var(--theme-ghost-pressed);
+    }
+  }
+}
+
+@mixin generic-mouse-states() {
+  &:hover {
+    background-color: var(--theme-generic-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--theme-generic-bg-active);
+  }
+
+  &.selected {
+    background-color: var(--theme-generic-bg-selected);
+  }
+}

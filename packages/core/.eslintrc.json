@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "extends": [
+      "plugin:@stencil/recommended"
+  ],
+  "rules": {
+    "react/jsx-no-bind": 0,
+    "@stencil/async-methods": 0,
+    "@stencil/strict-boolean-conditions": 0
+  }
+}

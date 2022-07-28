@@ -1,0 +1,85 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../../../scss/mixins/border';
+@import '../../../scss/mixins/shadows';
+@import '../../../scss/variables';
+
+:host {
+  display: block;
+  min-height: 4rem;
+  height: 4rem;
+
+  .file-upload-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 0 1rem;
+
+    border: var(--theme-soft-bdr-2);
+    border-style: dashed;
+
+    &.file-over {
+      @include primary-border-2;
+      @include primary-glow;
+    }
+
+    &.pending {
+      display: none;
+    }
+
+    .upload-browser {
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .loader {
+      margin: 2.187rem auto;
+      font-size: 0.937rem;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      position: relative;
+      text-indent: -9999em;
+      animation: optimise-loading 1.1s infinite ease;
+      transform: translateZ(0);
+    }
+
+    .upload-filename {
+      margin-bottom: 1rem;
+    }
+
+    .state {
+      display: flex;
+      align-items: center;
+
+      > cui-spinner {
+        margin-right: 0.625rem;
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+
+      > i {
+        margin-right: 0.625rem;
+
+        &.glyph-error {
+          color: $color-red;
+        }
+
+        &.glyph-success {
+          color: $color-green;
+        }
+      }
+    }
+  }
+}

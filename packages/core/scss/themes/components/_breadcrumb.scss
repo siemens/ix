@@ -1,0 +1,9 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import '../utils/define-theme-variable';
+
+@mixin breadcrumb {
+  @include define-theme-variable('breadcrumb-hover', var(--theme-color-5--hover));
+  @include define-theme-variable('breadcrumb-active', var(--theme-color-5--active));
+}

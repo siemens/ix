@@ -1,0 +1,155 @@
+.Homepage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  height: calc(100vh - var(--ifm-navbar-height));
+  width: 100%;
+
+  --animate-duration: 1s;
+
+}
+
+.Homepage__Main {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 996px) {
+  .Homepage__Main {
+    flex-direction: column-reverse;
+  }
+}
+
+.Homepage__Left {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  padding-left: 10%;
+}
+
+.Homepage__Right {
+  display: flex;
+  position: relative;
+  height: 100%;
+  min-width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media (max-width: 996px) {
+  .Homepage__Main {
+    flex-direction: column-reverse;
+  }
+
+  .Homepage__Left {
+    padding-right: 10%;
+  }
+
+  .Homepage__Right {
+    display: none;
+  }
+}
+.Logo {
+  width: 70%;
+  height: 70%;
+}
+
+.Homepage__Headline {
+  display: flex;
+  position: relative;
+  height: 30%;
+  width: 100%;
+  align-items: center;
+  font-size: 60px;
+  line-height: 65px;
+}
+
+.Homepage__Headline::before {
+  content: '';
+  position: relative;
+  height: 8rem;
+  width: 0.5rem;
+  background-image: linear-gradient(to bottom, var(--theme-color-primary), var(--theme-color-primary));
+  margin-right: 2.125rem;
+}
+
+
+.Homepage__Text {
+  display: block;
+  position: relative;
+  height: 70%;
+  width: 100%;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--theme-color-soft-text);
+}
+
+.Homepage__Text__Signal {
+  color: white;
+}
+
+.Homepage__Footer {
+  position: relative;
+  display: flex;
+  min-height: 12.5rem;
+  width: 100%;
+
+  border-top: var(--theme-soft-bdr-1);
+  padding: 0 10%;
+}
+
+.Homepage__Features {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+@media (max-width: 996px) {
+  .Homepage__Features {
+    display: none;
+  }
+}
+
+.Footer_Button {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  width: 12.5rem;
+  height: 100%;
+  background-color: var(--theme-color-primary);
+  cursor: pointer;
+}
+
+.Footer_Button__Icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--theme-color-1) !important;
+}
+
+.Footer__Button__Title {
+  display: block;
+  position: relative;
+  height: 2.7rem;
+  color: black;
+  margin: 0.5rem;
+}
+
+.Big__Icon {
+  --animate-duration: 1.5s;
+  font-size: 6rem;
+}

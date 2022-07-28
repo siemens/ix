@@ -1,0 +1,85 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@use 'sass:list';
+@use 'sass:map';
+
+$base-color-names: (
+  'base-color-1',
+  'base-color-1-85',
+  'base-color-1-60',
+  'base-color-1-40',
+  'base-color-1-25',
+  'base-color-1-10',
+  'base-color-1-05',
+  'base-color-2',
+  'base-color-3',
+  'base-color-3-60',
+  'base-color-3-40',
+  'base-color-3-25',
+  'base-color-3-15',
+  'base-color-4',
+  'base-color-4a',
+  'base-color-5',
+  'base-color-6',
+  'base-color-7',
+  'base-color-7a',
+  'base-color-8',
+  'base-color-8-60',
+  'base-color-8-40',
+  'base-color-9',
+  'base-color-9a',
+  'base-color-10',
+  'base-color-11',
+  'base-color-12',
+  'base-color-12-55',
+  'base-color-12-40',
+  'base-color-12-25',
+  'base-color-12-15',
+  'base-color-13',
+  'base-color-14',
+  'base-color-14-75',
+  'base-color-14-55',
+  'base-color-14-40',
+  'base-color-14-30',
+  'base-color-14-15',
+  'base-color-14-10',
+  'base-color-14-05',
+  'base-color-15',
+  'base-color-15-60',
+  'base-color-15-20',
+  'base-color-teal',
+  'base-color-light-teal',
+  'base-color-light-teal-25',
+  'base-color-light-teal-15',
+  'base-color-light-red-text',
+  'base-color-light-red',
+  'base-color-red',
+  'base-color-red-text',
+  'base-color-light-orange',
+  'base-color-orange',
+  'base-color-light-yellow',
+  'base-color-yellow',
+  'base-color-light-green',
+  'base-color-green',
+  'base-color-light-marine',
+  'base-color-marine',
+  'base-color-light-neutral',
+  'base-color-neutral',
+  'base-color-bold-green',
+  'base-color-soft-green'
+);
+
+@mixin define-base-colors($theme-base-color) {
+  @each $color-name in $base-color-names {
+    @if map.get($theme-base-color, $color-name) == null {
+      @error '#{$color-name} is missing in base color map!';
+    }
+  }
+
+  @each $color-name, $color-value in $theme-base-color {
+    --theme-#{$color-name}: #{$color-value};
+  }
+
+  --theme-blur: 2px;
+}

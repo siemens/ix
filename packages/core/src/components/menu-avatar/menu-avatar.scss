@@ -1,0 +1,80 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../../../scss/variables';
+@import '../../../scss/colors';
+@import '../../../scss/icons';
+@import '../../../scss/mixins/text-truncation';
+@import '../../../scss/mixins/hover';
+@import '../../../scss/mixins/shadows';
+
+:host {
+  display: block;
+  position: relative;
+  margin-bottom: 0.5rem;
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    max-height: 2.5rem;
+    padding-left: 0.25rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    transition: 0.15s;
+
+    > svg {
+      height: 2rem;
+      width: 2rem;
+      min-height: 2rem;
+      min-width: 2rem;
+    }
+
+    #avatar-path-background {
+      fill: var(--theme-avatar--background);
+    }
+
+    #avatar-path-person {
+      fill: var(--theme-avatar--person);
+    }
+
+    .avatar-name {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-left: $default-space;
+      line-height: 1.14;
+
+      .text-default-single {
+        @include ellipsis;
+      }
+    }
+
+    border-radius: 1.25rem;
+
+    @include hover {
+      background-color: var(--theme-avatar-btn--background--hover);
+      color: var(--theme-avatar-btn--color--hover);
+    }
+
+    @include active {
+      background-color: var(--theme-avatar-btn--background--active);
+      color: var(--theme-avatar-btn--color--active);
+    }
+  }
+
+  cui-menu {
+    position: absolute;
+    top: 0;
+    left: 16rem - 0.86rem;
+    z-index: 9999;
+  }
+
+  :host-context(.cui-vertical-tabs-collapsed) {
+    cui-menu {
+      left: 4rem;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+//  $zindex-dropdown:                   1000 !default;
+//  $zindex-sticky:                     1020 !default;
+//  $zindex-fixed:                      1030 !default;
+//  $zindex-modal-backdrop:             1040 !default;
+//  $zindex-modal:                      1050 !default;
+//  $zindex-popover:                    1060 !default;
+//  $zindex-tooltip:                    1070 !default;
+//
+// Copy from bootstrap
+//
+
+:root {
+  --theme-z-index-dropdown: 1000;
+  --theme-z-index-sticky: 1020;
+  --theme-z-index-fixed: 1030;
+  --theme-z-index-modal-backdrop: 1040;
+  --theme-z-index-modal: 1050;
+  --theme-z-index-popover: 1060;
+  --theme-z-index-tooltip: 1070;
+}

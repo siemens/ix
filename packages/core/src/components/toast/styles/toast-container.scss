@@ -1,0 +1,12 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+.toast-container {
+  display: block;
+  position: absolute;
+}
+
+.toast-container--bottom-right {
+  right: 1rem;
+  bottom: 1rem;
+}

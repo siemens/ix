@@ -1,0 +1,23 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+/** @deprecated - will be removed in Core UI 7 */
+.modal-content {
+  @include box-shadow(4);
+  background-color: var(--theme-color-1);
+  border: var(--theme-soft-bdr-1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: $default-space;
+  height: 2.625rem;
+
+  .btn-icon {
+    position: absolute;
+    top: $tiny-space;
+    right: $small-space;
+  }
+}

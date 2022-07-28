@@ -1,0 +1,17 @@
+@mixin state-color($state) {
+  @if ($state == 'alert') {
+    color: var(--theme-color-static-white);
+  } @else if ($state == 'critical') {
+    color: var(--theme-color-static-black);
+  } @else if ($state == 'warning') {
+    color: var(--theme-color-static-black);
+  } @else if ($state == 'information') {
+    color: var(--theme-color-static-white);
+  } @else if ($state == 'success') {
+    color: var(--theme-color-static-black);
+  } @else if ($state == 'undefined') {
+    color: var(--theme-color-static-black);
+  } @else if ($state == 'teal') {
+    color: var(--theme-color-inv-contrast-text);
+  }
+}

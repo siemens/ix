@@ -1,0 +1,15 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import './utils/var-darken';
+@import './utils/var-fade-out';
+@import '../theme-base-colors';
+
+@include var-fade-out('map-navigation-overlay-blur', $color-1, $color-13, 0.3);
+@include var-fade-out(
+  'map-navigation-overlay-header-blur',
+  $color-3,
+  $color-11,
+  0.3
+);

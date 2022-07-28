@@ -1,0 +1,13 @@
+.features {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 40rem;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.featureSvg {
+  height: 85px;
+  width: 85px;
+}

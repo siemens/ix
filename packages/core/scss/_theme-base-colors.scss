@@ -1,0 +1,157 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@warn "deprecated: Will be removed in 7.0.0 (https://***REMOVED***/pd-de/ui-library/core-ui/-/issues/547)";
+
+@import './functions/theme';
+
+$color_1: #fff;
+$color_1_85: rgba(255, 255, 255, 0.85);
+$color_1_60: rgba(255, 255, 255, 0.6);
+$color_1_40: rgba(255, 255, 255, 0.4);
+$color_1_25: rgba(255, 255, 255, 0.25);
+$color_1_10: rgba(255, 255, 255, 0.14);
+$color_1_05: rgba(255, 255, 255, 0.07);
+$color_2: #f5f8fa;
+$color_3: #ebf0f5;
+$color_3_60: rgba(235, 240, 245, 0.6);
+$color_3_40: rgba(235, 240, 245, 0.4);
+$color_3_25: rgba(235, 240, 245, 0.25);
+$color_3_15: rgba(235, 240, 245, 0.15);
+$color_4: #dfe6ed;
+$color_4a: #d6dfe7;
+$color_5: #ced9e2;
+$color_6: #becdd7;
+$color_7: #879baa;
+$color_8: #6e7d89;
+$color_8_60: rgba(65, 95, 117, 0.6);
+$color_8_40: rgba(65, 95, 117, 0.4);
+$color_9: #555f69;
+$color_9a: #3e4b51;
+$color_10: #3c464b;
+$color_11: #293339;
+$color_12: #172126;
+$color_12_55: rgba(23, 33, 38, 0.55);
+$color_12_40: rgba(23, 33, 38, 0.4);
+$color_12_25: rgba(23, 33, 38, 0.25);
+$color_12_15: rgba(23, 33, 38, 0.15);
+$color_13: #10181c;
+$color_14: rgba(0, 0, 0, 1);
+$color_14_75: rgba(0, 0, 0, 0.75);
+$color_14_55: rgba(0, 0, 0, 0.55);
+$color_14_40: rgba(0, 0, 0, 0.4);
+$color_14_30: rgba(0, 0, 0, 0.3);
+$color_14_15: rgba(0, 0, 0, 0.15);
+$color_14_10: rgba(0, 0, 0, 0.1);
+$color_14_05: rgba(0, 0, 0, 0.05);
+$color_teal: #0e777c;
+$color_light_teal: #41aaaa;
+$color_light_teal_25: rgba(50, 160, 160, 0.25);
+$color_light_teal_15: rgba(50, 160, 160, 0.15);
+$color_red: #dc0031;
+$color_orange: #eb780a;
+$color_yellow: #ffb900;
+$color_green: #339b00;
+$color_marine: #1e54b3;
+
+$_theme-colors: new-theme(
+  (
+    'color-primary': (
+      'light': #0e777c,
+      'dark': #41aaaa,
+    ),
+    'color-1': (
+      'light': #fff,
+      'dark': #10181c,
+    ),
+    'color-2': (
+      'light': #f5f8fa,
+      'dark': #172126,
+    ),
+    'color-3': (
+      'light': #ebf0f5,
+      'dark': #293339,
+    ),
+    'color-4': (
+      'light': #dfe6ed,
+      'dark': #3c464b,
+    ),
+    'color-4-a': (
+      'light': #d6dfe7,
+      'dark': #3e4b51,
+    ),
+    'color-5': (
+      'light': #ced9e2,
+      'dark': #555f69,
+    ),
+    'color-6': (
+      'light': #becdd7,
+      'dark': #6e7d89,
+    ),
+    'color-7': (
+      'light': #879baa,
+      'dark': #879baa,
+    ),
+    'color-alarm': (
+      'light': #dc0031,
+      'dark': #dc0031,
+    ),
+    'color-critical': (
+      'light': #eb780a,
+      'dark': #eb780a,
+    ),
+    'color-info': (
+      'light': #1e54b3,
+      'dark': #1e54b3,
+    ),
+    'color-neutral': (
+      'light': #879baa,
+      'dark': #879baa,
+    ),
+    'color-success': (
+      'light': #339b00,
+      'dark': #339b00,
+    ),
+    'color-warning': (
+      'light': #ffb900,
+      'dark': #ffb900,
+    ),
+    'color-contrast-text': (
+      'light': rgba(0, 0, 0, 1),
+      'dark': #fff,
+    ),
+    'color-std-text': (
+      'light': rgba(0, 0, 0, 0.75),
+      'dark': rgba(255, 255, 255, 0.85),
+    ),
+    'color-soft-text': (
+      'light': rgba(0, 0, 0, 0.55),
+      'dark': rgba(255, 255, 255, 0.6),
+    ),
+    'color-weak-text': (
+      'light': rgba(0, 0, 0, 0.3),
+      'dark': rgba(255, 255, 255, 0.4),
+    ),
+    'color-inv-contrast-text': (
+      'light': #fff,
+      'dark': rgba(0, 0, 0, 1),
+    ),
+    'color-inv-std-text': (
+      'light': rgba(255, 255, 255, 0.85),
+      'dark': rgba(0, 0, 0, 0.75),
+    ),
+    'color-inv-soft-text': (
+      'light': rgba(255, 255, 255, 0.6),
+      'dark': rgba(0, 0, 0, 0.55),
+    ),
+    'color-inv-weak-text': (
+      'light': rgba(255, 255, 255, 0.4),
+      'dark': rgba(0, 0, 0, 0.3),
+    ),
+    'color-disabled-btn': (
+      'light': rgba(23, 33, 38, 0.25),
+      'dark': rgba(255, 255, 255, 0.25),
+    ),
+  )
+);

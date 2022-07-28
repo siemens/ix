@@ -1,0 +1,13 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@mixin lightbox {
+  @warn ('DEPRECATION WARNING: Function will be removed in 7.0.0');
+  background-color: var(--theme-color-lightbox);
+  filter: blur(--theme-blur);
+}
+
+@mixin backdrop {
+  background-color: var(--theme-color-backdrop);
+  filter: blur(--theme-blur);
+}

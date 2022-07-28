@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cw-dropdown renders 1`] = `
+<cw-dropdown class="dropdown-menu" style="margin: 0; min-width: 0px;">
+  <!---->
+  <div style="display: contents;">
+    <cw-dropdown-item></cw-dropdown-item>
+  </div>
+</cw-dropdown>
+`;

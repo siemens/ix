@@ -1,0 +1,171 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root, body {
+  --ifm-menu-color-active: var(--theme-color-primary);
+  --ifm-navbar-height: 4.25rem;
+  --ifm-navbar-background-color: var(--theme-color-2);
+  --ifm-background-color: var(--theme-color-1);
+  --ifm-tabs-color-active-border: var(--theme-color-primary);
+  --ifm-tabs-color-active: var(--theme-color-primary);
+  --ifm-table-stripe-background: var(--theme-color-1);
+  --ifm-navbar-link-hover-color: var(--theme-color-primary);
+  --ifm-footer-background-color: var(--theme-color-2);
+  --ifm-color-primary: var(--theme-color-primary);
+  --ifm-menu-color: var(--theme-color-std-text);
+  --ifm-navbar-link-color: var(--theme-color-std-text);
+  --ifm-code-background: var(--theme-color-2);
+  --ifm-pre-background: var(--theme-color-1);
+  --ifm-color-emphasis-200: var(--theme-color-2);
+  --ifm-color-content: var(--theme-color-std-text);
+  --ifm-dropdown-background-color: var(--theme-color-1);
+  --ifm-dropdown-hover-background-color: var(--theme-ghost-active);
+  --ifm-h1-vertical-rhythm-bottom: 2.5;
+  --ifm-leading-desktop: 1.25;
+  --ifm-leading: calc(var(--ifm-leading-desktop) * 1rem);
+}
+
+.markdown {
+  font-size: 1.125rem;
+}
+
+.markdown h1 {
+  padding-bottom: 3.8125rem;
+  border-bottom: var(--theme-soft-bdr-1);
+}
+
+.container {
+  margin-top: 5.125rem;
+  margin-left: 6.25rem;
+  margin-right: 0;
+
+  max-width: 100%;
+}
+
+@media (max-width: 997px) {
+  .container {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+mark, .mark, [data-mark=true] {
+  background-color: yellow !important;
+}
+
+html {
+  background-color: var(--theme-color-1);
+}
+
+aside {
+  /* Need to be overwritten because TOC and Sidebar border share same border custom property */
+  border-right: none !important;
+}
+
+.theme-doc-sidebar-container {
+  background-color: var(--theme-color-2);
+}
+
+
+.footer {
+  border-top: 0.125rem solid var(--theme-color-1);
+}
+
+.navbar.navbar--fixed-top {
+  height: var(--ifm-navbar-height);
+}
+
+.dropdown__menu {
+  box-shadow: var(--theme-box-shadow-lvl-1) !important;
+}
+
+.menu__link:not(.menu__link--sublist) {
+  margin-left: 1.525rem !important;
+}
+
+.theme-doc-version-badge {
+  color: var(--theme-color-inv-std-text);
+}
+
+.navbar__link {
+  text-decoration: auto;
+}
+
+.dropdown__link {
+  text-decoration: auto;
+}
+
+.menu__link {
+  text-decoration: auto;
+}
+
+.menu__link--sublist::after {
+  display: none !important;
+}
+
+.menu__list-item {
+  padding: 4px 0px;
+}
+
+.menu__list-item:not(:first-child) {
+  margin: 0px;
+}
+
+.theme-doc-sidebar-item-category {
+  padding: 4px 0px;
+  border: 2px solid var(--theme-color-1);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.navbar__logo {
+  height: 1rem;
+}
+.navbar__logo > img {
+  vertical-align: baseline;
+}
+
+.admonition {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.admonition-heading > h5 {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.admonition-icon {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.admonition-icon > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.admonition-content {
+  font-size: 14px;
+}
+
+.theme-doc-version-banner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+a {
+  color: var(--ifm-menu-color);
+}
+
+a.menu__link {
+  color: var(--ifm-menu-color);
+}

@@ -1,0 +1,107 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@mixin checkbox-basic() {
+  $size: $large-space;
+
+  /* Base for label styling */
+  [type='checkbox']:not(:checked),
+  [type='checkbox']:checked {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .ag-checkbox-input-wrapper {
+    [type='checkbox']:not(:checked),
+    [type='checkbox']:checked {
+      position: absolute;
+      visibility: unset;
+    }
+  }
+
+  [type='checkbox']:not(:checked) + label,
+  [type='checkbox']:checked + label {
+    line-height: $size;
+    user-select: none;
+
+    color: var(--theme-color-std-text);
+  }
+
+  [type='checkbox']:not(:disabled) + label {
+    cursor: pointer;
+  }
+
+  [type='checkbox'] + label:before {
+    content: '';
+    width: $size;
+    height: $size;
+    float: left;
+    margin-right: $tiny-space;
+
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
+  }
+
+  [type='checkbox']:not(:checked) {
+    & + label:before {
+      background-image: var(--theme-checkbox);
+    }
+
+    &:hover + label:before {
+      background-image: var(--theme-checkbox-hover);
+    }
+
+    &:active + label:before {
+      background-image: var(--theme-checkbox-active);
+    }
+
+    &:disabled + label::before {
+      background-image: var(--theme-checkbox-disabled);
+    }
+  }
+
+  [type='checkbox']:checked {
+    & + label:before {
+      background-image: var(--theme-checkbox-checked);
+    }
+
+    &:hover + label:before {
+      background-image: var(--theme-checkbox-checked-hover);
+    }
+
+    &:active + label:before {
+      background-image: var(--theme-checkbox-checked-active);
+    }
+
+    &:disabled + label:before {
+      background-image: var(--theme-checkbox-checked-disabled);
+    }
+  }
+
+  [type='checkbox']:disabled + label:before {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  [type='checkbox']:indeterminate {
+    & + label:before {
+      background-image: var(--theme-checkbox-indeterminate);
+    }
+
+    &:hover + label:before {
+      background-image: var(--theme-checkbox-indeterminate-hover);
+    }
+
+    &:active + label:before {
+      background-image: var(--theme-checkbox-indeterminate-active);
+    }
+
+    &:disabled + label:before {
+      background-image: var(--theme-checkbox-indeterminate-disabled);
+    }
+  }
+}
+
+@include checkbox-basic();

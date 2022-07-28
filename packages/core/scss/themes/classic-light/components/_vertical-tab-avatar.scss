@@ -1,0 +1,9 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import '../../../theme-base-colors';
+
+@mixin vertical-tab-avatar {
+  @include define-theme-variable('vertical-tab-avatar-hover', #{darken($color-5, 5%)});
+  @include define-theme-variable('vertical-tab-avatar-pressed', #{darken($color-5, 10%)});
+}

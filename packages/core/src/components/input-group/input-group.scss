@@ -1,0 +1,22 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+
+  .group {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    height: 100%;
+  }
+
+  .group-start {
+    left: 0px;
+  }
+
+  .group-end {
+    right: 0px;
+  }
+}

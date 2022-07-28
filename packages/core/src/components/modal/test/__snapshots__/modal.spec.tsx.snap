@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`modal renders 1`] = `
+<cw-modal>
+  <!---->
+  <div aria-labelledby="modal-title" class="animation backdrop modal scrollable">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+</cw-modal>
+`;

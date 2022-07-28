@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "name": "@siemens/ix",
+      "path": "./packages/core"
+    },
+    {
+      "name": "@siemens/ix-react",
+      "path": "./packages/react"
+    },
+    {
+      "name": "@siemens/ix-angular",
+      "path": "./packages/angular"
+    },
+    {
+      "name": "@siemens/ix-aggrid",
+      "path": "./packages/aggrid"
+    },
+    {
+      "name": "@siemens/ix-documentation",
+      "path": "./packages/documentation"
+    },
+    {
+      "name": "root",
+      "path": "."
+    },
+  ],
+  "settings": {}
+}

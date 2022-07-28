@@ -1,0 +1,135 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import './mixins/text-truncation';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $x-large-space;
+  font-size: $font-size-default;
+  font-weight: $font-weight-bold;
+  transition: $default-time;
+  padding: 0 $small-space;
+  min-width: 5rem;
+
+  @include ellipsis;
+
+  .glyph {
+    margin-right: $tiny-space;
+  }
+
+  .glyph {
+    font-weight: $font-weight-normal;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: none;
+  }
+}
+
+$button-categories: (primary, secondary);
+
+@mixin btn($name, $enable-border: true) {
+  .btn-#{$name} {
+    & {
+      border-radius: var(--theme-btn--border-radius);
+    }
+
+    &,
+    &.focus,
+    &:focus,
+    &:focus-visible {
+      background-color: var(--theme-btn-#{$name}--background);
+      color: var(--theme-btn-#{$name}--color);
+
+      @if $enable-border {
+        border-width: var(--theme-btn--border-thickness);
+        border-color: var(--theme-btn-#{$name}--border-color);
+        border-style: solid;
+      }
+    }
+
+    &:focus:not(:focus-visible),
+    &.focus,
+    &:focus,
+    &:focus-visible {
+      outline: 1px solid #199fff;
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+
+    &.selected {
+      background-color: var(--theme-btn-#{$name}--background--selected);
+    }
+
+    &.hover,
+    &:hover {
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--hover);
+      }
+      background-color: var(--theme-btn-#{$name}--background--hover);
+      color: var(--theme-btn-#{$name}--color--hover);
+    }
+
+    &.selected {
+      &.hover,
+      &:hover {
+        background-color: var(--theme-btn-#{$name}--background--selected-hover);
+        color: var(--theme-btn-#{$name}--color--selected-hover);
+      }
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--active);
+      }
+      background-color: var(--theme-btn-#{$name}--background--active);
+      color: var(--theme-btn-#{$name}--color--active);
+    }
+
+    &.selected {
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-color: var(--theme-btn-#{$name}--background--selected-active);
+        color: var(--theme-btn-#{$name}--color--selected-active);
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      cursor: initial;
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--disabled);
+      }
+      background-color: var(--theme-btn-#{$name}--background--disabled);
+      color: var(--theme-btn-#{$name}--color--disabled);
+      opacity: 1;
+    }
+  }
+}
+
+@each $category in $button-categories {
+  @include btn($category);
+  @include btn('outline-#{$category}');
+  @include btn('invisible-#{$category}', false);
+}
+
+.btn-oval,
+.btn-icon {
+  min-width: $x-large-space;
+  width: $x-large-space;
+  .glyph {
+    margin-right: 0;
+  }
+}
+
+.btn-oval {
+  border-radius: 6.25rem;
+  width: $default-control-height;
+}

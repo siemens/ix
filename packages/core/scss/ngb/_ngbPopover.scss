@@ -1,0 +1,13 @@
+.popover {
+  &.dash-board-card-info {
+    max-width: none;
+    .arrow {
+      display: none;
+    }
+  
+    .popover-body {
+      height: 25rem;
+      width: 25rem;
+    }
+  }
+}

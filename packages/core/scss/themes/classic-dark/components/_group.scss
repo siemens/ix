@@ -1,0 +1,9 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './../../utils/define-theme-variable';
+
+@mixin group {
+  @include define-theme-variable('group-hover', #{lighten($color-13, 5%)});
+  @include define-theme-variable('group-pressed', #{lighten($color-13, 10%)});
+}

@@ -1,0 +1,150 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import './../../../scss/v7/common-variables';
+@import './../../../scss/v7/mixins/hover';
+@import './../../../scss/v7/mixins/text-truncation';
+
+@mixin breadcrumb($variant) {
+  .crumb.#{$variant} {
+    background-color: var(--theme-breadcrumb-#{$variant}--background);
+    border: var(--theme-btn--#{$variant}-thickness) solid transparent;
+    transition: $default-time;
+
+    .crumb-text,
+    .glyph {
+      color: var(--theme-breadcrumb-#{$variant}--color);
+    }
+
+    .crumb-text + .glyph-chevron-right-small {
+      color: var(--theme-breadcrumb-#{$variant}-arrow--color);
+    }
+
+    &.last .crumb-text {
+      color: var(--theme-breadcrumb-#{$variant}-last--color);
+    }
+
+    &.clickable:not(.remove-hover) {
+      @include hover {
+        background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
+
+        .crumb-text,
+        .glyph {
+          color: var(--theme-breadcrumb-#{$variant}--color--hover);
+        }
+
+        .crumb-text + .glyph-chevron-right-small {
+          color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
+        }
+      }
+
+      @include active {
+        background-color: var(--theme-breadcrumb-#{$variant}--background--active);
+
+        .crumb-text,
+        .glyph {
+          color: var(--theme-breadcrumb-#{$variant}--color--active);
+        }
+
+        .crumb-text + .glyph-chevron-right-small {
+          color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
+        }
+      }
+    }
+  }
+}
+
+:host {
+  display: flex;
+  height: $large-control-height;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  overflow: hidden;
+
+  .crumb {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: var(--theme-breadcrumb--border-radius);
+    height: $default-control-height;
+    max-height: $default-control-height;
+    min-width: 0;
+    margin-inline-end: $tiny-space;
+    padding: $small-space 0 $small-space $tiny-space;
+    outline: none;
+    cursor: pointer;
+
+    .crumb-text {
+      @include ellipsis;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      font-weight: $font-weight-bold;
+
+      cw-icon {
+        margin-inline-end: $tiny-space;
+      }
+    }
+
+    .crumb-text + .glyph-chevron-right-small {
+      margin-inline-start: $small-space;
+      margin-inline-end: 0; // Overwrite global selector: .btn .glyph
+    }
+
+    &.last {
+      background-color: transparent !important;
+      cursor: default;
+      padding-inline-end: $tiny-space;
+    }
+
+    &.clickable:not(.remove-hover) {
+      @include focus {
+        border-color: var(--theme-focus--border-color);
+      }
+    }
+
+    &:not(:last-of-type) {
+      flex-shrink: 0;
+      max-width: 14rem;
+    }
+  }
+
+  .crumb-dropdown {
+    overflow: visible;
+
+    .glyph::after {
+      display: none;
+    }
+  }
+
+  .remove-anchor::after {
+    display: none;
+  }
+
+  .more-text {
+    display: flex;
+
+    .more-text-ellipsis {
+      height: $x-large-space;
+      width: $x-large-space;
+      display: inline-block;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .crumb-items {
+    display: contents;
+  }
+
+  @include breadcrumb('btn');
+  @include breadcrumb('ghost');
+}
+
+.dropdown-overflow .dropdown-menu {
+  max-height: 25rem;
+  overflow-y: auto;
+}

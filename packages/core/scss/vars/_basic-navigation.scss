@@ -1,0 +1,22 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './utils/define-theme-variable';
+
+@include define-theme-variable(
+  'basic-navigation-selected',
+  var(--theme-base-color-3),
+  var(--theme-base-color-11)
+);
+
+@include define-theme-variable(
+  'basic-navigation-avatar-background',
+  var(--theme-base-color-14),
+  var(--theme-base-color-1)
+);
+
+@include define-theme-variable(
+  'basic-navigation-avatar-background-opacity',
+  0.15,
+  0.6
+);

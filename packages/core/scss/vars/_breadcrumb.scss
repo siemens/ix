@@ -1,0 +1,11 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import './utils/var-darken';
+
+@mixin breadcrumb {
+  @include var-darken('breadcrumb-hover', $color-5, $color-9, 5%);
+  @include var-darken('breadcrumb-active', $color-5, $color-9, 10%);
+}
+
+@include breadcrumb();

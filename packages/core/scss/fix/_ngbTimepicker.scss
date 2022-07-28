@@ -1,0 +1,31 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+ /** @deprecated - ngb will get removed with Core UI 7 */
+.ngb-tp {
+  .form-control {
+    min-width: 0rem;
+  }
+
+  .btn-link {
+    width: 2.5rem;
+    height: $x-large-space;
+    min-width: 2.5rem;
+    margin: $tiny-space;
+
+    @include hover {
+      background-color: var(--theme-ghost-hover);
+    }
+
+    @include active {
+      background-color: var(--theme-ghost-pressed);
+    }
+
+    color: var(--theme-color-std-text);
+
+    .ngb-tp-chevron::before {
+      border-width: 0.15em 0.15em 0 0;
+    }
+  }
+}

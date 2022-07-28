@@ -1,0 +1,58 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import clsx from 'clsx';
+import React from 'react';
+import styles from './Card.module.css';
+
+export function Card(props: {
+  label: string;
+  isPrimary?: boolean;
+  icon?: string;
+  link: string;
+}) {
+  const base = useBaseUrl('/');
+
+  function link() {
+    if (props.link?.startsWith('http')) {
+      return props.link;
+    }
+
+    return `./${props.link}`;
+  }
+
+  function getIcon() {
+    //@ts-ignore
+    return <cw-icon name={props.icon}></cw-icon>;
+  }
+
+  return (
+    <Link
+      to={link()}
+      style={{
+        textDecoration: 'none',
+      }}
+    >
+      <div
+        className={clsx(styles.Card, {
+          [styles.Card__Primary]: props.isPrimary,
+          [styles.With__Icon]: props.icon,
+        })}
+      >
+        <div className={clsx(styles.Label, 'text-h2')}>{props.label}</div>
+        {props.icon ? (
+          <>
+            <div className={styles.Splitter}></div>
+            <div className={clsx(styles.Icon)}>{getIcon()}</div>
+          </>
+        ) : null}
+      </div>
+    </Link>
+  );
+}
+
+export function CardList(props: React.PropsWithChildren<any>) {
+  return <div className={clsx(styles.Card__List)}>{props.children}</div>;
+}

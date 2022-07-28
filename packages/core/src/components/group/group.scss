@@ -1,0 +1,130 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import '../../../scss/variables';
+@import '../../../scss/mixins/fonts';
+@import '../../../scss/mixins/hover';
+@import '../../../scss/mixins/text-truncation';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 21.875rem;
+  color: var(--theme-color-std-text);
+
+  .group-header-context-button {
+    display: block;
+    position: relative;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: auto;
+
+    cw-icon-button {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .group-header {
+    height: 4rem;
+    min-height: 4rem;
+    max-height: 4rem;
+    border-radius: 0.25rem;
+    border: var(--theme-std-bdr-1);
+    display: flex;
+
+    cursor: pointer;
+  }
+
+  .group-header.expand {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .group-header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 0.5rem;
+    padding-left: 0;
+    width: 100%;
+
+    .group-header-title {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: $font-weight-bold;
+      height: 1.5rem;
+
+      & > * {
+        @include ellipsis;
+
+        min-width: 0;
+      }
+    }
+
+    .group-header-modules {
+      @include ellipsis();
+
+      height: 1.25rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .expand-icon {
+    padding: 0.125rem 0.437rem;
+    color: var(--theme-color-std-text);
+  }
+
+  .btn-expand-header {
+    margin: 0.25rem;
+  }
+
+  .group-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .group-header {
+    background: var(--theme-color-1);
+  }
+
+  .group-header {
+    @include hover {
+      background-color: var(--theme-group-hover);
+    }
+
+    @include active {
+      background-color: var(--theme-group-active);
+    }
+
+    &.selected {
+      border: var(--theme-primary-bdr-2);
+      background: var(--theme-base-color-light-teal-15);
+    }
+  }
+
+  .group-header.selected {
+    .btn-expand-header {
+      margin: calc(0.25rem - 0.062rem);
+      margin-right: 0.25rem;
+    }
+
+    .group-header-content {
+      padding: calc(0.5rem - 0.062rem);
+      padding-left: 0;
+    }
+  }
+
+  .group-header.expand:not(.selected) {
+    border: var(--theme-primary-bdr-1);
+  }
+
+  .footer {
+    height: auto;
+  }
+}
