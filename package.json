@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "docs": "npm run build:lib && nx run documentation:start",
-    "build": "npm run build:lib && npm run build:docs",
+    "build": "npm run build:lib && npm run build:test-apps && npm run build:docs",
     "build:core": "nx run core:build",
     "build:wrapper": "nx run-many --target=build --projects=react,angular",
+    "build:test-apps": "nx run-many --target=build --projects=angular-test-app,react-test-app",
     "build:lib": "npm run build:core && npm run build:wrapper",
     "build:docs": "nx run documentation:build",
     "generate-documentation-version": "nx run documentation:generate-version",

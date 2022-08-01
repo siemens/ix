@@ -4,6 +4,7 @@
   "projects": {
     "aggrid": "packages/aggrid",
     "angular": "packages/angular",
+    "angular-test-app": "packages/angular-test-app",
     "core": "packages/core",
     "documentation": "packages/documentation",
     "react": "packages/react",

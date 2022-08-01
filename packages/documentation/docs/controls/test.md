@@ -10,6 +10,9 @@ import Props from './../auto-generated/cw-button/props.md';
 import ReactButtons from './../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
 
+import AngularButtons from './../auto-generated/previews/angular/buttons.md'
+import AngularButtonGroup from './../auto-generated/previews/angular/button-group.md'
+
 ## Usage
 
 ### Default buttons
@@ -24,12 +27,7 @@ import ReactButtonGroup from './../auto-generated/previews/react/button-group.md
 
 <TabItem value="angular">
 
-```html
-<cw-button class="m-1" variant="primary">Webcomponents button</cw-button>
-<cw-button class="m-1" variant="secondary">Webcomponents button</cw-button>
-<cw-button class="m-1" outline>Webcomponents button</cw-button>
-<cw-button class="m-1" invisible>Webcomponents button</cw-button>
-```
+<AngularButtons />
 
 </TabItem>
 
@@ -64,13 +62,7 @@ import ReactButtonGroup from './../auto-generated/previews/react/button-group.md
 
 <TabItem value="angular">
 
-```html
-<div class="btn-group">
-  <cw-button variant="Primary" outline> Left </cw-button>
-  <cw-button variant="Primary">Middle</cw-button>
-  <cw-button variant="Primary" outline> Right </cw-button>
-</div>
-```
+<AngularButtonGroup />
 
 </TabItem>
 

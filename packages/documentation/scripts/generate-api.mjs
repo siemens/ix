@@ -123,9 +123,71 @@ ${code}
   });
 }
 
+function writeAngularPreviews() {
+  const webComponentPreviews = fs
+    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .filter((name) => name.includes('.html'))
+    .map((name) => name.replace('.html', ''));
+
+  const angularPreviewPath = path.join(
+    __dirname,
+    '../angular-test-app/src/preview-examples'
+  );
+
+  const angularPreviews = fs.readdirSync(angularPreviewPath);
+  const angularPreviewPaths = webComponentPreviews
+    .filter((name) => {
+      const exist = angularPreviews.includes(`${name}.ts`);
+
+      if (!exist) {
+        console.warn(
+          `Angular preview for ${name} is missing in angular-test-app`
+        );
+      }
+
+      return exist;
+    })
+    .map((name) => [
+      name,
+      path.join(
+        __dirname,
+        '../angular-test-app/src/preview-examples',
+        `${name}.ts`
+      ),
+    ]);
+
+  angularPreviewPaths.forEach(([name, previewPath]) => {
+    fse.ensureDirSync(
+      path.join(__dirname, 'docs', 'auto-generated', 'previews', 'angular')
+    );
+
+    const code = fs.readFileSync(previewPath).toString();
+
+    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
+      previewPath.indexOf('siemens-ix/packages/')
+    )} -->
+\`\`\`tsx
+${code}
+\`\`\`
+`;
+    fs.writeFileSync(
+      path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'angular',
+        `${name}.md`
+      ),
+      markdown
+    );
+  });
+}
+
 (function () {
   const { components } = readComponents();
   components.forEach(writeApi);
 
   writeReactPreviews();
+  writeAngularPreviews();
 })();

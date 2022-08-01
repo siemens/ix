@@ -17,6 +17,10 @@
       "path": "./packages/angular"
     },
     {
+      "name": "angular-test-app",
+      "path": "./packages/angular-test-app"
+    },
+    {
       "name": "@siemens/ix-aggrid",
       "path": "./packages/aggrid"
     },
