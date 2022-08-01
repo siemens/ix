@@ -7,6 +7,9 @@ import TabItem from '@theme/TabItem';
 import Demo from '@site/src/components/Demo';
 import Props from './../auto-generated/cw-button/props.md';
 
+import ReactButtons from './../auto-generated/previews/react/buttons.md'
+import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
+
 ## Usage
 
 ### Default buttons
@@ -43,28 +46,7 @@ import Props from './../auto-generated/cw-button/props.md';
 
 <TabItem value="react">
 
-```tsx
-import React from 'react';
-
-import { CwButton } from '@siemens/ix-react';
-
-export const ButtonExample: React.FC = () => (
-  <>
-    <CwButton className="m-1" variant="Primary">
-      Webcomponents button
-    </CwButton>
-    <CwButton className="m-1" variant="Secondary">
-      Webcomponents button
-    </CwButton>
-    <CwButton className="m-1" outline>
-      Webcomponents button
-    </CwButton>
-    <CwButton className="m-1" invisible>
-      Webcomponents button
-    </CwButton>
-  </>
-);
-```
+<ReactButtons />
 
 </TabItem>
 
@@ -106,25 +88,7 @@ export const ButtonExample: React.FC = () => (
 
 <TabItem value="react">
 
-```tsx
-import React from 'react';
-
-import { CwButton } from '@siemens/ix-react';
-
-export const ButtonExample: React.FC = () => (
-  <>
-    <div className="btn-group">
-      <CwButton variant="Primary" outline>
-        Left
-      </CwButton>
-      <CwButton variant="Primary">Middle</CwButton>
-      <CwButton variant="Primary" outline>
-        Right
-      </CwButton>
-    </div>
-  </>
-);
-```
+<ReactButtonGroup />
 
 </TabItem>
 

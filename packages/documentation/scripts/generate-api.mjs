@@ -3,7 +3,8 @@
  */
 import { readFileSync } from 'fs';
 import fse from 'fs-extra';
-import path from 'path';
+import fs from 'fs';
+import path, { join } from 'path';
 
 const __dirname = path.resolve();
 
@@ -63,8 +64,68 @@ function writeApi(component) {
   fse.outputFileSync(path.join(output, 'events.md'), data);
 }
 
+function writeReactPreviews() {
+  const webComponentPreviews = fs
+    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .filter((name) => name.includes('.html'))
+    .map((name) => name.replace('.html', ''));
+
+  const reactPreviewPath = path.join(
+    __dirname,
+    '../react-test-app/src/preview-examples'
+  );
+
+  const reactPreviews = fs.readdirSync(reactPreviewPath);
+  const reactPreviewPaths = webComponentPreviews
+    .filter((name) => {
+      const exist = reactPreviews.includes(`${name}.tsx`);
+
+      if (!exist) {
+        console.warn(`React preview for ${name} is missing in react-test-app`);
+      }
+
+      return exist;
+    })
+    .map((name) => [
+      name,
+      path.join(
+        __dirname,
+        '../react-test-app/src/preview-examples',
+        `${name}.tsx`
+      ),
+    ]);
+
+  reactPreviewPaths.forEach(([name, previewPath]) => {
+    fse.ensureDirSync(
+      path.join(__dirname, 'docs', 'auto-generated', 'previews', 'react')
+    );
+
+    const code = fs.readFileSync(previewPath).toString();
+
+    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
+      previewPath.indexOf('siemens-ix/packages/')
+    )} -->
+\`\`\`tsx
+${code}
+\`\`\`
+`;
+    fs.writeFileSync(
+      path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'react',
+        `${name}.md`
+      ),
+      markdown
+    );
+  });
+}
+
 (function () {
   const { components } = readComponents();
-
   components.forEach(writeApi);
+
+  writeReactPreviews();
 })();

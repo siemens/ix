@@ -1,3 +1,5 @@
+<!-- Auto generated! Please edit here: siemens-ix/packages/react-test-app/src/preview-examples/buttons.tsx -->
+```tsx
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
@@ -22,3 +24,5 @@ export const Buttons: React.FC = () => {
     </>
   );
 };
+
+```
