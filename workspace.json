@@ -6,6 +6,7 @@
     "angular": "packages/angular",
     "core": "packages/core",
     "documentation": "packages/documentation",
-    "react": "packages/react"
+    "react": "packages/react",
+    "react-test-app": "packages/react-test-app"
   }
 }

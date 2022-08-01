@@ -11,7 +11,7 @@ import Props from './../auto-generated/cw-button/props.md';
 
 ### Default buttons
 
-<Tabs groupId="default_buttons" defaultValue="preview" values={[{ value: 'preview', label: 'Preview' }, { value: 'angular', label: 'Angular' }, { value: 'javascript', label: 'Javascript' }, { value: 'react', label: 'React' }, { value: 'stencil', label: 'Stencil' }]}>
+<Tabs groupId="default_buttons" defaultValue="preview" values={[{ value: 'preview', label: 'Preview' }, { value: 'angular', label: 'Angular' }, { value: 'javascript', label: 'Javascript' }, { value: 'react', label: 'React' }]}>
 
 <TabItem value="preview">
 
@@ -50,16 +50,16 @@ import { CwButton } from '@siemens/ix-react';
 
 export const ButtonExample: React.FC = () => (
   <>
-    <CwButton class="m-1" variant="primary">
+    <CwButton className="m-1" variant="Primary">
       Webcomponents button
     </CwButton>
-    <CwButton class="m-1" variant="secondary">
+    <CwButton className="m-1" variant="Secondary">
       Webcomponents button
     </CwButton>
-    <CwButton class="m-1" outline>
+    <CwButton className="m-1" outline>
       Webcomponents button
     </CwButton>
-    <CwButton class="m-1" invisible>
+    <CwButton className="m-1" invisible>
       Webcomponents button
     </CwButton>
   </>
@@ -68,42 +68,11 @@ export const ButtonExample: React.FC = () => (
 
 </TabItem>
 
-<TabItem value="stencil">
-
-```tsx
-import { Component, h } from '@stencil/core';
-
-@Component({
-  tag: 'button-example',
-  styleUrl: 'button-example.css',
-})
-export class ButtonExample {
-  render() {
-    return [
-      <cw-button class="m-1" variant="primary">
-        Webcomponents button
-      </cw-button>,
-      <cw-button class="m-1" variant="secondary">
-        Webcomponents button
-      </cw-button>,
-      <cw-button class="m-1" outline>
-        Webcomponents button
-      </cw-button>,
-      <cw-button class="m-1" invisible>
-        Webcomponents button
-      </cw-button>,
-    ];
-  }
-}
-```
-
-</TabItem>
-
 </Tabs>
 
 ### Button group
 
-<Tabs groupId="button_group" defaultValue="preview" values={[{ value: 'preview', label: 'Preview' }, { value: 'angular', label: 'Angular' }, { value: 'javascript', label: 'Javascript' }, { value: 'react', label: 'React' }, { value: 'stencil', label: 'Stencil' }]}>
+<Tabs groupId="button_group" defaultValue="preview" values={[{ value: 'preview', label: 'Preview' }, { value: 'angular', label: 'Angular' }, { value: 'javascript', label: 'Javascript' }, { value: 'react', label: 'React' }]}>
 
 <TabItem value="preview">
 
@@ -145,44 +114,16 @@ import { CwButton } from '@siemens/ix-react';
 export const ButtonExample: React.FC = () => (
   <>
     <div className="btn-group">
-      <cw-button variant="Primary" outline>
+      <CwButton variant="Primary" outline>
         Left
-      </cw-button>
-      <cw-button variant="Primary">Middle</cw-button>
-      <cw-button variant="Primary" outline>
+      </CwButton>
+      <CwButton variant="Primary">Middle</CwButton>
+      <CwButton variant="Primary" outline>
         Right
-      </cw-button>
+      </CwButton>
     </div>
   </>
 );
-```
-
-</TabItem>
-
-<TabItem value="stencil">
-
-```tsx
-import { Component, h } from '@stencil/core';
-
-@Component({
-  tag: 'button-example',
-  styleUrl: 'button-example.css',
-})
-export class ButtonExample {
-  render() {
-    return (
-      <div class="btn-group">
-        <CwButton variant="Primary" outline>
-          Left
-        </CwButton>
-        <CwButton variant="Primary">Middle</CwButton>
-        <CwButton variant="Primary" outline>
-          Right
-        </CwButton>
-      </div>
-    );
-  }
-}
 ```
 
 </TabItem>

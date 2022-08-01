@@ -2,14 +2,17 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Page, test as base } from '@playwright/test';
+import { Page, test as base, TestInfo } from '@playwright/test';
 
-async function extendPageFixture(page: Page) {
+async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
-
+  const theme = testInfo.project.metadata.theme;
+  testInfo.annotations.push({
+    type: theme,
+  });
   page.goto = async (url: string, options) => {
     const response = await originalGoto(
-      `http://127.0.0.1:8080/src/components/${url}`,
+      `http://127.0.0.1:8080/src/components/${url}?theme=${theme}`,
       options
     );
     // Inital timeout for webKit to render Web Components
@@ -20,9 +23,9 @@ async function extendPageFixture(page: Page) {
   return page;
 }
 
-export const test = base.extend({
-  page: async ({ page }, use) => {
-    page = await extendPageFixture(page);
+export const regressionTest = base.extend({
+  page: async ({ page }, use, testInfo) => {
+    page = await extendPageFixture(page, testInfo);
     await use(page);
   },
 });
