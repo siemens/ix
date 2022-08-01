@@ -34,7 +34,7 @@
 }
 
 .markdown h1 {
-  padding-bottom: 3.8125rem;
+  padding-bottom: 1.5rem;
   border-bottom: var(--theme-soft-bdr-1);
 }
 
@@ -73,6 +73,10 @@ aside {
 
 .footer {
   border-top: 0.125rem solid var(--theme-color-1);
+}
+
+.navbar {
+  padding: var(--ifm-navbar-padding-vertical) var(--ifm-navbar-padding-horizontal) !important;
 }
 
 .navbar.navbar--fixed-top {

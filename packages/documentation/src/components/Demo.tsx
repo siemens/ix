@@ -14,7 +14,7 @@ const CODE_SPLIT = '<!-- Preview code -->\n';
 export default function Demo(props: PreviewProps) {
   const [error] = useState(false);
 
-  const baseUrl = useBaseUrl('');
+  const baseUrl = useBaseUrl('/');
   const [base, setBase] = useState('');
 
   const [theme, setTheme] = useState<string>(DEFAULT_THEME);
@@ -24,13 +24,12 @@ export default function Demo(props: PreviewProps) {
   useEffect(() => {
     // setBase(baseUrl + `/webcomponent-examples/${props.name}.html`);
     const currentVersion: string = preferredVersion?.name;
-
     if (currentVersion === undefined || currentVersion === 'current') {
-      setBase(baseUrl + `/webcomponent-examples/${props.name}.html`);
+      setBase(baseUrl + `webcomponent-examples/${props.name}.html`);
     } else {
       setBase(
         baseUrl +
-          `/versioned_examples/version-${currentVersion}/webcomponent-examples/${props.name}.html`
+          `versioned_examples/version-${currentVersion}/webcomponent-examples/${props.name}.html`
       );
     }
   }, [baseUrl, preferredVersion?.name, props.name]);

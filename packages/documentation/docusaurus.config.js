@@ -9,8 +9,8 @@
 const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
-  url: 'https://ix.siemens.io',
-  baseUrl: '/',
+  url: 'https://siemens-ix.***REMOVED***/siemens-ix/',
+  baseUrl: '/siemens-ix/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -26,7 +26,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://***REMOVED***/***REMOVED***/core-ui/core-ui/edit/develop/packages/documentation/',
+            'https://***REMOVED***/siemens-ix/siemens-ix/edit/main/packages/documentation/',
         },
         theme: {
           customCss: [

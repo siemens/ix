@@ -22,8 +22,11 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   const PROJECTS = [
     './packages/core',
     './packages/angular',
+    './packages/angular-test-app',
     './packages/react',
+    './packages/react-test-app',
     './packages/documentation',
+    './packages/aggrid',
   ];
 
   const answer = await askVersion();
