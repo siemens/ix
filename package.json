@@ -13,7 +13,9 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
-    "sonarqube": "sonar-scanner"
+    "sonarqube": "sonar-scanner",
+    "regression-ci": "nx run core:test.e2e",
+    "regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"npm run regression-ci\""
   },
   "private": true,
   "dependencies": {
@@ -36,5 +38,10 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

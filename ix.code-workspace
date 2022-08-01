@@ -9,6 +9,10 @@
       "path": "./packages/react"
     },
     {
+      "name": "react-test-app",
+      "path": "./packages/react-test-app"
+    },
+    {
       "name": "@siemens/ix-angular",
       "path": "./packages/angular"
     },

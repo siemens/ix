@@ -26,9 +26,8 @@
     "test": "stencil test --spec",
     "test.watch": "stencil test --spec --watchAll --no-cache",
     "test.coverage": "stencil test --spec --coverage",
-    "test.e2e": "start-server-and-test http-server http-get://localhost:8080 playwright.test",
-    "playwright.test": "playwright test",
-    "http-server": "http-server ./ -a 127.0.0.1",
+    "test.e2e": "playwright test --reporter html",
+    "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
     "generate": "stencil generate",
     "postversion": "echo \"/*\n * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.\n */\nexport const version = '$npm_package_version'\" > ./src/env.ts",
     "generate.theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
