@@ -11,6 +11,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
+import { ModalConfig } from "./components/modal/modal";
 import { ToastConfig, ToastType } from "./components/toast/toast";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -834,6 +835,11 @@ export namespace Components {
         "windowClass": string;
     }
     interface CwModalContainer {
+        /**
+          * Display modal dialog
+          * @param config
+         */
+        "showModal": (config: ModalConfig) => Promise<void>;
     }
     interface CwModalExample {
     }
@@ -982,6 +988,50 @@ export namespace Components {
           * Dropdown label
          */
         "label": string;
+    }
+    interface CwTabItem {
+        /**
+          * Set disabled tab
+         */
+        "disabled": boolean;
+        /**
+          * Set icon only tab
+         */
+        "icon": boolean;
+        /**
+          * Set layout width style
+         */
+        "layout": 'auto' | 'stretched';
+        /**
+          * Set selected placement
+         */
+        "placement": 'bottom' | 'top';
+        /**
+          * Set selected tab
+         */
+        "selected": boolean;
+        /**
+          * Set small size tab
+         */
+        "small": boolean;
+    }
+    interface CwTabs {
+        /**
+          * Set layout width style
+         */
+        "layout": 'auto' | 'stretched';
+        /**
+          * Set placement style
+         */
+        "placement": 'bottom' | 'top';
+        /**
+          * Set default selected tab by index
+         */
+        "selected": number;
+        /**
+          * Set tab items to small size
+         */
+        "small": boolean;
     }
     interface CwTile {
         /**
@@ -1133,6 +1183,138 @@ export namespace Components {
     }
     interface MyComponent {
     }
+}
+export interface CwAnimatedTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwAnimatedTabsElement;
+}
+export interface CwBlindCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwBlindElement;
+}
+export interface CwBreadcrumbCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwBreadcrumbElement;
+}
+export interface CwCategoryFilterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwCategoryFilterElement;
+}
+export interface CwChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwChipElement;
+}
+export interface CwDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwDrawerElement;
+}
+export interface CwDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwDropdownElement;
+}
+export interface CwDropdownItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwDropdownItemElement;
+}
+export interface CwEventListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwEventListItemElement;
+}
+export interface CwExpandingSearchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwExpandingSearchElement;
+}
+export interface CwFilterChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwFilterChipElement;
+}
+export interface CwGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwGroupElement;
+}
+export interface CwGroupItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwGroupItemElement;
+}
+export interface CwMapNavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMapNavigationElement;
+}
+export interface CwMapNavigationOverlayCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMapNavigationOverlayElement;
+}
+export interface CwMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuElement;
+}
+export interface CwMenuAboutCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuAboutElement;
+}
+export interface CwMenuAboutNewsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuAboutNewsElement;
+}
+export interface CwMenuAvatarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuAvatarElement;
+}
+export interface CwMenuAvatarItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuAvatarItemElement;
+}
+export interface CwMenuSettingsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMenuSettingsElement;
+}
+export interface CwMessageBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwMessageBarElement;
+}
+export interface CwModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwModalElement;
+}
+export interface CwModalExampleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwModalExampleElement;
+}
+export interface CwSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwSelectElement;
+}
+export interface CwSelectItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwSelectItemElement;
+}
+export interface CwSplitButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwSplitButtonElement;
+}
+export interface CwSplitButtonItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwSplitButtonItemElement;
+}
+export interface CwToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwToastElement;
+}
+export interface CwToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwToggleElement;
+}
+export interface CwTreeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwTreeElement;
+}
+export interface CwTreeItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwTreeItemElement;
+}
+export interface CwUploadCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCwUploadElement;
 }
 declare global {
     interface HTMLCwAnimatedTabElement extends Components.CwAnimatedTab, HTMLStencilElement {
@@ -1417,6 +1599,18 @@ declare global {
         prototype: HTMLCwSplitButtonItemElement;
         new (): HTMLCwSplitButtonItemElement;
     };
+    interface HTMLCwTabItemElement extends Components.CwTabItem, HTMLStencilElement {
+    }
+    var HTMLCwTabItemElement: {
+        prototype: HTMLCwTabItemElement;
+        new (): HTMLCwTabItemElement;
+    };
+    interface HTMLCwTabsElement extends Components.CwTabs, HTMLStencilElement {
+    }
+    var HTMLCwTabsElement: {
+        prototype: HTMLCwTabsElement;
+        new (): HTMLCwTabsElement;
+    };
     interface HTMLCwTileElement extends Components.CwTile, HTMLStencilElement {
     }
     var HTMLCwTileElement: {
@@ -1513,6 +1707,8 @@ declare global {
         "cw-spinner": HTMLCwSpinnerElement;
         "cw-split-button": HTMLCwSplitButtonElement;
         "cw-split-button-item": HTMLCwSplitButtonItemElement;
+        "cw-tab-item": HTMLCwTabItemElement;
+        "cw-tabs": HTMLCwTabsElement;
         "cw-tile": HTMLCwTileElement;
         "cw-toast": HTMLCwToastElement;
         "cw-toast-container": HTMLCwToastContainerElement;
@@ -1542,7 +1738,7 @@ declare namespace LocalJSX {
         /**
           * Tab navigated
          */
-        "onTabClick"?: (event: CustomEvent<any>) => void;
+        "onTabClick"?: (event: CwAnimatedTabsCustomEvent<any>) => void;
         /**
           * Current selected tab index
          */
@@ -1580,7 +1776,7 @@ declare namespace LocalJSX {
         /**
           * Collapsed state changed
          */
-        "onCollapsedChange"?: (event: CustomEvent<boolean>) => void;
+        "onCollapsedChange"?: (event: CwBlindCustomEvent<boolean>) => void;
     }
     interface CwBreadcrumb {
         /**
@@ -1594,11 +1790,11 @@ declare namespace LocalJSX {
         /**
           * Crumb item clicked event
          */
-        "onItemClick"?: (event: CustomEvent<string>) => void;
+        "onItemClick"?: (event: CwBreadcrumbCustomEvent<string>) => void;
         /**
           * Next item clicked event
          */
-        "onNextClick"?: (event: CustomEvent<{ event: UIEvent; item: string }>) => void;
+        "onNextClick"?: (event: CwBreadcrumbCustomEvent<{ event: UIEvent; item: string }>) => void;
         /**
           * Excess items will get hidden inside of dropdown
          */
@@ -1685,11 +1881,11 @@ declare namespace LocalJSX {
         /**
           * Event dispatched whenever the filter state changes.
          */
-        "onFilterChanged"?: (event: CustomEvent<FilterState>) => void;
+        "onFilterChanged"?: (event: CwCategoryFilterCustomEvent<FilterState>) => void;
         /**
           * Event dispatched whenever the text input changes.
          */
-        "onInputChanged"?: (event: CustomEvent<InputState>) => void;
+        "onInputChanged"?: (event: CwCategoryFilterCustomEvent<InputState>) => void;
         /**
           * Placeholder text to be displayed in an empty input field.
          */
@@ -1731,7 +1927,7 @@ declare namespace LocalJSX {
         /**
           * Fire event if close button is clicked
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CwChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
          */
@@ -1783,11 +1979,11 @@ declare namespace LocalJSX {
         /**
           * Fire event after drawer is close
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CwDrawerCustomEvent<any>) => void;
         /**
           * Fire event after drawer is open
          */
-        "onOpen"?: (event: CustomEvent<any>) => void;
+        "onOpen"?: (event: CwDrawerCustomEvent<any>) => void;
         /**
           * Show or hide the drawer
          */
@@ -1822,7 +2018,7 @@ declare namespace LocalJSX {
         /**
           * Fire event after visibility of dropdown has changed
          */
-        "onShowChanged"?: (event: CustomEvent<boolean>) => void;
+        "onShowChanged"?: (event: CwDropdownCustomEvent<boolean>) => void;
         /**
           * Placement of the dropdown
          */
@@ -1864,7 +2060,7 @@ declare namespace LocalJSX {
         /**
           * Click on item
          */
-        "onItemClick"?: (event: CustomEvent<HTMLCwDropdownItemElement>) => void;
+        "onItemClick"?: (event: CwDropdownItemCustomEvent<HTMLCwDropdownItemElement>) => void;
     }
     interface CwEventList {
         /**
@@ -1900,7 +2096,7 @@ declare namespace LocalJSX {
         /**
           * Event list item click
          */
-        "onItemClick"?: (event: CustomEvent<any>) => void;
+        "onItemClick"?: (event: CwEventListItemCustomEvent<any>) => void;
         /**
           * Opacity of the status indicator. Defaults to 1.0
           * @deprecated Will be removed in 7.0.0. Use color with alpha value.
@@ -1919,7 +2115,7 @@ declare namespace LocalJSX {
         /**
           * Value changed
          */
-        "onValueChange"?: (event: CustomEvent<string>) => void;
+        "onValueChange"?: (event: CwExpandingSearchCustomEvent<string>) => void;
         /**
           * Placeholder text
          */
@@ -1937,7 +2133,7 @@ declare namespace LocalJSX {
         /**
           * Close clicked
          */
-        "onCloseClick"?: (event: CustomEvent<void>) => void;
+        "onCloseClick"?: (event: CwFilterChipCustomEvent<void>) => void;
     }
     interface CwFlipTile {
         /**
@@ -1971,15 +2167,15 @@ declare namespace LocalJSX {
         /**
           * Group collapsed
          */
-        "onCollapsedChanged"?: (event: CustomEvent<boolean>) => void;
+        "onCollapsedChanged"?: (event: CwGroupCustomEvent<boolean>) => void;
         /**
           * Emits when whole group gets selected.
          */
-        "onSelectGroup"?: (event: CustomEvent<boolean>) => void;
+        "onSelectGroup"?: (event: CwGroupCustomEvent<boolean>) => void;
         /**
           * Emits when group item gets selected.
          */
-        "onSelectItem"?: (event: CustomEvent<number>) => void;
+        "onSelectItem"?: (event: CwGroupCustomEvent<number>) => void;
         /**
           * Whether the group is selected.
          */
@@ -2015,7 +2211,7 @@ declare namespace LocalJSX {
         /**
           * Selection changed
          */
-        "onSelectedChanged"?: (event: CustomEvent<HTMLCwGroupItemElement>) => void;
+        "onSelectedChanged"?: (event: CwGroupItemCustomEvent<HTMLCwGroupItemElement>) => void;
         /**
           * Group item secondary text
          */
@@ -2108,11 +2304,11 @@ declare namespace LocalJSX {
         /**
           * Context menu clicked
          */
-        "onContextMenuClick"?: (event: CustomEvent<void>) => void;
+        "onContextMenuClick"?: (event: CwMapNavigationCustomEvent<void>) => void;
         /**
           * Navigation toggled
          */
-        "onNavigationToggled"?: (event: CustomEvent<boolean>) => void;
+        "onNavigationToggled"?: (event: CwMapNavigationCustomEvent<boolean>) => void;
     }
     interface CwMapNavigationOverlay {
         /**
@@ -2130,7 +2326,7 @@ declare namespace LocalJSX {
         /**
           * Event closed
          */
-        "onCloseClick"?: (event: CustomEvent<any>) => void;
+        "onCloseClick"?: (event: CwMapNavigationOverlayCustomEvent<any>) => void;
     }
     interface CwMenu {
         /**
@@ -2170,11 +2366,11 @@ declare namespace LocalJSX {
         /**
           * Menu expanded
          */
-        "onExpandChange"?: (event: CustomEvent<boolean>) => void;
+        "onExpandChange"?: (event: CwMenuCustomEvent<boolean>) => void;
         /**
           * Map Sidebar expanded
          */
-        "onMapExpandChange"?: (event: CustomEvent<boolean>) => void;
+        "onMapExpandChange"?: (event: CwMenuCustomEvent<boolean>) => void;
         /**
           * Is about tab visible
          */
@@ -2218,7 +2414,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: CwMenuAboutCustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */
@@ -2251,11 +2447,11 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClosePopover"?: (event: CustomEvent<void>) => void;
+        "onClosePopover"?: (event: CwMenuAboutNewsCustomEvent<void>) => void;
         /**
           * Show More button is pressed
          */
-        "onShowMore"?: (event: CustomEvent<MouseEvent>) => void;
+        "onShowMore"?: (event: CwMenuAboutNewsCustomEvent<MouseEvent>) => void;
         /**
           * Show about news
          */
@@ -2270,7 +2466,7 @@ declare namespace LocalJSX {
         /**
           * Logout click
          */
-        "onLogoutClick"?: (event: CustomEvent<any>) => void;
+        "onLogoutClick"?: (event: CwMenuAvatarCustomEvent<any>) => void;
         /**
           * First line of text
          */
@@ -2288,7 +2484,7 @@ declare namespace LocalJSX {
         /**
           * Avatar dropdown item clicked
          */
-        "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onItemClick"?: (event: CwMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
     interface CwMenuItem {
         /**
@@ -2328,7 +2524,7 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: CwMenuSettingsCustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */
@@ -2348,7 +2544,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the close button is clicked
          */
-        "onClosedChange"?: (event: CustomEvent<any>) => void;
+        "onClosedChange"?: (event: CwMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
          */
@@ -2396,11 +2592,11 @@ declare namespace LocalJSX {
         /**
           * Modal closed
          */
-        "onClosed"?: (event: CustomEvent<any>) => void;
+        "onClosed"?: (event: CwModalCustomEvent<any>) => void;
         /**
           * Modal dismissed
          */
-        "onDismissed"?: (event: CustomEvent<any>) => void;
+        "onDismissed"?: (event: CwModalCustomEvent<any>) => void;
         /**
           * Modal scollable
          */
@@ -2420,7 +2616,7 @@ declare namespace LocalJSX {
         /**
           * Emit close modal
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CwModalExampleCustomEvent<any>) => void;
     }
     interface CwPill {
         /**
@@ -2480,11 +2676,11 @@ declare namespace LocalJSX {
         /**
           * Item added to selection
          */
-        "onAddItem"?: (event: CustomEvent<string>) => void;
+        "onAddItem"?: (event: CwSelectCustomEvent<string>) => void;
         /**
           * Item selection changed
          */
-        "onItemSelectionChange"?: (event: CustomEvent<string | string[]>) => void;
+        "onItemSelectionChange"?: (event: CwSelectCustomEvent<string | string[]>) => void;
         /**
           * If true the select will be in readonly mode
          */
@@ -2506,7 +2702,7 @@ declare namespace LocalJSX {
         /**
           * Item clicked
          */
-        "onItemClick"?: (event: CustomEvent<string>) => void;
+        "onItemClick"?: (event: CwSelectItemCustomEvent<string>) => void;
         /**
           * Whether the item is selected.
          */
@@ -2551,7 +2747,7 @@ declare namespace LocalJSX {
         /**
           * Button clicked
          */
-        "onButtonClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onButtonClick"?: (event: CwSplitButtonCustomEvent<MouseEvent>) => void;
         /**
           * Button outline variant
          */
@@ -2581,7 +2777,51 @@ declare namespace LocalJSX {
         /**
           * Dropdown item clicked
          */
-        "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onItemClick"?: (event: CwSplitButtonItemCustomEvent<MouseEvent>) => void;
+    }
+    interface CwTabItem {
+        /**
+          * Set disabled tab
+         */
+        "disabled"?: boolean;
+        /**
+          * Set icon only tab
+         */
+        "icon"?: boolean;
+        /**
+          * Set layout width style
+         */
+        "layout"?: 'auto' | 'stretched';
+        /**
+          * Set selected placement
+         */
+        "placement"?: 'bottom' | 'top';
+        /**
+          * Set selected tab
+         */
+        "selected"?: boolean;
+        /**
+          * Set small size tab
+         */
+        "small"?: boolean;
+    }
+    interface CwTabs {
+        /**
+          * Set layout width style
+         */
+        "layout"?: 'auto' | 'stretched';
+        /**
+          * Set placement style
+         */
+        "placement"?: 'bottom' | 'top';
+        /**
+          * Set default selected tab by index
+         */
+        "selected"?: number;
+        /**
+          * Set tab items to small size
+         */
+        "small"?: boolean;
     }
     interface CwTile {
         /**
@@ -2609,7 +2849,7 @@ declare namespace LocalJSX {
         /**
           * Toast closed
          */
-        "onCloseToast"?: (event: CustomEvent<any>) => void;
+        "onCloseToast"?: (event: CwToastCustomEvent<any>) => void;
         /**
           * Toast title
          */
@@ -2644,7 +2884,7 @@ declare namespace LocalJSX {
         /**
           * An event will be dispatched each time the slide-toggle changes its value.
          */
-        "onCheckedChange"?: (event: CustomEvent<boolean>) => void;
+        "onCheckedChange"?: (event: CwToggleCustomEvent<boolean>) => void;
         /**
           * Test for toggle off
          */
@@ -2666,7 +2906,7 @@ declare namespace LocalJSX {
         /**
           * Context changed
          */
-        "onContextChange"?: (event: CustomEvent<TreeContext>) => void;
+        "onContextChange"?: (event: CwTreeCustomEvent<TreeContext>) => void;
         /**
           * Render function of tree items
          */
@@ -2688,11 +2928,11 @@ declare namespace LocalJSX {
         /**
           * Clicked
          */
-        "onItemClick"?: (event: CustomEvent<void>) => void;
+        "onItemClick"?: (event: CwTreeItemCustomEvent<void>) => void;
         /**
           * Expand/Collapsed toggled
          */
-        "onToggle"?: (event: CustomEvent<void>) => void;
+        "onToggle"?: (event: CwTreeItemCustomEvent<void>) => void;
         /**
           * Text
          */
@@ -2722,7 +2962,7 @@ declare namespace LocalJSX {
         /**
           * You get an array of Files after drop-action or browse action is finished
          */
-        "onFilesChanged"?: (event: CustomEvent<Array<File>>) => void;
+        "onFilesChanged"?: (event: CwUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
          */
@@ -2790,6 +3030,8 @@ declare namespace LocalJSX {
         "cw-spinner": CwSpinner;
         "cw-split-button": CwSplitButton;
         "cw-split-button-item": CwSplitButtonItem;
+        "cw-tab-item": CwTabItem;
+        "cw-tabs": CwTabs;
         "cw-tile": CwTile;
         "cw-toast": CwToast;
         "cw-toast-container": CwToastContainer;
@@ -2851,6 +3093,8 @@ declare module "@stencil/core" {
             "cw-spinner": LocalJSX.CwSpinner & JSXBase.HTMLAttributes<HTMLCwSpinnerElement>;
             "cw-split-button": LocalJSX.CwSplitButton & JSXBase.HTMLAttributes<HTMLCwSplitButtonElement>;
             "cw-split-button-item": LocalJSX.CwSplitButtonItem & JSXBase.HTMLAttributes<HTMLCwSplitButtonItemElement>;
+            "cw-tab-item": LocalJSX.CwTabItem & JSXBase.HTMLAttributes<HTMLCwTabItemElement>;
+            "cw-tabs": LocalJSX.CwTabs & JSXBase.HTMLAttributes<HTMLCwTabsElement>;
             "cw-tile": LocalJSX.CwTile & JSXBase.HTMLAttributes<HTMLCwTileElement>;
             "cw-toast": LocalJSX.CwToast & JSXBase.HTMLAttributes<HTMLCwToastElement>;
             "cw-toast-container": LocalJSX.CwToastContainer & JSXBase.HTMLAttributes<HTMLCwToastContainerElement>;

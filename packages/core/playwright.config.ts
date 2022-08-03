@@ -26,25 +26,25 @@ function buildProjectsWithThemes() {
           theme,
         },
       },
-
-      {
-        name: `firefox - ${theme}`,
-        use: {
-          ...devices['Desktop Firefox'],
-        },
-        metadata: {
-          theme,
-        },
-      },
-      {
-        name: `webkit - ${theme}`,
-        use: {
-          ...devices['Desktop Safari'],
-        },
-        metadata: {
-          theme,
-        },
-      },
+      // Currently deactivated to speedup regression test
+      // {
+      //   name: `firefox - ${theme}`,
+      //   use: {
+      //     ...devices['Desktop Firefox'],
+      //   },
+      //   metadata: {
+      //     theme,
+      //   },
+      // },
+      // {
+      //   name: `webkit - ${theme}`,
+      //   use: {
+      //     ...devices['Desktop Safari'],
+      //   },
+      //   metadata: {
+      //     theme,
+      //   },
+      // },
     ];
   });
 }

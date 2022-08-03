@@ -1,8 +1,8 @@
 {
-  "timestamp": "2022-08-01T10:34:24",
+  "timestamp": "2022-08-03T05:23:23",
   "compiler": {
     "name": "@stencil/core",
-    "version": "2.15.2",
+    "version": "2.17.2",
     "typescriptVersion": "4.5.4"
   },
   "components": [
@@ -5145,7 +5145,24 @@
       "docsTags": [],
       "usage": {},
       "props": [],
-      "methods": [],
+      "methods": [
+        {
+          "name": "showModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "showModal(config: ModalConfig) => Promise<void>",
+          "parameters": [],
+          "docs": "Display modal dialog",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "config"
+            }
+          ]
+        }
+      ],
       "events": [],
       "listeners": [],
       "styles": [],
@@ -6158,6 +6175,243 @@
           "cw-split-button-item"
         ]
       }
+    },
+    {
+      "filePath": "./src/components/tab-item/tab-item.tsx",
+      "encapsulation": "none",
+      "tag": "cw-tab-item",
+      "readme": "# cw-tab-item\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Set disabled tab",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Set icon only tab",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "\"auto\" | \"stretched\"",
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Set layout width style",
+          "docsTags": [],
+          "default": "'auto'",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "value": "stretched",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placement",
+          "type": "\"bottom\" | \"top\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Set selected placement",
+          "docsTags": [],
+          "default": "'bottom'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Set selected tab",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "small",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "small",
+          "reflectToAttr": false,
+          "docs": "Set small size tab",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/tabs/tabs.tsx",
+      "encapsulation": "none",
+      "tag": "cw-tabs",
+      "readme": "# cw-tabs\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "layout",
+          "type": "\"auto\" | \"stretched\"",
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Set layout width style",
+          "docsTags": [],
+          "default": "'auto'",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "value": "stretched",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placement",
+          "type": "\"bottom\" | \"top\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Set placement style",
+          "docsTags": [],
+          "default": "'bottom'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "number",
+          "mutable": true,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Set default selected tab by index",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "small",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "small",
+          "reflectToAttr": false,
+          "docs": "Set tab items to small size",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
     },
     {
       "filePath": "./src/components/tile/tile.tsx",

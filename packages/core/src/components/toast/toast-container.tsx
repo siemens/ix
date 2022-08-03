@@ -41,7 +41,7 @@ export class CwToastContainer {
       document.body.appendChild(toastContainer);
     }
 
-    this.disposable = this.onShowToast.on(config => this.showToast(config));
+    this.disposable = this.onShowToast.on((config) => this.showToast(config));
   }
 
   disconnectedCallback() {

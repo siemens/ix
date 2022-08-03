@@ -7,7 +7,7 @@
 .modal-header {
   @include text-default-title;
 
-  padding: $large-space;
+  padding: 0;
   padding-bottom: $tiny-space;
   border: none;
 
@@ -15,10 +15,11 @@
 }
 
 .modal-body {
-  padding: 0 $large-space;
+  padding: 0;
 }
 
 .modal-footer {
   border-top: none;
-  padding: $large-space;
+  padding: 0;
+  padding-block-start: $large-space;
 }

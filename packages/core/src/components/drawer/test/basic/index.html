@@ -1,0 +1,24 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <cw-drawer>Content</cw-drawer>
+    <cw-button>Click</cw-button>
+    <script>
+      const button = document.querySelector('cw-button');
+      button.addEventListener('click', () => {
+        document.querySelector('cw-drawer').toggleDrawer(true);
+      });
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

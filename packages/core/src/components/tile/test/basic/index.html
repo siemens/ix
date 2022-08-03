@@ -1,0 +1,53 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body style="padding: 2rem">
+    <cw-tile size="small">92.8 °C</cw-tile>
+    <div class="mb-3"></div>
+    <cw-tile size="medium" class="mr-1">
+      <div slot="header">Tile header</div>
+      <div class="text-l">92.8 °C</div>
+    </cw-tile>
+    <div class="mb-3"></div>
+
+    <cw-tile size="big">
+      <div
+        class="d-flex flex-grow-1 align-items-center justify-content-between"
+        slot="header"
+      >
+        Tile header
+        <cw-icon-button ghost icon="context-menu"></cw-icon-button>
+      </div>
+      <div slot="subheader">Temperature</div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          align-items: flex-end;
+          justify-content: space-between;
+        "
+      >
+        <span>92.8 °C</span>
+      </div>
+      <div
+        class="d-flex h-100 align-items-center justify-content-end"
+        slot="footer"
+      >
+        <cw-button ghost slot="footer">
+          <cw-icon name="chevron-right-small"></cw-icon>Details
+        </cw-button>
+      </div>
+    </cw-tile>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

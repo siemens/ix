@@ -1,7 +1,18 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Method, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { Popover } from '../utils/popover.util';
 import { convertToRemString } from '../utils/rwd.util';
 import { toggleTheme } from '../utils/toggle-theme';
@@ -107,7 +118,9 @@ export class Menu {
 
   @State() isMoreTabEmpty = false;
 
-  private readonly domObserver = new MutationObserver(this.onDomChange.bind(this));
+  private readonly domObserver = new MutationObserver(
+    this.onDomChange.bind(this)
+  );
 
   @Listen('resize', { target: 'window' })
   onWindowResize() {
@@ -133,7 +146,7 @@ export class Menu {
   }
 
   private onDomChange(mutations: MutationRecord[]) {
-    mutations.forEach(mutationRecord => {
+    mutations.forEach((mutationRecord) => {
       mutationRecord.addedNodes.forEach(this.handleNodeMutation.bind(this));
       mutationRecord.removedNodes.forEach(this.handleNodeMutation.bind(this));
     });
@@ -141,7 +154,10 @@ export class Menu {
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
-    return elm.style.display !== 'none' && elm.parentElement?.parentElement?.style.display !== 'none';
+    return (
+      elm.style.display !== 'none' &&
+      elm.parentElement?.parentElement?.style.display !== 'none'
+    );
   };
 
   get popoverArea() {
@@ -161,11 +177,19 @@ export class Menu {
   }
 
   get menuItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)')).filter(this.isVisible);
+    return Array.from(
+      this.hostElement.querySelectorAll(
+        'cw-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
+      )
+    ).filter(this.isVisible);
   }
 
   get menuBottomItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)')).filter(this.isVisible);
+    return Array.from(
+      this.hostElement.querySelectorAll(
+        'cw-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
+      )
+    ).filter(this.isVisible);
   }
 
   get homeTab() {
@@ -177,11 +201,16 @@ export class Menu {
   }
 
   get isMoreItemsDropdownEmpty(): boolean {
-    return this.hostElement.querySelectorAll('.internal-tab cw-dropdown .appended').length === 0;
+    return (
+      this.hostElement.querySelectorAll('.internal-tab cw-dropdown .appended')
+        .length === 0
+    );
   }
 
   get moreItemsDropdownItems() {
-    return this.hostElement.querySelectorAll('.internal-tab cw-dropdown cw-menu-item');
+    return this.hostElement.querySelectorAll(
+      '.internal-tab cw-dropdown cw-menu-item'
+    );
   }
 
   get activeMoreTabContainer() {
@@ -213,7 +242,10 @@ export class Menu {
   }
 
   get isSettingsEmpty(): boolean {
-    return Array.from(this.hostElement.querySelectorAll('cw-menu-settings-item')).length === 0;
+    return (
+      Array.from(this.hostElement.querySelectorAll('cw-menu-settings-item'))
+        .length === 0
+    );
   }
 
   get avatarItem(): HTMLCwMenuAvatarElement {
@@ -228,9 +260,13 @@ export class Menu {
 
   componentDidLoad() {
     const anchor = this.hostElement.querySelector('#more-tab');
-    this.popoverListener = new Popover(anchor as HTMLElement, this.moreItemsDropdown, () => {
-      this.showMoreItems = false;
-    });
+    this.popoverListener = new Popover(
+      anchor as HTMLElement,
+      this.moreItemsDropdown,
+      () => {
+        this.showMoreItems = false;
+      }
+    );
 
     this.settings?.addEventListener('close', () => {
       this.showSettings = false;
@@ -330,7 +366,9 @@ export class Menu {
     const avatar = this.avatarItem;
     if (avatar) {
       avatar.style.marginBottom = '1rem';
-      this.hostElement.querySelector('#avatar-tab-placeholder')?.appendChild(avatar);
+      this.hostElement
+        .querySelector('#avatar-tab-placeholder')
+        ?.appendChild(avatar);
     }
   }
 
@@ -338,7 +376,9 @@ export class Menu {
     const heightArrow = 12;
     const offsetArrow = 6;
     const rectAbout = this.aboutTab.getBoundingClientRect();
-    const offset = window.innerHeight - (rectAbout.bottom - rectAbout.height / 2 + heightArrow / 2 + offsetArrow);
+    const offset =
+      window.innerHeight -
+      (rectAbout.bottom - rectAbout.height / 2 + heightArrow / 2 + offsetArrow);
     return convertToRemString(offset);
   }
 
@@ -380,7 +420,7 @@ export class Menu {
   private getMoreNotificationsCount(): number {
     const moreTabs = this.moreItemsDropdown?.querySelectorAll('.appended');
     let count = 0;
-    moreTabs?.forEach(tab => {
+    moreTabs?.forEach((tab) => {
       if (tab['notifications']) {
         count += tab['notifications'];
       }
@@ -547,7 +587,7 @@ export class Menu {
       this.skipOverlayAnimationFor(this.about);
     }
 
-    this.about.classList.add('d-none');
+    this.about?.classList.add('d-none');
 
     this.resetOverlay();
     this.showSettings = show;
@@ -568,7 +608,7 @@ export class Menu {
       this.skipOverlayAnimationFor(this.settings);
     }
 
-    this.settings.classList.add('d-none');
+    this.settings?.classList.add('d-none');
 
     this.resetOverlay();
     this.showAbout = show;
@@ -636,13 +676,36 @@ export class Menu {
             onClick={async () => this.toggleMenu()}
             class={{
               'burger-menu-button': true,
-              'expanded': this.expand,
+              expanded: this.expand,
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-              <rect class="line line-1" x="5" y="9.5" width="22" height="2"></rect>
-              <rect class="line line-2" x="5" y="15.5" width="22" height="2"></rect>
-              <rect class="line line-3" x="5" y="21.5" width="22" height="2"></rect>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              width="32"
+              height="32"
+            >
+              <rect
+                class="line line-1"
+                x="5"
+                y="9.5"
+                width="22"
+                height="2"
+              ></rect>
+              <rect
+                class="line line-2"
+                x="5"
+                y="15.5"
+                width="22"
+                height="2"
+              ></rect>
+              <rect
+                class="line line-3"
+                x="5"
+                y="21.5"
+                width="22"
+                height="2"
+              ></rect>
             </svg>
           </div>
           <div id="avatar-tab-placeholder"></div>
@@ -650,7 +713,11 @@ export class Menu {
           <slot></slot>
           <div class="active-more-tab">
             {this.activeTab ? (
-              <cw-menu-item class="internal-tab" active={true} tabIcon={this.activeTab.tabIcon}>
+              <cw-menu-item
+                class="internal-tab"
+                active={true}
+                tabIcon={this.activeTab.tabIcon}
+              >
                 {this.activeTab.innerText}
               </cw-menu-item>
             ) : null}
@@ -671,10 +738,20 @@ export class Menu {
             {this.i18nMore}
             <cw-dropdown show={this.showMoreItems}>
               {this.menuItems
-                .filter((elm: HTMLCwMenuItemElement, index) => !this.showTab(index) && !this.isMenuItemActive(elm) && this.isVisible(elm))
+                .filter(
+                  (elm: HTMLCwMenuItemElement, index) =>
+                    !this.showTab(index) &&
+                    !this.isMenuItemActive(elm) &&
+                    this.isVisible(elm)
+                )
                 .map((e: HTMLCwMenuItemElement) => {
                   return (
-                    <cw-menu-item tabIcon={e.tabIcon} active={e.active} class="internal-tab appended" onClick={() => e.dispatchEvent(new CustomEvent('click'))}>
+                    <cw-menu-item
+                      tabIcon={e.tabIcon}
+                      active={e.active}
+                      class="internal-tab appended"
+                      onClick={() => e.dispatchEvent(new CustomEvent('click'))}
+                    >
                       {e.innerText}
                     </cw-menu-item>
                   );
@@ -687,7 +764,7 @@ export class Menu {
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
-                'active': this.showSettings,
+                active: this.showSettings,
               }}
               tabIcon="cogwheel"
               onClick={async () => this.toggleSettings(!this.showSettings)}
@@ -703,7 +780,7 @@ export class Menu {
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
-                'active': this.showAbout,
+                active: this.showAbout,
               }}
               tabIcon="info"
               onClick={async () => this.toggleAbout(!this.showAbout)}
@@ -712,12 +789,22 @@ export class Menu {
             </cw-menu-item>
           ) : null}
           {this.enableToggleTheme ? (
-            <cw-menu-item id="toggleTheme" onClick={() => toggleTheme()} class="internal-tab bottom-tab" tabIcon="bulb">
+            <cw-menu-item
+              id="toggleTheme"
+              onClick={() => toggleTheme()}
+              class="internal-tab bottom-tab"
+              tabIcon="bulb"
+            >
               {this.i18nToggleTheme}
             </cw-menu-item>
           ) : null}
           {this.enableMapExpand ? (
-            <cw-menu-item id="menu-collapse" onClick={() => this.mapExpandChange.emit(this.mapExpand)} class="internal-tab bottom-tab" tabIcon={`${this.getCollapseIcon()}`}>
+            <cw-menu-item
+              id="menu-collapse"
+              onClick={() => this.mapExpandChange.emit(this.mapExpand)}
+              class="internal-tab bottom-tab"
+              tabIcon={`${this.getCollapseIcon()}`}
+            >
               {this.getCollapseText()}
             </cw-menu-item>
           ) : null}
@@ -725,7 +812,7 @@ export class Menu {
         <div
           class={{
             'menu-overlay': true,
-            'expanded': this.expand,
+            expanded: this.expand,
             'd-block': this.showAbout || this.showSettings,
           }}
           style={{

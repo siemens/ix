@@ -49,6 +49,8 @@ export const DIRECTIVES = [
   d.CwSpinner,
   d.CwSplitButton,
   d.CwSplitButtonItem,
+  d.CwTabItem,
+  d.CwTabs,
   d.CwTile,
   d.CwToast,
   d.CwToastContainer,

@@ -1030,7 +1030,8 @@ export class CwModal {
 export declare interface CwModalContainer extends Components.CwModalContainer {}
 
 @ProxyCmp({
-  defineCustomElementFn: undefined
+  defineCustomElementFn: undefined,
+  methods: ['showModal']
 })
 @Component({
   selector: 'cw-modal-container',
@@ -1227,6 +1228,48 @@ export class CwSplitButtonItem {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['itemClick']);
+  }
+}
+
+
+export declare interface CwTabItem extends Components.CwTabItem {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
+})
+@Component({
+  selector: 'cw-tab-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
+})
+export class CwTabItem {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CwTabs extends Components.CwTabs {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['layout', 'placement', 'selected', 'small']
+})
+@Component({
+  selector: 'cw-tabs',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['layout', 'placement', 'selected', 'small']
+})
+export class CwTabs {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 

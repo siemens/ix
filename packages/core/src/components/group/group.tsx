@@ -1,7 +1,16 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 
 @Component({
   tag: 'cw-group',
@@ -63,11 +72,15 @@ export class Group {
   @Element() hostElement!: HTMLCwGroupElement;
 
   get dropdownItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-group-dropdown-item'));
+    return Array.from(
+      this.hostElement.querySelectorAll('cw-group-dropdown-item')
+    );
   }
 
   get groupItems(): Array<HTMLCwGroupItemElement> {
-    return Array.from(this.hostElement.querySelectorAll('cw-group-item:not(.footer)'));
+    return Array.from(
+      this.hostElement.querySelectorAll('cw-group-item:not(.footer)')
+    );
   }
 
   get groupContent() {
@@ -124,7 +137,10 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (!this.footer.children.length && index === this.groupItems.length - 1) {
+      if (
+        !this.footer?.children.length &&
+        index === this.groupItems.length - 1
+      ) {
         item.classList.add('last');
       }
     });
@@ -135,9 +151,12 @@ export class Group {
   }
 
   componentDidLoad() {
-    this.groupContent.addEventListener('selectedChanged', (evt: CustomEvent<HTMLCwGroupItemElement>) => {
-      this.onItemClick(evt.detail.index);
-    });
+    this.groupContent.addEventListener(
+      'selectedChanged',
+      (evt: CustomEvent<HTMLCwGroupItemElement>) => {
+        this.onItemClick(evt.detail.index);
+      }
+    );
   }
 
   render() {
@@ -146,13 +165,20 @@ export class Group {
         <div
           class={{
             'group-header': true,
-            'expand': !this.collapsed,
-            'selected': this.selected,
+            expand: !this.collapsed,
+            selected: this.selected,
           }}
         >
-          <div class="d-flex w-100" onClick={e => this.onHeaderClick(e)}>
-            <button class="btn btn-icon btn-invisible btn-expand-header" onClick={e => this.onExpandClick(e)}>
-              {this.collapsed ? <i class="expand-icon glyph glyph-chevron-right-small"></i> : <i class="expand-icon expand glyph glyph-chevron-down-small"></i>}
+          <div class="d-flex w-100" onClick={(e) => this.onHeaderClick(e)}>
+            <button
+              class="btn btn-icon btn-invisible btn-expand-header"
+              onClick={(e) => this.onExpandClick(e)}
+            >
+              {this.collapsed ? (
+                <i class="expand-icon glyph glyph-chevron-right-small"></i>
+              ) : (
+                <i class="expand-icon expand glyph glyph-chevron-down-small"></i>
+              )}
             </button>
             <div class="group-header-content">
               {this.header ? (
@@ -168,8 +194,18 @@ export class Group {
               <slot name="header"></slot>
             </div>
           </div>
-          <div class={{ 'group-header-context-button': true, 'd-none': this.dropdownItems.length === 0 }}>
-            <cw-icon-button ref={ref => (this.dropdownTriggerRef = ref)} size="24" ghost={true} icon="context-menu"></cw-icon-button>
+          <div
+            class={{
+              'group-header-context-button': true,
+              'd-none': this.dropdownItems.length === 0,
+            }}
+          >
+            <cw-icon-button
+              ref={(ref) => (this.dropdownTriggerRef = ref)}
+              size="24"
+              ghost={true}
+              icon="context-menu"
+            ></cw-icon-button>
             <cw-dropdown trigger={this.dropdownTriggerRef}>
               <slot name="dropdown"></slot>
             </cw-dropdown>

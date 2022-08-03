@@ -3,81 +3,80 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { CwDrawer } from '../drawer';
 import { fireEvent } from '@testing-library/dom';
+import { CwDrawer } from '../drawer';
 
 describe('cw-drawer', () => {
-    let page: any;
-    let drawer: any;
-    let container: HTMLDivElement;
+  let page: any;
+  let drawer: any;
+  let container: HTMLDivElement;
 
-    beforeEach(async () => {
-        page = await newSpecPage({
-            components: [CwDrawer],
-            html: `<cw-drawer></cw-drawer>`,
-        });
-
-        drawer = document.querySelector('cw-drawer');
-        container = document.querySelector('[data-testid="container"]');
+  beforeEach(async () => {
+    page = await newSpecPage({
+      components: [CwDrawer],
+      html: `<cw-drawer></cw-drawer>`,
     });
 
-    it('renders', () => {
-        expect(page.root).toMatchSnapshot();
-    });
+    drawer = document.querySelector('cw-drawer');
+    container = document.querySelector('[data-testid="container"]');
+  });
 
-    it('opens the drawer', async () => {
-        drawer.show = true;
-        await page.waitForChanges();
+  it('renders', () => {
+    expect(page.root).toMatchSnapshot();
+  });
 
-        expect(drawer.show).toBeTruthy();
+  it('opens the drawer', async () => {
+    drawer.show = true;
+    await page.waitForChanges();
 
-        await page.waitForChanges();
-        expect(drawer.innerHTML).toContain('toggle');
-    });
+    expect(drawer.show).toBeTruthy();
 
-    it('closes the drawer', async () => {
-        drawer.show = true;
-        await page.waitForChanges();
+    await page.waitForChanges();
+    expect(drawer.innerHTML).toContain('toggle');
+  });
 
-        const closeButton = page.doc.querySelector('[data-testid="close-button"]');
-        fireEvent.click(closeButton);
-        await page.waitForChanges();
-        expect(drawer.show).toBeFalsy();
-        expect(drawer.innerHTML).not.toContain('toggle');
-    });
+  it('closes the drawer', async () => {
+    drawer.show = true;
+    await page.waitForChanges();
 
-    it('drawer is displayed at full height, if fullHeight is set to true', async () => {
-        drawer.toggleDrawer();
-        await page.waitForChanges();
+    const closeButton = page.doc.querySelector('[data-testid="close-button"]');
+    fireEvent.click(closeButton);
+    await page.waitForChanges();
+    expect(drawer.show).toBeFalsy();
+    expect(drawer.innerHTML).not.toContain('toggle');
+  });
 
-        drawer.fullHeight = true;
-        await page.waitForChanges();
+  it('drawer is displayed at full height, if fullHeight is set to true', async () => {
+    drawer.toggleDrawer();
+    await page.waitForChanges();
 
-        expect(container.classList.contains('full-height')).toBeTruthy();
-    });
+    drawer.fullHeight = true;
+    await page.waitForChanges();
 
-    it('drawer is NOT displayed at full height, if fullHeight is set to false', async () => {
-        drawer.toggleDrawer();
-        await page.waitForChanges();
+    expect(container.classList.contains('full-height')).toBeTruthy();
+  });
 
-        drawer.fullHeight = false;
-        await page.waitForChanges();
+  it('drawer is NOT displayed at full height, if fullHeight is set to false', async () => {
+    drawer.toggleDrawer();
+    await page.waitForChanges();
 
-        expect(container.classList.contains('full-height')).toBeFalsy();
-    });
+    drawer.fullHeight = false;
+    await page.waitForChanges();
 
-    it('emits an event, when show changed', async () => {
-        const mockCallback = jest.fn();
-        window.addEventListener('open', mockCallback);
+    expect(container.classList.contains('full-height')).toBeFalsy();
+  });
 
-        drawer.toggleDrawer();
-        await page.waitForChanges();
+  it('emits an event, when show changed', async () => {
+    const mockCallback = jest.fn();
+    window.addEventListener('open', mockCallback);
 
-        const closeButton = page.doc.querySelector('[data-testid="close-button"]');
-        fireEvent.click(closeButton);
-        
-        window.removeEventListener('open', mockCallback);
-        expect(mockCallback).toHaveBeenCalled();
-    });
+    drawer.toggleDrawer();
+    await page.waitForChanges();
 
+    const closeButton = page.doc.querySelector('[data-testid="close-button"]');
+    fireEvent.click(closeButton);
+
+    window.removeEventListener('open', mockCallback);
+    expect(mockCallback).toHaveBeenCalled();
+  });
 });

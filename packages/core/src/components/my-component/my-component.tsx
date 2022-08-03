@@ -2,8 +2,8 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 import { Component, h, Host, State } from '@stencil/core';
-import { modal } from '../..';
 import { FlipTileState } from '../flip-tile/flip-tile-state';
+import { modal } from '../modal/modal';
 import { toast } from '../toast/toast';
 
 type Themes = 'brand-light' | 'brand-dark' | 'classic-light' | 'classic-dark';
@@ -44,15 +44,14 @@ export class MyComponent {
     });
   }
 
-
   private showModal() {
-    const content =document.createElement('cw-modal-example') ;
+    const content = document.createElement('cw-modal-example');
     const modal$ = modal({
-      content ,
+      content,
       title: 'title',
     });
-    modal$.then(m => {
-      document.addEventListener('close', () =>  m.close('close'));
+    modal$.then((m) => {
+      document.addEventListener('close', () => m.close('close'));
     });
   }
 
@@ -61,21 +60,35 @@ export class MyComponent {
       <Host>
         <cw-basic-navigation>
           <cw-menu>
-            <cw-menu-item active={this.theme === 'brand-light'} onClick={() => this.changeTheme('brand-light')}>
+            <cw-menu-item
+              active={this.theme === 'brand-light'}
+              onClick={() => this.changeTheme('brand-light')}
+            >
               Brand 2022 Light
             </cw-menu-item>
-            <cw-menu-item active={this.theme === 'brand-dark'} onClick={() => this.changeTheme('brand-dark')}>
+            <cw-menu-item
+              active={this.theme === 'brand-dark'}
+              onClick={() => this.changeTheme('brand-dark')}
+            >
               Brand 2022 Dark
             </cw-menu-item>
-            <cw-menu-item active={this.theme === 'classic-light'} onClick={() => this.changeTheme('classic-light')}>
+            <cw-menu-item
+              active={this.theme === 'classic-light'}
+              onClick={() => this.changeTheme('classic-light')}
+            >
               Classic Light
             </cw-menu-item>
-            <cw-menu-item active={this.theme === 'classic-dark'} onClick={() => this.changeTheme('classic-dark')}>
+            <cw-menu-item
+              active={this.theme === 'classic-dark'}
+              onClick={() => this.changeTheme('classic-dark')}
+            >
               Classic Dark
             </cw-menu-item>
           </cw-menu>
 
-          <cw-button onClick={this.showToasts.bind(this)}>Show toasts</cw-button>
+          <cw-button onClick={this.showToasts.bind(this)}>
+            Show toasts
+          </cw-button>
           <cw-button onClick={this.showModal.bind(this)}>Show modal</cw-button>
 
           <cw-modal-container></cw-modal-container>
@@ -177,7 +190,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -189,23 +202,29 @@ export class MyComponent {
               </cw-tile>
 
               <cw-tile size="big">
-                <div class="d-flex flex-grow-1 align-items-center justify-content-between" slot="header">
+                <div
+                  class="d-flex flex-grow-1 align-items-center justify-content-between"
+                  slot="header"
+                >
                   Tile header
                   <cw-icon-button ghost icon="context-menu"></cw-icon-button>
                 </div>
                 <div slot="subheader">Temperature</div>
                 <div
                   style={{
-                    'display': 'flex',
+                    display: 'flex',
                     'flex-direction': 'column',
-                    'height': '100%',
+                    height: '100%',
                     'align-items': 'flex-end',
                     'justify-content': 'space-between',
                   }}
                 >
                   <span>92.8 °C</span>
                 </div>
-                <div class="d-flex h-100 align-items-center justify-content-end" slot="footer">
+                <div
+                  class="d-flex h-100 align-items-center justify-content-end"
+                  slot="footer"
+                >
                   <cw-button ghost slot="footer">
                     <cw-icon name="chevron-right-small"></cw-icon>Details
                   </cw-button>
@@ -264,13 +283,19 @@ export class MyComponent {
               }}
             >
               <cw-breadcrumb>
-                <cw-breadcrumb-item icon="home" label="Root"></cw-breadcrumb-item>
+                <cw-breadcrumb-item
+                  icon="home"
+                  label="Root"
+                ></cw-breadcrumb-item>
                 <cw-breadcrumb-item label="Level 1"></cw-breadcrumb-item>
                 <cw-breadcrumb-item label="Level 2"></cw-breadcrumb-item>
               </cw-breadcrumb>
 
               <cw-breadcrumb ghost>
-                <cw-breadcrumb-item icon="home" label="Root"></cw-breadcrumb-item>
+                <cw-breadcrumb-item
+                  icon="home"
+                  label="Root"
+                ></cw-breadcrumb-item>
                 <cw-breadcrumb-item label="Level 1"></cw-breadcrumb-item>
                 <cw-breadcrumb-item label="Level 2"></cw-breadcrumb-item>
               </cw-breadcrumb>
@@ -336,7 +361,13 @@ export class MyComponent {
               <cw-pill variant="alarm" icon="star" style={{ width: '8rem' }}>
                 Label
               </cw-pill>
-              <cw-pill variant="alarm" outline alignLeft icon="star" style={{ width: '8rem' }}>
+              <cw-pill
+                variant="alarm"
+                outline
+                alignLeft
+                icon="star"
+                style={{ width: '8rem' }}
+              >
                 Label
               </cw-pill>
             </div>
@@ -353,7 +384,13 @@ export class MyComponent {
                 Primary
               </cw-chip>
               <cw-chip icon="print">Primary with icon</cw-chip>
-              <cw-chip icon="print" style={{ width: '10rem' }} closable onClose={console.log} onClick={console.log}>
+              <cw-chip
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
                 Primary
               </cw-chip>
 
@@ -363,13 +400,36 @@ export class MyComponent {
               <cw-chip variant="alarm" icon="print">
                 Alarm with icon
               </cw-chip>
-              <cw-chip variant="alarm" icon="print" style={{ width: '10rem' }} closable onClose={console.log} onClick={console.log}>
+              <cw-chip
+                variant="alarm"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
                 Alarm
               </cw-chip>
-              <cw-chip variant="warning" icon="print" style={{ width: '10rem' }} closable onClose={console.log} onClick={console.log}>
+              <cw-chip
+                variant="warning"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
                 Alarm
               </cw-chip>
-              <cw-chip background="purple" color="green" variant="custom" icon="print" style={{ width: '10rem' }} closable onClose={console.log} onClick={console.log}>
+              <cw-chip
+                background="purple"
+                color="green"
+                variant="custom"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
                 Custom
               </cw-chip>
             </div>
@@ -409,7 +469,15 @@ export class MyComponent {
                 marginTop: '2rem',
               }}
             >
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <cw-button>Button</cw-button>
                 <div style={{ marginRight: '0.25rem' }}></div>
                 <cw-button disabled>Button</cw-button>
@@ -428,7 +496,15 @@ export class MyComponent {
                 <div style={{ marginRight: '0.25rem' }}></div>
               </div>
 
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <cw-button variant="Secondary">Button</cw-button>
                 <div style={{ marginRight: '0.25rem' }}></div>
                 <cw-button variant="Secondary" disabled>
@@ -453,20 +529,50 @@ export class MyComponent {
                 <div style={{ marginRight: '0.25rem' }}></div>
               </div>
 
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <cw-button variant="Secondary" ghost selected>
                   Button
                 </cw-button>
               </div>
 
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <cw-icon-button icon="print" oval></cw-icon-button>
                 <div style={{ marginRight: '0.25rem' }}></div>
-                <cw-icon-button icon="print" oval variant="Primary"></cw-icon-button>
+                <cw-icon-button
+                  icon="print"
+                  oval
+                  variant="Primary"
+                ></cw-icon-button>
                 <div style={{ marginRight: '0.25rem' }}></div>
-                <cw-icon-button icon="print" oval variant="Primary" outline></cw-icon-button>
+                <cw-icon-button
+                  icon="print"
+                  oval
+                  variant="Primary"
+                  outline
+                ></cw-icon-button>
                 <div style={{ marginRight: '0.25rem' }}></div>
-                <cw-icon-button icon="print" oval variant="Primary" ghost></cw-icon-button>
+                <cw-icon-button
+                  icon="print"
+                  oval
+                  variant="Primary"
+                  ghost
+                ></cw-icon-button>
               </div>
             </div>
             <div
@@ -477,35 +583,100 @@ export class MyComponent {
                 marginTop: '2rem',
               }}
             >
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <cw-split-button label="Test">
                   <cw-split-button-item label="Item 1" icon="print" />
                   <cw-split-button-item label="Item 2" icon="print" />
                   <cw-split-button-item label="Item 3" icon="print" />
                 </cw-split-button>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <input type="checkbox" id="xxx" checked />
                 <label htmlFor="xxx">Checked</label>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <input type="checkbox" id="xxxz" checked disabled />
                 <label htmlFor="xxxz">Checked disabled</label>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <input type="checkbox" id="xxx2" />
                 <label htmlFor="xxx2">Unchecked</label>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
                 <input type="checkbox" id="xxx2c" disabled />
                 <label htmlFor="xxx2c">Unchecked disabeld</label>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
-                <input type="checkbox" id="xxx3" ref={elm => (elm.indeterminate = true)} />
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  id="xxx3"
+                  ref={(elm) => (elm.indeterminate = true)}
+                />
                 <label htmlFor="xxx3">Indeterminate</label>
               </div>
-              <div style={{ marginRight: '1rem', display: 'flex', justifyContent: 'center', poisition: 'relative', marginTop: '2rem' }}>
-                <input type="checkbox" id="xxx4" ref={elm => (elm.indeterminate = true)} disabled />
+              <div
+                style={{
+                  marginRight: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  poisition: 'relative',
+                  marginTop: '2rem',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  id="xxx4"
+                  ref={(elm) => (elm.indeterminate = true)}
+                  disabled
+                />
                 <label htmlFor="xxx4">Indeterminate Disabled</label>
               </div>
             </div>
@@ -517,7 +688,12 @@ export class MyComponent {
                 marginTop: '2rem',
               }}
             >
-              <input defaultChecked id="checkbox_1_1" name="group_1" type="radio" />
+              <input
+                defaultChecked
+                id="checkbox_1_1"
+                name="group_1"
+                type="radio"
+              />
               <label htmlFor="checkbox_1_1"> Checked </label>
               <input id="checkbox_1_2" name="group_1" type="radio" />
               <label htmlFor="checkbox_1_2"> Normal </label>
@@ -534,7 +710,11 @@ export class MyComponent {
               }}
             >
               <cw-button id="triggerId">Dropdown</cw-button>
-              <cw-dropdown trigger="triggerId" placement="bottom-start" header="Header">
+              <cw-dropdown
+                trigger="triggerId"
+                placement="bottom-start"
+                header="Header"
+              >
                 <div class="dropdown-buttons">
                   <cw-icon-button invisible icon="cut"></cw-icon-button>
                   <cw-icon-button invisible icon="copy"></cw-icon-button>
@@ -563,27 +743,59 @@ export class MyComponent {
                 }}
               >
                 <input class="form-control" type="text" />
-                <input class="form-control" type="number" style={{ marginBottom: '2rem' }} />
+                <input
+                  class="form-control"
+                  type="number"
+                  style={{ marginBottom: '2rem' }}
+                />
                 <cw-input-group style={{ marginBottom: '1rem' }}>
                   <span slot="input-start">Name</span>
-                  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
                 </cw-input-group>
 
                 <cw-input-group style={{ marginBottom: '2rem' }}>
                   <span slot="input-start">Price</span>
-                  <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
+                  <input
+                    type="number"
+                    class="form-control"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
                   <span slot="input-end">.00</span>
                   <span slot="input-end">$</span>
                 </cw-input-group>
 
-                <input style={{ marginBottom: '2rem' }} readOnly value={'Some readonly text'} class="form-control" type="text" />
-                <input style={{ marginBottom: '2rem' }} disabled readOnly value={'Some readonly text'} class="form-control" type="text" />
+                <input
+                  style={{ marginBottom: '2rem' }}
+                  readOnly
+                  value={'Some readonly text'}
+                  class="form-control"
+                  type="text"
+                />
+                <input
+                  style={{ marginBottom: '2rem' }}
+                  disabled
+                  readOnly
+                  value={'Some readonly text'}
+                  class="form-control"
+                  type="text"
+                />
 
                 <form class="needs-validation" novalidate>
                   <label htmlFor="validationServer03" class="form-label">
                     City
                   </label>
-                  <input value="Foo" type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required />
+                  <input
+                    value="Foo"
+                    type="text"
+                    class="form-control is-invalid"
+                    id="validationServer03"
+                    aria-describedby="validationServer03Feedback"
+                    required
+                  />
                   <div id="validationServer03Feedback" class="invalid-feedback">
                     Please provide a valid city.
                   </div>
@@ -611,7 +823,10 @@ export class MyComponent {
                 height: '20rem',
               }}
             >
-              <textarea class="form-control" style={{ width: '20rem' }}></textarea>
+              <textarea
+                class="form-control"
+                style={{ width: '20rem' }}
+              ></textarea>
             </div>
           </main>
         </cw-basic-navigation>

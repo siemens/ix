@@ -2,7 +2,7 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, Method } from '@stencil/core';
 import { Modal } from '../modal/cw-modal';
 import { ModalConfig, ModalContainerEvents } from '../modal/modal';
 import { Disposable, TypedEvent } from '../utils/typed-event';
@@ -32,14 +32,22 @@ export class ModalContainer {
       } as ModalContainerEvents;
     }
 
-    this.disposable = ModalContainer.modalEvents.onShowModal.on(this.showModal.bind(this));
+    this.disposable = ModalContainer.modalEvents.onShowModal.on(
+      this.showModal.bind(this)
+    );
   }
 
   disconnectedCallback() {
     this.disposable?.dispose();
   }
 
-  private showModal(config: ModalConfig) {
+  /**
+   * Display modal dialog
+   *
+   * @param config
+   */
+  @Method()
+  async showModal(config: ModalConfig): Promise<void> {
     const modal = document.createElement('cw-modal');
     let { title, content, ...modifiedConfig } = config;
     Object.assign(modal, { headerTitle: title, ...modifiedConfig });
@@ -56,7 +64,9 @@ export class ModalContainer {
     this.hostElement.appendChild(modal);
 
     modal.addEventListener('closed', () => this.hostElement.removeChild(modal));
-    modal.addEventListener('dismissed', () => this.hostElement.removeChild(modal));
+    modal.addEventListener('dismissed', () =>
+      this.hostElement.removeChild(modal)
+    );
 
     ModalContainer.modalEvents.onModalOpened.emit(modal);
   }

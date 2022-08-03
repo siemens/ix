@@ -1,0 +1,69 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <cw-toast-container></cw-toast-container>
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('cw-toast-container');
+        const toastContainer = document.querySelector('cw-toast-container');
+
+        toast = {};
+        toast.info = (config) => {
+          toastContainer.showToast({
+            ...config,
+            type: 'info',
+          });
+        };
+
+        toast.error = (config) => {
+          toastContainer.showToast({
+            ...config,
+            type: 'error',
+          });
+        };
+
+        toast.success = (config) => {
+          toastContainer.showToast({
+            ...config,
+            type: 'success',
+          });
+        };
+
+        toast.warning = (config) => {
+          toastContainer.showToast({
+            ...config,
+            type: 'warning',
+          });
+        };
+
+        toast.info({
+          message: 'Info',
+        });
+        toast.error({
+          message: 'Error',
+        });
+        toast.success({
+          message: 'Success',
+        });
+        toast.warning({
+          message: 'Warning',
+        });
+        toast.info({
+          icon: 'bulb',
+          message: 'Custom icon',
+        });
+      })();
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
