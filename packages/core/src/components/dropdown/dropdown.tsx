@@ -1,13 +1,29 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { createPopper, Instance as PopperInstance, Placement, PositioningStrategy } from '@popperjs/core';
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
+import {
+  createPopper,
+  Instance as PopperInstance,
+  Placement,
+  PositioningStrategy,
+} from '@popperjs/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+  Watch,
+} from '@stencil/core';
 
 @Component({
   tag: 'cw-dropdown',
   styleUrl: 'dropdown.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Dropdown {
   @Element() hostElement!: HTMLCwDropdownElement;
@@ -110,27 +126,39 @@ export class Dropdown {
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (newShow) {
-      this.anchorElement = this.anchor ? this.resolveElement(this.anchor) : this.resolveElement(this.trigger);
+      this.anchorElement = this.anchor
+        ? this.resolveElement(this.anchor)
+        : this.resolveElement(this.trigger);
 
       if (this.anchorElement) {
         this.popperInstance?.destroy();
-        this.popperInstance = createPopper(this.anchorElement, this.dropdownRef, {
-          placement: this.placement,
-          strategy: this.positioningStrategy,
-          onFirstUpdate: ({ elements }) => {
-            if (this.adjustDropdownWidthToReferenceWith || this.adjustDropdownWidthToReferenceWidth) {
-              const { popper, reference } = elements;
-              const width = reference.getBoundingClientRect().width;
-              popper.style.width = `${width}px`;
-            }
-          },
-        });
+        this.popperInstance = createPopper(
+          this.anchorElement,
+          this.dropdownRef,
+          {
+            placement: this.placement,
+            strategy: this.positioningStrategy,
+            onFirstUpdate: ({ elements }) => {
+              if (
+                this.adjustDropdownWidthToReferenceWith ||
+                this.adjustDropdownWidthToReferenceWidth
+              ) {
+                const { popper, reference } = elements;
+                const width = reference.getBoundingClientRect().width;
+                popper.style.width = `${width}px`;
+              }
+            },
+          }
+        );
       }
     }
   }
 
   @Watch('trigger')
-  changedTrigger(newTriggerValue: string | HTMLElement, oldTriggerValue: string | HTMLElement) {
+  changedTrigger(
+    newTriggerValue: string | HTMLElement,
+    oldTriggerValue: string | HTMLElement
+  ) {
     if (newTriggerValue) {
       this.registerListener(newTriggerValue);
     }
@@ -146,7 +174,12 @@ export class Dropdown {
   clickOutside(event: Event) {
     const target = event.target as HTMLElement;
 
-    if (this.show === false || this.closeBehavior === false || this.anchorElement === target || this.triggerElement === target) {
+    if (
+      this.show === false ||
+      this.closeBehavior === false ||
+      this.anchorElement === target ||
+      this.triggerElement === target
+    ) {
       return;
     }
 
@@ -196,10 +229,10 @@ export class Dropdown {
   render() {
     return (
       <Host
-        ref={ref => (this.dropdownRef = ref)}
+        ref={(ref) => (this.dropdownRef = ref)}
         class={{
           'dropdown-menu': true,
-          'show': this.show,
+          show: this.show,
         }}
         style={{
           margin: '0',
@@ -207,7 +240,7 @@ export class Dropdown {
         }}
       >
         <div style={{ display: 'contents' }}>
-          { this.header ? <div class="dropdown-header">{this.header}</div>: ''}
+          {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
           <slot></slot>
         </div>
       </Host>

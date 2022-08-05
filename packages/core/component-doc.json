@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-05T07:16:39",
+  "timestamp": "2022-08-05T11:17:25",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -1415,7 +1415,7 @@
     },
     {
       "filePath": "./src/components/dropdown/dropdown.tsx",
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "tag": "cw-dropdown",
       "readme": "# cw-dropdown\n\n\n",
       "docs": "",
