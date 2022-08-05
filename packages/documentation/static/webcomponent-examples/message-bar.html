@@ -16,18 +16,13 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
-
-    <cw-message-bar type="danger" dismissible="false"
-      >A simple danger alert—check it out!</cw-message-bar
-    >
-    <cw-message-bar type="warning" dismissible="false"
-      >Ihre Lizenz läuft in 21 Tagen aus. Bitte erneuern Sie Ihre Lizenz um ohne
-      Unterbrechung weiterarbeiten zu können.</cw-message-bar
-    >
-    <cw-message-bar type="info" dismissible="false"
-      >A simple info alert—check it out!</cw-message-bar
-    >
-
+    <cw-message-bar>Message text</cw-message-bar>
+    <cw-message-bar type="warning">Message text</cw-message-bar>
+    <cw-message-bar type="danger">
+      <div class="d-flex align-items-center justify-content-between">
+        Message text <cw-button>Action</cw-button>
+      </div>
+    </cw-message-bar>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>
   </body>

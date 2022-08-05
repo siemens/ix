@@ -7,11 +7,13 @@ import clsx from 'clsx';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { DEFAULT_THEME } from './config';
 import styles from './HTMLPreview.module.css';
-import { PreviewProps } from './previewProps';
 
-const CODE_SPLIT = '<!-- Preview code -->\n';
-
-export default function Demo(props: PreviewProps) {
+export default function Demo(props: {
+  name: string;
+  theme?: string;
+  height?: string;
+  noMargin?: boolean;
+}) {
   const [error] = useState(false);
 
   const baseUrl = useBaseUrl('/');
@@ -22,7 +24,6 @@ export default function Demo(props: PreviewProps) {
   const { preferredVersion } = useDocsPreferredVersion();
 
   useEffect(() => {
-    // setBase(baseUrl + `/webcomponent-examples/${props.name}.html`);
     const currentVersion: string = preferredVersion?.name;
     if (currentVersion === undefined || currentVersion === 'current') {
       setBase(baseUrl + `webcomponent-examples/${props.name}.html`);
@@ -63,7 +64,9 @@ export default function Demo(props: PreviewProps) {
     <>
       {!error ? (
         <iframe
-          src={`${base}?theme=${props.theme ? props.theme : theme}`}
+          src={`${base}?theme=${props.theme ? props.theme : theme}${
+            props.noMargin ? '&no-margin=true' : ''
+          }`}
           className={clsx(styles.preview)}
           style={{
             height: `${props.height}`,

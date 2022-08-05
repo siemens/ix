@@ -1,0 +1,32 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buttons example</title>
+    <link
+      rel="stylesheet"
+      href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
+    />
+    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div style="margin-bottom: 1rem">
+      <input type="checkbox" id="checkbox_01" />
+      <label for="checkbox_01">Simple checkbox</label>
+    </div>
+
+    <div>
+      <input type="checkbox" id="checkbox_02" disabled />
+      <label for="checkbox_02">Disabled checkbox</label>
+    </div>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

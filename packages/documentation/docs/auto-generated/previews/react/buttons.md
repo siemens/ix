@@ -24,5 +24,4 @@ export const Buttons: React.FC = () => {
     </>
   );
 };
-
 ```

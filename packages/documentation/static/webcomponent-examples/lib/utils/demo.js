@@ -13,7 +13,10 @@ function detectThemeSwitching() {
  * Add margin around body the get better iframe viewport
  */
 function addMarginToDemo() {
-  document.body.style.margin = '1rem';
+  const searchParams = new URLSearchParams(location.search);
+  if (!searchParams.has('no-margin')) {
+    document.body.style.margin = '1rem';
+  }
 }
 
 (() => {

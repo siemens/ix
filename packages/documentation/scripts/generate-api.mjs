@@ -64,6 +64,58 @@ function writeApi(component) {
   fse.outputFileSync(path.join(output, 'events.md'), data);
 }
 
+function writeWebComponentPreviews() {
+  const webComponentPreviews = fs
+    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .filter((name) => name.includes('.html'))
+    .map((name) => [
+      name.replace('.html', ''),
+      path.join(__dirname, 'static/webcomponent-examples', name),
+    ]);
+
+  webComponentPreviews.forEach(([name, previewPath]) => {
+    fse.ensureDirSync(
+      path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'web-component'
+      )
+    );
+
+    let code = fs.readFileSync(previewPath).toString();
+    const CODE_SPLIT = '<!-- Preview code -->\n';
+    const splitHtmlContent = code.split(CODE_SPLIT);
+    if (splitHtmlContent?.length === 3) {
+      code = splitHtmlContent[1]
+        .split('\n')
+        .map((line) => line.replace(/[ ]{4}/, ''))
+        .join('\n')
+        .trimEnd();
+    }
+
+    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
+      previewPath.indexOf('siemens-ix/packages/')
+    )} -->
+\`\`\`html
+${code}
+\`\`\`
+`;
+    fs.writeFileSync(
+      path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'web-component',
+        `${name}.md`
+      ),
+      markdown
+    );
+  });
+}
+
 function writeReactPreviews() {
   const webComponentPreviews = fs
     .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
@@ -106,7 +158,7 @@ function writeReactPreviews() {
       previewPath.indexOf('siemens-ix/packages/')
     )} -->
 \`\`\`tsx
-${code}
+${code.trimEnd()}
 \`\`\`
 `;
     fs.writeFileSync(
@@ -166,8 +218,8 @@ function writeAngularPreviews() {
     const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
       previewPath.indexOf('siemens-ix/packages/')
     )} -->
-\`\`\`tsx
-${code}
+\`\`\`typescript
+${code.trimEnd()}
 \`\`\`
 `;
     fs.writeFileSync(
@@ -188,6 +240,7 @@ ${code}
   const { components } = readComponents();
   components.forEach(writeApi);
 
+  writeWebComponentPreviews();
   writeReactPreviews();
   writeAngularPreviews();
 })();

@@ -25,14 +25,17 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
     <cw-button>Toggle drawer</cw-button>
 
     <script>
-      const drawer = document.querySelector('cw-drawer');
-      drawer.fullHeight = true;
-      drawer.closeOnClickOutside = true;
+      (async function () {
+        await window.customElements.whenDefined('cw-drawer');
+        const drawer = document.querySelector('cw-drawer');
+        drawer.fullHeight = true;
+        drawer.closeOnClickOutside = true;
 
-      const button = document.querySelector('cw-button');
-      button.addEventListener('click', () => {
-        drawer.show = !drawer.show;
-      });
+        const button = document.querySelector('cw-button');
+        button.addEventListener('click', () => {
+          drawer.show = !drawer.show;
+        });
+      })();
     </script>
 
     <!-- Preview code -->

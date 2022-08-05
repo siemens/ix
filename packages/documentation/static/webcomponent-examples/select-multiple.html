@@ -24,8 +24,11 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       <cw-select-item label="Item 4" value="4"></cw-select-item>
     </cw-select>
     <script>
-      const select = document.querySelector('cw-select');
-      select.defaultValue = ['1', '3'];
+      (async function () {
+        await window.customElements.whenDefined('cw-select');
+        const select = document.querySelector('cw-select');
+        select.selectedIndices = ['1', '3'];
+      })();
     </script>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>

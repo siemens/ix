@@ -14,14 +14,87 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       import { defineCustomElements } from './lib/ix/loader/index.js';
       defineCustomElements();
     </script>
+    <style>
+      .example {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        margin-top: 2rem;
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .example > cw-flip-tile {
+        margin: 0 0.5rem 0.5rem 0;
+      }
+    </style>
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
-    <cw-flip-tile state="Alarm">
-      <span slot="footer">Footer content</span>
-      <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-      <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-    </cw-flip-tile>
+    <div class="example">
+      <cw-flip-tile>
+        <div slot="header">Flip header</div>
+
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+          </div>
+        </div>
+
+        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
+        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
+      </cw-flip-tile>
+
+      <cw-flip-tile state="Primary">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+          </div>
+        </div>
+        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
+        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
+      </cw-flip-tile>
+
+      <cw-flip-tile state="Info">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+          </div>
+        </div>
+        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
+        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
+      </cw-flip-tile>
+
+      <cw-flip-tile state="Warning">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+          </div>
+        </div>
+        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
+        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
+      </cw-flip-tile>
+
+      <cw-flip-tile state="Alarm">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+          </div>
+        </div>
+        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
+        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
+      </cw-flip-tile>
+    </div>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>
   </body>

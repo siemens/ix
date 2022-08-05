@@ -20,5 +20,4 @@ export const ButtonGroup: React.FC = () => (
     </div>
   </>
 );
-
 ```

@@ -27,8 +27,11 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
     </cw-basic-navigation>
 
     <script>
-      const instance = document.querySelector('cw-menu-about');
-      instance.show = true;
+      (async function () {
+        await window.customElements.whenDefined('cw-menu');
+        const instance = document.querySelector('cw-menu');
+        await instance.toggleAbout(true);
+      })();
     </script>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>
