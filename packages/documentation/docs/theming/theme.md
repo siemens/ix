@@ -2,24 +2,24 @@
 sidebar_position: 2
 ---
 
-# Theme overview
+# Theme
 
-Supported themes:
+`@siemens/ix` comes with four embedded themes.
 
-- theme-light
-- theme-dark
-- theme-brand-light (Work in progress)
-- theme-brand-dark (Work in progress)
+- theme-brand-light
+- theme-brand-dark
+- theme-classic-light
+- theme-classic-dark
 
-## Default theme
+## Define a theme
 
-The default theme is `theme-light`. If you want to change the theme set the `class` of the `body`-tag e.g `theme-dark`
+The default theme is `theme-brand-dark`. If you want to change the theme set the `class` of the `body`-tag e.g `theme-brand-light`
 
 ```html
 <html>
   <!-- Framework related imports -->
   <!--  -->
   <!--  -->
-  <body class="theme-dark"></body>
+  <body class="theme-brand-light"></body>
 </html>
 ```

@@ -173,3 +173,7 @@ a {
 a.menu__link {
   color: var(--ifm-menu-color);
 }
+
+.breadcrumbs__link {
+  background-color: var(--theme-color-2);
+}
