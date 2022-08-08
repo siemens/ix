@@ -11,7 +11,7 @@ Working with Core UI is really simple – just follow the steps below and you wi
 </div>
 
 <CardList>
-  <Card label="Installation" isPrimary={true} link="installation/angular" icon="disk" />
+  <Card label="Installation" isPrimary={true} link="installation/artifactory" icon="disk" />
   <Card label="Theming & Styling" link="theming/theming-and-styling" icon="ink-pen"/>
   <Card label="Controls" link="components/navigation/basic-navigation" icon="library" />
   <Card label="Icon Library" link="icon-library/icons" icon="heart"/>
