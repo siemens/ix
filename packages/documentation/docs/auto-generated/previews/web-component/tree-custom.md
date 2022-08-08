@@ -1,4 +1,4 @@
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/tree.html -->
+<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/tree-custom.html -->
 ```html
 
 <div style="height: 100vh; width: 100vw">
@@ -9,6 +9,33 @@
   (async function () {
     await window.customElements.whenDefined('cw-tree');
     const tree = document.getElementById('tree');
+
+    tree.renderItem = (index, item, dataList, context, update) => {
+      const el = document.createElement('cw-tree-item');
+      el.hasChildren = item.hasChildren;
+      el.context = context;
+
+      const div = document.createElement('div');
+      div.style.display = 'flex';
+
+      const name = document.createElement('span');
+      const icon = document.createElement('cw-icon');
+      icon.name = 'print';
+      icon.style.marginRight = '1rem';
+
+      div.appendChild(icon);
+      div.appendChild(name);
+
+      name.innerText = item.data.name;
+
+      el.appendChild(div);
+
+      update((updateTreeItem) => {
+        name.innerText = updateTreeItem.data.name;
+      });
+
+      return el;
+    };
 
     tree.model = {
       root: {

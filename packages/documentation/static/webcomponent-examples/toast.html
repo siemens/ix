@@ -21,13 +21,16 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
 
     <cw-button id="toastButton">Trigger toast</cw-button>
     <script type="module">
-      import { toast } from './lib/core-ui-core/dist/index.js';
+      import { toast } from './lib/ix/dist/index.js';
 
-      document.getElementById('toastButton').addEventListener('click', () => {
-        toast({
-          message: 'My toast message!',
+      (async function () {
+        await window.customElements.whenDefined('cw-toast-container');
+        document.getElementById('toastButton').addEventListener('click', () => {
+          toast({
+            message: 'My toast message!',
+          });
         });
-      });
+      })();
     </script>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>
