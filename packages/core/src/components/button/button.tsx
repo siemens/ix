@@ -8,6 +8,7 @@ import { getButtonClasses } from './base-button';
 @Component({
   tag: 'cw-button',
   scoped: true,
+  styleUrl: './button.scss',
 })
 export class Button {
   /**
