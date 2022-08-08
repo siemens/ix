@@ -1,7 +1,7 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/tree.html -->
 ```html
 
-<div style="height: 100vh; width: 100vw">
+<div style="height: 8rem; width: 100%">
   <cw-tree root="root" id="tree"></cw-tree>
 </div>
 

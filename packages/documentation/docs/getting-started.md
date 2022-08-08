@@ -13,7 +13,7 @@ Working with Core UI is really simple – just follow the steps below and you wi
 <CardList>
   <Card label="Installation" isPrimary={true} link="installation/artifactory" icon="disk" />
   <Card label="Theming & Styling" link="theming/theming-and-styling" icon="ink-pen"/>
-  <Card label="Controls" link="components/navigation/basic-navigation" icon="library" />
+  <Card label="Controls" link="controls/navigation/basic-navigation" icon="library" />
   <Card label="Icon Library" link="icon-library/icons" icon="heart"/>
   <Card label="UX Design" link="ux-design/overview" icon="image" />
   <Card label="Language" link="language/basics" icon="language" />
