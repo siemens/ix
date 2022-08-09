@@ -444,6 +444,10 @@ export namespace Components {
     }
     interface CwGroupItem {
         /**
+          * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
+         */
+        "focusable": boolean;
+        /**
           * Group item icon
          */
         "icon": string;
@@ -2077,6 +2081,10 @@ declare namespace LocalJSX {
         "label"?: string;
     }
     interface CwGroupItem {
+        /**
+          * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
+         */
+        "focusable"?: boolean;
         /**
           * Group item icon
          */

@@ -211,7 +211,7 @@ export class Group {
           <slot></slot>
         </div>
         <div class="d-none">
-          <cw-group-item class="footer last" suppressSelection={true} tabindex="-1">
+          <cw-group-item class="footer last" suppressSelection={true} focusable={false}>
             <slot name="footer"></slot>
           </cw-group-item>
         </div>

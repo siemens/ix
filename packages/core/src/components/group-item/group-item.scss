@@ -14,9 +14,10 @@
   align-items: center;
   justify-content: space-between;
   padding: $small-space $large-space $small-space 2.5rem;
-  border: var(--theme-primary-bdr-1);
-  border-top-width: 0;
   position: relative;
+  margin-top: 0.0625rem;
+  border: 1px solid var(--theme-group-item--border-color);
+  outline: none;
 
   background-color: var(--theme-group-item--background);
 
@@ -75,5 +76,9 @@
     .group-entry-selection-indicator {
       background-color: var(--theme-color-input-focus);
     }
+  }
+
+  @include focus-visible {
+    border-color: var(--focus--border-color) !important;
   }
 }

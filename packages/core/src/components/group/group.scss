@@ -15,12 +15,6 @@
   position: relative;
   max-width: 19.75rem;
   border-color: var(--theme-group-item--border-color);
-  border-radius: var(--theme-group--border-radius);
-
-  @include focus-visible {
-    border-color: var(--theme-focus--border-color);
-    border-radius: var(--theme-group--border-radius--focus);
-  }
 
   .group-header-context-button {
     display: block;
@@ -44,6 +38,7 @@
     border: var(--theme-std-bdr-1);
     display: flex;
     background-color: var(--theme-group-item--background);
+    border: 1px solid var(--theme-group-item--border-color);
     color: var(--theme-group-header--color);
 
     cursor: pointer;
@@ -56,6 +51,12 @@
     @include active {
       background-color: var(--theme-group-item--background--active);
       border-color: var(--theme-group-item--border-color--active);
+    }
+
+    @include focus-visible {
+      border-color: var(--focus--border-color);
+      border-radius: var(--theme-group--border-radius--focus);
+      outline: none;
     }
   }
 
@@ -110,7 +111,7 @@
 
       height: 1.25rem;
       font-size: 0.875rem;
-      color: var(--theme-group-subheader--color)
+      color: var(--theme-group-subheader--color);
     }
   }
 

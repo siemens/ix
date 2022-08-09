@@ -37,6 +37,12 @@ export class GroupItem {
   @Prop() selected: boolean;
 
   /**
+   * The elements tabindex attribute will get set accordingly.
+   * If true tabindex will be 0, -1 otherwise.
+   */
+  @Prop() focusable = true;
+
+  /**
    * Selection changed
    */
   @Event() selectedChanged: EventEmitter<HTMLCwGroupItemElement>;
@@ -61,7 +67,7 @@ export class GroupItem {
           'selected': this.selected && !this.suppressSelection,
           'suppress-selection': this.suppressSelection,
         }}
-        tabindex="0"
+        tabindex={this.focusable ? 0 : -1}
       >
         <div class="group-entry-selection-indicator"></div>
         {this.icon ? <cw-icon size="16" name={this.icon}></cw-icon> : null}
