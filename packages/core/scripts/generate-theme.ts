@@ -27,6 +27,7 @@ if (process.argv.length !== 3) {
   console.error('Error: Call script with a color file');
 }
 
+const staticTheme = {};
 const colorFilePath = process.argv[2];
 const colorFile = readFileSync(colorFilePath).toString();
 
@@ -34,7 +35,7 @@ function extractZeplinColorExport(file: string): Themes {
   const themes: Themes = {};
 
   const colors = file.match(/--\w\w_theme.*/g);
-  colors.forEach(rawColor => {
+  colors.forEach((rawColor) => {
     const color = rawColor.replace(';', '');
 
     let [alias, name] = color.split('_theme');
@@ -85,18 +86,14 @@ function extractZeplinColorExport(file: string): Themes {
     '--plot2Darkstd-text',
   ];
 
-  if (!themes['static']) {
-    themes['static'] = {};
-  }
-
-  staticColors.forEach(rawColor => {
+  staticColors.forEach((rawColor) => {
     const color = rawColor.trim().replace(';', '');
     let [variableName, value] = color.split(':');
     if (colorZombies.indexOf(variableName) >= 0) {
       return;
     }
 
-    themes['static'][variableName] = value;
+    staticTheme[variableName] = value;
   });
 
   return themes;
@@ -106,14 +103,14 @@ const aliasedThemes = extractZeplinColorExport(colorFile);
 const themes: Themes = {};
 
 function formatVariableOutputs(themeVariables: ThemeVariables) {
-  const s = Object.keys(themeVariables).map(k => {
+  const s = Object.keys(themeVariables).map((k) => {
     return `    ${k}: ${themeVariables[k]},\n`;
   });
 
   return s.join('');
 }
 
-Object.keys(aliasedThemes).forEach(theme => {
+Object.keys(aliasedThemes).forEach((theme) => {
   const themeName = alias[theme];
   themes[themeName] = aliasedThemes[theme];
 
@@ -143,8 +140,8 @@ let data = `${copyrightHeader}
 body {
   `;
 
-Object.keys(aliasedThemes['static']).forEach(color => {
-  data += `${color}: ${aliasedThemes.static[color]};
+Object.keys(staticTheme).forEach((color) => {
+  data += `${color}: ${staticTheme[color]};
   `;
 });
 
