@@ -15,8 +15,8 @@
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
-    "regression-ci": "nx run core:test.e2e.list",
-    "regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"npm run regression-ci\""
+    "visual-regression-ci": "nx run core:test.e2e.list",
+    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"npm run regression-ci\""
   },
   "private": true,
   "dependencies": {
