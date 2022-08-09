@@ -44,15 +44,21 @@ export class MyComponent {
     });
   }
 
-  private showModal() {
+  private showModal(showIcon = false) {
     const content = document.createElement('cw-modal-example');
     const modal$ = modal({
       content,
       title: 'title',
+      icon: showIcon === true ? 'warning' : '',
+      iconColor: 'color-warning',
     });
     modal$.then((m) => {
       document.addEventListener('close', () => m.close('close'));
     });
+  }
+
+  private showModalWithIcon() {
+    this.showModal(true);
   }
 
   render() {
@@ -86,20 +92,194 @@ export class MyComponent {
             </cw-menu-item>
           </cw-menu>
 
-          <cw-button onClick={this.showToasts.bind(this)}>
-            Show toasts
-          </cw-button>
-          <cw-button onClick={this.showModal.bind(this)}>Show modal</cw-button>
-
-          <cw-modal-container></cw-modal-container>
-
           <main>
+            <cw-button
+              style={{ marginInlineStart: '1rem' }}
+              onClick={this.showToasts.bind(this)}
+            >
+              Show toasts
+            </cw-button>
+            <cw-button
+              style={{ marginInlineStart: '1rem' }}
+              onClick={this.showModal.bind(this)}
+            >
+              Show modal
+            </cw-button>
+            <cw-button
+              style={{ marginInlineStart: '1rem' }}
+              onClick={this.showModalWithIcon.bind(this)}
+            >
+              Show modal w/ icon
+            </cw-button>
+
+            <cw-modal-container></cw-modal-container>
+
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '2rem',
+              }}
+            >
+              <cw-group
+                header="Header text"
+                sub-header="Subheader text"
+                index={0}
+                suppressHeaderSelection
+              >
+                <cw-group-item text="Example text 1"></cw-group-item>
+                <cw-group-item
+                  text="Example text 2"
+                  secondaryText="26 sub items"
+                ></cw-group-item>
+                <div slot="footer">
+                  <cw-button>
+                    <cw-icon name="plus"></cw-icon>Add item
+                  </cw-button>
+                </div>
+              </cw-group>
+
+              <cw-group
+                header="Header text"
+                sub-header="Subheader text"
+                index={0}
+              >
+                <cw-group-item text="Example text 1"></cw-group-item>
+                <cw-group-item
+                  text="Example text 2"
+                  secondaryText="26 sub items"
+                ></cw-group-item>
+                <div slot="footer">
+                  <cw-button>
+                    <cw-icon name="plus"></cw-icon>Add item
+                  </cw-button>
+                </div>
+              </cw-group>
+            </div>
+
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
+                marginTop: '2rem',
+                width: '100%',
+              }}
+            >
+              <cw-tabs layout={'stretched'}>
+                <cw-tab-item>stretched tab 1</cw-tab-item>
+                <cw-tab-item>stretched tab 2</cw-tab-item>
+              </cw-tabs>
+
+              <cw-tabs
+                style={{
+                  marginTop: '2rem',
+                }}
+              >
+                <cw-tab-item>tab 1</cw-tab-item>
+                <cw-tab-item>tab 2</cw-tab-item>
+                <cw-tab-item>tab 3</cw-tab-item>
+                <cw-tab-item>tab 4</cw-tab-item>
+                <cw-tab-item>tab 5</cw-tab-item>
+                <cw-tab-item>tab 6</cw-tab-item>
+                <cw-tab-item>tab 7</cw-tab-item>
+                <cw-tab-item>tab 8</cw-tab-item>
+                <cw-tab-item>tab 9</cw-tab-item>
+                <cw-tab-item>tab 10</cw-tab-item>
+                <cw-tab-item>tab 11</cw-tab-item>
+                <cw-tab-item>tab 12</cw-tab-item>
+                <cw-tab-item>tab 13</cw-tab-item>
+                <cw-tab-item>tab 14</cw-tab-item>
+                <cw-tab-item>tab 15</cw-tab-item>
+                <cw-tab-item>tab 16</cw-tab-item>
+                <cw-tab-item>tab 17</cw-tab-item>
+                <cw-tab-item>tab 18</cw-tab-item>
+                <cw-tab-item>tab 19</cw-tab-item>
+                <cw-tab-item>tab 20</cw-tab-item>
+                <cw-tab-item>tab 21</cw-tab-item>
+                <cw-tab-item>tab 22</cw-tab-item>
+                <cw-tab-item>tab 23</cw-tab-item>
+                <cw-tab-item>tab 24</cw-tab-item>
+                <cw-tab-item>tab 25</cw-tab-item>
+                <cw-tab-item>tab 26</cw-tab-item>
+              </cw-tabs>
+
+              <div
+                style={{
+                  marginTop: '2rem',
+                  display: 'flex',
+                }}
+              >
+                <cw-tabs>
+                  <cw-tab-item icon>
+                    <cw-icon name="maintenance" size="16"></cw-icon>
+                  </cw-tab-item>
+                  <cw-tab-item icon>
+                    <cw-icon name="info" size="16"></cw-icon>
+                  </cw-tab-item>
+                  <cw-tab-item icon>
+                    <cw-icon name="info" size="16"></cw-icon>
+                  </cw-tab-item>
+                </cw-tabs>
+
+                <cw-tabs
+                  small
+                  style={{
+                    marginLeft: '2rem',
+                  }}
+                >
+                  <cw-tab-item icon>
+                    <cw-icon name="maintenance" size="16"></cw-icon>
+                  </cw-tab-item>
+                  <cw-tab-item icon>
+                    <cw-icon name="info" size="16"></cw-icon>
+                  </cw-tab-item>
+                  <cw-tab-item icon>
+                    <cw-icon name="info" size="16"></cw-icon>
+                  </cw-tab-item>
+                </cw-tabs>
+
+                <cw-tabs
+                  small
+                  style={{
+                    marginLeft: '2rem',
+                  }}
+                >
+                  <cw-tab-item>small tab 1</cw-tab-item>
+                  <cw-tab-item>small tab 2</cw-tab-item>
+                  <cw-tab-item>small tab 3</cw-tab-item>
+                </cw-tabs>
+
+                <cw-tabs
+                  placement="top"
+                  style={{
+                    marginLeft: '2rem',
+                  }}
+                >
+                  <cw-tab-item>inverted tab 1</cw-tab-item>
+                  <cw-tab-item>inverted tab 2</cw-tab-item>
+                  <cw-tab-item>inverted tab 3</cw-tab-item>
+                </cw-tabs>
+
+                <cw-tabs
+                  selected={1}
+                  style={{
+                    marginLeft: '2rem',
+                  }}
+                >
+                  <cw-tab-item disabled>disabled tab 1</cw-tab-item>
+                  <cw-tab-item>tab 2</cw-tab-item>
+                  <cw-tab-item disabled>disabled tab 3</cw-tab-item>
+                </cw-tabs>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -116,7 +296,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -135,7 +315,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -236,7 +416,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -266,7 +446,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -278,7 +458,7 @@ export class MyComponent {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -305,7 +485,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -327,7 +507,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -376,8 +556,9 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
+                flexWrap: 'wrap',
               }}
             >
               <cw-chip closable outline>
@@ -418,7 +599,47 @@ export class MyComponent {
                 onClose={console.log}
                 onClick={console.log}
               >
-                Alarm
+                Warning
+              </cw-chip>
+              <cw-chip
+                variant="info"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
+                Info
+              </cw-chip>
+              <cw-chip
+                variant="neutral"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
+                Neutral
+              </cw-chip>
+              <cw-chip
+                variant="critical"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
+                Critical
+              </cw-chip>
+              <cw-chip
+                variant="success"
+                icon="print"
+                style={{ width: '10rem' }}
+                closable
+                onClose={console.log}
+                onClick={console.log}
+              >
+                Success
               </cw-chip>
               <cw-chip
                 background="purple"
@@ -437,7 +658,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -455,7 +676,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -465,7 +686,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -474,7 +695,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -501,7 +722,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -534,7 +755,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -548,7 +769,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -573,13 +794,19 @@ export class MyComponent {
                   variant="Primary"
                   ghost
                 ></cw-icon-button>
+                <div style={{ marginRight: '0.25rem' }}></div>
+                <cw-icon-button icon="print" oval size="24"></cw-icon-button>
+                <div style={{ marginRight: '0.25rem' }}></div>
+                <cw-icon-button icon="print" oval size="16"></cw-icon-button>
+                <div style={{ marginRight: '0.25rem' }}></div>
+                <cw-icon-button icon="print" oval size="12"></cw-icon-button>
               </div>
             </div>
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -588,7 +815,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -603,7 +830,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -615,7 +842,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -627,7 +854,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -639,7 +866,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -651,7 +878,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -667,7 +894,7 @@ export class MyComponent {
                   marginRight: '1rem',
                   display: 'flex',
                   justifyContent: 'center',
-                  poisition: 'relative',
+                  position: 'relative',
                   marginTop: '2rem',
                 }}
               >
@@ -684,7 +911,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -705,7 +932,7 @@ export class MyComponent {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -733,7 +960,7 @@ export class MyComponent {
                 display: 'flex',
                 justifyContent: 'center',
                 alignContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -807,7 +1034,7 @@ export class MyComponent {
                 display: 'flex',
                 justifyContent: 'center',
                 alignContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
               }}
             >
@@ -818,7 +1045,7 @@ export class MyComponent {
                 display: 'flex',
                 justifyContent: 'center',
                 alignContent: 'center',
-                poisition: 'relative',
+                position: 'relative',
                 marginTop: '2rem',
                 height: '20rem',
               }}
