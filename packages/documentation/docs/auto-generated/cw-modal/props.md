@@ -9,6 +9,8 @@
 |centered| Centered modal | `centered` | `boolean` | `false` |
 |content| Content of modal | `content` | `HTMLElement ｜ string` | `undefined` |
 |headerTitle| Header title | `header-title` | `string` | `undefined` |
+|icon| Optional icon displayed next to the title | `icon` | `string` | `undefined` |
+|iconColor| Color of the header {@link icon} | `icon-color` | `"color-alarm" ｜ "color-info" ｜ "color-std-text" ｜ "color-success" ｜ "color-warning"` | `'color-std-text'` |
 |keyboard| ESC close modal dialog | `keyboard` | `boolean` | `true` |
 |modalDialogClass| Modal dialog class | `modal-dialog-class` | `string` | `undefined` |
 |scrollable| Modal scollable | `scrollable` | `boolean` | `true` |

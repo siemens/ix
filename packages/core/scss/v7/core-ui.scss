@@ -15,10 +15,12 @@
 @import './theme/brand-light';
 @import './theme/classic-dark';
 @import './theme/classic-light';
+@import './theme/static-colors';
 
 /* Common */
 @import './common-variables';
 @import 'fonts';
+@import 'links';
 @import 'modal';
 @import 'z-index';
 

@@ -4,6 +4,7 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
+import { NotificationColor } from '../utils/notification-color';
 
 @Component({
   tag: 'cw-modal',
@@ -58,6 +59,16 @@ export class Modal {
    * ESC close modal dialog
    */
   @Prop() keyboard = true;
+
+  /**
+   * Optional icon displayed next to the title
+   */
+  @Prop() icon: string;
+
+  /**
+   * Color of the header {@link icon}
+   */
+  @Prop() iconColor: NotificationColor = 'color-std-text';
 
   /**
    * Modal dialog class
@@ -227,7 +238,16 @@ export class Modal {
         >
           <div class={{ 'modal-dialog': true, 'modal-sm': this.size === 'sm', 'modal-lg': this.size === 'lg', 'modal-xl': this.size === 'xl' }}>
             <div class="modal-content">
-              <slot></slot>
+              {this.icon === undefined || this.icon === '' ? (
+                ''
+              ) : (
+                <div class="state-icon-container">
+                  <cw-icon name={this.icon} size="32" color={this.iconColor}></cw-icon>
+                </div>
+              )}
+              <div class="slot-container">
+                <slot></slot>
+              </div>
             </div>
           </div>
         </div>

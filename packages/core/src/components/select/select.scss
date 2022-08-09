@@ -10,6 +10,7 @@
   display: inline-block;
   position: relative;
   height: auto;
+  width: 100%;
 
   .select {
     position: relative;
@@ -24,11 +25,6 @@
     @include hover {
       background-color: var(--theme-input--background--hover);
       border-color: var(--theme-input--border-color--hover);
-    }
-
-    @include active {
-      background-color: var(--theme-input--background--active);
-      border-color: var(--theme-input--border-color--focus);
     }
 
     &:focus-within {
@@ -68,7 +64,7 @@
 
       margin: auto;
 
-      > cw-filter-chip {
+      >cw-filter-chip {
         margin: 0.1rem;
       }
     }

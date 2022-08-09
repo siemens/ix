@@ -4,6 +4,7 @@
 import { TypedEvent } from '../utils/typed-event';
 import { ModalContainer } from '../..';
 import { Modal } from './cw-modal';
+import { NotificationColor } from '../utils/notification-color';
 
 export interface ModalConfig {
   animation?: boolean;
@@ -21,6 +22,8 @@ export interface ModalConfig {
   size?: 'sm' | 'lg' | 'xl';
   title: string;
   windowClass?: string;
+  icon?: string;
+  iconColor?: NotificationColor;
 }
 
 export interface ModalContainerEvents {

@@ -130,6 +130,11 @@ export class CwMenuAbout {
     this.updateLabels();
   }
 
+  private getSelectedTabIndex(label: string) {
+    const selectedItem = this.aboutItems.find(item => item.label=== label);
+    return this.aboutItems.indexOf(selectedItem);
+  }
+
   render() {
     return (
       <Host
@@ -143,21 +148,11 @@ export class CwMenuAbout {
           <h2 class="text-h2">{this.label}</h2>
           <cw-icon-button ghost size="24" icon="close" onClick={e => this.close.emit(e)}></cw-icon-button>
         </div>
-        <ul class="about-tabs nav nav-primary-tab">
+        <cw-tabs selected={this.getSelectedTabIndex(this.activeTabLabel)} class="about-tabs">
           {this.labels.map(label => (
-            <li class="nav-item">
-              <a
-                onClick={() => this.setTab(label)}
-                class={{
-                  'nav-link': true,
-                  'active': label === this.activeTabLabel,
-                }}
-              >
-                {label}
-              </a>
-            </li>
+            <cw-tab-item onClick={() => this.setTab(label)}>{label}</cw-tab-item>
           ))}
-        </ul>
+        </cw-tabs>
         <div class="about-items">
           <cw-menu-about-item label={this.i18nImprintLabel}>
             <div id="cui-imprint">

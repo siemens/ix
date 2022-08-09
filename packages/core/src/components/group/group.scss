@@ -2,17 +2,25 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/mixins/fonts';
-@import '../../../scss/mixins/hover';
-@import '../../../scss/mixins/text-truncation';
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/mixins/fonts';
+@import '../../../scss/v7/mixins/hover';
+@import '../../../scss/v7/mixins/text-truncation';
 
 :host {
+  @include ellipsis;
+
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 21.875rem;
-  color: var(--theme-color-std-text);
+  max-width: 19.75rem;
+  border-color: var(--theme-group-item--border-color);
+  border-radius: var(--theme-group--border-radius);
+
+  @include focus-visible {
+    border-color: var(--theme-focus--border-color);
+    border-radius: var(--theme-group--border-radius--focus);
+  }
 
   .group-header-context-button {
     display: block;
@@ -35,8 +43,28 @@
     border-radius: 0.25rem;
     border: var(--theme-std-bdr-1);
     display: flex;
+    background-color: var(--theme-group-item--background);
+    color: var(--theme-group-header--color);
 
     cursor: pointer;
+
+    @include hover {
+      background-color: var(--theme-group-item--background--hover);
+      border-color: var(--theme-group-item--border-color--hover);
+    }
+
+    @include active {
+      background-color: var(--theme-group-item--background--active);
+      border-color: var(--theme-group-item--border-color--active);
+    }
+  }
+
+  .group-header-clickable {
+    @include ellipsis;
+
+    display: flex;
+    width: 100%;
+    min-width: 0;
   }
 
   .group-header.expand {
@@ -44,7 +72,13 @@
     border-bottom-right-radius: 0;
   }
 
+  .group-header-selection-indicator {
+    width: $tiny-space;
+  }
+
   .group-header-content {
+    @include ellipsis;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -52,6 +86,10 @@
     padding: 0.5rem;
     padding-left: 0;
     width: 100%;
+
+    .group-header-props-container {
+      width: 100%;
+    }
 
     .group-header-title {
       display: flex;
@@ -67,11 +105,12 @@
       }
     }
 
-    .group-header-modules {
+    .group-subheader {
       @include ellipsis();
 
       height: 1.25rem;
       font-size: 0.875rem;
+      color: var(--theme-group-subheader--color)
     }
   }
 
@@ -81,7 +120,8 @@
   }
 
   .btn-expand-header {
-    margin: 0.25rem;
+    margin: $small-space;
+    margin-inline-end: $tiny-space;
   }
 
   .group-content {
@@ -90,41 +130,20 @@
   }
 
   .group-header {
-    background: var(--theme-color-1);
-  }
-
-  .group-header {
-    @include hover {
-      background-color: var(--theme-group-hover);
-    }
-
-    @include active {
-      background-color: var(--theme-group-active);
-    }
-
     &.selected {
       border: var(--theme-primary-bdr-2);
-      background: var(--theme-base-color-light-teal-15);
+      background-color: var(--theme-group-item--background--selected);
     }
   }
 
   .group-header.selected {
-    .btn-expand-header {
-      margin: calc(0.25rem - 0.062rem);
-      margin-right: 0.25rem;
+    .group-header-selection-indicator {
+      background-color: var(--theme-color-input-focus);
     }
-
-    .group-header-content {
-      padding: calc(0.5rem - 0.062rem);
-      padding-left: 0;
-    }
-  }
-
-  .group-header.expand:not(.selected) {
-    border: var(--theme-primary-bdr-1);
   }
 
   .footer {
     height: auto;
+    min-height: 0;
   }
 }

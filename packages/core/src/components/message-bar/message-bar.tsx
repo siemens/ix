@@ -4,6 +4,7 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
+import { NotificationColor } from '../utils/notification-color';
 
 @Component({
   tag: 'cw-message-bar',
@@ -28,7 +29,7 @@ export class CwMessageBar {
 
   @State() icon: 'error' | 'warning' | 'info';
 
-  @State() color: string;
+  @State() color: NotificationColor;
 
   private static readonly duration = 300;
 

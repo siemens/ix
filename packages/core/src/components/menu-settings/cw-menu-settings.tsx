@@ -61,20 +61,17 @@ export class CwMenuAbout {
     this.setTab(value);
   }
 
-  private getTabLabels() {
+  private getTabItems() {
     return this.settingsItems.map(({ label }) => {
       return (
-        <li class="nav-item">
-          <a
-            onClick={() => this.setTab(label)}
-            class={{
-              'nav-link': true,
-              'active': label === this.activeTabLabel,
-            }}
-          >
-            {label}
-          </a>
-        </li>
+        <cw-tab-item
+          class={{
+            active: label === this.activeTabLabel,
+          }}
+          onClick={() => this.setTab(label)}
+        >
+          {label}
+        </cw-tab-item>
       );
     });
   }
@@ -92,10 +89,8 @@ export class CwMenuAbout {
           <h2 class="text-h2">{this.label}</h2>
           <cw-icon-button ghost size="24" icon="close" onClick={e => this.close.emit(e)}></cw-icon-button>
         </div>
-        <ul class="settings-tabs nav nav-primary-tab">{this.getTabLabels()}</ul>
-        <div class="settings-items">
-          <slot></slot>
-        </div>
+        <cw-tabs>{this.getTabItems()}</cw-tabs>
+        <slot></slot>
       </Host>
     );
   }

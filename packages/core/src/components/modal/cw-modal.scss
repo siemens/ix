@@ -43,8 +43,18 @@
 
     .modal-content {
       //@include box-shadow(4);
+      flex-direction: row;
       background-color: var(--theme-modal--background);
       border: var(--modal--border-thickness) solid var(--theme-modal--border-color);
+      padding: $large-space;
+
+      .state-icon-container {
+        margin-inline-end: $default-space;
+      }
+
+      .slot-container {
+        flex-grow: 1;
+      }
     }
 
     @include media-breakpoint-up(sm) {

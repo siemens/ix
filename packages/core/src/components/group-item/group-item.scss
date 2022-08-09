@@ -2,22 +2,23 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/mixins/fonts';
-@import '../../../scss/mixins/hover';
-@import '../../../scss/mixins/text-truncation';
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/mixins/fonts';
+@import '../../../scss/v7/mixins/hover';
+@import '../../../scss/v7/mixins/text-truncation';
 
 :host {
   display: flex;
-  min-height: 2.5rem;
-  height: 2.5rem;
+  min-height: 2.25rem;
+  height: 2.25rem;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: $small-space $large-space $small-space 2.5rem;
   border: var(--theme-primary-bdr-1);
   border-top-width: 0;
+  position: relative;
 
-  background: var(--theme-color-1);
+  background-color: var(--theme-group-item--background);
 
   &.last {
     border-bottom-left-radius: 0.25rem;
@@ -29,12 +30,23 @@
     margin-top: -0.125rem;
   }
 
+  .group-entry-selection-indicator {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: $tiny-space;
+  }
+
   .group-entry-text {
     @include ellipsis();
     flex-grow: 1;
   }
 
   .group-entry-text-secondary {
+    &, span {
+      @include ellipsis;
+    }
+
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
@@ -45,19 +57,23 @@
 
   &:not(.suppress-selection) {
     @include hover {
-      background-color: var(--theme-group-hover);
+      background-color: var(--theme-group-item--background--hover);
+      border-color: var(--theme-group-item--border-color--hover);
     }
 
     @include active {
-      background-color: var(--theme-group-active);
+      background-color: var(--theme-group-item--background--active);
+      border-color: var(--theme-group-item--border-color--active);
     }
   }
 
   &.selected {
     border-top-width: 0.062rem !important;
-    border: var(--theme-primary-bdr-2);
-    background: var(--theme-base-color-light-teal-15);
-    padding-left: calc(0.5rem - 0.062rem);
-    padding-right: calc(0.5rem - 0.062rem);
+    border-color: var(--theme-group-item--border-color--selected);
+    background-color: var(--theme-group-item--background--selected);
+
+    .group-entry-selection-indicator {
+      background-color: var(--theme-color-input-focus);
+    }
   }
 }

@@ -61,7 +61,9 @@ export class GroupItem {
           'selected': this.selected && !this.suppressSelection,
           'suppress-selection': this.suppressSelection,
         }}
+        tabindex="0"
       >
+        <div class="group-entry-selection-indicator"></div>
         {this.icon ? <cw-icon size="16" name={this.icon}></cw-icon> : null}
         {this.text ? (
           <span class="group-entry-text">

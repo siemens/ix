@@ -6,4 +6,4 @@
 |index| The index of the selected group entry. If undefined no group item is selected. | `index` | `number` | `undefined` |
 |selected| Whether the group is selected. | `selected` | `boolean` | `undefined` |
 |subHeader| Group header subtitle | `sub-header` | `string` | `undefined` |
-|suppressHeaderSelection| Suppress | `suppress-header-selection` | `boolean` | `false` |
+|suppressHeaderSelection| Prevent header from being selectable | `suppress-header-selection` | `boolean` | `false` |

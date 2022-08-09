@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-08T05:18:47",
+  "timestamp": "2022-08-09T08:28:22",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -2479,7 +2479,7 @@
           "mutable": false,
           "attr": "suppress-header-selection",
           "reflectToAttr": false,
-          "docs": "Suppress",
+          "docs": "Prevent header from being selectable",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -2521,18 +2521,27 @@
           "docsTags": []
         }
       ],
-      "listeners": [],
+      "listeners": [
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
       "dependents": [],
       "dependencies": [
+        "cw-icon",
         "cw-icon-button",
         "cw-dropdown",
         "cw-group-item"
       ],
       "dependencyGraph": {
         "cw-group": [
+          "cw-icon",
           "cw-icon-button",
           "cw-dropdown",
           "cw-group-item"
@@ -2793,13 +2802,17 @@
         },
         {
           "name": "size",
-          "type": "\"16\" | \"24\" | \"32\"",
+          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of the icon",
           "docsTags": [],
           "values": [
+            {
+              "value": "12",
+              "type": "string"
+            },
             {
               "value": "16",
               "type": "string"
@@ -2831,11 +2844,13 @@
         "cw-dropdown-item",
         "cw-expanding-search",
         "cw-filter-chip",
+        "cw-group",
         "cw-group-item",
         "cw-icon-button",
         "cw-map-navigation-overlay",
         "cw-menu-about-news",
         "cw-message-bar",
+        "cw-modal",
         "cw-pill",
         "cw-select",
         "cw-split-button",
@@ -2866,6 +2881,9 @@
         "cw-filter-chip": [
           "cw-icon"
         ],
+        "cw-group": [
+          "cw-icon"
+        ],
         "cw-group-item": [
           "cw-icon"
         ],
@@ -2879,6 +2897,9 @@
           "cw-icon"
         ],
         "cw-message-bar": [
+          "cw-icon"
+        ],
+        "cw-modal": [
           "cw-icon"
         ],
         "cw-pill": [
@@ -3048,7 +3069,7 @@
         },
         {
           "name": "size",
-          "type": "\"16\" | \"24\" | \"32\"",
+          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -3056,6 +3077,10 @@
           "docsTags": [],
           "default": "'24'",
           "values": [
+            {
+              "value": "12",
+              "type": "string"
+            },
             {
               "value": "16",
               "type": "string"
@@ -3331,6 +3356,8 @@
         ],
         "cw-menu-about": [
           "cw-icon-button",
+          "cw-tabs",
+          "cw-tab-item",
           "cw-menu-about-item"
         ],
         "cw-icon-button": [
@@ -4084,11 +4111,15 @@
       ],
       "dependencies": [
         "cw-icon-button",
+        "cw-tabs",
+        "cw-tab-item",
         "cw-menu-about-item"
       ],
       "dependencyGraph": {
         "cw-menu-about": [
           "cw-icon-button",
+          "cw-tabs",
+          "cw-tab-item",
           "cw-menu-about-item"
         ],
         "cw-icon-button": [
@@ -4673,11 +4704,15 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-icon-button"
+        "cw-tab-item",
+        "cw-icon-button",
+        "cw-tabs"
       ],
       "dependencyGraph": {
         "cw-menu-settings": [
-          "cw-icon-button"
+          "cw-tab-item",
+          "cw-icon-button",
+          "cw-tabs"
         ],
         "cw-icon-button": [
           "cw-icon"
@@ -4976,6 +5011,56 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional icon displayed next to the title",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "\"color-alarm\" | \"color-info\" | \"color-std-text\" | \"color-success\" | \"color-warning\"",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Color of the header {@link icon}",
+          "docsTags": [],
+          "default": "'color-std-text'",
+          "values": [
+            {
+              "value": "color-alarm",
+              "type": "string"
+            },
+            {
+              "value": "color-info",
+              "type": "string"
+            },
+            {
+              "value": "color-std-text",
+              "type": "string"
+            },
+            {
+              "value": "color-success",
+              "type": "string"
+            },
+            {
+              "value": "color-warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "keyboard",
           "type": "boolean",
           "mutable": false,
@@ -5129,8 +5214,13 @@
       "dependents": [
         "cw-modal-container"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "cw-icon"
+      ],
       "dependencyGraph": {
+        "cw-modal": [
+          "cw-icon"
+        ],
         "cw-modal-container": [
           "cw-modal"
         ]
@@ -5177,6 +5267,9 @@
       "dependencyGraph": {
         "cw-modal-container": [
           "cw-modal"
+        ],
+        "cw-modal": [
+          "cw-icon"
         ],
         "my-component": [
           "cw-modal-container"
@@ -6304,9 +6397,19 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "cw-menu-about",
+        "cw-menu-settings"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "cw-menu-about": [
+          "cw-tab-item"
+        ],
+        "cw-menu-settings": [
+          "cw-tab-item"
+        ]
+      }
     },
     {
       "filePath": "./src/components/tabs/tabs.tsx",
@@ -6409,9 +6512,19 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "cw-menu-about",
+        "cw-menu-settings"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "cw-menu-about": [
+          "cw-tabs"
+        ],
+        "cw-menu-settings": [
+          "cw-tabs"
+        ]
+      }
     },
     {
       "filePath": "./src/components/tile/tile.tsx",
@@ -7378,6 +7491,9 @@
         ],
         "cw-modal-container": [
           "cw-modal"
+        ],
+        "cw-modal": [
+          "cw-icon"
         ],
         "cw-message-bar": [
           "cw-icon",

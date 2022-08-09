@@ -1,12 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import '../../../scss/variables';
-@import '../../../scss/fonts';
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/fonts';
 
 :host {
   display: block;
-  padding: 0.8125rem 1.875rem;
+  background-color: var(--theme-nav-overlay--background);
+  padding: $medium-space $default-space $default-space $x-large-space;
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -17,6 +18,13 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    height: $x-large-space;
+    margin-bottom: $small-space;
+
+    h2 {
+      color: var(--theme-nav-overlay-header--color);
+      margin-bottom: 0;
+    }
   }
 
   .about-tabs {

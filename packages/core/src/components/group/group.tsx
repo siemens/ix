@@ -1,16 +1,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'cw-group',
@@ -19,7 +10,7 @@ import {
 })
 export class Group {
   /**
-   * Suppress
+   * Prevent header from being selectable
    */
   @Prop() suppressHeaderSelection = false;
 
@@ -72,15 +63,11 @@ export class Group {
   @Element() hostElement!: HTMLCwGroupElement;
 
   get dropdownItems() {
-    return Array.from(
-      this.hostElement.querySelectorAll('cw-group-dropdown-item')
-    );
+    return Array.from(this.hostElement.querySelectorAll('cw-group-dropdown-item'));
   }
 
   get groupItems(): Array<HTMLCwGroupItemElement> {
-    return Array.from(
-      this.hostElement.querySelectorAll('cw-group-item:not(.footer)')
-    );
+    return Array.from(this.hostElement.querySelectorAll('cw-group-item:not(.footer)'));
   }
 
   get groupContent() {
@@ -94,6 +81,30 @@ export class Group {
   @State() dropdownTriggerRef: HTMLElement;
 
   constructor() {}
+
+  @Listen('keydown', {
+    target: 'window',
+  })
+  async onKeyDown(event: KeyboardEvent) {
+    const targetElement = event.target as HTMLElement;
+
+    if (!this.hostElement.contains(targetElement)) {
+      return;
+    }
+
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+      if (targetElement.classList.contains('group-header')) {
+        if (this.suppressHeaderSelection) {
+          this.collapsed = !this.collapsed;
+        } else {
+          this.selected = !this.selected;
+        }
+      } else if (targetElement.matches('cw-group-item')) {
+        const groupItem = targetElement as HTMLCwGroupItemElement;
+        groupItem.selected = !groupItem.selected;
+      }
+    }
+  }
 
   private onExpandClick(event: Event) {
     const wasCollapsed = this.collapsed;
@@ -110,7 +121,10 @@ export class Group {
 
   private onHeaderClick(event: Event) {
     this.setGroupSelection(!this.selected);
-    this.onExpandClick(event);
+
+    if (this.suppressHeaderSelection) {
+      this.onExpandClick(event);
+    }
   }
 
   private onItemClick(index: number) {
@@ -137,26 +151,20 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (
-        !this.footer?.children.length &&
-        index === this.groupItems.length - 1
-      ) {
+      if (!this.footer.children.length && index === this.groupItems.length - 1) {
         item.classList.add('last');
       }
     });
 
-    if (this.footer?.childElementCount) {
+    if (this.footer?.childElementCount > 1) {
       this.groupContent.appendChild(this.footer);
     }
   }
 
   componentDidLoad() {
-    this.groupContent.addEventListener(
-      'selectedChanged',
-      (evt: CustomEvent<HTMLCwGroupItemElement>) => {
-        this.onItemClick(evt.detail.index);
-      }
-    );
+    this.groupContent.addEventListener('selectedChanged', (evt: CustomEvent<HTMLCwGroupItemElement>) => {
+      this.onItemClick(evt.detail.index);
+    });
   }
 
   render() {
@@ -165,28 +173,21 @@ export class Group {
         <div
           class={{
             'group-header': true,
-            expand: !this.collapsed,
-            selected: this.selected,
+            'expand': !this.collapsed,
+            'selected': this.selected,
           }}
+          tabindex="0"
         >
-          <div class="d-flex w-100" onClick={(e) => this.onHeaderClick(e)}>
-            <button
-              class="btn btn-icon btn-invisible btn-expand-header"
-              onClick={(e) => this.onExpandClick(e)}
-            >
-              {this.collapsed ? (
-                <i class="expand-icon glyph glyph-chevron-right-small"></i>
-              ) : (
-                <i class="expand-icon expand glyph glyph-chevron-down-small"></i>
-              )}
-            </button>
+          <div class="group-header-clickable" onClick={e => this.onHeaderClick(e)}>
+            <div class="group-header-selection-indicator"></div>
+            <cw-icon class="btn-expand-header" name={`chevron-${this.collapsed ? 'right' : 'down'}-small`} onClick={e => this.onExpandClick(e)}></cw-icon>
             <div class="group-header-content">
               {this.header ? (
-                <div>
+                <div class="group-header-props-container">
                   <div class="group-header-title">
                     <span title={this.header}>{this.header}</span>
                   </div>
-                  <div class="group-header-modules" title={this.subHeader}>
+                  <div class="group-subheader" title={this.subHeader}>
                     {this.subHeader}
                   </div>
                 </div>
@@ -194,18 +195,8 @@ export class Group {
               <slot name="header"></slot>
             </div>
           </div>
-          <div
-            class={{
-              'group-header-context-button': true,
-              'd-none': this.dropdownItems.length === 0,
-            }}
-          >
-            <cw-icon-button
-              ref={(ref) => (this.dropdownTriggerRef = ref)}
-              size="24"
-              ghost={true}
-              icon="context-menu"
-            ></cw-icon-button>
+          <div class={{ 'group-header-context-button': true, 'd-none': false }}>
+            <cw-icon-button ref={ref => (this.dropdownTriggerRef = ref)} size="24" ghost={true} icon="context-menu"></cw-icon-button>
             <cw-dropdown trigger={this.dropdownTriggerRef}>
               <slot name="dropdown"></slot>
             </cw-dropdown>
@@ -220,7 +211,7 @@ export class Group {
           <slot></slot>
         </div>
         <div class="d-none">
-          <cw-group-item class="footer last" suppressSelection={true}>
+          <cw-group-item class="footer last" suppressSelection={true} tabindex="-1">
             <slot name="footer"></slot>
           </cw-group-item>
         </div>

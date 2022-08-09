@@ -12,7 +12,8 @@ export { LogicalFilterOperator } from './components/category-filter/logical-filt
 export { FlipTileState } from './components/flip-tile/flip-tile-state';
 export { ModalContainer } from './components/modal-container/modal-container';
 export { Modal } from './components/modal/cw-modal';
-export { Buttons, ButtonVariants } from './components/utils/button-variants';
+export { Buttons } from './components/utils/button-variants';
+export { NotificationColor } from './components/utils/notification-color';
 export { convertToAbbreviationString, convertToRemString } from './components/utils/rwd.util';
 export * from './exports';
 export * from './theme';

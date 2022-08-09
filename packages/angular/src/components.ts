@@ -1008,14 +1008,14 @@ export declare interface CwModal extends Components.CwModal {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
+  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
   methods: ['dismiss', 'close']
 })
 @Component({
   selector: 'cw-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass']
+  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass']
 })
 export class CwModal {
   protected el: HTMLElement;

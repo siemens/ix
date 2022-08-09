@@ -45,7 +45,7 @@ export class IconButton implements Button {
   /**
    * Size of icon in button
    */
-  @Prop() size: '32' | '24' | '16' = '24';
+  @Prop() size: '32' | '24' | '16' | '12' = '24';
 
   /**
    * Color of icon in  button
@@ -62,9 +62,17 @@ export class IconButton implements Button {
    */
   @Prop() disabled = false;
 
+  private getIconButtonClasses() {
+    return {
+      'btn-icon-xs': this.size === '12',
+      'btn-icon-s': this.size === '16',
+      ...getButtonClasses(this.variant, this.outline, this.ghost || this.invisible, true, this.oval, this.selected, this.disabled),
+    };
+  }
+
   render() {
     return (
-      <button class={getButtonClasses(this.variant, this.outline, this.ghost || this.invisible, true, this.oval, this.selected, this.disabled)}>
+      <button class={this.getIconButtonClasses()}>
         <cw-icon size={this.size} name={this.icon} color={this.color} />
         <div style={{ display: 'none' }}>
           <slot></slot>

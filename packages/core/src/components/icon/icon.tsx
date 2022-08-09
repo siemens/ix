@@ -12,7 +12,7 @@ export class CwIcon {
   /**
    * Size of the icon
    */
-  @Prop() size: '16' | '24' | '32';
+  @Prop() size: '12' | '16' | '24' | '32';
 
   /**
    * Color of the icon
@@ -31,6 +31,7 @@ export class CwIcon {
           color: this.color ? `var(--theme-${this.color})` : 'inherit',
         }}
         class={{
+          [`size-12`]: this.size === '12',
           [`size-16`]: this.size === '16',
           [`size-24`]: this.size === '24',
           [`size-32`]: this.size === '32',
@@ -40,6 +41,7 @@ export class CwIcon {
           class={{
             'glyph': true,
             [`glyph-${this.name}`]: true,
+            'glyph-12': this.size === '12',
             'glyph-16': this.size === '16',
             'glyph-24': this.size === '24',
             'glyph-32': this.size === '32',

@@ -11,6 +11,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
+import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig } from "./components/modal/modal";
 import { ToastConfig, ToastType } from "./components/toast/toast";
 import { TypedEvent } from "./components/utils/typed-event";
@@ -427,7 +428,7 @@ export namespace Components {
          */
         "subHeader": string;
         /**
-          * Suppress
+          * Prevent header from being selectable
          */
         "suppressHeaderSelection": boolean;
     }
@@ -479,7 +480,7 @@ export namespace Components {
         /**
           * Size of the icon
          */
-        "size": '16' | '24' | '32';
+        "size": '12' | '16' | '24' | '32';
     }
     interface CwIconButton {
         /**
@@ -518,7 +519,7 @@ export namespace Components {
         /**
           * Size of icon in button
          */
-        "size": '32' | '24' | '16';
+        "size": '32' | '24' | '16' | '12';
         /**
           * Variant of button
          */
@@ -813,6 +814,14 @@ export namespace Components {
           * Header title
          */
         "headerTitle": string;
+        /**
+          * Optional icon displayed next to the title
+         */
+        "icon": string;
+        /**
+          * Color of the header {@link icon}
+         */
+        "iconColor": NotificationColor;
         /**
           * ESC close modal dialog
          */
@@ -2053,7 +2062,7 @@ declare namespace LocalJSX {
          */
         "subHeader"?: string;
         /**
-          * Suppress
+          * Prevent header from being selectable
          */
         "suppressHeaderSelection"?: boolean;
     }
@@ -2109,7 +2118,7 @@ declare namespace LocalJSX {
         /**
           * Size of the icon
          */
-        "size"?: '16' | '24' | '32';
+        "size"?: '12' | '16' | '24' | '32';
     }
     interface CwIconButton {
         /**
@@ -2148,7 +2157,7 @@ declare namespace LocalJSX {
         /**
           * Size of icon in button
          */
-        "size"?: '32' | '24' | '16';
+        "size"?: '32' | '24' | '16' | '12';
         /**
           * Variant of button
          */
@@ -2449,6 +2458,14 @@ declare namespace LocalJSX {
           * Header title
          */
         "headerTitle"?: string;
+        /**
+          * Optional icon displayed next to the title
+         */
+        "icon"?: string;
+        /**
+          * Color of the header {@link icon}
+         */
+        "iconColor"?: NotificationColor;
         /**
           * ESC close modal dialog
          */

@@ -8,5 +8,5 @@
 |outline| Button outline | `outline` | `boolean` | `undefined` |
 |oval| Button in oval shape | `oval` | `boolean` | `undefined` |
 |selected| Selected state only working with outline or invisible | `selected` | `boolean` | `false` |
-|size| Size of icon in button | `size` | `"16" ｜ "24" ｜ "32"` | `'24'` |
+|size| Size of icon in button | `size` | `"12" ｜ "16" ｜ "24" ｜ "32"` | `'24'` |
 |variant| Variant of button | `variant` | `"Primary" ｜ "Secondary"` | `'Secondary'` |
