@@ -151,7 +151,7 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (!this.footer.children.length && index === this.groupItems.length - 1) {
+      if (!this.footer?.children.length && index === this.groupItems.length - 1) {
         item.classList.add('last');
       }
     });
