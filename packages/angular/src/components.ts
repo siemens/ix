@@ -586,13 +586,13 @@ export declare interface CwGroupItem extends Components.CwGroupItem {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
+  inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({
   selector: 'cw-group-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
+  inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 export class CwGroupItem {
   protected el: HTMLElement;

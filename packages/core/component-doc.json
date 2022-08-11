@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-09T08:55:14",
+  "timestamp": "2022-08-11T09:45:35",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -2532,7 +2532,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "cw-icon",
         "cw-icon-button",
@@ -2551,6 +2553,9 @@
         ],
         "cw-group-item": [
           "cw-icon"
+        ],
+        "my-component": [
+          "cw-group"
         ]
       }
     },
@@ -2624,6 +2629,23 @@
       "docsTags": [],
       "usage": {},
       "props": [
+        {
+          "name": "focusable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "focusable",
+          "reflectToAttr": false,
+          "docs": "The elements tabindex attribute will get set accordingly.\nIf true tabindex will be 0, -1 otherwise.",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "icon",
           "type": "string",
@@ -2745,7 +2767,8 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-group"
+        "cw-group",
+        "my-component"
       ],
       "dependencies": [
         "cw-icon"
@@ -2755,6 +2778,9 @@
           "cw-icon"
         ],
         "cw-group": [
+          "cw-group-item"
+        ],
+        "my-component": [
           "cw-group-item"
         ]
       }
@@ -6399,7 +6425,8 @@
       "parts": [],
       "dependents": [
         "cw-menu-about",
-        "cw-menu-settings"
+        "cw-menu-settings",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -6407,6 +6434,9 @@
           "cw-tab-item"
         ],
         "cw-menu-settings": [
+          "cw-tab-item"
+        ],
+        "my-component": [
           "cw-tab-item"
         ]
       }
@@ -6514,7 +6544,8 @@
       "parts": [],
       "dependents": [
         "cw-menu-about",
-        "cw-menu-settings"
+        "cw-menu-settings",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -6522,6 +6553,9 @@
           "cw-tabs"
         ],
         "cw-menu-settings": [
+          "cw-tabs"
+        ],
+        "my-component": [
           "cw-tabs"
         ]
       }
@@ -7419,11 +7453,15 @@
         "cw-menu-item",
         "cw-button",
         "cw-modal-container",
+        "cw-group",
+        "cw-group-item",
+        "cw-icon",
+        "cw-tabs",
+        "cw-tab-item",
         "cw-message-bar",
         "cw-animated-tabs",
         "cw-animated-tab",
         "cw-flip-tile",
-        "cw-icon",
         "cw-tile",
         "cw-icon-button",
         "cw-select",
@@ -7451,11 +7489,15 @@
           "cw-menu-item",
           "cw-button",
           "cw-modal-container",
+          "cw-group",
+          "cw-group-item",
+          "cw-icon",
+          "cw-tabs",
+          "cw-tab-item",
           "cw-message-bar",
           "cw-animated-tabs",
           "cw-animated-tab",
           "cw-flip-tile",
-          "cw-icon",
           "cw-tile",
           "cw-icon-button",
           "cw-select",
@@ -7493,6 +7535,15 @@
           "cw-modal"
         ],
         "cw-modal": [
+          "cw-icon"
+        ],
+        "cw-group": [
+          "cw-icon",
+          "cw-icon-button",
+          "cw-dropdown",
+          "cw-group-item"
+        ],
+        "cw-group-item": [
           "cw-icon"
         ],
         "cw-message-bar": [
