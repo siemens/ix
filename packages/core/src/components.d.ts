@@ -1100,6 +1100,7 @@ export namespace Components {
         "checked": boolean;
         /**
           * Basic and status colors from color palette
+          * @deprecated - Has no effect on the rendered control
          */
         "color": string;
         /**
@@ -1111,11 +1112,19 @@ export namespace Components {
          */
         "hideText": boolean;
         /**
-          * Test for toggle off
+          * If true the control is in indeterminate state
+         */
+        "indeterminate": boolean;
+        /**
+          * Text for indeterminate state
+         */
+        "textIndeterminate": string;
+        /**
+          * Text for off state
          */
         "textOff": string;
         /**
-          * Text for toggle on
+          * Text for on state
          */
         "textOn": string;
     }
@@ -2764,6 +2773,7 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         /**
           * Basic and status colors from color palette
+          * @deprecated - Has no effect on the rendered control
          */
         "color"?: string;
         /**
@@ -2775,15 +2785,23 @@ declare namespace LocalJSX {
          */
         "hideText"?: boolean;
         /**
+          * If true the control is in indeterminate state
+         */
+        "indeterminate"?: boolean;
+        /**
           * An event will be dispatched each time the slide-toggle changes its value.
          */
         "onCheckedChange"?: (event: CustomEvent<boolean>) => void;
         /**
-          * Test for toggle off
+          * Text for indeterminate state
+         */
+        "textIndeterminate"?: string;
+        /**
+          * Text for off state
          */
         "textOff"?: string;
         /**
-          * Text for toggle on
+          * Text for on state
          */
         "textOn"?: string;
     }

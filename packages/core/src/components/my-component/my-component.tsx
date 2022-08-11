@@ -120,6 +120,20 @@ export class MyComponent {
                 marginTop: '2rem',
               }}
             >
+              <cw-toggle></cw-toggle>
+              <cw-toggle checked></cw-toggle>
+              <cw-toggle disabled></cw-toggle>
+              <cw-toggle indeterminate></cw-toggle>
+              <cw-toggle textOff='Lorem ipsum' textOn='dolor sit'></cw-toggle>
+              <cw-toggle hideText></cw-toggle>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '2rem',
+              }}
+            >
               <cw-group
                 header="Header text"
                 sub-header="Subheader text"

@@ -1,7 +1,16 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+} from '@stencil/core';
 
 @Component({
   tag: 'cw-toggle',
@@ -20,19 +29,30 @@ export class CuiToggle {
   @Prop() disabled = false;
 
   /**
+   * If true the control is in indeterminate state
+   */
+  @Prop() indeterminate = false;
+
+  /**
    * Basic and status colors from color palette
+   * @deprecated - Has no effect on the rendered control
    */
   @Prop() color = 'accent';
 
   /**
-   * Text for toggle on
+   * Text for on state
    */
   @Prop() textOn = 'On';
 
   /**
-   * Test for toggle off
+   * Text for off state
    */
   @Prop() textOff = 'Off';
+
+  /**
+   * Text for indeterminate state
+   */
+  @Prop() textIndeterminate = 'Mixed';
 
   /**
    * Hide `on` and `off` text
@@ -46,7 +66,24 @@ export class CuiToggle {
 
   @Element() hostElement!: HTMLCwToggleElement;
 
+  @Listen('keydown', { target: 'window' })
+  async onKeyDown(event: KeyboardEvent) {
+    const targetElement = event.target as HTMLElement;
+
+    if (!this.hostElement.contains(targetElement)) {
+      return;
+    }
+
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+      this.emitChange(event);
+    }
+  }
+
   private emitChange(event: Event) {
+    if (this.disabled || this.indeterminate) {
+      return;
+    }
+
     event.stopPropagation();
     event.preventDefault();
 
@@ -54,20 +91,46 @@ export class CuiToggle {
     this.checkedChange.emit(this.checked);
   }
 
+  private getText() {
+    if (this.indeterminate || this.checked === undefined) {
+      return this.textIndeterminate;
+    }
+
+    return this.checked ? this.textOn : this.textOff;
+  }
+
   render() {
     return (
       <Host
         class={{
           disabled: this.disabled,
+          checked: this.checked,
+          indeterminate: this.indeterminate || this.checked === undefined,
         }}
       >
-        <label class={`switch slide-toggle-color-${this.color}`}>
-          <input tabindex="-1" type="checkbox" checked={this.checked} disabled={this.disabled} id={this.hostElement.id} onChange={e => this.emitChange(e)} />
+        <label class="switch" tabindex={this.disabled ? -1 : 0}>
+          <input
+            tabindex="-1"
+            type="checkbox"
+            checked={this.checked}
+            disabled={this.disabled}
+            indeterminate={this.indeterminate || this.checked === undefined}
+            id={this.hostElement.id}
+            onChange={(e) => this.emitChange(e)}
+          />
           <span class="slider">
             <span class="slider-track"></span>
           </span>
-          {!this.hideText ? <span class="text">{this.checked ? this.textOn : this.textOff}</span> : null}
         </label>
+        {!this.hideText ? (
+          <span
+            title={this.getText()}
+            class="text"
+            onClick={(e) => this.emitChange(e)}
+          >
+            {this.getText()}
+          </span>
+        ) : null}
       </Host>
     );
   }

@@ -2,18 +2,99 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/colors';
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/mixins/hover';
+@import '../../../scss/v7/mixins/text-truncation';
+
+@mixin toggle($state, $suffix: '') {
+  @debug ('Toggle', #{$state});
+  .slider {
+    &:before {
+      background-color: var(
+        --theme-switch-thumb-#{$state}--background#{$suffix}
+      );
+      border-color: var(--theme-switch-thumb-#{$state}--border-color#{$suffix});
+    }
+
+    .slider-track {
+      background-color: var(--theme-switch-#{$state}--background#{$suffix});
+      border-color: var(--theme-switch-#{$state}--border-color#{$suffix});
+    }
+  }
+
+  .text {
+    color: var(--theme-switch--color);
+  }
+
+  @include hover {
+    .slider {
+      &:before {
+        background-color: var(
+          --theme-switch-thumb-#{$state}--background--hover#{$suffix}
+        );
+        border-color: var(
+          --theme-switch-thumb-#{$state}--border-color--hover#{$suffix}
+        );
+      }
+
+      .slider-track {
+        background-color: var(
+          --theme-switch-#{$state}--background--hover#{$suffix}
+        );
+        border-color: var(
+          --theme-switch-#{$state}--border-color--hover#{$suffix}
+        );
+      }
+    }
+
+    .text {
+      color: var(--theme-switch--color--hover);
+    }
+  }
+
+  @include active {
+    .slider:before {
+      background-color: var(
+        --theme-switch-thumb-#{$state}--background--active#{$suffix}
+      );
+      border-color: var(
+        --theme-switch-thumb-#{$state}--border-color--active#{$suffix}
+      );
+    }
+
+    .slider-track {
+      background-color: var(
+        --theme-switch-#{$state}--background--active#{$suffix}
+      );
+      border-color: var(
+        --theme-switch-#{$state}--border-color--active#{$suffix}
+      );
+    }
+
+    .text {
+      color: var(--theme-switch--color--active);
+    }
+  }
+}
 
 :host {
   $slide-toggle-width: 3rem;
+  display: flex;
+  align-items: center;
+  outline: none;
 
   .switch {
     position: relative;
     display: inline-flex;
     align-items: center;
-    width: $slide-toggle-width;
-    height: 2rem;
+    min-width: $slide-toggle-width;
+    height: $default-control-height;
+
+    @include focus-visible {
+      outline-color: var(--focus--border-color);
+      outline-style: solid;
+      outline-width: 1px;
+    }
   }
 
   .switch input {
@@ -34,11 +115,11 @@
     bottom: 0;
 
     .slider-track {
-      background-color: var(--theme-color-2);
+      background-color: var(--theme-switch-off--background);
       border-radius: 2.125rem;
-      border: var(--theme-soft-bdr-1);
+      border: 1px solid var(--theme-switch-off--border-color);
       width: 2.5rem;
-      height: 1rem;
+      height: $default-space;
     }
   }
 
@@ -47,56 +128,73 @@
     content: '';
     height: 1.5rem;
     width: 1.5rem;
-    left: 0;
-    background-color: var(--theme-color-1);
-    -webkit-transition: $default-time;
-    transition: $default-time;
+    left: 0.125rem;
+    background-color: var(--theme-switch-thumb-off--background);
+    -webkit-transition: transform $default-time;
+    transition: transform $default-time;
     border-radius: 50%;
-    border: var(--theme-std-bdr-1);
+    border: 1px solid var(--theme-switch-thumb-off--border-color);
+    box-shadow: var(--theme-switch-thumb--box-shadow);
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(1.625rem);
-    -ms-transform: translateX(1.625rem);
-    transform: translateX(1.625rem);
-    left: 0rem;
+    -webkit-transform: translateX(1.125rem);
+    -ms-transform: translateX(1.125rem);
+    transform: translateX(1.125rem);
+    left: $tiny-space;
   }
 
   .text {
-    color: var(--theme-color-std-text);
+    @include ellipsis;
+
+    color: var(--theme-switch--color);
+    padding: 0 $small-space;
     position: relative;
-    left: calc(#{$slide-toggle-width} + #{$small-space});
+    user-select: none;
   }
 
-  @mixin checked-state($key, $value) {
-    .slide-toggle-color-#{$key} {
-      input:checked {
-        & + .slider:before {
-          background-color: $value;
-        }
+  @include hover {
+    .slider:before {
+      background-color: var(--theme-switch-thumb-off--background--hover);
+      border-color: var(--theme-switch-thumb-off--border-color--hover);
+    }
 
-        &[disabled] + .slider:before {
-          background-color: var(--theme-color-5);
-          border: none;
-        }
+    .slider-track {
+      background-color: var(--theme-switch-off--background--hover);
+      border-color: var(--theme-switch-off--border-color--hover);
+    }
 
-        &:hover:not([disabled]) + .slider:before {
-          background-color: darken($color: $value, $amount: 5%);
-        }
-
-        &:active:not([disabled]) + .slider:before {
-          background-color: darken($color: $value, $amount: 10%);
-        }
-      }
+    .text {
+      color: var(--theme-switch--color--hover);
     }
   }
 
-  @each $key, $value in $color-map-basic-ui {
-    @include checked-state($key, $value);
+  @include active {
+    .slider:before {
+      background-color: var(--theme-switch-thumb-off--background--active);
+      border-color: var(--theme-switch-thumb-off--border-color--active);
+    }
+
+    .slider-track {
+      background-color: var(--theme-switch-off--background--active);
+      border-color: var(--theme-switch-off--border-color--active);
+    }
+
+    .text {
+      color: var(--theme-switch--color--active);
+    }
   }
 
-  @each $key, $value in $color-map-status {
-    @include checked-state($key, $value);
+  &.checked {
+    @include toggle('on');
+  }
+
+  &.indeterminate {
+    @include toggle('mixed');
+
+    .slider:before {
+      transform: translateX(0.625rem);
+    }
   }
 
   &[disabled],
@@ -105,19 +203,18 @@
       cursor: initial;
 
       &:before {
-        background-color: var(--theme-color-2);
-        border-color: var(--theme-weak-bdr);
+        background-color: var(--theme-switch-thumb-off--background--disabled);
+        border-color: var(--theme-switch-thumb-off--border-color--disabled);
       }
 
-      & .slider-track {
-        background-color: var(--theme-ghost-pressed);
-        border-color: var(--theme-color-disabled-btn);
-        border: none;
+      .slider-track {
+        background-color: var(--theme-switch-off--background--disabled);
+        border-color: var(--theme-switch-off--border-color--disabled);
       }
     }
 
     .text {
-      color: var(--theme-color-weak-text);
+      color: var(--theme-switch--color--disabled);
     }
   }
 }
