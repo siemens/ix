@@ -5,12 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreUIModule } from '@siemens/ix-angular/dist';
+import { AGGrid } from 'src/preview-examples/aggrid';
 import { ButtonGroup } from 'src/preview-examples/button-group';
 import { Buttons } from 'src/preview-examples/buttons';
 
+import { AgGridModule } from 'ag-grid-angular';
+
 @NgModule({
-  declarations: [AppComponent, Buttons, ButtonGroup],
-  imports: [BrowserModule, AppRoutingModule, CoreUIModule.forRoot()],
+  declarations: [AppComponent, Buttons, ButtonGroup, AGGrid],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoreUIModule.forRoot(),
+    AgGridModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

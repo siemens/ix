@@ -16,6 +16,16 @@ const ix_dest_path = path.join(
   'ix'
 );
 
+const ix_aggrid_path = path.join(__dirname, '..', 'aggrid');
+
+const ix_aggrid_dest_path = path.join(
+  __dirname,
+  'static',
+  'webcomponent-examples',
+  'lib',
+  'ix-aggrid'
+);
+
 const icon_path = path.join(
   __dirname,
   '../../',
@@ -36,4 +46,11 @@ fsExtra.copySync(ix_path, ix_dest_path, {
     return !fileName.includes('node_modules');
   },
 });
+
+fsExtra.copySync(ix_aggrid_path, ix_aggrid_dest_path, {
+  filter: (fileName) => {
+    return !fileName.includes('node_modules');
+  },
+});
+
 fsExtra.copySync(icon_path, icon_dest_path);

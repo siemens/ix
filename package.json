@@ -8,7 +8,8 @@
     "build:core": "nx run core:build",
     "build:wrapper": "nx run-many --target=build --projects=react,angular",
     "build:test-apps": "nx run-many --target=build --projects=angular-test-app,react-test-app",
-    "build:lib": "npm run build:core && npm run build:wrapper",
+    "build:aggrid": "nx run aggrid:build",
+    "build:lib": "npm run build:core && npm run build:wrapper && npm run build:aggrid",
     "build:docs": "nx run documentation:build",
     "generate-documentation-version": "nx run documentation:generate-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
@@ -38,7 +39,12 @@
     "typescript": "~4.7.2"
   },
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/react",
+    "packages/react-test-app",
+    "packages/angular",
+    "packages/angular-test-app",
+    "packages/aggrid"
   ],
   "config": {
     "commitizen": {

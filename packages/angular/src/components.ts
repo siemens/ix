@@ -1355,13 +1355,13 @@ export declare interface CwToggle extends Components.CwToggle {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'textOff', 'textOn']
+  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
 @Component({
   selector: 'cw-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'textOff', 'textOn']
+  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
 export class CwToggle {
   protected el: HTMLElement;

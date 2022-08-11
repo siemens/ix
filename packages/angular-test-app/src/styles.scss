@@ -1,3 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+@import './../../../node_modules/@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+
 @import './../../../node_modules/@siemens/ix/dist/core-ui-core/core-ui-core.css';
 @import './../../../node_modules/@siemens/core-ui-icons/dist/css/core-ui-webfont.css';

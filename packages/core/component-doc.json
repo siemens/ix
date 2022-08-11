@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-11T09:45:35",
+  "timestamp": "2022-08-11T13:03:38",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -6923,8 +6923,14 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Basic and status colors from color palette",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Has no effect on the rendered control"
+            }
+          ],
           "default": "'accent'",
+          "deprecation": "- Has no effect on the rendered control",
           "values": [
             {
               "type": "string"
@@ -6968,12 +6974,46 @@
           "required": false
         },
         {
+          "name": "indeterminate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "indeterminate",
+          "reflectToAttr": false,
+          "docs": "If true the control is in indeterminate state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textIndeterminate",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-indeterminate",
+          "reflectToAttr": false,
+          "docs": "Text for indeterminate state",
+          "docsTags": [],
+          "default": "'Mixed'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "textOff",
           "type": "string",
           "mutable": false,
           "attr": "text-off",
           "reflectToAttr": false,
-          "docs": "Test for toggle off",
+          "docs": "Text for off state",
           "docsTags": [],
           "default": "'Off'",
           "values": [
@@ -6990,7 +7030,7 @@
           "mutable": false,
           "attr": "text-on",
           "reflectToAttr": false,
-          "docs": "Text for toggle on",
+          "docs": "Text for on state",
           "docsTags": [],
           "default": "'On'",
           "values": [
@@ -7014,13 +7054,26 @@
           "docsTags": []
         }
       ],
-      "listeners": [],
+      "listeners": [
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "cw-toggle"
+        ]
+      }
     },
     {
       "filePath": "./src/components/tree/tree.tsx",
@@ -7453,6 +7506,7 @@
         "cw-menu-item",
         "cw-button",
         "cw-modal-container",
+        "cw-toggle",
         "cw-group",
         "cw-group-item",
         "cw-icon",
@@ -7489,6 +7543,7 @@
           "cw-menu-item",
           "cw-button",
           "cw-modal-container",
+          "cw-toggle",
           "cw-group",
           "cw-group-item",
           "cw-icon",
