@@ -47,14 +47,14 @@
 
   [type='checkbox'] + label:focus {
     &:before {
-      outline: 1px solid #199fff;
+      outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
   [type='checkbox']:focus + label {
     &:before {
-      outline: 1px solid #199fff;
+      outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }

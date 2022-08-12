@@ -42,14 +42,14 @@
 
   [type='radio'] + label:focus {
     &:before {
-      outline: 1px solid #199fff;
+      outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
   [type='radio']:focus + label {
     &:before {
-      outline: 1px solid #199fff;
+      outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
