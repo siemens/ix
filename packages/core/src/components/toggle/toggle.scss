@@ -7,7 +7,6 @@
 @import '../../../scss/v7/mixins/text-truncation';
 
 @mixin toggle($state, $suffix: '') {
-  @debug ('Toggle', #{$state});
   .slider {
     &:before {
       background-color: var(
