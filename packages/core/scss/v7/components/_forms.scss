@@ -1,8 +1,9 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
+@import './../v7/common-variables';
+@import './mixins/hover';
 @import './mixins/text-truncation';
-@import './../common-variables';
 
 @mixin from-control-invalid {
   color: $form-feedback-invalid-color;
@@ -20,26 +21,25 @@
   background-color: var(--theme-input--background);
   border: solid 1px var(--theme-input--border-color);
   box-shadow: var(--theme-input--box-shadow);
+  padding-inline-start: $input-padding-x;
+  padding-inline-end: $input-padding-x;
+
   &::placeholder {
     color: var(--theme-input-hint--color);
   }
-}
 
-.form-control:hover {
-  background-color: var(--theme-input--background--hover);
-  border-color: var(--theme-input--border-color--hover);
-}
+  @include hover {
+    background-color: var(--theme-input--background--hover);
+    border-color: var(--theme-input--border-color--hover);
+  }
 
-.form-control:focus,
-.form-control:focus-visible {
-  color: var(--theme-input--color);
-  background-color: var(--theme-input--background--focus);
-  outline-offset: var(--theme-input--focus--outline-offset);
-  box-shadow: var(--theme-input--box-shadow);
-}
-
-.form-control:focus-visible {
-  outline: 1px solid #199fff;
+  @include focus-visible {
+    background-color: var(--theme-input--background--focus);
+    border-color: var(--theme-input--border-color--focus);
+    outline-offset: var(--theme-input--focus--outline-offset);
+    box-shadow: var(--theme-input--box-shadow);
+    outline: 1px solid var(--focus--border-color);
+  }
 }
 
 .form-control[type='number'] {
@@ -48,7 +48,6 @@
     margin-left: 2px;
     display: none;
   }
-  padding-inline-end: $input-padding-x;
   text-align: right;
 }
 
@@ -59,7 +58,6 @@
   border-inline-start: none !important;
   border-inline-end: none !important;
   border-radius: 0rem;
-  color: var(--theme-color-std-text);
 }
 
 .form-control:read-only,
@@ -85,8 +83,6 @@
 
 .form-control-plaintext {
   outline: 0;
-  padding-inline-start: $input-padding-x;
-  padding-inline-end: $input-padding-x;
 }
 
 .form-group {
@@ -134,10 +130,5 @@ input {
   &.disabled,
   &:disabled {
     color: var(--theme-input--color--disabled);
-  }
-
-  &.readonly,
-  &:readonly {
-
   }
 }

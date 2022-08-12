@@ -983,9 +983,10 @@ export class MyComponent {
                   width: '20%',
                 }}
               >
-                <input class="form-control" type="text" />
+                <input class="form-control" placeholder='Enter text' type="text" />
                 <input
                   class="form-control"
+                  placeholder='Enter a number'
                   type="number"
                   style={{ marginBottom: '2rem' }}
                 />
