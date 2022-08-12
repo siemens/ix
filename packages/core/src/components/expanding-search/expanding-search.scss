@@ -2,17 +2,20 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import 'variables';
+@import '../../../scss/v7/common-variables';
+@import '../../../scss/v7/mixins/hover';
+@import '../../../scss/v7/mixins/text-truncation';
 
 $container-width: 11.5625rem;
 
 :host {
-  .exp-container {
-    display: flex;
-    width: $container-width;
-    height: $x-large-space;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  width: $container-width;
+  height: $x-large-space;
+  align-items: center;
+  justify-content: space-between;
+
+  .input-container {
     transition: all 0.3s ease-in-out;
   }
 
@@ -20,14 +23,16 @@ $container-width: 11.5625rem;
     pointer-events: none;
   }
 
+  input {
+    box-shadow: var(--theme-input--box-shadow);
+  }
+
   .expanded {
     width: $container-width;
-    transition: all 0.3s ease-in-out;
   }
 
   .collapsed {
-    width: 0px;
-    transition: all 0.3s ease-in-out;
+    width: $large-space;
     border: none;
   }
 
@@ -42,25 +47,37 @@ $container-width: 11.5625rem;
     display: flex;
     max-width: $x-large-space;
     max-height: $x-large-space;
-    border-radius: $default-border-radius;
+    border-radius: var(--theme-input--border-radius);
     transition: all 0.15s ease-in-out;
     z-index: 1;
     align-items: center;
     position: relative;
-  }
+    border: none;
 
-  .btn-search:hover:not(:active) {
-    transition: 0.15s;
-    background-color: var(--theme-ghost-hover);
+    @include hover {
+      border-color: transparent;
+    }
+
+    @include active {
+      border-color: transparent;
+    }
+
+    @include focus {
+      outline: none;
+    }
+
+    @include focus-visible {
+      outline: var(--focus--border-color);
+      outline-width: 1px;
+      outline-style: solid;
+    }
   }
 
   .btn-search:active {
-    background-color: var(--theme-color-1) !important;
     width: $x-large-space;
     height: $x-large-space;
-    border-radius: $default-border-radius;
+    border-radius: var(--theme-input--border-radius);
     border: var(--theme-std-bdr-1) !important;
-    transition: 0.15s ease-in-out;
   }
 
   /*expanded view*/
@@ -73,23 +90,20 @@ $container-width: 11.5625rem;
 
   .btn-clear {
     position: absolute;
-    border-radius: $default-border-radius;
+    border-radius: var(--theme-input--border-radius);
     right: 0px;
   }
 
   .input {
     padding-left: $x-large-space !important;
     padding-right: 2.5rem !important;
-    transition: all 0.3s ease-in-out;
   }
 
-  .opacityBefore {
+  .opacity-before {
     opacity: 0;
-    transition: all 0.3s ease-in-out;
   }
 
-  .opacityAfter {
-    opacity: 100;
-    transition: all 0.3s ease-in-out;
+  .opacity-after {
+    opacity: 1;
   }
 }

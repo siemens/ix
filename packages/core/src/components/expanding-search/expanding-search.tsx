@@ -2,7 +2,15 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 
 @Component({
   tag: 'cw-expanding-search',
@@ -27,9 +35,7 @@ export class ExpandingSearch {
 
   @State() isFieldChanged = false;
 
-  @State() size: '32' | '24' | '16' = '24';
-
-  @State() toggle = false;
+  @State() expanded = false;
 
   @State() hasFocus = false;
 
@@ -39,33 +45,19 @@ export class ExpandingSearch {
   @Event() valueChange: EventEmitter<string>;
 
   private expandInput() {
-    window.removeEventListener('click', this.callback);
     setTimeout(this.focusTextInput, 300);
-    this.toggle = true;
-    this.size = '16';
+    this.expanded = true;
   }
 
   private collapseInput() {
-    if (!this.isFieldChanged && this.toggle) {
-      this.toggle = false;
-      this.size = '24';
+    if (!this.isFieldChanged && this.expanded) {
+      this.expanded = false;
     }
-  }
-
-  private mouseDown() {
-    window.addEventListener('click', this.callback);
-    this.size = '16';
   }
 
   private clearInput() {
     this.value = '';
     this.isFieldChanged = false;
-  }
-
-  private readonly callback = this.clickEvent.bind(this);
-
-  private clickEvent() {
-    this.size = '24';
   }
 
   private onChange(e: InputEvent) {
@@ -97,42 +89,74 @@ export class ExpandingSearch {
 
   render() {
     return (
-      <Host>
-        <div class="exp-container">
-          <button
-            class={{ 'btn': true, 'btn-invisible-secondary': true, 'btn-icon': true, 'btn-search': true, 'disable-pointer': this.toggle }}
-            data-testid="button"
-            onClick={() => this.expandInput()}
-            onMouseDown={() => this.mouseDown()}
-          >
-            <cw-icon
-              class={{
-                ['btn-search-icon']: true,
-              }}
-              name={this.icon}
-              size={this.size}
-              color={this.hasFocus ? 'input-search-icon--color' : undefined}
-            ></cw-icon>
-          </button>
+      <Host
+        class={{
+          expanded: this.expanded,
+        }}
+      >
+        <button
+          class={{
+            btn: true,
+            'btn-invisible-primary': true,
+            'btn-icon': true,
+            'btn-search': true,
+            'disable-pointer': this.expanded,
+          }}
+          data-testid="button"
+          onClick={() => this.expandInput()}
+          tabindex={this.expanded ? -1 : 0}
+        >
+          <cw-icon
+            class="btn-search-icon"
+            name={this.icon}
+            size={this.expanded ? '16' : '24'}
+            color={
+              this.hasFocus ? 'input-search-icon--color--focus' : undefined
+            }
+          ></cw-icon>
+        </button>
 
-          <div class={{ 'expanded': this.toggle, 'collapsed': !this.toggle, 'disable-pointer': !this.toggle, 'input-container': true }} data-testid="input-wrapper">
-            <input
-              class={{ 'form-control': true, 'input': this.toggle, 'disable-pointer': !this.toggle, 'opacityBefore': !this.toggle, 'opacityAfter': this.toggle }}
-              ref={el => (this.textInput = el)}
-              data-testid="input"
-              placeholder={this.placeholder}
-              type="text"
-              value={this.value}
-              onBlur={() => {
-                this.collapseInput();
-                this.hasFocus = false;
-              }}
-              onFocus={() => (this.hasFocus = true)}
-              onInput={(e: InputEvent) => this.onChange(e)}
+        <div
+          class={{
+            expanded: this.expanded,
+            collapsed: !this.expanded,
+            'disable-pointer': !this.expanded,
+            'input-container': true,
+          }}
+          data-testid="input-wrapper"
+        >
+          <input
+            class={{
+              'form-control': true,
+              input: this.expanded,
+              'disable-pointer': !this.expanded,
+              'opacity-before': !this.expanded,
+              'opacity-after': this.expanded,
+            }}
+            ref={(el) => (this.textInput = el)}
+            data-testid="input"
+            placeholder={this.placeholder}
+            type="text"
+            value={this.value}
+            onBlur={() => {
+              this.collapseInput();
+              this.hasFocus = false;
+            }}
+            onFocus={() => (this.hasFocus = true)}
+            onInput={(e: InputEvent) => this.onChange(e)}
+            tabindex={this.expanded ? 0 : -1}
+          />
+
+          {this.isFieldChanged ? (
+            <cw-icon-button
+              class="btn-clear"
+              icon="clear"
+              ghost={true}
+              size="24"
+              data-testid="clear-button"
+              onClick={() => this.clearClicked()}
             />
-
-            {this.isFieldChanged ? <cw-icon-button class="btn-clear" icon="clear" ghost={true} size="24" data-testid="clear-button" onClick={() => this.clearClicked()} /> : null}
-          </div>
+          ) : null}
         </div>
       </Host>
     );
