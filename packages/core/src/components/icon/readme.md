@@ -1,4 +1,4 @@
-# cw-icon
+# ix-icon
 
 <!-- Auto Generated Below -->
 

@@ -1,11 +1,11 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { Modal } from '../cw-modal';
+import { Modal } from '../modal';
 
 describe('modal', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Modal],
-      html: `<cw-modal></cw-modal>`,
+      html: `<ix-modal></ix-modal>`,
     });
     expect(page.root).toMatchSnapshot();
   });

@@ -11,12 +11,12 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <cw-modal-container></cw-modal-container>
+    <ix-modal-container></ix-modal-container>
     <script>
       (async () => {
-        await window.customElements.whenDefined('cw-modal-container');
-        const modalContainer = document.querySelector('cw-modal-container');
-        const div = document.createElement('cw-modal-example');
+        await window.customElements.whenDefined('ix-modal-container');
+        const modalContainer = document.querySelector('ix-modal-container');
+        const div = document.createElement('ix-modal-example');
 
         modalContainer.showModal({
           content: div,

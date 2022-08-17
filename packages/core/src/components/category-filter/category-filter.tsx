@@ -2,14 +2,25 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { convertToRemString } from '../utils/rwd.util';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 
 @Component({
-  tag: 'cw-category-filter',
+  tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
   scoped: true,
 })
@@ -20,14 +31,18 @@ export class CwCategoryFilter {
   private formElement?: HTMLFormElement;
   private isScrollStateDirty: boolean;
 
-  @Element() hostElement: HTMLCwCategoryFilterElement;
+  @Element() hostElement: HTMLIxCategoryFilterElement;
 
   @State() hasFocus: boolean;
   @State() showCategorySelection: boolean;
   @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
   @State() inputValue: string;
   @State() category: string;
-  @State() filterTokens: Array<{ id: string; value: string; operator: LogicalFilterOperator }> = [];
+  @State() filterTokens: Array<{
+    id: string;
+    value: string;
+    operator: LogicalFilterOperator;
+  }> = [];
   @State() offsetDropdownX: string;
   @State() offsetDropdownY: string;
   @State() maxHeightDropdown: string;
@@ -150,16 +165,24 @@ export class CwCategoryFilter {
       this.setFilterState(this.filterState);
     }
 
-    this.hostElement?.addEventListener('keydown', this.handleFormElementKeyDown.bind(this));
+    this.hostElement?.addEventListener(
+      'keydown',
+      this.handleFormElementKeyDown.bind(this)
+    );
 
-    this.formElement?.addEventListener('submit', e => e.preventDefault());
+    this.formElement?.addEventListener('submit', (e) => e.preventDefault());
 
     if (this.textInput == null) {
-      console.warn('Core UI category filter - unable to add event listeners to native input element');
+      console.warn(
+        'Core UI category filter - unable to add event listeners to native input element'
+      );
       return;
     }
 
-    this.textInput.addEventListener('click', () => (this.showCategorySelection = true));
+    this.textInput.addEventListener(
+      'click',
+      () => (this.showCategorySelection = true)
+    );
     this.textInput.addEventListener('focusin', () => {
       this.hasFocus = true;
     });
@@ -170,14 +193,22 @@ export class CwCategoryFilter {
       this.inputChanged.emit(inputState);
       this.showCategorySelection = true;
     });
-    this.textInput.addEventListener('keydown', this.handleInputElementKeyDown.bind(this));
+    this.textInput.addEventListener(
+      'keydown',
+      this.handleInputElementKeyDown.bind(this)
+    );
   }
 
   private setFilterState(state: FilterState) {
     this.filterTokens = [];
 
     for (const token of state.tokens) {
-      this.addToken(token, this.ID_CUSTOM_FILTER_VALUE, this.categoryLogicalOperator, false);
+      this.addToken(
+        token,
+        this.ID_CUSTOM_FILTER_VALUE,
+        this.categoryLogicalOperator,
+        false
+      );
     }
 
     for (const category of state.categories) {
@@ -204,11 +235,16 @@ export class CwCategoryFilter {
     switch (e.code) {
       case 'Enter':
       case 'NumpadEnter':
-        if (this.category || document.activeElement.classList.contains('plain-text-suggestion')) {
+        if (
+          this.category ||
+          document.activeElement.classList.contains('plain-text-suggestion')
+        ) {
           const token = document.activeElement.getAttribute('data-id');
 
           this.addToken(token, this.category);
-        } else if (document.activeElement.classList.contains('category-item-id')) {
+        } else if (
+          document.activeElement.classList.contains('category-item-id')
+        ) {
           this.selectCategory(document.activeElement.getAttribute('data-id'));
         }
         e.preventDefault();
@@ -287,8 +323,12 @@ export class CwCategoryFilter {
   }
 
   private emitFilterEvent() {
-    const tokens = this.filterTokens.filter(item => item.id === this.ID_CUSTOM_FILTER_VALUE).map(item => item.value);
-    const categories = this.filterTokens.filter(item => item.id !== this.ID_CUSTOM_FILTER_VALUE);
+    const tokens = this.filterTokens
+      .filter((item) => item.id === this.ID_CUSTOM_FILTER_VALUE)
+      .map((item) => item.value);
+    const categories = this.filterTokens.filter(
+      (item) => item.id !== this.ID_CUSTOM_FILTER_VALUE
+    );
     const filterState: FilterState = {
       tokens,
       categories,
@@ -297,7 +337,12 @@ export class CwCategoryFilter {
     this.filterChanged.emit(filterState);
   }
 
-  private addToken(token: string, category: string = this.ID_CUSTOM_FILTER_VALUE, operator = this.categoryLogicalOperator, emitEvent = true) {
+  private addToken(
+    token: string,
+    category: string = this.ID_CUSTOM_FILTER_VALUE,
+    operator = this.categoryLogicalOperator,
+    emitEvent = true
+  ) {
     if (token === undefined || token === null) {
       return;
     }
@@ -308,7 +353,7 @@ export class CwCategoryFilter {
       return;
     }
 
-    if (this.filterTokens.find(value => value?.value === newToken)) {
+    if (this.filterTokens.find((value) => value?.value === newToken)) {
       return;
     }
 
@@ -346,7 +391,7 @@ export class CwCategoryFilter {
   }
 
   private getCategoryLables() {
-    return this.getCategoryIds().map(id => this.categories[id].label);
+    return this.getCategoryIds().map((id) => this.categories[id].label);
   }
 
   private selectCategory(category: string) {
@@ -396,13 +441,17 @@ export class CwCategoryFilter {
       return true;
     }
 
-    const isCategoryAlreadySet = this.filterTokens.find(token => token.id === value);
+    const isCategoryAlreadySet = this.filterTokens.find(
+      (token) => token.id === value
+    );
 
     return !isCategoryAlreadySet;
   }
 
   private filterDuplicateTokens(value: string) {
-    const isTokenAlreadySet = this.filterTokens.some(token => token.value === value);
+    const isTokenAlreadySet = this.filterTokens.some(
+      (token) => token.value === value
+    );
     return !isTokenAlreadySet;
   }
 
@@ -426,13 +475,21 @@ export class CwCategoryFilter {
     }
   }
 
-  private getFilterChipLabel(value: { id: string; value: string; operator: LogicalFilterOperator }): string {
+  private getFilterChipLabel(value: {
+    id: string;
+    value: string;
+    operator: LogicalFilterOperator;
+  }): string {
     if (value.id === this.ID_CUSTOM_FILTER_VALUE) {
       return value.value;
     }
 
-    const operatorString = value.operator === LogicalFilterOperator.EQUAL ? '=' : '!=';
-    const label = this.categories[value.id]?.label ?? this.nonSelectableCategories[value.id] ?? value.id;
+    const operatorString =
+      value.operator === LogicalFilterOperator.EQUAL ? '=' : '!=';
+    const label =
+      this.categories[value.id]?.label ??
+      this.nonSelectableCategories[value.id] ??
+      value.id;
 
     return `${label} ${operatorString} ${value.value}`;
   }
@@ -442,7 +499,8 @@ export class CwCategoryFilter {
     const newOffsetY = this.calculateDropdownY();
     const newOffsetXRem = convertToRemString(newOffsetX);
     const newOffsetYRem = convertToRemString(newOffsetY);
-    const maxWidthDropdown = this.hostElement.getBoundingClientRect().width - newOffsetX;
+    const maxWidthDropdown =
+      this.hostElement.getBoundingClientRect().width - newOffsetX;
     const maxHeightDropdown = this.calculateDropdownHeight(newOffsetY);
     this.maxWidthDropdown = convertToRemString(maxWidthDropdown);
     this.maxHeightDropdown = convertToRemString(maxHeightDropdown);
@@ -468,9 +526,20 @@ export class CwCategoryFilter {
   render() {
     return (
       <Host>
-        <form ref={el => (this.formElement = el)}>
-          <div class={{ 'form-control': true, 'input-container': true, 'focus': this.hasFocus, 'no-icon': this.hideIcon }}>
-            <cw-icon class={{ 'd-none': this.hideIcon }} name={this.icon} size="16"></cw-icon>
+        <form ref={(el) => (this.formElement = el)}>
+          <div
+            class={{
+              'form-control': true,
+              'input-container': true,
+              focus: this.hasFocus,
+              'no-icon': this.hideIcon,
+            }}
+          >
+            <ix-icon
+              class={{ 'd-none': this.hideIcon }}
+              name={this.icon}
+              size="16"
+            ></ix-icon>
             <div class="token-container">
               <ul class="list-unstyled">
                 {this.filterTokens.map((value, index) => (
@@ -480,16 +549,31 @@ export class CwCategoryFilter {
                       animate__fadein: true,
                     }}
                   >
-                    <cw-filter-chip onCloseClick={() => this.removeToken(index)}>{this.getFilterChipLabel(value)}</cw-filter-chip>
+                    <ix-filter-chip
+                      onCloseClick={() => this.removeToken(index)}
+                    >
+                      {this.getFilterChipLabel(value)}
+                    </ix-filter-chip>
                   </li>
                 ))}
-                {this.categories === undefined ? '' : <li class={{ 'category-preview': true, 'd-none': !this.category }}>{this.categories[this.category]?.label}</li>}
+                {this.categories === undefined ? (
+                  ''
+                ) : (
+                  <li
+                    class={{
+                      'category-preview': true,
+                      'd-none': !this.category,
+                    }}
+                  >
+                    {this.categories[this.category]?.label}
+                  </li>
+                )}
                 <input
                   class={{
                     'text-input': true,
                     'hide-placeholder': this.category !== undefined,
                   }}
-                  ref={el => (this.textInput = el)}
+                  ref={(el) => (this.textInput = el)}
                   type="text"
                   placeholder={this.placeholder}
                   onFocus={() => this.openCategorySelection()}
@@ -498,7 +582,7 @@ export class CwCategoryFilter {
             </div>
             <button
               class={{
-                'btn': true,
+                btn: true,
                 'btn-invisible-secondary': true,
                 'btn-oval': true,
                 'btn-close': true,
@@ -515,28 +599,44 @@ export class CwCategoryFilter {
         <div
           class={{
             'category-selection-container': true,
-            'd-none': !this.showCategorySelection && this.category === undefined,
+            'd-none':
+              !this.showCategorySelection && this.category === undefined,
           }}
-          style={{ 'left': this.offsetDropdownX, 'top': this.offsetDropdownY, 'max-width': this.maxWidthDropdown, 'max-height': this.maxHeightDropdown }}
+          style={{
+            left: this.offsetDropdownX,
+            top: this.offsetDropdownY,
+            'max-width': this.maxWidthDropdown,
+            'max-height': this.maxHeightDropdown,
+          }}
         >
           <div
             class={{
-              'd-none': !this.showCategorySelection || this.category !== undefined,
+              'd-none':
+                !this.showCategorySelection || this.category !== undefined,
             }}
           >
             <div
               class={{
                 'category-item-header': true,
-                'd-none': this.getCategoryLables().filter(value => this.filterByInput(value)).length === 0,
+                'd-none':
+                  this.getCategoryLables().filter((value) =>
+                    this.filterByInput(value)
+                  ).length === 0,
               }}
             >
               {this.labelCategories}
             </div>
             {this.getCategoryIds()
-              ?.filter(id => this.filterByInput(this.categories[id].label))
-              .filter(id => this.filterMultiples(id))
-              .map(id => (
-                <div data-id={id} title={id} class="category-item category-item-id" onClick={() => this.selectCategory(id)} tabindex="0">
+              ?.filter((id) => this.filterByInput(this.categories[id].label))
+              .filter((id) => this.filterMultiples(id))
+              .map((id) => (
+                <div
+                  data-id={id}
+                  title={id}
+                  class="category-item category-item-id"
+                  onClick={() => this.selectCategory(id)}
+                  tabindex="0"
+                >
                   {this.categories[id]?.label}
                 </div>
               ))}
@@ -547,18 +647,41 @@ export class CwCategoryFilter {
               'd-none': this.category === undefined,
             }}
           >
-            <button class="btn btn-invisible-secondary btn-icon" onClick={() => this.toggleCategoryOperator()} tabindex="-1">
-              {this.categoryLogicalOperator === LogicalFilterOperator.NOT_EQUAL ? '=' : '!='}
+            <button
+              class="btn btn-invisible-secondary btn-icon"
+              onClick={() => this.toggleCategoryOperator()}
+              tabindex="-1"
+            >
+              {this.categoryLogicalOperator === LogicalFilterOperator.NOT_EQUAL
+                ? '='
+                : '!='}
             </button>
-            {this.categories === undefined ? '' : <div class="category-item-header">{this.categories[this.category]?.label}</div>}
+            {this.categories === undefined ? (
+              ''
+            ) : (
+              <div class="category-item-header">
+                {this.categories[this.category]?.label}
+              </div>
+            )}
             {this.categories === undefined
               ? ''
               : this.categories[this.category]?.options
-                  .filter(value => this.filterByInput(value))
-                  .filter(value => this.filterDuplicateTokens(value))
-                  .map(id => (
-                    <div data-id={id} title={id} class="category-item category-item-value" onClick={() => this.addToken(id, this.category)} tabindex="0">
-                      {`${this.categoryLogicalOperator === LogicalFilterOperator.EQUAL ? '=' : '!='} ${id}`}
+                  .filter((value) => this.filterByInput(value))
+                  .filter((value) => this.filterDuplicateTokens(value))
+                  .map((id) => (
+                    <div
+                      data-id={id}
+                      title={id}
+                      class="category-item category-item-value"
+                      onClick={() => this.addToken(id, this.category)}
+                      tabindex="0"
+                    >
+                      {`${
+                        this.categoryLogicalOperator ===
+                        LogicalFilterOperator.EQUAL
+                          ? '='
+                          : '!='
+                      } ${id}`}
                     </div>
                   ))}
           </div>
@@ -566,17 +689,31 @@ export class CwCategoryFilter {
           <div
             class={{
               'category-item-header': true,
-              'd-none': this.category !== undefined || this.getCategoryIds().filter(value => this.filterByInput(value)).length > 0,
+              'd-none':
+                this.category !== undefined ||
+                this.getCategoryIds().filter((value) =>
+                  this.filterByInput(value)
+                ).length > 0,
             }}
           >
             {this.i18nPlainText}
           </div>
-          <div class={{ 'd-none': !this.suggestions?.length || this.category !== undefined }}>
+          <div
+            class={{
+              'd-none':
+                !this.suggestions?.length || this.category !== undefined,
+            }}
+          >
             {this.suggestions
-              ?.filter(value => this.filterByInput(value))
-              .filter(value => this.filterDuplicateTokens(value))
-              .map(suggestion => (
-                <div data-id={suggestion} class="category-item plain-text-suggestion" onClick={() => this.addToken(suggestion)} tabindex="0">
+              ?.filter((value) => this.filterByInput(value))
+              .filter((value) => this.filterDuplicateTokens(value))
+              .map((suggestion) => (
+                <div
+                  data-id={suggestion}
+                  class="category-item plain-text-suggestion"
+                  onClick={() => this.addToken(suggestion)}
+                  tabindex="0"
+                >
                   {suggestion}
                 </div>
               ))}

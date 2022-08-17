@@ -1,7 +1,7 @@
 import { Component, Event, EventEmitter, h, Host } from '@stencil/core';
 
 @Component({
-  tag: 'cw-modal-example',
+  tag: 'ix-modal-example',
 })
 export class ModalExample {
   /**
@@ -20,14 +20,18 @@ export class ModalExample {
         <div>
           <div class="modal-header">
             Message headline
-            <cw-icon-button ghost icon="close" onClick={() => this.closeClick()}></cw-icon-button>
+            <ix-icon-button
+              ghost
+              icon="close"
+              onClick={() => this.closeClick()}
+            ></ix-icon-button>
           </div>
           <div class="modal-body">Message text lorem ipsum</div>
           <div class="modal-footer">
-            <cw-button outline onClick={() => this.closeClick()}>
+            <ix-button outline onClick={() => this.closeClick()}>
               Cancel
-            </cw-button>
-            <cw-button>OK</cw-button>
+            </ix-button>
+            <ix-button>OK</ix-button>
           </div>
         </div>
       </Host>

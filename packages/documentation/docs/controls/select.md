@@ -1,11 +1,11 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-select/props.md';
-import Events from './../auto-generated/cw-select/events.md';
+import Props from './../auto-generated/ix-select/props.md';
+import Events from './../auto-generated/ix-select/events.md';
 
-import ItemProps from './../auto-generated/cw-select-item/props.md';
-import ItemEvents from './../auto-generated/cw-select-item/events.md';
+import ItemProps from './../auto-generated/ix-select-item/props.md';
+import ItemEvents from './../auto-generated/ix-select-item/events.md';
 
 import SourceSelect from './../auto-generated/previews/web-component/select.md';
 import SourceEditable from './../auto-generated/previews/web-component/select-editable.md';
@@ -37,7 +37,7 @@ import SourceMultiple from './../auto-generated/previews/web-component/select-mu
   </TabItem>
 </Preview>
 
-## Properties (cw-select)
+## Properties (ix-select)
 
 ### Props
 
@@ -47,7 +47,7 @@ import SourceMultiple from './../auto-generated/previews/web-component/select-mu
 
 <Events />
 
-## Properties (cw-select-item)
+## Properties (ix-select-item)
 
 ### Props
 

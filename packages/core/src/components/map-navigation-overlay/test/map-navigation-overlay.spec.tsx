@@ -13,11 +13,10 @@ describe('map-navigation-overlay', () => {
       components: [MapNavigationOverlay],
       html: `<map-navigation-overlay></map-navigation-overlay>`,
     });
-    mapNavigationOverlay = page.doc.querySelector('cw-map-navigation');
+    mapNavigationOverlay = page.doc.querySelector('ix-map-navigation');
   });
 
   it('renders', async () => {
     expect(page.root).toMatchSnapshot();
   });
-  
 });

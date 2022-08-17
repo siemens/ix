@@ -2,9 +2,9 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/fonts';
-@import '../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/text-truncation';
 
 :host {
   $appHeaderHeight: 3.5rem;
@@ -36,7 +36,8 @@
     height: 100%;
     left: 4rem;
     background-color: var(--theme-color-1);
-    border-inline-end: 1px solid var(--theme-map-navigation-separator--background);
+    border-inline-end: 1px solid
+      var(--theme-map-navigation-separator--background);
     z-index: 99;
   }
 

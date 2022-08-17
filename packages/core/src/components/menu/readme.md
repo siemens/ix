@@ -1,6 +1,4 @@
-# cw-menu
-
-
+# ix-menu
 
 <!-- Auto Generated Below -->
 
@@ -9,8 +7,8 @@
 
 | Property                 | Attribute                 | Description                                                                                                                                   | Type      | Default                       |
 | ------------------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------- |
-| `applicationDescription` | `application-description` | Should only be set if you use cw-menu standalone                                                                                              | `string`  | `''`                          |
-| `applicationName`        | `application-name`        | Should only be set if you use cw-menu standalone                                                                                              | `string`  | `undefined`                   |
+| `applicationDescription` | `application-description` | Should only be set if you use ix-menu standalone                                                                                              | `string`  | `''`                          |
+| `applicationName`        | `application-name`        | Should only be set if you use ix-menu standalone                                                                                              | `string`  | `undefined`                   |
 | `enableMapExpand`        | `enable-map-expand`       | Internal                                                                                                                                      | `boolean` | `false`                       |
 | `enableSettings`         | `enable-settings`         | Is settings tab is visible                                                                                                                    | `boolean` | `true`                        |
 | `enableToggleTheme`      | `enable-toggle-theme`     | <span style="color:red">**[DEPRECATED]**</span> Show toggle theme button<br/><br/>                                                            | `boolean` | `false`                       |

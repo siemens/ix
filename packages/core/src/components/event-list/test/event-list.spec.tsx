@@ -19,17 +19,17 @@ describe('event-list', () => {
     const page = await newSpecPage({
       components: [EventList],
       html: `
-        <cw-event-list>
-          <cw-event-list-item  />
-        </cw-event-list>
+        <ix-event-list>
+          <ix-event-list-item  />
+        </ix-event-list>
       `,
     });
     expect(page.root).toEqualHtml(`
-      <cw-event-list class="item-size-s">
+      <ix-event-list class="item-size-s">
         <ul>
-          <cw-event-list-item />
+          <ix-event-list-item />
         </ul>
-      </cw-event-list>
+      </ix-event-list>
     `);
   });
 
@@ -37,24 +37,26 @@ describe('event-list', () => {
     const page = await newSpecPage({
       components: [EventList],
       html: `
-        <cw-event-list>
-          <cw-event-list-item  />
-        </cw-event-list>
+        <ix-event-list>
+          <ix-event-list-item  />
+        </ix-event-list>
       `,
     });
 
-    const eventList = page.doc.querySelector('cw-event-list') as HTMLCwEventListElement;
+    const eventList = page.doc.querySelector(
+      'ix-event-list'
+    ) as HTMLIxEventListElement;
 
     eventList.compact = true;
 
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-      <cw-event-list class="compact item-size-s">
+      <ix-event-list class="compact item-size-s">
         <ul>
-          <cw-event-list-item />
+          <ix-event-list-item />
         </ul>
-      </cw-event-list>
+      </ix-event-list>
     `);
   });
 
@@ -64,9 +66,9 @@ describe('event-list', () => {
       html: `<div></div>`,
     });
 
-    const eventList = page.doc.createElement('cw-event-list');
-    const eventListItem = page.doc.createElement('cw-event-list-item');
-    eventListItem.classList.add('cw-event-list-item');
+    const eventList = page.doc.createElement('ix-event-list');
+    const eventListItem = page.doc.createElement('ix-event-list-item');
+    eventListItem.classList.add('ix-event-list-item');
 
     eventListItem.animate = jest.fn();
 
@@ -78,11 +80,11 @@ describe('event-list', () => {
     expect(eventListItem.animate).toHaveBeenCalled();
 
     expect(page.root).toEqualHtml(`
-    <cw-event-list class="item-size-s">
+    <ix-event-list class="item-size-s">
       <ul>
-        <cw-event-list-item class="cw-event-list-item"></cw-event-list-item>
+        <ix-event-list-item class="ix-event-list-item"></ix-event-list-item>
       </ul>
-    </cw-event-list>
+    </ix-event-list>
     `);
   });
 
@@ -92,11 +94,11 @@ describe('event-list', () => {
       html: `<div></div>`,
     });
 
-    const eventList = page.doc.createElement('cw-event-list');
+    const eventList = page.doc.createElement('ix-event-list');
     eventList.animated = false;
 
-    const eventListItem = page.doc.createElement('cw-event-list-item');
-    eventListItem.classList.add('cw-event-list-item');
+    const eventListItem = page.doc.createElement('ix-event-list-item');
+    eventListItem.classList.add('ix-event-list-item');
 
     eventListItem.animate = jest.fn();
 
@@ -108,11 +110,11 @@ describe('event-list', () => {
     expect(eventListItem.animate).not.toHaveBeenCalled();
 
     expect(page.root).toEqualHtml(`
-    <cw-event-list class="item-size-s">
+    <ix-event-list class="item-size-s">
       <ul>
-        <cw-event-list-item class="cw-event-list-item"></cw-event-list-item>
+        <ix-event-list-item class="ix-event-list-item"></ix-event-list-item>
       </ul>
-    </cw-event-list>
+    </ix-event-list>
     `);
   });
 });

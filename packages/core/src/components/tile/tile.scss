@@ -1,8 +1,8 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
 :host {
   @mixin set-height($height) {
@@ -63,7 +63,6 @@
   .tile-subheader,
   .tile-content,
   .tile-footer {
-
     &:not(:empty) {
       padding: 0 $default-space;
     }
@@ -71,11 +70,9 @@
 
   .tile-header,
   .tile-subheader,
-  .tile-content
-   {
+  .tile-content {
     flex-grow: 1;
   }
-
 
   .tile-header:not(:empty) {
     display: flex;

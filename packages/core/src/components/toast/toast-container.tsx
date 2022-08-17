@@ -4,14 +4,14 @@
 
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Disposable, TypedEvent } from '../utils/typed-event';
-import { ToastConfig } from './toast';
+import { ToastConfig } from './toast-utils';
 
 @Component({
-  tag: 'cw-toast-container',
+  tag: 'ix-toast-container',
   scoped: true,
 })
 export class CwToastContainer {
-  @Element() host!: HTMLCwToastContainerElement;
+  @Element() host!: HTMLIxToastContainerElement;
 
   /**
    */
@@ -64,7 +64,7 @@ export class CwToastContainer {
    */
   @Method()
   async showToast(config: ToastConfig) {
-    const toast = document.createElement('cw-toast');
+    const toast = document.createElement('ix-toast');
 
     function removeToast() {
       toast.remove();

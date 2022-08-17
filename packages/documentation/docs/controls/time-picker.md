@@ -1,7 +1,7 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-time-picker/props.md';
-import Events from './../auto-generated/cw-time-picker/events.md';
+import Props from './../auto-generated/ix-time-picker/props.md';
+import Events from './../auto-generated/ix-time-picker/events.md';
 
 import SourceTimepicker from './../auto-generated/previews/web-component/timepicker.md'
 

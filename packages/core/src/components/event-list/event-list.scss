@@ -17,17 +17,17 @@ ul {
 
 :host:not(.item-size-s),
 :host:not(.item-size-l) {
-  ::slotted(& .cw-event-list-item) {
+  ::slotted(& .ix-event-list-item) {
     display: none;
   }
 }
 
-:host.chevron ::slotted(* .cw-event-list-item) .chevron-icon {
+:host.chevron ::slotted(* .ix-event-list-item) .chevron-icon {
   display: initial;
 }
 
 .item-size-l {
-  ::slotted(* .cw-event-list-item) {
+  ::slotted(* .ix-event-list-item) {
     height: $item-height-l;
     max-height: $item-height-l;
 
@@ -40,7 +40,7 @@ ul {
 }
 
 .compact {
-  ::slotted(* .cw-event-list-item) {
+  ::slotted(* .ix-event-list-item) {
     margin-bottom: 0px;
     border-radius: 0px;
 

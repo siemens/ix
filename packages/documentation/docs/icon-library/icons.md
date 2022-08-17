@@ -25,9 +25,9 @@ Using icons within your project. We need to:
 ### Web component
 
 ```html
-<cw-icon name="star" size="16"></cw-icon>
-<cw-icon name="star" size="24"></cw-icon>
-<cw-icon name="star" size="32"></cw-icon>
+<ix-icon name="star" size="16"></ix-icon>
+<ix-icon name="star" size="24"></ix-icon>
+<ix-icon name="star" size="32"></ix-icon>
 ```
 
 ## Example Angular style.scss

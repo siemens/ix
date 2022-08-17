@@ -1,6 +1,4 @@
-# cw-datetime-picker
-
-
+# ix-datetime-picker
 
 <!-- Auto Generated Below -->
 

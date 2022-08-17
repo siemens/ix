@@ -1,6 +1,4 @@
-# cw-tabs
-
-
+# ix-tabs
 
 <!-- Auto Generated Below -->
 

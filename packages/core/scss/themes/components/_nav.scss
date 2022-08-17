@@ -1,9 +1,0 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-@import './../utils/define-theme-variable';
-
-@mixin nav {
-  @include define-theme-variable('nav-item-bg-hover', var(--theme-ghost-hover));
-  @include define-theme-variable('nav-font-color', var(--theme-color-soft-text));
-}

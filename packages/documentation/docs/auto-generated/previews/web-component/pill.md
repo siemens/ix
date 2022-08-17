@@ -1,24 +1,24 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/pill.html -->
 ```html
-<cw-pill variant="custom" color="white" background="purple">
+<ix-pill variant="custom" color="white" background="purple">
   Label
-</cw-pill>
+</ix-pill>
 
-<cw-pill>Label</cw-pill>
-<cw-pill outline>Label</cw-pill>
-<cw-pill style="width: 8rem">Label</cw-pill>
+<ix-pill>Label</ix-pill>
+<ix-pill outline>Label</ix-pill>
+<ix-pill style="width: 8rem">Label</ix-pill>
 
-<cw-pill icon="star">Label</cw-pill>
-<cw-pill icon="star" style="width: 8rem"> Label </cw-pill>
-<cw-pill outline alignLeft icon="star" style="width: 8rem"> Label </cw-pill>
+<ix-pill icon="star">Label</ix-pill>
+<ix-pill icon="star" style="width: 8rem"> Label </ix-pill>
+<ix-pill outline alignLeft icon="star" style="width: 8rem"> Label </ix-pill>
 
-<cw-pill variant="alarm">Label</cw-pill>
-<cw-pill variant="alarm" outline> Label </cw-pill>
-<cw-pill variant="alarm" style="width: 8rem"> Label </cw-pill>
+<ix-pill variant="alarm">Label</ix-pill>
+<ix-pill variant="alarm" outline> Label </ix-pill>
+<ix-pill variant="alarm" style="width: 8rem"> Label </ix-pill>
 
-<cw-pill variant="alarm" icon="star"> Label </cw-pill>
-<cw-pill variant="alarm" icon="star" style="width: 8rem"> Label </cw-pill>
-<cw-pill variant="alarm" outline alignLeft icon="star" style="width: 8rem">
+<ix-pill variant="alarm" icon="star"> Label </ix-pill>
+<ix-pill variant="alarm" icon="star" style="width: 8rem"> Label </ix-pill>
+<ix-pill variant="alarm" outline alignLeft icon="star" style="width: 8rem">
   Label
-</cw-pill>
+</ix-pill>
 ```

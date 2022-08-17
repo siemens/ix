@@ -2,18 +2,17 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, h, Host, Prop, Element} from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
-export type DateTimeCardCorners = 'rounded' | 'left' | 'right'
+export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 
 @Component({
-  tag: 'cw-date-time-card',
+  tag: 'ix-date-time-card',
   styleUrl: 'date-time-card.scss',
   scoped: true,
 })
 export class DateTimeCard {
-
-  @Element() hostElement: HTMLCwDateTimeCardElement;
+  @Element() hostElement: HTMLIxDateTimeCardElement;
 
   /**
    * set styles
@@ -23,14 +22,14 @@ export class DateTimeCard {
   /**
    * Set corners style
    */
-   @Prop() corners: DateTimeCardCorners = 'rounded';
+  @Prop() corners: DateTimeCardCorners = 'rounded';
 
-   private cardClasses() {
+  private cardClasses() {
     return {
-      'card': true,
-      'individual': this.individual,
-      'left': this.corners === 'left',
-      'right': this.corners === 'right'
+      card: true,
+      individual: this.individual,
+      left: this.corners === 'left',
+      right: this.corners === 'right',
     };
   }
 
@@ -38,15 +37,15 @@ export class DateTimeCard {
     return (
       <Host>
         <div class={this.cardClasses()}>
-            <div class="header">
-              <slot name="header"></slot>
-            </div>
+          <div class="header">
+            <slot name="header"></slot>
+          </div>
 
-            <div class="separator"></div>
+          <div class="separator"></div>
 
-            <div class="content">
-              <slot></slot>
-            </div>
+          <div class="content">
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );

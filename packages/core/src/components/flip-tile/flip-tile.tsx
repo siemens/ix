@@ -6,7 +6,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { FlipTileState } from './flip-tile-state';
 
 @Component({
-  tag: 'cw-flip-tile',
+  tag: 'ix-flip-tile',
   styleUrl: 'flip-tile.scss',
   scoped: true,
 })
@@ -15,7 +15,7 @@ export class CwFlipTile {
   private contentContainerElement: HTMLDivElement;
   private contentItems: NodeList;
 
-  @Element() hostElement: HTMLCwFlipTileElement;
+  @Element() hostElement: HTMLIxFlipTileElement;
 
   @State() index = 0;
 
@@ -32,7 +32,9 @@ export class CwFlipTile {
   @Prop() footer: string;
 
   componentDidLoad() {
-    this.contentItems = this.contentContainerElement.querySelectorAll('cw-flip-tile-content');
+    this.contentItems = this.contentContainerElement.querySelectorAll(
+      'ix-flip-tile-content'
+    );
     this.contentItems.forEach((_, index) => {
       if (index !== this.index) {
         this.toggleContentItem(index);
@@ -75,10 +77,10 @@ export class CwFlipTile {
         <div
           class={{
             'flip-tile-container': true,
-            'info': this.state === FlipTileState.Info,
-            'warning': this.state === FlipTileState.Warning,
-            'alarm': this.state === FlipTileState.Alarm,
-            'primary': this.state === FlipTileState.Primary,
+            info: this.state === FlipTileState.Info,
+            warning: this.state === FlipTileState.Warning,
+            alarm: this.state === FlipTileState.Alarm,
+            primary: this.state === FlipTileState.Primary,
             'flip-animation-active': this.isFlipAnimationActive,
           }}
         >
@@ -86,18 +88,27 @@ export class CwFlipTile {
             <div class="header-slot-container text-l-title">
               <slot name="header"></slot>
             </div>
-            <cw-icon-button icon="eye" variant='Primary' ghost onClick={() => this.toggleIndex()}>
-            </cw-icon-button>
+            <ix-icon-button
+              icon="eye"
+              variant="Primary"
+              ghost
+              onClick={() => this.toggleIndex()}
+            ></ix-icon-button>
           </div>
 
-          <div class="content-container" ref={el => (this.contentContainerElement = el)}>
+          <div
+            class="content-container"
+            ref={(el) => (this.contentContainerElement = el)}
+          >
             <slot></slot>
           </div>
           <div
             class={{
-              'footer': true,
+              footer: true,
               'contrast-light': this.state === FlipTileState.Warning,
-              'contrast-dark': this.state === FlipTileState.Info || this.state === FlipTileState.Alarm,
+              'contrast-dark':
+                this.state === FlipTileState.Info ||
+                this.state === FlipTileState.Alarm,
             }}
           >
             <slot name="footer"></slot>

@@ -12,10 +12,10 @@ export const defaultImprint = (
   labelTermsOfUse: string,
   labelCookieNotice: string,
   labelDigitalId: string,
-  legalLinkLanguage: LegalLinkLanguage,
+  legalLinkLanguage: LegalLinkLanguage
 ) => {
   return (
-    <cw-menu-about-item label={tabName}>
+    <ix-menu-about-item label={tabName}>
       <div id="cui-imprint">
         <div class="cui-imprint-product-name">
           {productName}
@@ -54,6 +54,6 @@ export const defaultImprint = (
           </a>
         </div>
       </div>
-    </cw-menu-about-item>
+    </ix-menu-about-item>
   );
 };

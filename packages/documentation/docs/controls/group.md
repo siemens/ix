@@ -1,14 +1,14 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-group/props.md';
-import Events from './../auto-generated/cw-group/events.md';
+import Props from './../auto-generated/ix-group/props.md';
+import Events from './../auto-generated/ix-group/events.md';
 
-import ItemProps from './../auto-generated/cw-group-item/props.md';
-import ItemEvents from './../auto-generated/cw-group-item/events.md';
+import ItemProps from './../auto-generated/ix-group-item/props.md';
+import ItemEvents from './../auto-generated/ix-group-item/events.md';
 
-import DropdownItemProps from './../auto-generated/cw-group-dropdown-item/props.md';
-import DropdownItemEvents from './../auto-generated/cw-group-dropdown-item/events.md';
+import DropdownItemProps from './../auto-generated/ix-group-dropdown-item/props.md';
+import DropdownItemEvents from './../auto-generated/ix-group-dropdown-item/events.md';
 
 import SourceGroup from './../auto-generated/previews/web-component/group.md'
 import SourceGroupSuppressed from './../auto-generated/previews/web-component/group-header-suppressed.md'
@@ -49,7 +49,7 @@ import SourceGroupContext from './../auto-generated/previews/web-component/group
   </TabItem>
 </Preview>
 
-## Properties (cw-group)
+## Properties (ix-group)
 
 ### Props
 
@@ -59,7 +59,7 @@ import SourceGroupContext from './../auto-generated/previews/web-component/group
 
 <Events />
 
-## Properties (cw-group-item)
+## Properties (ix-group-item)
 
 ### Props
 
@@ -69,7 +69,7 @@ import SourceGroupContext from './../auto-generated/previews/web-component/group
 
 <ItemEvents />
 
-## Properties (cw-group-dropdown-item)
+## Properties (ix-group-dropdown-item)
 
 ### Props
 

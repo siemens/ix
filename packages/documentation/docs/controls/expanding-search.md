@@ -1,7 +1,7 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-expanding-search/props.md';
-import Events from './../auto-generated/cw-expanding-search/events.md';
+import Props from './../auto-generated/ix-expanding-search/props.md';
+import Events from './../auto-generated/ix-expanding-search/events.md';
 
 import SourceExpandingSearch from './../auto-generated/previews/web-component/expanding-search.md'
 

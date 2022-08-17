@@ -1,7 +1,7 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-drawer/props.md';
-import Events from './../auto-generated/cw-drawer/events.md';
+import Props from './../auto-generated/ix-drawer/props.md';
+import Events from './../auto-generated/ix-drawer/events.md';
 
 import SourceDrawer from './../auto-generated/previews/web-component/drawer.md'
 import SourceDrawerFullHeight from './../auto-generated/previews/web-component/drawer-full-height.md'

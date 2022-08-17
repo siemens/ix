@@ -2,12 +2,12 @@
 ```html
 
 <div style="height: 8rem; width: 100%">
-  <cw-tree root="root" id="tree"></cw-tree>
+  <ix-tree root="root" id="tree"></ix-tree>
 </div>
 
 <script type="text/javascript">
   (async function () {
-    await window.customElements.whenDefined('cw-tree');
+    await window.customElements.whenDefined('ix-tree');
     const tree = document.getElementById('tree');
 
     tree.model = {

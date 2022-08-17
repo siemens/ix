@@ -2,10 +2,10 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/fonts';
-@import '../../../scss/v7/mixins/hover';
-@import '../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
 
 :host {
   display: flex;
@@ -26,7 +26,7 @@
     border-bottom-right-radius: 0.25rem;
   }
 
-  cw-icon {
+  ix-icon {
     margin-right: $tiny-space;
     margin-top: -0.125rem;
   }
@@ -44,7 +44,8 @@
   }
 
   .group-entry-text-secondary {
-    &, span {
+    &,
+    span {
       @include ellipsis;
     }
 

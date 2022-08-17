@@ -1,10 +1,10 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-breadcrumb/props.md';
-import Events from './../auto-generated/cw-breadcrumb/events.md';
+import Props from './../auto-generated/ix-breadcrumb/props.md';
+import Events from './../auto-generated/ix-breadcrumb/events.md';
 
-import ItemProps from './../auto-generated/cw-breadcrumb-item/props.md';
+import ItemProps from './../auto-generated/ix-breadcrumb-item/props.md';
 
 import SourceBreadcrumb from './../auto-generated/previews/web-component/breadcrumb.md'
 import SourceBreadcrumbTruncate from './../auto-generated/previews/web-component/breadcrumb-truncate.md'
@@ -36,7 +36,7 @@ import SourceBreadcrumbNextItems from './../auto-generated/previews/web-componen
   </TabItem>
 </Preview>
 
-## Properties (cw-breadcrumb)
+## Properties (ix-breadcrumb)
 
 ### Props
 
@@ -46,7 +46,7 @@ import SourceBreadcrumbNextItems from './../auto-generated/previews/web-componen
 
 <Events />
 
-## Properties (cw-breadcrumb-item)
+## Properties (ix-breadcrumb-item)
 
 ### Props
 

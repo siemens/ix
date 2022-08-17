@@ -3,7 +3,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
 import '@siemens/core-ui-icons/dist/css/core-ui-webfont.css';
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import '@siemens/ix/dist/core-ui-core/core-ui-core.css';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

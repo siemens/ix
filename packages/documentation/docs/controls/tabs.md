@@ -1,11 +1,11 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-tabs/props.md';
-import Events from './../auto-generated/cw-tabs/events.md';
+import Props from './../auto-generated/ix-tabs/props.md';
+import Events from './../auto-generated/ix-tabs/events.md';
 
-import ItemProps from './../auto-generated/cw-tab-item/props.md';
-import ItemEvents from './../auto-generated/cw-tab-item/events.md';
+import ItemProps from './../auto-generated/ix-tab-item/props.md';
+import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
 import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
 
@@ -19,7 +19,7 @@ import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
   </TabItem>
 </Preview>
 
-## Properties (cw-tabs)
+## Properties (ix-tabs)
 
 ### Props
 
@@ -29,7 +29,7 @@ import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
 
 <Events />
 
-## Properties (cw-tab-item)
+## Properties (ix-tab-item)
 
 ### Props
 

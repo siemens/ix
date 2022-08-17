@@ -1,6 +1,4 @@
-# cw-group-item
-
-
+# ix-group-item
 
 <!-- Auto Generated Below -->
 
@@ -22,7 +20,7 @@
 
 | Event             | Description       | Type                                  |
 | ----------------- | ----------------- | ------------------------------------- |
-| `selectedChanged` | Selection changed | `CustomEvent<HTMLCwGroupItemElement>` |
+| `selectedChanged` | Selection changed | `CustomEvent<HTMLIxGroupItemElement>` |
 
 
 ----------------------------------------------

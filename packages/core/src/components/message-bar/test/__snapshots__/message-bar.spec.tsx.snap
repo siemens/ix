@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cw-message-bar renders 1`] = `
-<cw-message-bar type="danger">
+exports[`ix-message-bar renders 1`] = `
+<ix-message-bar type="danger">
   <!---->
   <div class="danger message-container" role="alert">
-    <cw-icon color="color-alarm" name="alarm-filled" size="32"></cw-icon>
+    <ix-icon color="color-alarm" name="alarm-filled" size="32"></ix-icon>
     <div class="message-content"></div>
-    <cw-icon-button class="btn-close" data-testid="close-btn" icon="close" ghost="" size="24"></cw-icon-button>
+    <ix-icon-button class="btn-close" data-testid="close-btn" icon="close" ghost="" size="24"></ix-icon-button>
   </div>
-</cw-message-bar>
+</ix-message-bar>
 `;

@@ -3,19 +3,19 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { CwToast } from '../cw-toast';
+import { CwToast } from '../ix-toast';
 
-describe('cw-toast', () => {
+describe('ix-toast', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [CwToast],
-      html: `<cw-toast toast-title="Test title">Test message</cw-toast>`,
+      html: `<ix-toast toast-title="Test title">Test message</ix-toast>`,
     });
 
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-      <cw-toast class=\"animate__animated animate__fadeIn\" toast-title=\"Test title\">
+      <ix-toast class=\"animate__animated animate__fadeIn\" toast-title=\"Test title\">
       <div class=\"toast-body\">
         <div class=\"toast-content\">
           <div class=\"text-default-title-single toast-title\">
@@ -26,11 +26,11 @@ describe('cw-toast', () => {
           </div>
         </div>
         <div class=\"toast-close\">
-          <cw-icon-button icon=\"close\" ghost=\"\" size=\"24\"></cw-icon-button>
+          <ix-icon-button icon=\"close\" ghost=\"\" size=\"24\"></ix-icon-button>
         </div>
       </div>
       <div class=\"toast-progress-bar toast-progress-bar--animated\" style=\"animation-duration: 5000ms; animation-play-state: running;\"></div>
-    </cw-toast>
+    </ix-toast>
       `);
   });
 });

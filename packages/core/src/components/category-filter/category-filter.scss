@@ -1,7 +1,7 @@
 /**
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import 'variables';
+@import 'common-variables';
 @import 'mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/shadows';
@@ -69,13 +69,13 @@
     overflow-y: auto;
   }
 
-  cw-icon {
+  ix-icon {
     position: absolute;
     top: $small-space;
     left: $small-space;
   }
 
-  cw-filter-chip {
+  ix-filter-chip {
     margin-right: $small-space;
   }
 
@@ -125,7 +125,8 @@
     }
 
     .category-item {
-      @include generic-mouse-states;
+      // Needs to be replaced https://***REMOVED***/siemens-ix/siemens-ix/-/issues/1
+      // @include generic-mouse-states;
       cursor: pointer;
     }
 

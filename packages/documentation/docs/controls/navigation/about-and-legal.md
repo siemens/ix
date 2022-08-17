@@ -6,9 +6,9 @@ title: About and legal
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Demo from '@site/src/components/Demo';
-import Props from './../../auto-generated/cw-menu-about/props.md';
-import Events from './../../auto-generated/cw-menu-about/events.md';
-import PropsItem from './../../auto-generated/cw-menu-about-item/props.md';
+import Props from './../../auto-generated/ix-menu-about/props.md';
+import Events from './../../auto-generated/ix-menu-about/events.md';
+import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
 
 import WebComponent from './../../auto-generated/previews/web-component/about-and-legal.md'
 
@@ -34,7 +34,7 @@ import WebComponent from './../../auto-generated/previews/web-component/about-an
 
 Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
-### cw-menu-about
+### ix-menu-about
 
 #### Props
 
@@ -44,7 +44,7 @@ Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
 <Events />
 
-### cw-menu-about-item
+### ix-menu-about-item
 
 #### Props
 

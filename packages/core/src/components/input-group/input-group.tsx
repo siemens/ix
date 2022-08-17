@@ -4,33 +4,35 @@
 import { Component, Element, h, Host } from '@stencil/core';
 
 @Component({
-  tag: 'cw-input-group',
+  tag: 'ix-input-group',
   styleUrl: 'input-group.scss',
   scoped: true,
 })
 export class InputGroup {
-  @Element() host!: HTMLCwInputGroupElement;
+  @Element() host!: HTMLIxInputGroupElement;
 
   componentDidRender() {
     let paddingRight = 15;
     let paddingLeft = 15;
-    this.host.querySelectorAll('[slot="input-end"]').forEach(item => {
+    this.host.querySelectorAll('[slot="input-end"]').forEach((item) => {
       item.classList.add('input-group-label');
       paddingRight += item.getBoundingClientRect().width;
     });
 
-    this.host.querySelectorAll('[slot="input-start"]').forEach(item => {
+    this.host.querySelectorAll('[slot="input-start"]').forEach((item) => {
       item.classList.add('input-group-label');
       paddingLeft += item.getBoundingClientRect().width;
     });
 
-    const inputElement = this.host.querySelector('input.form-control') as HTMLInputElement;
+    const inputElement = this.host.querySelector(
+      'input.form-control'
+    ) as HTMLInputElement;
 
     if (inputElement) {
       inputElement.style.paddingRight = paddingRight + 'px';
       inputElement.style.paddingLeft = paddingLeft + 'px';
     } else {
-      console.warn('You used the cw-input-group without an input-tag!');
+      console.warn('You used the ix-input-group without an input-tag!');
     }
   }
 

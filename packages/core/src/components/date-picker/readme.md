@@ -1,6 +1,4 @@
-# cw-date-picker
-
-
+# ix-date-picker
 
 <!-- Auto Generated Below -->
 

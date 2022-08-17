@@ -3,10 +3,10 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { ExpandingSearch } from '../expanding-search';
 import { fireEvent } from '@testing-library/dom';
+import { ExpandingSearch } from '../expanding-search';
 
-describe('cw-expanding-search', () => {
+describe('ix-expanding-search', () => {
   let page: any;
   let expandingSearch: any;
   let button: any;
@@ -16,9 +16,9 @@ describe('cw-expanding-search', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [ExpandingSearch],
-      html: `<cw-expanding-search></cw-expanding-search>`,
+      html: `<ix-expanding-search></ix-expanding-search>`,
     });
-    expandingSearch = page.doc.querySelector('cw-expanding-search');
+    expandingSearch = page.doc.querySelector('ix-expanding-search');
     button = page.doc.querySelector('[data-testid="button"]');
     input = page.doc.querySelector('[data-testid="input"]');
     inputWrapper = page.doc.querySelector('[data-testid="input-wrapper"]');

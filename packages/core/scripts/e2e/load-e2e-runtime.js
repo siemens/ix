@@ -7,18 +7,18 @@ function loadResources() {
   ixEsm.setAttribute('type', 'module');
   ixEsm.setAttribute(
     'src',
-    'http://127.0.0.1:8080/www/build/core-ui-core.esm.js'
+    'http://127.0.0.1:8080/www/build/siemens-ix.esm.js'
   );
 
   var ix = document.createElement('script');
   ix.setAttribute('nomodule', '');
-  ix.setAttribute('src', 'http://127.0.0.1:8080/www/build/core-ui-core.js');
+  ix.setAttribute('src', 'http://127.0.0.1:8080/www/build/siemens-ix.js');
 
   var ixStyling = document.createElement('link');
   ixStyling.setAttribute('rel', 'stylesheet');
   ixStyling.setAttribute(
     'href',
-    'http://127.0.0.1:8080/www/build/core-ui-core.css'
+    'http://127.0.0.1:8080/www/build/siemens-ix.css'
   );
 
   var ixIcons = document.createElement('link');

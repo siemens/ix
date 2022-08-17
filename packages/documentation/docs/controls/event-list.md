@@ -1,11 +1,11 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-event-list/props.md';
-import Events from './../auto-generated/cw-event-list/events.md';
+import Props from './../auto-generated/ix-event-list/props.md';
+import Events from './../auto-generated/ix-event-list/events.md';
 
-import ItemProps from './../auto-generated/cw-event-list-item/props.md';
-import ItemEvents from './../auto-generated/cw-event-list-item/events.md';
+import ItemProps from './../auto-generated/ix-event-list-item/props.md';
+import ItemEvents from './../auto-generated/ix-event-list-item/events.md';
 
 import SourceEventList from './../auto-generated/previews/web-component/event-list.md'
 import SourceEventListSelected from './../auto-generated/previews/web-component/event-list-selected.md'
@@ -46,7 +46,7 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
   </TabItem>
 </Preview>
 
-## Properties (cw-event-list)
+## Properties (ix-event-list)
 
 ### Props
 
@@ -56,7 +56,7 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
 
 <Events />
 
-## Properties (cw-event-list-item)
+## Properties (ix-event-list-item)
 
 ### Props
 

@@ -1,11 +1,11 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-select/props.md';
-import Events from './../auto-generated/cw-select/events.md';
+import Props from './../auto-generated/ix-select/props.md';
+import Events from './../auto-generated/ix-select/events.md';
 
-import ItemProps from './../auto-generated/cw-select-item/props.md';
-import ItemEvents from './../auto-generated/cw-select-item/events.md';
+import ItemProps from './../auto-generated/ix-select-item/props.md';
+import ItemEvents from './../auto-generated/ix-select-item/events.md';
 
 import SourceSplitButton from './../auto-generated/previews/web-component/split-button.md';
 import SourceSplitButtonIcons from './../auto-generated/previews/web-component/split-button-icons.md';
@@ -28,7 +28,7 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
   </TabItem>
 </Preview>
 
-## Properties (cw-split-button)
+## Properties (ix-split-button)
 
 ### Props
 
@@ -38,7 +38,7 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
 
 <Events />
 
-## Properties (cw-split-button-item)
+## Properties (ix-split-button-item)
 
 ### Props
 

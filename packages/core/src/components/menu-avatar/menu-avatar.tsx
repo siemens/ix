@@ -1,16 +1,26 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from '@stencil/core';
 import { Popover } from '../utils/popover.util';
 
 @Component({
-  tag: 'cw-menu-avatar',
+  tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
   scoped: true,
 })
 export class MenuAvatar {
-  @Element() hostElement: HTMLCwMenuAvatarElement;
+  @Element() hostElement: HTMLIxMenuAvatarElement;
 
   @State() displayMenu: boolean;
 
@@ -43,9 +53,13 @@ export class MenuAvatar {
   }
 
   componentDidLoad() {
-    this.outsideListener = new Popover(this.hostElement, this.hostElement.querySelector('cw-dropdown'), () => {
-      this.displayMenu = false;
-    });
+    this.outsideListener = new Popover(
+      this.hostElement,
+      this.hostElement.querySelector('ix-dropdown'),
+      () => {
+        this.displayMenu = false;
+      }
+    );
   }
 
   disconnectedCallback() {
@@ -56,7 +70,12 @@ export class MenuAvatar {
     return (
       <Host>
         <li class="nav-item top-item avatar no-hover" title={this.top}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+          >
             <g fill="none" fill-rule="evenodd">
               <path
                 id="avatar-path-background"
@@ -81,16 +100,16 @@ export class MenuAvatar {
             </span>
           </div>
         </li>
-        <cw-dropdown show={this.displayMenu}>
+        <ix-dropdown show={this.displayMenu}>
           <slot></slot>
-          <cw-menu-avatar-item
+          <ix-menu-avatar-item
             label={this.i18nLogout}
             icon="log-out"
-            onClick={e => {
+            onClick={(e) => {
               this.logoutClick.emit(e);
             }}
-          ></cw-menu-avatar-item>
-        </cw-dropdown>
+          ></ix-menu-avatar-item>
+        </ix-dropdown>
       </Host>
     );
   }

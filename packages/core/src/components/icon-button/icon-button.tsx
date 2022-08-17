@@ -6,7 +6,7 @@ import { getButtonClasses } from '../button/base-button';
 import { Button } from '../button/button';
 
 @Component({
-  tag: 'cw-icon-button',
+  tag: 'ix-icon-button',
   scoped: true,
 })
 export class IconButton implements Button {
@@ -66,14 +66,22 @@ export class IconButton implements Button {
     return {
       'btn-icon-xs': this.size === '12',
       'btn-icon-s': this.size === '16',
-      ...getButtonClasses(this.variant, this.outline, this.ghost || this.invisible, true, this.oval, this.selected, this.disabled),
+      ...getButtonClasses(
+        this.variant,
+        this.outline,
+        this.ghost || this.invisible,
+        true,
+        this.oval,
+        this.selected,
+        this.disabled
+      ),
     };
   }
 
   render() {
     return (
       <button class={this.getIconButtonClasses()}>
-        <cw-icon size={this.size} name={this.icon} color={this.color} />
+        <ix-icon size={this.size} name={this.icon} color={this.color} />
         <div style={{ display: 'none' }}>
           <slot></slot>
         </div>

@@ -2,9 +2,9 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/hover';
-@import '../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
 
 @mixin toggle($state, $suffix: '') {
   .slider {

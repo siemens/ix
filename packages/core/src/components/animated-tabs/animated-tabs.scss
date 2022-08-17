@@ -2,9 +2,9 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/fonts';
-@import '../../../scss/v7/mixins/hover';
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
 
 :host {
   --animate-duration: #{$medium-time};
@@ -36,7 +36,7 @@
 
       .tab-container {
         background: var(--theme-animated-tab-circle--background);
-        border: solid 1px  var(--theme-animated-tab-circle--border-color);
+        border: solid 1px var(--theme-animated-tab-circle--border-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -46,7 +46,7 @@
         position: relative;
         transition: $default-time;
 
-        cw-icon {
+        ix-icon {
           color: var(--theme-animated-tab-icon--color) !important;
         }
 
@@ -54,7 +54,7 @@
           background: var(--theme-animated-tab-circle--background--hover);
           border-color: var(--theme-animated-tab-circle--border-color--hover);
 
-          cw-icon {
+          ix-icon {
             color: var(--theme-animated-tab-icon--color--hover) !important;
           }
         }
@@ -63,28 +63,32 @@
           background: var(--theme-animated-tab-circle--background--active);
           border-color: var(--theme-animated-tab-circle--border-color--active);
 
-          cw-icon {
+          ix-icon {
             color: var(--theme-animated-tab-icon--color--active) !important;
           }
         }
 
         &.selected {
           background: var(--theme-animated-tab-circle--background--selected);
-          border-color: var(--theme-animated-tab-circle--border-color--selected) !important;
+          border-color: var(
+            --theme-animated-tab-circle--border-color--selected
+          ) !important;
 
-          cw-icon {
+          ix-icon {
             color: var(--theme-animated-tab-icon--color--selected) !important;
           }
 
           .count {
-            border-color: var(--theme-tab-pill--border-color--selected) !important;
+            border-color: var(
+              --theme-tab-pill--border-color--selected
+            ) !important;
           }
         }
 
         // TODO
         &.disabled,
         &:disabled {
-          cw-icon {
+          ix-icon {
             color: var(--theme-animated-tab-icon--color--disabled) !important;
           }
         }

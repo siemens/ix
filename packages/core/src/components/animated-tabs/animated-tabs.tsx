@@ -2,20 +2,31 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
 import { convertToAbbreviationString } from '../utils/rwd.util';
 
 @Component({
-  tag: 'cw-animated-tabs',
+  tag: 'ix-animated-tabs',
   styleUrl: 'animated-tabs.scss',
   scoped: true,
 })
 export class AnimatedTabs {
-  @Element() hostElement: HTMLCwAnimatedTabsElement;
+  @Element() hostElement: HTMLIxAnimatedTabsElement;
 
-  @State() tabs: HTMLCwAnimatedTabElement[];
+  @State() tabs: HTMLIxAnimatedTabElement[];
 
   @State() activeIndex: number;
 
@@ -54,7 +65,7 @@ export class AnimatedTabs {
   }
 
   get animatedTabs() {
-    return Array.from(this.hostElement.querySelectorAll('cw-animated-tab'));
+    return Array.from(this.hostElement.querySelectorAll('ix-animated-tab'));
   }
 
   get tabsContainer() {
@@ -228,14 +239,40 @@ export class AnimatedTabs {
       <Host class={{ 'flex-column-reverse': this.tabPlacement === 'bottom' }}>
         <ul class="tabs-container">
           {this.animatedTabs.map((element, index) => (
-            <li class={{ bottom: this.tabPlacement === 'bottom' }} onClick={() => this.onTabClick(index)} onMouseDown={() => this.onTabMouseDown(index)}>
-              <div class={{ 'tab-container': true, 'selected': this.selectedIndex === index }}>
-                <cw-icon name={element.icon}></cw-icon>
-                {element.count ? <span class={{ count: true, bottom: this.tabPlacement === 'bottom' }}>{convertToAbbreviationString(element.count)}</span> : ''}
+            <li
+              class={{ bottom: this.tabPlacement === 'bottom' }}
+              onClick={() => this.onTabClick(index)}
+              onMouseDown={() => this.onTabMouseDown(index)}
+            >
+              <div
+                class={{
+                  'tab-container': true,
+                  selected: this.selectedIndex === index,
+                }}
+              >
+                <ix-icon name={element.icon}></ix-icon>
+                {element.count ? (
+                  <span
+                    class={{
+                      count: true,
+                      bottom: this.tabPlacement === 'bottom',
+                    }}
+                  >
+                    {convertToAbbreviationString(element.count)}
+                  </span>
+                ) : (
+                  ''
+                )}
               </div>
             </li>
           ))}
-          <div class={{ 'tab-active-underline': true, 'bottom': this.tabPlacement === 'bottom' }} style={{ 'margin-left': `calc(${this.selectedIndex} * 5rem)` }}></div>
+          <div
+            class={{
+              'tab-active-underline': true,
+              bottom: this.tabPlacement === 'bottom',
+            }}
+            style={{ 'margin-left': `calc(${this.selectedIndex} * 5rem)` }}
+          ></div>
         </ul>
         <div class="content-container">
           <slot></slot>

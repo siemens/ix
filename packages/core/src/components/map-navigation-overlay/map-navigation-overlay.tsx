@@ -4,7 +4,7 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-map-navigation-overlay',
+  tag: 'ix-map-navigation-overlay',
   styleUrl: 'map-navigation-overlay.scss',
   scoped: true,
 })
@@ -39,16 +39,24 @@ export class MapNavigationOverlay {
               'd-none': this.color === 'undefined' || this.color === undefined,
             }}
             style={{
-              'background-color': this.color ? `var(--theme-${this.color})` : '',
+              'background-color': this.color
+                ? `var(--theme-${this.color})`
+                : '',
             }}
           ></div>
           <div class="overlay-header-content">
-            <cw-icon size="32" name={this.icon}></cw-icon>
+            <ix-icon size="32" name={this.icon}></ix-icon>
             <span class="overlay-header-title" title={this.name}>
               {this.name}
             </span>
           </div>
-          <cw-icon-button class="overlay-close" invisible icon="close" size="24" onClick={() => this.closeClick.emit()}></cw-icon-button>
+          <ix-icon-button
+            class="overlay-close"
+            invisible
+            icon="close"
+            size="24"
+            onClick={() => this.closeClick.emit()}
+          ></ix-icon-button>
         </div>
 
         <slot></slot>

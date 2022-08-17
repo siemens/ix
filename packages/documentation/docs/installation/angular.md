@@ -19,7 +19,7 @@ npm i -S @siemens/ix-icons@latest
 
 ```css
 @import '../node_modules/@siemens/ix-icons/dist/scss/ix-webfont.scss';
-@import '../node_modules/@siemens/ix/dist/ix/ix.css';
+@import '../node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
 
 Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) to your application module.

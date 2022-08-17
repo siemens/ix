@@ -9,9 +9,9 @@ import { Component } from '@angular/core';
   selector: 'app-button-group',
   template: `
     <div class="btn-group">
-      <cw-button variant="Primary" outline> Left </cw-button>
-      <cw-button variant="Primary">Middle</cw-button>
-      <cw-button variant="Primary" outline> Right </cw-button>
+      <ix-button variant="Primary" outline> Left </ix-button>
+      <ix-button variant="Primary">Middle</ix-button>
+      <ix-button variant="Primary" outline> Right </ix-button>
     </div>
   `,
 })

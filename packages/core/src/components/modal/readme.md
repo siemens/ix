@@ -1,6 +1,4 @@
-# cw-modal
-
-
+# ix-modal
 
 <!-- Auto Generated Below -->
 

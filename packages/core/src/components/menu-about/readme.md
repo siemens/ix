@@ -1,6 +1,4 @@
-# cw-menu-about
-
-
+# ix-menu-about
 
 <!-- Auto Generated Below -->
 
@@ -10,8 +8,8 @@
 | Property                 | Attribute                     | Description                                      | Type                                               | Default                       |
 | ------------------------ | ----------------------------- | ------------------------------------------------ | -------------------------------------------------- | ----------------------------- |
 | `activeTabLabel`         | `active-tab-label`            | Active tab                                       | `string`                                           | `this.i18nImprintLabel`       |
-| `applicationDescription` | `application-description`     | Should only be set if you use cw-menu standalone | `string`                                           | `''`                          |
-| `applicationName`        | `application-name`            | Should only be set if you use cw-menu standalone | `string`                                           | `undefined`                   |
+| `applicationDescription` | `application-description`     | Should only be set if you use ix-menu standalone | `string`                                           | `''`                          |
+| `applicationName`        | `application-name`            | Should only be set if you use ix-menu standalone | `string`                                           | `undefined`                   |
 | `copyrightYears`         | `copyright-years`             | Copyright                                        | `string`                                           | `'1996 - 2022'`               |
 | `i18nCookieNoticeLabel`  | `i-1-8n-cookie-notice-label`  |                                                  | `string`                                           | `'Cookie Notice'`             |
 | `i18nCorporateLabel`     | `i-1-8n-corporate-label`      |                                                  | `string`                                           | `'Corporate Information'`     |

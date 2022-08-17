@@ -2,15 +2,24 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-select-item',
+  tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   scoped: true,
 })
 export class SelectItem {
-  @Element() hostElement: HTMLCwSelectItemElement;
+  @Element() hostElement: HTMLIxSelectItemElement;
 
   /**
    * Displayed name of the item
@@ -42,7 +51,7 @@ export class SelectItem {
    * @param event
    */
   @Method()
-  async onItemClick(event?: CustomEvent<HTMLCwDropdownItemElement>) {
+  async onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) {
     event?.preventDefault();
     event?.stopPropagation();
 
@@ -51,19 +60,19 @@ export class SelectItem {
 
   componentDidRender() {
     if (!this.value) {
-      throw Error('cw-select-item must have a `value` property');
+      throw Error('ix-select-item must have a `value` property');
     }
   }
 
   render() {
     return (
       <Host>
-        <cw-dropdown-item
+        <ix-dropdown-item
           checked={this.selected}
           hover={this.hover}
           label={this.label ? this.label : this.value}
-          onItemClick={e => this.onItemClick(e)}
-        ></cw-dropdown-item>
+          onItemClick={(e) => this.onItemClick(e)}
+        ></ix-dropdown-item>
       </Host>
     );
   }

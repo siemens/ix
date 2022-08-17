@@ -5,7 +5,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-breadcrumb-item',
+  tag: 'ix-breadcrumb-item',
   styleUrl: 'breadcrumb-item.scss',
   scoped: true,
 })

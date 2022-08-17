@@ -6,7 +6,7 @@ title: Basic Navigation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../../auto-generated/cw-basic-navigation/props.md';
+import Props from './../../auto-generated/ix-basic-navigation/props.md';
 
 import WebComponent from './../../auto-generated/previews/web-component/basic-navigation.md'
 import ReactComponent from './../../auto-generated/previews/react/basic-navigation.md'
@@ -38,7 +38,7 @@ import ReactComponentWithoutHeader from './../../auto-generated/previews/react/b
   </TabItem>
 </Preview>
 
-### cw-basic-navigation
+### ix-basic-navigation
 
 #### Props
 

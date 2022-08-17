@@ -9,7 +9,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       rel="stylesheet"
       href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
     />
-    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
     <script type="module">
       import { defineCustomElements } from './lib/ix/loader/index.js';
       defineCustomElements();
@@ -23,7 +23,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
         max-width: 20rem;
       }
 
-      .example > cw-chip {
+      .example > ix-chip {
         margin-bottom: 0.5rem;
       }
     </style>
@@ -31,19 +31,19 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <div class="example">
-      <cw-chip closable outline> Primary </cw-chip>
-      <cw-chip icon="print">Primary with icon</cw-chip>
-      <cw-chip icon="print" style="width: 10rem" closable> Primary </cw-chip>
+      <ix-chip closable outline> Primary </ix-chip>
+      <ix-chip icon="print">Primary with icon</ix-chip>
+      <ix-chip icon="print" style="width: 10rem" closable> Primary </ix-chip>
 
-      <cw-chip variant="critical" closable outline> Alarm </cw-chip>
-      <cw-chip variant="alarm" icon="print"> Alarm with icon </cw-chip>
-      <cw-chip variant="alarm" icon="print" style="width: 10rem" closable>
+      <ix-chip variant="critical" closable outline> Alarm </ix-chip>
+      <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
+      <ix-chip variant="alarm" icon="print" style="width: 10rem" closable>
         Alarm
-      </cw-chip>
-      <cw-chip variant="warning" icon="print" style="width: 10rem" closable>
+      </ix-chip>
+      <ix-chip variant="warning" icon="print" style="width: 10rem" closable>
         Alarm
-      </cw-chip>
-      <cw-chip
+      </ix-chip>
+      <ix-chip
         background="purple"
         color="green"
         variant="custom"
@@ -52,7 +52,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
         closable
       >
         Custom
-      </cw-chip>
+      </ix-chip>
     </div>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>

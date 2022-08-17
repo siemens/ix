@@ -16,12 +16,12 @@ import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 @Component({
-  tag: 'cw-time-picker',
+  tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
   scoped: true,
 })
 export class TimePicker {
-  @Element() hostElement!: HTMLCwTimePickerElement;
+  @Element() hostElement!: HTMLIxTimePickerElement;
 
   /**
    * Set corners style
@@ -129,21 +129,21 @@ export class TimePicker {
 
     return (
       <Host>
-        <cw-date-time-card individual={this.individual} corners={this.corners}>
+        <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
             <div class="title">Time</div>
           </div>
 
           <div class="clock">
             <div class={{ columns: true, hidden: hideHour }}>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('up', { hours: true })}
                 ghost
                 icon="chevron-up"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
               <input
                 name="hours"
                 type="number"
@@ -153,14 +153,14 @@ export class TimePicker {
                 max={this.showTimeReference === true ? 11 : 23}
                 ref={(ref) => (this.hourInputRef = ref)}
               ></input>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('down', { hours: true })}
                 ghost
                 icon="chevron-down"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
             </div>
 
             <div
@@ -170,14 +170,14 @@ export class TimePicker {
             </div>
 
             <div class={{ columns: true, hidden: hideMinutes }}>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('up', { minutes: true })}
                 ghost
                 icon="chevron-up"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
               <input
                 name="minutes"
                 type="number"
@@ -187,14 +187,14 @@ export class TimePicker {
                 disabled
                 ref={(ref) => (this.minuteInputRef = ref)}
               ></input>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('down', { minutes: true })}
                 ghost
                 icon="chevron-down"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
             </div>
 
             <div
@@ -204,14 +204,14 @@ export class TimePicker {
             </div>
 
             <div class={{ columns: true, hidden: hideSeconds }}>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('up', { seconds: true })}
                 ghost
                 icon="chevron-up"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
               <input
                 name="seconds"
                 type="number"
@@ -221,14 +221,14 @@ export class TimePicker {
                 max="59"
                 ref={(ref) => (this.secondInputRef = ref)}
               ></input>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.updateInput('down', { seconds: true })}
                 ghost
                 icon="chevron-down"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
             </div>
 
             <div
@@ -238,14 +238,14 @@ export class TimePicker {
                 hidden: hideTimeReference,
               }}
             >
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
                 icon="chevron-up"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
               <input
                 name="reference"
                 type="text"
@@ -254,23 +254,23 @@ export class TimePicker {
                 disabled
                 class="text-align"
               ></input>
-              <cw-icon-button
+              <ix-icon-button
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
                 icon="chevron-down"
                 variant="Primary"
                 class="arrows"
-              ></cw-icon-button>
+              ></ix-icon-button>
             </div>
           </div>
 
           <div class={{ button: true, hidden: hideIndividual }}>
-            <cw-button onClick={() => this.done.emit(this.time.toFormat('TT'))}>
+            <ix-button onClick={() => this.done.emit(this.time.toFormat('TT'))}>
               Done
-            </cw-button>
+            </ix-button>
           </div>
-        </cw-date-time-card>
+        </ix-date-time-card>
       </Host>
     );
   }

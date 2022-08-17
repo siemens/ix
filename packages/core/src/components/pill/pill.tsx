@@ -4,17 +4,25 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-pill',
+  tag: 'ix-pill',
   styleUrl: 'pill.scss',
   scoped: true,
 })
 export class Pill {
-  @Element() el: HTMLCwPillElement;
+  @Element() el: HTMLIxPillElement;
 
   /**
    * Pill variant
    */
-  @Prop({ reflect: true }) variant: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom' = 'primary';
+  @Prop({ reflect: true }) variant:
+    | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom' = 'primary';
 
   /**
    * Show pill as outline
@@ -45,7 +53,7 @@ export class Pill {
     return (
       <Host
         class={{
-          'outline': this.outline,
+          outline: this.outline,
           'align-left': this.alignLeft,
         }}
         style={
@@ -58,7 +66,9 @@ export class Pill {
         }
         title={this.el.textContent}
       >
-        {this.icon ? <cw-icon class={'with-icon'} name={this.icon} size={'16'} /> : null}
+        {this.icon ? (
+          <ix-icon class={'with-icon'} name={this.icon} size={'16'} />
+        ) : null}
         <div class="slot">
           <slot></slot>
         </div>

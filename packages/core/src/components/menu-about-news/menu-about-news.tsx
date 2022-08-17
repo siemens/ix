@@ -4,7 +4,7 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-menu-about-news',
+  tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
   scoped: true,
 })
@@ -58,7 +58,11 @@ export class MenuAboutNews {
         }}
       >
         <div class="banner-container">
-          <cw-icon color="color-inv-contrast-text" name="shout" size="32"></cw-icon>
+          <ix-icon
+            color="color-inv-contrast-text"
+            name="shout"
+            size="32"
+          ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
             <polygon points="0 0 48 0 48 56 24 48 0 56" />
           </svg>
@@ -68,7 +72,7 @@ export class MenuAboutNews {
           <span class="text-l-title">{this.label}</span>
         </div>
 
-        <cw-icon-button
+        <ix-icon-button
           size="24"
           icon="close-small"
           ghost
@@ -76,13 +80,13 @@ export class MenuAboutNews {
             this.show = false;
             this.closePopover.emit();
           }}
-        ></cw-icon-button>
+        ></ix-icon-button>
         <slot></slot>
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
             <button
               class="btn btn-primary"
-              onClick={e => {
+              onClick={(e) => {
                 this.show = false;
                 this.showMore.emit(e);
               }}
@@ -91,7 +95,13 @@ export class MenuAboutNews {
             </button>
           </div>
         ) : null}
-        <svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12">
+        <svg
+          id="arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+        >
           <path d="M8 0 L0 6 L8 12" />
         </svg>
       </Host>

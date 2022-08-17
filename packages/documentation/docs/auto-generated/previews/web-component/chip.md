@@ -1,19 +1,19 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/chip.html -->
 ```html
 <div class="example">
-  <cw-chip closable outline> Primary </cw-chip>
-  <cw-chip icon="print">Primary with icon</cw-chip>
-  <cw-chip icon="print" style="width: 10rem" closable> Primary </cw-chip>
+  <ix-chip closable outline> Primary </ix-chip>
+  <ix-chip icon="print">Primary with icon</ix-chip>
+  <ix-chip icon="print" style="width: 10rem" closable> Primary </ix-chip>
 
-  <cw-chip variant="critical" closable outline> Alarm </cw-chip>
-  <cw-chip variant="alarm" icon="print"> Alarm with icon </cw-chip>
-  <cw-chip variant="alarm" icon="print" style="width: 10rem" closable>
+  <ix-chip variant="critical" closable outline> Alarm </ix-chip>
+  <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
+  <ix-chip variant="alarm" icon="print" style="width: 10rem" closable>
     Alarm
-  </cw-chip>
-  <cw-chip variant="warning" icon="print" style="width: 10rem" closable>
+  </ix-chip>
+  <ix-chip variant="warning" icon="print" style="width: 10rem" closable>
     Alarm
-  </cw-chip>
-  <cw-chip
+  </ix-chip>
+  <ix-chip
     background="purple"
     color="green"
     variant="custom"
@@ -22,6 +22,6 @@
     closable
   >
     Custom
-  </cw-chip>
+  </ix-chip>
 </div>
 ```

@@ -1,4 +1,4 @@
-import { CwDropdown, CwDropdownItem, CwIcon } from '@siemens/ix-react';
+import { IxDropdown, IxDropdownItem, IxIcon } from '@siemens/ix-react';
 import { useState } from 'react';
 
 function App() {
@@ -7,8 +7,8 @@ function App() {
 
   return (
     <div>
-      <CwIcon name="print" style={{ color: 'red' }} id="test" />
-      <CwDropdown trigger={'test'} closeBehavior="outside">
+      <IxIcon name="print" style={{ color: 'red' }} id="test" />
+      <IxDropdown trigger={'test'} closeBehavior="outside">
         <input
           onInput={(e) => setFilter((e.target as HTMLInputElement).value)}
         />
@@ -22,9 +22,9 @@ function App() {
             return i.includes(filter);
           })
           .map((i) => (
-            <CwDropdownItem label={i} key={i} />
+            <IxDropdownItem label={i} key={i} />
           ))}
-      </CwDropdown>
+      </IxDropdown>
     </div>
   );
 }

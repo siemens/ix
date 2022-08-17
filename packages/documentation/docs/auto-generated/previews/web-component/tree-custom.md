@@ -2,16 +2,16 @@
 ```html
 
 <div style="height: 8rem; width: 100%">
-  <cw-tree root="root" id="tree"></cw-tree>
+  <ix-tree root="root" id="tree"></ix-tree>
 </div>
 
 <script type="text/javascript">
   (async function () {
-    await window.customElements.whenDefined('cw-tree');
+    await window.customElements.whenDefined('ix-tree');
     const tree = document.getElementById('tree');
 
     tree.renderItem = (index, item, dataList, context, update) => {
-      const el = document.createElement('cw-tree-item');
+      const el = document.createElement('ix-tree-item');
       el.hasChildren = item.hasChildren;
       el.context = context;
 
@@ -19,7 +19,7 @@
       div.style.display = 'flex';
 
       const name = document.createElement('span');
-      const icon = document.createElement('cw-icon');
+      const icon = document.createElement('ix-icon');
       icon.name = 'print';
       icon.style.marginRight = '1rem';
 

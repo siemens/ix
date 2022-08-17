@@ -10,22 +10,22 @@ describe('select-item', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [SelectItem],
-      html: `<cw-select-item value="test" label="Test"></cw-select-item>`,
+      html: `<ix-select-item value="test" label="Test"></ix-select-item>`,
     });
 
     expect(page.root).toEqualHtml(`
-      <cw-select-item value="test" label="Test">
-        <cw-dropdown-item icon="empty" label="Test" />
-      </cw-select-item>
+      <ix-select-item value="test" label="Test">
+        <ix-dropdown-item icon="empty" label="Test" />
+      </ix-select-item>
     `);
   });
 
-  it('should throw exception if value is missing', done => {
+  it('should throw exception if value is missing', (done) => {
     newSpecPage({
       components: [SelectItem],
-      html: `<cw-select-item></cw-select-item>`,
+      html: `<ix-select-item></ix-select-item>`,
     }).catch((e: Error) => {
-      expect(e.message).toBe('cw-select-item must have a `value` property');
+      expect(e.message).toBe('ix-select-item must have a `value` property');
       done();
     });
   });
@@ -35,12 +35,16 @@ describe('select-item', () => {
 
     const page = await newSpecPage({
       components: [DropdownItem, SelectItem],
-      html: `<cw-select-item value="test" label="Test"></cw-select-item>`,
+      html: `<ix-select-item value="test" label="Test"></ix-select-item>`,
     });
 
-    page.doc.querySelector('cw-select-item').addEventListener('itemClick', eventSpy);
+    page.doc
+      .querySelector('ix-select-item')
+      .addEventListener('itemClick', eventSpy);
 
-    const dropdownItem = page.doc.querySelector('cw-dropdown-item button') as HTMLElement;
+    const dropdownItem = page.doc.querySelector(
+      'ix-dropdown-item button'
+    ) as HTMLElement;
     dropdownItem.click();
 
     expect(eventSpy).toHaveBeenCalled();

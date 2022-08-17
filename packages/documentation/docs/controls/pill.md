@@ -1,8 +1,8 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-pill/props.md';
-import Events from './../auto-generated/cw-pill/events.md';
+import Props from './../auto-generated/ix-pill/props.md';
+import Events from './../auto-generated/ix-pill/events.md';
 
 import SourcePill from './../auto-generated/previews/web-component/pill.md';
 

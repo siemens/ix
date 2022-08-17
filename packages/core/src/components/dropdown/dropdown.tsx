@@ -21,12 +21,12 @@ import {
 } from '@stencil/core';
 
 @Component({
-  tag: 'cw-dropdown',
+  tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
 export class Dropdown {
-  @Element() hostElement!: HTMLCwDropdownElement;
+  @Element() hostElement!: HTMLIxDropdownElement;
 
   /**
    * Show dropdown
@@ -93,7 +93,7 @@ export class Dropdown {
   }
 
   get dropdownItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-dropdown-item'));
+    return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
   private resolveElement(prop: string | HTMLElement) {

@@ -1,6 +1,6 @@
 @import './../pill/pill.scss';
-@import './../../../scss/v7/common-variables';
-@import './../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
 :host {
   .slot-container {

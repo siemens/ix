@@ -1,11 +1,21 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { UploadFileState } from './upload-file-state';
 
 @Component({
-  tag: 'cw-upload',
+  tag: 'ix-upload',
   styleUrl: 'upload.scss',
   scoped: true,
 })
@@ -61,7 +71,7 @@ export class Upload {
    */
   @Event() filesChanged: EventEmitter<Array<File>>;
 
-  @Element() hostElement!: HTMLCwUploadElement;
+  @Element() hostElement!: HTMLIxUploadElement;
 
   get inputElement(): HTMLInputElement {
     return this.hostElement.querySelector('#upload-browser');
@@ -126,11 +136,15 @@ export class Upload {
   private renderUploadState() {
     switch (this.state) {
       case UploadFileState.SELECT_FILE:
-        return <span class="state">{this.selectFileText ? this.selectFileText : '+ Drag files here or'}</span>;
+        return (
+          <span class="state">
+            {this.selectFileText ? this.selectFileText : '+ Drag files here or'}
+          </span>
+        );
       case UploadFileState.LOADING:
         return (
           <span class="state">
-            <cw-spinner variant="primary"></cw-spinner>
+            <ix-spinner variant="primary"></ix-spinner>
             {this.loadingText ? this.loadingText : 'Checking files...'}
           </span>
         );
@@ -138,14 +152,18 @@ export class Upload {
         return (
           <span class="state">
             <i class="glyph glyph-error"></i>
-            {this.uploadFailedText ? this.uploadFailedText : 'Upload failed. Please try again.'}
+            {this.uploadFailedText
+              ? this.uploadFailedText
+              : 'Upload failed. Please try again.'}
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
             <i class="glyph glyph-success"></i>
-            {this.uploadSuccessText ? this.uploadSuccessText : 'Upload successful'}
+            {this.uploadSuccessText
+              ? this.uploadSuccessText
+              : 'Upload successful'}
           </span>
         );
       default:
@@ -170,8 +188,8 @@ export class Upload {
             'file-upload-area': true,
             'file-over': this.isFileOver,
           }}
-          onDrop={e => this.fileDroped(e)}
-          onDragOver={e => this.fileOver(e)}
+          onDrop={(e) => this.fileDroped(e)}
+          onDragOver={(e) => this.fileOver(e)}
           onDragLeave={() => this.fileLeave()}
           draggable={!this.disabled}
         >
@@ -182,7 +200,7 @@ export class Upload {
               type="file"
               class="upload-browser"
               id="upload-browser"
-              onChange={e => {
+              onChange={(e) => {
                 this.fileChangeEvent(e);
               }}
               accept={this.accept}

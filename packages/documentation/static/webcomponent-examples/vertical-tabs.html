@@ -9,7 +9,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       rel="stylesheet"
       href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
     />
-    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
     <script type="module">
       import { defineCustomElements } from './lib/ix/loader/index.js';
       defineCustomElements();
@@ -17,15 +17,15 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
-    <cw-menu>
-      <cw-menu-item home-tab tab-icon="home"> Home </cw-menu-item>
-      <cw-menu-item tab-icon="globe"> Normal Tab </cw-menu-item>
-      <cw-menu-item tab-icon="star" disabled> Disabled Tab </cw-menu-item>
-      <cw-menu-item tab-icon="star"> With other Icon </cw-menu-item>
-      <cw-menu-item tab-icon="globe" style="display: none">
+    <ix-menu>
+      <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
+      <ix-menu-item tab-icon="globe"> Normal Tab </ix-menu-item>
+      <ix-menu-item tab-icon="star" disabled> Disabled Tab </ix-menu-item>
+      <ix-menu-item tab-icon="star"> With other Icon </ix-menu-item>
+      <ix-menu-item tab-icon="globe" style="display: none">
         Should not visible
-      </cw-menu-item>
-    </cw-menu>
+      </ix-menu-item>
+    </ix-menu>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>
   </body>

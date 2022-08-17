@@ -2,22 +2,20 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-
 import { newSpecPage } from '@stencil/core/testing';
 import { MapNavigation } from '../map-navigation';
 // import { fireEvent } from '@testing-library/dom';
 
-
 describe('map-navigation', () => {
-  let page : any;
-  let mapNavigation : any;
+  let page: any;
+  let mapNavigation: any;
 
   beforeEach(async () => {
     page = await newSpecPage({
       components: [MapNavigation],
       html: `<map-navigation></map-navigation>`,
     });
-    mapNavigation = page.doc.querySelector('cw-map-navigation');
+    mapNavigation = page.doc.querySelector('ix-map-navigation');
   });
 
   it('renders', async () => {

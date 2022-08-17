@@ -4,17 +4,17 @@ sidebar_position: 2
 
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../../auto-generated/cw-menu-settings/props.md';
+import Props from './../../auto-generated/ix-menu-settings/props.md';
 
-import MenuProps from './../../auto-generated/cw-menu/props.md';
-import MenuEvents from './../../auto-generated/cw-menu/events.md';
-import ItemProps from './../../auto-generated/cw-menu-item/props.md';
-import ItemEvents from './../../auto-generated/cw-menu-item/events.md';
+import MenuProps from './../../auto-generated/ix-menu/props.md';
+import MenuEvents from './../../auto-generated/ix-menu/events.md';
+import ItemProps from './../../auto-generated/ix-menu-item/props.md';
+import ItemEvents from './../../auto-generated/ix-menu-item/events.md';
 
-import AvatarProps from './../../auto-generated/cw-menu-avatar/props.md';
-import AvatarEvents from './../../auto-generated/cw-menu-avatar/events.md';
-import AvatarItemProps from './../../auto-generated/cw-menu-avatar-item/props.md';
-import AvatarItemEvents from './../../auto-generated/cw-menu-avatar-item/events.md';
+import AvatarProps from './../../auto-generated/ix-menu-avatar/props.md';
+import AvatarEvents from './../../auto-generated/ix-menu-avatar/events.md';
+import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md';
+import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
 
 import WebComponent from './../../auto-generated/previews/web-component/vertical-tabs.md'
 import WebComponentWithAvatar from './../../auto-generated/previews/web-component/vertical-tabs-with-avatar.md'
@@ -37,7 +37,7 @@ import WebComponentWithAvatar from './../../auto-generated/previews/web-componen
   </TabItem>
 </Preview>
 
-## Properties (cw-menu)
+## Properties (ix-menu)
 
 ### Props
 
@@ -47,13 +47,13 @@ import WebComponentWithAvatar from './../../auto-generated/previews/web-componen
 
 <MenuEvents />
 
-## Properties (cw-menu-item)
+## Properties (ix-menu-item)
 
 ### Props
 
 <ItemProps />
 
-## Properties (cw-menu-avatar)
+## Properties (ix-menu-avatar)
 
 ### Props
 
@@ -63,7 +63,7 @@ import WebComponentWithAvatar from './../../auto-generated/previews/web-componen
 
 <AvatarEvents />
 
-## Properties (cw-menu-avatar-item)
+## Properties (ix-menu-avatar-item)
 
 ### Props
 

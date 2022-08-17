@@ -5,7 +5,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-animated-tab',
+  tag: 'ix-animated-tab',
   styleUrl: 'animated-tab.scss',
   scoped: true,
 })

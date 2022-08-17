@@ -2,19 +2,18 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, h, Host, Prop, Event, EventEmitter} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-datetime-picker',
+  tag: 'ix-datetime-picker',
   styleUrl: 'datetime-picker.scss',
   scoped: true,
 })
 export class DatePicker {
-
   /**
    * Set range size
    */
-   @Prop() range = true;
+  @Prop() range = true;
 
   /**
    * Show Hour Input
@@ -36,8 +35,8 @@ export class DatePicker {
    */
   @Prop() showTimeReference = false;
 
-  private date!: string
-  private time!: string
+  private date!: string;
+  private time!: string;
 
   /**
    * Time event
@@ -45,7 +44,7 @@ export class DatePicker {
   @Event() done: EventEmitter<string>;
 
   private doneEvent() {
-    console.log(this.date + ' ' + this.time)
+    console.log(this.date + ' ' + this.time);
     this.done.emit(this.date + ' ' + this.time);
   }
 
@@ -53,24 +52,24 @@ export class DatePicker {
     return (
       <Host>
         <div class="flex">
-          <cw-date-picker
+          <ix-date-picker
             corners="left"
             individual={false}
             range={this.range}
-            onDateChange={(date) => this.date = date.detail}
-          ></cw-date-picker>
-          <cw-time-picker
+            onDateChange={(date) => (this.date = date.detail)}
+          ></ix-date-picker>
+          <ix-time-picker
             corners="right"
             individual={false}
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
-            onTimeChange={(time) => this.time = time.detail}
-          ></cw-time-picker>
+            onTimeChange={(time) => (this.time = time.detail)}
+          ></ix-time-picker>
         </div>
         <div class="done">
-          <cw-button onClick={() => this.doneEvent()}>Done</cw-button>
+          <ix-button onClick={() => this.doneEvent()}>Done</ix-button>
         </div>
       </Host>
     );

@@ -13,7 +13,7 @@ import {
 } from '@stencil/core';
 
 @Component({
-  tag: 'cw-toggle',
+  tag: 'ix-toggle',
   styleUrl: 'toggle.scss',
   scoped: true,
 })
@@ -64,7 +64,7 @@ export class CuiToggle {
    */
   @Event() checkedChange: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLCwToggleElement;
+  @Element() hostElement!: HTMLIxToggleElement;
 
   @Listen('keydown', { target: 'window' })
   async onKeyDown(event: KeyboardEvent) {

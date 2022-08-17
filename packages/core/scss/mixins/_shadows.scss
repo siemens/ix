@@ -1,11 +1,6 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-
 @mixin box-shadow($level: 1) {
-  box-shadow: var(--theme-box-shadow-lvl- + $level);
-}
-
-@mixin primary-glow {
-  box-shadow: 0 0 0.25rem 0 var(--theme-color-primary);
+  box-shadow: var(--theme-box-shadow-level-#{$level});
 }

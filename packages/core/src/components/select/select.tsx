@@ -2,15 +2,26 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-select',
+  tag: 'ix-select',
   styleUrl: 'select.scss',
   scoped: true,
 })
 export class Select {
-  @Element() hostElement!: HTMLCwSelectElement;
+  @Element() hostElement!: HTMLIxSelectElement;
 
   /**
    * Indices of selected items
@@ -75,23 +86,23 @@ export class Select {
   @State() dropdownAnchor!: HTMLElement;
 
   private inputRef!: HTMLInputElement;
-  private dropdownRef!: HTMLCwDropdownElement;
+  private dropdownRef!: HTMLIxDropdownElement;
   private addItemRef!: HTMLDivElement;
 
   @State() isDropdownEmpty = false;
 
   @State() hasFocus = false;
 
-  @State() navigationItem: HTMLCwSelectItemElement;
+  @State() navigationItem: HTMLIxSelectItemElement;
 
   @State() inputText: string;
 
   get items() {
-    return Array.from(this.hostElement.querySelectorAll('cw-select-item'));
+    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
   }
 
   get selectedItems() {
-    return this.items.filter(item => item.selected);
+    return this.items.filter((item) => item.selected);
   }
 
   get addItemButton() {
@@ -133,7 +144,7 @@ export class Select {
   private emitItemClick(newId: string) {
     if (this.isMultipleMode && Array.isArray(this.selectedIndices)) {
       if (this.selectedIndices.includes(newId)) {
-        this.selectedIndices = this.selectedIndices.filter(i => i !== newId);
+        this.selectedIndices = this.selectedIndices.filter((i) => i !== newId);
       } else {
         this.selectedIndices = [...this.selectedIndices, newId];
       }
@@ -150,7 +161,7 @@ export class Select {
       return;
     }
 
-    const test = document.createElement('cw-select-item');
+    const test = document.createElement('ix-select-item');
     test.value = value;
     test.label = value;
 
@@ -162,21 +173,25 @@ export class Select {
   }
 
   private selectValue(ids: string[]) {
-    this.items.forEach(item => {
-      item.selected = ids.some(i => i === item.value);
+    this.items.forEach((item) => {
+      item.selected = ids.some((i) => i === item.value);
     });
 
-    this.value = this.selectedItems.map(item => item.label);
+    this.value = this.selectedItems.map((item) => item.label);
   }
 
   componentWillLoad() {
     if (this.selectedIndices) {
-      this.selectValue(Array.isArray(this.selectedIndices) ? this.selectedIndices : [this.selectedIndices]);
+      this.selectValue(
+        Array.isArray(this.selectedIndices)
+          ? this.selectedIndices
+          : [this.selectedIndices]
+      );
     }
   }
 
   private itemExists(item: string) {
-    return this.items.find(i => i.label === item);
+    return this.items.find((i) => i.label === item);
   }
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
@@ -232,7 +247,9 @@ export class Select {
     event.stopPropagation();
     event.preventDefault();
 
-    const selectItems = this.items.filter(i => !i.classList.contains('d-none'));
+    const selectItems = this.items.filter(
+      (i) => !i.classList.contains('d-none')
+    );
 
     const index = selectItems.indexOf(this.navigationItem);
 
@@ -246,7 +263,7 @@ export class Select {
   }
 
   private setHoverEffectForNavigatedSelectItem() {
-    this.items.forEach((item: HTMLCwSelectItemElement) => {
+    this.items.forEach((item: HTMLIxSelectItemElement) => {
       item.hover = item === this.navigationItem;
     });
   }
@@ -254,7 +271,7 @@ export class Select {
   private filterItemsWithTypeahead() {
     this.inputText = this.inputRef.value;
     if (this.inputText) {
-      this.items.forEach(item => {
+      this.items.forEach((item) => {
         item.classList.remove('d-none');
         if (!item.label.toLowerCase().includes(this.inputText.toLowerCase())) {
           item.classList.add('d-none');
@@ -263,11 +280,13 @@ export class Select {
     } else {
       this.removeHiddenFromItems();
     }
-    this.isDropdownEmpty = this.items.every(item => item.classList.contains('d-none'));
+    this.isDropdownEmpty = this.items.every((item) =>
+      item.classList.contains('d-none')
+    );
   }
 
   private removeHiddenFromItems() {
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       item.classList.remove('d-none');
     });
   }
@@ -297,29 +316,31 @@ export class Select {
         <div
           class={{
             'form-control': true,
-            'select': true,
-            'focus': this.hasFocus,
-            'editable': this.editable,
-            'disabled': this.disabled,
-            'readonly': this.readonly,
+            select: true,
+            focus: this.hasFocus,
+            editable: this.editable,
+            disabled: this.disabled,
+            readonly: this.readonly,
           }}
-
-          ref={ref => { this.dropdownAnchor = ref; if (!this.editable) (this.dropdownWrapperRef = ref)}}
+          ref={(ref) => {
+            this.dropdownAnchor = ref;
+            if (!this.editable) this.dropdownWrapperRef = ref;
+          }}
         >
           <div class="input-container">
             {this.isMultipleMode ? (
               <div class="chips">
-                {this.selectedItems?.map(item => (
-                  <cw-filter-chip
+                {this.selectedItems?.map((item) => (
+                  <ix-filter-chip
                     disabled={this.disabled || this.readonly}
-                    onCloseClick={e => {
+                    onCloseClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       this.emitItemClick(item.value);
                     }}
                   >
                     {item.label}
-                  </cw-filter-chip>
+                  </ix-filter-chip>
                 ))}
               </div>
             ) : null}
@@ -332,28 +353,35 @@ export class Select {
                 class={{
                   'allow-clear': this.allowClear && !!this.value?.length,
                 }}
-                placeholder={this.editable ? this.i18nPlaceholderEditable : this.i18nPlaceholder}
+                placeholder={
+                  this.editable
+                    ? this.i18nPlaceholderEditable
+                    : this.i18nPlaceholder
+                }
                 value={this.getInputValue()}
-                ref={ref => (this.inputRef = ref)}
+                ref={(ref) => (this.inputRef = ref)}
                 onInput={() => this.filterItemsWithTypeahead()}
               />
               {this.disabled || this.readonly ? null : (
-                <div class="chevron-down-container"
-          ref={ref => {if (this.editable) (this.dropdownWrapperRef = ref)}}
+                <div
+                  class="chevron-down-container"
+                  ref={(ref) => {
+                    if (this.editable) this.dropdownWrapperRef = ref;
+                  }}
                 >
-                  <cw-icon class="chevron" name="chevron-down-small" />
+                  <ix-icon class="chevron" name="chevron-down-small" />
                 </div>
               )}
             </div>
           </div>
           {this.allowClear && (this.value?.length || this.inputText) ? (
-            <cw-icon-button
+            <ix-icon-button
               class="clear"
               icon="clear"
               ghost
               oval
               size="24"
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 this.clear();
@@ -361,27 +389,32 @@ export class Select {
             />
           ) : null}
         </div>
-        <cw-dropdown
-          ref={ref => (this.dropdownRef = ref)}
+        <ix-dropdown
+          ref={(ref) => (this.dropdownRef = ref)}
           show={this.dropdownShow}
           style={{
             width: '100%',
           }}
-          class={{ 'd-none': this.disabled || this.readonly || (this.isDropdownEmpty && !this.editable) }}
+          class={{
+            'd-none':
+              this.disabled ||
+              this.readonly ||
+              (this.isDropdownEmpty && !this.editable),
+          }}
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
-          onShowChanged={e => this.dropdownVisibilityChanged(e)}
+          onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom"
           positioningStrategy={'fixed'}
           adjustDropdownWidthToReferenceWidth={true}
         >
           <div class="select-list-header">{this.i18nSelectListHeader}</div>
           <slot></slot>
-          <div ref={ref => (this.addItemRef = ref)} class="d-contents"></div>
+          <div ref={(ref) => (this.addItemRef = ref)} class="d-contents"></div>
           {this.itemExists(this.inputText) ? (
             ''
           ) : (
-            <cw-dropdown-item
+            <ix-dropdown-item
               data-testid="add-item"
               icon="plus"
               class={{
@@ -389,14 +422,14 @@ export class Select {
                 'd-none': !(this.editable && this.inputText),
               }}
               label={this.inputText}
-              onItemClick={e => {
+              onItemClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 this.emitAddItem(this.inputText);
               }}
-            ></cw-dropdown-item>
+            ></ix-dropdown-item>
           )}
-        </cw-dropdown>
+        </ix-dropdown>
       </Host>
     );
   }

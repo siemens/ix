@@ -1,6 +1,4 @@
-# cw-time-picker
-
-
+# ix-time-picker
 
 <!-- Auto Generated Below -->
 

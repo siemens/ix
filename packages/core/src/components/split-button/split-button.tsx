@@ -1,18 +1,31 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { createPopper, Instance as PopperInstance, Placement } from '@popperjs/core';
-import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  createPopper,
+  Instance as PopperInstance,
+  Placement,
+} from '@popperjs/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Buttons } from '../utils/button-variants';
 
 @Component({
-  tag: 'cw-split-button',
+  tag: 'ix-split-button',
   styleUrl: 'split-button.scss',
   scoped: true,
 })
 export class CwSplitButton {
-  @Element() hostElement: HTMLCwSplitButtonElement;
+  @Element() hostElement: HTMLIxSplitButtonElement;
 
   /**
    * Color variant of button
@@ -68,11 +81,13 @@ export class CwSplitButton {
    */
   @Event() buttonClick: EventEmitter<MouseEvent>;
 
-  private popover: HTMLCwDropdownElement;
+  private popover: HTMLIxDropdownElement;
   private popperInstance: PopperInstance;
 
   get splitItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-split-button-item'));
+    return Array.from(
+      this.hostElement.querySelectorAll('ix-split-button-item')
+    );
   }
 
   private clickOutside(e: Event) {
@@ -83,7 +98,7 @@ export class CwSplitButton {
 
   componentDidLoad() {
     const element = this.hostElement.querySelector('.anchor');
-    this.popover = this.hostElement.querySelector('cw-dropdown');
+    this.popover = this.hostElement.querySelector('ix-dropdown');
     this.popperInstance = createPopper(element, this.popover, {
       strategy: 'fixed',
       placement: this.placement,
@@ -119,24 +134,40 @@ export class CwSplitButton {
     return (
       <Host class="btn-group">
         <button
-          class={getButtonClasses(this.variant, this.outline, this.ghost || this.invisible, !this.label, false, false, this.disabled)}
-          onClick={e => this.buttonClick.emit(e)}
+          class={getButtonClasses(
+            this.variant,
+            this.outline,
+            this.ghost || this.invisible,
+            !this.label,
+            false,
+            false,
+            this.disabled
+          )}
+          onClick={(e) => this.buttonClick.emit(e)}
         >
-          {this.icon ? <cw-icon name={this.icon} /> : null} {this.label}
+          {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
         </button>
         <button
           class={{
-            ...getButtonClasses(this.variant, this.outline, this.ghost || this.invisible, true, false, false, this.disabled),
+            ...getButtonClasses(
+              this.variant,
+              this.outline,
+              this.ghost || this.invisible,
+              true,
+              false,
+              false,
+              this.disabled
+            ),
             ...{
               anchor: true,
             },
           }}
           onClick={() => this.toggleDropdown()}
         >
-          <cw-icon name={this.splitIcon} />
-          <cw-dropdown show={this.toggle}>
+          <ix-icon name={this.splitIcon} />
+          <ix-dropdown show={this.toggle}>
             <slot></slot>
-          </cw-dropdown>
+          </ix-dropdown>
         </button>
       </Host>
     );

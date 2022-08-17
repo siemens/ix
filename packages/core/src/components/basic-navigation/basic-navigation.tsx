@@ -5,12 +5,12 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-basic-navigation',
+  tag: 'ix-basic-navigation',
   styleUrl: 'basic-navigation.scss',
   scoped: true,
 })
 export class BasicNavigation {
-  @Element() hostElement: HTMLCwBasicNavigationElement;
+  @Element() hostElement: HTMLIxBasicNavigationElement;
 
   /**
    * Application name
@@ -22,8 +22,8 @@ export class BasicNavigation {
    */
   @Prop() hideHeader = false;
 
-  get menu(): HTMLCwMenuElement {
-    return this.hostElement.querySelector('cw-menu');
+  get menu(): HTMLIxMenuElement {
+    return this.hostElement.querySelector('ix-menu');
   }
 
   componentDidRender() {
@@ -51,7 +51,11 @@ export class BasicNavigation {
           'hide-header': this.hideHeader,
         }}
       >
-        {!this.hideHeader ? <cw-application-header name={this.applicationName}></cw-application-header> : null}
+        {!this.hideHeader ? (
+          <ix-application-header
+            name={this.applicationName}
+          ></ix-application-header>
+        ) : null}
         <div id="menu-placeholder"></div>
         <div class="content" onClick={() => this.menu.toggleMenu(false)}>
           <slot></slot>

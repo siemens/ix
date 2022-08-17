@@ -2,15 +2,23 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Listen,
+  Prop,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-event-list-item',
+  tag: 'ix-event-list-item',
   styleUrl: 'event-list-item.scss',
   scoped: false,
 })
 export class EventListItem {
-  @Element() el!: HTMLCwEventListItemElement;
+  @Element() el!: HTMLIxEventListItemElement;
 
   /**
    * Color of the status indicator.
@@ -55,14 +63,19 @@ export class EventListItem {
     return (
       <div
         class={{
-          'cw-event-list-item': true,
-          'selected': this.selected,
-          'disabled': this.disabled,
+          'ix-event-list-item': true,
+          selected: this.selected,
+          disabled: this.disabled,
         }}
       >
         <div
           class={`indicator ${!this.color ? 'indicator-empty' : ''}`}
-          style={{ 'background-color': this.color ? `var(--theme-${this.color})` : 'inherit', 'opacity': `${this.disabled ? 0.4 : this.opacity}` }}
+          style={{
+            'background-color': this.color
+              ? `var(--theme-${this.color})`
+              : 'inherit',
+            opacity: `${this.disabled ? 0.4 : this.opacity}`,
+          }}
         ></div>
 
         <div class="cui-event-list-item-content-container">

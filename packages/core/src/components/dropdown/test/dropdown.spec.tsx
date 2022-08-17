@@ -3,10 +3,10 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { Dropdown } from '../dropdown';
 import { fireEvent } from '@testing-library/dom';
+import { Dropdown } from '../dropdown';
 
-describe('cw-dropdown', () => {
+describe('ix-dropdown', () => {
   let page: any;
   let dropdown: any;
 
@@ -14,13 +14,13 @@ describe('cw-dropdown', () => {
     page = await newSpecPage({
       components: [Dropdown],
       html: `
-      <cw-dropdown>
-        <cw-dropdown-item></cw-dropdown-item>
-      </cw-dropdown>
+      <ix-dropdown>
+        <ix-dropdown-item></ix-dropdown-item>
+      </ix-dropdown>
       `,
     });
 
-    dropdown = document.querySelector('cw-dropdown');
+    dropdown = document.querySelector('ix-dropdown');
   });
 
   it('renders', async () => {
@@ -33,14 +33,14 @@ describe('cw-dropdown', () => {
       html: `<div></div>`,
     });
 
-    const anchor = page.doc.createElement('cw-button');
+    const anchor = page.doc.createElement('ix-button');
     anchor.setAttribute('id', 'test');
     anchor.innerText = 'Test';
 
-    const dropdown = page.doc.createElement('cw-dropdown');
+    const dropdown = page.doc.createElement('ix-dropdown');
     dropdown.show = true;
 
-    const dropdownItem = page.doc.createElement('cw-dropdown-item');
+    const dropdownItem = page.doc.createElement('ix-dropdown-item');
 
     dropdown.appendChild(dropdownItem);
 
@@ -50,11 +50,11 @@ describe('cw-dropdown', () => {
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-    <cw-dropdown class="dropdown-menu show" show="" style="margin: 0; min-width: 0px;">
+    <ix-dropdown class="dropdown-menu show" show="" style="margin: 0; min-width: 0px;">
       <div style="display: contents;">
-        <cw-dropdown-item></cw-dropdown-item>
+        <ix-dropdown-item></ix-dropdown-item>
       </div>
-    </cw-dropdown>
+    </ix-dropdown>
     `);
   });
 
@@ -62,7 +62,7 @@ describe('cw-dropdown', () => {
     dropdown.show = true;
     await page.waitForChanges();
 
-    fireEvent.click(window);  //click outside
+    fireEvent.click(window); //click outside
     await page.waitForChanges();
 
     expect(dropdown.show).toBeFalsy();
@@ -75,9 +75,8 @@ describe('cw-dropdown', () => {
     dropdown.show = true;
     await page.waitForChanges();
 
-    fireEvent.click(window);  
-    await page.waitForChanges(); 
+    fireEvent.click(window);
+    await page.waitForChanges();
     expect(mockCallback).toHaveBeenCalled();
   });
-
 });

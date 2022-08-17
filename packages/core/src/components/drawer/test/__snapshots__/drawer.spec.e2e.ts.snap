@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`drawer renders 1`] = `
-<cw-drawer class="hydrated sc-cw-drawer-h sc-cw-drawer-s">
+<ix-drawer class="hydrated sc-ix-drawer-h sc-ix-drawer-s">
   <!---->
-  <div class="d-none drawer-container sc-cw-drawer" data-testid="container" id="div-container">
-    <div class="header sc-cw-drawer sc-cw-drawer-s">
-      <cw-icon-button class="hydrated sc-cw-drawer sc-cw-icon-button-h sc-cw-icon-button-s" data-testid="close-button">
+  <div class="d-none drawer-container sc-ix-drawer" data-testid="container" id="div-container">
+    <div class="header sc-ix-drawer sc-ix-drawer-s">
+      <ix-icon-button class="hydrated sc-ix-drawer sc-ix-icon-button-h sc-ix-icon-button-s" data-testid="close-button">
         <!---->
-        <button class="btn btn-icon btn-invisible-secondary sc-cw-icon-button" style="color: inherit;">
-          <cw-icon class="hydrated sc-cw-icon-button sc-cw-icon-h sc-cw-icon-s size-24" name="close" style="color: inherit;">
+        <button class="btn btn-icon btn-invisible-secondary sc-ix-icon-button" style="color: inherit;">
+          <ix-icon class="hydrated sc-ix-icon-button sc-ix-icon-h sc-ix-icon-s size-24" name="close" style="color: inherit;">
             <!---->
-            <i class="glyph glyph-24 glyph-close sc-cw-icon sc-cw-icon-s"></i>
-          </cw-icon>
-          <div class="sc-cw-icon-button sc-cw-icon-button-s" style="display: none;"></div>
+            <i class="glyph glyph-24 glyph-close sc-ix-icon sc-ix-icon-s"></i>
+          </ix-icon>
+          <div class="sc-ix-icon-button sc-ix-icon-button-s" style="display: none;"></div>
         </button>
-      </cw-icon-button>
+      </ix-icon-button>
     </div>
-    <div class="content sc-cw-drawer sc-cw-drawer-s"></div>
+    <div class="content sc-ix-drawer sc-ix-drawer-s"></div>
   </div>
-</cw-drawer>
+</ix-drawer>
 `;

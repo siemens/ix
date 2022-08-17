@@ -18,12 +18,12 @@ import { convertToRemString } from '../utils/rwd.util';
 import { toggleTheme } from '../utils/toggle-theme';
 
 @Component({
-  tag: 'cw-menu',
+  tag: 'ix-menu',
   styleUrl: 'menu.scss',
   scoped: false,
 })
 export class Menu {
-  @Element() hostElement!: HTMLCwMenuElement;
+  @Element() hostElement!: HTMLIxMenuElement;
 
   /**
    * Is settings tab visible
@@ -52,12 +52,12 @@ export class Menu {
   @Prop() enableMapExpand = false;
 
   /**
-   * Should only be set if you use cw-menu standalone
+   * Should only be set if you use ix-menu standalone
    */
   @Prop() applicationName: string;
 
   /**
-   * Should only be set if you use cw-menu standalone
+   * Should only be set if you use ix-menu standalone
    */
   @Prop() applicationDescription = '';
 
@@ -114,7 +114,7 @@ export class Menu {
 
   @State() mapExpand = true;
 
-  @State() activeTab: HTMLCwMenuItemElement;
+  @State() activeTab: HTMLIxMenuItemElement;
 
   @State() isMoreTabEmpty = false;
 
@@ -136,11 +136,11 @@ export class Menu {
       this.onWindowResize();
     }
 
-    if (node.matches('cw-menu-about') && this.menu.contains(node)) {
+    if (node.matches('ix-menu-about') && this.menu.contains(node)) {
       this.appendAbout();
     }
 
-    if (node.matches('cw-menu-settings') && this.menu.contains(node)) {
+    if (node.matches('ix-menu-settings') && this.menu.contains(node)) {
       this.appendSettings();
     }
   }
@@ -179,7 +179,7 @@ export class Menu {
   get menuItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'cw-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
+        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
       )
     ).filter(this.isVisible);
   }
@@ -187,29 +187,29 @@ export class Menu {
   get menuBottomItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'cw-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
+        'ix-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
       )
     ).filter(this.isVisible);
   }
 
   get homeTab() {
-    return this.hostElement.querySelector('cw-menu-item.home-tab');
+    return this.hostElement.querySelector('ix-menu-item.home-tab');
   }
 
   get moreItemsDropdown(): HTMLElement {
-    return this.hostElement.querySelector('.internal-tab cw-dropdown');
+    return this.hostElement.querySelector('.internal-tab ix-dropdown');
   }
 
   get isMoreItemsDropdownEmpty(): boolean {
     return (
-      this.hostElement.querySelectorAll('.internal-tab cw-dropdown .appended')
+      this.hostElement.querySelectorAll('.internal-tab ix-dropdown .appended')
         .length === 0
     );
   }
 
   get moreItemsDropdownItems() {
     return this.hostElement.querySelectorAll(
-      '.internal-tab cw-dropdown cw-menu-item'
+      '.internal-tab ix-dropdown ix-menu-item'
     );
   }
 
@@ -218,38 +218,38 @@ export class Menu {
   }
 
   get activeMoreTab() {
-    return this.hostElement.querySelector('.active-more-tab cw-menu-item');
+    return this.hostElement.querySelector('.active-more-tab ix-menu-item');
   }
 
   get aboutPopoverContainer(): HTMLElement {
     return this.hostElement.querySelector('.about-news');
   }
 
-  get aboutPopover(): HTMLCwMenuAboutNewsElement {
-    return document.querySelector('cw-menu-about-news');
+  get aboutPopover(): HTMLIxMenuAboutNewsElement {
+    return document.querySelector('ix-menu-about-news');
   }
 
   get aboutTab(): HTMLElement {
     return this.hostElement.querySelector('#aboutAndLegal');
   }
 
-  get about(): HTMLCwMenuAboutElement {
-    return this.hostElement.querySelector('cw-menu-about');
+  get about(): HTMLIxMenuAboutElement {
+    return this.hostElement.querySelector('ix-menu-about');
   }
 
-  get settings(): HTMLCwMenuSettingsElement {
-    return this.hostElement.querySelector('cw-menu-settings');
+  get settings(): HTMLIxMenuSettingsElement {
+    return this.hostElement.querySelector('ix-menu-settings');
   }
 
   get isSettingsEmpty(): boolean {
     return (
-      Array.from(this.hostElement.querySelectorAll('cw-menu-settings-item'))
+      Array.from(this.hostElement.querySelectorAll('ix-menu-settings-item'))
         .length === 0
     );
   }
 
-  get avatarItem(): HTMLCwMenuAvatarElement {
-    return this.hostElement.querySelector('cw-menu-avatar');
+  get avatarItem(): HTMLIxMenuAvatarElement {
+    return this.hostElement.querySelector('ix-menu-avatar');
   }
 
   private popoverListener: Popover;
@@ -332,7 +332,7 @@ export class Menu {
     this.activeTab = null;
   }
 
-  private isMenuItemActive(item: HTMLCwMenuItemElement) {
+  private isMenuItemActive(item: HTMLIxMenuItemElement) {
     return item.active || item.classList.contains('active');
   }
 
@@ -344,7 +344,7 @@ export class Menu {
       this.homeTab.addEventListener('click', this.resetOverlay);
     }
 
-    this.menuItems.forEach((item: HTMLCwMenuItemElement, index) => {
+    this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
       if (this.showTab(index)) {
         item.classList.remove('d-none');
       } else {
@@ -713,16 +713,16 @@ export class Menu {
           <slot></slot>
           <div class="active-more-tab">
             {this.activeTab ? (
-              <cw-menu-item
+              <ix-menu-item
                 class="internal-tab"
                 active={true}
                 tabIcon={this.activeTab.tabIcon}
               >
                 {this.activeTab.innerText}
-              </cw-menu-item>
+              </ix-menu-item>
             ) : null}
           </div>
-          <cw-menu-item
+          <ix-menu-item
             id="more-tab"
             tabIcon="more-menu"
             class={{
@@ -736,31 +736,31 @@ export class Menu {
             onClick={() => this.toggleShowMoreDropdown()}
           >
             {this.i18nMore}
-            <cw-dropdown show={this.showMoreItems}>
+            <ix-dropdown show={this.showMoreItems}>
               {this.menuItems
                 .filter(
-                  (elm: HTMLCwMenuItemElement, index) =>
+                  (elm: HTMLIxMenuItemElement, index) =>
                     !this.showTab(index) &&
                     !this.isMenuItemActive(elm) &&
                     this.isVisible(elm)
                 )
-                .map((e: HTMLCwMenuItemElement) => {
+                .map((e: HTMLIxMenuItemElement) => {
                   return (
-                    <cw-menu-item
+                    <ix-menu-item
                       tabIcon={e.tabIcon}
                       active={e.active}
                       class="internal-tab appended"
                       onClick={() => e.dispatchEvent(new CustomEvent('click'))}
                     >
                       {e.innerText}
-                    </cw-menu-item>
+                    </ix-menu-item>
                   );
                 })}
-            </cw-dropdown>
-          </cw-menu-item>
+            </ix-dropdown>
+          </ix-menu-item>
           <div class="bottom-tab-divider"></div>
           {this.enableSettings && !this.isSettingsEmpty ? (
-            <cw-menu-item
+            <ix-menu-item
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
@@ -770,12 +770,12 @@ export class Menu {
               onClick={async () => this.toggleSettings(!this.showSettings)}
             >
               {this.i18nSettings}
-            </cw-menu-item>
+            </ix-menu-item>
           ) : null}
           <slot name="bottom"></slot>
           <div id="popover-area"></div>
           {this.about ? (
-            <cw-menu-item
+            <ix-menu-item
               id="aboutAndLegal"
               class={{
                 'internal-tab': true,
@@ -786,27 +786,27 @@ export class Menu {
               onClick={async () => this.toggleAbout(!this.showAbout)}
             >
               {this.i18nLegal}
-            </cw-menu-item>
+            </ix-menu-item>
           ) : null}
           {this.enableToggleTheme ? (
-            <cw-menu-item
+            <ix-menu-item
               id="toggleTheme"
               onClick={() => toggleTheme()}
               class="internal-tab bottom-tab"
               tabIcon="bulb"
             >
               {this.i18nToggleTheme}
-            </cw-menu-item>
+            </ix-menu-item>
           ) : null}
           {this.enableMapExpand ? (
-            <cw-menu-item
+            <ix-menu-item
               id="menu-collapse"
               onClick={() => this.mapExpandChange.emit(this.mapExpand)}
               class="internal-tab bottom-tab"
               tabIcon={`${this.getCollapseIcon()}`}
             >
               {this.getCollapseText()}
-            </cw-menu-item>
+            </ix-menu-item>
           ) : null}
         </div>
         <div

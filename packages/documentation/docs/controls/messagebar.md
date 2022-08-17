@@ -1,8 +1,8 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-message-bar/props.md';
-import Events from './../auto-generated/cw-message-bar/events.md';
+import Props from './../auto-generated/ix-message-bar/props.md';
+import Events from './../auto-generated/ix-message-bar/events.md';
 
 import SourceMessage from './../auto-generated/previews/web-component/message-bar.md';
 

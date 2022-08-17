@@ -1,15 +1,23 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-filter-chip',
+  tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',
   scoped: true,
 })
 export class FilterChip {
-  @Element() el: HTMLCwFilterChipElement;
+  @Element() el: HTMLIxFilterChipElement;
 
   /**
    * If true the filter chip will be in disabled state
@@ -33,8 +41,12 @@ export class FilterChip {
         <div class="slot-container">
           <slot></slot>
         </div>
-        <button disabled={this.disabled} class="btn btn-invisible-secondary btn-oval" onClick={e => this.onCloseClick(e)}>
-          <cw-icon name="close-small" size="16"></cw-icon>
+        <button
+          disabled={this.disabled}
+          class="btn btn-invisible-secondary btn-oval"
+          onClick={(e) => this.onCloseClick(e)}
+        >
+          <ix-icon name="close-small" size="16"></ix-icon>
         </button>
       </Host>
     );

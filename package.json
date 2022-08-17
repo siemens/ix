@@ -16,7 +16,7 @@
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
-    "visual-regression-ci": "nx run core:test.e2e.list",
+    "visual-regression-ci": "npx playwright install chromium && nx run core:test.e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"npm run visual-regression-ci\""
   },
   "private": true,

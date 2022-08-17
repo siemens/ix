@@ -1,20 +1,20 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/drawer-full-height.html -->
 ```html
 
-<cw-drawer>
+<ix-drawer>
   <span>Some content of drawer</span>
-</cw-drawer>
+</ix-drawer>
 
-<cw-button>Toggle drawer</cw-button>
+<ix-button>Toggle drawer</ix-button>
 
 <script>
   (async function () {
-    await window.customElements.whenDefined('cw-drawer');
-    const drawer = document.querySelector('cw-drawer');
+    await window.customElements.whenDefined('ix-drawer');
+    const drawer = document.querySelector('ix-drawer');
     drawer.fullHeight = true;
     drawer.closeOnClickOutside = true;
 
-    const button = document.querySelector('cw-button');
+    const button = document.querySelector('ix-button');
     button.addEventListener('click', () => {
       drawer.show = !drawer.show;
     });

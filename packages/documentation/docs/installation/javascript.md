@@ -28,7 +28,7 @@ npm i -S @siemens/ix-icons@latest
 ### Load common style sheet
 
 ```html
-<link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+<link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
 ```
 
 ### Load `ix` Web Components

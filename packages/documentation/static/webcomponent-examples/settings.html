@@ -9,7 +9,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       rel="stylesheet"
       href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
     />
-    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
     <script type="module">
       import { defineCustomElements } from './lib/ix/loader/index.js';
       defineCustomElements();
@@ -17,22 +17,22 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
-    <cw-basic-navigation>
-      <cw-menu>
-        <cw-menu-settings>
-          <cw-menu-settings-item
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-settings>
+          <ix-menu-settings-item
             label="Example Setting 1"
-          ></cw-menu-settings-item>
-          <cw-menu-settings-item
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
             label="Example Setting 2"
-          ></cw-menu-settings-item>
-        </cw-menu-settings>
-      </cw-menu>
-    </cw-basic-navigation>
+          ></ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-basic-navigation>
     <script>
       (async function () {
-        await window.customElements.whenDefined('cw-menu');
-        const menu = document.querySelector('cw-menu');
+        await window.customElements.whenDefined('ix-menu');
+        const menu = document.querySelector('ix-menu');
         await menu.toggleSettings(true);
       })();
     </script>

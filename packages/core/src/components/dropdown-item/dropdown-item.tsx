@@ -1,15 +1,24 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-dropdown-item',
+  tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
   scoped: true,
 })
 export class DropdownItem {
-  @Element() hostElement!: HTMLCwDropdownItemElement;
+  @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
    * Label of dropdown item
@@ -39,7 +48,7 @@ export class DropdownItem {
   /**
    * Click on item
    */
-  @Event() itemClick: EventEmitter<HTMLCwDropdownItemElement>;
+  @Event() itemClick: EventEmitter<HTMLIxDropdownItemElement>;
 
   /**
    * Internal usage only
@@ -61,13 +70,13 @@ export class DropdownItem {
         <button
           class={{
             'dropdown-item': true,
-            'hover': this.hover,
-            'disabled': this.disabled,
+            hover: this.hover,
+            disabled: this.disabled,
           }}
           onClick={() => this.emitItemClick()}
         >
           {this.checked ? (
-            <cw-icon class="checkmark" name="single-check" size='16'></cw-icon>
+            <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
           ) : null}
           {this.icon ? (
             <span

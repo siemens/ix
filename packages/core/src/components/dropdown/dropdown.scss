@@ -1,12 +1,12 @@
 @import '~bootstrap/scss/functions';
-@import './../../../scss/v7/common-variables';
+@import 'common-variables';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/dropdown';
 
-@import './../../../scss/v7/mixins/fonts';
-@import './../../../scss/v7/mixins/text-truncation';
-@import './../../../scss/v7/components/dropdown';
+@import 'mixins/fonts';
+@import 'mixins/text-truncation';
+@import 'components/dropdown';
 
 :host {
   min-width: 0px;

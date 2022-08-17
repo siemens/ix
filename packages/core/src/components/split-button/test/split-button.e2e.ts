@@ -9,6 +9,8 @@ regressionTest.describe('split-button', () => {
     await page.goto(`split-button/test/basic`);
     await page.locator('button:nth-child(2)').click();
     await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
+    });
   });
 });

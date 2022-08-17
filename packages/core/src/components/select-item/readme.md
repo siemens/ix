@@ -1,6 +1,4 @@
-# cw-select-item
-
-
+# ix-select-item
 
 <!-- Auto Generated Below -->
 
@@ -24,7 +22,7 @@
 
 ## Methods
 
-### `onItemClick(event?: CustomEvent<HTMLCwDropdownItemElement>) => Promise<void>`
+### `onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>`
 
 Internal
 

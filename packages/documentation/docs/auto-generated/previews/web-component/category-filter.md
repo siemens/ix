@@ -1,6 +1,6 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/category-filter.html -->
 ```html
-<cw-category-filter placeholder="Filter by"></cw-category-filter>
+<ix-category-filter placeholder="Filter by"></ix-category-filter>
 <script>
   const repeatCategories = false;
   const filterState = {
@@ -24,7 +24,7 @@
     },
   };
 
-  const categoryFilter = document.querySelector('cw-category-filter');
+  const categoryFilter = document.querySelector('ix-category-filter');
   categoryFilter.repeatCategories = repeatCategories;
   categoryFilter.filterState = filterState;
   categoryFilter.categories = categories;

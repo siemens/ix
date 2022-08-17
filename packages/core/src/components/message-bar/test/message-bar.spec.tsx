@@ -6,18 +6,18 @@ import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
 import { CwMessageBar } from '../message-bar';
 
-describe('cw-message-bar', () => {
+describe('ix-message-bar', () => {
   let page: any;
   let messageBar: any;
-  let closeButton: HTMLCwIconButtonElement;
+  let closeButton: HTMLIxIconButtonElement;
 
   beforeEach(async () => {
     page = await newSpecPage({
       components: [CwMessageBar],
-      html: `<cw-message-bar type="danger"></cw-message-bar>`,
+      html: `<ix-message-bar type="danger"></ix-message-bar>`,
     });
 
-    messageBar = document.querySelector('cw-message-bar');
+    messageBar = document.querySelector('ix-message-bar');
     closeButton = document.querySelector('[data-testid="close-btn"]');
   });
 

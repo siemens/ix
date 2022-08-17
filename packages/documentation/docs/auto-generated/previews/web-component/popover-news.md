@@ -1,13 +1,13 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/popover-news.html -->
 ```html
-<cw-basic-navigation>
-  <cw-menu>
-    <cw-menu-about>
-      <cw-menu-about-item label="Example"> </cw-menu-about-item>
-    </cw-menu-about>
-    <cw-menu-about-news label="Test" show about-item-label="Example">
+<ix-basic-navigation>
+  <ix-menu>
+    <ix-menu-about>
+      <ix-menu-about-item label="Example"> </ix-menu-about-item>
+    </ix-menu-about>
+    <ix-menu-about-news label="Test" show about-item-label="Example">
       Test
-    </cw-menu-about-news>
-  </cw-menu>
-</cw-basic-navigation>
+    </ix-menu-about-news>
+  </ix-menu>
+</ix-basic-navigation>
 ```

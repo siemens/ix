@@ -2,11 +2,10 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/colors';
-@import '../../../scss/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
-cw-tabs {
+ix-tabs {
   width: auto;
   display: flex;
   align-items: center;

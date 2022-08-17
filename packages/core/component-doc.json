@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-17T04:58:40",
+  "timestamp": "2022-08-17T10:54:43",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -9,7 +9,7 @@
     {
       "filePath": "./src/components/animated-tab/animated-tab.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-animated-tab",
+      "tag": "ix-animated-tab",
       "readme": "# animated-tab\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -60,14 +60,14 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-animated-tab"
+          "ix-animated-tab"
         ]
       }
     },
     {
       "filePath": "./src/components/animated-tabs/animated-tabs.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-animated-tabs",
+      "tag": "ix-animated-tabs",
       "readme": "# animated-tabs\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -162,22 +162,22 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-animated-tabs": [
-          "cw-icon"
+        "ix-animated-tabs": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-animated-tabs"
+          "ix-animated-tabs"
         ]
       }
     },
     {
       "filePath": "./src/components/application-header/application-header.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-application-header",
-      "readme": "# cw-application-header\n\n\n",
+      "tag": "ix-application-header",
+      "readme": "# ix-application-header\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -206,20 +206,20 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-basic-navigation"
+        "ix-basic-navigation"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-basic-navigation": [
-          "cw-application-header"
+        "ix-basic-navigation": [
+          "ix-application-header"
         ]
       }
     },
     {
       "filePath": "./src/components/basic-navigation/basic-navigation.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-basic-navigation",
-      "readme": "# cw-basic-navigation\n\n\n",
+      "tag": "ix-basic-navigation",
+      "readme": "# ix-basic-navigation\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -268,22 +268,22 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-application-header"
+        "ix-application-header"
       ],
       "dependencyGraph": {
-        "cw-basic-navigation": [
-          "cw-application-header"
+        "ix-basic-navigation": [
+          "ix-application-header"
         ],
         "my-component": [
-          "cw-basic-navigation"
+          "ix-basic-navigation"
         ]
       }
     },
     {
       "filePath": "./src/components/blind/blind.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-blind",
-      "readme": "# cw-blind\n\n\n",
+      "tag": "ix-blind",
+      "readme": "# ix-blind\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -344,14 +344,14 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-blind"
+          "ix-blind"
         ]
       }
     },
     {
       "filePath": "./src/components/breadcrumb/breadcrumb.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-breadcrumb",
+      "tag": "ix-breadcrumb",
       "readme": "# cui-breadcrumb\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -437,29 +437,29 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-dropdown",
-        "cw-dropdown-item"
+        "ix-icon",
+        "ix-dropdown",
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-breadcrumb": [
-          "cw-icon",
-          "cw-dropdown",
-          "cw-dropdown-item"
+        "ix-breadcrumb": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-breadcrumb"
+          "ix-breadcrumb"
         ]
       }
     },
     {
       "filePath": "./src/components/breadcrumb-item/breadcrumb-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-breadcrumb-item",
-      "readme": "# cw-breadcrumb-item\n\n\n",
+      "tag": "ix-breadcrumb-item",
+      "readme": "# ix-breadcrumb-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -509,15 +509,15 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-breadcrumb-item"
+          "ix-breadcrumb-item"
         ]
       }
     },
     {
       "filePath": "./src/components/button/button.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-button",
-      "readme": "# cw-button\n\n\n",
+      "tag": "ix-button",
+      "readme": "# ix-button\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -643,36 +643,36 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-date-picker",
-        "cw-datetime-picker",
-        "cw-modal-example",
-        "cw-time-picker",
+        "ix-date-picker",
+        "ix-datetime-picker",
+        "ix-modal-example",
+        "ix-time-picker",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-date-picker": [
-          "cw-button"
+        "ix-date-picker": [
+          "ix-button"
         ],
-        "cw-datetime-picker": [
-          "cw-button"
+        "ix-datetime-picker": [
+          "ix-button"
         ],
-        "cw-modal-example": [
-          "cw-button"
+        "ix-modal-example": [
+          "ix-button"
         ],
-        "cw-time-picker": [
-          "cw-button"
+        "ix-time-picker": [
+          "ix-button"
         ],
         "my-component": [
-          "cw-button"
+          "ix-button"
         ]
       }
     },
     {
       "filePath": "./src/components/category-filter/category-filter.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-category-filter",
-      "readme": "# cw-category-filter\n\n\n",
+      "tag": "ix-category-filter",
+      "readme": "# ix-category-filter\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -917,23 +917,23 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-icon",
-        "cw-filter-chip"
+        "ix-icon",
+        "ix-filter-chip"
       ],
       "dependencyGraph": {
-        "cw-category-filter": [
-          "cw-icon",
-          "cw-filter-chip"
+        "ix-category-filter": [
+          "ix-icon",
+          "ix-filter-chip"
         ],
-        "cw-filter-chip": [
-          "cw-icon"
+        "ix-filter-chip": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/chip/chip.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-chip",
+      "tag": "ix-chip",
       "readme": "# cui-chip\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -1105,22 +1105,22 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-chip": [
-          "cw-icon"
+        "ix-chip": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-chip"
+          "ix-chip"
         ]
       }
     },
     {
       "filePath": "./src/components/counter-pill/counter-pill.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-counter-pill",
-      "readme": "# cw-counter-pill\n\n\n",
+      "tag": "ix-counter-pill",
+      "readme": "# ix-counter-pill\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -1250,15 +1250,15 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-counter-pill"
+          "ix-counter-pill"
         ]
       }
     },
     {
       "filePath": "./src/components/date-picker/date-picker.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-date-picker",
-      "readme": "# cw-date-picker\n\n\n",
+      "tag": "ix-date-picker",
+      "readme": "# ix-date-picker\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -1367,40 +1367,40 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-datetime-picker",
+        "ix-datetime-picker",
         "my-component"
       ],
       "dependencies": [
-        "cw-date-time-card",
-        "cw-icon-button",
-        "cw-button",
-        "cw-dropdown",
-        "cw-icon"
+        "ix-date-time-card",
+        "ix-icon-button",
+        "ix-button",
+        "ix-dropdown",
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-date-picker": [
-          "cw-date-time-card",
-          "cw-icon-button",
-          "cw-button",
-          "cw-dropdown",
-          "cw-icon"
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-datetime-picker": [
-          "cw-date-picker"
+        "ix-datetime-picker": [
+          "ix-date-picker"
         ],
         "my-component": [
-          "cw-date-picker"
+          "ix-date-picker"
         ]
       }
     },
     {
       "filePath": "./src/components/date-time-card/date-time-card.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-date-time-card",
-      "readme": "# cw-date-time-card\n\n\n",
+      "tag": "ix-date-time-card",
+      "readme": "# ix-date-time-card\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -1456,24 +1456,24 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-date-picker",
-        "cw-time-picker"
+        "ix-date-picker",
+        "ix-time-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-date-picker": [
-          "cw-date-time-card"
+        "ix-date-picker": [
+          "ix-date-time-card"
         ],
-        "cw-time-picker": [
-          "cw-date-time-card"
+        "ix-time-picker": [
+          "ix-date-time-card"
         ]
       }
     },
     {
       "filePath": "./src/components/datetime-picker/datetime-picker.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-datetime-picker",
-      "readme": "# cw-datetime-picker\n\n\n",
+      "tag": "ix-datetime-picker",
+      "readme": "# ix-datetime-picker\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -1582,38 +1582,38 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-date-picker",
-        "cw-time-picker",
-        "cw-button"
+        "ix-date-picker",
+        "ix-time-picker",
+        "ix-button"
       ],
       "dependencyGraph": {
-        "cw-datetime-picker": [
-          "cw-date-picker",
-          "cw-time-picker",
-          "cw-button"
+        "ix-datetime-picker": [
+          "ix-date-picker",
+          "ix-time-picker",
+          "ix-button"
         ],
-        "cw-date-picker": [
-          "cw-date-time-card",
-          "cw-icon-button",
-          "cw-button",
-          "cw-dropdown",
-          "cw-icon"
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-time-picker": [
-          "cw-date-time-card",
-          "cw-icon-button",
-          "cw-button"
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button"
         ]
       }
     },
     {
       "filePath": "./src/components/drawer/drawer.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-drawer",
-      "readme": "# cw-drawer\n\n\n",
+      "tag": "ix-drawer",
+      "readme": "# ix-drawer\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -1769,22 +1769,22 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-icon-button"
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-drawer": [
-          "cw-icon-button"
+        "ix-drawer": [
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/dropdown/dropdown.tsx",
       "encapsulation": "shadow",
-      "tag": "cw-dropdown",
-      "readme": "# cw-dropdown\n\n\n",
+      "tag": "ix-dropdown",
+      "readme": "# ix-dropdown\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2062,48 +2062,48 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-breadcrumb",
-        "cw-date-picker",
-        "cw-group",
-        "cw-menu",
-        "cw-menu-avatar",
-        "cw-select",
-        "cw-split-button",
+        "ix-breadcrumb",
+        "ix-date-picker",
+        "ix-group",
+        "ix-menu",
+        "ix-menu-avatar",
+        "ix-select",
+        "ix-split-button",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-breadcrumb": [
-          "cw-dropdown"
+        "ix-breadcrumb": [
+          "ix-dropdown"
         ],
-        "cw-date-picker": [
-          "cw-dropdown"
+        "ix-date-picker": [
+          "ix-dropdown"
         ],
-        "cw-group": [
-          "cw-dropdown"
+        "ix-group": [
+          "ix-dropdown"
         ],
-        "cw-menu": [
-          "cw-dropdown"
+        "ix-menu": [
+          "ix-dropdown"
         ],
-        "cw-menu-avatar": [
-          "cw-dropdown"
+        "ix-menu-avatar": [
+          "ix-dropdown"
         ],
-        "cw-select": [
-          "cw-dropdown"
+        "ix-select": [
+          "ix-dropdown"
         ],
-        "cw-split-button": [
-          "cw-dropdown"
+        "ix-split-button": [
+          "ix-dropdown"
         ],
         "my-component": [
-          "cw-dropdown"
+          "ix-dropdown"
         ]
       }
     },
     {
       "filePath": "./src/components/dropdown-item/dropdown-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-dropdown-item",
-      "readme": "# cw-dropdown-item\n\n\n",
+      "tag": "ix-dropdown-item",
+      "readme": "# ix-dropdown-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2208,7 +2208,7 @@
       "events": [
         {
           "event": "itemClick",
-          "detail": "HTMLCwDropdownItemElement",
+          "detail": "HTMLIxDropdownItemElement",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2221,49 +2221,49 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-breadcrumb",
-        "cw-group-dropdown-item",
-        "cw-menu-avatar-item",
-        "cw-select",
-        "cw-select-item",
-        "cw-split-button-item",
+        "ix-breadcrumb",
+        "ix-group-dropdown-item",
+        "ix-menu-avatar-item",
+        "ix-select",
+        "ix-select-item",
+        "ix-split-button-item",
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-breadcrumb": [
-          "cw-dropdown-item"
+        "ix-breadcrumb": [
+          "ix-dropdown-item"
         ],
-        "cw-group-dropdown-item": [
-          "cw-dropdown-item"
+        "ix-group-dropdown-item": [
+          "ix-dropdown-item"
         ],
-        "cw-menu-avatar-item": [
-          "cw-dropdown-item"
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
         ],
-        "cw-select": [
-          "cw-dropdown-item"
+        "ix-select": [
+          "ix-dropdown-item"
         ],
-        "cw-select-item": [
-          "cw-dropdown-item"
+        "ix-select-item": [
+          "ix-dropdown-item"
         ],
-        "cw-split-button-item": [
-          "cw-dropdown-item"
+        "ix-split-button-item": [
+          "ix-dropdown-item"
         ],
         "my-component": [
-          "cw-dropdown-item"
+          "ix-dropdown-item"
         ]
       }
     },
     {
       "filePath": "./src/components/event-list/event-list.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-event-list",
-      "readme": "# cw-event-list\n",
+      "tag": "ix-event-list",
+      "readme": "# ix-event-list\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2357,8 +2357,8 @@
     {
       "filePath": "./src/components/event-list-item/event-list-item.tsx",
       "encapsulation": "none",
-      "tag": "cw-event-list-item",
-      "readme": "# cw-event-list-item\n",
+      "tag": "ix-event-list-item",
+      "readme": "# ix-event-list-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2480,7 +2480,7 @@
     {
       "filePath": "./src/components/expanding-search/expanding-search.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-expanding-search",
+      "tag": "ix-expanding-search",
       "readme": "# expanding-search\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -2558,26 +2558,26 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button"
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-expanding-search": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-expanding-search": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-expanding-search"
+          "ix-expanding-search"
         ]
       }
     },
     {
       "filePath": "./src/components/filter-chip/filter-chip.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-filter-chip",
+      "tag": "ix-filter-chip",
       "readme": "# cui-filter-chip\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -2618,33 +2618,33 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-category-filter",
-        "cw-select",
+        "ix-category-filter",
+        "ix-select",
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-filter-chip": [
-          "cw-icon"
+        "ix-filter-chip": [
+          "ix-icon"
         ],
-        "cw-category-filter": [
-          "cw-filter-chip"
+        "ix-category-filter": [
+          "ix-filter-chip"
         ],
-        "cw-select": [
-          "cw-filter-chip"
+        "ix-select": [
+          "ix-filter-chip"
         ],
         "my-component": [
-          "cw-filter-chip"
+          "ix-filter-chip"
         ]
       }
     },
     {
       "filePath": "./src/components/flip-tile/flip-tile.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-flip-tile",
-      "readme": "# cw-flip-tile\n\n\n",
+      "tag": "ix-flip-tile",
+      "readme": "# ix-flip-tile\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2704,25 +2704,25 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon-button"
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-flip-tile": [
-          "cw-icon-button"
+        "ix-flip-tile": [
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-flip-tile"
+          "ix-flip-tile"
         ]
       }
     },
     {
       "filePath": "./src/components/flip-tile-content/flip-tile-content.tsx",
       "encapsulation": "shadow",
-      "tag": "cw-flip-tile-content",
-      "readme": "# cw-flip-tile-content\n\n\n",
+      "tag": "ix-flip-tile-content",
+      "readme": "# ix-flip-tile-content\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2740,8 +2740,8 @@
     {
       "filePath": "./src/components/group/group.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-group",
-      "readme": "# cw-group\n\n\n",
+      "tag": "ix-group",
+      "readme": "# ix-group\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2907,34 +2907,34 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button",
-        "cw-dropdown",
-        "cw-group-item"
+        "ix-icon",
+        "ix-icon-button",
+        "ix-dropdown",
+        "ix-group-item"
       ],
       "dependencyGraph": {
-        "cw-group": [
-          "cw-icon",
-          "cw-icon-button",
-          "cw-dropdown",
-          "cw-group-item"
+        "ix-group": [
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-group-item"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-group-item": [
-          "cw-icon"
+        "ix-group-item": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-group"
+          "ix-group"
         ]
       }
     },
     {
       "filePath": "./src/components/group-dropdown-item/group-dropdown-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-group-dropdown-item",
-      "readme": "# cw-group-dropdown-item\n\n\n",
+      "tag": "ix-group-dropdown-item",
+      "readme": "# ix-group-dropdown-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -2980,22 +2980,22 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-dropdown-item"
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-group-dropdown-item": [
-          "cw-dropdown-item"
+        "ix-group-dropdown-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/group-item/group-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-group-item",
-      "readme": "# cw-group-item\n\n\n",
+      "tag": "ix-group-item",
+      "readme": "# ix-group-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3119,7 +3119,7 @@
       "events": [
         {
           "event": "selectedChanged",
-          "detail": "HTMLCwGroupItemElement",
+          "detail": "HTMLIxGroupItemElement",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3138,29 +3138,29 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-group",
+        "ix-group",
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-group-item": [
-          "cw-icon"
+        "ix-group-item": [
+          "ix-icon"
         ],
-        "cw-group": [
-          "cw-group-item"
+        "ix-group": [
+          "ix-group-item"
         ],
         "my-component": [
-          "cw-group-item"
+          "ix-group-item"
         ]
       }
     },
     {
       "filePath": "./src/components/icon/icon.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-icon",
-      "readme": "# cw-icon\n",
+      "tag": "ix-icon",
+      "readme": "# ix-icon\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3234,100 +3234,100 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-animated-tabs",
-        "cw-breadcrumb",
-        "cw-category-filter",
-        "cw-chip",
-        "cw-date-picker",
-        "cw-dropdown-item",
-        "cw-expanding-search",
-        "cw-filter-chip",
-        "cw-group",
-        "cw-group-item",
-        "cw-icon-button",
-        "cw-map-navigation-overlay",
-        "cw-menu-about-news",
-        "cw-message-bar",
-        "cw-modal",
-        "cw-pill",
-        "cw-select",
-        "cw-split-button",
-        "cw-toast",
-        "cw-tree-item",
+        "ix-animated-tabs",
+        "ix-breadcrumb",
+        "ix-category-filter",
+        "ix-chip",
+        "ix-date-picker",
+        "ix-dropdown-item",
+        "ix-expanding-search",
+        "ix-filter-chip",
+        "ix-group",
+        "ix-group-item",
+        "ix-icon-button",
+        "ix-map-navigation-overlay",
+        "ix-menu-about-news",
+        "ix-message-bar",
+        "ix-modal",
+        "ix-pill",
+        "ix-select",
+        "ix-split-button",
+        "ix-toast",
+        "ix-tree-item",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-animated-tabs": [
-          "cw-icon"
+        "ix-animated-tabs": [
+          "ix-icon"
         ],
-        "cw-breadcrumb": [
-          "cw-icon"
+        "ix-breadcrumb": [
+          "ix-icon"
         ],
-        "cw-category-filter": [
-          "cw-icon"
+        "ix-category-filter": [
+          "ix-icon"
         ],
-        "cw-chip": [
-          "cw-icon"
+        "ix-chip": [
+          "ix-icon"
         ],
-        "cw-date-picker": [
-          "cw-icon"
+        "ix-date-picker": [
+          "ix-icon"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-expanding-search": [
-          "cw-icon"
+        "ix-expanding-search": [
+          "ix-icon"
         ],
-        "cw-filter-chip": [
-          "cw-icon"
+        "ix-filter-chip": [
+          "ix-icon"
         ],
-        "cw-group": [
-          "cw-icon"
+        "ix-group": [
+          "ix-icon"
         ],
-        "cw-group-item": [
-          "cw-icon"
+        "ix-group-item": [
+          "ix-icon"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-map-navigation-overlay": [
-          "cw-icon"
+        "ix-map-navigation-overlay": [
+          "ix-icon"
         ],
-        "cw-menu-about-news": [
-          "cw-icon"
+        "ix-menu-about-news": [
+          "ix-icon"
         ],
-        "cw-message-bar": [
-          "cw-icon"
+        "ix-message-bar": [
+          "ix-icon"
         ],
-        "cw-modal": [
-          "cw-icon"
+        "ix-modal": [
+          "ix-icon"
         ],
-        "cw-pill": [
-          "cw-icon"
+        "ix-pill": [
+          "ix-icon"
         ],
-        "cw-select": [
-          "cw-icon"
+        "ix-select": [
+          "ix-icon"
         ],
-        "cw-split-button": [
-          "cw-icon"
+        "ix-split-button": [
+          "ix-icon"
         ],
-        "cw-toast": [
-          "cw-icon"
+        "ix-toast": [
+          "ix-icon"
         ],
-        "cw-tree-item": [
-          "cw-icon"
+        "ix-tree-item": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-icon"
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/icon-button/icon-button.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-icon-button",
-      "readme": "# cw-icon-button\n\n\n",
+      "tag": "ix-icon-button",
+      "readme": "# ix-icon-button\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3528,85 +3528,85 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-date-picker",
-        "cw-drawer",
-        "cw-expanding-search",
-        "cw-flip-tile",
-        "cw-group",
-        "cw-map-navigation",
-        "cw-map-navigation-overlay",
-        "cw-menu-about",
-        "cw-menu-about-news",
-        "cw-menu-settings",
-        "cw-message-bar",
-        "cw-modal-example",
-        "cw-select",
-        "cw-time-picker",
-        "cw-toast",
+        "ix-date-picker",
+        "ix-drawer",
+        "ix-expanding-search",
+        "ix-flip-tile",
+        "ix-group",
+        "ix-map-navigation",
+        "ix-map-navigation-overlay",
+        "ix-menu-about",
+        "ix-menu-about-news",
+        "ix-menu-settings",
+        "ix-message-bar",
+        "ix-modal-example",
+        "ix-select",
+        "ix-time-picker",
+        "ix-toast",
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-date-picker": [
-          "cw-icon-button"
+        "ix-date-picker": [
+          "ix-icon-button"
         ],
-        "cw-drawer": [
-          "cw-icon-button"
+        "ix-drawer": [
+          "ix-icon-button"
         ],
-        "cw-expanding-search": [
-          "cw-icon-button"
+        "ix-expanding-search": [
+          "ix-icon-button"
         ],
-        "cw-flip-tile": [
-          "cw-icon-button"
+        "ix-flip-tile": [
+          "ix-icon-button"
         ],
-        "cw-group": [
-          "cw-icon-button"
+        "ix-group": [
+          "ix-icon-button"
         ],
-        "cw-map-navigation": [
-          "cw-icon-button"
+        "ix-map-navigation": [
+          "ix-icon-button"
         ],
-        "cw-map-navigation-overlay": [
-          "cw-icon-button"
+        "ix-map-navigation-overlay": [
+          "ix-icon-button"
         ],
-        "cw-menu-about": [
-          "cw-icon-button"
+        "ix-menu-about": [
+          "ix-icon-button"
         ],
-        "cw-menu-about-news": [
-          "cw-icon-button"
+        "ix-menu-about-news": [
+          "ix-icon-button"
         ],
-        "cw-menu-settings": [
-          "cw-icon-button"
+        "ix-menu-settings": [
+          "ix-icon-button"
         ],
-        "cw-message-bar": [
-          "cw-icon-button"
+        "ix-message-bar": [
+          "ix-icon-button"
         ],
-        "cw-modal-example": [
-          "cw-icon-button"
+        "ix-modal-example": [
+          "ix-icon-button"
         ],
-        "cw-select": [
-          "cw-icon-button"
+        "ix-select": [
+          "ix-icon-button"
         ],
-        "cw-time-picker": [
-          "cw-icon-button"
+        "ix-time-picker": [
+          "ix-icon-button"
         ],
-        "cw-toast": [
-          "cw-icon-button"
+        "ix-toast": [
+          "ix-icon-button"
         ],
         "my-component": [
-          "cw-icon-button"
+          "ix-icon-button"
         ]
       }
     },
     {
       "filePath": "./src/components/input-group/input-group.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-input-group",
-      "readme": "# cw-input-group\n\n\n",
+      "tag": "ix-input-group",
+      "readme": "# ix-input-group\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3623,15 +3623,15 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-input-group"
+          "ix-input-group"
         ]
       }
     },
     {
       "filePath": "./src/components/map-navigation/map-navigation.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-map-navigation",
-      "readme": "# cw-map-navigation\n\n\n",
+      "tag": "ix-map-navigation",
+      "readme": "# ix-map-navigation\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3753,36 +3753,36 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-menu-about",
-        "cw-map-navigation-overlay",
-        "cw-icon-button"
+        "ix-menu-about",
+        "ix-map-navigation-overlay",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-map-navigation": [
-          "cw-menu-about",
-          "cw-map-navigation-overlay",
-          "cw-icon-button"
+        "ix-map-navigation": [
+          "ix-menu-about",
+          "ix-map-navigation-overlay",
+          "ix-icon-button"
         ],
-        "cw-menu-about": [
-          "cw-icon-button",
-          "cw-tabs",
-          "cw-tab-item",
-          "cw-menu-about-item"
+        "ix-menu-about": [
+          "ix-icon-button",
+          "ix-tabs",
+          "ix-tab-item",
+          "ix-menu-about-item"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-map-navigation-overlay": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-map-navigation-overlay": [
+          "ix-icon",
+          "ix-icon-button"
         ]
       }
     },
     {
       "filePath": "./src/components/map-navigation-overlay/map-navigation-overlay.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-map-navigation-overlay",
-      "readme": "# cw-map-navigation-overlay\n\n\n",
+      "tag": "ix-map-navigation-overlay",
+      "readme": "# ix-map-navigation-overlay\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3853,30 +3853,30 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-map-navigation"
+        "ix-map-navigation"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button"
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-map-navigation-overlay": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-map-navigation-overlay": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-map-navigation": [
-          "cw-map-navigation-overlay"
+        "ix-map-navigation": [
+          "ix-map-navigation-overlay"
         ]
       }
     },
     {
       "filePath": "./src/components/menu/menu.tsx",
       "encapsulation": "none",
-      "tag": "cw-menu",
-      "readme": "# cw-menu\n\n\n",
+      "tag": "ix-menu",
+      "readme": "# ix-menu\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -3887,7 +3887,7 @@
           "mutable": false,
           "attr": "application-description",
           "reflectToAttr": false,
-          "docs": "Should only be set if you use cw-menu standalone",
+          "docs": "Should only be set if you use ix-menu standalone",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -3904,7 +3904,7 @@
           "mutable": false,
           "attr": "application-name",
           "reflectToAttr": false,
-          "docs": "Should only be set if you use cw-menu standalone",
+          "docs": "Should only be set if you use ix-menu standalone",
           "docsTags": [],
           "values": [
             {
@@ -4243,24 +4243,24 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-menu-item",
-        "cw-dropdown"
+        "ix-menu-item",
+        "ix-dropdown"
       ],
       "dependencyGraph": {
-        "cw-menu": [
-          "cw-menu-item",
-          "cw-dropdown"
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
         ],
         "my-component": [
-          "cw-menu"
+          "ix-menu"
         ]
       }
     },
     {
-      "filePath": "./src/components/menu-about/cw-menu-about.tsx",
+      "filePath": "./src/components/menu-about/menu-about.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-about",
-      "readme": "# cw-menu-about\n\n\n",
+      "tag": "ix-menu-about",
+      "readme": "# ix-menu-about\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -4288,7 +4288,7 @@
           "mutable": false,
           "attr": "application-description",
           "reflectToAttr": false,
-          "docs": "Should only be set if you use cw-menu standalone",
+          "docs": "Should only be set if you use ix-menu standalone",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -4305,7 +4305,7 @@
           "mutable": false,
           "attr": "application-name",
           "reflectToAttr": false,
-          "docs": "Should only be set if you use cw-menu standalone",
+          "docs": "Should only be set if you use ix-menu standalone",
           "docsTags": [],
           "values": [
             {
@@ -4516,34 +4516,34 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-map-navigation"
+        "ix-map-navigation"
       ],
       "dependencies": [
-        "cw-icon-button",
-        "cw-tabs",
-        "cw-tab-item",
-        "cw-menu-about-item"
+        "ix-icon-button",
+        "ix-tabs",
+        "ix-tab-item",
+        "ix-menu-about-item"
       ],
       "dependencyGraph": {
-        "cw-menu-about": [
-          "cw-icon-button",
-          "cw-tabs",
-          "cw-tab-item",
-          "cw-menu-about-item"
+        "ix-menu-about": [
+          "ix-icon-button",
+          "ix-tabs",
+          "ix-tab-item",
+          "ix-menu-about-item"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-map-navigation": [
-          "cw-menu-about"
+        "ix-map-navigation": [
+          "ix-menu-about"
         ]
       }
     },
     {
-      "filePath": "./src/components/menu-about-item/cw-menu-about-item.tsx",
+      "filePath": "./src/components/menu-about-item/menu-about-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-about-item",
-      "readme": "# cw-menu-about-item\n\n\n",
+      "tag": "ix-menu-about-item",
+      "readme": "# ix-menu-about-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -4572,20 +4572,20 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-menu-about"
+        "ix-menu-about"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-menu-about": [
-          "cw-menu-about-item"
+        "ix-menu-about": [
+          "ix-menu-about-item"
         ]
       }
     },
     {
       "filePath": "./src/components/menu-about-news/menu-about-news.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-about-news",
-      "readme": "# cw-menu-about-news\n\n\n",
+      "tag": "ix-menu-about-news",
+      "readme": "# ix-menu-about-news\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -4718,24 +4718,24 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button"
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-menu-about-news": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-menu-about-news": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/menu-avatar/menu-avatar.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-avatar",
-      "readme": "# cw-menu-avatar\n",
+      "tag": "ix-menu-avatar",
+      "readme": "# ix-menu-avatar\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -4814,27 +4814,27 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-dropdown",
-        "cw-menu-avatar-item"
+        "ix-dropdown",
+        "ix-menu-avatar-item"
       ],
       "dependencyGraph": {
-        "cw-menu-avatar": [
-          "cw-dropdown",
-          "cw-menu-avatar-item"
+        "ix-menu-avatar": [
+          "ix-dropdown",
+          "ix-menu-avatar-item"
         ],
-        "cw-menu-avatar-item": [
-          "cw-dropdown-item"
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/menu-avatar-item/menu-avatar-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-avatar-item",
-      "readme": "# cw-menu-avatar-item\n\n\n",
+      "tag": "ix-menu-avatar-item",
+      "readme": "# ix-menu-avatar-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -4889,28 +4889,28 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-menu-avatar"
+        "ix-menu-avatar"
       ],
       "dependencies": [
-        "cw-dropdown-item"
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-menu-avatar-item": [
-          "cw-dropdown-item"
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-menu-avatar": [
-          "cw-menu-avatar-item"
+        "ix-menu-avatar": [
+          "ix-menu-avatar-item"
         ]
       }
     },
     {
       "filePath": "./src/components/menu-item/menu-item.tsx",
       "encapsulation": "none",
-      "tag": "cw-menu-item",
-      "readme": "# cw-menu-item\n",
+      "tag": "ix-menu-item",
+      "readme": "# ix-menu-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -5022,24 +5022,24 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-menu",
+        "ix-menu",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-menu": [
-          "cw-menu-item"
+        "ix-menu": [
+          "ix-menu-item"
         ],
         "my-component": [
-          "cw-menu-item"
+          "ix-menu-item"
         ]
       }
     },
     {
-      "filePath": "./src/components/menu-settings/cw-menu-settings.tsx",
+      "filePath": "./src/components/menu-settings/menu-settings.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-settings",
-      "readme": "# cw-menu-settings\n\n\n",
+      "tag": "ix-menu-settings",
+      "readme": "# ix-menu-settings\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -5113,26 +5113,26 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-tab-item",
-        "cw-icon-button",
-        "cw-tabs"
+        "ix-tab-item",
+        "ix-icon-button",
+        "ix-tabs"
       ],
       "dependencyGraph": {
-        "cw-menu-settings": [
-          "cw-tab-item",
-          "cw-icon-button",
-          "cw-tabs"
+        "ix-menu-settings": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ]
       }
     },
     {
-      "filePath": "./src/components/menu-settings-item/cw-menu-settings-item.tsx",
+      "filePath": "./src/components/menu-settings-item/menu-settings-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-menu-settings-item",
-      "readme": "# cw-menu-settings-item\n\n\n",
+      "tag": "ix-menu-settings-item",
+      "readme": "# ix-menu-settings-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -5167,7 +5167,7 @@
     {
       "filePath": "./src/components/message-bar/message-bar.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-message-bar",
+      "tag": "ix-message-bar",
       "readme": "# message-bar\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -5237,27 +5237,27 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button"
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-message-bar": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-message-bar": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-message-bar"
+          "ix-message-bar"
         ]
       }
     },
     {
-      "filePath": "./src/components/modal/cw-modal.tsx",
+      "filePath": "./src/components/modal/modal.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-modal",
-      "readme": "# cw-modal\n\n\n",
+      "tag": "ix-modal",
+      "readme": "# ix-modal\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -5621,24 +5621,24 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-modal-container"
+        "ix-modal-container"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-modal": [
-          "cw-icon"
+        "ix-modal": [
+          "ix-icon"
         ],
-        "cw-modal-container": [
-          "cw-modal"
+        "ix-modal-container": [
+          "ix-modal"
         ]
       }
     },
     {
       "filePath": "./src/components/modal-container/modal-container.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-modal-container",
+      "tag": "ix-modal-container",
       "readme": "# overlay-container\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -5671,24 +5671,24 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-modal"
+        "ix-modal"
       ],
       "dependencyGraph": {
-        "cw-modal-container": [
-          "cw-modal"
+        "ix-modal-container": [
+          "ix-modal"
         ],
-        "cw-modal": [
-          "cw-icon"
+        "ix-modal": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-modal-container"
+          "ix-modal-container"
         ]
       }
     },
     {
       "filePath": "./src/components/my-component/example-modal.tsx",
       "encapsulation": "none",
-      "tag": "cw-modal-example",
+      "tag": "ix-modal-example",
       "readme": "# my-component\n\n\n",
       "docs": "",
       "docsTags": [],
@@ -5714,27 +5714,27 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon-button",
-        "cw-button"
+        "ix-icon-button",
+        "ix-button"
       ],
       "dependencyGraph": {
-        "cw-modal-example": [
-          "cw-icon-button",
-          "cw-button"
+        "ix-modal-example": [
+          "ix-icon-button",
+          "ix-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-modal-example"
+          "ix-modal-example"
         ]
       }
     },
     {
       "filePath": "./src/components/pill/pill.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-pill",
-      "readme": "# cw-pill\n\n\n",
+      "tag": "ix-pill",
+      "readme": "# ix-pill\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -5878,22 +5878,22 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-pill": [
-          "cw-icon"
+        "ix-pill": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-pill"
+          "ix-pill"
         ]
       }
     },
     {
       "filePath": "./src/components/select/select.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-select",
-      "readme": "# cw-select\n\n\n",
+      "tag": "ix-select",
+      "readme": "# ix-select\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6101,44 +6101,44 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-select-item",
-        "cw-filter-chip",
-        "cw-icon",
-        "cw-icon-button",
-        "cw-dropdown",
-        "cw-dropdown-item"
+        "ix-select-item",
+        "ix-filter-chip",
+        "ix-icon",
+        "ix-icon-button",
+        "ix-dropdown",
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-select": [
-          "cw-select-item",
-          "cw-filter-chip",
-          "cw-icon",
-          "cw-icon-button",
-          "cw-dropdown",
-          "cw-dropdown-item"
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-dropdown-item"
         ],
-        "cw-select-item": [
-          "cw-dropdown-item"
+        "ix-select-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-filter-chip": [
-          "cw-icon"
+        "ix-filter-chip": [
+          "ix-icon"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-select"
+          "ix-select"
         ]
       }
     },
     {
       "filePath": "./src/components/select-item/select-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-select-item",
-      "readme": "# cw-select-item\n\n\n",
+      "tag": "ix-select-item",
+      "readme": "# ix-select-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6217,7 +6217,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "onItemClick(event?: CustomEvent<HTMLCwDropdownItemElement>) => Promise<void>",
+          "signature": "onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>",
           "parameters": [],
           "docs": "Internal",
           "docsTags": [
@@ -6244,32 +6244,32 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-select",
+        "ix-select",
         "my-component"
       ],
       "dependencies": [
-        "cw-dropdown-item"
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-select-item": [
-          "cw-dropdown-item"
+        "ix-select-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-select": [
-          "cw-select-item"
+        "ix-select": [
+          "ix-select-item"
         ],
         "my-component": [
-          "cw-select-item"
+          "ix-select-item"
         ]
       }
     },
     {
       "filePath": "./src/components/spinner/spinner.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-spinner",
-      "readme": "# cw-spinner\n\n\n",
+      "tag": "ix-spinner",
+      "readme": "# ix-spinner\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6330,20 +6330,20 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-upload"
+        "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-upload": [
-          "cw-spinner"
+        "ix-upload": [
+          "ix-spinner"
         ]
       }
     },
     {
       "filePath": "./src/components/split-button/split-button.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-split-button",
-      "readme": "# cw-split-button\n\n\n",
+      "tag": "ix-split-button",
+      "readme": "# ix-split-button\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6589,24 +6589,24 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-dropdown"
+        "ix-icon",
+        "ix-dropdown"
       ],
       "dependencyGraph": {
-        "cw-split-button": [
-          "cw-icon",
-          "cw-dropdown"
+        "ix-split-button": [
+          "ix-icon",
+          "ix-dropdown"
         ],
         "my-component": [
-          "cw-split-button"
+          "ix-split-button"
         ]
       }
     },
     {
       "filePath": "./src/components/split-button-item/split-button-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-split-button-item",
-      "readme": "# cw-split-button-item\n\n\n",
+      "tag": "ix-split-button-item",
+      "readme": "# ix-split-button-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6664,25 +6664,25 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-dropdown-item"
+        "ix-dropdown-item"
       ],
       "dependencyGraph": {
-        "cw-split-button-item": [
-          "cw-dropdown-item"
+        "ix-split-button-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-split-button-item"
+          "ix-split-button-item"
         ]
       }
     },
     {
       "filePath": "./src/components/tab-item/tab-item.tsx",
       "encapsulation": "none",
-      "tag": "cw-tab-item",
-      "readme": "# cw-tab-item\n\n\n",
+      "tag": "ix-tab-item",
+      "readme": "# ix-tab-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6807,28 +6807,28 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-menu-about",
-        "cw-menu-settings",
+        "ix-menu-about",
+        "ix-menu-settings",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-menu-about": [
-          "cw-tab-item"
+        "ix-menu-about": [
+          "ix-tab-item"
         ],
-        "cw-menu-settings": [
-          "cw-tab-item"
+        "ix-menu-settings": [
+          "ix-tab-item"
         ],
         "my-component": [
-          "cw-tab-item"
+          "ix-tab-item"
         ]
       }
     },
     {
       "filePath": "./src/components/tabs/tabs.tsx",
       "encapsulation": "none",
-      "tag": "cw-tabs",
-      "readme": "# cw-tabs\n\n\n",
+      "tag": "ix-tabs",
+      "readme": "# ix-tabs\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6926,28 +6926,28 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-menu-about",
-        "cw-menu-settings",
+        "ix-menu-about",
+        "ix-menu-settings",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "cw-menu-about": [
-          "cw-tabs"
+        "ix-menu-about": [
+          "ix-tabs"
         ],
-        "cw-menu-settings": [
-          "cw-tabs"
+        "ix-menu-settings": [
+          "ix-tabs"
         ],
         "my-component": [
-          "cw-tabs"
+          "ix-tabs"
         ]
       }
     },
     {
       "filePath": "./src/components/tile/tile.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-tile",
-      "readme": "# cw-tile\n\n\n",
+      "tag": "ix-tile",
+      "readme": "# ix-tile\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -6991,15 +6991,15 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-tile"
+          "ix-tile"
         ]
       }
     },
     {
       "filePath": "./src/components/time-picker/time-picker.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-time-picker",
-      "readme": "# cw-time-picker\n\n\n",
+      "tag": "ix-time-picker",
+      "readme": "# ix-time-picker\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7142,32 +7142,32 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-datetime-picker"
+        "ix-datetime-picker"
       ],
       "dependencies": [
-        "cw-date-time-card",
-        "cw-icon-button",
-        "cw-button"
+        "ix-date-time-card",
+        "ix-icon-button",
+        "ix-button"
       ],
       "dependencyGraph": {
-        "cw-time-picker": [
-          "cw-date-time-card",
-          "cw-icon-button",
-          "cw-button"
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-datetime-picker": [
-          "cw-time-picker"
+        "ix-datetime-picker": [
+          "ix-time-picker"
         ]
       }
     },
     {
-      "filePath": "./src/components/toast/cw-toast.tsx",
+      "filePath": "./src/components/toast/toast.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-toast",
-      "readme": "# cw-toast-container\n\n\n",
+      "tag": "ix-toast",
+      "readme": "# ix-toast-container\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7301,30 +7301,30 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-toast-container"
+        "ix-toast-container"
       ],
       "dependencies": [
-        "cw-icon",
-        "cw-icon-button"
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
-        "cw-toast": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-toast-container": [
-          "cw-toast"
+        "ix-toast-container": [
+          "ix-toast"
         ]
       }
     },
     {
       "filePath": "./src/components/toast/toast-container.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-toast-container",
-      "readme": "# cw-toast-container\n\n\n",
+      "tag": "ix-toast-container",
+      "readme": "# ix-toast-container\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7423,29 +7423,29 @@
         "my-component"
       ],
       "dependencies": [
-        "cw-toast"
+        "ix-toast"
       ],
       "dependencyGraph": {
-        "cw-toast-container": [
-          "cw-toast"
+        "ix-toast-container": [
+          "ix-toast"
         ],
-        "cw-toast": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
-          "cw-toast-container"
+          "ix-toast-container"
         ]
       }
     },
     {
       "filePath": "./src/components/toggle/toggle.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-toggle",
-      "readme": "# cw-toggle\n\n\n",
+      "tag": "ix-toggle",
+      "readme": "# ix-toggle\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7622,15 +7622,15 @@
       "dependencies": [],
       "dependencyGraph": {
         "my-component": [
-          "cw-toggle"
+          "ix-toggle"
         ]
       }
     },
     {
       "filePath": "./src/components/tree/tree.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-tree",
-      "readme": "# cw-tree\n\n\n",
+      "tag": "ix-tree",
+      "readme": "# ix-tree\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7716,22 +7716,22 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-tree-item"
+        "ix-tree-item"
       ],
       "dependencyGraph": {
-        "cw-tree": [
-          "cw-tree-item"
+        "ix-tree": [
+          "ix-tree-item"
         ],
-        "cw-tree-item": [
-          "cw-icon"
+        "ix-tree-item": [
+          "ix-icon"
         ]
       }
     },
     {
       "filePath": "./src/components/tree-item/tree-item.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-tree-item",
-      "readme": "# cw-tree-item\n\n\n",
+      "tag": "ix-tree-item",
+      "readme": "# ix-tree-item\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -7810,25 +7810,25 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "cw-tree"
+        "ix-tree"
       ],
       "dependencies": [
-        "cw-icon"
+        "ix-icon"
       ],
       "dependencyGraph": {
-        "cw-tree-item": [
-          "cw-icon"
+        "ix-tree-item": [
+          "ix-icon"
         ],
-        "cw-tree": [
-          "cw-tree-item"
+        "ix-tree": [
+          "ix-tree-item"
         ]
       }
     },
     {
       "filePath": "./src/components/upload/upload.tsx",
       "encapsulation": "scoped",
-      "tag": "cw-upload",
-      "readme": "# cw-upload\n\n\n",
+      "tag": "ix-upload",
+      "readme": "# ix-upload\n",
       "docs": "",
       "docsTags": [],
       "usage": {},
@@ -8026,11 +8026,11 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-spinner"
+        "ix-spinner"
       ],
       "dependencyGraph": {
-        "cw-upload": [
-          "cw-spinner"
+        "ix-upload": [
+          "ix-spinner"
         ]
       }
     },
@@ -8051,171 +8051,171 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "cw-modal-example",
-        "cw-basic-navigation",
-        "cw-menu",
-        "cw-menu-item",
-        "cw-date-picker",
-        "cw-button",
-        "cw-modal-container",
-        "cw-toggle",
-        "cw-group",
-        "cw-group-item",
-        "cw-icon",
-        "cw-tabs",
-        "cw-tab-item",
-        "cw-message-bar",
-        "cw-animated-tabs",
-        "cw-animated-tab",
-        "cw-flip-tile",
-        "cw-tile",
-        "cw-icon-button",
-        "cw-select",
-        "cw-select-item",
-        "cw-filter-chip",
-        "cw-breadcrumb",
-        "cw-breadcrumb-item",
-        "cw-counter-pill",
-        "cw-pill",
-        "cw-chip",
-        "cw-blind",
-        "cw-split-button",
-        "cw-split-button-item",
-        "cw-dropdown",
-        "cw-dropdown-item",
-        "cw-input-group",
-        "cw-expanding-search",
-        "cw-toast-container"
+        "ix-modal-example",
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-item",
+        "ix-date-picker",
+        "ix-button",
+        "ix-modal-container",
+        "ix-toggle",
+        "ix-group",
+        "ix-group-item",
+        "ix-icon",
+        "ix-tabs",
+        "ix-tab-item",
+        "ix-message-bar",
+        "ix-animated-tabs",
+        "ix-animated-tab",
+        "ix-flip-tile",
+        "ix-tile",
+        "ix-icon-button",
+        "ix-select",
+        "ix-select-item",
+        "ix-filter-chip",
+        "ix-breadcrumb",
+        "ix-breadcrumb-item",
+        "ix-counter-pill",
+        "ix-pill",
+        "ix-chip",
+        "ix-blind",
+        "ix-split-button",
+        "ix-split-button-item",
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-input-group",
+        "ix-expanding-search",
+        "ix-toast-container"
       ],
       "dependencyGraph": {
         "my-component": [
-          "cw-modal-example",
-          "cw-basic-navigation",
-          "cw-menu",
-          "cw-menu-item",
-          "cw-date-picker",
-          "cw-button",
-          "cw-modal-container",
-          "cw-toggle",
-          "cw-group",
-          "cw-group-item",
-          "cw-icon",
-          "cw-tabs",
-          "cw-tab-item",
-          "cw-message-bar",
-          "cw-animated-tabs",
-          "cw-animated-tab",
-          "cw-flip-tile",
-          "cw-tile",
-          "cw-icon-button",
-          "cw-select",
-          "cw-select-item",
-          "cw-filter-chip",
-          "cw-breadcrumb",
-          "cw-breadcrumb-item",
-          "cw-counter-pill",
-          "cw-pill",
-          "cw-chip",
-          "cw-blind",
-          "cw-split-button",
-          "cw-split-button-item",
-          "cw-dropdown",
-          "cw-dropdown-item",
-          "cw-input-group",
-          "cw-expanding-search",
-          "cw-toast-container"
+          "ix-modal-example",
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-item",
+          "ix-date-picker",
+          "ix-button",
+          "ix-modal-container",
+          "ix-toggle",
+          "ix-group",
+          "ix-group-item",
+          "ix-icon",
+          "ix-tabs",
+          "ix-tab-item",
+          "ix-message-bar",
+          "ix-animated-tabs",
+          "ix-animated-tab",
+          "ix-flip-tile",
+          "ix-tile",
+          "ix-icon-button",
+          "ix-select",
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-breadcrumb",
+          "ix-breadcrumb-item",
+          "ix-counter-pill",
+          "ix-pill",
+          "ix-chip",
+          "ix-blind",
+          "ix-split-button",
+          "ix-split-button-item",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-input-group",
+          "ix-expanding-search",
+          "ix-toast-container"
         ],
-        "cw-modal-example": [
-          "cw-icon-button",
-          "cw-button"
+        "ix-modal-example": [
+          "ix-icon-button",
+          "ix-button"
         ],
-        "cw-icon-button": [
-          "cw-icon"
+        "ix-icon-button": [
+          "ix-icon"
         ],
-        "cw-basic-navigation": [
-          "cw-application-header"
+        "ix-basic-navigation": [
+          "ix-application-header"
         ],
-        "cw-menu": [
-          "cw-menu-item",
-          "cw-dropdown"
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
         ],
-        "cw-date-picker": [
-          "cw-date-time-card",
-          "cw-icon-button",
-          "cw-button",
-          "cw-dropdown",
-          "cw-icon"
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
         ],
-        "cw-modal-container": [
-          "cw-modal"
+        "ix-modal-container": [
+          "ix-modal"
         ],
-        "cw-modal": [
-          "cw-icon"
+        "ix-modal": [
+          "ix-icon"
         ],
-        "cw-group": [
-          "cw-icon",
-          "cw-icon-button",
-          "cw-dropdown",
-          "cw-group-item"
+        "ix-group": [
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-group-item"
         ],
-        "cw-group-item": [
-          "cw-icon"
+        "ix-group-item": [
+          "ix-icon"
         ],
-        "cw-message-bar": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-message-bar": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-animated-tabs": [
-          "cw-icon"
+        "ix-animated-tabs": [
+          "ix-icon"
         ],
-        "cw-flip-tile": [
-          "cw-icon-button"
+        "ix-flip-tile": [
+          "ix-icon-button"
         ],
-        "cw-select": [
-          "cw-select-item",
-          "cw-filter-chip",
-          "cw-icon",
-          "cw-icon-button",
-          "cw-dropdown",
-          "cw-dropdown-item"
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-dropdown-item"
         ],
-        "cw-select-item": [
-          "cw-dropdown-item"
+        "ix-select-item": [
+          "ix-dropdown-item"
         ],
-        "cw-dropdown-item": [
-          "cw-icon"
+        "ix-dropdown-item": [
+          "ix-icon"
         ],
-        "cw-filter-chip": [
-          "cw-icon"
+        "ix-filter-chip": [
+          "ix-icon"
         ],
-        "cw-breadcrumb": [
-          "cw-icon",
-          "cw-dropdown",
-          "cw-dropdown-item"
+        "ix-breadcrumb": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
         ],
-        "cw-pill": [
-          "cw-icon"
+        "ix-pill": [
+          "ix-icon"
         ],
-        "cw-chip": [
-          "cw-icon"
+        "ix-chip": [
+          "ix-icon"
         ],
-        "cw-split-button": [
-          "cw-icon",
-          "cw-dropdown"
+        "ix-split-button": [
+          "ix-icon",
+          "ix-dropdown"
         ],
-        "cw-split-button-item": [
-          "cw-dropdown-item"
+        "ix-split-button-item": [
+          "ix-dropdown-item"
         ],
-        "cw-expanding-search": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-expanding-search": [
+          "ix-icon",
+          "ix-icon-button"
         ],
-        "cw-toast-container": [
-          "cw-toast"
+        "ix-toast-container": [
+          "ix-toast"
         ],
-        "cw-toast": [
-          "cw-icon",
-          "cw-icon-button"
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
         ]
       }
     }

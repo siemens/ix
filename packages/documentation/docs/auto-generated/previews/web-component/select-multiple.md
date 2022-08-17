@@ -1,15 +1,15 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/select-multiple.html -->
 ```html
-<cw-select mode="multiple">
-  <cw-select-item label="Item 1" value="1"></cw-select-item>
-  <cw-select-item label="Item 2" value="2"></cw-select-item>
-  <cw-select-item label="Item 3" value="3"></cw-select-item>
-  <cw-select-item label="Item 4" value="4"></cw-select-item>
-</cw-select>
+<ix-select mode="multiple">
+  <ix-select-item label="Item 1" value="1"></ix-select-item>
+  <ix-select-item label="Item 2" value="2"></ix-select-item>
+  <ix-select-item label="Item 3" value="3"></ix-select-item>
+  <ix-select-item label="Item 4" value="4"></ix-select-item>
+</ix-select>
 <script>
   (async function () {
-    await window.customElements.whenDefined('cw-select');
-    const select = document.querySelector('cw-select');
+    await window.customElements.whenDefined('ix-select');
+    const select = document.querySelector('ix-select');
     select.selectedIndices = ['1', '3'];
   })();
 </script>

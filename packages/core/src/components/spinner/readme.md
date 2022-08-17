@@ -1,6 +1,4 @@
-# cw-spinner
-
-
+# ix-spinner
 
 <!-- Auto Generated Below -->
 

@@ -1,7 +1,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-tab-item',
+  tag: 'ix-tab-item',
   styleUrl: 'tab-item.scss',
   scoped: false,
 })
@@ -36,15 +36,22 @@ export class TabItem {
    */
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
-  private tabItemClasses(props: { selected: boolean; disabled: boolean; small: boolean; icon: boolean; layout: 'auto' | 'stretched'; placement: 'bottom' | 'top' }) {
+  private tabItemClasses(props: {
+    selected: boolean;
+    disabled: boolean;
+    small: boolean;
+    icon: boolean;
+    layout: 'auto' | 'stretched';
+    placement: 'bottom' | 'top';
+  }) {
     return {
-      'selected': props.selected,
-      'disabled': props.disabled,
+      selected: props.selected,
+      disabled: props.disabled,
       'small-tab': props.small,
-      'icon': props.small,
-      'stretched': props.layout === 'stretched',
-      'bottom': props.placement === 'bottom',
-      'top': props.placement === 'top',
+      icon: props.small,
+      stretched: props.layout === 'stretched',
+      bottom: props.placement === 'bottom',
+      top: props.placement === 'top',
     };
   }
 

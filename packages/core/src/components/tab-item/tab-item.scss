@@ -2,12 +2,11 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/colors';
-@import '../../../scss/mixins/text-truncation';
-@import '../../../scss/mixins/hover';
+@import 'common-variables';
+@import 'mixins/text-truncation';
+@import 'mixins/hover';
 
-cw-tab-item {
+ix-tab-item {
   position: relative;
   display: flex;
   align-items: center;
@@ -19,8 +18,6 @@ cw-tab-item {
   font-weight: bold;
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
-  @include hover;
-  @include active;
 
   &.top {
     &::after {

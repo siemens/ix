@@ -2,12 +2,21 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 import animejs from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
-  tag: 'cw-breadcrumb',
+  tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
   scoped: true,
 })
@@ -41,10 +50,10 @@ export class Breadcrumb {
 
   @State() nextButtonRef: HTMLElement;
 
-  @Element() hostElement: HTMLCwBreadcrumbElement;
+  @Element() hostElement: HTMLIxBreadcrumbElement;
 
   get cwBreadcrumbItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-breadcrumb-item'));
+    return Array.from(this.hostElement.querySelectorAll('ix-breadcrumb-item'));
   }
 
   get crumbItems() {
@@ -74,10 +83,13 @@ export class Breadcrumb {
       }
     });
 
-    this.mutationObserver.observe(this.hostElement.querySelector('.crumb-items'), {
-      subtree: true,
-      childList: true,
-    });
+    this.mutationObserver.observe(
+      this.hostElement.querySelector('.crumb-items'),
+      {
+        subtree: true,
+        childList: true,
+      }
+    );
   }
 
   componentWillLoad() {
@@ -85,7 +97,7 @@ export class Breadcrumb {
   }
 
   private getItems() {
-    return this.cwBreadcrumbItems.map(item => {
+    return this.cwBreadcrumbItems.map((item) => {
       return { label: item.label, icon: item.icon };
     });
   }
@@ -147,24 +159,26 @@ export class Breadcrumb {
       const isLastItem = last && !this.nextItems?.length;
       return (
         <div
-          ref={ref => this.handleLastButtonRef(ref, last)}
+          ref={(ref) => this.handleLastButtonRef(ref, last)}
           data-breadcrumb={index}
           class={{
-            'crumb': true,
-            'clickable': true,
-            'ghost': this.ghost,
-            'btn': !this.ghost,
-            'last': isLastItem,
+            crumb: true,
+            clickable: true,
+            ghost: this.ghost,
+            btn: !this.ghost,
+            last: isLastItem,
             'remove-hover': isLastItem,
           }}
           onClick={() => this.clickItem(item.label, last)}
           data-testid="item"
         >
           <span class="crumb-text remove-anchor">
-            {item.icon ? <cw-icon name={item.icon} size="16"></cw-icon> : ''}
+            {item.icon ? <ix-icon name={item.icon} size="16"></ix-icon> : ''}
             {item.label}
           </span>
-          {!isLastItem ? <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span> : null}
+          {!isLastItem ? (
+            <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
+          ) : null}
         </div>
       );
     });
@@ -173,13 +187,27 @@ export class Breadcrumb {
   render() {
     return (
       <Host>
-        <cw-dropdown trigger={this.items?.length > this.visibleItemCount ? this.previousButtonRef : null}>
-          {this.items.slice(0, this.items.length - this.visibleItemCount).map(item => (
-            <cw-dropdown-item label={item.label} onClick={() => this.onItemClick(item.label)}></cw-dropdown-item>
-          ))}
-        </cw-dropdown>
+        <ix-dropdown
+          trigger={
+            this.items?.length > this.visibleItemCount
+              ? this.previousButtonRef
+              : null
+          }
+        >
+          {this.items
+            .slice(0, this.items.length - this.visibleItemCount)
+            .map((item) => (
+              <ix-dropdown-item
+                label={item.label}
+                onClick={() => this.onItemClick(item.label)}
+              ></ix-dropdown-item>
+            ))}
+        </ix-dropdown>
         {this.items?.length > this.visibleItemCount ? (
-          <div class="crumb crumb-dropdown" ref={ref => (this.previousButtonRef = ref)}>
+          <div
+            class="crumb crumb-dropdown"
+            ref={(ref) => (this.previousButtonRef = ref)}
+          >
             <span class="remove-anchor more-text">
               <span class="more-text-ellipsis">...</span>
               <span class="glyph glyph-16 glyph-chevron-right"></span>
@@ -190,19 +218,19 @@ export class Breadcrumb {
           {this.renderBreadcrumbItems()}
           <slot></slot>
         </div>
-        <cw-dropdown trigger={this.nextButtonRef}>
-          {this.nextItems?.map(item => (
-            <cw-dropdown-item
+        <ix-dropdown trigger={this.nextButtonRef}>
+          {this.nextItems?.map((item) => (
+            <ix-dropdown-item
               label={item}
-              onClick={e => {
+              onClick={(e) => {
                 this.nextClick.emit({
                   event: e,
                   item,
                 });
               }}
-            ></cw-dropdown-item>
+            ></ix-dropdown-item>
           ))}
-        </cw-dropdown>
+        </ix-dropdown>
       </Host>
     );
   }

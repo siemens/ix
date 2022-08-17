@@ -2,12 +2,20 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
 
 @Component({
-  tag: 'cw-message-bar',
+  tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',
   scoped: true,
 })
@@ -68,13 +76,17 @@ export class CwMessageBar {
   render() {
     return (
       <Host>
-        <div class={{ 'message-container': true, [this.type]: true }} role="alert" ref={el => (this.divElement = el as HTMLElement)}>
-          <cw-icon color={this.color} name={this.icon}></cw-icon>
+        <div
+          class={{ 'message-container': true, [this.type]: true }}
+          role="alert"
+          ref={(el) => (this.divElement = el as HTMLElement)}
+        >
+          <ix-icon color={this.color} name={this.icon}></ix-icon>
           <div class="message-content">
             <slot></slot>
           </div>
           {this.dismissible ? (
-            <cw-icon-button
+            <ix-icon-button
               icon="close"
               size="24"
               ghost={true}
@@ -82,7 +94,7 @@ export class CwMessageBar {
                 this.closeAlert(this.divElement);
               }}
               data-testid="close-btn"
-            ></cw-icon-button>
+            ></ix-icon-button>
           ) : (
             ''
           )}

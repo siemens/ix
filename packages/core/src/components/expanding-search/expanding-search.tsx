@@ -13,7 +13,7 @@ import {
 } from '@stencil/core';
 
 @Component({
-  tag: 'cw-expanding-search',
+  tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',
   scoped: true,
 })
@@ -106,14 +106,14 @@ export class ExpandingSearch {
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
         >
-          <cw-icon
+          <ix-icon
             class="btn-search-icon"
             name={this.icon}
             size={this.expanded ? '16' : '24'}
             color={
               this.hasFocus ? 'input-search-icon--color--focus' : undefined
             }
-          ></cw-icon>
+          ></ix-icon>
         </button>
 
         <div
@@ -148,7 +148,7 @@ export class ExpandingSearch {
           />
 
           {this.isFieldChanged ? (
-            <cw-icon-button
+            <ix-icon-button
               class="btn-clear"
               icon="clear"
               ghost={true}

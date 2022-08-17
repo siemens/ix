@@ -64,10 +64,6 @@
   @include text-xl;
 }
 
-.themed-font-color {
-  color: var(--theme-color-std-text);
-}
-
 a {
   color: var(--theme-color-primary);
 }

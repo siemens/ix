@@ -1,18 +1,18 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/about-and-legal.html -->
 ```html
-<cw-basic-navigation>
-  <cw-menu>
-    <cw-menu-about>
-      <cw-menu-about-item label="Tab 1">Content 1</cw-menu-about-item>
-      <cw-menu-about-item label="Tab 2">Content 2</cw-menu-about-item>
-    </cw-menu-about>
-  </cw-menu>
-</cw-basic-navigation>
+<ix-basic-navigation>
+  <ix-menu>
+    <ix-menu-about>
+      <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
+      <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+    </ix-menu-about>
+  </ix-menu>
+</ix-basic-navigation>
 
 <script>
   (async function () {
-    await window.customElements.whenDefined('cw-menu');
-    const instance = document.querySelector('cw-menu');
+    await window.customElements.whenDefined('ix-menu');
+    const instance = document.querySelector('ix-menu');
     await instance.toggleAbout(true);
   })();
 </script>

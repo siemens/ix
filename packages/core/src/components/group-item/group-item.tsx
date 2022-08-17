@@ -1,15 +1,24 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-group-item',
+  tag: 'ix-group-item',
   styleUrl: 'group-item.scss',
   scoped: true,
 })
 export class GroupItem {
-  @Element() hostElement!: HTMLCwGroupItemElement;
+  @Element() hostElement!: HTMLIxGroupItemElement;
 
   /**
    * Group item icon
@@ -45,7 +54,7 @@ export class GroupItem {
   /**
    * Selection changed
    */
-  @Event() selectedChanged: EventEmitter<HTMLCwGroupItemElement>;
+  @Event() selectedChanged: EventEmitter<HTMLIxGroupItemElement>;
 
   /**
    * Index
@@ -64,13 +73,13 @@ export class GroupItem {
     return (
       <Host
         class={{
-          'selected': this.selected && !this.suppressSelection,
+          selected: this.selected && !this.suppressSelection,
           'suppress-selection': this.suppressSelection,
         }}
         tabindex={this.focusable ? 0 : -1}
       >
         <div class="group-entry-selection-indicator"></div>
-        {this.icon ? <cw-icon size="16" name={this.icon}></cw-icon> : null}
+        {this.icon ? <ix-icon size="16" name={this.icon}></ix-icon> : null}
         {this.text ? (
           <span class="group-entry-text">
             <span title={this.text}>{this.text}</span>

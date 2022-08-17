@@ -1,8 +1,8 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-toggle/props.md';
-import Events from './../auto-generated/cw-toggle/events.md';
+import Props from './../auto-generated/ix-toggle/props.md';
+import Events from './../auto-generated/ix-toggle/events.md';
 
 import SourceToggle from './../auto-generated/previews/web-component/toggle.md';
 import SourceToggleLabel from './../auto-generated/previews/web-component/toggle-custom-label.md';

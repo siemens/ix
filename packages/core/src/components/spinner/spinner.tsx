@@ -4,7 +4,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-spinner',
+  tag: 'ix-spinner',
   styleUrl: 'spinner.scss',
   scoped: true,
 })
@@ -27,11 +27,35 @@ export class Spinner {
           large: this.size === 'large',
         }}
       >
-        <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <g id="waiting-anim" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="stroke" transform="translate(4.5, 3)" fill-rule="nonzero" stroke="#0F8287" stroke-linejoin="round">
-              <polygon id="w1" points="11.2583302 0 11.2583302 6.5 11.2583302 13" visibility="hidden">
-                <set attributeName="visibility" begin="0s;w6ul.end" to="visible" />
+        <svg
+          viewBox="0 0 32 32"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            id="waiting-anim"
+            stroke="none"
+            stroke-width="1"
+            fill="none"
+            fill-rule="evenodd"
+          >
+            <g
+              id="stroke"
+              transform="translate(4.5, 3)"
+              fill-rule="nonzero"
+              stroke="#0F8287"
+              stroke-linejoin="round"
+            >
+              <polygon
+                id="w1"
+                points="11.2583302 0 11.2583302 6.5 11.2583302 13"
+                visibility="hidden"
+              >
+                <set
+                  attributeName="visibility"
+                  begin="0s;w6ul.end"
+                  to="visible"
+                />
                 <animate
                   id="w1l"
                   attributeName="points"
@@ -59,7 +83,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="w1ul.end" to="hidden" />
               </polygon>
 
-              <polygon id="w2" points="22.5166605 6.5 16.88749535 10 11.2583302 13" visibility="hidden">
+              <polygon
+                id="w2"
+                points="22.5166605 6.5 16.88749535 10 11.2583302 13"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w1l.end" to="visible" />
                 <animate
                   id="w2l"
@@ -88,7 +116,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="w2ul.end" to="hidden" />
               </polygon>
 
-              <polygon id="w3" points="11.2583302 13 22.5166605 19.5 16.88749535 16.75" visibility="hidden">
+              <polygon
+                id="w3"
+                points="11.2583302 13 22.5166605 19.5 16.88749535 16.75"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w2l.end" to="visible" />
                 <animate
                   id="w3l"
@@ -117,7 +149,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="w3ul.end" to="hidden" />
               </polygon>
 
-              <polygon id="w4" points="11.2583302 26 11.2583302 19.5 11.2583302 13" visibility="hidden">
+              <polygon
+                id="w4"
+                points="11.2583302 26 11.2583302 19.5 11.2583302 13"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w3l.end" to="visible" />
                 <animate
                   id="w4l"
@@ -146,7 +182,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="w4ul.end" to="hidden" />
               </polygon>
 
-              <polygon id="w5" points="11.2583302 13 2.4062463e-14 19.5 5.6291651 16.25" visibility="hidden">
+              <polygon
+                id="w5"
+                points="11.2583302 13 2.4062463e-14 19.5 5.6291651 16.25"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w4l.end" to="visible" />
                 <animate
                   id="w5l"
@@ -175,7 +215,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="w5ul.end" to="hidden" />
               </polygon>
 
-              <polygon id="w6" points="5.6291651 9.75 11.2583302 13 2.66453526e-15 6.5" visibility="hidden">
+              <polygon
+                id="w6"
+                points="5.6291651 9.75 11.2583302 13 2.66453526e-15 6.5"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w5l.end" to="visible" />
                 <animate
                   id="w6l"
@@ -204,8 +248,17 @@ export class Spinner {
                 <set attributeName="visibility" begin="w6ul.end" to="hidden" />
               </polygon>
             </g>
-            <g id="fill" transform="translate(4.5, 3)" fill="#0F8287" fill-rule="nonzero">
-              <polygon id="f1" points="11.2583302 0 11.2583302 6.5 11.2583302 13" visibility="hidden">
+            <g
+              id="fill"
+              transform="translate(4.5, 3)"
+              fill="#0F8287"
+              fill-rule="nonzero"
+            >
+              <polygon
+                id="f1"
+                points="11.2583302 0 11.2583302 6.5 11.2583302 13"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="w6l.end" to="visible" />
                 <animate
                   id="f1f"
@@ -234,7 +287,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="f1uf.end" to="hidden" />
               </polygon>
 
-              <polygon id="f2" points="22.5166605 6.5 16.88749535 10 11.2583302 13" visibility="hidden">
+              <polygon
+                id="f2"
+                points="22.5166605 6.5 16.88749535 10 11.2583302 13"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="f1f.end" to="visible" />
                 <animate
                   id="f2f"
@@ -263,7 +320,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="f2uf.end" to="hidden" />
               </polygon>
 
-              <polygon id="f3" points="11.2583302 13 22.5166605 19.5 16.88749535 16.75" visibility="hidden">
+              <polygon
+                id="f3"
+                points="11.2583302 13 22.5166605 19.5 16.88749535 16.75"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="f2f.end" to="visible" />
                 <animate
                   id="f3f"
@@ -292,7 +353,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="f3uf.end" to="hidden" />
               </polygon>
 
-              <polygon id="f4" points="11.2583302 26 11.2583302 19.5 11.2583302 13" visibility="hidden">
+              <polygon
+                id="f4"
+                points="11.2583302 26 11.2583302 19.5 11.2583302 13"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="f3f.end" to="visible" />
                 <animate
                   id="f4f"
@@ -321,7 +386,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="f4uf.end" to="hidden" />
               </polygon>
 
-              <polygon id="f5" points="11.2583302 13 2.4062463e-14 19.5 5.6291651 16.25" visibility="hidden">
+              <polygon
+                id="f5"
+                points="11.2583302 13 2.4062463e-14 19.5 5.6291651 16.25"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="f4f.end" to="visible" />
                 <animate
                   id="f5f"
@@ -350,7 +419,11 @@ export class Spinner {
                 <set attributeName="visibility" begin="f5uf.end" to="hidden" />
               </polygon>
 
-              <polygon id="f6" points="5.6291651 9.75 11.2583302 13 2.66453526e-15 6.5" visibility="hidden">
+              <polygon
+                id="f6"
+                points="5.6291651 9.75 11.2583302 13 2.66453526e-15 6.5"
+                visibility="hidden"
+              >
                 <set attributeName="visibility" begin="f5f.end" to="visible" />
                 <animate
                   id="f6f"

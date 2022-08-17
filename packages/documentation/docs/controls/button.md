@@ -4,7 +4,7 @@ title: Button
 
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-button/props.md';
+import Props from './../auto-generated/ix-button/props.md';
 
 import WebComponentButtons from './../auto-generated/previews/web-component/buttons.md'
 import WebComponentButtonGroup from './../auto-generated/previews/web-component/button-group.md'

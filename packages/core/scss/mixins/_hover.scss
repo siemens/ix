@@ -22,30 +22,33 @@
   }
 }
 
-@mixin ghost-hover-pressed {
+@mixin focus() {
   &:not(.disabled):not(:disabled) {
-    &.hover,
-    &:hover {
-      background-color: var(--theme-ghost-hover);
-    }
-
-    &.active,
-    &:active {
-      background-color: var(--theme-ghost-pressed);
+    &:focus,
+    &:focus-visible {
+      @content;
     }
   }
 }
 
-@mixin generic-mouse-states() {
-  &:hover {
-    background-color: var(--theme-generic-bg-hover);
+@mixin focus-visible() {
+  &:not(.disabled):not(:disabled) {
+    &:focus-visible {
+      @content;
+    }
   }
+}
 
-  &:active {
-    background-color: var(--theme-generic-bg-active);
-  }
+@mixin ghost-hover-pressed {
+  &:not(.disabled):not(:disabled) {
+    &.hover,
+    &:hover {
+      background-color: var(--theme-ghost--background--hover);
+    }
 
-  &.selected {
-    background-color: var(--theme-generic-bg-selected);
+    &.active,
+    &:active {
+      background-color: var(--theme-ghost--background--active);
+    }
   }
 }

@@ -1,4 +1,4 @@
-@import '../../../scss/v7/common-variables';
+@import 'common-variables';
 
 .header {
   display: flex;
@@ -28,7 +28,7 @@ input {
   background-color: var(--theme-input--background);
   border-radius: 2px;
   border: 1px solid var(--theme-input--border-color);
-  box-shadow: inset 0 2px 4px 0 var(--theme-color-1)12;
+  box-shadow: inset 0 2px 4px 0 var(--theme-color-1) 12;
   width: 42px;
   height: 32px;
   text-align: right;
@@ -44,7 +44,7 @@ input {
   }
 
   /* Firefox */
-  &[type=number] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
 }

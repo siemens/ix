@@ -7,123 +7,122 @@ import autoprefixer from 'autoprefixer';
 export const config: Config = {
   bundles: [
     {
-      components: ['cw-animated-tabs', 'cw-animated-tab'],
+      components: ['ix-animated-tabs', 'ix-animated-tab'],
     },
     {
-      components: ['cw-application-header'],
+      components: ['ix-application-header'],
     },
     {
-      components: ['cw-basic-navigation'],
+      components: ['ix-basic-navigation'],
     },
     {
-      components: ['cw-blind'],
+      components: ['ix-blind'],
     },
     {
-      components: ['cw-breadcrumb', 'cw-breadcrumb-item'],
+      components: ['ix-breadcrumb', 'ix-breadcrumb-item'],
     },
     {
-      components: ['cw-button'],
+      components: ['ix-button'],
     },
     {
-      components: ['cw-category-filter'],
+      components: ['ix-category-filter'],
     },
     {
-      components: ['cw-chip'],
+      components: ['ix-chip'],
     },
     {
-      components: ['cw-counter-pill'],
+      components: ['ix-counter-pill'],
     },
     {
-      components: ['cw-drawer'],
+      components: ['ix-drawer'],
     },
     {
-      components: ['cw-dropdown', 'cw-dropdown-item'],
+      components: ['ix-dropdown', 'ix-dropdown-item'],
     },
     {
-      components: ['cw-event-list', 'cw-event-list-item'],
+      components: ['ix-event-list', 'ix-event-list-item'],
     },
     {
-      components: ['cw-expanding-search'],
+      components: ['ix-expanding-search'],
     },
     {
-      components: ['cw-filter-chip'],
+      components: ['ix-filter-chip'],
     },
     {
-      components: ['cw-flip-tile', 'cw-flip-tile-content'],
+      components: ['ix-flip-tile', 'ix-flip-tile-content'],
     },
     {
-      components: ['cw-group', 'cw-group-dropdown-item', 'cw-group-item'],
+      components: ['ix-group', 'ix-group-dropdown-item', 'ix-group-item'],
     },
     {
-      components: ['cw-icon'],
+      components: ['ix-icon'],
     },
     {
-      components: ['cw-icon-button'],
+      components: ['ix-icon-button'],
     },
     {
-      components: ['cw-input-group'],
+      components: ['ix-input-group'],
     },
     {
-      components: ['cw-map-navigation', 'cw-map-navigation-overlay'],
+      components: ['ix-map-navigation', 'ix-map-navigation-overlay'],
     },
     {
       components: [
-        'cw-menu',
-        'cw-menu-item',
-        'cw-menu-about',
-        'cw-menu-about-item',
-        'cw-menu-about-news',
-        'cw-menu-avatar',
-        'cw-menu-avatar-item',
-        'cw-menu-settings',
-        'cw-menu-settings-item',
+        'ix-menu',
+        'ix-menu-item',
+        'ix-menu-about',
+        'ix-menu-about-item',
+        'ix-menu-about-news',
+        'ix-menu-avatar',
+        'ix-menu-avatar-item',
+        'ix-menu-settings',
+        'ix-menu-settings-item',
       ],
     },
     {
-      components: ['cw-message-bar'],
+      components: ['ix-message-bar'],
     },
     {
-      components: ['cw-modal', 'cw-modal-container'],
+      components: ['ix-modal', 'ix-modal-container'],
     },
     {
-      components: ['cw-pill'],
+      components: ['ix-pill'],
     },
     {
-      components: ['cw-select', 'cw-select-item'],
+      components: ['ix-select', 'ix-select-item'],
     },
     {
-      components: ['cw-spinner'],
+      components: ['ix-spinner'],
     },
     {
-      components: ['cw-split-button', 'cw-split-button-item'],
+      components: ['ix-split-button', 'ix-split-button-item'],
     },
     {
-      components: ['cw-tile'],
+      components: ['ix-tile'],
     },
     {
-      components: ['cw-toast', 'cw-toast-container'],
+      components: ['ix-toast', 'ix-toast-container'],
     },
     {
-      components: ['cw-toggle'],
+      components: ['ix-toggle'],
     },
     {
-      components: ['cw-tree', 'cw-tree-item'],
+      components: ['ix-tree', 'ix-tree-item'],
     },
     {
-      components: ['cw-upload'],
+      components: ['ix-upload'],
     },
   ],
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
   },
-  namespace: 'core-ui-core',
-  globalStyle: './scss/v7/core-ui.scss',
-  // globalStyle: 'scss/core-ui.scss',
+  namespace: 'siemens-ix',
+  globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
     sass({
-      includePaths: ['./scss/v7', './scss'],
+      includePaths: ['./scss'],
     }),
     postcss({
       plugins: [autoprefixer()],
@@ -148,7 +147,7 @@ export const config: Config = {
       copy: [
         {
           src: '../scss/fonts',
-          dest: '../core-ui-core/fonts',
+          dest: '../siemens-ix/fonts',
         },
       ],
     },

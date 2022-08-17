@@ -1,6 +1,4 @@
-# cw-dropdown-item
-
-
+# ix-dropdown-item
 
 <!-- Auto Generated Below -->
 
@@ -20,7 +18,7 @@
 
 | Event       | Description   | Type                                     |
 | ----------- | ------------- | ---------------------------------------- |
-| `itemClick` | Click on item | `CustomEvent<HTMLCwDropdownItemElement>` |
+| `itemClick` | Click on item | `CustomEvent<HTMLIxDropdownItemElement>` |
 
 
 ## Methods

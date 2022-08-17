@@ -2,10 +2,6 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/mixins/border';
-@import '../../../scss/mixins/shadows';
-@import '../../../scss/variables';
-
 :host {
   display: block;
   min-height: 4rem;
@@ -28,8 +24,9 @@
     border-style: dashed;
 
     &.file-over {
-      @include primary-border-2;
-      @include primary-glow;
+      //TODO: Implement theme
+      // @include primary-border-2;
+      // @include primary-glow;
     }
 
     &.pending {
@@ -73,11 +70,11 @@
         margin-right: 0.625rem;
 
         &.glyph-error {
-          color: $color-red;
+          color: var(--theme-color-alarm);
         }
 
         &.glyph-success {
-          color: $color-green;
+          color: var(--theme-color-success);
         }
       }
     }

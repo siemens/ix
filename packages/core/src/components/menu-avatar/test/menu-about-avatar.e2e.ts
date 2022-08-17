@@ -9,8 +9,8 @@ regressionTest.describe('menu-avatar', () => {
     await page.goto(`menu-avatar/test/basic`);
     await page.locator('.burger-menu-button').click();
     await page.waitForSelector('.expanded');
-    await page.locator('cw-menu-avatar').click();
-    await page.waitForSelector('cw-dropdown.show');
+    await page.locator('ix-menu-avatar').click();
+    await page.waitForSelector('ix-dropdown.show');
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

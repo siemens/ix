@@ -3,17 +3,17 @@
  */
 
 import { Component, Element, h, Host, Method } from '@stencil/core';
-import { Modal } from '../modal/cw-modal';
-import { ModalConfig, ModalContainerEvents } from '../modal/modal';
+import { Modal } from '../modal/modal';
+import { ModalConfig, ModalContainerEvents } from '../modal/modal-utils';
 import { Disposable, TypedEvent } from '../utils/typed-event';
 
 @Component({
-  tag: 'cw-modal-container',
+  tag: 'ix-modal-container',
   styleUrl: 'modal-container.scss',
   scoped: true,
 })
 export class ModalContainer {
-  @Element() hostElement: HTMLCwModalContainerElement;
+  @Element() hostElement: HTMLIxModalContainerElement;
 
   // eslint-disable-next-line @stencil/own-props-must-be-private
   public static readonly DOM_TAG_EVENT_BUS = 'cui-modal-event-bus';
@@ -48,7 +48,7 @@ export class ModalContainer {
    */
   @Method()
   async showModal(config: ModalConfig): Promise<void> {
-    const modal = document.createElement('cw-modal');
+    const modal = document.createElement('ix-modal');
     let { title, content, ...modifiedConfig } = config;
     Object.assign(modal, { headerTitle: title, ...modifiedConfig });
 

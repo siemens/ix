@@ -1,6 +1,4 @@
-# cw-split-button
-
-
+# ix-split-button
 
 <!-- Auto Generated Below -->
 

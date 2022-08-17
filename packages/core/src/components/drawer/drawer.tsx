@@ -2,11 +2,19 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Method,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import anime from 'animejs';
 
 @Component({
-  tag: 'cw-drawer',
+  tag: 'ix-drawer',
   styleUrl: 'drawer.scss',
   scoped: true,
 })
@@ -131,9 +139,18 @@ export class CwDrawer {
   render() {
     return (
       <div
-        class={{ 'drawer-container': true, 'toggle': this.show, 'full-height': this.fullHeight, 'd-none': true }}
-        style={{ 'width': this.width === 'auto' ? this.width : `${this.width}rem`, 'min-width': `${this.minWidth}rem`, 'max-width': `${this.maxWidth}rem` }}
-        ref={el => (this.divElement = el as HTMLElement)}
+        class={{
+          'drawer-container': true,
+          toggle: this.show,
+          'full-height': this.fullHeight,
+          'd-none': true,
+        }}
+        style={{
+          width: this.width === 'auto' ? this.width : `${this.width}rem`,
+          'min-width': `${this.minWidth}rem`,
+          'max-width': `${this.maxWidth}rem`,
+        }}
+        ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
         id="div-container"
       >
@@ -141,7 +158,13 @@ export class CwDrawer {
           <div class="header-content">
             <slot name="header"></slot>
           </div>
-          <cw-icon-button icon="close" size="24" ghost onClick={() => this.onCloseClicked()} data-testid="close-button"></cw-icon-button>
+          <ix-icon-button
+            icon="close"
+            size="24"
+            ghost
+            onClick={() => this.onCloseClicked()}
+            data-testid="close-button"
+          ></ix-icon-button>
         </div>
         <div class="content">
           <slot></slot>

@@ -4,7 +4,7 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 @Component({
-  tag: 'cw-menu-item',
+  tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
   scoped: false,
 })
@@ -39,7 +39,7 @@ export class MenuItem {
    */
   @Prop() disabled: boolean;
 
-  @Element() hostElement: HTMLCwMenuItemElement;
+  @Element() hostElement: HTMLIxMenuItemElement;
 
   @State() title: string;
 
@@ -57,10 +57,21 @@ export class MenuItem {
 
   render() {
     return (
-      <Host class={{ 'disabled': this.disabled, 'home-tab': this.home, 'bottom-tab': this.bottom, 'active': this.active }}>
+      <Host
+        class={{
+          disabled: this.disabled,
+          'home-tab': this.home,
+          'bottom-tab': this.bottom,
+          active: this.active,
+        }}
+      >
         <li class="tab" title={this.title}>
           <i class={`glyph glyph-${this.tabIcon}`}>
-            <div class="notification">{this.notifications ? <div class="pill">{this.notifications}</div> : null}</div>
+            <div class="notification">
+              {this.notifications ? (
+                <div class="pill">{this.notifications}</div>
+              ) : null}
+            </div>
           </i>
           <span class="tab-text text-default">
             <slot></slot>

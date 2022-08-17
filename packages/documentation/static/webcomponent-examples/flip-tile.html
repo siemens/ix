@@ -9,7 +9,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       rel="stylesheet"
       href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
     />
-    <link rel="stylesheet" href="lib/ix/dist/core-ui-core/core-ui-core.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
     <script type="module">
       import { defineCustomElements } from './lib/ix/loader/index.js';
       defineCustomElements();
@@ -25,7 +25,7 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
         flex-wrap: wrap;
       }
 
-      .example > cw-flip-tile {
+      .example > ix-flip-tile {
         margin: 0 0.5rem 0.5rem 0;
       }
     </style>
@@ -33,67 +33,67 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <div class="example">
-      <cw-flip-tile>
+      <ix-flip-tile>
         <div slot="header">Flip header</div>
 
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div class="d-flex align-items-center">
-            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
 
-        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-      </cw-flip-tile>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
 
-      <cw-flip-tile state="Primary">
+      <ix-flip-tile state="Primary">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div class="d-flex align-items-center">
-            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
-        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-      </cw-flip-tile>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
 
-      <cw-flip-tile state="Info">
+      <ix-flip-tile state="Info">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div class="d-flex align-items-center">
-            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
-        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-      </cw-flip-tile>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
 
-      <cw-flip-tile state="Warning">
+      <ix-flip-tile state="Warning">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div class="d-flex align-items-center">
-            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
-        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-      </cw-flip-tile>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
 
-      <cw-flip-tile state="Alarm">
+      <ix-flip-tile state="Alarm">
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div class="d-flex align-items-center">
-            <cw-icon name="info" size="16"></cw-icon>2021-06-22
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
-        <cw-flip-tile-content> Example 1 </cw-flip-tile-content>
-        <cw-flip-tile-content> Example 2 </cw-flip-tile-content>
-      </cw-flip-tile>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
     </div>
     <!-- Preview code -->
     <script type="text/javascript" src="lib/utils/demo.js"></script>

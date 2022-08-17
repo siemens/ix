@@ -10,13 +10,13 @@ import { createMutationObserver } from './../../utils/mutation-observer';
 jest.mock('./../../utils/mutation-observer');
 jest.mock('animejs');
 
-describe('cw-breadcrumb', () => {
+describe('ix-breadcrumb', () => {
   let observerCallback: Function;
   let page: any;
 
   beforeEach(async () => {
     //@ts-ignore
-    createMutationObserver = jest.fn(callback => {
+    createMutationObserver = jest.fn((callback) => {
       observerCallback = callback;
       return {
         observe: jest.fn(),
@@ -25,12 +25,12 @@ describe('cw-breadcrumb', () => {
     page = await newSpecPage({
       components: [Breadcrumb],
       html: `
-        <cw-breadcrumb>
-          <cw-breadcrumb-item label="Test 1" />
-          <cw-breadcrumb-item label="Test 2" />
-          <cw-breadcrumb-item label="Test 3" />
-          <cw-breadcrumb-item label="Test 4" />
-        </cw-breadcrumb>
+        <ix-breadcrumb>
+          <ix-breadcrumb-item label="Test 1" />
+          <ix-breadcrumb-item label="Test 2" />
+          <ix-breadcrumb-item label="Test 3" />
+          <ix-breadcrumb-item label="Test 4" />
+        </ix-breadcrumb>
       `,
     });
   });

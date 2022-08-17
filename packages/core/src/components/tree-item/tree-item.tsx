@@ -6,7 +6,7 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 
 @Component({
-  tag: 'cw-tree-item',
+  tag: 'ix-tree-item',
   styleUrl: 'tree-item.scss',
   scoped: true,
 })
@@ -45,25 +45,27 @@ export class CwTreeItem {
       >
         <div
           class="icon-toggle-container"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             this.toggle.emit();
           }}
         >
           {this.hasChildren ? (
-            <cw-icon
+            <ix-icon
               name="chevron-right"
               size="16"
               class={{
                 ['icon-toggle-down']: this.context?.isExpanded,
               }}
-              color={`color-${this.context?.isExpanded ? 'primary' : 'std-text'}`}
+              color={`color-${
+                this.context?.isExpanded ? 'primary' : 'std-text'
+              }`}
             />
           ) : null}
         </div>
         <div
           class="tree-node-container"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             this.itemClick.emit();
           }}

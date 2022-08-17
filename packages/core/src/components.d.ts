@@ -14,13 +14,13 @@ import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
 import { NotificationColor } from "./components/utils/notification-color";
-import { ModalConfig } from "./components/modal/modal";
-import { ToastConfig, ToastType } from "./components/toast/toast";
+import { ModalConfig } from "./components/modal/modal-utils";
+import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface CwAnimatedTab {
+    interface IxAnimatedTab {
         /**
           * Show notification number
          */
@@ -30,7 +30,7 @@ export namespace Components {
          */
         "icon": string;
     }
-    interface CwAnimatedTabs {
+    interface IxAnimatedTabs {
         /**
           * @deprecated - For debugging purposes only
          */
@@ -44,13 +44,13 @@ export namespace Components {
          */
         "tabPlacement": 'top' | 'bottom';
     }
-    interface CwApplicationHeader {
+    interface IxApplicationHeader {
         /**
           * Application name
          */
         "name": string;
     }
-    interface CwBasicNavigation {
+    interface IxBasicNavigation {
         /**
           * Application name
          */
@@ -60,7 +60,7 @@ export namespace Components {
          */
         "hideHeader": boolean;
     }
-    interface CwBlind {
+    interface IxBlind {
         /**
           * Collapsed state
          */
@@ -70,7 +70,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwBreadcrumb {
+    interface IxBreadcrumb {
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
@@ -84,7 +84,7 @@ export namespace Components {
          */
         "visibleItemCount": number;
     }
-    interface CwBreadcrumbItem {
+    interface IxBreadcrumbItem {
         /**
           * Icon to be displayed next ot the label
          */
@@ -94,7 +94,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwButton {
+    interface IxButton {
         /**
           * Disable the button
          */
@@ -121,7 +121,7 @@ export namespace Components {
          */
         "variant": Buttons;
     }
-    interface CwCategoryFilter {
+    interface IxCategoryFilter {
         /**
           * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
@@ -179,7 +179,7 @@ export namespace Components {
          */
         "tmpDisableScrollIntoView": boolean;
     }
-    interface CwChip {
+    interface IxChip {
         /**
           * Display chip in active state. Only working witht `variant="primary"`
          */
@@ -207,9 +207,16 @@ export namespace Components {
         /**
           * Chip variant
          */
-        "variant": 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwCounterPill {
+    interface IxCounterPill {
         /**
           * Align pill content left
          */
@@ -229,9 +236,16 @@ export namespace Components {
         /**
           * Pill variant
          */
-        "variant": 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwDatePicker {
+    interface IxDatePicker {
         /**
           * Set corners style
          */
@@ -249,7 +263,7 @@ export namespace Components {
          */
         "range": boolean;
     }
-    interface CwDateTimeCard {
+    interface IxDateTimeCard {
         /**
           * Set corners style
          */
@@ -259,7 +273,7 @@ export namespace Components {
          */
         "individual": boolean;
     }
-    interface CwDatetimePicker {
+    interface IxDatetimePicker {
         /**
           * Set range size
          */
@@ -281,7 +295,7 @@ export namespace Components {
          */
         "showTimeReference": boolean;
     }
-    interface CwDrawer {
+    interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
          */
@@ -312,7 +326,7 @@ export namespace Components {
          */
         "width": number | 'auto';
     }
-    interface CwDropdown {
+    interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
          */
@@ -355,7 +369,7 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
-    interface CwDropdownItem {
+    interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
          */
@@ -381,7 +395,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwEventList {
+    interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
          */
@@ -399,7 +413,7 @@ export namespace Components {
          */
         "itemHeight": 'S' | 'L' | number;
     }
-    interface CwEventListItem {
+    interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
          */
@@ -422,7 +436,7 @@ export namespace Components {
          */
         "selected": boolean;
     }
-    interface CwExpandingSearch {
+    interface IxExpandingSearch {
         /**
           * Search icon
          */
@@ -436,13 +450,13 @@ export namespace Components {
          */
         "value": string;
     }
-    interface CwFilterChip {
+    interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
          */
         "disabled": boolean;
     }
-    interface CwFlipTile {
+    interface IxFlipTile {
         /**
           * Tmp property name
          */
@@ -452,9 +466,9 @@ export namespace Components {
          */
         "state": FlipTileState;
     }
-    interface CwFlipTileContent {
+    interface IxFlipTileContent {
     }
-    interface CwGroup {
+    interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
          */
@@ -484,7 +498,7 @@ export namespace Components {
          */
         "suppressHeaderSelection": boolean;
     }
-    interface CwGroupDropdownItem {
+    interface IxGroupDropdownItem {
         /**
           * Group dropdown icon
          */
@@ -494,7 +508,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwGroupItem {
+    interface IxGroupItem {
         /**
           * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
          */
@@ -524,7 +538,7 @@ export namespace Components {
          */
         "text": string;
     }
-    interface CwIcon {
+    interface IxIcon {
         /**
           * Color of the icon
          */
@@ -538,7 +552,7 @@ export namespace Components {
          */
         "size": '12' | '16' | '24' | '32';
     }
-    interface CwIconButton {
+    interface IxIconButton {
         /**
           * Color of icon in  button
          */
@@ -581,9 +595,9 @@ export namespace Components {
          */
         "variant": 'Primary' | 'Secondary';
     }
-    interface CwInputGroup {
+    interface IxInputGroup {
     }
-    interface CwMapNavigation {
+    interface IxMapNavigation {
         /**
           * Application name
          */
@@ -609,7 +623,7 @@ export namespace Components {
          */
         "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
     }
-    interface CwMapNavigationOverlay {
+    interface IxMapNavigationOverlay {
         /**
           * Color of icon
          */
@@ -623,13 +637,13 @@ export namespace Components {
          */
         "name": string;
     }
-    interface CwMenu {
+    interface IxMenu {
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationDescription": string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationName": string;
         /**
@@ -687,17 +701,17 @@ export namespace Components {
          */
         "toggleSettings": (show: boolean) => Promise<void>;
     }
-    interface CwMenuAbout {
+    interface IxMenuAbout {
         /**
           * Active tab
          */
         "activeTabLabel": string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationDescription": string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationName": string;
         /**
@@ -723,13 +737,13 @@ export namespace Components {
          */
         "show": boolean;
     }
-    interface CwMenuAboutItem {
+    interface IxMenuAboutItem {
         /**
           * About Item label
          */
         "label": string;
     }
-    interface CwMenuAboutNews {
+    interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
          */
@@ -752,7 +766,7 @@ export namespace Components {
          */
         "show": boolean;
     }
-    interface CwMenuAvatar {
+    interface IxMenuAvatar {
         /**
           * Second line of text
          */
@@ -763,7 +777,7 @@ export namespace Components {
          */
         "top": string;
     }
-    interface CwMenuAvatarItem {
+    interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
          */
@@ -773,7 +787,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwMenuItem {
+    interface IxMenuItem {
         /**
           * State to display active
          */
@@ -799,7 +813,7 @@ export namespace Components {
          */
         "tabIcon": string;
     }
-    interface CwMenuSettings {
+    interface IxMenuSettings {
         /**
           * active tab
          */
@@ -813,13 +827,13 @@ export namespace Components {
          */
         "show": boolean;
     }
-    interface CwMenuSettingsItem {
+    interface IxMenuSettingsItem {
         /**
           * Label
          */
         "label": string;
     }
-    interface CwMessageBar {
+    interface IxMessageBar {
         /**
           * If true, close button is enabled and alert can be dismissed by the user
          */
@@ -829,7 +843,7 @@ export namespace Components {
          */
         "type": 'danger' | 'warning' | 'info';
     }
-    interface CwModal {
+    interface IxModal {
         /**
           * Should the modal be animtated
          */
@@ -899,16 +913,16 @@ export namespace Components {
          */
         "windowClass": string;
     }
-    interface CwModalContainer {
+    interface IxModalContainer {
         /**
           * Display modal dialog
           * @param config
          */
         "showModal": (config: ModalConfig) => Promise<void>;
     }
-    interface CwModalExample {
+    interface IxModalExample {
     }
-    interface CwPill {
+    interface IxPill {
         /**
           * Align pill content left
          */
@@ -932,9 +946,16 @@ export namespace Components {
         /**
           * Pill variant
          */
-        "variant": 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwSelect {
+    interface IxSelect {
         /**
           * Show clear button
          */
@@ -972,7 +993,7 @@ export namespace Components {
          */
         "selectedIndices": string | string[];
     }
-    interface CwSelectItem {
+    interface IxSelectItem {
         /**
           * ***Internal***
          */
@@ -985,7 +1006,7 @@ export namespace Components {
           * Internal
           * @param event
          */
-        "onItemClick": (event?: CustomEvent<HTMLCwDropdownItemElement>) => Promise<void>;
+        "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
           * Whether the item is selected.
          */
@@ -995,7 +1016,7 @@ export namespace Components {
          */
         "value": any;
     }
-    interface CwSpinner {
+    interface IxSpinner {
         /**
           * Size of spinner
          */
@@ -1005,7 +1026,7 @@ export namespace Components {
          */
         "variant": 'primary' | 'sencodary' | 'secondary';
     }
-    interface CwSplitButton {
+    interface IxSplitButton {
         /**
           * Disabled
          */
@@ -1044,7 +1065,7 @@ export namespace Components {
          */
         "variant": Buttons;
     }
-    interface CwSplitButtonItem {
+    interface IxSplitButtonItem {
         /**
           * Dropdown icon
          */
@@ -1054,7 +1075,7 @@ export namespace Components {
          */
         "label": string;
     }
-    interface CwTabItem {
+    interface IxTabItem {
         /**
           * Set disabled tab
          */
@@ -1080,7 +1101,7 @@ export namespace Components {
          */
         "small": boolean;
     }
-    interface CwTabs {
+    interface IxTabs {
         /**
           * Set layout width style
          */
@@ -1098,13 +1119,13 @@ export namespace Components {
          */
         "small": boolean;
     }
-    interface CwTile {
+    interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
          */
         "size": 'small' | 'medium' | 'big';
     }
-    interface CwTimePicker {
+    interface IxTimePicker {
         /**
           * Set corners style
          */
@@ -1130,7 +1151,7 @@ export namespace Components {
          */
         "showTimeReference": boolean;
     }
-    interface CwToast {
+    interface IxToast {
         /**
           * Autoclose behavior
          */
@@ -1156,7 +1177,7 @@ export namespace Components {
          */
         "type": ToastType;
     }
-    interface CwToastContainer {
+    interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
         /**
@@ -1171,7 +1192,7 @@ export namespace Components {
          */
         "showToast": (config: ToastConfig) => Promise<void>;
     }
-    interface CwToggle {
+    interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
          */
@@ -1206,7 +1227,7 @@ export namespace Components {
          */
         "textOn": string;
     }
-    interface CwTree {
+    interface IxTree {
         /**
           * Selection and collapsed state management
          */
@@ -1218,13 +1239,19 @@ export namespace Components {
         /**
           * Render function of tree items
          */
-        "renderItem": (index: number, data: any, dataList: Array<any>, context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement;
+        "renderItem": (
+    index: number,
+    data: any,
+    dataList: Array<any>,
+    context: TreeContext,
+    update: (callback: UpdateCallback) => void
+  ) => HTMLElement;
         /**
           * Initial root element will not be rendered
          */
         "root": string;
     }
-    interface CwTreeItem {
+    interface IxTreeItem {
         /**
           * Context
          */
@@ -1238,7 +1265,7 @@ export namespace Components {
          */
         "text": string;
     }
-    interface CwUpload {
+    interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link https ://www.w3schools.com/tags/att_input_accept.asp}
          */
@@ -1285,365 +1312,365 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLCwAnimatedTabElement extends Components.CwAnimatedTab, HTMLStencilElement {
+    interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
     }
-    var HTMLCwAnimatedTabElement: {
-        prototype: HTMLCwAnimatedTabElement;
-        new (): HTMLCwAnimatedTabElement;
+    var HTMLIxAnimatedTabElement: {
+        prototype: HTMLIxAnimatedTabElement;
+        new (): HTMLIxAnimatedTabElement;
     };
-    interface HTMLCwAnimatedTabsElement extends Components.CwAnimatedTabs, HTMLStencilElement {
+    interface HTMLIxAnimatedTabsElement extends Components.IxAnimatedTabs, HTMLStencilElement {
     }
-    var HTMLCwAnimatedTabsElement: {
-        prototype: HTMLCwAnimatedTabsElement;
-        new (): HTMLCwAnimatedTabsElement;
+    var HTMLIxAnimatedTabsElement: {
+        prototype: HTMLIxAnimatedTabsElement;
+        new (): HTMLIxAnimatedTabsElement;
     };
-    interface HTMLCwApplicationHeaderElement extends Components.CwApplicationHeader, HTMLStencilElement {
+    interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
     }
-    var HTMLCwApplicationHeaderElement: {
-        prototype: HTMLCwApplicationHeaderElement;
-        new (): HTMLCwApplicationHeaderElement;
+    var HTMLIxApplicationHeaderElement: {
+        prototype: HTMLIxApplicationHeaderElement;
+        new (): HTMLIxApplicationHeaderElement;
     };
-    interface HTMLCwBasicNavigationElement extends Components.CwBasicNavigation, HTMLStencilElement {
+    interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
-    var HTMLCwBasicNavigationElement: {
-        prototype: HTMLCwBasicNavigationElement;
-        new (): HTMLCwBasicNavigationElement;
+    var HTMLIxBasicNavigationElement: {
+        prototype: HTMLIxBasicNavigationElement;
+        new (): HTMLIxBasicNavigationElement;
     };
-    interface HTMLCwBlindElement extends Components.CwBlind, HTMLStencilElement {
+    interface HTMLIxBlindElement extends Components.IxBlind, HTMLStencilElement {
     }
-    var HTMLCwBlindElement: {
-        prototype: HTMLCwBlindElement;
-        new (): HTMLCwBlindElement;
+    var HTMLIxBlindElement: {
+        prototype: HTMLIxBlindElement;
+        new (): HTMLIxBlindElement;
     };
-    interface HTMLCwBreadcrumbElement extends Components.CwBreadcrumb, HTMLStencilElement {
+    interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
     }
-    var HTMLCwBreadcrumbElement: {
-        prototype: HTMLCwBreadcrumbElement;
-        new (): HTMLCwBreadcrumbElement;
+    var HTMLIxBreadcrumbElement: {
+        prototype: HTMLIxBreadcrumbElement;
+        new (): HTMLIxBreadcrumbElement;
     };
-    interface HTMLCwBreadcrumbItemElement extends Components.CwBreadcrumbItem, HTMLStencilElement {
+    interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
     }
-    var HTMLCwBreadcrumbItemElement: {
-        prototype: HTMLCwBreadcrumbItemElement;
-        new (): HTMLCwBreadcrumbItemElement;
+    var HTMLIxBreadcrumbItemElement: {
+        prototype: HTMLIxBreadcrumbItemElement;
+        new (): HTMLIxBreadcrumbItemElement;
     };
-    interface HTMLCwButtonElement extends Components.CwButton, HTMLStencilElement {
+    interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
-    var HTMLCwButtonElement: {
-        prototype: HTMLCwButtonElement;
-        new (): HTMLCwButtonElement;
+    var HTMLIxButtonElement: {
+        prototype: HTMLIxButtonElement;
+        new (): HTMLIxButtonElement;
     };
-    interface HTMLCwCategoryFilterElement extends Components.CwCategoryFilter, HTMLStencilElement {
+    interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
     }
-    var HTMLCwCategoryFilterElement: {
-        prototype: HTMLCwCategoryFilterElement;
-        new (): HTMLCwCategoryFilterElement;
+    var HTMLIxCategoryFilterElement: {
+        prototype: HTMLIxCategoryFilterElement;
+        new (): HTMLIxCategoryFilterElement;
     };
-    interface HTMLCwChipElement extends Components.CwChip, HTMLStencilElement {
+    interface HTMLIxChipElement extends Components.IxChip, HTMLStencilElement {
     }
-    var HTMLCwChipElement: {
-        prototype: HTMLCwChipElement;
-        new (): HTMLCwChipElement;
+    var HTMLIxChipElement: {
+        prototype: HTMLIxChipElement;
+        new (): HTMLIxChipElement;
     };
-    interface HTMLCwCounterPillElement extends Components.CwCounterPill, HTMLStencilElement {
+    interface HTMLIxCounterPillElement extends Components.IxCounterPill, HTMLStencilElement {
     }
-    var HTMLCwCounterPillElement: {
-        prototype: HTMLCwCounterPillElement;
-        new (): HTMLCwCounterPillElement;
+    var HTMLIxCounterPillElement: {
+        prototype: HTMLIxCounterPillElement;
+        new (): HTMLIxCounterPillElement;
     };
-    interface HTMLCwDatePickerElement extends Components.CwDatePicker, HTMLStencilElement {
+    interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
-    var HTMLCwDatePickerElement: {
-        prototype: HTMLCwDatePickerElement;
-        new (): HTMLCwDatePickerElement;
+    var HTMLIxDatePickerElement: {
+        prototype: HTMLIxDatePickerElement;
+        new (): HTMLIxDatePickerElement;
     };
-    interface HTMLCwDateTimeCardElement extends Components.CwDateTimeCard, HTMLStencilElement {
+    interface HTMLIxDateTimeCardElement extends Components.IxDateTimeCard, HTMLStencilElement {
     }
-    var HTMLCwDateTimeCardElement: {
-        prototype: HTMLCwDateTimeCardElement;
-        new (): HTMLCwDateTimeCardElement;
+    var HTMLIxDateTimeCardElement: {
+        prototype: HTMLIxDateTimeCardElement;
+        new (): HTMLIxDateTimeCardElement;
     };
-    interface HTMLCwDatetimePickerElement extends Components.CwDatetimePicker, HTMLStencilElement {
+    interface HTMLIxDatetimePickerElement extends Components.IxDatetimePicker, HTMLStencilElement {
     }
-    var HTMLCwDatetimePickerElement: {
-        prototype: HTMLCwDatetimePickerElement;
-        new (): HTMLCwDatetimePickerElement;
+    var HTMLIxDatetimePickerElement: {
+        prototype: HTMLIxDatetimePickerElement;
+        new (): HTMLIxDatetimePickerElement;
     };
-    interface HTMLCwDrawerElement extends Components.CwDrawer, HTMLStencilElement {
+    interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
     }
-    var HTMLCwDrawerElement: {
-        prototype: HTMLCwDrawerElement;
-        new (): HTMLCwDrawerElement;
+    var HTMLIxDrawerElement: {
+        prototype: HTMLIxDrawerElement;
+        new (): HTMLIxDrawerElement;
     };
-    interface HTMLCwDropdownElement extends Components.CwDropdown, HTMLStencilElement {
+    interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
     }
-    var HTMLCwDropdownElement: {
-        prototype: HTMLCwDropdownElement;
-        new (): HTMLCwDropdownElement;
+    var HTMLIxDropdownElement: {
+        prototype: HTMLIxDropdownElement;
+        new (): HTMLIxDropdownElement;
     };
-    interface HTMLCwDropdownItemElement extends Components.CwDropdownItem, HTMLStencilElement {
+    interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
     }
-    var HTMLCwDropdownItemElement: {
-        prototype: HTMLCwDropdownItemElement;
-        new (): HTMLCwDropdownItemElement;
+    var HTMLIxDropdownItemElement: {
+        prototype: HTMLIxDropdownItemElement;
+        new (): HTMLIxDropdownItemElement;
     };
-    interface HTMLCwEventListElement extends Components.CwEventList, HTMLStencilElement {
+    interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
-    var HTMLCwEventListElement: {
-        prototype: HTMLCwEventListElement;
-        new (): HTMLCwEventListElement;
+    var HTMLIxEventListElement: {
+        prototype: HTMLIxEventListElement;
+        new (): HTMLIxEventListElement;
     };
-    interface HTMLCwEventListItemElement extends Components.CwEventListItem, HTMLStencilElement {
+    interface HTMLIxEventListItemElement extends Components.IxEventListItem, HTMLStencilElement {
     }
-    var HTMLCwEventListItemElement: {
-        prototype: HTMLCwEventListItemElement;
-        new (): HTMLCwEventListItemElement;
+    var HTMLIxEventListItemElement: {
+        prototype: HTMLIxEventListItemElement;
+        new (): HTMLIxEventListItemElement;
     };
-    interface HTMLCwExpandingSearchElement extends Components.CwExpandingSearch, HTMLStencilElement {
+    interface HTMLIxExpandingSearchElement extends Components.IxExpandingSearch, HTMLStencilElement {
     }
-    var HTMLCwExpandingSearchElement: {
-        prototype: HTMLCwExpandingSearchElement;
-        new (): HTMLCwExpandingSearchElement;
+    var HTMLIxExpandingSearchElement: {
+        prototype: HTMLIxExpandingSearchElement;
+        new (): HTMLIxExpandingSearchElement;
     };
-    interface HTMLCwFilterChipElement extends Components.CwFilterChip, HTMLStencilElement {
+    interface HTMLIxFilterChipElement extends Components.IxFilterChip, HTMLStencilElement {
     }
-    var HTMLCwFilterChipElement: {
-        prototype: HTMLCwFilterChipElement;
-        new (): HTMLCwFilterChipElement;
+    var HTMLIxFilterChipElement: {
+        prototype: HTMLIxFilterChipElement;
+        new (): HTMLIxFilterChipElement;
     };
-    interface HTMLCwFlipTileElement extends Components.CwFlipTile, HTMLStencilElement {
+    interface HTMLIxFlipTileElement extends Components.IxFlipTile, HTMLStencilElement {
     }
-    var HTMLCwFlipTileElement: {
-        prototype: HTMLCwFlipTileElement;
-        new (): HTMLCwFlipTileElement;
+    var HTMLIxFlipTileElement: {
+        prototype: HTMLIxFlipTileElement;
+        new (): HTMLIxFlipTileElement;
     };
-    interface HTMLCwFlipTileContentElement extends Components.CwFlipTileContent, HTMLStencilElement {
+    interface HTMLIxFlipTileContentElement extends Components.IxFlipTileContent, HTMLStencilElement {
     }
-    var HTMLCwFlipTileContentElement: {
-        prototype: HTMLCwFlipTileContentElement;
-        new (): HTMLCwFlipTileContentElement;
+    var HTMLIxFlipTileContentElement: {
+        prototype: HTMLIxFlipTileContentElement;
+        new (): HTMLIxFlipTileContentElement;
     };
-    interface HTMLCwGroupElement extends Components.CwGroup, HTMLStencilElement {
+    interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
-    var HTMLCwGroupElement: {
-        prototype: HTMLCwGroupElement;
-        new (): HTMLCwGroupElement;
+    var HTMLIxGroupElement: {
+        prototype: HTMLIxGroupElement;
+        new (): HTMLIxGroupElement;
     };
-    interface HTMLCwGroupDropdownItemElement extends Components.CwGroupDropdownItem, HTMLStencilElement {
+    interface HTMLIxGroupDropdownItemElement extends Components.IxGroupDropdownItem, HTMLStencilElement {
     }
-    var HTMLCwGroupDropdownItemElement: {
-        prototype: HTMLCwGroupDropdownItemElement;
-        new (): HTMLCwGroupDropdownItemElement;
+    var HTMLIxGroupDropdownItemElement: {
+        prototype: HTMLIxGroupDropdownItemElement;
+        new (): HTMLIxGroupDropdownItemElement;
     };
-    interface HTMLCwGroupItemElement extends Components.CwGroupItem, HTMLStencilElement {
+    interface HTMLIxGroupItemElement extends Components.IxGroupItem, HTMLStencilElement {
     }
-    var HTMLCwGroupItemElement: {
-        prototype: HTMLCwGroupItemElement;
-        new (): HTMLCwGroupItemElement;
+    var HTMLIxGroupItemElement: {
+        prototype: HTMLIxGroupItemElement;
+        new (): HTMLIxGroupItemElement;
     };
-    interface HTMLCwIconElement extends Components.CwIcon, HTMLStencilElement {
+    interface HTMLIxIconElement extends Components.IxIcon, HTMLStencilElement {
     }
-    var HTMLCwIconElement: {
-        prototype: HTMLCwIconElement;
-        new (): HTMLCwIconElement;
+    var HTMLIxIconElement: {
+        prototype: HTMLIxIconElement;
+        new (): HTMLIxIconElement;
     };
-    interface HTMLCwIconButtonElement extends Components.CwIconButton, HTMLStencilElement {
+    interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
-    var HTMLCwIconButtonElement: {
-        prototype: HTMLCwIconButtonElement;
-        new (): HTMLCwIconButtonElement;
+    var HTMLIxIconButtonElement: {
+        prototype: HTMLIxIconButtonElement;
+        new (): HTMLIxIconButtonElement;
     };
-    interface HTMLCwInputGroupElement extends Components.CwInputGroup, HTMLStencilElement {
+    interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
-    var HTMLCwInputGroupElement: {
-        prototype: HTMLCwInputGroupElement;
-        new (): HTMLCwInputGroupElement;
+    var HTMLIxInputGroupElement: {
+        prototype: HTMLIxInputGroupElement;
+        new (): HTMLIxInputGroupElement;
     };
-    interface HTMLCwMapNavigationElement extends Components.CwMapNavigation, HTMLStencilElement {
+    interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
-    var HTMLCwMapNavigationElement: {
-        prototype: HTMLCwMapNavigationElement;
-        new (): HTMLCwMapNavigationElement;
+    var HTMLIxMapNavigationElement: {
+        prototype: HTMLIxMapNavigationElement;
+        new (): HTMLIxMapNavigationElement;
     };
-    interface HTMLCwMapNavigationOverlayElement extends Components.CwMapNavigationOverlay, HTMLStencilElement {
+    interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
     }
-    var HTMLCwMapNavigationOverlayElement: {
-        prototype: HTMLCwMapNavigationOverlayElement;
-        new (): HTMLCwMapNavigationOverlayElement;
+    var HTMLIxMapNavigationOverlayElement: {
+        prototype: HTMLIxMapNavigationOverlayElement;
+        new (): HTMLIxMapNavigationOverlayElement;
     };
-    interface HTMLCwMenuElement extends Components.CwMenu, HTMLStencilElement {
+    interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
     }
-    var HTMLCwMenuElement: {
-        prototype: HTMLCwMenuElement;
-        new (): HTMLCwMenuElement;
+    var HTMLIxMenuElement: {
+        prototype: HTMLIxMenuElement;
+        new (): HTMLIxMenuElement;
     };
-    interface HTMLCwMenuAboutElement extends Components.CwMenuAbout, HTMLStencilElement {
+    interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
     }
-    var HTMLCwMenuAboutElement: {
-        prototype: HTMLCwMenuAboutElement;
-        new (): HTMLCwMenuAboutElement;
+    var HTMLIxMenuAboutElement: {
+        prototype: HTMLIxMenuAboutElement;
+        new (): HTMLIxMenuAboutElement;
     };
-    interface HTMLCwMenuAboutItemElement extends Components.CwMenuAboutItem, HTMLStencilElement {
+    interface HTMLIxMenuAboutItemElement extends Components.IxMenuAboutItem, HTMLStencilElement {
     }
-    var HTMLCwMenuAboutItemElement: {
-        prototype: HTMLCwMenuAboutItemElement;
-        new (): HTMLCwMenuAboutItemElement;
+    var HTMLIxMenuAboutItemElement: {
+        prototype: HTMLIxMenuAboutItemElement;
+        new (): HTMLIxMenuAboutItemElement;
     };
-    interface HTMLCwMenuAboutNewsElement extends Components.CwMenuAboutNews, HTMLStencilElement {
+    interface HTMLIxMenuAboutNewsElement extends Components.IxMenuAboutNews, HTMLStencilElement {
     }
-    var HTMLCwMenuAboutNewsElement: {
-        prototype: HTMLCwMenuAboutNewsElement;
-        new (): HTMLCwMenuAboutNewsElement;
+    var HTMLIxMenuAboutNewsElement: {
+        prototype: HTMLIxMenuAboutNewsElement;
+        new (): HTMLIxMenuAboutNewsElement;
     };
-    interface HTMLCwMenuAvatarElement extends Components.CwMenuAvatar, HTMLStencilElement {
+    interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
     }
-    var HTMLCwMenuAvatarElement: {
-        prototype: HTMLCwMenuAvatarElement;
-        new (): HTMLCwMenuAvatarElement;
+    var HTMLIxMenuAvatarElement: {
+        prototype: HTMLIxMenuAvatarElement;
+        new (): HTMLIxMenuAvatarElement;
     };
-    interface HTMLCwMenuAvatarItemElement extends Components.CwMenuAvatarItem, HTMLStencilElement {
+    interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
     }
-    var HTMLCwMenuAvatarItemElement: {
-        prototype: HTMLCwMenuAvatarItemElement;
-        new (): HTMLCwMenuAvatarItemElement;
+    var HTMLIxMenuAvatarItemElement: {
+        prototype: HTMLIxMenuAvatarItemElement;
+        new (): HTMLIxMenuAvatarItemElement;
     };
-    interface HTMLCwMenuItemElement extends Components.CwMenuItem, HTMLStencilElement {
+    interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
-    var HTMLCwMenuItemElement: {
-        prototype: HTMLCwMenuItemElement;
-        new (): HTMLCwMenuItemElement;
+    var HTMLIxMenuItemElement: {
+        prototype: HTMLIxMenuItemElement;
+        new (): HTMLIxMenuItemElement;
     };
-    interface HTMLCwMenuSettingsElement extends Components.CwMenuSettings, HTMLStencilElement {
+    interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
     }
-    var HTMLCwMenuSettingsElement: {
-        prototype: HTMLCwMenuSettingsElement;
-        new (): HTMLCwMenuSettingsElement;
+    var HTMLIxMenuSettingsElement: {
+        prototype: HTMLIxMenuSettingsElement;
+        new (): HTMLIxMenuSettingsElement;
     };
-    interface HTMLCwMenuSettingsItemElement extends Components.CwMenuSettingsItem, HTMLStencilElement {
+    interface HTMLIxMenuSettingsItemElement extends Components.IxMenuSettingsItem, HTMLStencilElement {
     }
-    var HTMLCwMenuSettingsItemElement: {
-        prototype: HTMLCwMenuSettingsItemElement;
-        new (): HTMLCwMenuSettingsItemElement;
+    var HTMLIxMenuSettingsItemElement: {
+        prototype: HTMLIxMenuSettingsItemElement;
+        new (): HTMLIxMenuSettingsItemElement;
     };
-    interface HTMLCwMessageBarElement extends Components.CwMessageBar, HTMLStencilElement {
+    interface HTMLIxMessageBarElement extends Components.IxMessageBar, HTMLStencilElement {
     }
-    var HTMLCwMessageBarElement: {
-        prototype: HTMLCwMessageBarElement;
-        new (): HTMLCwMessageBarElement;
+    var HTMLIxMessageBarElement: {
+        prototype: HTMLIxMessageBarElement;
+        new (): HTMLIxMessageBarElement;
     };
-    interface HTMLCwModalElement extends Components.CwModal, HTMLStencilElement {
+    interface HTMLIxModalElement extends Components.IxModal, HTMLStencilElement {
     }
-    var HTMLCwModalElement: {
-        prototype: HTMLCwModalElement;
-        new (): HTMLCwModalElement;
+    var HTMLIxModalElement: {
+        prototype: HTMLIxModalElement;
+        new (): HTMLIxModalElement;
     };
-    interface HTMLCwModalContainerElement extends Components.CwModalContainer, HTMLStencilElement {
+    interface HTMLIxModalContainerElement extends Components.IxModalContainer, HTMLStencilElement {
     }
-    var HTMLCwModalContainerElement: {
-        prototype: HTMLCwModalContainerElement;
-        new (): HTMLCwModalContainerElement;
+    var HTMLIxModalContainerElement: {
+        prototype: HTMLIxModalContainerElement;
+        new (): HTMLIxModalContainerElement;
     };
-    interface HTMLCwModalExampleElement extends Components.CwModalExample, HTMLStencilElement {
+    interface HTMLIxModalExampleElement extends Components.IxModalExample, HTMLStencilElement {
     }
-    var HTMLCwModalExampleElement: {
-        prototype: HTMLCwModalExampleElement;
-        new (): HTMLCwModalExampleElement;
+    var HTMLIxModalExampleElement: {
+        prototype: HTMLIxModalExampleElement;
+        new (): HTMLIxModalExampleElement;
     };
-    interface HTMLCwPillElement extends Components.CwPill, HTMLStencilElement {
+    interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
-    var HTMLCwPillElement: {
-        prototype: HTMLCwPillElement;
-        new (): HTMLCwPillElement;
+    var HTMLIxPillElement: {
+        prototype: HTMLIxPillElement;
+        new (): HTMLIxPillElement;
     };
-    interface HTMLCwSelectElement extends Components.CwSelect, HTMLStencilElement {
+    interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
     }
-    var HTMLCwSelectElement: {
-        prototype: HTMLCwSelectElement;
-        new (): HTMLCwSelectElement;
+    var HTMLIxSelectElement: {
+        prototype: HTMLIxSelectElement;
+        new (): HTMLIxSelectElement;
     };
-    interface HTMLCwSelectItemElement extends Components.CwSelectItem, HTMLStencilElement {
+    interface HTMLIxSelectItemElement extends Components.IxSelectItem, HTMLStencilElement {
     }
-    var HTMLCwSelectItemElement: {
-        prototype: HTMLCwSelectItemElement;
-        new (): HTMLCwSelectItemElement;
+    var HTMLIxSelectItemElement: {
+        prototype: HTMLIxSelectItemElement;
+        new (): HTMLIxSelectItemElement;
     };
-    interface HTMLCwSpinnerElement extends Components.CwSpinner, HTMLStencilElement {
+    interface HTMLIxSpinnerElement extends Components.IxSpinner, HTMLStencilElement {
     }
-    var HTMLCwSpinnerElement: {
-        prototype: HTMLCwSpinnerElement;
-        new (): HTMLCwSpinnerElement;
+    var HTMLIxSpinnerElement: {
+        prototype: HTMLIxSpinnerElement;
+        new (): HTMLIxSpinnerElement;
     };
-    interface HTMLCwSplitButtonElement extends Components.CwSplitButton, HTMLStencilElement {
+    interface HTMLIxSplitButtonElement extends Components.IxSplitButton, HTMLStencilElement {
     }
-    var HTMLCwSplitButtonElement: {
-        prototype: HTMLCwSplitButtonElement;
-        new (): HTMLCwSplitButtonElement;
+    var HTMLIxSplitButtonElement: {
+        prototype: HTMLIxSplitButtonElement;
+        new (): HTMLIxSplitButtonElement;
     };
-    interface HTMLCwSplitButtonItemElement extends Components.CwSplitButtonItem, HTMLStencilElement {
+    interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
     }
-    var HTMLCwSplitButtonItemElement: {
-        prototype: HTMLCwSplitButtonItemElement;
-        new (): HTMLCwSplitButtonItemElement;
+    var HTMLIxSplitButtonItemElement: {
+        prototype: HTMLIxSplitButtonItemElement;
+        new (): HTMLIxSplitButtonItemElement;
     };
-    interface HTMLCwTabItemElement extends Components.CwTabItem, HTMLStencilElement {
+    interface HTMLIxTabItemElement extends Components.IxTabItem, HTMLStencilElement {
     }
-    var HTMLCwTabItemElement: {
-        prototype: HTMLCwTabItemElement;
-        new (): HTMLCwTabItemElement;
+    var HTMLIxTabItemElement: {
+        prototype: HTMLIxTabItemElement;
+        new (): HTMLIxTabItemElement;
     };
-    interface HTMLCwTabsElement extends Components.CwTabs, HTMLStencilElement {
+    interface HTMLIxTabsElement extends Components.IxTabs, HTMLStencilElement {
     }
-    var HTMLCwTabsElement: {
-        prototype: HTMLCwTabsElement;
-        new (): HTMLCwTabsElement;
+    var HTMLIxTabsElement: {
+        prototype: HTMLIxTabsElement;
+        new (): HTMLIxTabsElement;
     };
-    interface HTMLCwTileElement extends Components.CwTile, HTMLStencilElement {
+    interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
-    var HTMLCwTileElement: {
-        prototype: HTMLCwTileElement;
-        new (): HTMLCwTileElement;
+    var HTMLIxTileElement: {
+        prototype: HTMLIxTileElement;
+        new (): HTMLIxTileElement;
     };
-    interface HTMLCwTimePickerElement extends Components.CwTimePicker, HTMLStencilElement {
+    interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
     }
-    var HTMLCwTimePickerElement: {
-        prototype: HTMLCwTimePickerElement;
-        new (): HTMLCwTimePickerElement;
+    var HTMLIxTimePickerElement: {
+        prototype: HTMLIxTimePickerElement;
+        new (): HTMLIxTimePickerElement;
     };
-    interface HTMLCwToastElement extends Components.CwToast, HTMLStencilElement {
+    interface HTMLIxToastElement extends Components.IxToast, HTMLStencilElement {
     }
-    var HTMLCwToastElement: {
-        prototype: HTMLCwToastElement;
-        new (): HTMLCwToastElement;
+    var HTMLIxToastElement: {
+        prototype: HTMLIxToastElement;
+        new (): HTMLIxToastElement;
     };
-    interface HTMLCwToastContainerElement extends Components.CwToastContainer, HTMLStencilElement {
+    interface HTMLIxToastContainerElement extends Components.IxToastContainer, HTMLStencilElement {
     }
-    var HTMLCwToastContainerElement: {
-        prototype: HTMLCwToastContainerElement;
-        new (): HTMLCwToastContainerElement;
+    var HTMLIxToastContainerElement: {
+        prototype: HTMLIxToastContainerElement;
+        new (): HTMLIxToastContainerElement;
     };
-    interface HTMLCwToggleElement extends Components.CwToggle, HTMLStencilElement {
+    interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
     }
-    var HTMLCwToggleElement: {
-        prototype: HTMLCwToggleElement;
-        new (): HTMLCwToggleElement;
+    var HTMLIxToggleElement: {
+        prototype: HTMLIxToggleElement;
+        new (): HTMLIxToggleElement;
     };
-    interface HTMLCwTreeElement extends Components.CwTree, HTMLStencilElement {
+    interface HTMLIxTreeElement extends Components.IxTree, HTMLStencilElement {
     }
-    var HTMLCwTreeElement: {
-        prototype: HTMLCwTreeElement;
-        new (): HTMLCwTreeElement;
+    var HTMLIxTreeElement: {
+        prototype: HTMLIxTreeElement;
+        new (): HTMLIxTreeElement;
     };
-    interface HTMLCwTreeItemElement extends Components.CwTreeItem, HTMLStencilElement {
+    interface HTMLIxTreeItemElement extends Components.IxTreeItem, HTMLStencilElement {
     }
-    var HTMLCwTreeItemElement: {
-        prototype: HTMLCwTreeItemElement;
-        new (): HTMLCwTreeItemElement;
+    var HTMLIxTreeItemElement: {
+        prototype: HTMLIxTreeItemElement;
+        new (): HTMLIxTreeItemElement;
     };
-    interface HTMLCwUploadElement extends Components.CwUpload, HTMLStencilElement {
+    interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
     }
-    var HTMLCwUploadElement: {
-        prototype: HTMLCwUploadElement;
-        new (): HTMLCwUploadElement;
+    var HTMLIxUploadElement: {
+        prototype: HTMLIxUploadElement;
+        new (): HTMLIxUploadElement;
     };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -1652,71 +1679,71 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "cw-animated-tab": HTMLCwAnimatedTabElement;
-        "cw-animated-tabs": HTMLCwAnimatedTabsElement;
-        "cw-application-header": HTMLCwApplicationHeaderElement;
-        "cw-basic-navigation": HTMLCwBasicNavigationElement;
-        "cw-blind": HTMLCwBlindElement;
-        "cw-breadcrumb": HTMLCwBreadcrumbElement;
-        "cw-breadcrumb-item": HTMLCwBreadcrumbItemElement;
-        "cw-button": HTMLCwButtonElement;
-        "cw-category-filter": HTMLCwCategoryFilterElement;
-        "cw-chip": HTMLCwChipElement;
-        "cw-counter-pill": HTMLCwCounterPillElement;
-        "cw-date-picker": HTMLCwDatePickerElement;
-        "cw-date-time-card": HTMLCwDateTimeCardElement;
-        "cw-datetime-picker": HTMLCwDatetimePickerElement;
-        "cw-drawer": HTMLCwDrawerElement;
-        "cw-dropdown": HTMLCwDropdownElement;
-        "cw-dropdown-item": HTMLCwDropdownItemElement;
-        "cw-event-list": HTMLCwEventListElement;
-        "cw-event-list-item": HTMLCwEventListItemElement;
-        "cw-expanding-search": HTMLCwExpandingSearchElement;
-        "cw-filter-chip": HTMLCwFilterChipElement;
-        "cw-flip-tile": HTMLCwFlipTileElement;
-        "cw-flip-tile-content": HTMLCwFlipTileContentElement;
-        "cw-group": HTMLCwGroupElement;
-        "cw-group-dropdown-item": HTMLCwGroupDropdownItemElement;
-        "cw-group-item": HTMLCwGroupItemElement;
-        "cw-icon": HTMLCwIconElement;
-        "cw-icon-button": HTMLCwIconButtonElement;
-        "cw-input-group": HTMLCwInputGroupElement;
-        "cw-map-navigation": HTMLCwMapNavigationElement;
-        "cw-map-navigation-overlay": HTMLCwMapNavigationOverlayElement;
-        "cw-menu": HTMLCwMenuElement;
-        "cw-menu-about": HTMLCwMenuAboutElement;
-        "cw-menu-about-item": HTMLCwMenuAboutItemElement;
-        "cw-menu-about-news": HTMLCwMenuAboutNewsElement;
-        "cw-menu-avatar": HTMLCwMenuAvatarElement;
-        "cw-menu-avatar-item": HTMLCwMenuAvatarItemElement;
-        "cw-menu-item": HTMLCwMenuItemElement;
-        "cw-menu-settings": HTMLCwMenuSettingsElement;
-        "cw-menu-settings-item": HTMLCwMenuSettingsItemElement;
-        "cw-message-bar": HTMLCwMessageBarElement;
-        "cw-modal": HTMLCwModalElement;
-        "cw-modal-container": HTMLCwModalContainerElement;
-        "cw-modal-example": HTMLCwModalExampleElement;
-        "cw-pill": HTMLCwPillElement;
-        "cw-select": HTMLCwSelectElement;
-        "cw-select-item": HTMLCwSelectItemElement;
-        "cw-spinner": HTMLCwSpinnerElement;
-        "cw-split-button": HTMLCwSplitButtonElement;
-        "cw-split-button-item": HTMLCwSplitButtonItemElement;
-        "cw-tab-item": HTMLCwTabItemElement;
-        "cw-tabs": HTMLCwTabsElement;
-        "cw-tile": HTMLCwTileElement;
-        "cw-time-picker": HTMLCwTimePickerElement;
-        "cw-toast": HTMLCwToastElement;
-        "cw-toast-container": HTMLCwToastContainerElement;
-        "cw-toggle": HTMLCwToggleElement;
-        "cw-tree": HTMLCwTreeElement;
-        "cw-tree-item": HTMLCwTreeItemElement;
-        "cw-upload": HTMLCwUploadElement;
+        "ix-animated-tab": HTMLIxAnimatedTabElement;
+        "ix-animated-tabs": HTMLIxAnimatedTabsElement;
+        "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-basic-navigation": HTMLIxBasicNavigationElement;
+        "ix-blind": HTMLIxBlindElement;
+        "ix-breadcrumb": HTMLIxBreadcrumbElement;
+        "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
+        "ix-button": HTMLIxButtonElement;
+        "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-chip": HTMLIxChipElement;
+        "ix-counter-pill": HTMLIxCounterPillElement;
+        "ix-date-picker": HTMLIxDatePickerElement;
+        "ix-date-time-card": HTMLIxDateTimeCardElement;
+        "ix-datetime-picker": HTMLIxDatetimePickerElement;
+        "ix-drawer": HTMLIxDrawerElement;
+        "ix-dropdown": HTMLIxDropdownElement;
+        "ix-dropdown-item": HTMLIxDropdownItemElement;
+        "ix-event-list": HTMLIxEventListElement;
+        "ix-event-list-item": HTMLIxEventListItemElement;
+        "ix-expanding-search": HTMLIxExpandingSearchElement;
+        "ix-filter-chip": HTMLIxFilterChipElement;
+        "ix-flip-tile": HTMLIxFlipTileElement;
+        "ix-flip-tile-content": HTMLIxFlipTileContentElement;
+        "ix-group": HTMLIxGroupElement;
+        "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
+        "ix-group-item": HTMLIxGroupItemElement;
+        "ix-icon": HTMLIxIconElement;
+        "ix-icon-button": HTMLIxIconButtonElement;
+        "ix-input-group": HTMLIxInputGroupElement;
+        "ix-map-navigation": HTMLIxMapNavigationElement;
+        "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
+        "ix-menu": HTMLIxMenuElement;
+        "ix-menu-about": HTMLIxMenuAboutElement;
+        "ix-menu-about-item": HTMLIxMenuAboutItemElement;
+        "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
+        "ix-menu-avatar": HTMLIxMenuAvatarElement;
+        "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
+        "ix-menu-item": HTMLIxMenuItemElement;
+        "ix-menu-settings": HTMLIxMenuSettingsElement;
+        "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
+        "ix-message-bar": HTMLIxMessageBarElement;
+        "ix-modal": HTMLIxModalElement;
+        "ix-modal-container": HTMLIxModalContainerElement;
+        "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-pill": HTMLIxPillElement;
+        "ix-select": HTMLIxSelectElement;
+        "ix-select-item": HTMLIxSelectItemElement;
+        "ix-spinner": HTMLIxSpinnerElement;
+        "ix-split-button": HTMLIxSplitButtonElement;
+        "ix-split-button-item": HTMLIxSplitButtonItemElement;
+        "ix-tab-item": HTMLIxTabItemElement;
+        "ix-tabs": HTMLIxTabsElement;
+        "ix-tile": HTMLIxTileElement;
+        "ix-time-picker": HTMLIxTimePickerElement;
+        "ix-toast": HTMLIxToastElement;
+        "ix-toast-container": HTMLIxToastContainerElement;
+        "ix-toggle": HTMLIxToggleElement;
+        "ix-tree": HTMLIxTreeElement;
+        "ix-tree-item": HTMLIxTreeItemElement;
+        "ix-upload": HTMLIxUploadElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface CwAnimatedTab {
+    interface IxAnimatedTab {
         /**
           * Show notification number
          */
@@ -1726,7 +1753,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
     }
-    interface CwAnimatedTabs {
+    interface IxAnimatedTabs {
         /**
           * @deprecated - For debugging purposes only
          */
@@ -1744,13 +1771,13 @@ declare namespace LocalJSX {
          */
         "tabPlacement"?: 'top' | 'bottom';
     }
-    interface CwApplicationHeader {
+    interface IxApplicationHeader {
         /**
           * Application name
          */
         "name"?: string;
     }
-    interface CwBasicNavigation {
+    interface IxBasicNavigation {
         /**
           * Application name
          */
@@ -1760,7 +1787,7 @@ declare namespace LocalJSX {
          */
         "hideHeader"?: boolean;
     }
-    interface CwBlind {
+    interface IxBlind {
         /**
           * Collapsed state
          */
@@ -1774,7 +1801,7 @@ declare namespace LocalJSX {
          */
         "onCollapsedChange"?: (event: CustomEvent<boolean>) => void;
     }
-    interface CwBreadcrumb {
+    interface IxBreadcrumb {
         /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
@@ -1796,7 +1823,7 @@ declare namespace LocalJSX {
          */
         "visibleItemCount"?: number;
     }
-    interface CwBreadcrumbItem {
+    interface IxBreadcrumbItem {
         /**
           * Icon to be displayed next ot the label
          */
@@ -1806,7 +1833,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
     }
-    interface CwButton {
+    interface IxButton {
         /**
           * Disable the button
          */
@@ -1833,7 +1860,7 @@ declare namespace LocalJSX {
          */
         "variant"?: Buttons;
     }
-    interface CwCategoryFilter {
+    interface IxCategoryFilter {
         /**
           * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
@@ -1899,7 +1926,7 @@ declare namespace LocalJSX {
          */
         "tmpDisableScrollIntoView"?: boolean;
     }
-    interface CwChip {
+    interface IxChip {
         /**
           * Display chip in active state. Only working witht `variant="primary"`
          */
@@ -1931,9 +1958,16 @@ declare namespace LocalJSX {
         /**
           * Chip variant
          */
-        "variant"?: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant"?: | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwCounterPill {
+    interface IxCounterPill {
         /**
           * Align pill content left
          */
@@ -1953,9 +1987,16 @@ declare namespace LocalJSX {
         /**
           * Pill variant
          */
-        "variant"?: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant"?: | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwDatePicker {
+    interface IxDatePicker {
         /**
           * Set corners style
          */
@@ -1981,7 +2022,7 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
     }
-    interface CwDateTimeCard {
+    interface IxDateTimeCard {
         /**
           * Set corners style
          */
@@ -1991,7 +2032,7 @@ declare namespace LocalJSX {
          */
         "individual"?: boolean;
     }
-    interface CwDatetimePicker {
+    interface IxDatetimePicker {
         /**
           * Time event
          */
@@ -2017,7 +2058,7 @@ declare namespace LocalJSX {
          */
         "showTimeReference"?: boolean;
     }
-    interface CwDrawer {
+    interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
          */
@@ -2051,7 +2092,7 @@ declare namespace LocalJSX {
          */
         "width"?: number | 'auto';
     }
-    interface CwDropdown {
+    interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
          */
@@ -2094,7 +2135,7 @@ declare namespace LocalJSX {
          */
         "trigger"?: string | HTMLElement;
     }
-    interface CwDropdownItem {
+    interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
          */
@@ -2118,9 +2159,9 @@ declare namespace LocalJSX {
         /**
           * Click on item
          */
-        "onItemClick"?: (event: CustomEvent<HTMLCwDropdownItemElement>) => void;
+        "onItemClick"?: (event: CustomEvent<HTMLIxDropdownItemElement>) => void;
     }
-    interface CwEventList {
+    interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
          */
@@ -2138,7 +2179,7 @@ declare namespace LocalJSX {
          */
         "itemHeight"?: 'S' | 'L' | number;
     }
-    interface CwEventListItem {
+    interface IxEventListItem {
         /**
           * Show chevron on right side of the event list item
          */
@@ -2165,7 +2206,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
     }
-    interface CwExpandingSearch {
+    interface IxExpandingSearch {
         /**
           * Search icon
          */
@@ -2183,7 +2224,7 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface CwFilterChip {
+    interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
          */
@@ -2193,7 +2234,7 @@ declare namespace LocalJSX {
          */
         "onCloseClick"?: (event: CustomEvent<void>) => void;
     }
-    interface CwFlipTile {
+    interface IxFlipTile {
         /**
           * Tmp property name
          */
@@ -2203,9 +2244,9 @@ declare namespace LocalJSX {
          */
         "state"?: FlipTileState;
     }
-    interface CwFlipTileContent {
+    interface IxFlipTileContent {
     }
-    interface CwGroup {
+    interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
          */
@@ -2247,7 +2288,7 @@ declare namespace LocalJSX {
          */
         "suppressHeaderSelection"?: boolean;
     }
-    interface CwGroupDropdownItem {
+    interface IxGroupDropdownItem {
         /**
           * Group dropdown icon
          */
@@ -2257,7 +2298,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
     }
-    interface CwGroupItem {
+    interface IxGroupItem {
         /**
           * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
          */
@@ -2273,7 +2314,7 @@ declare namespace LocalJSX {
         /**
           * Selection changed
          */
-        "onSelectedChanged"?: (event: CustomEvent<HTMLCwGroupItemElement>) => void;
+        "onSelectedChanged"?: (event: CustomEvent<HTMLIxGroupItemElement>) => void;
         /**
           * Group item secondary text
          */
@@ -2291,7 +2332,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
-    interface CwIcon {
+    interface IxIcon {
         /**
           * Color of the icon
          */
@@ -2305,7 +2346,7 @@ declare namespace LocalJSX {
          */
         "size"?: '12' | '16' | '24' | '32';
     }
-    interface CwIconButton {
+    interface IxIconButton {
         /**
           * Color of icon in  button
          */
@@ -2348,9 +2389,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'Primary' | 'Secondary';
     }
-    interface CwInputGroup {
+    interface IxInputGroup {
     }
-    interface CwMapNavigation {
+    interface IxMapNavigation {
         /**
           * Application name
          */
@@ -2372,7 +2413,7 @@ declare namespace LocalJSX {
          */
         "onNavigationToggled"?: (event: CustomEvent<boolean>) => void;
     }
-    interface CwMapNavigationOverlay {
+    interface IxMapNavigationOverlay {
         /**
           * Color of icon
          */
@@ -2390,13 +2431,13 @@ declare namespace LocalJSX {
          */
         "onCloseClick"?: (event: CustomEvent<any>) => void;
     }
-    interface CwMenu {
+    interface IxMenu {
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationDescription"?: string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
         /**
@@ -2442,17 +2483,17 @@ declare namespace LocalJSX {
          */
         "showSettings"?: boolean;
     }
-    interface CwMenuAbout {
+    interface IxMenuAbout {
         /**
           * Active tab
          */
         "activeTabLabel"?: string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationDescription"?: string;
         /**
-          * Should only be set if you use cw-menu standalone
+          * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
         /**
@@ -2482,13 +2523,13 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
-    interface CwMenuAboutItem {
+    interface IxMenuAboutItem {
         /**
           * About Item label
          */
         "label"?: string;
     }
-    interface CwMenuAboutNews {
+    interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
          */
@@ -2519,7 +2560,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
-    interface CwMenuAvatar {
+    interface IxMenuAvatar {
         /**
           * Second line of text
          */
@@ -2534,7 +2575,7 @@ declare namespace LocalJSX {
          */
         "top"?: string;
     }
-    interface CwMenuAvatarItem {
+    interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
          */
@@ -2548,7 +2589,7 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
     }
-    interface CwMenuItem {
+    interface IxMenuItem {
         /**
           * State to display active
          */
@@ -2574,7 +2615,7 @@ declare namespace LocalJSX {
          */
         "tabIcon"?: string;
     }
-    interface CwMenuSettings {
+    interface IxMenuSettings {
         /**
           * active tab
          */
@@ -2592,13 +2633,13 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
-    interface CwMenuSettingsItem {
+    interface IxMenuSettingsItem {
         /**
           * Label
          */
         "label"?: string;
     }
-    interface CwMessageBar {
+    interface IxMessageBar {
         /**
           * If true, close button is enabled and alert can be dismissed by the user
          */
@@ -2612,7 +2653,7 @@ declare namespace LocalJSX {
          */
         "type"?: 'danger' | 'warning' | 'info';
     }
-    interface CwModal {
+    interface IxModal {
         /**
           * Should the modal be animtated
          */
@@ -2680,15 +2721,15 @@ declare namespace LocalJSX {
          */
         "windowClass"?: string;
     }
-    interface CwModalContainer {
+    interface IxModalContainer {
     }
-    interface CwModalExample {
+    interface IxModalExample {
         /**
           * Emit close modal
          */
         "onClose"?: (event: CustomEvent<any>) => void;
     }
-    interface CwPill {
+    interface IxPill {
         /**
           * Align pill content left
          */
@@ -2712,9 +2753,16 @@ declare namespace LocalJSX {
         /**
           * Pill variant
          */
-        "variant"?: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+        "variant"?: | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom';
     }
-    interface CwSelect {
+    interface IxSelect {
         /**
           * Show clear button
          */
@@ -2760,7 +2808,7 @@ declare namespace LocalJSX {
          */
         "selectedIndices"?: string | string[];
     }
-    interface CwSelectItem {
+    interface IxSelectItem {
         /**
           * ***Internal***
          */
@@ -2782,7 +2830,7 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
-    interface CwSpinner {
+    interface IxSpinner {
         /**
           * Size of spinner
          */
@@ -2792,7 +2840,7 @@ declare namespace LocalJSX {
          */
         "variant"?: 'primary' | 'sencodary' | 'secondary';
     }
-    interface CwSplitButton {
+    interface IxSplitButton {
         /**
           * Disabled
          */
@@ -2835,7 +2883,7 @@ declare namespace LocalJSX {
          */
         "variant"?: Buttons;
     }
-    interface CwSplitButtonItem {
+    interface IxSplitButtonItem {
         /**
           * Dropdown icon
          */
@@ -2849,7 +2897,7 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
     }
-    interface CwTabItem {
+    interface IxTabItem {
         /**
           * Set disabled tab
          */
@@ -2875,7 +2923,7 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
-    interface CwTabs {
+    interface IxTabs {
         /**
           * Set layout width style
          */
@@ -2893,13 +2941,13 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
-    interface CwTile {
+    interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
          */
         "size"?: 'small' | 'medium' | 'big';
     }
-    interface CwTimePicker {
+    interface IxTimePicker {
         /**
           * Set corners style
          */
@@ -2933,7 +2981,7 @@ declare namespace LocalJSX {
          */
         "showTimeReference"?: boolean;
     }
-    interface CwToast {
+    interface IxToast {
         /**
           * Autoclose behavior
          */
@@ -2963,12 +3011,12 @@ declare namespace LocalJSX {
          */
         "type"?: ToastType;
     }
-    interface CwToastContainer {
+    interface IxToastContainer {
         "containerClass"?: string;
         "containerId"?: string;
         "position"?: string;
     }
-    interface CwToggle {
+    interface IxToggle {
         /**
           * Whether the slide-toggle element is checked or not.
          */
@@ -3007,7 +3055,7 @@ declare namespace LocalJSX {
          */
         "textOn"?: string;
     }
-    interface CwTree {
+    interface IxTree {
         /**
           * Selection and collapsed state management
          */
@@ -3023,13 +3071,19 @@ declare namespace LocalJSX {
         /**
           * Render function of tree items
          */
-        "renderItem"?: (index: number, data: any, dataList: Array<any>, context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement;
+        "renderItem"?: (
+    index: number,
+    data: any,
+    dataList: Array<any>,
+    context: TreeContext,
+    update: (callback: UpdateCallback) => void
+  ) => HTMLElement;
         /**
           * Initial root element will not be rendered
          */
         "root"?: string;
     }
-    interface CwTreeItem {
+    interface IxTreeItem {
         /**
           * Context
          */
@@ -3051,7 +3105,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
-    interface CwUpload {
+    interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link https ://www.w3schools.com/tags/att_input_accept.asp}
          */
@@ -3096,66 +3150,66 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
-        "cw-animated-tab": CwAnimatedTab;
-        "cw-animated-tabs": CwAnimatedTabs;
-        "cw-application-header": CwApplicationHeader;
-        "cw-basic-navigation": CwBasicNavigation;
-        "cw-blind": CwBlind;
-        "cw-breadcrumb": CwBreadcrumb;
-        "cw-breadcrumb-item": CwBreadcrumbItem;
-        "cw-button": CwButton;
-        "cw-category-filter": CwCategoryFilter;
-        "cw-chip": CwChip;
-        "cw-counter-pill": CwCounterPill;
-        "cw-date-picker": CwDatePicker;
-        "cw-date-time-card": CwDateTimeCard;
-        "cw-datetime-picker": CwDatetimePicker;
-        "cw-drawer": CwDrawer;
-        "cw-dropdown": CwDropdown;
-        "cw-dropdown-item": CwDropdownItem;
-        "cw-event-list": CwEventList;
-        "cw-event-list-item": CwEventListItem;
-        "cw-expanding-search": CwExpandingSearch;
-        "cw-filter-chip": CwFilterChip;
-        "cw-flip-tile": CwFlipTile;
-        "cw-flip-tile-content": CwFlipTileContent;
-        "cw-group": CwGroup;
-        "cw-group-dropdown-item": CwGroupDropdownItem;
-        "cw-group-item": CwGroupItem;
-        "cw-icon": CwIcon;
-        "cw-icon-button": CwIconButton;
-        "cw-input-group": CwInputGroup;
-        "cw-map-navigation": CwMapNavigation;
-        "cw-map-navigation-overlay": CwMapNavigationOverlay;
-        "cw-menu": CwMenu;
-        "cw-menu-about": CwMenuAbout;
-        "cw-menu-about-item": CwMenuAboutItem;
-        "cw-menu-about-news": CwMenuAboutNews;
-        "cw-menu-avatar": CwMenuAvatar;
-        "cw-menu-avatar-item": CwMenuAvatarItem;
-        "cw-menu-item": CwMenuItem;
-        "cw-menu-settings": CwMenuSettings;
-        "cw-menu-settings-item": CwMenuSettingsItem;
-        "cw-message-bar": CwMessageBar;
-        "cw-modal": CwModal;
-        "cw-modal-container": CwModalContainer;
-        "cw-modal-example": CwModalExample;
-        "cw-pill": CwPill;
-        "cw-select": CwSelect;
-        "cw-select-item": CwSelectItem;
-        "cw-spinner": CwSpinner;
-        "cw-split-button": CwSplitButton;
-        "cw-split-button-item": CwSplitButtonItem;
-        "cw-tab-item": CwTabItem;
-        "cw-tabs": CwTabs;
-        "cw-tile": CwTile;
-        "cw-time-picker": CwTimePicker;
-        "cw-toast": CwToast;
-        "cw-toast-container": CwToastContainer;
-        "cw-toggle": CwToggle;
-        "cw-tree": CwTree;
-        "cw-tree-item": CwTreeItem;
-        "cw-upload": CwUpload;
+        "ix-animated-tab": IxAnimatedTab;
+        "ix-animated-tabs": IxAnimatedTabs;
+        "ix-application-header": IxApplicationHeader;
+        "ix-basic-navigation": IxBasicNavigation;
+        "ix-blind": IxBlind;
+        "ix-breadcrumb": IxBreadcrumb;
+        "ix-breadcrumb-item": IxBreadcrumbItem;
+        "ix-button": IxButton;
+        "ix-category-filter": IxCategoryFilter;
+        "ix-chip": IxChip;
+        "ix-counter-pill": IxCounterPill;
+        "ix-date-picker": IxDatePicker;
+        "ix-date-time-card": IxDateTimeCard;
+        "ix-datetime-picker": IxDatetimePicker;
+        "ix-drawer": IxDrawer;
+        "ix-dropdown": IxDropdown;
+        "ix-dropdown-item": IxDropdownItem;
+        "ix-event-list": IxEventList;
+        "ix-event-list-item": IxEventListItem;
+        "ix-expanding-search": IxExpandingSearch;
+        "ix-filter-chip": IxFilterChip;
+        "ix-flip-tile": IxFlipTile;
+        "ix-flip-tile-content": IxFlipTileContent;
+        "ix-group": IxGroup;
+        "ix-group-dropdown-item": IxGroupDropdownItem;
+        "ix-group-item": IxGroupItem;
+        "ix-icon": IxIcon;
+        "ix-icon-button": IxIconButton;
+        "ix-input-group": IxInputGroup;
+        "ix-map-navigation": IxMapNavigation;
+        "ix-map-navigation-overlay": IxMapNavigationOverlay;
+        "ix-menu": IxMenu;
+        "ix-menu-about": IxMenuAbout;
+        "ix-menu-about-item": IxMenuAboutItem;
+        "ix-menu-about-news": IxMenuAboutNews;
+        "ix-menu-avatar": IxMenuAvatar;
+        "ix-menu-avatar-item": IxMenuAvatarItem;
+        "ix-menu-item": IxMenuItem;
+        "ix-menu-settings": IxMenuSettings;
+        "ix-menu-settings-item": IxMenuSettingsItem;
+        "ix-message-bar": IxMessageBar;
+        "ix-modal": IxModal;
+        "ix-modal-container": IxModalContainer;
+        "ix-modal-example": IxModalExample;
+        "ix-pill": IxPill;
+        "ix-select": IxSelect;
+        "ix-select-item": IxSelectItem;
+        "ix-spinner": IxSpinner;
+        "ix-split-button": IxSplitButton;
+        "ix-split-button-item": IxSplitButtonItem;
+        "ix-tab-item": IxTabItem;
+        "ix-tabs": IxTabs;
+        "ix-tile": IxTile;
+        "ix-time-picker": IxTimePicker;
+        "ix-toast": IxToast;
+        "ix-toast-container": IxToastContainer;
+        "ix-toggle": IxToggle;
+        "ix-tree": IxTree;
+        "ix-tree-item": IxTreeItem;
+        "ix-upload": IxUpload;
         "my-component": MyComponent;
     }
 }
@@ -3163,66 +3217,66 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "cw-animated-tab": LocalJSX.CwAnimatedTab & JSXBase.HTMLAttributes<HTMLCwAnimatedTabElement>;
-            "cw-animated-tabs": LocalJSX.CwAnimatedTabs & JSXBase.HTMLAttributes<HTMLCwAnimatedTabsElement>;
-            "cw-application-header": LocalJSX.CwApplicationHeader & JSXBase.HTMLAttributes<HTMLCwApplicationHeaderElement>;
-            "cw-basic-navigation": LocalJSX.CwBasicNavigation & JSXBase.HTMLAttributes<HTMLCwBasicNavigationElement>;
-            "cw-blind": LocalJSX.CwBlind & JSXBase.HTMLAttributes<HTMLCwBlindElement>;
-            "cw-breadcrumb": LocalJSX.CwBreadcrumb & JSXBase.HTMLAttributes<HTMLCwBreadcrumbElement>;
-            "cw-breadcrumb-item": LocalJSX.CwBreadcrumbItem & JSXBase.HTMLAttributes<HTMLCwBreadcrumbItemElement>;
-            "cw-button": LocalJSX.CwButton & JSXBase.HTMLAttributes<HTMLCwButtonElement>;
-            "cw-category-filter": LocalJSX.CwCategoryFilter & JSXBase.HTMLAttributes<HTMLCwCategoryFilterElement>;
-            "cw-chip": LocalJSX.CwChip & JSXBase.HTMLAttributes<HTMLCwChipElement>;
-            "cw-counter-pill": LocalJSX.CwCounterPill & JSXBase.HTMLAttributes<HTMLCwCounterPillElement>;
-            "cw-date-picker": LocalJSX.CwDatePicker & JSXBase.HTMLAttributes<HTMLCwDatePickerElement>;
-            "cw-date-time-card": LocalJSX.CwDateTimeCard & JSXBase.HTMLAttributes<HTMLCwDateTimeCardElement>;
-            "cw-datetime-picker": LocalJSX.CwDatetimePicker & JSXBase.HTMLAttributes<HTMLCwDatetimePickerElement>;
-            "cw-drawer": LocalJSX.CwDrawer & JSXBase.HTMLAttributes<HTMLCwDrawerElement>;
-            "cw-dropdown": LocalJSX.CwDropdown & JSXBase.HTMLAttributes<HTMLCwDropdownElement>;
-            "cw-dropdown-item": LocalJSX.CwDropdownItem & JSXBase.HTMLAttributes<HTMLCwDropdownItemElement>;
-            "cw-event-list": LocalJSX.CwEventList & JSXBase.HTMLAttributes<HTMLCwEventListElement>;
-            "cw-event-list-item": LocalJSX.CwEventListItem & JSXBase.HTMLAttributes<HTMLCwEventListItemElement>;
-            "cw-expanding-search": LocalJSX.CwExpandingSearch & JSXBase.HTMLAttributes<HTMLCwExpandingSearchElement>;
-            "cw-filter-chip": LocalJSX.CwFilterChip & JSXBase.HTMLAttributes<HTMLCwFilterChipElement>;
-            "cw-flip-tile": LocalJSX.CwFlipTile & JSXBase.HTMLAttributes<HTMLCwFlipTileElement>;
-            "cw-flip-tile-content": LocalJSX.CwFlipTileContent & JSXBase.HTMLAttributes<HTMLCwFlipTileContentElement>;
-            "cw-group": LocalJSX.CwGroup & JSXBase.HTMLAttributes<HTMLCwGroupElement>;
-            "cw-group-dropdown-item": LocalJSX.CwGroupDropdownItem & JSXBase.HTMLAttributes<HTMLCwGroupDropdownItemElement>;
-            "cw-group-item": LocalJSX.CwGroupItem & JSXBase.HTMLAttributes<HTMLCwGroupItemElement>;
-            "cw-icon": LocalJSX.CwIcon & JSXBase.HTMLAttributes<HTMLCwIconElement>;
-            "cw-icon-button": LocalJSX.CwIconButton & JSXBase.HTMLAttributes<HTMLCwIconButtonElement>;
-            "cw-input-group": LocalJSX.CwInputGroup & JSXBase.HTMLAttributes<HTMLCwInputGroupElement>;
-            "cw-map-navigation": LocalJSX.CwMapNavigation & JSXBase.HTMLAttributes<HTMLCwMapNavigationElement>;
-            "cw-map-navigation-overlay": LocalJSX.CwMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLCwMapNavigationOverlayElement>;
-            "cw-menu": LocalJSX.CwMenu & JSXBase.HTMLAttributes<HTMLCwMenuElement>;
-            "cw-menu-about": LocalJSX.CwMenuAbout & JSXBase.HTMLAttributes<HTMLCwMenuAboutElement>;
-            "cw-menu-about-item": LocalJSX.CwMenuAboutItem & JSXBase.HTMLAttributes<HTMLCwMenuAboutItemElement>;
-            "cw-menu-about-news": LocalJSX.CwMenuAboutNews & JSXBase.HTMLAttributes<HTMLCwMenuAboutNewsElement>;
-            "cw-menu-avatar": LocalJSX.CwMenuAvatar & JSXBase.HTMLAttributes<HTMLCwMenuAvatarElement>;
-            "cw-menu-avatar-item": LocalJSX.CwMenuAvatarItem & JSXBase.HTMLAttributes<HTMLCwMenuAvatarItemElement>;
-            "cw-menu-item": LocalJSX.CwMenuItem & JSXBase.HTMLAttributes<HTMLCwMenuItemElement>;
-            "cw-menu-settings": LocalJSX.CwMenuSettings & JSXBase.HTMLAttributes<HTMLCwMenuSettingsElement>;
-            "cw-menu-settings-item": LocalJSX.CwMenuSettingsItem & JSXBase.HTMLAttributes<HTMLCwMenuSettingsItemElement>;
-            "cw-message-bar": LocalJSX.CwMessageBar & JSXBase.HTMLAttributes<HTMLCwMessageBarElement>;
-            "cw-modal": LocalJSX.CwModal & JSXBase.HTMLAttributes<HTMLCwModalElement>;
-            "cw-modal-container": LocalJSX.CwModalContainer & JSXBase.HTMLAttributes<HTMLCwModalContainerElement>;
-            "cw-modal-example": LocalJSX.CwModalExample & JSXBase.HTMLAttributes<HTMLCwModalExampleElement>;
-            "cw-pill": LocalJSX.CwPill & JSXBase.HTMLAttributes<HTMLCwPillElement>;
-            "cw-select": LocalJSX.CwSelect & JSXBase.HTMLAttributes<HTMLCwSelectElement>;
-            "cw-select-item": LocalJSX.CwSelectItem & JSXBase.HTMLAttributes<HTMLCwSelectItemElement>;
-            "cw-spinner": LocalJSX.CwSpinner & JSXBase.HTMLAttributes<HTMLCwSpinnerElement>;
-            "cw-split-button": LocalJSX.CwSplitButton & JSXBase.HTMLAttributes<HTMLCwSplitButtonElement>;
-            "cw-split-button-item": LocalJSX.CwSplitButtonItem & JSXBase.HTMLAttributes<HTMLCwSplitButtonItemElement>;
-            "cw-tab-item": LocalJSX.CwTabItem & JSXBase.HTMLAttributes<HTMLCwTabItemElement>;
-            "cw-tabs": LocalJSX.CwTabs & JSXBase.HTMLAttributes<HTMLCwTabsElement>;
-            "cw-tile": LocalJSX.CwTile & JSXBase.HTMLAttributes<HTMLCwTileElement>;
-            "cw-time-picker": LocalJSX.CwTimePicker & JSXBase.HTMLAttributes<HTMLCwTimePickerElement>;
-            "cw-toast": LocalJSX.CwToast & JSXBase.HTMLAttributes<HTMLCwToastElement>;
-            "cw-toast-container": LocalJSX.CwToastContainer & JSXBase.HTMLAttributes<HTMLCwToastContainerElement>;
-            "cw-toggle": LocalJSX.CwToggle & JSXBase.HTMLAttributes<HTMLCwToggleElement>;
-            "cw-tree": LocalJSX.CwTree & JSXBase.HTMLAttributes<HTMLCwTreeElement>;
-            "cw-tree-item": LocalJSX.CwTreeItem & JSXBase.HTMLAttributes<HTMLCwTreeItemElement>;
-            "cw-upload": LocalJSX.CwUpload & JSXBase.HTMLAttributes<HTMLCwUploadElement>;
+            "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
+            "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
+            "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
+            "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
+            "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
+            "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
+            "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
+            "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
+            "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
+            "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
+            "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
+            "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
+            "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
+            "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
+            "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
+            "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
+            "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
+            "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
+            "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
+            "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
+            "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
+            "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
+            "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
+            "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
+            "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
+            "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
+            "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
+            "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
+            "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
+            "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
+            "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
+            "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
+            "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
+            "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
+            "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
+            "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
+            "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
+            "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
+            "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
+            "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
+            "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
+            "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

@@ -2,18 +2,34 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import Hyperlist from 'hyperlist';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
-import { TreeContext, TreeItem, TreeItemContext, TreeItemVisual, TreeModel, UpdateCallback } from './tree-model';
+import {
+  TreeContext,
+  TreeItem,
+  TreeItemContext,
+  TreeItemVisual,
+  TreeModel,
+  UpdateCallback,
+} from './tree-model';
 
 @Component({
-  tag: 'cw-tree',
+  tag: 'ix-tree',
   styleUrl: 'tree.css',
   scoped: true,
 })
 export class CwTree {
-  @Element() host!: HTMLCwTreeElement;
+  @Element() host!: HTMLIxTreeElement;
 
   /**
    * Initial root element will not be rendered
@@ -28,7 +44,13 @@ export class CwTree {
   /**
    * Render function of tree items
    */
-  @Prop() renderItem: (index: number, data: any, dataList: Array<any>, context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement;
+  @Prop() renderItem: (
+    index: number,
+    data: any,
+    dataList: Array<any>,
+    context: TreeContext,
+    update: (callback: UpdateCallback) => void
+  ) => HTMLElement;
 
   /**
    * Selection and collapsed state management
@@ -54,7 +76,9 @@ export class CwTree {
       total: list.length,
       generate: (index: number) => {
         const item = list[index];
-        const renderedTreeItem = this.host.querySelector(`[data-tree-node-id="${item.id}"]`) as HTMLCwTreeItemElement;
+        const renderedTreeItem = this.host.querySelector(
+          `[data-tree-node-id="${item.id}"]`
+        ) as HTMLIxTreeItemElement;
 
         const context = this.getContext(item.id);
 
@@ -76,7 +100,13 @@ export class CwTree {
 
         let innerElement: HTMLElement | null = null;
         if (this.renderItem) {
-          innerElement = this.renderItem(index, item, list, { ...this.context }, update);
+          innerElement = this.renderItem(
+            index,
+            item,
+            list,
+            { ...this.context },
+            update
+          );
         }
 
         if (innerElement === null) {
@@ -92,7 +122,7 @@ export class CwTree {
           const itemClickCallback = (e: Event) => {
             e.preventDefault();
             e.stopPropagation();
-            Object.values(this.context).forEach(c => (c.isSelected = false));
+            Object.values(this.context).forEach((c) => (c.isSelected = false));
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
@@ -143,7 +173,10 @@ export class CwTree {
     return this.context[id];
   }
 
-  private buildTreeList(root: TreeItem<any>, level: number = 0): TreeItemVisual<any>[] {
+  private buildTreeList(
+    root: TreeItem<any>,
+    level: number = 0
+  ): TreeItemVisual<any>[] {
     const itemList: TreeItemVisual<any>[] = [];
 
     if (root?.hasChildren) {

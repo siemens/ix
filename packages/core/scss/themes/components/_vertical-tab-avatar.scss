@@ -1,9 +1,0 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-@import './../utils/define-theme-variable';
-
-@mixin vertical-tab-avatar {
-  @include define-theme-variable('vertical-tab-avatar-hover', var(--theme-ghost-hover));
-  @include define-theme-variable('vertical-tab-avatar-pressed', var(--theme-ghost-active));
-}

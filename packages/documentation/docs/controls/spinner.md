@@ -1,8 +1,8 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Props from './../auto-generated/cw-spinner/props.md';
-import Events from './../auto-generated/cw-spinner/events.md';
+import Props from './../auto-generated/ix-spinner/props.md';
+import Events from './../auto-generated/ix-spinner/events.md';
 
 import SourceSpinner from './../auto-generated/previews/web-component/spinner.md';
 import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinner-large.md';

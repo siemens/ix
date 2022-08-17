@@ -16,7 +16,7 @@ export default function Icons() {
 
   const copyToClipboard = useCopyToClipboard({
     angular: (data: any) => `<i class="glyph glyph-${data}"></i>`,
-    webcomponent: (data: any) => `<cw-icon name="${data}"></cw-icon>`,
+    webcomponent: (data: any) => `<ix-icon name="${data}"></ix-icon>`,
   });
   return (
     <>
@@ -39,7 +39,7 @@ export default function Icons() {
               onClick={() => copyToClipboard(refs.current[icon])}
             >
               <div>
-                <cw-icon name={icon}></cw-icon>
+                <ix-icon name={icon}></ix-icon>
               </div>
               <input
                 ref={(r) => {

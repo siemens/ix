@@ -1,10 +1,10 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/message-bar.html -->
 ```html
-<cw-message-bar>Message text</cw-message-bar>
-<cw-message-bar type="warning">Message text</cw-message-bar>
-<cw-message-bar type="danger">
+<ix-message-bar>Message text</ix-message-bar>
+<ix-message-bar type="warning">Message text</ix-message-bar>
+<ix-message-bar type="danger">
   <div class="d-flex align-items-center justify-content-between">
-    Message text <cw-button>Action</cw-button>
+    Message text <ix-button>Action</ix-button>
   </div>
-</cw-message-bar>
+</ix-message-bar>
 ```

@@ -6,7 +6,7 @@ import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';
 
 @Component({
-  tag: 'cw-button',
+  tag: 'ix-button',
   scoped: true,
   styleUrl: './button.scss',
 })

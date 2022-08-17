@@ -1,19 +1,19 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/tile.html -->
 ```html
-<cw-tile size="small">92.8 °C</cw-tile>
+<ix-tile size="small">92.8 °C</ix-tile>
 
-<cw-tile size="medium" class="mr-1">
+<ix-tile size="medium" class="mr-1">
   <div slot="header">Tile header</div>
   <div class="text-l">92.8 °C</div>
-</cw-tile>
+</ix-tile>
 
-<cw-tile size="big">
+<ix-tile size="big">
   <div
     class="d-flex flex-grow-1 align-items-center justify-content-between"
     slot="header"
   >
     Tile header
-    <cw-icon-button ghost icon="context-menu"></cw-icon-button>
+    <ix-icon-button ghost icon="context-menu"></ix-icon-button>
   </div>
   <div slot="subheader">Temperature</div>
   <div
@@ -31,9 +31,9 @@
     class="d-flex h-100 align-items-center justify-content-end"
     slot="footer"
   >
-    <cw-button ghost slot="footer">
-      <cw-icon name="chevron-right-small"></cw-icon>Details
-    </cw-button>
+    <ix-button ghost slot="footer">
+      <ix-icon name="chevron-right-small"></ix-icon>Details
+    </ix-button>
   </div>
-</cw-tile>
+</ix-tile>
 ```

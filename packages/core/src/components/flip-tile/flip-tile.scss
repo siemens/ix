@@ -1,9 +1,9 @@
 /**
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import '../../../scss/v7/common-variables';
-@import '../../../scss/v7/mixins/animations';
-@import '../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/animations';
+@import 'mixins/text-truncation';
 
 @include keyframes(flip-animation) {
   0% {
@@ -53,7 +53,8 @@
     height: 100%;
     background-color: var(--theme-blind-base--background);
     border: solid 1px var(--theme-blind-base--border-color);
-    border-radius: var(--theme-flip-tile--border-radius) var(--theme-flip-tile--border-radius) 0 0;
+    border-radius: var(--theme-flip-tile--border-radius)
+      var(--theme-flip-tile--border-radius) 0 0;
     transform-style: preserve-3d;
 
     &.flip-animation-active {
@@ -120,7 +121,7 @@
     }
   }
 
-  &:hover .flip-tile-container .footer cw-icon {
+  &:hover .flip-tile-container .footer ix-icon {
     color: var(--theme-color-std-text);
   }
 }

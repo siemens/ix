@@ -3,24 +3,24 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { CwButton } from '@siemens/ix-react';
+import { IxButton } from '@siemens/ix-react';
 import React from 'react';
 
 export const Buttons: React.FC = () => {
   return (
     <>
-      <CwButton className="m-1" variant="Primary">
+      <IxButton className="m-1" variant="Primary">
         Webcomponents button
-      </CwButton>
-      <CwButton className="m-1" variant="Secondary">
+      </IxButton>
+      <IxButton className="m-1" variant="Secondary">
         Webcomponents button
-      </CwButton>
-      <CwButton className="m-1" outline>
+      </IxButton>
+      <IxButton className="m-1" outline>
         Webcomponents button
-      </CwButton>
-      <CwButton className="m-1" invisible>
+      </IxButton>
+      <IxButton className="m-1" invisible>
         Webcomponents button
-      </CwButton>
+      </IxButton>
     </>
   );
 };

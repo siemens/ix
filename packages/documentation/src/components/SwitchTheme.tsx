@@ -1,7 +1,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { CwIcon } from '@siemens/ix-react';
+import { IxIcon } from '@siemens/ix-react';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { DEFAULT_THEME } from './config';
@@ -71,11 +71,11 @@ export function SwitchTheme(props: { icon: string; label: string }) {
         onClick={() => setOpen(!open)}
       >
         <div className={styles.Icon}>
-          <CwIcon name={props.icon} size="16"></CwIcon>
+          <IxIcon name={props.icon} size="16"></IxIcon>
         </div>
         <div>{props.label}</div>
         <div className={styles.Chevron}>
-          <CwIcon name="chevron-down-small"></CwIcon>
+          <IxIcon name="chevron-down-small"></IxIcon>
         </div>
       </div>
       {open ? (

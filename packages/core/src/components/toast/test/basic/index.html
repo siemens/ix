@@ -11,11 +11,11 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <cw-toast-container></cw-toast-container>
+    <ix-toast-container></ix-toast-container>
     <script>
       (async () => {
-        await window.customElements.whenDefined('cw-toast-container');
-        const toastContainer = document.querySelector('cw-toast-container');
+        await window.customElements.whenDefined('ix-toast-container');
+        const toastContainer = document.querySelector('ix-toast-container');
 
         toast = {};
         toast.info = (config) => {

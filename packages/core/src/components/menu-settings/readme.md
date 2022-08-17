@@ -1,6 +1,4 @@
-# cw-menu-settings
-
-
+# ix-menu-settings
 
 <!-- Auto Generated Below -->
 

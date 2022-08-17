@@ -25,7 +25,7 @@ export function Card(props: {
 
   function getIcon() {
     //@ts-ignore
-    return <cw-icon name={props.icon}></cw-icon>;
+    return <ix-icon name={props.icon}></ix-icon>;
   }
 
   return (

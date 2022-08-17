@@ -1,0 +1,18 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+.btn-group {
+  ix-button:first-child .btn {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  ix-button:last-child .btn {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  ix-button:not(:first-child):not(:last-child) .btn {
+    border-radius: 0px;
+  }
+}

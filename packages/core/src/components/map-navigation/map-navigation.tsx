@@ -1,11 +1,21 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import anime from 'animejs';
 
 @Component({
-  tag: 'cw-map-navigation',
+  tag: 'ix-map-navigation',
   styleUrl: 'map-navigation.scss',
   scoped: true,
 })
@@ -13,7 +23,7 @@ export class MapNavigation {
   private static readonly defaultTime = 150;
   private static readonly slowTime = 500;
 
-  @Element() hostElement: HTMLCwMapNavigationElement;
+  @Element() hostElement: HTMLIxMapNavigationElement;
 
   /**
    * Application name
@@ -47,27 +57,27 @@ export class MapNavigation {
   @Event() contextMenuClick: EventEmitter<void>;
 
   get menu() {
-    return this.hostElement.querySelector('cw-menu');
+    return this.hostElement.querySelector('ix-menu');
   }
 
   get menuOverlay() {
-    return this.hostElement.querySelector('cw-menu-overlay')
+    return this.hostElement.querySelector('ix-menu-overlay');
   }
 
   get about() {
-    return this.hostElement.querySelector('cw-menu-about');
+    return this.hostElement.querySelector('ix-menu-about');
   }
 
   get aboutItems() {
-    return this.hostElement.querySelector('cw-menu-about-item');
+    return this.hostElement.querySelector('ix-menu-about-item');
   }
 
   get settings() {
-    return this.hostElement.querySelector('cw-menu-settings');
+    return this.hostElement.querySelector('ix-menu-settings');
   }
 
   get settingsItems() {
-    return this.hostElement.querySelector('cw-menu-settings-item');
+    return this.hostElement.querySelector('ix-menu-settings-item');
   }
 
   get mapNavMenu() {
@@ -86,22 +96,25 @@ export class MapNavigation {
     this.appendMenu();
     this.appendAbout();
     this.appendSettings();
-    // this.openOverlay('Test', document.createElement('cw-breadcrumb'), 'info', 'color-warning');
+    // this.openOverlay('Test', document.createElement('ix-breadcrumb'), 'info', 'color-warning');
     this.closeOverlay();
   }
 
   private appendMenu() {
     this.hostElement.querySelector('#menu-placeholder').appendChild(this.menu);
-    this.menu.addEventListener('mapExpandChange', (event: CustomEvent<boolean>) => {
-      const state = !event.detail;
-      this.toggleSidebar(state);
-      this.menu.toggleMapExpand(state);
-    });
+    this.menu.addEventListener(
+      'mapExpandChange',
+      (event: CustomEvent<boolean>) => {
+        const state = !event.detail;
+        this.toggleSidebar(state);
+        this.menu.toggleMapExpand(state);
+      }
+    );
     this.menu.enableMapExpand = true;
   }
 
   private appendAbout() {
-    const about = this.about || document.createElement('cw-menu-about');
+    const about = this.about || document.createElement('ix-menu-about');
     about.append(this.aboutItems);
     this.menu.appendChild(about);
   }
@@ -164,7 +177,12 @@ export class MapNavigation {
    * @param color
    */
   @Method()
-  async openOverlay(name: string, component: HTMLElement, icon?: string, color?: string) {
+  async openOverlay(
+    name: string,
+    component: HTMLElement,
+    icon?: string,
+    color?: string
+  ) {
     anime({
       targets: this.overlay,
       duration: MapNavigation.slowTime,
@@ -177,7 +195,7 @@ export class MapNavigation {
       },
     });
 
-    const overlayInstance = document.createElement('cw-map-navigation-overlay');
+    const overlayInstance = document.createElement('ix-map-navigation-overlay');
     overlayInstance.setAttribute('color', color);
     overlayInstance.setAttribute('name', name);
     overlayInstance.setAttribute('icon', icon);
@@ -220,7 +238,17 @@ export class MapNavigation {
             <div class="map-nav-sidebar-content">
               <div class="map-nav-sidebar-static-content">
                 <div class="map-nav-title">{this.navTitle}</div>
-                {this.hideContextMenu ? '' : <cw-icon-button icon="context-menu" ghost size="24" variant="Secondary" onClick={_ => this.contextMenuClick.emit()}></cw-icon-button>}
+                {this.hideContextMenu ? (
+                  ''
+                ) : (
+                  <ix-icon-button
+                    icon="context-menu"
+                    ghost
+                    size="24"
+                    variant="Secondary"
+                    onClick={(_) => this.contextMenuClick.emit()}
+                  ></ix-icon-button>
+                )}
               </div>
               <div class="map-nav-sidebar-user-content">
                 <slot name="sidebar-content"></slot>

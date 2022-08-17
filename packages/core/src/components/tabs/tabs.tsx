@@ -1,14 +1,22 @@
-import { Component, Element, h, Host, Listen, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from '@stencil/core';
 
 let windowStartSize = window.innerWidth;
 
 @Component({
-  tag: 'cw-tabs',
+  tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
   scoped: false,
 })
 export class CwTabs {
-  @Element() hostElement!: HTMLCwTabsElement;
+  @Element() hostElement!: HTMLIxTabsElement;
 
   /**
    * Set tab items to small size
@@ -54,7 +62,7 @@ export class CwTabs {
   }
 
   private getTabs() {
-    return Array.from(this.hostElement.querySelectorAll('cw-tab-item'));
+    return Array.from(this.hostElement.querySelectorAll('ix-tab-item'));
   }
 
   private getTab(tabIndex: number) {
@@ -68,7 +76,11 @@ export class CwTabs {
   private showArrows() {
     try {
       const tabWrapper = this.getTabsWrapper();
-      return tabWrapper.scrollWidth > Math.ceil(tabWrapper.getBoundingClientRect().width) && this.layout === 'auto';
+      return (
+        tabWrapper.scrollWidth >
+          Math.ceil(tabWrapper.getBoundingClientRect().width) &&
+        this.layout === 'auto'
+      );
     } catch (error) {
       return false;
     }
@@ -86,7 +98,12 @@ export class CwTabs {
     try {
       const tabWrapper = this.getTabsWrapper();
       const tabWrapperRect = tabWrapper.getBoundingClientRect();
-      return this.showArrows() && this.scrollActionAmount > (tabWrapper.scrollWidth - tabWrapperRect.width) * -1 && window.innerWidth <= tabWrapper.scrollWidth;
+      return (
+        this.showArrows() &&
+        this.scrollActionAmount >
+          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1 &&
+        window.innerWidth <= tabWrapper.scrollWidth
+      );
     } catch (error) {
       return false;
     }
@@ -101,12 +118,16 @@ export class CwTabs {
 
   private move(amount: number, click = false) {
     const tabWrapper = this.getTabsWrapper();
-    const maxScrollWidth = (tabWrapper.scrollWidth - tabWrapper.getBoundingClientRect().width) * -1;
+    const maxScrollWidth =
+      (tabWrapper.scrollWidth - tabWrapper.getBoundingClientRect().width) * -1;
 
     amount = this.currentScrollAmount + amount;
     amount = amount > 0 ? 0 : amount < maxScrollWidth ? maxScrollWidth : amount;
 
-    const styles = [`transform: translateX(${amount}px);`, click ? `transition: all ease-in-out 400ms;` : ''].join('');
+    const styles = [
+      `transform: translateX(${amount}px);`,
+      click ? `transition: all ease-in-out 400ms;` : '',
+    ].join('');
 
     tabWrapper.setAttribute('style', styles);
 
@@ -133,15 +154,19 @@ export class CwTabs {
     this.moveTabToView(index);
   }
 
-  private dragStart(element: HTMLCwTabItemElement, event: MouseEvent) {
+  private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
     if (!this.showArrows()) return;
     if (event.button > 0) return; // ignore right click
 
-    this.clickAction.timeout = this.clickAction.timeout === null ? setTimeout(() => (this.clickAction.isClick = false), 300) : null;
+    this.clickAction.timeout =
+      this.clickAction.timeout === null
+        ? setTimeout(() => (this.clickAction.isClick = false), 300)
+        : null;
 
     const tabPositionX = parseFloat(window.getComputedStyle(element).left);
     const mousedownPositionX = event.clientX;
-    const move = (event: MouseEvent) => this.dragMove(event, tabPositionX, mousedownPositionX);
+    const move = (event: MouseEvent) =>
+      this.dragMove(event, tabPositionX, mousedownPositionX);
 
     window.addEventListener('mouseup', () => {
       window.removeEventListener('mousemove', move, false);
@@ -174,7 +199,10 @@ export class CwTabs {
       if (this.small) element.setAttribute('small', 'true');
 
       element.setAttribute('layout', this.layout);
-      element.setAttribute('selected', index === this.selected ? 'true' : 'false');
+      element.setAttribute(
+        'selected',
+        index === this.selected ? 'true' : 'false'
+      );
       element.setAttribute('placement', this.placement);
     });
   }
@@ -183,17 +211,27 @@ export class CwTabs {
     const tabs = this.getTabs();
     tabs.forEach((element, index) => {
       const isDisabled = element.getAttribute('disabled') !== null;
-      if (!isDisabled) element.addEventListener('click', () => this.clickTab(index));
+      if (!isDisabled)
+        element.addEventListener('click', () => this.clickTab(index));
 
-      element.addEventListener('mousedown', event => this.dragStart(element, event));
+      element.addEventListener('mousedown', (event) =>
+        this.dragStart(element, event)
+      );
     });
   }
 
   render() {
     return (
       <Host>
-        <div class="overflow-shadow" style={this.getArrowStyle(this.showPreviousArrow())}></div>
-        <div class="arrow" style={this.getArrowStyle(this.showPreviousArrow())} onClick={() => this.move(this.scrollAmount, true)}>
+        <div
+          class="overflow-shadow"
+          style={this.getArrowStyle(this.showPreviousArrow())}
+        ></div>
+        <div
+          class="arrow"
+          style={this.getArrowStyle(this.showPreviousArrow())}
+          onClick={() => this.move(this.scrollAmount, true)}
+        >
           <span class="glyph glyph-chevron-left-small"></span>
         </div>
         <div class="tab-items">
@@ -201,8 +239,15 @@ export class CwTabs {
             <slot></slot>
           </div>
         </div>
-        <div class="overflow-shadow right" style={this.getArrowStyle(this.showNextArrow())}></div>
-        <div class="arrow right" style={this.getArrowStyle(this.showNextArrow())} onClick={() => this.move(-this.scrollAmount, true)}>
+        <div
+          class="overflow-shadow right"
+          style={this.getArrowStyle(this.showNextArrow())}
+        ></div>
+        <div
+          class="arrow right"
+          style={this.getArrowStyle(this.showNextArrow())}
+          onClick={() => this.move(-this.scrollAmount, true)}
+        >
           <span class="glyph glyph-chevron-right-small"></span>
         </div>
       </Host>

@@ -1,7 +1,7 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-datetime-picker/props.md';
-import Events from './../auto-generated/cw-datetime-picker/events.md';
+import Props from './../auto-generated/ix-datetime-picker/props.md';
+import Events from './../auto-generated/ix-datetime-picker/events.md';
 
 import SourceDatetimepicker from './../auto-generated/previews/web-component/datetimepicker.md'
 

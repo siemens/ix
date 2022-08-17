@@ -8,13 +8,17 @@ export interface DefaultTreeItemData {
 }
 export type DefaultTreeItem = TreeItem<DefaultTreeItemData>;
 
-export function renderDefaultItem(item: DefaultTreeItem, context: TreeItemContext, update: (_: UpdateCallback) => void) {
-  const el = document.createElement('cw-tree-item');
+export function renderDefaultItem(
+  item: DefaultTreeItem,
+  context: TreeItemContext,
+  update: (_: UpdateCallback) => void
+) {
+  const el = document.createElement('ix-tree-item');
   el.hasChildren = item.hasChildren;
   el.context = context;
   el.text = item.data.name;
 
-  update(updateTreeItem => {
+  update((updateTreeItem) => {
     el.text = updateTreeItem.data.name;
   });
   return el;

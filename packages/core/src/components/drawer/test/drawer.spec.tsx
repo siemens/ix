@@ -6,7 +6,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
 import { CwDrawer } from '../drawer';
 
-describe('cw-drawer', () => {
+describe('ix-drawer', () => {
   let page: any;
   let drawer: any;
   let container: HTMLDivElement;
@@ -14,10 +14,10 @@ describe('cw-drawer', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [CwDrawer],
-      html: `<cw-drawer></cw-drawer>`,
+      html: `<ix-drawer></ix-drawer>`,
     });
 
-    drawer = document.querySelector('cw-drawer');
+    drawer = document.querySelector('ix-drawer');
     container = document.querySelector('[data-testid="container"]');
   });
 

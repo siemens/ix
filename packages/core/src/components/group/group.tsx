@@ -1,10 +1,20 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Element, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from '@stencil/core';
 
 @Component({
-  tag: 'cw-group',
+  tag: 'ix-group',
   styleUrl: 'group.scss',
   scoped: true,
 })
@@ -60,14 +70,18 @@ export class Group {
    */
   @Event() collapsedChanged: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLCwGroupElement;
+  @Element() hostElement!: HTMLIxGroupElement;
 
   get dropdownItems() {
-    return Array.from(this.hostElement.querySelectorAll('cw-group-dropdown-item'));
+    return Array.from(
+      this.hostElement.querySelectorAll('ix-group-dropdown-item')
+    );
   }
 
-  get groupItems(): Array<HTMLCwGroupItemElement> {
-    return Array.from(this.hostElement.querySelectorAll('cw-group-item:not(.footer)'));
+  get groupItems(): Array<HTMLIxGroupItemElement> {
+    return Array.from(
+      this.hostElement.querySelectorAll('ix-group-item:not(.footer)')
+    );
   }
 
   get groupContent() {
@@ -99,8 +113,8 @@ export class Group {
         } else {
           this.selected = !this.selected;
         }
-      } else if (targetElement.matches('cw-group-item')) {
-        const groupItem = targetElement as HTMLCwGroupItemElement;
+      } else if (targetElement.matches('ix-group-item')) {
+        const groupItem = targetElement as HTMLIxGroupItemElement;
         groupItem.selected = !groupItem.selected;
       }
     }
@@ -151,7 +165,10 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (!this.footer?.children.length && index === this.groupItems.length - 1) {
+      if (
+        !this.footer?.children.length &&
+        index === this.groupItems.length - 1
+      ) {
         item.classList.add('last');
       }
     });
@@ -162,9 +179,12 @@ export class Group {
   }
 
   componentDidLoad() {
-    this.groupContent.addEventListener('selectedChanged', (evt: CustomEvent<HTMLCwGroupItemElement>) => {
-      this.onItemClick(evt.detail.index);
-    });
+    this.groupContent.addEventListener(
+      'selectedChanged',
+      (evt: CustomEvent<HTMLIxGroupItemElement>) => {
+        this.onItemClick(evt.detail.index);
+      }
+    );
   }
 
   render() {
@@ -173,14 +193,21 @@ export class Group {
         <div
           class={{
             'group-header': true,
-            'expand': !this.collapsed,
-            'selected': this.selected,
+            expand: !this.collapsed,
+            selected: this.selected,
           }}
           tabindex="0"
         >
-          <div class="group-header-clickable" onClick={e => this.onHeaderClick(e)}>
+          <div
+            class="group-header-clickable"
+            onClick={(e) => this.onHeaderClick(e)}
+          >
             <div class="group-header-selection-indicator"></div>
-            <cw-icon class="btn-expand-header" name={`chevron-${this.collapsed ? 'right' : 'down'}-small`} onClick={e => this.onExpandClick(e)}></cw-icon>
+            <ix-icon
+              class="btn-expand-header"
+              name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
+              onClick={(e) => this.onExpandClick(e)}
+            ></ix-icon>
             <div class="group-header-content">
               {this.header ? (
                 <div class="group-header-props-container">
@@ -196,10 +223,15 @@ export class Group {
             </div>
           </div>
           <div class={{ 'group-header-context-button': true, 'd-none': false }}>
-            <cw-icon-button ref={ref => (this.dropdownTriggerRef = ref)} size="24" ghost={true} icon="context-menu"></cw-icon-button>
-            <cw-dropdown trigger={this.dropdownTriggerRef}>
+            <ix-icon-button
+              ref={(ref) => (this.dropdownTriggerRef = ref)}
+              size="24"
+              ghost={true}
+              icon="context-menu"
+            ></ix-icon-button>
+            <ix-dropdown trigger={this.dropdownTriggerRef}>
               <slot name="dropdown"></slot>
-            </cw-dropdown>
+            </ix-dropdown>
           </div>
         </div>
         <div
@@ -211,9 +243,13 @@ export class Group {
           <slot></slot>
         </div>
         <div class="d-none">
-          <cw-group-item class="footer last" suppressSelection={true} focusable={false}>
+          <ix-group-item
+            class="footer last"
+            suppressSelection={true}
+            focusable={false}
+          >
             <slot name="footer"></slot>
-          </cw-group-item>
+          </ix-group-item>
         </div>
       </Host>
     );

@@ -7,17 +7,19 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 
 @Component({
-  tag: 'cw-event-list',
+  tag: 'ix-event-list',
   styleUrl: 'event-list.scss',
   scoped: true,
 })
 export class EventList {
-  private readonly mutationObserver = createMutationObserver(this.onMutation.bind(this));
+  private readonly mutationObserver = createMutationObserver(
+    this.onMutation.bind(this)
+  );
 
   private static readonly fadeOutDuration = 50;
   private static readonly fadeInDuration = 150;
 
-  @Element() el!: HTMLCwEventListElement;
+  @Element() el!: HTMLIxEventListElement;
 
   /**
    * Determines the height of list items.
@@ -49,7 +51,7 @@ export class EventList {
 
     if (typeof this.itemHeight === 'number') {
       const height = convertToRemString(this.itemHeight);
-      this.el.querySelectorAll('.cw-event-list-item').forEach(item => {
+      this.el.querySelectorAll('.ix-event-list-item').forEach((item) => {
         item.classList.add('d-flex');
         this.setCustomHeight(item as HTMLElement, height);
       });
@@ -64,17 +66,17 @@ export class EventList {
         const height = convertToRemString(this.itemHeight);
 
         mutationRecords
-          .filter(mutation => mutation.type === 'childList')
-          .forEach(mutation =>
-            mutation.addedNodes.forEach(item => {
+          .filter((mutation) => mutation.type === 'childList')
+          .forEach((mutation) =>
+            mutation.addedNodes.forEach((item) => {
               const itemHtml = item as HTMLElement;
-              if (!itemHtml.classList?.contains('cw-event-list-item')) {
+              if (!itemHtml.classList?.contains('ix-event-list-item')) {
                 return;
               }
 
               itemHtml.classList.add('d-flex');
               this.setCustomHeight(itemHtml, height);
-            }),
+            })
           );
       }
 
@@ -100,7 +102,9 @@ export class EventList {
       { opacity: 0 },
     ];
     const listElement = this.el.querySelector('ul');
-    return listElement.animate(keyframes, { duration: EventList.fadeOutDuration }).finished;
+    return listElement.animate(keyframes, {
+      duration: EventList.fadeOutDuration,
+    }).finished;
   }
 
   private triggerFadeIn() {
@@ -108,11 +112,15 @@ export class EventList {
       return;
     }
 
-    const listItems = this.el.querySelectorAll('.cw-event-list-item');
+    const listItems = this.el.querySelectorAll('.ix-event-list-item');
     listItems.forEach((e, i) => {
       const delay = i * 80;
       const offset = delay / (delay + EventList.fadeInDuration);
-      const keyframes = [{ opacity: 0 }, { opacity: 0, easing: 'ease-out', offset }, { opacity: 1 }];
+      const keyframes = [
+        { opacity: 0 },
+        { opacity: 0, easing: 'ease-out', offset },
+        { opacity: 1 },
+      ];
       const options = {
         duration: EventList.fadeInDuration + delay,
         iterations: 1,
@@ -123,7 +131,14 @@ export class EventList {
 
   render() {
     return (
-      <Host class={{ 'item-size-s': this.itemHeight === 'S', 'item-size-l': this.itemHeight === 'L', 'compact': this.compact, 'chevron': this.chevron }}>
+      <Host
+        class={{
+          'item-size-s': this.itemHeight === 'S',
+          'item-size-l': this.itemHeight === 'L',
+          compact: this.compact,
+          chevron: this.chevron,
+        }}
+      >
         <ul>
           <slot></slot>
         </ul>

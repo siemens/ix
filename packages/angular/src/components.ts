@@ -8,19 +8,19 @@ import { Components } from '@siemens/ix';
 
 
 
-export declare interface CwAnimatedTab extends Components.CwAnimatedTab {}
+export declare interface IxAnimatedTab extends Components.IxAnimatedTab {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['count', 'icon']
 })
 @Component({
-  selector: 'cw-animated-tab',
+  selector: 'ix-animated-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['count', 'icon']
 })
-export class CwAnimatedTab {
+export class IxAnimatedTab {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -29,7 +29,7 @@ export class CwAnimatedTab {
 }
 
 
-export declare interface CwAnimatedTabs extends Components.CwAnimatedTabs {
+export declare interface IxAnimatedTabs extends Components.IxAnimatedTabs {
   /**
    * Tab navigated 
    */
@@ -42,12 +42,12 @@ export declare interface CwAnimatedTabs extends Components.CwAnimatedTabs {
   inputs: ['disableAnimations', 'selectedIndex', 'tabPlacement']
 })
 @Component({
-  selector: 'cw-animated-tabs',
+  selector: 'ix-animated-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['disableAnimations', 'selectedIndex', 'tabPlacement']
 })
-export class CwAnimatedTabs {
+export class IxAnimatedTabs {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -57,19 +57,19 @@ export class CwAnimatedTabs {
 }
 
 
-export declare interface CwApplicationHeader extends Components.CwApplicationHeader {}
+export declare interface IxApplicationHeader extends Components.IxApplicationHeader {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['name']
 })
 @Component({
-  selector: 'cw-application-header',
+  selector: 'ix-application-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['name']
 })
-export class CwApplicationHeader {
+export class IxApplicationHeader {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -78,19 +78,19 @@ export class CwApplicationHeader {
 }
 
 
-export declare interface CwBasicNavigation extends Components.CwBasicNavigation {}
+export declare interface IxBasicNavigation extends Components.IxBasicNavigation {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['applicationName', 'hideHeader']
 })
 @Component({
-  selector: 'cw-basic-navigation',
+  selector: 'ix-basic-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['applicationName', 'hideHeader']
 })
-export class CwBasicNavigation {
+export class IxBasicNavigation {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -99,7 +99,7 @@ export class CwBasicNavigation {
 }
 
 
-export declare interface CwBlind extends Components.CwBlind {
+export declare interface IxBlind extends Components.IxBlind {
   /**
    * Collapsed state changed 
    */
@@ -112,12 +112,12 @@ export declare interface CwBlind extends Components.CwBlind {
   inputs: ['collapsed', 'label']
 })
 @Component({
-  selector: 'cw-blind',
+  selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['collapsed', 'label']
 })
-export class CwBlind {
+export class IxBlind {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -127,7 +127,7 @@ export class CwBlind {
 }
 
 
-export declare interface CwBreadcrumb extends Components.CwBreadcrumb {
+export declare interface IxBreadcrumb extends Components.IxBreadcrumb {
   /**
    * Crumb item clicked event 
    */
@@ -144,12 +144,12 @@ export declare interface CwBreadcrumb extends Components.CwBreadcrumb {
   inputs: ['ghost', 'nextItems', 'visibleItemCount']
 })
 @Component({
-  selector: 'cw-breadcrumb',
+  selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['ghost', 'nextItems', 'visibleItemCount']
 })
-export class CwBreadcrumb {
+export class IxBreadcrumb {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -159,19 +159,19 @@ export class CwBreadcrumb {
 }
 
 
-export declare interface CwBreadcrumbItem extends Components.CwBreadcrumbItem {}
+export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['icon', 'label']
 })
 @Component({
-  selector: 'cw-breadcrumb-item',
+  selector: 'ix-breadcrumb-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['icon', 'label']
 })
-export class CwBreadcrumbItem {
+export class IxBreadcrumbItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -180,19 +180,19 @@ export class CwBreadcrumbItem {
 }
 
 
-export declare interface CwButton extends Components.CwButton {}
+export declare interface IxButton extends Components.IxButton {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'variant']
 })
 @Component({
-  selector: 'cw-button',
+  selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'variant']
 })
-export class CwButton {
+export class IxButton {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -202,7 +202,7 @@ export class CwButton {
 
 import type { InputState as ICwCategoryFilterInputState } from '@siemens/ix';
 import type { FilterState as ICwCategoryFilterFilterState } from '@siemens/ix';
-export declare interface CwCategoryFilter extends Components.CwCategoryFilter {
+export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
    * Event dispatched whenever the text input changes. 
    */
@@ -219,12 +219,12 @@ export declare interface CwCategoryFilter extends Components.CwCategoryFilter {
   inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions', 'tmpDisableScrollIntoView']
 })
 @Component({
-  selector: 'cw-category-filter',
+  selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions', 'tmpDisableScrollIntoView']
 })
-export class CwCategoryFilter {
+export class IxCategoryFilter {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -234,7 +234,7 @@ export class CwCategoryFilter {
 }
 
 
-export declare interface CwChip extends Components.CwChip {
+export declare interface IxChip extends Components.IxChip {
   /**
    * Fire event if close button is clicked 
    */
@@ -247,12 +247,12 @@ export declare interface CwChip extends Components.CwChip {
   inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
-  selector: 'cw-chip',
+  selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant']
 })
-export class CwChip {
+export class IxChip {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -262,19 +262,19 @@ export class CwChip {
 }
 
 
-export declare interface CwCounterPill extends Components.CwCounterPill {}
+export declare interface IxCounterPill extends Components.IxCounterPill {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['alignLeft', 'background', 'color', 'outline', 'variant']
 })
 @Component({
-  selector: 'cw-counter-pill',
+  selector: 'ix-counter-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['alignLeft', 'background', 'color', 'outline', 'variant']
 })
-export class CwCounterPill {
+export class IxCounterPill {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -283,7 +283,7 @@ export class CwCounterPill {
 }
 
 
-export declare interface CwDatePicker extends Components.CwDatePicker {
+export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
    * Time change event 
    */
@@ -300,12 +300,12 @@ export declare interface CwDatePicker extends Components.CwDatePicker {
   inputs: ['corners', 'format', 'individual', 'range']
 })
 @Component({
-  selector: 'cw-date-picker',
+  selector: 'ix-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['corners', 'format', 'individual', 'range']
 })
-export class CwDatePicker {
+export class IxDatePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -315,19 +315,19 @@ export class CwDatePicker {
 }
 
 
-export declare interface CwDateTimeCard extends Components.CwDateTimeCard {}
+export declare interface IxDateTimeCard extends Components.IxDateTimeCard {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['corners', 'individual']
 })
 @Component({
-  selector: 'cw-date-time-card',
+  selector: 'ix-date-time-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['corners', 'individual']
 })
-export class CwDateTimeCard {
+export class IxDateTimeCard {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -336,7 +336,7 @@ export class CwDateTimeCard {
 }
 
 
-export declare interface CwDatetimePicker extends Components.CwDatetimePicker {
+export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
    * Time event 
    */
@@ -349,12 +349,12 @@ export declare interface CwDatetimePicker extends Components.CwDatetimePicker {
   inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
 })
 @Component({
-  selector: 'cw-datetime-picker',
+  selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
 })
-export class CwDatetimePicker {
+export class IxDatetimePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -364,7 +364,7 @@ export class CwDatetimePicker {
 }
 
 
-export declare interface CwDrawer extends Components.CwDrawer {
+export declare interface IxDrawer extends Components.IxDrawer {
   /**
    * Fire event after drawer is open 
    */
@@ -382,12 +382,12 @@ export declare interface CwDrawer extends Components.CwDrawer {
   methods: ['toggleDrawer']
 })
 @Component({
-  selector: 'cw-drawer',
+  selector: 'ix-drawer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['closeOnClickOutside', 'fullHeight', 'maxWidth', 'minWidth', 'show', 'width']
 })
-export class CwDrawer {
+export class IxDrawer {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -397,7 +397,7 @@ export class CwDrawer {
 }
 
 
-export declare interface CwDropdown extends Components.CwDropdown {
+export declare interface IxDropdown extends Components.IxDropdown {
   /**
    * Fire event after visibility of dropdown has changed 
    */
@@ -411,12 +411,12 @@ export declare interface CwDropdown extends Components.CwDropdown {
   methods: ['updatePosition']
 })
 @Component({
-  selector: 'cw-dropdown',
+  selector: 'ix-dropdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger']
 })
-export class CwDropdown {
+export class IxDropdown {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -426,11 +426,11 @@ export class CwDropdown {
 }
 
 
-export declare interface CwDropdownItem extends Components.CwDropdownItem {
+export declare interface IxDropdownItem extends Components.IxDropdownItem {
   /**
    * Click on item 
    */
-  itemClick: EventEmitter<CustomEvent<HTMLCwDropdownItemElement>>;
+  itemClick: EventEmitter<CustomEvent<HTMLIxDropdownItemElement>>;
 
 }
 
@@ -440,12 +440,12 @@ export declare interface CwDropdownItem extends Components.CwDropdownItem {
   methods: ['emitItemClick']
 })
 @Component({
-  selector: 'cw-dropdown-item',
+  selector: 'ix-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['checked', 'disabled', 'hover', 'icon', 'label']
 })
-export class CwDropdownItem {
+export class IxDropdownItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -455,19 +455,19 @@ export class CwDropdownItem {
 }
 
 
-export declare interface CwEventList extends Components.CwEventList {}
+export declare interface IxEventList extends Components.IxEventList {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['animated', 'chevron', 'compact', 'itemHeight']
 })
 @Component({
-  selector: 'cw-event-list',
+  selector: 'ix-event-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['animated', 'chevron', 'compact', 'itemHeight']
 })
-export class CwEventList {
+export class IxEventList {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -476,7 +476,7 @@ export class CwEventList {
 }
 
 
-export declare interface CwEventListItem extends Components.CwEventListItem {
+export declare interface IxEventListItem extends Components.IxEventListItem {
   /**
    * Event list item click 
    */
@@ -489,12 +489,12 @@ export declare interface CwEventListItem extends Components.CwEventListItem {
   inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected']
 })
 @Component({
-  selector: 'cw-event-list-item',
+  selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected']
 })
-export class CwEventListItem {
+export class IxEventListItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -504,7 +504,7 @@ export class CwEventListItem {
 }
 
 
-export declare interface CwExpandingSearch extends Components.CwExpandingSearch {
+export declare interface IxExpandingSearch extends Components.IxExpandingSearch {
   /**
    * Value changed 
    */
@@ -517,12 +517,12 @@ export declare interface CwExpandingSearch extends Components.CwExpandingSearch 
   inputs: ['icon', 'placeholder', 'value']
 })
 @Component({
-  selector: 'cw-expanding-search',
+  selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['icon', 'placeholder', 'value']
 })
-export class CwExpandingSearch {
+export class IxExpandingSearch {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -532,7 +532,7 @@ export class CwExpandingSearch {
 }
 
 
-export declare interface CwFilterChip extends Components.CwFilterChip {
+export declare interface IxFilterChip extends Components.IxFilterChip {
   /**
    * Close clicked 
    */
@@ -545,12 +545,12 @@ export declare interface CwFilterChip extends Components.CwFilterChip {
   inputs: ['disabled']
 })
 @Component({
-  selector: 'cw-filter-chip',
+  selector: 'ix-filter-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['disabled']
 })
-export class CwFilterChip {
+export class IxFilterChip {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -560,19 +560,19 @@ export class CwFilterChip {
 }
 
 
-export declare interface CwFlipTile extends Components.CwFlipTile {}
+export declare interface IxFlipTile extends Components.IxFlipTile {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['footer', 'state']
 })
 @Component({
-  selector: 'cw-flip-tile',
+  selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['footer', 'state']
 })
-export class CwFlipTile {
+export class IxFlipTile {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -581,17 +581,17 @@ export class CwFlipTile {
 }
 
 
-export declare interface CwFlipTileContent extends Components.CwFlipTileContent {}
+export declare interface IxFlipTileContent extends Components.IxFlipTileContent {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined
 })
 @Component({
-  selector: 'cw-flip-tile-content',
+  selector: 'ix-flip-tile-content',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>'
 })
-export class CwFlipTileContent {
+export class IxFlipTileContent {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -600,7 +600,7 @@ export class CwFlipTileContent {
 }
 
 
-export declare interface CwGroup extends Components.CwGroup {
+export declare interface IxGroup extends Components.IxGroup {
   /**
    * Emits when whole group gets selected. 
    */
@@ -621,12 +621,12 @@ export declare interface CwGroup extends Components.CwGroup {
   inputs: ['collapsed', 'expandOnHeaderClick', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
-  selector: 'cw-group',
+  selector: 'ix-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['collapsed', 'expandOnHeaderClick', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
-export class CwGroup {
+export class IxGroup {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -636,19 +636,19 @@ export class CwGroup {
 }
 
 
-export declare interface CwGroupDropdownItem extends Components.CwGroupDropdownItem {}
+export declare interface IxGroupDropdownItem extends Components.IxGroupDropdownItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['icon', 'label']
 })
 @Component({
-  selector: 'cw-group-dropdown-item',
+  selector: 'ix-group-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['icon', 'label']
 })
-export class CwGroupDropdownItem {
+export class IxGroupDropdownItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -657,11 +657,11 @@ export class CwGroupDropdownItem {
 }
 
 
-export declare interface CwGroupItem extends Components.CwGroupItem {
+export declare interface IxGroupItem extends Components.IxGroupItem {
   /**
    * Selection changed 
    */
-  selectedChanged: EventEmitter<CustomEvent<HTMLCwGroupItemElement>>;
+  selectedChanged: EventEmitter<CustomEvent<HTMLIxGroupItemElement>>;
 
 }
 
@@ -670,12 +670,12 @@ export declare interface CwGroupItem extends Components.CwGroupItem {
   inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({
-  selector: 'cw-group-item',
+  selector: 'ix-group-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
-export class CwGroupItem {
+export class IxGroupItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -685,19 +685,19 @@ export class CwGroupItem {
 }
 
 
-export declare interface CwIcon extends Components.CwIcon {}
+export declare interface IxIcon extends Components.IxIcon {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['color', 'name', 'size']
 })
 @Component({
-  selector: 'cw-icon',
+  selector: 'ix-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['color', 'name', 'size']
 })
-export class CwIcon {
+export class IxIcon {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -706,19 +706,19 @@ export class CwIcon {
 }
 
 
-export declare interface CwIconButton extends Components.CwIconButton {}
+export declare interface IxIconButton extends Components.IxIconButton {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'variant']
 })
 @Component({
-  selector: 'cw-icon-button',
+  selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'variant']
 })
-export class CwIconButton {
+export class IxIconButton {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -727,17 +727,17 @@ export class CwIconButton {
 }
 
 
-export declare interface CwInputGroup extends Components.CwInputGroup {}
+export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined
 })
 @Component({
-  selector: 'cw-input-group',
+  selector: 'ix-input-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>'
 })
-export class CwInputGroup {
+export class IxInputGroup {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -746,7 +746,7 @@ export class CwInputGroup {
 }
 
 
-export declare interface CwMapNavigation extends Components.CwMapNavigation {
+export declare interface IxMapNavigation extends Components.IxMapNavigation {
   /**
    * Navigation toggled 
    */
@@ -764,12 +764,12 @@ export declare interface CwMapNavigation extends Components.CwMapNavigation {
   methods: ['openOverlay', 'closeOverlay']
 })
 @Component({
-  selector: 'cw-map-navigation',
+  selector: 'ix-map-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['appName', 'hideContextMenu', 'navTitle']
 })
-export class CwMapNavigation {
+export class IxMapNavigation {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -779,7 +779,7 @@ export class CwMapNavigation {
 }
 
 
-export declare interface CwMapNavigationOverlay extends Components.CwMapNavigationOverlay {
+export declare interface IxMapNavigationOverlay extends Components.IxMapNavigationOverlay {
   /**
    * Event closed 
    */
@@ -792,12 +792,12 @@ export declare interface CwMapNavigationOverlay extends Components.CwMapNavigati
   inputs: ['color', 'icon', 'name']
 })
 @Component({
-  selector: 'cw-map-navigation-overlay',
+  selector: 'ix-map-navigation-overlay',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['color', 'icon', 'name']
 })
-export class CwMapNavigationOverlay {
+export class IxMapNavigationOverlay {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -807,7 +807,7 @@ export class CwMapNavigationOverlay {
 }
 
 
-export declare interface CwMenu extends Components.CwMenu {
+export declare interface IxMenu extends Components.IxMenu {
   /**
    * Menu expanded 
    */
@@ -825,12 +825,12 @@ export declare interface CwMenu extends Components.CwMenu {
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
-  selector: 'cw-menu',
+  selector: 'ix-menu',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nMore', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'showAbout', 'showSettings']
 })
-export class CwMenu {
+export class IxMenu {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -840,7 +840,7 @@ export class CwMenu {
 }
 
 
-export declare interface CwMenuAbout extends Components.CwMenuAbout {
+export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed 
    */
@@ -853,12 +853,12 @@ export declare interface CwMenuAbout extends Components.CwMenuAbout {
   inputs: ['activeTabLabel', 'applicationDescription', 'applicationName', 'copyrightYears', 'i18nCookieNoticeLabel', 'i18nCorporateLabel', 'i18nDigitalId', 'i18nImprintLabel', 'i18nPrivacyNoticeLabel', 'i18nTermsOfUseLabel', 'imprintLanguage', 'label', 'show']
 })
 @Component({
-  selector: 'cw-menu-about',
+  selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['activeTabLabel', 'applicationDescription', 'applicationName', 'copyrightYears', 'i18nCookieNoticeLabel', 'i18nCorporateLabel', 'i18nDigitalId', 'i18nImprintLabel', 'i18nPrivacyNoticeLabel', 'i18nTermsOfUseLabel', 'imprintLanguage', 'label', 'show']
 })
-export class CwMenuAbout {
+export class IxMenuAbout {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -868,19 +868,19 @@ export class CwMenuAbout {
 }
 
 
-export declare interface CwMenuAboutItem extends Components.CwMenuAboutItem {}
+export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['label']
 })
 @Component({
-  selector: 'cw-menu-about-item',
+  selector: 'ix-menu-about-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['label']
 })
-export class CwMenuAboutItem {
+export class IxMenuAboutItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -889,7 +889,7 @@ export class CwMenuAboutItem {
 }
 
 
-export declare interface CwMenuAboutNews extends Components.CwMenuAboutNews {
+export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
   /**
    * Show More button is pressed 
    */
@@ -906,12 +906,12 @@ export declare interface CwMenuAboutNews extends Components.CwMenuAboutNews {
   inputs: ['aboutItemLabel', 'expanded', 'i18nShowMore', 'label', 'offsetBottom', 'show']
 })
 @Component({
-  selector: 'cw-menu-about-news',
+  selector: 'ix-menu-about-news',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['aboutItemLabel', 'expanded', 'i18nShowMore', 'label', 'offsetBottom', 'show']
 })
-export class CwMenuAboutNews {
+export class IxMenuAboutNews {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -921,7 +921,7 @@ export class CwMenuAboutNews {
 }
 
 
-export declare interface CwMenuAvatar extends Components.CwMenuAvatar {
+export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
   /**
    * Logout click 
    */
@@ -934,12 +934,12 @@ export declare interface CwMenuAvatar extends Components.CwMenuAvatar {
   inputs: ['bottom', 'i18nLogout', 'top']
 })
 @Component({
-  selector: 'cw-menu-avatar',
+  selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['bottom', 'i18nLogout', 'top']
 })
-export class CwMenuAvatar {
+export class IxMenuAvatar {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -949,7 +949,7 @@ export class CwMenuAvatar {
 }
 
 
-export declare interface CwMenuAvatarItem extends Components.CwMenuAvatarItem {
+export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
   /**
    * Avatar dropdown item clicked 
    */
@@ -962,12 +962,12 @@ export declare interface CwMenuAvatarItem extends Components.CwMenuAvatarItem {
   inputs: ['icon', 'label']
 })
 @Component({
-  selector: 'cw-menu-avatar-item',
+  selector: 'ix-menu-avatar-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['icon', 'label']
 })
-export class CwMenuAvatarItem {
+export class IxMenuAvatarItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -977,19 +977,19 @@ export class CwMenuAvatarItem {
 }
 
 
-export declare interface CwMenuItem extends Components.CwMenuItem {}
+export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon']
 })
 @Component({
-  selector: 'cw-menu-item',
+  selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon']
 })
-export class CwMenuItem {
+export class IxMenuItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -998,7 +998,7 @@ export class CwMenuItem {
 }
 
 
-export declare interface CwMenuSettings extends Components.CwMenuSettings {
+export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed 
    */
@@ -1011,12 +1011,12 @@ export declare interface CwMenuSettings extends Components.CwMenuSettings {
   inputs: ['activeTabLabel', 'label', 'show']
 })
 @Component({
-  selector: 'cw-menu-settings',
+  selector: 'ix-menu-settings',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['activeTabLabel', 'label', 'show']
 })
-export class CwMenuSettings {
+export class IxMenuSettings {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1026,19 +1026,19 @@ export class CwMenuSettings {
 }
 
 
-export declare interface CwMenuSettingsItem extends Components.CwMenuSettingsItem {}
+export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['label']
 })
 @Component({
-  selector: 'cw-menu-settings-item',
+  selector: 'ix-menu-settings-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['label']
 })
-export class CwMenuSettingsItem {
+export class IxMenuSettingsItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1047,7 +1047,7 @@ export class CwMenuSettingsItem {
 }
 
 
-export declare interface CwMessageBar extends Components.CwMessageBar {
+export declare interface IxMessageBar extends Components.IxMessageBar {
   /**
    * An event emitted when the close button is clicked 
    */
@@ -1060,12 +1060,12 @@ export declare interface CwMessageBar extends Components.CwMessageBar {
   inputs: ['dismissible', 'type']
 })
 @Component({
-  selector: 'cw-message-bar',
+  selector: 'ix-message-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['dismissible', 'type']
 })
-export class CwMessageBar {
+export class IxMessageBar {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1075,7 +1075,7 @@ export class CwMessageBar {
 }
 
 
-export declare interface CwModal extends Components.CwModal {
+export declare interface IxModal extends Components.IxModal {
   /**
    * Modal closed 
    */
@@ -1093,12 +1093,12 @@ export declare interface CwModal extends Components.CwModal {
   methods: ['dismiss', 'close']
 })
 @Component({
-  selector: 'cw-modal',
+  selector: 'ix-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass']
 })
-export class CwModal {
+export class IxModal {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1108,18 +1108,18 @@ export class CwModal {
 }
 
 
-export declare interface CwModalContainer extends Components.CwModalContainer {}
+export declare interface IxModalContainer extends Components.IxModalContainer {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   methods: ['showModal']
 })
 @Component({
-  selector: 'cw-modal-container',
+  selector: 'ix-modal-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>'
 })
-export class CwModalContainer {
+export class IxModalContainer {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1128,7 +1128,7 @@ export class CwModalContainer {
 }
 
 
-export declare interface CwModalExample extends Components.CwModalExample {
+export declare interface IxModalExample extends Components.IxModalExample {
   /**
    * Emit close modal 
    */
@@ -1140,11 +1140,11 @@ export declare interface CwModalExample extends Components.CwModalExample {
   defineCustomElementFn: undefined
 })
 @Component({
-  selector: 'cw-modal-example',
+  selector: 'ix-modal-example',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>'
 })
-export class CwModalExample {
+export class IxModalExample {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1154,19 +1154,19 @@ export class CwModalExample {
 }
 
 
-export declare interface CwPill extends Components.CwPill {}
+export declare interface IxPill extends Components.IxPill {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
-  selector: 'cw-pill',
+  selector: 'ix-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant']
 })
-export class CwPill {
+export class IxPill {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1175,7 +1175,7 @@ export class CwPill {
 }
 
 
-export declare interface CwSelect extends Components.CwSelect {
+export declare interface IxSelect extends Components.IxSelect {
   /**
    * Item selection changed 
    */
@@ -1192,12 +1192,12 @@ export declare interface CwSelect extends Components.CwSelect {
   inputs: ['allowClear', 'disabled', 'editable', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
 })
 @Component({
-  selector: 'cw-select',
+  selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['allowClear', 'disabled', 'editable', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
 })
-export class CwSelect {
+export class IxSelect {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1207,7 +1207,7 @@ export class CwSelect {
 }
 
 
-export declare interface CwSelectItem extends Components.CwSelectItem {
+export declare interface IxSelectItem extends Components.IxSelectItem {
   /**
    * Item clicked 
    */
@@ -1221,12 +1221,12 @@ export declare interface CwSelectItem extends Components.CwSelectItem {
   methods: ['onItemClick']
 })
 @Component({
-  selector: 'cw-select-item',
+  selector: 'ix-select-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['hover', 'label', 'selected', 'value']
 })
-export class CwSelectItem {
+export class IxSelectItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1236,19 +1236,19 @@ export class CwSelectItem {
 }
 
 
-export declare interface CwSpinner extends Components.CwSpinner {}
+export declare interface IxSpinner extends Components.IxSpinner {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['size', 'variant']
 })
 @Component({
-  selector: 'cw-spinner',
+  selector: 'ix-spinner',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['size', 'variant']
 })
-export class CwSpinner {
+export class IxSpinner {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1257,7 +1257,7 @@ export class CwSpinner {
 }
 
 
-export declare interface CwSplitButton extends Components.CwSplitButton {
+export declare interface IxSplitButton extends Components.IxSplitButton {
   /**
    * Button clicked 
    */
@@ -1270,12 +1270,12 @@ export declare interface CwSplitButton extends Components.CwSplitButton {
   inputs: ['disabled', 'ghost', 'icon', 'invisible', 'label', 'outline', 'placement', 'splitIcon', 'variant']
 })
 @Component({
-  selector: 'cw-split-button',
+  selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['disabled', 'ghost', 'icon', 'invisible', 'label', 'outline', 'placement', 'splitIcon', 'variant']
 })
-export class CwSplitButton {
+export class IxSplitButton {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1285,7 +1285,7 @@ export class CwSplitButton {
 }
 
 
-export declare interface CwSplitButtonItem extends Components.CwSplitButtonItem {
+export declare interface IxSplitButtonItem extends Components.IxSplitButtonItem {
   /**
    * Dropdown item clicked 
    */
@@ -1298,12 +1298,12 @@ export declare interface CwSplitButtonItem extends Components.CwSplitButtonItem 
   inputs: ['icon', 'label']
 })
 @Component({
-  selector: 'cw-split-button-item',
+  selector: 'ix-split-button-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['icon', 'label']
 })
-export class CwSplitButtonItem {
+export class IxSplitButtonItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1313,19 +1313,19 @@ export class CwSplitButtonItem {
 }
 
 
-export declare interface CwTabItem extends Components.CwTabItem {}
+export declare interface IxTabItem extends Components.IxTabItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
 })
 @Component({
-  selector: 'cw-tab-item',
+  selector: 'ix-tab-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
 })
-export class CwTabItem {
+export class IxTabItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1334,19 +1334,19 @@ export class CwTabItem {
 }
 
 
-export declare interface CwTabs extends Components.CwTabs {}
+export declare interface IxTabs extends Components.IxTabs {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['layout', 'placement', 'selected', 'small']
 })
 @Component({
-  selector: 'cw-tabs',
+  selector: 'ix-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['layout', 'placement', 'selected', 'small']
 })
-export class CwTabs {
+export class IxTabs {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1355,19 +1355,19 @@ export class CwTabs {
 }
 
 
-export declare interface CwTile extends Components.CwTile {}
+export declare interface IxTile extends Components.IxTile {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['size']
 })
 @Component({
-  selector: 'cw-tile',
+  selector: 'ix-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['size']
 })
-export class CwTile {
+export class IxTile {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1376,7 +1376,7 @@ export class CwTile {
 }
 
 
-export declare interface CwTimePicker extends Components.CwTimePicker {
+export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
    * Time event 
    */
@@ -1393,12 +1393,12 @@ export declare interface CwTimePicker extends Components.CwTimePicker {
   inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
 })
 @Component({
-  selector: 'cw-time-picker',
+  selector: 'ix-time-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
 })
-export class CwTimePicker {
+export class IxTimePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1408,7 +1408,7 @@ export class CwTimePicker {
 }
 
 
-export declare interface CwToast extends Components.CwToast {
+export declare interface IxToast extends Components.IxToast {
   /**
    * Toast closed 
    */
@@ -1421,12 +1421,12 @@ export declare interface CwToast extends Components.CwToast {
   inputs: ['autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
 })
 @Component({
-  selector: 'cw-toast',
+  selector: 'ix-toast',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['autoClose', 'autoCloseDelay', 'icon', 'iconColor', 'toastTitle', 'type']
 })
-export class CwToast {
+export class IxToast {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1436,7 +1436,7 @@ export class CwToast {
 }
 
 
-export declare interface CwToastContainer extends Components.CwToastContainer {}
+export declare interface IxToastContainer extends Components.IxToastContainer {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
@@ -1444,12 +1444,12 @@ export declare interface CwToastContainer extends Components.CwToastContainer {}
   methods: ['getEvents', 'showToast']
 })
 @Component({
-  selector: 'cw-toast-container',
+  selector: 'ix-toast-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['containerClass', 'containerId', 'position']
 })
-export class CwToastContainer {
+export class IxToastContainer {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1458,7 +1458,7 @@ export class CwToastContainer {
 }
 
 
-export declare interface CwToggle extends Components.CwToggle {
+export declare interface IxToggle extends Components.IxToggle {
   /**
    * An event will be dispatched each time the slide-toggle changes its value. 
    */
@@ -1471,12 +1471,12 @@ export declare interface CwToggle extends Components.CwToggle {
   inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
 @Component({
-  selector: 'cw-toggle',
+  selector: 'ix-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
-export class CwToggle {
+export class IxToggle {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1486,7 +1486,7 @@ export class CwToggle {
 }
 
 import type { TreeContext as ICwTreeTreeContext } from '@siemens/ix';
-export declare interface CwTree extends Components.CwTree {
+export declare interface IxTree extends Components.IxTree {
   /**
    * Context changed 
    */
@@ -1499,12 +1499,12 @@ export declare interface CwTree extends Components.CwTree {
   inputs: ['context', 'model', 'renderItem', 'root']
 })
 @Component({
-  selector: 'cw-tree',
+  selector: 'ix-tree',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['context', 'model', 'renderItem', 'root']
 })
-export class CwTree {
+export class IxTree {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1514,7 +1514,7 @@ export class CwTree {
 }
 
 
-export declare interface CwTreeItem extends Components.CwTreeItem {
+export declare interface IxTreeItem extends Components.IxTreeItem {
   /**
    * Expand/Collapsed toggled 
    */
@@ -1531,12 +1531,12 @@ export declare interface CwTreeItem extends Components.CwTreeItem {
   inputs: ['context', 'hasChildren', 'text']
 })
 @Component({
-  selector: 'cw-tree-item',
+  selector: 'ix-tree-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['context', 'hasChildren', 'text']
 })
-export class CwTreeItem {
+export class IxTreeItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1546,7 +1546,7 @@ export class CwTreeItem {
 }
 
 
-export declare interface CwUpload extends Components.CwUpload {
+export declare interface IxUpload extends Components.IxUpload {
   /**
    * You get an array of Files after drop-action or browse action is finished 
    */
@@ -1560,12 +1560,12 @@ export declare interface CwUpload extends Components.CwUpload {
   methods: ['setFilesToUpload']
 })
 @Component({
-  selector: 'cw-upload',
+  selector: 'ix-upload',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['accept', 'disabled', 'i18nUploadFile', 'loadingText', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText']
 })
-export class CwUpload {
+export class IxUpload {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();

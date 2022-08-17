@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cw-breadcrumb renders 1`] = `
-<cw-breadcrumb>
+exports[`ix-breadcrumb renders 1`] = `
+<ix-breadcrumb>
   <!---->
-  <cw-dropdown></cw-dropdown>
+  <ix-dropdown></ix-dropdown>
   <div class="crumb-items">
     <div class="clickable crumb" data-breadcrumb="0" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
@@ -20,14 +20,14 @@ exports[`cw-breadcrumb renders 1`] = `
     <div class="clickable crumb last remove-hover" data-breadcrumb="3" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
     </div>
-    <cw-breadcrumb-item label="Test 1">
-      <cw-breadcrumb-item label="Test 2">
-        <cw-breadcrumb-item label="Test 3">
-          <cw-breadcrumb-item label="Test 4"></cw-breadcrumb-item>
-        </cw-breadcrumb-item>
-      </cw-breadcrumb-item>
-    </cw-breadcrumb-item>
+    <ix-breadcrumb-item label="Test 1">
+      <ix-breadcrumb-item label="Test 2">
+        <ix-breadcrumb-item label="Test 3">
+          <ix-breadcrumb-item label="Test 4"></ix-breadcrumb-item>
+        </ix-breadcrumb-item>
+      </ix-breadcrumb-item>
+    </ix-breadcrumb-item>
   </div>
-  <cw-dropdown></cw-dropdown>
-</cw-breadcrumb>
+  <ix-dropdown></ix-dropdown>
+</ix-breadcrumb>
 `;

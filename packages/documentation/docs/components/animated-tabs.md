@@ -8,5 +8,5 @@ import ComponentApi from '@site/src/components/ComponentApi';
 <ComponentApi name="cui-animated-tabs"></ComponentApi>
 <ComponentApi name="cui-animated-tab"></ComponentApi>
 
-<ComponentApi name="cw-animated-tabs"></ComponentApi>
-<ComponentApi name="cw-animated-tab"></ComponentApi>
+<ComponentApi name="ix-animated-tabs"></ComponentApi>
+<ComponentApi name="ix-animated-tab"></ComponentApi>

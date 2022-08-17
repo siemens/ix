@@ -2,8 +2,8 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 @import './../chip/chip-mixin';
-@import './../../../scss/v7/common-variables';
-@import './../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
 $border-radius: 100px;
 $chip-height: 1.25rem;

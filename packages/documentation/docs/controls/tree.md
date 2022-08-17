@@ -1,8 +1,8 @@
 import Preview from '@site/src/components/Preview';
 import SourceTree from './../auto-generated/previews/web-component/tree.md';
 import SourceTreeCustom from './../auto-generated/previews/web-component/tree-custom.md';
-import Props from './../auto-generated/cw-tree/props.md';
-import Events from './../auto-generated/cw-tree/events.md';
+import Props from './../auto-generated/ix-tree/props.md';
+import Events from './../auto-generated/ix-tree/events.md';
 import TabItem from '@theme/TabItem';
 
 # Tree

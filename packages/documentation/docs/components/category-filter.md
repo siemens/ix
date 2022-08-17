@@ -15,4 +15,4 @@ For every set filter parameter a pill will appear inside of the text input.
 <LivePreview name="category-filter-suggestions" height="12rem"></LivePreview>
 
 <ComponentApi name="cui-category-filter"></ComponentApi>
-<ComponentApi name="cw-category-filter"></ComponentApi>
+<ComponentApi name="ix-category-filter"></ComponentApi>

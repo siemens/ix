@@ -2,8 +2,8 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import './../../../scss/mixins/shadows';
-@import './../../../scss/variables';
+@import 'mixins/shadows';
+@import 'common-variables';
 
 .drawer-container {
   top: 0;

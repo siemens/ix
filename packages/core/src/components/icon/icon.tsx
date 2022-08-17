@@ -4,7 +4,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-icon',
+  tag: 'ix-icon',
   styleUrl: 'icon.scss',
   scoped: true,
 })
@@ -39,7 +39,7 @@ export class CwIcon {
       >
         <i
           class={{
-            'glyph': true,
+            glyph: true,
             [`glyph-${this.name}`]: true,
             'glyph-12': this.size === '12',
             'glyph-16': this.size === '16',

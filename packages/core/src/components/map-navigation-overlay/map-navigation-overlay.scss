@@ -2,9 +2,9 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import '../../../scss/variables';
-@import '../../../scss/fonts';
-@import '../../../scss/mixins/text-truncation';
+@import 'common-variables';
+@import 'fonts';
+@import 'mixins/text-truncation';
 
 :host {
   position: absolute;
@@ -29,8 +29,7 @@
     align-items: center;
     min-width: 0;
 
-
-    cw-icon {
+    ix-icon {
       margin-left: $default-space;
       color: var(--theme-overlay-header--color);
     }

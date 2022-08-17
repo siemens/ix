@@ -1,4 +1,4 @@
-@import '../../../scss/v7/common-variables';
+@import 'common-variables';
 
 :host {
   display: flex;
@@ -11,7 +11,7 @@
     padding: 2rem;
   }
 
-  cw-chip {
+  ix-chip {
     margin-block-end: $default-space;
   }
 }

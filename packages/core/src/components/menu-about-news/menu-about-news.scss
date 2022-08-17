@@ -1,8 +1,8 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import '../../../scss/variables';
-@import '../../../scss/mixins/shadows';
+@import 'common-variables';
+@import 'mixins/shadows';
 
 :host {
   $left: 4rem;
@@ -45,7 +45,7 @@
       }
     }
 
-    cw-icon {
+    ix-icon {
       margin: $small-space;
       position: absolute;
       z-index: 1;
@@ -74,7 +74,7 @@
     left: -10px;
   }
 
-  cw-icon-button {
+  ix-icon-button {
     top: $small-space;
     right: $small-space;
     position: absolute;

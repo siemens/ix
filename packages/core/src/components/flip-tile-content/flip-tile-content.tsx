@@ -1,15 +1,14 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { Component, Host, h } from '@stencil/core';
+import { Component, h, Host } from '@stencil/core';
 
 @Component({
-  tag: 'cw-flip-tile-content',
+  tag: 'ix-flip-tile-content',
   styleUrl: 'flip-tile-content.css',
   shadow: true,
 })
 export class CwFlipTileContent {
-
   render() {
     return (
       <Host>
@@ -17,5 +16,4 @@ export class CwFlipTileContent {
       </Host>
     );
   }
-
 }

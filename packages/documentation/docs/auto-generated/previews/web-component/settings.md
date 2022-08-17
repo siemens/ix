@@ -1,21 +1,21 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/settings.html -->
 ```html
-<cw-basic-navigation>
-  <cw-menu>
-    <cw-menu-settings>
-      <cw-menu-settings-item
+<ix-basic-navigation>
+  <ix-menu>
+    <ix-menu-settings>
+      <ix-menu-settings-item
         label="Example Setting 1"
-      ></cw-menu-settings-item>
-      <cw-menu-settings-item
+      ></ix-menu-settings-item>
+      <ix-menu-settings-item
         label="Example Setting 2"
-      ></cw-menu-settings-item>
-    </cw-menu-settings>
-  </cw-menu>
-</cw-basic-navigation>
+      ></ix-menu-settings-item>
+    </ix-menu-settings>
+  </ix-menu>
+</ix-basic-navigation>
 <script>
   (async function () {
-    await window.customElements.whenDefined('cw-menu');
-    const menu = document.querySelector('cw-menu');
+    await window.customElements.whenDefined('ix-menu');
+    const menu = document.querySelector('ix-menu');
     await menu.toggleSettings(true);
   })();
 </script>

@@ -1,8 +1,10 @@
-@import '../../../scss/v7/common-variables';
+@import 'common-variables';
 
 :host {
   background-color: var(--theme-menu--background);
-  box-shadow: 0 0 2px 0 var(--theme-input--border-color-bottom--disabled), 0 4px 8px 0 var(--theme-input--border-color-bottom--disabled), 0 12px 18px 0px var(--theme-input--border-color-bottom--disabled);
+  box-shadow: 0 0 2px 0 var(--theme-input--border-color-bottom--disabled),
+    0 4px 8px 0 var(--theme-input--border-color-bottom--disabled),
+    0 12px 18px 0px var(--theme-input--border-color-bottom--disabled);
   border-radius: 4px;
 }
 

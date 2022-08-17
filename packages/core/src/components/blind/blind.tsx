@@ -2,11 +2,20 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import { Component, Element, Event, EventEmitter, h, Host, Prop, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import anime from 'animejs';
 
 @Component({
-  tag: 'cw-blind',
+  tag: 'ix-blind',
   styleUrl: 'blind.scss',
   scoped: true,
 })
@@ -26,7 +35,7 @@ export class Blind {
    */
   @Event() collapsedChange: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLCwBlindElement;
+  @Element() hostElement!: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
 
@@ -97,23 +106,29 @@ export class Blind {
         <div
           class={{
             'blind-header': true,
-            'closed': this.collapsed,
+            closed: this.collapsed,
           }}
-          onClick={e => this.onHeaderClick(e)}
+          onClick={(e) => this.onHeaderClick(e)}
         >
           <span
-            ref={ref => (this.chevronRef = ref)}
+            ref={(ref) => (this.chevronRef = ref)}
             class={{
-              'glyph': true,
+              glyph: true,
               'glyph-chevron-right-small': true,
             }}
           ></span>
-          <div class="blind-header-title">{this.label !== undefined ? <span class="blind-header-title-default">{this.label}</span> : <slot name="custom-header"></slot>}</div>
+          <div class="blind-header-title">
+            {this.label !== undefined ? (
+              <span class="blind-header-title-default">{this.label}</span>
+            ) : (
+              <slot name="custom-header"></slot>
+            )}
+          </div>
         </div>
         <div
           class={{
             'blind-content': true,
-            'hide': this.collapsed,
+            hide: this.collapsed,
           }}
         >
           <slot></slot>

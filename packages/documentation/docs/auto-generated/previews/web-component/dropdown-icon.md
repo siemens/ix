@@ -1,9 +1,9 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/dropdown-icon.html -->
 ```html
-<cw-button id="iconTriggerId">Open</cw-button>
-<cw-dropdown trigger="iconTriggerId">
-  <cw-dropdown-item icon="star" label="Item 1"></cw-dropdown-item>
-  <cw-dropdown-item icon="document" label="Item 2"></cw-dropdown-item>
-  <cw-dropdown-item icon="bulb" label="Item 3"></cw-dropdown-item>
-</cw-dropdown>
+<ix-button id="iconTriggerId">Open</ix-button>
+<ix-dropdown trigger="iconTriggerId">
+  <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+  <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+  <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+</ix-dropdown>
 ```

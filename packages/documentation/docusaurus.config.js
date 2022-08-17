@@ -31,7 +31,7 @@ const config = {
         theme: {
           customCss: [
             require.resolve(
-              './../../node_modules/@siemens/ix/dist/core-ui-core/core-ui-core.css'
+              './../../node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css'
             ),
             require.resolve(
               './../../node_modules/@siemens/core-ui-icons/dist/css/core-ui-webfont.css'

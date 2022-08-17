@@ -4,7 +4,7 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-group-dropdown-item',
+  tag: 'ix-group-dropdown-item',
   styleUrl: 'group-dropdown-item.scss',
   scoped: true,
 })
@@ -22,9 +22,9 @@ export class GroupDropdownItem {
   render() {
     return (
       <Host>
-        <cw-dropdown-item label={this.label} icon={this.icon}>
+        <ix-dropdown-item label={this.label} icon={this.icon}>
           <slot></slot>
-        </cw-dropdown-item>
+        </ix-dropdown-item>
       </Host>
     );
   }

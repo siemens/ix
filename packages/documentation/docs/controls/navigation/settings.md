@@ -4,9 +4,9 @@ sidebar_position: 4
 
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../../auto-generated/cw-menu-settings/props.md';
-import Events from './../../auto-generated/cw-menu-settings/events.md';
-import ItemProps from './../../auto-generated/cw-menu-settings-item/props.md';
+import Props from './../../auto-generated/ix-menu-settings/props.md';
+import Events from './../../auto-generated/ix-menu-settings/events.md';
+import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
 
 import WebComponent from './../../auto-generated/previews/web-component/settings.md'
 
@@ -20,7 +20,7 @@ import WebComponent from './../../auto-generated/previews/web-component/settings
   </TabItem>
 </Preview>
 
-## Properties (cw-menu-settings)
+## Properties (ix-menu-settings)
 
 ### Props
 
@@ -30,7 +30,7 @@ import WebComponent from './../../auto-generated/previews/web-component/settings
 
 <Events />
 
-## Properties (cw-menu-settings-item)
+## Properties (ix-menu-settings-item)
 
 ### Props
 

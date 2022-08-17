@@ -5,7 +5,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export default function FrameworkSelection(): JSX.Element {
-  const ref = useRef<HTMLCwSelectElement>();
+  const ref = useRef<HTMLIxSelectElement>();
 
   const [framework, setFramework] = useState<'angular' | 'webcomponent'>(
     'angular'
@@ -30,18 +30,18 @@ export default function FrameworkSelection(): JSX.Element {
   }, [ref]);
 
   return (
-    <cw-select
+    <ix-select
       ref={ref}
       default-value={framework}
       style={{
         width: '100%',
       }}
     >
-      <cw-select-item
+      <ix-select-item
         value="webcomponent"
         label="Webcomponent"
-      ></cw-select-item>
-      <cw-select-item value="angular" label="Angular"></cw-select-item>
-    </cw-select>
+      ></ix-select-item>
+      <ix-select-item value="angular" label="Angular"></ix-select-item>
+    </ix-select>
   );
 }

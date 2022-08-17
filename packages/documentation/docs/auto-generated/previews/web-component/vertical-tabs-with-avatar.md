@@ -1,15 +1,15 @@
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/vertical-tabs-with-avatar.html -->
 ```html
-<cw-menu>
-  <cw-menu-avatar>
-    <cw-menu-avatar-item label="Option 1"></cw-menu-avatar-item>
-  </cw-menu-avatar>
-  <cw-menu-item home-tab tab-icon="home"> Home </cw-menu-item>
-  <cw-menu-item tab-icon="globe"> Normal Tab </cw-menu-item>
-  <cw-menu-item tab-icon="star" disabled> Disabled Tab </cw-menu-item>
-  <cw-menu-item tab-icon="star"> With other Icon </cw-menu-item>
-  <cw-menu-item tab-icon="globe" style="display: none">
+<ix-menu>
+  <ix-menu-avatar>
+    <ix-menu-avatar-item label="Option 1"></ix-menu-avatar-item>
+  </ix-menu-avatar>
+  <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
+  <ix-menu-item tab-icon="globe"> Normal Tab </ix-menu-item>
+  <ix-menu-item tab-icon="star" disabled> Disabled Tab </ix-menu-item>
+  <ix-menu-item tab-icon="star"> With other Icon </ix-menu-item>
+  <ix-menu-item tab-icon="globe" style="display: none">
     Should not visible
-  </cw-menu-item>
-</cw-menu>
+  </ix-menu-item>
+</ix-menu>
 ```

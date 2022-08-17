@@ -1,7 +1,7 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/cw-chip/props.md';
-import Events from './../auto-generated/cw-chip/events.md';
+import Props from './../auto-generated/ix-chip/props.md';
+import Events from './../auto-generated/ix-chip/events.md';
 
 import SourceChip from './../auto-generated/previews/web-component/chip.md'
 

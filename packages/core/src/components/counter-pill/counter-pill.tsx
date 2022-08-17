@@ -4,17 +4,25 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cw-counter-pill',
+  tag: 'ix-counter-pill',
   styleUrl: 'counter-pill.scss',
   scoped: true,
 })
 export class CounterPill {
-  @Element() el: HTMLCwCounterPillElement;
+  @Element() el: HTMLIxCounterPillElement;
 
   /**
    * Pill variant
    */
-  @Prop({ reflect: true }) variant: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom' = 'primary';
+  @Prop({ reflect: true }) variant:
+    | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'custom' = 'primary';
 
   /**
    * Show pill as outline
@@ -40,7 +48,7 @@ export class CounterPill {
     return (
       <Host
         class={{
-          'outline': this.outline,
+          outline: this.outline,
           'align-left': this.alignLeft,
         }}
         style={

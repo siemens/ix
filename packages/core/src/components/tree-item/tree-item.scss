@@ -1,8 +1,7 @@
-@import './../../../scss/mixins/hover';
-@import './../../../scss/variables.scss';
-@import './../../../scss/colors.scss';
-@import './../../../scss/mixins/hover';
-@import './../../../scss/mixins/text-truncation';
+@import 'mixins/hover';
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
 
 :host {
   display: flex;
@@ -44,7 +43,7 @@
     width: 2rem;
     height: 2rem;
 
-    cw-icon {
+    ix-icon {
       transition: transform $default-time ease-in-out;
 
       &.icon-toggle-down {

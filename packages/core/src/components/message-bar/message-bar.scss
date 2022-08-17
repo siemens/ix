@@ -2,8 +2,8 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-@import './../../../scss/v7/common-variables';
-@import './../../../scss/v7/mixins/text-truncation';
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
 .message-container {
   display: flex;
@@ -46,6 +46,6 @@
   white-space: normal;
 }
 
-cw-icon {
+ix-icon {
   margin-top: $tiny-space;
 }

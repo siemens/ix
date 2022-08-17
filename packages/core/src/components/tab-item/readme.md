@@ -1,6 +1,4 @@
-# cw-tab-item
-
-
+# ix-tab-item
 
 <!-- Auto Generated Below -->
 
