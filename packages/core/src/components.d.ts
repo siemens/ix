@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
@@ -228,6 +230,56 @@ export namespace Components {
           * Pill variant
          */
         "variant": 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+    }
+    interface CwDatePicker {
+        /**
+          * Set corners style
+         */
+        "corners": DateTimeCardCorners;
+        /**
+          * output date format
+         */
+        "format": string;
+        /**
+          * set styles
+         */
+        "individual": boolean;
+        /**
+          * Set range size
+         */
+        "range": boolean;
+    }
+    interface CwDateTimeCard {
+        /**
+          * Set corners style
+         */
+        "corners": DateTimeCardCorners;
+        /**
+          * set styles
+         */
+        "individual": boolean;
+    }
+    interface CwDatetimePicker {
+        /**
+          * Set range size
+         */
+        "range": boolean;
+        /**
+          * Show Hour Input
+         */
+        "showHour": boolean;
+        /**
+          * Show Minutes Input
+         */
+        "showMinutes": boolean;
+        /**
+          * Show Seconds Input
+         */
+        "showSeconds": boolean;
+        /**
+          * Show Time Reference Input
+         */
+        "showTimeReference": boolean;
     }
     interface CwDrawer {
         /**
@@ -1052,6 +1104,32 @@ export namespace Components {
          */
         "size": 'small' | 'medium' | 'big';
     }
+    interface CwTimePicker {
+        /**
+          * Set corners style
+         */
+        "corners": DateTimeCardCorners;
+        /**
+          * set styles
+         */
+        "individual": boolean;
+        /**
+          * Show Hour Input
+         */
+        "showHour": boolean;
+        /**
+          * Show Minutes Input
+         */
+        "showMinutes": boolean;
+        /**
+          * Show Seconds Input
+         */
+        "showSeconds": boolean;
+        /**
+          * Show Time Reference Input
+         */
+        "showTimeReference": boolean;
+    }
     interface CwToast {
         /**
           * Autoclose behavior
@@ -1272,6 +1350,24 @@ declare global {
     var HTMLCwCounterPillElement: {
         prototype: HTMLCwCounterPillElement;
         new (): HTMLCwCounterPillElement;
+    };
+    interface HTMLCwDatePickerElement extends Components.CwDatePicker, HTMLStencilElement {
+    }
+    var HTMLCwDatePickerElement: {
+        prototype: HTMLCwDatePickerElement;
+        new (): HTMLCwDatePickerElement;
+    };
+    interface HTMLCwDateTimeCardElement extends Components.CwDateTimeCard, HTMLStencilElement {
+    }
+    var HTMLCwDateTimeCardElement: {
+        prototype: HTMLCwDateTimeCardElement;
+        new (): HTMLCwDateTimeCardElement;
+    };
+    interface HTMLCwDatetimePickerElement extends Components.CwDatetimePicker, HTMLStencilElement {
+    }
+    var HTMLCwDatetimePickerElement: {
+        prototype: HTMLCwDatetimePickerElement;
+        new (): HTMLCwDatetimePickerElement;
     };
     interface HTMLCwDrawerElement extends Components.CwDrawer, HTMLStencilElement {
     }
@@ -1507,6 +1603,12 @@ declare global {
         prototype: HTMLCwTileElement;
         new (): HTMLCwTileElement;
     };
+    interface HTMLCwTimePickerElement extends Components.CwTimePicker, HTMLStencilElement {
+    }
+    var HTMLCwTimePickerElement: {
+        prototype: HTMLCwTimePickerElement;
+        new (): HTMLCwTimePickerElement;
+    };
     interface HTMLCwToastElement extends Components.CwToast, HTMLStencilElement {
     }
     var HTMLCwToastElement: {
@@ -1561,6 +1663,9 @@ declare global {
         "cw-category-filter": HTMLCwCategoryFilterElement;
         "cw-chip": HTMLCwChipElement;
         "cw-counter-pill": HTMLCwCounterPillElement;
+        "cw-date-picker": HTMLCwDatePickerElement;
+        "cw-date-time-card": HTMLCwDateTimeCardElement;
+        "cw-datetime-picker": HTMLCwDatetimePickerElement;
         "cw-drawer": HTMLCwDrawerElement;
         "cw-dropdown": HTMLCwDropdownElement;
         "cw-dropdown-item": HTMLCwDropdownItemElement;
@@ -1600,6 +1705,7 @@ declare global {
         "cw-tab-item": HTMLCwTabItemElement;
         "cw-tabs": HTMLCwTabsElement;
         "cw-tile": HTMLCwTileElement;
+        "cw-time-picker": HTMLCwTimePickerElement;
         "cw-toast": HTMLCwToastElement;
         "cw-toast-container": HTMLCwToastContainerElement;
         "cw-toggle": HTMLCwToggleElement;
@@ -1848,6 +1954,68 @@ declare namespace LocalJSX {
           * Pill variant
          */
         "variant"?: 'primary' | 'alarm' | 'critical' | 'warning' | 'info' | 'neutral' | 'success' | 'custom';
+    }
+    interface CwDatePicker {
+        /**
+          * Set corners style
+         */
+        "corners"?: DateTimeCardCorners;
+        /**
+          * output date format
+         */
+        "format"?: string;
+        /**
+          * set styles
+         */
+        "individual"?: boolean;
+        /**
+          * Time change event
+         */
+        "onDateChange"?: (event: CustomEvent<string>) => void;
+        /**
+          * done event
+         */
+        "onDone"?: (event: CustomEvent<string>) => void;
+        /**
+          * Set range size
+         */
+        "range"?: boolean;
+    }
+    interface CwDateTimeCard {
+        /**
+          * Set corners style
+         */
+        "corners"?: DateTimeCardCorners;
+        /**
+          * set styles
+         */
+        "individual"?: boolean;
+    }
+    interface CwDatetimePicker {
+        /**
+          * Time event
+         */
+        "onDone"?: (event: CustomEvent<string>) => void;
+        /**
+          * Set range size
+         */
+        "range"?: boolean;
+        /**
+          * Show Hour Input
+         */
+        "showHour"?: boolean;
+        /**
+          * Show Minutes Input
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show Seconds Input
+         */
+        "showSeconds"?: boolean;
+        /**
+          * Show Time Reference Input
+         */
+        "showTimeReference"?: boolean;
     }
     interface CwDrawer {
         /**
@@ -2731,6 +2899,40 @@ declare namespace LocalJSX {
          */
         "size"?: 'small' | 'medium' | 'big';
     }
+    interface CwTimePicker {
+        /**
+          * Set corners style
+         */
+        "corners"?: DateTimeCardCorners;
+        /**
+          * set styles
+         */
+        "individual"?: boolean;
+        /**
+          * Time event
+         */
+        "onDone"?: (event: CustomEvent<string>) => void;
+        /**
+          * Time change event
+         */
+        "onTimeChange"?: (event: CustomEvent<string>) => void;
+        /**
+          * Show Hour Input
+         */
+        "showHour"?: boolean;
+        /**
+          * Show Minutes Input
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show Seconds Input
+         */
+        "showSeconds"?: boolean;
+        /**
+          * Show Time Reference Input
+         */
+        "showTimeReference"?: boolean;
+    }
     interface CwToast {
         /**
           * Autoclose behavior
@@ -2905,6 +3107,9 @@ declare namespace LocalJSX {
         "cw-category-filter": CwCategoryFilter;
         "cw-chip": CwChip;
         "cw-counter-pill": CwCounterPill;
+        "cw-date-picker": CwDatePicker;
+        "cw-date-time-card": CwDateTimeCard;
+        "cw-datetime-picker": CwDatetimePicker;
         "cw-drawer": CwDrawer;
         "cw-dropdown": CwDropdown;
         "cw-dropdown-item": CwDropdownItem;
@@ -2944,6 +3149,7 @@ declare namespace LocalJSX {
         "cw-tab-item": CwTabItem;
         "cw-tabs": CwTabs;
         "cw-tile": CwTile;
+        "cw-time-picker": CwTimePicker;
         "cw-toast": CwToast;
         "cw-toast-container": CwToastContainer;
         "cw-toggle": CwToggle;
@@ -2968,6 +3174,9 @@ declare module "@stencil/core" {
             "cw-category-filter": LocalJSX.CwCategoryFilter & JSXBase.HTMLAttributes<HTMLCwCategoryFilterElement>;
             "cw-chip": LocalJSX.CwChip & JSXBase.HTMLAttributes<HTMLCwChipElement>;
             "cw-counter-pill": LocalJSX.CwCounterPill & JSXBase.HTMLAttributes<HTMLCwCounterPillElement>;
+            "cw-date-picker": LocalJSX.CwDatePicker & JSXBase.HTMLAttributes<HTMLCwDatePickerElement>;
+            "cw-date-time-card": LocalJSX.CwDateTimeCard & JSXBase.HTMLAttributes<HTMLCwDateTimeCardElement>;
+            "cw-datetime-picker": LocalJSX.CwDatetimePicker & JSXBase.HTMLAttributes<HTMLCwDatetimePickerElement>;
             "cw-drawer": LocalJSX.CwDrawer & JSXBase.HTMLAttributes<HTMLCwDrawerElement>;
             "cw-dropdown": LocalJSX.CwDropdown & JSXBase.HTMLAttributes<HTMLCwDropdownElement>;
             "cw-dropdown-item": LocalJSX.CwDropdownItem & JSXBase.HTMLAttributes<HTMLCwDropdownItemElement>;
@@ -3007,6 +3216,7 @@ declare module "@stencil/core" {
             "cw-tab-item": LocalJSX.CwTabItem & JSXBase.HTMLAttributes<HTMLCwTabItemElement>;
             "cw-tabs": LocalJSX.CwTabs & JSXBase.HTMLAttributes<HTMLCwTabsElement>;
             "cw-tile": LocalJSX.CwTile & JSXBase.HTMLAttributes<HTMLCwTileElement>;
+            "cw-time-picker": LocalJSX.CwTimePicker & JSXBase.HTMLAttributes<HTMLCwTimePickerElement>;
             "cw-toast": LocalJSX.CwToast & JSXBase.HTMLAttributes<HTMLCwToastElement>;
             "cw-toast-container": LocalJSX.CwToastContainer & JSXBase.HTMLAttributes<HTMLCwToastContainerElement>;
             "cw-toggle": LocalJSX.CwToggle & JSXBase.HTMLAttributes<HTMLCwToggleElement>;

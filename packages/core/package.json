@@ -35,10 +35,11 @@
     "generate.theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
   },
   "dependencies": {
-    "@siemens/core-ui-icons": "~1.1.16",
+    "@siemens/core-ui-icons": "~1.1.17",
     "@stencil/core": "~2.15.0",
     "animejs": "~3.2.1",
-    "hyperlist": "^1.0.0"
+    "hyperlist": "^1.0.0",
+    "luxon": "^3.0.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.24.1",
@@ -52,6 +53,7 @@
     "@testing-library/dom": "^8.11.0",
     "@types/animejs": "^3.1.4",
     "@types/jest": "^27.0.3",
+    "@types/luxon": "^3.0.0",
     "@types/mustache": "^4.1.1",
     "@types/puppeteer": "^5.4.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",

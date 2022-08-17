@@ -283,6 +283,87 @@ export class CwCounterPill {
 }
 
 
+export declare interface CwDatePicker extends Components.CwDatePicker {
+  /**
+   * Time change event 
+   */
+  dateChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * done event 
+   */
+  done: EventEmitter<CustomEvent<string>>;
+
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['corners', 'format', 'individual', 'range']
+})
+@Component({
+  selector: 'cw-date-picker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['corners', 'format', 'individual', 'range']
+})
+export class CwDatePicker {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateChange', 'done']);
+  }
+}
+
+
+export declare interface CwDateTimeCard extends Components.CwDateTimeCard {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['corners', 'individual']
+})
+@Component({
+  selector: 'cw-date-time-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['corners', 'individual']
+})
+export class CwDateTimeCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CwDatetimePicker extends Components.CwDatetimePicker {
+  /**
+   * Time event 
+   */
+  done: EventEmitter<CustomEvent<string>>;
+
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+})
+@Component({
+  selector: 'cw-datetime-picker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+})
+export class CwDatetimePicker {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['done']);
+  }
+}
+
+
 export declare interface CwDrawer extends Components.CwDrawer {
   /**
    * Fire event after drawer is open 
@@ -1291,6 +1372,38 @@ export class CwTile {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CwTimePicker extends Components.CwTimePicker {
+  /**
+   * Time event 
+   */
+  done: EventEmitter<CustomEvent<string>>;
+  /**
+   * Time change event 
+   */
+  timeChange: EventEmitter<CustomEvent<string>>;
+
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+})
+@Component({
+  selector: 'cw-time-picker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+})
+export class CwTimePicker {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['done', 'timeChange']);
   }
 }
 

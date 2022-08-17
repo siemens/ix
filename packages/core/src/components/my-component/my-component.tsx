@@ -93,6 +93,18 @@ export class MyComponent {
           </cw-menu>
 
           <main>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                position: 'relative',
+                marginTop: '2rem',
+                width: '100%',
+              }}
+            >
+              <cw-date-picker></cw-date-picker>
+            </div>
             <cw-button
               style={{ marginInlineStart: '1rem' }}
               onClick={this.showToasts.bind(this)}
@@ -124,7 +136,7 @@ export class MyComponent {
               <cw-toggle checked></cw-toggle>
               <cw-toggle disabled></cw-toggle>
               <cw-toggle indeterminate></cw-toggle>
-              <cw-toggle textOff='Lorem ipsum' textOn='dolor sit'></cw-toggle>
+              <cw-toggle textOff="Lorem ipsum" textOn="dolor sit"></cw-toggle>
               <cw-toggle hideText></cw-toggle>
             </div>
 
@@ -983,10 +995,14 @@ export class MyComponent {
                   width: '20%',
                 }}
               >
-                <input class="form-control" placeholder='Enter text' type="text" />
                 <input
                   class="form-control"
-                  placeholder='Enter a number'
+                  placeholder="Enter text"
+                  type="text"
+                />
+                <input
+                  class="form-control"
+                  placeholder="Enter a number"
                   type="number"
                   style={{ marginBottom: '2rem' }}
                 />
