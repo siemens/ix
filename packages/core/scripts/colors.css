@@ -88,7 +88,12 @@
   --cl_theme-link-btn--border-color--hover: #0e777c;
   --cl_theme-btn-outline-secondary--background--disabled: rgba(0, 0, 0, 0);
   --cd_theme-btn-secondary--background--disabled: rgba(255, 255, 255, 0.25);
-  --cd_theme-btn-invisible-secondary--background--selected-active: rgba(113, 191, 191, 0.32);
+  --cd_theme-btn-invisible-secondary--background--selected-active: rgba(
+    113,
+    191,
+    191,
+    0.32
+  );
   --cl_theme-btn-invisible-primary--background--active: rgba(0, 0, 0, 0.1);
   --cl_theme-link-btn--color--hover: #0e777c;
   --cl_theme-btn-outline-primary--border-color--active: #0e777c;
@@ -114,13 +119,23 @@
   --cd_theme-btn-outline-primary--background: #10181c;
   --cl_theme-link-btn--border-color--active: #000;
   --cd_theme-btn-outline-secondary--border-color: #6e7d89;
-  --cd_theme-btn-outline-secondary--border-color--disabled: rgba(255, 255, 255, 0.25);
+  --cd_theme-btn-outline-secondary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.25
+  );
   --cd_theme-btn-outline-secondary--border-color--active: #6e7d89;
   --cd_theme-btn-outline-secondary--border-color--hover: #6e7d89;
   --cl_theme-btn-outline-secondary--color: rgba(0, 0, 0, 0.75);
   --cd_theme-link-btn--color: #41aaaa;
   --cl_theme-btn-invisible-primary--background--disabled: rgba(0, 0, 0, 0);
-  --cl_theme-btn-outline-primary--border-color--disabled: rgba(23, 33, 38, 0.25);
+  --cl_theme-btn-outline-primary--border-color--disabled: rgba(
+    23,
+    33,
+    38,
+    0.25
+  );
   --cl_theme-link-btn--color--active: #000;
   --cd_theme-btn-secondary--color--disabled: rgba(255, 255, 255, 0.4);
   --cl_theme-btn-primary--color--disabled: rgba(255, 255, 255, 0.85);
@@ -137,7 +152,12 @@
   --cd_theme-btn-primary--background--hover: #4cafaf;
   --cd_theme-link-btn--color--visited: #41aaaa;
   --cl_theme-btn-invisible-secondary--color--selected-active: #0e777c;
-  --cd_theme-btn-invisible-primary--background--hover: rgba(255, 255, 255, 0.06);
+  --cd_theme-btn-invisible-primary--background--hover: rgba(
+    255,
+    255,
+    255,
+    0.06
+  );
   --cd_theme-btn-outline-primary--background--hover: #1e2529;
   --cl_theme-link-btn--border-color--visited: rgba(0, 0, 0, 0);
   --cd_theme-btn-outline-secondary--color: rgba(255, 255, 255, 0.85);
@@ -148,7 +168,12 @@
   --cl_theme-link-btn--color--visited: #0e777c;
   --cl_theme-btn-outline-secondary--border-color: #becdd7;
   --cl_theme-btn-outline-secondary--border-color--hover: #becdd7;
-  --cl_theme-btn-outline-secondary--border-color--disabled: rgba(23, 33, 38, 0.25);
+  --cl_theme-btn-outline-secondary--border-color--disabled: rgba(
+    23,
+    33,
+    38,
+    0.25
+  );
   --cl_theme-btn-outline-secondary--border-color--active: #becdd7;
   --cd_theme-btn-secondary--background: #555f69;
   --cd_theme-btn-primary--background: #41aaaa;
@@ -163,10 +188,25 @@
   --cl_theme-btn-outline-primary--background--active: #e5e5e5;
   --cd_theme-btn-invisible-secondary--color--selected-active: #41aaaa;
   --cd_theme-btn-invisible-primary--color--disabled: rgba(255, 255, 255, 0.4);
-  --cd_theme-btn-invisible-secondary--background--hover: rgba(255, 255, 255, 0.06);
+  --cd_theme-btn-invisible-secondary--background--hover: rgba(
+    255,
+    255,
+    255,
+    0.06
+  );
   --cd_theme-link-btn--border-color--visited: rgba(0, 0, 0, 0);
-  --cl_theme-btn-invisible-secondary--background--selected: rgba(50, 160, 160, 0.25);
-  --cd_theme-btn-invisible-primary--background--active: rgba(255, 255, 255, 0.12);
+  --cl_theme-btn-invisible-secondary--background--selected: rgba(
+    50,
+    160,
+    160,
+    0.25
+  );
+  --cd_theme-btn-invisible-primary--background--active: rgba(
+    255,
+    255,
+    255,
+    0.12
+  );
   --cl_theme-btn-primary--background--active: #0c6a6f;
   --cl_theme-link-btn--border-color--disabled: rgba(0, 0, 0, 0);
   --cd_theme-btn-outline-primary--background--active: #2d3437;
@@ -185,14 +225,29 @@
   --cd_theme-btn-invisible-secondary--color--disabled: rgba(255, 255, 255, 0.4);
   --cl_theme-btn-invisible-secondary--color--active: rgba(0, 0, 0, 0.75);
   --cl_theme-btn-outline-primary--background--disabled: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--background--selected: rgba(50, 160, 160, 0.25);
+  --cd_theme-btn-invisible-secondary--background--selected: rgba(
+    50,
+    160,
+    160,
+    0.25
+  );
   --cl_theme-btn-secondary--color: rgba(0, 0, 0, 0.75);
   --cd_theme-btn-primary--border-color: #41aaaa;
-  --cd_theme-btn-invisible-secondary--background--active: rgba(255, 255, 255, 0.12);
+  --cd_theme-btn-invisible-secondary--background--active: rgba(
+    255,
+    255,
+    255,
+    0.12
+  );
   --cd_theme-btn-outline-secondary--background--hover: #1e2529;
   --cd_theme-btn-primary--color: #000;
   --cd_theme-link-btn--border-color--disabled: rgba(0, 0, 0, 0);
-  --cl_theme-btn-invisible-secondary--background--selected-hover: rgba(39, 125, 125, 0.28);
+  --cl_theme-btn-invisible-secondary--background--selected-hover: rgba(
+    39,
+    125,
+    125,
+    0.28
+  );
   --cd_theme-btn-invisible-primary--background--disabled: rgba(0, 0, 0, 0);
   --cl_theme-btn-primary--background--disabled: rgba(23, 33, 38, 0.25);
   --cd_theme-btn-outline-primary--background--disabled: rgba(0, 0, 0, 0);
@@ -212,14 +267,24 @@
   --cl_theme-btn-primary--color--hover: #fff;
   --cl_theme-btn-invisible-secondary--color--disabled: rgba(0, 0, 0, 0.3);
   --cl_theme-btn-outline-primary--border-color: #0e777c;
-  --cd_theme-btn-invisible-secondary--background--selected-hover: rgba(80, 171, 171, 0.28);
+  --cd_theme-btn-invisible-secondary--background--selected-hover: rgba(
+    80,
+    171,
+    171,
+    0.28
+  );
   --cl_theme-btn-secondary--color--hover: rgba(0, 0, 0, 0.75);
   --cl_theme-btn-secondary--background--disabled: rgba(23, 33, 38, 0.25);
   --cd_theme-btn-invisible-secondary--background--disabled: rgba(0, 0, 0, 0);
   --cd_theme-btn-outline-secondary--background-active: #2d3437;
   --cl_theme-btn-primary--color: #fff;
   --cd_theme-link-btn--color--disabled: rgba(255, 255, 255, 0.4);
-  --cl_theme-btn-invisible-secondary--background-selected-active: rgba(33, 107, 107, 0.32);
+  --cl_theme-btn-invisible-secondary--background-selected-active: rgba(
+    33,
+    107,
+    107,
+    0.32
+  );
   --focus--border-color: #199fff;
   --cd_theme-btn-invisible-primary--color: #41aaaa;
   --cd_theme-btn-outline-primary--color: #41aaaa;
@@ -287,7 +352,12 @@
   --cd_theme-checkbox-unchecked--background--active: #31383c;
   --cd_theme-checkbox-unchecked--border-color--active: rgba(235, 240, 245, 0.6);
   --cd_theme-checkbox-unchecked--background--disabled: rgba(0, 0, 0, 0);
-  --cd_theme-checkbox-unchecked--border-color--disabled: rgba(255, 255, 255, 0.25);
+  --cd_theme-checkbox-unchecked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.25
+  );
   --cd_theme-checkbox-checked--background: #41aaaa;
   --cd_theme-checkbox-checked--border-color: rgba(0, 0, 0, 0);
   --cd_theme-checkbox-checked--color: #000;
@@ -349,7 +419,12 @@
   --cd_theme-radiobtn-unchecked--border-color: rgba(235, 240, 245, 0.6);
   --cd_theme-radiobtn-unchecked--border-color--hover: rgba(235, 240, 245, 0.6);
   --cd_theme-radiobtn-unchecked--border-color--active: rgba(235, 240, 245, 0.6);
-  --cd_theme-radiobtn-unchecked--border-color--disabled: rgba(255, 255, 255, 0.25);
+  --cd_theme-radiobtn-unchecked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.25
+  );
   --cd_theme-radiobtn-checked--background: #10181c;
   --cd_theme-radiobtn-checked--background--hover: #1e2529;
   --cd_theme-radiobtn-checked--background--active: #2d3437;
@@ -357,7 +432,12 @@
   --cd_theme-radiobtn-checked--border-color: #41aaaa;
   --cd_theme-radiobtn-checked--border-color--hover: #41aaaa;
   --cd_theme-radiobtn-checked--border-color--active: #41aaaa;
-  --cd_theme-radiobtn-checked--border-color--disabled: rgba(255, 255, 255, 0.25);
+  --cd_theme-radiobtn-checked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.25
+  );
   --cd_theme-radiobtn-checked--color: #41aaaa;
   --cd_theme-radiobtn-checked--color--hover: #41aaaa;
   --cd_theme-radiobtn-checked--color--active: #41aaaa;
@@ -431,7 +511,12 @@
   --cd_theme-nav-item-secondary-icon--color--hover: rgba(255, 255, 255, 0.85);
   --cd_theme-nav-item-secondary-icon--color--active: rgba(255, 255, 255, 0.85);
   --cd_theme-nav-item-secondary-icon--color--disabled: rgba(255, 255, 255, 0.4);
-  --cd_theme-nav-item-secondary-icon--color--selected: rgba(255, 255, 255, 0.85);
+  --cd_theme-nav-item-secondary-icon--color--selected: rgba(
+    255,
+    255,
+    255,
+    0.85
+  );
   --cl_theme-nav-item-secondary--background: rgba(0, 0, 0, 0);
   --cl_theme-nav-item-secondary--background--hover: rgba(0, 0, 0, 0.05);
   --cl_theme-nav-item-secondary--background--active: rgba(0, 0, 0, 0.1);
@@ -685,7 +770,12 @@
   --cl_theme-chip-primary-outline--border-color--hover: #0e777c;
   --cd_theme-chip-primary-outline--border-color--active: #41aaaa;
   --cl_theme-chip-primary-outline--border-color--active: #0e777c;
-  --cd_theme-chip-primary-outline--border-color--display: rgba(255, 255, 255, 0.85);
+  --cd_theme-chip-primary-outline--border-color--display: rgba(
+    255,
+    255,
+    255,
+    0.85
+  );
   --cl_theme-chip-primary-outline--border-color--display: rgba(0, 0, 0, 0.75);
   --cd_theme-chip-primary-outline--color: #41aaaa;
   --cl_theme-chip-primary-outline--color: #0e777c;
@@ -706,8 +796,18 @@
   --darkplotticks: rgba(255, 255, 255, 0.3);
   --1UIColorstexttheme-color-std-text-light: rgba(0, 0, 0, 0.75);
   --3InteractionstatesStandardmousestates3selected: rgba(50, 160, 161, 0.25);
-  --3InteractionstatesStandardmousestates4weak-selected: rgba(50, 160, 161, 0.15);
-  --3InteractionstatesGhostmousestates4theme-ghost-weak-selected: rgba(50, 160, 160, 0.15);
+  --3InteractionstatesStandardmousestates4weak-selected: rgba(
+    50,
+    160,
+    161,
+    0.15
+  );
+  --3InteractionstatesGhostmousestates4theme-ghost-weak-selected: rgba(
+    50,
+    160,
+    160,
+    0.15
+  );
   --3InteractionstatesCards1card-hover-light: rgba(0, 0, 0, 0.03);
   --3InteractionstatesCards2card-pressed-light: rgba(0, 0, 0, 0.06);
   --3InteractionstatesCards1card-hover-dark: rgba(255, 255, 255, 0.03);
@@ -782,18 +882,53 @@
   --cl_theme-select-list-item--color--selected: rgba(0, 0, 0, 0.75);
   --cl_theme-select-list-item--color--disabled: rgba(0, 0, 40, 0.4);
   --cd_theme-select-list-item--color--disabled: rgba(255, 255, 255, 0.4);
-  --cl_theme-select-list-item--background--selected-hover: rgba(16, 112, 112, 0.25);
-  --cd_theme-select-list-item--background--selected-hover: rgba(104, 217, 217, 0.25);
-  --cl_theme-select-list-item--background--selected-active: rgba(15, 97, 97, 0.3);
-  --cd_theme-select-list-item--background--selected-active: rgba(153, 230, 230, 0.3);
-  --cl_theme-select-list-item--background--selected-disabled: rgba(255, 255, 255, 0);
+  --cl_theme-select-list-item--background--selected-hover: rgba(
+    16,
+    112,
+    112,
+    0.25
+  );
+  --cd_theme-select-list-item--background--selected-hover: rgba(
+    104,
+    217,
+    217,
+    0.25
+  );
+  --cl_theme-select-list-item--background--selected-active: rgba(
+    15,
+    97,
+    97,
+    0.3
+  );
+  --cd_theme-select-list-item--background--selected-active: rgba(
+    153,
+    230,
+    230,
+    0.3
+  );
+  --cl_theme-select-list-item--background--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cd_theme-select-list-item--background--selected-disabled: rgba(0, 0, 0, 0);
   --cl_theme-select-list-item--color--selected-hover: rgba(0, 0, 0, 0.75);
   --cd_theme-select-list-item--color--selected-hover: rgba(255, 255, 255, 0.85);
-  --cd_theme-select-list-item--color--selected-active: rgba(255, 255, 255, 0.85);
+  --cd_theme-select-list-item--color--selected-active: rgba(
+    255,
+    255,
+    255,
+    0.85
+  );
   --cl_theme-select-list-item--color--selected-active: rgba(0, 0, 0, 0.75);
   --cl_theme-select-list-item--color--selected-disabled: rgba(0, 0, 40, 0.4);
-  --cd_theme-select-list-item--color--selected-disabled: rgba(255, 255, 255, 0.4);
+  --cd_theme-select-list-item--color--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0.4
+  );
   --cl_theme-select-list-item-check--color: rgba(0, 0, 0, 0.75);
   --cd_theme-select-list-item-check--color: rgba(255, 255, 255, 0.85);
   --cl_theme-select-list-item-check--color--hover: rgba(0, 0, 0, 0.75);
@@ -838,7 +973,12 @@
   --cl_theme-animated-tab-indicator--background--active: rgba(0, 0, 0, 0);
   --cd_theme-animated-tab-indicator--background--selected: #41aaaa;
   --cl_theme-animated-tab-indicator--background--selected: #0e777c;
-  --cd_theme-animated-tab-indicator--background--disabled: rgba(255, 255, 255, 0);
+  --cd_theme-animated-tab-indicator--background--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-animated-tab-indicator--background--disabled: rgba(0, 0, 0, 0);
   --cd_theme-tab--color: rgba(255, 255, 255, 0.6);
   --cl_theme-tab--color: rgba(0, 0, 0, 0.6);
@@ -879,16 +1019,36 @@
   --cd_theme-animated-tab-circle--background--selected: #41aaaa;
   --cl_theme-animated-tab-circle--background--selected: #0e777c;
   --cd_theme-animated-tab-circle--background--disabled: rgba(16, 24, 28, 0.6);
-  --cl_theme-animated-tab-circle--background--disabled: rgba(255, 255, 255, 0.6);
+  --cl_theme-animated-tab-circle--background--disabled: rgba(
+    255,
+    255,
+    255,
+    0.6
+  );
   --cd_theme-animated-tab-circle--border-color: rgba(235, 240, 245, 0.4);
   --cl_theme-animated-tab-circle--border-color: rgba(65, 95, 117, 0.4);
   --cd_theme-animated-tab-circle--border-color--hover: rgba(235, 240, 245, 0.4);
   --cl_theme-animated-tab-circle--border-color--hover: rgba(65, 95, 117, 0.4);
-  --cd_theme-animated-tab-circle--border-color--active: rgba(235, 240, 245, 0.4);
+  --cd_theme-animated-tab-circle--border-color--active: rgba(
+    235,
+    240,
+    245,
+    0.4
+  );
   --cl_theme-animated-tab-circle--border-color--active: rgba(65, 95, 117, 0.4);
   --cd_theme-animated-tab-circle--border-color--selected: rgba(0, 0, 0, 0);
-  --cl_theme-animated-tab-circle--border-color--selected: rgba(255, 255, 255, 0);
-  --cd_theme-animated-tab-circle--border-color--disabled: rgba(235, 240, 245, 0.15);
+  --cl_theme-animated-tab-circle--border-color--selected: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --cd_theme-animated-tab-circle--border-color--disabled: rgba(
+    235,
+    240,
+    245,
+    0.15
+  );
   --cl_theme-animated-tab-circle--border-color--disabled: rgba(0, 0, 0, 0.15);
   --cd_theme-tab-pill--border-color: rgba(235, 240, 245, 0.4);
   --cl_theme-tab-pill--border-color: rgba(65, 95, 117, 0.4);
@@ -1025,9 +1185,19 @@
   --cl_theme-btn-invisible-primary--border-color--hover: rgba(0, 0, 0, 0);
   --cd_theme-btn-invisible-primary--border-color--hover: rgba(255, 255, 255, 0);
   --cl_theme-btn-invisible-primary--border-color--active: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-primary--border-color--active: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-primary--border-color--active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-btn-invisible-primary--border-color--disabled: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-primary--border-color--disabled: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-primary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-btn-secondary--border-color: rgba(0, 0, 0, 0);
   --cd_theme-btn-secondary--border-color: rgba(255, 255, 255, 0);
   --cl_theme-btn-secondary--border-color--hover: rgba(0, 0, 0, 0);
@@ -1039,17 +1209,57 @@
   --cl_theme-btn-invisible-secondary--border-color: rgba(0, 0, 0, 0);
   --cd_theme-btn-invisible-secondary--border-color: rgba(255, 255, 255, 0);
   --cl_theme-btn-invisible-secondary--border-color--hover: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--hover: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-secondary--border-color--hover: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-btn-invisible-secondary--border-color--active: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--active: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-secondary--border-color--active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-btn-invisible-secondary--border-color--disabled: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--disabled: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-secondary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-btn-invisible-secondary--border-color--selected: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--selected: rgba(255, 255, 255, 0);
-  --cl_theme-btn-invisible-secondary--border-color--selected-hover: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--selected-hover: rgba(255, 255, 255, 0);
-  --cl_theme-btn-invisible-secondary--border-color--selected-active: rgba(0, 0, 0, 0);
-  --cd_theme-btn-invisible-secondary--border-color--selected-active: rgba(255, 255, 255, 0);
+  --cd_theme-btn-invisible-secondary--border-color--selected: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --cl_theme-btn-invisible-secondary--border-color--selected-hover: rgba(
+    0,
+    0,
+    0,
+    0
+  );
+  --cd_theme-btn-invisible-secondary--border-color--selected-hover: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --cl_theme-btn-invisible-secondary--border-color--selected-active: rgba(
+    0,
+    0,
+    0,
+    0
+  );
+  --cd_theme-btn-invisible-secondary--border-color--selected-active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cd_theme-overlay--background: rgba(16, 24, 28, 0.85);
   --cl_theme-overlay--background: rgba(255, 255, 255, 0.85);
   --cd_theme-overlay-header--background: #293339;
@@ -1376,12 +1586,32 @@
   --bl_theme-btn-outline-secondary--color--disabled: rgba(0, 0, 40, 0.3);
   --bl_theme-btn-outline-secondary--border-color: rgba(0, 0, 40, 0.2);
   --bl_theme-btn-outline-secondary--background--hover: rgba(189, 189, 174, 0.2);
-  --bl_theme-btn-outline-secondary--background--active: rgba(150, 150, 138, 0.2);
+  --bl_theme-btn-outline-secondary--background--active: rgba(
+    150,
+    150,
+    138,
+    0.2
+  );
   --bl_theme-btn-outline-secondary--background--disabled: rgba(0, 0, 0, 0);
   --bd_theme-btn-outline-secondary--border-color: rgba(255, 255, 255, 0.45);
-  --bd_theme-btn-outline-secondary--border-color--disabled: rgba(255, 255, 255, 0.45);
-  --bd_theme-btn-outline-secondary--border-color--active: rgba(255, 255, 255, 0.45);
-  --bd_theme-btn-outline-secondary--border-color--hover: rgba(255, 255, 255, 0.45);
+  --bd_theme-btn-outline-secondary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
+  --bd_theme-btn-outline-secondary--border-color--active: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
+  --bd_theme-btn-outline-secondary--border-color--hover: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bd_theme-btn-outline-secondary--color: rgba(255, 255, 255, 0.65);
   --bd_theme-btn-outline-secondary--color--hover: #fff;
   --bd_theme-btn-outline-secondary--color--active: #fff;
@@ -1394,16 +1624,41 @@
   --bl_theme-btn-invisible-secondary--color--hover: #000028;
   --bl_theme-btn-invisible-secondary--color--active: #000028;
   --bl_theme-btn-invisible-secondary--color--disabled: rgba(0, 0, 40, 0.3);
-  --bl_theme-btn-invisible-secondary--background--hover: rgba(189, 189, 174, 0.2);
-  --bl_theme-btn-invisible-secondary--background--active: rgba(150, 150, 138, 0.2);
+  --bl_theme-btn-invisible-secondary--background--hover: rgba(
+    189,
+    189,
+    174,
+    0.2
+  );
+  --bl_theme-btn-invisible-secondary--background--active: rgba(
+    150,
+    150,
+    138,
+    0.2
+  );
   --bl_theme-btn-invisible-secondary--background--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--background--hover: rgba(157, 157, 150, 0.2);
-  --bd_theme-btn-invisible-secondary--background--active: rgba(125, 125, 120, 0.2);
+  --bd_theme-btn-invisible-secondary--background--hover: rgba(
+    157,
+    157,
+    150,
+    0.2
+  );
+  --bd_theme-btn-invisible-secondary--background--active: rgba(
+    125,
+    125,
+    120,
+    0.2
+  );
   --bd_theme-btn-invisible-secondary--background--disabled: rgba(0, 0, 0, 0);
   --bd_theme-btn-invisible-secondary--color: rgba(255, 255, 255, 0.65);
   --bd_theme-btn-invisible-secondary--color--hover: #fff;
   --bd_theme-btn-invisible-secondary--color--active: #fff;
-  --bd_theme-btn-invisible-secondary--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-btn-invisible-secondary--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-btn-primary--color--hover: #fff;
   --bl_theme-btn-primary--color--active: #fff;
   --bl_theme-btn-primary--color--disabled: #fff;
@@ -1414,13 +1669,23 @@
   --bl_theme-btn-invisible-secondary--color--selected: #196269;
   --bl_theme-btn-invisible-secondary--color--selected-hover: #196269;
   --bl_theme-btn-invisible-secondary--color--selected-active: #196269;
-  --bl_theme-btn-invisible-secondary--background--selected: rgba(0, 255, 185, 0.2);
+  --bl_theme-btn-invisible-secondary--background--selected: rgba(
+    0,
+    255,
+    185,
+    0.2
+  );
   --bl_theme-btn-invisible-secondary--background--selected-hover: #00ffb9;
   --bl_theme-btn-invisible-secondary--background-selected-active: #00f2b0;
   --bd_theme-btn-invisible-secondary--color--selected: #00ffb9;
   --bd_theme-btn-invisible-secondary--color--selected-hover: #00ffb9;
   --bd_theme-btn-invisible-secondary--color--selected-active: #00ffb9;
-  --bd_theme-btn-invisible-secondary--background--selected: rgba(0, 255, 185, 0.12);
+  --bd_theme-btn-invisible-secondary--background--selected: rgba(
+    0,
+    255,
+    185,
+    0.12
+  );
   --bd_theme-btn-invisible-secondary--background--selected-hover: #196269;
   --bd_theme-btn-invisible-secondary--background--selected-active: #16565c;
   --bd_theme-link-btn--color: #0cc;
@@ -1503,7 +1768,12 @@
   --bd_theme-checkbox-unchecked--background--active: #00182b;
   --bd_theme-checkbox-unchecked--border-color--active: #00ffb9;
   --bd_theme-checkbox-unchecked--background--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-checkbox-unchecked--border-color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-checkbox-unchecked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bd_theme-checkbox-checked--background: #000028;
   --bd_theme-checkbox-checked--border-color: #fff;
   --bd_theme-checkbox-checked--color: #00ffb9;
@@ -1514,7 +1784,12 @@
   --bd_theme-checkbox-checked--border-color--active: #00ffb9;
   --bd_theme-checkbox-checked--color--active: #00ffb9;
   --bd_theme-checkbox-checked--background--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-checkbox-checked--border-color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-checkbox-checked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bd_theme-checkbox-checked--color--disabled: rgba(255, 255, 255, 0.45);
   --bd_theme-checkbox-mixed--background: #000028;
   --bd_theme-checkbox-mixed--border-color: #fff;
@@ -1556,7 +1831,12 @@
   --bd_theme-radiobtn-unchecked--border-color: #fff;
   --bd_theme-radiobtn-unchecked--border-color--hover: #00ffb9;
   --bd_theme-radiobtn-unchecked--border-color--active: #00ffb9;
-  --bd_theme-radiobtn-unchecked--border-color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-radiobtn-unchecked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bd_theme-radiobtn-unchecked--background--hover: #001f39;
   --bd_theme-radiobtn-unchecked--background--active: #00182b;
   --bd_theme-radiobtn-unchecked--background--disabled: rgba(0, 0, 0, 0);
@@ -1581,7 +1861,12 @@
   --bd_theme-radiobtn-checked--border-color: #fff;
   --bd_theme-radiobtn-checked--border-color--hover: #00ffb9;
   --bd_theme-radiobtn-checked--border-color--active: #00ffb9;
-  --bd_theme-radiobtn-checked--border-color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-radiobtn-checked--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bd_theme-nav--background: #23233c;
   --bl_theme-nav--background: #f3f3f0;
   --bd_theme-avatar-btn--background: rgba(0, 0, 0, 0);
@@ -1658,7 +1943,12 @@
   --bd_theme-nav-item-secondary-icon--color: #fff;
   --bd_theme-nav-item-secondary-icon--color--hover: #fff;
   --bd_theme-nav-item-secondary-icon--color--active: #fff;
-  --bd_theme-nav-item-secondary-icon--color--disabled: rgba(255, 255, 255, 0.35);
+  --bd_theme-nav-item-secondary-icon--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.35
+  );
   --bd_theme-nav-item-secondary-icon--color--selected: #fff;
   --bl_theme-nav-item-secondary--background: rgba(255, 255, 255, 0);
   --bl_theme-nav-item-secondary--background--hover: rgba(189, 189, 174, 0.2);
@@ -1984,12 +2274,42 @@
   --bd_theme-select-list-item--background--disabled: rgba(0, 0, 0, 0);
   --bl_theme-select-list-item--background--selected: rgba(0, 255, 185, 0.18);
   --bd_theme-select-list-item--background--selected: rgba(0, 255, 185, 0.12);
-  --bl_theme-select-list-item--background--selected-hover: rgba(32, 197, 126, 0.22);
-  --bd_theme-select-list-item--background--selected-hover: rgba(104, 253, 191, 0.22);
-  --bl_theme-select-list-item--background--selected-active: rgba(0, 158, 103, 0.22);
-  --bd_theme-select-list-item--background--selected-active: rgba(115, 221, 175, 0.22);
-  --bl_theme-select-list-item--background--selected-disabled: rgba(255, 255, 255, 0);
-  --bd_theme-select-list-item--background--selected-disabled: rgba(125, 125, 120, 0.2);
+  --bl_theme-select-list-item--background--selected-hover: rgba(
+    32,
+    197,
+    126,
+    0.22
+  );
+  --bd_theme-select-list-item--background--selected-hover: rgba(
+    104,
+    253,
+    191,
+    0.22
+  );
+  --bl_theme-select-list-item--background--selected-active: rgba(
+    0,
+    158,
+    103,
+    0.22
+  );
+  --bd_theme-select-list-item--background--selected-active: rgba(
+    115,
+    221,
+    175,
+    0.22
+  );
+  --bl_theme-select-list-item--background--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --bd_theme-select-list-item--background--selected-disabled: rgba(
+    125,
+    125,
+    120,
+    0.2
+  );
   --bl_theme-select-list-item--color: #000028;
   --bd_theme-select-list-item--color: #fff;
   --bl_theme-select-list-item--color--hover: #000028;
@@ -2005,7 +2325,12 @@
   --bl_theme-select-list-item--color--selected-active: #000028;
   --bd_theme-select-list-item--color--selected-active: #fff;
   --bl_theme-select-list-item--color--selected-disabled: rgba(0, 0, 40, 0.3);
-  --bd_theme-select-list-item--color--selected-disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-select-list-item--color--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-select-list-item-check--color: #000028;
   --bd_theme-select-list-item-check--color: #fff;
   --bl_theme-select-list-item-check--color--hover: #000028;
@@ -2038,9 +2363,19 @@
   --bl_theme-tab-indicator--background--disabled: rgba(0, 0, 40, 0.2);
   --bd_theme-animated-tab-indicator--background: rgba(255, 255, 255, 0.45);
   --bl_theme-animated-tab-indicator--background: rgba(0, 0, 40, 0.2);
-  --bd_theme-animated-tab-indicator--background--hover: rgba(255, 255, 255, 0.45);
+  --bd_theme-animated-tab-indicator--background--hover: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-animated-tab-indicator--background--hover: rgba(0, 0, 40, 0.2);
-  --bd_theme-animated-tab-indicator--background--active: rgba(255, 255, 255, 0.45);
+  --bd_theme-animated-tab-indicator--background--active: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-animated-tab-indicator--background--active: rgba(0, 0, 40, 0.2);
   --bd_theme-animated-tab-indicator--background--selected: #00ffb9;
   --bl_theme-animated-tab-indicator--background--selected: #005159;
@@ -2094,7 +2429,12 @@
   --bd_theme-animated-tab-circle--border-color--selected: #00ffb9;
   --bl_theme-animated-tab-circle--border-color--selected: #005159;
   --bd_theme-animated-tab-circle--border-color--disabled: rgba(0, 0, 0, 0);
-  --bl_theme-animated-tab-circle--border-color--disabled: rgba(255, 255, 255, 0);
+  --bl_theme-animated-tab-circle--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bd_theme-tab-pill--border-color: rgba(255, 255, 255, 0.45);
   --bl_theme-tab-pill--border-color: rgba(0, 0, 40, 0.2);
   --bd_theme-tab-pill--border-color--hover: rgba(255, 255, 255, 0.45);
@@ -2296,23 +2636,53 @@
   --bl_theme-datepicker-day--background--selected-hover: #005d66;
   --bd_theme-datepicker-day--background--selected-active: #00f5b2;
   --bl_theme-datepicker-day--background--selected-active: #00464d;
-  --bd_theme-datepicker-day--background--selected-disabled: rgba(0, 255, 185, 0.3);
-  --bl_theme-datepicker-day--background--selected-disabled: rgba(0, 81, 89, 0.3);
+  --bd_theme-datepicker-day--background--selected-disabled: rgba(
+    0,
+    255,
+    185,
+    0.3
+  );
+  --bl_theme-datepicker-day--background--selected-disabled: rgba(
+    0,
+    81,
+    89,
+    0.3
+  );
   --bd_theme-datepicker-day--border-color--selected: rgba(0, 0, 0, 0);
   --bl_theme-datepicker-day--border-color--selected: rgba(255, 255, 255, 0);
   --bd_theme-datepicker-day--border-color--selected-hover: rgba(0, 0, 0, 0);
-  --bl_theme-datepicker-day--border-color--selected-hover: rgba(255, 255, 255, 0);
+  --bl_theme-datepicker-day--border-color--selected-hover: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bd_theme-datepicker-day--border-color--selected-active: rgba(0, 0, 0, 0);
-  --bl_theme-datepicker-day--border-color--selected-active: rgba(255, 255, 255, 0);
+  --bl_theme-datepicker-day--border-color--selected-active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bd_theme-datepicker-day--border-color--selected-disabled: rgba(0, 0, 0, 0);
-  --bl_theme-datepicker-day--border-color--selected-disabled: rgba(255, 255, 255, 0);
+  --bl_theme-datepicker-day--border-color--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bd_theme-datepicker-day--color--selected: #000028;
   --bl_theme-datepicker-day--color--selected: #fff;
   --bd_theme-datepicker-day--color--selected-hover: #000028;
   --bl_theme-datepicker-day--color--selected-hover: #fff;
   --bd_theme-datepicker-day--color--selected-active: #000028;
   --bl_theme-datepicker-day--color--selected-active: #fff;
-  --bd_theme-datepicker-day--color--selected-disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-datepicker-day--color--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-datepicker-day--color--selected-disabled: rgba(0, 0, 40, 0.3);
   --bd_theme-datepicker-day--background--range: rgba(0, 255, 185, 0.6);
   --bl_theme-datepicker-day--background--range: rgba(0, 81, 89, 0.75);
@@ -2329,7 +2699,12 @@
   --bd_theme-datepicker-day--border-color--range-active: rgba(0, 0, 0, 0);
   --bl_theme-datepicker-day--border-color--range-active: rgba(255, 255, 255, 0);
   --bd_theme-datepicker-day--border-color--range-disabled: rgba(0, 0, 0, 0);
-  --bl_theme-datepicker-day--border-color--range-disabled: rgba(255, 255, 255, 0);
+  --bl_theme-datepicker-day--border-color--range-disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bd_theme-datepicker-day--color--range: #000028;
   --bl_theme-datepicker-day--color--range: #fff;
   --bd_theme-datepicker-day--color--range-hover: #000028;
@@ -2368,40 +2743,90 @@
   --bl_theme-datepicker-today--background--selected-hover: #005d66;
   --bd_theme-datepicker-today--background--selected-active: #00f5b2;
   --bl_theme-datepicker-today--background--selected-active: #00464d;
-  --bd_theme-datepicker-today--background--selected-disabled: rgba(0, 255, 185, 0.3);
-  --bl_theme-datepicker-today--background--selected-disabled: rgba(0, 81, 89, 0.3);
+  --bd_theme-datepicker-today--background--selected-disabled: rgba(
+    0,
+    255,
+    185,
+    0.3
+  );
+  --bl_theme-datepicker-today--background--selected-disabled: rgba(
+    0,
+    81,
+    89,
+    0.3
+  );
   --bd_theme-datepicker-today--border-color--selected: #0cc;
   --bl_theme-datepicker-today--border-color--selected: #007993;
   --bd_theme-datepicker-today--border-color--selected-hover: #0cc;
   --bl_theme-datepicker-today--border-color--selected-hover: #007993;
   --bd_theme-datepicker-today--border-color--selected-active: #0cc;
   --bl_theme-datepicker-today--border-color--selected-active: #007993;
-  --bd_theme-datepicker-today--border-color--selected-disabled: rgba(0, 204, 204, 0.6);
-  --bl_theme-datepicker-today--border-color--selected-disabled: rgba(0, 121, 147, 0.3);
+  --bd_theme-datepicker-today--border-color--selected-disabled: rgba(
+    0,
+    204,
+    204,
+    0.6
+  );
+  --bl_theme-datepicker-today--border-color--selected-disabled: rgba(
+    0,
+    121,
+    147,
+    0.3
+  );
   --bd_theme-datepicker-today--color--selected: #000028;
   --bl_theme-datepicker-today--color--selected: #fff;
   --bd_theme-datepicker-today--color--selected-hover: #000028;
   --bl_theme-datepicker-today--color--selected-hover: #fff;
   --bd_theme-datepicker-today--color--selected-active: #000028;
   --bl_theme-datepicker-today--color--selected-active: #fff;
-  --bd_theme-datepicker-today--color--selected-disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-datepicker-today--color--selected-disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-datepicker-today--color--selected-disabled: rgba(0, 0, 40, 0.3);
   --bd_theme-datepicker-today--background--range: rgba(0, 255, 185, 0.12);
   --bl_theme-datepicker-today--background--range: rgba(0, 81, 89, 0.75);
-  --bd_theme-datepicker-today--background--range-hover: rgba(107, 255, 214, 0.6);
+  --bd_theme-datepicker-today--background--range-hover: rgba(
+    107,
+    255,
+    214,
+    0.6
+  );
   --bl_theme-datepicker-today--background--range-hover: rgba(0, 97, 107, 0.75);
   --bd_theme-datepicker-today--background--range-active: rgba(0, 245, 178, 0.6);
   --bl_theme-datepicker-today--background--range-active: rgba(0, 65, 71, 0.75);
-  --bd_theme-datepicker-today--background--range-disabled: rgba(0, 245, 178, 0.2);
-  --bl_theme-datepicker-today--background--range-disabled: rgba(0, 81, 89, 0.15);
+  --bd_theme-datepicker-today--background--range-disabled: rgba(
+    0,
+    245,
+    178,
+    0.2
+  );
+  --bl_theme-datepicker-today--background--range-disabled: rgba(
+    0,
+    81,
+    89,
+    0.15
+  );
   --bd_theme-datepicker-today--border-color--range: #0cc;
   --bl_theme-datepicker-today--border-color--range: #007993;
   --bl_theme-datepicker-today--border-color--range-hover: #007993;
   --bd_theme-datepicker-today--border-color--range-hover: #0cc;
   --bd_theme-datepicker-today--border-color--range-active: #0cc;
   --bl_theme-datepicker-today--border-color--range-active: #007993;
-  --bl_theme-datepicker-today--border-color--range-disabled: rgba(0, 121, 147, 0.3);
-  --bd_theme-datepicker-today--border-color--range-disabled: rgba(0, 204, 204, 0.6);
+  --bl_theme-datepicker-today--border-color--range-disabled: rgba(
+    0,
+    121,
+    147,
+    0.3
+  );
+  --bd_theme-datepicker-today--border-color--range-disabled: rgba(
+    0,
+    204,
+    204,
+    0.6
+  );
   --bd_theme-datepicker-today--color--range: #000028;
   --bl_theme-datepicker-today--color--range: #fff;
   --bd_theme-datepicker-today--color--range-hover: #000028;
@@ -2433,9 +2858,19 @@
   --bl_theme-btn-invisible-primary--border-color--hover: rgba(0, 0, 0, 0);
   --bd_theme-btn-invisible-primary--border-color--hover: rgba(255, 255, 255, 0);
   --bl_theme-btn-invisible-primary--border-color--active: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-primary--border-color--active: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-primary--border-color--active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bl_theme-btn-invisible-primary--border-color--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-primary--border-color--disabled: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-primary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bl_theme-btn-secondary--border-color: rgba(0, 0, 0, 0);
   --bd_theme-btn-secondary--border-color: rgba(255, 255, 255, 0);
   --bl_theme-btn-secondary--border-color--hover: rgba(0, 0, 0, 0);
@@ -2447,11 +2882,26 @@
   --bl_theme-btn-invisible-secondary--border-color: rgba(0, 0, 0, 0);
   --bd_theme-btn-invisible-secondary--border-color: rgba(255, 255, 255, 0);
   --bl_theme-btn-invisible-secondary--border-color--hover: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--hover: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-secondary--border-color--hover: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bl_theme-btn-invisible-secondary--border-color--active: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--active: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-secondary--border-color--active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --bl_theme-btn-invisible-secondary--border-color--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--disabled: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-secondary--border-color--disabled: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --cl_theme-color-std-bdr: rgba(65, 95, 117, 0.6);
   --bd_theme-map-navigation-logo--color: #fff;
   --bl_theme-map-navigation-logo--color: #000028;
@@ -2462,11 +2912,36 @@
   --bl_theme-map-navigation--background: #fff;
   --bl_theme-map-navigation-separator--background: rgba(0, 0, 40, 0.2);
   --bl_theme-btn-invisible-secondary--border-color--selected: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--selected: rgba(255, 255, 255, 0);
-  --bl_theme-btn-invisible-secondary--border-color--selected-hover: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--selected-hover: rgba(255, 255, 255, 0);
-  --bl_theme-btn-invisible-secondary--border-color--selected-active: rgba(0, 0, 0, 0);
-  --bd_theme-btn-invisible-secondary--border-color--selected-active: rgba(255, 255, 255, 0);
+  --bd_theme-btn-invisible-secondary--border-color--selected: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --bl_theme-btn-invisible-secondary--border-color--selected-hover: rgba(
+    0,
+    0,
+    0,
+    0
+  );
+  --bd_theme-btn-invisible-secondary--border-color--selected-hover: rgba(
+    255,
+    255,
+    255,
+    0
+  );
+  --bl_theme-btn-invisible-secondary--border-color--selected-active: rgba(
+    0,
+    0,
+    0,
+    0
+  );
+  --bd_theme-btn-invisible-secondary--border-color--selected-active: rgba(
+    255,
+    255,
+    255,
+    0
+  );
   --theme-color-static-black: #000;
   --theme-color-static-white: #fff;
   --bd_theme-overlay--background: rgba(0, 0, 40, 0.85);
@@ -2670,19 +3145,44 @@
   --bl_theme-workflow-step-icon-default--color: rgba(0, 0, 40, 0.7);
   --bd_theme-workflow-step-icon-default--color--selected: #00ffb9;
   --bl_theme-workflow-step-icon-default--color--selected: #005159;
-  --bd_theme-workflow-step-icon-default--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-workflow-step-icon-default--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-workflow-step-icon-default--color--disabled: rgba(0, 0, 40, 0.3);
   --bd_theme-workflow-step-icon-done--color: #0cc;
   --bl_theme-workflow-step-icon-done--color: #007993;
   --bd_theme-workflow-step-icon-done--color--selected: #00ffb9;
   --bl_theme-workflow-step-icon-done--color--selected: #005159;
-  --bd_theme-workflow-step-icon-done--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-workflow-step-icon-done--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-workflow-step-icon-done--color--disabled: rgba(0, 0, 40, 0.3);
-  --bd_theme-workflow-step-icon-success--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-workflow-step-icon-success--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-workflow-step-icon-success--color--disabled: rgba(0, 0, 40, 0.3);
-  --bd_theme-workflow-step-icon-warning--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-workflow-step-icon-warning--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-workflow-step-icon-warning--color--disabled: rgba(0, 0, 40, 0.3);
-  --bd_theme-workflow-step-icon-error--color--disabled: rgba(255, 255, 255, 0.45);
+  --bd_theme-workflow-step-icon-error--color--disabled: rgba(
+    255,
+    255,
+    255,
+    0.45
+  );
   --bl_theme-workflow-step-icon-error--color--disabled: rgba(0, 0, 40, 0.3);
   --bl_theme-tootlip--background: #f3f3f0;
   --bd_theme-tootlip--background: #23233c;
@@ -2741,10 +3241,30 @@
   --bd_theme-table-data-row--background--selected: rgba(0, 255, 185, 0.12);
   --bl_theme-table-data-row--background--disabled: rgba(255, 255, 255, 0);
   --bd_theme-table-data-row--background--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-table-data-row--background--selected-hover: rgba(104, 253, 191, 0.22);
-  --bl_theme-table-data-row--background--selected-hover: rgba(32, 197, 126, 0.22);
-  --bd_theme-table-data-row--background--selected-active: rgba(115, 221, 175, 0.22);
-  --bl_theme-table-data-row--background--selected-active: rgba(0, 158, 103, 0.22);
+  --bd_theme-table-data-row--background--selected-hover: rgba(
+    104,
+    253,
+    191,
+    0.22
+  );
+  --bl_theme-table-data-row--background--selected-hover: rgba(
+    32,
+    197,
+    126,
+    0.22
+  );
+  --bd_theme-table-data-row--background--selected-active: rgba(
+    115,
+    221,
+    175,
+    0.22
+  );
+  --bl_theme-table-data-row--background--selected-active: rgba(
+    0,
+    158,
+    103,
+    0.22
+  );
   --bl_theme-table-data-row--border-color: rgba(0, 0, 40, 0.3);
   --bd_theme-table-data-row--border-color: rgba(255, 255, 255, 0.3);
   --bl_theme-table-data-cell--border-color: rgba(0, 0, 0, 0);
@@ -2759,10 +3279,30 @@
   --bd_theme-table-data-cell--background--selected: rgba(0, 255, 185, 0.12);
   --bl_theme-table-data-cell--background--disabled: rgba(255, 255, 255, 0);
   --bd_theme-table-data-cell--background--disabled: rgba(0, 0, 0, 0);
-  --bd_theme-table-data-cell--background--selected-hover: rgba(104, 253, 191, 0.22);
-  --bl_theme-table-data-cell--background--selected-hover: rgba(32, 197, 126, 0.22);
-  --bd_theme-table-data-cell--background--selected-active: rgba(115, 221, 175, 0.22);
-  --bl_theme-table-data-cell--background--selected-active: rgba(0, 158, 103, 0.22);
+  --bd_theme-table-data-cell--background--selected-hover: rgba(
+    104,
+    253,
+    191,
+    0.22
+  );
+  --bl_theme-table-data-cell--background--selected-hover: rgba(
+    32,
+    197,
+    126,
+    0.22
+  );
+  --bd_theme-table-data-cell--background--selected-active: rgba(
+    115,
+    221,
+    175,
+    0.22
+  );
+  --bl_theme-table-data-cell--background--selected-active: rgba(
+    0,
+    158,
+    103,
+    0.22
+  );
   --bl_theme-table-data-cell--color: #000028;
   --bd_theme-table-data-cell--color: #fff;
   --bl_theme-table-data-cell--color-disabled: rgba(0, 0, 40, 0.3);
@@ -2776,11 +3316,36 @@
   --bl_theme-table-data-row-alt--background--selected: rgba(0, 236, 174, 0.22);
   --bd_theme-table-data-row-alt--background--selected: rgba(58, 255, 201, 0.16);
   --bl_theme-table-data-row-alt--background--disabled: rgba(0, 0, 40, 0.03);
-  --bd_theme-table-data-row-alt--background--disabled: rgba(255, 255, 255, 0.04);
-  --bl_theme-table-data-row-alt--background--selected-hover: rgba(30, 184, 120, 0.24);
-  --bd_theme-table-data-row-alt--background--selected-hover: rgba(123, 253, 199, 0.25);
-  --bl_theme-table-data-row-alt--background--selected-active: rgba(0, 161, 104, 0.22);
-  --bd_theme-table-data-row-alt--background--selected-active: rgba(132, 225, 185, 0.25);
+  --bd_theme-table-data-row-alt--background--disabled: rgba(
+    255,
+    255,
+    255,
+    0.04
+  );
+  --bl_theme-table-data-row-alt--background--selected-hover: rgba(
+    30,
+    184,
+    120,
+    0.24
+  );
+  --bd_theme-table-data-row-alt--background--selected-hover: rgba(
+    123,
+    253,
+    199,
+    0.25
+  );
+  --bl_theme-table-data-row-alt--background--selected-active: rgba(
+    0,
+    161,
+    104,
+    0.22
+  );
+  --bd_theme-table-data-row-alt--background--selected-active: rgba(
+    132,
+    225,
+    185,
+    0.25
+  );
   --bd_theme-table-group-splitter--background: rgba(255, 255, 255, 0.15);
   --bl_theme-table-group-splitter--background: rgba(0, 0, 40, 0.15);
   --bd_theme-table-group-splitter--background--hover: #00ffb9;
