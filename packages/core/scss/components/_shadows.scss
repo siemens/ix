@@ -1,7 +1,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-@import './define-theme-variable';
+@import './../theme/define-theme-variable';
 
 @mixin shadows {
   $box-shadow-lvl-1: 0 1px 4px 0 var(--theme-color-shadow-1),

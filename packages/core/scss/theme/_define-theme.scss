@@ -3,7 +3,7 @@
  */
 
 @import './define-theme-variable';
-@import './shadows';
+@import './../components/shadows';
 
 @mixin define-theme(
   $name,
