@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 type ThemeVariables = Record<string, string>;
 type Themes = Record<string, ThemeVariables>;
 
-const generateTargetPath = './scss/v7/theme';
+const generateTargetPath = './scss/theme';
 
 const copyrightHeader = `/*
 * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
