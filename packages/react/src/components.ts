@@ -65,6 +65,4 @@ export const IxTimePicker = /*@__PURE__*/createReactComponent<JSX.IxTimePicker, 
 export const IxToast = /*@__PURE__*/createReactComponent<JSX.IxToast, HTMLIxToastElement>('ix-toast');
 export const IxToastContainer = /*@__PURE__*/createReactComponent<JSX.IxToastContainer, HTMLIxToastContainerElement>('ix-toast-container');
 export const IxToggle = /*@__PURE__*/createReactComponent<JSX.IxToggle, HTMLIxToggleElement>('ix-toggle');
-export const IxTree = /*@__PURE__*/createReactComponent<JSX.IxTree, HTMLIxTreeElement>('ix-tree');
-export const IxTreeItem = /*@__PURE__*/createReactComponent<JSX.IxTreeItem, HTMLIxTreeItemElement>('ix-tree-item');
 export const IxUpload = /*@__PURE__*/createReactComponent<JSX.IxUpload, HTMLIxUploadElement>('ix-upload');

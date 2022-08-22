@@ -62,11 +62,18 @@ export class CwTree {
    */
   @Event() contextChange: EventEmitter<TreeContext>;
 
+  /**
+   * Emits removed nodes
+   */
+  @Event() nodeRemoved: EventEmitter<any>;
+
   private hyperlist: any;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
   private updates = new Map<string, UpdateCallback>();
+
+  private observer: MutationObserver;
 
   private getVirtualizerOptions() {
     const list = this.buildTreeList(this.model[this.root]);
@@ -197,6 +204,27 @@ export class CwTree {
   componentDidLoad() {
     const config = this.getVirtualizerOptions();
     this.hyperlist = new Hyperlist(this.host, config);
+
+    this.observer = new MutationObserver((records) => {
+      let removed = [];
+
+      records.forEach((record) => {
+        removed = [...removed, ...Array.from(record.removedNodes)];
+
+        record.addedNodes.forEach((an) => {
+          const index = removed.indexOf(an);
+          if (index >= 0) {
+            removed.splice(index, 1);
+          }
+        });
+      });
+
+      this.nodeRemoved.emit(removed);
+    });
+
+    this.observer.observe(this.host, {
+      childList: true,
+    });
   }
 
   componentWillRender() {
@@ -205,6 +233,7 @@ export class CwTree {
 
   disconnectedCallback() {
     this.hyperlist.destroy();
+    this.observer.disconnect();
   }
 
   @Watch('model')

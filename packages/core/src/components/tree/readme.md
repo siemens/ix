@@ -15,9 +15,10 @@
 
 ## Events
 
-| Event           | Description     | Type                                             |
-| --------------- | --------------- | ------------------------------------------------ |
-| `contextChange` | Context changed | `CustomEvent<{ [x: string]: TreeItemContext; }>` |
+| Event           | Description         | Type                                             |
+| --------------- | ------------------- | ------------------------------------------------ |
+| `contextChange` | Context changed     | `CustomEvent<{ [x: string]: TreeItemContext; }>` |
+| `nodeRemoved`   | Emits removed nodes | `CustomEvent<any>`                               |
 
 
 ----------------------------------------------

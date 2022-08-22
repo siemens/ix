@@ -139,7 +139,7 @@ export const config: Config = {
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../react/src/components.ts',
       includeDefineCustomElements: true,
-      excludeComponents: ['my-component'],
+      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item'],
     }),
     {
       type: 'dist',

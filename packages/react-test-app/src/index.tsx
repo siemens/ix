@@ -12,6 +12,8 @@ import './index.css';
 import { AGGrid } from './preview-examples/aggrid';
 import { ButtonGroup } from './preview-examples/button-group';
 import { Buttons } from './preview-examples/buttons';
+import { Tree } from './preview-examples/tree';
+import { TreeCustom } from './preview-examples/tree-custom';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -25,6 +27,8 @@ root.render(
       <Route path="/preview/buttons" element={<Buttons />} />
       <Route path="/preview/aggrid" element={<AGGrid />} />
       <Route path="/preview/button-group" element={<ButtonGroup />} />
+      <Route path="/preview/tree" element={<Tree />} />
+      <Route path="/preview/tree-custom" element={<TreeCustom />} />
     </Routes>
   </BrowserRouter>
 );

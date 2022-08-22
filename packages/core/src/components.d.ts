@@ -3069,6 +3069,10 @@ declare namespace LocalJSX {
          */
         "onContextChange"?: (event: CustomEvent<TreeContext>) => void;
         /**
+          * Emits removed nodes
+         */
+        "onNodeRemoved"?: (event: CustomEvent<any>) => void;
+        /**
           * Render function of tree items
          */
         "renderItem"?: (

@@ -1491,6 +1491,10 @@ export declare interface IxTree extends Components.IxTree {
    * Context changed 
    */
   contextChange: EventEmitter<CustomEvent<ICwTreeTreeContext>>;
+  /**
+   * Emits removed nodes 
+   */
+  nodeRemoved: EventEmitter<CustomEvent<any>>;
 
 }
 
@@ -1509,7 +1513,7 @@ export class IxTree {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['contextChange']);
+    proxyOutputs(this, this.el, ['contextChange', 'nodeRemoved']);
   }
 }
 
