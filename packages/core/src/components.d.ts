@@ -2078,7 +2078,7 @@ declare namespace LocalJSX {
         /**
           * Fire event after drawer is close
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onDrawerClose"?: (event: CustomEvent<any>) => void;
         /**
           * Fire event after drawer is open
          */

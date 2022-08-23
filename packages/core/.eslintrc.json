@@ -1,10 +1,10 @@
 {
-  "root": true,
+  "root": false,
   "extends": [
-      "plugin:@stencil/recommended"
+      "plugin:@stencil/recommended",
+      "./../../.eslintrc.json"
   ],
   "rules": {
-    "react/jsx-no-bind": 0,
     "@stencil/async-methods": 0,
     "@stencil/strict-boolean-conditions": 0
   }

@@ -57,7 +57,7 @@ export class CwDrawer {
   /**
    * Fire event after drawer is close
    */
-  @Event() close: EventEmitter;
+  @Event() drawerClose: EventEmitter;
 
   private static duration = 300;
   private callback = this.clickedOutside.bind(this);
@@ -84,7 +84,7 @@ export class CwDrawer {
         window.addEventListener('mousedown', this.callback);
       }, 300);
     } else {
-      this.close.emit();
+      this.drawerClose.emit();
       this.slideOutRight(this.divElement);
       window.removeEventListener('mousedown', this.callback);
     }

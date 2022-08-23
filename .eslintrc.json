@@ -1,0 +1,11 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+{
+  "root": true,
+  "rules": {
+    "react/jsx-no-bind": 0,
+    "react/jsx-uses-react": 0,
+    "react/react-in-jsx-scope": 0
+  }
+}

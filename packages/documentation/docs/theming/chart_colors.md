@@ -1,3 +1,0 @@
-# Chart Colors
-
-🚧 🚧 🚧 Under construction 🚧 🚧 🚧

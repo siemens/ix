@@ -5,6 +5,7 @@ import Props from './../auto-generated/ix-tile/props.md';
 import Events from './../auto-generated/ix-tile/events.md';
 
 import SourceTile from './../auto-generated/previews/web-component/tile.md';
+import SourceReactTile from './../auto-generated/previews/react/tile.md';
 
 # Tile
 
@@ -13,6 +14,9 @@ import SourceTile from './../auto-generated/previews/web-component/tile.md';
 <Preview name="tile" height="22rem">
   <TabItem value="javascript">
     <SourceTile />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactTile />
   </TabItem>
 </Preview>
 

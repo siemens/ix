@@ -10,6 +10,9 @@ import ItemEvents from './../auto-generated/ix-select-item/events.md';
 import SourceSplitButton from './../auto-generated/previews/web-component/split-button.md';
 import SourceSplitButtonIcons from './../auto-generated/previews/web-component/split-button-icons.md';
 
+import SourceReactSplitButton from './../auto-generated/previews/react/split-button.md';
+import SourceReactSplitButtonIcons from './../auto-generated/previews/react/split-button-icons.md';
+
 # Split Button
 
 ## Usage
@@ -18,6 +21,9 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
   <TabItem value="javascript">
     <SourceSplitButton />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactSplitButton />
+  </TabItem>
 </Preview>
 
 ### With icon only
@@ -25,6 +31,9 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
 <Preview name="split-button-icons" height="16rem">
   <TabItem value="javascript">
     <SourceSplitButtonIcons />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactSplitButtonIcons />
   </TabItem>
 </Preview>
 

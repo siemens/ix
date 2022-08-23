@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-22T10:40:49",
+  "timestamp": "2022-08-22T11:55:01",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -54,9 +54,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-animated-tab"
+        ]
+      }
     },
     {
       "filePath": "./src/components/animated-tabs/animated-tabs.tsx",
@@ -152,13 +158,18 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-animated-tabs": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-animated-tabs"
         ]
       }
     },
@@ -253,13 +264,18 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       }
     },
@@ -322,9 +338,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind"
+        ]
+      }
     },
     {
       "filePath": "./src/components/breadcrumb/breadcrumb.tsx",
@@ -411,7 +433,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown",
@@ -425,6 +449,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-breadcrumb"
         ]
       }
     },
@@ -476,9 +503,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-breadcrumb-item"
+        ]
+      }
     },
     {
       "filePath": "./src/components/button/button.tsx",
@@ -613,7 +646,8 @@
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-modal-example",
-        "ix-time-picker"
+        "ix-time-picker",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -627,6 +661,9 @@
           "ix-button"
         ],
         "ix-time-picker": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       }
@@ -1064,13 +1101,18 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-chip": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-chip"
         ]
       }
     },
@@ -1202,9 +1244,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-counter-pill"
+        ]
+      }
     },
     {
       "filePath": "./src/components/date-picker/date-picker.tsx",
@@ -1319,7 +1367,8 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -1340,6 +1389,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "my-component": [
           "ix-date-picker"
         ]
       }
@@ -1693,7 +1745,7 @@
       ],
       "events": [
         {
-          "event": "close",
+          "event": "drawerClose",
           "detail": "any",
           "bubbles": true,
           "cancelable": true,
@@ -2016,7 +2068,8 @@
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2039,6 +2092,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "my-component": [
           "ix-dropdown"
         ]
       }
@@ -2170,7 +2226,8 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -2195,6 +2252,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       }
@@ -2494,7 +2554,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-icon-button"
@@ -2506,6 +2568,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-expanding-search"
         ]
       }
     },
@@ -2554,7 +2619,8 @@
       "parts": [],
       "dependents": [
         "ix-category-filter",
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -2567,6 +2633,9 @@
           "ix-filter-chip"
         ],
         "ix-select": [
+          "ix-filter-chip"
+        ],
+        "my-component": [
           "ix-filter-chip"
         ]
       }
@@ -2631,7 +2700,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button"
       ],
@@ -2641,6 +2712,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-flip-tile"
         ]
       }
     },
@@ -2829,7 +2903,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-icon-button",
@@ -2848,6 +2924,9 @@
         ],
         "ix-group-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-group"
         ]
       }
     },
@@ -3059,7 +3138,8 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "ix-group"
+        "ix-group",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3069,6 +3149,9 @@
           "ix-icon"
         ],
         "ix-group": [
+          "ix-group-item"
+        ],
+        "my-component": [
           "ix-group-item"
         ]
       }
@@ -3170,7 +3253,8 @@
         "ix-select",
         "ix-split-button",
         "ix-toast",
-        "ix-tree-item"
+        "ix-tree-item",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3232,6 +3316,9 @@
           "ix-icon"
         ],
         "ix-tree-item": [
+          "ix-icon"
+        ],
+        "my-component": [
           "ix-icon"
         ]
       }
@@ -3455,7 +3542,8 @@
         "ix-modal-example",
         "ix-select",
         "ix-time-picker",
-        "ix-toast"
+        "ix-toast",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3508,6 +3596,9 @@
         ],
         "ix-toast": [
           "ix-icon-button"
+        ],
+        "my-component": [
+          "ix-icon-button"
         ]
       }
     },
@@ -3526,9 +3617,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-input-group"
+        ]
+      }
     },
     {
       "filePath": "./src/components/map-navigation/map-navigation.tsx",
@@ -4142,7 +4239,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown"
@@ -4151,6 +4250,9 @@
         "ix-menu": [
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       }
     },
@@ -4920,11 +5022,15 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "ix-menu"
+        "ix-menu",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       }
@@ -5127,7 +5233,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-icon-button"
@@ -5139,6 +5247,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-message-bar"
         ]
       }
     },
@@ -5556,7 +5667,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-modal"
       ],
@@ -5566,6 +5679,9 @@
         ],
         "ix-modal": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-modal-container"
         ]
       }
     },
@@ -5594,7 +5710,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button",
         "ix-button"
@@ -5606,6 +5724,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-modal-example"
         ]
       }
     },
@@ -5753,13 +5874,18 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-pill": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-pill"
         ]
       }
     },
@@ -5971,7 +6097,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6000,6 +6128,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-select"
         ]
       }
     },
@@ -6113,7 +6244,8 @@
       "slots": [],
       "parts": [],
       "dependents": [
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -6126,6 +6258,9 @@
           "ix-icon"
         ],
         "ix-select": [
+          "ix-select-item"
+        ],
+        "my-component": [
           "ix-select-item"
         ]
       }
@@ -6450,7 +6585,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown"
@@ -6459,6 +6596,9 @@
         "ix-split-button": [
           "ix-icon",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-split-button"
         ]
       }
     },
@@ -6520,7 +6660,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown-item"
       ],
@@ -6530,6 +6672,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-split-button-item"
         ]
       }
     },
@@ -6663,7 +6808,8 @@
       "parts": [],
       "dependents": [
         "ix-menu-about",
-        "ix-menu-settings"
+        "ix-menu-settings",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -6671,6 +6817,9 @@
           "ix-tab-item"
         ],
         "ix-menu-settings": [
+          "ix-tab-item"
+        ],
+        "my-component": [
           "ix-tab-item"
         ]
       }
@@ -6778,7 +6927,8 @@
       "parts": [],
       "dependents": [
         "ix-menu-about",
-        "ix-menu-settings"
+        "ix-menu-settings",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -6786,6 +6936,9 @@
           "ix-tabs"
         ],
         "ix-menu-settings": [
+          "ix-tabs"
+        ],
+        "my-component": [
           "ix-tabs"
         ]
       }
@@ -6832,9 +6985,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-tile"
+        ]
+      }
     },
     {
       "filePath": "./src/components/time-picker/time-picker.tsx",
@@ -7260,7 +7419,9 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-toast"
       ],
@@ -7274,6 +7435,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-toast-container"
         ]
       }
     },
@@ -7452,9 +7616,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "my-component": [
+          "ix-toggle"
+        ]
+      }
     },
     {
       "filePath": "./src/components/tree/tree.tsx",
@@ -7553,9 +7723,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-tree-item"
       ],
@@ -7565,9 +7733,6 @@
         ],
         "ix-tree-item": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-tree"
         ]
       }
     },
@@ -7895,17 +8060,171 @@
       "parts": [],
       "dependents": [],
       "dependencies": [
-        "ix-tree"
+        "ix-modal-example",
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-item",
+        "ix-date-picker",
+        "ix-button",
+        "ix-modal-container",
+        "ix-toggle",
+        "ix-group",
+        "ix-group-item",
+        "ix-icon",
+        "ix-tabs",
+        "ix-tab-item",
+        "ix-message-bar",
+        "ix-animated-tabs",
+        "ix-animated-tab",
+        "ix-flip-tile",
+        "ix-tile",
+        "ix-icon-button",
+        "ix-select",
+        "ix-select-item",
+        "ix-filter-chip",
+        "ix-breadcrumb",
+        "ix-breadcrumb-item",
+        "ix-counter-pill",
+        "ix-pill",
+        "ix-chip",
+        "ix-blind",
+        "ix-split-button",
+        "ix-split-button-item",
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-input-group",
+        "ix-expanding-search",
+        "ix-toast-container"
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-tree"
+          "ix-modal-example",
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-item",
+          "ix-date-picker",
+          "ix-button",
+          "ix-modal-container",
+          "ix-toggle",
+          "ix-group",
+          "ix-group-item",
+          "ix-icon",
+          "ix-tabs",
+          "ix-tab-item",
+          "ix-message-bar",
+          "ix-animated-tabs",
+          "ix-animated-tab",
+          "ix-flip-tile",
+          "ix-tile",
+          "ix-icon-button",
+          "ix-select",
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-breadcrumb",
+          "ix-breadcrumb-item",
+          "ix-counter-pill",
+          "ix-pill",
+          "ix-chip",
+          "ix-blind",
+          "ix-split-button",
+          "ix-split-button-item",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-input-group",
+          "ix-expanding-search",
+          "ix-toast-container"
         ],
-        "ix-tree": [
-          "ix-tree-item"
+        "ix-modal-example": [
+          "ix-icon-button",
+          "ix-button"
         ],
-        "ix-tree-item": [
+        "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
+        ],
+        "ix-modal-container": [
+          "ix-modal"
+        ],
+        "ix-modal": [
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-group-item"
+        ],
+        "ix-group-item": [
+          "ix-icon"
+        ],
+        "ix-message-bar": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-animated-tabs": [
+          "ix-icon"
+        ],
+        "ix-flip-tile": [
+          "ix-icon-button"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-pill": [
+          "ix-icon"
+        ],
+        "ix-chip": [
+          "ix-icon"
+        ],
+        "ix-split-button": [
+          "ix-icon",
+          "ix-dropdown"
+        ],
+        "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-expanding-search": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-toast-container": [
+          "ix-toast"
+        ],
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
         ]
       }
     }

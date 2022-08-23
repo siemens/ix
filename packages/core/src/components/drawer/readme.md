@@ -17,10 +17,10 @@
 
 ## Events
 
-| Event   | Description                      | Type               |
-| ------- | -------------------------------- | ------------------ |
-| `close` | Fire event after drawer is close | `CustomEvent<any>` |
-| `open`  | Fire event after drawer is open  | `CustomEvent<any>` |
+| Event         | Description                      | Type               |
+| ------------- | -------------------------------- | ------------------ |
+| `drawerClose` | Fire event after drawer is close | `CustomEvent<any>` |
+| `open`        | Fire event after drawer is open  | `CustomEvent<any>` |
 
 
 ## Methods

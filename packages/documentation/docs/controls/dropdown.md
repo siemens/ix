@@ -10,6 +10,9 @@ import ItemEvents from './../auto-generated/ix-dropdown/events.md';
 import SourceDropdown from './../auto-generated/previews/web-component/dropdown.md'
 import SourceDropdownIcon from './../auto-generated/previews/web-component/dropdown-icon.md'
 
+import SourceReactDropdown from './../auto-generated/previews/react/dropdown.md'
+import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown-icon.md'
+
 # Dropdown
 
 ## Usage
@@ -18,6 +21,9 @@ import SourceDropdownIcon from './../auto-generated/previews/web-component/dropd
   <TabItem value="javascript">
     <SourceDropdown />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactDropdown />
+  </TabItem>
 </Preview>
 
 ### Dropdown with icon
@@ -25,6 +31,9 @@ import SourceDropdownIcon from './../auto-generated/previews/web-component/dropd
 <Preview name="dropdown-icon" height="16rem">
   <TabItem value="javascript">
     <SourceDropdownIcon />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactDropdownIcon />
   </TabItem>
 </Preview>
 

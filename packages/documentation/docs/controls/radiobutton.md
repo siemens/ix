@@ -2,6 +2,7 @@ import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
 import SourceRadio from './../auto-generated/previews/web-component/radio-button.md';
+import SourceReactRadio from './../auto-generated/previews/react/radio-button.md';
 
 # Radiobutton
 
@@ -10,5 +11,8 @@ import SourceRadio from './../auto-generated/previews/web-component/radio-button
 <Preview name="radio-button">
   <TabItem value="javascript">
     <SourceRadio />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactRadio />
   </TabItem>
 </Preview>

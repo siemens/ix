@@ -4,6 +4,7 @@ import Props from './../auto-generated/ix-datetime-picker/props.md';
 import Events from './../auto-generated/ix-datetime-picker/events.md';
 
 import SourceDatetimepicker from './../auto-generated/previews/web-component/datetimepicker.md'
+import SourceReactDatetimepicker from './../auto-generated/previews/react/datetimepicker.md'
 
 # Datetimepicker
 
@@ -12,6 +13,9 @@ import SourceDatetimepicker from './../auto-generated/previews/web-component/dat
 <Preview name="datetimepicker" height="35rem">
   <TabItem value="javascript">
     <SourceDatetimepicker />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactDatetimepicker />
   </TabItem>
 </Preview>
 

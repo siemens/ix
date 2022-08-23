@@ -11,7 +11,6 @@ import {Card, CardList} from '@site/src/components/Card';
   <Card label="Theme overview" isPrimary={true} link="theme"/>
   <Card label="Animation" link="animation"/>
   <Card label="Border" link="border"/>
-  <Card label="Chart Colors" link="chart_colors" />
   <Card label="Colors" link="colors" />
   <Card label="Fonts" link="fonts" />
 </CardList>

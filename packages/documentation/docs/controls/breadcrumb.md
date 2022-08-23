@@ -10,6 +10,10 @@ import SourceBreadcrumb from './../auto-generated/previews/web-component/breadcr
 import SourceBreadcrumbTruncate from './../auto-generated/previews/web-component/breadcrumb-truncate.md'
 import SourceBreadcrumbNextItems from './../auto-generated/previews/web-component/breadcrumb-next-items.md'
 
+import SourceReactBreadcrumb from './../auto-generated/previews/react/breadcrumb.md'
+import SourceReactBreadcrumbTruncate from './../auto-generated/previews/react/breadcrumb-truncate.md'
+import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/breadcrumb-next-items.md'
+
 # Breadcrumb
 
 ## Usage
@@ -17,6 +21,9 @@ import SourceBreadcrumbNextItems from './../auto-generated/previews/web-componen
 <Preview name="breadcrumb" height="8rem">
   <TabItem value="javascript">
     <SourceBreadcrumb />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactBreadcrumb />
   </TabItem>
 </Preview>
 
@@ -26,6 +33,9 @@ import SourceBreadcrumbNextItems from './../auto-generated/previews/web-componen
   <TabItem value="javascript">
     <SourceBreadcrumbTruncate />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactBreadcrumbTruncate />
+  </TabItem>
 </Preview>
 
 ### Lazy loaded next items
@@ -33,6 +43,9 @@ import SourceBreadcrumbNextItems from './../auto-generated/previews/web-componen
 <Preview name="breadcrumb-next-items" height="8rem">
   <TabItem value="javascript">
     <SourceBreadcrumbNextItems />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactBreadcrumbNextItems />
   </TabItem>
 </Preview>
 

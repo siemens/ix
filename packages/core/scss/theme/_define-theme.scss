@@ -24,6 +24,8 @@
       @include define-theme-variable($size-name, $size-value);
     }
 
+    @include shadows;
+
     @content;
   }
 }

@@ -42,6 +42,10 @@
   }
 }
 
+.form-control:focus {
+  color: var(--theme-input--color);
+}
+
 .form-control[type='number'] {
   &::-webkit-inner-spin-button {
     margin-right: -2px;

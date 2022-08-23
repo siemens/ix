@@ -11,6 +11,10 @@ import SourceSelect from './../auto-generated/previews/web-component/select.md';
 import SourceEditable from './../auto-generated/previews/web-component/select-editable.md';
 import SourceMultiple from './../auto-generated/previews/web-component/select-multiple.md';
 
+import SourceReactSelect from './../auto-generated/previews/react/select.md';
+import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
+import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
+
 # Select
 
 ## Usage
@@ -18,6 +22,9 @@ import SourceMultiple from './../auto-generated/previews/web-component/select-mu
 <Preview name="select" height="18rem">
   <TabItem value="javascript">
     <SourceSelect />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactSelect />
   </TabItem>
 </Preview>
 
@@ -27,6 +34,9 @@ import SourceMultiple from './../auto-generated/previews/web-component/select-mu
   <TabItem value="javascript">
     <SourceEditable />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactEditable />
+  </TabItem>
 </Preview>
 
 ### Multiselect
@@ -34,6 +44,9 @@ import SourceMultiple from './../auto-generated/previews/web-component/select-mu
 <Preview name="select-multiple" height="18rem">
   <TabItem value="javascript">
     <SourceMultiple />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactMultiple />
   </TabItem>
 </Preview>
 

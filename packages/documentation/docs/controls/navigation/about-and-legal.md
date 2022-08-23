@@ -3,38 +3,32 @@ sidebar_position: 3
 title: About and legal
 ---
 
-import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Demo from '@site/src/components/Demo';
 import Props from './../../auto-generated/ix-menu-about/props.md';
 import Events from './../../auto-generated/ix-menu-about/events.md';
 import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
+import Preview from '@site/src/components/Preview';
 
-import WebComponent from './../../auto-generated/previews/web-component/about-and-legal.md'
+import SourceWebComponent from './../../auto-generated/previews/web-component/about-and-legal.md'
+import SourceReact from './../../auto-generated/previews/react/about-and-legal.md'
 
 ## Usage
 
-<Tabs groupId="about-and-legal" defaultValue="preview" values={[{ value: 'preview', label: 'Preview' }, { value: 'angular', label: 'Angular' }, { value: 'javascript', label: 'Javascript' }, { value: 'react', label: 'React' }]}>
-
-<TabItem value="preview">
-
-<Demo name="about-and-legal" height="30rem" noMargin></Demo>
-
-</TabItem>
-
-<TabItem value="javascript">
-
-<WebComponent />
-
-</TabItem>
-
-</Tabs>
+<Preview name="about-and-legal" height="30rem">
+  <TabItem value="javascript">
+    <SourceWebComponent />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReact />
+  </TabItem>
+</Preview>
 
 ## Change language of legal links
 
 Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
-### ix-menu-about
+## Properties (ix-menu-about)
 
 #### Props
 
@@ -44,7 +38,7 @@ Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
 <Events />
 
-### ix-menu-about-item
+## Properties (ix-menu-about-item)
 
 #### Props
 

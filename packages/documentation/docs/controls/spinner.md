@@ -7,6 +7,9 @@ import Events from './../auto-generated/ix-spinner/events.md';
 import SourceSpinner from './../auto-generated/previews/web-component/spinner.md';
 import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinner-large.md';
 
+import SourceReactSpinner from './../auto-generated/previews/react/spinner.md';
+import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-large.md';
+
 # Spinner
 
 ## Usage
@@ -15,6 +18,9 @@ import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinn
   <TabItem value="javascript">
     <SourceSpinner />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactSpinner />
+  </TabItem>
 </Preview>
 
 ### Large
@@ -22,6 +28,9 @@ import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinn
 <Preview name="spinner-large" height="16rem">
   <TabItem value="javascript">
     <SourceSpinnerLarge />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactSpinnerLarge />
   </TabItem>
 </Preview>
 

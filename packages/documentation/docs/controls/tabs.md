@@ -8,6 +8,7 @@ import ItemProps from './../auto-generated/ix-tab-item/props.md';
 import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
 import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
+import SourceReactTabs from './../auto-generated/previews/react/tabs.md';
 
 # Tabs
 
@@ -16,6 +17,9 @@ import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
 <Preview name="tabs" height="20rem">
   <TabItem value="javascript"> 
     <SourceTabs />
+  </TabItem>
+  <TabItem value="react"> 
+    <SourceReactTabs />
   </TabItem>
 </Preview>
 

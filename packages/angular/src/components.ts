@@ -372,7 +372,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
   /**
    * Fire event after drawer is close 
    */
-  close: EventEmitter<CustomEvent<any>>;
+  drawerClose: EventEmitter<CustomEvent<any>>;
 
 }
 
@@ -392,7 +392,7 @@ export class IxDrawer {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['open', 'close']);
+    proxyOutputs(this, this.el, ['open', 'drawerClose']);
   }
 }
 

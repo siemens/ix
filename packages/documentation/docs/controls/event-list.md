@@ -12,6 +12,11 @@ import SourceEventListSelected from './../auto-generated/previews/web-component/
 import SourceEventListHeight from './../auto-generated/previews/web-component/event-list-custom-item-height.md'
 import SourceEventListCompact from './../auto-generated/previews/web-component/event-list-compact.md'
 
+import SourceReactEventList from './../auto-generated/previews/react/event-list.md'
+import SourceReactEventListSelected from './../auto-generated/previews/react/event-list-selected.md'
+import SourceReactEventListHeight from './../auto-generated/previews/react/event-list-custom-item-height.md'
+import SourceReactEventListCompact from './../auto-generated/previews/react/event-list-compact.md'
+
 # Event List
 
 ## Usage
@@ -19,6 +24,9 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
 <Preview name="event-list" height="14rem">
   <TabItem value="javascript">
     <SourceEventList />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactEventList />
   </TabItem>
 </Preview>
 
@@ -28,6 +36,9 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
   <TabItem value="javascript">
     <SourceEventListSelected />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactEventListSelected />
+  </TabItem>
 </Preview>
 
 ### Custom item height
@@ -36,6 +47,9 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
   <TabItem value="javascript">
     <SourceEventListHeight />
   </TabItem>
+  <TabItem value="react">
+    <SourceReactEventListHeight />
+  </TabItem>
 </Preview>
 
 ### Compact
@@ -43,6 +57,9 @@ import SourceEventListCompact from './../auto-generated/previews/web-component/e
 <Preview name="event-list-compact" height="14rem">
   <TabItem value="javascript">
     <SourceEventListCompact />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactEventListCompact />
   </TabItem>
 </Preview>
 

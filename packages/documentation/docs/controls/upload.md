@@ -5,6 +5,7 @@ import Props from './../auto-generated/ix-upload/props.md';
 import Events from './../auto-generated/ix-upload/events.md';
 
 import SourceUpload from './../auto-generated/previews/web-component/upload.md';
+import SourceReactUpload from './../auto-generated/previews/react/upload.md';
 
 # Upload
 
@@ -13,6 +14,9 @@ import SourceUpload from './../auto-generated/previews/web-component/upload.md';
 <Preview name="upload" height="5rem">
   <TabItem value="javascript">
     <SourceUpload />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactUpload />
   </TabItem>
 </Preview>
 

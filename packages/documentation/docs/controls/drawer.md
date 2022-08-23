@@ -6,6 +6,9 @@ import Events from './../auto-generated/ix-drawer/events.md';
 import SourceDrawer from './../auto-generated/previews/web-component/drawer.md'
 import SourceDrawerFullHeight from './../auto-generated/previews/web-component/drawer-full-height.md'
 
+import SourceReactDrawer from './../auto-generated/previews/react/drawer.md'
+import SourceReactDrawerFullHeight from './../auto-generated/previews/react/drawer-full-height.md'
+
 # Drawer
 
 ## Usage
@@ -14,6 +17,10 @@ import SourceDrawerFullHeight from './../auto-generated/previews/web-component/d
   <TabItem value="javascript">
     <SourceDrawer />
   </TabItem>
+
+  <TabItem value="react">
+    <SourceReactDrawer />
+  </TabItem>
 </Preview>
 
 ### Auto height
@@ -21,6 +28,9 @@ import SourceDrawerFullHeight from './../auto-generated/previews/web-component/d
 <Preview name="drawer" height="24rem">
   <TabItem value="javascript">
     <SourceDrawerFullHeight />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactDrawerFullHeight />
   </TabItem>
 </Preview>
 
