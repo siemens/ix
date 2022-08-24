@@ -43,10 +43,12 @@ import { InputReadonly } from './preview-examples/input-readonly';
 import { InputWithIcon } from './preview-examples/input-with-icon';
 import { MessageBar } from './preview-examples/message-bar';
 import { Pill } from './preview-examples/pill';
+import { PopoverNews } from './preview-examples/popover-news';
 import { RadioButton } from './preview-examples/radio-button';
 import { Select } from './preview-examples/select';
 import { SelectEditable } from './preview-examples/select-editable';
 import { SelectMultiple } from './preview-examples/select-multiple';
+import { Settings } from './preview-examples/settings';
 import { Spinner } from './preview-examples/spinner';
 import { SpinnerLarge } from './preview-examples/spinner-large';
 import { Splitbutton } from './preview-examples/split-button';
@@ -79,7 +81,27 @@ root.render(
         path="/preview/checkbox-indeterminate"
         element={<CheckboxIndeterminate />}
       />
+      <Route path="/preview/checkbox" element={<Checkbox />} />
+      <Route
+        path="/preview/checkbox-indeterminate"
+        element={<CheckboxIndeterminate />}
+      />
       <Route path="/preview/buttons" element={<Buttons />} />
+      <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
+      <Route path="/preview/button-selected" element={<ButtonSelected />} />
+      <Route path="/preview/button-group" element={<ButtonGroup />} />
+
+      <Route path="/preview/blind" element={<Blind />} />
+      <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
+      <Route
+        path="/preview/breadcrumb-next-items"
+        element={<BreadcrumbNextItems />}
+      />
+      <Route
+        path="/preview/breadcrumb-truncate"
+        element={<BreadcrumbTruncate />}
+      />
+      <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
       <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
       <Route path="/preview/button-selected" element={<ButtonSelected />} />
       <Route path="/preview/button-group" element={<ButtonGroup />} />
@@ -166,6 +188,8 @@ root.render(
       />
       <Route path="/preview/tree" element={<Tree />} />
       <Route path="/preview/tree-custom" element={<TreeCustom />} />
+      <Route path="/preview/popover-news" element={<PopoverNews />} />
+      <Route path="/preview/settings" element={<Settings />} />
     </Routes>
   </BrowserRouter>
 );

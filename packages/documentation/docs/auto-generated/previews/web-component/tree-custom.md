@@ -20,8 +20,8 @@
 
       const name = document.createElement('span');
       const icon = document.createElement('ix-icon');
-      icon.name = 'print';
-      icon.style.marginRight = '1rem';
+      icon.name = item.data.icon;
+      icon.style.marginRight = '0.5rem';
 
       div.appendChild(icon);
       div.appendChild(name);
@@ -48,6 +48,7 @@
         id: 'sample',
         data: {
           name: 'Sample',
+          icon: 'star',
         },
         hasChildren: true,
         children: ['sample-child-1', 'sample-child-2'],
@@ -56,6 +57,7 @@
         id: 'sample-child-1',
         data: {
           name: 'Sample Child 1',
+          icon: 'cut',
         },
         hasChildren: false,
         children: [],
@@ -64,6 +66,7 @@
         id: 'sample-child-2',
         data: {
           name: 'Sample Child 2',
+          icon: 'print',
         },
         hasChildren: false,
         children: [],

@@ -1,0 +1,33 @@
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buttons example</title>
+    <link
+      rel="stylesheet"
+      href="lib/core-ui-icons/dist/css/core-ui-webfont.css"
+    />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <script type="module">
+      import { modal } from './lib/ix/dist/index.js';
+
+      (async function () {
+        modal({
+          content: 'test',
+          title: 'title',
+        });
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

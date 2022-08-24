@@ -16,8 +16,11 @@ import AvatarEvents from './../../auto-generated/ix-menu-avatar/events.md';
 import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md';
 import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
 
-import WebComponent from './../../auto-generated/previews/web-component/vertical-tabs.md'
-import WebComponentWithAvatar from './../../auto-generated/previews/web-component/vertical-tabs-with-avatar.md'
+import SourceMenu from './../../auto-generated/previews/web-component/vertical-tabs.md'
+import SourceMenuWithAvatar from './../../auto-generated/previews/web-component/vertical-tabs-with-avatar.md'
+
+import SourceReactMenu from './../../auto-generated/previews/react/vertical-tabs.md'
+import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/vertical-tabs-with-avatar.md'
 
 # Navigation Menu
 
@@ -25,7 +28,10 @@ import WebComponentWithAvatar from './../../auto-generated/previews/web-componen
 
 <Preview name="vertical-tabs" height="30rem" noMargin>
   <TabItem value="javascript">
-    <WebComponent />
+    <SourceMenu />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactMenu />
   </TabItem>
 </Preview>
 
@@ -33,7 +39,10 @@ import WebComponentWithAvatar from './../../auto-generated/previews/web-componen
 
 <Preview name="vertical-tabs-with-avatar" height="30rem" noMargin>
   <TabItem value="javascript">
-    <WebComponentWithAvatar />
+    <SourceMenuWithAvatar />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactMenuWithAvatar />
   </TabItem>
 </Preview>
 

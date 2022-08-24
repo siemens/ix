@@ -44,10 +44,10 @@ export class CwTree {
   /**
    * Render function of tree items
    */
-  @Prop() renderItem: (
+  @Prop() renderItem: <T = any>(
     index: number,
-    data: any,
-    dataList: Array<any>,
+    data: T,
+    dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void
   ) => HTMLElement;

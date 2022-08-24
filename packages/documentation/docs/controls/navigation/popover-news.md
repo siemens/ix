@@ -3,15 +3,19 @@ import Preview from '@site/src/components/Preview';
 import Props from './../../auto-generated/ix-menu-about-news/props.md';
 import Events from './../../auto-generated/ix-menu-about-news/events.md';
 
-import WebComponent from './../../auto-generated/previews/web-component/popover-news.md'
+import SourcePopoverNews from './../../auto-generated/previews/web-component/popover-news.md'
+import SourceReactPopoverNews from './../../auto-generated/previews/react/popover-news.md'
 
 # Popover News
 
 ## Usage
 
 <Preview name="popover-news" height="30rem" noMargin>
-  <TabItem value="javascript" key="javascript">
-    <WebComponent />
+  <TabItem value="javascript">
+    <SourcePopoverNews />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactPopoverNews />
   </TabItem>
 </Preview>
 

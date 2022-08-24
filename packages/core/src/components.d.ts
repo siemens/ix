@@ -1239,10 +1239,10 @@ export namespace Components {
         /**
           * Render function of tree items
          */
-        "renderItem": (
+        "renderItem": <T = any>(
     index: number,
-    data: any,
-    dataList: Array<any>,
+    data: T,
+    dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void
   ) => HTMLElement;
@@ -3075,10 +3075,10 @@ declare namespace LocalJSX {
         /**
           * Render function of tree items
          */
-        "renderItem"?: (
+        "renderItem"?: <T = any>(
     index: number,
-    data: any,
-    dataList: Array<any>,
+    data: T,
+    dataList: Array<T>,
     context: TreeContext,
     update: (callback: UpdateCallback) => void
   ) => HTMLElement;

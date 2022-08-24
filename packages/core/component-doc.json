@@ -54,14 +54,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-animated-tab"
-        ]
+        "my-component": ["ix-animated-tab"]
       }
     },
     {
@@ -158,19 +154,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-animated-tabs"
-        ]
+        "ix-animated-tabs": ["ix-icon"],
+        "my-component": ["ix-animated-tabs"]
       }
     },
     {
@@ -205,14 +193,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-basic-navigation"
-      ],
+      "dependents": ["ix-basic-navigation"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ]
+        "ix-basic-navigation": ["ix-application-header"]
       }
     },
     {
@@ -264,19 +248,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-application-header"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-application-header"],
       "dependencyGraph": {
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "my-component": [
-          "ix-basic-navigation"
-        ]
+        "ix-basic-navigation": ["ix-application-header"],
+        "my-component": ["ix-basic-navigation"]
       }
     },
     {
@@ -338,14 +314,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-blind"
-        ]
+        "my-component": ["ix-blind"]
       }
     },
     {
@@ -433,26 +405,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-dropdown",
-        "ix-dropdown-item"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon", "ix-dropdown", "ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-breadcrumb": [
-          "ix-icon",
-          "ix-dropdown",
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-breadcrumb"
-        ]
+        "ix-breadcrumb": ["ix-icon", "ix-dropdown", "ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "my-component": ["ix-breadcrumb"]
       }
     },
     {
@@ -503,14 +461,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-breadcrumb-item"
-        ]
+        "my-component": ["ix-breadcrumb-item"]
       }
     },
     {
@@ -651,21 +605,11 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-date-picker": [
-          "ix-button"
-        ],
-        "ix-datetime-picker": [
-          "ix-button"
-        ],
-        "ix-modal-example": [
-          "ix-button"
-        ],
-        "ix-time-picker": [
-          "ix-button"
-        ],
-        "my-component": [
-          "ix-button"
-        ]
+        "ix-date-picker": ["ix-button"],
+        "ix-datetime-picker": ["ix-button"],
+        "ix-modal-example": ["ix-button"],
+        "ix-time-picker": ["ix-button"],
+        "my-component": ["ix-button"]
       }
     },
     {
@@ -916,18 +860,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-icon",
-        "ix-filter-chip"
-      ],
+      "dependencies": ["ix-icon", "ix-filter-chip"],
       "dependencyGraph": {
-        "ix-category-filter": [
-          "ix-icon",
-          "ix-filter-chip"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ]
+        "ix-category-filter": ["ix-icon", "ix-filter-chip"],
+        "ix-filter-chip": ["ix-icon"]
       }
     },
     {
@@ -1101,19 +1037,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-chip"
-        ]
+        "ix-chip": ["ix-icon"],
+        "my-component": ["ix-chip"]
       }
     },
     {
@@ -1244,14 +1172,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-counter-pill"
-        ]
+        "my-component": ["ix-counter-pill"]
       }
     },
     {
@@ -1366,10 +1290,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-datetime-picker",
-        "my-component"
-      ],
+      "dependents": ["ix-datetime-picker", "my-component"],
       "dependencies": [
         "ix-date-time-card",
         "ix-icon-button",
@@ -1385,15 +1306,9 @@
           "ix-dropdown",
           "ix-icon"
         ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-datetime-picker": [
-          "ix-date-picker"
-        ],
-        "my-component": [
-          "ix-date-picker"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-datetime-picker": ["ix-date-picker"],
+        "my-component": ["ix-date-picker"]
       }
     },
     {
@@ -1455,18 +1370,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-date-picker",
-        "ix-time-picker"
-      ],
+      "dependents": ["ix-date-picker", "ix-time-picker"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-date-picker": [
-          "ix-date-time-card"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card"
-        ]
+        "ix-date-picker": ["ix-date-time-card"],
+        "ix-time-picker": ["ix-date-time-card"]
       }
     },
     {
@@ -1581,17 +1489,9 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-date-picker",
-        "ix-time-picker",
-        "ix-button"
-      ],
+      "dependencies": ["ix-date-picker", "ix-time-picker", "ix-button"],
       "dependencyGraph": {
-        "ix-datetime-picker": [
-          "ix-date-picker",
-          "ix-time-picker",
-          "ix-button"
-        ],
+        "ix-datetime-picker": ["ix-date-picker", "ix-time-picker", "ix-button"],
         "ix-date-picker": [
           "ix-date-time-card",
           "ix-icon-button",
@@ -1599,14 +1499,8 @@
           "ix-dropdown",
           "ix-icon"
         ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-time-picker": ["ix-date-time-card", "ix-icon-button", "ix-button"]
       }
     },
     {
@@ -1768,16 +1662,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-drawer": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
+        "ix-drawer": ["ix-icon-button"],
+        "ix-icon-button": ["ix-icon"]
       }
     },
     {
@@ -2073,30 +1961,14 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-breadcrumb": [
-          "ix-dropdown"
-        ],
-        "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-group": [
-          "ix-dropdown"
-        ],
-        "ix-menu": [
-          "ix-dropdown"
-        ],
-        "ix-menu-avatar": [
-          "ix-dropdown"
-        ],
-        "ix-select": [
-          "ix-dropdown"
-        ],
-        "ix-split-button": [
-          "ix-dropdown"
-        ],
-        "my-component": [
-          "ix-dropdown"
-        ]
+        "ix-breadcrumb": ["ix-dropdown"],
+        "ix-date-picker": ["ix-dropdown"],
+        "ix-group": ["ix-dropdown"],
+        "ix-menu": ["ix-dropdown"],
+        "ix-menu-avatar": ["ix-dropdown"],
+        "ix-select": ["ix-dropdown"],
+        "ix-split-button": ["ix-dropdown"],
+        "my-component": ["ix-dropdown"]
       }
     },
     {
@@ -2229,34 +2101,16 @@
         "ix-split-button-item",
         "my-component"
       ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-dropdown-item"
-        ],
-        "ix-group-dropdown-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-select": [
-          "ix-dropdown-item"
-        ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "my-component": [
-          "ix-dropdown-item"
-        ]
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-breadcrumb": ["ix-dropdown-item"],
+        "ix-group-dropdown-item": ["ix-dropdown-item"],
+        "ix-menu-avatar-item": ["ix-dropdown-item"],
+        "ix-select": ["ix-dropdown-item"],
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-split-button-item": ["ix-dropdown-item"],
+        "my-component": ["ix-dropdown-item"]
       }
     },
     {
@@ -2554,24 +2408,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-icon-button"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-expanding-search": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-expanding-search"
-        ]
+        "ix-expanding-search": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-expanding-search"]
       }
     },
     {
@@ -2617,27 +2459,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-category-filter",
-        "ix-select",
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["ix-category-filter", "ix-select", "my-component"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-filter-chip"
-        ],
-        "ix-select": [
-          "ix-filter-chip"
-        ],
-        "my-component": [
-          "ix-filter-chip"
-        ]
+        "ix-filter-chip": ["ix-icon"],
+        "ix-category-filter": ["ix-filter-chip"],
+        "ix-select": ["ix-filter-chip"],
+        "my-component": ["ix-filter-chip"]
       }
     },
     {
@@ -2700,22 +2528,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon-button"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon-button"],
       "dependencyGraph": {
-        "ix-flip-tile": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-flip-tile"
-        ]
+        "ix-flip-tile": ["ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-flip-tile"]
       }
     },
     {
@@ -2903,9 +2721,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [
         "ix-icon",
         "ix-icon-button",
@@ -2919,15 +2735,9 @@
           "ix-dropdown",
           "ix-group-item"
         ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-group"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-group-item": ["ix-icon"],
+        "my-component": ["ix-group"]
       }
     },
     {
@@ -2979,16 +2789,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-group-dropdown-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ]
+        "ix-group-dropdown-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"]
       }
     },
     {
@@ -3137,23 +2941,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-group",
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["ix-group", "my-component"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-group": [
-          "ix-group-item"
-        ],
-        "my-component": [
-          "ix-group-item"
-        ]
+        "ix-group-item": ["ix-icon"],
+        "ix-group": ["ix-group-item"],
+        "my-component": ["ix-group-item"]
       }
     },
     {
@@ -3258,69 +3051,27 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "ix-date-picker": [
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-expanding-search": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-group": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon"
-        ],
-        "ix-message-bar": [
-          "ix-icon"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-icon"
-        ],
-        "ix-split-button": [
-          "ix-icon"
-        ],
-        "ix-toast": [
-          "ix-icon"
-        ],
-        "ix-tree-item": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-icon"
-        ]
+        "ix-animated-tabs": ["ix-icon"],
+        "ix-breadcrumb": ["ix-icon"],
+        "ix-category-filter": ["ix-icon"],
+        "ix-chip": ["ix-icon"],
+        "ix-date-picker": ["ix-icon"],
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-expanding-search": ["ix-icon"],
+        "ix-filter-chip": ["ix-icon"],
+        "ix-group": ["ix-icon"],
+        "ix-group-item": ["ix-icon"],
+        "ix-icon-button": ["ix-icon"],
+        "ix-map-navigation-overlay": ["ix-icon"],
+        "ix-menu-about-news": ["ix-icon"],
+        "ix-message-bar": ["ix-icon"],
+        "ix-modal": ["ix-icon"],
+        "ix-pill": ["ix-icon"],
+        "ix-select": ["ix-icon"],
+        "ix-split-button": ["ix-icon"],
+        "ix-toast": ["ix-icon"],
+        "ix-tree-item": ["ix-icon"],
+        "my-component": ["ix-icon"]
       }
     },
     {
@@ -3545,61 +3296,25 @@
         "ix-toast",
         "my-component"
       ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-date-picker": [
-          "ix-icon-button"
-        ],
-        "ix-drawer": [
-          "ix-icon-button"
-        ],
-        "ix-expanding-search": [
-          "ix-icon-button"
-        ],
-        "ix-flip-tile": [
-          "ix-icon-button"
-        ],
-        "ix-group": [
-          "ix-icon-button"
-        ],
-        "ix-map-navigation": [
-          "ix-icon-button"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon-button"
-        ],
-        "ix-menu-about": [
-          "ix-icon-button"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon-button"
-        ],
-        "ix-menu-settings": [
-          "ix-icon-button"
-        ],
-        "ix-message-bar": [
-          "ix-icon-button"
-        ],
-        "ix-modal-example": [
-          "ix-icon-button"
-        ],
-        "ix-select": [
-          "ix-icon-button"
-        ],
-        "ix-time-picker": [
-          "ix-icon-button"
-        ],
-        "ix-toast": [
-          "ix-icon-button"
-        ],
-        "my-component": [
-          "ix-icon-button"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-date-picker": ["ix-icon-button"],
+        "ix-drawer": ["ix-icon-button"],
+        "ix-expanding-search": ["ix-icon-button"],
+        "ix-flip-tile": ["ix-icon-button"],
+        "ix-group": ["ix-icon-button"],
+        "ix-map-navigation": ["ix-icon-button"],
+        "ix-map-navigation-overlay": ["ix-icon-button"],
+        "ix-menu-about": ["ix-icon-button"],
+        "ix-menu-about-news": ["ix-icon-button"],
+        "ix-menu-settings": ["ix-icon-button"],
+        "ix-message-bar": ["ix-icon-button"],
+        "ix-modal-example": ["ix-icon-button"],
+        "ix-select": ["ix-icon-button"],
+        "ix-time-picker": ["ix-icon-button"],
+        "ix-toast": ["ix-icon-button"],
+        "my-component": ["ix-icon-button"]
       }
     },
     {
@@ -3617,14 +3332,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-input-group"
-        ]
+        "my-component": ["ix-input-group"]
       }
     },
     {
@@ -3769,13 +3480,8 @@
           "ix-tab-item",
           "ix-menu-about-item"
         ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon",
-          "ix-icon-button"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-map-navigation-overlay": ["ix-icon", "ix-icon-button"]
       }
     },
     {
@@ -3852,24 +3558,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-map-navigation"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-map-navigation"],
+      "dependencies": ["ix-icon", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-map-navigation-overlay": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-map-navigation": [
-          "ix-map-navigation-overlay"
-        ]
+        "ix-map-navigation-overlay": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "ix-map-navigation": ["ix-map-navigation-overlay"]
       }
     },
     {
@@ -4239,21 +3933,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-menu-item",
-        "ix-dropdown"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-menu-item", "ix-dropdown"],
       "dependencyGraph": {
-        "ix-menu": [
-          "ix-menu-item",
-          "ix-dropdown"
-        ],
-        "my-component": [
-          "ix-menu"
-        ]
+        "ix-menu": ["ix-menu-item", "ix-dropdown"],
+        "my-component": ["ix-menu"]
       }
     },
     {
@@ -4515,9 +4199,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-map-navigation"
-      ],
+      "dependents": ["ix-map-navigation"],
       "dependencies": [
         "ix-icon-button",
         "ix-tabs",
@@ -4531,12 +4213,8 @@
           "ix-tab-item",
           "ix-menu-about-item"
         ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-map-navigation": [
-          "ix-menu-about"
-        ]
+        "ix-icon-button": ["ix-icon"],
+        "ix-map-navigation": ["ix-menu-about"]
       }
     },
     {
@@ -4571,14 +4249,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-menu-about"
-      ],
+      "dependents": ["ix-menu-about"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-menu-about-item"
-        ]
+        "ix-menu-about": ["ix-menu-about-item"]
       }
     },
     {
@@ -4717,18 +4391,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-icon",
-        "ix-icon-button"
-      ],
+      "dependencies": ["ix-icon", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-menu-about-news": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
+        "ix-menu-about-news": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"]
       }
     },
     {
@@ -4813,21 +4479,11 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-dropdown",
-        "ix-menu-avatar-item"
-      ],
+      "dependencies": ["ix-dropdown", "ix-menu-avatar-item"],
       "dependencyGraph": {
-        "ix-menu-avatar": [
-          "ix-dropdown",
-          "ix-menu-avatar-item"
-        ],
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ]
+        "ix-menu-avatar": ["ix-dropdown", "ix-menu-avatar-item"],
+        "ix-menu-avatar-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"]
       }
     },
     {
@@ -4888,22 +4544,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-menu-avatar"
-      ],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependents": ["ix-menu-avatar"],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-menu-avatar": [
-          "ix-menu-avatar-item"
-        ]
+        "ix-menu-avatar-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-menu-avatar": ["ix-menu-avatar-item"]
       }
     },
     {
@@ -5021,18 +4667,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-menu",
-        "my-component"
-      ],
+      "dependents": ["ix-menu", "my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu": [
-          "ix-menu-item"
-        ],
-        "my-component": [
-          "ix-menu-item"
-        ]
+        "ix-menu": ["ix-menu-item"],
+        "my-component": ["ix-menu-item"]
       }
     },
     {
@@ -5112,20 +4751,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-tab-item",
-        "ix-icon-button",
-        "ix-tabs"
-      ],
+      "dependencies": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
       "dependencyGraph": {
-        "ix-menu-settings": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
+        "ix-menu-settings": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
+        "ix-icon-button": ["ix-icon"]
       }
     },
     {
@@ -5233,24 +4862,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-icon-button"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-message-bar": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-message-bar"
-        ]
+        "ix-message-bar": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-message-bar"]
       }
     },
     {
@@ -5620,19 +5237,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-modal-container"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["ix-modal-container"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-modal-container": [
-          "ix-modal"
-        ]
+        "ix-modal": ["ix-icon"],
+        "ix-modal-container": ["ix-modal"]
       }
     },
     {
@@ -5667,22 +5276,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-modal"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-modal"],
       "dependencyGraph": {
-        "ix-modal-container": [
-          "ix-modal"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-modal-container"
-        ]
+        "ix-modal-container": ["ix-modal"],
+        "ix-modal": ["ix-icon"],
+        "my-component": ["ix-modal-container"]
       }
     },
     {
@@ -5710,24 +5309,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-button"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon-button", "ix-button"],
       "dependencyGraph": {
-        "ix-modal-example": [
-          "ix-icon-button",
-          "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-modal-example"
-        ]
+        "ix-modal-example": ["ix-icon-button", "ix-button"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-modal-example"]
       }
     },
     {
@@ -5874,19 +5461,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-pill"
-        ]
+        "ix-pill": ["ix-icon"],
+        "my-component": ["ix-pill"]
       }
     },
     {
@@ -6097,9 +5676,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6117,21 +5694,11 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-select"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-filter-chip": ["ix-icon"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-select"]
       }
     },
     {
@@ -6243,26 +5810,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-select",
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependents": ["ix-select", "my-component"],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-select-item"
-        ],
-        "my-component": [
-          "ix-select-item"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-select": ["ix-select-item"],
+        "my-component": ["ix-select-item"]
       }
     },
     {
@@ -6329,14 +5883,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-upload"
-      ],
+      "dependents": ["ix-upload"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-upload": [
-          "ix-spinner"
-        ]
+        "ix-upload": ["ix-spinner"]
       }
     },
     {
@@ -6585,21 +6135,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-dropdown"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-icon", "ix-dropdown"],
       "dependencyGraph": {
-        "ix-split-button": [
-          "ix-icon",
-          "ix-dropdown"
-        ],
-        "my-component": [
-          "ix-split-button"
-        ]
+        "ix-split-button": ["ix-icon", "ix-dropdown"],
+        "my-component": ["ix-split-button"]
       }
     },
     {
@@ -6660,22 +6200,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-dropdown-item"],
       "dependencyGraph": {
-        "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-split-button-item"
-        ]
+        "ix-split-button-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "my-component": ["ix-split-button-item"]
       }
     },
     {
@@ -6806,22 +6336,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-menu-about",
-        "ix-menu-settings",
-        "my-component"
-      ],
+      "dependents": ["ix-menu-about", "ix-menu-settings", "my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-tab-item"
-        ],
-        "ix-menu-settings": [
-          "ix-tab-item"
-        ],
-        "my-component": [
-          "ix-tab-item"
-        ]
+        "ix-menu-about": ["ix-tab-item"],
+        "ix-menu-settings": ["ix-tab-item"],
+        "my-component": ["ix-tab-item"]
       }
     },
     {
@@ -6925,22 +6445,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-menu-about",
-        "ix-menu-settings",
-        "my-component"
-      ],
+      "dependents": ["ix-menu-about", "ix-menu-settings", "my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": [
-          "ix-tabs"
-        ],
-        "ix-menu-settings": [
-          "ix-tabs"
-        ],
-        "my-component": [
-          "ix-tabs"
-        ]
+        "ix-menu-about": ["ix-tabs"],
+        "ix-menu-settings": ["ix-tabs"],
+        "my-component": ["ix-tabs"]
       }
     },
     {
@@ -6985,14 +6495,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-tile"
-        ]
+        "my-component": ["ix-tile"]
       }
     },
     {
@@ -7141,26 +6647,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-datetime-picker"
-      ],
-      "dependencies": [
-        "ix-date-time-card",
-        "ix-icon-button",
-        "ix-button"
-      ],
+      "dependents": ["ix-datetime-picker"],
+      "dependencies": ["ix-date-time-card", "ix-icon-button", "ix-button"],
       "dependencyGraph": {
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-datetime-picker": [
-          "ix-time-picker"
-        ]
+        "ix-time-picker": ["ix-date-time-card", "ix-icon-button", "ix-button"],
+        "ix-icon-button": ["ix-icon"],
+        "ix-datetime-picker": ["ix-time-picker"]
       }
     },
     {
@@ -7300,24 +6792,12 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-toast-container"
-      ],
-      "dependencies": [
-        "ix-icon",
-        "ix-icon-button"
-      ],
+      "dependents": ["ix-toast-container"],
+      "dependencies": ["ix-icon", "ix-icon-button"],
       "dependencyGraph": {
-        "ix-toast": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-toast-container": [
-          "ix-toast"
-        ]
+        "ix-toast": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "ix-toast-container": ["ix-toast"]
       }
     },
     {
@@ -7419,26 +6899,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [
-        "ix-toast"
-      ],
+      "dependents": ["my-component"],
+      "dependencies": ["ix-toast"],
       "dependencyGraph": {
-        "ix-toast-container": [
-          "ix-toast"
-        ],
-        "ix-toast": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-toast-container"
-        ]
+        "ix-toast-container": ["ix-toast"],
+        "ix-toast": ["ix-icon", "ix-icon-button"],
+        "ix-icon-button": ["ix-icon"],
+        "my-component": ["ix-toast-container"]
       }
     },
     {
@@ -7616,14 +7083,10 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": ["my-component"],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
-          "ix-toggle"
-        ]
+        "my-component": ["ix-toggle"]
       }
     },
     {
@@ -7668,14 +7131,14 @@
         },
         {
           "name": "renderItem",
-          "type": "(index: number, data: any, dataList: any[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement",
+          "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "Render function of tree items",
           "docsTags": [],
           "values": [
             {
-              "type": "(index: number, data: any, dataList: any[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
+              "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
             }
           ],
           "optional": false,
@@ -7724,16 +7187,10 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-tree-item"
-      ],
+      "dependencies": ["ix-tree-item"],
       "dependencyGraph": {
-        "ix-tree": [
-          "ix-tree-item"
-        ],
-        "ix-tree-item": [
-          "ix-icon"
-        ]
+        "ix-tree": ["ix-tree-item"],
+        "ix-tree-item": ["ix-icon"]
       }
     },
     {
@@ -7818,19 +7275,11 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [
-        "ix-tree"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
+      "dependents": ["ix-tree"],
+      "dependencies": ["ix-icon"],
       "dependencyGraph": {
-        "ix-tree-item": [
-          "ix-icon"
-        ],
-        "ix-tree": [
-          "ix-tree-item"
-        ]
+        "ix-tree-item": ["ix-icon"],
+        "ix-tree": ["ix-tree-item"]
       }
     },
     {
@@ -8034,13 +7483,9 @@
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [
-        "ix-spinner"
-      ],
+      "dependencies": ["ix-spinner"],
       "dependencyGraph": {
-        "ix-upload": [
-          "ix-spinner"
-        ]
+        "ix-upload": ["ix-spinner"]
       }
     },
     {
@@ -8134,20 +7579,10 @@
           "ix-expanding-search",
           "ix-toast-container"
         ],
-        "ix-modal-example": [
-          "ix-icon-button",
-          "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-menu": [
-          "ix-menu-item",
-          "ix-dropdown"
-        ],
+        "ix-modal-example": ["ix-icon-button", "ix-button"],
+        "ix-icon-button": ["ix-icon"],
+        "ix-basic-navigation": ["ix-application-header"],
+        "ix-menu": ["ix-menu-item", "ix-dropdown"],
         "ix-date-picker": [
           "ix-date-time-card",
           "ix-icon-button",
@@ -8155,31 +7590,18 @@
           "ix-dropdown",
           "ix-icon"
         ],
-        "ix-modal-container": [
-          "ix-modal"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
+        "ix-modal-container": ["ix-modal"],
+        "ix-modal": ["ix-icon"],
         "ix-group": [
           "ix-icon",
           "ix-icon-button",
           "ix-dropdown",
           "ix-group-item"
         ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-message-bar": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "ix-flip-tile": [
-          "ix-icon-button"
-        ],
+        "ix-group-item": ["ix-icon"],
+        "ix-message-bar": ["ix-icon", "ix-icon-button"],
+        "ix-animated-tabs": ["ix-icon"],
+        "ix-flip-tile": ["ix-icon-button"],
         "ix-select": [
           "ix-select-item",
           "ix-filter-chip",
@@ -8188,44 +7610,17 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-icon",
-          "ix-dropdown",
-          "ix-dropdown-item"
-        ],
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "ix-split-button": [
-          "ix-icon",
-          "ix-dropdown"
-        ],
-        "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-expanding-search": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-toast-container": [
-          "ix-toast"
-        ],
-        "ix-toast": [
-          "ix-icon",
-          "ix-icon-button"
-        ]
+        "ix-select-item": ["ix-dropdown-item"],
+        "ix-dropdown-item": ["ix-icon"],
+        "ix-filter-chip": ["ix-icon"],
+        "ix-breadcrumb": ["ix-icon", "ix-dropdown", "ix-dropdown-item"],
+        "ix-pill": ["ix-icon"],
+        "ix-chip": ["ix-icon"],
+        "ix-split-button": ["ix-icon", "ix-dropdown"],
+        "ix-split-button-item": ["ix-dropdown-item"],
+        "ix-expanding-search": ["ix-icon", "ix-icon-button"],
+        "ix-toast-container": ["ix-toast"],
+        "ix-toast": ["ix-icon", "ix-icon-button"]
       }
     }
   ]
