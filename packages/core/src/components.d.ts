@@ -1275,6 +1275,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Text for disabled state
+         */
+        "i18nUploadDisabled": string;
+        /**
           * Label for upload file button
          */
         "i18nUploadFile": string;
@@ -3122,6 +3126,10 @@ declare namespace LocalJSX {
           * Disable all input events
          */
         "disabled"?: boolean;
+        /**
+          * Text for disabled state
+         */
+        "i18nUploadDisabled"?: string;
         /**
           * Label for upload file button
          */

@@ -49,27 +49,32 @@ export class Upload {
   /**
    * Will be used by state = UploadFileState.SELECT_FILE
    */
-  @Prop() selectFileText: string;
+  @Prop() selectFileText = '+ Drag files here or…';
 
   /**
    * Will be used by state = UploadFileState.LOADING
    */
-  @Prop() loadingText: string;
+  @Prop() loadingText = 'Checking files…';
 
   /**
    * Will be used by state = UploadFileState.UPLOAD_FAILED
    */
-  @Prop() uploadFailedText: string;
+  @Prop() uploadFailedText = 'Upload failed. Please try again.';
 
   /**
    * Will be used by state = UploadFileState.UPLOAD_SUCCESSED
    */
-  @Prop() uploadSuccessText: string;
+  @Prop() uploadSuccessText = 'Upload successful';
 
   /**
    * Label for upload file button
    */
-  @Prop() i18nUploadFile = 'Upload file...';
+  @Prop() i18nUploadFile = 'Upload file…';
+
+  /**
+   * Text for disabled state
+   */
+  @Prop() i18nUploadDisabled = 'File upload currently not possible.';
 
   /**
    * You get an array of Files after drop-action or browse action is finished
@@ -88,7 +93,7 @@ export class Upload {
 
   constructor() {}
 
-  private fileDroped(evt: DragEvent) {
+  private fileDropped(evt: DragEvent) {
     evt.preventDefault();
 
     const file: File | FileList = evt.dataTransfer.files;
@@ -139,46 +144,40 @@ export class Upload {
   }
 
   private renderUploadState() {
+    if (this.disabled) {
+      return (
+        <span class="state">
+          <span class="upload-text">{this.i18nUploadDisabled}</span>
+        </span>
+      );
+    }
+
     switch (this.state) {
       case UploadFileState.SELECT_FILE:
         return (
           <span class="state">
-            <span class="upload-text">
-              {this.selectFileText
-                ? this.selectFileText
-                : '+ Drag files here or'}
-            </span>
+            <span class="upload-text">{this.selectFileText}</span>
           </span>
         );
       case UploadFileState.LOADING:
         return (
           <span class="state">
             <ix-spinner variant="primary"></ix-spinner>
-            <span class="upload-text">
-              {this.loadingText ? this.loadingText : 'Checking files...'}
-            </span>
+            <span class="upload-text">{this.loadingText}</span>
           </span>
         );
       case UploadFileState.UPLOAD_FAILED:
         return (
           <span class="state">
             <i class="glyph glyph-error"></i>
-            <span class="upload-text">
-              {this.uploadFailedText
-                ? this.uploadFailedText
-                : 'Upload failed. Please try again.'}
-            </span>
+            <span class="upload-text">{this.uploadFailedText}</span>
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
             <i class="glyph glyph-success"></i>
-            <span class="upload-text">
-              {this.uploadSuccessText
-                ? this.uploadSuccessText
-                : 'Upload successful'}
-            </span>
+            <span class="upload-text">{this.uploadSuccessText}</span>
           </span>
         );
       default:
@@ -206,7 +205,7 @@ export class Upload {
             disabled: this.disabled,
             multiline: this.multiline,
           }}
-          onDrop={(e) => this.fileDroped(e)}
+          onDrop={(e) => this.fileDropped(e)}
           onDragOver={(e) => this.fileOver(e)}
           onDragLeave={() => this.fileLeave()}
           draggable={!this.disabled}
