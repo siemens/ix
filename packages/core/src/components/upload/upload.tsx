@@ -32,6 +32,11 @@ export class Upload {
   @Prop() multiple = false;
 
   /**
+   * Whether the text should wrap to more than one line
+   */
+  @Prop() multiline = false;
+
+  /**
    * Disable all input events
    */
   @Prop() disabled = false;
@@ -138,32 +143,42 @@ export class Upload {
       case UploadFileState.SELECT_FILE:
         return (
           <span class="state">
-            {this.selectFileText ? this.selectFileText : '+ Drag files here or'}
+            <span class="upload-text">
+              {this.selectFileText
+                ? this.selectFileText
+                : '+ Drag files here or'}
+            </span>
           </span>
         );
       case UploadFileState.LOADING:
         return (
           <span class="state">
             <ix-spinner variant="primary"></ix-spinner>
-            {this.loadingText ? this.loadingText : 'Checking files...'}
+            <span class="upload-text">
+              {this.loadingText ? this.loadingText : 'Checking files...'}
+            </span>
           </span>
         );
       case UploadFileState.UPLOAD_FAILED:
         return (
           <span class="state">
             <i class="glyph glyph-error"></i>
-            {this.uploadFailedText
-              ? this.uploadFailedText
-              : 'Upload failed. Please try again.'}
+            <span class="upload-text">
+              {this.uploadFailedText
+                ? this.uploadFailedText
+                : 'Upload failed. Please try again.'}
+            </span>
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
             <i class="glyph glyph-success"></i>
-            {this.uploadSuccessText
-              ? this.uploadSuccessText
-              : 'Upload successful'}
+            <span class="upload-text">
+              {this.uploadSuccessText
+                ? this.uploadSuccessText
+                : 'Upload successful'}
+            </span>
           </span>
         );
       default:
@@ -187,6 +202,9 @@ export class Upload {
           class={{
             'file-upload-area': true,
             'file-over': this.isFileOver,
+            checking: this.state === UploadFileState.LOADING,
+            disabled: this.disabled,
+            multiline: this.multiline,
           }}
           onDrop={(e) => this.fileDroped(e)}
           onDragOver={(e) => this.fileOver(e)}
@@ -205,15 +223,14 @@ export class Upload {
               }}
               accept={this.accept}
             />
-            <button
+            <ix-button
               tabindex="-1"
-              type="button"
-              class="btn btn-outline-secondary"
+              outline
               onClick={() => this.inputElement.click()}
               disabled={this.disabled || this.state === UploadFileState.LOADING}
             >
               {this.i18nUploadFile}
-            </button>
+            </ix-button>
           </div>
         </div>
       </Host>

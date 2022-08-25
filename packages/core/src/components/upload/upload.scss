@@ -1,6 +1,8 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
+@import 'common-variables';
+@import 'mixins/text-truncation';
 
 :host {
   display: block;
@@ -18,19 +20,50 @@
     height: 100%;
     width: 100%;
 
-    padding: 0 1rem;
+    padding: $default-space;
 
-    border: var(--theme-soft-bdr-2);
-    border-style: dashed;
+    border: 1px dashed var(--theme-upload--border-color);
+    border-radius: var(--theme-upload--border-radius);
+    color: var(--theme-upload-text--color);
 
-    &.file-over {
-      //TODO: Implement theme
-      // @include primary-border-2;
-      // @include primary-glow;
+    &.multiline {
+      max-height: unset;
+      height: auto;
+
+      .glyph {
+        align-self: flex-start;
+        margin-block-start: 3px;
+      }
+
+      > div {
+        align-self: flex-start;
+      }
     }
 
-    &.pending {
-      display: none;
+    &:not(.multiline) {
+      .state,
+      .upload-text {
+        @include ellipsis;
+      }
+    }
+
+    &.file-over {
+      border-color: var(--theme-upload--border-color--dragover);
+      border-style: solid;
+    }
+
+    &.checking {
+      color: var(--theme-upload-text--color--checking);
+      border-style: solid;
+    }
+
+    &.disabled {
+      border-style: solid;
+      color: var(--theme-upload-text--color--disabled);
+    }
+
+    ix-button {
+      margin-inline-start: $default-space;
     }
 
     .upload-browser {
@@ -43,8 +76,8 @@
     .loader {
       margin: 2.187rem auto;
       font-size: 0.937rem;
-      width: 1em;
-      height: 1em;
+      width: $default-space;
+      height: $default-space;
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
@@ -53,21 +86,21 @@
     }
 
     .upload-filename {
-      margin-bottom: 1rem;
+      margin-bottom: $default-space;
     }
 
     .state {
       display: flex;
       align-items: center;
 
-      > cui-spinner {
-        margin-right: 0.625rem;
-        height: 1.5rem;
-        width: 1.5rem;
+      > ix-spinner {
+        margin-inline-end: $small-space;
+        height: $large-space;
+        width: $large-space;
       }
 
       > i {
-        margin-right: 0.625rem;
+        margin-inline-end: $small-space;
 
         &.glyph-error {
           color: var(--theme-color-alarm);

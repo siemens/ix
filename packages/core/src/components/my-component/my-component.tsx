@@ -5,6 +5,7 @@ import { Component, h, Host, State } from '@stencil/core';
 import { FlipTileState } from '../flip-tile/flip-tile-state';
 import { modal } from '../modal/modal-utils';
 import { toast } from '../toast/toast-utils';
+import { UploadFileState } from '../upload/upload-file-state';
 
 type Themes = 'brand-light' | 'brand-dark' | 'classic-light' | 'classic-dark';
 
@@ -125,6 +126,20 @@ export class MyComponent {
             </ix-button>
 
             <ix-modal-container></ix-modal-container>
+
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '2rem',
+              }}
+            >
+              <ix-upload></ix-upload>
+              <ix-upload state={UploadFileState.LOADING}></ix-upload>
+              <ix-upload state={UploadFileState.UPLOAD_SUCCESSED}></ix-upload>
+              <ix-upload state={UploadFileState.UPLOAD_FAILED}></ix-upload>
+              <ix-upload disabled></ix-upload>
+              <ix-upload multiline selectFileText='Lorem ipsum dolor sit amet'></ix-upload>
+            </div>
 
             <div
               style={{

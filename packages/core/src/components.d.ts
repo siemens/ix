@@ -1283,6 +1283,10 @@ export namespace Components {
          */
         "loadingText": string;
         /**
+          * Whether the text should wrap to more than one line
+         */
+        "multiline": boolean;
+        /**
           * If multiple is true the user can drop or select multiple files
          */
         "multiple": boolean;
@@ -3126,6 +3130,10 @@ declare namespace LocalJSX {
           * Will be used by state = UploadFileState.LOADING
          */
         "loadingText"?: string;
+        /**
+          * Whether the text should wrap to more than one line
+         */
+        "multiline"?: boolean;
         /**
           * If multiple is true the user can drop or select multiple files
          */
