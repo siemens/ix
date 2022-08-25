@@ -8,6 +8,13 @@ import path, { join } from 'path';
 
 const __dirname = path.resolve();
 
+function autoGenerationWarning(previewPath) {
+  // unix/win normalization
+  previewPath = previewPath.replace(/\\/g, '/')
+
+  return `<!-- Auto generated! Please edit here: ${previewPath.substring(previewPath.indexOf('siemens-ix/packages/'))} -->`;
+}
+
 function formatMultiline(str) {
   return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
 }
@@ -95,9 +102,7 @@ function writeWebComponentPreviews() {
         .trimEnd();
     }
 
-    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
-      previewPath.indexOf('siemens-ix/packages/')
-    )} -->
+    const markdown = `${autoGenerationWarning(previewPath)}
 \`\`\`html
 ${code}
 \`\`\`
@@ -154,9 +159,7 @@ function writeReactPreviews() {
 
     const code = fs.readFileSync(previewPath).toString();
 
-    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
-      previewPath.indexOf('siemens-ix/packages/')
-    )} -->
+    const markdown = `${autoGenerationWarning(previewPath)}
 \`\`\`tsx
 ${code.trimEnd()}
 \`\`\`
@@ -215,9 +218,7 @@ function writeAngularPreviews() {
 
     const code = fs.readFileSync(previewPath).toString();
 
-    const markdown = `<!-- Auto generated! Please edit here: ${previewPath.substring(
-      previewPath.indexOf('siemens-ix/packages/')
-    )} -->
+    const markdown = `${autoGenerationWarning(previewPath)}
 \`\`\`typescript
 ${code.trimEnd()}
 \`\`\`

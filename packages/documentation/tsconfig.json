@@ -1,10 +1,12 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["DOM"],
+    "lib": [
+      "DOM"
+    ],
     "noEmit": true,
     "noImplicitAny": false,
     "types": [
@@ -14,7 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@site/*": ["./*"]
+      "@site/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "preserveSymlinks": true
