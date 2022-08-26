@@ -94,18 +94,7 @@ export class MyComponent {
           </ix-menu>
 
           <main>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                position: 'relative',
-                marginTop: '2rem',
-                width: '100%',
-              }}
-            >
-              <ix-date-picker></ix-date-picker>
-            </div>
+
             <ix-button
               style={{ marginInlineStart: '1rem' }}
               onClick={this.showToasts.bind(this)}
@@ -126,6 +115,19 @@ export class MyComponent {
             </ix-button>
 
             <ix-modal-container></ix-modal-container>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                position: 'relative',
+                marginTop: '2rem',
+                width: '100%',
+              }}
+            >
+              <ix-date-picker></ix-date-picker>
+            </div>
 
             <div
               style={{
