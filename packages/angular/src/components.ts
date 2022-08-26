@@ -746,6 +746,27 @@ export class IxInputGroup {
 }
 
 
+export declare interface IxKpi extends Components.IxKpi {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
+})
+@Component({
+  selector: 'ix-kpi',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
+})
+export class IxKpi {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxMapNavigation extends Components.IxMapNavigation {
   /**
    * Navigation toggled 
@@ -1560,14 +1581,14 @@ export declare interface IxUpload extends Components.IxUpload {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['accept', 'disabled', 'i18nUploadFile', 'loadingText', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
+  inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
   methods: ['setFilesToUpload']
 })
 @Component({
   selector: 'ix-upload',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['accept', 'disabled', 'i18nUploadFile', 'loadingText', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText']
+  inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText']
 })
 export class IxUpload {
   protected el: HTMLElement;

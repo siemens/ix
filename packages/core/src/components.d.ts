@@ -597,6 +597,13 @@ export namespace Components {
     }
     interface IxInputGroup {
     }
+    interface IxKpi {
+        "label": string;
+        "orientation": 'horizontal' | 'vertical';
+        "state": 'neutral' | 'warning' | 'alarm';
+        "unit": string;
+        "value": string | number;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -1494,6 +1501,12 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
+    interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
+    }
+    var HTMLIxKpiElement: {
+        prototype: HTMLIxKpiElement;
+        new (): HTMLIxKpiElement;
+    };
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
     var HTMLIxMapNavigationElement: {
@@ -1716,6 +1729,7 @@ declare global {
         "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
+        "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
@@ -2398,6 +2412,13 @@ declare namespace LocalJSX {
         "variant"?: 'Primary' | 'Secondary';
     }
     interface IxInputGroup {
+    }
+    interface IxKpi {
+        "label"?: string;
+        "orientation"?: 'horizontal' | 'vertical';
+        "state"?: 'neutral' | 'warning' | 'alarm';
+        "unit"?: string;
+        "value"?: string | number;
     }
     interface IxMapNavigation {
         /**
@@ -3199,6 +3220,7 @@ declare namespace LocalJSX {
         "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-input-group": IxInputGroup;
+        "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
@@ -3266,6 +3288,7 @@ declare module "@stencil/core" {
             "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;

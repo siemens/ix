@@ -94,7 +94,6 @@ export class MyComponent {
           </ix-menu>
 
           <main>
-
             <ix-button
               style={{ marginInlineStart: '1rem' }}
               onClick={this.showToasts.bind(this)}
@@ -115,6 +114,21 @@ export class MyComponent {
             </ix-button>
 
             <ix-modal-container></ix-modal-container>
+
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '2rem',
+              }}
+            >
+              <ix-kpi label='Motor speed' value='Nominal'></ix-kpi>
+              <ix-kpi label='Motor speed' value={122.6} unit='rpm'></ix-kpi>
+              <ix-kpi label='Motor speed' value={122.6} state="alarm"></ix-kpi>
+              <ix-kpi label='Motor speed' value={122.6} state='warning'></ix-kpi>
+
+              <ix-kpi label='Motor speed' value='Nominal' orientation='vertical'></ix-kpi>
+              <ix-kpi label='Motor speed' value={122.6} unit='rpm' state='alarm' orientation='vertical'></ix-kpi>
+            </div>
 
             <div
               style={{
@@ -140,7 +154,10 @@ export class MyComponent {
               <ix-upload state={UploadFileState.UPLOAD_SUCCESSED}></ix-upload>
               <ix-upload state={UploadFileState.UPLOAD_FAILED}></ix-upload>
               <ix-upload disabled></ix-upload>
-              <ix-upload multiline selectFileText='Lorem ipsum dolor sit amet'></ix-upload>
+              <ix-upload
+                multiline
+                selectFileText="Lorem ipsum dolor sit amet"
+              ></ix-upload>
             </div>
 
             <div
