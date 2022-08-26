@@ -68,6 +68,7 @@ function extractZeplinColorExport(file: string): Themes {
     '--1FillsTextIconcolors4theme-color-contrast-text-light',
     '--1UIColorsBackgroundcolorstheme-color-4-light',
     '--1UIColorstexttheme-color-std-text-light',
+    '--Fills2Status-lightchart-critical',
     '--3InteractionstatesCards1card-hover-dark',
     '--3InteractionstatesCards1card-hover-light',
     '--3InteractionstatesCards2card-pressed-light',
