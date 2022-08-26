@@ -12,6 +12,7 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 
+component-doc.json
 .stencil/
 .idea/
 .vscode/
