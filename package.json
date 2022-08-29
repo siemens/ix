@@ -2,15 +2,20 @@
   "name": "ix",
   "version": "0.0.0",
   "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@1.0.0",
+  "engines": {
+    "npm": ">=8.x.x",
+    "node": ">=16.16.x"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "docs": "npm run build:lib && nx run documentation:start",
-    "build": "npm run build:lib && npm run build:test-apps && npm run build:docs",
-    "build:core": "nx run core:build",
-    "build:wrapper": "nx run-many --target=build --projects=react,angular",
-    "build:test-apps": "nx run-many --target=build --projects=angular-test-app,react-test-app",
-    "build:aggrid": "nx run aggrid:build",
-    "build:lib": "npm run build:core && npm run build:wrapper && npm run build:aggrid",
-    "build:docs": "nx run documentation:build",
+    "docs": "turbo run start --filter=documentation",
+    "build": "turbo run build",
+    "clean": "npx rimraf ./**/node_modules",
+    "turbo": "turbo",
     "generate-documentation-version": "nx run documentation:generate-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "node ./scripts/release.js",
@@ -19,33 +24,22 @@
     "visual-regression-ci": "npx playwright install chromium && nx run core:test.e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"npm run visual-regression-ci\""
   },
-  "private": true,
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@nrwl/cli": "14.4.3",
-    "@nrwl/workspace": "14.4.3",
     "colorette": "^2.0.19",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "execa": "^5.1.1",
     "inquirer": "^8.2.4",
     "listr": "^0.14.3",
-    "nx": "14.4.3",
     "prettier": "^2.6.2",
     "semver": "^7.3.7",
     "sonarqube-scanner": "^2.8.1",
+    "turbo": "^1.4.3",
     "typescript": "~4.7.2"
   },
-  "workspaces": [
-    "packages/core",
-    "packages/react",
-    "packages/react-test-app",
-    "packages/angular",
-    "packages/angular-test-app",
-    "packages/aggrid"
-  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

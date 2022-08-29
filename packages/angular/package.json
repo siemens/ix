@@ -9,8 +9,8 @@
   "author": "",
   "license": "Siemens Inner Source License v1.4",
   "dependencies": {
-    "@siemens/ix": "~0.0.0",
-    "@siemens/core-ui-icons": "~1.1.16"
+    "@siemens/ix": "*",
+    "@siemens/core-ui-icons": "~1.1.17"
   },
   "peerDependencies": {
     "@angular/core": ">10.0.0"
@@ -20,7 +20,7 @@
     "@angular/compiler": "^14.1.0",
     "@angular/compiler-cli": "^14.1.0",
     "@angular/core": ">10.0.0",
-    "@siemens/ix": "~0.0.0",
+    "@siemens/ix": "*",
     "fs-extra": "^10.1.0",
     "ng-packagr": "^14.0.2",
     "typescript": "^4.7.4"

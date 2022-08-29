@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "^0.0.0"
+    "@siemens/ix": "*"
   },
   "license": "MIT"
 }

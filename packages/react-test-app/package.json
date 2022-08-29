@@ -5,9 +5,9 @@
   "dependencies": {
     "@craco/craco": "^7.0.0-alpha.7",
     "@siemens/core-ui-icons": "^1.1.17",
-    "@siemens/ix": "~0.0.0",
-    "@siemens/ix-aggrid": "~0.0.0",
-    "@siemens/ix-react": "~0.0.0",
+    "@siemens/ix": "*",
+    "@siemens/ix-aggrid": "*",
+    "@siemens/ix-react": "*",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
