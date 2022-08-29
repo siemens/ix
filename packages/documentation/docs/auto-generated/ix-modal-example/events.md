@@ -1,3 +1,1 @@
-| Name       | Description                   | Attribute        | Detail |
-|------------|-------------------------------|------------------|--------|
-|close| Emit close modal | `any`
+No events available for this component.

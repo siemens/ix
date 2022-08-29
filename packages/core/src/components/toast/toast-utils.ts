@@ -14,7 +14,7 @@ export interface ToastConfig {
   iconColor?: string;
 }
 
-function getToastContext() {
+function getToastContainer() {
   const containerList = Array.from(
     document.querySelectorAll('ix-toast-container')
   );
@@ -23,46 +23,46 @@ function getToastContext() {
     console.warn(
       'Multiple toast container are found. Only there first is used.'
     );
-    return container.getEvents();
+    return container;
   }
   if (!container) {
     const toastContainer = document.createElement('ix-toast-container');
     document.body.appendChild(toastContainer);
 
-    return toastContainer.getEvents();
+    return toastContainer;
   }
-  return container.getEvents();
+  return container;
 }
 
-function toast(config: ToastConfig) {
-  getToastContext().then((onShowToast) => {
-    onShowToast.emit(config);
-  });
+async function toast(config: ToastConfig) {
+  const context = getToastContainer();
+  const toast = await context.showToast(config);
+  return toast;
 }
 
 toast.info = (config: ToastConfig) => {
-  toast({
+  return toast({
     ...config,
     type: 'info',
   });
 };
 
 toast.error = (config: ToastConfig) => {
-  toast({
+  return toast({
     ...config,
     type: 'error',
   });
 };
 
 toast.success = (config: ToastConfig) => {
-  toast({
+  return toast({
     ...config,
     type: 'success',
   });
 };
 
 toast.warning = (config: ToastConfig) => {
-  toast({
+  return toast({
     ...config,
     type: 'warning',
   });

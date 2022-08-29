@@ -19,6 +19,8 @@ import { ButtonGroup } from './preview-examples/button-group';
 import { ButtonSelected } from './preview-examples/button-selected';
 import { ButtonWithIcon } from './preview-examples/button-with-icon';
 import { Buttons } from './preview-examples/buttons';
+import { CategoryFilter } from './preview-examples/category-filter';
+import { CategoryFilterSuggestions } from './preview-examples/category-filter-suggestions';
 import { Checkbox } from './preview-examples/checkbox';
 import { CheckboxIndeterminate } from './preview-examples/checkbox-indeterminate';
 import { Chip } from './preview-examples/chip';
@@ -42,6 +44,7 @@ import { InputDisabled } from './preview-examples/input-disabled';
 import { InputReadonly } from './preview-examples/input-readonly';
 import { InputWithIcon } from './preview-examples/input-with-icon';
 import { MessageBar } from './preview-examples/message-bar';
+import { ModalExample } from './preview-examples/modal';
 import { Pill } from './preview-examples/pill';
 import { PopoverNews } from './preview-examples/popover-news';
 import { RadioButton } from './preview-examples/radio-button';
@@ -190,6 +193,13 @@ root.render(
       <Route path="/preview/tree-custom" element={<TreeCustom />} />
       <Route path="/preview/popover-news" element={<PopoverNews />} />
       <Route path="/preview/settings" element={<Settings />} />
+      <Route path="/preview/toast" element={<Toast />} />
+      <Route path="/preview/modal" element={<ModalExample />} />
+      <Route path="/preview/category-filter" element={<CategoryFilter />} />
+      <Route
+        path="/preview/category-filter-suggestions"
+        element={<CategoryFilterSuggestions />}
+      />
     </Routes>
   </BrowserRouter>
 );

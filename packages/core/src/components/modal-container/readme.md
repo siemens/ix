@@ -7,13 +7,13 @@
 
 ## Methods
 
-### `showModal(config: ModalConfig) => Promise<void>`
+### `showModal(config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
 
 Display modal dialog
 
 #### Returns
 
-Type: `Promise<void>`
+Type: `Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
 
 
 

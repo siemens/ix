@@ -1,10 +1,7 @@
 /**
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import { ModalContainer } from '../..';
 import { NotificationColor } from '../utils/notification-color';
-import { TypedEvent } from '../utils/typed-event';
-import { Modal } from './modal';
 
 export interface ModalConfig {
   animation?: boolean;
@@ -26,24 +23,41 @@ export interface ModalConfig {
   iconColor?: NotificationColor;
 }
 
-export interface ModalContainerEvents {
-  onShowModal: TypedEvent<ModalConfig>;
-}
-
-function getModalContext() {
-  if (!ModalContainer.modalEvents) {
-    throw Error('No modal container found');
+function getModalContainer() {
+  const containerList = Array.from(
+    document.querySelectorAll('ix-modal-container')
+  );
+  const [container] = containerList;
+  if (containerList.length > 1) {
+    console.warn(
+      'Multiple modal container are found. Only there first is used.'
+    );
+    return container;
   }
+  if (!container) {
+    const modalContainer = document.createElement('ix-modal-container');
+    document.body.appendChild(modalContainer);
 
-  return ModalContainer.modalEvents;
+    return modalContainer;
+  }
+  return container;
 }
 
-function modal(config: ModalConfig): Promise<Modal> {
-  const result = new Promise<Modal>((resolve) => {
-    getModalContext().onModalOpened.on((m) => resolve(m));
-  });
-  getModalContext().onShowModal.emit(config);
-  return result;
+export async function modal(config: ModalConfig) {
+  const modalContainer = getModalContainer();
+  const modalInstance = await modalContainer.showModal(config);
+
+  return modalInstance;
 }
 
-export { modal };
+function getIxModal(element: Element) {
+  return element.closest('ix-modal');
+}
+
+export function closeModal(element: Element, closeResult: any) {
+  getIxModal(element).close(closeResult);
+}
+
+export function dismissModal(element: Element, dismissResult?: any) {
+  getIxModal(element).dismiss(dismissResult);
+}

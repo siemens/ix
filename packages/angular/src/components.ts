@@ -1149,13 +1149,7 @@ export class IxModalContainer {
 }
 
 
-export declare interface IxModalExample extends Components.IxModalExample {
-  /**
-   * Emit close modal 
-   */
-  close: EventEmitter<CustomEvent<any>>;
-
-}
+export declare interface IxModalExample extends Components.IxModalExample {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined
@@ -1170,7 +1164,6 @@ export class IxModalExample {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
   }
 }
 
@@ -1462,7 +1455,7 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['containerClass', 'containerId', 'position'],
-  methods: ['getEvents', 'showToast']
+  methods: ['showToast']
 })
 @Component({
   selector: 'ix-toast-container',

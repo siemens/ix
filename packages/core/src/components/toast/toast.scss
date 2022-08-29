@@ -13,6 +13,8 @@
   max-width: 17.5rem;
   min-height: 3.25rem;
 
+  pointer-events: all;
+
   background-color: var(--theme-toast--background);
   border-radius: 4px;
   box-shadow: var(--theme-toast--box-shadow);
@@ -40,11 +42,10 @@
 
   .toast-close {
     display: flex;
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: relative;
     margin-right: $small-space;
     margin-top: $small-space;
+    pointer-events: all;
   }
 
   .toast-progress-bar {

@@ -10,9 +10,10 @@ import { ButtonGroup } from 'src/preview-examples/button-group';
 import { Buttons } from 'src/preview-examples/buttons';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { BasicNavigation } from 'src/preview-examples/basic-navigation';
 
 @NgModule({
-  declarations: [AppComponent, Buttons, ButtonGroup, AGGrid],
+  declarations: [AppComponent, Buttons, ButtonGroup, AGGrid, BasicNavigation],
   imports: [
     BrowserModule,
     AppRoutingModule,

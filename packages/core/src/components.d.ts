@@ -14,9 +14,9 @@ import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
 import { NotificationColor } from "./components/utils/notification-color";
+import { TypedEvent } from "./components/utils/typed-event";
 import { ModalConfig } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
-import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
@@ -925,7 +925,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<void>;
+        "showModal": (config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
     }
     interface IxModalExample {
     }
@@ -1187,17 +1187,12 @@ export namespace Components {
     interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
-        /**
-          * Internal Get event notifier from container element
-          * @returns
-         */
-        "getEvents": () => Promise<TypedEvent<ToastConfig>>;
         "position": string;
         /**
           * Display a toast message
           * @param config
          */
-        "showToast": (config: ToastConfig) => Promise<void>;
+        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<void>; close: () => void; }>;
     }
     interface IxToggle {
         /**
@@ -2753,10 +2748,6 @@ declare namespace LocalJSX {
     interface IxModalContainer {
     }
     interface IxModalExample {
-        /**
-          * Emit close modal
-         */
-        "onClose"?: (event: CustomEvent<any>) => void;
     }
     interface IxPill {
         /**

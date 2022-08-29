@@ -14,24 +14,13 @@
 
 ## Methods
 
-### `getEvents() => Promise<TypedEvent<ToastConfig>>`
-
-Internal
-Get event notifier from container element
-
-#### Returns
-
-Type: `Promise<TypedEvent<ToastConfig>>`
-
-
-
-### `showToast(config: ToastConfig) => Promise<void>`
+### `showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<void>; close: () => void; }>`
 
 Display a toast message
 
 #### Returns
 
-Type: `Promise<void>`
+Type: `Promise<{ onClose: TypedEvent<void>; close: () => void; }>`
 
 
 
