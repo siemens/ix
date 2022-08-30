@@ -3,9 +3,8 @@
  */
 
 import { Component, Element, h, Host, Method } from '@stencil/core';
-import { Modal } from '../modal/modal';
-import { ModalConfig, ModalContainerEvents } from '../modal/modal-utils';
-import { Disposable, TypedEvent } from '../utils/typed-event';
+import { ModalConfig } from '../modal/modal-utils';
+import { TypedEvent } from '../utils/typed-event';
 
 @Component({
   tag: 'ix-modal-container',
@@ -15,39 +14,16 @@ import { Disposable, TypedEvent } from '../utils/typed-event';
 export class ModalContainer {
   @Element() hostElement: HTMLIxModalContainerElement;
 
-  // eslint-disable-next-line @stencil/own-props-must-be-private
-  public static readonly DOM_TAG_EVENT_BUS = 'cui-modal-event-bus';
-
-  private disposable: Disposable;
-
-  public static get modalEvents(): { [key: string]: TypedEvent<any> } {
-    return document[ModalContainer.DOM_TAG_EVENT_BUS];
-  }
-
-  componentDidLoad() {
-    if (!ModalContainer.modalEvents) {
-      document[ModalContainer.DOM_TAG_EVENT_BUS] = {
-        onModalOpened: new TypedEvent<Modal>(),
-        onShowModal: new TypedEvent(),
-      } as ModalContainerEvents;
-    }
-
-    this.disposable = ModalContainer.modalEvents.onShowModal.on(
-      this.showModal.bind(this)
-    );
-  }
-
-  disconnectedCallback() {
-    this.disposable?.dispose();
-  }
-
   /**
    * Display modal dialog
    *
    * @param config
    */
   @Method()
-  async showModal(config: ModalConfig): Promise<void> {
+  async showModal(config: ModalConfig) {
+    const onClose = new TypedEvent<any>();
+    const onDismiss = new TypedEvent<any>();
+
     const modal = document.createElement('ix-modal');
     let { title, content, ...modifiedConfig } = config;
     Object.assign(modal, { headerTitle: title, ...modifiedConfig });
@@ -63,12 +39,19 @@ export class ModalContainer {
 
     this.hostElement.appendChild(modal);
 
-    modal.addEventListener('closed', () => this.hostElement.removeChild(modal));
-    modal.addEventListener('dismissed', () =>
-      this.hostElement.removeChild(modal)
-    );
+    modal.addEventListener('closed', (event: CustomEvent<any>) => {
+      this.hostElement.removeChild(modal);
+      onClose.emit(event.detail);
+    });
+    modal.addEventListener('dismissed', (event: CustomEvent<any>) => {
+      this.hostElement.removeChild(modal);
+      onDismiss.emit(event.detail);
+    });
 
-    ModalContainer.modalEvents.onModalOpened.emit(modal);
+    return {
+      onClose,
+      onDismiss,
+    };
   }
 
   render() {

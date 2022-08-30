@@ -25,7 +25,7 @@ export default function Preview(props: {
         ...[{ value: 'preview', label: 'Preview' }],
         ...[
           { value: 'angular', label: 'Angular' },
-          { value: 'javascript', label: 'Javascript' },
+          { value: 'javascript', label: 'Web Component' },
           { value: 'react', label: 'React' },
         ].filter((v) => {
           return tabs.map((c) => c.props.value).includes(v.value);

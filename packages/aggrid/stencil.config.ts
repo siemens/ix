@@ -20,8 +20,8 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
       copy: [
         {
-          src: './../../../node_modules/@siemens/core-ui-icons/dist',
-          dest: 'build/core-ui-webfont',
+          src: './../../../node_modules/@siemens/ix-icons/dist',
+          dest: 'build/ix-icons',
         },
         {
           src: './../../../node_modules/@siemens/ix/dist',

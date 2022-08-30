@@ -25,7 +25,7 @@ function loadResources() {
   ixIcons.setAttribute('rel', 'stylesheet');
   ixIcons.setAttribute(
     'href',
-    'http://127.0.0.1:8080/www/build/core-ui-webfont/css/core-ui-webfont.css'
+    'http://127.0.0.1:8080/www/build/ix-icons/css/ix-icons.css'
   );
 
   document.getElementsByTagName('head')[0].appendChild(ixEsm);

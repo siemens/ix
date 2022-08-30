@@ -9,8 +9,8 @@ import Icons from '@site/src/components/Icons';
 
 Using icons within your project. We need to:
 
-- Install `@siemens/core-ui-icons` e.g `npm install --save @siemens/core-ui-icons`
-- Import `@siemens/core-ui-icons/dist/scss/core-ui-webfont.css`
+- Install `@siemens/ix-icons` e.g `npm install --save @siemens/ix-icons`
+- Import `@siemens/ix-icons/dist/scss/ix-icons.css`
 
 ## Usage
 
@@ -33,7 +33,7 @@ Using icons within your project. We need to:
 ## Example Angular style.scss
 
 ```scss
-@import '@siemens/core-ui-icons/dist/scss/core-ui-webfont.css';
+@import '@siemens/ix-icons/dist/scss/ix-icons.css';
 ```
 
 ## Icon Library

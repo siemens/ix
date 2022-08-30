@@ -22,7 +22,7 @@ npm i -S @siemens/ix-icons@latest
 ### Load web fonts
 
 ```html
-<link rel="stylesheet" href="lib/core-ui-icons/dist/css/core-ui-webfont.css" />
+<link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
 ```
 
 ### Load common style sheet

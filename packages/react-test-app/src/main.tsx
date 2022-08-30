@@ -1,8 +1,8 @@
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-import '@siemens/core-ui-icons/dist/css/core-ui-webfont.css';
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import ReactDOM from 'react-dom/client';
@@ -41,6 +41,7 @@ import { Input } from './preview-examples/input';
 import { InputDisabled } from './preview-examples/input-disabled';
 import { InputReadonly } from './preview-examples/input-readonly';
 import { InputWithIcon } from './preview-examples/input-with-icon';
+import { Kpi } from './preview-examples/kpi';
 import { MessageBar } from './preview-examples/message-bar';
 import { Pill } from './preview-examples/pill';
 import { PopoverNews } from './preview-examples/popover-news';
@@ -186,6 +187,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/tree-custom" element={<TreeCustom />} />
       <Route path="/preview/popover-news" element={<PopoverNews />} />
       <Route path="/preview/settings" element={<Settings />} />
+      <Route path="/preview/kpi" element={<Kpi />} />
     </Routes>
   </BrowserRouter>
 )

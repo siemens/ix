@@ -3,7 +3,7 @@
  */
 
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
-import { Disposable, TypedEvent } from '../utils/typed-event';
+import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
 
 @Component({
@@ -25,9 +25,6 @@ export class CwToastContainer {
    */
   @Prop() position = 'bottom-right';
 
-  private disposable: Disposable;
-  private readonly onShowToast = new TypedEvent<ToastConfig>();
-
   get hostContainer() {
     return document.getElementById(this.containerId);
   }
@@ -40,22 +37,6 @@ export class CwToastContainer {
       toastContainer.classList.add(`toast-container--${this.position}`);
       document.body.appendChild(toastContainer);
     }
-
-    this.disposable = this.onShowToast.on((config) => this.showToast(config));
-  }
-
-  disconnectedCallback() {
-    this.disposable?.dispose();
-  }
-
-  /**
-   * Internal
-   * Get event notifier from container element
-   * @returns
-   */
-  @Method()
-  async getEvents() {
-    return this.onShowToast;
   }
 
   /**
@@ -66,8 +47,11 @@ export class CwToastContainer {
   async showToast(config: ToastConfig) {
     const toast = document.createElement('ix-toast');
 
+    const onClose = new TypedEvent<void>();
+
     function removeToast() {
       toast.remove();
+      onClose.emit();
     }
 
     toast.toastTitle = config.title;
@@ -87,6 +71,13 @@ export class CwToastContainer {
     }
 
     this.hostContainer.appendChild(toast);
+
+    return {
+      onClose,
+      close: () => {
+        removeToast();
+      },
+    };
   }
 
   render() {

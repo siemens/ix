@@ -37,6 +37,7 @@ export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HT
 export const IxIcon = /*@__PURE__*/createReactComponent<JSX.IxIcon, HTMLIxIconElement>('ix-icon');
 export const IxIconButton = /*@__PURE__*/createReactComponent<JSX.IxIconButton, HTMLIxIconButtonElement>('ix-icon-button');
 export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, HTMLIxInputGroupElement>('ix-input-group');
+export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi');
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation');
 export const IxMapNavigationOverlay = /*@__PURE__*/createReactComponent<JSX.IxMapNavigationOverlay, HTMLIxMapNavigationOverlayElement>('ix-map-navigation-overlay');
 export const IxMenu = /*@__PURE__*/createReactComponent<JSX.IxMenu, HTMLIxMenuElement>('ix-menu');

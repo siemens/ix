@@ -14,9 +14,9 @@ import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
 import { NotificationColor } from "./components/utils/notification-color";
+import { TypedEvent } from "./components/utils/typed-event";
 import { ModalConfig } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
-import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
@@ -597,6 +597,13 @@ export namespace Components {
     }
     interface IxInputGroup {
     }
+    interface IxKpi {
+        "label": string;
+        "orientation": 'horizontal' | 'vertical';
+        "state": 'neutral' | 'warning' | 'alarm';
+        "unit": string;
+        "value": string | number;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -809,7 +816,7 @@ export namespace Components {
          */
         "notifications": number;
         /**
-          * Icon name from @siemens/core-ui-icons
+          * Icon name from @siemens/ix-icons
          */
         "tabIcon": string;
     }
@@ -918,7 +925,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<void>;
+        "showModal": (config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
     }
     interface IxModalExample {
     }
@@ -1180,17 +1187,12 @@ export namespace Components {
     interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
-        /**
-          * Internal Get event notifier from container element
-          * @returns
-         */
-        "getEvents": () => Promise<TypedEvent<ToastConfig>>;
         "position": string;
         /**
           * Display a toast message
           * @param config
          */
-        "showToast": (config: ToastConfig) => Promise<void>;
+        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<void>; close: () => void; }>;
     }
     interface IxToggle {
         /**
@@ -1494,6 +1496,12 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
+    interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
+    }
+    var HTMLIxKpiElement: {
+        prototype: HTMLIxKpiElement;
+        new (): HTMLIxKpiElement;
+    };
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
     var HTMLIxMapNavigationElement: {
@@ -1716,6 +1724,7 @@ declare global {
         "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
+        "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
@@ -2399,6 +2408,13 @@ declare namespace LocalJSX {
     }
     interface IxInputGroup {
     }
+    interface IxKpi {
+        "label"?: string;
+        "orientation"?: 'horizontal' | 'vertical';
+        "state"?: 'neutral' | 'warning' | 'alarm';
+        "unit"?: string;
+        "value"?: string | number;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -2619,7 +2635,7 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
-          * Icon name from @siemens/core-ui-icons
+          * Icon name from @siemens/ix-icons
          */
         "tabIcon"?: string;
     }
@@ -2732,10 +2748,6 @@ declare namespace LocalJSX {
     interface IxModalContainer {
     }
     interface IxModalExample {
-        /**
-          * Emit close modal
-         */
-        "onClose"?: (event: CustomEvent<any>) => void;
     }
     interface IxPill {
         /**
@@ -3199,6 +3211,7 @@ declare namespace LocalJSX {
         "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-input-group": IxInputGroup;
+        "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
@@ -3266,6 +3279,7 @@ declare module "@stencil/core" {
             "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;

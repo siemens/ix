@@ -20,7 +20,7 @@ export class MenuItem {
   @Prop() bottom = false;
 
   /**
-   * Icon name from @siemens/core-ui-icons
+   * Icon name from @siemens/ix-icons
    */
   @Prop() tabIcon = 'document';
 

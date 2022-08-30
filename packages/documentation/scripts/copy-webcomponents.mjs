@@ -13,8 +13,8 @@ const ix_dest_path = path.join(libDestPath, 'ix');
 const ix_aggrid_path = path.join(__dirname, '..', 'aggrid');
 const ix_aggrid_dest_path = path.join(libDestPath, 'ix-aggrid');
 
-const icon_path = path.join(__dirname, '../../', 'node_modules', '@siemens/core-ui-icons');
-const icon_dest_path = path.join(libDestPath, 'core-ui-icons');
+const icon_path = path.join(__dirname, '../../', 'node_modules', '@siemens/ix-icons');
+const icon_dest_path = path.join(libDestPath, 'ix-icons');
 
 function filter(fileName) {
   return !fileName.includes('node_modules');

@@ -23,3 +23,4 @@ export default {
     typescript({ tsconfig: "./tsconfig.json" }),
   ],
 };
+/* eslint-enable */

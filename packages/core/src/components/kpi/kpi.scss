@@ -1,0 +1,94 @@
+/**
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  height: $large-control-height;
+  border-radius: var(--theme-kpi--border-radius);
+  padding: 0.375rem $tiny-space;
+  min-width: 0;
+
+  span {
+    @include ellipsis;
+  }
+
+  .kpi-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-block-end: 2px solid grey;
+
+    &.alarm {
+      border-block-end-color: var(--theme-color-alarm);
+    }
+
+    &.warning {
+      border-block-end-color: var(--theme-color-warning);
+    }
+
+    .kpi-label {
+      display: flex;
+      align-items: center;
+      color: var(--theme-kpi-display-label--color);
+      flex-grow: 1;
+      flex-shrink: 9999;
+
+      ix-icon {
+        margin-inline-end: $tiny-space;
+      }
+    }
+
+    .kpi-value-container {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .kpi-value {
+      @include text-xl;
+
+      color: var(--theme-kpi-display-value--color);
+    }
+
+    .kpi-unit {
+      margin-inline-start: $small-space;
+      color: var(--theme-kpi-display-units--color);
+    }
+
+    .kpi-label,
+    .kpi-unit {
+      margin-block-start: 0.125rem;
+    }
+  }
+
+  &.stacked {
+    height: 3.75rem;
+
+    .kpi-container {
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .kpi-label {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  @include hover {
+    background-color: var(--theme-kpi-display--background--hover);
+  }
+
+  @include active {
+    background-color: var(--theme-kpi-display--background--active);
+  }
+
+  @include focus-visible {
+    outline: 1px solid var(--focus--border-color);
+  }
+}

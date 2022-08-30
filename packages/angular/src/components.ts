@@ -746,6 +746,27 @@ export class IxInputGroup {
 }
 
 
+export declare interface IxKpi extends Components.IxKpi {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
+})
+@Component({
+  selector: 'ix-kpi',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
+})
+export class IxKpi {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxMapNavigation extends Components.IxMapNavigation {
   /**
    * Navigation toggled 
@@ -1128,13 +1149,7 @@ export class IxModalContainer {
 }
 
 
-export declare interface IxModalExample extends Components.IxModalExample {
-  /**
-   * Emit close modal 
-   */
-  close: EventEmitter<CustomEvent<any>>;
-
-}
+export declare interface IxModalExample extends Components.IxModalExample {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined
@@ -1149,7 +1164,6 @@ export class IxModalExample {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
   }
 }
 
@@ -1441,7 +1455,7 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['containerClass', 'containerId', 'position'],
-  methods: ['getEvents', 'showToast']
+  methods: ['showToast']
 })
 @Component({
   selector: 'ix-toast-container',

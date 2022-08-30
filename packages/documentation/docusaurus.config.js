@@ -34,7 +34,7 @@ const config = {
               './../../node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css'
             ),
             require.resolve(
-              './../../node_modules/@siemens/core-ui-icons/dist/css/core-ui-webfont.css'
+              './../../node_modules/@siemens/ix-icons/dist/css/ix-icons.css'
             ),
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/search.css'),
