@@ -4,9 +4,11 @@ sidebar_title: Angular
 title: Angular
 ---
 
-import Caution from './../caution-limitation.md';
+:::caution
 
-<Caution />
+Current **beta release** of _ix_ has some limitations, please check [this](./limitation).
+
+:::
 
 ### Installation of dependencies
 
