@@ -4,10 +4,9 @@
 
 ![version](https://img.shields.io/badge/version-0.0.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
-![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg) 
+![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
 [![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](https://***REMOVED***/siemens-ix/siemens-ix/-/blob/main/LICENSE.md)
-
 
 ## Usage
 
@@ -104,10 +103,6 @@ Feel free to check [issues page](https://***REMOVED***/siemens-ix/siemens-ix/-/i
 - Lukas Maurer <lukas.maurer@siemens.com>
 - Carlos Leandro Cruz Ferrer <carlos.cruz_ferrer@siemens.com>
 - Gonçalo Ferreira <goncalo.alves-ferreira@siemens.com>
-
-## Author
-
-👤 **Siemens AG**
 
 ## 📝 License
 

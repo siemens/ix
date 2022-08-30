@@ -24,15 +24,15 @@
     "start": "stencil build --dev --watch --serve",
     "dev": "stencil build --watch",
     "test": "stencil test --spec",
-    "test.watch": "stencil test --spec --watchAll --no-cache",
-    "test.coverage": "stencil test --spec --coverage",
-    "test.e2e": "playwright test --reporter html",
-    "test.e2e.list": "playwright test --reporter list",
+    "test:watch": "stencil test --spec --watchAll --no-cache",
+    "test:coverage": "stencil test --spec --coverage",
+    "test:e2e": "playwright test --reporter html",
+    "test:e2e:list": "playwright test --reporter list",
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
     "generate": "stencil generate",
     "postversion": "echo \"/*\n * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.\n */\nexport const version = '$npm_package_version'\" > ./src/env.ts",
-    "generate.theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
+    "generate:theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
   },
   "dependencies": {
     "@stencil/core": "~2.15.0",

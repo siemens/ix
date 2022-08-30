@@ -27,12 +27,12 @@
     "start": "turbo run start",
     "clean": "npx rimraf ./**/node_modules",
     "turbo": "turbo",
-    "generate-documentation-version": "nx run documentation:generate-version",
+    "generate-documentation-version": "yarn workspace documentation run generate-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
-    "visual-regression-ci": "npx playwright install chromium && nx run core:test.e2e",
+    "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix run test:e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\""
   },
   "dependencies": {
