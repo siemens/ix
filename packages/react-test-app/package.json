@@ -1,7 +1,7 @@
 {
-  "name": "react-test-app2",
+  "name": "react-test-app",
+  "version": "1.0.0-beta.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -13,8 +13,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "@siemens/ix-icons": "^1.0.0-beta.1",
-    "@siemens/ix-aggrid": "*",
-    "@siemens/ix-react": "*",
+    "@siemens/ix": "~1.0.0-beta.0",
+    "@siemens/ix-aggrid": "~1.0.0-beta.0",
+    "@siemens/ix-react": "~1.0.0-beta.0",
     "ag-grid-community": "^28.1.0",
     "ag-grid-react": "^28.1.0",
     "web-vitals": "^2.1.4"
