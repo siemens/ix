@@ -22,5 +22,9 @@
     },
     "resolveJsonModule": true,
     "preserveSymlinks": true
-  }
+  },
+  "include": [
+    "*.ts",
+    "*.tsx"
+  ]
 }

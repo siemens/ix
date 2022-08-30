@@ -21,5 +21,4 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
     <ix-button onclick="alert('Button clicked!')">Hello World!</ix-button>
   </body>
 </html>
-
 ```

@@ -15,6 +15,10 @@ function autoGenerationWarning(previewPath) {
   return `<!-- Auto generated! Please edit here: ${previewPath.substring(previewPath.indexOf('siemens-ix/packages/'))} -->`;
 }
 
+function generateMarkdown(previewPath, type, code) {
+  return `${autoGenerationWarning(previewPath)}\n\`\`\`${type}\n${code.trimEnd()}\n\`\`\`\n`
+}
+
 function formatMultiline(str) {
   return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
 }
@@ -72,24 +76,17 @@ function writeApi(component) {
 }
 
 function writeWebComponentPreviews() {
-  const webComponentPreviews = fs
-    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+  const previewsPath = path.join(__dirname, 'static', 'webcomponent-examples');
+  const webComponentPreviews = fs.readdirSync(previewsPath)
     .filter((name) => name.includes('.html'))
     .map((name) => [
       name.replace('.html', ''),
-      path.join(__dirname, 'static/webcomponent-examples', name),
+      path.join(previewsPath, name),
     ]);
 
   webComponentPreviews.forEach(([name, previewPath]) => {
-    fse.ensureDirSync(
-      path.join(
-        __dirname,
-        'docs',
-        'auto-generated',
-        'previews',
-        'web-component'
-      )
-    );
+    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'web-component')
+    fse.ensureDirSync(writePath);
 
     let code = fs.readFileSync(previewPath).toString();
     const CODE_SPLIT = '<!-- Preview code -->\n';
@@ -102,22 +99,8 @@ function writeWebComponentPreviews() {
         .trimEnd();
     }
 
-    const markdown = `${autoGenerationWarning(previewPath)}
-\`\`\`html
-${code}
-\`\`\`
-`;
-    fs.writeFileSync(
-      path.join(
-        __dirname,
-        'docs',
-        'auto-generated',
-        'previews',
-        'web-component',
-        `${name}.md`
-      ),
-      markdown
-    );
+    const markdown = generateMarkdown(previewPath, "html", code)
+    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
   });
 }
 
@@ -145,36 +128,15 @@ function writeReactPreviews() {
     })
     .map((name) => [
       name,
-      path.join(
-        __dirname,
-        '../react-test-app/src/preview-examples',
-        `${name}.tsx`
-      ),
+      path.join(reactPreviewPath, `${name}.tsx`),
     ]);
 
   reactPreviewPaths.forEach(([name, previewPath]) => {
-    fse.ensureDirSync(
-      path.join(__dirname, 'docs', 'auto-generated', 'previews', 'react')
-    );
-
+    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'react')
+    fse.ensureDirSync(writePath);
     const code = fs.readFileSync(previewPath).toString();
-
-    const markdown = `${autoGenerationWarning(previewPath)}
-\`\`\`tsx
-${code.trimEnd()}
-\`\`\`
-`;
-    fs.writeFileSync(
-      path.join(
-        __dirname,
-        'docs',
-        'auto-generated',
-        'previews',
-        'react',
-        `${name}.md`
-      ),
-      markdown
-    );
+    const markdown = generateMarkdown(previewPath, "tsx", code)
+    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
   });
 }
 
@@ -204,34 +166,17 @@ function writeAngularPreviews() {
     })
     .map((name) => [
       name,
-      path.join(
-        __dirname,
-        '../angular-test-app/src/preview-examples',
-        `${name}.ts`
-      ),
+      path.join(angularPreviewPath, `${name}.ts`),
     ]);
 
   angularPreviewPaths.forEach(([name, previewPath]) => {
-    fse.ensureDirSync(
-      path.join(__dirname, 'docs', 'auto-generated', 'previews', 'angular')
-    );
+    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'angular')
+    fse.ensureDirSync(writePath);
 
     const code = fs.readFileSync(previewPath).toString();
-
-    const markdown = `${autoGenerationWarning(previewPath)}
-\`\`\`typescript
-${code.trimEnd()}
-\`\`\`
-`;
+    const markdown = generateMarkdown(previewPath, "typescript", code)
     fs.writeFileSync(
-      path.join(
-        __dirname,
-        'docs',
-        'auto-generated',
-        'previews',
-        'angular',
-        `${name}.md`
-      ),
+      path.join(writePath, `${name}.md`),
       markdown
     );
   });
