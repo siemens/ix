@@ -1,8 +1,8 @@
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-import '@siemens/core-ui-icons/dist/css/core-ui-webfont.css';
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import ReactDOM from 'react-dom/client';

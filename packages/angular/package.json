@@ -10,7 +10,7 @@
   "license": "Siemens Inner Source License v1.4",
   "dependencies": {
     "@siemens/ix": "~0.0.0",
-    "@siemens/core-ui-icons": "~1.1.16"
+    "@siemens/ix-icons": "~1.0.0-beta.1"
   },
   "peerDependencies": {
     "@angular/core": ">10.0.0"

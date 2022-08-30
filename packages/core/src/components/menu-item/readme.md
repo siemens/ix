@@ -12,7 +12,7 @@
 | `disabled`      | `disabled`      | Disable tab and remove event handlers | `boolean` | `undefined`  |
 | `home`          | `home`          | Move the Tab to a top position.       | `boolean` | `false`      |
 | `notifications` | `notifications` | Show notification cound on tab        | `number`  | `undefined`  |
-| `tabIcon`       | `tab-icon`      | Icon name from @siemens/core-ui-icons | `string`  | `'document'` |
+| `tabIcon`       | `tab-icon`      | Icon name from @siemens/ix-icons      | `string`  | `'document'` |
 
 
 ----------------------------------------------

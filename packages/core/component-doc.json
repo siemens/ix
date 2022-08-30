@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-08-29T05:22:57",
+  "timestamp": "2022-08-30T10:45:14",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.15.2",
@@ -5034,7 +5034,7 @@
           "mutable": false,
           "attr": "tab-icon",
           "reflectToAttr": false,
-          "docs": "Icon name from @siemens/core-ui-icons",
+          "docs": "Icon name from @siemens/ix-icons",
           "docsTags": [],
           "default": "'document'",
           "values": [

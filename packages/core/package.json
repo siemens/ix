@@ -35,7 +35,7 @@
     "generate.theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
   },
   "dependencies": {
-    "@siemens/core-ui-icons": "~1.1.17",
+    "@siemens/ix-icons": "^1.0.0-beta.1",
     "@stencil/core": "~2.15.0",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@playwright/test": "^1.24.1",
     "@popperjs/core": "~2.11.0",
-    "@siemens/core-ui-icons": "^1.1.16",
+    "@siemens/ix-icons": "^1.0.0-beta.1",
     "@stencil/angular-output-target": "^0.4.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/postcss": "^2.0.0",

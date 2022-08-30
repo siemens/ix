@@ -30,7 +30,7 @@ const icon_path = path.join(
   __dirname,
   '../../',
   'node_modules',
-  '@siemens/core-ui-icons'
+  '@siemens/ix-icons'
 );
 
 const icon_dest_path = path.join(
@@ -38,7 +38,7 @@ const icon_dest_path = path.join(
   'static',
   'webcomponent-examples',
   'lib',
-  'core-ui-icons'
+  'ix-icons'
 );
 
 fsExtra.copySync(ix_path, ix_dest_path, {

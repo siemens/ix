@@ -21,6 +21,6 @@ yarn-error.log*
 
 # Previews
 
-static/webcomponent-examples/lib/core-ui-icons
+static/webcomponent-examples/lib/ix-icons
 static/webcomponent-examples/lib/ix
 static/webcomponent-examples/lib/ix-aggrid

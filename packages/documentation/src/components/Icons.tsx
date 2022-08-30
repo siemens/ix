@@ -1,7 +1,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
-import ICON_LIST from '@siemens/core-ui-icons/dist/sample.json';
+import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';

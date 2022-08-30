@@ -816,7 +816,7 @@ export namespace Components {
          */
         "notifications": number;
         /**
-          * Icon name from @siemens/core-ui-icons
+          * Icon name from @siemens/ix-icons
          */
         "tabIcon": string;
     }
@@ -2635,7 +2635,7 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
-          * Icon name from @siemens/core-ui-icons
+          * Icon name from @siemens/ix-icons
          */
         "tabIcon"?: string;
     }
