@@ -4,6 +4,12 @@ sidebar_title: Javascript
 title: Javascript
 ---
 
+:::caution
+
+Current **beta release** of _ix_ has some limitations, please check [this](./limitation).
+
+:::
+
 ## Installation of dependencies
 
 Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
