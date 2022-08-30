@@ -1,66 +1,59 @@
-# Siemens iX
+![iX](./logo.svg)
 
-## Build
+> Siemens iX monorepo
 
-Run `npm run build:lib` to build the Siemens iX library.
+![Prerequisite](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
+![Prerequisite](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
+[![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](https://***REMOVED***/siemens-ix/siemens-ix/-/blob/main/LICENSE.md)
 
-## Test
 
-### Unit
+## Prerequisites
 
-Tbd
+- npm >=8.x.x
+- node >=16.16.x
 
-### E2E
+## Installation & Usage
 
-Tbd
+```sh
+yarn install
+```
 
-### Visual regression testing
+```sh
+yarn build
+```
 
-**_Docker cli must be installed on your system_**
+```sh
+yarn start
+```
 
-`npm run visual-regression`
+```sh
+yarn build --filter=<workspace-name>
+```
 
-## Documentation
+```sh
+yarn start --filter=<workspace-name>
+```
 
-Run `npm run docs` to serve documentation on `http://localhost:3000`
 
-## Release
+## 🤝 Contributing
 
-Run `npm run release` and follow the release wizard
+Contributions, issues and feature requests are welcome!
 
-## Project structure
+Feel free to check [issues page](https://***REMOVED***/siemens-ix/siemens-ix/-/issues). You can also take a look at the [contributing guide](https://***REMOVED***/siemens-ix/siemens-ix/-/blob/main/CONTRIBUTING.md).
 
-### Package `core`
+## 👨‍💻 Contributors
 
-Contains all styles and the webcomponents.
+- Daniel Leroux <daniel.leroux@siemens.com>
+- Lukas Maurer <lukas.maurer@siemens.com>
+- Carlos Leandro Cruz Ferrer <carlos.cruz_ferrer@siemens.com>
+- Gonçalo Ferreira <goncalo.alves-ferreira@siemens.com>
 
-**_published as `@siemens/ix`_**
+## Author
 
-### Package `react`
+👤 **Siemens AG**
 
-Contains the wrapper components for react.
+## 📝 License
 
-**_published as `@siemens/ix-react`_**
+Copyright © 2019 [Siemens AG](https://www.siemens.com/).
 
-### Package `angular`
-
-Contains the wrapper components for angular.
-
-**_published as `@siemens/ix-angular`_**
-
-### Package `react-test-app` and `angular-test-app`
-
-Contains a playground application to explore and test `ix` components.
-Inside the `x-test-app`'s are also the preview source code for the documentation. (`src/preview-examples`)
-
-**_Not published_**
-
-### Package `documentation`
-
-Contains the documentation.
-
-### Package `aggrid`
-
-Contains the brand and classic theme for the aggrid library
-
-**_published as `@siemens/ix-aggrid`_**
+This project is [Siemens Inner Source License v1.4](https://***REMOVED***/siemens-ix/siemens-ix/-/blob/main/LICENSE.md) licensed.

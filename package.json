@@ -1,9 +1,19 @@
 {
+  "private": true,
   "name": "ix",
   "version": "0.0.0",
-  "license": "MIT",
-  "private": true,
-  "packageManager": "yarn@1.0.0",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "description": "Siemens iX monorepo",
+  "author": "Siemens AG",
+  "homepage": "https://***REMOVED***/siemens-ix/siemens-ix",
+  "repository": {
+    "type": "git",
+    "url": "https://***REMOVED***/siemens-ix/siemens-ix.git"
+  },
+  "bugs": {
+    "url": "https://***REMOVED***/siemens-ix/siemens-ix/-/issues"
+  },
+  "packageManager": "yarn@1.22.15",
   "engines": {
     "npm": ">=8.x.x",
     "node": ">=16.16.x"
@@ -14,6 +24,7 @@
   "scripts": {
     "docs": "turbo run start --filter=documentation",
     "build": "turbo run build",
+    "start": "turbo run start",
     "clean": "npx rimraf ./**/node_modules",
     "turbo": "turbo",
     "generate-documentation-version": "nx run documentation:generate-version",
