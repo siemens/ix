@@ -1,13 +1,13 @@
 {
   "name": "react-test-app",
-  "version": "0.0.0",
+  "version": "1.0.0-beta.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.0.0-alpha.7",
     "@siemens/ix-icons": "^1.0.0-beta.1",
-    "@siemens/ix": "~0.0.0",
-    "@siemens/ix-aggrid": "~0.0.0",
-    "@siemens/ix-react": "~0.0.0",
+    "@siemens/ix": "~1.0.0-beta.0",
+    "@siemens/ix-aggrid": "~1.0.0-beta.0",
+    "@siemens/ix-react": "~1.0.0-beta.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
