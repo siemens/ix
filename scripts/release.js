@@ -25,7 +25,6 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
     './packages/angular-test-app',
     './packages/react',
     './packages/react-test-app',
-    './packages/documentation',
     './packages/aggrid',
   ];
 

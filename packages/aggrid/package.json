@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-aggrid",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "^0.0.0"
+    "@siemens/ix": "~1.0.0-beta.0"
   },
   "publishConfig": {
     "registry": "***REMOVED***"
