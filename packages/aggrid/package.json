@@ -33,7 +33,8 @@
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
-    "@stencil/sass": "~1.5.2"
+    "@stencil/sass": "~1.5.2",
+    "@siemens/ix": "~1.0.0-beta.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
