@@ -16,10 +16,10 @@
     "@angular/core": ">10.0.0"
   },
   "devDependencies": {
-    "@angular/common": ">10.0.0",
-    "@angular/compiler": "^14.1.0",
-    "@angular/compiler-cli": "^14.1.0",
-    "@angular/core": ">10.0.0",
+    "@angular/common": "^14.2.0",
+    "@angular/compiler": "^14.2.0",
+    "@angular/compiler-cli": "^14.2.0",
+    "@angular/core": "^14.2.0",
     "@siemens/ix": "~1.0.0-beta.0",
     "fs-extra": "^10.1.0",
     "ng-packagr": "^14.0.2",
