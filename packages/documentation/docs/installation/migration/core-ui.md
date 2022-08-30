@@ -4,16 +4,12 @@ sidebar_title: Migration from Core UI
 title: Migration from Core UI
 ---
 
-## If you are using Core UI with Angular
-
-!!!test
-
 ## Removed dependencies
 
 - `ng-bootstrap`
 - `angular/cdk`
 
-### Strcuture of `Application Frame`
+### Structure of `Application Frame`
 
 Check the following points:
 

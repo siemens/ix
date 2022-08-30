@@ -5,7 +5,8 @@
  */
 
 /* You can override the default Infima variables here. */
-:root, body {
+:root,
+body {
   --ifm-menu-color-active: var(--theme-color-primary);
   --ifm-navbar-height: 4.25rem;
   --ifm-navbar-background-color: var(--theme-color-2);
@@ -27,6 +28,13 @@
   --ifm-h1-vertical-rhythm-bottom: 2.5;
   --ifm-leading-desktop: 1.25;
   --ifm-leading: calc(var(--ifm-leading-desktop) * 1rem);
+
+  --bs-alert-bg: var(--theme-color-alarm) !important;
+}
+
+.theme-admonition-caution {
+  background-color: var(--theme-color-warning) !important;
+  color: var(--theme-color-inv-std-text);
 }
 
 .markdown {
@@ -53,7 +61,9 @@
   }
 }
 
-mark, .mark, [data-mark=true] {
+mark,
+.mark,
+[data-mark='true'] {
   background-color: yellow !important;
 }
 
@@ -70,13 +80,13 @@ aside {
   background-color: var(--theme-color-2);
 }
 
-
 .footer {
   border-top: 0.125rem solid var(--theme-color-1);
 }
 
 .navbar {
-  padding: var(--ifm-navbar-padding-vertical) var(--ifm-navbar-padding-horizontal) !important;
+  padding: var(--ifm-navbar-padding-vertical)
+    var(--ifm-navbar-padding-horizontal) !important;
 }
 
 .navbar.navbar--fixed-top {

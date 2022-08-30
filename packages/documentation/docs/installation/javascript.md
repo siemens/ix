@@ -4,6 +4,10 @@ sidebar_title: Javascript
 title: Javascript
 ---
 
+import Caution from './../caution-limitation.md';
+
+<Caution />
+
 ## Installation of dependencies
 
 Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
