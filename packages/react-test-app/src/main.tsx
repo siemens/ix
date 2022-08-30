@@ -68,11 +68,7 @@ import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
@@ -192,7 +188,7 @@ root.render(
       <Route path="/preview/settings" element={<Settings />} />
     </Routes>
   </BrowserRouter>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
