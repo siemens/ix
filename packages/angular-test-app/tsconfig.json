@@ -23,7 +23,6 @@
       "dom"
     ],
     "preserveSymlinks": true,
-    "paths": { "@angular/*": [ "./node_modules/@angular/*" ] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
