@@ -43,6 +43,7 @@ import { InputReadonly } from './preview-examples/input-readonly';
 import { InputWithIcon } from './preview-examples/input-with-icon';
 import { Kpi } from './preview-examples/kpi';
 import { MessageBar } from './preview-examples/message-bar';
+import { ModalExample } from './preview-examples/modal';
 import { Pill } from './preview-examples/pill';
 import { PopoverNews } from './preview-examples/popover-news';
 import { RadioButton } from './preview-examples/radio-button';
@@ -188,9 +189,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/popover-news" element={<PopoverNews />} />
       <Route path="/preview/settings" element={<Settings />} />
       <Route path="/preview/kpi" element={<Kpi />} />
+      <Route path="/preview/modal" element={<ModalExample />} />
     </Routes>
   </BrowserRouter>
-)
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
