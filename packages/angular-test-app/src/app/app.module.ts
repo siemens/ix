@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CoreUIModule } from '@siemens/ix-angular/dist';
+import { CoreUIModule } from '@siemens/ix-angular';
 import { AGGrid } from 'src/preview-examples/aggrid';
 import { ButtonGroup } from 'src/preview-examples/button-group';
 import { Buttons } from 'src/preview-examples/buttons';
@@ -12,6 +12,8 @@ import { Buttons } from 'src/preview-examples/buttons';
 import { AgGridModule } from 'ag-grid-angular';
 import { BasicNavigation } from 'src/preview-examples/basic-navigation';
 import { Modal } from 'src/preview-examples/modal';
+import { Toast } from 'src/preview-examples/toast';
+import { ToastCustom } from 'src/preview-examples/toast-custom';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { Modal } from 'src/preview-examples/modal';
     AGGrid,
     BasicNavigation,
     Modal,
+    Toast,
+    ToastCustom,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { ModalService } from '@siemens/ix-angular/dist';
+import { ModalService } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-modal',

@@ -12,8 +12,6 @@ title: Limitations
 ## Angular
 
 - 🚧 Tree framework integration is missing
-- 🚧 Modal framework integration is missing
-- 🚧 Custom Toast framework integration is missing. Normal toast message with plain text is working
 
 ## React
 

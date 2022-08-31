@@ -11,6 +11,7 @@ import {
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
 import { ModalService } from './modal';
+import { ToastService } from './toast';
 const DECLARATIONS = [...DIRECTIVES];
 
 @NgModule({
@@ -29,6 +30,7 @@ export class CoreUIModule {
           deps: [DOCUMENT, NgZone],
         },
         ModalService,
+        ToastService,
       ],
     };
   }

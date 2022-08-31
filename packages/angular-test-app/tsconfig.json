@@ -23,6 +23,10 @@
       "dom"
     ],
     "preserveSymlinks": true,
+    "paths": {
+      "@siemens/ix-angular": ["./../../node_modules/@siemens/ix-angular/dist"],
+      "@siemens/ix-angular/*": ["./../../node_modules/@siemens/ix-angular/dist"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

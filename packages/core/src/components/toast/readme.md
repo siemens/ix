@@ -14,13 +14,13 @@
 
 ## Methods
 
-### `showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<void>; close: () => void; }>`
+### `showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>`
 
 Display a toast message
 
 #### Returns
 
-Type: `Promise<{ onClose: TypedEvent<void>; close: () => void; }>`
+Type: `Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>`
 
 
 

@@ -5,6 +5,8 @@ import { BasicNavigation } from 'src/preview-examples/basic-navigation';
 import { ButtonGroup } from 'src/preview-examples/button-group';
 import { Buttons } from 'src/preview-examples/buttons';
 import { Modal } from 'src/preview-examples/modal';
+import { Toast } from 'src/preview-examples/toast';
+import { ToastCustom } from 'src/preview-examples/toast-custom';
 
 const routes: Routes = [
   {
@@ -34,6 +36,14 @@ const routes: Routes = [
       {
         path: 'modal',
         component: Modal,
+      },
+      {
+        path: 'toast',
+        component: Toast,
+      },
+      {
+        path: 'toast-custom',
+        component: ToastCustom,
       },
     ],
   },

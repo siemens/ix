@@ -62,6 +62,7 @@ import { TextareaReadonly } from './preview-examples/textarea-readonly';
 import { Tile } from './preview-examples/tile';
 import { Timepicker } from './preview-examples/timepicker';
 import { Toast } from './preview-examples/toast';
+import { ToastCustom } from './preview-examples/toast-custom';
 import { Toggle } from './preview-examples/toggle';
 import { ToggleColor } from './preview-examples/toggle-color';
 import { ToggleDisabled } from './preview-examples/toggle-custom-disable';
@@ -177,6 +178,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/tile" element={<Tile />} />
       <Route path="/preview/timepicker" element={<Timepicker />} />
       <Route path="/preview/toast" element={<Toast />} />
+      <Route path="/preview/toast-custom" element={<ToastCustom />} />
       <Route path="/preview/toggle" element={<Toggle />} />
       <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
       <Route path="/preview/toggle-color" element={<ToggleColor />} />

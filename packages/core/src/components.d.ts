@@ -1192,7 +1192,7 @@ export namespace Components {
           * Display a toast message
           * @param config
          */
-        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<void>; close: () => void; }>;
+        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>;
     }
     interface IxToggle {
         /**

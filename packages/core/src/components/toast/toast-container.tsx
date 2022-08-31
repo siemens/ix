@@ -47,11 +47,11 @@ export class CwToastContainer {
   async showToast(config: ToastConfig) {
     const toast = document.createElement('ix-toast');
 
-    const onClose = new TypedEvent<void>();
+    const onClose = new TypedEvent<any | undefined>();
 
-    function removeToast() {
+    function removeToast(result?: any) {
       toast.remove();
-      onClose.emit();
+      onClose.emit(result);
     }
 
     toast.toastTitle = config.title;
@@ -60,9 +60,13 @@ export class CwToastContainer {
     toast.autoCloseDelay = config.autoCloseDelay;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
-    toast.addEventListener('closeToast', () => {
-      removeToast();
-    });
+    toast.addEventListener(
+      'closeToast',
+      (event: CustomEvent<any | undefined>) => {
+        const { detail } = event;
+        removeToast(detail);
+      }
+    );
 
     if (typeof config.message === 'string') {
       toast.innerText = config.message;
@@ -74,8 +78,8 @@ export class CwToastContainer {
 
     return {
       onClose,
-      close: () => {
-        removeToast();
+      close: (result?: any) => {
+        removeToast(result);
       },
     };
   }
