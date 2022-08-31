@@ -21,12 +21,16 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "preserveSymlinks": true,
+    "paths": { "@angular/*": [ "./node_modules/@angular/*" ] }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "preserveSymlinks": true
+
   }
 }

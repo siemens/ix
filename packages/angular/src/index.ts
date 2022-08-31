@@ -4,4 +4,5 @@
 
 export * from '@siemens/ix';
 export * from './components';
+export * from './modal';
 export * from './module';

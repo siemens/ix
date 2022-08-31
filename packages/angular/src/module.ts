@@ -2,9 +2,15 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 import { DOCUMENT } from '@angular/common';
-import { APP_INITIALIZER, ModuleWithProviders, NgModule, NgZone } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  ModuleWithProviders,
+  NgModule,
+  NgZone,
+} from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
+import { ModalService } from './modal';
 const DECLARATIONS = [...DIRECTIVES];
 
 @NgModule({
@@ -22,6 +28,7 @@ export class CoreUIModule {
           multi: true,
           deps: [DOCUMENT, NgZone],
         },
+        ModalService,
       ],
     };
   }
