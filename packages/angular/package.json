@@ -22,7 +22,7 @@
     "@angular/core": "^14.2.0",
     "@siemens/ix": "~1.0.0-beta.0",
     "fs-extra": "^10.1.0",
-    "ng-packagr": "^14.0.2",
+    "ng-packagr": "^14.2.0",
     "typescript": "^4.7.4"
   },
   "publishConfig": {

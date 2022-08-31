@@ -11,9 +11,17 @@ import { Buttons } from 'src/preview-examples/buttons';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { BasicNavigation } from 'src/preview-examples/basic-navigation';
+import { Modal } from 'src/preview-examples/modal';
 
 @NgModule({
-  declarations: [AppComponent, Buttons, ButtonGroup, AGGrid, BasicNavigation],
+  declarations: [
+    AppComponent,
+    Buttons,
+    ButtonGroup,
+    AGGrid,
+    BasicNavigation,
+    Modal,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
