@@ -9,6 +9,9 @@ import SourceTreeCustom from './../auto-generated/previews/web-component/tree-cu
 import SourceReactTree from './../auto-generated/previews/react/tree.md';
 import SourceReactTreeCustom from './../auto-generated/previews/react/tree-custom.md';
 
+import SourceAngularTree from './../auto-generated/previews/angular/tree.md';
+import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-custom.md';
+
 # Tree
 
 ## Usage
@@ -20,6 +23,9 @@ import SourceReactTreeCustom from './../auto-generated/previews/react/tree-custo
   <TabItem value="react">
     <SourceReactTree />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularTree />
+  </TabItem>
 </Preview>
 
 ### Custom tree node
@@ -30,6 +36,9 @@ import SourceReactTreeCustom from './../auto-generated/previews/react/tree-custo
   </TabItem>
   <TabItem value="react">
     <SourceReactTreeCustom />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularTreeCustom />
   </TabItem>
 </Preview>
 

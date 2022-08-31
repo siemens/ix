@@ -57,10 +57,10 @@ export const IxTree = (
       onNodeRemoved={(removed: CustomEvent<any[]>) => {
         const { detail } = removed;
 
-        detail.forEach((x) => {
-          if (cachedRootNodes.current.has(x)) {
-            cachedRootNodes.current.get(x)?.unmount();
-            cachedRootNodes.current.delete(x);
+        detail.forEach((removedItemElement) => {
+          if (cachedRootNodes.current.has(removedItemElement)) {
+            cachedRootNodes.current.get(removedItemElement)?.unmount();
+            cachedRootNodes.current.delete(removedItemElement);
           }
         });
       }}

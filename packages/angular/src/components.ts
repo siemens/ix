@@ -1499,38 +1499,6 @@ export class IxToggle {
   }
 }
 
-import type { TreeContext as ICwTreeTreeContext } from '@siemens/ix';
-export declare interface IxTree extends Components.IxTree {
-  /**
-   * Context changed 
-   */
-  contextChange: EventEmitter<CustomEvent<ICwTreeTreeContext>>;
-  /**
-   * Emits removed nodes 
-   */
-  nodeRemoved: EventEmitter<CustomEvent<any>>;
-
-}
-
-@ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['context', 'model', 'renderItem', 'root']
-})
-@Component({
-  selector: 'ix-tree',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['context', 'model', 'renderItem', 'root']
-})
-export class IxTree {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['contextChange', 'nodeRemoved']);
-  }
-}
-
 
 export declare interface IxTreeItem extends Components.IxTreeItem {
   /**

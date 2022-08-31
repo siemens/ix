@@ -60,7 +60,6 @@ export const DIRECTIVES = [
   d.IxToast,
   d.IxToastContainer,
   d.IxToggle,
-  d.IxTree,
   d.IxTreeItem,
   d.IxUpload
 ];

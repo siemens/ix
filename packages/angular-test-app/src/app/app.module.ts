@@ -14,6 +14,8 @@ import { BasicNavigation } from 'src/preview-examples/basic-navigation';
 import { Modal } from 'src/preview-examples/modal';
 import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
+import { Tree } from 'src/preview-examples/tree';
+import { TreeCustom } from 'src/preview-examples/tree-custom';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ToastCustom } from 'src/preview-examples/toast-custom';
     Modal,
     Toast,
     ToastCustom,
+    Tree,
+    TreeCustom,
   ],
   imports: [
     BrowserModule,

@@ -133,7 +133,7 @@ export const config: Config = {
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['my-component'],
+      excludeComponents: ['my-component', 'ix-tree'],
     }),
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',

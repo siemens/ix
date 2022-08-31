@@ -11,7 +11,7 @@ title: Limitations
 
 ## Angular
 
-- 🚧 Tree framework integration is missing
+- 🎉 Currently no limitations
 
 ## React
 

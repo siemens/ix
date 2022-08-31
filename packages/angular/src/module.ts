@@ -12,7 +12,8 @@ import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
 import { ModalService } from './modal';
 import { ToastService } from './toast';
-const DECLARATIONS = [...DIRECTIVES];
+import * as tree from './tree';
+const DECLARATIONS = [...DIRECTIVES, tree.IxTree];
 
 @NgModule({
   declarations: DECLARATIONS,
