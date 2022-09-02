@@ -242,7 +242,7 @@ function generateChangelog(tasks) {
   tasks.push({
     title: 'Generate CHANGELOG.md',
     task: async () => {
-      await execa('npm', ['run', 'changelog']);
+      await execa('yarn', ['run', 'changelog']);
     },
   });
 
@@ -292,7 +292,7 @@ async function createDocumentationVersion(tasks, version) {
   tasks.push({
     title: 'Generate new documentation version',
     task: async () => {
-      await execa('npm', [
+      await execa('yarn', [
         'run',
         'generate-documentation-version',
         '--',

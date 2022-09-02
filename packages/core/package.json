@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "license": "Siemens Inner Source License v1.4",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
