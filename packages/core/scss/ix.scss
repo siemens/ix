@@ -11,8 +11,6 @@
 @import './../src/components/toast/styles/toast-container';
 
 /* Default themes */
-@import './theme/brand-dark';
-@import './theme/brand-light';
 @import './theme/classic-dark';
 @import './theme/classic-light';
 @import './theme/static-colors';
@@ -39,10 +37,13 @@
 
 :root {
   --animate-duration: #{$default-time};
+  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
+    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-body:not(.theme-classic-light):not(.theme-classic-dark):not(.theme-brand-light):not(.theme-brand-dark) {
-  @extend .theme-brand-dark;
+body:not([class*='theme-']) {
+  @extend .theme-classic-dark;
 }
 
 body {

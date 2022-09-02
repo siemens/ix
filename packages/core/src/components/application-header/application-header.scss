@@ -13,14 +13,18 @@
   color: var(--theme-app-header-logo--color);
   background-color: var(--theme-app-header--background);
 
-  border-bottom: var(--theme-app-header--border-width) solid var(--theme-app-header--border-color);
+  border-bottom: var(--theme-app-header--border-width) solid
+    var(--theme-app-header--border-color);
 
   .name {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
   }
 
-  .logo > path {
-    fill: var(--theme-app-header-logo--color);
+  .logo {
+    display: inline-block;
+    position: relative;
+    height: 32px;
+    overflow: hidden;
   }
 }

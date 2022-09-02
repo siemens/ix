@@ -3,11 +3,6 @@
  */
 @import './mixins/fonts';
 
-@include font-face('sisan36', italic, $font-weight-bold);
-@include font-face('sisan33', italic, $font-weight-normal);
-@include font-face('sisan06', normal, $font-weight-bold);
-@include font-face('sisan03', normal, $font-weight-normal);
-
 .text-xs {
   @include text-xs;
 }

@@ -24,7 +24,7 @@
     "preserveSymlinks": true
   },
   "include": [
-    "*.ts",
-    "*.tsx"
+    "./**/*.ts",
+    "./**/*.tsx"
   ]
 }

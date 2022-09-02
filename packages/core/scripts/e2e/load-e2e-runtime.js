@@ -21,6 +21,27 @@ function loadResources() {
     'http://127.0.0.1:8080/www/build/siemens-ix.css'
   );
 
+  var ixBrandStyle = document.createElement('link');
+  ixBrandStyle.setAttribute('rel', 'stylesheet');
+  ixBrandStyle.setAttribute(
+    'href',
+    'http://127.0.0.1:8080/www/build/ix-brand-theme/ix-brand-theme.css'
+  );
+
+  var ixBrandEsm = document.createElement('script');
+  ixBrandEsm.setAttribute('type', 'module');
+  ixBrandEsm.setAttribute(
+    'src',
+    'http://127.0.0.1:8080/www/build/ix-brand-theme/ix-brand-theme.esm.js'
+  );
+
+  var ixBrand = document.createElement('script');
+  ixBrand.setAttribute('nomodule', '');
+  ixBrand.setAttribute(
+    'src',
+    'http://127.0.0.1:8080/www/build/ix-brand-theme/ix-brand-theme.js'
+  );
+
   var ixIcons = document.createElement('link');
   ixIcons.setAttribute('rel', 'stylesheet');
   ixIcons.setAttribute(
@@ -31,6 +52,9 @@ function loadResources() {
   document.getElementsByTagName('head')[0].appendChild(ixEsm);
   document.getElementsByTagName('head')[0].appendChild(ix);
   document.getElementsByTagName('head')[0].appendChild(ixStyling);
+  document.getElementsByTagName('head')[0].appendChild(ixBrandStyle);
+  document.getElementsByTagName('head')[0].appendChild(ixBrandEsm);
+  document.getElementsByTagName('head')[0].appendChild(ixBrand);
   document.getElementsByTagName('head')[0].appendChild(ixIcons);
 }
 

@@ -7,9 +7,9 @@
 
 | Property          | Attribute           | Description                                           | Type      | Default     |
 | ----------------- | ------------------- | ----------------------------------------------------- | --------- | ----------- |
-| `appName`         | `app-name`          | Application name                                      | `string`  | `undefined` |
+| `applicationName` | `application-name`  | Application name                                      | `string`  | `undefined` |
 | `hideContextMenu` | `hide-context-menu` | Hide the sidebar context menu button when set to true | `boolean` | `true`      |
-| `navTitle`        | `nav-title`         | Navigation title                                      | `string`  | `undefined` |
+| `navigationTitle` | `navigation-title`  | Navigation title                                      | `string`  | `undefined` |
 
 
 ## Events

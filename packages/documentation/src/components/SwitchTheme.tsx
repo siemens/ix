@@ -95,14 +95,14 @@ export function SwitchTheme(props: { icon: string; label: string }) {
           />
           <ThemeEntry
             id="theme-brand-light"
-            label="Brand Light *WIP*"
+            label="Siemens brand Light"
             active={'theme-brand-light' === theme}
             color="#f3f3f0"
             onClick={(_, id) => onThemeChange(id)}
           />
           <ThemeEntry
             id="theme-brand-dark"
-            label="Brand Dark *WIP*"
+            label="Siemens brand Dark"
             active={'theme-brand-dark' === theme}
             color="#22223b"
             onClick={(_, id) => onThemeChange(id)}

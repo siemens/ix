@@ -29,3 +29,6 @@ coverage
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+
+/ix-brand-theme

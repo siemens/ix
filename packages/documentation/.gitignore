@@ -24,3 +24,4 @@ yarn-error.log*
 static/webcomponent-examples/lib/ix-icons
 static/webcomponent-examples/lib/ix
 static/webcomponent-examples/lib/ix-aggrid
+static/webcomponent-examples/lib/ix-brand-theme

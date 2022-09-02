@@ -28,12 +28,12 @@ export class MapNavigation {
   /**
    * Application name
    */
-  @Prop() appName: string;
+  @Prop() applicationName: string;
 
   /**
    * Navigation title
    */
-  @Prop() navTitle: string;
+  @Prop() navigationTitle: string;
 
   /**
    * Hide the sidebar context menu button when set to true
@@ -231,13 +231,15 @@ export class MapNavigation {
           <div class="map-nav-sidebar">
             <div class="map-nav-header">
               <div class="map-nav-header-brand">
-                <div class="map-nav-brand-logo"></div>
-                <span class="map-nav-brand-title">{this.appName}</span>
+                <div class="map-nav-brand-logo">
+                  <slot name="logo"></slot>
+                </div>
+                <span class="map-nav-brand-title">{this.applicationName}</span>
               </div>
             </div>
             <div class="map-nav-sidebar-content">
               <div class="map-nav-sidebar-static-content">
-                <div class="map-nav-title">{this.navTitle}</div>
+                <div class="map-nav-title">{this.navigationTitle}</div>
                 {this.hideContextMenu ? (
                   ''
                 ) : (

@@ -12,7 +12,6 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
-import { LegalLinkLanguage } from "./components/menu-about/imprint-language";
 import { NotificationColor } from "./components/utils/notification-color";
 import { TypedEvent } from "./components/utils/typed-event";
 import { ModalConfig } from "./components/modal/modal-utils";
@@ -608,7 +607,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "appName": string;
+        "applicationName": string;
         /**
           * Close current shown overlay
          */
@@ -620,7 +619,7 @@ export namespace Components {
         /**
           * Navigation title
          */
-        "navTitle": string;
+        "navigationTitle": string;
         /**
           * Open a overlay inside content area
           * @param name
@@ -713,28 +712,7 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel": string;
-        /**
-          * Should only be set if you use ix-menu standalone
-         */
-        "applicationDescription": string;
-        /**
-          * Should only be set if you use ix-menu standalone
-         */
-        "applicationName": string;
-        /**
-          * Copyright
-         */
-        "copyrightYears": string;
-        "i18nCookieNoticeLabel": string;
-        "i18nCorporateLabel": string;
-        "i18nDigitalId": string;
         "i18nImprintLabel": string;
-        "i18nPrivacyNoticeLabel": string;
-        "i18nTermsOfUseLabel": string;
-        /**
-          * Language of the links in the About & Legal Tab
-         */
-        "imprintLanguage": LegalLinkLanguage;
         /**
           * Label of first tab
          */
@@ -2419,7 +2397,7 @@ declare namespace LocalJSX {
         /**
           * Application name
          */
-        "appName"?: string;
+        "applicationName"?: string;
         /**
           * Hide the sidebar context menu button when set to true
          */
@@ -2427,7 +2405,7 @@ declare namespace LocalJSX {
         /**
           * Navigation title
          */
-        "navTitle"?: string;
+        "navigationTitle"?: string;
         /**
           * Context menu clicked
          */
@@ -2512,28 +2490,7 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
-        /**
-          * Should only be set if you use ix-menu standalone
-         */
-        "applicationDescription"?: string;
-        /**
-          * Should only be set if you use ix-menu standalone
-         */
-        "applicationName"?: string;
-        /**
-          * Copyright
-         */
-        "copyrightYears"?: string;
-        "i18nCookieNoticeLabel"?: string;
-        "i18nCorporateLabel"?: string;
-        "i18nDigitalId"?: string;
         "i18nImprintLabel"?: string;
-        "i18nPrivacyNoticeLabel"?: string;
-        "i18nTermsOfUseLabel"?: string;
-        /**
-          * Language of the links in the About & Legal Tab
-         */
-        "imprintLanguage"?: LegalLinkLanguage;
         /**
           * Label of first tab
          */
