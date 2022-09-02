@@ -159,7 +159,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   tasks.push({
     title: 'Build libs 🚦',
     task: () => {
-      const process = execa('yarn', ['build']);
+      const process = execa('yarn', ['build', '--filter=\\!documentation']);
       return process;
     },
   });
@@ -173,7 +173,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   tasks.push({
     title: 'Build Documentation 📚',
     task: () => {
-      const process = execa('yarn', ['build', '--filter=\\!documentation']);
+      const process = execa('yarn', ['build', '--filter=documentation']);
       return process;
     },
   });
