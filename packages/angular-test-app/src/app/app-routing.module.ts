@@ -9,12 +9,37 @@ import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
+import { NavigationTestComponent } from './components/navigation-test.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'preview/buttons',
+  },
+  {
+    path: 'testing',
+    children: [
+      {
+        path: 'navigation',
+        component: NavigationTestComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'link1',
+          },
+          {
+            path: 'link1',
+            component: Buttons,
+          },
+          {
+            path: 'link2',
+            component: ButtonGroup,
+          },
+        ],
+      },
+    ],
   },
   {
     path: 'preview',
