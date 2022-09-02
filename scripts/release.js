@@ -159,7 +159,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   tasks.push({
     title: 'Build libs 🚦',
     task: () => {
-      const process = execa('npm', ['run', 'build:lib']);
+      const process = execa('yarn', ['build']);
       return process;
     },
   });
@@ -173,7 +173,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   tasks.push({
     title: 'Build Documentation 📚',
     task: () => {
-      const process = execa('npm', ['run', 'build:docs']);
+      const process = execa('yarn', ['build', '--filter=\\!documentation']);
       return process;
     },
   });
@@ -186,7 +186,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
     console.log(`Next steps:`);
     console.log(`  Verify CHANGELOG.md`);
     console.log(`  git commit -am "${getVersionCommitMessage(version)}"`);
-    console.log(`  npm run push-git\n`);
+    console.log(`  yarn run push-git\n`);
   } catch (e) {
     // console.log(e);
   }
