@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-aggrid",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -34,11 +34,11 @@
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
     "@stencil/sass": "~1.5.2",
-    "@siemens/ix": "~1.0.0-beta.0"
+    "@siemens/ix": "~1.0.0-beta.1"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "~1.0.0-beta.0"
+    "@siemens/ix": "~1.0.0-beta.1"
   },
   "publishConfig": {
     "registry": "***REMOVED***"
