@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-sidebar_title: iX for Developers
-title: iX for Developers
+sidebar_title: iX for Designer
+title: iX for Designer
 ---
 
 import {Card, CardList} from '@site/src/components/Card';

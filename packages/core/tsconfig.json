@@ -24,7 +24,7 @@
   },
   "include": [
     "src"
-  ],
+, "../ix-brand-theme/src/components/siemens-about-content/default-imprint.tsx"  ],
   "exclude": [
     "node_modules"
   ]

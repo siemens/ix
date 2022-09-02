@@ -31,27 +31,6 @@
     margin-bottom: $large-space;
   }
 
-  #cui-imprint {
-    .cui-imprint-product-name {
-      margin-bottom: $default-space;
-    }
-
-    .cui-imprint-product-description {
-      margin-bottom: $x-large-space;
-    }
-
-    .cui-imprint-product-name,
-    .cui-imprint-product-description {
-      @include text-l;
-    }
-
-    .cui-imprint-link-container {
-      display: flex;
-      align-items: center;
-      height: $x-large-space;
-    }
-  }
-
   ix-menu-about-item {
     display: none;
   }

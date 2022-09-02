@@ -144,12 +144,6 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      copy: [
-        {
-          src: '../scss/fonts',
-          dest: '../siemens-ix/fonts',
-        },
-      ],
     },
     {
       type: 'dist-custom-elements',
@@ -172,8 +166,9 @@ export const config: Config = {
           dest: 'build/ix-icons',
         },
         {
-          src: '../scss/fonts',
-          dest: 'build/fonts',
+          // Temporary workaround until the brand theme is part of ix core
+          src: './../../../node_modules/@siemens/ix-brand-theme/dist/ix-brand-theme',
+          dest: 'build/ix-brand-theme',
         },
       ],
     },

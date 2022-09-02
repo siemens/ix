@@ -30,12 +30,11 @@ const config = {
         },
         theme: {
           customCss: [
+            require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
             require.resolve(
-              './../../node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css'
+              '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
             ),
-            require.resolve(
-              './../../node_modules/@siemens/ix-icons/dist/css/ix-icons.css'
-            ),
+            require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/search.css'),
           ],

@@ -13,7 +13,6 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { LegalLinkLanguage, resolveLink } from './imprint-language';
 
 @Component({
   tag: 'ix-menu-about',
@@ -21,51 +20,6 @@ import { LegalLinkLanguage, resolveLink } from './imprint-language';
   scoped: true,
 })
 export class CwMenuAbout {
-  /**
-   * Should only be set if you use ix-menu standalone
-   */
-  @Prop() applicationName: string;
-
-  /**
-   * Should only be set if you use ix-menu standalone
-   */
-  @Prop() applicationDescription = '';
-
-  /**
-   * Language of the links in the About & Legal Tab
-   */
-  @Prop() imprintLanguage: LegalLinkLanguage = 'global/en';
-
-  /**
-   * Copyright
-   */
-  @Prop() copyrightYears = '1996 - 2022';
-
-  /**
-   *
-   */
-  @Prop() i18nCorporateLabel = 'Corporate Information';
-
-  /**
-   *
-   */
-  @Prop() i18nPrivacyNoticeLabel = 'Privacy Notice';
-
-  /**
-   *
-   */
-  @Prop() i18nTermsOfUseLabel = 'Terms of Use';
-
-  /**
-   *
-   */
-  @Prop() i18nCookieNoticeLabel = 'Cookie Notice';
-
-  /**
-   *
-   */
-  @Prop() i18nDigitalId = 'Digital ID';
-
   /**
    *
    */
@@ -133,15 +87,6 @@ export class CwMenuAbout {
     setTimeout(() => this.setTab(value));
   }
 
-  @Watch('i18nImprintLabel')
-  watchImprint(newValue: string, oldValue: string) {
-    if (this.activeTabLabel === oldValue) {
-      this.setTab(newValue);
-    }
-    forceUpdate(this);
-    this.updateLabels();
-  }
-
   private getSelectedTabIndex(label: string) {
     const selectedItem = this.aboutItems.find((item) => item.label === label);
     return this.aboutItems.indexOf(selectedItem);
@@ -176,68 +121,6 @@ export class CwMenuAbout {
           ))}
         </ix-tabs>
         <div class="about-items">
-          <ix-menu-about-item label={this.i18nImprintLabel}>
-            <div id="cui-imprint">
-              <div class="cui-imprint-product-name">
-                {this.applicationName}
-                <br />
-                &copy; Siemens {this.copyrightYears}
-              </div>
-              <div
-                class={{
-                  'd-none': !this.applicationDescription,
-                  'cui-imprint-product-description': true,
-                }}
-              >
-                {this.applicationDescription}
-              </div>
-              <div class="cui-imprint-link-container">
-                <a
-                  href={resolveLink(this.imprintLanguage, 'general')}
-                  target="_blank"
-                >
-                  <span class="glyph glyph-16 glyph-chevron-right-small"></span>
-                  {this.i18nCorporateLabel}
-                </a>
-              </div>
-              <div class="cui-imprint-link-container">
-                <a
-                  href={resolveLink(this.imprintLanguage, 'privacy')}
-                  target="_blank"
-                >
-                  <span class="glyph glyph-16 glyph-chevron-right-small"></span>
-                  {this.i18nPrivacyNoticeLabel}
-                </a>
-              </div>
-              <div class="cui-imprint-link-container">
-                <a
-                  href={resolveLink(this.imprintLanguage, 'terms')}
-                  target="_blank"
-                >
-                  <span class="glyph glyph-16 glyph-chevron-right-small"></span>
-                  {this.i18nTermsOfUseLabel}
-                </a>
-              </div>
-              <div class="cui-imprint-link-container">
-                <a
-                  href={resolveLink(this.imprintLanguage, 'cookie')}
-                  target="_blank"
-                >
-                  <span class="glyph glyph-16 glyph-chevron-right-small"></span>
-                  {this.i18nCookieNoticeLabel}
-                </a>
-              </div>
-              <div class="cui-imprint-link-container">
-                <a
-                  href={resolveLink(this.imprintLanguage, 'digital')}
-                  target="_blank"
-                >
-                  <span class="glyph glyph-16 glyph-chevron-right-small"></span>
-                  {this.i18nDigitalId}
-                </a>
-              </div>
-            </div>
-          </ix-menu-about-item>
           <slot></slot>
         </div>
       </Host>

@@ -52,9 +52,9 @@ export class BasicNavigation {
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header
-            name={this.applicationName}
-          ></ix-application-header>
+          <ix-application-header name={this.applicationName}>
+            <slot name="logo"></slot>
+          </ix-application-header>
         ) : null}
         <div id="menu-placeholder"></div>
         <div class="content" onClick={() => this.menu.toggleMenu(false)}>

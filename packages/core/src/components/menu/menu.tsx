@@ -411,9 +411,6 @@ export class Menu {
   private appendAbout() {
     if (this.about) {
       this.overlayContainer.appendChild(this.about);
-
-      this.about.applicationName = this.applicationName;
-      this.about.applicationDescription = this.applicationDescription;
     }
   }
 

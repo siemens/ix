@@ -5,6 +5,10 @@
       "path": "./packages/core"
     },
     {
+      "name": "@siemens/ix-brand-theme",
+      "path": "./packages/ix-brand-theme"
+    },
+    {
       "name": "@siemens/ix-react",
       "path": "./packages/react"
     },

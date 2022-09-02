@@ -781,14 +781,14 @@ export declare interface IxMapNavigation extends Components.IxMapNavigation {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['appName', 'hideContextMenu', 'navTitle'],
+  inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
   methods: ['openOverlay', 'closeOverlay']
 })
 @Component({
   selector: 'ix-map-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['appName', 'hideContextMenu', 'navTitle']
+  inputs: ['applicationName', 'hideContextMenu', 'navigationTitle']
 })
 export class IxMapNavigation {
   protected el: HTMLElement;
@@ -871,13 +871,13 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['activeTabLabel', 'applicationDescription', 'applicationName', 'copyrightYears', 'i18nCookieNoticeLabel', 'i18nCorporateLabel', 'i18nDigitalId', 'i18nImprintLabel', 'i18nPrivacyNoticeLabel', 'i18nTermsOfUseLabel', 'imprintLanguage', 'label', 'show']
+  inputs: ['activeTabLabel', 'i18nImprintLabel', 'label', 'show']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['activeTabLabel', 'applicationDescription', 'applicationName', 'copyrightYears', 'i18nCookieNoticeLabel', 'i18nCorporateLabel', 'i18nDigitalId', 'i18nImprintLabel', 'i18nPrivacyNoticeLabel', 'i18nTermsOfUseLabel', 'imprintLanguage', 'label', 'show']
+  inputs: ['activeTabLabel', 'i18nImprintLabel', 'label', 'show']
 })
 export class IxMenuAbout {
   protected el: HTMLElement;

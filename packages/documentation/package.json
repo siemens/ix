@@ -25,6 +25,7 @@
     "@mdx-js/react": "^1.6.22",
     "@siemens/ix-icons": "1.0.0-beta.1",
     "@siemens/ix": "~1.0.0-beta.0",
+    "@siemens/ix-brand-theme": "~1.0.0-beta.0",
     "@siemens/ix-react": "~1.0.0-beta.0",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",
