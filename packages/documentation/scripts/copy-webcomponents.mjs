@@ -15,7 +15,11 @@ const libDestPath = path.join(
 const ix_path = path.join(__dirname, '..', 'core');
 const ix_dest_path = path.join(libDestPath, 'ix');
 
-const ix_brand_theme_path = path.join(__dirname, '..', 'ix-brand-theme');
+const ix_brand_theme_path = path.join(
+  __dirname,
+  '../../node_modules/',
+  '@siemens/ix-brand-theme'
+);
 const ix_brand_theme_dest_path = path.join(libDestPath, 'ix-brand-theme');
 
 const ix_aggrid_path = path.join(__dirname, '..', 'aggrid');

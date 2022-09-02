@@ -70,6 +70,7 @@ import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
 import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
 import reportWebVitals from './reportWebVitals';
+import { NavigationTest } from './testing/NavigationTest';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -192,6 +193,27 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/settings" element={<Settings />} />
       <Route path="/preview/kpi" element={<Kpi />} />
       <Route path="/preview/modal" element={<ModalExample />} />
+
+      <Route path="/testing">
+        <Route path="navigation" element={<NavigationTest />}>
+          <Route
+            path="link1"
+            element={
+              <div>
+                <Buttons />
+              </div>
+            }
+          />
+          <Route
+            path="link2"
+            element={
+              <div>
+                <ButtonGroup />
+              </div>
+            }
+          />
+        </Route>
+      </Route>
     </Routes>
   </BrowserRouter>
 );

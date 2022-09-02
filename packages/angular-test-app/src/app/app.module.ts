@@ -16,6 +16,7 @@ import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
+import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { TreeCustom } from 'src/preview-examples/tree-custom';
     ToastCustom,
     Tree,
     TreeCustom,
+
+    NavigationTestComponent,
   ],
   imports: [
     BrowserModule,
