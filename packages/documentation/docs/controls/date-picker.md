@@ -5,6 +5,7 @@ import Events from './../auto-generated/ix-date-picker/events.md';
 
 import SourceDatepicker from './../auto-generated/previews/web-component/datepicker.md'
 import SourceReactDatepicker from './../auto-generated/previews/react/datepicker.md'
+import SourceAngularDatepicker from './../auto-generated/previews/angular/datepicker.md'
 
 # Datepicker
 
@@ -16,6 +17,10 @@ import SourceReactDatepicker from './../auto-generated/previews/react/datepicker
   </TabItem>
   <TabItem value="react">
     <SourceReactDatepicker />
+  </TabItem>
+
+  <TabItem value="angular">
+    <SourceAngularDatepicker />
   </TabItem>
 </Preview>
 

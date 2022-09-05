@@ -11,6 +11,11 @@ import SourceReactInputDisabled from './../auto-generated/previews/react/input-d
 import SourceReactInputReadonly from './../auto-generated/previews/react/input-readonly.md'
 import SourceReactInputIcon from './../auto-generated/previews/react/input-with-icon.md'
 
+import SourceAngularInput from './../auto-generated/previews/angular/input.md'
+import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.md'
+import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.md'
+import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.md'
+
 # Input
 
 ## Usage
@@ -21,6 +26,9 @@ import SourceReactInputIcon from './../auto-generated/previews/react/input-with-
   </TabItem>
   <TabItem value="react">
     <SourceReactInput />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularInput />
   </TabItem>
 </Preview>
 
@@ -33,6 +41,9 @@ import SourceReactInputIcon from './../auto-generated/previews/react/input-with-
   <TabItem value="react">
     <SourceReactInputDisabled />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularInputDisabled />
+  </TabItem>
 </Preview>
 
 ### Readonly
@@ -44,6 +55,9 @@ import SourceReactInputIcon from './../auto-generated/previews/react/input-with-
   <TabItem value="react">
     <SourceReactInputReadonly />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularInputReadonly />
+  </TabItem>
 </Preview>
 
 ### with Icon
@@ -54,5 +68,8 @@ import SourceReactInputIcon from './../auto-generated/previews/react/input-with-
   </TabItem>
   <TabItem value="react">
     <SourceReactInputIcon />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularInputIcon />
   </TabItem>
 </Preview>

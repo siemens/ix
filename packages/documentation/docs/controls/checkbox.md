@@ -5,6 +5,8 @@ import SourceCheckbox from './../auto-generated/previews/web-component/checkbox.
 import SourceCheckboxInderterminate from './../auto-generated/previews/web-component/checkbox-indeterminate.md'
 import SourceReactCheckbox from './../auto-generated/previews/react/checkbox.md'
 import SourceReactCheckboxInderterminate from './../auto-generated/previews/react/checkbox-indeterminate.md'
+import SourceAngularCheckbox from './../auto-generated/previews/angular/checkbox.md'
+import SourceAngularCheckboxInderterminate from './../auto-generated/previews/angular/checkbox-indeterminate.md'
 
 # Checkbox
 
@@ -17,6 +19,9 @@ import SourceReactCheckboxInderterminate from './../auto-generated/previews/reac
   <TabItem value="react">
     <SourceReactCheckbox />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularCheckbox />
+  </TabItem>
 </Preview>
 
 ### Indeterminate
@@ -27,5 +32,8 @@ import SourceReactCheckboxInderterminate from './../auto-generated/previews/reac
   </TabItem>
   <TabItem value="react">
     <SourceReactCheckboxInderterminate />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularCheckboxInderterminate />
   </TabItem>
 </Preview>

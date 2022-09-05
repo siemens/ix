@@ -13,6 +13,9 @@ import SourceDropdownIcon from './../auto-generated/previews/web-component/dropd
 import SourceReactDropdown from './../auto-generated/previews/react/dropdown.md'
 import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown-icon.md'
 
+import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.md'
+import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.md'
+
 # Dropdown
 
 ## Usage
@@ -24,6 +27,9 @@ import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown
   <TabItem value="react">
     <SourceReactDropdown />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularDropdown />
+  </TabItem>
 </Preview>
 
 ### Dropdown with icon
@@ -34,6 +40,9 @@ import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown
   </TabItem>
   <TabItem value="react">
     <SourceReactDropdownIcon />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularDropdownIcon />
   </TabItem>
 </Preview>
 

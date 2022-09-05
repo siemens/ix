@@ -5,6 +5,7 @@ import Events from './../auto-generated/ix-blind/events.md';
 
 import WebComponent from './../auto-generated/previews/web-component/blind.md'
 import SourceReact from './../auto-generated/previews/react/blind.md'
+import SourceAngular from './../auto-generated/previews/angular/blind.md'
 
 # Blind
 
@@ -16,6 +17,9 @@ import SourceReact from './../auto-generated/previews/react/blind.md'
   </TabItem>
   <TabItem value="react">
     <SourceReact />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngular />
   </TabItem>
 </Preview>
 

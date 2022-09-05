@@ -5,6 +5,7 @@ import Events from './../../auto-generated/ix-menu-about-news/events.md';
 
 import SourcePopoverNews from './../../auto-generated/previews/web-component/popover-news.md'
 import SourceReactPopoverNews from './../../auto-generated/previews/react/popover-news.md'
+import SourceAngularPopoverNews from './../../auto-generated/previews/angular/popover-news.md'
 
 # Popover News
 
@@ -16,6 +17,9 @@ import SourceReactPopoverNews from './../../auto-generated/previews/react/popove
   </TabItem>
   <TabItem value="react">
     <SourceReactPopoverNews />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularPopoverNews />
   </TabItem>
 </Preview>
 

@@ -14,6 +14,11 @@ import SourceReactToggleLabel from './../auto-generated/previews/react/toggle-cu
 import SourceReactToggleColor from './../auto-generated/previews/react/toggle-color.md';
 import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-custom-disable.md';
 
+import SourceAngularToggle from './../auto-generated/previews/angular/toggle.md';
+import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.md';
+import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.md';
+import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-custom-disable.md';
+
 # Toggle
 
 ## Usage
@@ -24,6 +29,9 @@ import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle
   </TabItem>
   <TabItem value="react">
     <SourceReactToggle />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularToggle />
   </TabItem>
 </Preview>
 
@@ -36,6 +44,9 @@ import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle
   <TabItem value="react">
     <SourceReactToggleLabel />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularToggleLabel />
+  </TabItem>
 </Preview>
 
 ### Different colors
@@ -47,6 +58,9 @@ import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle
   <TabItem value="react">
     <SourceReactToggleColor />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularToggleColor />
+  </TabItem>
 </Preview>
 
 ### Disabled
@@ -57,6 +71,9 @@ import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle
   </TabItem>
   <TabItem value="react">
     <SourceReactToggleDisbaled />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularToggleDisbaled />
   </TabItem>
 </Preview>
 

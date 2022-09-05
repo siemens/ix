@@ -22,6 +22,9 @@ import SourceMenuWithAvatar from './../../auto-generated/previews/web-component/
 import SourceReactMenu from './../../auto-generated/previews/react/vertical-tabs.md'
 import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/vertical-tabs-with-avatar.md'
 
+import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-tabs.md'
+import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.md'
+
 # Navigation Menu
 
 ## Usage
@@ -33,6 +36,9 @@ import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/ver
   <TabItem value="react">
     <SourceReactMenu />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularMenu />
+  </TabItem>
 </Preview>
 
 ## Avatar
@@ -43,6 +49,9 @@ import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/ver
   </TabItem>
   <TabItem value="react">
     <SourceReactMenuWithAvatar />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularMenuWithAvatar />
   </TabItem>
 </Preview>
 

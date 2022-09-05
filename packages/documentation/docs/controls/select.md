@@ -15,6 +15,10 @@ import SourceReactSelect from './../auto-generated/previews/react/select.md';
 import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
 import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
 
+import SourceAngularSelect from './../auto-generated/previews/angular/select.md';
+import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.md';
+import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.md';
+
 # Select
 
 ## Usage
@@ -25,6 +29,9 @@ import SourceReactMultiple from './../auto-generated/previews/react/select-multi
   </TabItem>
   <TabItem value="react">
     <SourceReactSelect />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularSelect />
   </TabItem>
 </Preview>
 
@@ -37,6 +44,9 @@ import SourceReactMultiple from './../auto-generated/previews/react/select-multi
   <TabItem value="react">
     <SourceReactEditable />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularEditable />
+  </TabItem>
 </Preview>
 
 ### Multiselect
@@ -47,6 +57,9 @@ import SourceReactMultiple from './../auto-generated/previews/react/select-multi
   </TabItem>
   <TabItem value="react">
     <SourceReactMultiple />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularMultiple />
   </TabItem>
 </Preview>
 

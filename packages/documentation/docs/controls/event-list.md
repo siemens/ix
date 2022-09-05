@@ -17,6 +17,11 @@ import SourceReactEventListSelected from './../auto-generated/previews/react/eve
 import SourceReactEventListHeight from './../auto-generated/previews/react/event-list-custom-item-height.md'
 import SourceReactEventListCompact from './../auto-generated/previews/react/event-list-compact.md'
 
+import SourceAngularEventList from './../auto-generated/previews/angular/event-list.md'
+import SourceAngularEventListSelected from './../auto-generated/previews/angular/event-list-selected.md'
+import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.md'
+import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.md'
+
 # Event List
 
 ## Usage
@@ -27,6 +32,9 @@ import SourceReactEventListCompact from './../auto-generated/previews/react/even
   </TabItem>
   <TabItem value="react">
     <SourceReactEventList />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularEventList />
   </TabItem>
 </Preview>
 
@@ -39,6 +47,9 @@ import SourceReactEventListCompact from './../auto-generated/previews/react/even
   <TabItem value="react">
     <SourceReactEventListSelected />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularEventListSelected />
+  </TabItem>
 </Preview>
 
 ### Custom item height
@@ -50,6 +61,9 @@ import SourceReactEventListCompact from './../auto-generated/previews/react/even
   <TabItem value="react">
     <SourceReactEventListHeight />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularEventListHeight />
+  </TabItem>
 </Preview>
 
 ### Compact
@@ -60,6 +74,9 @@ import SourceReactEventListCompact from './../auto-generated/previews/react/even
   </TabItem>
   <TabItem value="react">
     <SourceReactEventListCompact />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularEventListCompact />
   </TabItem>
 </Preview>
 

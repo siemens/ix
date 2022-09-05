@@ -12,6 +12,7 @@ import Preview from '@site/src/components/Preview';
 
 import SourceWebComponent from './../../auto-generated/previews/web-component/about-and-legal.md'
 import SourceReact from './../../auto-generated/previews/react/about-and-legal.md'
+import SourceAngular from './../../auto-generated/previews/angular/about-and-legal.md'
 
 ## Usage
 
@@ -21,6 +22,9 @@ import SourceReact from './../../auto-generated/previews/react/about-and-legal.m
   </TabItem>
   <TabItem value="react">
     <SourceReact />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngular />
   </TabItem>
 </Preview>
 
