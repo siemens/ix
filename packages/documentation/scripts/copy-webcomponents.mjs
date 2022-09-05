@@ -17,7 +17,8 @@ const ix_dest_path = path.join(libDestPath, 'ix');
 
 const ix_brand_theme_path = path.join(
   __dirname,
-  '../../node_modules/',
+  '../../',
+  'node_modules',
   '@siemens/ix-brand-theme'
 );
 const ix_brand_theme_dest_path = path.join(libDestPath, 'ix-brand-theme');
@@ -37,9 +38,15 @@ function filter(fileName) {
   return !fileName.includes('node_modules');
 }
 
-Promise.all([
-  fsExtra.copy(ix_path, ix_dest_path, { filter }),
-  fsExtra.copy(ix_aggrid_path, ix_aggrid_dest_path, { filter }),
-  fsExtra.copy(icon_path, icon_dest_path),
-  fsExtra.copy(ix_brand_theme_path, ix_brand_theme_dest_path, { filter }),
-]);
+(async () => {
+  console.log('Start copy');
+  await Promise.all([
+    fsExtra.copy(ix_path, ix_dest_path, { filter }),
+    fsExtra.copy(ix_aggrid_path, ix_aggrid_dest_path, { filter }),
+    fsExtra.copy(icon_path, icon_dest_path),
+    fsExtra.copy(ix_brand_theme_path, ix_brand_theme_dest_path, {
+      filter: (path) => !path.includes('ix-brand-theme/node_modules'),
+    }),
+  ]);
+  console.log('Copy finished!');
+})();
