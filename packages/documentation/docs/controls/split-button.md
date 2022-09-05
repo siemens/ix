@@ -13,6 +13,9 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
 import SourceReactSplitButton from './../auto-generated/previews/react/split-button.md';
 import SourceReactSplitButtonIcons from './../auto-generated/previews/react/split-button-icons.md';
 
+import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.md';
+import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.md';
+
 # Split Button
 
 ## Usage
@@ -24,6 +27,9 @@ import SourceReactSplitButtonIcons from './../auto-generated/previews/react/spli
   <TabItem value="react">
     <SourceReactSplitButton />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularSplitButton />
+  </TabItem>
 </Preview>
 
 ### With icon only
@@ -32,8 +38,11 @@ import SourceReactSplitButtonIcons from './../auto-generated/previews/react/spli
   <TabItem value="javascript">
     <SourceSplitButtonIcons />
   </TabItem>
-  <TabItem value="react">
+  <TabItem value="angular">
     <SourceReactSplitButtonIcons />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularSplitButtonIcons />
   </TabItem>
 </Preview>
 

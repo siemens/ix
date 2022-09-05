@@ -9,6 +9,9 @@ import SourceDrawerFullHeight from './../auto-generated/previews/web-component/d
 import SourceReactDrawer from './../auto-generated/previews/react/drawer.md'
 import SourceReactDrawerFullHeight from './../auto-generated/previews/react/drawer-full-height.md'
 
+import SourceAngularDrawer from './../auto-generated/previews/angular/drawer.md'
+import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/drawer-full-height.md'
+
 # Drawer
 
 ## Usage
@@ -17,9 +20,11 @@ import SourceReactDrawerFullHeight from './../auto-generated/previews/react/draw
   <TabItem value="javascript">
     <SourceDrawer />
   </TabItem>
-
   <TabItem value="react">
     <SourceReactDrawer />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularDrawer />
   </TabItem>
 </Preview>
 
@@ -31,6 +36,9 @@ import SourceReactDrawerFullHeight from './../auto-generated/previews/react/draw
   </TabItem>
   <TabItem value="react">
     <SourceReactDrawerFullHeight />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularDrawerFullHeight />
   </TabItem>
 </Preview>
 

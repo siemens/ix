@@ -5,6 +5,7 @@ import Events from './../auto-generated/ix-time-picker/events.md';
 
 import SourceTimepicker from './../auto-generated/previews/web-component/timepicker.md'
 import SourceReactTimepicker from './../auto-generated/previews/react/timepicker.md'
+import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.md'
 
 # Timepicker
 
@@ -16,6 +17,9 @@ import SourceReactTimepicker from './../auto-generated/previews/react/timepicker
   </TabItem>
   <TabItem value="react">
     <SourceReactTimepicker />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularTimepicker />
   </TabItem>
 </Preview>
 

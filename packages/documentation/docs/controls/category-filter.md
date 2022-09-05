@@ -5,9 +5,11 @@ import Events from './../auto-generated/ix-category-filter/events.md';
 
 import SourceCategoryFilter from './../auto-generated/previews/web-component/category-filter.md'
 import SourceReactCategoryFilter from './../auto-generated/previews/react/category-filter.md'
+import SourceAngularCategoryFilter from './../auto-generated/previews/angular/category-filter.md'
 
 import SourceCategoryFilterSuggestions from './../auto-generated/previews/web-component/category-filter-suggestions.md'
 import SourceReactCategoryFilterSuggestions from './../auto-generated/previews/react/category-filter-suggestions.md'
+import SourceAngularCategoryFilterSuggestions from './../auto-generated/previews/angular/category-filter-suggestions.md'
 
 # Category Filter
 
@@ -20,6 +22,9 @@ import SourceReactCategoryFilterSuggestions from './../auto-generated/previews/r
   <TabItem value="react">
     <SourceReactCategoryFilter />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularCategoryFilter />
+  </TabItem>
 </Preview>
 
 ### without categories
@@ -30,6 +35,9 @@ import SourceReactCategoryFilterSuggestions from './../auto-generated/previews/r
   </TabItem>
   <TabItem value="react">
     <SourceReactCategoryFilterSuggestions />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularCategoryFilterSuggestions />
   </TabItem>
 </Preview>
 

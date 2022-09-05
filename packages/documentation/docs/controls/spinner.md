@@ -10,6 +10,9 @@ import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinn
 import SourceReactSpinner from './../auto-generated/previews/react/spinner.md';
 import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-large.md';
 
+import SourceAngularSpinner from './../auto-generated/previews/angular/spinner.md';
+import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spinner-large.md';
+
 # Spinner
 
 ## Usage
@@ -21,6 +24,9 @@ import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-
   <TabItem value="react">
     <SourceReactSpinner />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularSpinner />
+  </TabItem>
 </Preview>
 
 ### Large
@@ -31,6 +37,9 @@ import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-
   </TabItem>
   <TabItem value="react">
     <SourceReactSpinnerLarge />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularSpinnerLarge />
   </TabItem>
 </Preview>
 

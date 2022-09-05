@@ -9,6 +9,7 @@ import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
 import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
 import SourceReactTabs from './../auto-generated/previews/react/tabs.md';
+import SourceAngularTabs from './../auto-generated/previews/angular/tabs.md';
 
 # Tabs
 
@@ -20,6 +21,9 @@ import SourceReactTabs from './../auto-generated/previews/react/tabs.md';
   </TabItem>
   <TabItem value="react"> 
     <SourceReactTabs />
+  </TabItem>
+  <TabItem value="angular"> 
+    <SourceAngularTabs />
   </TabItem>
 </Preview>
 

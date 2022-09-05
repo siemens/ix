@@ -14,6 +14,10 @@ import SourceReactBreadcrumb from './../auto-generated/previews/react/breadcrumb
 import SourceReactBreadcrumbTruncate from './../auto-generated/previews/react/breadcrumb-truncate.md'
 import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/breadcrumb-next-items.md'
 
+import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadcrumb.md'
+import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.md'
+import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.md'
+
 # Breadcrumb
 
 ## Usage
@@ -24,6 +28,9 @@ import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/b
   </TabItem>
   <TabItem value="react">
     <SourceReactBreadcrumb />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularBreadcrumb />
   </TabItem>
 </Preview>
 
@@ -36,6 +43,9 @@ import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/b
   <TabItem value="react">
     <SourceReactBreadcrumbTruncate />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularBreadcrumbTruncate />
+  </TabItem>
 </Preview>
 
 ### Lazy loaded next items
@@ -46,6 +56,9 @@ import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/b
   </TabItem>
   <TabItem value="react">
     <SourceReactBreadcrumbNextItems />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularBreadcrumbNextItems />
   </TabItem>
 </Preview>
 

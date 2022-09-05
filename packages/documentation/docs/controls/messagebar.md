@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-message-bar/events.md';
 
 import SourceMessage from './../auto-generated/previews/web-component/message-bar.md';
 import SourceReactMessage from './../auto-generated/previews/react/message-bar.md';
+import SourceAnuglarMessage from './../auto-generated/previews/angular/message-bar.md';
 
 # Messagebar
 
@@ -17,6 +18,10 @@ import SourceReactMessage from './../auto-generated/previews/react/message-bar.m
   </TabItem>
   <TabItem value="react">
     <SourceReactMessage />
+  </TabItem>
+
+  <TabItem value="angular">
+    <SourceAnuglarMessage />
   </TabItem>
 </Preview>
 

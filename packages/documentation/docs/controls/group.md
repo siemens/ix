@@ -20,6 +20,11 @@ import SourceReactGroupSuppressed from './../auto-generated/previews/react/group
 import SourceReactGroupCustomEntry from './../auto-generated/previews/react/group-custom-entry.md'
 import SourceReactGroupContext from './../auto-generated/previews/react/group-context-menu.md'
 
+import SourceAngularGroup from './../auto-generated/previews/angular/group.md'
+import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.md'
+import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.md'
+import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.md'
+
 # Group
 
 ## Usage
@@ -29,6 +34,9 @@ import SourceReactGroupContext from './../auto-generated/previews/react/group-co
     <SourceGroup />
   </TabItem>
   <TabItem value="react">
+    <SourceReactGroup />
+  </TabItem>
+  <TabItem value="angular">
     <SourceReactGroup />
   </TabItem>
 </Preview>
@@ -42,6 +50,9 @@ import SourceReactGroupContext from './../auto-generated/previews/react/group-co
   <TabItem value="react">
     <SourceReactGroupSuppressed />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularGroupSuppressed />
+  </TabItem>
 </Preview>
 
 ### Custom group entry
@@ -53,6 +64,9 @@ import SourceReactGroupContext from './../auto-generated/previews/react/group-co
   <TabItem value="react">
     <SourceReactGroupCustomEntry />
   </TabItem>
+  <TabItem value="angular">
+    <SourceAngularGroupCustomEntry />
+  </TabItem>
 </Preview>
 
 ### Group with context menu
@@ -63,6 +77,9 @@ import SourceReactGroupContext from './../auto-generated/previews/react/group-co
   </TabItem>
   <TabItem value="react">
     <SourceReactGroupContext />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularGroupContext />
   </TabItem>
 </Preview>
 

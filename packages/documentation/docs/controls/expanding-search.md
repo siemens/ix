@@ -5,6 +5,7 @@ import Events from './../auto-generated/ix-expanding-search/events.md';
 
 import SourceExpandingSearch from './../auto-generated/previews/web-component/expanding-search.md'
 import SourceReactExpandingSearch from './../auto-generated/previews/react/expanding-search.md'
+import SourceAngularExpandingSearch from './../auto-generated/previews/angular/expanding-search.md'
 
 # Expanding search
 
@@ -16,6 +17,9 @@ import SourceReactExpandingSearch from './../auto-generated/previews/react/expan
   </TabItem>
   <TabItem value="react">
     <SourceReactExpandingSearch />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularExpandingSearch />
   </TabItem>
 </Preview>
 
