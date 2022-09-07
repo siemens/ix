@@ -3,7 +3,8 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { CwToast } from '../ix-toast';
+import '@testing-library/jest-dom';
+import { CwToast } from '../toast';
 
 describe('ix-toast', () => {
   it('renders', async () => {
