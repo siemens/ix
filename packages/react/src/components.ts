@@ -67,3 +67,5 @@ export const IxToast = /*@__PURE__*/createReactComponent<JSX.IxToast, HTMLIxToas
 export const IxToastContainer = /*@__PURE__*/createReactComponent<JSX.IxToastContainer, HTMLIxToastContainerElement>('ix-toast-container');
 export const IxToggle = /*@__PURE__*/createReactComponent<JSX.IxToggle, HTMLIxToggleElement>('ix-toggle');
 export const IxUpload = /*@__PURE__*/createReactComponent<JSX.IxUpload, HTMLIxUploadElement>('ix-upload');
+export const IxWorkflowStep = /*@__PURE__*/createReactComponent<JSX.IxWorkflowStep, HTMLIxWorkflowStepElement>('ix-workflow-step');
+export const IxWorkflowSteps = /*@__PURE__*/createReactComponent<JSX.IxWorkflowSteps, HTMLIxWorkflowStepsElement>('ix-workflow-steps');
