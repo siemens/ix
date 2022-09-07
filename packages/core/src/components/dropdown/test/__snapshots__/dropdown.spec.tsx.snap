@@ -2,9 +2,11 @@
 
 exports[`ix-dropdown renders 1`] = `
 <ix-dropdown class="dropdown-menu" style="margin: 0; min-width: 0px;">
-  <!---->
-  <div style="display: contents;">
-    <ix-dropdown-item></ix-dropdown-item>
-  </div>
+  <mock:shadow-root>
+    <div style="display: contents;">
+      <slot></slot>
+    </div>
+  </mock:shadow-root>
+  <ix-dropdown-item></ix-dropdown-item>
 </ix-dropdown>
 `;

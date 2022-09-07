@@ -51,9 +51,12 @@ describe('ix-dropdown', () => {
 
     expect(page.root).toEqualHtml(`
     <ix-dropdown class="dropdown-menu show" show="" style="margin: 0; min-width: 0px;">
-      <div style="display: contents;">
-        <ix-dropdown-item></ix-dropdown-item>
-      </div>
+      <mock:shadow-root>
+        <div style="display: contents;">
+          <slot></slot>
+        </div>
+      </mock:shadow-root>
+      <ix-dropdown-item></ix-dropdown-item>
     </ix-dropdown>
     `);
   });
