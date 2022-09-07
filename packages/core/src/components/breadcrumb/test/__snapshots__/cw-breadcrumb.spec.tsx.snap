@@ -5,19 +5,19 @@ exports[`ix-breadcrumb renders 1`] = `
   <!---->
   <ix-dropdown></ix-dropdown>
   <div class="crumb-items">
-    <div class="clickable crumb" data-breadcrumb="0" data-testid="item">
+    <div class="btn clickable crumb" data-breadcrumb="0" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
-      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+      <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
     </div>
-    <div class="clickable crumb" data-breadcrumb="1" data-testid="item">
+    <div class="btn clickable crumb" data-breadcrumb="1" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
-      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+      <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
     </div>
-    <div class="clickable crumb" data-breadcrumb="2" data-testid="item">
+    <div class="btn clickable crumb" data-breadcrumb="2" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
-      <span class="glyph glyph-16 glyph-chevron-right text-default-text"></span>
+      <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
     </div>
-    <div class="clickable crumb last remove-hover" data-breadcrumb="3" data-testid="item">
+    <div class="btn clickable crumb last remove-hover" data-breadcrumb="3" data-testid="item">
       <span class="crumb-text remove-anchor"></span>
     </div>
     <ix-breadcrumb-item label="Test 1">
