@@ -1559,3 +1559,52 @@ export class IxUpload {
     proxyOutputs(this, this.el, ['filesChanged']);
   }
 }
+
+
+export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical']
+})
+@Component({
+  selector: 'ix-workflow-step',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical']
+})
+export class IxWorkflowStep {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxWorkflowSteps extends Components.IxWorkflowSteps {
+  /**
+   * On step selected event 
+   */
+  stepSelected: EventEmitter<CustomEvent<number>>;
+
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical']
+})
+@Component({
+  selector: 'ix-workflow-steps',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical']
+})
+export class IxWorkflowSteps {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['stepSelected']);
+  }
+}
