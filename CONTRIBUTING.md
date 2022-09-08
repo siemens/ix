@@ -8,7 +8,7 @@ These guidelines are designed to minimize friction for everyone involved.
 
 ## Feature requests and bug reporting
 
-For feature requests as well as bug reports please open up an issue in the [iX issue board](https://***REMOVED***/pd-de/ui-library/core-ui/-/issues).
+For feature requests as well as bug reports please open up an issue.
 
 ### Feature requests
 
@@ -28,7 +28,7 @@ This is also where you will be informed about upcoming releases and other import
 
 If you are planning to contribute a larger change to iX it is advisable to open an issue for discussion first. This way you can make sure in advance that your changes will actually get accepted.
 
-In order to start working on an issue fork the [iX repositiory](https://***REMOVED***/***REMOVED***/ix/ix).
+In order to start working on an issue fork the `iX repositiory`.
 Once all changes are implemented commit them to the fork and create a merge request (MR).
 Please make sure to enable the option `Allow commits from members who can merge to the target branch` in your MR. This way the iX team will be able to rebase the MR if neccessary.
 
@@ -39,7 +39,6 @@ If your MR should contain more than one commit it will get squash merged.
 
 iX releases follow the concept of [Semantic versioning](https://semver.org/). Therefore it is vital that changes to the codebase don't violate these principles.
 The API of iX consists of components, TypeScript classes, CSS classes, CSS Custom properties and SCSS mixins.
-Issues that get assigned to sprints(/[milestones](https://***REMOVED***/***REMOVED***/ix/ix/-/milestones)) will be tagged with a version number that reflects what kind of changes are to be expected to be introduced by them.
 Please make sure that no accidental breaking changes are produced by your changes.
 For issues that are not yet tagged with a version number it is important that you communicate breaking changes in your merge request.
 

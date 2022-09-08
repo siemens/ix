@@ -1,7 +1,11 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ix-kpi',

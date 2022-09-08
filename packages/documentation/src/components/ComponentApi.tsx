@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import { resolveStencilComponent } from '@site/src/utils/compodoc.util';
 import clsx from 'clsx';
@@ -60,7 +64,6 @@ function StencilApi(props: { name: string }) {
           cellSpacing="4"
           className={clsx(
             'table',
-            'table-core-ui',
             styles.componentApiTable,
             'text-default'
           )}
@@ -99,7 +102,7 @@ function StencilApi(props: { name: string }) {
         <p className="text-l-title">Events</p>
         <table
           cellSpacing="4"
-          className={clsx('table', 'table-core-ui', styles.componentApiTable)}
+          className={clsx('table', styles.componentApiTable)}
         >
           <thead>
             <tr>

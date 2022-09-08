@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import { readFileSync } from 'fs';
 import fse from 'fs-extra';
@@ -12,7 +16,18 @@ function autoGenerationWarning(previewPath) {
   // unix/win normalization
   previewPath = previewPath.replace(/\\/g, '/')
 
-  return `<!-- Auto generated! Please edit here: ${previewPath.substring(previewPath.indexOf('siemens-ix/packages/'))} -->`;
+  const copyright = `<!--
+* COPYRIGHT (c) Siemens AG
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+-->
+  `
+
+  return [
+    copyright,
+    `<!-- Auto generated! Please edit here: ${previewPath.substring(previewPath.indexOf('siemens-ix/packages/'))} -->`
+  ].join('\n');
 }
 
 function generateMarkdown(previewPath, type, code) {

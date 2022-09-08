@@ -1,20 +1,24 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import {
-  createPopper,
-  Instance as PopperInstance,
-  Placement,
+    createPopper,
+    Instance as PopperInstance,
+    Placement
 } from '@popperjs/core';
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Buttons } from '../utils/button-variants';

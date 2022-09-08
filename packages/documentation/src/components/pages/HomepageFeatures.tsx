@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -28,18 +32,6 @@ export default function HomepageFeatures(): JSX.Element {
   const base = useBaseUrl('/');
 
   const FeatureList: FeatureItem[] = [
-    {
-      title: 'Siemens Inner Source',
-      image: base + 'img/logo-640.png',
-      description: (
-        <>
-          <p className="mb-0">View on</p>
-          <a href="https://***REMOVED***/***REMOVED***/core-ui/core-ui/-/blob/develop/LICENSE.md" target="_blank">
-            ***REMOVED***
-          </a>
-        </>
-      ),
-    },
     {
       title: 'Sketch Library',
       image: base + 'img/394px-Sketch_Logo.png',
