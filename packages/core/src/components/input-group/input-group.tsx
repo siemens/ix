@@ -37,7 +37,9 @@ export class InputGroup {
       inputElement.style.paddingRight = paddingRight + 'px';
       inputElement.style.paddingLeft = paddingLeft + 'px';
     } else {
-      console.warn('You used the ix-input-group without an input-tag!');
+      console.warn(
+        'You used the ix-input-group without an input-tag, e.g <input class="form-control" />'
+      );
     }
   }
 
