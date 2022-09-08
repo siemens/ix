@@ -2,13 +2,11 @@
 
 exports[`ix-expanding-search renders 1`] = `
 <ix-expanding-search>
-  <div class="exp-container">
-    <button class="btn btn-icon btn-invisible-secondary btn-search" data-testid="button">
-      <ix-icon class="btn-search-icon" name="search" size="24"></ix-icon>
-    </button>
-    <div class="collapsed disable-pointer input-container" data-testid="input-wrapper">
-      <input class="disable-pointer form-control opacityBefore" data-testid="input" placeholder="Enter text here" type="text" value="">
-    </div>
+  <button class="btn btn-icon btn-invisible-primary btn-search" data-testid="button" tabindex="0">
+    <ix-icon class="btn-search-icon" name="search" size="24"></ix-icon>
+  </button>
+  <div class="collapsed disable-pointer input-container" data-testid="input-wrapper">
+    <input class="disable-pointer form-control opacity-before" data-testid="input" placeholder="Enter text here" tabindex="-1" type="text" value="">
   </div>
 </ix-expanding-search>
 `;
