@@ -1,23 +1,27 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EmbeddedViewRef,
-  EventEmitter,
-  Input,
-  NgZone,
-  OnDestroy,
-  TemplateRef,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    EmbeddedViewRef,
+    EventEmitter,
+    Input,
+    NgZone,
+    OnDestroy,
+    TemplateRef
 } from '@angular/core';
 import type {
-  Components,
-  TreeContext as ICwTreeTreeContext,
-  TreeContext,
-  UpdateCallback,
+    Components,
+    TreeContext as ICwTreeTreeContext,
+    TreeContext,
+    UpdateCallback
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
 import { ProxyCmp, proxyOutputs } from './../angular-component-lib/utils';

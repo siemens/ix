@@ -1296,6 +1296,50 @@ export namespace Components {
          */
         "uploadSuccessText": string;
     }
+    interface IxWorkflowStep {
+        /**
+          * Activate navigation click
+         */
+        "clickable": boolean;
+        /**
+          * Set disabled
+         */
+        "disabled": boolean;
+        /**
+          * Activate navigation click
+         */
+        "position": 'first' | 'last' | 'undefined';
+        /**
+          * Set selected
+         */
+        "selected": boolean;
+        /**
+          * Set status
+         */
+        "status": 'open' | 'success' | 'done' | 'warning' | 'error';
+        /**
+          * Select orientation
+         */
+        "vertical": boolean;
+    }
+    interface IxWorkflowSteps {
+        /**
+          * Activate navigation click
+         */
+        "clickable": boolean;
+        /**
+          * Select linear mode
+         */
+        "linear": boolean;
+        /**
+          * Activate navigation click
+         */
+        "selectedIndex": number;
+        /**
+          * Select orientation
+         */
+        "vertical": boolean;
+    }
     interface MyComponent {
     }
 }
@@ -1666,6 +1710,18 @@ declare global {
         prototype: HTMLIxUploadElement;
         new (): HTMLIxUploadElement;
     };
+    interface HTMLIxWorkflowStepElement extends Components.IxWorkflowStep, HTMLStencilElement {
+    }
+    var HTMLIxWorkflowStepElement: {
+        prototype: HTMLIxWorkflowStepElement;
+        new (): HTMLIxWorkflowStepElement;
+    };
+    interface HTMLIxWorkflowStepsElement extends Components.IxWorkflowSteps, HTMLStencilElement {
+    }
+    var HTMLIxWorkflowStepsElement: {
+        prototype: HTMLIxWorkflowStepsElement;
+        new (): HTMLIxWorkflowStepsElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -1734,6 +1790,8 @@ declare global {
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
         "ix-upload": HTMLIxUploadElement;
+        "ix-workflow-step": HTMLIxWorkflowStepElement;
+        "ix-workflow-steps": HTMLIxWorkflowStepsElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -3136,6 +3194,54 @@ declare namespace LocalJSX {
          */
         "uploadSuccessText"?: string;
     }
+    interface IxWorkflowStep {
+        /**
+          * Activate navigation click
+         */
+        "clickable"?: boolean;
+        /**
+          * Set disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Activate navigation click
+         */
+        "position"?: 'first' | 'last' | 'undefined';
+        /**
+          * Set selected
+         */
+        "selected"?: boolean;
+        /**
+          * Set status
+         */
+        "status"?: 'open' | 'success' | 'done' | 'warning' | 'error';
+        /**
+          * Select orientation
+         */
+        "vertical"?: boolean;
+    }
+    interface IxWorkflowSteps {
+        /**
+          * Activate navigation click
+         */
+        "clickable"?: boolean;
+        /**
+          * Select linear mode
+         */
+        "linear"?: boolean;
+        /**
+          * On step selected event
+         */
+        "onStepSelected"?: (event: CustomEvent<number>) => void;
+        /**
+          * Activate navigation click
+         */
+        "selectedIndex"?: number;
+        /**
+          * Select orientation
+         */
+        "vertical"?: boolean;
+    }
     interface MyComponent {
     }
     interface IntrinsicElements {
@@ -3200,6 +3306,8 @@ declare namespace LocalJSX {
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
         "ix-upload": IxUpload;
+        "ix-workflow-step": IxWorkflowStep;
+        "ix-workflow-steps": IxWorkflowSteps;
         "my-component": MyComponent;
     }
 }
@@ -3268,6 +3376,8 @@ declare module "@stencil/core" {
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
+            "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
+            "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

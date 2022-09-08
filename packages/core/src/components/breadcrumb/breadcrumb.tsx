@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 
 import {
@@ -177,7 +181,7 @@ export class Breadcrumb {
             {item.label}
           </span>
           {!isLastItem ? (
-            <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
+            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
           ) : null}
         </div>
       );

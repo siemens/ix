@@ -39,8 +39,5 @@
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
     "@siemens/ix": "~1.0.0-beta.1"
-  },
-  "publishConfig": {
-    "registry": "***REMOVED***"
   }
 }

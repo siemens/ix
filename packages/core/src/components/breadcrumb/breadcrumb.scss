@@ -1,10 +1,42 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+
+@mixin crumb-hover($variant) {
+  @include hover {
+    background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
+
+    .crumb-text,
+    .glyph {
+      color: var(--theme-breadcrumb-#{$variant}--color--hover);
+    }
+
+    .crumb-text + .glyph-chevron-right-small {
+      color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
+    }
+  }
+
+  @include active {
+    background-color: var(--theme-breadcrumb-#{$variant}--background--active);
+
+    .crumb-text,
+    .glyph {
+      color: var(--theme-breadcrumb-#{$variant}--color--active);
+    }
+
+    .crumb-text + .glyph-chevron-right-small {
+      color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
+    }
+  }
+}
 
 @mixin breadcrumb($variant) {
   .crumb.#{$variant} {
@@ -82,6 +114,8 @@
     outline: none;
     cursor: pointer;
 
+    @include crumb-hover('btn');
+
     .crumb-text {
       @include ellipsis;
       display: flex;
@@ -133,10 +167,13 @@
     display: flex;
 
     .more-text-ellipsis {
-      height: $x-large-space;
-      width: $x-large-space;
+      width: 1rem;
       display: inline-block;
       font-weight: $font-weight-bold;
+    }
+
+    .glyph {
+      line-height: unset;
     }
   }
 
