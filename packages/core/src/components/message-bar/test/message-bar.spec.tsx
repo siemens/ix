@@ -8,7 +8,7 @@
 
 import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
-import { CwMessageBar } from '../message-bar';
+import { MessageBar } from '../message-bar';
 
 describe('ix-message-bar', () => {
   let page: any;
@@ -17,7 +17,7 @@ describe('ix-message-bar', () => {
 
   beforeEach(async () => {
     page = await newSpecPage({
-      components: [CwMessageBar],
+      components: [MessageBar],
       html: `<ix-message-bar type="danger"></ix-message-bar>`,
     });
 

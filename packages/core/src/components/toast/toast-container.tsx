@@ -14,7 +14,7 @@ import { ToastConfig } from './toast-utils';
   tag: 'ix-toast-container',
   scoped: true,
 })
-export class CwToastContainer {
+export class ToastContainer {
   @Element() host!: HTMLIxToastContainerElement;
 
   /**

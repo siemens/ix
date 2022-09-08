@@ -14,7 +14,7 @@ import { FlipTileState } from './flip-tile-state';
   styleUrl: 'flip-tile.scss',
   scoped: true,
 })
-export class CwFlipTile {
+export class FlipTile {
   private readonly ANIMATION_DURATION = 150;
   private contentContainerElement: HTMLDivElement;
   private contentItems: NodeList;

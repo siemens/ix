@@ -13,7 +13,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
   styleUrl: 'application-header.scss',
   shadow: true,
 })
-export class CwApplicationHeader {
+export class ApplicationHeader {
   /**
    * Application name
    */

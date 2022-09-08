@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CwApplicationHeader } from '../application-header';
+import { ApplicationHeader } from '../application-header';
 
 describe('ix-application-header', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CwApplicationHeader],
+      components: [ApplicationHeader],
       html: `<ix-application-header name="Test App">
         <div slot="logo">LOGO</div>
       </ix-application-header>`,

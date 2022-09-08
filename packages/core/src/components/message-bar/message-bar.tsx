@@ -23,7 +23,7 @@ import { NotificationColor } from '../utils/notification-color';
   styleUrl: 'message-bar.scss',
   scoped: true,
 })
-export class CwMessageBar {
+export class MessageBar {
   /**
    * Specifies the type of the alert.
    */
@@ -67,7 +67,7 @@ export class CwMessageBar {
   private closeAlert(el: HTMLElement) {
     anime({
       targets: el,
-      duration: CwMessageBar.duration,
+      duration: MessageBar.duration,
       opacity: [1, 0],
       easing: 'easeOutSine',
       complete: () => {

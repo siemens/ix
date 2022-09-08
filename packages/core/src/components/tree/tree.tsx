@@ -7,24 +7,24 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Watch,
 } from '@stencil/core';
 import Hyperlist from 'hyperlist';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
-    TreeContext,
-    TreeItem,
-    TreeItemContext,
-    TreeItemVisual,
-    TreeModel,
-    UpdateCallback
+  TreeContext,
+  TreeItem,
+  TreeItemContext,
+  TreeItemVisual,
+  TreeModel,
+  UpdateCallback,
 } from './tree-model';
 
 @Component({
@@ -32,7 +32,7 @@ import {
   styleUrl: 'tree.css',
   scoped: true,
 })
-export class CwTree {
+export class Tree {
   @Element() host!: HTMLIxTreeElement;
 
   /**

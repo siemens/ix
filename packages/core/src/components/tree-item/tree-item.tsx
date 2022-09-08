@@ -14,7 +14,7 @@ import { TreeItemContext } from '../tree/tree-model';
   styleUrl: 'tree-item.scss',
   scoped: true,
 })
-export class CwTreeItem {
+export class TreeItem {
   /**
    * Text
    */

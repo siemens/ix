@@ -5,7 +5,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
   styleUrl: 'tile.scss',
   scoped: true,
 })
-export class CwTile {
+export class Tile {
   /**
    * Size of the tile - one of 'small', 'medium' or 'large'
    */
