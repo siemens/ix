@@ -7,14 +7,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import animejs from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -181,7 +181,7 @@ export class Breadcrumb {
             {item.label}
           </span>
           {!isLastItem ? (
-            <span class="glyph glyph-16 glyph-chevron-right-small text-default-text"></span>
+            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
           ) : null}
         </div>
       );
