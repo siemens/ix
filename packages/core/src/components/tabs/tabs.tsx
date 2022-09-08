@@ -15,7 +15,7 @@ let windowStartSize = window.innerWidth;
   styleUrl: 'tabs.scss',
   scoped: false,
 })
-export class CwTabs {
+export class Tabs {
   @Element() hostElement!: HTMLIxTabsElement;
 
   /**
