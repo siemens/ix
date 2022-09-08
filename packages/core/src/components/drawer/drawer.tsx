@@ -13,7 +13,7 @@ import {
   h,
   Method,
   Prop,
-  Watch
+  Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 
@@ -22,7 +22,7 @@ import anime from 'animejs';
   styleUrl: 'drawer.scss',
   scoped: true,
 })
-export class CwDrawer {
+export class Drawer {
   /**
    * Show or hide the drawer
    */
@@ -117,7 +117,7 @@ export class CwDrawer {
   private slideOutRight(el: HTMLElement) {
     anime({
       targets: el,
-      duration: CwDrawer.duration,
+      duration: Drawer.duration,
       translateX: [0, '16rem'],
       opacity: [1, 0],
       easing: 'easeInSine',
@@ -130,7 +130,7 @@ export class CwDrawer {
   private slideInRight(el: HTMLElement) {
     anime({
       targets: el,
-      duration: CwDrawer.duration,
+      duration: Drawer.duration,
       translateX: ['16rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',

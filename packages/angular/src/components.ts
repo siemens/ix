@@ -200,17 +200,17 @@ export class IxButton {
   }
 }
 
-import type { InputState as ICwCategoryFilterInputState } from '@siemens/ix';
-import type { FilterState as ICwCategoryFilterFilterState } from '@siemens/ix';
+import type { InputState as ICategoryFilterInputState } from '@siemens/ix';
+import type { FilterState as ICategoryFilterFilterState } from '@siemens/ix';
 export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
    * Event dispatched whenever the text input changes. 
    */
-  inputChanged: EventEmitter<CustomEvent<ICwCategoryFilterInputState>>;
+  inputChanged: EventEmitter<CustomEvent<ICategoryFilterInputState>>;
   /**
    * Event dispatched whenever the filter state changes. 
    */
-  filterChanged: EventEmitter<CustomEvent<ICwCategoryFilterFilterState>>;
+  filterChanged: EventEmitter<CustomEvent<ICategoryFilterFilterState>>;
 
 }
 

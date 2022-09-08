@@ -19,18 +19,23 @@ describe('ix-select', () => {
     });
     expect(page.root).toEqualHtml(`
     <ix-select>
-     <div class="form-control select">
-       <div class="input-container">
-         <div class="trigger">
-           <input type="text" data-testid="input">
-           <ix-icon class="chevron" name="chevron-down" size="16"></ix-icon>
-         </div>
-       </div>
-     </div>
-     <ix-dropdown adjustdropdownwidthtoreferencewith="" placement="bottom" positioningstrategy="fixed" style="width: 100%;">
-        <div class="d-contents"></div>
-        <ix-dropdown-item data-testid="add-item" class="d-none" icon="plus"></ix-dropdown-item>
-     </ix-dropdown>
+      <div class=\"form-control select\">
+        <div class=\"input-container\">
+          <div class=\"trigger\">
+            <input data-testid=\"input\" placeholder=\"Select an option\" type=\"text\">
+            <div class=\"chevron-down-container\">
+              <ix-icon class=\"chevron\" name=\"chevron-down-small\"></ix-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ix-dropdown adjustdropdownwidthtoreferencewidth=\"\" placement=\"bottom\" positioningstrategy=\"fixed\" style=\"width: 100%;\">
+        <div class=\"select-list-header\">
+          Please select an option
+        </div>
+        <div class=\"d-contents\"></div>
+        <ix-dropdown-item class=\"add-item d-none\" data-testid=\"add-item\" icon=\"plus\"></ix-dropdown-item>
+      </ix-dropdown>
     </ix-select>
     `);
   });
@@ -179,10 +184,10 @@ describe('ix-select', () => {
     });
 
     it('select default', async () => {
-      const page = await newSpecPage({
+      await newSpecPage({
         components: [Select, SelectItem],
         html: `
-        <ix-select data-testid="select" default-value="2">
+        <ix-select data-testid="select" selected-indices="2">
           <ix-select-item data-testid="select-1" value="1" label="ABC"></ix-select-item>
           <ix-select-item data-testid="select-2" value="2" label="ABC 2"></ix-select-item>
           <ix-select-item data-testid="select-3" value="3" label="XYZ"></ix-select-item>

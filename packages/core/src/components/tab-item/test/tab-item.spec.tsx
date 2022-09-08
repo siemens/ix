@@ -5,14 +5,15 @@ describe('tab-item', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [TabItem],
-      html: `<tab-item></tab-item>`,
+      html: `
+      <ix-tab-item>
+        Some text
+      </ix-tab-item>`,
     });
-    expect(page.root).toEqualHtml(`
-      <tab-item>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </tab-item>
-    `);
+    expect(page.root).toEqualHtml(`<ix-tab-item class="bottom" tabindex="0">
+    <div class="text">
+      Some text
+    </div>
+  </ix-tab-item>`);
   });
 });

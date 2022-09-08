@@ -13,7 +13,7 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
@@ -23,7 +23,7 @@ import { NotificationColor } from '../utils/notification-color';
   styleUrl: 'message-bar.scss',
   scoped: true,
 })
-export class CwMessageBar {
+export class MessageBar {
   /**
    * Specifies the type of the alert.
    */
@@ -67,14 +67,14 @@ export class CwMessageBar {
   private closeAlert(el: HTMLElement) {
     anime({
       targets: el,
-      duration: CwMessageBar.duration,
+      duration: MessageBar.duration,
       opacity: [1, 0],
       easing: 'easeOutSine',
       complete: () => {
-        this.closedChange.emit();
         el.classList.add('d-none');
       },
     });
+    this.closedChange.emit();
   }
 
   render() {

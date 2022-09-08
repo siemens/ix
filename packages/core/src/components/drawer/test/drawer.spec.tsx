@@ -8,7 +8,7 @@
 
 import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
-import { CwDrawer } from '../drawer';
+import { Drawer } from '../drawer';
 
 describe('ix-drawer', () => {
   let page: any;
@@ -17,7 +17,7 @@ describe('ix-drawer', () => {
 
   beforeEach(async () => {
     page = await newSpecPage({
-      components: [CwDrawer],
+      components: [Drawer],
       html: `<ix-drawer></ix-drawer>`,
     });
 

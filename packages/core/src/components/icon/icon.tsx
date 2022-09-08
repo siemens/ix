@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
   styleUrl: 'icon.scss',
   scoped: true,
 })
-export class CwIcon {
+export class Icon {
   /**
    * Size of the icon
    */

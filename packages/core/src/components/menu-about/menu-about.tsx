@@ -6,16 +6,16 @@
  *
  */
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    forceUpdate,
-    h,
-    Host,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  forceUpdate,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -23,7 +23,7 @@ import {
   styleUrl: 'menu-about.scss',
   scoped: true,
 })
-export class CwMenuAbout {
+export class MenuAbout {
   /**
    *
    */

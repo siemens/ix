@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
   styleUrl: 'menu-settings-item.css',
   scoped: true,
 })
-export class CwMenuSettingsItem {
+export class MenuSettingsItem {
   /**
    * Label
    */

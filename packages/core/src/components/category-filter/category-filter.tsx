@@ -7,16 +7,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { convertToRemString } from '../utils/rwd.util';
 import { FilterState } from './filter-state';
@@ -28,7 +28,7 @@ import { LogicalFilterOperator } from './logical-filter-operator';
   styleUrl: 'category-filter.scss',
   scoped: true,
 })
-export class CwCategoryFilter {
+export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
   private textInput?: HTMLInputElement;

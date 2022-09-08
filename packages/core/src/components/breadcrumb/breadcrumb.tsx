@@ -56,7 +56,7 @@ export class Breadcrumb {
 
   @Element() hostElement: HTMLIxBreadcrumbElement;
 
-  get cwBreadcrumbItems() {
+  get breadcrumbItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-breadcrumb-item'));
   }
 
@@ -101,7 +101,7 @@ export class Breadcrumb {
   }
 
   private getItems() {
-    return this.cwBreadcrumbItems.map((item) => {
+    return this.breadcrumbItems.map((item) => {
       return { label: item.label, icon: item.icon };
     });
   }

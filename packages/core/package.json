@@ -50,6 +50,7 @@
     "@stencil/react-output-target": "^0.3.1",
     "@stencil/sass": "~1.5.2",
     "@testing-library/dom": "^8.11.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/animejs": "^3.1.4",
     "@types/jest": "^27.0.3",
     "@types/luxon": "^3.0.0",

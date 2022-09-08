@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
   styleUrl: 'menu-about-item.css',
   scoped: true,
 })
-export class CwMenuAboutItem {
+export class MenuAboutItem {
   /**
    * About Item label
    */

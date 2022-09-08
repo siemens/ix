@@ -33,7 +33,8 @@
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
     "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix run test:e2e",
-    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\""
+    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
+    "test": "yarn workspace @siemens/ix run test"
   },
   "dependencies": {
     "tslib": "^2.3.0"

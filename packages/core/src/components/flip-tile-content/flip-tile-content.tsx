@@ -12,7 +12,7 @@ import { Component, h, Host } from '@stencil/core';
   styleUrl: 'flip-tile-content.css',
   shadow: true,
 })
-export class CwFlipTileContent {
+export class FlipTileContent {
   render() {
     return (
       <Host>

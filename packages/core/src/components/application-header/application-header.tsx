@@ -11,9 +11,9 @@ import { Component, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-application-header',
   styleUrl: 'application-header.scss',
-  scoped: true,
+  shadow: true,
 })
-export class CwApplicationHeader {
+export class ApplicationHeader {
   /**
    * Application name
    */

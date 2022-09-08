@@ -6,12 +6,12 @@
  *
  */
 import { newSpecPage } from '@stencil/core/testing';
-import { CwIcon } from '../icon';
+import { Icon } from '../icon';
 
 describe('ix-icon', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CwIcon],
+      components: [Icon],
       html: `<ix-icon name="star"></ix-icon>`,
     });
 
@@ -24,7 +24,7 @@ describe('ix-icon', () => {
 
   it('renders different sizes', async () => {
     const page = await newSpecPage({
-      components: [CwIcon],
+      components: [Icon],
       html: `<ix-icon name="star" size="16"></ix-icon>`,
     });
 
