@@ -1,8 +1,12 @@
-import { convertToAbbreviationString, convertToRemString } from './rwd.util';
-
 /**
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
+
+import { convertToAbbreviationString, convertToRemString } from './rwd.util';
 describe('RWD util', () => {
   it('should convert pixel values to REM strings', () => {
     expect(convertToRemString(0)).toBe('0rem');

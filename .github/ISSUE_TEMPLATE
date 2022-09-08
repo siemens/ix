@@ -1,0 +1,63 @@
+<!--
+
+PLEASE HELP US PROCESS CORE UI ISSUES FASTER BY PROVIDING THE FOLLOWING INFORMATION.
+
+-->
+
+## I'm submitting a...
+
+<!-- Check one of the following options with "x" -->
+<pre><code>
+[ ] Regression (a behavior that used to work and stopped working in a new release)
+[ ] Bug report
+[ ] Performance issue
+[ ] Feature request
+[ ] Documentation issue or request
+[ ] Support request
+[ ] Other... Please describe:
+</code></pre>
+
+## Current behavior
+
+<!-- Describe how the issue manifests. -->
+
+## Expected behavior
+
+<!-- Describe what the desired behavior would be. -->
+
+## Minimal reproduction of the problem with instructions
+
+<!--
+For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem.
+-->
+
+## What is the motivation / use case for changing the behavior?
+
+<!-- Describe the motivation or the concrete use case. -->
+
+## Environment
+
+- [ ] Upload `package.json`-dependencies:
+- [ ] Upload `package-lock.json`-dependencies:
+
+<pre><code>
+- Environment: <!-- React/Angular/Web Components -->
+- Installed version: XX
+
+Browser:
+- [ ] Chrome (desktop) version XX
+- [ ] Chrome (Android) version XX
+- [ ] Chrome (iOS) version XX
+- [ ] Firefox version XX
+- [ ] Safari (desktop) version XX
+- [ ] Safari (iOS) version XX
+- [ ] IE version XX
+- [ ] Edge version XX
+
+For Tooling issues:
+- Node version:  <!-- run `node --version` -->
+- Platform:  <!-- Mac, Linux, Windows -->
+
+Others:
+<!-- Anything else relevant?  Operating system version, IDE, package manager, HTTP server, ... -->
+</code></pre>

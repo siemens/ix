@@ -15,7 +15,7 @@
     "tsc": "tsc -p ."
   },
   "author": "",
-  "license": "Siemens Inner Source License v1.4",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
     "@siemens/ix": "~1.0.0-beta.1",
@@ -39,8 +39,5 @@
   "dependencies": {
     "@siemens/ix-icons": "~1.0.0-beta.1",
     "@siemens/ix": "~1.0.0-beta.1"
-  },
-  "publishConfig": {
-    "registry": "***REMOVED***"
   }
 }

@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import clsx from 'clsx';
 import React, { useLayoutEffect, useRef, useState } from 'react';
@@ -8,9 +12,6 @@ import styles from './Color.module.css';
 import alphaBackground from './transparency500.png';
 import { useCopyToClipboard } from './utils/copy-clipboard';
 
-/**
- * Color list is initial defined in @siemens/core-ui-core/scss/themes/utils/_define-theme-colors.scss
- */
 const listOfMandatoryColors = [
   'color-primary',
   'color-1',

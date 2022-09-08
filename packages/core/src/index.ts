@@ -1,5 +1,9 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 import { addVersion } from './components/utils/debug';
 
@@ -15,7 +19,8 @@ export { Modal } from './components/modal/modal';
 export { Buttons } from './components/utils/button-variants';
 export { NotificationColor } from './components/utils/notification-color';
 export {
-  convertToAbbreviationString,
-  convertToRemString,
+    convertToAbbreviationString,
+    convertToRemString
 } from './components/utils/rwd.util';
 export * from './exports';
+

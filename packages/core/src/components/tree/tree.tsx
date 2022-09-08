@@ -1,26 +1,30 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+/**
+ * COPYRIGHT (c) Siemens AG
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    Watch
 } from '@stencil/core';
 import Hyperlist from 'hyperlist';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
-  TreeContext,
-  TreeItem,
-  TreeItemContext,
-  TreeItemVisual,
-  TreeModel,
-  UpdateCallback,
+    TreeContext,
+    TreeItem,
+    TreeItemContext,
+    TreeItemVisual,
+    TreeModel,
+    UpdateCallback
 } from './tree-model';
 
 @Component({

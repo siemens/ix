@@ -19,6 +19,5 @@ Working with Core UI is really simple – just follow the steps below and you wi
   <Card label="Icon Library" link="icon-library/icons" icon="heart"/>
   <Card label="UX Design" link="ux-design/overview" icon="image" />
   <Card label="Language" link="language/basics" icon="language" />
-  <Card label="Report an issue" link="https://***REMOVED***/***REMOVED***/core-ui/core-ui/-/issues" icon="about" />
   <Card label="FAQ" link="faq" icon="question" />
 </CardList>

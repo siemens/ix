@@ -5,13 +5,13 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "description": "Siemens iX monorepo",
   "author": "Siemens AG",
-  "homepage": "https://***REMOVED***/siemens-ix/siemens-ix",
+  "homepage": "https://www.github.com/siemens/ix",
   "repository": {
     "type": "git",
-    "url": "https://***REMOVED***/siemens-ix/siemens-ix.git"
+    "url": "https://www.github.com/siemens/ix.git"
   },
   "bugs": {
-    "url": "https://***REMOVED***/siemens-ix/siemens-ix/-/issues"
+    "url": "https://www.github.com/siemens/ix/-/issues"
   },
   "packageManager": "yarn@1.22.15",
   "engines": {
