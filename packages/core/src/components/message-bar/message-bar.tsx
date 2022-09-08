@@ -13,7 +13,7 @@ import {
   h,
   Host,
   Prop,
-  State
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
@@ -71,10 +71,10 @@ export class CwMessageBar {
       opacity: [1, 0],
       easing: 'easeOutSine',
       complete: () => {
-        this.closedChange.emit();
         el.classList.add('d-none');
       },
     });
+    this.closedChange.emit();
   }
 
   render() {

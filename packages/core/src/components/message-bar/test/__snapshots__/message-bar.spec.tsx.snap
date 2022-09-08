@@ -4,9 +4,9 @@ exports[`ix-message-bar renders 1`] = `
 <ix-message-bar type="danger">
   <!---->
   <div class="danger message-container" role="alert">
-    <ix-icon color="color-alarm" name="alarm-filled" size="32"></ix-icon>
+    <ix-icon color="color-alarm" name="error"></ix-icon>
     <div class="message-content"></div>
-    <ix-icon-button class="btn-close" data-testid="close-btn" icon="close" ghost="" size="24"></ix-icon-button>
+    <ix-icon-button data-testid="close-btn" ghost="" icon="close" size="24"></ix-icon-button>
   </div>
 </ix-message-bar>
 `;
