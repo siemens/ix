@@ -7,14 +7,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { ToastType } from './toast-utils';
 
@@ -23,7 +23,7 @@ import { ToastType } from './toast-utils';
   styleUrl: 'toast.scss',
   scoped: true,
 })
-export class CwToast {
+export class Toast {
   /**
    * Toast type
    */

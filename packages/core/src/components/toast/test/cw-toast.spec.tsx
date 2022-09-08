@@ -8,12 +8,12 @@
 
 import { newSpecPage } from '@stencil/core/testing';
 import '@testing-library/jest-dom';
-import { CwToast } from '../toast';
+import { Toast } from '../toast';
 
 describe('ix-toast', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CwToast],
+      components: [Toast],
       html: `<ix-toast toast-title="Test title">Test message</ix-toast>`,
     });
 
