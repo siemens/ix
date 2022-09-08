@@ -17,11 +17,9 @@ describe('select-item', () => {
       html: `<ix-select-item value="test" label="Test"></ix-select-item>`,
     });
 
-    expect(page.root).toEqualHtml(`
-      <ix-select-item value="test" label="Test">
-        <ix-dropdown-item icon="empty" label="Test" />
-      </ix-select-item>
-    `);
+    expect(page.root).toEqualHtml(`<ix-select-item label=Test value=test>
+    <ix-dropdown-item label=Test></ix-dropdown-item>
+  </ix-select-item>`);
   });
 
   it('should throw exception if value is missing', (done) => {
