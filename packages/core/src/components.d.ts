@@ -116,6 +116,10 @@ export namespace Components {
          */
         "selected": boolean;
         /**
+          * Type of the button
+         */
+        "type": 'button' | 'submit';
+        /**
           * Button varaint
          */
         "variant": Buttons;
@@ -589,6 +593,10 @@ export namespace Components {
           * Size of icon in button
          */
         "size": '32' | '24' | '16' | '12';
+        /**
+          * Type of the button
+         */
+        "type": 'button' | 'submit';
         /**
           * Variant of button
          */
@@ -1296,6 +1304,16 @@ export namespace Components {
          */
         "uploadSuccessText": string;
     }
+    interface IxValidationTooltip {
+        /**
+          * Message of the tooltip
+         */
+        "message": string;
+        /**
+          * Placement of the tooltip
+         */
+        "placement": Placement;
+    }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
@@ -1710,6 +1728,12 @@ declare global {
         prototype: HTMLIxUploadElement;
         new (): HTMLIxUploadElement;
     };
+    interface HTMLIxValidationTooltipElement extends Components.IxValidationTooltip, HTMLStencilElement {
+    }
+    var HTMLIxValidationTooltipElement: {
+        prototype: HTMLIxValidationTooltipElement;
+        new (): HTMLIxValidationTooltipElement;
+    };
     interface HTMLIxWorkflowStepElement extends Components.IxWorkflowStep, HTMLStencilElement {
     }
     var HTMLIxWorkflowStepElement: {
@@ -1790,6 +1814,7 @@ declare global {
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
         "ix-upload": HTMLIxUploadElement;
+        "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
         "my-component": HTMLMyComponentElement;
@@ -1908,6 +1933,10 @@ declare namespace LocalJSX {
           * Show button as selected. Should be used with outline or invisible
          */
         "selected"?: boolean;
+        /**
+          * Type of the button
+         */
+        "type"?: 'button' | 'submit';
         /**
           * Button varaint
          */
@@ -2437,6 +2466,10 @@ declare namespace LocalJSX {
           * Size of icon in button
          */
         "size"?: '32' | '24' | '16' | '12';
+        /**
+          * Type of the button
+         */
+        "type"?: 'button' | 'submit';
         /**
           * Variant of button
          */
@@ -3194,6 +3227,16 @@ declare namespace LocalJSX {
          */
         "uploadSuccessText"?: string;
     }
+    interface IxValidationTooltip {
+        /**
+          * Message of the tooltip
+         */
+        "message"?: string;
+        /**
+          * Placement of the tooltip
+         */
+        "placement"?: Placement;
+    }
     interface IxWorkflowStep {
         /**
           * Activate navigation click
@@ -3306,6 +3349,7 @@ declare namespace LocalJSX {
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
         "ix-upload": IxUpload;
+        "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
         "my-component": MyComponent;
@@ -3376,6 +3420,7 @@ declare module "@stencil/core" {
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
+            "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

@@ -66,6 +66,11 @@ export class IconButton implements Button {
    */
   @Prop() disabled = false;
 
+  /**
+   * Type of the button
+   */
+  @Prop() type: 'button' | 'submit' = 'button';
+
   private getIconButtonClasses() {
     return {
       'btn-icon-xs': this.size === '12',
@@ -84,7 +89,7 @@ export class IconButton implements Button {
 
   render() {
     return (
-      <button class={this.getIconButtonClasses()}>
+      <button class={this.getIconButtonClasses()} type={this.type}>
         <ix-icon size={this.size} name={this.icon} color={this.color} />
         <div style={{ display: 'none' }}>
           <slot></slot>

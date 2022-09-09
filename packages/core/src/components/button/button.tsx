@@ -47,10 +47,15 @@ export class Button {
    */
   @Prop() disabled = false;
 
+  /**
+   * Type of the button
+   */
+  @Prop() type: 'button' | 'submit' = 'button';
+
   render() {
     return (
       <button
-        type="button"
+        type={this.type}
         class={getButtonClasses(
           this.variant,
           this.outline,

@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CoreUIModule } from '@siemens/ix-angular';
+import { IxModule } from '@siemens/ix-angular';
 import { AGGrid } from 'src/preview-examples/aggrid';
 import { ButtonGroup } from 'src/preview-examples/button-group';
 import { Buttons } from 'src/preview-examples/buttons';
 
+import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { AboutAndLegal } from 'src/preview-examples/about-and-legal';
 import { BasicNavigation } from 'src/preview-examples/basic-navigation';
@@ -73,6 +74,7 @@ import { ToggleCustomLabel } from 'src/preview-examples/toggle-custom-label';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
 import { Upload } from 'src/preview-examples/upload';
+import { Validation } from 'src/preview-examples/validation';
 import { VerticalTabs } from 'src/preview-examples/vertical-tabs';
 import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-avatar';
 import { NavigationTestComponent } from './components/navigation-test.component';
@@ -149,12 +151,14 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Upload,
     VerticalTabsWithAvatar,
     VerticalTabs,
+    Validation,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreUIModule.forRoot(),
+    IxModule.forRoot(),
     AgGridModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

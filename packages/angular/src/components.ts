@@ -184,13 +184,13 @@ export declare interface IxButton extends Components.IxButton {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'variant']
+  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'variant']
+  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'type', 'variant']
 })
 export class IxButton {
   protected el: HTMLElement;
@@ -710,13 +710,13 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'variant']
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'variant']
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
 })
 export class IxIconButton {
   protected el: HTMLElement;
@@ -1557,6 +1557,27 @@ export class IxUpload {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['filesChanged']);
+  }
+}
+
+
+export declare interface IxValidationTooltip extends Components.IxValidationTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['message', 'placement']
+})
+@Component({
+  selector: 'ix-validation-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['message', 'placement']
+})
+export class IxValidationTooltip {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 

@@ -5,4 +5,5 @@
 |invisible| Invisible button | `invisible` | `boolean` | `false` |
 |outline| Outline button | `outline` | `boolean` | `false` |
 |selected| Show button as selected. Should be used with outline or invisible | `selected` | `boolean` | `false` |
+|type| Type of the button | `type` | `"button" ｜ "submit"` | `'button'` |
 |variant| Button varaint | `variant` | `"Primary" ｜ "Secondary"` | `'Primary'` |
