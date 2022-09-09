@@ -12,6 +12,7 @@
 | `invisible` | `invisible` | <span style="color:red">**[DEPRECATED]**</span> use ghost property<br/><br/>Invisible button | `boolean`                  | `false`     |
 | `outline`   | `outline`   | Outline button                                                                               | `boolean`                  | `false`     |
 | `selected`  | `selected`  | Show button as selected. Should be used with outline or invisible                            | `boolean`                  | `false`     |
+| `type`      | `type`      | Type of the button                                                                           | `"button" \| "submit"`     | `'button'`  |
 | `variant`   | `variant`   | Button varaint                                                                               | `"Primary" \| "Secondary"` | `'Primary'` |
 
 

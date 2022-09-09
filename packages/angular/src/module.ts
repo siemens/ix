@@ -7,10 +7,10 @@
  */
 import { DOCUMENT } from '@angular/common';
 import {
-    APP_INITIALIZER,
-    ModuleWithProviders,
-    NgModule,
-    NgZone
+  APP_INITIALIZER,
+  ModuleWithProviders,
+  NgModule,
+  NgZone,
 } from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
@@ -23,10 +23,10 @@ const DECLARATIONS = [...DIRECTIVES, tree.IxTree];
   declarations: DECLARATIONS,
   exports: DECLARATIONS,
 })
-export class CoreUIModule {
-  static forRoot(): ModuleWithProviders<CoreUIModule> {
+export class IxModule {
+  static forRoot(): ModuleWithProviders<IxModule> {
     return {
-      ngModule: CoreUIModule,
+      ngModule: IxModule,
       providers: [
         {
           provide: APP_INITIALIZER,

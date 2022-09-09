@@ -38,7 +38,8 @@
     "@stencil/core": "~2.15.0",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
-    "luxon": "^3.0.1"
+    "luxon": "^3.0.1",
+    "vest": "^4.6.6"
   },
   "devDependencies": {
     "@playwright/test": "^1.24.1",

@@ -69,6 +69,7 @@ import { ToggleDisabled } from './preview-examples/toggle-custom-disable';
 import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
 import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
+import { Validation } from './preview-examples/validation';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 
@@ -193,6 +194,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/settings" element={<Settings />} />
       <Route path="/preview/kpi" element={<Kpi />} />
       <Route path="/preview/modal" element={<ModalExample />} />
+      <Route path="/preview/validation" element={<Validation />} />
 
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>

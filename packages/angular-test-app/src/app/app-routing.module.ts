@@ -66,6 +66,7 @@ import { ToggleCustomLabel } from 'src/preview-examples/toggle-custom-label';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
 import { Upload } from 'src/preview-examples/upload';
+import { Validation } from 'src/preview-examples/validation';
 import { VerticalTabs } from 'src/preview-examples/vertical-tabs';
 import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-avatar';
 import { NavigationTestComponent } from './components/navigation-test.component';
@@ -238,6 +239,7 @@ const routes: Routes = [
       { path: 'upload', component: Upload },
       { path: 'vertical-tabs-with-avatar', component: VerticalTabsWithAvatar },
       { path: 'vertical-tabs', component: VerticalTabs },
+      { path: 'validation', component: Validation },
     ],
   },
 ];

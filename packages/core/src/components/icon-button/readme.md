@@ -16,6 +16,7 @@
 | `oval`      | `oval`      | Button in oval shape                                                                         | `boolean`                      | `undefined`   |
 | `selected`  | `selected`  | Selected state only working with outline or invisible                                        | `boolean`                      | `false`       |
 | `size`      | `size`      | Size of icon in button                                                                       | `"12" \| "16" \| "24" \| "32"` | `'24'`        |
+| `type`      | `type`      | Type of the button                                                                           | `"button" \| "submit"`         | `'button'`    |
 | `variant`   | `variant`   | Variant of button                                                                            | `"Primary" \| "Secondary"`     | `'Secondary'` |
 
 
