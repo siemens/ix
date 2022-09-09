@@ -26,17 +26,18 @@ yarn build || yarn build --filter=<workspace-name>
 yarn start || yarn start --filter=<workspace-name>
 ```
 
-### Test
-
-- Unit TBD
-
-- E2E TBD
+### Execute unit tests
+```sh
+yarn test
+```
 
 ### Visual regression testing
 
-**_Docker cli must be installed on your system_**
+**_Docker cli must be installed on your system_**   
+If you execute the visual-regression tests, please be sure to execute the build step before.
 
 ```sh
+yarn build
 yarn visual-regression
 ```
 
