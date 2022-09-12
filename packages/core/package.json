@@ -2,7 +2,7 @@
   "name": "@siemens/ix",
   "version": "1.0.0-beta.1",
   "license": "MIT",
-  "description": "Stencil Component Starter",
+  "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -31,7 +31,6 @@
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
     "generate": "stencil generate",
-    "postversion": "echo \"/*\n * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.\n */\nexport const version = '$npm_package_version'\" > ./src/env.ts",
     "generate:theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
   },
   "dependencies": {

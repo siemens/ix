@@ -1,7 +1,7 @@
 {
   "name": "@siemens/ix-react",
   "version": "1.0.0-beta.1",
-  "description": "",
+  "description": "Siemens iX for React",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",

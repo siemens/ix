@@ -1,12 +1,11 @@
 {
   "name": "@siemens/ix-angular",
   "version": "1.0.0-beta.1",
-  "description": "",
+  "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
     "fix-packagejson": ""
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "@siemens/ix": "~1.0.0-beta.1",
