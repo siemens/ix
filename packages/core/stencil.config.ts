@@ -159,7 +159,7 @@ export const config: Config = {
     },
     {
       type: 'docs-json',
-      file: 'component-doc.json',
+      file: 'dist/component-doc.json',
     },
     {
       type: 'docs-readme',
