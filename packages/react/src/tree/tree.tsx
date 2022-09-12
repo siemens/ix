@@ -1,10 +1,3 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 import type { JSX, TreeContext } from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom/client';

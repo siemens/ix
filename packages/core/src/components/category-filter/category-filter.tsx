@@ -1,22 +1,15 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Listen,
-  Prop,
-  State,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Listen,
+    Prop,
+    State,
+    Watch
 } from '@stencil/core';
 import { convertToRemString } from '../utils/rwd.util';
 import { FilterState } from './filter-state';

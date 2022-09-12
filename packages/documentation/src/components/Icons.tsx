@@ -1,10 +1,3 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';

@@ -1,19 +1,12 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 
 import {
-  Component,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
+    Component,
+    Event,
+    EventEmitter,
+    h,
+    Host,
+    Prop,
+    State
 } from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';

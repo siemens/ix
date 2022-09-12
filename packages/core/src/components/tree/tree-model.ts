@@ -1,10 +1,3 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 export type TreeItemId = string;
 export type TreeContext = Record<string, TreeItemContext>;
 export type TreeModel<T> = Record<TreeItemId, TreeItem<T>>;

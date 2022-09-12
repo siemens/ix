@@ -1,10 +1,3 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
