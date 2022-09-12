@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { DEFAULT_THEME } from './config';

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 # Siemens iX
 
 Siemens iX provides a holistic design system for building attractive and intuitive web applications.

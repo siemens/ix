@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { newSpecPage } from '@stencil/core/testing';
 import { createMutationObserver } from '../../utils/mutation-observer';
 import { EventList } from '../event-list';

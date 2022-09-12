@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 export const convertToRemString = (value: number) => {
   const valueRem = value / 16;

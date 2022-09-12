@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';

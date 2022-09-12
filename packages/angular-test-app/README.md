@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 # AngularTestApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.

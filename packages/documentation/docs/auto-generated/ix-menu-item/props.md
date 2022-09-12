@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |active| State to display active | `active` | `boolean` | `undefined` |

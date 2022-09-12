@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 const Listr = require('listr');
 const { checkGit, publishGit, readLernaRootPackage } = require('./common');
 

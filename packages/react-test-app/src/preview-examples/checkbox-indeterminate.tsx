@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import React, { useLayoutEffect, useRef } from 'react';
 
 export const CheckboxIndeterminate: React.FC = () => {

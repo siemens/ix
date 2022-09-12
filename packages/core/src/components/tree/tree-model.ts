@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 export type TreeItemId = string;
 export type TreeContext = Record<string, TreeItemContext>;
 export type TreeModel<T> = Record<TreeItemId, TreeItem<T>>;

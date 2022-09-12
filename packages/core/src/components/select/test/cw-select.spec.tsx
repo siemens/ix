@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent, screen } from '@testing-library/dom';

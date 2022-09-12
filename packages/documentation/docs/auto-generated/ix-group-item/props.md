@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |focusable| The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise. | `focusable` | `boolean` | `true` |

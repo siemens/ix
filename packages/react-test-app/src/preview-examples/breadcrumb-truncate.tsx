@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
 import React from 'react';
 

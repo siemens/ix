@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Component } from '@angular/core';
 import { TreeModel } from '@siemens/ix';
 

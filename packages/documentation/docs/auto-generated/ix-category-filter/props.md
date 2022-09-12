@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |categories| Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from. | `undefined` | `{ [id: string]: { label: string; options: string[]; }; }` | `undefined` |

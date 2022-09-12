@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import React from 'react';
 import Head from '@docusaurus/Head';

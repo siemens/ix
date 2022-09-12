@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import type { JSX, TreeContext } from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom/client';

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { camelToDashCase } from './case';
 
 export const attachProps = (node: HTMLElement, newProps: any, oldProps: any = {}) => {

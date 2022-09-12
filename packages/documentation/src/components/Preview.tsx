@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import TabItem from '@theme/TabItem';
 import Tabs from '@theme/Tabs';
 import React from 'react';

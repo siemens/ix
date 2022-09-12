@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 # Animation
 
 Core UI uses meaningful animations to make applications appear physically tangible.  

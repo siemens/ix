@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 const execa = require('execa');
 const inquirer = require('inquirer');
 const semver = require('semver');

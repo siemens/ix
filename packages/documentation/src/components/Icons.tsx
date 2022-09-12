@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';

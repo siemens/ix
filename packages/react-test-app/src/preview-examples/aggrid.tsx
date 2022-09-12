@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { GridOptions } from 'ag-grid-community';
 
 import { AgGridReact } from 'ag-grid-react';

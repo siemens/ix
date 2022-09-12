@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { readFileSync } from 'fs';
 import fse from 'fs-extra';
 import fs from 'fs';

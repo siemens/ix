@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { FilterState, LogicalFilterOperator } from '@siemens/ix';
 import { IxCategoryFilter } from '@siemens/ix-react';
 import React, { useState } from 'react';

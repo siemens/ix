@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 export const toggleTheme = () => {
   const lightTheme = 'theme-light';

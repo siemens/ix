@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({

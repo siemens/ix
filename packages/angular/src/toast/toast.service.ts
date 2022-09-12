@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Injectable } from '@angular/core';
 import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
 import { ToastConfig } from './toast.config';

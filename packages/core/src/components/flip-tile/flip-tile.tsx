@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { FlipTileState } from './flip-tile-state';

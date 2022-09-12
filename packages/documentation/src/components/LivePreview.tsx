@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import HTMLPreview from '@site/src/components/HTMLPreview';
 import React from 'react';
 

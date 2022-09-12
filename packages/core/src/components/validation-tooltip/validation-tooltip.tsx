@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import '@popperjs/core';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';

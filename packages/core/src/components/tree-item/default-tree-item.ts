@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { TreeItem, TreeItemContext, UpdateCallback } from '../tree/tree-model';
 
 export interface DefaultTreeItemData {

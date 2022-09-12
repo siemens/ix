@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 type ThemeVariables = Record<string, string>;

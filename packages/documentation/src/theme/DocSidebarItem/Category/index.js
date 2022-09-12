@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import React, { useEffect, useMemo } from 'react';
 import clsx from 'clsx';

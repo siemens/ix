@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 export const isDevMode = () => {
   return process && process.env && process.env.NODE_ENV === 'development';
 };

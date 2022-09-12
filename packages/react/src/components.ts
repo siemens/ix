@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 /* eslint-disable */
 /* tslint:disable */
 /* auto-generated react proxies */

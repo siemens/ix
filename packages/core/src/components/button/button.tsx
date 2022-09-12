@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Component, h, Prop } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';

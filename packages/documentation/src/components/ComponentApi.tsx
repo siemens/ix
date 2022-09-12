@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { resolveStencilComponent } from '@site/src/utils/compodoc.util';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';

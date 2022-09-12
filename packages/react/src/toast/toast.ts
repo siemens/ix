@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
 import ReactDOMClient from 'react-dom/client';
 

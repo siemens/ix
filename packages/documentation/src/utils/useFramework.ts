@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { useEffect, useState } from 'react';
 
 export type SupportedFrameworks = 'angular' | 'webcomponent' | 'react';

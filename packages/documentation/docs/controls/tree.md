@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 import Preview from '@site/src/components/Preview';
 import Props from './../auto-generated/ix-tree/props.md';
 import Events from './../auto-generated/ix-tree/events.md';

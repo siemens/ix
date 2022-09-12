@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import clsx from 'clsx';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';

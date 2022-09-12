@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
 
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
