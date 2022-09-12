@@ -852,9 +852,9 @@ export namespace Components {
          */
         "backdropClass": string;
         /**
-          * BeforeDismiss callbacl
+          * BeforeDismiss callback
          */
-        "beforeDismiss": () => boolean | Promise<boolean>;
+        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -2741,9 +2741,9 @@ declare namespace LocalJSX {
          */
         "backdropClass"?: string;
         /**
-          * BeforeDismiss callbacl
+          * BeforeDismiss callback
          */
-        "beforeDismiss"?: () => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
