@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |ghost| Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover) | `ghost` | `boolean` | `false` |

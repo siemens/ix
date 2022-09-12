@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 import SourceAggrid from './../../auto-generated/previews/web-component/aggrid.md'

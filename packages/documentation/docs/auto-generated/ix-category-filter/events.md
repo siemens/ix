@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
 |filterChanged| Event dispatched whenever the filter state changes. | `FilterState`

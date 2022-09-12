@@ -1,0 +1,11 @@
+{% for copyright_line in copyright_lines %}
+{{ copyright_line }}
+{% endfor %}
+
+{% for expression in spdx_expressions %}
+SPDX-License-Identifier: {{ expression }}
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+
+{% endfor %}

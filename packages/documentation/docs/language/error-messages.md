@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 ---
 sidebar_position: 8
 sidebar_title: Error, warning & notification messages
