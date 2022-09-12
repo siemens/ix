@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |accept| The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link https ://www.w3schools.com/tags/att_input_accept.asp} | `accept` | `string` | `undefined` |

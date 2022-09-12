@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |checked| Whether the slide-toggle element is checked or not. | `checked` | `boolean` | `false` |

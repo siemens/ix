@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2022 Siemens AG
-
-SPDX-License-Identifier: MIT
--->
-
 import Preview from '@site/src/components/Preview';
 import TabItem from '@theme/TabItem';
 
