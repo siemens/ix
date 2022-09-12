@@ -1,27 +1,24 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import {
-    createPopper,
-    Instance as PopperInstance,
-    Placement,
-    PositioningStrategy
+  createPopper,
+  Instance as PopperInstance,
+  Placement,
+  PositioningStrategy
 } from '@popperjs/core';
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Method,
-    Prop,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+  Watch
 } from '@stencil/core';
 
 @Component({

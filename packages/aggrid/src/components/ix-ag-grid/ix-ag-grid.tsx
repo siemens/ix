@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { Grid, GridOptions } from 'ag-grid-community';
 

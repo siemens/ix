@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 export const config: Config = {

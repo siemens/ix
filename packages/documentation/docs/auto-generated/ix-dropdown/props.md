@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |adjustDropdownWidthToReferenceWidth| Adjust dropdown width to the parent width | `adjust-dropdown-width-to-reference-width` | `boolean` | `false` |

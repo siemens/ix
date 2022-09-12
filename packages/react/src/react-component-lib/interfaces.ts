@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 // General types important to applications using stencil built components
 export interface EventEmitter<T = any> {
   emit: (data?: T) => CustomEvent<T>;

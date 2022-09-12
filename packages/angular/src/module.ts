@@ -1,16 +1,13 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { DOCUMENT } from '@angular/common';
 import {
-  APP_INITIALIZER,
-  ModuleWithProviders,
-  NgModule,
-  NgZone,
+    APP_INITIALIZER,
+    ModuleWithProviders,
+    NgModule,
+    NgZone
 } from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';

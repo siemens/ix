@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 import Props from './../auto-generated/ix-expanding-search/props.md';

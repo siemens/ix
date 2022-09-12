@@ -1,20 +1,17 @@
-/**
- * COPYRIGHT (c) Siemens AG
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  forceUpdate,
-  h,
-  Host,
-  Prop,
-  Watch,
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    forceUpdate,
+    h,
+    Host,
+    Prop,
+    Watch
 } from '@stencil/core';
 
 @Component({

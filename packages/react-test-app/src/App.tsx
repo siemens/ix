@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Siemens AG
+//
+// SPDX-License-Identifier: MIT
+
 import { IxDropdown, IxDropdownItem, IxIcon } from '@siemens/ix-react';
 import { useState } from 'react';
 
