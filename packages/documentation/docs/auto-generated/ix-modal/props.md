@@ -5,7 +5,7 @@
 |ariaLabelledBy|  | `aria-labelled-by` | `string` | `'modal-title'` |
 |backdrop| Adds a dimming layer to the modal. This should only be used when it it necessary to focus the user's attention to the dialog content (e.g. errors, warnings, complex tasks). | `backdrop` | `"static" ｜ boolean` | `true` |
 |backdropClass| Backdrop class | `backdrop-class` | `string` | `undefined` |
-|beforeDismiss| BeforeDismiss callbacl | `undefined` | `() => boolean ｜ Promise<boolean>` | `undefined` |
+|beforeDismiss| BeforeDismiss callback | `undefined` | `(reason?: any) => boolean ｜ Promise<boolean>` | `undefined` |
 |centered| Centered modal | `centered` | `boolean` | `false` |
 |content| Content of modal | `content` | `HTMLElement ｜ string` | `undefined` |
 |headerTitle| Header title | `header-title` | `string` | `undefined` |
