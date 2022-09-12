@@ -3,14 +3,14 @@
 // SPDX-License-Identifier: MIT
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Method,
-    Prop
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
 } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
@@ -51,9 +51,9 @@ export class Modal {
   @Prop() backdropClass: string;
 
   /**
-   * BeforeDismiss callbacl
+   * BeforeDismiss callback
    */
-  @Prop() beforeDismiss: () => boolean | Promise<boolean>;
+  @Prop() beforeDismiss: (reason?: any) => boolean | Promise<boolean>;
 
   /**
    * Centered modal
@@ -196,10 +196,6 @@ export class Modal {
     window.removeEventListener('keydown', this.onKeydown);
   }
 
-  private isPromise<T>(v: any): v is Promise<T> {
-    return v && v.then;
-  }
-
   /**
    * Dismiss modal instance
    * @param reason
@@ -207,21 +203,12 @@ export class Modal {
   @Method()
   async dismiss(reason?: any) {
     if (this.beforeDismiss) {
-      const dismiss = this.beforeDismiss();
-      if (this.isPromise(dismiss)) {
-        dismiss.then(
-          (result) => {
-            if (result !== false) {
-              this.slideUp(this.modalContent, () =>
-                this.dismissed.emit(reason)
-              );
-            }
-          },
-          () => {}
-        );
-      } else if (dismiss !== false) {
+      const result = await this.beforeDismiss(reason);
+      if (result !== false) {
         this.slideUp(this.modalContent, () => this.dismissed.emit(reason));
       }
+    } else {
+      this.slideUp(this.modalContent, () => this.dismissed.emit(reason));
     }
   }
 

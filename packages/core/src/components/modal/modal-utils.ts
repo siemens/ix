@@ -10,7 +10,7 @@ export interface ModalConfig {
   ariaLabelledBy?: string;
   backdrop?: boolean | 'static';
   backdropClass?: string;
-  beforeDismiss?: () => boolean | Promise<boolean>;
+  beforeDismiss?: (reason?: any) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
   content: string | HTMLElement;
