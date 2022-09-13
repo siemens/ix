@@ -36,9 +36,7 @@ const config = {
         theme: {
           customCss: [
             require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
-            require.resolve(
-              '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
-            ),
+            // Insert additional theme (DO NOT REMOVE THIS LINE)
             require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/search.css'),
