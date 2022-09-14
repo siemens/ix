@@ -50,9 +50,11 @@ function filter(fileName) {
     fsExtra.copy(ix_path, ix_dest_path, { filter }),
     fsExtra.copy(ix_aggrid_path, ix_aggrid_dest_path, { filter }),
     fsExtra.copy(icon_path, icon_dest_path),
-    fsExtra.copy(ix_brand_theme_path, ix_brand_theme_dest_path, {
-      filter: (path) => !path.includes('ix-brand-theme/node_modules'),
-    }),
+    fsExtra.pathExistsSync(ix_brand_theme_path)
+      ? fsExtra.copy(ix_brand_theme_path, ix_brand_theme_dest_path, {
+          filter: (path) => !path.includes('ix-brand-theme/node_modules'),
+        })
+      : Promise.resolve(),
   ]);
   console.log('Copy finished!');
 })();

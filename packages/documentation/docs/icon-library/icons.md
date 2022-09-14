@@ -2,7 +2,6 @@
 sidebar_position: 3
 ---
 
-import LivePreview from '@site/src/components/LivePreview';
 import Icons from '@site/src/components/Icons';
 
 # Icons

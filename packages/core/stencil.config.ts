@@ -15,6 +15,27 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
 import fs from 'fs';
+
+const copyAssets = [
+  {
+    src: './../../../node_modules/@siemens/ix-icons/dist',
+    dest: 'build/ix-icons',
+  },
+];
+
+try {
+  const moduleName = '@siemens/ix-brand-theme';
+  require.resolve(moduleName);
+  copyAssets.push({
+    src: './../../../node_modules/@siemens/ix-brand-theme/dist/ix-brand-theme',
+    dest: 'build/ix-brand-theme',
+  });
+} catch (e) {
+  console.warn(
+    'optionalDependency @siemens/ix-brand-theme not found for visual-regression'
+  );
+}
+
 export const config: Config = {
   bundles: [
     {
@@ -179,17 +200,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [
-        {
-          src: './../../../node_modules/@siemens/ix-icons/dist',
-          dest: 'build/ix-icons',
-        },
-        {
-          // Temporary workaround until the brand theme is part of ix core
-          src: './../../../node_modules/@siemens/ix-brand-theme/dist/ix-brand-theme',
-          dest: 'build/ix-brand-theme',
-        },
-      ],
+      copy: copyAssets,
     },
   ],
 };

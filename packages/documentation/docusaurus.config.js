@@ -10,6 +10,30 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+let withBrandTheme = false;
+
+const libCss = [
+  require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
+  require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
+];
+
+try {
+  const path = require.resolve(
+    '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
+  );
+  console.log('Found optionalDependency @siemens/ix-brand-theme.');
+  libCss.push(path);
+  withBrandTheme = true;
+} catch (e) {
+  console.warn('optionalDependency @siemens/ix-brand-theme not found!');
+}
+
+const customCss = [
+  ...libCss,
+  require.resolve('./src/css/custom.css'),
+  require.resolve('./src/css/search.css'),
+];
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Siemens iX',
@@ -34,18 +58,14 @@ const config = {
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
         },
         theme: {
-          customCss: [
-            require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
-            // Insert additional theme (DO NOT REMOVE THIS LINE)
-            require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
-            require.resolve('./src/css/custom.css'),
-            require.resolve('./src/css/search.css'),
-          ],
+          customCss,
         },
       }),
     ],
   ],
-
+  customFields: {
+    withBrandTheme,
+  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({

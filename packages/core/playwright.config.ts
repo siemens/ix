@@ -16,12 +16,17 @@ import { devices } from '@playwright/test';
  */
 // require('dotenv').config();
 
-const THEMES = [
-  'theme-brand-dark',
-  'theme-brand-light',
-  'theme-classic-light',
-  'theme-classic-dark',
-];
+let THEMES = ['theme-classic-light', 'theme-classic-dark'];
+
+try {
+  const moduleName = '@siemens/ix-brand-theme';
+  require.resolve(moduleName);
+  THEMES = ['theme-brand-dark', 'theme-brand-light', ...THEMES];
+} catch (e) {
+  console.warn(
+    'optionalDependency @siemens/ix-brand-theme not found for visual-regression'
+  );
+}
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
@@ -35,25 +40,6 @@ function buildProjectsWithThemes() {
           theme,
         },
       },
-      // Currently deactivated to speedup regression test
-      // {
-      //   name: `firefox - ${theme}`,
-      //   use: {
-      //     ...devices['Desktop Firefox'],
-      //   },
-      //   metadata: {
-      //     theme,
-      //   },
-      // },
-      // {
-      //   name: `webkit - ${theme}`,
-      //   use: {
-      //     ...devices['Desktop Safari'],
-      //   },
-      //   metadata: {
-      //     theme,
-      //   },
-      // },
     ];
   });
 }
