@@ -7,9 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import { DEFAULT_THEME } from './config';
+import { getDefaultTheme } from './config';
 import styles from './SwitchTheme.module.css';
 
 function ThemeEntry(props: {
@@ -41,21 +42,55 @@ function ThemeEntry(props: {
   );
 }
 export function SwitchTheme(props: { icon: string; label: string }) {
+  const context = useDocusaurusContext();
+
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<string>();
+
+  const [registeredThemes, setRegisteredThemes] = useState([
+    {
+      id: 'theme-classic-dark',
+      label: 'Classic Dark',
+      color: '#000',
+    },
+    {
+      id: 'theme-classic-light',
+      label: 'Classic Light',
+      color: '#6a7f98',
+    },
+  ]);
 
   useEffect(() => {
     let storedTheme = localStorage.getItem('theme');
 
     if (!storedTheme) {
-      setTheme(DEFAULT_THEME);
-      localStorage.setItem('theme', DEFAULT_THEME);
-      storedTheme = DEFAULT_THEME;
+      const theme = getDefaultTheme(context);
+      setTheme(theme);
+      localStorage.setItem('theme', theme);
+      storedTheme = theme;
     } else {
       setTheme(storedTheme);
     }
 
     document.body.className = storedTheme;
+  }, []);
+
+  useEffect(() => {
+    if (context.siteConfig.customFields.withBrandTheme) {
+      setRegisteredThemes([
+        ...registeredThemes,
+        {
+          id: 'theme-brand-light',
+          label: 'Siemens brand Light',
+          color: '#f3f3f0',
+        },
+        {
+          id: 'theme-brand-dark',
+          label: 'Siemens brand Dark',
+          color: '#22223b',
+        },
+      ]);
+    }
   }, []);
 
   const onThemeChange = (theme: string) => {
@@ -85,34 +120,18 @@ export function SwitchTheme(props: { icon: string; label: string }) {
       </div>
       {open ? (
         <div className={styles.Dropdown}>
-          <ThemeEntry
-            id="theme-classic-dark"
-            label="Classic Dark"
-            active={'theme-classic-dark' === theme}
-            color="#000"
-            onClick={(_, id) => onThemeChange(id)}
-          />
-          <ThemeEntry
-            id="theme-classic-light"
-            label="Classic Light"
-            active={'theme-classic-light' === theme}
-            color="#6a7f98"
-            onClick={(_, id) => onThemeChange(id)}
-          />
-          <ThemeEntry
-            id="theme-brand-light"
-            label="Siemens brand Light"
-            active={'theme-brand-light' === theme}
-            color="#f3f3f0"
-            onClick={(_, id) => onThemeChange(id)}
-          />
-          <ThemeEntry
-            id="theme-brand-dark"
-            label="Siemens brand Dark"
-            active={'theme-brand-dark' === theme}
-            color="#22223b"
-            onClick={(_, id) => onThemeChange(id)}
-          />
+          {registeredThemes.map(({ id, label, color }) => {
+            return (
+              <ThemeEntry
+                id={id}
+                key={id}
+                label={label}
+                active={id === theme}
+                color={color}
+                onClick={(_, id) => onThemeChange(id)}
+              />
+            );
+          })}
         </div>
       ) : null}
     </div>

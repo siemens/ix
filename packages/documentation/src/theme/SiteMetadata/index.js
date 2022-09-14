@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -18,13 +18,10 @@ import {
 } from '@docusaurus/theme-common/internal';
 import { useLocation } from '@docusaurus/router';
 import SearchMetadata from '@theme/SearchMetadata';
-import { DEFAULT_THEME } from '@site/src/utils/theme';
+import { getDefaultTheme } from '@site/src/components/config';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 
 applyPolyfills().then(() => {
-  if (typeof document !== 'undefined') {
-    document.body.classList.add(DEFAULT_THEME);
-  }
   defineCustomElements();
 });
 
@@ -94,6 +91,12 @@ export default function SiteMetadata() {
   // TODO maybe move these 2 themeConfig to siteConfig?
   // These seems useful for other themes as well
   const { metadata, image: defaultImage } = useThemeConfig();
+  const context = useDocusaurusContext();
+
+  useEffect(() => {
+    document.body.classList.add(getDefaultTheme(context));
+  }, [context]);
+
   return (
     <>
       <Head>

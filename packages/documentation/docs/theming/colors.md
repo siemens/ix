@@ -1,4 +1,3 @@
-import LivePreview from '@site/src/components/LivePreview';
 import Color from '@site/src/components/Color';
 
 # Colors

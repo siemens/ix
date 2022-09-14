@@ -6,5 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DocusaurusContext } from '@docusaurus/types';
 
-export const DEFAULT_THEME = 'theme-brand-dark';
+export const getDefaultTheme = (context: DocusaurusContext) => {
+  if (!context) {
+    return 'theme-classic-dark';
+  }
+  return context.siteConfig.customFields.withBrandTheme
+    ? 'theme-brand-dark'
+    : 'theme-classic-dark';
+};

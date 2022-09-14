@@ -14,6 +14,7 @@ import ImageUrl from '@site/static/img/logo_coreui.svg';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
+import { getDefaultTheme } from '../components/config';
 import HomepageFeatures from '../components/pages/HomepageFeatures';
 import styles from './index.module.css';
 
@@ -43,9 +44,10 @@ function FooterButton(props: { label: string; icon: string }) {
 
 function Homepage() {
   const base = useBaseUrl('/');
+  const context = useDocusaurusContext();
 
   useEffect(() => {
-    document.body.className = 'theme-brand-dark';
+    document.body.className = getDefaultTheme(context);
   }, []);
 
   return (

@@ -9,10 +9,9 @@
 
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import clsx from 'clsx';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { DEFAULT_THEME } from './config';
-import styles from './HTMLPreview.module.css';
+import { getDefaultTheme } from './config';
 
 export default function Demo(props: {
   name: string;
@@ -20,12 +19,13 @@ export default function Demo(props: {
   height?: string;
   noMargin?: boolean;
 }) {
+  const context = useDocusaurusContext();
   const [error] = useState(false);
 
   const baseUrl = useBaseUrl('/');
   const [base, setBase] = useState('');
 
-  const [theme, setTheme] = useState<string>(DEFAULT_THEME);
+  const [theme, setTheme] = useState<string>(getDefaultTheme(context));
 
   const { preferredVersion } = useDocsPreferredVersion();
 
@@ -43,7 +43,8 @@ export default function Demo(props: {
 
   useLayoutEffect(() => {
     const applyDefaultTheme = () => {
-      let newTheme = DEFAULT_THEME;
+      const theme = getDefaultTheme(context);
+      let newTheme = theme;
       document.body.classList.forEach((className) => {
         if (className.includes('theme-')) {
           newTheme = className;
@@ -52,7 +53,7 @@ export default function Demo(props: {
       setTheme(newTheme);
     };
 
-    const mutationObserver = new MutationObserver(applyDefaultTheme);
+    const mutationObserver = new MutationObserver(() => applyDefaultTheme());
 
     mutationObserver.observe(document.body, {
       attributeFilter: ['class'],
@@ -64,7 +65,7 @@ export default function Demo(props: {
     return () => {
       mutationObserver.disconnect();
     };
-  });
+  }, []);
 
   return (
     <>
@@ -73,8 +74,8 @@ export default function Demo(props: {
           src={`${base}?theme=${props.theme ? props.theme : theme}${
             props.noMargin ? '&no-margin=true' : ''
           }`}
-          className={clsx(styles.preview)}
           style={{
+            width: '100%',
             height: `${props.height}`,
           }}
         ></iframe>
