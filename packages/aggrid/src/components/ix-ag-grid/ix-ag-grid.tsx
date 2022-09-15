@@ -33,7 +33,7 @@ export class IxAgGrid {
     }
 
     if (!this.grid) {
-      const gridDiv = this.host.querySelector('div.ag-theme-ix-brand-dark') as HTMLElement;
+      const gridDiv = this.host.querySelector('div.ag-theme-ix') as HTMLElement;
       this.grid = new Grid(gridDiv, this.gridOptions);
     }
   }

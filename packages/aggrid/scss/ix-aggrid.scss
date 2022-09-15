@@ -99,4 +99,13 @@
     letter-spacing: normal;
     color: var(--theme-table-data-cell--color);
   }
+
+  .ag-filter-wrapper {
+    background-color: var(--theme-color-1);
+
+    .ag-checkbox .ag-input-wrapper,
+    .ag-radio-button .ag-input-wrapper {
+      color: var(--theme-color-primary);
+    }
+  }
 }
