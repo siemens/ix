@@ -16,21 +16,27 @@ const __dirname = path.resolve();
 
 function autoGenerationWarning(previewPath) {
   // unix/win normalization
-  previewPath = previewPath.replace(/\\/g, '/')
+  previewPath = previewPath.replace(/\\/g, '/');
 
-  const copyright = `// SPDX-FileCopyrightText: 2022 Siemens AG
-  //
-  // SPDX-License-Identifier: MIT
-  `
+  const copyright = `<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+`;
 
   return [
     copyright,
-    `<!-- Auto generated! Please edit here: ${previewPath.substring(previewPath.indexOf('siemens-ix/packages/'))} -->`
+    `<!-- Auto generated! Please edit here: ${previewPath.substring(
+      previewPath.indexOf('siemens-ix/packages/')
+    )} -->`,
   ].join('\n');
 }
 
 function generateMarkdown(previewPath, type, code) {
-  return `${autoGenerationWarning(previewPath)}\n\`\`\`${type}\n${code.trimEnd()}\n\`\`\`\n`
+  return `${autoGenerationWarning(
+    previewPath
+  )}\n\`\`\`${type}\n${code.trimEnd()}\n\`\`\`\n`;
 }
 
 function formatMultiline(str) {
@@ -91,15 +97,19 @@ function writeApi(component) {
 
 function writeWebComponentPreviews() {
   const previewsPath = path.join(__dirname, 'static', 'webcomponent-examples');
-  const webComponentPreviews = fs.readdirSync(previewsPath)
+  const webComponentPreviews = fs
+    .readdirSync(previewsPath)
     .filter((name) => name.includes('.html'))
-    .map((name) => [
-      name.replace('.html', ''),
-      path.join(previewsPath, name),
-    ]);
+    .map((name) => [name.replace('.html', ''), path.join(previewsPath, name)]);
 
   webComponentPreviews.forEach(([name, previewPath]) => {
-    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'web-component')
+    const writePath = path.join(
+      __dirname,
+      'docs',
+      'auto-generated',
+      'previews',
+      'web-component'
+    );
     fse.ensureDirSync(writePath);
 
     let code = fs.readFileSync(previewPath).toString();
@@ -113,7 +123,7 @@ function writeWebComponentPreviews() {
         .trimEnd();
     }
 
-    const markdown = generateMarkdown(previewPath, "html", code)
+    const markdown = generateMarkdown(previewPath, 'html', code);
     fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
   });
 }
@@ -140,16 +150,19 @@ function writeReactPreviews() {
 
       return exist;
     })
-    .map((name) => [
-      name,
-      path.join(reactPreviewPath, `${name}.tsx`),
-    ]);
+    .map((name) => [name, path.join(reactPreviewPath, `${name}.tsx`)]);
 
   reactPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'react')
+    const writePath = path.join(
+      __dirname,
+      'docs',
+      'auto-generated',
+      'previews',
+      'react'
+    );
     fse.ensureDirSync(writePath);
     const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, "tsx", code)
+    const markdown = generateMarkdown(previewPath, 'tsx', code);
     fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
   });
 }
@@ -178,21 +191,21 @@ function writeAngularPreviews() {
 
       return exist;
     })
-    .map((name) => [
-      name,
-      path.join(angularPreviewPath, `${name}.ts`),
-    ]);
+    .map((name) => [name, path.join(angularPreviewPath, `${name}.ts`)]);
 
   angularPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(__dirname, 'docs', 'auto-generated', 'previews', 'angular')
+    const writePath = path.join(
+      __dirname,
+      'docs',
+      'auto-generated',
+      'previews',
+      'angular'
+    );
     fse.ensureDirSync(writePath);
 
     const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, "typescript", code)
-    fs.writeFileSync(
-      path.join(writePath, `${name}.md`),
-      markdown
-    );
+    const markdown = generateMarkdown(previewPath, 'typescript', code);
+    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
   });
 }
 

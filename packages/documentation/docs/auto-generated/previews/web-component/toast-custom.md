@@ -1,7 +1,9 @@
-// SPDX-FileCopyrightText: 2022 Siemens AG
-  //
-  // SPDX-License-Identifier: MIT
-  
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 <!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/toast-custom.html -->
 ```html
 <ix-toast-container></ix-toast-container>
