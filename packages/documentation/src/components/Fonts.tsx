@@ -11,10 +11,8 @@ import clsx from 'clsx';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import styles from './Fonts.module.css';
-import { useCopyToClipboard } from './utils/copy-clipboard';
 
 export default function Fonts() {
-  const copyToClipboard = useCopyToClipboard((data) => `text-${data}`);
   const fonts: {
     name: string;
     className: string;
@@ -80,7 +78,7 @@ export default function Fonts() {
                   className="form-control"
                   defaultValue={v.className}
                   onFocus={(e) => {
-                    copyToClipboard(e.target as HTMLInputElement);
+                    // copyToClipboard(e.target as HTMLInputElement);
                   }}
                 />
               </td>

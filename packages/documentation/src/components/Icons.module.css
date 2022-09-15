@@ -6,13 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-.icons {
+.Icons {
   display: flex;
   flex-wrap: wrap;
 }
 
-.iconTile {
+.Icon__Tile {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,12 +28,12 @@
   cursor: pointer;
 }
 
-.iconTile:hover {
+.Icon__Tile:hover {
   border: var(--theme-primary-bdr-1);
   transform: scale(1.1);
 }
 
-.search {
+.Search {
   display: flex;
   position: relative;
   align-items: center;
@@ -42,11 +41,11 @@
   width: 40%;
 }
 
-.searchLabel {
+.Search__Label {
   margin-right: 0.5rem;
 }
 
-.hideInput {
+.Hide__Input {
   border: none;
   text-align: center;
 }

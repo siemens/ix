@@ -12,7 +12,6 @@ import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import styles from './Icons.module.css';
-import { useCopyToClipboard } from './utils/copy-clipboard';
 
 export default function Icons() {
   const refs = useRef<{ [k: string]: any }>({});
@@ -20,29 +19,25 @@ export default function Icons() {
   const [searchIcon, setSearchIcon] = useState<string>();
   const [icons] = useState<string[]>(ICON_LIST.icons);
 
-  const copyToClipboard = useCopyToClipboard({
-    angular: (data: any) => `<i class="glyph glyph-${data}"></i>`,
-    webcomponent: (data: any) => `<ix-icon name="${data}"></ix-icon>`,
-  });
   return (
     <>
       <ToastContainer></ToastContainer>
-      <div className={clsx(styles.search)}>
-        <span className={clsx(styles.searchLabel)}>Search: </span>
+      <div className={clsx(styles.Search)}>
+        <span className={clsx(styles.Search__Label)}>Search: </span>
         <input
           placeholder="Search Icon"
           className="form-control"
           onInput={(e) => setSearchIcon((e.target as HTMLInputElement).value)}
         />
       </div>
-      <div className={clsx(styles.icons)}>
+      <div className={clsx(styles.Icons)}>
         {icons
           .filter((icon) => !searchIcon || icon.includes(searchIcon))
           .map((icon) => (
             <div
               key={icon}
-              className={clsx(styles.iconTile)}
-              onClick={() => copyToClipboard(refs.current[icon])}
+              className={clsx(styles.Icon__Tile)}
+              onClick={() => {}}
             >
               <div>
                 <ix-icon name={icon}></ix-icon>
@@ -51,7 +46,7 @@ export default function Icons() {
                 ref={(r) => {
                   refs.current[icon] = r;
                 }}
-                className={clsx('form-control', styles.hideInput)}
+                className={clsx('form-control', styles.Hide__Input)}
                 type="text"
                 readOnly
                 value={icon}
