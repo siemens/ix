@@ -1,5 +1,6 @@
 {
   "name": "@siemens/ix-aggrid",
+  "description": "AG Grid theme based on ix theme variables",
   "version": "1.0.0-beta.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
