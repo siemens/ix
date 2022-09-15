@@ -9,16 +9,28 @@ import Icons from '@site/src/components/Icons';
 Using icons within your project. We need to:
 
 - Install `@siemens/ix-icons` e.g `npm install --save @siemens/ix-icons`
-- Import `@siemens/ix-icons/dist/scss/ix-icons.css`
+- Load styling `@siemens/ix-icons/dist/scss/ix-icons.css` e.g
+
+```scss
+@import '@siemens/ix-icons/dist/scss/ix-icons.css';
+```
 
 ## Usage
 
-### Angular or HTML
+### Angular
 
 ```html
-<i class="glyph glyph-16 glyph-star"></i>
-<i class="glyph glyph-24 glyph-star"></i>
-<i class="glyph glyph-32 glyph-star"></i>
+<ix-icon name="star" size="16"></ix-icon>
+<ix-icon name="star" size="24"></ix-icon>
+<ix-icon name="star" size="32"></ix-icon>
+```
+
+### React
+
+```html
+<IxIcon name="star" size="16"></IxIcon>
+<IxIcon name="star" size="24"></IxIcon>
+<IxIcon name="star" size="32"></IxIcon>
 ```
 
 ### Web component
@@ -27,12 +39,6 @@ Using icons within your project. We need to:
 <ix-icon name="star" size="16"></ix-icon>
 <ix-icon name="star" size="24"></ix-icon>
 <ix-icon name="star" size="32"></ix-icon>
-```
-
-## Example Angular style.scss
-
-```scss
-@import '@siemens/ix-icons/dist/scss/ix-icons.css';
 ```
 
 ## Icon Library

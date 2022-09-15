@@ -12,7 +12,6 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import styles from './Color.module.css';
 import alphaBackground from './transparency500.png';
-import { useCopyToClipboard } from './utils/copy-clipboard';
 
 const listOfMandatoryColors = [
   'color-primary',
@@ -51,7 +50,7 @@ export default function Color() {
   const [keyValueColors, setKeyValueColors] = useState<[string, string][]>([]);
   const refs = useRef<{ [k: string]: any }>({});
 
-  const copyToClipboard = useCopyToClipboard((data: any) => `var(${data})`);
+  // const copyToClipboard = useCopyToClipboard((data: any) => `var(${data})`);
 
   useLayoutEffect(() => {
     const mutationObserver = new MutationObserver(() => {
@@ -104,7 +103,7 @@ export default function Color() {
                   defaultValue={k}
                   ref={refs[k]}
                   onFocus={(e) => {
-                    copyToClipboard(e.target as HTMLInputElement);
+                    // copyToClipboard(e.target as HTMLInputElement);
                   }}
                 />
               </td>
