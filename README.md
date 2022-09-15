@@ -6,13 +6,15 @@ SPDX-License-Identifier: MIT
 
 ![iX](./logo.svg)
 
-> Siemens iX monorepo
+> Siemens Industrial Experience (iX) monorepo
 
 ![version](https://img.shields.io/badge/version-0.0.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
 ![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
 [![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](./LICENSE.md)
+
+iX is Siemens open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
 ## Usage
 
@@ -23,23 +25,26 @@ yarn install
 ```
 
 ### Build
+
 ```sh
 yarn build || yarn build --filter=<workspace-name>
 ```
 
 ### Development
+
 ```sh
 yarn start || yarn start --filter=<workspace-name>
 ```
 
 ### Execute unit tests
+
 ```sh
 yarn test
 ```
 
 ### Visual regression testing
 
-**_Docker cli must be installed on your system_**   
+**_Docker cli must be installed on your system_**  
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
 ```sh
