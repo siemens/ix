@@ -9,24 +9,28 @@
       "path": "./packages/react"
     },
     {
-      "name": "react-test-app",
-      "path": "./packages/react-test-app"
-    },
-    {
       "name": "@siemens/ix-angular",
       "path": "./packages/angular"
-    },
-    {
-      "name": "angular-test-app",
-      "path": "./packages/angular-test-app"
     },
     {
       "name": "@siemens/ix-aggrid",
       "path": "./packages/aggrid"
     },
     {
+      "name": "@siemens/ix-echarts",
+      "path": "./packages/echarts"
+    },
+    {
       "name": "@siemens/ix-documentation",
       "path": "./packages/documentation"
+    },
+    {
+      "name": "react-test-app",
+      "path": "./packages/react-test-app"
+    },
+    {
+      "name": "angular-test-app",
+      "path": "./packages/angular-test-app"
     },
     {
       "name": "root",
