@@ -8,20 +8,20 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Method,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import { Popover } from '../utils/popover.util';
 import { convertToRemString } from '../utils/rwd.util';
-import { toggleTheme } from '../utils/toggle-theme';
+import { toggleVariant } from '../utils/toggle-theme';
 
 @Component({
   tag: 'ix-menu',
@@ -42,8 +42,7 @@ export class Menu {
   @Prop({ mutable: true }) showAbout = false;
 
   /**
-   * @deprecated
-   * Show toggle theme button
+   * Show toggle between light and dark variant. Only if the provided theme have implemented both!
    */
   @Prop() enableToggleTheme = false;
 
@@ -794,7 +793,7 @@ export class Menu {
           {this.enableToggleTheme ? (
             <ix-menu-item
               id="toggleTheme"
-              onClick={() => toggleTheme()}
+              onClick={() => toggleVariant()}
               class="internal-tab bottom-tab"
               tabIcon="bulb"
             >

@@ -669,7 +669,7 @@ export namespace Components {
          */
         "enableSettings": boolean;
         /**
-          * @deprecated Show toggle theme button
+          * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
         /**
@@ -2542,7 +2542,7 @@ declare namespace LocalJSX {
          */
         "enableSettings"?: boolean;
         /**
-          * @deprecated Show toggle theme button
+          * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
         /**
