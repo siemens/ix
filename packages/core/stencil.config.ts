@@ -193,7 +193,7 @@ export const config: Config = {
               component[key] &&
               (key.includes('Path') || key.includes('Dir'))
             ) {
-              component[key] = `./${path.relative('.', component[key])}`;
+              component[key] = `./${path.relative('.', component[key]).replace(/\\/g, '/')}`;
             }
           });
 
