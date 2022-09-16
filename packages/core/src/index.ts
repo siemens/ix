@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { addVersion } from './components/utils/debug';
-
-addVersion();
-
 export { Components, JSX } from './components';
 export { FilterState } from './components/category-filter/filter-state';
 export { InputState } from './components/category-filter/input-state';
@@ -21,8 +17,7 @@ export { Modal } from './components/modal/modal';
 export { Buttons } from './components/utils/button-variants';
 export { NotificationColor } from './components/utils/notification-color';
 export {
-    convertToAbbreviationString,
-    convertToRemString
+  convertToAbbreviationString,
+  convertToRemString,
 } from './components/utils/rwd.util';
 export * from './exports';
-
