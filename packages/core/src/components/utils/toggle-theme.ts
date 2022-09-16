@@ -7,14 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const toggleTheme = () => {
-  const lightTheme = 'theme-light';
-  const darkTheme = 'theme-dark';
+export const toggleVariant = () => {
+  let currentTheme = Array.from(document.body.classList).find((className) =>
+    className.includes('theme-')
+  );
 
-  if (!document.body.classList.contains(lightTheme) && !document.body.classList.contains(darkTheme)) {
-    document.body.classList.add(darkTheme);
-  } else {
-    document.body.classList.toggle(lightTheme);
-    document.body.classList.toggle(darkTheme);
+  if (!currentTheme) {
+    currentTheme = 'theme-classic-dark';
   }
+
+  const isDark = currentTheme.endsWith('-dark');
+  let newTheme = currentTheme;
+
+  if (isDark) {
+    newTheme = currentTheme.replace(/-dark$/g, '-light');
+  } else {
+    newTheme = currentTheme.replace(/-light$/g, '-dark');
+  }
+
+  document.body.classList.remove(currentTheme);
+  document.body.classList.add(newTheme);
 };

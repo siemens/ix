@@ -4095,7 +4095,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown"
@@ -4104,6 +4106,9 @@
         "ix-menu": [
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -4180,15 +4185,9 @@
           "mutable": false,
           "attr": "enable-toggle-theme",
           "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Show toggle theme button"
-            }
-          ],
+          "docs": "Show toggle between light and dark variant. Only if the provided theme have implemented both!",
+          "docsTags": [],
           "default": "false",
-          "deprecation": "Show toggle theme button",
           "values": [
             {
               "type": "boolean"
@@ -8549,8 +8548,18 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-menu"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu"
+        ],
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
