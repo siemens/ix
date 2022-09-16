@@ -1,0 +1,33 @@
+{
+  "name": "@siemens/ix-echarts",
+  "version": "1.0.0-beta.1",
+  "description": "Siemens iX theme for echarts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rimraf dist",
+    "compile": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.4.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.78.1",
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.5.5",
+    "echarts": "^5.3.3"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "echarts": "^5.3.3"
+  }
+}

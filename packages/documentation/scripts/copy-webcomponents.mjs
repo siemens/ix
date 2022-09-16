@@ -10,6 +10,8 @@
 import fsExtra from 'fs-extra';
 import path from 'path';
 
+import { createRequire } from 'module';
+
 const __dirname = path.resolve();
 const libDestPath = path.join(
   __dirname,
@@ -40,6 +42,19 @@ const icon_path = path.join(
 );
 const icon_dest_path = path.join(libDestPath, 'ix-icons');
 
+const { resolve } = createRequire(import.meta.url);
+
+async function loadLib(libName) {
+  const distName = '/dist';
+  const libPath = resolve(libName);
+  const distPath = libPath.substring(
+    0,
+    libPath.indexOf(distName) + distName.length
+  );
+
+  return fsExtra.copy(distPath, path.join(libDestPath, libName));
+}
+
 function filter(fileName) {
   return !fileName.includes('node_modules');
 }
@@ -55,6 +70,7 @@ function filter(fileName) {
           filter: (path) => !path.includes('ix-brand-theme/node_modules'),
         })
       : Promise.resolve(),
+    loadLib('@siemens/ix-echarts'),
   ]);
   console.log('Copy finished!');
 })();
