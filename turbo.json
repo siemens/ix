@@ -2,9 +2,7 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "outputs": [
         "dist/**",
         "build/**",
@@ -15,6 +13,9 @@
       "outputMode": "new-only"
     },
     "start": {
+      "cache": false
+    },
+    "lint": {
       "cache": false
     }
   }
