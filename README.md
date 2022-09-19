@@ -103,6 +103,18 @@ Contains the brand and classic theme for the aggrid library
 
 **_published as `@siemens/ix-aggrid`_**
 
+## Git hooks via husky
+
+Our pipeline lints each commit pushed to remote. To verify that you dont need
+to rebase existing commits please install our git hooks.
+
+```sh
+# Activate hooks
+npx husky install
+# or
+yarn husky install
+```
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!

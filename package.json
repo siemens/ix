@@ -40,10 +40,13 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "colorette": "^2.0.19",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "execa": "^5.1.1",
+    "husky": "^8.0.1",
     "inquirer": "^8.2.4",
     "listr": "^0.14.3",
     "prettier": "^2.6.2",
