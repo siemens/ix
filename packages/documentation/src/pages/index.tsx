@@ -103,8 +103,7 @@ function Homepage() {
             <span className={styles.Homepage__Text__Signal}>
               iX Web Components
             </span>
-            . iX is aligned with Siemens Brand Design, to ensure a continuous
-            evolution path for application user interfaces.
+            .
           </div>
         </div>
         <div className={styles.Homepage__Right}>
