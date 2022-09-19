@@ -14,7 +14,7 @@ SPDX-License-Identifier: MIT
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
 [![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](./LICENSE.md)
 
-iX is Siemens open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
+iX is an open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
 ## Usage
 
