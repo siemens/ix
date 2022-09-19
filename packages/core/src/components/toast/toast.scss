@@ -8,6 +8,7 @@
  */
 
 @import 'common-variables';
+@import 'mixins/hover';
 @import 'mixins/text-truncation';
 
 :host {
@@ -16,46 +17,56 @@
   position: relative;
   min-width: 17.5rem;
   max-width: 17.5rem;
-  min-height: 3.25rem;
+  min-height: 3.5rem;
 
   pointer-events: all;
 
   background-color: var(--theme-toast--background);
-  border-radius: 4px;
+  border: var(--theme-toast--border-thickness) solid
+    var(--theme-toast--border-color);
+  border-radius: var(--theme-toast--border-radius);
   box-shadow: var(--theme-toast--box-shadow);
 
-  margin-bottom: 1rem;
-
-  --animate-duration: 250ms;
+  --animate-duration: #{$medium-time};
 
   .toast-body {
     display: flex;
     position: relative;
     width: 100%;
+    flex-grow: 1;
 
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      margin-left: $tiny-space;
-      margin-right: $medium-space;
+      margin: $default-space;
     }
 
     .toast-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
       width: 100%;
+      max-width: 10.25rem;
+      margin-top: calc(
+        #{$default-space} + var(--theme-toast--border-thickness)
+      );
+      margin-bottom: $medium-space;
+
+      .toast-message {
+        min-width: 0;
+      }
     }
   }
 
   .toast-close {
     display: flex;
     position: relative;
-    margin-right: $small-space;
-    margin-top: $small-space;
+    margin: $medium-space;
     pointer-events: all;
   }
 
   .toast-progress-bar {
     position: absolute;
-    left: 0;
     bottom: 0;
     height: $tiny-space;
     width: 100%;
@@ -68,6 +79,13 @@
 
     &--touched {
       transition: transform 1s;
+    }
+  }
+
+  @include hover {
+    .toast-progress-bar {
+      visibility: hidden;
+      transition: none;
     }
   }
 
