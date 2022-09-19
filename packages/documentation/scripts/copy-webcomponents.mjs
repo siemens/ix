@@ -46,7 +46,7 @@ const { resolve } = createRequire(import.meta.url);
 
 async function loadLib(libName) {
   const distName = '/dist';
-  const libPath = resolve(libName);
+  const libPath = resolve(libName).replace(/\\/g, '/');
   const distPath = libPath.substring(
     0,
     libPath.indexOf(distName) + distName.length

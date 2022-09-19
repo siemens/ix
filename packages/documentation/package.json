@@ -26,6 +26,7 @@
     "@siemens/ix-icons": "1.0.0-beta.1",
     "@siemens/ix": "~1.0.0-beta.0",
     "@siemens/ix-react": "~1.0.0-beta.0",
+    "@siemens/ix-echarts": "~1.0.0-beta.1",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",
     "execa": "^5.1.1",

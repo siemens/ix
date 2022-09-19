@@ -4,7 +4,7 @@
 |applicationName| Should only be set if you use ix-menu standalone | `application-name` | `string` | `undefined` |
 |enableMapExpand| Internal | `enable-map-expand` | `boolean` | `false` |
 |enableSettings| Is settings tab is visible | `enable-settings` | `boolean` | `true` |
-|enableToggleTheme|  | `enable-toggle-theme` | `boolean` | `false` |
+|enableToggleTheme| Show toggle between light and dark variant. Only if the provided theme have implemented both! | `enable-toggle-theme` | `boolean` | `false` |
 |expand| Expand menu | `expand` | `boolean` | `false` |
 |i18nCollapse|  | `i-1-8n-collapse` | `string` | `'Collapse'` |
 |i18nExpand|  | `i-1-8n-expand` | `string` | `' Expand'` |
