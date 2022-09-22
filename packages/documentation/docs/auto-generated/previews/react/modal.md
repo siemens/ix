@@ -16,11 +16,11 @@ SPDX-License-Identifier: MIT
  */
 
 import {
-    IxButton,
-    IxIconButton,
-    Modal,
-    ModalRef,
-    showModal
+  IxButton,
+  IxIconButton,
+  Modal,
+  ModalRef,
+  showModal,
 } from '@siemens/ix-react';
 import { useRef } from 'react';
 
@@ -39,6 +39,7 @@ function CustomModal() {
       <div className="modal-header">
         Message headline
         <IxIconButton
+          data-button-close
           ghost
           icon="close"
           onClick={() => dismiss()}

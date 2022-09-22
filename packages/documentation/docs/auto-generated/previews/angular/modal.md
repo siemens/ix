@@ -35,6 +35,7 @@ import { ModalService } from '@siemens/ix-angular';
         <div class="modal-header">
           Message headline
           <ix-icon-button
+            data-button-close
             ghost
             icon="close"
             class="dismiss-modal"

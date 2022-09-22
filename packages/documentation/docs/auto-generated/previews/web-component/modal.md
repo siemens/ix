@@ -20,6 +20,7 @@ SPDX-License-Identifier: MIT
     <div class="modal-header">
       Message headline
       <ix-icon-button
+        data-button-close
         ghost
         icon="close"
         class="dismiss-modal"

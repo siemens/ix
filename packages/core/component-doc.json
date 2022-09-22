@@ -4095,9 +4095,7 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown"
@@ -4106,9 +4104,6 @@
         "ix-menu": [
           "ix-menu-item",
           "ix-dropdown"
-        ],
-        "my-component": [
-          "ix-menu"
         ]
       },
       "props": [
@@ -8548,18 +8543,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-menu"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-menu"
-        ],
-        "ix-menu": [
-          "ix-menu-item",
-          "ix-dropdown"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

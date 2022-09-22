@@ -9,11 +9,21 @@
 
 @import './mixins/fonts';
 
+.modal {
+  --bs-modal-footer-gap: 1rem;
+  --bs-modal-box-shadow: var(--theme-modal--box-shadow);
+}
+
 .modal-header {
   @include text-default-title;
   padding: 0;
   padding-bottom: $tiny-space;
   border: none;
+  align-items: flex-start;
+
+  [data-close-button] {
+    margin-left: 1rem;
+  }
 }
 
 .modal-body {
@@ -23,5 +33,9 @@
 .modal-footer {
   border-top: none;
   padding: 0;
-  padding-block-start: $large-space;
+  padding-block-start: 2rem;
+
+  > * {
+    margin: 0 0 0 calc(var(--bs-modal-footer-gap) * 0.5);
+  }
 }
