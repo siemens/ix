@@ -16,10 +16,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-menu enableToggleTheme={true}></ix-menu>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

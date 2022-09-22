@@ -26,6 +26,7 @@
     }
 
     &.backdrop {
+      background-color: var(--theme-color-lightbox);
       backdrop-filter: blur(4px);
       transition: none;
 
@@ -48,7 +49,7 @@
     }
 
     .modal-content {
-      //@include box-shadow(4);
+      box-shadow: var(--theme-modal--box-shadow);
       flex-direction: row;
       background-color: var(--theme-modal--background);
       border: var(--modal--border-thickness) solid

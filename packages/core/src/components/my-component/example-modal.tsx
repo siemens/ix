@@ -31,6 +31,7 @@ export class ModalExample {
           <div class="modal-header">
             Message headline
             <ix-icon-button
+              data-close-button
               ghost
               icon="close"
               onClick={() => this.dismiss()}
