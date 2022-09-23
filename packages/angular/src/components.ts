@@ -1331,13 +1331,13 @@ export declare interface IxTabItem extends Components.IxTabItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
+  inputs: ['counter', 'disabled', 'icon', 'layout', 'placement', 'rounded', 'selected', 'small']
 })
 @Component({
   selector: 'ix-tab-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['disabled', 'icon', 'layout', 'placement', 'selected', 'small']
+  inputs: ['counter', 'disabled', 'icon', 'layout', 'placement', 'rounded', 'selected', 'small']
 })
 export class IxTabItem {
   protected el: HTMLElement;
@@ -1352,13 +1352,13 @@ export declare interface IxTabs extends Components.IxTabs {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['layout', 'placement', 'selected', 'small']
+  inputs: ['layout', 'placement', 'rounded', 'selected', 'small']
 })
 @Component({
   selector: 'ix-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['layout', 'placement', 'selected', 'small']
+  inputs: ['layout', 'placement', 'rounded', 'selected', 'small']
 })
 export class IxTabs {
   protected el: HTMLElement;
