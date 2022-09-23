@@ -11,6 +11,11 @@ import SourceTabs from './../auto-generated/previews/web-component/tabs.md';
 import SourceReactTabs from './../auto-generated/previews/react/tabs.md';
 import SourceAngularTabs from './../auto-generated/previews/angular/tabs.md';
 
+import SourceTabsRounded from './../auto-generated/previews/web-component/tabs-rounded.md';
+import SourceReactTabsRounded from './../auto-generated/previews/react/tabs-rounded.md';
+import SourceAngularTabsRounded from './../auto-generated/previews/angular/tabs-rounded.md';
+
+
 # Tabs
 
 ## Usage
@@ -24,6 +29,20 @@ import SourceAngularTabs from './../auto-generated/previews/angular/tabs.md';
   </TabItem>
   <TabItem value="angular"> 
     <SourceAngularTabs />
+  </TabItem>
+</Preview>
+
+### Tabs Rounded
+
+<Preview name="tabs-rounded">
+  <TabItem value="javascript"> 
+    <SourceTabsRounded />
+  </TabItem>
+  <TabItem value="react"> 
+    <SourceReactTabsRounded />
+  </TabItem>
+  <TabItem value="angular"> 
+    <SourceAngularTabsRounded />
   </TabItem>
 </Preview>
 

@@ -96,6 +96,7 @@ const config = {
         theme2: require('prism-react-renderer/themes/dracula'),
       },
     }),
+  plugins: ['docusaurus-plugin-sass']
   // plugins: [require.resolve('@cmfcmf/docusaurus-search-local')],
 };
 
