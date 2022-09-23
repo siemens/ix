@@ -10,7 +10,6 @@
 @import 'common-variables';
 
 #toast-container {
-  @debug 'Toast container';
   > :not(:last-child) {
     margin-block-end: $default-space;
   }

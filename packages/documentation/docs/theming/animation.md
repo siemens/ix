@@ -1,8 +1,10 @@
 # Animation
 
-Core UI uses meaningful animations to make applications appear physically tangible.  
+Siemens iX uses meaningful animations to make applications appear physically tangible.
 This way UIs become predictable and interactions easier to follow along with for users.  
 Abrupt state changes are prevented in oder to make UIs feel smooth and anchored in reality.
+
+<hr/>
 
 ### Standard timings
 
@@ -35,3 +37,25 @@ Therefore it is important to choose the correct timing for the respective situat
 - Slide-out movements (to off screen) should use `ease-in` only
 - transformations or translations within the screen (object is visisble the whole time) should use `ease-in-out`
 - hiding or appearing objects (opacity) use linear transitions as there is no mass to accelerate/decelerate
+
+<hr/>
+
+### Animation timing variables
+
+All animation timing values are also available through SASS variables:
+
+```
+$x-slow-time: 1s;
+$slow-time: 500ms;
+$medium-time: 300ms;
+$default-time: 150ms;
+$short-time: 0ms;
+```
+
+Usage example:
+
+```
+@import '@siemens/ix/scss/common-variables';
+
+transition: $default-time;
+```
