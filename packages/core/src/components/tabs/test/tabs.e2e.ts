@@ -15,4 +15,8 @@ regressionTest.describe('tabs', () => {
     await page.goto(`tabs/test/basic`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+  regressionTest('rounded', async ({ page }) => {
+    await page.goto(`tabs/test/rounded`);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

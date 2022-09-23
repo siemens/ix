@@ -1070,6 +1070,10 @@ export namespace Components {
     }
     interface IxTabItem {
         /**
+          * Set counter value
+         */
+        "counter": number;
+        /**
           * Set disabled tab
          */
         "disabled": boolean;
@@ -1085,6 +1089,10 @@ export namespace Components {
           * Set selected placement
          */
         "placement": 'bottom' | 'top';
+        /**
+          * Set rounded tab
+         */
+        "rounded": boolean;
         /**
           * Set selected tab
          */
@@ -1103,6 +1111,10 @@ export namespace Components {
           * Set placement style
          */
         "placement": 'bottom' | 'top';
+        /**
+          * Set rounded tabs
+         */
+        "rounded": boolean;
         /**
           * Set default selected tab by index
          */
@@ -2967,6 +2979,10 @@ declare namespace LocalJSX {
     }
     interface IxTabItem {
         /**
+          * Set counter value
+         */
+        "counter"?: number;
+        /**
           * Set disabled tab
          */
         "disabled"?: boolean;
@@ -2982,6 +2998,10 @@ declare namespace LocalJSX {
           * Set selected placement
          */
         "placement"?: 'bottom' | 'top';
+        /**
+          * Set rounded tab
+         */
+        "rounded"?: boolean;
         /**
           * Set selected tab
          */
@@ -3000,6 +3020,10 @@ declare namespace LocalJSX {
           * Set placement style
          */
         "placement"?: 'bottom' | 'top';
+        /**
+          * Set rounded tabs
+         */
+        "rounded"?: boolean;
         /**
           * Set default selected tab by index
          */

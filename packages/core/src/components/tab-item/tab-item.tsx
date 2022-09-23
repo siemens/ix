@@ -36,6 +36,16 @@ export class TabItem {
   @Prop() icon = false;
 
   /**
+   * Set rounded tab
+   */
+  @Prop() rounded = false;
+
+  /**
+   * Set counter value
+   */
+   @Prop() counter: number;
+
+  /**
    * Set layout width style
    */
   @Prop() layout: 'auto' | 'stretched' = 'auto';
@@ -50,6 +60,7 @@ export class TabItem {
     disabled: boolean;
     small: boolean;
     icon: boolean;
+    circle: boolean;
     layout: 'auto' | 'stretched';
     placement: 'bottom' | 'top';
   }) {
@@ -61,6 +72,7 @@ export class TabItem {
       stretched: props.layout === 'stretched',
       bottom: props.placement === 'bottom',
       top: props.placement === 'top',
+      circle: props.circle
     };
   }
 
@@ -74,11 +86,15 @@ export class TabItem {
           icon: this.icon,
           layout: this.layout,
           placement: this.placement,
+          circle: this.rounded,
         })}
-        tabindex="0"
+        tabIndex={0}
       >
-        <div class="text">
-          <slot></slot>
+        <div class={{ circle: this.rounded, text: !this.rounded, selected: this.selected, disabled: this.disabled }}>
+            <slot></slot>
+        </div>
+        <div class={{ counter: true, selected: this.selected, hidden: !(this.rounded && this.counter !== undefined), disabled: this.disabled }}>
+          {this.counter}
         </div>
       </Host>
     );

@@ -23,6 +23,7 @@ describe('tab-item', () => {
     <div class="text">
       Some text
     </div>
+    <div class="counter hidden"></div>
   </ix-tab-item>`);
   });
 });
