@@ -472,7 +472,7 @@ function FooterFeatures() {
           <img src="/siemens-ix/img/logo-640.png" alt="" />
           <div className={styles.text_gap}>
             <div className={styles.text}>Siemens Inner Source</div>
-            <a className={styles.text} href="https://***REMOVED***/***REMOVED***/core-ui/core-ui/-/blob/develop/LICENSE.md" target="_blank">***REMOVED***</a>
+            <a className={styles.text} href="" target="_blank">tbd</a>
           </div>
         </div>
 
