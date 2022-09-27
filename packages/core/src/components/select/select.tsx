@@ -237,7 +237,7 @@ export class Select {
   private async onEnterNavigation() {
     if (this.editable && !this.itemExists(this.inputText)) {
       this.emitAddItem(this.inputText);
-      this.navigationItem = this.items.at(this.items.length - 1);
+      this.navigationItem = this.items[this.items.length - 1];
     }
 
     this.navigationItem?.onItemClick();

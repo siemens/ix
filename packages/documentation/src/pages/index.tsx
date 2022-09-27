@@ -127,7 +127,7 @@ function Homepage() {
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Build by Siemens UX/UI experts
+              Built by Siemens UX/UI experts
             </div>
           </div>
         </div>
@@ -332,9 +332,9 @@ function Icons() {
             {icons.map((iconLine, index) => (
               <div className={styles.row} key={index}>
                 {iconLine.map((icon, iKey) => (
-                  <div>
-                    <i className={clsx('glyph glyph-' + icon, styles.icon_main)} key={iKey}></i>
-                    <i id={icon} className={clsx('glyph glyph-' + icon, styles.icon_shadow)} key={iKey}></i>
+                  <div key={iKey + icon}>
+                    <i className={clsx('glyph glyph-' + icon, styles.icon_main)}></i>
+                    <i id={icon} className={clsx('glyph glyph-' + icon, styles.icon_shadow)}></i>
                   </div>
 
                 ))}
@@ -433,13 +433,13 @@ function InformationCards() {
             {icons.map((cardLine, index) => (
               <div className={styles.row} key={index}>
                 {cardLine.map((icon, iKey) => (
-                  <div className={clsx(styles.card)}>
+                  <div className={clsx(styles.card)} key={iKey}>
                     <div className={styles.icon_gap}>
-                      <i className={clsx('glyph glyph-' + "bulb-filled", icon !== "bulb" ? styles.hidden : "")} key={iKey}></i>
-                      <i className={clsx('glyph glyph-' + icon)} key={iKey}></i>
+                      <i className={clsx('glyph glyph-' + "bulb-filled", icon !== "bulb" ? styles.hidden : "")}></i>
+                      <i className={clsx('glyph glyph-' + icon)}></i>
                     </div>
 
-                    <div className={clsx(styles.text)} key={iKey}>
+                    <div className={clsx(styles.text)}>
                       {phrases[index][iKey]}
                     </div>
                   </div>
@@ -468,13 +468,13 @@ function FooterFeatures() {
           </div>
         </div>
 
-        <div className={styles.col}>
+        {/* <div className={styles.col}>
           <img src="/siemens-ix/img/logo-640.png" alt="" />
           <div className={styles.text_gap}>
             <div className={styles.text}>Siemens Inner Source</div>
             <a className={styles.text} href="" target="_blank">tbd</a>
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.col}>
           <img src="/siemens-ix/img/webcomponents.png" alt="" />

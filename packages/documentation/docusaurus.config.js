@@ -38,7 +38,7 @@ const customCss = [
 const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
-  url: '',
+  url: 'https://github.com/siemens/ix-docs',
   baseUrl: '/siemens-ix/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
