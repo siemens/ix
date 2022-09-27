@@ -1,6 +1,2 @@
-*.png filter=lfs diff=lfs merge=lfs -text
-*.sketch filter=lfs diff=lfs merge=lfs -text
-core_ui_sketch.zip filter=lfs diff=lfs merge=lfs -text
-*.png !text !filter !merge !diff
-*.sketch !text !filter !merge !diff
-*.zip !text !filter !merge !diff
+*    text=auto
+*.sh text eol=lf
