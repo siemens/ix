@@ -4,7 +4,7 @@ runs:
   using: 'composite'
   steps:
     - name: Install Playwright Browsers
-      run: npx playwright install chromium --with-deps
+      run: yarn playwright install chromium --with-deps
       shell: bash
 
     - name: Run Playwright tests
