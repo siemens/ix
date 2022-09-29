@@ -5,8 +5,12 @@ runs:
   steps:
     - name: Install Playwright Browsers
       run: npx playwright install chromium --with-deps
+      shell: bash
+
     - name: Run Playwright tests
       run: yarn workspace @siemens/ix run test:e2e
+      shell: bash
+
     - uses: actions/upload-artifact@v2
       if: always()
       with:
