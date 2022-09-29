@@ -1,0 +1,90 @@
+name: build
+
+on: [push, pull_request, workflow_dispatch]
+
+concurrency:
+  group: ci-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - run: |
+          echo "github.ref = ${{ github.ref }}"
+          echo "github.sha = ${{ github.sha }}"
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/install
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build
+      - uses: actions/cache@v2
+        id: build
+        with:
+          key: build-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+
+  visual-test:
+    needs: [build]
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.24.0-focal
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        id: build
+        with:
+          key: build-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+      - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/visual-regression
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/test
+
+  lint-commit-message:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/install
+      - name: Validate all commits from PR
+        if: github.event_name == 'pull_request'
+        run: yarn commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose

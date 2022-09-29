@@ -1,0 +1,23 @@
+name: 'Execute unit tests'
+description: 'Execute unit tests'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+        scope: '@siemens'
+
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        key: yarn-modules-${{ hashFiles('yarn.lock') }}
+        path: |
+          .yarn-cache
+          node_modules
+          packages/**/node_modules
+
+    - name: test
+      run: yarn run test
+      shell: bash
