@@ -10,7 +10,6 @@
   4. Ensure the test suite passes (`yarn test` and `yarn visual-regression` (docker needed)).
   5. Format your code with [prettier](https://github.com/prettier/prettier).
   6. Make sure your code lints.
-  7. If you haven't already, complete the CLA.
 
 -->
 
