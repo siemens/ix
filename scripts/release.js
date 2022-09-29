@@ -190,7 +190,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
 
   try {
     await listr.run();
-    console.log(`CoreUI ${version} is prepared for release`);
+    console.log(`Siemens ix ${version} is prepared for release`);
     console.log(`Next steps:`);
     console.log(`  Verify CHANGELOG.md`);
     console.log(`  git commit -am "${getVersionCommitMessage(version)}"`);
