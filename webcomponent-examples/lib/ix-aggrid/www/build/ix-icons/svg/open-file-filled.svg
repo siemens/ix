@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>open-file-filled</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="audio-description1" fill="#000000" transform="translate(42.666667, 42.666667)">
+            <path d="M178.0832,42.6666667 L231.972,85.2776667 L146.64,170.625667 L66.2005012,170.626565 L0.157,383.999667 L7.10542736e-15,384 L7.10542736e-15,42.6666667 L178.0832,42.6666667 Z M97.6638202,213.287746 L413.417,213.291667 L361.604267,384 L44.821,383.999667 L97.6638202,213.287746 Z" id="Combined-Shape"></path>
+            <path d="M384,7.10542736e-15 L384,149.333333 L341.333333,149.333333 L341.332444,72.836 L243.503444,170.665777 L183.163444,170.666667 L311.162444,42.666 L234.666667,42.6666667 L234.666667,7.10542736e-15 L384,7.10542736e-15 Z" id="Combined-Shape" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

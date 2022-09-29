@@ -1,0 +1,475 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  border-radius: 100px;
+  padding: 0.5rem 0.75rem;
+  height: 2rem;
+  max-height: 2rem;
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+:host .with-icon {
+  margin-right: 0.25rem;
+}
+:host .close-button-container {
+  display: inline-flex;
+  flex-grow: 1;
+  margin-left: 0.75rem;
+}
+:host .close-button {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  min-width: unset;
+  min-height: unset;
+  margin-left: auto;
+  margin-right: 0;
+}
+:host[variant=primary] {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-chip-primary--color);
+}
+:host[variant=primary] .close-button {
+  color: var(--theme-chip-primary--color);
+  pointer-events: auto;
+}
+:host[variant=primary]:hover {
+  background-color: var(--theme-chip-primary--background--hover);
+}
+:host[variant=primary]:active {
+  background-color: var(--theme-chip-primary--background--active);
+}
+:host[variant=primary]:focus, :host[variant=primary]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=primary].outline {
+  color: var(--theme-chip-primary-outline--color);
+  background-color: transparent;
+  border: solid 1px var(--theme-chip-primary-outline--border-color);
+}
+:host[variant=primary].outline .close-button {
+  color: var(--theme-chip-primary-outline--color);
+}
+:host[variant=primary].outline:hover {
+  background-color: var(--theme-chip-primary-outline--background--hover);
+}
+:host[variant=primary].outline:active {
+  background-color: var(--theme-chip-primary-outline--background--active);
+}
+:host[variant=alarm] {
+  color: var(--theme-color-alarm--contrast);
+}
+:host[variant=alarm]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=alarm].active::after, :host[variant=alarm]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=alarm]:not(.outline) {
+  background-color: var(--theme-color-alarm);
+}
+:host[variant=alarm]:not(.outline) .close-button {
+  color: var(--theme-color-alarm--contrast);
+}
+:host[variant=alarm]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=alarm]:not(.outline).active::after, :host[variant=alarm]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=alarm].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-alarm);
+}
+:host[variant=alarm].outline:hover::after {
+  display: none;
+}
+:host[variant=alarm].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=alarm].outline.active::after, :host[variant=alarm].outline:active::after {
+  display: none;
+}
+:host[variant=alarm].outline.active, :host[variant=alarm].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=alarm]:focus, :host[variant=alarm]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=critical] {
+  color: var(--theme-color-critical--contrast);
+}
+:host[variant=critical]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=critical].active::after, :host[variant=critical]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=critical]:not(.outline) {
+  background-color: var(--theme-color-critical);
+}
+:host[variant=critical]:not(.outline) .close-button {
+  color: var(--theme-color-critical--contrast);
+}
+:host[variant=critical]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=critical]:not(.outline).active::after, :host[variant=critical]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=critical].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-critical);
+}
+:host[variant=critical].outline:hover::after {
+  display: none;
+}
+:host[variant=critical].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=critical].outline.active::after, :host[variant=critical].outline:active::after {
+  display: none;
+}
+:host[variant=critical].outline.active, :host[variant=critical].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=critical]:focus, :host[variant=critical]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=warning] {
+  color: var(--theme-color-warning--contrast);
+}
+:host[variant=warning]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=warning].active::after, :host[variant=warning]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=warning]:not(.outline) {
+  background-color: var(--theme-color-warning);
+}
+:host[variant=warning]:not(.outline) .close-button {
+  color: var(--theme-color-warning--contrast);
+}
+:host[variant=warning]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=warning]:not(.outline).active::after, :host[variant=warning]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=warning].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-warning);
+}
+:host[variant=warning].outline:hover::after {
+  display: none;
+}
+:host[variant=warning].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=warning].outline.active::after, :host[variant=warning].outline:active::after {
+  display: none;
+}
+:host[variant=warning].outline.active, :host[variant=warning].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=warning]:focus, :host[variant=warning]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=info] {
+  color: var(--theme-color-info--contrast);
+}
+:host[variant=info]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=info].active::after, :host[variant=info]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=info]:not(.outline) {
+  background-color: var(--theme-color-info);
+}
+:host[variant=info]:not(.outline) .close-button {
+  color: var(--theme-color-info--contrast);
+}
+:host[variant=info]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=info]:not(.outline).active::after, :host[variant=info]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=info].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-info);
+}
+:host[variant=info].outline:hover::after {
+  display: none;
+}
+:host[variant=info].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=info].outline.active::after, :host[variant=info].outline:active::after {
+  display: none;
+}
+:host[variant=info].outline.active, :host[variant=info].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=info]:focus, :host[variant=info]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=neutral] {
+  color: var(--theme-color-neutral--contrast);
+}
+:host[variant=neutral]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=neutral].active::after, :host[variant=neutral]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=neutral]:not(.outline) {
+  background-color: var(--theme-color-neutral);
+}
+:host[variant=neutral]:not(.outline) .close-button {
+  color: var(--theme-color-neutral--contrast);
+}
+:host[variant=neutral]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=neutral]:not(.outline).active::after, :host[variant=neutral]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=neutral].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-neutral);
+}
+:host[variant=neutral].outline:hover::after {
+  display: none;
+}
+:host[variant=neutral].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=neutral].outline.active::after, :host[variant=neutral].outline:active::after {
+  display: none;
+}
+:host[variant=neutral].outline.active, :host[variant=neutral].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=neutral]:focus, :host[variant=neutral]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=success] {
+  color: var(--theme-color-success--contrast);
+}
+:host[variant=success]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=success].active::after, :host[variant=success]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=success]:not(.outline) {
+  background-color: var(--theme-color-success);
+}
+:host[variant=success]:not(.outline) .close-button {
+  color: var(--theme-color-success--contrast);
+}
+:host[variant=success]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=success]:not(.outline).active::after, :host[variant=success]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=success].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-success);
+}
+:host[variant=success].outline:hover::after {
+  display: none;
+}
+:host[variant=success].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=success].outline.active::after, :host[variant=success].outline:active::after {
+  display: none;
+}
+:host[variant=success].outline.active, :host[variant=success].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=success]:focus, :host[variant=success]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host[variant=custom]:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--theme-l-hover));
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=custom].active::after, :host[variant=custom]:active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--theme-l-active));
+  left: 0;
+  border-radius: 100px;
+  pointer-events: none;
+}
+:host[variant=custom]:focus, :host[variant=custom]:focus-visible {
+  outline: 1px solid #199fff;
+  outline-offset: var(--theme-btn--focus--outline-offset);
+}
+:host .slot-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

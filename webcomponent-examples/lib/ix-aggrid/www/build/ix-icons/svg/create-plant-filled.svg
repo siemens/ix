@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>create-plant-filled</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="create-plant-filled" fill="#000000" fill-rule="nonzero">
+            <g id="drop" transform="translate(64.000000, 85.333333)">
+                <path d="M295.791,204.208667 L350.457,258.875667 L246.666667,362.666667 L192,362.666667 L192,308 L295.791,204.208667 Z M320,1.42108547e-14 L320,149.819 L291.552537,178.269996 L204.38,265.447 L106.666667,213.333333 L42.6666667,213.333333 L42.6666667,298.666667 L171.164,298.666 L170.666667,299.164086 L170.666,341.333 L-1.42108547e-14,341.333333 L-1.42108547e-14,96 L128,170.666667 L128,96 L256,170.666667 L256,1.42108547e-14 L320,1.42108547e-14 Z M345.333333,154.666667 L400,209.333333 L365.542,243.790667 L310.876,189.123667 L345.333333,154.666667 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
