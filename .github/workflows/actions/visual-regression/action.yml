@@ -6,6 +6,7 @@ runs:
     - name: print npm bin
       run: ls $(npm bin)
       shell: bash
+
     - name: Install Playwright Browsers
       run: yarn playwright install chromium
       shell: bash

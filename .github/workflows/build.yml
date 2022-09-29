@@ -59,6 +59,7 @@ jobs:
             packages/**/www
             packages/**/loader
             packages/**/build
+      - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/visual-regression
 
   test:
