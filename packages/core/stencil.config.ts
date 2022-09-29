@@ -24,19 +24,6 @@ const copyAssets = [
   },
 ];
 
-try {
-  const moduleName = '@siemens/ix-brand-theme';
-  require.resolve(moduleName);
-  copyAssets.push({
-    src: './../../../node_modules/@siemens/ix-brand-theme/dist/ix-brand-theme',
-    dest: 'build/ix-brand-theme',
-  });
-} catch (e) {
-  console.warn(
-    'optionalDependency @siemens/ix-brand-theme not found for visual-regression'
-  );
-}
-
 export const config: Config = {
   bundles: [
     {
@@ -193,7 +180,9 @@ export const config: Config = {
               component[key] &&
               (key.includes('Path') || key.includes('Dir'))
             ) {
-              component[key] = `./${path.relative('.', component[key]).replace(/\\/g, '/')}`;
+              component[key] = `./${path
+                .relative('.', component[key])
+                .replace(/\\/g, '/')}`;
             }
           });
 
