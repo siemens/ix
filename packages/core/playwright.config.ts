@@ -18,16 +18,6 @@ import { devices } from '@playwright/test';
 
 let THEMES = ['theme-classic-light', 'theme-classic-dark'];
 
-try {
-  const moduleName = '@siemens/ix-brand-theme';
-  require.resolve(moduleName);
-  THEMES = ['theme-brand-dark', 'theme-brand-light', ...THEMES];
-} catch (e) {
-  console.warn(
-    'optionalDependency @siemens/ix-brand-theme not found for visual-regression'
-  );
-}
-
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
     return [
