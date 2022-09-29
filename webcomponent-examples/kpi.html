@@ -1,0 +1,58 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+    <style>
+      .example {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        max-width: 20rem;
+      }
+
+      .example > * {
+        margin: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <div class="example">
+      <!-- Preview code -->
+      <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" unit="rpm"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" state="alarm"></ix-kpi>
+      <ix-kpi label="Motor speed" value="122.6" state="warning"></ix-kpi>
+
+      <ix-kpi
+        label="Motor speed"
+        value="Nominal"
+        orientation="vertical"
+      ></ix-kpi>
+      <ix-kpi
+        label="Motor speed"
+        value="122.6"
+        unit="rpm"
+        state="alarm"
+        orientation="vertical"
+      ></ix-kpi>
+      <!-- Preview code -->
+    </div>
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

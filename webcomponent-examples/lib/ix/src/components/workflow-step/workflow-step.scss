@@ -1,0 +1,159 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+
+@import 'common-variables';
+
+:host {
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--theme-workflow-step--background);
+    border-radius: var(--theme-workflow--border-radius);
+    width: auto;
+    padding: 1.125rem 0 $small-space 0;
+    height: 4rem;
+    width: 12.75rem;
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+
+      .line {
+        width: 100%;
+        height: 0.125rem;
+        background-color: var(--theme-workflow-step-icon-default--color);
+
+        &.first,
+        &.last {
+          width: 50%;
+          margin: 0 0 0 auto;
+        }
+
+        &.last {
+          margin: 0 auto 0 0;
+        }
+
+        &.selected {
+          background-color: var(
+            --theme-workflow-step-icon-default--color--selected
+          );
+        }
+
+        &.done {
+          background-color: var(--theme-workflow-step-icon-done--color);
+
+          &.selected {
+            background-color: var(
+              --theme-workflow-step-icon-done--color--selected
+            );
+          }
+        }
+
+        &.warning {
+          background-color: var(--theme-color-warning);
+        }
+
+        &.success {
+          background-color: var(--theme-color-success);
+        }
+
+        &.error {
+          background-color: var(--theme-color-alarm);
+        }
+      }
+
+      .iconWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+
+        .absolute {
+          position: absolute;
+        }
+      }
+    }
+
+    .text {
+      margin-top: $default-space;
+      width: auto;
+      padding: 0 $small-space;
+    }
+
+    &.vertical {
+      flex-direction: row;
+      padding: 0;
+
+      .wrapper {
+        width: auto;
+        padding-left: 1.125rem;
+        height: 4rem;
+
+        .line {
+          width: 0.125rem;
+          height: 100%;
+
+          &.first,
+          &.last {
+            height: 50%;
+            margin: auto 0 0 0;
+          }
+
+          &.last {
+            margin: 0 0 auto 0;
+          }
+        }
+      }
+
+      .text {
+        margin-top: 0;
+        margin-left: $default-space;
+        padding: 0;
+      }
+    }
+
+    &:hover {
+      background-color: var(--theme-workflow-step--background--hover);
+    }
+
+    &:active {
+      background-color: var(--theme-workflow-step--background--active);
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--focus--border-color);
+      border-radius: 0;
+    }
+
+    &.selected {
+      background-color: var(--theme-workflow-step--background--selected);
+    }
+
+    &.disabled {
+      background-color: var(--theme-workflow-step--background--disabled);
+
+      .line {
+        background-color: var(
+          --theme-workflow-step-icon-default--color--disabled
+        ) !important;
+      }
+
+      .text {
+        color: var(--theme-workflow-step--color--disabled);
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
+
+:host {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  width: 100%;
+
+  .select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: auto;
+    background-color: var(--theme-input--background);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color);
+    border-radius: var(--theme-input--border-radius);
+    padding: 0 0 0 $small-space;
+
+    @include hover {
+      background-color: var(--theme-input--background--hover);
+      border-color: var(--theme-input--border-color--hover);
+    }
+
+    &:focus-within {
+      background-color: var(--theme-input--background--focus);
+      border-color: var(--theme-input--border-color--focus);
+      outline: 1px solid #119fff !important;
+      outline-offset: var(--theme-input--focus--outline-offset);
+    }
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  .input-container {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    height: calc(#{$x-large-space} - 2 * var(--theme-input--border-thickness));
+    width: 100%;
+
+    &.allow-clear {
+      padding-right: 3.5rem;
+    }
+
+    .chips {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      height: 100%;
+      max-width: 70%;
+      flex-shrink: 0;
+
+      margin: auto;
+
+      > ix-filter-chip {
+        margin: 0.1rem;
+      }
+    }
+
+    input {
+      @include ellipsis;
+      @include text-default;
+      background: transparent;
+      height: 1.75rem;
+      width: 100%;
+      margin-inline-end: $x-large-space;
+
+      &,
+      &:hover,
+      &:focus {
+        border: none;
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--theme-input-select-icon--color);
+      }
+
+      &.hide-placeholder::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+
+  .chevron-down-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $x-large-space;
+    min-width: $x-large-space;
+    height: 100%;
+  }
+
+  .editable {
+    .chevron-down-container {
+      @include hover {
+        background-color: var(
+          --theme-btn-invisible-secondary--background--hover
+        );
+      }
+
+      @include active {
+        background-color: var(
+          --theme-btn-invisible-secondary--background--active
+        );
+      }
+    }
+  }
+
+  .clear {
+    position: absolute;
+    right: $x-large-space;
+  }
+
+  .add-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .select-list-header {
+    display: flex;
+    align-items: center;
+    height: $default-control-height;
+    color: var(--theme-select-list-item-hint--color);
+    margin: 0 $small-space 0 $x-large-space;
+  }
+
+  ix-dropdown {
+    background-color: var(--theme-select-list--background);
+  }
+}

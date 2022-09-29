@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>single-check</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="add" fill="#000000" transform="translate(91.581722, 94.833062)">
+            <polygon id="check-small" points="304.534538 0 340.035351 23.6672084 154.934008 301.319223 1.42108547e-14 146.385216 30.1698893 116.215326 148.290278 234.318938"></polygon>
+        </g>
+    </g>
+</svg>

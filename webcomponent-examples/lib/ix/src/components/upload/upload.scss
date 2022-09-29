@@ -1,0 +1,121 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/text-truncation';
+
+:host {
+  display: block;
+  min-height: 4rem;
+  height: 4rem;
+
+  .file-upload-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+
+    padding: $default-space;
+
+    border: 1px dashed var(--theme-upload--border-color);
+    border-radius: var(--theme-upload--border-radius);
+    color: var(--theme-upload-text--color);
+
+    &.multiline {
+      max-height: unset;
+      height: auto;
+
+      .glyph {
+        align-self: flex-start;
+        margin-block-start: 3px;
+      }
+
+      > div {
+        align-self: flex-start;
+      }
+    }
+
+    &:not(.multiline) {
+      .state,
+      .upload-text {
+        @include ellipsis;
+      }
+    }
+
+    &.file-over {
+      border-color: var(--theme-upload--border-color--dragover);
+      border-style: solid;
+    }
+
+    &.checking {
+      color: var(--theme-upload-text--color--checking);
+      border-style: solid;
+    }
+
+    &.disabled {
+      border-style: solid;
+      color: var(--theme-upload-text--color--disabled);
+    }
+
+    ix-button {
+      margin-inline-start: $default-space;
+    }
+
+    .upload-browser {
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .loader {
+      margin: 2.187rem auto;
+      font-size: 0.937rem;
+      width: $default-space;
+      height: $default-space;
+      border-radius: 50%;
+      position: relative;
+      text-indent: -9999em;
+      animation: optimise-loading 1.1s infinite ease;
+      transform: translateZ(0);
+    }
+
+    .upload-filename {
+      margin-bottom: $default-space;
+    }
+
+    .state {
+      display: flex;
+      align-items: center;
+
+      > ix-spinner {
+        margin-inline-end: $small-space;
+        height: $large-space;
+        width: $large-space;
+      }
+
+      > i {
+        margin-inline-end: $small-space;
+
+        &.glyph-error {
+          color: var(--theme-color-alarm);
+        }
+
+        &.glyph-success {
+          color: var(--theme-color-success);
+        }
+      }
+    }
+  }
+}

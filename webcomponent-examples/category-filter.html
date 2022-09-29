@@ -1,0 +1,56 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Category filter example</title>
+    <link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-category-filter placeholder="Filter by"></ix-category-filter>
+    <script>
+      const repeatCategories = false;
+      const filterState = {
+        tokens: ['Custom filter text'],
+        categories: [
+          {
+            id: 'ID_1',
+            value: 'IBM',
+            operator: 'Not equal',
+          },
+        ],
+      };
+      const categories = {
+        ID_1: {
+          label: 'Vendor',
+          options: ['Apple', 'MS', 'Siemens'],
+        },
+        ID_2: {
+          label: 'Product',
+          options: ['iPhone X', 'Windows', 'APS'],
+        },
+      };
+
+      const categoryFilter = document.querySelector('ix-category-filter');
+      categoryFilter.repeatCategories = repeatCategories;
+      categoryFilter.filterState = filterState;
+      categoryFilter.categories = categories;
+    </script>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

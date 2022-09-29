@@ -1,0 +1,68 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flip tile example</title>
+    <link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+    <style>
+      ix-tile {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-tile size="small">92.8 °C</ix-tile>
+
+    <ix-tile size="medium" class="mr-1">
+      <div slot="header">Tile header</div>
+      <div class="text-l">92.8 °C</div>
+    </ix-tile>
+
+    <ix-tile size="big">
+      <div
+        class="d-flex flex-grow-1 align-items-center justify-content-between"
+        slot="header"
+      >
+        Tile header
+        <ix-icon-button ghost icon="context-menu"></ix-icon-button>
+      </div>
+      <div slot="subheader">Temperature</div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          align-items: flex-end;
+          justify-content: space-between;
+        "
+      >
+        <span>92.8 °C</span>
+      </div>
+      <div
+        class="d-flex h-100 align-items-center justify-content-end"
+        slot="footer"
+      >
+        <ix-button ghost slot="footer">
+          <ix-icon name="chevron-right-small"></ix-icon>Details
+        </ix-button>
+      </div>
+    </ix-tile>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pill example</title>
+    <link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
+    <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+    <style>
+      .example-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .example-list > label {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div class="example-list">
+      <input checked id="checkbox_1_1" name="group_1" type="radio" />
+      <label for="checkbox_1_1"> Checked </label>
+
+      <input id="checkbox_1_2" name="group_1" type="radio" />
+      <label for="checkbox_1_2"> Normal </label>
+
+      <input disabled id="checkbox_1_3" name="group_1" type="radio" />
+      <label for="checkbox_1_3"> Disabled </label>
+    </div>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ix-message-bar renders 1`] = `
+<ix-message-bar type="danger">
+  <!---->
+  <div class="danger message-container" role="alert">
+    <ix-icon color="color-alarm" name="error"></ix-icon>
+    <div class="message-content"></div>
+    <ix-icon-button data-testid="close-btn" ghost="" icon="close" size="24"></ix-icon-button>
+  </div>
+</ix-message-bar>
+`;
