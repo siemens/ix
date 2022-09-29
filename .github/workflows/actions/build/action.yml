@@ -22,6 +22,10 @@ runs:
       run: yarn build
       shell: bash
 
+    - name: Check for local development changes
+      run: ./scripts/lint-build.sh
+      shell: bash
+
     - uses: actions/upload-artifact@v3
       with:
         name: build
