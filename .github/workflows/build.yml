@@ -39,4 +39,5 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/test

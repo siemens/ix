@@ -1,5 +1,5 @@
-name: 'Test Icons'
-description: 'Test if all svg files are generated to dist'
+name: 'Execute unit tests'
+description: 'Execute unit tests'
 runs:
   using: 'composite'
   steps:
