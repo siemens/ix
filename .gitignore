@@ -38,3 +38,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+packages/documentation/static/webcomponent-examples/lib/**/*
+!packages/documentation/static/webcomponent-examples/lib/utils
