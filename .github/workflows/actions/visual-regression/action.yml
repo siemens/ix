@@ -3,6 +3,10 @@ description: 'Execute visual regression tests'
 runs:
   using: 'composite'
   steps:
+    - name: Install Playwright
+      run: yarn global add playwright
+      shell: bash
+
     - name: Install Playwright Browsers
       run: yarn playwright install chromium --with-deps
       shell: bash
