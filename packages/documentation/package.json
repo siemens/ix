@@ -46,14 +46,6 @@
     "rimraf": "^3.0.2",
     "typescript": "^4.8.2"
   },
-  "peerDependencies": {
-    "@siemens/ix-brand-theme": "~1.0.0-beta.1"
-  },
-  "peerDependenciesMeta": {
-    "@siemens/ix-brand-theme": {
-      "optional": true
-    }
-  },
   "browserslist": {
     "production": [
       ">0.5%",
