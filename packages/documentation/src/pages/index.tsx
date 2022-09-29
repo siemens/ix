@@ -3,6 +3,7 @@
  */
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
@@ -48,7 +49,7 @@ function parallax(id: string, min: number, max: number, translateMax: number) {
 function Video() {
   return (
     <video className={styles.intro} muted autoPlay>
-      <source src="/siemens-ix/img/iX_Intro_clean.mp4" type="video/mp4" />
+      <source src={useBaseUrl('/img/iX_Intro_clean.mp4')} type="video/mp4" />
     </video>
   )
 }
@@ -175,7 +176,7 @@ function Button(props: { icon: string; label: string; style: string; link: strin
 function CallToActions() {
   return (
     <div>
-      <img src="/siemens-ix/img/Screen_02_background_image.png" alt="" className={styles.call_to_actions_background}></img>
+      <img src={useBaseUrl('/img/Screen_02_background_image.png')} alt="" className={styles.call_to_actions_background}></img>
       <div className={clsx(styles.container, styles.call_to_actions)}>
         <Button link="./docs/getting-started-for-designer" icon='arrow-right' label='iX for Designers' style="primary" />
         <Button link="./docs/getting-started" icon='arrow-right' label='iX for Developers' style="secondary" />
@@ -189,7 +190,7 @@ function Devices() {
     <div className={clsx(styles.container, styles.devices)}>
       <div className={styles.content}>
 
-        <img src="/siemens-ix/img/220804_Keyvisual_Freisteller.png" alt="" className={styles.image}></img>
+        <img src={useBaseUrl('/img/220804_Keyvisual_Freisteller.png')} alt="" className={styles.image}></img>
         {/* <Anime
           translateX='66'
           easing='easeInOutExpo'
@@ -232,13 +233,13 @@ function UX() {
 
         <div className={styles.images}>
           <div className={styles.image}>
-            <img src="/siemens-ix/img/sketch-seeklogo.com.png" alt="" className={styles.main} />
-            <img id="SketchShadow" src="/siemens-ix/img/Screen_04_Image_01.svg" alt="" className={styles.shadow} />
+            <img src={useBaseUrl('/img/sketch-seeklogo.com.png')} alt="" className={styles.main} />
+            <img id="SketchShadow" src={useBaseUrl('/img/Screen_04_Image_01.svg')} alt="" className={styles.shadow} />
             <div className={clsx(styles.text_2, styles.text_dark)}>Sketch</div>
           </div>
           <div className={styles.image}>
-            <img src="/siemens-ix/img/Gruppe 2986.png" alt="" className={styles.main} />
-            <img id="FigmaShadow" src="/siemens-ix/img/Screen_04_Image_02.svg" alt="" className={styles.shadow} />
+            <img src={useBaseUrl('/img/Gruppe 2986.png')} alt="" className={styles.main} />
+            <img id="FigmaShadow" src={useBaseUrl('/img/Screen_04_Image_02.svg')} alt="" className={styles.shadow} />
             <div className={clsx(styles.text_2, styles.text_dark)}>Figma</div>
           </div>
         </div>
@@ -272,18 +273,18 @@ function Developers() {
 
         <div className={styles.images}>
           <div className={styles.image}>
-            <img src="/siemens-ix/img/web tecnology/4691504_angular_icon_dark.png" className={styles.image_main} alt="" />
-            <img id="AngularLogoShadow" src="/siemens-ix/img/web tecnology/4691504_angular_icon.png" className={styles.image_shadow} alt="" />
+            <img src={useBaseUrl('/img/web tecnology/4691504_angular_icon_dark.png')} className={styles.image_main} alt="" />
+            <img id="AngularLogoShadow" src={useBaseUrl('/img/web tecnology/4691504_angular_icon.png')} className={styles.image_shadow} alt="" />
             <div className={clsx(styles.text_2, styles.text_dark)}>Angular</div>
           </div>
           <div className={styles.image}>
-            <img src="/siemens-ix/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png" className={styles.image_main} alt="" />
-            <img id="WebcomponentLogoShadow" src="/siemens-ix/img/web tecnology/4691425_dot_org_webcomponents_icon.png" className={styles.image_shadow} alt="" />
+            <img src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png')} className={styles.image_main} alt="" />
+            <img id="WebcomponentLogoShadow" src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon.png')} className={styles.image_shadow} alt="" />
             <div className={clsx(styles.text_2, styles.text_dark)}>Webcomponent</div>
           </div>
           <div className={styles.image}>
-            <img src="/siemens-ix/img/web tecnology/4691292_react native_react_icon_dark.png" className={styles.image_main} alt="" />
-            <img id="ReactLogoShadow" src="/siemens-ix/img/web tecnology/4691292_react native_react_icon.png" className={styles.image_shadow} alt="" />
+            <img src={useBaseUrl('/img/web tecnology/4691292_react native_react_icon_dark.png')} className={styles.image_main} alt="" />
+            <img id="ReactLogoShadow" src={useBaseUrl('/img/web tecnology/4691292_react native_react_icon.png')} className={styles.image_shadow} alt="" />
             <div className={clsx(styles.text_2, styles.text_dark)}>React</div>
           </div>
         </div>
@@ -360,7 +361,7 @@ function BrandDesign() {
 
   return (
     <div className={styles.brand_desgin_background_color}>
-      <img src="/siemens-ix/img/Screen_07_background_image.png" alt="" className={styles.brand_desgin_background_image}></img>
+      <img src={useBaseUrl('/img/Screen_07_background_image.png')} alt="" className={styles.brand_desgin_background_image}></img>
       <div className={clsx(styles.container, styles.brand_design)}>
         <div className={styles.content}>
           <Headline
@@ -371,8 +372,8 @@ function BrandDesign() {
 
           <div className={styles.row}>
             <i className={clsx('glyph glyph-chevron-left', styles.arrow)} onClick={() => click(-1)}></i>
-            <img src="/siemens-ix/img/Screen_07_Macbook_01.png" alt="" className={(step !== 1 ? styles.hidden : "")} />
-            <img src="/siemens-ix/img/Screen_07_Macbook_02.png" alt="" className={(step !== 2 ? styles.hidden : "")} />
+            <img src={useBaseUrl('/img/Screen_07_Macbook_01.png')} alt="" className={(step !== 1 ? styles.hidden : "")} />
+            <img src={useBaseUrl('/img/Screen_07_Macbook_02.png')} alt="" className={(step !== 2 ? styles.hidden : "")} />
             <i className={clsx('glyph glyph-chevron-right', styles.arrow)} onClick={() => click(1)}></i>
           </div>
 
@@ -400,7 +401,7 @@ function Components() {
         ></Headline>
 
         <video className={styles.video} muted autoPlay>
-          <source src="/siemens-ix/img/iX_components.mp4" type="video/mp4" />
+          <source src={useBaseUrl('/img/iX_components.mp4')} type="video/mp4" />
         </video>
       </div>
     </div>
@@ -423,7 +424,7 @@ function InformationCards() {
     <div>
 
       <div className={clsx(styles.container, styles.information_cards)}>
-        <img src="/siemens-ix/img/Screen_09_background_image.png" alt="" className={styles.information_cards_background}></img>
+        <img src={useBaseUrl('/img/Screen_09_background_image.png')} alt="" className={styles.information_cards_background}></img>
         <div className={styles.content}>
 
           <div className={clsx(styles.column)}>
@@ -459,7 +460,7 @@ function FooterFeatures() {
     <div className={clsx(styles.container, styles.footer_features)}>
       <div className={styles.row}>
         <div className={styles.col}>
-          <img src="/siemens-ix/img/394px-Sketch_Logo.png" alt="" />
+          <img src={useBaseUrl('/img/394px-Sketch_Logo.png')} alt="" />
           <div className={styles.text_gap}>
             <div className={styles.text}>Download our</div>
             <a className={styles.text} href="/files/core_ui_sketch.zip" target="_blank">latest Sketch Library</a>
@@ -467,7 +468,7 @@ function FooterFeatures() {
         </div>
 
         {/* <div className={styles.col}>
-          <img src="/siemens-ix/img/logo-640.png" alt="" />
+          <img src={useBaseUrl('/img/logo-640.png')} alt="" />
           <div className={styles.text_gap}>
             <div className={styles.text}>Siemens Inner Source</div>
             <a className={styles.text} href="" target="_blank">tbd</a>
@@ -475,7 +476,7 @@ function FooterFeatures() {
         </div> */}
 
         <div className={styles.col}>
-          <img src="/siemens-ix/img/webcomponents.png" alt="" />
+          <img src={useBaseUrl('/img/webcomponents.png')} alt="" />
           <div className={styles.text_gap}>
             <div className={styles.text}>Powered by </div>
             <div className={styles.text}>Web Components</div>

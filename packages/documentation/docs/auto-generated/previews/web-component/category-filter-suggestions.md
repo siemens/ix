@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/category-filter-suggestions.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/category-filter-suggestions.html -->
 ```html
 <ix-category-filter placeholder="Filter by"></ix-category-filter>
 <script>

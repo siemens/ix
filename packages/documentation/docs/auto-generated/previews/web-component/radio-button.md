@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/radio-button.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/radio-button.html -->
 ```html
 <div class="example-list">
   <input checked id="checkbox_1_1" name="group_1" type="radio" />

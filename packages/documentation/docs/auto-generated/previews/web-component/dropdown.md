@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/dropdown.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/dropdown.html -->
 ```html
 <ix-button id="triggerId">Open</ix-button>
 <ix-dropdown trigger="triggerId">
