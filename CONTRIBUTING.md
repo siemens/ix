@@ -24,12 +24,6 @@ Feature requests need to include a clear description of the desired feature. Ide
 
 Bug reports need to include a clear description of the problem as well as additional information that can help in solving the issue (e.g. software versions, stack traces).
 
-## General feedback and discussion
-
-The group [iX Community](https://***REMOVED***) on yammer is the perfect place for less formal interaction.
-Here you can post general feedback, ask for help and start discussions about everything iX.
-This is also where you will be informed about upcoming releases and other important news.
-
 ## Merge requests
 
 If you are planning to contribute a larger change to iX it is advisable to open an issue for discussion first. This way you can make sure in advance that your changes will actually get accepted.
