@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/kpi.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/kpi.html -->
 ```html
   <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
   <ix-kpi label="Motor speed" value="122.6" unit="rpm"></ix-kpi>

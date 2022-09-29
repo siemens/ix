@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/angular-test-app/src/preview-examples/pill.ts -->
+<!-- Auto generated! Please edit here: packages/angular-test-app/src/preview-examples/pill.ts -->
 ```typescript
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG

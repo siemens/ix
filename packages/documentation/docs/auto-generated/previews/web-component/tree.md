@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/tree.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/tree.html -->
 ```html
 
 <div style="height: 8rem; width: 100%">

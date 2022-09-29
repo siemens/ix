@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/select-multiple.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/select-multiple.html -->
 ```html
 <ix-select mode="multiple">
   <ix-select-item label="Item 1" value="1"></ix-select-item>

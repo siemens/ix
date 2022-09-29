@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/vertical-tabs.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/vertical-tabs.html -->
 ```html
 <ix-menu>
   <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>

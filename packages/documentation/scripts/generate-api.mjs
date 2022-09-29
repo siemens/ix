@@ -28,7 +28,7 @@ SPDX-License-Identifier: MIT
   return [
     copyright,
     `<!-- Auto generated! Please edit here: ${previewPath.substring(
-      previewPath.indexOf('siemens-ix/packages/')
+      previewPath.indexOf('packages/')
     )} -->`,
   ].join('\n');
 }

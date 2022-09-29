@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: siemens-ix/packages/documentation/static/webcomponent-examples/input-with-icon.html -->
+<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/input-with-icon.html -->
 ```html
 <form class="needs-validation m-2">
   <ix-input-group>
