@@ -47,7 +47,7 @@
     "typescript": "^4.8.2"
   },
   "peerDependencies": {
-    "@siemens/ix-brand-theme": "~1.0.0-beta.0"
+    "@siemens/ix-brand-theme": "~1.0.0-beta.1"
   },
   "peerDependenciesMeta": {
     "@siemens/ix-brand-theme": {
