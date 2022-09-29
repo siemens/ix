@@ -21,6 +21,7 @@ jobs:
       - uses: ./.github/workflows/actions/install
 
   build:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     needs: [install]
     container:
@@ -30,6 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/build
+      - uses: ./.github/workflows/actions/visual-regression
 
   test:
     runs-on: ubuntu-latest
@@ -41,34 +43,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/test
-
-  visual-regression:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        id: cache
-        with:
-          key: yarn-modules-${{ hashFiles('yarn.lock') }}
-          path: |
-            .yarn-cache
-            node_modules
-            packages/**/node_modules
-      - uses: actions/download-artifact@v2
-        with:
-          name: build
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium --with-deps
-      - name: Run Playwright tests
-        run: yarn workspace @siemens/ix run test:e2e
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 2
 
   lint-commit-message:
     runs-on: ubuntu-latest

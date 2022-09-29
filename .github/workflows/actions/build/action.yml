@@ -25,17 +25,3 @@ runs:
     - name: Check for local development changes
       run: ./scripts/lint-build.sh
       shell: bash
-
-    - uses: actions/upload-artifact@v3
-      with:
-        name: build
-        path: |
-          packages/**/dist
-          packages/**/loader
-          packages/**/www
-
-    - uses: actions/upload-artifact@v3
-      with:
-        name: documentation
-        path: |
-          packages/documentation/build
