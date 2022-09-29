@@ -1,5 +1,5 @@
-name: 'Build Icons'
-description: 'Build Icons'
+name: 'Install dependencies'
+description: 'Install dependencies'
 runs:
   using: 'composite'
   steps:
@@ -13,6 +13,12 @@ runs:
         registry-url: 'https://registry.npmjs.org'
         scope: '@siemens'
 
+    - name: configure yarnrc
+      run: |
+        echo 'yarn-offline-mirror ".yarn-cache/"' >> .yarnrc
+        echo 'yarn-offline-mirror-pruning true' >> .yarnrc
+      shell: bash
+
     - uses: actions/cache@v2
       id: cache
       with:
@@ -22,19 +28,7 @@ runs:
           node_modules
           packages/**/node_modules
 
-    - name: build
-      run: yarn build
+    - name: install
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile --no-progress
       shell: bash
-
-    - uses: actions/cache@v2
-      id: build-cache
-      with:
-        key: ${{ github.sha }}
-        path: |
-          .yarn-cache
-          node_modules
-          packages/**/dist
-          packages/**/node_modules
-          packages/**/loader
-          packages/**/www
-          packages/documentation/build
