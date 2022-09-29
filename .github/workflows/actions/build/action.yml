@@ -23,15 +23,15 @@ runs:
       shell: bash
 
     - uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            packages/**/dist
-            packages/**/loader
-            packages/**/www
+      with:
+        name: build
+        path: |
+          packages/**/dist
+          packages/**/loader
+          packages/**/www
 
     - uses: actions/upload-artifact@v3
-        with:
-          name: documentation
-          path: |
-            packages/documentation/build
+      with:
+        name: documentation
+        path: |
+          packages/documentation/build
