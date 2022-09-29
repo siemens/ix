@@ -1,0 +1,22 @@
+name: build
+
+on: [push, pull_request, workflow_dispatch]
+
+concurrency:
+  group: ci-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - run: |
+          echo "github.ref = ${{ github.ref }}"
+          echo "github.sha = ${{ github.sha }}"
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build
+      # - uses: ./.github/workflows/actions/test

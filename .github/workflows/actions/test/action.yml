@@ -1,0 +1,8 @@
+name: 'Test Icons'
+description: 'Test if all svg files are generated to dist'
+runs:
+  using: 'composite'
+  steps:
+    - name: test
+      run: yarn test
+      shell: bash
