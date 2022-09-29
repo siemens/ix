@@ -43,7 +43,7 @@
   "devDependencies": {
     "@playwright/test": "^1.24.1",
     "@popperjs/core": "~2.11.0",
-    "@siemens/ix-icons": "1.0.0-beta.1",
+    "@siemens/ix-icons": "1.0.0-beta.3",
     "@stencil/angular-output-target": "^0.4.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/postcss": "^2.0.0",
@@ -77,10 +77,13 @@
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",
-    "bootstrap": "~5.2.0"
-  },
-  "optionalDependencies": {
+    "bootstrap": "~5.2.0",
     "@siemens/ix-brand-theme": "~1.0.0-beta.0"
+  },
+  "peerDependenciesMeta": {
+    "@siemens/ix-brand-theme": {
+      "optional": true
+    }
   },
   "config": {
     "commitizen": {
