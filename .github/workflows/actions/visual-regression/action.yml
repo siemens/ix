@@ -3,6 +3,9 @@ description: 'Execute visual regression tests'
 runs:
   using: 'composite'
   steps:
+    - name: print npm bin
+      run: ls $(npm bin)
+      shell: bash
     - name: Install Playwright Browsers
       run: yarn playwright install chromium
       shell: bash
