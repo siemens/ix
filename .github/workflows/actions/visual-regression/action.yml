@@ -8,7 +8,7 @@ runs:
       shell: bash
 
     - name: Install Playwright Browsers
-      run: yarn playwright install chromium --with-deps
+      run: playwright install chromium --with-deps
       shell: bash
 
     - name: Run Playwright tests
