@@ -2,16 +2,13 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 
-import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import HomepageFeatures from '../components/pages/HomepageFeatures';
-import styles from './index.module.scss';
 import Anime from 'react-anime';
-import BrowserOnly from '@docusaurus/BrowserOnly';
+import styles from './index.module.scss';
 
 
 function parallax(id: string, min: number, max: number, translateMax: number) {
@@ -74,11 +71,12 @@ function Headline({ title, subtitle, description, dark = false, size = "h2", tex
 }
 
 function Homepage() {
-  // const base = useBaseUrl('/');
+  const context = useDocusaurusContext();
 
   useEffect(() => {
-    document.body.className = 'theme-brand-dark';
-  }, []);
+    const withBrandTheme = context.siteConfig.customFields.withBrandTheme;
+    document.body.className = withBrandTheme ? 'theme-brand-dark' : 'theme-classic-dark';
+  }, [context]);
 
   return (
     <div className={clsx(styles.container, styles.industrial_experiance)}>
