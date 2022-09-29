@@ -24,4 +24,12 @@ jobs:
 
       - uses: ./.github/workflows/actions/build
 
-      # - uses: ./.github/workflows/actions/test
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: ./.github/workflows/actions/test
