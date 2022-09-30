@@ -13,6 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/install
+      - name: 'Install brand theme'
+        run: |
+          echo "@siemens:registry=https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/" >> .npmrc
+          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${READ_CSC_TOKEN}" >> .npmrc
+          yarn workspace documentation add @siemens/ix-brand-theme --dev
+          rm .npmrc
+        with:
+          READ_CSC_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+
       - uses: ./.github/workflows/actions/build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
