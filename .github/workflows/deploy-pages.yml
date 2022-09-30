@@ -20,7 +20,7 @@ jobs:
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           npm install @siemens/ix-brand-theme --no-save
           rm .npmrc
-          rm ./packages/documentation/.gitignore
+          rm ./packages/documentation/static/.gitignore
 
       - uses: ./.github/workflows/actions/build
       - name: Deploy to GitHub Pages
