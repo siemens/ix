@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import './mixins/hover';
 @import './mixins/text-truncation';
 
 .btn {
@@ -58,10 +59,7 @@ $button-categories: (primary, secondary);
       }
     }
 
-    &:focus:not(:focus-visible),
-    &.focus,
-    &:focus,
-    &:focus-visible {
+    @include focus-visible {
       outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-btn--focus--outline-offset);
     }
@@ -73,10 +71,10 @@ $button-categories: (primary, secondary);
     &.hover,
     &:hover {
       @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--hover);
+        border-color: var(--theme-btn-#{$name}--border-color--hover) !important;
       }
-      background-color: var(--theme-btn-#{$name}--background--hover);
-      color: var(--theme-btn-#{$name}--color--hover);
+      background-color: var(--theme-btn-#{$name}--background--hover) !important;
+      color: var(--theme-btn-#{$name}--color--hover) !important;
     }
 
     &.selected {
@@ -91,10 +89,10 @@ $button-categories: (primary, secondary);
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
       @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--active);
+        border-color: var(--theme-btn-#{$name}--border-color--active) !important;
       }
-      background-color: var(--theme-btn-#{$name}--background--active);
-      color: var(--theme-btn-#{$name}--color--active);
+      background-color: var(--theme-btn-#{$name}--background--active) !important;
+      color: var(--theme-btn-#{$name}--color--active) !important;
     }
 
     &.selected {
