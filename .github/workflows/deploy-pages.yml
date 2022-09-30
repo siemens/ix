@@ -19,6 +19,7 @@ jobs:
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           cat .npmrc
+          ls -la .
           yarn workspace documentation add @siemens/ix-brand-theme --dev --registry https://code.siemens.com/api/v4/projects/249177/packages/npm/
           rm .npmrc
 
