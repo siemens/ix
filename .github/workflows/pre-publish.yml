@@ -1,6 +1,7 @@
 name: pre-publish
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
@@ -10,7 +11,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-lib:
+    uses: .github/workflows/build.yml@main
+  deploy:
+    needs: [build-lib]
     runs-on: ubuntu-latest
     container:
       image: node:16.16.0
@@ -18,12 +22,5 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-
-      # - uses: ./.github/workflows/actions/build
-
-      # - uses: ./.github/workflows/actions/test
-
-      # - name: Publish beta version to npmjs.org
-      #   run: yarn publish --access public --tag beta
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish beta version to npmjs.org
+        run: ls ./packages/core/dist
