@@ -39,7 +39,7 @@ const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
   url: 'https://siemens.github.io/ix/',
-  baseUrl: '/ix/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -96,7 +96,7 @@ const config = {
         theme2: require('prism-react-renderer/themes/dracula'),
       },
     }),
-  plugins: ['docusaurus-plugin-sass']
+  plugins: ['docusaurus-plugin-sass'],
   // plugins: [require.resolve('@cmfcmf/docusaurus-search-local')],
 };
 
