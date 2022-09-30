@@ -16,11 +16,8 @@ jobs:
       - name: 'Install brand theme'
         run: |
           rm .yarnrc
-          echo "registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" > .npmrc
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          cat .npmrc
-          ls -la .
           npm install @siemens/ix-brand-theme --no-save
           rm .npmrc
 
