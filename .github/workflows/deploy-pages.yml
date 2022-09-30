@@ -15,7 +15,7 @@ jobs:
       - uses: ./.github/workflows/actions/install
       - name: 'Install brand theme'
         run: |
-          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
+          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" > .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           yarn workspace documentation add @siemens/ix-brand-theme --dev
           rm .npmrc
