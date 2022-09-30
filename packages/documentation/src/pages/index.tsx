@@ -145,8 +145,9 @@ function CallToActions() {
   return (
     <div className={clsx(styles.container, styles.call_to_actions)}>
       <img src={useBaseUrl('/img/Screen_02_background_image.png')} alt="" className={styles.call_to_actions_background}></img>
-      <Button link="./docs/getting-started-for-designer" icon='arrow-right' label='iX for Designers' style="primary" />
-      <Button link="./docs/getting-started" icon='arrow-right' label='iX for Developers' style="secondary" />
+      <Button link={useBaseUrl('/docs/getting-started-for-designer')} icon='arrow-right' label='iX for Designers' style="primary" />
+      <Button link={useBaseUrl('/docs/getting-started')} icon='arrow-right' label='iX for Developers' style="secondary" />
+      <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
     </div>
   );
 }
@@ -420,7 +421,7 @@ function FooterButtons() {
   return (
     <div className={clsx(styles.container, styles.footer_buttons)}>
       <Button link="" icon='' label='Start iX now' style="primary" />
-      <Button link="" icon='mail' label='Contact Us' style="grey" />
+      <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
     </div>
   )
 }

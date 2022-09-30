@@ -35,6 +35,10 @@ const sidebars = {
           type: 'doc',
           id: 'getting-started-for-designer',
         },
+        {
+          type: 'doc',
+          id: 'team',
+        },
       ],
     },
     {
