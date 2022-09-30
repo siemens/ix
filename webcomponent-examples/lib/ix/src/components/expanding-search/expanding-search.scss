@@ -1,0 +1,114 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
+
+$container-width: 11.5625rem;
+
+:host {
+  display: flex;
+  width: $container-width;
+  height: $x-large-space;
+  align-items: center;
+  justify-content: space-between;
+
+  .input-container {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .disable-pointer {
+    pointer-events: none;
+  }
+
+  input {
+    box-shadow: var(--theme-input--box-shadow);
+  }
+
+  .expanded {
+    width: $container-width;
+  }
+
+  .collapsed {
+    width: $large-space;
+    border: none;
+  }
+
+  /*collapsed view*/
+  .btn-search-icon {
+    align-self: center;
+    margin: auto;
+    position: relative;
+  }
+
+  .btn-search {
+    display: flex;
+    max-width: $x-large-space;
+    max-height: $x-large-space;
+    border-radius: var(--theme-input--border-radius);
+    transition: all 0.15s ease-in-out;
+    z-index: 1;
+    align-items: center;
+    position: relative;
+    border: none;
+
+    @include hover {
+      border-color: transparent;
+    }
+
+    @include active {
+      border-color: transparent;
+    }
+
+    @include focus {
+      outline: none;
+    }
+
+    @include focus-visible {
+      outline: var(--focus--border-color);
+      outline-width: 1px;
+      outline-style: solid;
+    }
+  }
+
+  .btn-search:active {
+    width: $x-large-space;
+    height: $x-large-space;
+    border-radius: var(--theme-input--border-radius);
+    border: var(--theme-std-bdr-1) !important;
+  }
+
+  /*expanded view*/
+  .input-container {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .btn-clear {
+    position: absolute;
+    border-radius: var(--theme-input--border-radius);
+    right: 0px;
+  }
+
+  .input {
+    padding-left: $x-large-space !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .opacity-before {
+    opacity: 0;
+  }
+
+  .opacity-after {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,92 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'mixins/text-truncation';
+@import 'mixins/hover';
+@import 'common-variables';
+
+$height-single-line: 2.5rem;
+
+.ix-event-list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: $height-single-line;
+  max-height: $height-single-line;
+  border-radius: $default-border-radius;
+  background-color: var(--theme-event-list-item-bg);
+  overflow: hidden;
+  cursor: pointer;
+
+  .indicator {
+    height: 100%;
+    width: $small-space;
+    max-width: $small-space;
+    min-width: $small-space;
+    border-top-left-radius: $default-border-radius;
+    border-bottom-left-radius: $default-border-radius;
+  }
+
+  .indicator-empty {
+    border: var(--theme-weak-bdr-1);
+    border-right: none;
+  }
+
+  .cui-event-list-item-content-container {
+    @include ellipsis;
+
+    display: flex;
+    flex-grow: 1;
+    width: calc(100% - (#{$default-space} + #{$small-space}));
+    height: 100%;
+    border: 0.062rem solid;
+    border-color: var(--theme-event-list-item-border);
+    border-top-left-radius: 0;
+    border-top-right-radius: $default-border-radius;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: $default-border-radius;
+    border-left: none;
+    padding-left: $default-space;
+  }
+
+  .chevron-icon {
+    display: none;
+    margin-left: auto;
+    margin-right: $small-space;
+    opacity: 0.6;
+    align-self: center;
+  }
+
+  .event-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  @include hover {
+    background-color: var(--theme-event-list-item-hover);
+  }
+
+  @include active {
+    background-color: var(--theme-event-list-item-pressed);
+  }
+
+  &.selected {
+    background-color: var(--theme-event-item--background--selected);
+  }
+
+  &[disabled],
+  &.disabled {
+    pointer-events: none;
+  }
+
+  margin-bottom: $small-space;
+}

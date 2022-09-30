@@ -1,0 +1,103 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/text-truncation';
+
+:host {
+  @mixin set-height($height) {
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+  }
+
+  $heightSmall: 2.5rem;
+  $heightMedium: 5rem;
+  $heightBig: 10rem;
+  $width: 11.937rem;
+
+  min-width: $width;
+  max-width: $width;
+  width: $width;
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--theme-tile--border);
+  border-radius: var(--theme-tile--border-radius);
+
+  background-color: var(--theme-color-2);
+  color: var(--theme-color-std-text);
+  box-shadow: var(--theme-tile--box-shadow);
+
+  &.tile-small {
+    @include set-height($heightSmall);
+  }
+
+  &.tile-medium {
+    @include set-height($heightMedium);
+  }
+
+  &.tile-big {
+    @include set-height($heightBig);
+  }
+
+  // @each $key, $value in $color-map-status {
+  //   &.tile-#{$key} {
+  //     background-color: #{$value};
+  //     color: automatic-text-color($value, 65);
+  //   }
+  // }
+
+  &:active,
+  &:focus,
+  &:visited {
+    outline: none;
+  }
+
+  .tile-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .tile-header,
+  .tile-subheader,
+  .tile-content,
+  .tile-footer {
+    &:not(:empty) {
+      padding: 0 $default-space;
+    }
+  }
+
+  .tile-header,
+  .tile-subheader,
+  .tile-content {
+    flex-grow: 1;
+  }
+
+  .tile-header:not(:empty) {
+    display: flex;
+    height: $large-control-height;
+    max-height: $large-control-height;
+    padding-inline-end: $small-space;
+  }
+
+  .tile-subheader {
+    color: var(--theme-btn-invisible-secondary--color);
+    flex-grow: 0;
+  }
+
+  .tile-content {
+    flex-grow: 1;
+  }
+
+  .tile-footer:not(:empty) {
+    border-block-start: 1px solid var(--theme-color-1);
+    height: $large-control-height;
+  }
+}

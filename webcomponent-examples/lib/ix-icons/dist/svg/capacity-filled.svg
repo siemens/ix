@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>capacity-filled</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="drop" fill="#000000" transform="translate(64.000000, 85.333333)">
+            <rect id="Rectangle" x="0" y="192" width="170.666667" height="170.666667"></rect>
+            <rect id="Rectangle" x="192" y="192" width="170.666667" height="170.666667"></rect>
+            <rect id="Rectangle" x="0" y="4.26325641e-14" width="170.666667" height="170.666667"></rect>
+            <rect id="Rectangle" x="234.666667" y="4.26325641e-14" width="128" height="128"></rect>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chart-curve-linear</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" fill="#000000" transform="translate(64.000000, 64.000000)">
+            <path d="M42.6666667,1.42108547e-14 L42.666,341.333 L384,341.333333 L384,384 L1.42108547e-14,384 L1.42108547e-14,1.42108547e-14 L42.6666667,1.42108547e-14 Z M231.252022,52.4025379 L232.594358,54.8280836 L339.261024,278.828084 L300.738976,297.171916 L213.333333,113.578667 L125.927691,297.171916 L87.4056423,278.828084 L194.072309,54.8280836 C201.387447,39.4662938 222.485998,38.6577785 231.252022,52.4025379 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

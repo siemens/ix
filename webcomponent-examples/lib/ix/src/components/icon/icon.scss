@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+
+:host {
+  display: inline-flex;
+  height: $large-space;
+  width: $large-space;
+
+  color: var(--theme-color-std-text);
+
+  i {
+    color: inherit;
+    transition: color $default-time;
+  }
+}
+
+:host(.size-12) {
+  height: $medium-space;
+  width: $medium-space;
+}
+
+:host(.size-16) {
+  height: $default-space;
+  width: $default-space;
+}
+
+:host(.size-32) {
+  height: $x-large-space;
+  width: $x-large-space;
+}

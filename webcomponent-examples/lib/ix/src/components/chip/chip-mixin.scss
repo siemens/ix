@@ -1,0 +1,178 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$predefined-chips: alarm, critical, warning, info, neutral, success;
+$border-radius: 100px;
+
+@mixin chip-variant($interaction) {
+  @each $color in $predefined-chips {
+    &[variant='#{$color}'] {
+      color: var(--theme-color-#{$color}--contrast);
+
+      @if $interaction {
+        &:hover::after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.05);
+          left: 0;
+          border-radius: $border-radius;
+          pointer-events: none;
+        }
+
+        &.active::after,
+        &:active::after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.1);
+          left: 0;
+          border-radius: $border-radius;
+          pointer-events: none;
+        }
+      }
+
+      &:not(.outline) {
+        background-color: var(--theme-color-#{$color});
+
+        .close-button {
+          color: var(--theme-color-#{$color}--contrast);
+        }
+
+        &:hover::after {
+          content: '';
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &.active::after,
+        &:active::after {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      &.outline {
+        color: var(--theme-chip-outline--color);
+        border: solid 1px var(--theme-color-#{$color});
+
+        &:hover::after {
+          display: none;
+        }
+        &:hover {
+          background-color: var(--theme-chip-outline--background--hover);
+        }
+
+        &.active::after,
+        &:active::after {
+          display: none;
+        }
+        &.active,
+        &:active {
+          background-color: var(--theme-chip-outline--background--active);
+        }
+      }
+
+      @if $interaction {
+        &:focus,
+        &:focus-visible {
+          outline: 1px solid #199fff;
+          outline-offset: var(--theme-btn--focus--outline-offset);
+        }
+      }
+    }
+  }
+}
+
+@mixin chip($interaction: true) {
+  &[variant='primary'] {
+    background-color: var(--theme-color-primary);
+    color: var(--theme-chip-primary--color);
+
+    .close-button {
+      color: var(--theme-chip-primary--color);
+      pointer-events: auto;
+    }
+
+    @if $interaction {
+      &:hover {
+        background-color: var(--theme-chip-primary--background--hover);
+      }
+
+      &:active {
+        background-color: var(--theme-chip-primary--background--active);
+      }
+
+      &:focus,
+      &:focus-visible {
+        outline: 1px solid #199fff;
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+    }
+  }
+
+  &[variant='primary'].outline {
+    color: var(--theme-chip-primary-outline--color);
+    background-color: transparent;
+    border: solid 1px var(--theme-chip-primary-outline--border-color);
+
+    .close-button {
+      color: var(--theme-chip-primary-outline--color);
+    }
+
+    @if $interaction {
+      &:hover {
+        background-color: var(--theme-chip-primary-outline--background--hover);
+      }
+
+      &:active {
+        background-color: var(--theme-chip-primary-outline--background--active);
+      }
+    }
+  }
+
+  @include chip-variant($interaction: $interaction);
+
+  &[variant='custom'] {
+    @if $interaction {
+      &:hover::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, var(--theme-l-hover));
+        left: 0;
+        border-radius: $border-radius;
+        pointer-events: none;
+      }
+
+      &.active::after,
+      &:active::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, var(--theme-l-active));
+        left: 0;
+        border-radius: $border-radius;
+        pointer-events: none;
+      }
+
+      &:focus,
+      &:focus-visible {
+        outline: 1px solid #199fff;
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+    }
+  }
+}

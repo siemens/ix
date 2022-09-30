@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ix-drawer renders 1`] = `
+<ix-drawer>
+  <!---->
+  <div class="d-none drawer-container" data-testid="container" id="div-container" style="width: 16rem; min-width: 16rem; max-width: 28rem;">
+    <div class="header">
+      <div class="header-content"></div>
+      <ix-icon-button data-testid="close-button" ghost="" icon="close" size="24"></ix-icon-button>
+    </div>
+    <div class="content"></div>
+  </div>
+</ix-drawer>
+`;

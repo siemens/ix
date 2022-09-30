@@ -1,0 +1,156 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/shadows';
+@import 'mixins/text-truncation';
+
+:host {
+  display: block;
+  position: relative;
+
+  .focus {
+    border-color: var(--theme-color-primary);
+    box-shadow: 0 0 $tiny-space 0 var(--theme-color-primary) !important;
+  }
+
+  .btn-close {
+    position: absolute;
+    top: $tiny-space;
+    right: $tiny-space;
+    min-width: $large-space;
+    width: $large-space;
+    height: $large-space;
+  }
+
+  .input-container {
+    display: flex;
+    height: 100%;
+    max-height: 3.75rem;
+    padding: 1px $large-space 1px $x-large-space;
+
+    &.no-icon {
+      padding-left: $tiny-space;
+    }
+  }
+
+  .token-container {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .text-input {
+    @include ellipsis;
+    @include text-default;
+    background: transparent;
+    flex-grow: 1;
+    height: 1.75rem;
+
+    &,
+    &:hover,
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &.hide-placeholder::placeholder {
+      opacity: 0;
+    }
+  }
+
+  .list-unstyled {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+  }
+
+  ix-icon {
+    position: absolute;
+    top: $small-space;
+    left: $small-space;
+  }
+
+  ix-filter-chip {
+    margin-right: $small-space;
+  }
+
+  .category-preview {
+    display: flex;
+    align-items: center;
+    height: $large-space;
+    background-color: var(--theme-bg-3);
+    border-top-left-radius: $default-space;
+    border-bottom-left-radius: $default-space;
+    padding: $small-space;
+    margin: 2px 0;
+  }
+
+  .category-selection-container {
+    @include box-shadow;
+    background: var(--theme-color-1);
+    position: absolute;
+    top: $x-large-space;
+    overflow-y: auto;
+    min-width: 10rem;
+    border: var(--theme-std-bdr-1);
+    border-radius: $tiny-space;
+    padding: $small-space;
+    z-index: 1;
+
+    .category-item,
+    .category-item-header {
+      @include text-default-single;
+      @include ellipsis;
+      height: $default-control-height;
+      padding: $small-space;
+    }
+
+    .category-item-header {
+      color: var(--theme-color-soft-text);
+    }
+
+    .category-item-id {
+      border-top-left-radius: $default-space;
+      border-bottom-left-radius: $default-space;
+    }
+
+    .category-item-value {
+      border-top-right-radius: $default-space;
+      border-bottom-right-radius: $default-space;
+    }
+
+    .category-item {
+      cursor: pointer;
+    }
+
+    .category-item:focus {
+      background-color: var(--theme-generic-bg-active);
+      outline: none;
+    }
+
+    .plain-text-suggestion  {
+      border-radius: $default-space;
+    }
+  }
+
+  ul {
+    height: 100%;
+  }
+
+  ul > li,
+  input {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+}

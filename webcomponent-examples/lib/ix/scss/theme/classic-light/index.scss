@@ -1,0 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import './../define-theme';
+@import './variables';
+@import './sizes';
+
+@include define-theme($name: 'classic-light', $theme-colors: $classic-light, $hover-percentage: 5%, $active-percentage: 10%, $theme-sizes: $classic-light-sizes) {
+}
