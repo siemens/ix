@@ -21,5 +21,14 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        id: build
+        with:
+          key: build-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
       - name: Publish beta version to npmjs.org
         run: ls ./packages/core/dist
