@@ -93,7 +93,7 @@ function Homepage() {
           size='h1'
           title="Siemens"
           subtitle="Industrial Experience"
-          description="iX is Siemens open source design system for designers and developers to consistently create the perfect digital experience for their partners and customers."
+          description="iX is an open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products."
           noLine
           description_width='320px'
         ></Headline>
