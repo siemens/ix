@@ -23,8 +23,12 @@ jobs:
           rm ./packages/documentation/static/.gitignore
 
       - uses: ./.github/workflows/actions/build
+      - name: 'Copy documentation'
+        run: |
+          cp -R ./packages/documentation/build/. ./public
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/documentation/build
+          publish_dir: ./public
+          cname: ix.siemens.io
