@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>pen-filled</title>
+    <defs>
+        <path d="M426.666667,373.333333 L426.666667,416 L3.55271368e-14,416 L3.55271368e-14,373.333333 L426.666667,373.333333 Z M186.019,91.314 L282.019,187.313 L138.666667,330.666667 L42.6666667,330.666667 L42.6666667,234.666667 L186.019,91.314 Z M277.333333,2.13162821e-14 L373.333333,96 L304.647,164.686 L208.647,68.686 L277.333333,2.13162821e-14 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pen" transform="translate(42.666667, 53.333333)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

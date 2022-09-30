@@ -1,0 +1,176 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+:host .select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: auto;
+  background-color: var(--theme-input--background);
+  border: var(--theme-input--border-thickness) solid var(--theme-input--border-color);
+  border-radius: var(--theme-input--border-radius);
+  padding: 0 0 0 0.5rem;
+}
+:host .select:not(.disabled):not(:disabled) {
+  cursor: pointer;
+}
+:host .select:not(.disabled):not(:disabled):hover {
+  background-color: var(--theme-input--background--hover);
+  border-color: var(--theme-input--border-color--hover);
+}
+:host .select:focus-within {
+  background-color: var(--theme-input--background--focus);
+  border-color: var(--theme-input--border-color--focus);
+  outline: 1px solid #119fff !important;
+  outline-offset: var(--theme-input--focus--outline-offset);
+}
+:host .trigger {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+:host .input-container {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  height: calc(2rem - 2 * var(--theme-input--border-thickness));
+  width: 100%;
+}
+:host .input-container.allow-clear {
+  padding-right: 3.5rem;
+}
+:host .input-container .chips {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  max-width: 70%;
+  flex-shrink: 0;
+  margin: auto;
+}
+:host .input-container .chips > ix-filter-chip {
+  margin: 0.1rem;
+}
+:host .input-container input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smooting: grayscale;
+  font-family: Siemens Sans, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.429em;
+  color: var(--theme-color-std-text);
+  background: transparent;
+  height: 1.75rem;
+  width: 100%;
+  -webkit-margin-end: 2rem;
+          margin-inline-end: 2rem;
+}
+:host .input-container input, :host .input-container input:hover, :host .input-container input:focus {
+  border: none;
+  outline: none;
+}
+:host .input-container input::-moz-placeholder {
+  color: var(--theme-input-select-icon--color);
+}
+:host .input-container input::placeholder {
+  color: var(--theme-input-select-icon--color);
+}
+:host .input-container input.hide-placeholder::-moz-placeholder {
+  opacity: 0;
+}
+:host .input-container input.hide-placeholder::placeholder {
+  opacity: 0;
+}
+:host .chevron-down-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  min-width: 2rem;
+  height: 100%;
+}
+:host .editable .chevron-down-container:not(.disabled):not(:disabled) {
+  cursor: pointer;
+}
+:host .editable .chevron-down-container:not(.disabled):not(:disabled):hover {
+  background-color: var(--theme-btn-invisible-secondary--background--hover);
+}
+:host .editable .chevron-down-container:not(.disabled):not(:disabled) {
+  cursor: pointer;
+}
+:host .editable .chevron-down-container:not(.disabled):not(:disabled):active {
+  background-color: var(--theme-btn-invisible-secondary--background--active);
+}
+:host .clear {
+  position: absolute;
+  right: 2rem;
+}
+:host .add-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+:host .select-list-header {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  color: var(--theme-select-list-item-hint--color);
+  margin: 0 0.5rem 0 2rem;
+}
+:host ix-dropdown {
+  background-color: var(--theme-select-list--background);
+}
