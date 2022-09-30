@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   build-lib:
-    uses: .github/workflows/build.yml@main
+    uses: ./.github/workflows/build.yml@main
   deploy:
     needs: [build-lib]
     runs-on: ubuntu-latest
