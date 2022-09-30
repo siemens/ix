@@ -1,6 +1,9 @@
-name: pre-publish
+name: Publish Beta
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - workflow/publish
 
 concurrency:
   group: prepublish-${{ github.sha }}
