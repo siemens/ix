@@ -1,21 +1,21 @@
-@siemens/ix:build: cache hit, replaying output 8c71942c28f78bf2
+@siemens/ix:build: cache hit, replaying output 47be496b3365798d
 @siemens/ix:build: $ stencil build --docs --prod
-@siemens/ix:build: [2m[17:50.6][22m  [36m@stencil/core[39m
-@siemens/ix:build: [2m[17:50.9][22m  [36mv2.15.2[39m 🎢
-@siemens/ix:build: [2m[17:56.5][22m  build, siemens-ix, prod mode, started [2m...[22m
-@siemens/ix:build: [2m[17:56.5][22m  transpile started [2m...[22m
-@siemens/ix:build: [2m[18:00.9][22m  transpile finished [2min 4.39 s[22m
-@siemens/ix:build: [2m[18:00.9][22m  copy started [2m...[22m
-@siemens/ix:build: [2m[18:00.9][22m  generate custom elements started [2m...[22m
-@siemens/ix:build: [2m[18:00.9][22m  generate lazy started [2m...[22m
-@siemens/ix:build: [2m[18:06.5][22m  copy finished (553 files) [2min 5.67 s[22m
-@siemens/ix:build: [2m[18:15.0][22m  generate custom elements finished [2min 14.15 s[22m
-@siemens/ix:build: [2m[18:18.8][22m  generate lazy finished [2min 17.89 s[22m
-@siemens/ix:build: [2m[18:18.8][22m  generating angular-library started [2m...[22m
-@siemens/ix:build: [2m[18:18.8][22m  generating react-library started [2m...[22m
-@siemens/ix:build: [2m[18:18.8][22m  updated readme docs: ix-toast
-@siemens/ix:build: [2m[18:18.8][22m  updated readme docs: ix-toast-container
-@siemens/ix:build: [2m[18:18.8][22m  generate angular-library finished [2min 9 ms[22m
-@siemens/ix:build: [2m[18:18.8][22m  generate react-library finished [2min 9 ms[22m
-@siemens/ix:build: [2m[18:18.9][22m  [1m[32mbuild finished[39m[22m [2min 22.44 s[22m
+@siemens/ix:build: [2m[30:13.6][22m  [36m@stencil/core[39m
+@siemens/ix:build: [2m[30:13.9][22m  [36mv2.15.2[39m 🎢
+@siemens/ix:build: [2m[30:19.6][22m  build, siemens-ix, prod mode, started [2m...[22m
+@siemens/ix:build: [2m[30:19.6][22m  transpile started [2m...[22m
+@siemens/ix:build: [2m[30:23.9][22m  transpile finished [2min 4.25 s[22m
+@siemens/ix:build: [2m[30:23.9][22m  copy started [2m...[22m
+@siemens/ix:build: [2m[30:23.9][22m  generate custom elements started [2m...[22m
+@siemens/ix:build: [2m[30:23.9][22m  generate lazy started [2m...[22m
+@siemens/ix:build: [2m[30:29.7][22m  copy finished (553 files) [2min 5.80 s[22m
+@siemens/ix:build: [2m[30:37.9][22m  generate custom elements finished [2min 14.05 s[22m
+@siemens/ix:build: [2m[30:41.8][22m  generate lazy finished [2min 17.87 s[22m
+@siemens/ix:build: [2m[30:41.8][22m  generating angular-library started [2m...[22m
+@siemens/ix:build: [2m[30:41.8][22m  generating react-library started [2m...[22m
+@siemens/ix:build: [2m[30:41.8][22m  updated readme docs: ix-toast
+@siemens/ix:build: [2m[30:41.8][22m  updated readme docs: ix-toast-container
+@siemens/ix:build: [2m[30:41.8][22m  generate angular-library finished [2min 9 ms[22m
+@siemens/ix:build: [2m[30:41.8][22m  generate react-library finished [2min 10 ms[22m
+@siemens/ix:build: [2m[30:41.9][22m  [1m[32mbuild finished[39m[22m [2min 22.28 s[22m
 @siemens/ix:build: 

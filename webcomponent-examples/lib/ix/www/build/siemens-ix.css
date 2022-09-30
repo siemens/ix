@@ -18124,6 +18124,14 @@ a[href] .glyph::before {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -18158,7 +18166,7 @@ a[href] .glyph::before {
   border-color: var(--theme-btn-primary--border-color);
   border-style: solid;
 }
-.btn-primary:focus:not(:focus-visible), .btn-primary.focus, .btn-primary:focus, .btn-primary:focus-visible {
+.btn-primary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18166,18 +18174,18 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-primary--background--selected);
 }
 .btn-primary.hover, .btn-primary:hover {
-  border-color: var(--theme-btn-primary--border-color--hover);
-  background-color: var(--theme-btn-primary--background--hover);
-  color: var(--theme-btn-primary--color--hover);
+  border-color: var(--theme-btn-primary--border-color--hover) !important;
+  background-color: var(--theme-btn-primary--background--hover) !important;
+  color: var(--theme-btn-primary--color--hover) !important;
 }
 .btn-primary.selected.hover, .btn-primary.selected:hover {
   background-color: var(--theme-btn-primary--background--selected-hover);
   color: var(--theme-btn-primary--color--selected-hover);
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-  border-color: var(--theme-btn-primary--border-color--active);
-  background-color: var(--theme-btn-primary--background--active);
-  color: var(--theme-btn-primary--color--active);
+  border-color: var(--theme-btn-primary--border-color--active) !important;
+  background-color: var(--theme-btn-primary--background--active) !important;
+  color: var(--theme-btn-primary--color--active) !important;
 }
 .btn-primary.selected:not(:disabled):not(.disabled):active, .btn-primary.selected:not(:disabled):not(.disabled).active, .show > .btn-primary.selected.dropdown-toggle {
   background-color: var(--theme-btn-primary--background--selected-active);
@@ -18201,7 +18209,7 @@ a[href] .glyph::before {
   border-color: var(--theme-btn-outline-primary--border-color);
   border-style: solid;
 }
-.btn-outline-primary:focus:not(:focus-visible), .btn-outline-primary.focus, .btn-outline-primary:focus, .btn-outline-primary:focus-visible {
+.btn-outline-primary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18209,18 +18217,18 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-outline-primary--background--selected);
 }
 .btn-outline-primary.hover, .btn-outline-primary:hover {
-  border-color: var(--theme-btn-outline-primary--border-color--hover);
-  background-color: var(--theme-btn-outline-primary--background--hover);
-  color: var(--theme-btn-outline-primary--color--hover);
+  border-color: var(--theme-btn-outline-primary--border-color--hover) !important;
+  background-color: var(--theme-btn-outline-primary--background--hover) !important;
+  color: var(--theme-btn-outline-primary--color--hover) !important;
 }
 .btn-outline-primary.selected.hover, .btn-outline-primary.selected:hover {
   background-color: var(--theme-btn-outline-primary--background--selected-hover);
   color: var(--theme-btn-outline-primary--color--selected-hover);
 }
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-  border-color: var(--theme-btn-outline-primary--border-color--active);
-  background-color: var(--theme-btn-outline-primary--background--active);
-  color: var(--theme-btn-outline-primary--color--active);
+  border-color: var(--theme-btn-outline-primary--border-color--active) !important;
+  background-color: var(--theme-btn-outline-primary--background--active) !important;
+  color: var(--theme-btn-outline-primary--color--active) !important;
 }
 .btn-outline-primary.selected:not(:disabled):not(.disabled):active, .btn-outline-primary.selected:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.selected.dropdown-toggle {
   background-color: var(--theme-btn-outline-primary--background--selected-active);
@@ -18241,7 +18249,7 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-invisible-primary--background);
   color: var(--theme-btn-invisible-primary--color);
 }
-.btn-invisible-primary:focus:not(:focus-visible), .btn-invisible-primary.focus, .btn-invisible-primary:focus, .btn-invisible-primary:focus-visible {
+.btn-invisible-primary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18249,16 +18257,16 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-invisible-primary--background--selected);
 }
 .btn-invisible-primary.hover, .btn-invisible-primary:hover {
-  background-color: var(--theme-btn-invisible-primary--background--hover);
-  color: var(--theme-btn-invisible-primary--color--hover);
+  background-color: var(--theme-btn-invisible-primary--background--hover) !important;
+  color: var(--theme-btn-invisible-primary--color--hover) !important;
 }
 .btn-invisible-primary.selected.hover, .btn-invisible-primary.selected:hover {
   background-color: var(--theme-btn-invisible-primary--background--selected-hover);
   color: var(--theme-btn-invisible-primary--color--selected-hover);
 }
 .btn-invisible-primary:not(:disabled):not(.disabled):active, .btn-invisible-primary:not(:disabled):not(.disabled).active, .show > .btn-invisible-primary.dropdown-toggle {
-  background-color: var(--theme-btn-invisible-primary--background--active);
-  color: var(--theme-btn-invisible-primary--color--active);
+  background-color: var(--theme-btn-invisible-primary--background--active) !important;
+  color: var(--theme-btn-invisible-primary--color--active) !important;
 }
 .btn-invisible-primary.selected:not(:disabled):not(.disabled):active, .btn-invisible-primary.selected:not(:disabled):not(.disabled).active, .show > .btn-invisible-primary.selected.dropdown-toggle {
   background-color: var(--theme-btn-invisible-primary--background--selected-active);
@@ -18281,7 +18289,7 @@ a[href] .glyph::before {
   border-color: var(--theme-btn-secondary--border-color);
   border-style: solid;
 }
-.btn-secondary:focus:not(:focus-visible), .btn-secondary.focus, .btn-secondary:focus, .btn-secondary:focus-visible {
+.btn-secondary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18289,18 +18297,18 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-secondary--background--selected);
 }
 .btn-secondary.hover, .btn-secondary:hover {
-  border-color: var(--theme-btn-secondary--border-color--hover);
-  background-color: var(--theme-btn-secondary--background--hover);
-  color: var(--theme-btn-secondary--color--hover);
+  border-color: var(--theme-btn-secondary--border-color--hover) !important;
+  background-color: var(--theme-btn-secondary--background--hover) !important;
+  color: var(--theme-btn-secondary--color--hover) !important;
 }
 .btn-secondary.selected.hover, .btn-secondary.selected:hover {
   background-color: var(--theme-btn-secondary--background--selected-hover);
   color: var(--theme-btn-secondary--color--selected-hover);
 }
 .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
-  border-color: var(--theme-btn-secondary--border-color--active);
-  background-color: var(--theme-btn-secondary--background--active);
-  color: var(--theme-btn-secondary--color--active);
+  border-color: var(--theme-btn-secondary--border-color--active) !important;
+  background-color: var(--theme-btn-secondary--background--active) !important;
+  color: var(--theme-btn-secondary--color--active) !important;
 }
 .btn-secondary.selected:not(:disabled):not(.disabled):active, .btn-secondary.selected:not(:disabled):not(.disabled).active, .show > .btn-secondary.selected.dropdown-toggle {
   background-color: var(--theme-btn-secondary--background--selected-active);
@@ -18324,7 +18332,7 @@ a[href] .glyph::before {
   border-color: var(--theme-btn-outline-secondary--border-color);
   border-style: solid;
 }
-.btn-outline-secondary:focus:not(:focus-visible), .btn-outline-secondary.focus, .btn-outline-secondary:focus, .btn-outline-secondary:focus-visible {
+.btn-outline-secondary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18332,18 +18340,18 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-outline-secondary--background--selected);
 }
 .btn-outline-secondary.hover, .btn-outline-secondary:hover {
-  border-color: var(--theme-btn-outline-secondary--border-color--hover);
-  background-color: var(--theme-btn-outline-secondary--background--hover);
-  color: var(--theme-btn-outline-secondary--color--hover);
+  border-color: var(--theme-btn-outline-secondary--border-color--hover) !important;
+  background-color: var(--theme-btn-outline-secondary--background--hover) !important;
+  color: var(--theme-btn-outline-secondary--color--hover) !important;
 }
 .btn-outline-secondary.selected.hover, .btn-outline-secondary.selected:hover {
   background-color: var(--theme-btn-outline-secondary--background--selected-hover);
   color: var(--theme-btn-outline-secondary--color--selected-hover);
 }
 .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > .btn-outline-secondary.dropdown-toggle {
-  border-color: var(--theme-btn-outline-secondary--border-color--active);
-  background-color: var(--theme-btn-outline-secondary--background--active);
-  color: var(--theme-btn-outline-secondary--color--active);
+  border-color: var(--theme-btn-outline-secondary--border-color--active) !important;
+  background-color: var(--theme-btn-outline-secondary--background--active) !important;
+  color: var(--theme-btn-outline-secondary--color--active) !important;
 }
 .btn-outline-secondary.selected:not(:disabled):not(.disabled):active, .btn-outline-secondary.selected:not(:disabled):not(.disabled).active, .show > .btn-outline-secondary.selected.dropdown-toggle {
   background-color: var(--theme-btn-outline-secondary--background--selected-active);
@@ -18364,7 +18372,7 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-invisible-secondary--background);
   color: var(--theme-btn-invisible-secondary--color);
 }
-.btn-invisible-secondary:focus:not(:focus-visible), .btn-invisible-secondary.focus, .btn-invisible-secondary:focus, .btn-invisible-secondary:focus-visible {
+.btn-invisible-secondary:not(.disabled):not(:disabled):focus-visible {
   outline: 1px solid var(--focus--border-color);
   outline-offset: var(--theme-btn--focus--outline-offset);
 }
@@ -18372,16 +18380,16 @@ a[href] .glyph::before {
   background-color: var(--theme-btn-invisible-secondary--background--selected);
 }
 .btn-invisible-secondary.hover, .btn-invisible-secondary:hover {
-  background-color: var(--theme-btn-invisible-secondary--background--hover);
-  color: var(--theme-btn-invisible-secondary--color--hover);
+  background-color: var(--theme-btn-invisible-secondary--background--hover) !important;
+  color: var(--theme-btn-invisible-secondary--color--hover) !important;
 }
 .btn-invisible-secondary.selected.hover, .btn-invisible-secondary.selected:hover {
   background-color: var(--theme-btn-invisible-secondary--background--selected-hover);
   color: var(--theme-btn-invisible-secondary--color--selected-hover);
 }
 .btn-invisible-secondary:not(:disabled):not(.disabled):active, .btn-invisible-secondary:not(:disabled):not(.disabled).active, .show > .btn-invisible-secondary.dropdown-toggle {
-  background-color: var(--theme-btn-invisible-secondary--background--active);
-  color: var(--theme-btn-invisible-secondary--color--active);
+  background-color: var(--theme-btn-invisible-secondary--background--active) !important;
+  color: var(--theme-btn-invisible-secondary--color--active) !important;
 }
 .btn-invisible-secondary.selected:not(:disabled):not(.disabled):active, .btn-invisible-secondary.selected:not(:disabled):not(.disabled).active, .show > .btn-invisible-secondary.selected.dropdown-toggle {
   background-color: var(--theme-btn-invisible-secondary--background--selected-active);
