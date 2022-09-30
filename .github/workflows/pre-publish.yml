@@ -2,8 +2,8 @@ name: Publish Beta
 
 on:
   push:
-    branches:
-      - workflow/publish
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
 
 concurrency:
   group: prepublish-${{ github.sha }}
@@ -31,4 +31,11 @@ jobs:
             packages/**/loader
             packages/**/build
       - name: Publish beta version to npmjs.org
-        run: ls ./packages/core/dist
+        run: |
+          yarn workspace @siemens/ix publish --access public --tag beta
+          yarn workspace @siemens/ix-angular publish --access public --tag beta
+          yarn workspace @siemens/ix-react publish --access public --tag beta
+          yarn workspace @siemens/ix-aggrid publish --access public --tag beta
+          yarn workspace @siemens/ix-echarts publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
