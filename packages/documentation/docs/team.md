@@ -8,17 +8,17 @@ title: Siemens iX Team
 
 #### Responsible for Siemens Industrial Experience (Siemens iX)
 
-- [Christian Butter](mailto:christian.butter@siemens.com)
-- [Barbara Knapp](mailto:barbara.knapp@siemens.com)
+- [Christian Butter](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Barbara Knapp](https://github.com/siemens/ix/discussions/new?category=q-a)
 
 #### Responsible for Siemens iX Development
 
-- [Daniel Leroux](mailto:daniel.leroux@siemens.com)
-- [Lukas Maurer](mailto:lukas.maurer@siemens.com)
-- [Carlos Leandro Cruz Ferrer](mailto:carlos.cruz_ferrer@siemens.com)
-- [Gonçalo Ferreira](mailto:goncalo.alves-ferreira@siemens.com)
+- [Daniel Leroux](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Lukas Maurer](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Carlos Leandro Cruz Ferrer](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Gonçalo Ferreira](https://github.com/siemens/ix/discussions/new?category=q-a)
 
 #### Responsible for Siemens iX Design
 
-- [Silvio Wolf](mailto:wolf.silvio@siemens.com)
-- [Lorenz Kunze](mailto:lorenz.kunze@siemens.com)
+- [Silvio Wolf](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Lorenz Kunze](https://github.com/siemens/ix/discussions/new?category=q-a)
