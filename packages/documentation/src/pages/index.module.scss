@@ -8,14 +8,14 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .intro {
-    height: 170vh !important;
-    min-height: 170vh;
-    position: absolute;
-    top: -150px;
-  }
-}
+// @media (max-width: 1024px) {
+//   .intro {
+//     height: 170vh !important;
+//     min-height: 170vh;
+//     position: absolute;
+//     top: -150px;
+//   }
+// }
 
 .intro {
   position: absolute;
@@ -41,13 +41,11 @@
     position: relative;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     &.industrial_experiance {
       height: 1034px !important;
     }
-  }
 
-  @media (max-width: 768px) {
     .content {
       line-height: 25px;
     }
@@ -103,6 +101,15 @@
       height: auto;
       object-fit: cover;
       right: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .image {
+        max-width: none !important;
+        height: 350% !important;
+        left: -10%;
+        width: auto !important;
+      }
     }
 
     @media (max-width: 768px) {
@@ -710,6 +717,12 @@
   line-height: 24px;
   gap: 16px;
   /* color: var(--theme-color-inv-soft-text); */
+}
+
+@media (max-width: 1024px) {
+  .Card_Info {
+    right: -5%;
+  }
 }
 
 @media (max-width: 768px) {
