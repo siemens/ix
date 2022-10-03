@@ -2,6 +2,9 @@
   .intro {
     height: 170vh !important;
     min-height: 170vh;
+    width: 100% !important;
+    position: absolute;
+    top: -250px !important;
   }
 }
 
@@ -9,6 +12,8 @@
   .intro {
     height: 170vh !important;
     min-height: 170vh;
+    position: absolute;
+    top: -150px;
   }
 }
 
@@ -38,7 +43,7 @@
 
   @media (max-width: 1024px) {
     &.industrial_experiance {
-      height: 965px !important;
+      height: 1034px !important;
     }
   }
 
@@ -88,6 +93,7 @@
     padding: 40px 66px;
     min-height: 100vh;
     background-image: linear-gradient(#000028, #2d3137);
+    overflow-x: clip;
 
     .image {
       position: absolute;
@@ -100,6 +106,13 @@
     }
 
     @media (max-width: 768px) {
+      .image {
+        max-width: none !important;
+        width: 150% !important;
+        height: 400% !important;
+        left: -20%;
+      }
+
       .text_2 {
         width: 340px !important;
       }
@@ -294,6 +307,7 @@
     padding: 74px 66px;
     min-height: 100vh;
     background-image: linear-gradient(to right, white 0 50%, #010021 50% 100%);
+    overflow: hidden;
 
     .video {
       object-fit: cover;
@@ -301,8 +315,22 @@
     }
 
     @media (max-width: 768px) {
+      .headline {
+        width: 50% !important;
+      }
+
+      .headline .content .bold {
+        line-height: 35px;
+      }
+
       .text_2 {
         width: 290px !important;
+      }
+
+      .video {
+        width: 200%;
+        left: -50%;
+        position: absolute;
       }
     }
   }
@@ -547,6 +575,13 @@
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .brand_desgin_background_image {
+    bottom: 0;
+    top: -30%;
+  }
+}
+
 .brand_desgin_background_image {
   position: absolute;
   z-index: 0;
@@ -618,6 +653,10 @@
   .hidden {
     display: none;
   }
+
+  .bold {
+    font-weight: bold;
+  }
 }
 
 @media (max-width: 768px) {
@@ -681,7 +720,7 @@
 
   .Card_Box {
     justify-content: left !important;
-    margin-top: 140px;
+    margin-top: 50%;
   }
 
   .Card_Line {

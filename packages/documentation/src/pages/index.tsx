@@ -59,7 +59,7 @@ function Headline({ title, subtitle, description, dark = false, size = "h2", tex
         <div className={clsx(styles.line, dark ? styles.dark : "", noLine ? styles.hidden : "")}></div>
         <div className={clsx(styles.content)}>
           <div className={dark || text === "dark" ? styles.text_dark : ""}>{title}</div>
-          <div className={clsx("bold", dark || text === "dark" ? styles.text_dark : "")}>{subtitle}</div>
+          <div className={clsx(styles.bold, dark || text === "dark" ? styles.text_dark : "")}>{subtitle}</div>
         </div>
       </div>
 
