@@ -12,8 +12,6 @@ Current **beta release** of _ix_ has some limitations, please check [this](./lim
 
 ### Installation of dependencies
 
-Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
-
 1. Install `@siemens/ix-angular` (or a beta release `@siemens/ix-angular@next`) and `@siemens/ix-icons`.
 
 ```

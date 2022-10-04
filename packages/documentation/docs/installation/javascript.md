@@ -10,10 +10,6 @@ Current **beta release** of _ix_ has some limitations, please check [this](./lim
 
 :::
 
-## Installation of dependencies
-
-Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
-
 ### Install library
 
 Install `@siemens/ix` (or a beta release `@siemens/ix@next`) and `@siemens/ix-icons`.

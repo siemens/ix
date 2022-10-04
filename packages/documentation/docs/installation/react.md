@@ -12,8 +12,6 @@ Current **beta release** of _ix_ has some limitations, please check [this](./lim
 
 ### Installation of dependencies
 
-Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
-
 1. Install `@siemens/ix-react` (or a beta release `@siemens/ix-react@next`) and `@siemens/ix-icons`.
 
 ```
