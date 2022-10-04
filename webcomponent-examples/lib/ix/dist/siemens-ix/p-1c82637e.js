@@ -1,1 +1,0 @@
-function t(t,e,n){const r=document.createElement("ix-tree-item");return r.hasChildren=t.hasChildren,r.context=e,r.text=t.data.name,n((t=>{r.text=t.data.name})),r}export{t as r}
