@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@siemens/ix": "~1.0.0-beta.2",
-    "@siemens/ix-icons": "~1.0.0-beta.3"
+    "@siemens/ix-icons": "~1.0.0"
   },
   "peerDependencies": {
     "@angular/core": ">10.0.0"
