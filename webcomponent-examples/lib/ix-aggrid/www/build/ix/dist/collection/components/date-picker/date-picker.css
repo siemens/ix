@@ -1,0 +1,222 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selector {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 1rem;
+}
+.selector .dropdown {
+  color: var(--theme-menu-item--color);
+  font-size: 14px;
+  line-height: 20px;
+}
+.selector .fontSize {
+  font-size: 16px;
+}
+.selector .capitalize {
+  text-transform: capitalize;
+}
+.selector .arrowYear {
+  display: flex;
+  position: relative;
+  padding: 0.75rem 2rem;
+  align-items: center;
+  cursor: pointer;
+}
+.selector .arrowYear:hover {
+  background-color: var(--theme-select-list-item--background--hover);
+}
+.selector .arrowYear.selected {
+  background-color: var(--theme-select-list-item--background--selected);
+}
+.selector .arrowYear .arrowPosition {
+  position: absolute;
+  left: calc(1rem - 6px);
+  top: calc(50% - 6px);
+}
+.selector .arrowYear .checkPosition {
+  position: absolute;
+  left: calc(1rem - 6px);
+  top: calc(50% - 8px);
+}
+.selector .arrowYear .monthMargin {
+  margin-left: 10px;
+}
+
+.wrapper {
+  display: flex;
+}
+.wrapper .overflow {
+  overflow-y: scroll;
+  max-height: 250px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, 40px);
+  grid-template-rows: repeat(7, 40px);
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  color: var(--theme-datepicker-today--color);
+}
+.grid .calendar-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme-datepicker-day--background);
+  border: 1px solid var(--theme-datepicker-day--background);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.grid .calendar-item.today {
+  border: 1px solid var(--theme-datepicker-today--border-color);
+}
+.grid .calendar-item.today:hover {
+  background-color: var(--theme-datepicker-day--background--hover);
+}
+.grid .calendar-item.today:active {
+  background-color: var(--theme-datepicker-day--background--active);
+}
+.grid .calendar-item.today.selected {
+  box-shadow: inset 0 0 0 1px white;
+}
+.grid .calendar-item.today.selected:hover {
+  background-color: var(--theme-datepicker-day--background--selected-hover);
+}
+.grid .calendar-item.today.selected:active {
+  background-color: var(--theme-datepicker-day--background--selected-active);
+}
+.grid .calendar-item.today.selected.disabled {
+  background-color: var(--theme-datepicker-day--background--selected-disabled);
+  border: 1px solid var(--theme-datepicker-day--background--selected-disabled);
+  color: var(--theme-datepicker-day--color--selected-disabled);
+}
+.grid .calendar-item.today.range {
+  background-color: var(--theme-datepicker-day--background--range);
+  color: var(--theme-datepicker-day--color--range);
+  border: 1px solid var(--theme-datepicker-today--border-color--range);
+  box-shadow: inset 0 0 0 1px white;
+}
+.grid .calendar-item.today.range:hover {
+  background-color: var(--theme-datepicker-day--background--range-hover);
+  border: 1px solid var(--theme-datepicker-today--border-color--range-hover);
+}
+.grid .calendar-item.today.range:active {
+  background-color: var(--theme-datepicker-day--background--range-active);
+  border: 1px solid var(--theme-datepicker-today--border-color--range-active);
+}
+.grid .calendar-item.today.range.disabled {
+  background-color: var(--theme-datepicker-day--background--range-disabled);
+  color: var(--theme-datepicker-day--color--range-disabled);
+  border: 1px solid var(--theme-datepicker-today--border-color--range-disabled);
+}
+.grid .calendar-item.today.disabled {
+  background-color: var(--theme-datepicker-day--background--disabled);
+  color: var(--theme-datepicker-day--color--disabled);
+}
+.grid .calendar-item:hover {
+  background-color: var(--theme-datepicker-day--background--hover);
+}
+.grid .calendar-item:active {
+  background-color: var(--theme-datepicker-day--background--active);
+}
+.grid .calendar-item.selected {
+  background-color: var(--theme-datepicker-day--background--selected);
+  color: var(--theme-datepicker-day--color--selected);
+  border: 1px solid var(--theme-datepicker-day--background--selected);
+}
+.grid .calendar-item.selected:hover {
+  background-color: var(--theme-datepicker-day--background--selected-hover);
+}
+.grid .calendar-item.selected:active {
+  background-color: var(--theme-datepicker-day--background--selected-active);
+}
+.grid .calendar-item.selected.disabled {
+  background-color: var(--theme-datepicker-day--background--selected-disabled);
+  color: var(--theme-datepicker-day--color--selected-disabled);
+}
+.grid .calendar-item.range {
+  background-color: var(--theme-datepicker-day--background--range);
+  color: var(--theme-datepicker-day--color--range);
+}
+.grid .calendar-item.range:hover {
+  background-color: var(--theme-datepicker-day--background--range-hover);
+}
+.grid .calendar-item.range:active {
+  background-color: var(--theme-datepicker-day--background--range-active);
+}
+.grid .calendar-item.range.disabled {
+  background-color: var(--theme-datepicker-day--background--range-disabled);
+  color: var(--theme-datepicker-day--color--range-disabled);
+}
+.grid .calendar-item.disabled {
+  background-color: var(--theme-datepicker-day--background--disabled);
+  color: var(--theme-datepicker-day--color--disabled);
+}
+.grid .calendar-item.week-day {
+  color: var(--theme-datepicker-weekday--color);
+  font-size: 12px;
+  line-height: 20px;
+  border: none;
+  background: none;
+  cursor: initial;
+}
+.grid .calendar-item.empty-day {
+  border: none;
+  background: none;
+  cursor: initial;
+}
+.grid .calendar-item.week-number {
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--theme-datepicker-ix--color);
+  border: none;
+  background: none;
+  cursor: initial;
+}
+.grid .calendar-item:focus-visible {
+  background-color: var(--theme-datepicker-day--background--selected);
+  border: inset 1px solid var(--theme-datepicker-day--border-color--selected);
+  color: var(--theme-datepicker-day--color--selected);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hidden {
+  display: none;
+}

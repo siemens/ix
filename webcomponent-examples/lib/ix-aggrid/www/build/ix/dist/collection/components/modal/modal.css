@@ -1,0 +1,96 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+:host {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+:host .modal {
+  display: flex;
+}
+:host .modal.animation {
+  animation: modal-fade 300ms ease-in-out;
+}
+:host .modal.backdrop {
+  background-color: var(--theme-color-lightbox);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  transition: none;
+}
+:host .modal.backdrop.animation {
+  transition: -webkit-backdrop-filter 0ms ease-in-out;
+  transition: backdrop-filter 0ms ease-in-out;
+  transition: backdrop-filter 0ms ease-in-out, -webkit-backdrop-filter 0ms ease-in-out;
+}
+:host .modal .modal-dialog {
+  flex-grow: 1;
+}
+:host .modal.scrollable .modal-content {
+  max-height: 100%;
+}
+:host .modal.scrollable .modal-content .modal-body {
+  overflow-y: auto;
+}
+:host .modal .modal-content {
+  box-shadow: var(--theme-modal--box-shadow);
+  flex-direction: row;
+  background-color: var(--theme-modal--background);
+  border: var(--modal--border-thickness) solid var(--theme-modal--border-color);
+  padding: 1.5rem;
+}
+:host .modal .modal-content .state-icon-container {
+  -webkit-margin-end: 1rem;
+          margin-inline-end: 1rem;
+}
+:host .modal .modal-content .slot-container {
+  flex-grow: 1;
+}
+@media (min-width: 576px) {
+  :host .modal .modal-dialog:not(.modal-dialog-centered) {
+    margin: 2.5rem auto;
+  }
+}
+@media (max-width: 575.98px) {
+  :host .modal .modal-dialog {
+    height: 100%;
+    margin: 0;
+  }
+  :host .modal .modal-dialog .modal-content {
+    height: 100%;
+    border-radius: 0;
+  }
+}
+@keyframes modal-fade {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes slide-down {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 32px;
+  }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>configure</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="drop" fill="#000000" transform="translate(64.000000, 64.000000)">
+            <path d="M384,1.42108547e-14 L384,384 L1.42108547e-14,384 L1.42108547e-14,1.42108547e-14 L384,1.42108547e-14 Z M341.333333,42.6666667 L42.6666667,42.6666667 L42.6666667,341.333333 L341.333333,341.333333 L341.333333,42.6666667 Z M65.8585863,204.108481 L160.289656,117.546667 L230.101333,213.525644 L289.310496,159.277563 L318.141414,190.729473 L223.710344,277.291288 L153.877333,181.290977 L94.6895038,235.560391 L65.8585863,204.108481 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

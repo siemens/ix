@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>double-chevron-down</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="add" fill="#000000" transform="translate(134.186667, 123.520000)">
+            <path d="M140.16,18.1333333 L261.76,139.946667 L140.16,261.76 L109.866667,231.466667 L201.6,139.946667 L109.866667,48.4266667 L140.16,18.1333333 Z M12.16,18.1333333 L133.76,139.946667 L12.16,261.76 L-18.1333333,231.466667 L73.6,139.946667 L-18.1333333,48.4266667 L12.16,18.1333333 Z" id="arrow-double-right" transform="translate(121.813333, 139.946667) rotate(-270.000000) translate(-121.813333, -139.946667) "></path>
+        </g>
+    </g>
+</svg>

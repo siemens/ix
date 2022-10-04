@@ -1,0 +1,1 @@
+import{p as o,b as p}from"./p-d40c6577.js";(()=>{const p=import.meta.url,r={};return""!==p&&(r.resourcesUrl=new URL(".",p).href),o(r)})().then((o=>p([["p-69c6cd58",[[2,"my-component"],[2,"ix-ag-grid",{gridOptions:[16]}]]]],o)));

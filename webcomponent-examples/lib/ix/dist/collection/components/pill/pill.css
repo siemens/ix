@@ -1,0 +1,269 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 0px 6px;
+  margin-left: 0.25rem;
+  min-width: 1.5rem;
+  height: 1.25rem;
+  min-height: 1.25rem;
+  max-height: 1.25rem;
+  cursor: auto;
+}
+:host .with-icon {
+  margin-right: 0.25rem;
+}
+:host.align-left {
+  justify-content: flex-start;
+}
+:host[variant=primary] {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-chip-primary--color);
+}
+:host[variant=primary] .close-button {
+  color: var(--theme-chip-primary--color);
+  pointer-events: auto;
+}
+:host[variant=primary].outline {
+  color: var(--theme-chip-primary-outline--color);
+  background-color: transparent;
+  border: solid 1px var(--theme-chip-primary-outline--border-color);
+}
+:host[variant=primary].outline .close-button {
+  color: var(--theme-chip-primary-outline--color);
+}
+:host[variant=alarm] {
+  color: var(--theme-color-alarm--contrast);
+}
+:host[variant=alarm]:not(.outline) {
+  background-color: var(--theme-color-alarm);
+}
+:host[variant=alarm]:not(.outline) .close-button {
+  color: var(--theme-color-alarm--contrast);
+}
+:host[variant=alarm]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=alarm]:not(.outline).active::after, :host[variant=alarm]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=alarm].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-alarm);
+}
+:host[variant=alarm].outline:hover::after {
+  display: none;
+}
+:host[variant=alarm].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=alarm].outline.active::after, :host[variant=alarm].outline:active::after {
+  display: none;
+}
+:host[variant=alarm].outline.active, :host[variant=alarm].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=critical] {
+  color: var(--theme-color-critical--contrast);
+}
+:host[variant=critical]:not(.outline) {
+  background-color: var(--theme-color-critical);
+}
+:host[variant=critical]:not(.outline) .close-button {
+  color: var(--theme-color-critical--contrast);
+}
+:host[variant=critical]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=critical]:not(.outline).active::after, :host[variant=critical]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=critical].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-critical);
+}
+:host[variant=critical].outline:hover::after {
+  display: none;
+}
+:host[variant=critical].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=critical].outline.active::after, :host[variant=critical].outline:active::after {
+  display: none;
+}
+:host[variant=critical].outline.active, :host[variant=critical].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=warning] {
+  color: var(--theme-color-warning--contrast);
+}
+:host[variant=warning]:not(.outline) {
+  background-color: var(--theme-color-warning);
+}
+:host[variant=warning]:not(.outline) .close-button {
+  color: var(--theme-color-warning--contrast);
+}
+:host[variant=warning]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=warning]:not(.outline).active::after, :host[variant=warning]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=warning].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-warning);
+}
+:host[variant=warning].outline:hover::after {
+  display: none;
+}
+:host[variant=warning].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=warning].outline.active::after, :host[variant=warning].outline:active::after {
+  display: none;
+}
+:host[variant=warning].outline.active, :host[variant=warning].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=info] {
+  color: var(--theme-color-info--contrast);
+}
+:host[variant=info]:not(.outline) {
+  background-color: var(--theme-color-info);
+}
+:host[variant=info]:not(.outline) .close-button {
+  color: var(--theme-color-info--contrast);
+}
+:host[variant=info]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=info]:not(.outline).active::after, :host[variant=info]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=info].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-info);
+}
+:host[variant=info].outline:hover::after {
+  display: none;
+}
+:host[variant=info].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=info].outline.active::after, :host[variant=info].outline:active::after {
+  display: none;
+}
+:host[variant=info].outline.active, :host[variant=info].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=neutral] {
+  color: var(--theme-color-neutral--contrast);
+}
+:host[variant=neutral]:not(.outline) {
+  background-color: var(--theme-color-neutral);
+}
+:host[variant=neutral]:not(.outline) .close-button {
+  color: var(--theme-color-neutral--contrast);
+}
+:host[variant=neutral]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=neutral]:not(.outline).active::after, :host[variant=neutral]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=neutral].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-neutral);
+}
+:host[variant=neutral].outline:hover::after {
+  display: none;
+}
+:host[variant=neutral].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=neutral].outline.active::after, :host[variant=neutral].outline:active::after {
+  display: none;
+}
+:host[variant=neutral].outline.active, :host[variant=neutral].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host[variant=success] {
+  color: var(--theme-color-success--contrast);
+}
+:host[variant=success]:not(.outline) {
+  background-color: var(--theme-color-success);
+}
+:host[variant=success]:not(.outline) .close-button {
+  color: var(--theme-color-success--contrast);
+}
+:host[variant=success]:not(.outline):hover::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.05);
+}
+:host[variant=success]:not(.outline).active::after, :host[variant=success]:not(.outline):active::after {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+:host[variant=success].outline {
+  color: var(--theme-chip-outline--color);
+  border: solid 1px var(--theme-color-success);
+}
+:host[variant=success].outline:hover::after {
+  display: none;
+}
+:host[variant=success].outline:hover {
+  background-color: var(--theme-chip-outline--background--hover);
+}
+:host[variant=success].outline.active::after, :host[variant=success].outline:active::after {
+  display: none;
+}
+:host[variant=success].outline.active, :host[variant=success].outline:active {
+  background-color: var(--theme-chip-outline--background--active);
+}
+:host .slot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

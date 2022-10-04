@@ -1,0 +1,61 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  display: block;
+  min-width: 10rem;
+}
+:host.icon-only {
+  min-width: 0;
+}
+:host.icon-only .dropdown-item {
+  padding: 0.25rem 0.5rem;
+}
+:host.icon-only .dropdown-item:not(.disabled):not(:disabled):focus-visible {
+  border-color: #199fff;
+}
+:host .checkmark {
+  position: absolute;
+  left: 0.5rem;
+}
+:host.checked {
+  background-color: var(--theme-select-list-item--background--selected);
+}
+:host .label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

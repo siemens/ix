@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'sass:map';
+@use 'sass:list';
+
+@mixin define-theme-colors($theme-colors) {
+  @each $color-name, $color-value in $theme-colors {
+    --theme-#{$color-name}--hs: #{hue($color-value), saturation($color-value)};
+    --theme-#{$color-name}--l: #{lightness($color-value)};
+    --theme-#{$color-name}--a: #{alpha($color-value)};
+    --theme-#{$color-name}: hsla(var(--theme-#{$color-name}--hs), var(--theme-#{$color-name}--l), var(--theme-#{$color-name}--a));
+    --theme-#{$color-name}--hover: hsla(var(--theme-#{$color-name}--hs), calc(var(--theme-#{$color-name}--l) + var(--theme-l-hover)), var(--theme-#{$color-name}--a));
+    --theme-#{$color-name}--active: hsla(var(--theme-#{$color-name}--hs), calc(var(--theme-#{$color-name}--l) + var(--theme-l-active)), var(--theme-#{$color-name}--a));
+  }
+}

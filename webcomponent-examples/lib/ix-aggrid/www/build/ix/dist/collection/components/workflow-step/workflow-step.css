@@ -1,0 +1,131 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+:host .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--theme-workflow-step--background);
+  border-radius: var(--theme-workflow--border-radius);
+  width: auto;
+  padding: 1.125rem 0 0.5rem 0;
+  height: 4rem;
+  width: 12.75rem;
+}
+:host .step .wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+:host .step .wrapper .line {
+  width: 100%;
+  height: 0.125rem;
+  background-color: var(--theme-workflow-step-icon-default--color);
+}
+:host .step .wrapper .line.first, :host .step .wrapper .line.last {
+  width: 50%;
+  margin: 0 0 0 auto;
+}
+:host .step .wrapper .line.last {
+  margin: 0 auto 0 0;
+}
+:host .step .wrapper .line.selected {
+  background-color: var(--theme-workflow-step-icon-default--color--selected);
+}
+:host .step .wrapper .line.done {
+  background-color: var(--theme-workflow-step-icon-done--color);
+}
+:host .step .wrapper .line.done.selected {
+  background-color: var(--theme-workflow-step-icon-done--color--selected);
+}
+:host .step .wrapper .line.warning {
+  background-color: var(--theme-color-warning);
+}
+:host .step .wrapper .line.success {
+  background-color: var(--theme-color-success);
+}
+:host .step .wrapper .line.error {
+  background-color: var(--theme-color-alarm);
+}
+:host .step .wrapper .iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+:host .step .wrapper .iconWrapper .absolute {
+  position: absolute;
+}
+:host .step .text {
+  margin-top: 1rem;
+  width: auto;
+  padding: 0 0.5rem;
+}
+:host .step.vertical {
+  flex-direction: row;
+  padding: 0;
+}
+:host .step.vertical .wrapper {
+  width: auto;
+  padding-left: 1.125rem;
+  height: 4rem;
+}
+:host .step.vertical .wrapper .line {
+  width: 0.125rem;
+  height: 100%;
+}
+:host .step.vertical .wrapper .line.first, :host .step.vertical .wrapper .line.last {
+  height: 50%;
+  margin: auto 0 0 0;
+}
+:host .step.vertical .wrapper .line.last {
+  margin: 0 0 auto 0;
+}
+:host .step.vertical .text {
+  margin-top: 0;
+  margin-left: 1rem;
+  padding: 0;
+}
+:host .step:hover {
+  background-color: var(--theme-workflow-step--background--hover);
+}
+:host .step:active {
+  background-color: var(--theme-workflow-step--background--active);
+}
+:host .step:focus-visible {
+  outline: 1px solid var(--focus--border-color);
+  border-radius: 0;
+}
+:host .step.selected {
+  background-color: var(--theme-workflow-step--background--selected);
+}
+:host .step.disabled {
+  background-color: var(--theme-workflow-step--background--disabled);
+}
+:host .step.disabled .line {
+  background-color: var(--theme-workflow-step-icon-default--color--disabled) !important;
+}
+:host .step.disabled .text {
+  color: var(--theme-workflow-step--color--disabled);
+}

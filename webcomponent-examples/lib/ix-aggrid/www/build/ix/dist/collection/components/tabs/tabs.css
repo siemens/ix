@@ -1,0 +1,84 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ix-tabs {
+  width: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+ix-tabs .tab-items {
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+ix-tabs .tab-items .items-content {
+  display: flex;
+  align-items: center;
+}
+ix-tabs .arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto 0;
+  border-radius: 4px;
+  color: var(--theme-btn-invisible-primary--color);
+  background-color: var(--theme-btn-invisible-primary--background);
+  z-index: 2;
+}
+ix-tabs .arrow:hover {
+  color: var(--theme-btn-invisible-primary--color--hover);
+  background-color: var(--theme-btn-invisible-primary--background--hover);
+}
+ix-tabs .arrow:active {
+  color: var(--theme-btn-invisible-primary--color--active);
+  background-color: var(--theme-btn-invisible-primary--background--active);
+}
+ix-tabs .arrow.right {
+  left: auto;
+  right: 0;
+}
+ix-tabs .overflow-shadow {
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(90deg, var(--theme-color-1) 50%, transparent);
+  z-index: 1;
+}
+ix-tabs .overflow-shadow.right {
+  left: auto;
+  right: 0;
+  background: linear-gradient(90deg, transparent, var(--theme-color-1) 50%);
+}
