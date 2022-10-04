@@ -1,5 +1,9 @@
 name: 'Build Icons'
 description: 'Build Icons'
+inputs:
+  filter: # id of input
+    description: 'yarn filter property'
+    default: '*'
 runs:
   using: 'composite'
   steps:
@@ -19,7 +23,7 @@ runs:
           packages/**/node_modules
 
     - name: build
-      run: yarn build
+      run: yarn build --filter ${{ inputs.filter }}
       shell: bash
 
     - name: Check for local development changes

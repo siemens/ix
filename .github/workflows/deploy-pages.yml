@@ -13,6 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/build
+        with:
+          filter: '\!documentation'
       - name: 'Install brand theme'
         run: |
           rm .yarnrc
@@ -23,6 +26,8 @@ jobs:
           rm ./packages/documentation/static/.gitignore
 
       - uses: ./.github/workflows/actions/build
+        with:
+          filter: 'documentation'
       - name: 'Copy documentation'
         run: |
           cp -R ./packages/documentation/build/. ./public
