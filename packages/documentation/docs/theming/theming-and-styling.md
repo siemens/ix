@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+hide_table_of_contents: true
 ---
 
 import {Card, CardList} from '@site/src/components/Card';
@@ -13,8 +14,8 @@ Working with Siemens iX is really simple – just follow the steps below and you
 </div>
 
 <CardList>
-  <Card label="Theme overview" isPrimary={true} link="theme"/>
-  <Card label="Animation" link="animation"/>
-  <Card label="Colors" link="colors" />
-  <Card label="Fonts" link="fonts" />
+  <Card label="Theme overview" isPrimary={true} link="theming/theme"/>
+  <Card label="Animation" link="theming/animation"/>
+  <Card label="Colors" link="theming/colors" />
+  <Card label="Fonts" link="theming/fonts" />
 </CardList>
