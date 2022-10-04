@@ -1,15 +1,15 @@
 @siemens/ix-aggrid:build: cache hit, replaying output 790dbf120059091c
 @siemens/ix-aggrid:build: $ stencil build --docs
-@siemens/ix-aggrid:build: [2m[46:46.3][22m  [36m@stencil/core[39m
-@siemens/ix-aggrid:build: [2m[46:46.7][22m  [36mv2.18.0[39m 🔥
-@siemens/ix-aggrid:build: [2m[46:56.5][22m  build, ix-aggrid, prod mode, started [2m...[22m
-@siemens/ix-aggrid:build: [2m[46:56.6][22m  transpile started [2m...[22m
-@siemens/ix-aggrid:build: [2m[46:57.7][22m  transpile finished [2min 1.08 s[22m
-@siemens/ix-aggrid:build: [2m[46:57.7][22m  copy started [2m...[22m
-@siemens/ix-aggrid:build: [2m[46:57.9][22m  generate custom elements started [2m...[22m
-@siemens/ix-aggrid:build: [2m[46:57.9][22m  generate lazy started [2m...[22m
-@siemens/ix-aggrid:build: [2m[47:00.1][22m  copy finished (1161 files) [2min 2.47 s[22m
-@siemens/ix-aggrid:build: [2m[47:11.8][22m  generate custom elements finished [2min 13.99 s[22m
-@siemens/ix-aggrid:build: [2m[47:23.7][22m  generate lazy finished [2min 25.77 s[22m
-@siemens/ix-aggrid:build: [2m[47:23.7][22m  [1m[32mbuild finished[39m[22m [2min 27.23 s[22m
+@siemens/ix-aggrid:build: [2m[48:01.5][22m  [36m@stencil/core[39m
+@siemens/ix-aggrid:build: [2m[48:02.0][22m  [36mv2.18.0[39m 🔥
+@siemens/ix-aggrid:build: [2m[48:11.4][22m  build, ix-aggrid, prod mode, started [2m...[22m
+@siemens/ix-aggrid:build: [2m[48:11.4][22m  transpile started [2m...[22m
+@siemens/ix-aggrid:build: [2m[48:12.2][22m  transpile finished [2min 816 ms[22m
+@siemens/ix-aggrid:build: [2m[48:12.2][22m  copy started [2m...[22m
+@siemens/ix-aggrid:build: [2m[48:12.3][22m  generate custom elements started [2m...[22m
+@siemens/ix-aggrid:build: [2m[48:12.3][22m  generate lazy started [2m...[22m
+@siemens/ix-aggrid:build: [2m[48:14.0][22m  copy finished (1161 files) [2min 1.78 s[22m
+@siemens/ix-aggrid:build: [2m[48:26.1][22m  generate custom elements finished [2min 13.82 s[22m
+@siemens/ix-aggrid:build: [2m[48:37.9][22m  generate lazy finished [2min 25.54 s[22m
+@siemens/ix-aggrid:build: [2m[48:37.9][22m  [1m[32mbuild finished[39m[22m [2min 26.58 s[22m
 @siemens/ix-aggrid:build: 
