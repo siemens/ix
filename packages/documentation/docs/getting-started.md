@@ -2,6 +2,7 @@
 sidebar_position: 1
 sidebar_title: iX for Developers
 title: iX for Developers
+hide_table_of_contents: true
 ---
 
 import {Card, CardList} from '@site/src/components/Card';
