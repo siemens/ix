@@ -10,7 +10,7 @@
 .Card__List {
   display: flex;
   position: relative;
-  width: 100%;
+  width: 130%;
   flex-wrap: wrap;
 }
 
@@ -22,7 +22,17 @@
   height: 60px;
   background-color: var(--theme-color-2);
   margin: 0 1.25rem 1.25rem 0;
+  cursor: pointer;
+}
 
+.Card_big {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  min-width: 19.375rem;
+  height: 60px;
+  background-color: var(--theme-color-2);
+  margin: 0 1.25rem 1.25rem 0;
   cursor: pointer;
 }
 
@@ -64,12 +74,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 7rem;
+  font-size: 9rem;
   color: var(--theme-color-std-text) !important;
 }
 
 .Card__Primary {
-  background-color: var(--theme-color-primary);
+  background-color: #00ffb9;
 }
 
 .Card__Primary .Label {

@@ -18,6 +18,7 @@ export function Card(props: {
   isPrimary?: boolean;
   icon?: string;
   link: string;
+  size: string;
 }) {
   const { preferredVersion } = useDocsPreferredVersion();
 
@@ -49,7 +50,7 @@ export function Card(props: {
         className={clsx(styles.Card, {
           [styles.Card__Primary]: props.isPrimary,
           [styles.With__Icon]: props.icon,
-        })}
+        }, props.size === 'big' ? styles.Card_big : styles.Card)}
       >
         <div className={clsx(styles.Label, 'text-h2')}>{props.label}</div>
         {props.icon ? (
@@ -59,7 +60,7 @@ export function Card(props: {
           </>
         ) : null}
       </div>
-    </Link>
+    </Link >
   );
 }
 
