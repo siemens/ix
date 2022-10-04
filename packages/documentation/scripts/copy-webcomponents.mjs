@@ -22,18 +22,18 @@ const node_modules = path.join(__dirname, '../../', 'node_modules');
 const ix_brand_theme_path = path.join(node_modules, '@siemens/ix-brand-theme');
 
 async function loadLib(libName) {
-  const libPath = path.join(node_modules, libName); //require.resolve(libName).replace(/\\/g, '/');
-
+  const libPath = path.join(node_modules, libName);
   const pkg = JSON.parse(fsExtra.readFileSync(`${libPath}/package.json`));
-
-  console.log(pkg);
-
   return Promise.all(
-    pkg.files.map((file) => {
-      return fsExtra.copy(
-        `${libPath}/${file}`,
-        path.join(libDestPath, libName, file)
-      );
+    pkg.files.map(async (file) => {
+      try {
+        await fsExtra.copy(
+          `${libPath}/${file}`,
+          path.join(libDestPath, libName, file)
+        );
+      } catch (e) {
+        console.warn('Cannot copy resource', file);
+      }
     })
   );
 }
