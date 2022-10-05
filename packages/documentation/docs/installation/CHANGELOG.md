@@ -4,7 +4,23 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-# 1.0.0-beta.2 (2022-09-30)
+# [1.0.0-beta.3](https://github.com/siemens/ix/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-10-04)
+
+
+### Bug Fixes
+
+* **docs:** fix resolutions changes ([d410ad7](https://github.com/siemens/ix/commit/d410ad74e61f871c6a719d89b5fd8d582d4d519a))
+* **docs:** resolutions fix ([12327ce](https://github.com/siemens/ix/commit/12327cefd7dff135287173d54e84f3dfbc9ed394))
+* **docs:** updated resolutions & text changes ([838fbab](https://github.com/siemens/ix/commit/838fbabc3bc0244b3e642edf77bd1dbcbd236f9a))
+
+
+### Features
+
+* **core:** add ix-brand-theme as optional dependency ([e1260a4](https://github.com/siemens/ix/commit/e1260a4eac8c6259cd7011b2cecba4f231ed882f))
+
+
+
+# [1.0.0-beta.2](https://github.com/siemens/ix/compare/8a52d175ab8fdc3418effe1bc9cb286accf8ab31...v1.0.0-beta.2) (2022-09-30)
 
 
 ### Bug Fixes
@@ -14,6 +30,8 @@ sidebar_position: 100
 * build & assets ([df0a03b](https://github.com/siemens/ix/commit/df0a03b8f8eb5dbc0e08fb402ded1bc8e1b6603c))
 * **core/breadcrumb:** fix color and alignment of button ([1564fd8](https://github.com/siemens/ix/commit/1564fd803337813a7a76c385f86c231a7ecbd80d)), closes [#14](https://github.com/siemens/ix/issues/14)
 * **core/button:** add default button height ([51218e6](https://github.com/siemens/ix/commit/51218e683cc4e65174a0a053eddbf0c51dd5a79c))
+* **core/button:** update styling ([df71647](https://github.com/siemens/ix/commit/df716471afc8374efbf90bc31d3a301642ad8fc8))
+* **core/drawer:** update vrt snapshots ([678a719](https://github.com/siemens/ix/commit/678a719718e1899e5e6e3e0e779bc93eec41bab5))
 * **core/dropdown:** migrate to shadowdom ([8a52d17](https://github.com/siemens/ix/commit/8a52d175ab8fdc3418effe1bc9cb286accf8ab31))
 * **core/group:** fix focus visual and behavior ([ecaa4ba](https://github.com/siemens/ix/commit/ecaa4bae21122c3012ffb0fad06ba1dfe03b74a5))
 * **core/group:** prevent null pointer exception ([d22abe0](https://github.com/siemens/ix/commit/d22abe066dc21ff2b33cdffc71939bd659c8eb94))
@@ -29,6 +47,7 @@ sidebar_position: 100
 * **docs:** added missing dependency & unix paths fix ([abe7f0c](https://github.com/siemens/ix/commit/abe7f0cd1b66cc9443843e860a9b78d526ae24aa))
 * **docs:** warning normalized ([036a100](https://github.com/siemens/ix/commit/036a10097bac04c5cbc746be8685863730eabecd))
 * **documentation/generate-api:** fix licence header generation ([e430e14](https://github.com/siemens/ix/commit/e430e1468a17c8d79fc9873c1198e0b2f98b8c5a))
+* **documentation:** change baseUrl to / ([3484e0d](https://github.com/siemens/ix/commit/3484e0d08c17cc58e96c0265d7cb8317ac2fd64c))
 * **documentation:** copy brand-theme without node_modules ([c86c841](https://github.com/siemens/ix/commit/c86c841294842e2587cf28473a8f1e4a3dec1546))
 * **react-test-app:** add modal preview route ([2567cd3](https://github.com/siemens/ix/commit/2567cd3cb11b599cff9ecdce902a3ad6c4c6c598))
 * **theme/color:** put static colors in seperate object hast to prevent zombie theme file generation ([0eab266](https://github.com/siemens/ix/commit/0eab2662d40fcbbd1034d5ec2292c033577523ce))
