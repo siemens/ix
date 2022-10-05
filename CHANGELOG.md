@@ -1,16 +1,12 @@
-# [1.0.0-beta.3](https://github.com/siemens/ix/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-10-04)
+# [1.0.0-beta.4](https://github.com/siemens/ix/compare/v1.0.0-beta.2...v1.0.0-beta.4) (2022-10-05)
 
 
 ### Bug Fixes
 
+* **core/application-header:** align logo in center position ([74be7a1](https://github.com/siemens/ix/commit/74be7a11ff137a11e1cf9fb3c899b82cb5c9ee55))
 * **docs:** fix resolutions changes ([d410ad7](https://github.com/siemens/ix/commit/d410ad74e61f871c6a719d89b5fd8d582d4d519a))
 * **docs:** resolutions fix ([12327ce](https://github.com/siemens/ix/commit/12327cefd7dff135287173d54e84f3dfbc9ed394))
 * **docs:** updated resolutions & text changes ([838fbab](https://github.com/siemens/ix/commit/838fbabc3bc0244b3e642edf77bd1dbcbd236f9a))
-
-
-### Features
-
-* **core:** add ix-brand-theme as optional dependency ([e1260a4](https://github.com/siemens/ix/commit/e1260a4eac8c6259cd7011b2cecba4f231ed882f))
 
 
 
