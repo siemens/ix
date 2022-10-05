@@ -1,1 +1,0 @@
-const t=t=>t/16+"rem",a=t=>{if(isNaN(t)||null==t)return"";let a="";return[{unit:"q",value:Math.pow(10,15)},{unit:"t",value:Math.pow(10,12)},{unit:"B",value:Math.pow(10,9)},{unit:"M",value:Math.pow(10,6)},{unit:"K",value:Math.pow(10,3)}].some((u=>{let e=Math.abs(t);return e>=u.value&&(e/=u.value,t=Math.round(10*e)/10,a=u.unit,!0)})),t+a};export{t as a,a as c}

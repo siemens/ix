@@ -1,1 +1,0 @@
-const e=e=>new MutationObserver(e);export{e as c}
