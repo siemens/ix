@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { exec } from 'child_process';
-import crypto from 'crypto';
-import { URL } from 'url';
-import { existsSync, readFileSync } from 'fs';
-import path from 'path';
+import { exec } from'child_process';
+import crypto from'crypto';
+import { URL } from'url';
+import { existsSync, readFileSync } from'fs';
+import path from'path';
 
 const Reset = '\x1b[0m';
 const FgGreen = '\x1b[32m';
