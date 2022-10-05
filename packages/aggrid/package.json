@@ -1,7 +1,7 @@
 {
   "name": "@siemens/ix-aggrid",
   "description": "AG Grid theme based on ix theme variables",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -31,10 +31,10 @@
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
     "@stencil/sass": "~1.5.2",
-    "@siemens/ix": "~1.0.0-beta.2"
+    "@siemens/ix": "~1.0.0-beta.3"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "~1.0.0-beta.2"
+    "@siemens/ix": "~1.0.0-beta.3"
   }
 }
