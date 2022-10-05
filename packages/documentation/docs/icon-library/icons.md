@@ -8,7 +8,7 @@ import Icons from '@site/src/components/Icons';
 
 Using icons within your project. We need to:
 
-- Install `@siemens/ix-icons` e.g `npm install --save @siemens/ix-icons`
+- Install `@siemens/ix-icons` e.g. `npm install --save @siemens/ix-icons`
 - Load styling `@siemens/ix-icons/dist/scss/ix-icons.css` e.g
 
 ```scss
