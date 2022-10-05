@@ -4,19 +4,20 @@ sidebar_title: Angular
 title: Angular
 ---
 
-:::caution
+### Install dependencies
 
-Current **beta release** of _ix_ has some limitations, please check [this](./limitation).
+Install `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
 
-:::
-
-### Installation of dependencies
-
-1. Install `@siemens/ix-angular` (or a beta release `@siemens/ix-angular@next`) and `@siemens/ix-icons`.
+#### npm
 
 ```
-npm i -S @siemens/ix-angular@latest
-npm i -S @siemens/ix-icons@latest
+npm i -S @siemens/ix-angular @siemens/ix-icons
+```
+
+#### yarn
+
+```
+yarn add @siemens/ix-angular @siemens/ix-icons
 ```
 
 ### Import styles

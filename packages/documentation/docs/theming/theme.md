@@ -11,7 +11,7 @@ sidebar_position: 2
 
 ## Define a theme
 
-The default theme is `theme-class-dark`. If you want to change the theme set the `class` of the `body`-tag e.g. `theme-classic-light`
+The default theme is `theme-classic-dark`. To set a different theme change the `class` attribute of the `<body>` tag to contain e.g. `theme-classic-light` instead of `thmeme-classic-dark`.
 
 ```html
 <html>

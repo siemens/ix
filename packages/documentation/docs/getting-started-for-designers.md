@@ -12,7 +12,7 @@ import {Layout} from '@site/src/components/Layout';
 <!-- # Getting started -->
 
 <!-- <div style={{ width: '30%', marginBottom: '2rem', color: 'var(--theme-color-contrast-text)'}}>
-Working with Core UI is really simple – just follow the steps below and you will be ready to build great Apps!
+Working with Core UI is really simple – just follow the steps below and you will be ready to build great apps!
 </div>
 
 <CardList>
@@ -26,7 +26,7 @@ Working with Core UI is really simple – just follow the steps below and you wi
 </CardList> -->
 
 <Layout
-description="iX is a Component based system which allows you to build highly complex Apps based on your needs."> </Layout>
+description="iX is a Component based system which allows you to build highly complex apps based on your needs."> </Layout>
 
 <CardList>
   <Card label="Installation" isPrimary={true} size="big" link="installation" icon="disk" />

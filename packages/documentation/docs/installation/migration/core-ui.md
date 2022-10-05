@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_title: Migration from Core UI 6.5.0
-title: Migration from Core UI 6.5.0
+title: Migration from Core UI 6.5.0 to Siemens iX
 ---
 
 ## Changed dependencies

@@ -2,7 +2,8 @@ import Fonts from '@site/src/components/Fonts';
 
 # Fonts
 
-All fonts are themed and changes there colors during a theme change.
+iX provides utility CSS classes to style text.
+Theme changes will apply to texts automatically (e.g. change color).
 
 ## Usage
 

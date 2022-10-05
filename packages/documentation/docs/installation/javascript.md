@@ -4,19 +4,20 @@ sidebar_title: Javascript
 title: Javascript
 ---
 
-:::caution
+### Installation
 
-Current **beta release** of _ix_ has some limitations, please check [this](./limitation).
+Install `@siemens/ix` and `@siemens/ix-icons` using a package manager:
 
-:::
-
-### Install library
-
-Install `@siemens/ix` (or a beta release `@siemens/ix@next`) and `@siemens/ix-icons`.
+#### npm
 
 ```
-npm i -S @siemens/ix@latest
-npm i -S @siemens/ix-icons@latest
+npm i -S @siemens/ix @siemens/ix-icons
+```
+
+#### yarn
+
+```
+yarn add @siemens/ix @siemens/ix-icons
 ```
 
 ## Load styles and scripts
