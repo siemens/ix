@@ -33,7 +33,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'getting-started-for-designer',
+          id: 'getting-started-for-designers',
         },
         {
           type: 'doc',

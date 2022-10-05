@@ -21,8 +21,8 @@ description="Working with Core UI is really simple – just follow the steps bel
 > </Layout>
 
 <CardList>
-  <Card label="Installation" size="big" link="installation/artifactory" icon="disk" />
-  <Card label="iX for Designers" link="getting-started-for-designer" icon="tulip"/>
+  <Card label="Installation" size="big" link="installation" icon="disk" />
+  <Card label="iX for Designers" link="getting-started-for-designers" icon="tulip"/>
   <Card label="Industrial Icon System" link="icon-library/icons" icon="language" />
   <Card label="Theming and Styling" isPrimary={true} link="ux-design/overview" icon="bulb"/>
   <Card label="Controls" link="controls/navigation/basic-navigation" icon="configuration" />
