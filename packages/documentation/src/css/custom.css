@@ -65,10 +65,20 @@ body {
   max-width: 100%;
 }
 
+@media (min-width: 1440px) {
+  .container {
+    max-width: 100% !important;
+  }
+  .col {
+    max-width: 100% !important;
+  }
+}
+
 @media (max-width: 997px) {
   .container {
     margin-top: 0;
     margin-left: 0;
+    max-width: 100% !important;
   }
   .col {
     max-width: 100% !important;
