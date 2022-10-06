@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.Card.Auto__Width {
+  width: auto;
+}
+
 .Card_big {
   display: flex;
   flex-direction: column;
@@ -53,6 +57,11 @@
   height: 3.75rem;
   min-height: 3.75rem;
   margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.Label.Full__Height {
+  height: 100%;
 }
 
 .Icon {
@@ -79,7 +88,7 @@
 }
 
 .Card__Primary {
-  background-color: #00ffb9;
+  background-color: var(--theme-color-primary);
 }
 
 .Card__Primary .Label {

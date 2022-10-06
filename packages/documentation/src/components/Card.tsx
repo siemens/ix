@@ -11,15 +11,20 @@ import Link from '@docusaurus/Link';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styles from './Card.module.css';
-export function Card(props: {
-  label: string;
-  isPrimary?: boolean;
-  icon?: string;
-  link: string;
-  size: string;
-}) {
+
+export function Card(
+  props: React.PropsWithChildren<{
+    label: string;
+    isPrimary?: boolean;
+    icon?: string;
+    link: string;
+    size: string;
+    autoWidth?: boolean;
+    style?: CSSProperties;
+  }>
+) {
   const { preferredVersion } = useDocsPreferredVersion();
 
   function link() {
@@ -47,20 +52,33 @@ export function Card(props: {
       }}
     >
       <div
-        className={clsx(styles.Card, {
-          [styles.Card__Primary]: props.isPrimary,
-          [styles.With__Icon]: props.icon,
-        }, props.size === 'big' ? styles.Card_big : styles.Card)}
+        className={clsx(
+          styles.Card,
+          {
+            [styles.Card__Primary]: props.isPrimary,
+            [styles.With__Icon]: props.icon,
+            [styles.Auto__Width]: props.autoWidth,
+          },
+          props.size === 'big' ? styles.Card_big : styles.Card
+        )}
+        style={props.style}
       >
-        <div className={clsx(styles.Label, 'text-h2')}>{props.label}</div>
+        <div
+          className={clsx(styles.Label, 'text-h2', {
+            [styles.Full__Height]: !props.icon,
+          })}
+        >
+          {props.label}
+        </div>
         {props.icon ? (
           <>
             <div className={styles.Splitter}></div>
             <div className={clsx(styles.Icon)}>{getIcon()}</div>
           </>
         ) : null}
+        {props.children}
       </div>
-    </Link >
+    </Link>
   );
 }
 
