@@ -237,9 +237,15 @@ a.menu__link {
 }
 
 .siemens-brand-section {
-  background-color: var(--theme-color-input-focus);
-  color: var(--theme-color-inv-contrast-text);
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-primary--contrast);
   padding: 1.5rem 2rem;
+}
+
+.siemens-brand-section a,
+.siemens-brand-section a:hover,
+.siemens-brand-section a:active {
+  color: var(--theme-color-primary--contrast) !important;
 }
 
 .markdown table {
