@@ -15,9 +15,11 @@
     "dist/",
     "loader/",
     "src/**/*.md",
-    "scss/"
+    "scss/",
+    "scripts/post-install/post-install.mjs"
   ],
   "scripts": {
+    "postinstall": "node ./scripts/post-install/post-install.mjs",
     "build": "stencil build --docs --prod",
     "build:dev": "stencil build --docs",
     "lint": "eslint src/**/*{.ts,.tsx}",
@@ -31,7 +33,7 @@
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
     "generate": "stencil generate",
-    "generate:theme": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-theme"
+    "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
   },
   "dependencies": {
     "@stencil/core": "~2.15.0",
