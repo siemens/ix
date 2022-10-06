@@ -30,6 +30,6 @@ Our open-source Sketch library is available to everyone.
 
 Our Siemens brand Sketch library contains specific brand elements that are only accessible to Siemens employees.
 
-› [Download here](https://code.siemens.com/siemens-ix/ix-brand-theme)
+› [Download here](https://siemens-ix.code.siemens.io/ix-brand-theme/sketch.zip)
 
 ## Figma library coming soon
