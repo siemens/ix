@@ -23,7 +23,7 @@ const InputGroup = class {
       inputElement.style.paddingLeft = paddingLeft + 'px';
     }
     else {
-      console.warn('You used the ix-input-group without an input-tag, e.g <input class="form-control" />');
+      console.warn('You used the ix-input-group without an input-tag, e.g. <input class="form-control" />');
     }
   }
   render() {

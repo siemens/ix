@@ -82,7 +82,7 @@ export class Icon {
       "optional": false,
       "docs": {
         "tags": [],
-        "text": "Use one of our defined icon names e.g `copy`."
+        "text": "Use one of our defined icon names e.g. `copy`."
       },
       "attribute": "name",
       "reflect": true
