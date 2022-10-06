@@ -235,3 +235,9 @@ a.menu__link {
 .bold {
   font-weight: bold;
 }
+
+.siemens-brand-section {
+  background-color: var(--theme-color-input-focus);
+  color: var(--theme-color-inv-contrast-text);
+  padding: 1.5rem 2rem;
+}
