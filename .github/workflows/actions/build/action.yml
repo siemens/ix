@@ -1,5 +1,9 @@
 name: 'Build Icons'
 description: 'Build Icons'
+inputs:
+  filter: # id of input
+    description: 'yarn filter property'
+    default: 'none'
 runs:
   using: 'composite'
   steps:
@@ -12,13 +16,19 @@ runs:
     - uses: actions/cache@v2
       id: cache
       with:
-        key: yarn-modules-${{ hashFiles('yarn.lock') }}
+        key: yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
         path: |
           .yarn-cache
           node_modules
           packages/**/node_modules
 
-    - name: build
+    - name: build with filter
+      if: ${{ inputs.filter != 'none' }}
+      run: yarn build --filter ${{ inputs.filter }}
+      shell: bash
+
+    - name: build all
+      if: ${{ inputs.filter == 'none' }}
       run: yarn build
       shell: bash
 

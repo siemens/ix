@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-angular",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.5",
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
@@ -8,8 +8,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "~1.0.0-beta.1",
-    "@siemens/ix-icons": "~1.0.0-beta.3"
+    "@siemens/ix": "~1.0.0-beta.5",
+    "@siemens/ix-icons": "~1.0.0"
   },
   "peerDependencies": {
     "@angular/core": ">10.0.0"
@@ -19,7 +19,7 @@
     "@angular/compiler": "^14.2.0",
     "@angular/compiler-cli": "^14.2.0",
     "@angular/core": "^14.2.0",
-    "@siemens/ix": "~1.0.0-beta.1",
+    "@siemens/ix": "~1.0.0-beta.5",
     "fs-extra": "^10.1.0",
     "ng-packagr": "^14.2.0",
     "typescript": "4.7.2"

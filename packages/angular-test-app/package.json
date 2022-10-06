@@ -1,6 +1,6 @@
 {
   "name": "angular-test-app",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,10 +18,10 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@siemens/ix-icons": "~1.0.0-beta.3",
-    "@siemens/ix": "~1.0.0-beta.1",
-    "@siemens/ix-aggrid": "~1.0.0-beta.1",
-    "@siemens/ix-angular": "~1.0.0-beta.1",
+    "@siemens/ix-icons": "~1.0.0",
+    "@siemens/ix": "~1.0.0-beta.5",
+    "@siemens/ix-aggrid": "~1.0.0-beta.5",
+    "@siemens/ix-angular": "~1.0.0-beta.5",
     "ag-grid-angular": "^28.1.0",
     "ag-grid-community": "^28.1.0",
     "rxjs": "~7.5.0",
