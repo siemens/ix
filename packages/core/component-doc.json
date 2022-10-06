@@ -3331,7 +3331,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "Use one of our defined icon names e.g `copy`.",
+          "docs": "Use one of our defined icon names e.g. `copy`.",
           "docsTags": [],
           "values": [
             {

@@ -83,7 +83,7 @@ function Homepage() {
           size='h1'
           title="Siemens"
           subtitle="Industrial Experience"
-          description="iX is Siemens open source design system for designers and developers to consistently create the perfect digital experience for their partners and customers."
+          description="iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
           noLine
           description_width='340px'
         ></Headline>
@@ -92,19 +92,19 @@ function Homepage() {
           <div className={styles.Card_Info}>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Open-Source-Contribution by community welcome
+              Open-source community contributions welcome
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Web based, no installation needed
+              Web-based system requiring no installation
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Build your own Corporate Design by theming
+              Shape your own corporate design with theming
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Designed for complex User Interface and Data Analytics
+              Designed for complex UI and Data Analytics
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
@@ -112,7 +112,7 @@ function Homepage() {
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
-              Intuitive User Experience and timeless Visual Design
+              Timeless visual design with intuitive UX
             </div>
             <div className={styles.Card_Line}>
               <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
@@ -121,7 +121,7 @@ function Homepage() {
           </div>
         </div>
 
-        <i className={clsx('glyph glyph-' + 'chevron-down', styles.scroll_down)}></i>
+        <a href="#getting-started" className={clsx('glyph glyph-' + 'chevron-down', styles.scroll_down, 'animate__animated animate__shakeY')}></a>
       </div>
     </div>
   );
@@ -143,9 +143,9 @@ function Button(props: { icon: string; label: string; style: string; link: strin
 
 function CallToActions() {
   return (
-    <div className={clsx(styles.container, styles.call_to_actions)}>
+    <div id="getting-started" className={clsx(styles.container, styles.call_to_actions)}>
       <img src={useBaseUrl('/img/Screen_02_background_image.png')} alt="" className={styles.call_to_actions_background}></img>
-      <Button link={useBaseUrl('/docs/getting-started-for-designer')} icon='arrow-right' label='iX for Designers' style="primary" />
+      <Button link={useBaseUrl('/docs/getting-started-for-designers')} icon='arrow-right' label='iX for Designers' style="primary" />
       <Button link={useBaseUrl('/docs/getting-started')} icon='arrow-right' label='iX for Developers' style="secondary" />
       <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
     </div>
@@ -161,7 +161,7 @@ function Devices() {
         <Headline
           title="Industrial Experience"
           subtitle="for all devices"
-          description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices."
+          description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
         ></Headline>
       </div>
     </div>
@@ -179,7 +179,7 @@ function UX() {
           dark
           title="iX design libraries are built"
           subtitle="for UX Designers"
-          description="Use our libraries for fast and consistent prototyping. Get into a conversation with your stakeholders and build a bridge to your developers."
+          description="Rapidly create consistent prototypes using our libraries to support the exchange of ideas with your stakeholders and developers"
         ></Headline>
 
         <div className={styles.images}>
@@ -211,7 +211,7 @@ function Developers() {
           dark
           title="iX components are built"
           subtitle="for developers with native web technology"
-          description="Use the tech stack you need to build your websites and user interfaces. iX allows you to adopt the major frameworks for seamless integration into your products."
+          description="Adopt the major frameworks for seamless integration into your products and use the tech stack you need to build your UI and websites"
         ></Headline>
 
         <div className={styles.images}>
@@ -223,7 +223,7 @@ function Developers() {
           <div className={styles.image}>
             <img src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png')} className={styles.image_main} alt="" />
             <img id="WebcomponentLogoShadow" src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon.png')} className={styles.image_shadow} alt="" />
-            <div className={clsx(styles.text_dark, styles.names)}>Webcomponent</div>
+            <div className={clsx(styles.text_dark, styles.names)}>Web Components</div>
           </div>
           <div className={styles.image}>
             <img src={useBaseUrl('/img/web tecnology/4691292_react native_react_icon_dark.png')} className={styles.image_main} alt="" />
@@ -257,7 +257,7 @@ function Icons() {
         <Headline
           title="Industrial icon system"
           subtitle="500+ icons"
-          description="Integrate our growing and comprehensive icon system for industrial applications using Webfont or svg."
+          description="Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG"
           description_width='538px'
         ></Headline>
 
@@ -302,7 +302,7 @@ function BrandDesign() {
           <Headline
             title="Always aligned with"
             subtitle="Siemens Brand Design"
-            description="Create beautiful products and experiences fully aligned with the latest Siemens Brand guidelines."
+            description="Create beautiful products and experiences fully aligned with the latest Siemens Brand guidelines"
           ></Headline>
 
           <div className={styles.row}>
@@ -332,7 +332,7 @@ function Components() {
           text="dark"
           title="Flexible components"
           subtitle="in light and dark mode"
-          description="Meet the mood and preference of your users with our light and dark modes for every component."
+          description="Meet the mood and preference of your users with our light and dark modes for every component"
         ></Headline>
 
         <video className={styles.video} muted autoPlay>
@@ -385,81 +385,15 @@ function InformationCards() {
   )
 }
 
-function FooterFeatures() {
-  return (
-    <div className={clsx(styles.container, styles.footer_features)}>
-      <div className={styles.row}>
-        <div className={styles.col}>
-          <img src={useBaseUrl('/img/394px-Sketch_Logo.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Download our</div>
-            <a className={styles.text} href="/files/core_ui_sketch.zip" target="_blank">latest Sketch Library</a>
-          </div>
-        </div>
-
-        {/* <div className={styles.col}>
-          <img src={useBaseUrl('/img/logo-640.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Siemens Inner Source</div>
-            <a className={styles.text} href="" target="_blank">tbd</a>
-          </div>
-        </div> */}
-
-        <div className={styles.col}>
-          <img src={useBaseUrl('/img/webcomponents.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Powered by </div>
-            <div className={styles.text}>Web Components</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function FooterButtons() {
   return (
     <div className={clsx(styles.container, styles.footer_buttons)}>
-      <Button link="" icon='' label='Start iX now' style="primary" />
+      <Button link={useBaseUrl('/docs/getting-started-for-designers')} icon='' label='Start iX now' style="primary" />
       <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
     </div>
   )
 }
 
-
-function Footer() {
-  return (
-    <div className={clsx(styles.container, styles.footer)}>
-      <div className={clsx(styles.column, styles.content)}>
-        <div className={styles.top_row}>
-          <div>
-            Corporate Information
-          </div>
-          <div>
-            Privacy Notice
-          </div>
-          <div>
-            Cookie notice
-          </div>
-          <div>
-            Terms of use
-          </div>
-          <div>
-            Digital ID
-          </div>
-        </div>
-        <div className={styles.bottom_row}>
-          <div className={clsx(styles.word_break)}>
-            siemens.com Global Website
-          </div>
-          <div>
-            © Siemens 1996 - 2022
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export default function Home() {
   // const { siteConfig } = useDocusaurusContext();
@@ -483,9 +417,7 @@ export default function Home() {
               <BrandDesign />
               <Components />
               <InformationCards />
-              <FooterFeatures />
               <FooterButtons />
-              <Footer />
             </Layout>
           </Anime>
         </>

@@ -25,7 +25,6 @@
   width: 100%;
 }
 
-
 .container {
   position: relative;
   display: flex;
@@ -68,8 +67,9 @@
       left: 47%;
       right: 50%;
       bottom: 40px;
+      text-decoration: none;
+      animation-duration: 10s;
     }
-
   }
 
   &.call_to_actions {
@@ -78,7 +78,6 @@
     padding: 211px 0;
     gap: 45px;
   }
-
 
   @media (max-width: 1024px) {
     &.call_to_actions {
@@ -189,7 +188,6 @@
       .text_2 {
         width: 380px !important;
       }
-
     }
   }
 
@@ -267,7 +265,6 @@
     padding: 40px 66px;
     min-height: 100vh;
 
-
     .row {
       display: flex;
       justify-content: center;
@@ -299,7 +296,7 @@
       display: inline-block;
 
       &.selected {
-        background-color: #ffffff
+        background-color: #ffffff;
       }
     }
 
@@ -342,8 +339,6 @@
     }
   }
 
-
-
   &.information_cards {
     display: flex;
     padding: 140px 90px;
@@ -365,7 +360,7 @@
     }
 
     .screen {
-      width: 100%
+      width: 100%;
     }
 
     .column {
@@ -397,8 +392,6 @@
         flex-direction: row;
         gap: 31px;
       }
-
-
     }
 
     i {
@@ -415,7 +408,6 @@
       text-align: center;
       color: rgba(255, 255, 255, 0.85);
     }
-
 
     @media (max-width: 1439px) {
       .column {
@@ -476,7 +468,6 @@
         text-decoration: underline;
       }
     }
-
   }
 
   @media (min-width: 1920px) {
@@ -484,7 +475,6 @@
       flex-direction: row !important;
     }
   }
-
 
   &.footer_buttons {
     display: flex;
@@ -496,7 +486,6 @@
     padding-bottom: 107px;
     height: 425px;
     background-color: #000028;
-
   }
 
   &.footer {
@@ -548,15 +537,12 @@
       gap: 312px;
       align-items: center;
       justify-content: center;
-
     }
 
     .word_break {
       width: auto;
     }
-
   }
-
 }
 
 .call_to_actions_background {
@@ -684,7 +670,7 @@
 }
 
 .text_dark {
-  color: rgba(0, 0, 0, 0.85)
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .description {
@@ -747,9 +733,8 @@
   }
 }
 
-
 .Card_Icon {
-  color: var(--theme-color-primary) !important
+  color: var(--theme-color-primary) !important;
 }
 
 .Button:hover {
@@ -766,7 +751,6 @@
   gap: 10px;
   text-decoration: none;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.5);
-
 
   &.Justify {
     justify-content: center;
@@ -816,7 +800,6 @@
         color: black;
       }
     }
-
   }
 
   .Label {
