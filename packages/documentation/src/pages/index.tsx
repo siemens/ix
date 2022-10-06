@@ -121,7 +121,7 @@ function Homepage() {
           </div>
         </div>
 
-        <i className={clsx('glyph glyph-' + 'chevron-down', styles.scroll_down)}></i>
+        <a href="#getting-started" className={clsx('glyph glyph-' + 'chevron-down', styles.scroll_down, 'animate__animated animate__shakeY')}></a>
       </div>
     </div>
   );
@@ -143,7 +143,7 @@ function Button(props: { icon: string; label: string; style: string; link: strin
 
 function CallToActions() {
   return (
-    <div className={clsx(styles.container, styles.call_to_actions)}>
+    <div id="getting-started" className={clsx(styles.container, styles.call_to_actions)}>
       <img src={useBaseUrl('/img/Screen_02_background_image.png')} alt="" className={styles.call_to_actions_background}></img>
       <Button link={useBaseUrl('/docs/getting-started-for-designers')} icon='arrow-right' label='iX for Designers' style="primary" />
       <Button link={useBaseUrl('/docs/getting-started')} icon='arrow-right' label='iX for Developers' style="secondary" />
