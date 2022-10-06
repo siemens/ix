@@ -115,8 +115,16 @@ const config = {
                 href: 'https://www.siemens.com/privacy-notice',
               },
               {
+                label: 'Cookie notice',
+                href: 'https://www.siemens.com/cookie-notice',
+              },
+              {
                 label: 'Terms of use',
                 href: 'https://www.siemens.com/terms-of-use',
+              },
+              {
+                label: 'Digital ID',
+                href: 'https://www.siemens.com/digital-id',
               },
             ],
           },

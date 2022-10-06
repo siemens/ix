@@ -385,38 +385,6 @@ function InformationCards() {
   )
 }
 
-function FooterFeatures() {
-  return (
-    <div className={clsx(styles.container, styles.footer_features)}>
-      <div className={styles.row}>
-        <div className={styles.col}>
-          <img src={useBaseUrl('/img/394px-Sketch_Logo.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Download our</div>
-            <a className={styles.text} href="/files/core_ui_sketch.zip" target="_blank">latest Sketch Library</a>
-          </div>
-        </div>
-
-        {/* <div className={styles.col}>
-          <img src={useBaseUrl('/img/logo-640.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Siemens Inner Source</div>
-            <a className={styles.text} href="" target="_blank">tbd</a>
-          </div>
-        </div> */}
-
-        <div className={styles.col}>
-          <img src={useBaseUrl('/img/webcomponents.png')} alt="" />
-          <div className={styles.text_gap}>
-            <div className={styles.text}>Powered by </div>
-            <div className={styles.text}>Web Components</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function FooterButtons() {
   return (
     <div className={clsx(styles.container, styles.footer_buttons)}>
@@ -449,7 +417,6 @@ export default function Home() {
               <BrandDesign />
               <Components />
               <InformationCards />
-              <FooterFeatures />
               <FooterButtons />
             </Layout>
           </Anime>

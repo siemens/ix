@@ -108,6 +108,14 @@ aside {
   border-top: 0.125rem solid var(--theme-color-1);
 }
 
+.footer .container {
+  margin-top: 0px;
+}
+
+.footer .footer__copyright {
+  text-align: left;
+}
+
 .navbar {
   padding: var(--ifm-navbar-padding-vertical)
     var(--ifm-navbar-padding-horizontal) !important;
