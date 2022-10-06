@@ -9,12 +9,6 @@ import {Card, CardList} from '@site/src/components/Card';
 
 import {Layout} from '@site/src/components/Layout';
 
-<!-- # Getting started -->
-
-<!-- <div style={{ width: '30%', marginBottom: '2rem', color: 'var(--theme-color-contrast-text)'}}>
-Working with Core UI is really simple – just follow the steps below and you will be ready to build great apps!
-</div> -->
-
 <Layout
 description="Working with iX is really simple – just follow the steps below and you will be ready to build great apps!">
 </Layout>

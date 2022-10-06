@@ -86,12 +86,12 @@ export function SwitchTheme(props: { icon: string; label: string }) {
         ...registeredThemes,
         {
           id: 'theme-brand-light',
-          label: 'Siemens brand Light',
+          label: 'Siemens Brand Light',
           color: '#f3f3f0',
         },
         {
           id: 'theme-brand-dark',
-          label: 'Siemens brand Dark',
+          label: 'Siemens Brand Dark',
           color: '#22223b',
         },
       ]);
@@ -106,44 +106,15 @@ export function SwitchTheme(props: { icon: string; label: string }) {
     setOpen(false);
   };
 
+  function getLabel(id: string = 'theme-classic-dark') {
+    return registeredThemes.find((t) => t.id === id).label;
+  }
+
   return (
-    // <div className={styles.Dropdown__Container}>
-    //   <div
-    //     className={clsx({
-    //       [styles.Selection]: true,
-    //       [styles.Open]: open,
-    //     })}
-    //     onClick={() => setOpen(!open)}
-    //   >
-    //     <div className={styles.Icon}>
-    //       <ix-icon name={props.icon} size="16"></ix-icon>
-    //     </div>
-    //     <div>{props.label}</div>
-    //     <div className={styles.Chevron}>
-    //       <ix-icon name="chevron-down-small"></ix-icon>
-    //     </div>
-    //   </div>
-    //   {open ? (
-    //     <div className={styles.Dropdown}>
-    //       {registeredThemes.map(({ id, label, color }) => {
-    //         return (
-    //           <ThemeEntry
-    //             id={id}
-    //             key={id}
-    //             label={label}
-    //             active={id === theme}
-    //             color={color}
-    //             onClick={(_, id) => onThemeChange(id)}
-    //           />
-    //         );
-    //       })}
-    //     </div>
-    //   ) : null}
-    // </div>
     <>
       <IxButton id="switch-theme-button" outline>
         <IxIcon name={props.icon} className="me-2" />
-        {theme}
+        {getLabel(theme)}
         <IxIcon name="chevron-down-small" />
       </IxButton>
       <IxDropdown trigger={'switch-theme-button'}>
