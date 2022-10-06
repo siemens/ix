@@ -24,7 +24,7 @@ The Figma library is coming soon.
 
 Our open-source Sketch library is available to everyone.
 
-› [Download here](https://code.siemens.com/siemens-ix/ix-brand-theme)
+› [Download here](/files/sketch.zip)
 
 ## Siemens internal Sketch library
 
