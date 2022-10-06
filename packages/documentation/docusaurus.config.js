@@ -106,14 +106,6 @@ const config = {
           {
             title: 'About',
             items: [
-              /**
-             * Corporate Information
-Privacy Notice
-Cookie notice
-Terms of use
-Digital ID
-siemens.com Global Website
-             */
               {
                 label: 'Corporate Information',
                 href: 'https://www.siemens.com/corporate-information',
