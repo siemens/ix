@@ -10,7 +10,7 @@
 .Card__List {
   display: flex;
   position: relative;
-  width: 130%;
+  width: 100%;
   flex-wrap: wrap;
 }
 
