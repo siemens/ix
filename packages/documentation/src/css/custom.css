@@ -241,3 +241,8 @@ a.menu__link {
   color: var(--theme-color-inv-contrast-text);
   padding: 1.5rem 2rem;
 }
+
+.markdown table {
+  display: table !important;
+  width: 100%;
+}
