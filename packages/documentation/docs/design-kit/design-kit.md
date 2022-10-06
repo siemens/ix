@@ -9,9 +9,9 @@ Download our iX Design System here. There are two Sketch libraries available, on
 The Figma library is coming soon.
 
 <CardList>
-  <Card label="Sketch open-source library" isPrimary={true} autoWidth />
-  <Card label="Sketch Siemens brand library" autoWidth />
-  <Card label="Figma library coming soon" autoWidth />
+  <Card label="Sketch open-source library" isPrimary={true} autoWidth link="design-kit#sketch-open-source-library" />
+  <Card label="Sketch Siemens brand library" autoWidth link="design-kit#siemens-internal-sketch-library" />
+  <Card label="Figma library coming soon" autoWidth link="design-kit#siemens-figma-library" />
 </CardList>
 
 <Separator />
@@ -32,4 +32,6 @@ Our Siemens brand Sketch library contains specific brand elements that are only 
 
 › [Download here](https://siemens-ix.code.siemens.io/ix-brand-theme/sketch.zip)
 
-## Figma library coming soon
+## Siemens Figma library
+
+Coming soon
