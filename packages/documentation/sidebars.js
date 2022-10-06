@@ -41,6 +41,20 @@ const sidebars = {
         },
       ],
     },
+    // {
+    //   type: 'category',
+    //   label: 'iX design kits',
+    //   items: [
+    //     {
+    //       type: 'doc',
+    //       id: 'ux-design/overview',
+    //     },
+    //   ],
+    // },
+    {
+      type: 'doc',
+      id: 'design-kit/design-kit',
+    },
     {
       type: 'category',
       label: 'Industrial Icon System',

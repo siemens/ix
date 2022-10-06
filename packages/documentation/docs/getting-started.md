@@ -20,9 +20,9 @@ description="Working with iX is really simple – just follow the steps below an
 </Layout>
 
 <CardList>
-  <Card label="Installation" size="big" link="installation" icon="disk" />
+  <Card label="Installation" isPrimary={true} size="big" link="installation" icon="disk" />
   <Card label="iX for Designers" link="getting-started-for-designers" icon="tulip"/>
   <Card label="Industrial Icon System" link="icon-library/icons" icon="language" />
-  <Card label="Theming and Styling" isPrimary={true} link="theming/theming-and-styling" icon="bulb"/>
+  <Card label="Theming and Styling" link="theming/theming-and-styling" icon="bulb"/>
   <Card label="Controls" link="controls/navigation/basic-navigation" icon="configuration" />
 </CardList>

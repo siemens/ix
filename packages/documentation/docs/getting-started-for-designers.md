@@ -13,7 +13,7 @@ import {Layout} from '@site/src/components/Layout';
 description="iX is a Component based system which allows you to build highly complex apps based on your needs."> </Layout>
 
 <CardList>
-  <Card label="Installation" isPrimary={true} size="big" link="installation" icon="disk" />
+  <Card label="iX Design Kits" isPrimary={true} size="big" link="design-kit" icon="disk" />
   <Card label="iX for Developers" link="getting-started" icon="rocket"/>
   <Card label="Industrial Icon System" link="icon-library/icons" icon="language" />
   <Card label="Theming and Styling" link="ux-design/overview" icon="bulb"/>
