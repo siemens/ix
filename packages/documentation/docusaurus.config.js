@@ -91,6 +91,45 @@ const config = {
           },
         ],
       },
+      footer: {
+        copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/siemens/ix',
+              },
+            ],
+          },
+          {
+            title: 'About',
+            items: [
+              /**
+             * Corporate Information
+Privacy Notice
+Cookie notice
+Terms of use
+Digital ID
+siemens.com Global Website
+             */
+              {
+                label: 'Corporate Information',
+                href: 'https://www.siemens.com/corporate-information',
+              },
+              {
+                label: 'Privacy Notice',
+                href: 'https://www.siemens.com/privacy-notice',
+              },
+              {
+                label: 'Terms of use',
+                href: 'https://www.siemens.com/terms-of-use',
+              },
+            ],
+          },
+        ],
+      },
       prism: {
         theme: require('prism-react-renderer/themes/dracula'),
         theme2: require('prism-react-renderer/themes/dracula'),

@@ -427,40 +427,6 @@ function FooterButtons() {
 }
 
 
-function Footer() {
-  return (
-    <div className={clsx(styles.container, styles.footer)}>
-      <div className={clsx(styles.column, styles.content)}>
-        <div className={styles.top_row}>
-          <div>
-            Corporate Information
-          </div>
-          <div>
-            Privacy Notice
-          </div>
-          <div>
-            Cookie notice
-          </div>
-          <div>
-            Terms of use
-          </div>
-          <div>
-            Digital ID
-          </div>
-        </div>
-        <div className={styles.bottom_row}>
-          <div className={clsx(styles.word_break)}>
-            siemens.com Global Website
-          </div>
-          <div>
-            © Siemens 1996 - 2022
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function Home() {
   // const { siteConfig } = useDocusaurusContext();
   return (
@@ -485,7 +451,6 @@ export default function Home() {
               <InformationCards />
               <FooterFeatures />
               <FooterButtons />
-              <Footer />
             </Layout>
           </Anime>
         </>
