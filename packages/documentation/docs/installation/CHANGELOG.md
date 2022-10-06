@@ -4,6 +4,20 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+# [1.0.0-beta.5](https://github.com/siemens/ix/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2022-10-06)
+
+
+### Bug Fixes
+
+* **core/menu-item:** prevent text selection ([548fe2d](https://github.com/siemens/ix/commit/548fe2da74277e92c9fcfca22a2bfa7d23aabe4f))
+
+
+### Features
+
+* **core/postinstall:** add post install script ([6eeb7bd](https://github.com/siemens/ix/commit/6eeb7bd06693e9ee65a8bcb66ed200f2e6a4270f))
+
+
+
 # [1.0.0-beta.4](https://github.com/siemens/ix/compare/v1.0.0-beta.2...v1.0.0-beta.4) (2022-10-05)
 
 
