@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { exec } from'child_process';
-import crypto from'crypto';
-import { URL } from'url';
-import { existsSync, readFileSync } from'fs';
-import path from'path';
+import { exec } from 'child_process';
+import crypto from 'crypto';
+import { URL } from 'url';
+import { existsSync, readFileSync } from 'fs';
+import path from 'path';
 
 const Reset = '\x1b[0m';
 const FgGreen = '\x1b[32m';
@@ -27,16 +27,16 @@ function isCI() {
 
 async function getNpmRegistry() {
   return new Promise((r) => {
-    if (process.env.npm_config_registry) {
-      const url = new URL(process.env.npm_config_registry);
-      r(url.hostname);
-      return;
-    }
-
-    exec('npm config get registry', (_, stdout) => {
-      const url = new URL(stdout);
-      r(url.hostname);
-    });
+    exec(
+      'npm config get registry',
+      {
+        cwd: process.env.INIT_CWD,
+      },
+      (_, stdout) => {
+        const url = new URL(stdout);
+        r(url.hostname);
+      }
+    );
   });
 }
 
@@ -73,7 +73,7 @@ export async function printIsInternalArtifactoryConfigured(hash) {
   const isInternal = await isInternalArtifactory(hash);
 
   if (!isCI() && isInternal) {
-    const pkgPath = path.join(process.cwd(), '..', '..', '..', 'package.json');
+    const pkgPath = path.join(process.env.INIT_CWD, 'package.json');
     let isBrandThemeIsInstalled = false;
 
     if (existsSync(pkgPath)) {
@@ -84,19 +84,21 @@ export async function printIsInternalArtifactoryConfigured(hash) {
     if (!isBrandThemeIsInstalled) {
       const brand = `
 
+      ███████ ██ ███████ ███    ███ ███████ ███    ██ ███████     ██ ██   ██
+      ██      ██ ██      ████  ████ ██      ████   ██ ██          ██  ██ ██
+      ███████ ██ █████   ██ ████ ██ █████   ██ ██  ██ ███████     ██   ███
+           ██ ██ ██      ██  ██  ██ ██      ██  ██ ██      ██     ██  ██ ██
+      ███████ ██ ███████ ██      ██ ███████ ██   ████ ███████     ██ ██   ██
 
-      ███████ ██ ███████ ███    ███ ███████ ███    ██ ███████
-      ██      ██ ██      ████  ████ ██      ████   ██ ██
-      ███████ ██ █████   ██ ████ ██ █████   ██ ██  ██ ███████
-           ██ ██ ██      ██  ██  ██ ██      ██  ██ ██      ██
-      ███████ ██ ███████ ██      ██ ███████ ██   ████ ███████
+
     `;
 
       console.log(brand);
       console.log(`${FgGreen}Thank you for installing @siemens/ix!`);
       console.log('');
-      console.log('If you are building an Siemens product,');
-      console.log('please consider of using the @siemens/ix-brand-theme.');
+      console.log(
+        'If you want to install the Siemens corporate design, please follow this link https://code.siemens.com/siemens-ix/ix-brand-theme#getting-started'
+      );
       console.log(Reset);
     }
   }

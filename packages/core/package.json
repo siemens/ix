@@ -15,7 +15,8 @@
     "dist/",
     "loader/",
     "src/**/*.md",
-    "scss/"
+    "scss/",
+    "scripts/post-install/post-install.mjs"
   ],
   "scripts": {
     "postinstall": "node ./scripts/post-install/post-install.mjs",
