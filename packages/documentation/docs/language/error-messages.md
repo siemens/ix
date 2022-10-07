@@ -10,13 +10,13 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Three parts of a message: 1. title 2. explanation 3. action
 
-- Title: Name which info/ problem exists/ may occur and where it comes from
+- Title: Name which information or problem may/will occur and where it comes from
 
 - Explanation: Give a clear reason for the (potential) error and explain it’s consequences if the user ignores it
 
-- Action: Add clear instructions for user what to do next to resolve the error i.e. provide solution to the primary button
+- Action: Add clear instructions telling the user what to do next to resolve the error
 
-- Do not blame the user responsible
+- Do not blame the user
 
 - Avoid using you and your only use passive voice as an exception
 
@@ -24,17 +24,17 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Do not over communicate
 
-- Use … to show an action is required, i.e. fill this in…
+- Use … to show an action is required, i.e. Fill this in…
 
-- Polite and encouraging tone of speech
+- Use a polite and encouraging tone
 
 - Keep it short
 
-- If detailed information is required refer to progressive disclosure button
+- If detailed information is required, consider using progressive disclosure button
 
 - Provide specific names, locations and values of the objects involved
 
-- Show urgency through wording like immediatly only if serious consequences follow
+- Show urgency through wording, e.g. “immediately” only if there are serious consequences from ignoring messages
 
 ### Error messages
 
@@ -63,15 +63,15 @@ import {Guideline} from '@site/src/components/Guideline';
 
 <div class="d-flex flex-wrap">
 <span class="m-2">
-<Guideline do={false} label='Title: You have not saved all documents'></Guideline>
-<Guideline do={false} label='Explanation: You have to save all documents'></Guideline>
-<Guideline do={false} label='Action: (Ok button)'></Guideline>
+<Guideline do label='Title: You have not saved all documents'></Guideline>
+<Guideline do label='Explanation: You have to save all documents'></Guideline>
+<Guideline do label='Action: (Ok button)'></Guideline>
 </span>
 </div>
 
 ### Notifications
 
-- Notifications are informative and no actions are required from the user.
+- Notifications are informative and no actions are required from the user
 
 <div class="d-flex flex-wrap">
 <span class="m-2">
