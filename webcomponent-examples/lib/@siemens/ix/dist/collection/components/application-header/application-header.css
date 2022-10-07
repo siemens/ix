@@ -22,7 +22,8 @@
   margin-right: 2.5rem;
 }
 :host .logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   height: 32px;
   overflow: hidden;

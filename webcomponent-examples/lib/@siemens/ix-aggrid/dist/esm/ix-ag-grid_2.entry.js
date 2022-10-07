@@ -1,5 +1,5 @@
-import { r as registerInstance, h, H as Host, g as getElement } from './index-bc7ead06.js';
-import { G as Grid } from './ag-grid-community.auto.esm-02be9483.js';
+import { r as registerInstance, h, H as Host, g as getElement } from './index-f7e13ba2.js';
+import { G as Grid } from './ag-grid-community.auto.esm-db7de02b.js';
 
 const IxAgGrid = class {
   constructor(hostRef) {

@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-15264d0e.js');
-const agGridCommunity_auto_esm = require('./ag-grid-community.auto.esm-6aabb45a.js');
+const index = require('./index-5b0f17d6.js');
+const agGridCommunity_auto_esm = require('./ag-grid-community.auto.esm-42c6bc63.js');
 
 const IxAgGrid = class {
   constructor(hostRef) {

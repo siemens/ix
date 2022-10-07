@@ -72,7 +72,7 @@ const Drawer = class {
     const target = evt.target;
     const closestElement = target.closest('#div-container');
     const btn = target.closest('#drawer-btn');
-    if (closestElement !== this.divElement && target !== btn) {
+    if (evt.target.type !== "button" && closestElement !== this.divElement && target !== btn) {
       this.show = false;
     }
   }

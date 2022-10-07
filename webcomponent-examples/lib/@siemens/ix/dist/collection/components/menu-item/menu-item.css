@@ -97,6 +97,9 @@ ix-menu-item .tab-text {
   white-space: nowrap;
   color: var(--theme-nav-item-primary--color);
   margin: 0 1.25rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 ix-menu-item.active .tab, ix-menu-item.selected .tab {
   background-color: var(--theme-nav-item-primary--background--selected);

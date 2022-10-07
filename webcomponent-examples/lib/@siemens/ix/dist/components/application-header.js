@@ -1,6 +1,6 @@
 import { proxyCustomElement, HTMLElement, h, Host } from '@stencil/core/internal/client';
 
-const applicationHeaderCss = ":host{display:flex;align-items:center;position:relative;width:100%;height:2.75rem;padding-left:1rem;color:var(--theme-app-header-logo--color);background-color:var(--theme-app-header--background);border-bottom:var(--theme-app-header--border-width) solid var(--theme-app-header--border-color)}:host .name{margin-left:2.5rem;margin-right:2.5rem}:host .logo{display:inline-block;position:relative;height:32px;overflow:hidden}";
+const applicationHeaderCss = ":host{display:flex;align-items:center;position:relative;width:100%;height:2.75rem;padding-left:1rem;color:var(--theme-app-header-logo--color);background-color:var(--theme-app-header--background);border-bottom:var(--theme-app-header--border-width) solid var(--theme-app-header--border-color)}:host .name{margin-left:2.5rem;margin-right:2.5rem}:host .logo{display:inline-flex;align-items:center;position:relative;height:32px;overflow:hidden}";
 
 const ApplicationHeader = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
   constructor() {
