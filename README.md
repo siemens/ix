@@ -18,6 +18,8 @@ iX is an open source design system for designers and developers, to consistently
 
 ## Installation
 
+You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
+
 ## Development
 
 ### Installation
