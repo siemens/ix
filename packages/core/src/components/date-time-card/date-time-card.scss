@@ -26,10 +26,12 @@
 
   &.left {
     border-radius: 4px 0 0 4px;
+    height: 100%;
   }
 
   &.right {
     border-radius: 0 4px 4px 0;
+    height: 100%;
   }
 
   .header {
