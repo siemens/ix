@@ -22,7 +22,21 @@
   height: 60px;
   background-color: var(--theme-color-2);
   margin: 0 1.25rem 1.25rem 0;
+  cursor: pointer;
+}
 
+.Card.Auto__Width {
+  width: auto;
+}
+
+.Card_big {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  min-width: 19.375rem;
+  height: 60px;
+  background-color: var(--theme-color-2);
+  margin: 0 1.25rem 1.25rem 0;
   cursor: pointer;
 }
 
@@ -43,6 +57,11 @@
   height: 3.75rem;
   min-height: 3.75rem;
   margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.Label.Full__Height {
+  height: 100%;
 }
 
 .Icon {
@@ -64,7 +83,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 7rem;
+  font-size: 9rem;
   color: var(--theme-color-std-text) !important;
 }
 

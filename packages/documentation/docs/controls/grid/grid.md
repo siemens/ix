@@ -4,28 +4,31 @@ import SourceAggrid from './../../auto-generated/previews/web-component/aggrid.m
 import ReactSourceAggrid from './../../auto-generated/previews/react/aggrid.md'
 import AngularSourceAggrid from './../../auto-generated/previews/angular/aggrid.md'
 
-# AG-Grid
+# AG Grid
 
 ## Installation
 
 ### React
 
-Follow the offical react installation instruction https://www.ag-grid.com/react-data-grid/getting-started/
+Follow the offical AG Grid [installation instructions](https://www.ag-grid.com/react-data-grid/getting-started/) for React.
 
 ### Angular
 
-Follow the offical angular installation instruction https://www.ag-grid.com/angular-data-grid/getting-started/
+Follow the offical AG Grid [installation instructions](https://www.ag-grid.com/angular-data-grid/getting-started/) for Angular.
 
 ### Javascript
 
-Follow the offical javascript installation instruction https://www.ag-grid.com/javascript-data-grid/getting-started/
+Follow the offical AG Grid [installation instruction](https://www.ag-grid.com/javascript-data-grid/getting-started/) for JavaScript.
 
-### Siemens ix theme for aggrid
+### Siemens iX theme for AG Grid
 
-The `ag-theme-ix` is build on base of the `ag-theme-alpine-dark`. To get the theme working correctly it is
-necessary to apply the class `ag-theme-alpine-dark` frist and the the ix theme `ag-theme-ix`.
+Siemens iX theming for AG Grid (`ag-theme-ix`) is based on `ag-theme-alpine-dark`.
+Therefore it is vital to apply the two CSS theme classes in the correct order:
 
-e.g
+1. `ag-theme-alpine-dark`
+2. `ag-theme-ix`
+
+e.g.:
 
 ```html
 <div class="ag-theme-alpine-dark ag-theme-ix"></div>
