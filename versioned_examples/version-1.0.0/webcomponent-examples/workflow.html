@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!--
+COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workflow example</title>
+    <link rel="stylesheet" href="lib/@siemens/ix-icons/dist/css/ix-icons.css" />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/@siemens/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-workflow-steps vertical>
+      <ix-workflow-step status="done">Step 1</ix-workflow-step>
+      <ix-workflow-step status="success">Step 2</ix-workflow-step>
+      <ix-workflow-step status="open">Step 3</ix-workflow-step>
+      <ix-workflow-step status="warning">Step 4</ix-workflow-step>
+      <ix-workflow-step status="error">Step 5</ix-workflow-step>
+      <ix-workflow-step disabled>Step 6</ix-workflow-step>
+    </ix-workflow-steps>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

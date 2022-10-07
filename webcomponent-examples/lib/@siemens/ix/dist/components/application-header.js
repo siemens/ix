@@ -8,9 +8,20 @@ const ApplicationHeader = /*@__PURE__*/ proxyCustomElement(class extends HTMLEle
     this.__registerHost();
     this.__attachShadow();
   }
+  componentDidLoad() {
+    this.attachSiemensLogoIfLoaded();
+  }
+  async attachSiemensLogoIfLoaded() {
+    await window.customElements.whenDefined('ix-siemens-logo');
+    const logoElement = document.createElement('ix-siemens-logo');
+    if (!this.host.querySelector('[slot="logo"]')) {
+      this.host.shadowRoot.querySelector('.logo').appendChild(logoElement);
+    }
+  }
   render() {
     return (h(Host, null, h("div", { class: "logo" }, h("slot", { name: "logo" })), h("span", { class: "name" }, this.name), h("slot", null)));
   }
+  get host() { return this; }
   static get style() { return applicationHeaderCss; }
 }, [1, "ix-application-header", {
     "name": [1]

@@ -6,8 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 export class ApplicationHeader {
+  componentDidLoad() {
+    this.attachSiemensLogoIfLoaded();
+  }
+  async attachSiemensLogoIfLoaded() {
+    await window.customElements.whenDefined('ix-siemens-logo');
+    const logoElement = document.createElement('ix-siemens-logo');
+    if (!this.host.querySelector('[slot="logo"]')) {
+      this.host.shadowRoot.querySelector('.logo').appendChild(logoElement);
+    }
+  }
   render() {
     return (h(Host, null,
       h("div", { class: "logo" },
@@ -42,4 +52,5 @@ export class ApplicationHeader {
       "reflect": false
     }
   }; }
+  static get elementRef() { return "host"; }
 }

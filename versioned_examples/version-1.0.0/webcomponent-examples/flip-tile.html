@@ -1,0 +1,108 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flip tile example</title>
+    <link rel="stylesheet" href="lib/@siemens/ix-icons/dist/css/ix-icons.css" />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/@siemens/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+    <style>
+      .example {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        margin-top: 2rem;
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .example > ix-flip-tile {
+        margin: 0 0.5rem 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div class="example">
+      <ix-flip-tile>
+        <div slot="header">Flip header</div>
+
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="Primary">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="Info">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="Warning">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+
+      <ix-flip-tile state="Alarm">
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div class="d-flex align-items-center">
+            <ix-icon name="info" size="16"></ix-icon>2021-06-22
+          </div>
+        </div>
+        <ix-flip-tile-content> Example 1 </ix-flip-tile-content>
+        <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
+      </ix-flip-tile>
+    </div>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

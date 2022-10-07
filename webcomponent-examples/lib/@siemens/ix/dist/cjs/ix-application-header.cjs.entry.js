@@ -10,9 +10,20 @@ const ApplicationHeader = class {
   constructor(hostRef) {
     index.registerInstance(this, hostRef);
   }
+  componentDidLoad() {
+    this.attachSiemensLogoIfLoaded();
+  }
+  async attachSiemensLogoIfLoaded() {
+    await window.customElements.whenDefined('ix-siemens-logo');
+    const logoElement = document.createElement('ix-siemens-logo');
+    if (!this.host.querySelector('[slot="logo"]')) {
+      this.host.shadowRoot.querySelector('.logo').appendChild(logoElement);
+    }
+  }
   render() {
     return (index.h(index.Host, null, index.h("div", { class: "logo" }, index.h("slot", { name: "logo" })), index.h("span", { class: "name" }, this.name), index.h("slot", null)));
   }
+  get host() { return index.getElement(this); }
 };
 ApplicationHeader.style = applicationHeaderCss;
 

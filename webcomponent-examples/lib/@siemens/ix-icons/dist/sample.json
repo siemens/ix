@@ -223,6 +223,8 @@
     
       "code" , 
     
+      "cogwheel-filled" , 
+    
       "cogwheel" , 
     
       "combine" , 
@@ -896,6 +898,10 @@
       "sound-quiet" , 
     
       "spatial" , 
+    
+      "split-horizontally" , 
+    
+      "split-vertically" , 
     
       "star-add-filled" , 
     

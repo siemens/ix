@@ -1,0 +1,36 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import './define-theme-variable';
+@import './../components/shadows';
+
+@mixin define-theme(
+  $name,
+  $theme-colors,
+  $hover-percentage,
+  $active-percentage,
+  $theme-sizes: ()
+) {
+  .theme-#{$name} {
+    --theme-l-hover: #{$hover-percentage};
+    --theme-l-active: #{$active-percentage};
+
+    @each $color-name, $color-value in $theme-colors {
+      @include define-theme-variable($color-name, $color-value);
+    }
+
+    @each $size-name, $size-value in $theme-sizes {
+      @include define-theme-variable($size-name, $size-value);
+    }
+
+    @include shadows;
+
+    @content;
+  }
+}

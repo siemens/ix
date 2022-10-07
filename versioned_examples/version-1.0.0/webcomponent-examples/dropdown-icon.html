@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown icon example</title>
+    <link rel="stylesheet" href="lib/@siemens/ix-icons/dist/css/ix-icons.css" />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/@siemens/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-button id="iconTriggerId">Open</ix-button>
+    <ix-dropdown trigger="iconTriggerId">
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+    </ix-dropdown>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>

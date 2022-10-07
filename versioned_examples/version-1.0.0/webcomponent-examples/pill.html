@@ -1,0 +1,56 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pill example</title>
+    <link rel="stylesheet" href="lib/@siemens/ix-icons/dist/css/ix-icons.css" />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
+    <link
+      rel="stylesheet"
+      href="lib/@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from './lib/@siemens/ix/loader/index.js';
+      defineCustomElements();
+    </script>
+    <style>
+      ix-pill {
+        margin: 0 0.5rem 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-pill variant="custom" color="white" background="purple">
+      Label
+    </ix-pill>
+
+    <ix-pill>Label</ix-pill>
+    <ix-pill outline>Label</ix-pill>
+    <ix-pill style="width: 8rem">Label</ix-pill>
+
+    <ix-pill icon="star">Label</ix-pill>
+    <ix-pill icon="star" style="width: 8rem"> Label </ix-pill>
+    <ix-pill outline alignLeft icon="star" style="width: 8rem"> Label </ix-pill>
+
+    <ix-pill variant="alarm">Label</ix-pill>
+    <ix-pill variant="alarm" outline> Label </ix-pill>
+    <ix-pill variant="alarm" style="width: 8rem"> Label </ix-pill>
+
+    <ix-pill variant="alarm" icon="star"> Label </ix-pill>
+    <ix-pill variant="alarm" icon="star" style="width: 8rem"> Label </ix-pill>
+    <ix-pill variant="alarm" outline alignLeft icon="star" style="width: 8rem">
+      Label
+    </ix-pill>
+    <!-- Preview code -->
+    <script type="text/javascript" src="lib/utils/demo.js"></script>
+  </body>
+</html>
