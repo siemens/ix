@@ -4,6 +4,21 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+# [1.0.0](https://github.com/siemens/ix/compare/v1.0.0-beta.5...v1.0.0) (2022-10-07)
+
+
+### Bug Fixes
+
+* **core:** drawer click button to close & open ([0315d74](https://github.com/siemens/ix/commit/0315d7468366a5335101decbcb13bf88a3d55eda))
+* **documentation/theme-switcher:** use label as selection name ([6ef8983](https://github.com/siemens/ix/commit/6ef89830aacf057a7a9c2631d6d7074c21ae9c7e))
+
+
+### Features
+
+* **core/appliaction-header:** load optional application logo ([89ecb72](https://github.com/siemens/ix/commit/89ecb72e5a0357d6163507c2c3bfcc8ca34f3d1f))
+
+
+
 # [1.0.0-beta.5](https://github.com/siemens/ix/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2022-10-06)
 
 
