@@ -105,6 +105,7 @@ aside {
 }
 
 .footer {
+  overflow: hidden;
   border-top: 0.125rem solid var(--theme-color-1);
 }
 
