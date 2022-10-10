@@ -29,9 +29,10 @@ entryPoints.forEach((file) => {
 const isBrandThemeExisting = fs.existsSync(
   path.join(
     __dirname,
+    'src',
     'public',
     'additional-theme',
-    '@siemens/ix-brand-theme/package.json'
+    'ix-brand-theme/package.json'
   )
 );
 
@@ -39,8 +40,8 @@ let additionalTheme = {};
 
 if (isBrandThemeExisting) {
   additionalTheme = {
-    loader: '@siemens/ix-brand-theme/loader',
-    css: '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
+    loader: 'ix-brand-theme/loader',
+    css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
   };
 }
 
@@ -48,10 +49,12 @@ if (isBrandThemeExisting) {
 export default defineConfig({
   base: './',
   root: './src',
+  publicDir: 'public',
   define: {
-    additionalTheme: JSON.stringify(additionalTheme),
+    __THEME__: JSON.stringify(additionalTheme),
   },
   build: {
+    emptyOutDir: true,
     minify: false,
     rollupOptions: {
       input: {

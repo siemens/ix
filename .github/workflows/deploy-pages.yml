@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/build
       - name: 'Download @siemens/ix-brand-theme'
         run: |
           ROOT=$(pwd)
@@ -21,11 +22,11 @@ jobs:
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           curl --header "PRIVATE-TOKEN: ${{ secrets.READ_CSC_TOKEN }}" $(yarn info @siemens/ix-brand-theme dist.tarball | sed -n 2p) -o ix-brand-theme.tgz
           tar zxvf ix-brand-theme.tgz
-          mv packages ix-brand-theme
+          mv package ix-brand-theme
           rm ix-brand-theme.tgz
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ix-brand-theme/package.json
-          cd ROOT
-      - uses: ./.github/workflows/actions/build
+          rm ix-brand-theme/package.json-e
+          cp -R ./ix-brand-theme $ROOT/node_modules/@siemens
       - name: 'Build documentation'
         run: |
           yarn workspace documentation run build

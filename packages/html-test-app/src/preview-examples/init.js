@@ -12,9 +12,9 @@ import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { defineCustomElements, applyPolyfills } from '@siemens/ix/loader';
 
 function loadAdditionalTheme() {
-  const theme = globalThis['additionalTheme'];
+  const theme = __THEME__;
   if (theme?.css) {
-    const base = `../../additional-theme`;
+    const base = `./../additional-theme`;
     const css = theme.css;
     const head = document.head;
 
