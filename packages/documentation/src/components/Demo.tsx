@@ -32,11 +32,13 @@ export default function Demo(props: {
   useEffect(() => {
     const currentVersion: string = preferredVersion?.name;
     if (currentVersion === undefined || currentVersion === 'current') {
-      setBase(baseUrl + `webcomponent-examples/${props.name}.html`);
+      setBase(
+        baseUrl + `webcomponent-examples/preview-examples/${props.name}.html`
+      );
     } else {
       setBase(
         baseUrl +
-          `versioned_examples/version-${currentVersion}/webcomponent-examples/${props.name}.html`
+          `versioned_examples/version-${currentVersion}/webcomponent-examples/preview-examples/${props.name}.html`
       );
     }
   }, [baseUrl, preferredVersion?.name, props.name]);

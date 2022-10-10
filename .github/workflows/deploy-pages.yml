@@ -13,18 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/install
-      - uses: ./.github/workflows/actions/build
-        with:
-          filter: '\!documentation'
-      - name: 'Install brand theme'
+      - name: 'Download @siemens/ix-brand-theme'
         run: |
-          rm .yarnrc
+          ROOT=$(pwd)
+          cd ./packages/html-test-app/public/additional-theme
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           npm install @siemens/ix-brand-theme --no-save
-          rm .npmrc
-          rm ./packages/documentation/static/.gitignore
-
+          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' node_modules/@siemens/ix-brand-theme/package.json
+          mv node_modules/@siemens ./
+          cd ROOT
+      - uses: ./.github/workflows/actions/build
       - name: 'Build documentation'
         run: |
           yarn workspace documentation run build
