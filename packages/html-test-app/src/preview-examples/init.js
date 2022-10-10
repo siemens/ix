@@ -8,12 +8,13 @@
  */
 import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { defineCustomElements, applyPolyfills } from '@siemens/ix/loader';
 
 function loadAdditionalTheme() {
   const theme = globalThis['additionalTheme'];
   if (theme?.css) {
-    const base = `../additional-theme`;
+    const base = `../../additional-theme`;
     const css = theme.css;
     const head = document.head;
 
@@ -32,9 +33,30 @@ function loadAdditionalTheme() {
     head.appendChild(script);
   }
 }
+
+function detectThemeSwitching() {
+  const searchParams = new URLSearchParams(location.search);
+  if (searchParams.has('theme')) {
+    const theme = searchParams.get('theme');
+    document.body.className = theme;
+  }
+}
+
+/**
+ * Add margin around body the get better iframe viewport
+ */
+function addMarginToDemo() {
+  const searchParams = new URLSearchParams(location.search);
+  if (!searchParams.has('no-margin')) {
+    document.body.style.margin = '1rem';
+  }
+}
+
 (async function init() {
   await applyPolyfills();
   await defineCustomElements();
 
+  detectThemeSwitching();
+  addMarginToDemo();
   loadAdditionalTheme();
 })();

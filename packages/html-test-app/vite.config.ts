@@ -12,15 +12,17 @@ import path from 'path';
 import { defineConfig } from 'vite';
 const __dirname = path.resolve();
 
+const previewPath = path.join(__dirname, 'src', 'preview-examples');
+
 const entryPoints = fs
-  .readdirSync(path.join(__dirname, 'src'))
+  .readdirSync(previewPath)
   .filter((f) => f.endsWith('.html'));
 
 const input = {};
 
 entryPoints.forEach((file) => {
   const name = file.replace('.html', '');
-  const entryPath = path.join(__dirname, 'src', file);
+  const entryPath = path.join(previewPath, file);
   input[name] = entryPath;
 });
 
