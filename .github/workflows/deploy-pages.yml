@@ -19,9 +19,11 @@ jobs:
           cd ./packages/html-test-app/public/additional-theme
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          npm install @siemens/ix-brand-theme --no-save
-          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' node_modules/@siemens/ix-brand-theme/package.json
-          mv node_modules/@siemens ./
+          curl --header "PRIVATE-TOKEN: ${{ secrets.READ_CSC_TOKEN }}" $(yarn info @siemens/ix-brand-theme dist.tarball | sed -n 2p) -o ix-brand-theme.tgz
+          tar zxvf ix-brand-theme.tgz
+          mv packages ix-brand-theme
+          rm ix-brand-theme.tgz
+          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ix-brand-theme/package.json
           cd ROOT
       - uses: ./.github/workflows/actions/build
       - name: 'Build documentation'
@@ -30,9 +32,9 @@ jobs:
       - name: 'Copy documentation'
         run: |
           cp -R ./packages/documentation/build/. ./public
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          cname: ix.siemens.io
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./public
+      #     cname: ix.siemens.io
