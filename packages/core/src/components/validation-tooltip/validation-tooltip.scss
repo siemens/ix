@@ -16,11 +16,12 @@
 
   .validation-tooltip {
     background-color: var(--theme-tootlip--background);
-    color: white;
+    color: var(--theme-tooltip--color);
     padding: $padding 10px;
     border-radius: 4px;
     font-size: 13px;
     border: 1px solid var(--theme-tooltip--border-color);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 40, 0.1), 0 4px 8px 0 rgba(0, 0, 40, 0.1), 0 12px 18px 0 rgba(0, 0, 40, 0.1);
 
     #arrow,
     #arrow::before {
@@ -42,32 +43,36 @@
     }
   }
 
-  .validation-tooltip[data-popper-placement^='top'] > #arrow {
+  .validation-tooltip[data-popper-placement^='top']>#arrow {
     bottom: -5px;
+
     &::before {
       border-right: 1px solid var(--theme-tooltip--border-color);
       border-bottom: 1px solid var(--theme-tooltip--border-color);
     }
   }
 
-  .validation-tooltip[data-popper-placement^='bottom'] > #arrow {
+  .validation-tooltip[data-popper-placement^='bottom']>#arrow {
     top: -5px;
+
     &::before {
       border-left: 1px solid var(--theme-tooltip--border-color);
       border-top: 1px solid var(--theme-tooltip--border-color);
     }
   }
 
-  .validation-tooltip[data-popper-placement^='left'] > #arrow {
+  .validation-tooltip[data-popper-placement^='left']>#arrow {
     right: -5px;
+
     &::before {
       border-right: 1px solid var(--theme-tooltip--border-color);
       border-top: 1px solid var(--theme-tooltip--border-color);
     }
   }
 
-  .validation-tooltip[data-popper-placement^='right'] > #arrow {
+  .validation-tooltip[data-popper-placement^='right']>#arrow {
     left: -5px;
+
     &::before {
       border-left: 1px solid var(--theme-tooltip--border-color);
       border-bottom: 1px solid var(--theme-tooltip--border-color);
