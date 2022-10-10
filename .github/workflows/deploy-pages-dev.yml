@@ -1,13 +1,22 @@
-name: Deploy to GitHub Pages
+name: Deploy to DEV GitHub Pages
 
 on:
   workflow_dispatch:
     inputs:
-      deploy_prod:
-        description: 'Deploy documentation page'
+      confirm_deployment:
+        description: 'Please confirm DEV deployment'
         required: true
         type: boolean
-
+      repo_url:
+        description: 'Documentation repository'
+        required: true
+        default: danielleroux/docs-instance
+        type: string
+      prefix:
+        description: 'Documentation prefix'
+        required: true
+        default: docs-instance
+        type: string
 jobs:
   deploy:
     name: Deploy to GitHub Pages
@@ -35,40 +44,18 @@ jobs:
           cp -R ./ix-brand-theme $ROOT/node_modules/@siemens
 
       - name: 'Build documentation for DEV instance'
-        if: ${{ inputs.deploy_prod == false }}
         run: |
-          BASE_URL=/dev/ yarn workspace documentation run build
-
-      - name: 'Build documentation for PROD instance'
-        if: ${{ inputs.deploy_prod == true }}
-        run: |
-          yarn workspace documentation run build
-
-      - name: 'Copy PROD documentation'
-        if: ${{ inputs.deploy_prod == true }}
-        run: |
-          cp -R ./packages/documentation/build/. ./public
+          BASE_URL=${{ github.input.prefix }} yarn workspace documentation run build
 
       - name: 'Copy DEV documentation'
-        if: ${{ inputs.deploy_prod == false }}
         run: |
-          cp -R ./packages/documentation/build/. ./public/pre
+          mkdir -p ./public/dev
+          cp -R ./packages/documentation/build/. ./public
 
-      - name: 'Deploy documentation to DEV instance'
-        if: ${{ inputs.deploy_prod == false }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.DEPLOY_PAGES }}
-          external_repository: siemens/ix-docs
-          publish_branch: gh-pages
-          publish_dir: ./public
-          keep_files: true
-
-      - name: Deploy documentation to PROD instance
-        if: ${{ inputs.deploy_prod == true }}
+      - name: Deploy documentation to DEV instance
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
+          external_repository: ${{ github.input.repo_url }}
           publish_dir: ./public
-          cname: ix.siemens.io
-          keep_files: true
