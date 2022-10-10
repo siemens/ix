@@ -11,6 +11,8 @@
   "devDependencies": {
     "vite": "^3.1.0",
     "@siemens/ix": "1.0.0",
+    "@siemens/ix-aggrid": "1.0.0",
+    "@siemens/ix-echarts": "1.0.0",
     "@siemens/ix-icons": "~1.0.1"
   }
 }
