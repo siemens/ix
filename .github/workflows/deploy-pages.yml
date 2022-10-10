@@ -33,20 +33,42 @@ jobs:
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ix-brand-theme/package.json
           rm ix-brand-theme/package.json-e
           cp -R ./ix-brand-theme $ROOT/node_modules/@siemens
-      - name: 'Build documentation'
-        run: |
-          yarn workspace documentation run build
-      - name: 'Copy documentation'
-        run: |
-          cp -R ./packages/documentation/build/. ./public
-      - name: 'Deploy documentation to dev instance'
+
+      - name: 'Build documentation for DEV instance'
         if: ${{ inputs.deploy_prod == false }}
         run: |
-          echo "Deploy to dev instance"
-      # - name: Deploy to GitHub Pages
-      #   if: ${{ inputs.deploy_prod == true }}
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public
-      #     cname: ix.siemens.io
+          BASE_URL=/dev/ yarn workspace documentation run build
+
+      - name: 'Build documentation for PROD instance'
+        if: ${{ inputs.deploy_prod == true }}
+        run: |
+          yarn workspace documentation run build
+
+      - name: 'Copy PROD documentation'
+        if: ${{ inputs.deploy_prod == true }}
+        run: |
+          cp -R ./packages/documentation/build/. ./public
+
+      - name: 'Copy DEV documentation'
+        if: ${{ inputs.deploy_prod == false }}
+        run: |
+          cp -R ./packages/documentation/build/. ./public/pre
+
+      - name: 'Deploy documentation to DEV instance'
+        if: ${{ inputs.deploy_prod == false }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.DEPLOY_PAGES }}
+          external_repository: siemens/ix-docs
+          publish_branch: gh-pages
+          publish_dir: ./public
+          keep_files: true
+
+      - name: Deploy documentation to PROD instance
+        if: ${{ inputs.deploy_prod == true }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: ix.siemens.io
+          keep_files: true

@@ -34,12 +34,14 @@ const customCss = [
   require.resolve('./src/css/search.css'),
 ];
 
+const baseUrl = process.env.BASE_URL ?? '/';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
   url: 'https://ix.siemens.io',
-  baseUrl: '/',
+  baseUrl: baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
