@@ -32,7 +32,7 @@ import AngularComponentWithoutHeader from './../../auto-generated/previews/angul
   </TabItem>
 </Preview>
 
-### Without a header
+### Without header
 
 <Preview name="basic-navigation-without-header" height="30rem" noMargin>
   <TabItem value="javascript">

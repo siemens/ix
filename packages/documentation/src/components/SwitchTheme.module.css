@@ -105,4 +105,5 @@
   border: var(--theme-soft-bdr-1);
   background-color: #6a7f98;
   border-radius: 40px;
+  margin-left: 2rem;
 }

@@ -35,7 +35,11 @@ SPDX-License-Identifier: MIT
 </template>
 
 <script type="module">
-  import { modal, closeModal, dismissModal } from './lib/ix/dist/index.js';
+  import {
+    modal,
+    closeModal,
+    dismissModal,
+  } from './lib/@siemens/ix/dist/index.js';
 
   (async function () {
     await window.customElements.whenDefined('ix-button');

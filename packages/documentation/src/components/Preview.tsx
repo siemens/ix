@@ -32,7 +32,7 @@ export default function Preview(props: {
         ...[
           { value: 'angular', label: 'Angular' },
           { value: 'react', label: 'React' },
-          { value: 'javascript', label: 'Web Component' },
+          { value: 'javascript', label: 'Web Components' },
         ].filter((v) => {
           return tabs.map((c) => c.props.value).includes(v.value);
         }),

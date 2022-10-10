@@ -231,7 +231,7 @@ function publishGit(tasks, version, changelog) {
     },
     {
       title: `Tag latest commit ${dim(`(${gitTag})`)}`,
-      task: () => execa('git', ['tag', `${gitTag}`]),
+      task: () => execa('git', ['tag', `v${gitTag}`]),
     },
     {
       title: 'Push branches to remote',
@@ -312,7 +312,7 @@ async function createDocumentationVersion(tasks, version) {
 }
 
 function getVersionCommitMessage(version) {
-  return `Bump version to ${version}`;
+  return `chore: bump ix version to ${version}`;
 }
 
 module.exports = {

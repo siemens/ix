@@ -22,16 +22,16 @@ export const Buttons: React.FC = () => {
   return (
     <>
       <IxButton className="m-1" variant="Primary">
-        Webcomponents button
+        Button
       </IxButton>
       <IxButton className="m-1" variant="Secondary">
-        Webcomponents button
+        Button
       </IxButton>
       <IxButton className="m-1" outline>
-        Webcomponents button
+        Button
       </IxButton>
       <IxButton className="m-1" invisible>
-        Webcomponents button
+        Button
       </IxButton>
     </>
   );
