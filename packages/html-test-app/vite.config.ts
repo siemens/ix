@@ -53,7 +53,10 @@ export default defineConfig({
   build: {
     minify: false,
     rollupOptions: {
-      input,
+      input: {
+        index: './src/index.html',
+        ...input,
+      },
     },
     outDir: path.join(__dirname, 'dist'),
   },
