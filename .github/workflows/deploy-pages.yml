@@ -1,6 +1,12 @@
 name: Deploy to GitHub Pages
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_prod:
+        description: 'Deploy documentation page'
+        required: true
+        type: boolean
 
 jobs:
   deploy:
@@ -33,7 +39,12 @@ jobs:
       - name: 'Copy documentation'
         run: |
           cp -R ./packages/documentation/build/. ./public
+      - name: 'Deploy documentation to dev instance'
+        if: ${{ inputs.deploy_prod == false }}
+        run: |
+          echo "Deploy to dev instance"
       # - name: Deploy to GitHub Pages
+      #   if: ${{ inputs.deploy_prod == true }}
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
