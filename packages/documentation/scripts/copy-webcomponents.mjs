@@ -16,7 +16,6 @@ const examplePathPath = path.join(__dirname, 'static', 'webcomponent-examples');
 const libDestPath = path.join(examplePathPath, 'lib');
 
 const node_modules = path.join(__dirname, '../../', 'node_modules');
-const ix_brand_theme_path = path.join(node_modules, '@siemens/ix-brand-theme');
 
 async function loadLib(libName, destPath) {
   const libPath = path.join(node_modules, libName);

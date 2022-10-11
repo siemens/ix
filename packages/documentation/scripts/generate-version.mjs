@@ -11,8 +11,6 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 import execa from 'execa';
 
-console.log(process.argv);
-
 const __dirname = path.resolve();
 const version = process.argv[2];
 
