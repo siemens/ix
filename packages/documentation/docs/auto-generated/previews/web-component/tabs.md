@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/tabs.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tabs.html -->
 ```html
 <ix-tabs selected="1">
   <ix-tab-item>Tab 1</ix-tab-item>

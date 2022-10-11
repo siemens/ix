@@ -96,11 +96,17 @@ function writeApi(component) {
 }
 
 function writeWebComponentPreviews() {
-  const previewsPath = path.join(__dirname, 'static', 'webcomponent-examples');
+  const htmlPreviewPath = path.join(
+    __dirname,
+    '../html-test-app/src/preview-examples'
+  );
   const webComponentPreviews = fs
-    .readdirSync(previewsPath)
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
-    .map((name) => [name.replace('.html', ''), path.join(previewsPath, name)]);
+    .map((name) => [
+      name.replace('.html', ''),
+      path.join(htmlPreviewPath, name),
+    ]);
 
   webComponentPreviews.forEach(([name, previewPath]) => {
     const writePath = path.join(

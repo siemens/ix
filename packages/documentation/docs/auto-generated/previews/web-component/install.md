@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/install.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/install.html -->
 ```html
 <!--
 SPDX-FileCopyrightText: 2022 Siemens AG
@@ -16,19 +16,6 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Install example</title>
-    <link rel="stylesheet" href="lib/@siemens/ix-icons/dist/css/ix-icons.css" />
-    <link
-      rel="stylesheet"
-      href="lib/@siemens/ix/dist/siemens-ix/siemens-ix.css"
-    />
-    <link
-      rel="stylesheet"
-      href="lib/@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
-    />
-    <script type="module">
-      import { defineCustomElements } from './lib/@siemens/ix/loader/index.js';
-      defineCustomElements();
-    </script>
   </head>
   <body class="theme-brand-dark">
     <ix-button onclick="alert('Button clicked!')">Hello World!</ix-button>
