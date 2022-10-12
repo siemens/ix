@@ -13,7 +13,7 @@ SPDX-License-Identifier: MIT
 
 | Property           | Attribute              | Description        | Type      | Default                       |
 | ------------------ | ---------------------- | ------------------ | --------- | ----------------------------- |
-| `activeTabLabel`   | `active-tab-label`     | Active tab         | `string`  | `this.i18nImprintLabel`       |
+| `activeTabLabel`   | `active-tab-label`     | Active tab         | `string`  | `undefined`                   |
 | `i18nImprintLabel` | `i-1-8n-imprint-label` |                    | `string`  | `'Imprint'`                   |
 | `label`            | `label`                | Label of first tab | `string`  | `'About & legal information'` |
 | `show`             | `show`                 | Internal           | `boolean` | `false`                       |

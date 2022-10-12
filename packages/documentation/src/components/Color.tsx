@@ -99,6 +99,7 @@ export default function Color() {
             <tr key={k}>
               <td>
                 <input
+                  readOnly
                   className="form-control"
                   defaultValue={k}
                   ref={refs[k]}
