@@ -65,10 +65,23 @@ body {
   max-width: 100%;
 }
 
+@media (min-width: 1440px) {
+  .container {
+    max-width: 100% !important;
+  }
+  .col {
+    max-width: 100% !important;
+  }
+}
+
 @media (max-width: 997px) {
   .container {
     margin-top: 0;
     margin-left: 0;
+    max-width: 100% !important;
+  }
+  .col {
+    max-width: 100% !important;
   }
 }
 
@@ -92,7 +105,16 @@ aside {
 }
 
 .footer {
+  overflow: hidden;
   border-top: 0.125rem solid var(--theme-color-1);
+}
+
+.footer .container {
+  margin-top: 0px;
+}
+
+.footer .footer__copyright {
+  text-align: left;
 }
 
 .navbar {
@@ -221,4 +243,21 @@ a.menu__link {
 
 .bold {
   font-weight: bold;
+}
+
+.siemens-brand-section {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-primary--contrast);
+  padding: 1.5rem 2rem;
+}
+
+.siemens-brand-section a,
+.siemens-brand-section a:hover,
+.siemens-brand-section a:active {
+  color: var(--theme-color-primary--contrast) !important;
+}
+
+.markdown table {
+  display: table !important;
+  width: 100%;
 }

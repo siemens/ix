@@ -1,4 +1,4 @@
-name: publish
+name: Publish
 
 on:
   push:
@@ -10,7 +10,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-lib:
+    uses: ./.github/workflows/build.yml
+  deploy:
+    needs: [build-lib]
     runs-on: ubuntu-latest
     container:
       image: node:16.16.0
@@ -18,12 +21,23 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-
-      # - uses: ./.github/workflows/actions/build
-
-      # - uses: ./.github/workflows/actions/test
-
-      # - name: Publish to npmjs.org
-      #   run: yarn publish --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/cache@v2
+        id: build
+        with:
+          key: build-${{ runner.os }}-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+      - name: Publish beta version to npmjs.org
+        run: |
+          yarn workspace @siemens/ix publish --access public
+          yarn workspace @siemens/ix-react publish --access public
+          yarn workspace @siemens/ix-aggrid publish --access public
+          yarn workspace @siemens/ix-echarts publish --access public
+          cd packages/angular/dist
+          yarn publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
