@@ -9,6 +9,7 @@ import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+import { DateTime } from "luxon";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -265,6 +266,18 @@ export namespace Components {
           * Set range size
          */
         "range": boolean;
+        /**
+          * Set month
+         */
+        "setMonth": any;
+        /**
+          * Set today
+         */
+        "setToday": DateTime;
+        /**
+          * Set year
+         */
+        "setYear": any;
     }
     interface IxDateTimeCard {
         /**
@@ -281,6 +294,34 @@ export namespace Components {
           * Set range size
          */
         "range": boolean;
+        /**
+          * Set hour
+         */
+        "setHour": number;
+        /**
+          * Set minutes
+         */
+        "setMin": number;
+        /**
+          * Set month
+         */
+        "setMonth": any;
+        /**
+          * Set seconds
+         */
+        "setSeconds": number;
+        /**
+          * Set seconds
+         */
+        "setTimeReference": string;
+        /**
+          * Set today
+         */
+        "setToday": DateTime;
+        /**
+          * Set year
+         */
+        "setYear": any;
         /**
           * Show Hour Input
          */
@@ -1139,6 +1180,22 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
+        /**
+          * Set hour
+         */
+        "setHour": number;
+        /**
+          * Set minutes
+         */
+        "setMin": number;
+        /**
+          * Set seconds
+         */
+        "setSeconds": number;
+        /**
+          * Set seconds
+         */
+        "setTimeReference": string;
         /**
           * Show Hour Input
          */
@@ -2115,6 +2172,18 @@ declare namespace LocalJSX {
           * Set range size
          */
         "range"?: boolean;
+        /**
+          * Set month
+         */
+        "setMonth"?: any;
+        /**
+          * Set today
+         */
+        "setToday"?: DateTime;
+        /**
+          * Set year
+         */
+        "setYear"?: any;
     }
     interface IxDateTimeCard {
         /**
@@ -2135,6 +2204,34 @@ declare namespace LocalJSX {
           * Set range size
          */
         "range"?: boolean;
+        /**
+          * Set hour
+         */
+        "setHour"?: number;
+        /**
+          * Set minutes
+         */
+        "setMin"?: number;
+        /**
+          * Set month
+         */
+        "setMonth"?: any;
+        /**
+          * Set seconds
+         */
+        "setSeconds"?: number;
+        /**
+          * Set seconds
+         */
+        "setTimeReference"?: string;
+        /**
+          * Set today
+         */
+        "setToday"?: DateTime;
+        /**
+          * Set year
+         */
+        "setYear"?: any;
         /**
           * Show Hour Input
          */
@@ -3056,6 +3153,22 @@ declare namespace LocalJSX {
           * Time change event
          */
         "onTimeChange"?: (event: CustomEvent<string>) => void;
+        /**
+          * Set hour
+         */
+        "setHour"?: number;
+        /**
+          * Set minutes
+         */
+        "setMin"?: number;
+        /**
+          * Set seconds
+         */
+        "setSeconds"?: number;
+        /**
+          * Set seconds
+         */
+        "setTimeReference"?: string;
         /**
           * Show Hour Input
          */

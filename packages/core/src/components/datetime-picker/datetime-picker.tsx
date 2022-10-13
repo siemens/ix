@@ -8,6 +8,7 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import { DateTime } from 'luxon';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -40,6 +41,41 @@ export class DatePicker {
    */
   @Prop() showTimeReference = false;
 
+   /**
+   * Set year
+   */
+  @Prop() setYear = null;
+
+  /**
+   * Set month
+   */
+  @Prop() setMonth = null;
+
+  /**
+   * Set today
+   */
+  @Prop() setToday: DateTime = null;
+
+   /**
+   * Set hour
+   */
+  @Prop() setHour: number = 0
+
+  /**
+   * Set minutes
+   */
+  @Prop() setMin: number = 0
+
+    /**
+   * Set seconds
+   */
+  @Prop() setSeconds: number = 0
+
+  /**
+   * Set seconds
+   */
+  @Prop() setTimeReference: string = "AM"
+
   private date!: string;
   private time!: string;
 
@@ -62,6 +98,9 @@ export class DatePicker {
             individual={false}
             range={this.range}
             onDateChange={(date) => (this.date = date.detail)}
+            setYear={this.setYear}
+            setMonth={this.setMonth}
+            setToday={this.setToday}
           ></ix-date-picker>
           <ix-time-picker
             corners="right"
@@ -71,6 +110,10 @@ export class DatePicker {
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
             onTimeChange={(time) => (this.time = time.detail)}
+            setHour={this.setHour}
+            setMin={this.setMin}
+            setSeconds={this.setSeconds}
+            setTimeReference={this.setTimeReference}
           ></ix-time-picker>
         </div>
         <div class="done">

@@ -49,10 +49,27 @@ export class DatePicker {
   private daysInWeek = 7;
   private dayNames = Info.weekdays();
   private monthNames = Info.months();
+
+
+  /**
+   * Set year
+   */
+  @Prop() setYear = null;
+
+  /**
+   * Set month
+   */
+  @Prop() setMonth = null;
+
+  /**
+   * Set today
+   */
+  @Prop() setToday: DateTime = null;
+
   @State() year = DateTime.now().year;
-  @State() month = DateTime.now().month;
-  @State() calendar: [number, number[]][] = [];
   @State() today = DateTime.now();
+  @State() month: number = DateTime.now().month;
+  @State() calendar: [number, number[]][] = [];
 
   @State() years = [...Array(10).keys()].map(
     (year) => year + DateTime.now().year - 5
@@ -65,6 +82,21 @@ export class DatePicker {
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
+  private selectionProps( ) {
+    if(this.setYear  !== null){
+      this.year = this.setYear
+    }
+
+    if(this.setMonth  !== null){
+      this.month = this.setMonth
+    }
+
+    if(this.setToday  !== null){
+      this.today = this.setToday
+    }
+
+  }
+
   /**
    * Time change event
    */
@@ -76,6 +108,7 @@ export class DatePicker {
   @Event() done: EventEmitter<string>;
 
   private getStartOfMonth(
+
     year = DateTime.local().get('year'),
     month = DateTime.local().get('month')
   ) {
@@ -97,6 +130,7 @@ export class DatePicker {
   }
 
   private calculateCalendar() {
+    this.selectionProps();
     const start = this.getStartOfMonth(this.year, this.month);
     const end = this.getEndOfMonth(this.year, this.month);
     const totalDays = this.getDaysInMonth(start, end);
@@ -221,6 +255,7 @@ export class DatePicker {
     };
   }
 
+
   private selectDay(day: number) {
     const date = DateTime.local(this.year, this.month, day);
     const isNotDay = day === undefined;
@@ -254,6 +289,7 @@ export class DatePicker {
     if (this.range && isPeriod) {
       this.start = date;
       this.end = null;
+
     }
 
     this.dateChange.emit(this.getOutputFormat());
