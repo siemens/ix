@@ -37,8 +37,10 @@ export class DatePicker {
   render() {
     return (h(Host, null,
       h("div", { class: "flex" },
+        h("div", { class: "separator" }),
         h("ix-date-picker", { corners: "left", individual: false, range: this.range, onDateChange: (date) => (this.date = date.detail) }),
-        h("ix-time-picker", { corners: "right", individual: false, showHour: this.showHour, showMinutes: this.showMinutes, showSeconds: this.showSeconds, showTimeReference: this.showTimeReference, onTimeChange: (time) => (this.time = time.detail) })),
+        h("ix-time-picker", { corners: "right", individual: false, showHour: this.showHour, showMinutes: this.showMinutes, showSeconds: this.showSeconds, showTimeReference: this.showTimeReference, onTimeChange: (time) => (this.time = time.detail) }),
+        h("div", { class: "separator" })),
       h("div", { class: "done" },
         h("ix-button", { onClick: () => this.doneEvent() }, "Done"))));
   }

@@ -7,7 +7,7 @@ import { d as defineCustomElement$4 } from './icon.js';
 import { d as defineCustomElement$3 } from './icon-button.js';
 import { d as defineCustomElement$2 } from './time-picker.js';
 
-const datetimePickerCss = ".sc-ix-datetime-picker-h{background-color:var(--theme-menu--background);box-shadow:0 0 2px 0 var(--theme-input--border-color-bottom--disabled), 0 4px 8px 0 var(--theme-input--border-color-bottom--disabled), 0 12px 18px 0px var(--theme-input--border-color-bottom--disabled);border-radius:4px}.flex.sc-ix-datetime-picker{display:flex}.done.sc-ix-datetime-picker{display:flex;justify-content:flex-end;margin:0 1rem 1rem 0}";
+const datetimePickerCss = ".sc-ix-datetime-picker-h{background-color:var(--theme-menu--background);border-radius:4px}.flex.sc-ix-datetime-picker{display:flex;justify-content:center}.done.sc-ix-datetime-picker{display:flex;justify-content:flex-end;margin:0 1rem 1rem 0}.separator.sc-ix-datetime-picker{border:1px solid var(--theme-datepicker-separator--background);width:100%;margin-top:72px;height:1px}";
 
 const DatePicker = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
   constructor() {
@@ -40,7 +40,7 @@ const DatePicker = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
     this.done.emit(this.date + ' ' + this.time);
   }
   render() {
-    return (h(Host, null, h("div", { class: "flex" }, h("ix-date-picker", { corners: "left", individual: false, range: this.range, onDateChange: (date) => (this.date = date.detail) }), h("ix-time-picker", { corners: "right", individual: false, showHour: this.showHour, showMinutes: this.showMinutes, showSeconds: this.showSeconds, showTimeReference: this.showTimeReference, onTimeChange: (time) => (this.time = time.detail) })), h("div", { class: "done" }, h("ix-button", { onClick: () => this.doneEvent() }, "Done"))));
+    return (h(Host, null, h("div", { class: "flex" }, h("div", { class: "separator" }), h("ix-date-picker", { corners: "left", individual: false, range: this.range, onDateChange: (date) => (this.date = date.detail) }), h("ix-time-picker", { corners: "right", individual: false, showHour: this.showHour, showMinutes: this.showMinutes, showSeconds: this.showSeconds, showTimeReference: this.showTimeReference, onTimeChange: (time) => (this.time = time.detail) }), h("div", { class: "separator" })), h("div", { class: "done" }, h("ix-button", { onClick: () => this.doneEvent() }, "Done"))));
   }
   static get style() { return datetimePickerCss; }
 }, [2, "ix-datetime-picker", {

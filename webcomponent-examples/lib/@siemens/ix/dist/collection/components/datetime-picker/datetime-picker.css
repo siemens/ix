@@ -20,16 +20,23 @@
 /* Animation timings */
 :host {
   background-color: var(--theme-menu--background);
-  box-shadow: 0 0 2px 0 var(--theme-input--border-color-bottom--disabled), 0 4px 8px 0 var(--theme-input--border-color-bottom--disabled), 0 12px 18px 0px var(--theme-input--border-color-bottom--disabled);
   border-radius: 4px;
 }
 
 .flex {
   display: flex;
+  justify-content: center;
 }
 
 .done {
   display: flex;
   justify-content: flex-end;
   margin: 0 1rem 1rem 0;
+}
+
+.separator {
+  border: 1px solid var(--theme-datepicker-separator--background);
+  width: 100%;
+  margin-top: 72px;
+  height: 1px;
 }
