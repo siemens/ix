@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-df0400bf.js';
+import { r as registerInstance, h, H as Host } from './index-f8ce3cbe.js';
 
 const siemensLogoCss = ":host{display:inline-block}:host .logo>path{fill:var(--theme-app-header-logo--color)}";
 

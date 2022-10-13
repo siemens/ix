@@ -1,0 +1,1 @@
+import{r as o,h as r}from"./p-4bf8d44e.js";const s=class{constructor(r){o(this,r)}render(){return r("div",null)}};s.style=":host{display:block}";export{s as my_component}

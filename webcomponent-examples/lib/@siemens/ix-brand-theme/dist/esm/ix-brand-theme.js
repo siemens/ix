@@ -1,7 +1,7 @@
-import { p as promiseResolve, b as bootstrapLazy } from './index-df0400bf.js';
+import { p as promiseResolve, b as bootstrapLazy } from './index-f8ce3cbe.js';
 
 /*
- Stencil Client Patch Browser v2.18.0 | MIT Licensed | https://stenciljs.com
+ Stencil Client Patch Browser v2.18.1 | MIT Licensed | https://stenciljs.com
  */
 const patchBrowser = () => {
     const importMeta = import.meta.url;

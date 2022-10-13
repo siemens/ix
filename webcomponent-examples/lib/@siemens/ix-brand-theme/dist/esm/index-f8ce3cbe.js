@@ -1,31 +1,17 @@
 const NAMESPACE = 'ix-brand-theme';
 
+/**
+ * Virtual DOM patching algorithm based on Snabbdom by
+ * Simon Friis Vindum (@paldepind)
+ * Licensed under the MIT License
+ * https://github.com/snabbdom/snabbdom/blob/master/LICENSE
+ *
+ * Modified for Stencil's renderer and slot projection
+ */
 let scopeId;
 let hostTagName;
 let isSvgMode = false;
 let queuePending = false;
-const win = typeof window !== 'undefined' ? window : {};
-const doc = win.document || { head: {} };
-const plt = {
-    $flags$: 0,
-    $resourcesUrl$: '',
-    jmp: (h) => h(),
-    raf: (h) => requestAnimationFrame(h),
-    ael: (el, eventName, listener, opts) => el.addEventListener(eventName, listener, opts),
-    rel: (el, eventName, listener, opts) => el.removeEventListener(eventName, listener, opts),
-    ce: (eventName, opts) => new CustomEvent(eventName, opts),
-};
-const promiseResolve = (v) => Promise.resolve(v);
-const supportsConstructableStylesheets = /*@__PURE__*/ (() => {
-        try {
-            new CSSStyleSheet();
-            return typeof new CSSStyleSheet().replaceSync === 'function';
-        }
-        catch (e) { }
-        return false;
-    })()
-    ;
-const HYDRATED_CSS = '{visibility:hidden}.hydrated{visibility:inherit}';
 const createTime = (fnName, tagName = '') => {
     {
         return () => {
@@ -40,76 +26,7 @@ const uniqueTime = (key, measureText) => {
         };
     }
 };
-const rootAppliedStyles = /*@__PURE__*/ new WeakMap();
-const registerStyle = (scopeId, cssText, allowCS) => {
-    let style = styles.get(scopeId);
-    if (supportsConstructableStylesheets && allowCS) {
-        style = (style || new CSSStyleSheet());
-        if (typeof style === 'string') {
-            style = cssText;
-        }
-        else {
-            style.replaceSync(cssText);
-        }
-    }
-    else {
-        style = cssText;
-    }
-    styles.set(scopeId, style);
-};
-const addStyle = (styleContainerNode, cmpMeta, mode, hostElm) => {
-    let scopeId = getScopeId(cmpMeta);
-    const style = styles.get(scopeId);
-    // if an element is NOT connected then getRootNode() will return the wrong root node
-    // so the fallback is to always use the document for the root node in those cases
-    styleContainerNode = styleContainerNode.nodeType === 11 /* NODE_TYPE.DocumentFragment */ ? styleContainerNode : doc;
-    if (style) {
-        if (typeof style === 'string') {
-            styleContainerNode = styleContainerNode.head || styleContainerNode;
-            let appliedStyles = rootAppliedStyles.get(styleContainerNode);
-            let styleElm;
-            if (!appliedStyles) {
-                rootAppliedStyles.set(styleContainerNode, (appliedStyles = new Set()));
-            }
-            if (!appliedStyles.has(scopeId)) {
-                {
-                    {
-                        styleElm = doc.createElement('style');
-                        styleElm.innerHTML = style;
-                    }
-                    styleContainerNode.insertBefore(styleElm, styleContainerNode.querySelector('link'));
-                }
-                if (appliedStyles) {
-                    appliedStyles.add(scopeId);
-                }
-            }
-        }
-        else if (!styleContainerNode.adoptedStyleSheets.includes(style)) {
-            styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
-        }
-    }
-    return scopeId;
-};
-const attachStyles = (hostRef) => {
-    const cmpMeta = hostRef.$cmpMeta$;
-    const elm = hostRef.$hostElement$;
-    const flags = cmpMeta.$flags$;
-    const endAttachStyles = createTime('attachStyles', cmpMeta.$tagName$);
-    const scopeId = addStyle(elm.shadowRoot ? elm.shadowRoot : elm.getRootNode(), cmpMeta);
-    if (flags & 10 /* CMP_FLAGS.needsScopedEncapsulation */) {
-        // only required when we're NOT using native shadow dom (slot)
-        // or this browser doesn't support native shadow dom
-        // and this host element was NOT created with SSR
-        // let's pick out the inner content for slot projection
-        // create a node to represent where the original
-        // content was first placed, which is useful later on
-        // DOM WRITE!!
-        elm['s-sc'] = scopeId;
-        elm.classList.add(scopeId + '-h');
-    }
-    endAttachStyles();
-};
-const getScopeId = (cmp, mode) => 'sc-' + (cmp.$tagName$);
+const HYDRATED_CSS = '{visibility:hidden}.hydrated{visibility:inherit}';
 /**
  * Default style mode id
  */
@@ -203,6 +120,126 @@ const newVNode = (tag, text) => {
 };
 const Host = {};
 const isHost = (node) => node && node.$tag$ === Host;
+/**
+ * Parse a new property value for a given property type.
+ *
+ * While the prop value can reasonably be expected to be of `any` type as far as TypeScript's type checker is concerned,
+ * it is not safe to assume that the string returned by evaluating `typeof propValue` matches:
+ *   1. `any`, the type given to `propValue` in the function signature
+ *   2. the type stored from `propType`.
+ *
+ * This function provides the capability to parse/coerce a property's value to potentially any other JavaScript type.
+ *
+ * Property values represented in TSX preserve their type information. In the example below, the number 0 is passed to
+ * a component. This `propValue` will preserve its type information (`typeof propValue === 'number'`). Note that is
+ * based on the type of the value being passed in, not the type declared of the class member decorated with `@Prop`.
+ * ```tsx
+ * <my-cmp prop-val={0}></my-cmp>
+ * ```
+ *
+ * HTML prop values on the other hand, will always a string
+ *
+ * @param propValue the new value to coerce to some type
+ * @param propType the type of the prop, expressed as a binary number
+ * @returns the parsed/coerced value
+ */
+const parsePropertyValue = (propValue, propType) => {
+    // ensure this value is of the correct prop type
+    if (propValue != null && !isComplexType(propValue)) {
+        if (propType & 1 /* MEMBER_FLAGS.String */) {
+            // could have been passed as a number or boolean
+            // but we still want it as a string
+            return String(propValue);
+        }
+        // redundant return here for better minification
+        return propValue;
+    }
+    // not sure exactly what type we want
+    // so no need to change to a different type
+    return propValue;
+};
+/**
+ * Helper function to create & dispatch a custom Event on a provided target
+ * @param elm the target of the Event
+ * @param name the name to give the custom Event
+ * @param opts options for configuring a custom Event
+ * @returns the custom Event
+ */
+const emitEvent = (elm, name, opts) => {
+    const ev = plt.ce(name, opts);
+    elm.dispatchEvent(ev);
+    return ev;
+};
+const rootAppliedStyles = /*@__PURE__*/ new WeakMap();
+const registerStyle = (scopeId, cssText, allowCS) => {
+    let style = styles.get(scopeId);
+    if (supportsConstructableStylesheets && allowCS) {
+        style = (style || new CSSStyleSheet());
+        if (typeof style === 'string') {
+            style = cssText;
+        }
+        else {
+            style.replaceSync(cssText);
+        }
+    }
+    else {
+        style = cssText;
+    }
+    styles.set(scopeId, style);
+};
+const addStyle = (styleContainerNode, cmpMeta, mode, hostElm) => {
+    let scopeId = getScopeId(cmpMeta);
+    const style = styles.get(scopeId);
+    // if an element is NOT connected then getRootNode() will return the wrong root node
+    // so the fallback is to always use the document for the root node in those cases
+    styleContainerNode = styleContainerNode.nodeType === 11 /* NODE_TYPE.DocumentFragment */ ? styleContainerNode : doc;
+    if (style) {
+        if (typeof style === 'string') {
+            styleContainerNode = styleContainerNode.head || styleContainerNode;
+            let appliedStyles = rootAppliedStyles.get(styleContainerNode);
+            let styleElm;
+            if (!appliedStyles) {
+                rootAppliedStyles.set(styleContainerNode, (appliedStyles = new Set()));
+            }
+            if (!appliedStyles.has(scopeId)) {
+                {
+                    {
+                        styleElm = doc.createElement('style');
+                        styleElm.innerHTML = style;
+                    }
+                    styleContainerNode.insertBefore(styleElm, styleContainerNode.querySelector('link'));
+                }
+                if (appliedStyles) {
+                    appliedStyles.add(scopeId);
+                }
+            }
+        }
+        else if (!styleContainerNode.adoptedStyleSheets.includes(style)) {
+            styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
+        }
+    }
+    return scopeId;
+};
+const attachStyles = (hostRef) => {
+    const cmpMeta = hostRef.$cmpMeta$;
+    const elm = hostRef.$hostElement$;
+    const flags = cmpMeta.$flags$;
+    const endAttachStyles = createTime('attachStyles', cmpMeta.$tagName$);
+    const scopeId = addStyle(elm.shadowRoot ? elm.shadowRoot : elm.getRootNode(), cmpMeta);
+    if (flags & 10 /* CMP_FLAGS.needsScopedEncapsulation */) {
+        // only required when we're NOT using native shadow dom (slot)
+        // or this browser doesn't support native shadow dom
+        // and this host element was NOT created with SSR
+        // let's pick out the inner content for slot projection
+        // create a node to represent where the original
+        // content was first placed, which is useful later on
+        // DOM WRITE!!
+        elm['s-sc'] = scopeId;
+        elm.classList.add(scopeId + '-h');
+    }
+    endAttachStyles();
+};
+const getScopeId = (cmp, mode) => 'sc-' + (cmp.$tagName$);
 /**
  * Production setAccessor() function based on Preact by
  * Jason Miller (@developit)
@@ -640,18 +677,6 @@ const renderVdom = (hostRef, renderFnResults) => {
     // synchronous patch
     patch(oldVNode, rootVnode);
 };
-/**
- * Helper function to create & dispatch a custom Event on a provided target
- * @param elm the target of the Event
- * @param name the name to give the custom Event
- * @param opts options for configuring a custom Event
- * @returns the custom Event
- */
-const emitEvent = (elm, name, opts) => {
-    const ev = plt.ce(name, opts);
-    elm.dispatchEvent(ev);
-    return ev;
-};
 const attachToAncestor = (hostRef, ancestorComponent) => {
     if (ancestorComponent && !hostRef.$onRenderResolve$ && ancestorComponent['s-p']) {
         ancestorComponent['s-p'].push(new Promise((r) => (hostRef.$onRenderResolve$ = r)));
@@ -790,44 +815,6 @@ const then = (promise, thenFn) => {
 };
 const addHydratedFlag = (elm) => elm.classList.add('hydrated')
     ;
-/**
- * Parse a new property value for a given property type.
- *
- * While the prop value can reasonably be expected to be of `any` type as far as TypeScript's type checker is concerned,
- * it is not safe to assume that the string returned by evaluating `typeof propValue` matches:
- *   1. `any`, the type given to `propValue` in the function signature
- *   2. the type stored from `propType`.
- *
- * This function provides the capability to parse/coerce a property's value to potentially any other JavaScript type.
- *
- * Property values represented in TSX preserve their type information. In the example below, the number 0 is passed to
- * a component. This `propValue` will preserve its type information (`typeof propValue === 'number'`). Note that is
- * based on the type of the value being passed in, not the type declared of the class member decorated with `@Prop`.
- * ```tsx
- * <my-cmp prop-val={0}></my-cmp>
- * ```
- *
- * HTML prop values on the other hand, will always a string
- *
- * @param propValue the new value to coerce to some type
- * @param propType the type of the prop, expressed as a binary number
- * @returns the parsed/coerced value
- */
-const parsePropertyValue = (propValue, propType) => {
-    // ensure this value is of the correct prop type
-    if (propValue != null && !isComplexType(propValue)) {
-        if (propType & 1 /* MEMBER_FLAGS.String */) {
-            // could have been passed as a number or boolean
-            // but we still want it as a string
-            return String(propValue);
-        }
-        // redundant return here for better minification
-        return propValue;
-    }
-    // not sure exactly what type we want
-    // so no need to change to a different type
-    return propValue;
-};
 const getValue = (ref, propName) => getHostRef(ref).$instanceValues$.get(propName);
 const setValue = (ref, propName, newVal, cmpMeta) => {
     // check our new property value against our internal value
@@ -854,6 +841,16 @@ const setValue = (ref, propName, newVal, cmpMeta) => {
         }
     }
 };
+/**
+ * Attach a series of runtime constructs to a compiled Stencil component
+ * constructor, including getters and setters for the `@Prop` and `@State`
+ * decorators, callbacks for when attributes change, and so on.
+ *
+ * @param Cstr the constructor for a component that we need to process
+ * @param cmpMeta metadata collected previously about the component
+ * @param flags a number used to store a series of bit flags
+ * @returns a reference to the same constructor passed in (but now mutated)
+ */
 const proxyComponent = (Cstr, cmpMeta, flags) => {
     if (cmpMeta.$members$) {
         // It's better to have a const than two Object.entries()
@@ -1189,6 +1186,27 @@ const loadModule = (cmpMeta, hostRef, hmrVersionId) => {
     }, consoleError);
 };
 const styles = /*@__PURE__*/ new Map();
+const win = typeof window !== 'undefined' ? window : {};
+const doc = win.document || { head: {} };
+const plt = {
+    $flags$: 0,
+    $resourcesUrl$: '',
+    jmp: (h) => h(),
+    raf: (h) => requestAnimationFrame(h),
+    ael: (el, eventName, listener, opts) => el.addEventListener(eventName, listener, opts),
+    rel: (el, eventName, listener, opts) => el.removeEventListener(eventName, listener, opts),
+    ce: (eventName, opts) => new CustomEvent(eventName, opts),
+};
+const promiseResolve = (v) => Promise.resolve(v);
+const supportsConstructableStylesheets = /*@__PURE__*/ (() => {
+        try {
+            new CSSStyleSheet();
+            return typeof new CSSStyleSheet().replaceSync === 'function';
+        }
+        catch (e) { }
+        return false;
+    })()
+    ;
 const queueDomReads = [];
 const queueDomWrites = [];
 const queueTask = (queue, write) => (cb) => {
