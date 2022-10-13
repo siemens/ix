@@ -93,6 +93,7 @@ export class DatePicker {
     return (
       <Host>
         <div class="flex">
+        <div class="separator"></div>
           <ix-date-picker
             corners="left"
             individual={false}
@@ -102,6 +103,7 @@ export class DatePicker {
             setMonth={this.setMonth}
             setToday={this.setToday}
           ></ix-date-picker>
+
           <ix-time-picker
             corners="right"
             individual={false}
@@ -115,7 +117,9 @@ export class DatePicker {
             setSeconds={this.setSeconds}
             setTimeReference={this.setTimeReference}
           ></ix-time-picker>
+          <div class="separator"></div>
         </div>
+
         <div class="done">
           <ix-button onClick={() => this.doneEvent()}>Done</ix-button>
         </div>

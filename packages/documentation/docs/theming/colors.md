@@ -2,7 +2,8 @@ import Color from '@site/src/components/Color';
 
 # Colors
 
-To use one of the displayed colors. Take the `Custom property name ` and wrap it into the css `var`-function.
+All colors are provided as custom properties.
+To access them the `var()` CSS function can be called with the color's name:
 
 ```css
 .some-example {
@@ -10,6 +11,6 @@ To use one of the displayed colors. Take the `Custom property name ` and wrap it
 }
 ```
 
-## Color Table
+## Base colors
 
 <Color></Color>
