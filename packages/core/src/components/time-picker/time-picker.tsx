@@ -61,22 +61,22 @@ export class TimePicker {
   /**
    * Set hour
    */
-  @Prop() setHour: number = 0
+  @Prop() hour: number = 0
 
   /**
    * Set minutes
    */
-   @Prop() setMin: number = 0
+   @Prop() minutes: number = 0
 
    /**
    * Set seconds
    */
-  @Prop() setSeconds: number = 0
+  @Prop() seconds: number = 0
 
   /**
    * Set seconds
    */
-   @Prop() setTimeReference: string = "AM"
+   @Prop() timeReference: string = "AM"
 
   /**
    * Time event
@@ -173,7 +173,7 @@ export class TimePicker {
                 name="hours"
                 type="number"
                 placeholder="00"
-                value={this.setHour}
+                value={this.hour}
                 min="0"
                 disabled
                 max={this.showTimeReference === true ? 11 : 23}
@@ -208,7 +208,7 @@ export class TimePicker {
                 name="minutes"
                 type="number"
                 placeholder="00"
-                value={this.setMin}
+                value={this.minutes}
                 min="0"
                 max="59"
                 disabled
@@ -243,7 +243,7 @@ export class TimePicker {
                 name="seconds"
                 type="number"
                 placeholder="00"
-                value={this.setSeconds}
+                value={this.seconds}
                 disabled
                 min="0"
                 max="59"
@@ -278,7 +278,7 @@ export class TimePicker {
                 name="reference"
                 type="text"
                 ref={(ref) => (this.referenceInputRef = ref)}
-                value={this.setTimeReference}
+                value={this.timeReference}
                 disabled
                 class="text-align"
               ></input>

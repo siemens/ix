@@ -54,28 +54,23 @@ export class DatePicker {
   /**
    * Set year
    */
-  @Prop() setYear = null;
+  @Prop() year = null;
 
   /**
    * Set month
    */
-  @Prop() setMonth = null;
+  @Prop() month = null;
 
-  /**
-   * Set today
-   */
-  @Prop() setToday: DateTime = null;
-
-  @State() year = DateTime.now().year;
+  @State() yearValue = DateTime.now().year;
   @State() today = DateTime.now();
-  @State() month: number = DateTime.now().month;
+  @State() monthValue: number = DateTime.now().month;
   @State() calendar: [number, number[]][] = [];
 
   @State() years = [...Array(10).keys()].map(
     (year) => year + DateTime.now().year - 5
   );
-  @State() tempYear: number = this.year;
-  @State() tempMonth: number = this.month;
+  @State() tempYear: number = this.yearValue;
+  @State() tempMonth: number = this.monthValue;
   @State() start: DateTime = null;
   @State() end: DateTime = null;
 
@@ -83,18 +78,13 @@ export class DatePicker {
   @State() yearContainerRef: HTMLElement;
 
   private selectionProps( ) {
-    if(this.setYear  !== null){
-      this.year = this.setYear
+    if(this.year  !== null){
+      this.yearValue = this.year
     }
 
-    if(this.setMonth  !== null){
-      this.month = this.setMonth
+    if(this.month  !== null){
+      this.monthValue = this.month
     }
-
-    if(this.setToday  !== null){
-      this.today = this.setToday
-    }
-
   }
 
   /**
@@ -131,8 +121,8 @@ export class DatePicker {
 
   private calculateCalendar() {
     this.selectionProps();
-    const start = this.getStartOfMonth(this.year, this.month);
-    const end = this.getEndOfMonth(this.year, this.month);
+    const start = this.getStartOfMonth(this.yearValue, this.monthValue);
+    const end = this.getEndOfMonth(this.yearValue, this.monthValue);
     const totalDays = this.getDaysInMonth(start, end);
     const totalWeeks = 6;
     const totalDaysInWeeks = totalWeeks * this.daysInWeek;
@@ -167,7 +157,7 @@ export class DatePicker {
       const week = weekdays[index - 1];
       const firstWeekDay = week.find((day) => day !== undefined);
       const weekNumber = firstWeekDay
-        ? DateTime.local(this.year, this.month, weekdays[index - 1][0])
+        ? DateTime.local(this.yearValue, this.monthValue, weekdays[index - 1][0])
             .weekNumber
         : undefined;
       calendar.push([weekNumber, week]);
@@ -177,22 +167,22 @@ export class DatePicker {
   }
 
   private changeMonth(number) {
-    if (this.month + number < 1) {
-      this.year--;
-      this.month = 12;
-    } else if (this.month + number > 12) {
-      this.year++;
-      this.month = 1;
+    if (this.monthValue + number < 1) {
+      this.yearValue--;
+      this.monthValue = 12;
+    } else if (this.monthValue + number > 12) {
+      this.yearValue++;
+      this.monthValue = 1;
     } else {
-      this.month += number;
+      this.monthValue += number;
     }
 
     this.calculateCalendar();
   }
 
   private selectMonth(month: MonthNumbers) {
-    this.month = month;
-    this.year = this.tempYear;
+    this.monthValue = month;
+    this.yearValue = this.tempYear;
     this.tempMonth = month;
   }
 
@@ -233,7 +223,7 @@ export class DatePicker {
 
   private todayClass(day: number) {
     const today = DateTime.local();
-    const daaay = DateTime.local(this.year, this.month, day);
+    const daaay = DateTime.local(this.yearValue, this.monthValue, day);
     const isToday = Math.ceil(daaay.diff(today, 'days').days) === 0;
     return {
       'calendar-item': true,
@@ -257,7 +247,7 @@ export class DatePicker {
 
 
   private selectDay(day: number) {
-    const date = DateTime.local(this.year, this.month, day);
+    const date = DateTime.local(this.yearValue, this.monthValue, day);
     const isNotDay = day === undefined;
     const isFirstDay = this.start === null;
     const isLastDay = this.end === null;
@@ -323,7 +313,7 @@ export class DatePicker {
             <div class="selector">
               <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
                 <span class="fontSize capitalize">
-                  {this.monthNames[this.month - 1]} {this.year}
+                  {this.monthNames[this.monthValue - 1]} {this.yearValue}
                 </span>
               </ix-button>
               <ix-dropdown

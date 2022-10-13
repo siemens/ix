@@ -44,37 +44,32 @@ export class DatePicker {
    /**
    * Set year
    */
-  @Prop() setYear = null;
+  @Prop() year = null;
 
   /**
    * Set month
    */
-  @Prop() setMonth = null;
-
-  /**
-   * Set today
-   */
-  @Prop() setToday: DateTime = null;
+  @Prop() month = null;
 
    /**
    * Set hour
    */
-  @Prop() setHour: number = 0
+  @Prop() hour: number = 0
 
   /**
    * Set minutes
    */
-  @Prop() setMin: number = 0
+  @Prop() minutes: number = 0
 
     /**
    * Set seconds
    */
-  @Prop() setSeconds: number = 0
+  @Prop() seconds: number = 0
 
   /**
    * Set seconds
    */
-  @Prop() setTimeReference: string = "AM"
+  @Prop() timeReference: string = "AM"
 
   private date!: string;
   private time!: string;
@@ -99,9 +94,8 @@ export class DatePicker {
             individual={false}
             range={this.range}
             onDateChange={(date) => (this.date = date.detail)}
-            setYear={this.setYear}
-            setMonth={this.setMonth}
-            setToday={this.setToday}
+            year={this.year}
+            month={this.month}
           ></ix-date-picker>
 
           <ix-time-picker
@@ -112,10 +106,10 @@ export class DatePicker {
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
             onTimeChange={(time) => (this.time = time.detail)}
-            setHour={this.setHour}
-            setMin={this.setMin}
-            setSeconds={this.setSeconds}
-            setTimeReference={this.setTimeReference}
+            hour={this.hour}
+            minutes={this.minutes}
+            seconds={this.seconds}
+            timeReference={this.timeReference}
           ></ix-time-picker>
           <div class="separator"></div>
         </div>
