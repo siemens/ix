@@ -1,11 +1,20 @@
 {
   "name": "@siemens/ix-react",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/react"
+  },
   "version": "1.0.0",
   "description": "Siemens iX for React",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
+    "LICENSE",
+    "README.md",
     "dist"
   ],
   "scripts": {
