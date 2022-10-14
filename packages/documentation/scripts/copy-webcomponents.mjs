@@ -30,7 +30,7 @@ async function loadLib(libName, destPath) {
             : path.join(libDestPath, libName, file)
         );
       } catch (e) {
-        console.warn('Cannot copy resource', file);
+        console.warn('Cannot copy resource', file, e);
       }
     })
   );

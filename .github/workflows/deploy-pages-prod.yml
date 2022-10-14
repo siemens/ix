@@ -21,7 +21,7 @@ jobs:
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/build
         with:
-          filter: '\!documentation'
+          filter: '\!documentation --filter \!@siemens/html-test-app'
       - name: 'Download @siemens/ix-brand-theme'
         run: |
           rm .yarnrc
@@ -36,6 +36,7 @@ jobs:
 
       - name: 'Build documentation for PROD instance'
         run: |
+          yarn workspace @siemens/html-test-app run build
           yarn workspace documentation run build
 
       - name: 'Copy PROD documentation'

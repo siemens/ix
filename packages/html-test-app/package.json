@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "files": [
-    "dist",
-    "public"
+    "dist"
   ],
   "devDependencies": {
     "vite": "^3.1.0",
