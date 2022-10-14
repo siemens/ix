@@ -53,6 +53,7 @@ jobs:
           cp -R ./packages/documentation/build/. ./public
 
       - name: Deploy documentation to DEV instance
+        if: ${{ github.input.confirm_deployment == true }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

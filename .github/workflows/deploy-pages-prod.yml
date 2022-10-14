@@ -6,7 +6,7 @@ on:
       confirm_deployment:
         description: 'Please confirm PROD deployment'
         required: true
-        type: string
+        type: boolean
 
 jobs:
   deploy:
@@ -43,6 +43,7 @@ jobs:
           cp -R ./packages/documentation/build/. ./public
 
       - name: Deploy documentation to PROD instance
+        if: ${{ github.input.confirm_deployment == true }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
