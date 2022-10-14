@@ -26,16 +26,13 @@ jobs:
         run: |
           rm .yarnrc
           ROOT=$(pwd)
-          cd ./packages/html-test-app/src/public/additional-theme
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          curl --header "PRIVATE-TOKEN: ${{ secrets.READ_CSC_TOKEN }}" $(yarn info @siemens/ix-brand-theme dist.tarball | sed -n 2p) -o ix-brand-theme.tgz
-          tar zxvf ix-brand-theme.tgz
-          mv package ix-brand-theme
-          rm ix-brand-theme.tgz
-          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ix-brand-theme/package.json
-          rm ix-brand-theme/package.json-e
-          cp -R ./ix-brand-theme $ROOT/node_modules/@siemens
+          npm install @siemens/ix-brand-theme@^1.0.0 --no-save
+          rm .npmrc
+          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
+          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e
 
       - name: 'Build documentation for PROD instance'
         run: |
