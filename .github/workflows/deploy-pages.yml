@@ -56,7 +56,6 @@ jobs:
         if: ${{ github.event.inputs.confirm_deployment }}
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
+          personal_token: ${{ secrets.DEPLOY_DEV_PAGES_TOKEN }}
           external_repository: ${{ github.event.inputs.repo_url }}
           publish_dir: ./public
