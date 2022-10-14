@@ -41,7 +41,8 @@ jobs:
           rm .npmrc
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
-          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e
+          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
+          ls ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/
 
       - name: 'Build documentation for DEV instance'
         run: |
