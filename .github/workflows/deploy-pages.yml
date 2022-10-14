@@ -29,13 +29,18 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/build
+        with:
+          filter: '\!documentation'
       - name: 'Download @siemens/ix-brand-theme'
         run: |
           ROOT=$(pwd)
+          rm .yarnrc
           cd ./packages/html-test-app/src/public/additional-theme
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          curl --header "PRIVATE-TOKEN: ${{ secrets.READ_CSC_TOKEN }}" $(yarn info @siemens/ix-brand-theme dist.tarball | sed -n 2p) -o ix-brand-theme.tgz
+          TARBALL_DOWNLOAD=$(yarn info @siemens/ix-brand-theme dist.tarball | sed -n 2p)
+          echo $TARBALL_DOWNLOAD
+          curl --header "PRIVATE-TOKEN: ${{ secrets.READ_CSC_TOKEN }}" $TARBALL_DOWNLOAD -o ix-brand-theme.tgz
           tar zxvf ix-brand-theme.tgz
           mv package ix-brand-theme
           rm ix-brand-theme.tgz
