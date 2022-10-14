@@ -32,7 +32,7 @@ jobs:
           rm .npmrc
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
-          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e
+          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
 
       - name: 'Build documentation for PROD instance'
         run: |
@@ -43,7 +43,7 @@ jobs:
           cp -R ./packages/documentation/build/. ./public
 
       - name: Deploy documentation to PROD instance
-        if: ${{ github.input.confirm_deployment == true }}
+        if: ${{ github.event.inputs.confirm_deployment }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

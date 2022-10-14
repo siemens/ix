@@ -27,11 +27,6 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - name: 'Start deployment'
-        run: |
-          echo ${{ github.event.inputs.confirm_deployment }}
-          echo ${{ github.event.inputs.prefix }}
-          echo ${{ github.event.inputs.repo_url }}
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/build
         with:
@@ -57,11 +52,11 @@ jobs:
           mkdir -p ./public/dev
           cp -R ./packages/documentation/build/. ./public
 
-      # - name: Deploy documentation to DEV instance
-      #   if: ${{ github.event.inputs.confirm_deployment }}
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
-      #     external_repository: ${{ github.event.inputs.repo_url }}
-      #     publish_dir: ./public
+      - name: Deploy documentation to DEV instance
+        if: ${{ github.event.inputs.confirm_deployment }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
+          external_repository: ${{ github.event.inputs.repo_url }}
+          publish_dir: ./public
