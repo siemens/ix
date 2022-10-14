@@ -34,7 +34,7 @@ const customCss = [
   require.resolve('./src/css/search.css'),
 ];
 
-const baseUrl = process.env.BASE_URL ?? '/';
+const baseUrl = process.env.BASE_URL || '/';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {

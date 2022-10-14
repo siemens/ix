@@ -15,7 +15,7 @@ on:
       prefix:
         description: 'Documentation prefix'
         required: true
-        default: docs-instance
+        default: '/docs-instance/'
         type: string
 jobs:
   deploy:
