@@ -8,7 +8,7 @@ SPDX-License-Identifier: MIT
 
 > Siemens Industrial Experience (iX) monorepo
 
-![version](https://img.shields.io/badge/version-0.0.0-green.svg)
+![version](https://img.shields.io/badge/version-1.0.0-green.svg)
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
 ![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
