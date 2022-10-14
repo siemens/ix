@@ -27,6 +27,11 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
+      - name: 'Start deployment'
+        run: |
+          echo ${{ input.confirm_deployment }}
+          echo ${{ input.prefix }}
+          echo ${{ input.repo_url }}
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/build
         with:
@@ -42,22 +47,21 @@ jobs:
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
           rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
-          ls ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/
 
       - name: 'Build documentation for DEV instance'
         run: |
-          BASE_URL=${{ github.input.prefix }} yarn workspace documentation run build
+          BASE_URL=${{ input.prefix }} yarn workspace documentation run build
 
       - name: 'Copy DEV documentation'
         run: |
           mkdir -p ./public/dev
           cp -R ./packages/documentation/build/. ./public
 
-      - name: Deploy documentation to DEV instance
-        if: ${{ github.input.confirm_deployment == true }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
-          external_repository: ${{ github.input.repo_url }}
-          publish_dir: ./public
+      # - name: Deploy documentation to DEV instance
+      #   if: ${{ input.confirm_deployment }}
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     deploy_key: ${{ secrets.DEPLOY_PAGES_DL }}
+      #     external_repository: ${{ input.repo_url }}
+      #     publish_dir: ./public
