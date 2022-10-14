@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/build
+        with:
+          filter: '\!documentation'
+      - name: 'Install brand theme'
+        run: |
+          rm .yarnrc
+          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
+          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
+          npm install @siemens/ix-brand-theme --no-save
+          rm .npmrc
+          rm ./packages/documentation/static/.gitignore
+
+      - name: 'Build documentation'
+        run: |
+          yarn workspace documentation run build
+      - name: 'Copy documentation'
+        run: |
+          cp -R ./packages/documentation/build/. ./public
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: ix.siemens.io
