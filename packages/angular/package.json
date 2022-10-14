@@ -1,5 +1,16 @@
 {
   "name": "@siemens/ix-angular",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/angular"
+  },
+  "files": [
+    "LICENSE",
+    "README.md"
+  ],
   "version": "1.0.0",
   "description": "Siemens iX for Angular",
   "scripts": {
