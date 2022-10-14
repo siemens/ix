@@ -37,7 +37,7 @@ jobs:
           yarn workspace @siemens/ix-aggrid publish --access public
           yarn workspace @siemens/ix-echarts publish --access public
           cd packages/angular/dist
-          yarn publish --access public --tag beta
+          yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
