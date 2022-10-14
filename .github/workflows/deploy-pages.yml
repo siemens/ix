@@ -1,7 +1,22 @@
 name: Deploy to GitHub Pages
 
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_deployment:
+        description: 'Please confirm DEV deployment'
+        required: true
+        type: boolean
+      repo_url:
+        description: 'Documentation repository'
+        required: true
+        default: danielleroux/docs-instance
+        type: string
+      prefix:
+        description: 'Documentation prefix'
+        required: true
+        default: /docs-instance/
+        type: string
 jobs:
   deploy:
     name: Deploy to GitHub Pages
@@ -15,25 +30,33 @@ jobs:
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/build
         with:
-          filter: '\!documentation'
-      - name: 'Install brand theme'
+          filter: '\!documentation --filter \!@siemens/html-test-app'
+      - name: 'Download @siemens/ix-brand-theme'
         run: |
           rm .yarnrc
+          ROOT=$(pwd)
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          npm install @siemens/ix-brand-theme --no-save
+          npm install @siemens/ix-brand-theme@^1.0.0 --no-save
           rm .npmrc
-          rm ./packages/documentation/static/.gitignore
+          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
+          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
 
-      - name: 'Build documentation'
+      - name: 'Build documentation for DEV instance'
         run: |
-          yarn workspace documentation run build
-      - name: 'Copy documentation'
+          yarn workspace @siemens/html-test-app run build
+          BASE_URL=${{ github.event.inputs.prefix }} yarn workspace documentation run build
+
+      - name: 'Copy DEV documentation'
         run: |
+          mkdir -p ./public/dev
           cp -R ./packages/documentation/build/. ./public
-      - name: Deploy to GitHub Pages
+
+      - name: Deploy documentation to DEV instance
+        if: ${{ github.event.inputs.confirm_deployment }}
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.DEPLOY_DEV_PAGES_TOKEN }}
+          external_repository: ${{ github.event.inputs.repo_url }}
           publish_dir: ./public
-          cname: ix.siemens.io

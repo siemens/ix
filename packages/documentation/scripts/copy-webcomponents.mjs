@@ -11,17 +11,13 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 
 const __dirname = path.resolve();
-const libDestPath = path.join(
-  __dirname,
-  'static',
-  'webcomponent-examples',
-  'lib'
-);
+const examplePathPath = path.join(__dirname, 'static', 'webcomponent-examples');
+
+const libDestPath = path.join(examplePathPath, 'lib');
 
 const node_modules = path.join(__dirname, '../../', 'node_modules');
-const ix_brand_theme_path = path.join(node_modules, '@siemens/ix-brand-theme');
 
-async function loadLib(libName) {
+async function loadLib(libName, destPath) {
   const libPath = path.join(node_modules, libName);
   const pkg = JSON.parse(fsExtra.readFileSync(`${libPath}/package.json`));
   return Promise.all(
@@ -29,10 +25,12 @@ async function loadLib(libName) {
       try {
         await fsExtra.copy(
           `${libPath}/${file}`,
-          path.join(libDestPath, libName, file)
+          destPath
+            ? path.join(examplePathPath, file)
+            : path.join(libDestPath, libName, file)
         );
       } catch (e) {
-        console.warn('Cannot copy resource', file);
+        console.warn('Cannot copy resource', file, e);
       }
     })
   );
@@ -40,14 +38,6 @@ async function loadLib(libName) {
 
 (async () => {
   console.log('Start copy');
-  await Promise.all([
-    loadLib('@siemens/ix'),
-    loadLib('@siemens/ix-icons'),
-    loadLib('@siemens/ix-aggrid'),
-    fsExtra.pathExistsSync(ix_brand_theme_path)
-      ? loadLib('@siemens/ix-brand-theme')
-      : Promise.resolve(),
-    loadLib('@siemens/ix-echarts'),
-  ]);
+  await Promise.all([loadLib('@siemens/html-test-app', examplePathPath)]);
   console.log('Copy finished!');
 })();
