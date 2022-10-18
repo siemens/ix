@@ -38,10 +38,9 @@ export const IxTree = (
     ) => {
       const treeItem = document.createElement('ix-tree-item');
       treeItem.hasChildren = data.hasChildren;
-      console.log('renderContext', data.id, context[data.id]);
       treeItem.context = context[data.id];
+
       update((itemData, context) => {
-        console.log('update incomming!', itemData.id, context);
         treeItem.context = context[itemData.id];
         treeItem.hasChildren = itemData.hasChildren;
       });
