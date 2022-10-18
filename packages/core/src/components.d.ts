@@ -720,7 +720,6 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel": string;
-        "i18nImprintLabel": string;
         /**
           * Label of first tab
          */
@@ -2593,7 +2592,6 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
-        "i18nImprintLabel"?: string;
         /**
           * Label of first tab
          */

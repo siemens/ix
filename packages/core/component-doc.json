@@ -3856,9 +3856,9 @@
           "ix-icon-button"
         ],
         "ix-menu-about": [
+          "ix-tab-item",
           "ix-icon-button",
-          "ix-tabs",
-          "ix-tab-item"
+          "ix-tabs"
         ],
         "ix-icon-button": [
           "ix-icon"
@@ -4476,15 +4476,15 @@
         "ix-map-navigation"
       ],
       "dependencies": [
+        "ix-tab-item",
         "ix-icon-button",
-        "ix-tabs",
-        "ix-tab-item"
+        "ix-tabs"
       ],
       "dependencyGraph": {
         "ix-menu-about": [
+          "ix-tab-item",
           "ix-icon-button",
-          "ix-tabs",
-          "ix-tab-item"
+          "ix-tabs"
         ],
         "ix-icon-button": [
           "ix-icon"
@@ -4499,27 +4499,9 @@
           "type": "string",
           "mutable": true,
           "attr": "active-tab-label",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Active tab",
           "docsTags": [],
-          "default": "this.i18nImprintLabel",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "i18nImprintLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "i-1-8n-imprint-label",
-          "reflectToAttr": true,
-          "docs": "",
-          "docsTags": [],
-          "default": "'Imprint'",
           "values": [
             {
               "type": "string"
