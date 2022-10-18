@@ -141,9 +141,6 @@ function writeReactPreviews() {
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
 
-  console.log('REACT');
-  console.log(webComponentPreviews);
-
   const reactPreviewPath = path.join(
     __dirname,
     '../react-test-app/src/preview-examples'
