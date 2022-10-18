@@ -5,4 +5,4 @@
 |icon| Icon of toast | `icon` | `string` | `undefined` |
 |iconColor| Icon color of toast | `icon-color` | `string` | `undefined` |
 |toastTitle| Toast title | `toast-title` | `string` | `undefined` |
-|type| Toast type | `type` | `"error" ｜ "info" ｜ "success" ｜ "warning"` | `undefined` |
+|type| Toast type | `type` | `"error" ｜ "info" ｜ "success" ｜ "warning"` | `'info'` |
