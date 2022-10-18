@@ -105,7 +105,6 @@ export class IxTree implements OnDestroy {
       embeddedView.detectChanges();
 
       update((itemData, context) => {
-        console.log(context);
         treeItem.context = context[itemData.id];
         treeItem.hasChildren = itemData.hasChildren;
 

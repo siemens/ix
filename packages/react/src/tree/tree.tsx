@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { JSX, TreeContext } from '@siemens/ix';
+import type { JSX, TreeContext, UpdateCallback } from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createReactComponent } from '../react-component-lib';
@@ -33,22 +33,26 @@ export const IxTree = (
       _: number,
       data: any,
       __: any[],
-      context: TreeContext
-      // update: (callback: UpdateCallback) => void
+      context: TreeContext,
+      update: (callback: UpdateCallback) => void
     ) => {
       const treeItem = document.createElement('ix-tree-item');
       treeItem.hasChildren = data.hasChildren;
-      treeItem.context = context as any;
+      console.log('renderContext', data.id, context[data.id]);
+      treeItem.context = context[data.id];
+      update((itemData, context) => {
+        console.log('update incomming!', itemData.id, context);
+        treeItem.context = context[itemData.id];
+        treeItem.hasChildren = itemData.hasChildren;
+      });
 
       const container = document.createElement('DIV');
-
       const rootNode = ReactDOM.createRoot(container);
       if (props.renderItem) {
         rootNode.render(props.renderItem(data.data));
       }
 
       treeItem.appendChild(container);
-
       cachedRootNodes.current.set(treeItem, rootNode);
 
       return treeItem;
