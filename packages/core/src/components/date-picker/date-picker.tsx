@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -26,49 +26,47 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
   scoped: true,
 })
 export class DatePicker {
-  /**
-   * output date format
-   */
-  @Prop() format: string = 'yyyy/LL/dd';
-
-  /**
-   * Set range size
-   */
-  @Prop() range: boolean = true;
-
-  /**
-   * set styles
-   */
-  @Prop() individual: boolean = true;
-
-  /**
-   * Set corners style
-   */
-  @Prop() corners: DateTimeCardCorners = 'rounded';
-
   private daysInWeek = 7;
   private dayNames = Info.weekdays();
   private monthNames = Info.months();
 
+  /**
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   */
+  @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * Set year
+   * If true a range of dates can be selected.
    */
-  @Prop() year = null;
+  @Prop() range: boolean = true;
 
   /**
-   * Set month
+   * @deprecated - will get removed with next major release
    */
-  @Prop() month = null;
+  @Prop() individual: boolean = true;
 
-  @State() yearValue = DateTime.now().year;
+  /**
+   * Corner style
+   */
+  @Prop() corners: DateTimeCardCorners = 'rounded';
+
+  /**
+   * Year to display initially.
+   */
+  @Prop() year = DateTime.now().year;
+
+  /**
+   * Month to display initially.
+   */
+  @Prop() month = DateTime.now().month;
+
+  @State() yearValue = this.year;
   @State() today = DateTime.now();
-  @State() monthValue: number = DateTime.now().month;
+  @State() monthValue: number = this.month;
   @State() calendar: [number, number[]][] = [];
 
-  @State() years = [...Array(10).keys()].map(
-    (year) => year + DateTime.now().year - 5
-  );
+  @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
   @State() tempYear: number = this.yearValue;
   @State() tempMonth: number = this.monthValue;
   @State() start: DateTime = null;
@@ -77,28 +75,27 @@ export class DatePicker {
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
-  private selectionProps( ) {
-    if(this.year  !== null){
-      this.yearValue = this.year
-    }
-
-    if(this.month  !== null){
-      this.monthValue = this.month
-    }
-  }
-
   /**
-   * Time change event
+   * Date change event
    */
   @Event() dateChange: EventEmitter<string>;
 
   /**
-   * done event
+   * Done event
    */
   @Event() done: EventEmitter<string>;
 
-  private getStartOfMonth(
+  private selectionProps() {
+    if (this.year !== null) {
+      this.yearValue = this.year;
+    }
 
+    if (this.month !== null) {
+      this.monthValue = this.month;
+    }
+  }
+
+  private getStartOfMonth(
     year = DateTime.local().get('year'),
     month = DateTime.local().get('month')
   ) {
@@ -157,8 +154,11 @@ export class DatePicker {
       const week = weekdays[index - 1];
       const firstWeekDay = week.find((day) => day !== undefined);
       const weekNumber = firstWeekDay
-        ? DateTime.local(this.yearValue, this.monthValue, weekdays[index - 1][0])
-            .weekNumber
+        ? DateTime.local(
+            this.yearValue,
+            this.monthValue,
+            weekdays[index - 1][0]
+          ).weekNumber
         : undefined;
       calendar.push([weekNumber, week]);
     }
@@ -245,7 +245,6 @@ export class DatePicker {
     };
   }
 
-
   private selectDay(day: number) {
     const date = DateTime.local(this.yearValue, this.monthValue, day);
     const isNotDay = day === undefined;
@@ -279,7 +278,6 @@ export class DatePicker {
     if (this.range && isPeriod) {
       this.start = date;
       this.end = null;
-
     }
 
     this.dateChange.emit(this.getOutputFormat());

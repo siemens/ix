@@ -285,11 +285,11 @@ export class IxCounterPill {
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Time change event 
+   * Date change event 
    */
   dateChange: EventEmitter<CustomEvent<string>>;
   /**
-   * done event 
+   * Done event 
    */
   done: EventEmitter<CustomEvent<string>>;
 
@@ -297,13 +297,13 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['corners', 'format', 'individual', 'range']
+  inputs: ['corners', 'format', 'individual', 'month', 'range', 'year']
 })
 @Component({
   selector: 'ix-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['corners', 'format', 'individual', 'range']
+  inputs: ['corners', 'format', 'individual', 'month', 'range', 'year']
 })
 export class IxDatePicker {
   protected el: HTMLElement;
