@@ -78,6 +78,8 @@ import { Upload } from 'src/preview-examples/upload';
 import { Validation } from 'src/preview-examples/validation';
 import { VerticalTabs } from 'src/preview-examples/vertical-tabs';
 import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-avatar';
+import { Workflow } from 'src/preview-examples/workflow';
+import { WorkflowVertical } from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 const routes: Routes = [
@@ -249,6 +251,8 @@ const routes: Routes = [
       { path: 'vertical-tabs-with-avatar', component: VerticalTabsWithAvatar },
       { path: 'vertical-tabs', component: VerticalTabs },
       { path: 'validation', component: Validation },
+      { path: 'workflow', component: Workflow },
+      { path: 'workflow-vertical', component: WorkflowVertical },
     ],
   },
 ];

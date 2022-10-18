@@ -11,20 +11,19 @@ import React, { useEffect, useState } from 'react';
 import Anime from 'react-anime';
 import styles from './index.module.scss';
 
-
 function parallax(id: string, min: number, max: number, translateMax: number) {
   let counter = 0;
   var lastScrollTop = 0;
 
   function translateY(el: HTMLElement, value: string) {
-    el.setAttribute("style", `transform:translateY(${value})`)
+    el.setAttribute('style', `transform:translateY(${value})`);
   }
 
-  window.addEventListener("scroll", (event) => {
+  window.addEventListener('scroll', (event) => {
     var st = window.pageYOffset || document.documentElement.scrollTop;
-    const isMin = counter < 0
-    const isMax = counter > translateMax
-    const parent = document.getElementById(id)?.getBoundingClientRect()
+    const isMin = counter < 0;
+    const isMax = counter > translateMax;
+    const parent = document.getElementById(id)?.getBoundingClientRect();
 
     if (!parent) return;
 
@@ -37,35 +36,72 @@ function parallax(id: string, min: number, max: number, translateMax: number) {
       counter -= 0.5;
     }
     lastScrollTop = st <= 0 ? 0 : st;
-    translateY(document.getElementById(id), counter + "px");
-
-  })
+    translateY(document.getElementById(id), counter + 'px');
+  });
 }
-
 
 function Video() {
   return (
     <video className={styles.intro} muted autoPlay>
       <source src={useBaseUrl('/img/iX_Intro_clean.mp4')} type="video/mp4" />
     </video>
-  )
+  );
 }
 
-function Headline({ title, subtitle, description, dark = false, size = "h2", text = "light", noLine = false, description_width = "500px" }) {
-  const headlineSize = `headline_${size}`
+function Headline({
+  title,
+  subtitle,
+  description,
+  dark = false,
+  size = 'h2',
+  text = 'light',
+  noLine = false,
+  description_width = '500px',
+}) {
+  const headlineSize = `headline_${size}`;
   return (
     <>
-      <div className={clsx(styles.headline, styles[headlineSize], noLine ? styles.no_line : "")}>
-        <div className={clsx(styles.line, dark ? styles.dark : "", noLine ? styles.hidden : "")}></div>
+      <div
+        className={clsx(
+          styles.headline,
+          styles[headlineSize],
+          noLine ? styles.no_line : ''
+        )}
+      >
+        <div
+          className={clsx(
+            styles.line,
+            dark ? styles.dark : '',
+            noLine ? styles.hidden : ''
+          )}
+        ></div>
         <div className={clsx(styles.content)}>
-          <div className={dark || text === "dark" ? styles.text_dark : ""}>{title}</div>
-          <div className={clsx(styles.bold, dark || text === "dark" ? styles.text_dark : "")}>{subtitle}</div>
+          <div className={dark || text === 'dark' ? styles.text_dark : ''}>
+            {title}
+          </div>
+          <div
+            className={clsx(
+              styles.bold,
+              dark || text === 'dark' ? styles.text_dark : ''
+            )}
+          >
+            {subtitle}
+          </div>
         </div>
       </div>
 
-      <div className={clsx(styles.text_2, styles.description, dark || text === "dark" ? styles.text_dark : "")} style={{ width: description_width }}>{description}</div>
+      <div
+        className={clsx(
+          styles.text_2,
+          styles.description,
+          dark || text === 'dark' ? styles.text_dark : ''
+        )}
+        style={{ width: description_width }}
+      >
+        {description}
+      </div>
     </>
-  )
+  );
 }
 
 function Homepage() {
@@ -73,68 +109,142 @@ function Homepage() {
 
   useEffect(() => {
     const withBrandTheme = context.siteConfig.customFields.withBrandTheme;
-    document.body.className = withBrandTheme ? 'theme-brand-dark' : 'theme-classic-dark';
+    document.body.className = withBrandTheme
+      ? 'theme-brand-dark'
+      : 'theme-classic-dark';
   }, [context]);
 
   return (
     <div className={clsx(styles.container, styles.industrial_experiance)}>
       <div className={styles.content}>
         <Headline
-          size='h1'
+          size="h1"
           title="Siemens"
           subtitle="Industrial Experience"
           description="iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
           noLine
-          description_width='340px'
+          description_width="340px"
         ></Headline>
 
         <div className={styles.Card_Box}>
           <div className={styles.Card_Info}>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Open-source community contributions welcome
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Web-based system requiring no installation
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Shape your own corporate design with theming
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Designed for complex UI and Data Analytics
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Delivered as framework agnostic
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Timeless visual design with intuitive UX
             </div>
             <div className={styles.Card_Line}>
-              <i className={clsx('glyph glyph-' + 'single-check', styles.Card_Icon)}></i>
+              <i
+                className={clsx(
+                  'glyph glyph-' + 'single-check',
+                  styles.Card_Icon
+                )}
+              ></i>
               Built by Siemens UX/UI experts
             </div>
           </div>
         </div>
 
-        <a href="#getting-started" className={clsx('glyph glyph-' + 'chevron-down', styles.scroll_down, 'animate__animated animate__shakeY')}></a>
+        <a
+          href="#getting-started"
+          className={clsx(
+            'glyph glyph-' + 'chevron-down',
+            styles.scroll_down,
+            'animate__animated animate__shakeY'
+          )}
+        ></a>
       </div>
     </div>
   );
 }
 
-function Button(props: { icon: string; label: string; style: string; link: string }) {
-
+function Button(props: {
+  icon: string;
+  label: string;
+  style: string;
+  link: string;
+}) {
   return (
-    <a href={props.link} className={clsx(styles.Button, props.style === "primary" ? styles.Primary : "", props.style === "secondary" ? styles.Secondary : "", props.style === "grey" ? styles.Grey : "", props.icon === '' ? styles.Justify : "")}>
-      <div className={clsx(styles.IconDiv, props.icon === '' ? styles.hidden : "")}>
-        <i className={clsx('glyph glyph-' + props.icon, styles.Icon, props.style === "primary" ? styles.Primary : "", props.style === "secondary" ? styles.Secondary : "", props.style === "grey" ? styles.Grey : "")}></i>
+    <a
+      href={props.link}
+      className={clsx(
+        styles.Button,
+        props.style === 'primary' ? styles.Primary : '',
+        props.style === 'secondary' ? styles.Secondary : '',
+        props.style === 'grey' ? styles.Grey : '',
+        props.icon === '' ? styles.Justify : ''
+      )}
+    >
+      <div
+        className={clsx(styles.IconDiv, props.icon === '' ? styles.hidden : '')}
+      >
+        <i
+          className={clsx(
+            'glyph glyph-' + props.icon,
+            styles.Icon,
+            props.style === 'primary' ? styles.Primary : '',
+            props.style === 'secondary' ? styles.Secondary : '',
+            props.style === 'grey' ? styles.Grey : ''
+          )}
+        ></i>
       </div>
-      <div className={clsx(styles.Label, props.style === "primary" ? styles.Primary : "", props.style === "secondary" ? styles.Secondary : "", props.style === "grey" ? styles.Grey : "")}>
+      <div
+        className={clsx(
+          styles.Label,
+          props.style === 'primary' ? styles.Primary : '',
+          props.style === 'secondary' ? styles.Secondary : '',
+          props.style === 'grey' ? styles.Grey : ''
+        )}
+      >
         {props.label}
       </div>
     </a>
@@ -143,11 +253,39 @@ function Button(props: { icon: string; label: string; style: string; link: strin
 
 function CallToActions() {
   return (
-    <div id="getting-started" className={clsx(styles.container, styles.call_to_actions)}>
-      <img src={useBaseUrl('/img/Screen_02_background_image.png')} alt="" className={styles.call_to_actions_background}></img>
-      <Button link={useBaseUrl('/docs/getting-started-for-designers')} icon='arrow-right' label='iX for Designers' style="primary" />
-      <Button link={useBaseUrl('/docs/getting-started')} icon='arrow-right' label='iX for Developers' style="secondary" />
-      <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
+    <div
+      id="getting-started"
+      className={clsx(styles.container, styles.call_to_actions)}
+    >
+      <img
+        src={useBaseUrl('/img/Screen_02_background_image.png')}
+        alt=""
+        className={styles.call_to_actions_background}
+      ></img>
+      <Button
+        link={useBaseUrl('/docs/getting-started-for-designers')}
+        icon="arrow-right"
+        label="iX for Designers"
+        style="primary"
+      />
+      <Button
+        link={useBaseUrl('/docs/getting-started')}
+        icon="arrow-right"
+        label="iX for Developers"
+        style="secondary"
+      />
+      <Button
+        link={useBaseUrl('/docs/team')}
+        icon="user-management-filled"
+        label="Meet the Team"
+        style="grey"
+      />
+      <Button
+        link={'https://github.com/siemens/ix/discussions'}
+        icon="user-management-filled"
+        label="iX Community"
+        style="grey"
+      />
     </div>
   );
 }
@@ -156,7 +294,11 @@ function Devices() {
   return (
     <div className={clsx(styles.container, styles.devices)}>
       <div className={styles.content}>
-        <img src={useBaseUrl('/img/220804_Keyvisual_Freisteller.png')} alt="" className={styles.image}></img>
+        <img
+          src={useBaseUrl('/img/220804_Keyvisual_Freisteller.png')}
+          alt=""
+          className={styles.image}
+        ></img>
 
         <Headline
           title="Industrial Experience"
@@ -169,8 +311,8 @@ function Devices() {
 }
 
 function UX() {
-  parallax("SketchShadow", 170, 550, 20)
-  parallax("FigmaShadow", 170, 550, 20)
+  parallax('SketchShadow', 170, 550, 20);
+  parallax('FigmaShadow', 170, 550, 20);
 
   return (
     <div className={clsx(styles.container, styles.ux)}>
@@ -184,25 +326,43 @@ function UX() {
 
         <div className={styles.images}>
           <div className={styles.image}>
-            <img src={useBaseUrl('/img/sketch-seeklogo.com.png')} alt="" className={styles.main} />
-            <img id="SketchShadow" src={useBaseUrl('/img/Screen_04_Image_01.svg')} alt="" className={styles.shadow} />
+            <img
+              src={useBaseUrl('/img/sketch-seeklogo.com.png')}
+              alt=""
+              className={styles.main}
+            />
+            <img
+              id="SketchShadow"
+              src={useBaseUrl('/img/Screen_04_Image_01.svg')}
+              alt=""
+              className={styles.shadow}
+            />
             <div className={clsx(styles.text_dark, styles.names)}>Sketch</div>
           </div>
           <div className={styles.image}>
-            <img src={useBaseUrl('/img/Gruppe 2986.png')} alt="" className={styles.main} />
-            <img id="FigmaShadow" src={useBaseUrl('/img/Screen_04_Image_02.svg')} alt="" className={styles.shadow} />
+            <img
+              src={useBaseUrl('/img/Gruppe 2986.png')}
+              alt=""
+              className={styles.main}
+            />
+            <img
+              id="FigmaShadow"
+              src={useBaseUrl('/img/Screen_04_Image_02.svg')}
+              alt=""
+              className={styles.shadow}
+            />
             <div className={clsx(styles.text_dark, styles.names)}>Figma</div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Developers() {
-  parallax("AngularLogoShadow", 170, 550, 20)
-  parallax("WebcomponentLogoShadow", 170, 550, 20)
-  parallax("ReactLogoShadow", 170, 550, 20)
+  parallax('AngularLogoShadow', 170, 550, 20);
+  parallax('WebcomponentLogoShadow', 170, 550, 20);
+  parallax('ReactLogoShadow', 170, 550, 20);
 
   return (
     <div id="developers" className={clsx(styles.container, styles.developers)}>
@@ -216,40 +376,92 @@ function Developers() {
 
         <div className={styles.images}>
           <div className={styles.image}>
-            <img src={useBaseUrl('/img/web tecnology/4691504_angular_icon_dark.png')} className={styles.image_main} alt="" />
-            <img id="AngularLogoShadow" src={useBaseUrl('/img/web tecnology/4691504_angular_icon.png')} className={styles.image_shadow} alt="" />
+            <img
+              src={useBaseUrl(
+                '/img/web tecnology/4691504_angular_icon_dark.png'
+              )}
+              className={styles.image_main}
+              alt=""
+            />
+            <img
+              id="AngularLogoShadow"
+              src={useBaseUrl('/img/web tecnology/4691504_angular_icon.png')}
+              className={styles.image_shadow}
+              alt=""
+            />
             <div className={clsx(styles.text_dark, styles.names)}>Angular</div>
           </div>
           <div className={styles.image}>
-            <img src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png')} className={styles.image_main} alt="" />
-            <img id="WebcomponentLogoShadow" src={useBaseUrl('/img/web tecnology/4691425_dot_org_webcomponents_icon.png')} className={styles.image_shadow} alt="" />
-            <div className={clsx(styles.text_dark, styles.names)}>Web Components</div>
+            <img
+              src={useBaseUrl(
+                '/img/web tecnology/4691425_dot_org_webcomponents_icon_dark.png'
+              )}
+              className={styles.image_main}
+              alt=""
+            />
+            <img
+              id="WebcomponentLogoShadow"
+              src={useBaseUrl(
+                '/img/web tecnology/4691425_dot_org_webcomponents_icon.png'
+              )}
+              className={styles.image_shadow}
+              alt=""
+            />
+            <div className={clsx(styles.text_dark, styles.names)}>
+              Web Components
+            </div>
           </div>
           <div className={styles.image}>
-            <img src={useBaseUrl('/img/web tecnology/4691292_react native_react_icon_dark.png')} className={styles.image_main} alt="" />
-            <img id="ReactLogoShadow" src={useBaseUrl('/img/web tecnology/4691292_react native_react_icon.png')} className={styles.image_shadow} alt="" />
+            <img
+              src={useBaseUrl(
+                '/img/web tecnology/4691292_react native_react_icon_dark.png'
+              )}
+              className={styles.image_main}
+              alt=""
+            />
+            <img
+              id="ReactLogoShadow"
+              src={useBaseUrl(
+                '/img/web tecnology/4691292_react native_react_icon.png'
+              )}
+              className={styles.image_shadow}
+              alt=""
+            />
             <div className={clsx(styles.text_dark, styles.names)}>React</div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Icons() {
   const icons = [
-    ["y-axis-settings", "xls-document", "version-history", "validate", "upload-success", "trend"],
-    ["tree", "touch", "support", "spatial", "radarchart", "open-external"],
-    ["map", "maintenance", "hourglass", "hierarchy", "configuration", "calendar-settings"],
-    ["attach", "controller-device", "tag", "success", "sound-loud", "rocket"]
-  ]
+    [
+      'y-axis-settings',
+      'xls-document',
+      'version-history',
+      'validate',
+      'upload-success',
+      'trend',
+    ],
+    ['tree', 'touch', 'support', 'spatial', 'radarchart', 'open-external'],
+    [
+      'map',
+      'maintenance',
+      'hourglass',
+      'hierarchy',
+      'configuration',
+      'calendar-settings',
+    ],
+    ['attach', 'controller-device', 'tag', 'success', 'sound-loud', 'rocket'],
+  ];
 
   for (let i = 0; i < icons.length; i++) {
     for (let j = 0; j < icons[i].length; j++) {
-      parallax(icons[i][j], 70, 650, 40)
+      parallax(icons[i][j], 70, 650, 40);
     }
   }
-
 
   return (
     <div className={clsx(styles.container, styles.icons)}>
@@ -258,7 +470,7 @@ function Icons() {
           title="Industrial icon system"
           subtitle="500+ icons"
           description="Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG"
-          description_width='538px'
+          description_width="538px"
         ></Headline>
 
         <div>
@@ -267,10 +479,17 @@ function Icons() {
               <div className={styles.row} key={index}>
                 {iconLine.map((icon, iKey) => (
                   <div key={iKey + icon}>
-                    <i className={clsx('glyph glyph-' + icon, styles.icon_main)}></i>
-                    <i id={icon} className={clsx('glyph glyph-' + icon, styles.icon_shadow)}></i>
+                    <i
+                      className={clsx('glyph glyph-' + icon, styles.icon_main)}
+                    ></i>
+                    <i
+                      id={icon}
+                      className={clsx(
+                        'glyph glyph-' + icon,
+                        styles.icon_shadow
+                      )}
+                    ></i>
                   </div>
-
                 ))}
               </div>
             ))}
@@ -278,7 +497,7 @@ function Icons() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function BrandDesign() {
@@ -286,17 +505,21 @@ function BrandDesign() {
   let [step, setStep] = useState(1);
 
   function click(increment: number) {
-    let nextStep = step + increment
+    let nextStep = step + increment;
 
-    if (nextStep > totalSteps) return setStep(totalSteps)
-    if (nextStep < 1) return setStep(1)
+    if (nextStep > totalSteps) return setStep(totalSteps);
+    if (nextStep < 1) return setStep(1);
 
-    setStep(nextStep)
+    setStep(nextStep);
   }
 
   return (
     <div className={styles.brand_desgin_background_color}>
-      <img src={useBaseUrl('/img/Screen_07_background_image.png')} alt="" className={styles.brand_desgin_background_image}></img>
+      <img
+        src={useBaseUrl('/img/Screen_07_background_image.png')}
+        alt=""
+        className={styles.brand_desgin_background_image}
+      ></img>
       <div className={clsx(styles.container, styles.brand_design)}>
         <div className={styles.content}>
           <Headline
@@ -306,22 +529,43 @@ function BrandDesign() {
           ></Headline>
 
           <div className={styles.row}>
-            <i className={clsx('glyph glyph-chevron-left', styles.arrow)} onClick={() => click(-1)}></i>
-            <img src={useBaseUrl('/img/Screen_07_Macbook_01.png')} alt="" className={(step !== 1 ? styles.hidden : "")} />
-            <img src={useBaseUrl('/img/Screen_07_Macbook_02.png')} alt="" className={(step !== 2 ? styles.hidden : "")} />
-            <i className={clsx('glyph glyph-chevron-right', styles.arrow)} onClick={() => click(1)}></i>
+            <i
+              className={clsx('glyph glyph-chevron-left', styles.arrow)}
+              onClick={() => click(-1)}
+            ></i>
+            <img
+              src={useBaseUrl('/img/Screen_07_Macbook_01.png')}
+              alt=""
+              className={step !== 1 ? styles.hidden : ''}
+            />
+            <img
+              src={useBaseUrl('/img/Screen_07_Macbook_02.png')}
+              alt=""
+              className={step !== 2 ? styles.hidden : ''}
+            />
+            <i
+              className={clsx('glyph glyph-chevron-right', styles.arrow)}
+              onClick={() => click(1)}
+            ></i>
           </div>
 
           <div className={styles.carousel_indicators}>
-            {Array.from(Array(totalSteps), (_, index) => index + 1).map((value, index) => (
-              <span key={index} className={clsx(styles.circle, (step === (index + 1) ? styles.selected : ""))}></span>
-            ))}
+            {Array.from(Array(totalSteps), (_, index) => index + 1).map(
+              (value, index) => (
+                <span
+                  key={index}
+                  className={clsx(
+                    styles.circle,
+                    step === index + 1 ? styles.selected : ''
+                  )}
+                ></span>
+              )
+            )}
           </div>
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
 function Components() {
@@ -340,25 +584,36 @@ function Components() {
         </video>
       </div>
     </div>
-  )
+  );
 }
 
 function InformationCards() {
   const icons = [
-    ["maintenance-documents", "bulb", "tree"],
-    ["screen", "diamond", "user-management"]
-  ]
+    ['maintenance-documents', 'bulb', 'tree'],
+    ['screen', 'diamond', 'user-management'],
+  ];
 
   const phrases = [
-    ["Open-Source-Contribution by community welcome", "Build your own Corporate Design by theming", "Designed for complex User Interface and Data Analytics"],
-    ["Delivered as framework agnostic", "Intuitive User Experience and timeless Visual Design", "Build by Siemens UX/UI experts"]
-  ]
-
+    [
+      'Open-Source-Contribution by community welcome',
+      'Build your own Corporate Design by theming',
+      'Designed for complex User Interface and Data Analytics',
+    ],
+    [
+      'Delivered as framework agnostic',
+      'Intuitive User Experience and timeless Visual Design',
+      'Build by Siemens UX/UI experts',
+    ],
+  ];
 
   return (
     <div>
       <div className={clsx(styles.container, styles.information_cards)}>
-        <img src={useBaseUrl('/img/Screen_09_background_image.png')} alt="" className={styles.information_cards_background}></img>
+        <img
+          src={useBaseUrl('/img/Screen_09_background_image.png')}
+          alt=""
+          className={styles.information_cards_background}
+        ></img>
         <div className={styles.content}>
           <div className={clsx(styles.column)}>
             {icons.map((cardLine, index) => (
@@ -366,7 +621,12 @@ function InformationCards() {
                 {cardLine.map((icon, iKey) => (
                   <div className={clsx(styles.card)} key={iKey}>
                     <div className={styles.icon_gap}>
-                      <i className={clsx('glyph glyph-' + "bulb-filled", icon !== "bulb" ? styles.hidden : "")}></i>
+                      <i
+                        className={clsx(
+                          'glyph glyph-' + 'bulb-filled',
+                          icon !== 'bulb' ? styles.hidden : ''
+                        )}
+                      ></i>
                       <i className={clsx('glyph glyph-' + icon)}></i>
                     </div>
 
@@ -379,34 +639,43 @@ function InformationCards() {
             ))}
           </div>
         </div>
-      </div >
+      </div>
     </div>
-
-  )
+  );
 }
 
 function FooterButtons() {
   return (
     <div className={clsx(styles.container, styles.footer_buttons)}>
-      <Button link={useBaseUrl('/docs/getting-started-for-designers')} icon='' label='Start iX now' style="primary" />
-      <Button link={useBaseUrl('/docs/team')} icon='user-management-filled' label='Meet the Team' style="grey" />
+      <Button
+        link={useBaseUrl('/docs/getting-started-for-designers')}
+        icon=""
+        label="Start iX now"
+        style="primary"
+      />
+      <Button
+        link={useBaseUrl('/docs/team')}
+        icon="user-management-filled"
+        label="Meet the Team"
+        style="grey"
+      />
     </div>
-  )
+  );
 }
-
 
 export default function Home() {
   // const { siteConfig } = useDocusaurusContext();
   return (
     <BrowserOnly>
-      {() =>
+      {() => (
         <>
           <Video />
           <Anime
-            easing='easeInOutExpo'
-            delay='1500'
-            duration='1500'
-            opacity={[0, 1]}>
+            easing="easeInOutExpo"
+            delay="1500"
+            duration="1500"
+            opacity={[0, 1]}
+          >
             <Layout>
               <Homepage />
               <CallToActions />
@@ -421,7 +690,7 @@ export default function Home() {
             </Layout>
           </Anime>
         </>
-      }
+      )}
     </BrowserOnly>
   );
 }
