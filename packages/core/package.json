@@ -1,5 +1,12 @@
 {
   "name": "@siemens/ix",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/core"
+  },
   "version": "1.0.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
@@ -12,6 +19,8 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/siemens-ix/siemens-ix.esm.js",
   "files": [
+    "LICENSE",
+    "README.md",
     "dist/",
     "loader/",
     "src/**/*.md",
