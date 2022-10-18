@@ -71,6 +71,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'siemens-ix, ix, stenciljs, angular, webcomponent, react',
+        },
+        {
+          name: 'description',
+          content:
+            'Siemens iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+        },
+      ],
       colorMode: {
         disableSwitch: true,
       },
