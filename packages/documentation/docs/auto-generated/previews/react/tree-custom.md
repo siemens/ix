@@ -15,8 +15,8 @@ SPDX-License-Identifier: MIT
  * LICENSE file in the root directory of this source tree.
  */
 
-import { TreeModel } from '@siemens/ix';
-import { IxIcon, IxTree } from '@siemens/ix-react';
+import { TreeContext, TreeModel } from '@siemens/ix';
+import { IxButton, IxIcon, IxTree } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
 type TreeData = {
@@ -25,6 +25,7 @@ type TreeData = {
 };
 
 export const TreeCustom: React.FC = () => {
+  const [context, setContext] = useState<TreeContext>();
   const [model] = useState<TreeModel<TreeData>>({
     root: {
       id: 'root',
@@ -63,6 +64,20 @@ export const TreeCustom: React.FC = () => {
       children: [],
     },
   });
+
+  function expandAndSelect() {
+    setContext({
+      sample: {
+        isExpanded: true,
+        isSelected: false,
+      },
+      'sample-child-2': {
+        isSelected: true,
+        isExpanded: false,
+      },
+    });
+  }
+
   return (
     <div
       style={{
@@ -72,9 +87,20 @@ export const TreeCustom: React.FC = () => {
         height: '40rem',
       }}
     >
+      <IxButton
+        onClick={expandAndSelect}
+        ghost
+        style={{ marginBottom: '2rem' }}
+      >
+        Expand Tree
+      </IxButton>
       <IxTree
         root="root"
         model={model}
+        context={context}
+        onContextChange={({ detail }) => {
+          setContext(detail);
+        }}
         renderItem={(data: TreeData) => (
           <div className="d-flex align-items-center">
             <IxIcon name={data.icon} size="16" className="me-2" /> {data.name}
