@@ -22,34 +22,34 @@ export class DatePicker {
   @Prop() range = true;
 
   /**
-   * Show Hour Input
+   * Show hour input
    */
   @Prop() showHour = false;
 
   /**
-   * Show Minutes Input
+   * Show minutes input
    */
   @Prop() showMinutes = false;
 
   /**
-   * Show Seconds Input
+   * Show seconds input
    */
   @Prop() showSeconds = false;
 
   /**
-   * Show Time Reference Input
+   * Show time reference input
    */
   @Prop() showTimeReference = false;
 
    /**
    * Set year
    */
-  @Prop() year = null;
+  @Prop() year = DateTime.now().year;
 
   /**
    * Set month
    */
-  @Prop() month = null;
+  @Prop() month = DateTime.now().month;
 
    /**
    * Set hour
