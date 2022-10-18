@@ -132,6 +132,9 @@ export const config: Config = {
     {
       components: ['ix-upload'],
     },
+    {
+      components: ['ix-workflow-step', 'ix-workflow-steps'],
+    },
   ],
   extras: {
     appendChildSlotFix: true,
