@@ -346,13 +346,13 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+  inputs: ['hour', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+  inputs: ['hour', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
 })
 export class IxDatetimePicker {
   protected el: HTMLElement;
@@ -1404,13 +1404,13 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+  inputs: ['corners', 'hour', 'individual', 'minutes', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference']
 })
 @Component({
   selector: 'ix-time-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['corners', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference']
+  inputs: ['corners', 'hour', 'individual', 'minutes', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference']
 })
 export class IxTimePicker {
   protected el: HTMLElement;

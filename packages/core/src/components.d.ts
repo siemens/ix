@@ -250,29 +250,29 @@ export namespace Components {
     }
     interface IxDatePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners": DateTimeCardCorners;
         /**
-          * output date format
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format": string;
         /**
-          * set styles
+          * @deprecated - will get removed with next major release
          */
         "individual": boolean;
         /**
-          * Set month
+          * Month to display initially.
          */
-        "month": any;
+        "month": 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
         /**
-          * Set range size
+          * If true a range of dates can be selected.
          */
         "range": boolean;
         /**
-          * Set year
+          * Year to display initially.
          */
-        "year": any;
+        "year": number;
     }
     interface IxDateTimeCard {
         /**
@@ -296,7 +296,7 @@ export namespace Components {
         /**
           * Set month
          */
-        "month": any;
+        "month": 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
         /**
           * Set range size
          */
@@ -306,19 +306,19 @@ export namespace Components {
          */
         "seconds": number;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour": boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes": boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds": boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
          */
         "showTimeReference": boolean;
         /**
@@ -328,7 +328,7 @@ export namespace Components {
         /**
           * Set year
          */
-        "year": any;
+        "year": number;
     }
     interface IxDrawer {
         /**
@@ -1164,7 +1164,7 @@ export namespace Components {
     }
     interface IxTimePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners": DateTimeCardCorners;
         /**
@@ -1172,7 +1172,7 @@ export namespace Components {
          */
         "hour": number;
         /**
-          * set styles
+          * @deprecated - will get removed with next major release
          */
         "individual": boolean;
         /**
@@ -1184,19 +1184,19 @@ export namespace Components {
          */
         "seconds": number;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour": boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes": boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds": boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
          */
         "showTimeReference": boolean;
         /**
@@ -2140,37 +2140,37 @@ declare namespace LocalJSX {
     }
     interface IxDatePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * output date format
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format"?: string;
         /**
-          * set styles
+          * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
         /**
-          * Set month
+          * Month to display initially.
          */
-        "month"?: any;
+        "month"?: 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
         /**
-          * Time change event
+          * Date change event
          */
         "onDateChange"?: (event: CustomEvent<string>) => void;
         /**
-          * done event
+          * Done event
          */
         "onDone"?: (event: CustomEvent<string>) => void;
         /**
-          * Set range size
+          * If true a range of dates can be selected.
          */
         "range"?: boolean;
         /**
-          * Set year
+          * Year to display initially.
          */
-        "year"?: any;
+        "year"?: number;
     }
     interface IxDateTimeCard {
         /**
@@ -2194,7 +2194,7 @@ declare namespace LocalJSX {
         /**
           * Set month
          */
-        "month"?: any;
+        "month"?: 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
         /**
           * Time event
          */
@@ -2208,19 +2208,19 @@ declare namespace LocalJSX {
          */
         "seconds"?: number;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour"?: boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes"?: boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds"?: boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
          */
         "showTimeReference"?: boolean;
         /**
@@ -2230,7 +2230,7 @@ declare namespace LocalJSX {
         /**
           * Set year
          */
-        "year"?: any;
+        "year"?: number;
     }
     interface IxDrawer {
         /**
@@ -3121,7 +3121,7 @@ declare namespace LocalJSX {
     }
     interface IxTimePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners"?: DateTimeCardCorners;
         /**
@@ -3129,7 +3129,7 @@ declare namespace LocalJSX {
          */
         "hour"?: number;
         /**
-          * set styles
+          * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
         /**
@@ -3149,19 +3149,19 @@ declare namespace LocalJSX {
          */
         "seconds"?: number;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour"?: boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes"?: boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds"?: boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
          */
         "showTimeReference"?: boolean;
         /**

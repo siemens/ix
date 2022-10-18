@@ -1320,7 +1320,7 @@
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
-          "docs": "Set corners style",
+          "docs": "Corner style",
           "docsTags": [],
           "default": "'rounded'",
           "values": [
@@ -1346,7 +1346,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "output date format",
+          "docs": "Date format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
@@ -1363,12 +1363,80 @@
           "mutable": false,
           "attr": "individual",
           "reflectToAttr": false,
-          "docs": "set styles",
-          "docsTags": [],
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- will get removed with next major release"
+            }
+          ],
           "default": "true",
+          "deprecation": "- will get removed with next major release",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "month",
+          "type": "1 | 10 | 11 | 12 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9",
+          "mutable": false,
+          "attr": "month",
+          "reflectToAttr": false,
+          "docs": "Month to display initially.",
+          "docsTags": [],
+          "default": "DateTime.now().month",
+          "values": [
+            {
+              "value": "1",
+              "type": "number"
+            },
+            {
+              "value": "10",
+              "type": "number"
+            },
+            {
+              "value": "11",
+              "type": "number"
+            },
+            {
+              "value": "12",
+              "type": "number"
+            },
+            {
+              "value": "2",
+              "type": "number"
+            },
+            {
+              "value": "3",
+              "type": "number"
+            },
+            {
+              "value": "4",
+              "type": "number"
+            },
+            {
+              "value": "5",
+              "type": "number"
+            },
+            {
+              "value": "6",
+              "type": "number"
+            },
+            {
+              "value": "7",
+              "type": "number"
+            },
+            {
+              "value": "8",
+              "type": "number"
+            },
+            {
+              "value": "9",
+              "type": "number"
             }
           ],
           "optional": false,
@@ -1380,12 +1448,29 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "Set range size",
+          "docs": "If true a range of dates can be selected.",
           "docsTags": [],
           "default": "true",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "year",
+          "type": "number",
+          "mutable": false,
+          "attr": "year",
+          "reflectToAttr": false,
+          "docs": "Year to display initially.",
+          "docsTags": [],
+          "default": "DateTime.now().year",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -1400,7 +1485,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Time change event",
+          "docs": "Date change event",
           "docsTags": []
         },
         {
@@ -1409,7 +1494,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "done event",
+          "docs": "Done event",
           "docsTags": []
         }
       ],
@@ -1537,6 +1622,102 @@
       },
       "props": [
         {
+          "name": "hour",
+          "type": "number",
+          "mutable": false,
+          "attr": "hour",
+          "reflectToAttr": false,
+          "docs": "Set hour",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minutes",
+          "type": "number",
+          "mutable": false,
+          "attr": "minutes",
+          "reflectToAttr": false,
+          "docs": "Set minutes",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "month",
+          "type": "1 | 10 | 11 | 12 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9",
+          "mutable": false,
+          "attr": "month",
+          "reflectToAttr": false,
+          "docs": "Set month",
+          "docsTags": [],
+          "default": "DateTime.now().month",
+          "values": [
+            {
+              "value": "1",
+              "type": "number"
+            },
+            {
+              "value": "10",
+              "type": "number"
+            },
+            {
+              "value": "11",
+              "type": "number"
+            },
+            {
+              "value": "12",
+              "type": "number"
+            },
+            {
+              "value": "2",
+              "type": "number"
+            },
+            {
+              "value": "3",
+              "type": "number"
+            },
+            {
+              "value": "4",
+              "type": "number"
+            },
+            {
+              "value": "5",
+              "type": "number"
+            },
+            {
+              "value": "6",
+              "type": "number"
+            },
+            {
+              "value": "7",
+              "type": "number"
+            },
+            {
+              "value": "8",
+              "type": "number"
+            },
+            {
+              "value": "9",
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "range",
           "type": "boolean",
           "mutable": false,
@@ -1554,12 +1735,29 @@
           "required": false
         },
         {
+          "name": "seconds",
+          "type": "number",
+          "mutable": false,
+          "attr": "seconds",
+          "reflectToAttr": false,
+          "docs": "Set seconds",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "showHour",
           "type": "boolean",
           "mutable": false,
           "attr": "show-hour",
           "reflectToAttr": false,
-          "docs": "Show Hour Input",
+          "docs": "Show hour input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1576,7 +1774,7 @@
           "mutable": false,
           "attr": "show-minutes",
           "reflectToAttr": false,
-          "docs": "Show Minutes Input",
+          "docs": "Show minutes input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1593,7 +1791,7 @@
           "mutable": false,
           "attr": "show-seconds",
           "reflectToAttr": false,
-          "docs": "Show Seconds Input",
+          "docs": "Show seconds input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1610,12 +1808,46 @@
           "mutable": false,
           "attr": "show-time-reference",
           "reflectToAttr": false,
-          "docs": "Show Time Reference Input",
+          "docs": "Show time reference input",
           "docsTags": [],
           "default": "false",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "timeReference",
+          "type": "string",
+          "mutable": false,
+          "attr": "time-reference",
+          "reflectToAttr": false,
+          "docs": "Set seconds",
+          "docsTags": [],
+          "default": "\"AM\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "year",
+          "type": "number",
+          "mutable": false,
+          "attr": "year",
+          "reflectToAttr": false,
+          "docs": "Set year",
+          "docsTags": [],
+          "default": "DateTime.now().year",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -7146,7 +7378,7 @@
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
-          "docs": "Set corners style",
+          "docs": "Corner style",
           "docsTags": [],
           "default": "'rounded'",
           "values": [
@@ -7167,17 +7399,74 @@
           "required": false
         },
         {
+          "name": "hour",
+          "type": "number",
+          "mutable": false,
+          "attr": "hour",
+          "reflectToAttr": false,
+          "docs": "Set hour",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "individual",
           "type": "boolean",
           "mutable": false,
           "attr": "individual",
           "reflectToAttr": false,
-          "docs": "set styles",
-          "docsTags": [],
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- will get removed with next major release"
+            }
+          ],
           "default": "true",
+          "deprecation": "- will get removed with next major release",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minutes",
+          "type": "number",
+          "mutable": false,
+          "attr": "minutes",
+          "reflectToAttr": false,
+          "docs": "Set minutes",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "seconds",
+          "type": "number",
+          "mutable": false,
+          "attr": "seconds",
+          "reflectToAttr": false,
+          "docs": "Set seconds",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -7189,7 +7478,7 @@
           "mutable": false,
           "attr": "show-hour",
           "reflectToAttr": false,
-          "docs": "Show Hour Input",
+          "docs": "Show hour input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -7206,7 +7495,7 @@
           "mutable": false,
           "attr": "show-minutes",
           "reflectToAttr": false,
-          "docs": "Show Minutes Input",
+          "docs": "Show minutes input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -7223,7 +7512,7 @@
           "mutable": false,
           "attr": "show-seconds",
           "reflectToAttr": false,
-          "docs": "Show Seconds Input",
+          "docs": "Show seconds input",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -7240,12 +7529,29 @@
           "mutable": false,
           "attr": "show-time-reference",
           "reflectToAttr": false,
-          "docs": "Show Time Reference Input",
+          "docs": "Show time reference input",
           "docsTags": [],
           "default": "false",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "timeReference",
+          "type": "string",
+          "mutable": false,
+          "attr": "time-reference",
+          "reflectToAttr": false,
+          "docs": "Set seconds",
+          "docsTags": [],
+          "default": "\"AM\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
