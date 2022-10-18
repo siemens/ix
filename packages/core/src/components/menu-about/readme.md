@@ -11,12 +11,11 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property           | Attribute              | Description        | Type      | Default                       |
-| ------------------ | ---------------------- | ------------------ | --------- | ----------------------------- |
-| `activeTabLabel`   | `active-tab-label`     | Active tab         | `string`  | `undefined`                   |
-| `i18nImprintLabel` | `i-1-8n-imprint-label` |                    | `string`  | `'Imprint'`                   |
-| `label`            | `label`                | Label of first tab | `string`  | `'About & legal information'` |
-| `show`             | `show`                 | Internal           | `boolean` | `false`                       |
+| Property         | Attribute          | Description        | Type      | Default                       |
+| ---------------- | ------------------ | ------------------ | --------- | ----------------------------- |
+| `activeTabLabel` | `active-tab-label` | Active tab         | `string`  | `undefined`                   |
+| `label`          | `label`            | Label of first tab | `string`  | `'About & legal information'` |
+| `show`           | `show`             | Internal           | `boolean` | `false`                       |
 
 
 ## Events

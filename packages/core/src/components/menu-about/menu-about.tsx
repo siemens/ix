@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    forceUpdate,
-    h,
-    Host,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  forceUpdate,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -27,14 +27,9 @@ import {
 })
 export class MenuAbout {
   /**
-   *
-   */
-  @Prop({ reflect: true }) i18nImprintLabel = 'Imprint';
-
-  /**
    * Active tab
    */
-   @Prop({ mutable: true }) activeTabLabel: string;
+  @Prop({ mutable: true }) activeTabLabel: string;
 
   /**
    * Label of first tab

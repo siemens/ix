@@ -4511,23 +4511,6 @@
           "required": false
         },
         {
-          "name": "i18nImprintLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "i-1-8n-imprint-label",
-          "reflectToAttr": true,
-          "docs": "",
-          "docsTags": [],
-          "default": "'Imprint'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "label",
           "type": "string",
           "mutable": false,
