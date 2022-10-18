@@ -8,22 +8,22 @@
  */
 
 import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    EmbeddedViewRef,
-    EventEmitter,
-    Input,
-    NgZone,
-    OnDestroy,
-    TemplateRef
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnDestroy,
+  TemplateRef,
 } from '@angular/core';
 import type {
-    Components,
-    TreeContext as ICwTreeTreeContext,
-    TreeContext,
-    UpdateCallback
+  Components,
+  TreeContext as ICwTreeTreeContext,
+  TreeContext,
+  UpdateCallback,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
 import { ProxyCmp, proxyOutputs } from './../angular-component-lib/utils';
@@ -95,7 +95,7 @@ export class IxTree implements OnDestroy {
     ) => {
       const treeItem = document.createElement('ix-tree-item');
       treeItem.hasChildren = itemData.hasChildren;
-      treeItem.context = context as any;
+      treeItem.context = context[itemData.id];
 
       const embeddedView = templateRef.createEmbeddedView({
         $implicit: itemData.data,
@@ -105,7 +105,8 @@ export class IxTree implements OnDestroy {
       embeddedView.detectChanges();
 
       update((itemData, context) => {
-        treeItem.context = context as any;
+        console.log(context);
+        treeItem.context = context[itemData.id];
         treeItem.hasChildren = itemData.hasChildren;
 
         embeddedView.context = {
