@@ -3,7 +3,7 @@ name: build
 on: [push, pull_request, workflow_dispatch, workflow_call]
 
 concurrency:
-  group: ci-${{ github.sha }}
+  group: ci-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:

@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/modal.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/modal.html -->
 ```html
 <div>
   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -35,11 +35,7 @@ SPDX-License-Identifier: MIT
 </template>
 
 <script type="module">
-  import {
-    modal,
-    closeModal,
-    dismissModal,
-  } from './lib/@siemens/ix/dist/index.js';
+  import { modal, closeModal, dismissModal } from '@siemens/ix';
 
   (async function () {
     await window.customElements.whenDefined('ix-button');

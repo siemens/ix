@@ -34,12 +34,14 @@ const customCss = [
   require.resolve('./src/css/search.css'),
 ];
 
+const baseUrl = process.env.BASE_URL || '/';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
   url: 'https://ix.siemens.io',
-  baseUrl: '/',
+  baseUrl: baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -69,6 +71,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'siemens-ix, ix, stenciljs, angular, webcomponent, react',
+        },
+        {
+          name: 'description',
+          content:
+            'Siemens iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+        },
+      ],
       colorMode: {
         disableSwitch: true,
       },

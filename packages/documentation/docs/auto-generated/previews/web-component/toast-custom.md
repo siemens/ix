@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/toast-custom.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/toast-custom.html -->
 ```html
 <ix-toast-container></ix-toast-container>
 
@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
 </template>
 
 <script type="module">
-  import { toast } from './lib/@siemens/ix/dist/index.js';
+  import { toast } from '@siemens/ix';
 
   (async function () {
     await window.customElements.whenDefined('ix-toast-container');

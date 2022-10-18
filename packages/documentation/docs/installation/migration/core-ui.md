@@ -4,6 +4,8 @@ sidebar_title: Migration from Core UI 6.5.0
 title: Migration from Core UI 6.5.0 to Siemens iX
 ---
 
+Find the current migration guide [here](https://github.com/siemens/ix/blob/main/packages/documentation/docs/installation/migration/core-ui.md)
+
 ## Changed dependencies
 
 - Updated to `bootstrap@5.2.0`
@@ -39,3 +41,14 @@ Change selectors. From `cui-` to `ix-`
 - SCSS variables are not exported anymore
 - Chart colors are not part of the library
 - theme.ts with hardcored hex color values are removed
+
+### Changed theme naming
+
+- `theme-dark` -> `theme-classic-dark`
+- `theme-light` -> `theme-classic-light`
+
+Default theme is `theme-classic-dark`.
+
+### About and Legal
+
+Default content is removed regarding of various developer feedback
