@@ -11,14 +11,18 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property            | Attribute             | Description               | Type                             | Default     |
-| ------------------- | --------------------- | ------------------------- | -------------------------------- | ----------- |
-| `corners`           | `corners`             | Set corners style         | `"left" \| "right" \| "rounded"` | `'rounded'` |
-| `individual`        | `individual`          | set styles                | `boolean`                        | `true`      |
-| `showHour`          | `show-hour`           | Show Hour Input           | `boolean`                        | `false`     |
-| `showMinutes`       | `show-minutes`        | Show Minutes Input        | `boolean`                        | `false`     |
-| `showSeconds`       | `show-seconds`        | Show Seconds Input        | `boolean`                        | `false`     |
-| `showTimeReference` | `show-time-reference` | Show Time Reference Input | `boolean`                        | `false`     |
+| Property            | Attribute             | Description                                                                                          | Type                             | Default     |
+| ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------- | ----------- |
+| `corners`           | `corners`             | Corner style                                                                                         | `"left" \| "right" \| "rounded"` | `'rounded'` |
+| `hour`              | `hour`                | Set hour                                                                                             | `number`                         | `0`         |
+| `individual`        | `individual`          | <span style="color:red">**[DEPRECATED]**</span> - will get removed with next major release<br/><br/> | `boolean`                        | `true`      |
+| `minutes`           | `minutes`             | Set minutes                                                                                          | `number`                         | `0`         |
+| `seconds`           | `seconds`             | Set seconds                                                                                          | `number`                         | `0`         |
+| `showHour`          | `show-hour`           | Show hour input                                                                                      | `boolean`                        | `false`     |
+| `showMinutes`       | `show-minutes`        | Show minutes input                                                                                   | `boolean`                        | `false`     |
+| `showSeconds`       | `show-seconds`        | Show seconds input                                                                                   | `boolean`                        | `false`     |
+| `showTimeReference` | `show-time-reference` | Show time reference input                                                                            | `boolean`                        | `false`     |
+| `timeReference`     | `time-reference`      | Set seconds                                                                                          | `string`                         | `"AM"`      |
 
 
 ## Events

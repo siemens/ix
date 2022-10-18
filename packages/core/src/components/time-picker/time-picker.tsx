@@ -29,32 +29,32 @@ export class TimePicker {
   @Element() hostElement!: HTMLIxTimePickerElement;
 
   /**
-   * Set corners style
+   * Corner style
    */
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * set styles
+   * @deprecated - will get removed with next major release
    */
   @Prop() individual: boolean = true;
 
   /**
-   * Show Hour Input
+   * Show hour input
    */
   @Prop() showHour = false;
 
   /**
-   * Show Minutes Input
+   * Show minutes input
    */
   @Prop() showMinutes = false;
 
   /**
-   * Show Seconds Input
+   * Show seconds input
    */
   @Prop() showSeconds = false;
 
   /**
-   * Show Time Reference Input
+   * Show time reference input
    */
   @Prop() showTimeReference = false;
 
