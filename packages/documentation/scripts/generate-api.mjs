@@ -14,6 +14,11 @@ import path, { join } from 'path';
 
 const __dirname = path.resolve();
 
+const htmlPreviewPath = path.join(
+  __dirname,
+  '../html-test-app/src/preview-examples'
+);
+
 function autoGenerationWarning(previewPath) {
   // unix/win normalization
   previewPath = previewPath.replace(/\\/g, '/');
@@ -96,10 +101,6 @@ function writeApi(component) {
 }
 
 function writeWebComponentPreviews() {
-  const htmlPreviewPath = path.join(
-    __dirname,
-    '../html-test-app/src/preview-examples'
-  );
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -136,9 +137,12 @@ function writeWebComponentPreviews() {
 
 function writeReactPreviews() {
   const webComponentPreviews = fs
-    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
+
+  console.log('REACT');
+  console.log(webComponentPreviews);
 
   const reactPreviewPath = path.join(
     __dirname,
@@ -175,7 +179,7 @@ function writeReactPreviews() {
 
 function writeAngularPreviews() {
   const webComponentPreviews = fs
-    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
 
