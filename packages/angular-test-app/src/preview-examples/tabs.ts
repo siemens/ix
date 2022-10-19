@@ -11,12 +11,34 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
+  styles: [
+    `
+      :host {
+        .example {
+          display: block;
+          position: relative;
+          width: 100%;
+        }
+      }
+    `,
+  ],
   template: `
-    <ix-tabs selected="1">
-      <ix-tab-item>Tab 1</ix-tab-item>
-      <ix-tab-item>Tab 2</ix-tab-item>
-      <ix-tab-item>Tab 3</ix-tab-item>
-    </ix-tabs>
+    <div class="example">
+      <ix-tabs [selected]="selectedTab">
+        <ix-tab-item (click)="changeTab(0)">Tab 1</ix-tab-item>
+        <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>
+        <ix-tab-item (click)="changeTab(2)">Tab 3</ix-tab-item>
+      </ix-tabs>
+      <div *ngIf="selectedTab === 0">Content Tab 1</div>
+      <div *ngIf="selectedTab === 1">Content Tab 2</div>
+      <div *ngIf="selectedTab === 2">Content Tab 3</div>
+    </div>
   `,
 })
-export class Tabs {}
+export class Tabs {
+  selectedTab = 1;
+
+  changeTab(tabIndex: number) {
+    this.selectedTab = tabIndex;
+  }
+}

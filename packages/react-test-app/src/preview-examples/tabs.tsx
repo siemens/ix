@@ -8,14 +8,29 @@
  */
 
 import { IxTabItem, IxTabs } from '@siemens/ix-react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export const Tabs: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const changeTab = (tabId: number) => setSelectedTab(tabId);
+
   return (
-    <IxTabs selected={1}>
-      <IxTabItem>Tab 1</IxTabItem>
-      <IxTabItem>Tab 2</IxTabItem>
-      <IxTabItem>Tab 3</IxTabItem>
-    </IxTabs>
+    <div
+      style={{
+        display: 'block',
+        position: 'relative',
+        width: '100%',
+      }}
+    >
+      <IxTabs selected={selectedTab}>
+        <IxTabItem onClick={() => changeTab(0)}>Tab 1</IxTabItem>
+        <IxTabItem onClick={() => changeTab(1)}>Tab 2</IxTabItem>
+        <IxTabItem onClick={() => changeTab(2)}>Tab 3</IxTabItem>
+      </IxTabs>
+      {selectedTab === 0 ? <div>Content 1</div> : null}
+      {selectedTab === 1 ? <div>Content 2</div> : null}
+      {selectedTab === 2 ? <div>Content 3</div> : null}
+    </div>
   );
 };
