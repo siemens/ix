@@ -290,5 +290,4 @@ module.exports = {
   generateChangelog,
   getVersionCommitMessage,
   readPackage,
-  createDocumentationVersion,
 };
