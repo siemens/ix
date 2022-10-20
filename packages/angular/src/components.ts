@@ -297,13 +297,13 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['corners', 'format', 'individual', 'month', 'range', 'year']
+  inputs: ['corners', 'day', 'format', 'individual', 'maxDate', 'minDate', 'month', 'range', 'year']
 })
 @Component({
   selector: 'ix-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['corners', 'format', 'individual', 'month', 'range', 'year']
+  inputs: ['corners', 'day', 'format', 'individual', 'maxDate', 'minDate', 'month', 'range', 'year']
 })
 export class IxDatePicker {
   protected el: HTMLElement;

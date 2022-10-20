@@ -61,6 +61,23 @@ export class DatePicker {
    */
   @Prop() month = DateTime.now().month;
 
+  /**
+   * Day to display initially.
+   */
+  @Prop() day = null;
+
+  /**
+   * The earliest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() minDate: DateTime;
+
+  /**
+   * The latest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() maxDate: DateTime;
+
   @State() yearValue = this.year;
   @State() today = DateTime.now();
   @State() monthValue: number = this.month;
@@ -69,7 +86,7 @@ export class DatePicker {
   @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
   @State() tempYear: number = this.yearValue;
   @State() tempMonth: number = this.monthValue;
-  @State() start: DateTime = null;
+  @State() start: DateTime = DateTime.fromObject({ year: this.year, month: this.month, day: this.day});
   @State() end: DateTime = null;
 
   @State() dropdownButtonRef: HTMLElement;
@@ -238,10 +255,11 @@ export class DatePicker {
         daaay.toISO() > this.start.toISO() &&
         daaay.toISO() < this.end.toISO(),
       disabled:
-        this.start &&
-        daaay.toISO() < this.start.toISO() &&
-        this.end === null &&
-        this.range,
+        !this.isWithinMinMax(daaay) ||
+        (this.start &&
+          daaay.toISO() < this.start.toISO() &&
+          this.end === null &&
+          this.range),
     };
   }
 
@@ -288,6 +306,16 @@ export class DatePicker {
 
     return (
       this.start.toFormat(this.format) + ' - ' + this.end.toFormat(this.format)
+    );
+  }
+
+  private isWithinMinMax(date: DateTime) {
+    const dateIso = date.toISO();
+    return (
+      (!this.minDate ||
+      this.minDate.toISO() <= dateIso) &&
+      (!this.maxDate ||
+      this.maxDate.toISO() >= dateIso)
     );
   }
 
