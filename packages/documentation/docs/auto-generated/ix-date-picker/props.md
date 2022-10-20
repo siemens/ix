@@ -1,6 +1,7 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 |corners| Corner style | `corners` | `"left" ｜ "right" ｜ "rounded"` | `'rounded'` |
+|day| Day to display initially. | `day` | `any` | `null` |
 |format| Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `format` | `string` | `'yyyy/LL/dd'` |
 |individual|  | `individual` | `boolean` | `true` |
 |maxDate| The latest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |

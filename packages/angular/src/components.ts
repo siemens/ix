@@ -346,13 +346,13 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['hour', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
+  inputs: ['day', 'hour', 'maxDate', 'minDate', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['hour', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
+  inputs: ['day', 'hour', 'maxDate', 'minDate', 'minutes', 'month', 'range', 'seconds', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'timeReference', 'year']
 })
 export class IxDatetimePicker {
   protected el: HTMLElement;

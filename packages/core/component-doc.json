@@ -1289,7 +1289,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -1310,6 +1311,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -1335,6 +1339,23 @@
             {
               "value": "rounded",
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "day",
+          "type": "any",
+          "mutable": false,
+          "attr": "day",
+          "reflectToAttr": false,
+          "docs": "Day to display initially.",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "any"
             }
           ],
           "optional": false,
@@ -1375,6 +1396,36 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxDate",
+          "type": "DateTime",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "DateTime"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minDate",
+          "type": "DateTime",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "DateTime"
             }
           ],
           "optional": false,
@@ -1622,6 +1673,23 @@
       },
       "props": [
         {
+          "name": "day",
+          "type": "number",
+          "mutable": false,
+          "attr": "day",
+          "reflectToAttr": false,
+          "docs": "Set month",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "hour",
           "type": "number",
           "mutable": false,
@@ -1633,6 +1701,36 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxDate",
+          "type": "DateTime",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "DateTime"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minDate",
+          "type": "DateTime",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "DateTime"
             }
           ],
           "optional": false,
@@ -8900,8 +8998,24 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-date-picker"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

@@ -9,6 +9,7 @@ import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+import { DateTime } from "luxon";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -254,6 +255,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * Day to display initially.
+         */
+        "day": any;
+        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format": string;
@@ -261,6 +266,14 @@ export namespace Components {
           * @deprecated - will get removed with next major release
          */
         "individual": boolean;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate": DateTime;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate": DateTime;
         /**
           * Month to display initially.
          */
@@ -286,9 +299,21 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
+          * Set month
+         */
+        "day": number;
+        /**
           * Set hour
          */
         "hour": number;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate": DateTime;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate": DateTime;
         /**
           * Set minutes
          */
@@ -2144,6 +2169,10 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
+          * Day to display initially.
+         */
+        "day"?: any;
+        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format"?: string;
@@ -2151,6 +2180,14 @@ declare namespace LocalJSX {
           * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate"?: DateTime;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate"?: DateTime;
         /**
           * Month to display initially.
          */
@@ -2184,9 +2221,21 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
+          * Set month
+         */
+        "day"?: number;
+        /**
           * Set hour
          */
         "hour"?: number;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate"?: DateTime;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate"?: DateTime;
         /**
           * Set minutes
          */
