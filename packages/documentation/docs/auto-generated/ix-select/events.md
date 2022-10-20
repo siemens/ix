@@ -1,4 +1,4 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|addItem| Item added to selection | `string`
-|itemSelectionChange| Item selection changed | `string | string[]`
+|<div className="Api__Table"> <div>addItem</div> <div className="Api__Table Docs__Tags"></div></div>| Item added to selection | `string`
+|<div className="Api__Table"> <div>itemSelectionChange</div> <div className="Api__Table Docs__Tags"></div></div>| Item selection changed | `string | string[]`
