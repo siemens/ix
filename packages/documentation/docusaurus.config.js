@@ -32,6 +32,7 @@ const customCss = [
   ...libCss,
   require.resolve('./src/css/custom.css'),
   require.resolve('./src/css/search.css'),
+  require.resolve('./src/css/api-table.css'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';

@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|label| About Item label | `label` | `string` | `undefined` |
+|<div className="Api__Table"> <div>label</div> <div className="Api__Table Docs__Tags"></div></div>| About Item label | `label` | `string` | `undefined` |

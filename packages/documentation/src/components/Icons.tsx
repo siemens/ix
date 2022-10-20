@@ -27,7 +27,7 @@ export default function Icons() {
         <input
           placeholder="Search Icon"
           className="form-control"
-          onInput={(e) => setSearchIcon((e.target as HTMLInputElement).value)}
+          onInput={(e) => setSearchIcon((e.target as HTMLInputElement).value.toLocaleLowerCase())}
         />
       </div>
       <div className={clsx(styles.Icons)}>
@@ -37,7 +37,7 @@ export default function Icons() {
             <div
               key={icon}
               className={clsx(styles.Icon__Tile)}
-              onClick={() => {}}
+              onClick={() => { }}
             >
               <div>
                 <ix-icon name={icon}></ix-icon>
@@ -50,7 +50,7 @@ export default function Icons() {
                 type="text"
                 readOnly
                 value={icon}
-                onChange={() => {}}
+                onChange={() => { }}
               ></input>
             </div>
           ))}
