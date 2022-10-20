@@ -59,13 +59,13 @@ jobs:
         if: ${{ github.event.inputs.deployment == 'dev' }}
         run: |
           yarn workspace @siemens/html-test-app run build
-          BASE_URL=/ix/version-dev/ yarn workspace documentation run build
+          BASE_URL=/version-dev/ yarn workspace documentation run build
 
       - name: 'Build documentation for prod instance'
         if: ${{ github.event.inputs.deployment == 'prod' }}
         run: |
           yarn workspace @siemens/html-test-app run build
-          BASE_URL=/ix/ yarn workspace documentation run build
+          BASE_URL=/ yarn workspace documentation run build
 
       - name: Deploy production instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4
