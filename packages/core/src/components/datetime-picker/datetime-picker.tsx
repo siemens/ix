@@ -42,6 +42,18 @@ export class DatePicker {
   @Prop() showTimeReference = false;
 
    /**
+   * The earliest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() minDate: DateTime;
+
+   /**
+   * The latest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   */
+  @Prop() maxDate: DateTime;
+
+   /**
    * Set year
    */
   @Prop() year = DateTime.now().year;
@@ -50,6 +62,11 @@ export class DatePicker {
    * Set month
    */
   @Prop() month = DateTime.now().month;
+
+  /**
+   * Set month
+   */
+  @Prop() day: number = null;
 
    /**
    * Set hour
@@ -96,6 +113,9 @@ export class DatePicker {
             onDateChange={(date) => (this.date = date.detail)}
             year={this.year}
             month={this.month}
+            day={this.day}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
           ></ix-date-picker>
 
           <ix-time-picker
