@@ -10,7 +10,8 @@
 
 @media (max-width: 428px) {
   .intro {
-    height: 220vh !important;
+    height: 1400px !important;
+    min-height: 100vh !important;
   }
 }
 
@@ -790,6 +791,7 @@
 @media (max-width: 428px) {
   .description {
     margin: 30px 0 0 0 !important;
+    width: 100% !important;
   }
 }
 
@@ -855,7 +857,13 @@
 
 @media (max-width: 428px) {
   .Card_Info {
-    position: absolute !important;
+    position: unset !important;
+    margin-top: 180px;
+    padding: 0 !important;
+  }
+
+  .Card_Line {
+    width: auto !important;
   }
 }
 
