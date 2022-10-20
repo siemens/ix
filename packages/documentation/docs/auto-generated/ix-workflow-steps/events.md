@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|stepSelected| On step selected event | `number`
+|<div className="Api__Table"> <div>stepSelected</div> <div className="Api__Table Docs__Tags"></div></div>| On step selected event | `number`
