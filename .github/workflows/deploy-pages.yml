@@ -1,0 +1,83 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_deployment:
+        description: 'Please confirm deployment'
+        required: true
+        type: boolean
+      deployment:
+        description: 'Deployment instance'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    container:
+      image: node:16.16.0
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if deployment condition is fulfilled
+        if: ${{ startsWith(github.ref, 'refs/heads/release/docs/v') == false || github.event.inputs.confirm_deployment == false }}
+        run: |
+          echo "::error ::Be sure that the workflow run on release/docs/v* and you checked confirm"
+          exit -1
+
+      - name: Install rsync
+        run: |
+          apt-get update && apt-get install -y rsync
+
+      - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/build
+        with:
+          filter: '\!documentation --filter \!@siemens/html-test-app'
+      - name: 'Download @siemens/ix-brand-theme'
+        run: |
+          rm .yarnrc
+          ROOT=$(pwd)
+          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
+          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
+          npm install @siemens/ix-brand-theme@^1.0.0 --no-save
+          rm .npmrc
+          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
+          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
+
+      - name: 'Build documentation for dev instance'
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        run: |
+          yarn workspace @siemens/html-test-app run build
+          BASE_URL=/ix/version-dev/ yarn workspace documentation run build
+
+      - name: 'Build documentation for prod instance'
+        if: ${{ github.event.inputs.deployment == 'prod' }}
+        run: |
+          yarn workspace @siemens/html-test-app run build
+          BASE_URL=/ix/ yarn workspace documentation run build
+
+      - name: Deploy production instance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'prod' }}
+        with:
+          folder: ./packages/documentation/build
+          clean-exclude: version-*
+
+      - name: Deploy dev instance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        with:
+          folder: ./packages/documentation/build
+          target-folder: version-dev
+          clean-exclude: version-*

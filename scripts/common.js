@@ -277,40 +277,6 @@ sidebar_position: 100
   });
 }
 
-async function createDocumentationVersion(tasks, version) {
-  if (version.includes('-beta.')) {
-    const result = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'confirm',
-        message: () => {
-          return `${version} is a beta version. Do you want to generate documentation for beta release?`;
-        },
-      },
-    ]);
-
-    if (!result.confirm) {
-      console.log(red('Skip documentation generation!'));
-      return;
-    }
-  }
-
-  tasks.push({
-    title: 'Generate new documentation version',
-    task: async () => {
-      await execa('yarn', [
-        'run',
-        'generate-documentation-version',
-        '--',
-        '--',
-        version,
-      ]);
-    },
-  });
-
-  return Promise.resolve();
-}
-
 function getVersionCommitMessage(version) {
   return `chore: bump ix version to ${version}`;
 }

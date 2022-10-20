@@ -99,10 +99,11 @@ const config = {
             position: 'left',
             label: 'Siemens iX',
           },
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-          },
+          // Remove docs version until library needs to publish an major release
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {
