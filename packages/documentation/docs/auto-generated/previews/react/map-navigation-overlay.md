@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
 import { IxMapNavigationOverlay, IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const BasicNavigation: React.FC = () => {
+export const MapNavigationOverlay: React.FC = () => {
   return (
     <IxMapNavigationOverlay>
       <IxMapNavigation>

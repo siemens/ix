@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-basic-navigation',
+  selector: 'app-map-navigation',
   template: `
     <ix-map-navigation application-name="Test Application" navigation-title="Some other content">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 184.567 138" slot="logo">

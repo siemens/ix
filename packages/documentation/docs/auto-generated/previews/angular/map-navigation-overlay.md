@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-basic-navigation',
+  selector: 'app-map-navigation-overlay',
   template: `
     <ix-map-navigation-overlay title="Example title" icon="">
       <ix-map-navigation application-name="Test Application" navigation-title="Some other content">

@@ -16,15 +16,11 @@ SPDX-License-Identifier: MIT
 <html>
 
 <head>
-  <title>Map navigation example</title>
-  <link rel="stylesheet" href="lib/ix-icons/dist/css/ix-icons.css" />
-  <link rel="stylesheet" href="lib/ix/dist/siemens-ix/siemens-ix.css" />
-  <link rel="stylesheet" href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css" />
-  <link rel="stylesheet" href="lib/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css" />
-  <script type="module">
-    import { defineCustomElements } from './lib/ix/loader/index.js';
-    defineCustomElements();
-  </script>
+  <title>Map navigation with overlay example</title>
+  <script type="module" crossorigin src="../assets/index.39c9c279.js"></script>
+  <script type="module" crossorigin src="../assets/init.bb64f2b5.js"></script>
+  <link rel="stylesheet" href="../assets/index.7236d106.css">
+  <link rel="stylesheet" href="../assets/init.09a7dcd2.css">
 </head>
 
 <body class="theme-brand-dark">
