@@ -109,7 +109,7 @@ Contains the brand and classic theme for the aggrid library
 
 ## Git hooks via husky
 
-Our pipeline lints each commit pushed to remote. To verify that you dont need
+Our pipeline lints each commit pushed to remote. To verify that you don't need
 to rebase existing commits please install our git hooks.
 
 ```sh
