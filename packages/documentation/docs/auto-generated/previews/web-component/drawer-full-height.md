@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/drawer-full-height.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/drawer-full-height.html -->
 ```html
 
 <ix-drawer>

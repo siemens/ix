@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/vertical-tabs-with-avatar.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/vertical-tabs-with-avatar.html -->
 ```html
 <ix-menu>
   <ix-menu-avatar>

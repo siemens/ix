@@ -4,28 +4,27 @@ sidebar_title: Angular
 title: Angular
 ---
 
-:::caution
+### Install dependencies
 
-Current **beta release** of _ix_ has some limitations, please check [this](./limitation).
+Install `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
 
-:::
-
-### Installation of dependencies
-
-Preparation steps: _[Artifactory access and npm configuration](./artifactory.md)_
-
-1. Install `@siemens/ix-angular` (or a beta release `@siemens/ix-angular@next`) and `@siemens/ix-icons`.
+#### npm
 
 ```
-npm i -S @siemens/ix-angular@latest
-npm i -S @siemens/ix-icons@latest
+npm i -S @siemens/ix-angular @siemens/ix-icons
+```
+
+#### yarn
+
+```
+yarn add @siemens/ix-angular @siemens/ix-icons
 ```
 
 ### Import styles
 
 ```css
-@import '../node_modules/@siemens/ix-icons/dist/css/ix-icons.css';
-@import '../node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css';
+@import '@siemens/ix-icons/dist/css/ix-icons.css';
+@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
 
 Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) to your application module.

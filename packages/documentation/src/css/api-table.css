@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.Api__Table .Name {
+  display: flex;
+  flex-direction: column;
+}
+
+.Api__Table .Docs__Tags {
+  margin-top: 0.15rem;
+}
+
+.Api__Table .Docs__Tag {
+  font-size: 12px;
+  background-color: var(--theme-color-primary);
+  border-radius: 2px;
+  padding: 0.15rem 0.25rem;
+  margin-right: 0.15rem;
+}

@@ -1,6 +1,13 @@
 {
   "name": "@siemens/ix-echarts",
-  "version": "1.0.0-beta.1",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/echarts"
+  },
+  "version": "1.0.0",
   "description": "Siemens iX theme for echarts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

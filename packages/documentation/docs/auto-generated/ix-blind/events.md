@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|collapsedChange| Collapsed state changed | `boolean`
+|<div className="Api__Table"> <div>collapsedChange</div> <div className="Api__Table Docs__Tags"></div></div>| Collapsed state changed | `boolean`

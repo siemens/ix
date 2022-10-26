@@ -43,7 +43,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Do not blame the user
 
-- Add clear instructions for user what to do next to resolve the error
+- Add clear instructions for the user regarding what to do next to resolve the error
 
 - Do not over communicate
 
@@ -93,9 +93,9 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Be clear on deleting, removing, creating and adding
 
-- Create goes in hand with Delete, it can not be restored
+- Create goes hand in hand with Delete, it usually means it cannot be restored
 
-- Add goes in hand with Remove, it can be restored
+- Add goes hand in hand with Remove, it usually means it can be restored
 
 - Do not use Delete and Remove as synonym
 

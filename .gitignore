@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+
+
 # compiled output
 /dist
 /tmp
@@ -39,5 +41,127 @@ testem.log
 .DS_Store
 Thumbs.db
 
-packages/documentation/static/webcomponent-examples/lib/**/*
-!packages/documentation/static/webcomponent-examples/lib/utils
+
+*~
+*.sw[mnpcod]
+*.log
+*.lock
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+
+.stencil/
+.idea/
+.vscode/
+.sass-cache/
+.versions/
+node_modules/
+$RECYCLE.BIN/
+
+UserInterfaceState.xcuserstate
+.env
+coverage
+test-results/
+playwright-report/
+playwright/.cache/
+
+.stencil/
+.idea/
+.vscode/
+.sass-cache/
+.versions/
+node_modules/
+$RECYCLE.BIN/
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+.env
+coverage
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+.turbo
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+###
+# Build output
+##
+packages/*/dist/
+packages/*/www/
+packages/*/loader/
+packages/*/dist-transpiled/
+packages/*/build/
+
+###
+# @siemens/html-test-app
+###
+
+packages/html-test-app/src/public/additional-theme
+
+###
+# documentation
+###
+
+packages/documentation/static/webcomponent-examples/*
+!packages/documentation/static/versioned_examples/*/webcomponent-examples

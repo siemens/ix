@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/input-disabled.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/input-disabled.html -->
 ```html
 <form class="needs-validation m-2">
   <input

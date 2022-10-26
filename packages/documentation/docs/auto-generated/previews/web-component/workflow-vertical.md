@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/workflow-vertical.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/workflow-vertical.html -->
 ```html
 <ix-workflow-steps vertical>
   <ix-workflow-step status="done">Step 1</ix-workflow-step>

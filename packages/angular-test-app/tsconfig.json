@@ -18,14 +18,11 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "preserveSymlinks": true,
     "paths": {
-      "@siemens/ix-angular": ["./../../node_modules/@siemens/ix-angular/dist"],
-      "@siemens/ix-angular/*": ["./../../node_modules/@siemens/ix-angular/dist"]
+      "@siemens/ix-angular": ["./../angular/dist"],
+      "@siemens/ix-angular/*": ["./../angular/dist"]
     }
   },
   "angularCompilerOptions": {
@@ -34,6 +31,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "preserveSymlinks": true
-
   }
 }

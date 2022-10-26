@@ -16,7 +16,7 @@ import SourceAngular from './../../auto-generated/previews/angular/about-and-leg
 
 ## Usage
 
-<Preview name="about-and-legal" height="30rem">
+<Preview name="about-and-legal" height="30rem" width="100%" noMargin>
   <TabItem value="javascript">
     <SourceWebComponent />
   </TabItem>

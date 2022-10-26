@@ -1,4 +1,4 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|filterChanged| Event dispatched whenever the filter state changes. | `FilterState`
-|inputChanged| Event dispatched whenever the text input changes. | `InputState`
+|<div className="Api__Table"> <div>filterChanged</div> <div className="Api__Table Docs__Tags"></div></div>| Event dispatched whenever the filter state changes. | `FilterState`
+|<div className="Api__Table"> <div>inputChanged</div> <div className="Api__Table Docs__Tags"></div></div>| Event dispatched whenever the text input changes. | `InputState`

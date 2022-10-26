@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|closeClick| Event closed | `any`
+|<div className="Api__Table"> <div>closeClick</div> <div className="Api__Table Docs__Tags"></div></div>| Event closed | `any`
