@@ -48,7 +48,7 @@
   }
 }
 
-.form-control:focus {
+.form-control:focus-visible {
   color: var(--theme-input--color);
 }
 
@@ -58,6 +58,7 @@
     margin-left: 2px;
     display: none;
   }
+
   text-align: right;
 }
 
@@ -105,14 +106,14 @@
   align-items: center;
   flex-wrap: nowrap;
 
-  > .glyph {
+  >.glyph {
     display: block;
     position: absolute;
     margin-inline-start: 0.312rem;
     color: var(--theme-color-std-text);
   }
 
-  > input {
+  >input {
     padding-inline-start: 2.2rem;
   }
 }
@@ -139,6 +140,7 @@ textarea {
 }
 
 input {
+
   &.disabled,
   &:disabled {
     color: var(--theme-input--color--disabled);

@@ -55,7 +55,7 @@
   // }
 
   &:active,
-  &:focus,
+  &:focus-visible,
   &:visited {
     outline: none;
   }

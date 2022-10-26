@@ -35,11 +35,11 @@ ix-menu-item {
     position: relative;
   }
 
-  .tab:focus {
+  .tab:focus-visible {
     outline: none;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: none;
   }
 
@@ -93,7 +93,7 @@ ix-menu-item {
       position: absolute;
     }
 
-    .tab > .glyph {
+    .tab>.glyph {
       color: var(--theme-nav-item-primary-icon--color--selected);
     }
   }
@@ -103,7 +103,7 @@ ix-menu-item {
     pointer-events: none;
     cursor: default;
 
-    .tab > .glyph {
+    .tab>.glyph {
       color: var(--theme-color-weak-text);
     }
 

@@ -29,7 +29,6 @@
 
 @mixin focus() {
   &:not(.disabled):not(:disabled) {
-    &:focus,
     &:focus-visible {
       @content;
     }
@@ -46,6 +45,7 @@
 
 @mixin ghost-hover-pressed {
   &:not(.disabled):not(:disabled) {
+
     &.hover,
     &:hover {
       background-color: var(--theme-ghost--background--hover);

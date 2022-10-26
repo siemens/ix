@@ -16,8 +16,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--theme-blind-base--background);
-  border: solid var(--theme-blind--border-thickness)
-    var(--theme-blind-base--border-color);
+  border: solid var(--theme-blind--border-thickness) var(--theme-blind-base--border-color);
   border-radius: var(--theme-blind--border-radius);
   overflow: hidden;
 
@@ -29,8 +28,7 @@
     min-height: 3rem;
     height: 3rem;
     border: solid var(--theme-blind--border-thickness) transparent;
-    border-radius: var(--theme-blind--border-radius)
-      var(--theme-blind--border-radius) 0 0;
+    border-radius: var(--theme-blind--border-radius) var(--theme-blind--border-radius) 0 0;
     padding-right: $default-space;
     transition: border-radius $default-time;
     cursor: pointer;
@@ -69,7 +67,7 @@
       }
     }
 
-    @include focus {
+    @include focus-visible {
       border-color: var(--theme-focus--border-color);
     }
 
