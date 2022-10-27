@@ -6,34 +6,7 @@ title: Basics
 
 import {Guideline} from '@site/src/components/Guideline';
 
-### Language
-
-- All apps use American English
-
-- Exception: releases for exclusive distribution in UK or other countries where British English is standard
-
-<div class="d-flex flex-wrap">
-<span class="m-2">
-<Guideline do label='color'></Guideline>
-<Guideline do={false} label='colour'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='dialog'></Guideline>
-<Guideline do={false} label='dialogue'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='license'></Guideline>
-<Guideline do={false} label='licence'></Guideline>
-</span>
-
-<span class="m-2">
-<Guideline do label='modeling'></Guideline>
-<Guideline do={false} label='modelling'></Guideline>
-</span>
-
-</div>
+The following sections contain advice we follow at Siemens to create our own products and includes common writing errors to avoid when creating industrial products and experiences.
 
 ### Style
 
@@ -178,7 +151,7 @@ import {Guideline} from '@site/src/components/Guideline';
 </span>
 
 <span class="m-2">
-<Guideline do label='avoud "shall"'></Guideline>
+<Guideline do label='avoid "shall"'></Guideline>
 <Guideline do={false} label='user shall manage users'></Guideline>
 </span>
 

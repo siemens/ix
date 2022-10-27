@@ -28,7 +28,7 @@ export class Toast {
   /**
    * Toast type
    */
-  @Prop() type: ToastType;
+  @Prop() type: ToastType = 'info';
 
   /**
    * Toast title

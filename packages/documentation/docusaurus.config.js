@@ -32,14 +32,17 @@ const customCss = [
   ...libCss,
   require.resolve('./src/css/custom.css'),
   require.resolve('./src/css/search.css'),
+  require.resolve('./src/css/api-table.css'),
 ];
+
+const baseUrl = process.env.BASE_URL || '/';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Siemens iX',
   tagline: 'Siemens iX',
-  url: 'https://siemens.github.io/ix/',
-  baseUrl: '/ix/',
+  url: 'https://ix.siemens.io',
+  baseUrl: baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -69,6 +72,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'siemens-ix, ix, stenciljs, angular, webcomponent, react',
+        },
+        {
+          name: 'description',
+          content:
+            'Siemens iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+        },
+      ],
       colorMode: {
         disableSwitch: true,
       },
@@ -91,12 +105,51 @@ const config = {
           },
         ],
       },
+      footer: {
+        copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/siemens/ix',
+              },
+            ],
+          },
+          {
+            title: 'About',
+            items: [
+              {
+                label: 'Corporate Information',
+                href: 'https://www.siemens.com/corporate-information',
+              },
+              {
+                label: 'Privacy Notice',
+                href: 'https://www.siemens.com/privacy-notice',
+              },
+              {
+                label: 'Cookie notice',
+                href: 'https://www.siemens.com/cookie-notice',
+              },
+              {
+                label: 'Terms of use',
+                href: 'https://www.siemens.com/terms-of-use',
+              },
+              {
+                label: 'Digital ID',
+                href: 'https://www.siemens.com/digital-id',
+              },
+            ],
+          },
+        ],
+      },
       prism: {
         theme: require('prism-react-renderer/themes/dracula'),
         theme2: require('prism-react-renderer/themes/dracula'),
       },
     }),
-  plugins: ['docusaurus-plugin-sass']
+  plugins: ['docusaurus-plugin-sass'],
   // plugins: [require.resolve('@cmfcmf/docusaurus-search-local')],
 };
 

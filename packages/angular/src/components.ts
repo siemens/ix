@@ -871,13 +871,13 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['activeTabLabel', 'i18nImprintLabel', 'label', 'show']
+  inputs: ['activeTabLabel', 'label', 'show']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['activeTabLabel', 'i18nImprintLabel', 'label', 'show']
+  inputs: ['activeTabLabel', 'label', 'show']
 })
 export class IxMenuAbout {
   protected el: HTMLElement;

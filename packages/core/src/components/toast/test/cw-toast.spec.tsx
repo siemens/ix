@@ -23,6 +23,9 @@ describe('ix-toast', () => {
     expect(page.root).toEqualHtml(`
       <ix-toast class=\"animate__animated animate__fadeIn\" toast-title=\"Test title\">
       <div class=\"toast-body\">
+         <div class="toast-icon">
+            <ix-icon color="color-std-text" name="info" size="24"></ix-icon>
+          </div>
         <div class=\"toast-content\">
           <div class=\"text-default-title-single toast-title\">
             Test title
