@@ -15,10 +15,14 @@ $container-width: 11.5625rem;
 
 :host {
   display: flex;
-  width: $container-width;
+  width: auto;
   height: $x-large-space;
   align-items: center;
   justify-content: space-between;
+
+  &.right-position {
+    width: $container-width !important;
+  }
 
   .input-container {
     transition: all 0.3s ease-in-out;
