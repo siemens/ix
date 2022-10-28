@@ -1,11 +1,20 @@
 {
   "name": "@siemens/ix-react",
-  "version": "1.0.0-beta.1",
+  "homepage": "https://ix.siemens.io",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/react"
+  },
+  "version": "1.0.0",
   "description": "Siemens iX for React",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
+    "LICENSE",
+    "README.md",
     "dist"
   ],
   "scripts": {
@@ -18,7 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
-    "@siemens/ix": "~1.0.0-beta.1",
+    "@siemens/ix": "~1.0.0",
     "@types/estree": "~0.0.51",
     "@types/react": "~18.0.15",
     "@types/react-dom": "~18.0.6",
@@ -37,7 +46,7 @@
     "react-dom": ">=17.0.2"
   },
   "dependencies": {
-    "@siemens/ix-icons": "~1.0.0-beta.3",
-    "@siemens/ix": "~1.0.0-beta.1"
+    "@siemens/ix-icons": "~1.0.0",
+    "@siemens/ix": "~1.0.0"
   }
 }

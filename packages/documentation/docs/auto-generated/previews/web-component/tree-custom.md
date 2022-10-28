@@ -4,10 +4,13 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/tree-custom.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tree-custom.html -->
 ```html
 
 <div style="height: 8rem; width: 100%">
+  <ix-button id="expand" ghost style="margin-bottom: 2rem"
+    >Expand Tree</ix-button
+  >
   <ix-tree root="root" id="tree"></ix-tree>
 </div>
 
@@ -16,10 +19,24 @@ SPDX-License-Identifier: MIT
     await window.customElements.whenDefined('ix-tree');
     const tree = document.getElementById('tree');
 
+    const expandButton = document.getElementById('expand');
+    expandButton.addEventListener('click', () => {
+      tree.context = {
+        sample: {
+          isExpanded: true,
+          isSelected: false,
+        },
+        'sample-child-2': {
+          isSelected: true,
+          isExpanded: false,
+        },
+      };
+    });
+
     tree.renderItem = (index, item, dataList, context, update) => {
       const el = document.createElement('ix-tree-item');
       el.hasChildren = item.hasChildren;
-      el.context = context;
+      el.context = context[item.id];
 
       const div = document.createElement('div');
       div.style.display = 'flex';

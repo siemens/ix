@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|close| About and Legal closed | `MouseEvent`
+|<div className="Api__Table"> <div>close</div> <div className="Api__Table Docs__Tags"></div></div>| About and Legal closed | `MouseEvent`

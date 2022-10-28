@@ -4,12 +4,14 @@ sidebar_position: 3
 
 import Icons from '@site/src/components/Icons';
 
-# Icons
+# Industrial Icon system
 
-Using icons within your project. We need to:
+Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG.
 
-- Install `@siemens/ix-icons` e.g `npm install --save @siemens/ix-icons`
-- Load styling `@siemens/ix-icons/dist/scss/ix-icons.css` e.g
+## Installation:
+
+- Install `@siemens/ix-icons` (e.g. `npm install --save @siemens/ix-icons`)
+- Load `@siemens/ix-icons/dist/scss/ix-icons.css`:
 
 ```scss
 @import '@siemens/ix-icons/dist/scss/ix-icons.css';
@@ -33,7 +35,7 @@ Using icons within your project. We need to:
 <IxIcon name="star" size="32"></IxIcon>
 ```
 
-### Web component
+### Web components
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
@@ -41,8 +43,6 @@ Using icons within your project. We need to:
 <ix-icon name="star" size="32"></ix-icon>
 ```
 
-## Icon Library
-
-Click on tile to copy the icon code.
+## Icon library
 
 <Icons></Icons>

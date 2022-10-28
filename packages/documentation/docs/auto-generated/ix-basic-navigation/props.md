@@ -1,4 +1,4 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|applicationName| Application name | `application-name` | `string` | `undefined` |
-|hideHeader| Hide application header | `hide-header` | `boolean` | `false` |
+|<div className="Api__Table"> <div>applicationName</div> <div className="Api__Table Docs__Tags"></div></div>| Application name | `application-name` | `string` | `undefined` |
+|<div className="Api__Table"> <div>hideHeader</div> <div className="Api__Table Docs__Tags"></div></div>| Hide application header | `hide-header` | `boolean` | `false` |

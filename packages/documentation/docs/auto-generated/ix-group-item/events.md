@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|selectedChanged| Selection changed | `HTMLIxGroupItemElement`
+|<div className="Api__Table"> <div>selectedChanged</div> <div className="Api__Table Docs__Tags"></div></div>| Selection changed | `HTMLIxGroupItemElement`

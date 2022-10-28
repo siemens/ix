@@ -26,7 +26,7 @@ export class Icon {
   @Prop() color: string;
 
   /**
-   * Use one of our defined icon names e.g `copy`.
+   * Use one of our defined icon names e.g. `copy`.
    */
   @Prop({ reflect: true }) name: string;
 

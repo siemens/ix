@@ -11,8 +11,14 @@ import { readFileSync } from 'fs';
 import fse from 'fs-extra';
 import fs from 'fs';
 import path, { join } from 'path';
+import { appendDocsTags } from './docs-tags.mjs';
 
 const __dirname = path.resolve();
+
+const htmlPreviewPath = path.join(
+  __dirname,
+  '../html-test-app/src/preview-examples'
+);
 
 function autoGenerationWarning(previewPath) {
   // unix/win normalization
@@ -43,6 +49,28 @@ function formatMultiline(str) {
   return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
 }
 
+function removeNewLines(str) {
+  return str.replace(/\n/g, str);
+}
+
+/**
+ *
+ * @param {string} name
+ * @param {Array<{ name: string, text: string }>} docsTags
+ * @returns
+ */
+function renderTableCellWithDocsTags(name, docsTags) {
+  let eventName = name;
+  let tags = '';
+  if (!!docsTags.length) {
+    tags = appendDocsTags(tags, docsTags);
+  }
+
+  const eventNameContainer = `<div className="Api__Table"> <div>${eventName}</div> <div className="Api__Table Docs__Tags">${tags}</div></div>`;
+
+  return removeNewLines(eventNameContainer);
+}
+
 function readComponents() {
   const raw = readFileSync(
     path.join(__dirname, '..', 'core', 'component-doc.json')
@@ -59,10 +87,15 @@ function writeEvents(events) {
   return `| Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
 ${events
-  .map(
-    (event) =>
-      `|${event.event}| ${formatMultiline(event.docs)} | \`${event.detail}\``
-  )
+  .map((event) => {
+    const eventName = renderTableCellWithDocsTags(event.event, event.docsTags);
+
+    const eventEntry = `|${eventName}| ${formatMultiline(event.docs)} | \`${
+      event.detail
+    }\``;
+
+    return eventEntry;
+  })
   .join('\n')}
 `;
 }
@@ -77,7 +110,10 @@ function writeProps(properties) {
 ${properties
   .map(
     (prop) =>
-      `|${prop.name}| ${formatMultiline(prop.docs)} | \`${
+      `|${renderTableCellWithDocsTags(
+        prop.name,
+        prop.docsTags
+      )}| ${formatMultiline(prop.docs)} | \`${
         prop.attr
       }\` | \`${prop.type.replace(/\|/g, '\uff5c')}\` | \`${prop.default}\` |`
   )
@@ -96,11 +132,13 @@ function writeApi(component) {
 }
 
 function writeWebComponentPreviews() {
-  const previewsPath = path.join(__dirname, 'static', 'webcomponent-examples');
   const webComponentPreviews = fs
-    .readdirSync(previewsPath)
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
-    .map((name) => [name.replace('.html', ''), path.join(previewsPath, name)]);
+    .map((name) => [
+      name.replace('.html', ''),
+      path.join(htmlPreviewPath, name),
+    ]);
 
   webComponentPreviews.forEach(([name, previewPath]) => {
     const writePath = path.join(
@@ -130,7 +168,7 @@ function writeWebComponentPreviews() {
 
 function writeReactPreviews() {
   const webComponentPreviews = fs
-    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
 
@@ -169,7 +207,7 @@ function writeReactPreviews() {
 
 function writeAngularPreviews() {
   const webComponentPreviews = fs
-    .readdirSync(path.join(__dirname, 'static', 'webcomponent-examples'))
+    .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
 

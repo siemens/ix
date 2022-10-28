@@ -1,4 +1,4 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|closePopover| Popover closed | `void`
-|showMore| Show More button is pressed | `MouseEvent`
+|<div className="Api__Table"> <div>closePopover</div> <div className="Api__Table Docs__Tags"></div></div>| Popover closed | `void`
+|<div className="Api__Table"> <div>showMore</div> <div className="Api__Table Docs__Tags"></div></div>| Show More button is pressed | `MouseEvent`

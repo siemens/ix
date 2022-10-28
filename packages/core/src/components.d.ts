@@ -547,7 +547,7 @@ export namespace Components {
          */
         "color": string;
         /**
-          * Use one of our defined icon names e.g `copy`.
+          * Use one of our defined icon names e.g. `copy`.
          */
         "name": string;
         /**
@@ -720,7 +720,6 @@ export namespace Components {
           * Active tab
          */
         "activeTabLabel": string;
-        "i18nImprintLabel": string;
         /**
           * Label of first tab
          */
@@ -2432,7 +2431,7 @@ declare namespace LocalJSX {
          */
         "color"?: string;
         /**
-          * Use one of our defined icon names e.g `copy`.
+          * Use one of our defined icon names e.g. `copy`.
          */
         "name"?: string;
         /**
@@ -2597,7 +2596,6 @@ declare namespace LocalJSX {
           * Active tab
          */
         "activeTabLabel"?: string;
-        "i18nImprintLabel"?: string;
         /**
           * Label of first tab
          */

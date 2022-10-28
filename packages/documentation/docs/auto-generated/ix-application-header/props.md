@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|name| Application name | `name` | `string` | `undefined` |
+|<div className="Api__Table"> <div>name</div> <div className="Api__Table Docs__Tags"></div></div>| Application name | `name` | `string` | `undefined` |

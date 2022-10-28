@@ -1,5 +1,5 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|containerClass|  | `container-class` | `string` | `'toast-container'` |
-|containerId|  | `container-id` | `string` | `'toast-container'` |
-|position|  | `position` | `string` | `'bottom-right'` |
+|<div className="Api__Table"> <div>containerClass</div> <div className="Api__Table Docs__Tags"></div></div>|  | `container-class` | `string` | `'toast-container'` |
+|<div className="Api__Table"> <div>containerId</div> <div className="Api__Table Docs__Tags"></div></div>|  | `container-id` | `string` | `'toast-container'` |
+|<div className="Api__Table"> <div>position</div> <div className="Api__Table Docs__Tags"></div></div>|  | `position` | `string` | `'bottom-right'` |

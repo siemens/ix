@@ -28,15 +28,9 @@ import {
 })
 export class MenuAbout {
   /**
-   *
-   */
-  @Prop({ reflect: true }) i18nImprintLabel = 'Imprint';
-
-  /**
    * Active tab
    */
-  @Prop({ mutable: true, reflect: true }) activeTabLabel: string =
-    this.i18nImprintLabel;
+  @Prop({ mutable: true }) activeTabLabel: string;
 
   /**
    * Label of first tab
@@ -72,11 +66,12 @@ export class MenuAbout {
   }
 
   componentWillLoad() {
-    this.setTab(this.activeTabLabel || this.aboutItems[0]?.label);
+    if (this.aboutItems.length) {
+      this.setTab(this.activeTabLabel || this.aboutItems[0].label);
+    }
   }
 
   componentDidLoad() {
-    this.setTab(this.activeTabLabel || this.aboutItems[0]?.label);
     forceUpdate(this.el);
   }
 
@@ -106,6 +101,21 @@ export class MenuAbout {
       }
     }
 
+  private getTabItems() {
+    return this.aboutItems.map(({ label }) => {
+      return (
+        <ix-tab-item
+          class={{
+            active: label === this.activeTabLabel,
+          }}
+          onClick={() => this.setTab(label)}
+        >
+          {label}
+        </ix-tab-item>
+      );
+    });
+  }
+
   render() {
     return (
       <Host
@@ -128,11 +138,7 @@ export class MenuAbout {
           selected={this.getSelectedTabIndex(this.activeTabLabel)}
           class="about-tabs"
         >
-          {this.labels.map((label) => (
-            <ix-tab-item onClick={() => this.setTab(label)}>
-              {label}
-            </ix-tab-item>
-          ))}
+          {this.getTabItems()}
         </ix-tabs>
         <div class="about-items">
           <slot></slot>

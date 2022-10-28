@@ -1,9 +1,9 @@
 name: build
 
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request, workflow_dispatch, workflow_call]
 
 concurrency:
-  group: ci-${{ github.sha }}
+  group: ci-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/cache@v2
         id: build
         with:
-          key: build-${{ github.sha }}
+          key: build-${{ runner.os }}-${{ github.sha }}
           path: |
             packages/**/dist
             packages/**/www
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/cache@v2
         id: build
         with:
-          key: build-${{ github.sha }}
+          key: build-${{ runner.os }}-${{ github.sha }}
           path: |
             packages/**/dist
             packages/**/www

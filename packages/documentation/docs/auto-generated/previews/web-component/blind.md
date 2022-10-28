@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/documentation/static/webcomponent-examples/blind.html -->
+<!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/blind.html -->
 ```html
 <ix-blind label="Example">
   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
