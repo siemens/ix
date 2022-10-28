@@ -14,7 +14,7 @@
 $container-width: 11.5625rem;
 
 :host {
-  display: flex;
+  display: inline-flex;
   width: auto;
   height: $x-large-space;
   align-items: center;
