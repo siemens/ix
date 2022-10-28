@@ -123,6 +123,19 @@ export class Menu {
 
   @State() isMoreTabEmpty = false;
 
+  /**
+   * Event to emit to parent that the item was selected
+   */
+   @Event() overlayClose: EventEmitter<boolean>;
+
+  @Listen('itemClicked',{target: "body"})
+    closeMenu(event: CustomEvent) {
+      if(event.detail === true){
+        this.expand = false;
+        this.overlayClose.emit(true)
+      }
+    }
+
   private readonly domObserver = new MutationObserver(
     this.onDomChange.bind(this)
   );
@@ -657,6 +670,8 @@ export class Menu {
   private getCollapseIcon() {
     return this.mapExpand ? 'double-chevron-left' : 'double-chevron-right';
   }
+
+
 
   render() {
     return (

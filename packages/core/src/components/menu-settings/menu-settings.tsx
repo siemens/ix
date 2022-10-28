@@ -15,6 +15,7 @@ import {
     forceUpdate,
     h,
     Host,
+    Listen,
     Prop,
     Watch
 } from '@stencil/core';
@@ -45,7 +46,14 @@ export class MenuAbout {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter<MouseEvent>;
+  @Event() close: EventEmitter;
+
+  @Listen('overlayClose',{target: "body"})
+    closeMenu(event: CustomEvent) {
+      if(event.detail === true){
+        this.close.emit(event)
+      }
+    }
 
   get settingsItems(): HTMLIxMenuSettingsItemElement[] {
     return Array.from(this.el.querySelectorAll('ix-menu-settings-item'));

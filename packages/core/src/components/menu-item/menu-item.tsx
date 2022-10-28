@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ix-menu-item',
@@ -49,6 +49,11 @@ export class MenuItem {
 
   @State() title: string;
 
+  /**
+   * Event to emit to parent that the item was selected
+   */
+  @Event() itemClicked: EventEmitter<boolean>;
+
   get tabLabel() {
     return this.hostElement.querySelector('.tab-text');
   }
@@ -61,9 +66,14 @@ export class MenuItem {
     }
   }
 
+  private clicked = () => {
+    this.itemClicked.emit(true)
+  }
+
   render() {
     return (
       <Host
+        onClick={this.clicked}
         class={{
           disabled: this.disabled,
           'home-tab': this.home,

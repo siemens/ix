@@ -2580,6 +2580,10 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: CustomEvent<boolean>) => void;
         /**
+          * Event to emit to parent that the item was selected
+         */
+        "onOverlayClose"?: (event: CustomEvent<boolean>) => void;
+        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -2601,7 +2605,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: CustomEvent<any>) => void;
         /**
           * Internal
          */
@@ -2695,6 +2699,10 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
+          * Event to emit to parent that the item was selected
+         */
+        "onItemClicked"?: (event: CustomEvent<boolean>) => void;
+        /**
           * Icon name from @siemens/ix-icons
          */
         "tabIcon"?: string;
@@ -2711,7 +2719,7 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: CustomEvent<any>) => void;
         /**
           * Internal
          */

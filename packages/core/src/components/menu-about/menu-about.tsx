@@ -15,6 +15,7 @@ import {
     forceUpdate,
     h,
     Host,
+    Listen,
     Prop,
     State,
     Watch
@@ -52,7 +53,7 @@ export class MenuAbout {
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<MouseEvent>;
+  @Event() close: EventEmitter;
 
   @State() labels: string[] = [];
 
@@ -97,6 +98,13 @@ export class MenuAbout {
     const selectedItem = this.aboutItems.find((item) => item.label === label);
     return this.aboutItems.indexOf(selectedItem);
   }
+
+  @Listen('overlayClose',{target: "body"})
+    closeMenu(event: CustomEvent) {
+      if(event.detail === true){
+        this.close.emit(event)
+      }
+    }
 
   render() {
     return (
