@@ -54,7 +54,7 @@ ul {
       border-bottom-left-radius: 0px;
     }
 
-    .cui-event-list-item-content-container {
+    .event-list-item-container {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       border-bottom-left-radius: 0;
@@ -67,7 +67,7 @@ ul {
   }
 
   .compact:not(:last-child) {
-    .cui-event-list-item-content-container {
+    .event-list-item-container {
       border-bottom: none;
     }
   }
