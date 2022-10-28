@@ -4446,12 +4446,27 @@
           "composed": true,
           "docs": "Map Sidebar expanded",
           "docsTags": []
+        },
+        {
+          "event": "overlayClose",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event to emit to parent that the item was selected",
+          "docsTags": []
         }
       ],
       "styles": [],
       "slots": [],
       "parts": [],
       "listeners": [
+        {
+          "event": "itemClicked",
+          "target": "body",
+          "capture": false,
+          "passive": false
+        },
         {
           "event": "resize",
           "target": "window",
@@ -4549,7 +4564,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -4560,7 +4575,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "overlayClose",
+          "target": "body",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/menu-about-item",
@@ -5062,7 +5084,17 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "itemClicked",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event to emit to parent that the item was selected",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -5152,7 +5184,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -5163,7 +5195,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "overlayClose",
+          "target": "body",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/menu-settings-item",
