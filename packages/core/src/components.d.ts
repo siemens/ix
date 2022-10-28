@@ -255,13 +255,14 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Day to display initially.
-         */
-        "day": any;
-        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from": string;
         /**
           * @deprecated - will get removed with next major release
          */
@@ -275,17 +276,14 @@ export namespace Components {
          */
         "minDate": DateTime;
         /**
-          * Month to display initially.
-         */
-        "month": 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
-        /**
           * If true a range of dates can be selected.
          */
         "range": boolean;
         /**
-          * Year to display initially.
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
          */
-        "year": number;
+        "to": string | null;
     }
     interface IxDateTimeCard {
         /**
@@ -299,13 +297,15 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
-          * Set month
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
          */
-        "day": number;
+        "dateFormat": string;
         /**
-          * Set hour
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
          */
-        "hour": number;
+        "from": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -315,21 +315,9 @@ export namespace Components {
          */
         "minDate": DateTime;
         /**
-          * Set minutes
-         */
-        "minutes": number;
-        /**
-          * Set month
-         */
-        "month": 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
-        /**
           * Set range size
          */
         "range": boolean;
-        /**
-          * Set seconds
-         */
-        "seconds": number;
         /**
           * Show hour input
          */
@@ -344,16 +332,28 @@ export namespace Components {
         "showSeconds": boolean;
         /**
           * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": boolean;
+        "showTimeReference": any;
         /**
-          * Set seconds
+          * Select time with format string
+          * @since 1.1.0
          */
-        "timeReference": string;
+        "time": string;
         /**
-          * Set year
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
          */
-        "year": number;
+        "timeFormat": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | null;
     }
     interface IxDrawer {
         /**
@@ -1193,21 +1193,14 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Set hour
+          * Format of time string
+          * @since 1.1.0
          */
-        "hour": number;
+        "format": string;
         /**
           * @deprecated - will get removed with next major release
          */
         "individual": boolean;
-        /**
-          * Set minutes
-         */
-        "minutes": number;
-        /**
-          * Set seconds
-         */
-        "seconds": number;
         /**
           * Show hour input
          */
@@ -1222,12 +1215,18 @@ export namespace Components {
         "showSeconds": boolean;
         /**
           * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": boolean;
+        "showTimeReference": any;
         /**
-          * Set seconds
+          * Select time with format string
+          * @since 1.1.0
          */
-        "timeReference": string;
+        "time": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
     }
     interface IxToast {
         /**
@@ -2169,13 +2168,14 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Day to display initially.
-         */
-        "day"?: any;
-        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from"?: string;
         /**
           * @deprecated - will get removed with next major release
          */
@@ -2189,13 +2189,17 @@ declare namespace LocalJSX {
          */
         "minDate"?: DateTime;
         /**
-          * Month to display initially.
-         */
-        "month"?: 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
-        /**
-          * Date change event
+          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
          */
         "onDateChange"?: (event: CustomEvent<string>) => void;
+        /**
+          * Date range change. Only triggered if datepicker is in range mode
+          * @since 1.0.0
+         */
+        "onDateRangeChange"?: (event: CustomEvent<{
+    from: string;
+    to: string;
+  }>) => void;
         /**
           * Done event
          */
@@ -2205,9 +2209,10 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
         /**
-          * Year to display initially.
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
          */
-        "year"?: number;
+        "to"?: string | null;
     }
     interface IxDateTimeCard {
         /**
@@ -2221,13 +2226,15 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
-          * Set month
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
          */
-        "day"?: number;
+        "dateFormat"?: string;
         /**
-          * Set hour
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
          */
-        "hour"?: number;
+        "from"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -2237,14 +2244,6 @@ declare namespace LocalJSX {
          */
         "minDate"?: DateTime;
         /**
-          * Set minutes
-         */
-        "minutes"?: number;
-        /**
-          * Set month
-         */
-        "month"?: 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 11 | 12;
-        /**
           * Time event
          */
         "onDone"?: (event: CustomEvent<string>) => void;
@@ -2252,10 +2251,6 @@ declare namespace LocalJSX {
           * Set range size
          */
         "range"?: boolean;
-        /**
-          * Set seconds
-         */
-        "seconds"?: number;
         /**
           * Show hour input
          */
@@ -2270,16 +2265,28 @@ declare namespace LocalJSX {
         "showSeconds"?: boolean;
         /**
           * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: boolean;
+        "showTimeReference"?: any;
         /**
-          * Set seconds
+          * Select time with format string
+          * @since 1.1.0
          */
-        "timeReference"?: string;
+        "time"?: string;
         /**
-          * Set year
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
          */
-        "year"?: number;
+        "timeFormat"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | null;
     }
     interface IxDrawer {
         /**
@@ -3174,17 +3181,14 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Set hour
+          * Format of time string
+          * @since 1.1.0
          */
-        "hour"?: number;
+        "format"?: string;
         /**
           * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
-        /**
-          * Set minutes
-         */
-        "minutes"?: number;
         /**
           * Time event
          */
@@ -3193,10 +3197,6 @@ declare namespace LocalJSX {
           * Time change event
          */
         "onTimeChange"?: (event: CustomEvent<string>) => void;
-        /**
-          * Set seconds
-         */
-        "seconds"?: number;
         /**
           * Show hour input
          */
@@ -3211,12 +3211,18 @@ declare namespace LocalJSX {
         "showSeconds"?: boolean;
         /**
           * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: boolean;
+        "showTimeReference"?: any;
         /**
-          * Set seconds
+          * Select time with format string
+          * @since 1.1.0
          */
-        "timeReference"?: string;
+        "time"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
     }
     interface IxToast {
         /**

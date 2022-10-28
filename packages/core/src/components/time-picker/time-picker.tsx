@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -27,6 +27,13 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 })
 export class TimePicker {
   @Element() hostElement!: HTMLIxTimePickerElement;
+
+  /**
+   * Format of time string
+   *
+   * @since 1.1.0
+   */
+  @Prop() format: string = 'TT';
 
   /**
    * Corner style
@@ -54,29 +61,26 @@ export class TimePicker {
   @Prop() showSeconds = false;
 
   /**
+   * Select time with format string
+   *
+   * @since 1.1.0
+   */
+  @Prop() time: string = DateTime.now().toFormat(this.format);
+
+  /**
    * Show time reference input
+   *
+   * @since 1.1.0 time reference is default aligned with formt tt
    */
-  @Prop() showTimeReference = false;
+  @Prop({ mutable: true }) showTimeReference = undefined;
 
   /**
-   * Set hour
+   * Set time reference
    */
-  @Prop() hour: number = 0
-
-  /**
-   * Set minutes
-   */
-   @Prop() minutes: number = 0
-
-   /**
-   * Set seconds
-   */
-  @Prop() seconds: number = 0
-
-  /**
-   * Set seconds
-   */
-   @Prop() timeReference: string = "AM"
+  @Prop() timeReference: 'AM' | 'PM' = DateTime.fromFormat(
+    this.time,
+    this.format
+  ).toFormat('a') as 'PM' | 'AM';
 
   /**
    * Time event
@@ -93,7 +97,19 @@ export class TimePicker {
   @State() secondInputRef: HTMLInputElement;
   @State() referenceInputRef: HTMLInputElement;
 
-  private time: DateTime = DateTime.fromFormat('00:00:00 AM', 'tt');
+  get hour() {
+    return this._time.hour;
+  }
+
+  get minutes() {
+    return this._time.minute;
+  }
+
+  get seconds() {
+    return this._time.second;
+  }
+
+  private _time: DateTime = DateTime.fromFormat(this.time, this.format);
 
   private updateInput(
     step: 'up' | 'down',
@@ -110,14 +126,13 @@ export class TimePicker {
         ? this.secondInputRef.stepUp()
         : this.secondInputRef.stepDown();
 
-    this.time = this.time.set({
+    this._time = this._time.set({
       hour: Number(this.hourInputRef.value),
       minute: Number(this.minuteInputRef.value),
       second: Number(this.secondInputRef.value),
     });
-    this.setHourAccordingToReference();
 
-    this.timeChange.emit(this.time.toFormat('TT'));
+    this.emitTimeChange();
   }
 
   private changeReference() {
@@ -126,7 +141,7 @@ export class TimePicker {
 
     this.setHourAccordingToReference();
 
-    this.timeChange.emit(this.time.toFormat('TT'));
+    this.emitTimeChange();
   }
 
   private setHourAccordingToReference() {
@@ -134,8 +149,23 @@ export class TimePicker {
 
     if (this.referenceInputRef.value === 'PM') hour += 12;
 
-    this.time = this.time.set({ hour });
+    this._time = this._time.set({ hour });
   }
+
+  private emitTimeChange() {
+    const time = this._time.toFormat(this.format);
+    this.timeChange.emit(time);
+  }
+
+  componentWillLoad() {
+    if (this.showTimeReference === undefined) {
+      const matchedKeys = Object.keys(
+        DateTime.fromFormatExplain(this.time, this.format).matches
+      );
+      this.showTimeReference = matchedKeys.includes('a');
+    }
+  }
+
   render() {
     let hideHour = !this.showHour;
     let hideMinutes = !this.showMinutes;
@@ -294,7 +324,9 @@ export class TimePicker {
           </div>
 
           <div class={{ button: true, hidden: hideIndividual }}>
-            <ix-button onClick={() => this.done.emit(this.time.toFormat('TT'))}>
+            <ix-button
+              onClick={() => this.done.emit(this._time.toFormat(this.format))}
+            >
               Done
             </ix-button>
           </div>

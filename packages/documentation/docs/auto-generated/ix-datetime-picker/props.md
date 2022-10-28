@@ -1,16 +1,18 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|day| Set month | `day` | `number` | `null` |
-|hour| Set hour | `hour` | `number` | `0` |
+|dateFormat| Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `date-format` | `string` | `'yyyy/LL/dd'` |
+|from| Picker date. If the picker is in range mode this property is the start date.<br /><br />Format is based on `format` | `from` | `string` | `DateTime.now().toFormat(this.dateFormat)` |
 |maxDate| The latest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
 |minDate| The earliest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
-|minutes| Set minutes | `minutes` | `number` | `0` |
-|month| Set month | `month` | `1 ｜ 10 ｜ 11 ｜ 12 ｜ 2 ｜ 3 ｜ 4 ｜ 5 ｜ 6 ｜ 7 ｜ 8 ｜ 9` | `DateTime.now().month` |
 |range| Set range size | `range` | `boolean` | `true` |
-|seconds| Set seconds | `seconds` | `number` | `0` |
 |showHour| Show hour input | `show-hour` | `boolean` | `false` |
 |showMinutes| Show minutes input | `show-minutes` | `boolean` | `false` |
 |showSeconds| Show seconds input | `show-seconds` | `boolean` | `false` |
-|showTimeReference| Show time reference input | `show-time-reference` | `boolean` | `false` |
-|timeReference| Set seconds | `time-reference` | `string` | `"AM"` |
-|year| Set year | `year` | `number` | `DateTime.now().year` |
+|showTimeReference| Show time reference input | `show-time-reference` | `any` | `undefined` |
+|time| Select time with format string | `time` | `string` | `DateTime.now().toFormat(this.timeFormat)` |
+|timeFormat| Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `time-format` | `string` | `'TT'` |
+|timeReference| Set time reference | `time-reference` | `"AM" ｜ "PM"` | `DateTime.fromFormat(
+    this.time,
+    this.timeFormat
+  ).toFormat('a') as 'PM' | 'AM'` |
+|to| Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`<br /><br />Format is based on `format` | `to` | `string` | `null` |

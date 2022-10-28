@@ -52,19 +52,23 @@ export class DatePicker {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * Year to display initially.
+   * Picker date. If the picker is in range mode this property is the start date.
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
    */
-  @Prop() year = DateTime.now().year;
+  @Prop() from: string = DateTime.now().toFormat(this.format);
 
   /**
-   * Month to display initially.
+   * Picker date. If the picker is in range mode this property is the end date.
+   * If the picker is not in range mode leave this value `null`
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
    */
-  @Prop() month = DateTime.now().month;
-
-  /**
-   * Day to display initially.
-   */
-  @Prop() day = null;
+  @Prop() to: string | null = null;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -86,21 +90,65 @@ export class DatePicker {
   @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
   @State() tempYear: number = this.yearValue;
   @State() tempMonth: number = this.monthValue;
-  @State() start: DateTime = DateTime.fromObject({ year: this.year, month: this.month, day: this.day});
-  @State() end: DateTime = null;
+  @State() start: DateTime = DateTime.fromObject({
+    year: this.year,
+    month: this.month,
+    day: this.day,
+  });
+
+  @State() end: DateTime = this.to
+    ? DateTime.fromFormat(this.to, this.format)
+    : null;
 
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
   /**
    * Date change event
+   *
+   * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
+   * `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
    */
   @Event() dateChange: EventEmitter<string>;
+
+  /**
+   * Date range change.
+   * Only triggered if datepicker is in range mode
+   *
+   * @since 1.0.0
+   */
+  @Event() dateRangeChange: EventEmitter<{
+    from: string;
+    to: string;
+  }>;
 
   /**
    * Done event
    */
   @Event() done: EventEmitter<string>;
+
+  get year() {
+    return DateTime.fromFormat(this.from, this.format).year;
+  }
+
+  get day() {
+    return DateTime.fromFormat(this.from, this.format).day;
+  }
+
+  get month() {
+    return DateTime.fromFormat(this.from, this.format).month;
+  }
+
+  private emitDateChange() {
+    this.dateChange.emit(this.getOutputFormat());
+
+    if (this.range) {
+      this.dateRangeChange.emit({
+        from: this.start.toFormat(this.format),
+        to: this.end.toFormat(this.format),
+      });
+    }
+  }
 
   private selectionProps() {
     if (this.year !== null) {
@@ -277,7 +325,7 @@ export class DatePicker {
 
     if (isSameDay) {
       this.start = null;
-      this.dateChange.emit(this.getOutputFormat());
+      this.emitDateChange();
       return;
     }
 
@@ -298,11 +346,17 @@ export class DatePicker {
       this.end = null;
     }
 
-    this.dateChange.emit(this.getOutputFormat());
+    this.emitDateChange();
   }
 
   private getOutputFormat() {
-    if (!this.end) return this.start.toFormat(this.format);
+    if (!this.start) {
+      return null;
+    }
+
+    if (!this.end) {
+      return this.start.toFormat(this.format);
+    }
 
     return (
       this.start.toFormat(this.format) + ' - ' + this.end.toFormat(this.format)
@@ -312,10 +366,8 @@ export class DatePicker {
   private isWithinMinMax(date: DateTime) {
     const dateIso = date.toISO();
     return (
-      (!this.minDate ||
-      this.minDate.toISO() <= dateIso) &&
-      (!this.maxDate ||
-      this.maxDate.toISO() >= dateIso)
+      (!this.minDate || this.minDate.toISO() <= dateIso) &&
+      (!this.maxDate || this.maxDate.toISO() >= dateIso)
     );
   }
 

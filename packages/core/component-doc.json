@@ -1345,23 +1345,6 @@
           "required": false
         },
         {
-          "name": "day",
-          "type": "any",
-          "mutable": false,
-          "attr": "day",
-          "reflectToAttr": false,
-          "docs": "Day to display initially.",
-          "docsTags": [],
-          "default": "null",
-          "values": [
-            {
-              "type": "any"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "format",
           "type": "string",
           "mutable": false,
@@ -1370,6 +1353,28 @@
           "docs": "Date format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [],
           "default": "'yyyy/LL/dd'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "mutable": false,
+          "attr": "from",
+          "reflectToAttr": false,
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
               "type": "string"
@@ -1432,68 +1437,6 @@
           "required": false
         },
         {
-          "name": "month",
-          "type": "1 | 10 | 11 | 12 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9",
-          "mutable": false,
-          "attr": "month",
-          "reflectToAttr": false,
-          "docs": "Month to display initially.",
-          "docsTags": [],
-          "default": "DateTime.now().month",
-          "values": [
-            {
-              "value": "1",
-              "type": "number"
-            },
-            {
-              "value": "10",
-              "type": "number"
-            },
-            {
-              "value": "11",
-              "type": "number"
-            },
-            {
-              "value": "12",
-              "type": "number"
-            },
-            {
-              "value": "2",
-              "type": "number"
-            },
-            {
-              "value": "3",
-              "type": "number"
-            },
-            {
-              "value": "4",
-              "type": "number"
-            },
-            {
-              "value": "5",
-              "type": "number"
-            },
-            {
-              "value": "6",
-              "type": "number"
-            },
-            {
-              "value": "7",
-              "type": "number"
-            },
-            {
-              "value": "8",
-              "type": "number"
-            },
-            {
-              "value": "9",
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "range",
           "type": "boolean",
           "mutable": false,
@@ -1511,17 +1454,22 @@
           "required": false
         },
         {
-          "name": "year",
-          "type": "number",
+          "name": "to",
+          "type": "string",
           "mutable": false,
-          "attr": "year",
+          "attr": "to",
           "reflectToAttr": false,
-          "docs": "Year to display initially.",
-          "docsTags": [],
-          "default": "DateTime.now().year",
+          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "null",
           "values": [
             {
-              "type": "number"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -1536,8 +1484,22 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date change event",
+          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.",
           "docsTags": []
+        },
+        {
+          "event": "dateRangeChange",
+          "detail": "{ from: string; to: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Date range change.\nOnly triggered if datepicker is in range mode",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.0.0"
+            }
+          ]
         },
         {
           "event": "done",
@@ -1673,34 +1635,44 @@
       },
       "props": [
         {
-          "name": "day",
-          "type": "number",
+          "name": "dateFormat",
+          "type": "string",
           "mutable": false,
-          "attr": "day",
+          "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Set month",
-          "docsTags": [],
-          "default": "null",
+          "docs": "Date format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'yyyy/LL/dd'",
           "values": [
             {
-              "type": "number"
+              "type": "string"
             }
           ],
           "optional": false,
           "required": false
         },
         {
-          "name": "hour",
-          "type": "number",
+          "name": "from",
+          "type": "string",
           "mutable": false,
-          "attr": "hour",
+          "attr": "from",
           "reflectToAttr": false,
-          "docs": "Set hour",
-          "docsTags": [],
-          "default": "0",
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "DateTime.now().toFormat(this.dateFormat)",
           "values": [
             {
-              "type": "number"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -1737,85 +1709,6 @@
           "required": false
         },
         {
-          "name": "minutes",
-          "type": "number",
-          "mutable": false,
-          "attr": "minutes",
-          "reflectToAttr": false,
-          "docs": "Set minutes",
-          "docsTags": [],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "month",
-          "type": "1 | 10 | 11 | 12 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9",
-          "mutable": false,
-          "attr": "month",
-          "reflectToAttr": false,
-          "docs": "Set month",
-          "docsTags": [],
-          "default": "DateTime.now().month",
-          "values": [
-            {
-              "value": "1",
-              "type": "number"
-            },
-            {
-              "value": "10",
-              "type": "number"
-            },
-            {
-              "value": "11",
-              "type": "number"
-            },
-            {
-              "value": "12",
-              "type": "number"
-            },
-            {
-              "value": "2",
-              "type": "number"
-            },
-            {
-              "value": "3",
-              "type": "number"
-            },
-            {
-              "value": "4",
-              "type": "number"
-            },
-            {
-              "value": "5",
-              "type": "number"
-            },
-            {
-              "value": "6",
-              "type": "number"
-            },
-            {
-              "value": "7",
-              "type": "number"
-            },
-            {
-              "value": "8",
-              "type": "number"
-            },
-            {
-              "value": "9",
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "range",
           "type": "boolean",
           "mutable": false,
@@ -1827,23 +1720,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "seconds",
-          "type": "number",
-          "mutable": false,
-          "attr": "seconds",
-          "reflectToAttr": false,
-          "docs": "Set seconds",
-          "docsTags": [],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
             }
           ],
           "optional": false,
@@ -1902,30 +1778,40 @@
         },
         {
           "name": "showTimeReference",
-          "type": "boolean",
+          "type": "any",
           "mutable": false,
           "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input",
-          "docsTags": [],
-          "default": "false",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0 time reference is default aligned with formt tt"
+            }
+          ],
+          "default": "undefined",
           "values": [
             {
-              "type": "boolean"
+              "type": "any"
             }
           ],
           "optional": false,
           "required": false
         },
         {
-          "name": "timeReference",
+          "name": "time",
           "type": "string",
           "mutable": false,
-          "attr": "time-reference",
+          "attr": "time",
           "reflectToAttr": false,
-          "docs": "Set seconds",
-          "docsTags": [],
-          "default": "\"AM\"",
+          "docs": "Select time with format string",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "DateTime.now().toFormat(this.timeFormat)",
           "values": [
             {
               "type": "string"
@@ -1935,17 +1821,66 @@
           "required": false
         },
         {
-          "name": "year",
-          "type": "number",
+          "name": "timeFormat",
+          "type": "string",
           "mutable": false,
-          "attr": "year",
+          "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Set year",
-          "docsTags": [],
-          "default": "DateTime.now().year",
+          "docs": "Date format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'TT'",
           "values": [
             {
-              "type": "number"
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "timeReference",
+          "type": "\"AM\" | \"PM\"",
+          "mutable": false,
+          "attr": "time-reference",
+          "reflectToAttr": false,
+          "docs": "Set time reference",
+          "docsTags": [],
+          "default": "DateTime.fromFormat(\n    this.time,\n    this.timeFormat\n  ).toFormat('a') as 'PM' | 'AM'",
+          "values": [
+            {
+              "value": "AM",
+              "type": "string"
+            },
+            {
+              "value": "PM",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "mutable": false,
+          "attr": "to",
+          "reflectToAttr": false,
+          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "null",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7449,7 +7384,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -7466,6 +7402,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-time-picker"
+        ],
+        "my-component": [
           "ix-time-picker"
         ]
       },
@@ -7497,17 +7436,22 @@
           "required": false
         },
         {
-          "name": "hour",
-          "type": "number",
+          "name": "format",
+          "type": "string",
           "mutable": false,
-          "attr": "hour",
+          "attr": "format",
           "reflectToAttr": false,
-          "docs": "Set hour",
-          "docsTags": [],
-          "default": "0",
+          "docs": "Format of time string",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'TT'",
           "values": [
             {
-              "type": "number"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7531,40 +7475,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "minutes",
-          "type": "number",
-          "mutable": false,
-          "attr": "minutes",
-          "reflectToAttr": false,
-          "docs": "Set minutes",
-          "docsTags": [],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "seconds",
-          "type": "number",
-          "mutable": false,
-          "attr": "seconds",
-          "reflectToAttr": false,
-          "docs": "Set seconds",
-          "docsTags": [],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
             }
           ],
           "optional": false,
@@ -7623,16 +7533,43 @@
         },
         {
           "name": "showTimeReference",
-          "type": "boolean",
-          "mutable": false,
+          "type": "any",
+          "mutable": true,
           "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input",
-          "docsTags": [],
-          "default": "false",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0 time reference is default aligned with formt tt"
+            }
+          ],
+          "default": "undefined",
           "values": [
             {
-              "type": "boolean"
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "time",
+          "type": "string",
+          "mutable": false,
+          "attr": "time",
+          "reflectToAttr": false,
+          "docs": "Select time with format string",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "DateTime.now().toFormat(this.format)",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7640,15 +7577,20 @@
         },
         {
           "name": "timeReference",
-          "type": "string",
+          "type": "\"AM\" | \"PM\"",
           "mutable": false,
           "attr": "time-reference",
           "reflectToAttr": false,
-          "docs": "Set seconds",
+          "docs": "Set time reference",
           "docsTags": [],
-          "default": "\"AM\"",
+          "default": "DateTime.fromFormat(\n    this.time,\n    this.format\n  ).toFormat('a') as 'PM' | 'AM'",
           "values": [
             {
+              "value": "AM",
+              "type": "string"
+            },
+            {
+              "value": "PM",
               "type": "string"
             }
           ],
@@ -8999,11 +8941,13 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-date-picker"
+        "ix-date-picker",
+        "ix-time-picker"
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-date-picker"
+          "ix-date-picker",
+          "ix-time-picker"
         ],
         "ix-date-picker": [
           "ix-date-time-card",
@@ -9014,6 +8958,11 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button"
         ]
       },
       "props": [],

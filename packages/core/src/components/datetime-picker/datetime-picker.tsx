@@ -37,59 +37,76 @@ export class DatePicker {
   @Prop() showSeconds = false;
 
   /**
-   * Show time reference input
-   */
-  @Prop() showTimeReference = false;
-
-   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
   @Prop() minDate: DateTime;
 
-   /**
+  /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
   @Prop() maxDate: DateTime;
 
-   /**
-   * Set year
+  /**
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 1.1.0
    */
-  @Prop() year = DateTime.now().year;
+  @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
-   * Set month
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 1.1.0
    */
-  @Prop() month = DateTime.now().month;
+  @Prop() timeFormat: string = 'TT';
 
   /**
-   * Set month
+   * Picker date. If the picker is in range mode this property is the start date.
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
    */
-  @Prop() day: number = null;
-
-   /**
-   * Set hour
-   */
-  @Prop() hour: number = 0
-
-  /**
-   * Set minutes
-   */
-  @Prop() minutes: number = 0
-
-    /**
-   * Set seconds
-   */
-  @Prop() seconds: number = 0
+  @Prop() from: string = DateTime.now().toFormat(this.dateFormat);
 
   /**
-   * Set seconds
+   * Picker date. If the picker is in range mode this property is the end date.
+   * If the picker is not in range mode leave this value `null`
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
    */
-  @Prop() timeReference: string = "AM"
+  @Prop() to: string | null = null;
+
+  /**
+   * Select time with format string
+   *
+   * @since 1.1.0
+   */
+  @Prop() time: string = DateTime.now().toFormat(this.timeFormat);
+
+  /**
+   * Show time reference input
+   *
+   * @since 1.1.0 time reference is default aligned with formt tt
+   */
+  @Prop() showTimeReference = undefined;
+
+  /**
+   * Set time reference
+   */
+  @Prop() timeReference: 'AM' | 'PM' = DateTime.fromFormat(
+    this.time,
+    this.timeFormat
+  ).toFormat('a') as 'PM' | 'AM';
 
   private date!: string;
-  private time!: string;
+  private _time!: string;
 
   /**
    * Time event
@@ -97,23 +114,23 @@ export class DatePicker {
   @Event() done: EventEmitter<string>;
 
   private doneEvent() {
-    console.log(this.date + ' ' + this.time);
-    this.done.emit(this.date + ' ' + this.time);
+    console.log(this.date + ' ' + this._time);
+    this.done.emit(this.date + ' ' + this._time);
   }
 
   render() {
     return (
       <Host>
         <div class="flex">
-        <div class="separator"></div>
+          <div class="separator"></div>
           <ix-date-picker
             corners="left"
             individual={false}
             range={this.range}
             onDateChange={(date) => (this.date = date.detail)}
-            year={this.year}
-            month={this.month}
-            day={this.day}
+            from={this.from}
+            to={this.to}
+            format={this.dateFormat}
             minDate={this.minDate}
             maxDate={this.maxDate}
           ></ix-date-picker>
@@ -125,10 +142,8 @@ export class DatePicker {
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
-            onTimeChange={(time) => (this.time = time.detail)}
-            hour={this.hour}
-            minutes={this.minutes}
-            seconds={this.seconds}
+            onTimeChange={(time) => (this._time = time.detail)}
+            time={this.time}
             timeReference={this.timeReference}
           ></ix-time-picker>
           <div class="separator"></div>

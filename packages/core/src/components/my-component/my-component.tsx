@@ -16,6 +16,22 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-date-picker
+          range={true}
+          from={'2022/03/23'}
+          to={'2022/03/29'}
+        ></ix-date-picker>
+        <ix-time-picker time="05:00:00 AM" format="hh:mm:ss a"></ix-time-picker>
+        {/* <ix-datetime-picker
+          range={true}
+          from={'2022/03/23'}
+          to={'2022/03/29'}
+          time="05:00:00 AM"
+          timeFormat="hh:mm:ss a"
+        ></ix-datetime-picker> */}
+      </Host>
+    );
   }
 }

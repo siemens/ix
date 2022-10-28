@@ -11,18 +11,17 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property            | Attribute             | Description                                                                                          | Type                             | Default     |
-| ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------- | ----------- |
-| `corners`           | `corners`             | Corner style                                                                                         | `"left" \| "right" \| "rounded"` | `'rounded'` |
-| `hour`              | `hour`                | Set hour                                                                                             | `number`                         | `0`         |
-| `individual`        | `individual`          | <span style="color:red">**[DEPRECATED]**</span> - will get removed with next major release<br/><br/> | `boolean`                        | `true`      |
-| `minutes`           | `minutes`             | Set minutes                                                                                          | `number`                         | `0`         |
-| `seconds`           | `seconds`             | Set seconds                                                                                          | `number`                         | `0`         |
-| `showHour`          | `show-hour`           | Show hour input                                                                                      | `boolean`                        | `false`     |
-| `showMinutes`       | `show-minutes`        | Show minutes input                                                                                   | `boolean`                        | `false`     |
-| `showSeconds`       | `show-seconds`        | Show seconds input                                                                                   | `boolean`                        | `false`     |
-| `showTimeReference` | `show-time-reference` | Show time reference input                                                                            | `boolean`                        | `false`     |
-| `timeReference`     | `time-reference`      | Set seconds                                                                                          | `string`                         | `"AM"`      |
+| Property            | Attribute             | Description                                                                                          | Type                             | Default                                                                                 |
+| ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| `corners`           | `corners`             | Corner style                                                                                         | `"left" \| "right" \| "rounded"` | `'rounded'`                                                                             |
+| `format`            | `format`              | Format of time string                                                                                | `string`                         | `'TT'`                                                                                  |
+| `individual`        | `individual`          | <span style="color:red">**[DEPRECATED]**</span> - will get removed with next major release<br/><br/> | `boolean`                        | `true`                                                                                  |
+| `showHour`          | `show-hour`           | Show hour input                                                                                      | `boolean`                        | `false`                                                                                 |
+| `showMinutes`       | `show-minutes`        | Show minutes input                                                                                   | `boolean`                        | `false`                                                                                 |
+| `showSeconds`       | `show-seconds`        | Show seconds input                                                                                   | `boolean`                        | `false`                                                                                 |
+| `showTimeReference` | `show-time-reference` | Show time reference input                                                                            | `any`                            | `undefined`                                                                             |
+| `time`              | `time`                | Select time with format string                                                                       | `string`                         | `DateTime.now().toFormat(this.format)`                                                  |
+| `timeReference`     | `time-reference`      | Set time reference                                                                                   | `"AM" \| "PM"`                   | `DateTime.fromFormat(     this.time,     this.format   ).toFormat('a') as 'PM' \| 'AM'` |
 
 
 ## Events
