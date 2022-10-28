@@ -14,9 +14,18 @@ regressionTest.describe('expanding-search', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto(`expanding-search/test/basic`);
 
-    await page.locator('button').click();
-    await page.locator('.input-container.expanded').waitFor();
+    await page.locator('ix-expanding-search button').click();
+    await page
+      .locator('ix-expanding-search .input-container.expanded')
+      .waitFor();
     await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.05,
+    });
+  });
+
+  regressionTest('basic not expanded', async ({ page }) => {
+    await page.goto(`expanding-search/test/basic`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.05,
     });
