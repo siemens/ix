@@ -20,9 +20,9 @@ SPDX-License-Identifier: MIT
 
 ## Events
 
-| Event   | Description            | Type                      |
-| ------- | ---------------------- | ------------------------- |
-| `close` | About and Legal closed | `CustomEvent<MouseEvent>` |
+| Event   | Description            | Type               |
+| ------- | ---------------------- | ------------------ |
+| `close` | About and Legal closed | `CustomEvent<any>` |
 
 
 ----------------------------------------------

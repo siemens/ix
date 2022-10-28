@@ -32,10 +32,11 @@ SPDX-License-Identifier: MIT
 
 ## Events
 
-| Event             | Description          | Type                   |
-| ----------------- | -------------------- | ---------------------- |
-| `expandChange`    | Menu expanded        | `CustomEvent<boolean>` |
-| `mapExpandChange` | Map Sidebar expanded | `CustomEvent<boolean>` |
+| Event             | Description                                        | Type                   |
+| ----------------- | -------------------------------------------------- | ---------------------- |
+| `expandChange`    | Menu expanded                                      | `CustomEvent<boolean>` |
+| `mapExpandChange` | Map Sidebar expanded                               | `CustomEvent<boolean>` |
+| `overlayClose`    | Event to emit to parent that the item was selected | `CustomEvent<boolean>` |
 
 
 ## Methods
