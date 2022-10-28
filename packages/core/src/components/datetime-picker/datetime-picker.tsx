@@ -57,7 +57,7 @@ export class DatePicker {
   @Prop() dateFormat: string = 'yyyy/LL/dd';
 
   /**
-   * Date format string.
+   * Time format string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    *
    * @since 1.1.0
@@ -71,7 +71,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() from: string = DateTime.now().toFormat(this.dateFormat);
+  @Prop() from: string;
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -88,7 +88,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() time: string = DateTime.now().toFormat(this.timeFormat);
+  @Prop() time: string;
 
   /**
    * Show time reference input
@@ -100,22 +100,49 @@ export class DatePicker {
   /**
    * Set time reference
    */
-  @Prop() timeReference: 'AM' | 'PM' = DateTime.fromFormat(
-    this.time,
-    this.timeFormat
-  ).toFormat('a') as 'PM' | 'AM';
+  @Prop() timeReference: 'AM' | 'PM';
 
   private date!: string;
   private _time!: string;
 
   /**
-   * Time event
+   * Done event
    */
   @Event() done: EventEmitter<string>;
 
-  private doneEvent() {
-    console.log(this.date + ' ' + this._time);
+  /**
+   * Time change
+   *
+   * @since 1.1.0
+   */
+  @Event() timeChange: EventEmitter<string>;
+
+  /**
+   * Date change
+   *
+   * @since 1.1.0
+   */
+  @Event() dateChange: EventEmitter<string>;
+
+  private emitDone() {
     this.done.emit(this.date + ' ' + this._time);
+  }
+
+  private emitDateChange(event: CustomEvent<string>) {
+    event.preventDefault();
+    event.stopPropagation();
+    const { detail: date } = event;
+    this.date = date;
+    this.dateChange.emit(date);
+  }
+
+  private emitTimeChange(event: CustomEvent<string>) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const { detail: time } = event;
+    this._time = time;
+    this.timeChange.emit(time);
   }
 
   render() {
@@ -127,7 +154,7 @@ export class DatePicker {
             corners="left"
             individual={false}
             range={this.range}
-            onDateChange={(date) => (this.date = date.detail)}
+            onDateChange={(event) => this.emitDateChange(event)}
             from={this.from}
             to={this.to}
             format={this.dateFormat}
@@ -142,15 +169,16 @@ export class DatePicker {
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
-            onTimeChange={(time) => (this._time = time.detail)}
+            onTimeChange={(event) => this.emitTimeChange(event)}
             time={this.time}
+            format={this.timeFormat}
             timeReference={this.timeReference}
           ></ix-time-picker>
           <div class="separator"></div>
         </div>
 
         <div class="done">
-          <ix-button onClick={() => this.doneEvent()}>Done</ix-button>
+          <ix-button onClick={() => this.emitDone()}>Done</ix-button>
         </div>
       </Host>
     );

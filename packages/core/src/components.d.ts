@@ -341,7 +341,7 @@ export namespace Components {
          */
         "time": string;
         /**
-          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat": string;
@@ -2244,9 +2244,19 @@ declare namespace LocalJSX {
          */
         "minDate"?: DateTime;
         /**
-          * Time event
+          * Date change
+          * @since 1.1.0
+         */
+        "onDateChange"?: (event: CustomEvent<string>) => void;
+        /**
+          * Done event
          */
         "onDone"?: (event: CustomEvent<string>) => void;
+        /**
+          * Time change
+          * @since 1.1.0
+         */
+        "onTimeChange"?: (event: CustomEvent<string>) => void;
         /**
           * Set range size
          */
@@ -2274,7 +2284,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat"?: string;

@@ -144,8 +144,8 @@ export class DatePicker {
 
     if (this.range) {
       this.dateRangeChange.emit({
-        from: this.start.toFormat(this.format),
-        to: this.end.toFormat(this.format),
+        from: this.start?.toFormat(this.format),
+        to: this.end?.toFormat(this.format),
       });
     }
   }
