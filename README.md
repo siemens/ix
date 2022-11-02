@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
 ![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
-[![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](./LICENSE.md)
+[![MIT License](https://img.shields.io/badge/license-MIT-009999.svg?style=flat)](./LICENSE.md)
 
 iX is an open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
