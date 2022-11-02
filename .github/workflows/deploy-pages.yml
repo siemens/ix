@@ -32,7 +32,7 @@ jobs:
       - name: Check if deployment condition is fulfilled
         if: ${{ startsWith(github.ref, 'refs/heads/release/docs/v') == false || github.event.inputs.confirm_deployment == false }}
         run: |
-          echo "::error ::Be sure that the workflow run on release/docs/v* and you checked confirm"
+          echo "::error ::Be sure that the workflow runs on release/docs/v* and you checked confirm"
           exit -1
 
       - name: Install rsync
