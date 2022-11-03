@@ -128,7 +128,7 @@ export class Menu {
    */
    @Event() overlayClose: EventEmitter<boolean>;
 
-  @Listen('itemClicked',{target: "body"})
+  @Listen('onClick',{target: "body"})
     closeMenu(event: CustomEvent) {
       if(event.detail === true){
         this.expand = false;

@@ -52,7 +52,7 @@ export class MenuItem {
   /**
    * Event to emit to parent that the item was selected
    */
-  @Event() itemClicked: EventEmitter<boolean>;
+  @Event() onClick: EventEmitter<boolean>;
 
   get tabLabel() {
     return this.hostElement.querySelector('.tab-text');
@@ -67,7 +67,7 @@ export class MenuItem {
   }
 
   private clicked = () => {
-    this.itemClicked.emit(true)
+    this.onClick.emit(true)
   }
 
   render() {
