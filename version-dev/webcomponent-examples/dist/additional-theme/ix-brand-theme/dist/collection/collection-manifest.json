@@ -1,0 +1,14 @@
+{
+  "entries": [
+    "./components/my-component/my-component.js",
+    "./components/siemens-about-content/siemens-about-content.js",
+    "./components/siemens-logo/siemens-logo.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.18.1",
+    "typescriptVersion": "4.7.4"
+  },
+  "collections": [],
+  "bundles": []
+}
