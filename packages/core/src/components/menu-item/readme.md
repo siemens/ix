@@ -23,9 +23,9 @@ SPDX-License-Identifier: MIT
 
 ## Events
 
-| Event         | Description                                        | Type                   |
-| ------------- | -------------------------------------------------- | ---------------------- |
-| `itemClicked` | Event to emit to parent that the item was selected | `CustomEvent<boolean>` |
+| Event     | Description                                        | Type                   |
+| --------- | -------------------------------------------------- | ---------------------- |
+| `onClick` | Event to emit to parent that the item was selected | `CustomEvent<boolean>` |
 
 
 ----------------------------------------------

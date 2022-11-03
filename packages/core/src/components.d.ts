@@ -2699,7 +2699,7 @@ declare namespace LocalJSX {
         /**
           * Event to emit to parent that the item was selected
          */
-        "onItemClicked"?: (event: CustomEvent<boolean>) => void;
+        "onOnClick"?: (event: CustomEvent<boolean>) => void;
         /**
           * Icon name from @siemens/ix-icons
          */

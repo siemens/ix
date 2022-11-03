@@ -1006,7 +1006,7 @@ export declare interface IxMenuItem extends Components.IxMenuItem {
   /**
    * Event to emit to parent that the item was selected 
    */
-  itemClicked: EventEmitter<CustomEvent<boolean>>;
+  onClick: EventEmitter<CustomEvent<boolean>>;
 
 }
 
@@ -1025,7 +1025,7 @@ export class IxMenuItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClicked']);
+    proxyOutputs(this, this.el, ['onClick']);
   }
 }
 

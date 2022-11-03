@@ -4462,7 +4462,7 @@
       "parts": [],
       "listeners": [
         {
-          "event": "itemClicked",
+          "event": "onClick",
           "target": "body",
           "capture": false,
           "passive": false
@@ -5086,7 +5086,7 @@
       "methods": [],
       "events": [
         {
-          "event": "itemClicked",
+          "event": "onClick",
           "detail": "boolean",
           "bubbles": true,
           "cancelable": true,
