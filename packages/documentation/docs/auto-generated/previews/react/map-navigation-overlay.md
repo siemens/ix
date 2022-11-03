@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/map-navigation.tsx -->
+<!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/map-navigation-overlay.tsx -->
 ```tsx
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
@@ -22,7 +22,7 @@ export const MapNavigationOverlay: React.FC = () => {
   return (
     <IxMapNavigationOverlay>
       <IxMapNavigation>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 184.567 138" slot="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 184.567 138">
           <defs>
             <linearGradient id="x05mhzd7ga" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
               <stop offset="0" stop-color="#00ffb9" />

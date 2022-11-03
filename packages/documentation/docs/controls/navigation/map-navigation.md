@@ -22,7 +22,7 @@ import AngularOverlayComponent from './../../auto-generated/previews/angular/map
 
 ## Usage
 
-<Preview name="map-navigation" height="30rem">
+<Preview name="map-navigation" height="35rem" noMargin>
   <TabItem value="javascript">
     <SourceWebComponent />
   </TabItem>
@@ -34,22 +34,6 @@ import AngularOverlayComponent from './../../auto-generated/previews/angular/map
   </TabItem>
 </Preview>
 
-<Preview name="map-navigation-overlay" height="30rem">
-  <TabItem value="javascript">
-    <OverlayWebComponent />
-  </TabItem>
-  <TabItem value="react">
-    <ReactOverlayComponent />
-  </TabItem>
-  <TabItem value="angular">
-    <AngularOverlayComponent />
-  </TabItem>
-</Preview>
-
-## Change language of legal links
-
-Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
-
 ## Properties (ix-map-navigation)
 
 #### Props
@@ -59,13 +43,3 @@ Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 #### Events
 
 <Events />
-
-## Properties (ix-map-navigation-overlay)
-
-#### Props
-
-<PropsOverlay />
-
-#### Events
-
-<EventsOverlay />

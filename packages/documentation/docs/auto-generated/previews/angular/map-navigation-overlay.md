@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2022 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!-- Auto generated! Please edit here: packages/angular-test-app/src/preview-examples/map-navigation.ts -->
+<!-- Auto generated! Please edit here: packages/angular-test-app/src/preview-examples/map-navigation-overlay.ts -->
 ```typescript
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
@@ -44,5 +44,5 @@ import { Component } from '@angular/core';
   </ix-map-navigation-overlay>
   `,
 })
-export class MapNavigation {}
+export class MapNavigationOverlay {}
 ```
