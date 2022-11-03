@@ -18,12 +18,15 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-date-picker
+        {/* <ix-date-picker
           range={true}
           from={'2022/03/23'}
-          to={'2022/03/29'}
+          eventDelimiter={null}
+          onDateChange={({ detail }) => console.log('datechange', detail)}
+          onDateSelect={({ detail: d }) => console.log('dateselect', d)}
+          textDone="Okay!"
         ></ix-date-picker>
-        <ix-time-picker time="05:00:00 AM" format="hh:mm:ss a"></ix-time-picker>
+        <ix-time-picker time="05:00:00 AM" format="hh:mm:ss a"></ix-time-picker> */}
         <ix-datetime-picker
           range={true}
           from={'2022/03/23'}
@@ -33,6 +36,7 @@ export class MyComponent {
           timeFormat="hh:mm:ss a"
           onTimeChange={(d) => console.log('time', d)}
           onDateChange={(t) => console.log('date', t)}
+          onDone={(done) => console.log('done', done)}
         ></ix-datetime-picker>
       </Host>
     );

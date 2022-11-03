@@ -10,6 +10,7 @@ import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateTime } from "luxon";
+import { DateChangeEvent } from "./components/date-picker/date-change";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -255,6 +256,11 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter": string;
+        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format": string;
@@ -280,6 +286,10 @@ export namespace Components {
          */
         "range": boolean;
         /**
+          * Text for ´Done´
+         */
+        "textDone": string;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
@@ -301,6 +311,11 @@ export namespace Components {
           * @since 1.1.0
          */
         "dateFormat": string;
+        /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "doneEventDelimiter": string;
         /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
@@ -2168,6 +2183,11 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter"?: string;
+        /**
           * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format"?: string;
@@ -2190,24 +2210,32 @@ declare namespace LocalJSX {
         "minDate"?: DateTime;
         /**
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+          * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
-        "onDateChange"?: (event: CustomEvent<string>) => void;
+        "onDateChange"?: (event: CustomEvent<string | DateChangeEvent>) => void;
         /**
           * Date range change. Only triggered if datepicker is in range mode
-          * @since 1.0.0
+          * @since 1.1.0
          */
-        "onDateRangeChange"?: (event: CustomEvent<{
-    from: string;
-    to: string;
-  }>) => void;
+        "onDateRangeChange"?: (event: CustomEvent<DateChangeEvent>) => void;
         /**
-          * Done event
+          * Date selection confirmed via button action
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: CustomEvent<DateChangeEvent>) => void;
+        /**
+          * Date selection confirmed via button action
+          * @deprecated Use `dateSelect`
          */
         "onDone"?: (event: CustomEvent<string>) => void;
         /**
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
+        /**
+          * Text for ´Done´
+         */
+        "textDone"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
@@ -2231,6 +2259,11 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "doneEventDelimiter"?: string;
+        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
@@ -2247,9 +2280,9 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: CustomEvent<string>) => void;
+        "onDateChange"?: (event: CustomEvent<string | DateChangeEvent>) => void;
         /**
-          * Done event
+          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
          */
         "onDone"?: (event: CustomEvent<string>) => void;
         /**

@@ -9,6 +9,7 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { DateChangeEvent } from '../date-picker/date-change';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -98,15 +99,22 @@ export class DatePicker {
   @Prop() showTimeReference = undefined;
 
   /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   */
+  @Prop() doneEventDelimiter = ' - ';
+
+  /**
    * Set time reference
    */
   @Prop() timeReference: 'AM' | 'PM';
 
-  private date!: string;
-  private _time!: string;
-
   /**
    * Done event
+   *
+   * Set `doneEventDelimiter` to null or undefine to get the typed event
    */
   @Event() done: EventEmitter<string>;
 
@@ -122,26 +130,23 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Event() dateChange: EventEmitter<string>;
+  @Event() dateChange: EventEmitter<string | DateChangeEvent>;
 
-  private emitDone() {
-    this.done.emit(this.date + ' ' + this._time);
+  private onDone() {
+    this.done.emit();
   }
 
-  private emitDateChange(event: CustomEvent<string>) {
+  private onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
     const { detail: date } = event;
-    this.date = date;
     this.dateChange.emit(date);
   }
 
-  private emitTimeChange(event: CustomEvent<string>) {
+  private onTimeChange(event: CustomEvent<string>) {
     event.preventDefault();
     event.stopPropagation();
-
     const { detail: time } = event;
-    this._time = time;
     this.timeChange.emit(time);
   }
 
@@ -154,7 +159,7 @@ export class DatePicker {
             corners="left"
             individual={false}
             range={this.range}
-            onDateChange={(event) => this.emitDateChange(event)}
+            onDateChange={(event) => this.onDateChange(event)}
             from={this.from}
             to={this.to}
             format={this.dateFormat}
@@ -169,7 +174,7 @@ export class DatePicker {
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
-            onTimeChange={(event) => this.emitTimeChange(event)}
+            onTimeChange={(event) => this.onTimeChange(event)}
             time={this.time}
             format={this.timeFormat}
             timeReference={this.timeReference}
@@ -178,7 +183,7 @@ export class DatePicker {
         </div>
 
         <div class="done">
-          <ix-button onClick={() => this.emitDone()}>Done</ix-button>
+          <ix-button onClick={() => this.onDone()}>Done</ix-button>
         </div>
       </Host>
     );

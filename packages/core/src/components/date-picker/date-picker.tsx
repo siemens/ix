@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import { DateChangeEvent } from './date-change';
 
 @Component({
   tag: 'ix-date-picker',
@@ -82,6 +83,19 @@ export class DatePicker {
    */
   @Prop() maxDate: DateTime;
 
+  /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   */
+  @Prop() eventDelimiter = ' - ';
+
+  /**
+   * Text for ´Done´
+   */
+  @Prop() textDone = 'Done';
+
   @State() yearValue = this.year;
   @State() today = DateTime.now();
   @State() monthValue: number = this.month;
@@ -108,24 +122,32 @@ export class DatePicker {
    *
    * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
    * `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+   *
+   * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
-  @Event() dateChange: EventEmitter<string>;
+  @Event() dateChange: EventEmitter<string | DateChangeEvent>;
 
   /**
    * Date range change.
    * Only triggered if datepicker is in range mode
    *
-   * @since 1.0.0
+   * @since 1.1.0
    */
-  @Event() dateRangeChange: EventEmitter<{
-    from: string;
-    to: string;
-  }>;
+  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
 
   /**
-   * Done event
+   * Date selection confirmed via button action
+   *
+   * @deprecated Use `dateSelect`
    */
   @Event() done: EventEmitter<string>;
+
+  /**
+   * Date selection confirmed via button action
+   *
+   * @since 1.1.0
+   */
+  @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   get year() {
     return DateTime.fromFormat(this.from, this.format).year;
@@ -139,8 +161,32 @@ export class DatePicker {
     return DateTime.fromFormat(this.from, this.format).month;
   }
 
-  private emitDateChange() {
-    this.dateChange.emit(this.getOutputFormat());
+  private isDatePicked() {
+    if (!this.range) {
+      return !!this.start;
+    }
+
+    return !!this.start && !!this.end;
+  }
+
+  private onDone() {
+    this.done.emit(this.getOutputFormat());
+
+    this.dateSelect.emit({
+      from: this.start.toFormat(this.format),
+      to: this.end?.toFormat(this.format),
+    });
+  }
+
+  private onDateChange() {
+    if (this.eventDelimiter) {
+      this.dateChange.emit(this.getOutputFormat());
+    } else {
+      this.dateChange.emit({
+        from: this.start.toFormat(this.format),
+        to: this.end?.toFormat(this.format),
+      });
+    }
 
     if (this.range) {
       this.dateRangeChange.emit({
@@ -325,7 +371,7 @@ export class DatePicker {
 
     if (isSameDay) {
       this.start = null;
-      this.emitDateChange();
+      this.onDateChange();
       return;
     }
 
@@ -346,7 +392,7 @@ export class DatePicker {
       this.end = null;
     }
 
-    this.emitDateChange();
+    this.onDateChange();
   }
 
   private getOutputFormat() {
@@ -358,9 +404,10 @@ export class DatePicker {
       return this.start.toFormat(this.format);
     }
 
-    return (
-      this.start.toFormat(this.format) + ' - ' + this.end.toFormat(this.format)
-    );
+    return [
+      this.start.toFormat(this.format),
+      this.end.toFormat(this.format),
+    ].join(this.eventDelimiter);
   }
 
   private isWithinMinMax(date: DateTime) {
@@ -488,8 +535,11 @@ export class DatePicker {
           </div>
 
           <div class={{ button: true, hidden: !this.individual }}>
-            <ix-button onClick={() => this.done.emit(this.getOutputFormat())}>
-              Done
+            <ix-button
+              disabled={!this.isDatePicked()}
+              onClick={() => this.onDone()}
+            >
+              {this.textDone}
             </ix-button>
           </div>
         </ix-date-time-card>

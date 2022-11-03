@@ -6,12 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { DateChangeEvent } from '../date-picker/date-change';
 
-:host {
-  display: inline-block;
-  height: 2rem;
-
-  &[disabled] {
-    pointer-events: none;
-  }
-}
+export type DateTimeChangeEvent = DateChangeEvent & { time: string };
