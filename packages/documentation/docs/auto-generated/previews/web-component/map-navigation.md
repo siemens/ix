@@ -17,6 +17,6 @@ SPDX-License-Identifier: MIT
     <ix-menu-item>Item 3</ix-menu-item>
   </ix-menu>
   <div slot="sidebar-content">Sidebar content</div>
-  <div>Sidebar content</div>
+  <div>Content</div>
 </ix-map-navigation>
 ```

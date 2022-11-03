@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const BasicNavigation: React.FC = () => {
+export const BasicNavigationWithoutHeader: React.FC = () => {
   return (
     <IxBasicNavigation hideHeader>
       <IxMenu>
