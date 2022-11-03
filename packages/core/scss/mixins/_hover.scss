@@ -45,7 +45,6 @@
 
 @mixin ghost-hover-pressed {
   &:not(.disabled):not(:disabled) {
-
     &.hover,
     &:hover {
       background-color: var(--theme-ghost--background--hover);

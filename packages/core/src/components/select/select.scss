@@ -24,7 +24,8 @@
     align-items: center;
     height: auto;
     background-color: var(--theme-input--background);
-    border: var(--theme-input--border-thickness) solid var(--theme-input--border-color);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     padding: 0 0 0 $small-space;
 
@@ -70,7 +71,7 @@
 
       margin: auto;
 
-      >ix-filter-chip {
+      > ix-filter-chip {
         margin: 0.1rem;
       }
     }
@@ -112,11 +113,15 @@
   .editable {
     .chevron-down-container {
       @include hover {
-        background-color: var(--theme-btn-invisible-secondary--background--hover);
+        background-color: var(
+          --theme-btn-invisible-secondary--background--hover
+        );
       }
 
       @include active {
-        background-color: var(--theme-btn-invisible-secondary--background--active);
+        background-color: var(
+          --theme-btn-invisible-secondary--background--active
+        );
       }
     }
   }

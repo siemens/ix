@@ -84,7 +84,6 @@ $border-radius: 100px;
       }
 
       @if $interaction {
-
         &:focus-visible {
           outline: 1px solid #199fff;
           outline-offset: var(--theme-btn--focus--outline-offset);

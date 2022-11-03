@@ -20,7 +20,7 @@
       color: var(--theme-breadcrumb-#{$variant}--color--hover);
     }
 
-    .crumb-text+.glyph-chevron-right-small {
+    .crumb-text + .glyph-chevron-right-small {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
     }
   }
@@ -33,7 +33,7 @@
       color: var(--theme-breadcrumb-#{$variant}--color--active);
     }
 
-    .crumb-text+.glyph-chevron-right-small {
+    .crumb-text + .glyph-chevron-right-small {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
     }
   }
@@ -50,7 +50,7 @@
       color: var(--theme-breadcrumb-#{$variant}--color);
     }
 
-    .crumb-text+.glyph-chevron-right-small {
+    .crumb-text + .glyph-chevron-right-small {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color);
     }
 
@@ -60,27 +60,31 @@
 
     &.clickable:not(.remove-hover) {
       @include hover {
-        background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
+        background-color: var(
+          --theme-breadcrumb-#{$variant}--background--hover
+        );
 
         .crumb-text,
         .glyph {
           color: var(--theme-breadcrumb-#{$variant}--color--hover);
         }
 
-        .crumb-text+.glyph-chevron-right-small {
+        .crumb-text + .glyph-chevron-right-small {
           color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
         }
       }
 
       @include active {
-        background-color: var(--theme-breadcrumb-#{$variant}--background--active);
+        background-color: var(
+          --theme-breadcrumb-#{$variant}--background--active
+        );
 
         .crumb-text,
         .glyph {
           color: var(--theme-breadcrumb-#{$variant}--color--active);
         }
 
-        .crumb-text+.glyph-chevron-right-small {
+        .crumb-text + .glyph-chevron-right-small {
           color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
         }
       }
@@ -125,7 +129,7 @@
       }
     }
 
-    .crumb-text+.glyph-chevron-right-small {
+    .crumb-text + .glyph-chevron-right-small {
       margin-inline-start: $small-space;
       margin-inline-end: 0; // Overwrite global selector: .btn .glyph
     }

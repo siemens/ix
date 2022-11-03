@@ -47,7 +47,7 @@
     height: 11.562rem;
     margin: 0.937rem 0 0.937rem 0.937rem;
 
-    >* {
+    > * {
       margin-bottom: 1rem;
     }
   }
@@ -62,14 +62,15 @@
 .dropdown-menu {
   background-color: var(--theme-menu--background);
   @include text-default-single;
-  border: var(--theme-menu--border-thickness) solid var(--theme-menu--border--color);
+  border: var(--theme-menu--border-thickness) solid
+    var(--theme-menu--border--color);
   border-radius: var(--theme-menu--border-radius);
   max-width: 100vw;
   padding: $tiny-space 0;
   transition: background-color $default-time;
   box-shadow: var(--theme-menu--box-shadow);
 
-  &.xl>.dropdown-item {
+  &.xl > .dropdown-item {
     height: 2.5rem;
     line-height: 2.187rem;
   }
@@ -87,7 +88,7 @@
   display: flex;
   padding: $tiny-space $small-space;
 
-  ix-icon-button+ix-icon-button {
+  ix-icon-button + ix-icon-button {
     margin-inline-start: $small-space;
   }
 }
@@ -130,13 +131,13 @@
     background-color: var(--theme-menu-item--background--disabled);
   }
 
-  >a,
+  > a,
   a:hover,
   a:active {
     color: var(--theme-color-std-text);
   }
 
-  >.glyph {
+  > .glyph {
     color: var(--theme-menu-item-icon--color);
 
     &.glyph-single-check {
@@ -148,7 +149,7 @@
 }
 
 .dropdown-item {
-  >input[type='checkbox']+label {
+  > input[type='checkbox'] + label {
     margin-bottom: 0px;
 
     &::before {
