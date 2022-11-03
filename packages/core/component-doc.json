@@ -4564,7 +4564,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "any",
+          "detail": "MouseEvent",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -5184,7 +5184,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "any",
+          "detail": "MouseEvent",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

@@ -46,12 +46,12 @@ export class MenuAbout {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter;
+  @Event() close: EventEmitter<MouseEvent>;
 
   @Listen('overlayClose',{target: "body"})
     closeMenu(event: CustomEvent) {
       if(event.detail === true){
-        this.close.emit(event)
+        this.close.emit()
       }
     }
 

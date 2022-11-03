@@ -2603,7 +2603,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */
@@ -2717,7 +2717,7 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */

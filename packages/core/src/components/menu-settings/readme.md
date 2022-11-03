@@ -20,9 +20,9 @@ SPDX-License-Identifier: MIT
 
 ## Events
 
-| Event   | Description    | Type               |
-| ------- | -------------- | ------------------ |
-| `close` | Popover closed | `CustomEvent<any>` |
+| Event   | Description    | Type                      |
+| ------- | -------------- | ------------------------- |
+| `close` | Popover closed | `CustomEvent<MouseEvent>` |
 
 
 ----------------------------------------------

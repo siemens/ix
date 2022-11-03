@@ -47,7 +47,7 @@ export class MenuAbout {
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter;
+  @Event() close: EventEmitter<MouseEvent>;
 
   @State() labels: string[] = [];
 
@@ -97,7 +97,7 @@ export class MenuAbout {
   @Listen('overlayClose',{target: "body"})
     closeMenu(event: CustomEvent) {
       if(event.detail === true){
-        this.close.emit(event)
+        this.close.emit()
       }
     }
 

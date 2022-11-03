@@ -869,7 +869,7 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed 
    */
-  close: EventEmitter<CustomEvent<any>>;
+  close: EventEmitter<CustomEvent<MouseEvent>>;
 
 }
 
@@ -1034,7 +1034,7 @@ export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed 
    */
-  close: EventEmitter<CustomEvent<any>>;
+  close: EventEmitter<CustomEvent<MouseEvent>>;
 
 }
 
