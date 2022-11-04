@@ -28,7 +28,7 @@ Install the `@siemens/ix-aggrid` package.
 npm install @siemens/ix-aggrid
 ```
 
-and apply the style file in some of your style files e.g. styles.scss
+and apply the style file in one of your project's style files e.g. styles.scss
 
 ```scss
 @import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
