@@ -20,6 +20,7 @@ SPDX-License-Identifier: MIT
 | `showMinutes`       | `show-minutes`        | Show minutes input                                                                                   | `boolean`                        | `false`                                                                                 |
 | `showSeconds`       | `show-seconds`        | Show seconds input                                                                                   | `boolean`                        | `false`                                                                                 |
 | `showTimeReference` | `show-time-reference` | Show time reference input                                                                            | `any`                            | `undefined`                                                                             |
+| `textSelectTime`    | `text-select-time`    | Text of date select button                                                                           | `string`                         | `'Done'`                                                                                |
 | `time`              | `time`                | Select time with format string                                                                       | `string`                         | `DateTime.now().toFormat(this.format)`                                                  |
 | `timeReference`     | `time-reference`      | Set time reference                                                                                   | `"AM" \| "PM"`                   | `DateTime.fromFormat(     this.time,     this.format   ).toFormat('a') as 'PM' \| 'AM'` |
 
@@ -30,6 +31,19 @@ SPDX-License-Identifier: MIT
 | ------------ | ----------------- | --------------------- |
 | `done`       | Time event        | `CustomEvent<string>` |
 | `timeChange` | Time change event | `CustomEvent<string>` |
+
+
+## Methods
+
+### `getCurrentTime() => Promise<DateTime>`
+
+Get current time
+
+#### Returns
+
+Type: `Promise<DateTime>`
+
+
 
 
 ----------------------------------------------

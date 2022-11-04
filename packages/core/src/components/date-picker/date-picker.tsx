@@ -14,12 +14,13 @@ import {
   Fragment,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import { DateChangeEvent } from './date-change';
+import { DateChangeEvent, LagacyDateChangeEvent } from './events';
 
 @Component({
   tag: 'ix-date-picker',
@@ -92,9 +93,11 @@ export class DatePicker {
   @Prop() eventDelimiter = ' - ';
 
   /**
-   * Text for ´Done´
+   * Text of date select button
+   *
+   * @since 1.1.0
    */
-  @Prop() textDone = 'Done';
+  @Prop() textSelectDate = 'Done';
 
   @State() yearValue = this.year;
   @State() today = DateTime.now();
@@ -125,7 +128,7 @@ export class DatePicker {
    *
    * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
-  @Event() dateChange: EventEmitter<string | DateChangeEvent>;
+  @Event() dateChange: EventEmitter<LagacyDateChangeEvent>;
 
   /**
    * Date range change.
@@ -161,14 +164,6 @@ export class DatePicker {
     return DateTime.fromFormat(this.from, this.format).month;
   }
 
-  private isDatePicked() {
-    if (!this.range) {
-      return !!this.start;
-    }
-
-    return !!this.start && !!this.end;
-  }
-
   private onDone() {
     this.done.emit(this.getOutputFormat());
 
@@ -183,7 +178,7 @@ export class DatePicker {
       this.dateChange.emit(this.getOutputFormat());
     } else {
       this.dateChange.emit({
-        from: this.start.toFormat(this.format),
+        from: this.start?.toFormat(this.format),
         to: this.end?.toFormat(this.format),
       });
     }
@@ -422,6 +417,17 @@ export class DatePicker {
     this.calculateCalendar();
   }
 
+  /**
+   * Get the current DateTime
+   */
+  @Method()
+  async getCurrentDate() {
+    return {
+      start: this.start,
+      end: this.end,
+    };
+  }
+
   render() {
     return (
       <Host>
@@ -535,11 +541,8 @@ export class DatePicker {
           </div>
 
           <div class={{ button: true, hidden: !this.individual }}>
-            <ix-button
-              disabled={!this.isDatePicked()}
-              onClick={() => this.onDone()}
-            >
-              {this.textDone}
+            <ix-button onClick={() => this.onDone()}>
+              {this.textSelectDate}
             </ix-button>
           </div>
         </ix-date-time-card>

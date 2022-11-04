@@ -10,8 +10,9 @@ import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateTime } from "luxon";
-import { DateChangeEvent } from "./components/date-picker/date-change";
+import { DateChangeEvent, LagacyDateChangeEvent } from "./components/date-picker/events";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
+import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
@@ -270,6 +271,10 @@ export namespace Components {
          */
         "from": string;
         /**
+          * Get the current DateTime
+         */
+        "getCurrentDate": () => Promise<{ start: DateTime; end: DateTime; }>;
+        /**
           * @deprecated - will get removed with next major release
          */
         "individual": boolean;
@@ -286,9 +291,10 @@ export namespace Components {
          */
         "range": boolean;
         /**
-          * Text for ´Done´
+          * Text of date select button
+          * @since 1.1.0
          */
-        "textDone": string;
+        "textSelectDate": string;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
@@ -315,7 +321,7 @@ export namespace Components {
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
          */
-        "doneEventDelimiter": string;
+        "eventDelimiter": string;
         /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
@@ -350,6 +356,11 @@ export namespace Components {
           * @since 1.1.0 time reference is default aligned with formt tt
          */
         "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -1213,6 +1224,10 @@ export namespace Components {
          */
         "format": string;
         /**
+          * Get current time
+         */
+        "getCurrentTime": () => Promise<DateTime>;
+        /**
           * @deprecated - will get removed with next major release
          */
         "individual": boolean;
@@ -1233,6 +1248,11 @@ export namespace Components {
           * @since 1.1.0 time reference is default aligned with formt tt
          */
         "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime": string;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -2212,7 +2232,7 @@ declare namespace LocalJSX {
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
           * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
-        "onDateChange"?: (event: CustomEvent<string | DateChangeEvent>) => void;
+        "onDateChange"?: (event: CustomEvent<LagacyDateChangeEvent>) => void;
         /**
           * Date range change. Only triggered if datepicker is in range mode
           * @since 1.1.0
@@ -2233,9 +2253,10 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
         /**
-          * Text for ´Done´
+          * Text of date select button
+          * @since 1.1.0
          */
-        "textDone"?: string;
+        "textSelectDate"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
@@ -2262,7 +2283,7 @@ declare namespace LocalJSX {
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
          */
-        "doneEventDelimiter"?: string;
+        "eventDelimiter"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
@@ -2280,7 +2301,12 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: CustomEvent<string | DateChangeEvent>) => void;
+        "onDateChange"?: (event: CustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        /**
+          * Date selection event is fired after confirm button is pressend
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: CustomEvent<DateTimeSelectEvent>) => void;
         /**
           * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
          */
@@ -2311,6 +2337,11 @@ declare namespace LocalJSX {
           * @since 1.1.0 time reference is default aligned with formt tt
          */
         "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -3257,6 +3288,11 @@ declare namespace LocalJSX {
           * @since 1.1.0 time reference is default aligned with formt tt
          */
         "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime"?: string;
         /**
           * Select time with format string
           * @since 1.1.0

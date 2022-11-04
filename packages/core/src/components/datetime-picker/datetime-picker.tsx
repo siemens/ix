@@ -9,7 +9,8 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { DateChangeEvent } from '../date-picker/date-change';
+import { DateChangeEvent } from '../date-picker/events';
+import { DateTimeSelectEvent } from './event';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -104,12 +105,19 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() doneEventDelimiter = ' - ';
+  @Prop() eventDelimiter = ' - ';
 
   /**
    * Set time reference
    */
   @Prop() timeReference: 'AM' | 'PM';
+
+  /**
+   * Text of date select button
+   *
+   * @since 1.1.0
+   */
+  @Prop() textSelectDate = 'Done';
 
   /**
    * Done event
@@ -130,24 +138,59 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Event() dateChange: EventEmitter<string | DateChangeEvent>;
+  @Event() dateChange: EventEmitter<string | Omit<DateTimeSelectEvent, 'time'>>;
+
+  /**
+   * Date selection event is fired after confirm button is pressend
+   *
+   * @since 1.1.0
+   */
+  @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
+
+  private datePickerElement: HTMLIxDatePickerElement;
+  private timePickerElement: HTMLIxTimePickerElement;
+
+  private _from: string;
+  private _to: string;
+  private _time: string;
 
   private onDone() {
-    this.done.emit();
+    this.done.emit(
+      [this._from, this._to ?? '', this._time].join(this.eventDelimiter)
+    );
+
+    this.dateSelect.emit({
+      from: this._from,
+      to: this._to,
+      time: this._time,
+    });
   }
 
-  private onDateChange(event: CustomEvent<string | DateChangeEvent>) {
+  private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
     const { detail: date } = event;
     this.dateChange.emit(date);
+
+    const currentDateTime = await this.datePickerElement.getCurrentDate();
+    this._from = currentDateTime.start?.toFormat(this.dateFormat);
+    this._to = currentDateTime.end?.toFormat(this.dateFormat);
   }
 
-  private onTimeChange(event: CustomEvent<string>) {
+  private async onTimeChange(event: CustomEvent<string>) {
     event.preventDefault();
     event.stopPropagation();
     const { detail: time } = event;
     this.timeChange.emit(time);
+
+    const currentDateTime = await this.timePickerElement.getCurrentTime();
+    this._time = currentDateTime.toFormat(this.timeFormat);
+  }
+
+  componentDidLoad() {
+    this._from = this.from;
+    this._to = this.to;
+    this._time = this.time;
   }
 
   render() {
@@ -156,6 +199,7 @@ export class DatePicker {
         <div class="flex">
           <div class="separator"></div>
           <ix-date-picker
+            ref={(ref) => (this.datePickerElement = ref)}
             corners="left"
             individual={false}
             range={this.range}
@@ -165,9 +209,11 @@ export class DatePicker {
             format={this.dateFormat}
             minDate={this.minDate}
             maxDate={this.maxDate}
+            eventDelimiter={this.eventDelimiter}
           ></ix-date-picker>
 
           <ix-time-picker
+            ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
             individual={false}
             showHour={this.showHour}
@@ -183,7 +229,9 @@ export class DatePicker {
         </div>
 
         <div class="done">
-          <ix-button onClick={() => this.onDone()}>Done</ix-button>
+          <ix-button onClick={() => this.onDone()}>
+            {this.textSelectDate}
+          </ix-button>
         </div>
       </Host>
     );

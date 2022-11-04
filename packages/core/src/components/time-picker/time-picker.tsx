@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -81,6 +82,13 @@ export class TimePicker {
     this.time,
     this.format
   ).toFormat('a') as 'PM' | 'AM';
+
+  /**
+   * Text of date select button
+   *
+   * @since 1.1.0
+   */
+  @Prop() textSelectTime = 'Done';
 
   /**
    * Time event
@@ -164,6 +172,14 @@ export class TimePicker {
       );
       this.showTimeReference = matchedKeys.includes('a');
     }
+  }
+
+  /**
+   * Get current time
+   */
+  @Method()
+  async getCurrentTime() {
+    return this._time;
   }
 
   render() {
@@ -327,7 +343,7 @@ export class TimePicker {
             <ix-button
               onClick={() => this.done.emit(this._time.toFormat(this.format))}
             >
-              Done
+              {this.textSelectTime}
             </ix-button>
           </div>
         </ix-date-time-card>

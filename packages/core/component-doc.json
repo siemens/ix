@@ -551,7 +551,7 @@
           "type": "boolean",
           "mutable": false,
           "attr": "disabled",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "Disable the button",
           "docsTags": [],
           "default": "false",
@@ -1289,8 +1289,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-datetime-picker",
-        "my-component"
+        "ix-datetime-picker"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -1311,9 +1310,6 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
-          "ix-date-picker"
-        ],
-        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -1338,6 +1334,28 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "eventDelimiter",
+          "type": "string",
+          "mutable": false,
+          "attr": "event-delimiter",
+          "reflectToAttr": false,
+          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "' - '",
+          "values": [
+            {
               "type": "string"
             }
           ],
@@ -1454,6 +1472,28 @@
           "required": false
         },
         {
+          "name": "textSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "to",
           "type": "string",
           "mutable": false,
@@ -1476,20 +1516,37 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getCurrentDate",
+          "returns": {
+            "type": "Promise<{ start: DateTime; end: DateTime; }>",
+            "docs": ""
+          },
+          "signature": "getCurrentDate() => Promise<{ start: DateTime; end: DateTime; }>",
+          "parameters": [],
+          "docs": "Get the current DateTime",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "dateChange",
-          "detail": "string",
+          "detail": "DateChangeEvent | string",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
           "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "depracted",
+              "text": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+            }
+          ]
         },
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "DateChangeEvent",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1497,7 +1554,21 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "1.0.0"
+              "text": "1.1.0"
+            }
+          ]
+        },
+        {
+          "event": "dateSelect",
+          "detail": "DateChangeEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Date selection confirmed via button action",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
             }
           ]
         },
@@ -1507,8 +1578,14 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Done event",
-          "docsTags": []
+          "docs": "Date selection confirmed via button action",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `dateSelect`"
+            }
+          ],
+          "deprecation": "Use `dateSelect`"
         }
       ],
       "styles": [],
@@ -1657,6 +1734,28 @@
           "required": false
         },
         {
+          "name": "eventDelimiter",
+          "type": "string",
+          "mutable": false,
+          "attr": "event-delimiter",
+          "reflectToAttr": false,
+          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "' - '",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "from",
           "type": "string",
           "mutable": false,
@@ -1669,7 +1768,6 @@
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.dateFormat)",
           "values": [
             {
               "type": "string"
@@ -1799,6 +1897,28 @@
           "required": false
         },
         {
+          "name": "textSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "time",
           "type": "string",
           "mutable": false,
@@ -1811,7 +1931,6 @@
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.timeFormat)",
           "values": [
             {
               "type": "string"
@@ -1826,7 +1945,7 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docs": "Time format string.\nSee {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -1850,7 +1969,6 @@
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "DateTime.fromFormat(\n    this.time,\n    this.timeFormat\n  ).toFormat('a') as 'PM' | 'AM'",
           "values": [
             {
               "value": "AM",
@@ -1890,13 +2008,55 @@
       "methods": [],
       "events": [
         {
+          "event": "dateChange",
+          "detail": "string | { from: string; to: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Date change",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ]
+        },
+        {
+          "event": "dateSelect",
+          "detail": "DateTimeSelectEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Date selection event is fired after confirm button is pressend",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ]
+        },
+        {
           "event": "done",
           "detail": "string",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Time event",
+          "docs": "Done event\n\nSet `doneEventDelimiter` to null or undefine to get the typed event",
           "docsTags": []
+        },
+        {
+          "event": "timeChange",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Time change",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -7384,8 +7544,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-datetime-picker",
-        "my-component"
+        "ix-datetime-picker"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -7402,9 +7561,6 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
-          "ix-time-picker"
-        ],
-        "my-component": [
           "ix-time-picker"
         ]
       },
@@ -7554,6 +7710,28 @@
           "required": false
         },
         {
+          "name": "textSelectTime",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-select-time",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "time",
           "type": "string",
           "mutable": false,
@@ -7598,7 +7776,19 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getCurrentTime",
+          "returns": {
+            "type": "Promise<DateTime>",
+            "docs": ""
+          },
+          "signature": "getCurrentTime() => Promise<DateTime>",
+          "parameters": [],
+          "docs": "Get current time",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "done",
@@ -8940,31 +9130,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-date-picker",
-        "ix-time-picker"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-date-picker",
-          "ix-time-picker"
-        ],
-        "ix-date-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown",
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
