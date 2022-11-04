@@ -35,11 +35,11 @@ ix-menu-item {
     position: relative;
   }
 
-  .tab:focus {
+  .tab:focus-visible {
     outline: none;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: none;
   }
 

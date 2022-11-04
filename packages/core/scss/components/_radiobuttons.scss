@@ -45,14 +45,14 @@
     border-radius: 100%;
   }
 
-  [type='radio'] + label:focus {
+  [type='radio'] + label:focus-visible {
     &:before {
       outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
-  [type='radio']:focus + label {
+  [type='radio']:focus-visible + label {
     &:before {
       outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);

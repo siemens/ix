@@ -50,14 +50,14 @@
     background-size: contain;
   }
 
-  [type='checkbox'] + label:focus {
+  [type='checkbox'] + label:focus-visible {
     &:before {
       outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
-  [type='checkbox']:focus + label {
+  [type='checkbox']:focus-visible + label {
     &:before {
       outline: 1px solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);

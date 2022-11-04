@@ -103,7 +103,7 @@
   border: 1px solid transparent;
   color: var(--theme-menu-item--color);
 
-  &:focus {
+  &:focus-visible {
     background-color: var(--theme-menu-item--background);
     color: var(--theme-menu-item--color);
   }
