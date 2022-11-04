@@ -4574,14 +4574,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "overlayClose",
-          "target": "body",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/menu-about-item",
@@ -5199,14 +5192,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "overlayClose",
-          "target": "body",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/menu-settings-item",
