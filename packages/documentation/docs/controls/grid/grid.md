@@ -22,6 +22,18 @@ Follow the offical AG Grid [installation instruction](https://www.ag-grid.com/ja
 
 ### Siemens iX theme for AG Grid
 
+Install the `@siemens/ix-aggrid` package.
+
+```shell
+npm install @siemens/ix-aggrid
+```
+
+and apply the style file in some of your style files e.g. styles.scss
+
+```scss
+@import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+```
+
 Siemens iX theming for AG Grid (`ag-theme-ix`) is based on `ag-theme-alpine-dark`.
 Therefore it is vital to apply the two CSS theme classes in the correct order:
 
