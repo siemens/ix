@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import path from 'path';
 import typescript from '@rollup/plugin-typescript';
+import path from 'path';
 import pkg from './package.json';
 
 /** @type {import('rollup').RollupOptions} */
@@ -28,8 +28,6 @@ export default {
     },
   ],
   external: Object.keys(pkg.dependencies),
-  plugins: [
-    typescript({ tsconfig: "./tsconfig.json" }),
-  ],
+  plugins: [typescript({ tsconfig: './tsconfig.json' })],
 };
 /* eslint-enable */

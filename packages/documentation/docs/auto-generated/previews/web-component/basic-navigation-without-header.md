@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/basic-navigation-without-header.html -->
+
 ```html
 <ix-basic-navigation hide-header>
   <ix-menu>

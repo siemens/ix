@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                 | Attribute                 | Description                                                                                                                                   | Type      | Default                       |
@@ -29,14 +28,12 @@ SPDX-License-Identifier: MIT
 | `showAbout`              | `show-about`              | Is about tab visible                                                                                                                          | `boolean` | `false`                       |
 | `showSettings`           | `show-settings`           | Is settings tab visible                                                                                                                       | `boolean` | `false`                       |
 
-
 ## Events
 
 | Event             | Description          | Type                   |
 | ----------------- | -------------------- | ---------------------- |
 | `expandChange`    | Menu expanded        | `CustomEvent<boolean>` |
 | `mapExpandChange` | Map Sidebar expanded | `CustomEvent<boolean>` |
-
 
 ## Methods
 
@@ -48,8 +45,6 @@ Toggle About tabs
 
 Type: `Promise<void>`
 
-
-
 ### `toggleMapExpand(show?: boolean) => Promise<void>`
 
 Toggle map sidebar expand
@@ -57,8 +52,6 @@ Toggle map sidebar expand
 #### Returns
 
 Type: `Promise<void>`
-
-
 
 ### `toggleMenu(show?: boolean) => Promise<void>`
 
@@ -68,8 +61,6 @@ Toggle menu
 
 Type: `Promise<void>`
 
-
-
 ### `toggleSettings(show: boolean) => Promise<void>`
 
 Toggle Settings tabs
@@ -78,9 +69,4 @@ Toggle Settings tabs
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

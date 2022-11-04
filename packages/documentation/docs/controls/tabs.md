@@ -15,7 +15,6 @@ import SourceTabsRounded from './../auto-generated/previews/web-component/tabs-r
 import SourceReactTabsRounded from './../auto-generated/previews/react/tabs-rounded.md';
 import SourceAngularTabsRounded from './../auto-generated/previews/angular/tabs-rounded.md';
 
-
 # Tabs
 
 ## Usage

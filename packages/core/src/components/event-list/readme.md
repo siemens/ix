@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute     | Description                                                                                                                                                                                                         | Type                   | Default     |
@@ -18,7 +17,4 @@ SPDX-License-Identifier: MIT
 | `compact`    | `compact`     | Make event-list items more compact                                                                                                                                                                                  | `boolean`              | `false`     |
 | `itemHeight` | `item-height` | Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'. | `"L" \| "S" \| number` | `'S'`       |
 
-
-----------------------------------------------
-
-
+---

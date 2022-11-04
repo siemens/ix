@@ -35,7 +35,7 @@ export class Tabs {
   /**
    * Set rounded tabs
    */
-   @Prop() rounded = false;
+  @Prop() rounded = false;
 
   /**
    * Set default selected tab by index
@@ -212,7 +212,7 @@ export class Tabs {
     tabs.forEach((element, index) => {
       if (this.small) element.setAttribute('small', 'true');
 
-      if(this.rounded) element.setAttribute('rounded', 'true');
+      if (this.rounded) element.setAttribute('rounded', 'true');
 
       element.setAttribute('layout', this.layout);
       element.setAttribute(

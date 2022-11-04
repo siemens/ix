@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute    | Description        | Type                             | Default        |
@@ -18,7 +17,6 @@ SPDX-License-Identifier: MIT
 | `individual` | `individual` | set styles         | `boolean`                        | `true`         |
 | `range`      | `range`      | Set range size     | `boolean`                        | `true`         |
 
-
 ## Events
 
 | Event        | Description       | Type                  |
@@ -26,7 +24,4 @@ SPDX-License-Identifier: MIT
 | `dateChange` | Time change event | `CustomEvent<string>` |
 | `done`       | done event        | `CustomEvent<string>` |
 
-
-----------------------------------------------
-
-
+---

@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property              | Attribute                | Description                                                  | Type               | Default         |
@@ -20,14 +19,12 @@ SPDX-License-Identifier: MIT
 | `show`                | `show`                   | Show or hide the drawer                                      | `boolean`          | `false`         |
 | `width`               | `width`                  | Width interpreted as REM if not set to 'auto'                | `"auto" \| number` | `this.minWidth` |
 
-
 ## Events
 
 | Event         | Description                      | Type               |
 | ------------- | -------------------------------- | ------------------ |
 | `drawerClose` | Fire event after drawer is close | `CustomEvent<any>` |
 | `open`        | Fire event after drawer is open  | `CustomEvent<any>` |
-
 
 ## Methods
 
@@ -39,9 +36,4 @@ Toggle or define show state of drawer
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

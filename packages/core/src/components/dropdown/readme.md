@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                              | Attribute                                  | Description                                                                                                                                                                                                                 | Type                                                                                                                                                                                                         | Default        |
@@ -23,13 +22,11 @@ SPDX-License-Identifier: MIT
 | `show`                                | `show`                                     | Show dropdown                                                                                                                                                                                                               | `boolean`                                                                                                                                                                                                    | `false`        |
 | `trigger`                             | `trigger`                                  | Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.                                                                                   | `HTMLElement \| string`                                                                                                                                                                                      | `undefined`    |
 
-
 ## Events
 
 | Event         | Description                                         | Type                   |
 | ------------- | --------------------------------------------------- | ---------------------- |
 | `showChanged` | Fire event after visibility of dropdown has changed | `CustomEvent<boolean>` |
-
 
 ## Methods
 
@@ -41,9 +38,4 @@ Update position of dropdown
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

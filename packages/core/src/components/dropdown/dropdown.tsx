@@ -11,7 +11,7 @@ import {
   createPopper,
   Instance as PopperInstance,
   Placement,
-  PositioningStrategy
+  PositioningStrategy,
 } from '@popperjs/core';
 import {
   Component,
@@ -23,7 +23,7 @@ import {
   Listen,
   Method,
   Prop,
-  Watch
+  Watch,
 } from '@stencil/core';
 
 @Component({

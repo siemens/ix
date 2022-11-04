@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tabs.html -->
+
 ```html
 <style>
   .example {

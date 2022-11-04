@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute       | Description         | Type     | Default     |
@@ -17,14 +16,10 @@ SPDX-License-Identifier: MIT
 | `i18nLogout` | `i-1-8n-logout` |                     | `string` | `'Logout'`  |
 | `top`        | `top`           | First line of text  | `string` | `undefined` |
 
-
 ## Events
 
 | Event         | Description  | Type               |
 | ------------- | ------------ | ------------------ |
 | `logoutClick` | Logout click | `CustomEvent<any>` |
 
-
-----------------------------------------------
-
-
+---

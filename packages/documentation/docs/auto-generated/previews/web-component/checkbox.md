@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/checkbox.html -->
+
 ```html
 <div style="margin-bottom: 1rem">
   <input type="checkbox" id="checkbox_01" />

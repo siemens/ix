@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/about-and-legal.tsx -->
+
 ```tsx
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
@@ -16,10 +17,10 @@ SPDX-License-Identifier: MIT
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuAbout,
-    IxMenuAboutItem
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuAbout,
+  IxMenuAboutItem,
 } from '@siemens/ix-react';
 import React, { useLayoutEffect, useRef } from 'react';
 

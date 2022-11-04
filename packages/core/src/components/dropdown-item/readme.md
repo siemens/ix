@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property   | Attribute  | Description                                                                            | Type      | Default     |
@@ -19,13 +18,11 @@ SPDX-License-Identifier: MIT
 | `icon`     | `icon`     | Icon of dropdown item                                                                  | `string`  | `undefined` |
 | `label`    | `label`    | Label of dropdown item                                                                 | `string`  | `undefined` |
 
-
 ## Events
 
 | Event       | Description   | Type                                     |
 | ----------- | ------------- | ---------------------------------------- |
 | `itemClick` | Click on item | `CustomEvent<HTMLIxDropdownItemElement>` |
-
 
 ## Methods
 
@@ -37,9 +34,4 @@ Internal usage only
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

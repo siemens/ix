@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # ix-ag-grid
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,20 +14,20 @@ SPDX-License-Identifier: MIT
 | ------------- | --------- | ----------- | ------------------ | ----------- |
 | `gridOptions` | --        |             | `GridOptions<any>` | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [my-component](../my-component)
+- [my-component](../my-component)
 
 ### Graph
+
 ```mermaid
 graph TD;
   my-component --> ix-ag-grid
   style ix-ag-grid fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

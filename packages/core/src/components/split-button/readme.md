@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute    | Description                                                                                  | Type                                                                                                                                                                                                         | Default          |
@@ -23,14 +22,10 @@ SPDX-License-Identifier: MIT
 | `splitIcon` | `split-icon` | Splitbutton icon                                                                             | `string`                                                                                                                                                                                                     | `'context-menu'` |
 | `variant`   | `variant`    | Color variant of button                                                                      | `"Primary" \| "Secondary"`                                                                                                                                                                                   | `'Primary'`      |
 
-
 ## Events
 
 | Event         | Description    | Type                      |
 | ------------- | -------------- | ------------------------- |
 | `buttonClick` | Button clicked | `CustomEvent<MouseEvent>` |
 
-
-----------------------------------------------
-
-
+---

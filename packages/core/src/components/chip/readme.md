@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # cui-chip
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -23,14 +20,10 @@ SPDX-License-Identifier: MIT
 | `outline`    | `outline`    | Show chip with outline style                                         | `boolean`                                                                                         | `false`     |
 | `variant`    | `variant`    | Chip variant                                                         | `"alarm" \| "critical" \| "custom" \| "info" \| "neutral" \| "primary" \| "success" \| "warning"` | `'primary'` |
 
-
 ## Events
 
 | Event   | Description                           | Type               |
 | ------- | ------------------------------------- | ------------------ |
 | `close` | Fire event if close button is clicked | `CustomEvent<any>` |
 
-
-----------------------------------------------
-
-
+---

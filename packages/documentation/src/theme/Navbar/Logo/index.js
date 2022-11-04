@@ -7,10 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { useEffect } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function NavbarLogo() {
   const base = useBaseUrl('/');

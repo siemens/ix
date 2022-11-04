@@ -7,19 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTabItem, IxTabs, IxIcon } from '@siemens/ix-react';
+import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-react';
 import React from 'react';
 
 export const Tabs: React.FC = () => {
   return (
-
     <IxTabs rounded>
-      <IxTabItem><IxIcon name='success'></IxIcon></IxTabItem>
-      <IxTabItem counter={200}><IxIcon name='tree'></IxIcon></IxTabItem>
-      <IxTabItem><IxIcon name='maintenance'></IxIcon></IxTabItem>
-      <IxTabItem disabled counter={24}><IxIcon name='sound-loud'></IxIcon></IxTabItem>
-      <IxTabItem ><IxIcon name='hierarchy'></IxIcon></IxTabItem>
-      <IxTabItem disabled><IxIcon name='calendar-settings'></IxIcon></IxTabItem>
+      <IxTabItem>
+        <IxIcon name="success"></IxIcon>
+      </IxTabItem>
+      <IxTabItem counter={200}>
+        <IxIcon name="tree"></IxIcon>
+      </IxTabItem>
+      <IxTabItem>
+        <IxIcon name="maintenance"></IxIcon>
+      </IxTabItem>
+      <IxTabItem disabled counter={24}>
+        <IxIcon name="sound-loud"></IxIcon>
+      </IxTabItem>
+      <IxTabItem>
+        <IxIcon name="hierarchy"></IxIcon>
+      </IxTabItem>
+      <IxTabItem disabled>
+        <IxIcon name="calendar-settings"></IxIcon>
+      </IxTabItem>
     </IxTabs>
   );
 };

@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/dropdown-icon.html -->
+
 ```html
 <ix-button id="iconTriggerId">Open</ix-button>
 <ix-dropdown trigger="iconTriggerId">

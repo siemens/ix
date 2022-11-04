@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description     | Type      | Default     |
@@ -16,14 +15,10 @@ SPDX-License-Identifier: MIT
 | `collapsed` | `collapsed` | Collapsed state | `boolean` | `false`     |
 | `label`     | `label`     | Label of blind  | `string`  | `undefined` |
 
-
 ## Events
 
 | Event             | Description             | Type                   |
 | ----------------- | ----------------------- | ---------------------- |
 | `collapsedChange` | Collapsed state changed | `CustomEvent<boolean>` |
 
-
-----------------------------------------------
-
-
+---

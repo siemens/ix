@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/message-bar.html -->
+
 ```html
 <ix-message-bar>Message text</ix-message-bar>
 <ix-message-bar type="warning">Message text</ix-message-bar>

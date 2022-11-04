@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/checkbox-indeterminate.html -->
+
 ```html
 <div>
   <input type="checkbox" id="checkbox_01" />

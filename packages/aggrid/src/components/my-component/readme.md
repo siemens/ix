@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # my-component
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Dependencies
 
@@ -18,12 +15,13 @@ SPDX-License-Identifier: MIT
 - [ix-ag-grid](../ix-ag-grid)
 
 ### Graph
+
 ```mermaid
 graph TD;
   my-component --> ix-ag-grid
   style my-component fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

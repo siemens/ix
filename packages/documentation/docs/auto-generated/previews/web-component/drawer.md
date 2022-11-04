@@ -5,8 +5,8 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/drawer.html -->
-```html
 
+```html
 <ix-drawer>
   <span>Some content of drawer</span>
 </ix-drawer>

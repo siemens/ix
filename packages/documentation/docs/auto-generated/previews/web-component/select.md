@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/select.html -->
+
 ```html
 <ix-select selected-indices="1">
   <ix-select-item label="Item 1" value="1"></ix-select-item>

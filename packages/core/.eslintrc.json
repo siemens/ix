@@ -1,9 +1,6 @@
 {
   "root": false,
-  "extends": [
-      "plugin:@stencil/recommended",
-      "./../../.eslintrc.json"
-  ],
+  "extends": ["plugin:@stencil/recommended", "./../../.eslintrc.json"],
   "rules": {
     "@stencil/async-methods": 0,
     "@stencil/strict-boolean-conditions": 0

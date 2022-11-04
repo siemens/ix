@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/chip.html -->
+
 ```html
 <div class="example">
   <ix-chip closable outline> Primary </ix-chip>

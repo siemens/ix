@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute    | Description       | Type                             | Default     |
@@ -16,7 +15,4 @@ SPDX-License-Identifier: MIT
 | `corners`    | `corners`    | Set corners style | `"left" \| "right" \| "rounded"` | `'rounded'` |
 | `individual` | `individual` | set styles        | `boolean`                        | `true`      |
 
-
-----------------------------------------------
-
-
+---

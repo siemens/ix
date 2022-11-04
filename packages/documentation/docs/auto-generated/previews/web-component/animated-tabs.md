@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/animated-tabs.html -->
+
 ```html
 <ix-animated-tabs>
   <ix-animated-tab icon="document">

@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tile.html -->
+
 ```html
 <ix-tile size="small">92.8 °C</ix-tile>
 

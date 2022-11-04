@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/angular-test-app/src/preview-examples/input-with-icon.ts -->
+
 ```typescript
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG

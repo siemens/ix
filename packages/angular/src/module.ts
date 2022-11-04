@@ -9,10 +9,10 @@
 
 import { DOCUMENT } from '@angular/common';
 import {
-    APP_INITIALIZER,
-    ModuleWithProviders,
-    NgModule,
-    NgZone
+  APP_INITIALIZER,
+  ModuleWithProviders,
+  NgModule,
+  NgZone,
 } from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';

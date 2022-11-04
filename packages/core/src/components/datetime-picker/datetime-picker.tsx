@@ -57,7 +57,7 @@ export class DatePicker {
     return (
       <Host>
         <div class="flex">
-        <div class="separator"></div>
+          <div class="separator"></div>
           <ix-date-picker
             corners="left"
             individual={false}

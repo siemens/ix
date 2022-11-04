@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                  | Attribute                     | Description                                  | Type                     | Default                     |
@@ -23,7 +22,6 @@ SPDX-License-Identifier: MIT
 | `readonly`                | `readonly`                    | If true the select will be in readonly mode  | `boolean`                | `false`                     |
 | `selectedIndices`         | `selected-indices`            | Indices of selected items                    | `string \| string[]`     | `[]`                        |
 
-
 ## Events
 
 | Event                 | Description             | Type                              |
@@ -31,7 +29,4 @@ SPDX-License-Identifier: MIT
 | `addItem`             | Item added to selection | `CustomEvent<string>`             |
 | `itemSelectionChange` | Item selection changed  | `CustomEvent<string \| string[]>` |
 
-
-----------------------------------------------
-
-
+---

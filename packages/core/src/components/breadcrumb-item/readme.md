@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description                            | Type     | Default     |
@@ -16,7 +15,4 @@ SPDX-License-Identifier: MIT
 | `icon`   | `icon`    | Icon to be displayed next ot the label | `string` | `undefined` |
 | `label`  | `label`   | Breadcrumb label                       | `string` | `undefined` |
 
-
-----------------------------------------------
-
-
+---

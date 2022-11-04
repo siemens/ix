@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description      | Type     | Default     |
@@ -17,14 +16,10 @@ SPDX-License-Identifier: MIT
 | `icon`   | `icon`    | Icon of overlay  | `string` | `undefined` |
 | `name`   | `name`    | Title of overlay | `string` | `undefined` |
 
-
 ## Events
 
 | Event        | Description  | Type               |
 | ------------ | ------------ | ------------------ |
 | `closeClick` | Event closed | `CustomEvent<any>` |
 
-
-----------------------------------------------
-
-
+---

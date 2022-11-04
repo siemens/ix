@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/basic-navigation.html -->
+
 ```html
 <ix-basic-navigation>
   <svg

@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property   | Attribute  | Description                                                                                                                                                     | Type      | Default     |
@@ -19,14 +18,10 @@ SPDX-License-Identifier: MIT
 | `opacity`  | `opacity`  | <span style="color:red">**[DEPRECATED]**</span> Will be removed in 7.0.0. Use color with alpha value.<br/><br/>Opacity of the status indicator. Defaults to 1.0 | `number`  | `1`         |
 | `selected` | `selected` | Show event list item as selected                                                                                                                                | `boolean` | `undefined` |
 
-
 ## Events
 
 | Event       | Description           | Type               |
 | ----------- | --------------------- | ------------------ |
 | `itemClick` | Event list item click | `CustomEvent<any>` |
 
-
-----------------------------------------------
-
-
+---

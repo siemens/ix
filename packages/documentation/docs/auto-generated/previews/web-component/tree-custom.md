@@ -5,8 +5,8 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tree-custom.html -->
-```html
 
+```html
 <div style="height: 8rem; width: 100%">
   <ix-button id="expand" ghost style="margin-bottom: 2rem"
     >Expand Tree</ix-button

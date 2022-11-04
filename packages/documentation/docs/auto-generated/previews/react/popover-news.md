@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/popover-news.tsx -->
+
 ```tsx
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
@@ -16,11 +17,11 @@ SPDX-License-Identifier: MIT
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuAbout,
-    IxMenuAboutItem,
-    IxMenuAboutNews
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuAbout,
+  IxMenuAboutItem,
+  IxMenuAboutNews,
 } from '@siemens/ix-react';
 import React from 'react';
 

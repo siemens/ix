@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/map-navigation-overlay.html -->
+
 ```html
 <ix-map-navigation
   application-name="Test Application"

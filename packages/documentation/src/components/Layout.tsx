@@ -7,21 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import clsx from 'clsx';
 import React from 'react';
 import styles from './Layout.module.css';
 
-export function Layout(props: {
-  description: string;
-}) {
-
+export function Layout(props: { description: string }) {
   return (
     <>
       <hr></hr>
       <div className={styles.description}>{props.description}</div>
       <slot></slot>
     </>
-  )
+  );
 }

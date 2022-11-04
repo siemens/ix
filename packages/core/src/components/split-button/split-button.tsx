@@ -8,19 +8,19 @@
  */
 
 import {
-    createPopper,
-    Instance as PopperInstance,
-    Placement
+  createPopper,
+  Instance as PopperInstance,
+  Placement,
 } from '@popperjs/core';
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Buttons } from '../utils/button-variants';

@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tabs-rounded.html -->
+
 ```html
 <ix-tabs rounded>
   <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>

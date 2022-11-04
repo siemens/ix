@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/expanding-search.tsx -->
+
 ```tsx
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG

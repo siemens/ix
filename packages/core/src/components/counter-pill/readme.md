@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute    | Description                                                     | Type                                                                                              | Default     |
@@ -19,7 +18,4 @@ SPDX-License-Identifier: MIT
 | `outline`    | `outline`    | Show pill as outline                                            | `boolean`                                                                                         | `false`     |
 | `variant`    | `variant`    | Pill variant                                                    | `"alarm" \| "critical" \| "custom" \| "info" \| "neutral" \| "primary" \| "success" \| "warning"` | `'primary'` |
 
-
-----------------------------------------------
-
-
+---

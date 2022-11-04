@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property        | Attribute       | Description                           | Type      | Default      |
@@ -20,7 +19,4 @@ SPDX-License-Identifier: MIT
 | `notifications` | `notifications` | Show notification cound on tab        | `number`  | `undefined`  |
 | `tabIcon`       | `tab-icon`      | Icon name from @siemens/ix-icons      | `string`  | `'document'` |
 
-
-----------------------------------------------
-
-
+---

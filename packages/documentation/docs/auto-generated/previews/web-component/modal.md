@@ -5,13 +5,13 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/modal.html -->
+
 ```html
 <div>
   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
   eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-  voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-  clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-  amet.
+  voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+  kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 </div>
 <ix-button>Show Modal</ix-button>
 
@@ -45,11 +45,9 @@ SPDX-License-Identifier: MIT
     const templateContent = template.content;
     customModal.appendChild(templateContent);
 
-    customModal
-      .querySelector('.close-modal')
-      .addEventListener('click', () => {
-        closeModal(customModal, 'Done!');
-      });
+    customModal.querySelector('.close-modal').addEventListener('click', () => {
+      closeModal(customModal, 'Done!');
+    });
 
     customModal.querySelectorAll('.dismiss-modal').forEach((item) =>
       item.addEventListener('click', () => {

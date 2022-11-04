@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                  | Attribute                   | Description                                                                    | Type      | Default     |
@@ -21,7 +20,6 @@ SPDX-License-Identifier: MIT
 | `subHeader`               | `sub-header`                | Group header subtitle                                                          | `string`  | `undefined` |
 | `suppressHeaderSelection` | `suppress-header-selection` | Prevent header from being selectable                                           | `boolean` | `false`     |
 
-
 ## Events
 
 | Event              | Description                           | Type                   |
@@ -30,7 +28,4 @@ SPDX-License-Identifier: MIT
 | `selectGroup`      | Emits when whole group gets selected. | `CustomEvent<boolean>` |
 | `selectItem`       | Emits when group item gets selected.  | `CustomEvent<number>`  |
 
-
-----------------------------------------------
-
-
+---

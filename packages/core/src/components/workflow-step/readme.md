@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # cw-workflow-step
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -22,7 +19,4 @@ SPDX-License-Identifier: MIT
 | `status`    | `status`    | Set status                | `"done" \| "error" \| "open" \| "success" \| "warning"` | `'open'`      |
 | `vertical`  | `vertical`  | Select orientation        | `boolean`                                               | `false`       |
 
-
-----------------------------------------------
-
-
+---

@@ -7,25 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useEffect, useMemo } from 'react';
-import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import {
-  ThemeClassNames,
-  useThemeConfig,
-  usePrevious,
   Collapsible,
+  ThemeClassNames,
   useCollapsible,
+  usePrevious,
+  useThemeConfig,
 } from '@docusaurus/theme-common';
 import {
-  isActiveSidebarItem,
   findFirstCategoryLink,
-  useDocSidebarItemsExpandedState,
+  isActiveSidebarItem,
   isSamePath,
+  useDocSidebarItemsExpandedState,
 } from '@docusaurus/theme-common/internal';
-import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import DocSidebarItems from '@theme/DocSidebarItems';
+import clsx from 'clsx';
+import React, { useEffect, useMemo } from 'react';
 
 // If we navigate to a category and it becomes active, it should automatically
 // expand itself

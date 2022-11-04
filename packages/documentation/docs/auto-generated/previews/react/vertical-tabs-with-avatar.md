@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/react-test-app/src/preview-examples/vertical-tabs-with-avatar.tsx -->
+
 ```tsx
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
@@ -16,10 +17,10 @@ SPDX-License-Identifier: MIT
  */
 
 import {
-    IxMenu,
-    IxMenuAvatar,
-    IxMenuAvatarItem,
-    IxMenuItem
+  IxMenu,
+  IxMenuAvatar,
+  IxMenuAvatarItem,
+  IxMenuItem,
 } from '@siemens/ix-react';
 import React from 'react';
 

@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # expanding-search
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -19,14 +16,10 @@ SPDX-License-Identifier: MIT
 | `placeholder` | `placeholder` | Placeholder text | `string` | `'Enter text here'` |
 | `value`       | `value`       | Default value    | `string` | `''`                |
 
-
 ## Events
 
 | Event         | Description   | Type                  |
 | ------------- | ------------- | --------------------- |
 | `valueChange` | Value changed | `CustomEvent<string>` |
 
-
-----------------------------------------------
-
-
+---

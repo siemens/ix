@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property         | Attribute         | Description | Type     | Default             |
@@ -16,7 +15,6 @@ SPDX-License-Identifier: MIT
 | `containerClass` | `container-class` |             | `string` | `'toast-container'` |
 | `containerId`    | `container-id`    |             | `string` | `'toast-container'` |
 | `position`       | `position`        |             | `string` | `'bottom-right'`    |
-
 
 ## Methods
 
@@ -28,9 +26,4 @@ Display a toast message
 
 Type: `Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>`
 
-
-
-
-----------------------------------------------
-
-
+---

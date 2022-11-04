@@ -5,10 +5,9 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/pill.html -->
+
 ```html
-<ix-pill variant="custom" color="white" background="purple">
-  Label
-</ix-pill>
+<ix-pill variant="custom" color="white" background="purple"> Label </ix-pill>
 
 <ix-pill>Label</ix-pill>
 <ix-pill outline>Label</ix-pill>

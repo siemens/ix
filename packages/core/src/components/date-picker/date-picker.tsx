@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';

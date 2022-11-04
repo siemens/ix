@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property          | Attribute          | Description             | Type      | Default     |
@@ -16,7 +15,4 @@ SPDX-License-Identifier: MIT
 | `applicationName` | `application-name` | Application name        | `string`  | `undefined` |
 | `hideHeader`      | `hide-header`      | Hide application header | `boolean` | `false`     |
 
-
-----------------------------------------------
-
-
+---

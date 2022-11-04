@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # cw-workflow-steps
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -20,14 +17,10 @@ SPDX-License-Identifier: MIT
 | `selectedIndex` | `selected-index` | Activate navigation click | `number`  | `0`     |
 | `vertical`      | `vertical`       | Select orientation        | `boolean` | `false` |
 
-
 ## Events
 
 | Event          | Description            | Type                  |
 | -------------- | ---------------------- | --------------------- |
 | `stepSelected` | On step selected event | `CustomEvent<number>` |
 
-
-----------------------------------------------
-
-
+---

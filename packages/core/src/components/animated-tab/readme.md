@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # animated-tab
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -18,7 +15,4 @@ SPDX-License-Identifier: MIT
 | `count`  | `count`   | Show notification number | `number` | `undefined` |
 | `icon`   | `icon`    | Icon of the tab          | `string` | `undefined` |
 
-
-----------------------------------------------
-
-
+---

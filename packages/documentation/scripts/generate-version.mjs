@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import execa from 'execa';
 import fsExtra from 'fs-extra';
 import path from 'path';
-import execa from 'execa';
 
 const __dirname = path.resolve();
 const version = process.argv[2];

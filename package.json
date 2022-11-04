@@ -52,6 +52,7 @@
     "inquirer": "^8.2.4",
     "listr": "^0.14.3",
     "prettier": "^2.6.2",
+    "prettier-plugin-organize-imports": "^3.1.1",
     "semver": "^7.3.7",
     "sonarqube-scanner": "^2.8.1",
     "turbo": "^1.4.3",

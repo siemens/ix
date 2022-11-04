@@ -8,14 +8,10 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description      | Type     | Default     |
 | -------- | --------- | ---------------- | -------- | ----------- |
 | `name`   | `name`    | Application name | `string` | `undefined` |
 
-
-----------------------------------------------
-
-
+---

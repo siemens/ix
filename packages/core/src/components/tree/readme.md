@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property     | Attribute | Description                               | Type                                                                                                                                | Default     |
@@ -18,7 +17,6 @@ SPDX-License-Identifier: MIT
 | `renderItem` | --        | Render function of tree items             | `<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement` | `undefined` |
 | `root`       | `root`    | Initial root element will not be rendered | `string`                                                                                                                            | `undefined` |
 
-
 ## Events
 
 | Event           | Description         | Type                                             |
@@ -26,7 +24,4 @@ SPDX-License-Identifier: MIT
 | `contextChange` | Context changed     | `CustomEvent<{ [x: string]: TreeItemContext; }>` |
 | `nodeRemoved`   | Emits removed nodes | `CustomEvent<any>`                               |
 
-
-----------------------------------------------
-
-
+---

@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property             | Attribute                | Description                                                                                                                                                                                   | Type                                                                                                                          | Default                                 |
@@ -25,13 +24,11 @@ SPDX-License-Identifier: MIT
 | `uploadFailedText`   | `upload-failed-text`     | Will be used by state = UploadFileState.UPLOAD_FAILED                                                                                                                                         | `string`                                                                                                                      | `'Upload failed. Please try again.'`    |
 | `uploadSuccessText`  | `upload-success-text`    | Will be used by state = UploadFileState.UPLOAD_SUCCESSED                                                                                                                                      | `string`                                                                                                                      | `'Upload successful'`                   |
 
-
 ## Events
 
 | Event          | Description                                                              | Type                  |
 | -------------- | ------------------------------------------------------------------------ | --------------------- |
 | `filesChanged` | You get an array of Files after drop-action or browse action is finished | `CustomEvent<File[]>` |
-
 
 ## Methods
 
@@ -43,9 +40,4 @@ Set files
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

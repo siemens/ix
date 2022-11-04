@@ -6,11 +6,6 @@ SPDX-License-Identifier: MIT
 
 # my-component
 
-
-
 <!-- Auto Generated Below -->
 
-
-----------------------------------------------
-
-
+---

@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property         | Attribute          | Description        | Type      | Default                       |
@@ -17,14 +16,10 @@ SPDX-License-Identifier: MIT
 | `label`          | `label`            | Label of first tab | `string`  | `'About & legal information'` |
 | `show`           | `show`             | Internal           | `boolean` | `false`                       |
 
-
 ## Events
 
 | Event   | Description            | Type                      |
 | ------- | ---------------------- | ------------------------- |
 | `close` | About and Legal closed | `CustomEvent<MouseEvent>` |
 
-
-----------------------------------------------
-
-
+---

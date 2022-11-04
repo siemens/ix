@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description            | Type                    | Default     |
@@ -22,7 +21,4 @@ SPDX-License-Identifier: MIT
 | `selected`  | `selected`  | Set selected tab       | `boolean`               | `false`     |
 | `small`     | `small`     | Set small size tab     | `boolean`               | `false`     |
 
-
-----------------------------------------------
-
-
+---

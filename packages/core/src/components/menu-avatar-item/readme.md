@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description           | Type     | Default     |
@@ -16,14 +15,10 @@ SPDX-License-Identifier: MIT
 | `icon`   | `icon`    | Avatar dropdown icon  | `string` | `undefined` |
 | `label`  | `label`   | Avatar dropdown label | `string` | `undefined` |
 
-
 ## Events
 
 | Event       | Description                  | Type                      |
 | ----------- | ---------------------------- | ------------------------- |
 | `itemClick` | Avatar dropdown item clicked | `CustomEvent<MouseEvent>` |
 
-
-----------------------------------------------
-
-
+---

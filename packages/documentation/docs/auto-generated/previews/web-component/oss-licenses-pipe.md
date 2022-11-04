@@ -5,8 +5,8 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/oss-licenses-pipe.html -->
-```html
 
+```html
 <cui-slide-toggle [(checked)]="isPipeEnabled"></cui-slide-toggle>
 <div class="container">
   <p *ngIf="isPipeEnabled; else #noPipe" [innerHTML]="html"></p>

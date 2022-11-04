@@ -8,9 +8,9 @@
  */
 import { exec } from 'child_process';
 import crypto from 'crypto';
-import { URL } from 'url';
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
+import { URL } from 'url';
 
 const Reset = '\x1b[0m';
 const FgGreen = '\x1b[32m';

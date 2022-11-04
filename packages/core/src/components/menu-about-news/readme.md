@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property         | Attribute          | Description                | Type      | Default       |
@@ -20,7 +19,6 @@ SPDX-License-Identifier: MIT
 | `offsetBottom`   | `offset-bottom`    | Bottom offset              | `number`  | `0`           |
 | `show`           | `show`             | Show about news            | `boolean` | `false`       |
 
-
 ## Events
 
 | Event          | Description                 | Type                      |
@@ -28,7 +26,4 @@ SPDX-License-Identifier: MIT
 | `closePopover` | Popover closed              | `CustomEvent<void>`       |
 | `showMore`     | Show More button is pressed | `CustomEvent<MouseEvent>` |
 
-
-----------------------------------------------
-
-
+---

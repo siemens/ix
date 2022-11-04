@@ -11,5 +11,11 @@
 @import './variables';
 @import './sizes';
 
-@include define-theme($name: 'classic-light', $theme-colors: $classic-light, $hover-percentage: 5%, $active-percentage: 10%, $theme-sizes: $classic-light-sizes) {
+@include define-theme(
+  $name: 'classic-light',
+  $theme-colors: $classic-light,
+  $hover-percentage: 5%,
+  $active-percentage: 10%,
+  $theme-sizes: $classic-light-sizes
+) {
 }

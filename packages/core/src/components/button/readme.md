@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description                                                                                  | Type                       | Default     |
@@ -21,7 +20,4 @@ SPDX-License-Identifier: MIT
 | `type`      | `type`      | Type of the button                                                                           | `"button" \| "submit"`     | `'button'`  |
 | `variant`   | `variant`   | Button varaint                                                                               | `"Primary" \| "Secondary"` | `'Primary'` |
 
-
-----------------------------------------------
-
-
+---

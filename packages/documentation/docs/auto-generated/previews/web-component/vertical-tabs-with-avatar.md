@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/vertical-tabs-with-avatar.html -->
+
 ```html
 <ix-menu>
   <ix-menu-avatar>

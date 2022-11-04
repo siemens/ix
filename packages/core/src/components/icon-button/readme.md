@@ -8,12 +8,11 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description                                                                                  | Type                           | Default       |
 | ----------- | ----------- | -------------------------------------------------------------------------------------------- | ------------------------------ | ------------- |
-| `color`     | `color`     | Color of icon in  button                                                                     | `string`                       | `undefined`   |
+| `color`     | `color`     | Color of icon in button                                                                      | `string`                       | `undefined`   |
 | `disabled`  | `disabled`  | Disabled                                                                                     | `boolean`                      | `false`       |
 | `ghost`     | `ghost`     | Button invisible                                                                             | `boolean`                      | `undefined`   |
 | `icon`      | `icon`      | Button icon                                                                                  | `string`                       | `undefined`   |
@@ -25,7 +24,4 @@ SPDX-License-Identifier: MIT
 | `type`      | `type`      | Type of the button                                                                           | `"button" \| "submit"`         | `'button'`    |
 | `variant`   | `variant`   | Variant of button                                                                            | `"Primary" \| "Secondary"`     | `'Secondary'` |
 
-
-----------------------------------------------
-
-
+---

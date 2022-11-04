@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description          | Type     | Default     |
@@ -16,7 +15,4 @@ SPDX-License-Identifier: MIT
 | `icon`   | `icon`    | Group dropdown icon  | `string` | `undefined` |
 | `label`  | `label`   | Group dropdown label | `string` | `undefined` |
 
-
-----------------------------------------------
-
-
+---

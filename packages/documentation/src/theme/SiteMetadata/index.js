@@ -7,19 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useEffect } from 'react';
 import Head from '@docusaurus/Head';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import { useLocation } from '@docusaurus/router';
 import { PageMetadata, useThemeConfig } from '@docusaurus/theme-common';
 import {
   DEFAULT_SEARCH_TAG,
   useAlternatePageUtils,
 } from '@docusaurus/theme-common/internal';
-import { useLocation } from '@docusaurus/router';
-import SearchMetadata from '@theme/SearchMetadata';
-import { getDefaultTheme } from '@site/src/components/config';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { getDefaultTheme } from '@site/src/components/config';
+import SearchMetadata from '@theme/SearchMetadata';
+import React, { useEffect } from 'react';
 
 applyPolyfills().then(() => {
   defineCustomElements();

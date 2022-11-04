@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/toast-custom.html -->
+
 ```html
 <ix-toast-container></ix-toast-container>
 
@@ -34,11 +35,9 @@ SPDX-License-Identifier: MIT
           message: customModal,
         });
 
-        customModal
-          .querySelector('ix-button')
-          .addEventListener('click', () => {
-            instance.close();
-          });
+        customModal.querySelector('ix-button').addEventListener('click', () => {
+          instance.close();
+        });
       });
   })();
 </script>

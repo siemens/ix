@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/vertical-tabs.html -->
+
 ```html
 <ix-menu>
   <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>

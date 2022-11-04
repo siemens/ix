@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # cui-breadcrumb
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -19,7 +16,6 @@ SPDX-License-Identifier: MIT
 | `nextItems`        | --                   | Items will be accessible through a dropdown                                                                       | `string[]` | `[]`    |
 | `visibleItemCount` | `visible-item-count` | Excess items will get hidden inside of dropdown                                                                   | `number`   | `9`     |
 
-
 ## Events
 
 | Event       | Description              | Type                                             |
@@ -27,7 +23,4 @@ SPDX-License-Identifier: MIT
 | `itemClick` | Crumb item clicked event | `CustomEvent<string>`                            |
 | `nextClick` | Next item clicked event  | `CustomEvent<{ event: UIEvent; item: string; }>` |
 
-
-----------------------------------------------
-
-
+---

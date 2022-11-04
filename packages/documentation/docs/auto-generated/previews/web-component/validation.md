@@ -5,13 +5,12 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/validation.html -->
+
 ```html
 <form class="row g-3 needs-validation" novalidate>
   <div class="row">
     <div class="col-md-4">
-      <label for="validationCustom01" class="form-label">
-        First name
-      </label>
+      <label for="validationCustom01" class="form-label"> First name </label>
       <input
         type="text"
         class="form-control"

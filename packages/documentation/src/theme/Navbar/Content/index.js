@@ -7,18 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
 import { useThemeConfig } from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
-import NavbarItem from '@theme/NavbarItem';
-import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
-import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
-import NavbarLogo from '@theme/Navbar/Logo';
-import styles from './styles.module.css';
 import { SwitchTheme } from '@site/src/components/SwitchTheme';
+import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
+import NavbarLogo from '@theme/Navbar/Logo';
+import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
+import NavbarItem from '@theme/NavbarItem';
+import React from 'react';
+import styles from './styles.module.css';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved

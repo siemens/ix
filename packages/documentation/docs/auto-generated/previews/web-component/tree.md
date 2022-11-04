@@ -5,8 +5,8 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/tree.html -->
-```html
 
+```html
 <div style="height: 8rem; width: 100%">
   <ix-tree root="root" id="tree"></ix-tree>
 </div>

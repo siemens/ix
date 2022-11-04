@@ -8,10 +8,10 @@
  */
 
 import {
-    IxMenu,
-    IxMenuAvatar,
-    IxMenuAvatarItem,
-    IxMenuItem
+  IxMenu,
+  IxMenuAvatar,
+  IxMenuAvatarItem,
+  IxMenuItem,
 } from '@siemens/ix-react';
 import React from 'react';
 

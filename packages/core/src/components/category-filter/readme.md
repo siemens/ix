@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                   | Attribute                      | Description                                                                                                                                                                                                                                                                                                                                | Type                                                       | Default            |
@@ -22,10 +21,9 @@ SPDX-License-Identifier: MIT
 | `labelCategories`          | `label-categories`             | i18n                                                                                                                                                                                                                                                                                                                                       | `string`                                                   | `'Categories'`     |
 | `nonSelectableCategories`  | --                             | In certain use cases some categories are not available for selection any more. To allow proper display of set filters with these categories this ID to label mapping can be populated. Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display. | `{ [id: string]: string; }`                                | `{}`               |
 | `placeholder`              | `placeholder`                  | Placeholder text to be displayed in an empty input field.                                                                                                                                                                                                                                                                                  | `string`                                                   | `undefined`        |
-| `repeatCategories`         | `repeat-categories`            | If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true                                                                                                                                                                | `boolean`                                                  | `true`             |
+| `repeatCategories`         | `repeat-categories`            | If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false. Defaults to true                                                                                                                                                                 | `boolean`                                                  | `true`             |
 | `suggestions`              | --                             | A list of strings that will be supplied as typeahead suggestions not tied to any categories.                                                                                                                                                                                                                                               | `string[]`                                                 | `undefined`        |
 | `tmpDisableScrollIntoView` | `tmp-disable-scroll-into-view` | <span style="color:red">**[DEPRECATED]**</span> For debugging purposes only!<br/><br/>                                                                                                                                                                                                                                                     | `boolean`                                                  | `true`             |
-
 
 ## Events
 
@@ -34,7 +32,4 @@ SPDX-License-Identifier: MIT
 | `filterChanged` | Event dispatched whenever the filter state changes. | `CustomEvent<FilterState>` |
 | `inputChanged`  | Event dispatched whenever the text input changes.   | `CustomEvent<InputState>`  |
 
-
-----------------------------------------------
-
-
+---

@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/select-multiple.html -->
+
 ```html
 <ix-select mode="multiple">
   <ix-select-item label="Item 1" value="1"></ix-select-item>

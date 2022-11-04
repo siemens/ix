@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property      | Attribute      | Description            | Type              | Default     |
@@ -17,7 +16,6 @@ SPDX-License-Identifier: MIT
 | `hasChildren` | `has-children` | Has tree item children | `boolean`         | `undefined` |
 | `text`        | `text`         | Text                   | `string`          | `undefined` |
 
-
 ## Events
 
 | Event       | Description              | Type                |
@@ -25,7 +23,4 @@ SPDX-License-Identifier: MIT
 | `itemClick` | Clicked                  | `CustomEvent<void>` |
 | `toggle`    | Expand/Collapsed toggled | `CustomEvent<void>` |
 
-
-----------------------------------------------
-
-
+---

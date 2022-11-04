@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute   | Description                       | Type                    | Default    |
@@ -19,7 +18,4 @@ SPDX-License-Identifier: MIT
 | `selected`  | `selected`  | Set default selected tab by index | `number`                | `0`        |
 | `small`     | `small`     | Set tab items to small size       | `boolean`               | `false`    |
 
-
-----------------------------------------------
-
-
+---

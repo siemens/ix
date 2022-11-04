@@ -89,9 +89,13 @@ $button-categories: (primary, secondary);
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
       @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--active) !important;
+        border-color: var(
+          --theme-btn-#{$name}--border-color--active
+        ) !important;
       }
-      background-color: var(--theme-btn-#{$name}--background--active) !important;
+      background-color: var(
+        --theme-btn-#{$name}--background--active
+      ) !important;
       color: var(--theme-btn-#{$name}--color--active) !important;
     }
 
@@ -99,7 +103,9 @@ $button-categories: (primary, secondary);
       &:not(:disabled):not(.disabled):active,
       &:not(:disabled):not(.disabled).active,
       .show > &.dropdown-toggle {
-        background-color: var(--theme-btn-#{$name}--background--selected-active);
+        background-color: var(
+          --theme-btn-#{$name}--background--selected-active
+        );
         color: var(--theme-btn-#{$name}--color--selected-active);
       }
     }

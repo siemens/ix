@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # overlay-container
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Methods
 
@@ -21,9 +18,4 @@ Display modal dialog
 
 Type: `Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
 
-
-
-
-----------------------------------------------
-
-
+---

@@ -8,10 +8,10 @@
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuSettings,
-    IxMenuSettingsItem
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuSettings,
+  IxMenuSettingsItem,
 } from '@siemens/ix-react';
 import React, { useLayoutEffect, useRef } from 'react';
 

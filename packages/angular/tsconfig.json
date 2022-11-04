@@ -34,8 +34,7 @@
     "paths": {
       "@siemens/ix": ["../core"]
     },
-    "plugins": [
-    ],
+    "plugins": [],
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],

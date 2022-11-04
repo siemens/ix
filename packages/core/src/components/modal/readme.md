@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property           | Attribute            | Description                                                                                                                                                                  | Type                                                                                      | Default            |
@@ -30,14 +29,12 @@ SPDX-License-Identifier: MIT
 | `size`             | `size`               | Modal size                                                                                                                                                                   | `"lg" \| "sm" \| "xl"`                                                                    | `'sm'`             |
 | `windowClass`      | `window-class`       | Window class                                                                                                                                                                 | `string`                                                                                  | `undefined`        |
 
-
 ## Events
 
 | Event       | Description     | Type               |
 | ----------- | --------------- | ------------------ |
 | `closed`    | Modal closed    | `CustomEvent<any>` |
 | `dismissed` | Modal dismissed | `CustomEvent<any>` |
-
 
 ## Methods
 
@@ -49,8 +46,6 @@ Close modal
 
 Type: `Promise<void>`
 
-
-
 ### `dismiss(reason?: any) => Promise<void>`
 
 Dismiss modal instance
@@ -59,9 +54,4 @@ Dismiss modal instance
 
 Type: `Promise<void>`
 
-
-
-
-----------------------------------------------
-
-
+---

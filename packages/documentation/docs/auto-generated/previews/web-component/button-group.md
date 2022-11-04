@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/button-group.html -->
+
 ```html
 <div class="btn-group">
   <ix-button outline>Left</ix-button>

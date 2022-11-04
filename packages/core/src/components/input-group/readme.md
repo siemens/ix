@@ -8,7 +8,4 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
-----------------------------------------------
-
-
+---

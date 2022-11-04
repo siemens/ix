@@ -6,10 +6,7 @@ SPDX-License-Identifier: MIT
 
 # ix-kpi
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -21,7 +18,4 @@ SPDX-License-Identifier: MIT
 | `unit`        | `unit`        |             | `string`                            | `undefined`    |
 | `value`       | `value`       |             | `number \| string`                  | `undefined`    |
 
-
-----------------------------------------------
-
-
+---

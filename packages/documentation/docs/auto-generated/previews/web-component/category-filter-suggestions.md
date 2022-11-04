@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/category-filter-suggestions.html -->
+
 ```html
 <ix-category-filter placeholder="Filter by"></ix-category-filter>
 <script>

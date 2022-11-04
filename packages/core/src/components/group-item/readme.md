@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute            | Description                                                                                         | Type      | Default     |
@@ -21,14 +20,10 @@ SPDX-License-Identifier: MIT
 | `suppressSelection` | `suppress-selection` | Supress the selection of the group                                                                  | `boolean` | `false`     |
 | `text`              | `text`               | Group item text                                                                                     | `string`  | `undefined` |
 
-
 ## Events
 
 | Event             | Description       | Type                                  |
 | ----------------- | ----------------- | ------------------------------------- |
 | `selectedChanged` | Selection changed | `CustomEvent<HTMLIxGroupItemElement>` |
 
-
-----------------------------------------------
-
-
+---

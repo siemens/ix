@@ -5,6 +5,7 @@ SPDX-License-Identifier: MIT
 -->
 
 <!-- Auto generated! Please edit here: packages/html-test-app/src/preview-examples/group-header-suppressed.html -->
+
 ```html
 <ix-group
   header="Header text"

@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property | Attribute | Description                                    | Type                           | Default     |
@@ -17,7 +16,4 @@ SPDX-License-Identifier: MIT
 | `name`   | `name`    | Use one of our defined icon names e.g. `copy`. | `string`                       | `undefined` |
 | `size`   | `size`    | Size of the icon                               | `"12" \| "16" \| "24" \| "32"` | `undefined` |
 
-
-----------------------------------------------
-
-
+---

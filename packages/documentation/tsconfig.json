@@ -4,10 +4,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": [
-      "DOM",
-      "ES2022"
-    ],
+    "lib": ["DOM", "ES2022"],
     "noEmit": true,
     "noImplicitAny": false,
     "types": [
@@ -17,15 +14,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@site/*": [
-        "./*"
-      ]
+      "@site/*": ["./*"]
     },
     "resolveJsonModule": true,
     "preserveSymlinks": true
   },
-  "include": [
-    "./**/*.ts",
-    "./**/*.tsx"
-  ]
+  "include": ["./**/*.ts", "./**/*.tsx"]
 }

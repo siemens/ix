@@ -7,10 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import fse from 'fs-extra';
-import fs from 'fs';
-import path, { join } from 'path';
+import path from 'path';
 import { appendDocsTags } from './docs-tags.mjs';
 
 const __dirname = path.resolve();

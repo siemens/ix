@@ -8,7 +8,6 @@ SPDX-License-Identifier: MIT
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute             | Description               | Type                             | Default     |
@@ -20,7 +19,6 @@ SPDX-License-Identifier: MIT
 | `showSeconds`       | `show-seconds`        | Show Seconds Input        | `boolean`                        | `false`     |
 | `showTimeReference` | `show-time-reference` | Show Time Reference Input | `boolean`                        | `false`     |
 
-
 ## Events
 
 | Event        | Description       | Type                  |
@@ -28,7 +26,4 @@ SPDX-License-Identifier: MIT
 | `done`       | Time event        | `CustomEvent<string>` |
 | `timeChange` | Time change event | `CustomEvent<string>` |
 
-
-----------------------------------------------
-
-
+---

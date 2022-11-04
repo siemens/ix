@@ -1,4 +1,3 @@
-
 import * as d from './components';
 
 export const DIRECTIVES = [
@@ -64,5 +63,5 @@ export const DIRECTIVES = [
   d.IxUpload,
   d.IxValidationTooltip,
   d.IxWorkflowStep,
-  d.IxWorkflowSteps
+  d.IxWorkflowSteps,
 ];
