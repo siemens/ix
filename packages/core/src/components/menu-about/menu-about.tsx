@@ -8,17 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    forceUpdate,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  forceUpdate,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -93,13 +92,6 @@ export class MenuAbout {
     const selectedItem = this.aboutItems.find((item) => item.label === label);
     return this.aboutItems.indexOf(selectedItem);
   }
-
-  @Listen('overlayClose',{target: "body"})
-    closeMenu(event: CustomEvent) {
-      if(event.detail === true){
-        this.close.emit()
-      }
-    }
 
   private getTabItems() {
     return this.aboutItems.map(({ label }) => {
