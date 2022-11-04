@@ -8,6 +8,13 @@
   }
 }
 
+@media (max-width: 428px) {
+  .intro {
+    height: 1400px !important;
+    min-height: 100vh !important;
+  }
+}
+
 // @media (max-width: 1024px) {
 //   .intro {
 //     height: 170vh !important;
@@ -23,6 +30,12 @@
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+@media (max-width: 428px) {
+  .container {
+    padding: 50px 40px 50px 40px !important;
+  }
 }
 
 .container {
@@ -53,11 +66,23 @@
   &.industrial_experiance {
     padding: 81px 97px 0 66px;
     height: calc(100vh - var(--ifm-navbar-height));
+    overflow: hidden;
 
     @media (max-width: 768px) {
       .scroll_down {
         font-size: 4rem !important;
         left: 49% !important;
+      }
+    }
+
+    @media (max-width: 428px) {
+      .scroll_down {
+        bottom: -40px !important;
+        left: 42% !important;
+      }
+
+      .headline {
+        margin-left: 0 !important;
       }
     }
 
@@ -83,6 +108,13 @@
     &.call_to_actions {
       flex-direction: column;
       align-items: center;
+    }
+  }
+
+
+  @media (max-width: 428px) {
+    &.devices {
+      height: 926px !important;
     }
   }
 
@@ -121,6 +153,13 @@
 
       .text_2 {
         width: 340px !important;
+      }
+    }
+
+    @media (max-width: 428px) {
+      .image {
+        top: 220px !important;
+        height: 80% !important;
       }
     }
   }
@@ -189,6 +228,13 @@
         width: 380px !important;
       }
     }
+
+    @media (max-width: 428px) {
+      .text_2 {
+        width: 348px !important;
+      }
+    }
+
   }
 
   &.developers {
@@ -197,6 +243,12 @@
     @media (max-width: 768px) {
       .text_2 {
         width: 340px !important;
+      }
+    }
+
+    @media (max-width: 428px) {
+      .bold {
+        line-height: 35px !important;
       }
     }
   }
@@ -259,11 +311,33 @@
         width: 340px !important;
       }
     }
+
+    @media (max-width: 428px) {
+      .images {
+        gap: 10px !important;
+      }
+    }
   }
 
   &.brand_design {
     padding: 40px 66px;
     min-height: 100vh;
+
+    @media (max-width: 428px) {
+      .arrow {
+        display: none !important;
+      }
+
+      .row {
+        position: absolute;
+        width: 250%;
+        left: -100px;
+      }
+
+      .carousel_indicators {
+        margin-top: 450px;
+      }
+    }
 
     .row {
       display: flex;
@@ -307,6 +381,13 @@
     }
   }
 
+  @media (max-width: 428px) {
+    &.components {
+      background-image: none !important;
+      background-color: #000028;
+    }
+  }
+
   &.components {
     padding: 74px 66px;
     min-height: 100vh;
@@ -337,6 +418,17 @@
         position: absolute;
       }
     }
+
+    @media (max-width: 428px) {
+      .text_dark {
+        color: #ffffff !important;
+      }
+
+      .video {
+        padding-top: 40px !important;
+        height: 210% !important;
+      }
+    }
   }
 
   &.information_cards {
@@ -356,6 +448,13 @@
       .text {
         font-size: 16px !important;
         line-height: 24px !important;
+      }
+    }
+
+    @media (max-width: 428px) {
+      .column {
+        flex-direction: column !important;
+        align-items: center !important;
       }
     }
 
@@ -575,6 +674,12 @@
   }
 }
 
+@media (max-width: 428px) {
+  .brand_desgin_background_image {
+    display: none;
+  }
+}
+
 .brand_desgin_background_image {
   position: absolute;
   z-index: 0;
@@ -604,6 +709,16 @@
 
     .content {
       gap: 10px !important;
+    }
+  }
+
+  @media (max-width: 428px) {
+    .line {
+      display: none !important;
+    }
+
+    .text_dark {
+      width: 348px !important;
     }
   }
 
@@ -673,6 +788,13 @@
   color: rgba(0, 0, 0, 0.85);
 }
 
+@media (max-width: 428px) {
+  .description {
+    margin: 30px 0 0 0 !important;
+    width: 100% !important;
+  }
+}
+
 .description {
   width: 500px;
   margin: 30px 0 0 24px;
@@ -732,6 +854,20 @@
     font-size: 1.25rem !important;
   }
 }
+
+@media (max-width: 428px) {
+  .Card_Info {
+    position: unset !important;
+    margin-top: 180px;
+    padding: 0 !important;
+  }
+
+  .Card_Line {
+    width: auto !important;
+  }
+}
+
+
 
 .Card_Icon {
   color: var(--theme-color-primary) !important;

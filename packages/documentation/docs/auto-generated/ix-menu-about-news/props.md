@@ -1,8 +1,8 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|aboutItemLabel| Subtitle of the about news | `about-item-label` | `string` | `undefined` |
-|expanded| Internal | `expanded` | `boolean` | `false` |
-|i18nShowMore|  | `i-1-8n-show-more` | `string` | `'Show more'` |
-|label| Title of the about news | `label` | `string` | `undefined` |
-|offsetBottom| Bottom offset | `offset-bottom` | `number` | `0` |
-|show| Show about news | `show` | `boolean` | `false` |
+|<div className="Api__Table"> <div>aboutItemLabel</div> <div className="Api__Table Docs__Tags"></div></div>| Subtitle of the about news | `about-item-label` | `string` | `undefined` |
+|<div className="Api__Table"> <div>expanded</div> <div className="Api__Table Docs__Tags"></div></div>| Internal | `expanded` | `boolean` | `false` |
+|<div className="Api__Table"> <div>i18nShowMore</div> <div className="Api__Table Docs__Tags"></div></div>|  | `i-1-8n-show-more` | `string` | `'Show more'` |
+|<div className="Api__Table"> <div>label</div> <div className="Api__Table Docs__Tags"></div></div>| Title of the about news | `label` | `string` | `undefined` |
+|<div className="Api__Table"> <div>offsetBottom</div> <div className="Api__Table Docs__Tags"></div></div>| Bottom offset | `offset-bottom` | `number` | `0` |
+|<div className="Api__Table"> <div>show</div> <div className="Api__Table Docs__Tags"></div></div>| Show about news | `show` | `boolean` | `false` |

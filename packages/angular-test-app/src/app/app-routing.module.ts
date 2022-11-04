@@ -47,6 +47,7 @@ import { InputDisabled } from 'src/preview-examples/input-disabled';
 import { InputReadonly } from 'src/preview-examples/input-readonly';
 import { InputWithIcon } from 'src/preview-examples/input-with-icon';
 import { Kpi } from 'src/preview-examples/kpi';
+import { MapNavigation } from 'src/preview-examples/map-navigation';
 import { MessageBar } from 'src/preview-examples/message-bar';
 import { Modal } from 'src/preview-examples/modal';
 import { Pill } from 'src/preview-examples/pill';
@@ -253,6 +254,7 @@ const routes: Routes = [
       { path: 'validation', component: Validation },
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
+      { path: 'map-navigation', component: MapNavigation },
     ],
   },
 ];

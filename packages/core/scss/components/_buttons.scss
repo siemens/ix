@@ -31,7 +31,7 @@
     font-weight: $font-weight-normal;
   }
 
-  &:focus,
+  &:focus-visible,
   &.focus {
     box-shadow: none;
   }
@@ -47,7 +47,6 @@ $button-categories: (primary, secondary);
 
     &,
     &.focus,
-    &:focus,
     &:focus-visible {
       background-color: var(--theme-btn-#{$name}--background);
       color: var(--theme-btn-#{$name}--color);
@@ -73,6 +72,7 @@ $button-categories: (primary, secondary);
       @if $enable-border {
         border-color: var(--theme-btn-#{$name}--border-color--hover) !important;
       }
+
       background-color: var(--theme-btn-#{$name}--background--hover) !important;
       color: var(--theme-btn-#{$name}--color--hover) !important;
     }
@@ -89,9 +89,14 @@ $button-categories: (primary, secondary);
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
       @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--active) !important;
+        border-color: var(
+          --theme-btn-#{$name}--border-color--active
+        ) !important;
       }
-      background-color: var(--theme-btn-#{$name}--background--active) !important;
+
+      background-color: var(
+        --theme-btn-#{$name}--background--active
+      ) !important;
       color: var(--theme-btn-#{$name}--color--active) !important;
     }
 
@@ -99,7 +104,9 @@ $button-categories: (primary, secondary);
       &:not(:disabled):not(.disabled):active,
       &:not(:disabled):not(.disabled).active,
       .show > &.dropdown-toggle {
-        background-color: var(--theme-btn-#{$name}--background--selected-active);
+        background-color: var(
+          --theme-btn-#{$name}--background--selected-active
+        );
         color: var(--theme-btn-#{$name}--color--selected-active);
       }
     }
@@ -107,9 +114,11 @@ $button-categories: (primary, secondary);
     &.disabled,
     &:disabled {
       cursor: initial;
+
       @if $enable-border {
         border-color: var(--theme-btn-#{$name}--border-color--disabled);
       }
+
       background-color: var(--theme-btn-#{$name}--background--disabled);
       color: var(--theme-btn-#{$name}--color--disabled);
       opacity: 1;
@@ -127,6 +136,7 @@ $button-categories: (primary, secondary);
 .btn-icon {
   min-width: $x-large-space;
   width: $x-large-space;
+
   .glyph {
     margin-right: 0;
   }

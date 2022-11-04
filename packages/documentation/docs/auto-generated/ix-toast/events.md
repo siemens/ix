@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|closeToast| Toast closed | `any`
+|<div className="Api__Table"> <div>closeToast</div> <div className="Api__Table Docs__Tags"></div></div>| Toast closed | `any`

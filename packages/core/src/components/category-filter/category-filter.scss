@@ -56,7 +56,7 @@
 
     &,
     &:hover,
-    &:focus {
+    &:focus-visible {
       border: none;
       outline: none;
     }
@@ -139,7 +139,7 @@
       outline: none;
     }
 
-    .plain-text-suggestion  {
+    .plain-text-suggestion {
       border-radius: $default-space;
     }
   }

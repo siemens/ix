@@ -8,13 +8,13 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Listen,
-    Prop
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Listen,
+  Prop,
 } from '@stencil/core';
 
 @Component({
@@ -83,7 +83,7 @@ export class EventListItem {
           }}
         ></div>
 
-        <div class="cui-event-list-item-content-container">
+        <div class="event-list-item-container">
           <div class="event-content">
             <slot></slot>
           </div>

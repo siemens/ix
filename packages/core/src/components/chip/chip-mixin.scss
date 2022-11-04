@@ -67,6 +67,7 @@ $border-radius: 100px;
         &:hover::after {
           display: none;
         }
+
         &:hover {
           background-color: var(--theme-chip-outline--background--hover);
         }
@@ -75,6 +76,7 @@ $border-radius: 100px;
         &:active::after {
           display: none;
         }
+
         &.active,
         &:active {
           background-color: var(--theme-chip-outline--background--active);
@@ -82,7 +84,6 @@ $border-radius: 100px;
       }
 
       @if $interaction {
-        &:focus,
         &:focus-visible {
           outline: 1px solid #199fff;
           outline-offset: var(--theme-btn--focus--outline-offset);
@@ -111,7 +112,6 @@ $border-radius: 100px;
         background-color: var(--theme-chip-primary--background--active);
       }
 
-      &:focus,
       &:focus-visible {
         outline: 1px solid #199fff;
         outline-offset: var(--theme-btn--focus--outline-offset);
@@ -168,7 +168,6 @@ $border-radius: 100px;
         pointer-events: none;
       }
 
-      &:focus,
       &:focus-visible {
         outline: 1px solid #199fff;
         outline-offset: var(--theme-btn--focus--outline-offset);

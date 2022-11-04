@@ -24,6 +24,14 @@ $height-single-line: 2.5rem;
   overflow: hidden;
   cursor: pointer;
 
+  @include hover {
+    background-color: var(--theme-event-item--background--hover);
+  }
+
+  @include active {
+    background-color: var(--theme-event-item--background--active);
+  }
+
   .indicator {
     height: 100%;
     width: $small-space;
@@ -38,7 +46,7 @@ $height-single-line: 2.5rem;
     border-right: none;
   }
 
-  .cui-event-list-item-content-container {
+  .event-list-item-container {
     @include ellipsis;
 
     display: flex;
@@ -53,6 +61,31 @@ $height-single-line: 2.5rem;
     border-bottom-right-radius: $default-border-radius;
     border-left: none;
     padding-left: $default-space;
+
+    @include hover {
+      border-color: var(--theme-event-item--border--hover);
+    }
+
+    @include active {
+      border-color: var(--theme-event-item--border--active);
+    }
+  }
+
+  &.selected:not(:active, .active) {
+    .event-list-item-container {
+      background-color: var(--theme-event-item--background--selected);
+      border-color: var(--theme-event-item--border--selected);
+    }
+  }
+
+  &[disabled],
+  &.disabled {
+    pointer-events: none;
+
+    .event-list-item-container {
+      background-color: var(--theme-event-item--background--disabled);
+      border-color: var(--theme-event-item--border--disabled);
+    }
   }
 
   .chevron-icon {
@@ -69,23 +102,6 @@ $height-single-line: 2.5rem;
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
-
-  @include hover {
-    background-color: var(--theme-event-list-item-hover);
-  }
-
-  @include active {
-    background-color: var(--theme-event-list-item-pressed);
-  }
-
-  &.selected {
-    background-color: var(--theme-event-item--background--selected);
-  }
-
-  &[disabled],
-  &.disabled {
-    pointer-events: none;
   }
 
   margin-bottom: $small-space;

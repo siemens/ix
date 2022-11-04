@@ -8,11 +8,11 @@ SPDX-License-Identifier: MIT
 
 > Siemens Industrial Experience (iX) monorepo
 
-![version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![version](https://img.shields.io/npm/v/@siemens/ix)
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
 ![node](https://img.shields.io/badge/node-%3E%3D16.16.x-blue.svg)
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
-[![License: SEE LICENSE IN <LICENSE.md>](https://img.shields.io/badge/License-SEE%20LICENSE%20IN%20LICENSE.md-yellow.svg)](./LICENSE.md)
+[![MIT License](https://img.shields.io/badge/license-MIT-009999.svg?style=flat)](./LICENSE.md)
 
 iX is an open source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
@@ -90,10 +90,12 @@ Contains the wrapper components for angular.
 
 **_published as `@siemens/ix-angular`_**
 
-### Package `react-test-app` and `angular-test-app`
+### Package `html-test-app`, `react-test-app` and `angular-test-app`
 
 Contains a playground application to explore and test `ix` components.
 Inside the `x-test-app`'s are also the preview source code for the documentation. (`src/preview-examples`)
+
+This preview-examples will be generated into markdown files and will copied into `./packages/documentation/docs/auto-generated/previews`.
 
 **_Not published_**
 
@@ -109,7 +111,7 @@ Contains the brand and classic theme for the aggrid library
 
 ## Git hooks via husky
 
-Our pipeline lints each commit pushed to remote. To verify that you dont need
+Our pipeline lints each commit pushed to remote. To verify that you don't need
 to rebase existing commits please install our git hooks.
 
 ```sh
@@ -123,7 +125,7 @@ yarn husky install
 
 Contributions, issues and feature requests are welcome!
 
-## 👨‍💻 Contributors
+## 👨‍💻 Maintainers
 
 - Daniel Leroux <daniel.leroux@siemens.com>
 - Lukas Maurer <lukas.maurer@siemens.com>

@@ -14,7 +14,6 @@ const {
   generateChangelog,
   getVersionCommitMessage,
   readPackage,
-  createDocumentationVersion,
 } = require('./common');
 const Listr = require('listr');
 const execa = require('execa');
@@ -33,6 +32,7 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
     './packages/react-test-app',
     './packages/aggrid',
     './packages/echarts',
+    './packages/html-test-app',
     './packages/documentation',
   ];
 
@@ -40,13 +40,11 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   const { confirm } = answer;
 
   let version;
-  let isPatch = false;
 
   if (typeof answer.version === 'string') {
     version = answer.version;
   } else {
     version = answer.version.version;
-    isPatch = answer.version.type === 'patch';
   }
 
   if (!confirm) {
@@ -173,10 +171,6 @@ const skipGitCheck = params.some((p) => p.includes('--skip-git-check'));
   });
 
   generateChangelog(tasks);
-
-  if (!isPatch) {
-    await createDocumentationVersion(tasks, version);
-  }
 
   tasks.push({
     title: 'Build Documentation 📚',

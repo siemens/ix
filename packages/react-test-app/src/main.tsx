@@ -20,6 +20,8 @@ import App from './App';
 import './index.css';
 import { AboutAndLegal } from './preview-examples/about-and-legal';
 import { AGGrid } from './preview-examples/aggrid';
+import { BasicNavigation } from './preview-examples/basic-navigation';
+import { BasicNavigationWithoutHeader } from './preview-examples/basic-navigation-without-header';
 import { Blind } from './preview-examples/blind';
 import { Breadcrumb } from './preview-examples/breadcrumb';
 import { BreadcrumbNextItems } from './preview-examples/breadcrumb-next-items';
@@ -51,6 +53,7 @@ import { InputDisabled } from './preview-examples/input-disabled';
 import { InputReadonly } from './preview-examples/input-readonly';
 import { InputWithIcon } from './preview-examples/input-with-icon';
 import { Kpi } from './preview-examples/kpi';
+import { MapNavigation } from './preview-examples/map-navigation';
 import { MessageBar } from './preview-examples/message-bar';
 import { ModalExample } from './preview-examples/modal';
 import { Pill } from './preview-examples/pill';
@@ -208,7 +211,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/validation" element={<Validation />} />
       <Route path="/preview/workflow" element={<Workflow />} />
       <Route path="/preview/workflow-vertical" element={<WorkflowVertical />} />
-
+      <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
+      <Route
+        path="/preview/basic-navigation-without-header"
+        element={<BasicNavigationWithoutHeader />}
+      />
+      <Route path="/preview/map-navigation" element={<MapNavigation />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

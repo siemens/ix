@@ -1,3 +1,3 @@
 | Name       | Description                   | Attribute        | Detail |
 |------------|-------------------------------|------------------|--------|
-|tabClick| Tab navigated | `any`
+|<div className="Api__Table"> <div>tabClick</div> <div className="Api__Table Docs__Tags"></div></div>| Tab navigated | `any`

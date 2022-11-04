@@ -24,17 +24,27 @@
   &:not(.disabled):not(:disabled):not(.selected) {
     &.hover,
     &:hover {
-      background-color: var(--theme-ghost-hover);
+      background-color: var(--theme-tree-item--background--hover);
     }
 
     &.active,
     &:active {
-      background-color: var(--theme-ghost-pressed);
+      background-color: var(--theme-tree-item--background--active);
     }
   }
 
   &.selected {
-    background-color: var(--theme-ghost-selected);
+    background-color: var(--theme-tree-item--background--selected);
+
+    &.hover,
+    &:hover {
+      background-color: var(--theme-tree-item--background--selected-hover);
+    }
+
+    &.active,
+    &:active {
+      background-color: var(--theme-tree-item--background--selected-active);
+    }
   }
 
   .tree-node-container {

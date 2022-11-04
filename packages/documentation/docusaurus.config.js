@@ -32,6 +32,7 @@ const customCss = [
   ...libCss,
   require.resolve('./src/css/custom.css'),
   require.resolve('./src/css/search.css'),
+  require.resolve('./src/css/api-table.css'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';
@@ -71,6 +72,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'siemens-ix, ix, stenciljs, angular, webcomponent, react',
+        },
+        {
+          name: 'description',
+          content:
+            'Siemens iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+        },
+      ],
       colorMode: {
         disableSwitch: true,
       },
@@ -87,10 +99,11 @@ const config = {
             position: 'left',
             label: 'Siemens iX',
           },
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-          },
+          // Remove docs version until library needs to publish an major release
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {

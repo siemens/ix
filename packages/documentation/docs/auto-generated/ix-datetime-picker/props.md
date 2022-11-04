@@ -1,17 +1,17 @@
 | Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-|dateFormat| Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `date-format` | `string` | `'yyyy/LL/dd'` |
-|eventDelimiter| Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter | `event-delimiter` | `string` | `' - '` |
-|from| Picker date. If the picker is in range mode this property is the start date.<br /><br />Format is based on `format` | `from` | `string` | `undefined` |
-|maxDate| The latest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
-|minDate| The earliest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
-|range| Set range size | `range` | `boolean` | `true` |
-|showHour| Show hour input | `show-hour` | `boolean` | `false` |
-|showMinutes| Show minutes input | `show-minutes` | `boolean` | `false` |
-|showSeconds| Show seconds input | `show-seconds` | `boolean` | `false` |
-|showTimeReference| Show time reference input | `show-time-reference` | `any` | `undefined` |
-|textSelectDate| Text of date select button | `text-select-date` | `string` | `'Done'` |
-|time| Select time with format string | `time` | `string` | `undefined` |
-|timeFormat| Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `time-format` | `string` | `'TT'` |
-|timeReference| Set time reference | `time-reference` | `"AM" ｜ "PM"` | `undefined` |
-|to| Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`<br /><br />Format is based on `format` | `to` | `string` | `null` |
+|<div className="Api__Table"> <div>dateFormat</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `date-format` | `string` | `'yyyy/LL/dd'` |
+|<div className="Api__Table"> <div>eventDelimiter</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter | `event-delimiter` | `string` | `' - '` |
+|<div className="Api__Table"> <div>from</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Picker date. If the picker is in range mode this property is the start date.<br /><br />Format is based on `format` | `from` | `string` | `undefined` |
+|<div className="Api__Table"> <div>maxDate</div> <div className="Api__Table Docs__Tags"></div></div>| The latest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
+|<div className="Api__Table"> <div>minDate</div> <div className="Api__Table Docs__Tags"></div></div>| The earliest date that can be selected by the date picker. If not set there will be no restriction. | `undefined` | `DateTime` | `undefined` |
+|<div className="Api__Table"> <div>range</div> <div className="Api__Table Docs__Tags"></div></div>| Set range size | `range` | `boolean` | `true` |
+|<div className="Api__Table"> <div>showHour</div> <div className="Api__Table Docs__Tags"></div></div>| Show hour input | `show-hour` | `boolean` | `false` |
+|<div className="Api__Table"> <div>showMinutes</div> <div className="Api__Table Docs__Tags"></div></div>| Show minutes input | `show-minutes` | `boolean` | `false` |
+|<div className="Api__Table"> <div>showSeconds</div> <div className="Api__Table Docs__Tags"></div></div>| Show seconds input | `show-seconds` | `boolean` | `false` |
+|<div className="Api__Table"> <div>showTimeReference</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0 time reference is default aligned with formt tt</span></div></div>| Show time reference input | `show-time-reference` | `any` | `undefined` |
+|<div className="Api__Table"> <div>textSelectDate</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Text of date select button | `text-select-date` | `string` | `'Done'` |
+|<div className="Api__Table"> <div>time</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Select time with format string | `time` | `string` | `undefined` |
+|<div className="Api__Table"> <div>timeFormat</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens. | `time-format` | `string` | `'TT'` |
+|<div className="Api__Table"> <div>timeReference</div> <div className="Api__Table Docs__Tags"></div></div>| Set time reference | `time-reference` | `"AM" ｜ "PM"` | `undefined` |
+|<div className="Api__Table"> <div>to</div> <div className="Api__Table Docs__Tags"><span className="Api__Table Docs__Tag">Since: 1.1.0</span></div></div>| Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`<br /><br />Format is based on `format` | `to` | `string` | `null` |

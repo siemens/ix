@@ -8,7 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { TreeModel } from '@siemens/ix';
+import { TreeContext, TreeModel } from '@siemens/ix';
 
 type TreeData = {
   name: string;
@@ -28,7 +28,19 @@ type TreeData = {
     `,
   ],
   template: `<div class="example">
-    <ix-tree root="root" [model]="model" [renderItem]="treeItem"></ix-tree>
+    <ix-button
+      id="expand"
+      ghost
+      style="margin-bottom: 2rem"
+      (click)="expandAndSelect()"
+      >Expand Tree</ix-button
+    >
+    <ix-tree
+      root="root"
+      [model]="model"
+      [context]="context"
+      [renderItem]="treeItem"
+    ></ix-tree>
     <ng-template #treeItem let-item>
       <div class="d-flex align-items-center">
         <ix-icon [name]="item.icon" size="16" class="me-2"></ix-icon>
@@ -38,6 +50,7 @@ type TreeData = {
   </div>`,
 })
 export class TreeCustom {
+  context: TreeContext = {};
   model: TreeModel<TreeData> = {
     root: {
       id: 'root',
@@ -76,4 +89,17 @@ export class TreeCustom {
       children: [],
     },
   };
+
+  expandAndSelect() {
+    this.context = {
+      sample: {
+        isExpanded: true,
+        isSelected: false,
+      },
+      'sample-child-2': {
+        isSelected: true,
+        isExpanded: false,
+      },
+    };
+  }
 }
