@@ -837,10 +837,6 @@ export declare interface IxMenu extends Components.IxMenu {
    * Map Sidebar expanded 
    */
   mapExpandChange: EventEmitter<CustomEvent<boolean>>;
-  /**
-   * Event to emit to parent that the item was selected 
-   */
-  overlayClose: EventEmitter<CustomEvent<boolean>>;
 
 }
 
@@ -860,7 +856,7 @@ export class IxMenu {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'overlayClose']);
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange']);
   }
 }
 
@@ -1002,13 +998,7 @@ export class IxMenuAvatarItem {
 }
 
 
-export declare interface IxMenuItem extends Components.IxMenuItem {
-  /**
-   * Event to emit to parent that the item was selected 
-   */
-  onClick: EventEmitter<CustomEvent<boolean>>;
-
-}
+export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
@@ -1025,7 +1015,6 @@ export class IxMenuItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['onClick']);
   }
 }
 

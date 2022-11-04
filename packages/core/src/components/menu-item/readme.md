@@ -21,13 +21,6 @@ SPDX-License-Identifier: MIT
 | `tabIcon`       | `tab-icon`      | Icon name from @siemens/ix-icons      | `string`  | `'document'` |
 
 
-## Events
-
-| Event     | Description                                        | Type                   |
-| --------- | -------------------------------------------------- | ---------------------- |
-| `onClick` | Event to emit to parent that the item was selected | `CustomEvent<boolean>` |
-
-
 ----------------------------------------------
 
 
