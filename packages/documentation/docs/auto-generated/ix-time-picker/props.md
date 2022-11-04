@@ -7,6 +7,7 @@
 |showMinutes| Show minutes input | `show-minutes` | `boolean` | `false` |
 |showSeconds| Show seconds input | `show-seconds` | `boolean` | `false` |
 |showTimeReference| Show time reference input | `show-time-reference` | `any` | `undefined` |
+|textSelectTime| Text of date select button | `text-select-time` | `string` | `'Done'` |
 |time| Select time with format string | `time` | `string` | `DateTime.now().toFormat(this.format)` |
 |timeReference| Set time reference | `time-reference` | `"AM" ｜ "PM"` | `DateTime.fromFormat(
     this.time,
