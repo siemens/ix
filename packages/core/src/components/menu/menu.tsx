@@ -123,19 +123,6 @@ export class Menu {
 
   @State() isMoreTabEmpty = false;
 
-  /**
-   * Event to emit to parent that the item was selected
-   */
-   @Event() overlayClose: EventEmitter<boolean>;
-
-  @Listen('onClick',{target: "body"})
-    closeMenu(event: CustomEvent) {
-      if(event.detail === true){
-        this.expand = false;
-        this.overlayClose.emit(true)
-      }
-    }
-
   private readonly domObserver = new MutationObserver(
     this.onDomChange.bind(this)
   );
@@ -671,7 +658,19 @@ export class Menu {
     return this.mapExpand ? 'double-chevron-left' : 'double-chevron-right';
   }
 
+  private closeOverlay(event: MouseEvent) {
+    const path = event.composedPath();
+    const shouldCloseOverlay = path.some((element: HTMLElement) => {
+      if (element.tagName !== 'IX-MENU-ITEM') {
+        return false;
+      }
 
+      if (!element.id) {
+        return true;
+      }
+    });
+    return shouldCloseOverlay;
+  }
 
   render() {
     return (
@@ -685,8 +684,11 @@ export class Menu {
             menu: true,
             expanded: this.expand,
           }}
-          onClick={() => {
+          onClick={(event) => {
             this.resetActiveTab();
+            if (this.closeOverlay(event)) {
+              this.resetOverlay();
+            }
           }}
         >
           <div
@@ -778,6 +780,7 @@ export class Menu {
           <div class="bottom-tab-divider"></div>
           {this.enableSettings && !this.isSettingsEmpty ? (
             <ix-menu-item
+              id="settings"
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,

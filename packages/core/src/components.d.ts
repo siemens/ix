@@ -2579,10 +2579,6 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: CustomEvent<boolean>) => void;
         /**
-          * Event to emit to parent that the item was selected
-         */
-        "onOverlayClose"?: (event: CustomEvent<boolean>) => void;
-        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -2696,10 +2692,6 @@ declare namespace LocalJSX {
           * Show notification cound on tab
          */
         "notifications"?: number;
-        /**
-          * Event to emit to parent that the item was selected
-         */
-        "onOnClick"?: (event: CustomEvent<boolean>) => void;
         /**
           * Icon name from @siemens/ix-icons
          */
