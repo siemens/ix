@@ -141,7 +141,7 @@
     }
 
     &.clickable:not(.remove-hover) {
-      @include focus {
+      @include focus-visible {
         border-color: var(--theme-focus--border-color);
       }
     }
