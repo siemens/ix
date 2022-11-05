@@ -130,7 +130,6 @@ Thumbs.db
 /build
 
 # Generated files
-.docusaurus
 .cache-loader
 
 # Misc
@@ -152,16 +151,3 @@ packages/*/www/
 packages/*/loader/
 packages/*/dist-transpiled/
 packages/*/build/
-
-###
-# @siemens/html-test-app
-###
-
-packages/html-test-app/src/public/additional-theme
-
-###
-# documentation
-###
-
-packages/documentation/static/webcomponent-examples/*
-!packages/documentation/static/versioned_examples/*/webcomponent-examples
