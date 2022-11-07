@@ -93,12 +93,6 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'getting-started',
-            position: 'left',
-            label: 'Siemens iX',
-          },
           // Remove docs version until library needs to publish an major release
           // {
           //   type: 'docsVersionDropdown',
