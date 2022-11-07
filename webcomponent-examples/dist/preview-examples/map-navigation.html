@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map navigation example</title>
+    
+    <script type="module" crossorigin src="../assets/map-navigation.f005d80f.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/index.b8b4baf0.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.19b00cda.js">
+    <link rel="stylesheet" href="../assets/index.8c2d1e25.css">
+    <link rel="stylesheet" href="../assets/init.09a7dcd2.css">
+    <link rel="stylesheet" href="../assets/map-navigation.079ba120.css">
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-map-navigation
+      application-name="Test Application"
+      navigation-title="Some other content"
+    >
+      <ix-icon name="rocket" slot="logo"></ix-icon>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+        <ix-menu-item>Item 3</ix-menu-item>
+      </ix-menu>
+      <div slot="sidebar-content">Sidebar content</div>
+      <div>Content</div>
+    </ix-map-navigation>
+    <!-- Preview code -->
+    
+  </body>
+</html>
