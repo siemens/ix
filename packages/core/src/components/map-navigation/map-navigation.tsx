@@ -48,9 +48,6 @@ export class MapNavigation {
 
   @State() isSidebarOpen = true;
 
-  @State() isAboutOpen: boolean;
-
-  @State() isSettingsOpen: boolean;
 
   /**
    * Navigation toggled
@@ -70,22 +67,6 @@ export class MapNavigation {
     return this.hostElement.querySelector('ix-menu-overlay');
   }
 
-  get about() {
-    return this.hostElement.querySelector('ix-menu-about');
-  }
-
-  get aboutItems() {
-    return this.hostElement.querySelector('ix-menu-about-item');
-  }
-
-  get settings() {
-    return this.hostElement.querySelector('ix-menu-settings');
-  }
-
-  get settingsItems() {
-    return this.hostElement.querySelector('ix-menu-settings-item');
-  }
-
   get mapNavMenu() {
     return this.hostElement.querySelector('.map-nav-menu');
   }
@@ -100,8 +81,6 @@ export class MapNavigation {
 
   componentDidRender() {
     this.appendMenu();
-    this.appendAbout();
-    this.appendSettings();
     // this.openOverlay('Test', document.createElement('ix-breadcrumb'), 'info', 'color-warning');
     this.closeOverlay();
   }
@@ -117,19 +96,6 @@ export class MapNavigation {
       }
     );
     this.menu.enableMapExpand = true;
-  }
-
-  private appendAbout() {
-    const about = this.about || document.createElement('ix-menu-about');
-    about.append(this.aboutItems);
-    this.menu.appendChild(about);
-  }
-
-  private appendSettings() {
-    if (this.menu.enableSettings && this.settings) {
-      this.menu.appendChild(this.settings);
-      this.settings.append(this.settingsItems);
-    }
   }
 
   private toggleSidebar(show: boolean) {

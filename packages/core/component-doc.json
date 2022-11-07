@@ -3850,27 +3850,20 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-menu-about",
         "ix-map-navigation-overlay",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-map-navigation": [
-          "ix-menu-about",
           "ix-map-navigation-overlay",
           "ix-icon-button"
-        ],
-        "ix-menu-about": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
         ],
         "ix-map-navigation-overlay": [
           "ix-icon",
           "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ]
       },
       "props": [
@@ -4483,7 +4476,6 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-map-navigation",
         "my-component"
       ],
       "dependencies": [
@@ -4499,9 +4491,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "ix-map-navigation": [
-          "ix-menu-about"
         ],
         "my-component": [
           "ix-menu-about"
