@@ -28,9 +28,9 @@ import { Component } from '@angular/core';
         <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
         <ix-tab-item counter="200"><ix-icon name="tree"></ix-icon></ix-tab-item>
         <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
-        <ix-tab-item disabled counter="24"
-          ><ix-icon name="sound-loud"></ix-icon
-        ></ix-tab-item>
+        <ix-tab-item disabled counter="24">
+          <ix-icon name="sound-loud"></ix-icon>
+        </ix-tab-item>
         <ix-tab-item><ix-icon name="hierarchy"></ix-icon></ix-tab-item>
         <ix-tab-item disabled
           ><ix-icon name="calendar-settings"></ix-icon
@@ -39,10 +39,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class TabsRounded {
-  selectedTab = 1;
-
-  changeTab(tabIndex: number) {
-    this.selectedTab = tabIndex;
-  }
-}
+export class TabsRounded {}
