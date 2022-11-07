@@ -62,6 +62,7 @@ import { SpinnerLarge } from 'src/preview-examples/spinner-large';
 import { SplitButton } from 'src/preview-examples/split-button';
 import { SplitButtonIcons } from 'src/preview-examples/split-button-icons';
 import { Tabs } from 'src/preview-examples/tabs';
+import { TabsRounded } from 'src/preview-examples/tabs-rounded';
 import { Textarea } from 'src/preview-examples/textarea';
 import { TextareaDisabled } from 'src/preview-examples/textarea-disabled';
 import { TextareaReadonly } from 'src/preview-examples/textarea-readonly';
@@ -239,6 +240,7 @@ const routes: Routes = [
       { path: 'split-button-icons', component: SplitButtonIcons },
       { path: 'split-button', component: SplitButton },
       { path: 'tabs', component: Tabs },
+      { path: 'tabs-rounded', component: TabsRounded },
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
