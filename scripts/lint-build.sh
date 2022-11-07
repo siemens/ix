@@ -9,7 +9,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-RESULT=$(git status --porcelain)
+RESULT=$(git diff ./packages)
 STATUS=$?
 
 if [[ $STATUS -eq 0 && $RESULT == '' ]]
