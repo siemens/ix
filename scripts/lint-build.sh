@@ -9,12 +9,15 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-git diff --quiet -p ./packages/core/component-doc.json
+RESULT=$(git diff ./packages)
 STATUS=$?
 
-if [ $STATUS -eq 0 ]
+if [[ $STATUS -eq 0 && $RESULT == '' ]]
 then
     exit 0
 fi
+
+echo There are some changed files after 'yarn build'
+echo $RESULT
 
 exit 1

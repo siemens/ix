@@ -228,13 +228,18 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -4095,7 +4100,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown"
@@ -4104,6 +4111,9 @@
         "ix-menu": [
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -4473,7 +4483,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "my-component"
       ],
       "dependencies": [
         "ix-tab-item",
@@ -4490,6 +4501,9 @@
           "ix-icon"
         ],
         "ix-map-navigation": [
+          "ix-menu-about"
+        ],
+        "my-component": [
           "ix-menu-about"
         ]
       },
@@ -4574,9 +4588,15 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-about-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -4952,11 +4972,15 @@
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
-        "ix-menu"
+        "ix-menu",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -5080,7 +5104,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -5094,6 +5120,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-settings"
         ]
       },
       "props": [
@@ -5177,9 +5206,15 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-settings-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -8576,8 +8611,46 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-item",
+        "ix-menu-settings",
+        "ix-menu-settings-item",
+        "ix-menu-about",
+        "ix-menu-about-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-item",
+          "ix-menu-settings",
+          "ix-menu-settings-item",
+          "ix-menu-about",
+          "ix-menu-about-item"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
+        ],
+        "ix-menu-settings": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-menu-about": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
