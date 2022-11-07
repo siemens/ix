@@ -25,15 +25,9 @@ import { Component } from '@angular/core';
   template: `
     <div class="example">
       <ix-tabs rounded>
-        <ix-tab-item (click)="changeTab(0)"
-          ><ix-icon name="success"></ix-icon
-        ></ix-tab-item>
-        <ix-tab-item (click)="changeTab(1)" counter="200"
-          ><ix-icon name="tree"></ix-icon
-        ></ix-tab-item>
-        <ix-tab-item (click)="changeTab(2)"
-          ><ix-icon name="maintenance"></ix-icon
-        ></ix-tab-item>
+        <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
+        <ix-tab-item counter="200"><ix-icon name="tree"></ix-icon></ix-tab-item>
+        <ix-tab-item><ix-icon name="maintenance"></ix-icon></ix-tab-item>
         <ix-tab-item disabled counter="24"
           ><ix-icon name="sound-loud"></ix-icon
         ></ix-tab-item>
@@ -42,9 +36,6 @@ import { Component } from '@angular/core';
           ><ix-icon name="calendar-settings"></ix-icon
         ></ix-tab-item>
       </ix-tabs>
-      <div *ngIf="selectedTab === 0">Content Tab 1</div>
-      <div *ngIf="selectedTab === 1">Content Tab 2</div>
-      <div *ngIf="selectedTab === 2">Content Tab 3</div>
     </div>
   `,
 })
