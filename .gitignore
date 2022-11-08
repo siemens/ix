@@ -163,5 +163,6 @@ packages/html-test-app/src/public/additional-theme
 # documentation
 ###
 
+packages/documentation/docs/auto-generated/
 packages/documentation/static/webcomponent-examples/*
 !packages/documentation/static/versioned_examples/*/webcomponent-examples

@@ -16,10 +16,6 @@ import SourceWebComponent from './../../auto-generated/previews/web-component/ma
 import ReactComponent from './../../auto-generated/previews/react/map-navigation.md'
 import AngularComponent from './../../auto-generated/previews/angular/map-navigation.md'
 
-import OverlayWebComponent from './../../auto-generated/previews/web-component/map-navigation-overlay.md'
-import ReactOverlayComponent from './../../auto-generated/previews/react/map-navigation-overlay.md'
-import AngularOverlayComponent from './../../auto-generated/previews/angular/map-navigation-overlay.md'
-
 ## Usage
 
 <Preview name="map-navigation" height="35rem" noMargin>
