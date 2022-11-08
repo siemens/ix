@@ -257,6 +257,10 @@ export class Menu {
     return this.hostElement.querySelector('ix-menu-avatar');
   }
 
+  get tabsContainer(): HTMLDivElement {
+    return this.hostElement.querySelector('#menu-tabs');
+  }
+
   private popoverListener: Popover;
 
   private showTab(index: number) {
@@ -658,6 +662,19 @@ export class Menu {
     return this.mapExpand ? 'double-chevron-left' : 'double-chevron-right';
   }
 
+  private isMenuItemClicked(event: MouseEvent) {
+    const path = event.composedPath();
+
+    const menuItems = (path as HTMLElement[])
+
+      .filter((element) => element.id !== 'more-tab')
+      .filter((element) => {
+        return element.tagName === 'IX-MENU-ITEM';
+      });
+
+    return menuItems.some((menu) => this.tabsContainer.contains(menu));
+  }
+
   render() {
     return (
       <Host
@@ -711,58 +728,73 @@ export class Menu {
             </svg>
           </div>
           <div id="avatar-tab-placeholder"></div>
-          <div class="tabs-top"></div>
-          <slot></slot>
-          <div class="active-more-tab">
-            {this.activeTab ? (
-              <ix-menu-item
-                class="internal-tab"
-                active={true}
-                tabIcon={this.activeTab.tabIcon}
-              >
-                {this.activeTab.innerText}
-              </ix-menu-item>
-            ) : null}
-          </div>
-          <ix-menu-item
-            id="more-tab"
-            tabIcon="more-menu"
-            class={{
-              'internal-tab': true,
-            }}
+          <div
+            id="menu-tabs"
             style={{
-              display: this.showMoreButton() ? 'block' : 'none',
+              display: 'contents',
             }}
-            title="Show more"
-            notifications={this.countMoreNotifications}
-            onClick={() => this.toggleShowMoreDropdown()}
+            onClick={(event) => {
+              if (this.isMenuItemClicked(event)) {
+                this.resetOverlay();
+              }
+            }}
           >
-            {this.i18nMore}
-            <ix-dropdown show={this.showMoreItems}>
-              {this.menuItems
-                .filter(
-                  (elm: HTMLIxMenuItemElement, index) =>
-                    !this.showTab(index) &&
-                    !this.isMenuItemActive(elm) &&
-                    this.isVisible(elm)
-                )
-                .map((e: HTMLIxMenuItemElement) => {
-                  return (
-                    <ix-menu-item
-                      tabIcon={e.tabIcon}
-                      active={e.active}
-                      class="internal-tab appended"
-                      onClick={() => e.dispatchEvent(new CustomEvent('click'))}
-                    >
-                      {e.innerText}
-                    </ix-menu-item>
-                  );
-                })}
-            </ix-dropdown>
-          </ix-menu-item>
+            <div class="tabs-top"></div>
+            <slot></slot>
+            <div class="active-more-tab">
+              {this.activeTab ? (
+                <ix-menu-item
+                  class="internal-tab"
+                  active={true}
+                  tabIcon={this.activeTab.tabIcon}
+                >
+                  {this.activeTab.innerText}
+                </ix-menu-item>
+              ) : null}
+            </div>
+            <ix-menu-item
+              id="more-tab"
+              tabIcon="more-menu"
+              class={{
+                'internal-tab': true,
+              }}
+              style={{
+                display: this.showMoreButton() ? 'block' : 'none',
+              }}
+              title="Show more"
+              notifications={this.countMoreNotifications}
+              onClick={() => this.toggleShowMoreDropdown()}
+            >
+              {this.i18nMore}
+              <ix-dropdown show={this.showMoreItems}>
+                {this.menuItems
+                  .filter(
+                    (elm: HTMLIxMenuItemElement, index) =>
+                      !this.showTab(index) &&
+                      !this.isMenuItemActive(elm) &&
+                      this.isVisible(elm)
+                  )
+                  .map((e: HTMLIxMenuItemElement) => {
+                    return (
+                      <ix-menu-item
+                        tabIcon={e.tabIcon}
+                        active={e.active}
+                        class="internal-tab appended"
+                        onClick={() =>
+                          e.dispatchEvent(new CustomEvent('click'))
+                        }
+                      >
+                        {e.innerText}
+                      </ix-menu-item>
+                    );
+                  })}
+              </ix-dropdown>
+            </ix-menu-item>
+          </div>
           <div class="bottom-tab-divider"></div>
           {this.enableSettings && !this.isSettingsEmpty ? (
             <ix-menu-item
+              id="settings"
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
