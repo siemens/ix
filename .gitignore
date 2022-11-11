@@ -1,6 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-
+.yarn-cache
 
 # compiled output
 /dist
@@ -163,5 +163,6 @@ packages/html-test-app/src/public/additional-theme
 # documentation
 ###
 
+packages/documentation/docs/auto-generated/
 packages/documentation/static/webcomponent-examples/*
 !packages/documentation/static/versioned_examples/*/webcomponent-examples

@@ -70,6 +70,7 @@ import { SpinnerLarge } from 'src/preview-examples/spinner-large';
 import { SplitButton } from 'src/preview-examples/split-button';
 import { SplitButtonIcons } from 'src/preview-examples/split-button-icons';
 import { Tabs } from 'src/preview-examples/tabs';
+import { TabsRounded } from 'src/preview-examples/tabs-rounded';
 import { Textarea } from 'src/preview-examples/textarea';
 import { TextareaDisabled } from 'src/preview-examples/textarea-disabled';
 import { TextareaReadonly } from 'src/preview-examples/textarea-readonly';
@@ -167,6 +168,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Workflow,
     WorkflowVertical,
     MapNavigation,
+    TabsRounded,
   ],
   imports: [
     BrowserModule,
