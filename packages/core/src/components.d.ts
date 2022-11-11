@@ -705,6 +705,7 @@ export namespace Components {
         "applicationName": string;
         /**
           * Close current shown overlay
+          * @deprecated will get removed with next major release in favor of slot based approach
          */
         "closeOverlay": () => Promise<void>;
         /**
@@ -717,6 +718,7 @@ export namespace Components {
         "navigationTitle": string;
         /**
           * Open a overlay inside content area
+          * @deprecated will get removed with next major release in favor of slot based approach
           * @param name
           * @param component
           * @param icon
