@@ -9,7 +9,7 @@ runs:
         registry-url: 'https://registry.npmjs.org'
         scope: '@siemens'
 
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         key: yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
