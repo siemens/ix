@@ -40,6 +40,29 @@ jobs:
             packages/**/loader
             packages/**/build
 
+  upload-build-arifacts:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/cache@v2
+        id: build
+        with:
+          key: build-${{ runner.os }}-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-build
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+
   visual-test:
     needs: [build]
     timeout-minutes: 60

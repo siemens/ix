@@ -30,12 +30,37 @@ jobs:
             packages/**/www
             packages/**/loader
             packages/**/build
-      - name: Publish beta version to npmjs.org
+
+      - name: Publish ix version to npmjs.org
         run: |
           yarn workspace @siemens/ix publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-react version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-react publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-aggrid version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-aggrid publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-echarts version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-echarts publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-angular version to npmjs.org
+        run: |
           cd packages/angular/dist
           yarn publish --access public
         env:
