@@ -78,7 +78,7 @@ import { Toast } from './preview-examples/toast';
 import { ToastCustom } from './preview-examples/toast-custom';
 import { Toggle } from './preview-examples/toggle';
 import { ToggleColor } from './preview-examples/toggle-color';
-import { ToggleDisabled } from './preview-examples/toggle-custom-disable';
+import { ToggleDisabled } from './preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
 import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
