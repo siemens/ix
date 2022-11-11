@@ -34,6 +34,7 @@ import { Checkbox } from './preview-examples/checkbox';
 import { CheckboxIndeterminate } from './preview-examples/checkbox-indeterminate';
 import { Chip } from './preview-examples/chip';
 import { Datepicker } from './preview-examples/datepicker';
+import { DatepickerRange } from './preview-examples/datepicker-range';
 import { Datetimepicker } from './preview-examples/datetimepicker';
 import { DrawerFullHeight } from './preview-examples/drawer-full-height';
 import { Dropdown } from './preview-examples/dropdown';
@@ -135,6 +136,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/aggrid" element={<AGGrid />} />
       <Route path="/preview/chip" element={<Chip />} />
       <Route path="/preview/datepicker" element={<Datepicker />} />
+      <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
       <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
       <Route
         path="/preview/drawer-full-height"
