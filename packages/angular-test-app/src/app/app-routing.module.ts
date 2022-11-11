@@ -27,6 +27,7 @@ import { Checkbox } from 'src/preview-examples/checkbox';
 import { CheckboxIndeterminate } from 'src/preview-examples/checkbox-indeterminate';
 import { Chip } from 'src/preview-examples/chip';
 import { Datepicker } from 'src/preview-examples/datepicker';
+import { DatepickerRange } from 'src/preview-examples/datepicker-range';
 import { Datetimepicker } from 'src/preview-examples/datetimepicker';
 import { Drawer } from 'src/preview-examples/drawer';
 import { DrawerFullHeight } from 'src/preview-examples/drawer-full-height';
@@ -193,6 +194,10 @@ const routes: Routes = [
       {
         path: 'datepicker',
         component: Datepicker,
+      },
+      {
+        path: 'datepicker-range',
+        component: DatepickerRange,
       },
       {
         path: 'datetimepicker',
