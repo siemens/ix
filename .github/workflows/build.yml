@@ -39,15 +39,35 @@ jobs:
             packages/**/www
             packages/**/loader
             packages/**/build
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+
+  upload-build-artifacts:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: build
         with:
-          name: dist-build
+          key: build-${{ runner.os }}-${{ github.sha }}
           path: |
             packages/**/dist
             packages/**/www
             packages/**/loader
             packages/**/build
+      - name: Validate all commits from PR
+        run: |
+          mkdir artifacts
+          yarn workspace @siemens/ix pack --filename ../../artifacts/siemens-ix.tgz
+          yarn workspace @siemens/ix-react pack --filename ../../artifacts/siemens-ix-react.tgz
+          yarn workspace @siemens/ix-angular pack --filename ../../artifacts/siemens-ix-angular.tgz
+          yarn workspace @siemens/ix-aggrid pack --filename ../../artifacts/siemens-ix-aggrid.tgz
+          yarn workspace @siemens/ix-echarts pack --filename ../../artifacts/siemens-ix-echarts.tgz
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-build
+          path: |
+            artifacts
 
   visual-test:
     needs: [build]
