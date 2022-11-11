@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Method,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 
@@ -47,7 +47,6 @@ export class MapNavigation {
   @Prop() hideContextMenu = true;
 
   @State() isSidebarOpen = true;
-
 
   /**
    * Navigation toggled
@@ -81,7 +80,6 @@ export class MapNavigation {
 
   componentDidRender() {
     this.appendMenu();
-    // this.openOverlay('Test', document.createElement('ix-breadcrumb'), 'info', 'color-warning');
     this.closeOverlay();
   }
 
@@ -236,7 +234,7 @@ export class MapNavigation {
             <main>
               <slot></slot>
             </main>
-            <div id="overlay"></div>
+            <slot name="overlay"></slot>
           </div>
         </div>
       </Host>
