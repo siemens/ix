@@ -39,6 +39,15 @@ jobs:
             packages/**/www
             packages/**/loader
             packages/**/build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-build
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
 
   visual-test:
     needs: [build]
