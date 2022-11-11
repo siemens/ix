@@ -8,7 +8,6 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import { DateTime } from 'luxon';
 import { DateChangeEvent } from '../date-picker/events';
 import { DateTimeSelectEvent } from './event';
 
@@ -41,14 +40,18 @@ export class DatePicker {
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
+   *
+   * @since 1.1.0
    */
-  @Prop() minDate: DateTime;
+  @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
+   *
+   * @since 1.1.0
    */
-  @Prop() maxDate: DateTime;
+  @Prop() maxDate: string;
 
   /**
    * Date format string.

@@ -9,8 +9,8 @@ import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateTime } from "luxon";
 import { DateChangeEvent, LagacyDateChangeEvent } from "./components/date-picker/events";
+import { DateTime } from "luxon";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
@@ -280,12 +280,14 @@ export namespace Components {
         "individual": boolean;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "maxDate": DateTime;
+        "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "minDate": DateTime;
+        "minDate": string;
         /**
           * If true a range of dates can be selected.
          */
@@ -329,12 +331,14 @@ export namespace Components {
         "from": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "maxDate": DateTime;
+        "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "minDate": DateTime;
+        "minDate": string;
         /**
           * Set range size
          */
@@ -2221,12 +2225,14 @@ declare namespace LocalJSX {
         "individual"?: boolean;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "maxDate"?: DateTime;
+        "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "minDate"?: DateTime;
+        "minDate"?: string;
         /**
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
           * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
@@ -2290,12 +2296,14 @@ declare namespace LocalJSX {
         "from"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "maxDate"?: DateTime;
+        "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "minDate"?: DateTime;
+        "minDate"?: string;
         /**
           * Date change
           * @since 1.1.0

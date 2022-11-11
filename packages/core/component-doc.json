@@ -1426,14 +1426,20 @@
         },
         {
           "name": "maxDate",
-          "type": "DateTime",
+          "type": "string",
           "mutable": false,
+          "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
           "values": [
             {
-              "type": "DateTime"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -1441,14 +1447,20 @@
         },
         {
           "name": "minDate",
-          "type": "DateTime",
+          "type": "string",
           "mutable": false,
+          "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
           "values": [
             {
-              "type": "DateTime"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -1778,14 +1790,20 @@
         },
         {
           "name": "maxDate",
-          "type": "DateTime",
+          "type": "string",
           "mutable": false,
+          "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
           "values": [
             {
-              "type": "DateTime"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -1793,14 +1811,20 @@
         },
         {
           "name": "minDate",
-          "type": "DateTime",
+          "type": "string",
           "mutable": false,
+          "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
           "values": [
             {
-              "type": "DateTime"
+              "type": "string"
             }
           ],
           "optional": false,

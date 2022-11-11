@@ -126,6 +126,7 @@
           }
 
           &.disabled {
+            pointer-events: none;
             background-color: var(
               --theme-datepicker-day--background--selected-disabled
             );
@@ -168,6 +169,7 @@
         }
 
         &.disabled {
+          pointer-events: none;
           background-color: var(--theme-datepicker-day--background--disabled);
           color: var(--theme-datepicker-day--color--disabled);
           cursor: default;
@@ -201,6 +203,7 @@
         }
 
         &.disabled {
+          pointer-events: none;
           background-color: var(
             --theme-datepicker-day--background--selected-disabled
           );
@@ -225,6 +228,7 @@
         }
 
         &.disabled {
+          pointer-events: none;
           background-color: var(
             --theme-datepicker-day--background--range-disabled
           );
@@ -233,6 +237,7 @@
       }
 
       &.disabled {
+        pointer-events: none;
         background-color: var(--theme-datepicker-day--background--disabled);
         color: var(--theme-datepicker-day--color--disabled);
       }

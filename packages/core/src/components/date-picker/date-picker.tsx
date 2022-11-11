@@ -75,14 +75,18 @@ export class DatePicker {
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
+   *
+   * @since 1.1.0
    */
-  @Prop() minDate: DateTime;
+  @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
+   *
+   * @since 1.1.0
    */
-  @Prop() maxDate: DateTime;
+  @Prop() maxDate: string;
 
   /**
    * Default behavior of the done event is to join the two events (date and time) into one combined string output.
@@ -407,9 +411,15 @@ export class DatePicker {
 
   private isWithinMinMax(date: DateTime) {
     const dateIso = date.toISO();
+    const _minDate = this.minDate
+      ? DateTime.fromFormat(this.minDate, this.format)
+      : null;
+    const _maxDate = this.maxDate
+      ? DateTime.fromFormat(this.maxDate, this.format)
+      : null;
     return (
-      (!this.minDate || this.minDate.toISO() <= dateIso) &&
-      (!this.maxDate || this.maxDate.toISO() >= dateIso)
+      (!_minDate || _minDate.toISO() <= dateIso) &&
+      (!_maxDate || _maxDate.toISO() >= dateIso)
     );
   }
 
