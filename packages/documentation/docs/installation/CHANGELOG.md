@@ -4,7 +4,7 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-# [1.1.0-beta.0](https://github.com/siemens/ix/compare/v1.0.0...v1.1.0-beta.0) (2022-11-11)
+# [1.1.0-beta.1](https://github.com/siemens/ix/compare/v1.0.0...v1.1.0-beta.1) (2022-11-11)
 
 
 ### Bug Fixes
