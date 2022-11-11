@@ -7,11 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: inline-block;
-  height: 2rem;
+import { IxDatePicker } from '@siemens/ix-react';
+import React from 'react';
 
-  &[disabled] {
-    pointer-events: none;
-  }
-}
+export const DatepickerRange: React.FC = () => {
+  return <IxDatePicker range={true} from="2022/12/15" to="2022/12/24" />;
+};

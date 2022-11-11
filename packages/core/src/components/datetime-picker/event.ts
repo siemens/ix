@@ -7,11 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: inline-block;
-  height: 2rem;
-
-  &[disabled] {
-    pointer-events: none;
-  }
+export interface DateTimeSelectEvent {
+  from: string;
+  to: string;
+  time: string;
 }

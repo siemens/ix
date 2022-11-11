@@ -47,7 +47,7 @@ export class Button {
   /**
    * Disable the button
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Type of the button

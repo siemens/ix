@@ -10,6 +10,7 @@
 @import 'common-variables';
 
 :host {
+  display: block;
   background-color: var(--theme-menu--background);
   border-radius: 4px;
 }
@@ -20,9 +21,10 @@
 }
 
 .done {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-end;
-  margin: 0 $default-space $default-space 0;
+  padding: $default-space;
+  width: 100%;
 }
 
 .separator {

@@ -8,6 +8,8 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import { DateChangeEvent } from '../date-picker/events';
+import { DateTimeSelectEvent } from './event';
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -21,64 +23,218 @@ export class DatePicker {
   @Prop() range = true;
 
   /**
-   * Show Hour Input
+   * Show hour input
    */
   @Prop() showHour = false;
 
   /**
-   * Show Minutes Input
+   * Show minutes input
    */
   @Prop() showMinutes = false;
 
   /**
-   * Show Seconds Input
+   * Show seconds input
    */
   @Prop() showSeconds = false;
 
   /**
-   * Show Time Reference Input
+   * The earliest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   *
+   * @since 1.1.0
    */
-  @Prop() showTimeReference = false;
-
-  private date!: string;
-  private time!: string;
+  @Prop() minDate: string;
 
   /**
-   * Time event
+   * The latest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   *
+   * @since 1.1.0
+   */
+  @Prop() maxDate: string;
+
+  /**
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 1.1.0
+   */
+  @Prop() dateFormat: string = 'yyyy/LL/dd';
+
+  /**
+   * Time format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 1.1.0
+   */
+  @Prop() timeFormat: string = 'TT';
+
+  /**
+   * Picker date. If the picker is in range mode this property is the start date.
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
+   */
+  @Prop() from: string;
+
+  /**
+   * Picker date. If the picker is in range mode this property is the end date.
+   * If the picker is not in range mode leave this value `null`
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
+   */
+  @Prop() to: string | null = null;
+
+  /**
+   * Select time with format string
+   *
+   * @since 1.1.0
+   */
+  @Prop() time: string;
+
+  /**
+   * Show time reference input
+   *
+   * @since 1.1.0 time reference is default aligned with formt tt
+   */
+  @Prop() showTimeReference = undefined;
+
+  /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   */
+  @Prop() eventDelimiter = ' - ';
+
+  /**
+   * Set time reference
+   */
+  @Prop() timeReference: 'AM' | 'PM';
+
+  /**
+   * Text of date select button
+   *
+   * @since 1.1.0
+   */
+  @Prop() textSelectDate = 'Done';
+
+  /**
+   * Done event
+   *
+   * Set `doneEventDelimiter` to null or undefine to get the typed event
    */
   @Event() done: EventEmitter<string>;
 
-  private doneEvent() {
-    console.log(this.date + ' ' + this.time);
-    this.done.emit(this.date + ' ' + this.time);
+  /**
+   * Time change
+   *
+   * @since 1.1.0
+   */
+  @Event() timeChange: EventEmitter<string>;
+
+  /**
+   * Date change
+   *
+   * @since 1.1.0
+   */
+  @Event() dateChange: EventEmitter<string | Omit<DateTimeSelectEvent, 'time'>>;
+
+  /**
+   * Date selection event is fired after confirm button is pressend
+   *
+   * @since 1.1.0
+   */
+  @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
+
+  private datePickerElement: HTMLIxDatePickerElement;
+  private timePickerElement: HTMLIxTimePickerElement;
+
+  private _from: string;
+  private _to: string;
+  private _time: string;
+
+  private onDone() {
+    this.done.emit(
+      [this._from, this._to ?? '', this._time].join(this.eventDelimiter)
+    );
+
+    this.dateSelect.emit({
+      from: this._from,
+      to: this._to,
+      time: this._time,
+    });
+  }
+
+  private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
+    event.preventDefault();
+    event.stopPropagation();
+    const { detail: date } = event;
+    this.dateChange.emit(date);
+
+    const currentDateTime = await this.datePickerElement.getCurrentDate();
+    this._from = currentDateTime.start?.toFormat(this.dateFormat);
+    this._to = currentDateTime.end?.toFormat(this.dateFormat);
+  }
+
+  private async onTimeChange(event: CustomEvent<string>) {
+    event.preventDefault();
+    event.stopPropagation();
+    const { detail: time } = event;
+    this.timeChange.emit(time);
+
+    const currentDateTime = await this.timePickerElement.getCurrentTime();
+    this._time = currentDateTime.toFormat(this.timeFormat);
+  }
+
+  componentDidLoad() {
+    this._from = this.from;
+    this._to = this.to;
+    this._time = this.time;
   }
 
   render() {
     return (
       <Host>
         <div class="flex">
-        <div class="separator"></div>
+          <div class="separator"></div>
           <ix-date-picker
+            ref={(ref) => (this.datePickerElement = ref)}
             corners="left"
             individual={false}
             range={this.range}
-            onDateChange={(date) => (this.date = date.detail)}
+            onDateChange={(event) => this.onDateChange(event)}
+            from={this.from}
+            to={this.to}
+            format={this.dateFormat}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            eventDelimiter={this.eventDelimiter}
           ></ix-date-picker>
 
           <ix-time-picker
+            ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
             individual={false}
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
             showTimeReference={this.showTimeReference}
-            onTimeChange={(time) => (this.time = time.detail)}
+            onTimeChange={(event) => this.onTimeChange(event)}
+            time={this.time}
+            format={this.timeFormat}
+            timeReference={this.timeReference}
           ></ix-time-picker>
           <div class="separator"></div>
         </div>
 
         <div class="done">
-          <ix-button onClick={() => this.doneEvent()}>Done</ix-button>
+          <ix-button onClick={() => this.onDone()}>
+            {this.textSelectDate}
+          </ix-button>
         </div>
       </Host>
     );

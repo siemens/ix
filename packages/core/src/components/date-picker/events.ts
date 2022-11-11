@@ -6,12 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-:host {
-  display: inline-block;
-  height: 2rem;
-
-  &[disabled] {
-    pointer-events: none;
-  }
+export interface DateChangeEvent {
+  from: string;
+  to: string;
 }
+
+export type LegacyDateChangeEvent = DateChangeEvent | string;

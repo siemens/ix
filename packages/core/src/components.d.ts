@@ -9,7 +9,10 @@ import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
+import { DateTime } from "luxon";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
+import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
@@ -250,21 +253,55 @@ export namespace Components {
     }
     interface IxDatePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners": DateTimeCardCorners;
         /**
-          * output date format
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter": string;
+        /**
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format": string;
         /**
-          * set styles
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from": string;
+        /**
+          * Get the current DateTime
+         */
+        "getCurrentDate": () => Promise<{ start: DateTime; end: DateTime; }>;
+        /**
+          * @deprecated - will get removed with next major release
          */
         "individual": boolean;
         /**
-          * Set range size
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
+          * If true a range of dates can be selected.
          */
         "range": boolean;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | null;
     }
     interface IxDateTimeCard {
         /**
@@ -278,25 +315,75 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat": string;
+        /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from": string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
           * Set range size
          */
         "range": boolean;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour": boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes": boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds": boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": boolean;
+        "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time": string;
+        /**
+          * Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | null;
     }
     interface IxDrawer {
         /**
@@ -1131,29 +1218,53 @@ export namespace Components {
     }
     interface IxTimePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners": DateTimeCardCorners;
         /**
-          * set styles
+          * Format of time string
+          * @since 1.1.0
+         */
+        "format": string;
+        /**
+          * Get current time
+         */
+        "getCurrentTime": () => Promise<DateTime>;
+        /**
+          * @deprecated - will get removed with next major release
          */
         "individual": boolean;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour": boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes": boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds": boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": boolean;
+        "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime": string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
     }
     interface IxToast {
         /**
@@ -2091,29 +2202,71 @@ declare namespace LocalJSX {
     }
     interface IxDatePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * output date format
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter"?: string;
+        /**
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
          */
         "format"?: string;
         /**
-          * set styles
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from"?: string;
+        /**
+          * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
         /**
-          * Time change event
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
          */
-        "onDateChange"?: (event: CustomEvent<string>) => void;
+        "maxDate"?: string;
         /**
-          * done event
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+          * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+         */
+        "onDateChange"?: (event: CustomEvent<LegacyDateChangeEvent>) => void;
+        /**
+          * Date range change. Only triggered if datepicker is in range mode
+          * @since 1.1.0
+         */
+        "onDateRangeChange"?: (event: CustomEvent<DateChangeEvent>) => void;
+        /**
+          * Date selection confirmed via button action
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: CustomEvent<DateChangeEvent>) => void;
+        /**
+          * Date selection confirmed via button action
+          * @deprecated Use `dateSelect`
          */
         "onDone"?: (event: CustomEvent<string>) => void;
         /**
-          * Set range size
+          * If true a range of dates can be selected.
          */
         "range"?: boolean;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | null;
     }
     interface IxDateTimeCard {
         /**
@@ -2127,29 +2280,94 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
-          * Time event
+          * Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat"?: string;
+        /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from"?: string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * Date change
+          * @since 1.1.0
+         */
+        "onDateChange"?: (event: CustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        /**
+          * Date selection event is fired after confirm button is pressend
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: CustomEvent<DateTimeSelectEvent>) => void;
+        /**
+          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
          */
         "onDone"?: (event: CustomEvent<string>) => void;
+        /**
+          * Time change
+          * @since 1.1.0
+         */
+        "onTimeChange"?: (event: CustomEvent<string>) => void;
         /**
           * Set range size
          */
         "range"?: boolean;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour"?: boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes"?: boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds"?: boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: boolean;
+        "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time"?: string;
+        /**
+          * Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | null;
     }
     interface IxDrawer {
         /**
@@ -3039,11 +3257,16 @@ declare namespace LocalJSX {
     }
     interface IxTimePicker {
         /**
-          * Set corners style
+          * Corner style
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * set styles
+          * Format of time string
+          * @since 1.1.0
+         */
+        "format"?: string;
+        /**
+          * @deprecated - will get removed with next major release
          */
         "individual"?: boolean;
         /**
@@ -3055,21 +3278,36 @@ declare namespace LocalJSX {
          */
         "onTimeChange"?: (event: CustomEvent<string>) => void;
         /**
-          * Show Hour Input
+          * Show hour input
          */
         "showHour"?: boolean;
         /**
-          * Show Minutes Input
+          * Show minutes input
          */
         "showMinutes"?: boolean;
         /**
-          * Show Seconds Input
+          * Show seconds input
          */
         "showSeconds"?: boolean;
         /**
-          * Show Time Reference Input
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: boolean;
+        "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime"?: string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
     }
     interface IxToast {
         /**

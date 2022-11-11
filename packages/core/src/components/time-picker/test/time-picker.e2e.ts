@@ -10,9 +10,9 @@
 import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
-regressionTest.describe('datetime picker', () => {
+regressionTest.describe('time picker', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`datetime-picker/test/basic`);
+    await page.goto(`time-picker/test/basic`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
