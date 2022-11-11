@@ -282,7 +282,7 @@ export class IxCounterPill {
   }
 }
 
-import type { LagacyDateChangeEvent as IDatePickerLagacyDateChangeEvent } from '@siemens/ix';
+import type { LegacyDateChangeEvent as IDatePickerLegacyDateChangeEvent } from '@siemens/ix';
 import type { DateChangeEvent as IDatePickerDateChangeEvent } from '@siemens/ix';
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
@@ -291,7 +291,7 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
 If datepicker is in range mode the event detail will be sperated with a `-` e.g.
 `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`. @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
-  dateChange: EventEmitter<CustomEvent<IDatePickerLagacyDateChangeEvent>>;
+  dateChange: EventEmitter<CustomEvent<IDatePickerLegacyDateChangeEvent>>;
   /**
    * Date range change.
 Only triggered if datepicker is in range mode @since 1.1.0

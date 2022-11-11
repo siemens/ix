@@ -11,4 +11,4 @@ export interface DateChangeEvent {
   to: string;
 }
 
-export type LagacyDateChangeEvent = DateChangeEvent | string;
+export type LegacyDateChangeEvent = DateChangeEvent | string;
