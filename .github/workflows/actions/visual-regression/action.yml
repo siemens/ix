@@ -11,7 +11,7 @@ runs:
       run: yarn workspace @siemens/ix run test:e2e
       shell: bash
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
