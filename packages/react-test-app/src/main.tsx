@@ -87,6 +87,7 @@ import { Workflow } from './preview-examples/workflow';
 import { WorkflowVertical } from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import { MapNavigationOverlay } from './preview-examples/map-navigation-overlay';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -219,6 +220,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element={<BasicNavigationWithoutHeader />}
       />
       <Route path="/preview/map-navigation" element={<MapNavigation />} />
+      <Route path="/preview/map-navigation-overlay" element={<MapNavigationOverlay />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

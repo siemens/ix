@@ -236,7 +236,6 @@ export class MapNavigation {
             <main>
               <slot></slot>
             </main>
-            <slot name="overlay"></slot>
           </div>
         </div>
       </Host>

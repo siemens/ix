@@ -84,6 +84,7 @@ import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-
 import { Workflow } from 'src/preview-examples/workflow';
 import { WorkflowVertical } from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import { MapNavigationOverlay } from 'src/preview-examples/map-navigation-overlay';
 
 const routes: Routes = [
   {
@@ -262,6 +263,7 @@ const routes: Routes = [
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
+      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
     ],
   },
 ];
