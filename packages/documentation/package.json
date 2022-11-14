@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "1.1.0-beta.2",
+  "version": "1.1.0-beta.3",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -24,10 +24,10 @@
     "@docusaurus/theme-live-codeblock": "^2.1.0",
     "@mdx-js/react": "^1.6.22",
     "@siemens/ix-icons": "~1.0.0",
-    "@siemens/ix": "~1.1.0-beta.2",
-    "@siemens/ix-react": "~1.1.0-beta.2",
-    "@siemens/ix-echarts": "~1.1.0-beta.2",
-    "@siemens/html-test-app": "~1.1.0-beta.2",
+    "@siemens/ix": "~1.1.0-beta.3",
+    "@siemens/ix-react": "~1.1.0-beta.3",
+    "@siemens/ix-echarts": "~1.1.0-beta.3",
+    "@siemens/html-test-app": "~1.1.0-beta.3",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",
     "docusaurus-plugin-sass": "^0.2.2",

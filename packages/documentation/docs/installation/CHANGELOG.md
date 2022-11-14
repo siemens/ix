@@ -4,6 +4,10 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+# [1.1.0-beta.3](https://github.com/siemens/ix/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2022-11-14)
+
+
+
 # [1.1.0-beta.2](https://github.com/siemens/ix/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2022-11-14)
 
 
