@@ -24,6 +24,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist-build
+          path: packages
 
       - name: Publish ix beta version to npmjs.org
         run: |
