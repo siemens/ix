@@ -21,15 +21,9 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: build-cache
+      - uses: actions/download-artifact@v3
         with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+          name: dist-build
 
       - name: Publish ix beta version to npmjs.org
         run: |
