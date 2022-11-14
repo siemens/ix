@@ -189,6 +189,9 @@ export class MapNavigation {
       opacity: [1, 0],
       easing: 'easeInSine',
       complete: () => {
+        if (!this.overlay) {
+          return;
+        }
         this.overlay.firstChild?.remove();
         this.overlay.classList.add('d-none');
       },
