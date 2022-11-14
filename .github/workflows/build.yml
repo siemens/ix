@@ -35,6 +35,10 @@ jobs:
   upload-artifacts:
     runs-on: ubuntu-latest
     needs: [build]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/build-cache
