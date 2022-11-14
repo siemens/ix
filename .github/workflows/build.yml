@@ -39,6 +39,21 @@ jobs:
             packages/**/www
             packages/**/loader
             packages/**/build
+
+
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    needs: [build]
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: build
+        with:
+          key: build-${{ runner.os }}-${{ github.sha }}
+          path: |
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
