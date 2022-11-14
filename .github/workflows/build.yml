@@ -29,21 +29,16 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions/build
       - uses: actions/cache@v3
         id: build-cache
         with:
           key: build-${{ runner.os }}-${{ github.sha }}
           path: |
-            packages/core/dist
-            packages/core/loader
-            packages/core/www
-            packages/react/dist
-            packages/angular/dist
-            packages/aggrid/dist
-            packages/aggrid/www
-            packages/aggrid/loader
-            packages/echarts/dist
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
+      - uses: ./.github/workflows/actions/build
 
   upload-artifacts:
     runs-on: ubuntu-latest
@@ -55,15 +50,10 @@ jobs:
         with:
           key: build-${{ runner.os }}-${{ github.sha }}
           path: |
-            packages/core/dist
-            packages/core/loader
-            packages/core/www
-            packages/react/dist
-            packages/angular/dist
-            packages/aggrid/dist
-            packages/aggrid/www
-            packages/aggrid/loader
-            packages/echarts/dist
+            packages/**/dist
+            packages/**/www
+            packages/**/loader
+            packages/**/build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
