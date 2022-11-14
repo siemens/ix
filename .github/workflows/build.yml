@@ -29,7 +29,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: ./use-cache
+      - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/build
 
   upload-artifacts:
@@ -37,7 +37,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v3
-      - uses: ./use-cache
+      - uses: ./.github/workflows/actions/build-cache
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -63,7 +63,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: ./use-cache
+      - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/visual-regression
 
