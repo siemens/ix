@@ -10,7 +10,6 @@ import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
-import { DateTime } from "luxon";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
@@ -273,7 +272,7 @@ export namespace Components {
         /**
           * Get the current DateTime
          */
-        "getCurrentDate": () => Promise<{ start: DateTime; end: DateTime; }>;
+        "getCurrentDate": () => Promise<{ start: string; end: string; }>;
         /**
           * @deprecated - will get removed with next major release
          */
@@ -1229,7 +1228,7 @@ export namespace Components {
         /**
           * Get current time
          */
-        "getCurrentTime": () => Promise<DateTime>;
+        "getCurrentTime": () => Promise<string>;
         /**
           * @deprecated - will get removed with next major release
          */

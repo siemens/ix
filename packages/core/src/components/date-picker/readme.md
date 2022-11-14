@@ -37,13 +37,13 @@ SPDX-License-Identifier: MIT
 
 ## Methods
 
-### `getCurrentDate() => Promise<{ start: DateTime; end: DateTime; }>`
+### `getCurrentDate() => Promise<{ start: string; end: string; }>`
 
 Get the current DateTime
 
 #### Returns
 
-Type: `Promise<{ start: DateTime; end: DateTime; }>`
+Type: `Promise<{ start: string; end: string; }>`
 
 
 

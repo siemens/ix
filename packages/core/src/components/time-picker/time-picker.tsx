@@ -179,7 +179,7 @@ export class TimePicker {
    */
   @Method()
   async getCurrentTime() {
-    return this._time;
+    return this._time.toFormat(this.format);
   }
 
   render() {

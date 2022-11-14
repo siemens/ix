@@ -35,13 +35,13 @@ SPDX-License-Identifier: MIT
 
 ## Methods
 
-### `getCurrentTime() => Promise<DateTime>`
+### `getCurrentTime() => Promise<string>`
 
 Get current time
 
 #### Returns
 
-Type: `Promise<DateTime>`
+Type: `Promise<string>`
 
 
 

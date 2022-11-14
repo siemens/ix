@@ -1532,10 +1532,10 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ start: DateTime; end: DateTime; }>",
+            "type": "Promise<{ start: string; end: string; }>",
             "docs": ""
           },
-          "signature": "getCurrentDate() => Promise<{ start: DateTime; end: DateTime; }>",
+          "signature": "getCurrentDate() => Promise<{ start: string; end: string; }>",
           "parameters": [],
           "docs": "Get the current DateTime",
           "docsTags": []
@@ -1694,7 +1694,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-date-picker",
         "ix-time-picker",
@@ -1720,6 +1722,9 @@
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button"
+        ],
+        "my-component": [
+          "ix-datetime-picker"
         ]
       },
       "props": [
@@ -7774,10 +7779,10 @@
         {
           "name": "getCurrentTime",
           "returns": {
-            "type": "Promise<DateTime>",
+            "type": "Promise<string>",
             "docs": ""
           },
-          "signature": "getCurrentTime() => Promise<DateTime>",
+          "signature": "getCurrentTime() => Promise<string>",
           "parameters": [],
           "docs": "Get current time",
           "docsTags": []
@@ -9124,8 +9129,34 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-datetime-picker"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-datetime-picker"
+        ],
+        "ix-datetime-picker": [
+          "ix-date-picker",
+          "ix-time-picker",
+          "ix-button"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
