@@ -16,20 +16,14 @@ jobs:
     needs: [build-lib]
     runs-on: ubuntu-latest
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: build
+      - uses: actions/download-artifact@v3
         with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+          name: dist-build
 
       - name: Publish ix beta version to npmjs.org
         run: |
