@@ -10,7 +10,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -24,20 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: build-cache
-        with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+      - uses: ./use-cache
       - uses: ./.github/workflows/actions/build
 
   upload-artifacts:
@@ -45,15 +37,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: build-cache
-        with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+      - uses: ./use-cache
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -79,15 +63,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: build-cache
-        with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+      - uses: ./use-cache
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/visual-regression
 
@@ -95,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -106,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
