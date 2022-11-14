@@ -17,6 +17,8 @@ runs:
       id: cache
       with:
         key: yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
         path: |
           .yarn-cache
           node_modules
