@@ -31,14 +31,19 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/build
       - uses: actions/cache@v3
-        id: build
+        id: build-cache
         with:
           key: build-${{ runner.os }}-${{ github.sha }}
           path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+            packages/core/dist
+            packages/core/loader
+            packages/core/www
+            packages/react/dist
+            packages/angular/dist
+            packages/aggrid/dist
+            packages/aggrid/www
+            packages/aggrid/loader
+            packages/echarts/dist
 
   upload-artifacts:
     runs-on: ubuntu-latest
@@ -46,14 +51,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
-        id: build
+        id: build-cache
         with:
           key: build-${{ runner.os }}-${{ github.sha }}
           path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+            packages/core/dist
+            packages/core/loader
+            packages/core/www
+            packages/react/dist
+            packages/angular/dist
+            packages/aggrid/dist
+            packages/aggrid/www
+            packages/aggrid/loader
+            packages/echarts/dist
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -80,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
-        id: build
+        id: build-cache
         with:
           key: build-${{ runner.os }}-${{ github.sha }}
           path: |
