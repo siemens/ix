@@ -4,6 +4,15 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+# [1.1.0-beta.5](https://github.com/siemens/ix/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2022-11-14)
+
+
+### Bug Fixes
+
+* **angular:** remove files section ([bbf3cb3](https://github.com/siemens/ix/commit/bbf3cb3153bf9aba98e45f7c32fee51583679c98))
+
+
+
 # [1.1.0-beta.4](https://github.com/siemens/ix/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2022-11-14)
 
 
