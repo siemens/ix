@@ -28,7 +28,6 @@
     "scripts/post-install/post-install.mjs"
   ],
   "scripts": {
-    "postinstall": "node ./scripts/post-install/post-install.mjs",
     "build": "stencil build --docs --prod",
     "build:dev": "stencil build --docs",
     "lint": "eslint src/**/*{.ts,.tsx}",
