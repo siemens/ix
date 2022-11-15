@@ -24,8 +24,7 @@
     "dist/",
     "loader/",
     "src/**/*.md",
-    "scss/",
-    "scripts/post-install/post-install.mjs"
+    "scss/"
   ],
   "scripts": {
     "build": "stencil build --docs --prod",
