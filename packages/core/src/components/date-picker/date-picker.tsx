@@ -433,8 +433,8 @@ export class DatePicker {
   @Method()
   async getCurrentDate() {
     return {
-      start: this.start,
-      end: this.end,
+      start: this.start?.toFormat(this.format),
+      end: this.end?.toFormat(this.format),
     };
   }
 
