@@ -45,7 +45,7 @@
     "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
   },
   "dependencies": {
-    "@stencil/core": "~2.15.0",
+    "@stencil/core": "~2.19.2",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
     "luxon": "^3.0.1"
