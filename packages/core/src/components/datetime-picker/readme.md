@@ -13,7 +13,7 @@ SPDX-License-Identifier: MIT
 
 | Property            | Attribute             | Description                                                                                                                                                         | Type           | Default        |
 | ------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | -------------- |
-| `dateFormat`        | `date-format`         | Date format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.                                           | `string`       | `'yyyy/LL/dd'` |
+| `dateFormat`        | `date-format`         | Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.                                            | `string`       | `'yyyy/LL/dd'` |
 | `eventDelimiter`    | `event-delimiter`     | Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter | `string`       | `' - '`        |
 | `from`              | `from`                | Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`                                                           | `string`       | `undefined`    |
 | `maxDate`           | `max-date`            | The latest date that can be selected by the date picker. If not set there will be no restriction.                                                                   | `string`       | `undefined`    |
@@ -25,7 +25,7 @@ SPDX-License-Identifier: MIT
 | `showTimeReference` | `show-time-reference` | Show time reference input                                                                                                                                           | `any`          | `undefined`    |
 | `textSelectDate`    | `text-select-date`    | Text of date select button                                                                                                                                          | `string`       | `'Done'`       |
 | `time`              | `time`                | Select time with format string                                                                                                                                      | `string`       | `undefined`    |
-| `timeFormat`        | `time-format`         | Time format string. See {@link https ://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.                                           | `string`       | `'TT'`         |
+| `timeFormat`        | `time-format`         | Time format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.                                            | `string`       | `'TT'`         |
 | `timeReference`     | `time-reference`      | Set time reference                                                                                                                                                  | `"AM" \| "PM"` | `undefined`    |
 | `to`                | `to`                  | Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`  | `string`       | `null`         |
 
