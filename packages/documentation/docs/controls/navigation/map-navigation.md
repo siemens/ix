@@ -16,6 +16,10 @@ import SourceWebComponent from './../../auto-generated/previews/web-component/ma
 import ReactComponent from './../../auto-generated/previews/react/map-navigation.md'
 import AngularComponent from './../../auto-generated/previews/angular/map-navigation.md'
 
+import OverlayWebComponent from './../../auto-generated/previews/web-component/map-navigation-overlay.md'
+import OverlayReactComponent from './../../auto-generated/previews/react/map-navigation-overlay.md'
+import OverlayAngularComponent from './../../auto-generated/previews/angular/map-navigation-overlay.md'
+
 ## Usage
 
 <Preview name="map-navigation" height="35rem" noMargin>
@@ -27,6 +31,20 @@ import AngularComponent from './../../auto-generated/previews/angular/map-naviga
   </TabItem>
   <TabItem value="angular">
     <AngularComponent />
+  </TabItem>
+</Preview>
+
+## Custom overlay
+
+<Preview name="map-navigation-overlay" height="35rem" noMargin>
+  <TabItem value="javascript">
+    <OverlayWebComponent />
+  </TabItem>
+  <TabItem value="react">
+    <OverlayReactComponent />
+  </TabItem>
+  <TabItem value="angular">
+    <OverlayAngularComponent />
   </TabItem>
 </Preview>
 

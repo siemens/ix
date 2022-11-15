@@ -57,6 +57,7 @@ import { InputReadonly } from 'src/preview-examples/input-readonly';
 import { InputWithIcon } from 'src/preview-examples/input-with-icon';
 import { Kpi } from 'src/preview-examples/kpi';
 import { MapNavigation } from 'src/preview-examples/map-navigation';
+import { MapNavigationOverlay } from 'src/preview-examples/map-navigation-overlay';
 import { MessageBar } from 'src/preview-examples/message-bar';
 import { Modal } from 'src/preview-examples/modal';
 import { Pill } from 'src/preview-examples/pill';
@@ -81,7 +82,7 @@ import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
 import { Toggle } from 'src/preview-examples/toggle';
 import { ToggleColor } from 'src/preview-examples/toggle-color';
-import { ToggleCustomDisabled } from 'src/preview-examples/toggle-custom-disable';
+import { ToggleCustomDisabled } from 'src/preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from 'src/preview-examples/toggle-custom-label';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
@@ -169,6 +170,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Workflow,
     WorkflowVertical,
     MapNavigation,
+    MapNavigationOverlay,
     TabsRounded,
     DatepickerRange,
   ],

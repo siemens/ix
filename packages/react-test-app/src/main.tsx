@@ -78,7 +78,7 @@ import { Toast } from './preview-examples/toast';
 import { ToastCustom } from './preview-examples/toast-custom';
 import { Toggle } from './preview-examples/toggle';
 import { ToggleColor } from './preview-examples/toggle-color';
-import { ToggleDisabled } from './preview-examples/toggle-custom-disable';
+import { ToggleDisabled } from './preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
 import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
@@ -87,6 +87,7 @@ import { Workflow } from './preview-examples/workflow';
 import { WorkflowVertical } from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import { MapNavigationOverlay } from './preview-examples/map-navigation-overlay';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -219,6 +220,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element={<BasicNavigationWithoutHeader />}
       />
       <Route path="/preview/map-navigation" element={<MapNavigation />} />
+      <Route path="/preview/map-navigation-overlay" element={<MapNavigationOverlay />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route
