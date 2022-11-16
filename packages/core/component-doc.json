@@ -1708,9 +1708,7 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-date-picker",
         "ix-time-picker",
@@ -1736,9 +1734,6 @@
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button"
-        ],
-        "my-component": [
-          "ix-datetime-picker"
         ]
       },
       "props": [
@@ -9205,34 +9200,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-datetime-picker"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-datetime-picker"
-        ],
-        "ix-datetime-picker": [
-          "ix-date-picker",
-          "ix-time-picker",
-          "ix-button"
-        ],
-        "ix-date-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown",
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

@@ -117,7 +117,7 @@ export class TimePicker {
     return this._time.second;
   }
 
-  private _time: DateTime = DateTime.fromFormat(this.time, this.format);
+  private _time: DateTime = DateTime.now();
 
   private updateInput(
     step: 'up' | 'down',
@@ -166,6 +166,8 @@ export class TimePicker {
   }
 
   componentWillLoad() {
+    console.log(this.time, this.format);
+    this._time = DateTime.fromFormat(this.time, this.format);
     if (this.showTimeReference === undefined) {
       const matchedKeys = Object.keys(
         DateTime.fromFormatExplain(this.time, this.format).matches
