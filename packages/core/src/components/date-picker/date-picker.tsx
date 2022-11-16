@@ -156,6 +156,8 @@ export class DatePicker {
    */
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
+  private counterSelectionProps = 0;
+
   get year() {
     return DateTime.fromFormat(this.from, this.format).year;
   }
@@ -196,12 +198,14 @@ export class DatePicker {
   }
 
   private selectionProps() {
-    if (this.year !== null) {
+    if (this.year !== null && this.counterSelectionProps === 0) {
       this.yearValue = this.year;
+      this.counterSelectionProps++;
     }
 
-    if (this.month !== null) {
+    if (this.month !== null && this.counterSelectionProps === 0) {
       this.monthValue = this.month;
+      this.counterSelectionProps++;
     }
   }
 
@@ -286,7 +290,6 @@ export class DatePicker {
     } else {
       this.monthValue += number;
     }
-
     this.calculateCalendar();
   }
 
