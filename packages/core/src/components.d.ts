@@ -873,7 +873,8 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Place tab on bottom
+          * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
+          * @deprecated - replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -2896,7 +2897,8 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * Place tab on bottom
+          * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
+          * @deprecated - replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**

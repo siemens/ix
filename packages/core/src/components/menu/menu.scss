@@ -25,6 +25,7 @@ ix-menu {
     position: relative;
     width: 4rem;
     height: 100%;
+    padding-block-end: 1rem;
 
     &.expanded {
       box-shadow: var(--theme-navigation--box-shadow);
@@ -85,10 +86,6 @@ ix-menu {
 
   .menu-overlay-invisible {
     display: none;
-  }
-
-  :not(.active-more-tab) > .internal-tab:last-child {
-    margin-bottom: 1rem;
   }
 
   .menu.expanded {
