@@ -16,7 +16,7 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -166,7 +166,6 @@ export class TimePicker {
   }
 
   componentWillLoad() {
-    console.log(this.time, this.format);
     this._time = DateTime.fromFormat(this.time, this.format);
     if (this.showTimeReference === undefined) {
       const matchedKeys = Object.keys(
