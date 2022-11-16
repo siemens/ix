@@ -73,7 +73,7 @@ import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
 import { Toggle } from 'src/preview-examples/toggle';
 import { ToggleColor } from 'src/preview-examples/toggle-color';
-import { ToggleCustomDisabled } from 'src/preview-examples/toggle-custom-disable';
+import { ToggleCustomDisabled } from 'src/preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from 'src/preview-examples/toggle-custom-label';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
@@ -84,6 +84,7 @@ import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-
 import { Workflow } from 'src/preview-examples/workflow';
 import { WorkflowVertical } from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import { MapNavigationOverlay } from 'src/preview-examples/map-navigation-overlay';
 
 const routes: Routes = [
   {
@@ -252,7 +253,7 @@ const routes: Routes = [
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-color', component: ToggleColor },
-      { path: 'toggle-custom-disabled', component: ToggleCustomDisabled },
+      { path: 'toggle-disabled', component: ToggleCustomDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
       { path: 'toggle', component: Toggle },
       { path: 'upload', component: Upload },
@@ -262,6 +263,7 @@ const routes: Routes = [
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
+      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
     ],
   },
 ];

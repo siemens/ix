@@ -4376,7 +4376,13 @@
           "signature": "closeOverlay() => Promise<void>",
           "parameters": [],
           "docs": "Close current shown overlay",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will get removed with next major release in favor of slot based approach"
+            }
+          ],
+          "deprecation": "will get removed with next major release in favor of slot based approach"
         },
         {
           "name": "openOverlay",
@@ -4388,6 +4394,10 @@
           "parameters": [],
           "docs": "Open a overlay inside content area",
           "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will get removed with next major release in favor of slot based approach"
+            },
             {
               "name": "param",
               "text": "name"
@@ -4404,7 +4414,8 @@
               "name": "param",
               "text": "color"
             }
-          ]
+          ],
+          "deprecation": "will get removed with next major release in favor of slot based approach"
         }
       ],
       "events": [
