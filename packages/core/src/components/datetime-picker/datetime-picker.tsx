@@ -55,7 +55,7 @@ export class DatePicker {
 
   /**
    * Date format string.
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    *
    * @since 1.1.0
    */
@@ -63,7 +63,7 @@ export class DatePicker {
 
   /**
    * Time format string.
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    *
    * @since 1.1.0
    */
@@ -97,8 +97,9 @@ export class DatePicker {
 
   /**
    * Show time reference input
+   * Time reference is default aligned with @see {this.timeFormat}
    *
-   * @since 1.1.0 time reference is default aligned with formt tt
+   * @since 1.1.0
    */
   @Prop() showTimeReference = undefined;
 

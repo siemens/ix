@@ -1380,7 +1380,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
@@ -1748,7 +1748,7 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -1923,11 +1923,11 @@
           "mutable": false,
           "attr": "show-time-reference",
           "reflectToAttr": false,
-          "docs": "Show time reference input",
+          "docs": "Show time reference input\nTime reference is default aligned with @see {this.timeFormat}",
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0 time reference is default aligned with formt tt"
+              "text": "1.1.0"
             }
           ],
           "default": "undefined",
@@ -1988,7 +1988,7 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.",
+          "docs": "Time format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -5995,7 +5995,7 @@
           "mutable": false,
           "attr": "icon-color",
           "reflectToAttr": false,
-          "docs": "Color of the header {@link icon}",
+          "docs": "Color of the header {@see ix-icon}",
           "docsTags": [],
           "default": "'color-std-text'",
           "values": [
@@ -8580,7 +8580,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link https://www.w3schools.com/tags/att_input_accept.asp}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}",
           "docsTags": [],
           "values": [
             {
