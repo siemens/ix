@@ -36,6 +36,5 @@ export const getButtonClasses = (
     'btn-oval': iconOval,
     selected: isSecondary(variant) && (outline || ghost) && selected,
     disabled: disabled,
-    'btn-slot-gap': true,
   };
 };

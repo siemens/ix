@@ -20,6 +20,7 @@
   transition: $default-time;
   padding: 0 $small-space;
   min-width: 5rem;
+  gap: $tiny-space;
 
   @include ellipsis;
 
@@ -157,8 +158,4 @@ $button-categories: (primary, secondary);
   height: $large-space;
   width: $large-space;
   min-width: $large-space;
-}
-
-.btn-slot-gap {
-  gap: $tiny-space;
 }
