@@ -7,17 +7,17 @@ import Events from './../auto-generated/ix-toggle/events.md';
 import SourceToggle from './../auto-generated/previews/web-component/toggle.md';
 import SourceToggleLabel from './../auto-generated/previews/web-component/toggle-custom-label.md';
 import SourceToggleColor from './../auto-generated/previews/web-component/toggle-color.md';
-import SourceToggleDisbaled from './../auto-generated/previews/web-component/toggle-custom-disable.md';
+import SourceToggleDisbaled from './../auto-generated/previews/web-component/toggle-disabled.md';
 
 import SourceReactToggle from './../auto-generated/previews/react/toggle.md';
 import SourceReactToggleLabel from './../auto-generated/previews/react/toggle-custom-label.md';
 import SourceReactToggleColor from './../auto-generated/previews/react/toggle-color.md';
-import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-custom-disable.md';
+import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-disabled.md';
 
 import SourceAngularToggle from './../auto-generated/previews/angular/toggle.md';
 import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.md';
 import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.md';
-import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-custom-disable.md';
+import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-disabled.md';
 
 # Toggle
 

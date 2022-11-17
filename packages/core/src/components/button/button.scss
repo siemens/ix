@@ -10,4 +10,8 @@
 :host {
   display: inline-block;
   height: 2rem;
+
+  &[disabled] {
+    pointer-events: none;
+  }
 }

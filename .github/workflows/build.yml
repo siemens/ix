@@ -10,7 +10,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -24,21 +24,38 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/build
-      - uses: actions/cache@v2
-        id: build
+
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    needs: [build]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
         with:
-          key: build-${{ runner.os }}-${{ github.sha }}
+          name: dist-build
           path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+            packages/core/dist
+            packages/core/loader
+            packages/core/www
+            packages/react/dist
+            packages/angular/dist
+            packages/aggrid/dist
+            packages/aggrid/www
+            packages/aggrid/loader
+            packages/echarts/dist
 
   visual-test:
     needs: [build]
@@ -50,15 +67,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v2
-        id: build
-        with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
+      - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/visual-regression
 
@@ -66,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -77,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install]
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:

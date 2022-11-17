@@ -134,6 +134,6 @@ Contributions, issues and feature requests are welcome!
 
 ## 📝 License
 
-Copyright © 2019 [Siemens AG](https://www.siemens.com/).
+Copyright © 2022 [Siemens AG](https://www.siemens.com/).
 
 This project is MIT licensed.

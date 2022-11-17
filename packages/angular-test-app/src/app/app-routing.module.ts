@@ -27,6 +27,7 @@ import { Checkbox } from 'src/preview-examples/checkbox';
 import { CheckboxIndeterminate } from 'src/preview-examples/checkbox-indeterminate';
 import { Chip } from 'src/preview-examples/chip';
 import { Datepicker } from 'src/preview-examples/datepicker';
+import { DatepickerRange } from 'src/preview-examples/datepicker-range';
 import { Datetimepicker } from 'src/preview-examples/datetimepicker';
 import { Drawer } from 'src/preview-examples/drawer';
 import { DrawerFullHeight } from 'src/preview-examples/drawer-full-height';
@@ -72,7 +73,7 @@ import { Toast } from 'src/preview-examples/toast';
 import { ToastCustom } from 'src/preview-examples/toast-custom';
 import { Toggle } from 'src/preview-examples/toggle';
 import { ToggleColor } from 'src/preview-examples/toggle-color';
-import { ToggleCustomDisabled } from 'src/preview-examples/toggle-custom-disable';
+import { ToggleCustomDisabled } from 'src/preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from 'src/preview-examples/toggle-custom-label';
 import { Tree } from 'src/preview-examples/tree';
 import { TreeCustom } from 'src/preview-examples/tree-custom';
@@ -83,6 +84,7 @@ import { VerticalTabsWithAvatar } from 'src/preview-examples/vertical-tabs-with-
 import { Workflow } from 'src/preview-examples/workflow';
 import { WorkflowVertical } from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import { MapNavigationOverlay } from 'src/preview-examples/map-navigation-overlay';
 
 const routes: Routes = [
   {
@@ -195,6 +197,10 @@ const routes: Routes = [
         component: Datepicker,
       },
       {
+        path: 'datepicker-range',
+        component: DatepickerRange,
+      },
+      {
         path: 'datetimepicker',
         component: Datetimepicker,
       },
@@ -247,7 +253,7 @@ const routes: Routes = [
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-color', component: ToggleColor },
-      { path: 'toggle-custom-disabled', component: ToggleCustomDisabled },
+      { path: 'toggle-disabled', component: ToggleCustomDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
       { path: 'toggle', component: Toggle },
       { path: 'upload', component: Upload },
@@ -257,6 +263,7 @@ const routes: Routes = [
       { path: 'workflow', component: Workflow },
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
+      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
     ],
   },
 ];

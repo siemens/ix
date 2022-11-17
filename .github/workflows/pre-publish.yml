@@ -16,26 +16,45 @@ jobs:
     needs: [build-lib]
     runs-on: ubuntu-latest
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v2
-        id: build
+      - uses: actions/download-artifact@v3
         with:
-          key: build-${{ runner.os }}-${{ github.sha }}
-          path: |
-            packages/**/dist
-            packages/**/www
-            packages/**/loader
-            packages/**/build
-      - name: Publish beta version to npmjs.org
+          name: dist-build
+
+      - name: Publish ix beta version to npmjs.org
         run: |
           yarn workspace @siemens/ix publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-react beta version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-react publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-aggrid beta version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-aggrid publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-echarts beta version to npmjs.org
+        run: |
           yarn workspace @siemens/ix-echarts publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish ix-angular beta version to npmjs.org
+        run: |
           cd packages/angular/dist
           yarn publish --access public --tag beta
         env:

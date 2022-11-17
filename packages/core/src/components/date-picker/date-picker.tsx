@@ -8,17 +8,19 @@
  */
 
 import {
-    Component,
-    Event,
-    EventEmitter,
-    Fragment,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import { DateChangeEvent, LegacyDateChangeEvent } from './events';
 
 @Component({
   tag: 'ix-date-picker',
@@ -26,54 +28,182 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
   scoped: true,
 })
 export class DatePicker {
+  private daysInWeek = 7;
+  private dayNames = Info.weekdays();
+  private monthNames = Info.months();
+
   /**
-   * output date format
+   * Date format string.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * Set range size
+   * If true a range of dates can be selected.
    */
   @Prop() range: boolean = true;
 
   /**
-   * set styles
+   * @deprecated - will get removed with next major release
    */
   @Prop() individual: boolean = true;
 
   /**
-   * Set corners style
+   * Corner style
    */
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
-  private daysInWeek = 7;
-  private dayNames = Info.weekdays();
-  private monthNames = Info.months();
-  @State() year = DateTime.now().year;
-  @State() month = DateTime.now().month;
-  @State() calendar: [number, number[]][] = [];
-  @State() today = DateTime.now();
+  /**
+   * Picker date. If the picker is in range mode this property is the start date.
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
+   */
+  @Prop() from: string = DateTime.now().toFormat(this.format);
 
-  @State() years = [...Array(10).keys()].map(
-    (year) => year + DateTime.now().year - 5
-  );
-  @State() tempYear: number = this.year;
-  @State() tempMonth: number = this.month;
-  @State() start: DateTime = null;
-  @State() end: DateTime = null;
+  /**
+   * Picker date. If the picker is in range mode this property is the end date.
+   * If the picker is not in range mode leave this value `null`
+   *
+   * Format is based on `format`
+   *
+   * @since 1.1.0
+   */
+  @Prop() to: string | null = null;
+
+  /**
+   * The earliest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   *
+   * @since 1.1.0
+   */
+  @Prop() minDate: string;
+
+  /**
+   * The latest date that can be selected by the date picker.
+   * If not set there will be no restriction.
+   *
+   * @since 1.1.0
+   */
+  @Prop() maxDate: string;
+
+  /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   */
+  @Prop() eventDelimiter = ' - ';
+
+  /**
+   * Text of date select button
+   *
+   * @since 1.1.0
+   */
+  @Prop() textSelectDate = 'Done';
+
+  @State() yearValue = this.year;
+  @State() today = DateTime.now();
+  @State() monthValue: number = this.month;
+  @State() calendar: [number, number[]][] = [];
+
+  @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
+  @State() tempYear: number = this.yearValue;
+  @State() tempMonth: number = this.monthValue;
+  @State() start: DateTime = DateTime.fromObject({
+    year: this.year,
+    month: this.month,
+    day: this.day,
+  });
+
+  @State() end: DateTime = this.to
+    ? DateTime.fromFormat(this.to, this.format)
+    : null;
 
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
   /**
-   * Time change event
+   * Date change event
+   *
+   * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
+   * `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+   *
+   * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
-  @Event() dateChange: EventEmitter<string>;
+  @Event() dateChange: EventEmitter<LegacyDateChangeEvent>;
 
   /**
-   * done event
+   * Date range change.
+   * Only triggered if datepicker is in range mode
+   *
+   * @since 1.1.0
+   */
+  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
+
+  /**
+   * Date selection confirmed via button action
+   *
+   * @deprecated Use `dateSelect`
    */
   @Event() done: EventEmitter<string>;
+
+  /**
+   * Date selection confirmed via button action
+   *
+   * @since 1.1.0
+   */
+  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+
+  get year() {
+    return DateTime.fromFormat(this.from, this.format).year;
+  }
+
+  get day() {
+    return DateTime.fromFormat(this.from, this.format).day;
+  }
+
+  get month() {
+    return DateTime.fromFormat(this.from, this.format).month;
+  }
+
+  private onDone() {
+    this.done.emit(this.getOutputFormat());
+
+    this.dateSelect.emit({
+      from: this.start.toFormat(this.format),
+      to: this.end?.toFormat(this.format),
+    });
+  }
+
+  private onDateChange() {
+    if (this.eventDelimiter) {
+      this.dateChange.emit(this.getOutputFormat());
+    } else {
+      this.dateChange.emit({
+        from: this.start?.toFormat(this.format),
+        to: this.end?.toFormat(this.format),
+      });
+    }
+
+    if (this.range) {
+      this.dateRangeChange.emit({
+        from: this.start?.toFormat(this.format),
+        to: this.end?.toFormat(this.format),
+      });
+    }
+  }
+
+  private selectionProps() {
+    if (this.year !== null) {
+      this.yearValue = this.year;
+    }
+
+    if (this.month !== null) {
+      this.monthValue = this.month;
+    }
+  }
 
   private getStartOfMonth(
     year = DateTime.local().get('year'),
@@ -97,8 +227,9 @@ export class DatePicker {
   }
 
   private calculateCalendar() {
-    const start = this.getStartOfMonth(this.year, this.month);
-    const end = this.getEndOfMonth(this.year, this.month);
+    this.selectionProps();
+    const start = this.getStartOfMonth(this.yearValue, this.monthValue);
+    const end = this.getEndOfMonth(this.yearValue, this.monthValue);
     const totalDays = this.getDaysInMonth(start, end);
     const totalWeeks = 6;
     const totalDaysInWeeks = totalWeeks * this.daysInWeek;
@@ -133,8 +264,11 @@ export class DatePicker {
       const week = weekdays[index - 1];
       const firstWeekDay = week.find((day) => day !== undefined);
       const weekNumber = firstWeekDay
-        ? DateTime.local(this.year, this.month, weekdays[index - 1][0])
-            .weekNumber
+        ? DateTime.local(
+            this.yearValue,
+            this.monthValue,
+            weekdays[index - 1][0]
+          ).weekNumber
         : undefined;
       calendar.push([weekNumber, week]);
     }
@@ -143,22 +277,22 @@ export class DatePicker {
   }
 
   private changeMonth(number) {
-    if (this.month + number < 1) {
-      this.year--;
-      this.month = 12;
-    } else if (this.month + number > 12) {
-      this.year++;
-      this.month = 1;
+    if (this.monthValue + number < 1) {
+      this.yearValue--;
+      this.monthValue = 12;
+    } else if (this.monthValue + number > 12) {
+      this.yearValue++;
+      this.monthValue = 1;
     } else {
-      this.month += number;
+      this.monthValue += number;
     }
 
     this.calculateCalendar();
   }
 
   private selectMonth(month: MonthNumbers) {
-    this.month = month;
-    this.year = this.tempYear;
+    this.monthValue = month;
+    this.yearValue = this.tempYear;
     this.tempMonth = month;
   }
 
@@ -199,7 +333,7 @@ export class DatePicker {
 
   private todayClass(day: number) {
     const today = DateTime.local();
-    const daaay = DateTime.local(this.year, this.month, day);
+    const daaay = DateTime.local(this.yearValue, this.monthValue, day);
     const isToday = Math.ceil(daaay.diff(today, 'days').days) === 0;
     return {
       'calendar-item': true,
@@ -214,15 +348,16 @@ export class DatePicker {
         daaay.toISO() > this.start.toISO() &&
         daaay.toISO() < this.end.toISO(),
       disabled:
-        this.start &&
-        daaay.toISO() < this.start.toISO() &&
-        this.end === null &&
-        this.range,
+        !this.isWithinMinMax(daaay) ||
+        (this.start &&
+          daaay.toISO() < this.start.toISO() &&
+          this.end === null &&
+          this.range),
     };
   }
 
   private selectDay(day: number) {
-    const date = DateTime.local(this.year, this.month, day);
+    const date = DateTime.local(this.yearValue, this.monthValue, day);
     const isNotDay = day === undefined;
     const isFirstDay = this.start === null;
     const isLastDay = this.end === null;
@@ -235,7 +370,7 @@ export class DatePicker {
 
     if (isSameDay) {
       this.start = null;
-      this.dateChange.emit(this.getOutputFormat());
+      this.onDateChange();
       return;
     }
 
@@ -256,19 +391,51 @@ export class DatePicker {
       this.end = null;
     }
 
-    this.dateChange.emit(this.getOutputFormat());
+    this.onDateChange();
   }
 
   private getOutputFormat() {
-    if (!this.end) return this.start.toFormat(this.format);
+    if (!this.start) {
+      return null;
+    }
 
+    if (!this.end) {
+      return this.start.toFormat(this.format);
+    }
+
+    return [
+      this.start.toFormat(this.format),
+      this.end.toFormat(this.format),
+    ].join(this.eventDelimiter);
+  }
+
+  private isWithinMinMax(date: DateTime) {
+    const dateIso = date.toISO();
+    const _minDate = this.minDate
+      ? DateTime.fromFormat(this.minDate, this.format)
+      : null;
+    const _maxDate = this.maxDate
+      ? DateTime.fromFormat(this.maxDate, this.format)
+      : null;
     return (
-      this.start.toFormat(this.format) + ' - ' + this.end.toFormat(this.format)
+      (!_minDate || _minDate.toISO() <= dateIso) &&
+      (!_maxDate || _maxDate.toISO() >= dateIso)
     );
   }
 
   componentWillRender() {
     this.calculateCalendar();
+  }
+
+  /**
+   * Get the current DateTime
+   */
+  @Method()
+  async getCurrentDate() {
+    return {
+      start: this.start?.toFormat(this.format),
+      end: this.end?.toFormat(this.format),
+    };
   }
 
   render() {
@@ -287,7 +454,7 @@ export class DatePicker {
             <div class="selector">
               <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
                 <span class="fontSize capitalize">
-                  {this.monthNames[this.month - 1]} {this.year}
+                  {this.monthNames[this.monthValue - 1]} {this.yearValue}
                 </span>
               </ix-button>
               <ix-dropdown
@@ -384,8 +551,8 @@ export class DatePicker {
           </div>
 
           <div class={{ button: true, hidden: !this.individual }}>
-            <ix-button onClick={() => this.done.emit(this.getOutputFormat())}>
-              Done
+            <ix-button onClick={() => this.onDone()}>
+              {this.textSelectDate}
             </ix-button>
           </div>
         </ix-date-time-card>

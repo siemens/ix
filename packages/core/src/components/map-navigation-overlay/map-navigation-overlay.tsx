@@ -7,7 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
+import anime from 'animejs';
 
 @Component({
   tag: 'ix-map-navigation-overlay',
@@ -15,6 +24,10 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
   scoped: true,
 })
 export class MapNavigationOverlay {
+  private static readonly slowTime = 500;
+
+  @Element() hostElement: HTMLIxMapNavigationOverlayElement;
+
   /**
    * Title of overlay
    */
@@ -34,6 +47,31 @@ export class MapNavigationOverlay {
    * Event closed
    */
   @Event() closeClick: EventEmitter;
+
+  componentWillLoad() {
+    anime({
+      targets: this.hostElement,
+      duration: MapNavigationOverlay.slowTime,
+      backdropFilter: [0, 'blur(1rem)'],
+      translateX: ['-4rem', 0],
+      opacity: [0, 1],
+      easing: 'easeOutSine',
+    });
+  }
+
+  private closeOverlay() {
+    anime({
+      targets: this.hostElement,
+      duration: MapNavigationOverlay.slowTime,
+      backdropFilter: ['blur(1rem)', 0],
+      translateX: [0, '-4rem'],
+      opacity: [1, 0],
+      easing: 'easeInSine',
+      complete: () => {
+        this.closeClick.emit();
+      },
+    });
+  }
 
   render() {
     return (
@@ -61,7 +99,7 @@ export class MapNavigationOverlay {
             invisible
             icon="close"
             size="24"
-            onClick={() => this.closeClick.emit()}
+            onClick={() => this.closeOverlay()}
           ></ix-icon-button>
         </div>
 

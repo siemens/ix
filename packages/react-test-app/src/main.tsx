@@ -34,6 +34,7 @@ import { Checkbox } from './preview-examples/checkbox';
 import { CheckboxIndeterminate } from './preview-examples/checkbox-indeterminate';
 import { Chip } from './preview-examples/chip';
 import { Datepicker } from './preview-examples/datepicker';
+import { DatepickerRange } from './preview-examples/datepicker-range';
 import { Datetimepicker } from './preview-examples/datetimepicker';
 import { DrawerFullHeight } from './preview-examples/drawer-full-height';
 import { Dropdown } from './preview-examples/dropdown';
@@ -77,7 +78,7 @@ import { Toast } from './preview-examples/toast';
 import { ToastCustom } from './preview-examples/toast-custom';
 import { Toggle } from './preview-examples/toggle';
 import { ToggleColor } from './preview-examples/toggle-color';
-import { ToggleDisabled } from './preview-examples/toggle-custom-disable';
+import { ToggleDisabled } from './preview-examples/toggle-disabled';
 import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
 import { Tree } from './preview-examples/tree';
 import { TreeCustom } from './preview-examples/tree-custom';
@@ -86,6 +87,7 @@ import { Workflow } from './preview-examples/workflow';
 import { WorkflowVertical } from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import { MapNavigationOverlay } from './preview-examples/map-navigation-overlay';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -135,6 +137,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/aggrid" element={<AGGrid />} />
       <Route path="/preview/chip" element={<Chip />} />
       <Route path="/preview/datepicker" element={<Datepicker />} />
+      <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
       <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
       <Route
         path="/preview/drawer-full-height"
@@ -217,6 +220,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element={<BasicNavigationWithoutHeader />}
       />
       <Route path="/preview/map-navigation" element={<MapNavigation />} />
+      <Route path="/preview/map-navigation-overlay" element={<MapNavigationOverlay />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

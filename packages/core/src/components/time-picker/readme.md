@@ -11,14 +11,18 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property            | Attribute             | Description               | Type                             | Default     |
-| ------------------- | --------------------- | ------------------------- | -------------------------------- | ----------- |
-| `corners`           | `corners`             | Set corners style         | `"left" \| "right" \| "rounded"` | `'rounded'` |
-| `individual`        | `individual`          | set styles                | `boolean`                        | `true`      |
-| `showHour`          | `show-hour`           | Show Hour Input           | `boolean`                        | `false`     |
-| `showMinutes`       | `show-minutes`        | Show Minutes Input        | `boolean`                        | `false`     |
-| `showSeconds`       | `show-seconds`        | Show Seconds Input        | `boolean`                        | `false`     |
-| `showTimeReference` | `show-time-reference` | Show Time Reference Input | `boolean`                        | `false`     |
+| Property            | Attribute             | Description                                                                                          | Type                             | Default                                                                                 |
+| ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| `corners`           | `corners`             | Corner style                                                                                         | `"left" \| "right" \| "rounded"` | `'rounded'`                                                                             |
+| `format`            | `format`              | Format of time string                                                                                | `string`                         | `'TT'`                                                                                  |
+| `individual`        | `individual`          | <span style="color:red">**[DEPRECATED]**</span> - will get removed with next major release<br/><br/> | `boolean`                        | `true`                                                                                  |
+| `showHour`          | `show-hour`           | Show hour input                                                                                      | `boolean`                        | `false`                                                                                 |
+| `showMinutes`       | `show-minutes`        | Show minutes input                                                                                   | `boolean`                        | `false`                                                                                 |
+| `showSeconds`       | `show-seconds`        | Show seconds input                                                                                   | `boolean`                        | `false`                                                                                 |
+| `showTimeReference` | `show-time-reference` | Show time reference input                                                                            | `any`                            | `undefined`                                                                             |
+| `textSelectTime`    | `text-select-time`    | Text of date select button                                                                           | `string`                         | `'Done'`                                                                                |
+| `time`              | `time`                | Select time with format string                                                                       | `string`                         | `DateTime.now().toFormat(this.format)`                                                  |
+| `timeReference`     | `time-reference`      | Set time reference                                                                                   | `"AM" \| "PM"`                   | `DateTime.fromFormat(     this.time,     this.format   ).toFormat('a') as 'PM' \| 'AM'` |
 
 
 ## Events
@@ -27,6 +31,19 @@ SPDX-License-Identifier: MIT
 | ------------ | ----------------- | --------------------- |
 | `done`       | Time event        | `CustomEvent<string>` |
 | `timeChange` | Time change event | `CustomEvent<string>` |
+
+
+## Methods
+
+### `getCurrentTime() => Promise<string>`
+
+Get current time
+
+#### Returns
+
+Type: `Promise<string>`
+
+
 
 
 ----------------------------------------------

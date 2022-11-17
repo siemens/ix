@@ -126,12 +126,4 @@
     overflow: hidden;
     z-index: calc(var(--theme-z-index-sticky) - 1);
   }
-
-  #overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: calc(#{var(--theme-z-index-sticky)} + 1);
-  }
 }

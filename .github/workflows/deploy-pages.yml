@@ -24,7 +24,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     container:
-      image: node:16.16.0
+      image: node:18.12.1
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
