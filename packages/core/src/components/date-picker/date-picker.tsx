@@ -156,8 +156,6 @@ export class DatePicker {
    */
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
-  private counterSelectionProps = 0;
-
   get year() {
     return DateTime.fromFormat(this.from, this.format).year;
   }
@@ -197,18 +195,6 @@ export class DatePicker {
     }
   }
 
-  private selectionProps() {
-    if (this.year !== null && this.counterSelectionProps === 0) {
-      this.yearValue = this.year;
-      this.counterSelectionProps++;
-    }
-
-    if (this.month !== null && this.counterSelectionProps === 0) {
-      this.monthValue = this.month;
-      this.counterSelectionProps++;
-    }
-  }
-
   private getStartOfMonth(
     year = DateTime.local().get('year'),
     month = DateTime.local().get('month')
@@ -231,7 +217,6 @@ export class DatePicker {
   }
 
   private calculateCalendar() {
-    this.selectionProps();
     const start = this.getStartOfMonth(this.yearValue, this.monthValue);
     const end = this.getEndOfMonth(this.yearValue, this.monthValue);
     const totalDays = this.getDaysInMonth(start, end);
@@ -424,6 +409,15 @@ export class DatePicker {
       (!_minDate || _minDate.toISO() <= dateIso) &&
       (!_maxDate || _maxDate.toISO() >= dateIso)
     );
+  }
+
+  componentWillLoad() {
+    if (this.year !== null) {
+      this.yearValue = this.year;
+    }
+    if (this.month) {
+      this.monthValue = this.month;
+    }
   }
 
   componentWillRender() {
