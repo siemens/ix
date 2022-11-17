@@ -15,4 +15,11 @@ regressionTest.describe('breadcrumb', () => {
     await page.goto(`breadcrumb/test/basic`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('lazyLoaded', async ({ page }) => {
+    await page.goto(`breadcrumb/test/lazyLoaded`);
+    await page.locator('text=Item3').click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

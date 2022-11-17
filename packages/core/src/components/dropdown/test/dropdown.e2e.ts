@@ -16,8 +16,25 @@ regressionTest.describe('dropdown', () => {
 
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.05,
+    });
+  });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto(`dropdown/test/overflow`);
+
+    const menuHandle = await page.waitForSelector('.dropdown-menu.show');
+
+    page.evaluate((menuElement) => {
+      menuElement.scrollTop = 9999;
+      menuElement.classList.add('__SCROLLED__');
+    }, menuHandle);
+
+    await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
     });
   });
 });

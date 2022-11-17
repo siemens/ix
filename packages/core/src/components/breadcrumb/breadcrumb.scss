@@ -185,8 +185,3 @@
   @include breadcrumb('btn');
   @include breadcrumb('ghost');
 }
-
-.dropdown-overflow .dropdown-menu {
-  max-height: 25rem;
-  overflow-y: auto;
-}
