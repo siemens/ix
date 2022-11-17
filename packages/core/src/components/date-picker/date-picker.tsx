@@ -195,16 +195,6 @@ export class DatePicker {
     }
   }
 
-  private selectionProps() {
-    if (this.year !== null) {
-      this.yearValue = this.year;
-    }
-
-    if (this.month !== null) {
-      this.monthValue = this.month;
-    }
-  }
-
   private getStartOfMonth(
     year = DateTime.local().get('year'),
     month = DateTime.local().get('month')
@@ -227,7 +217,6 @@ export class DatePicker {
   }
 
   private calculateCalendar() {
-    this.selectionProps();
     const start = this.getStartOfMonth(this.yearValue, this.monthValue);
     const end = this.getEndOfMonth(this.yearValue, this.monthValue);
     const totalDays = this.getDaysInMonth(start, end);
@@ -286,7 +275,6 @@ export class DatePicker {
     } else {
       this.monthValue += number;
     }
-
     this.calculateCalendar();
   }
 
@@ -421,6 +409,15 @@ export class DatePicker {
       (!_minDate || _minDate.toISO() <= dateIso) &&
       (!_maxDate || _maxDate.toISO() >= dateIso)
     );
+  }
+
+  componentWillLoad() {
+    if (this.year !== null) {
+      this.yearValue = this.year;
+    }
+    if (this.month) {
+      this.monthValue = this.month;
+    }
   }
 
   componentWillRender() {
