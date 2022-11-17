@@ -53,7 +53,9 @@
     display: flex;
     position: relative;
     align-items: flex-start;
-    height: calc(#{$x-large-space} - 2 * var(--theme-input--border-thickness));
+    min-height: calc(
+      #{$x-large-space} - 2 * var(--theme-input--border-thickness)
+    );
     width: 100%;
 
     &.allow-clear {
