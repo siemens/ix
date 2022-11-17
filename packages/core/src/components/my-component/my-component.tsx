@@ -16,40 +16,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <div
-          style={{
-            display: 'block',
-            position: 'relative',
-            width: '100rem',
-            height: '35%',
-            backgroundColor: 'lightgrey',
-          }}
-        >
-          <ix-breadcrumb>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-            <ix-breadcrumb-item label="Test 1"></ix-breadcrumb-item>
-          </ix-breadcrumb>
-        </div>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
