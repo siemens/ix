@@ -5436,9 +5436,15 @@
           "mutable": false,
           "attr": "bottom",
           "reflectToAttr": false,
-          "docs": "Place tab on bottom",
-          "docsTags": [],
+          "docs": "Caution: this is no longer working. Please use slot=\"bottom\" instead.\n\nPlace tab on bottom",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- replaced by slot based implementation"
+            }
+          ],
           "default": "false",
+          "deprecation": "- replaced by slot based implementation",
           "values": [
             {
               "type": "boolean"
