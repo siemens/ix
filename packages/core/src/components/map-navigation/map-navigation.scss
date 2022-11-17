@@ -40,8 +40,8 @@
     min-width: $sidebarWidth;
     height: 100%;
     left: 4rem;
-    background-color: var(--theme-color-1);
-    border-inline-end: 1px solid
+    background-color: var(--theme-map-navigation--background);
+    border-inline-end: 0.125rem solid
       var(--theme-map-navigation-separator--background);
     z-index: 99;
   }
