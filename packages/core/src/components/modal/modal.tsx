@@ -81,7 +81,7 @@ export class Modal {
   @Prop() icon: string;
 
   /**
-   * Color of the header {@link icon}
+   * Color of the header {@see ix-icon}
    */
   @Prop() iconColor: NotificationColor = 'color-std-text';
 
