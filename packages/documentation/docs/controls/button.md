@@ -43,7 +43,7 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
 
 ## Usage
 
-### Primary Button
+### Primary
 
 <Preview name="buttons">
   <TabItem value="angular" key="angular">
@@ -57,7 +57,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Secondary Button
+### Primary Outline
+
+:::info
+
+Will be used in UX context as **Secondary**
+
+:::
 
 <Preview name="button-secondary">
   <TabItem value="angular" key="angular">
@@ -71,7 +77,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Ghost Button
+### Primary Ghost
+
+:::info
+
+Will be used in UX context as **Ghost**
+
+:::
 
 <Preview name="button-ghost">
   <TabItem value="angular" key="angular">
@@ -85,7 +97,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Grey Button
+### Secondary
+
+:::info
+
+Will be used in UX context as **Grey button**
+
+:::
 
 <Preview name="button-grey">
   <TabItem value="angular" key="angular">
@@ -99,7 +117,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Grey Secondary Button
+### Secondary Outline
+
+:::info
+
+Will be used in UX context as **Grey secondary**
+
+:::
 
 <Preview name="button-grey-secondary">
   <TabItem value="angular" key="angular">
@@ -113,7 +137,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Grey Ghost Button
+### Secondary Ghost
+
+:::info
+
+Will be used in UX context as **Grey ghost**
+
+:::
 
 <Preview name="button-grey-ghost">
   <TabItem value="angular" key="angular">
@@ -127,7 +157,13 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Button selected
+### Selectable button
+
+:::info
+
+Only available in secondary ghost state
+
+:::
 
 <Preview name="button-selected">
   <TabItem value="angular" key="angular">
@@ -169,7 +205,7 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
 </Preview>
 
-### Button icon
+### Icon button
 
 <Preview name="button-with-icon">
   <TabItem value="angular" key="angular">
