@@ -1,3 +1,24 @@
+# [1.1.0-beta.6](https://github.com/siemens/ix/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2022-11-21)
+
+
+### Bug Fixes
+
+* **core/button:** add space between leading icon and text ([#149](https://github.com/siemens/ix/issues/149)) ([8392ef6](https://github.com/siemens/ix/commit/8392ef6d979d330571bba6140bcec7f9f76aca90))
+* **core/datepicker:** date picker months and years ([#145](https://github.com/siemens/ix/issues/145)) ([e42cae2](https://github.com/siemens/ix/commit/e42cae247a77f9c598a944eeb7122e6aa3ca3e5e))
+* **core/datepicker:** remove luxon typing from component interface ([#135](https://github.com/siemens/ix/issues/135)) ([0cafe03](https://github.com/siemens/ix/commit/0cafe030828d0e221993fd2ffe5831ea78c9a87b))
+* **core/dropdown:** show scrollbar ([#129](https://github.com/siemens/ix/issues/129)) ([d801ddd](https://github.com/siemens/ix/commit/d801dddae7eae7eccc83041139c8005187739704))
+* **core/map-navigation:** adjust styling of sidepanel ([#150](https://github.com/siemens/ix/issues/150)) ([ae79b20](https://github.com/siemens/ix/commit/ae79b20bd29785ff94dd8b3032fbc5f0d7297cbc))
+* **core/menu-item:** deprecate bottom property in favor of slot based implementation ([#147](https://github.com/siemens/ix/issues/147)) ([6873415](https://github.com/siemens/ix/commit/68734159d07487795dcd1feb87752f82e6b70a43))
+* **core:** bump stencil to current version ([#139](https://github.com/siemens/ix/issues/139)) ([0e0e669](https://github.com/siemens/ix/commit/0e0e6696111cb51e635068575c48efd78666dbec))
+* **core:** eol uniformization ([#148](https://github.com/siemens/ix/issues/148)) ([8088522](https://github.com/siemens/ix/commit/808852242fbbeed42e2944039007a9e075c689ab))
+
+
+### Features
+
+* **core/map-navigation:** overlay can be configured via slot attribute ([#133](https://github.com/siemens/ix/issues/133)) ([be58975](https://github.com/siemens/ix/commit/be589758a6e63b6e8069603754c1b06f9e012507))
+
+
+
 # [1.1.0-beta.5](https://github.com/siemens/ix/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2022-11-14)
 
 
