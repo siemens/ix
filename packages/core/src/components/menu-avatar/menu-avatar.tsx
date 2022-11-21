@@ -8,17 +8,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
 } from '@stencil/core';
-import { Popover } from '../utils/popover.util';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -27,8 +24,6 @@ import { Popover } from '../utils/popover.util';
 })
 export class MenuAvatar {
   @Element() hostElement: HTMLIxMenuAvatarElement;
-
-  @State() displayMenu: boolean;
 
   /**
    * First line of text
@@ -50,32 +45,16 @@ export class MenuAvatar {
    */
   @Event() logoutClick: EventEmitter;
 
-  private outsideListener: Popover;
-
-  @Listen('click', { passive: true })
-  toggleMenu() {
-    this.outsideListener.open();
-    this.displayMenu = !this.displayMenu;
-  }
-
-  componentDidLoad() {
-    this.outsideListener = new Popover(
-      this.hostElement,
-      this.hostElement.querySelector('ix-dropdown'),
-      () => {
-        this.displayMenu = false;
-      }
-    );
-  }
-
-  disconnectedCallback() {
-    this.outsideListener?.destroy();
-  }
+  private avatarElementId = 'ix-menu-avatar-id';
 
   render() {
     return (
       <Host>
-        <li class="nav-item top-item avatar no-hover" title={this.top}>
+        <li
+          class="nav-item top-item avatar no-hover"
+          title={this.top}
+          id={this.avatarElementId}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -106,7 +85,11 @@ export class MenuAvatar {
             </span>
           </div>
         </li>
-        <ix-dropdown show={this.displayMenu}>
+        <ix-dropdown
+          trigger={this.avatarElementId}
+          placement={'right-start'}
+          positioningStrategy={'absolute'}
+        >
           <slot></slot>
           <ix-menu-avatar-item
             label={this.i18nLogout}

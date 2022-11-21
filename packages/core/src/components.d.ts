@@ -12,7 +12,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
-import { Placement, PositioningStrategy } from "@popperjs/core";
+import { Placement } from "./components/dropdown/placement";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { TypedEvent } from "./components/utils/typed-event";
@@ -20,6 +20,7 @@ import { ModalConfig } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
+import { Placement as Placement1 } from "@popperjs/core";
 export namespace Components {
     interface IxAnimatedTab {
         /**
@@ -418,6 +419,7 @@ export namespace Components {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth": boolean;
         /**
@@ -444,7 +446,7 @@ export namespace Components {
         /**
           * Position strategy
          */
-        "positioningStrategy": PositioningStrategy;
+        "positioningStrategy": 'absolute' | 'fixed';
         /**
           * Show dropdown
          */
@@ -1436,7 +1438,7 @@ export namespace Components {
         /**
           * Placement of the tooltip
          */
-        "placement": Placement;
+        "placement": Placement1;
     }
     interface IxWorkflowStep {
         /**
@@ -2552,6 +2554,7 @@ declare namespace LocalJSX {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth"?: boolean;
         /**
@@ -2582,7 +2585,7 @@ declare namespace LocalJSX {
         /**
           * Position strategy
          */
-        "positioningStrategy"?: PositioningStrategy;
+        "positioningStrategy"?: 'absolute' | 'fixed';
         /**
           * Show dropdown
          */
@@ -3642,7 +3645,7 @@ declare namespace LocalJSX {
         /**
           * Placement of the tooltip
          */
-        "placement"?: Placement;
+        "placement"?: Placement1;
     }
     interface IxWorkflowStep {
         /**

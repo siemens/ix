@@ -232,13 +232,18 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -364,7 +369,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown",
@@ -378,6 +385,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-breadcrumb"
         ]
       },
       "props": [
@@ -471,9 +481,15 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-breadcrumb-item"
+        ]
+      },
       "props": [
         {
           "name": "icon",
@@ -1301,7 +1317,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -1322,6 +1339,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -2332,8 +2352,14 @@
           "attr": "adjust-dropdown-width-to-reference-width",
           "reflectToAttr": false,
           "docs": "Adjust dropdown width to the parent width",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed. Not used anymore"
+            }
+          ],
           "default": "false",
+          "deprecation": "Will be removed. Not used anymore",
           "values": [
             {
               "type": "boolean"
@@ -2437,7 +2463,7 @@
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
           "docsTags": [],
-          "default": "'bottom-end'",
+          "default": "'bottom-start'",
           "values": [
             {
               "value": "auto",
@@ -2617,7 +2643,8 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -2642,6 +2669,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -3266,7 +3296,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-icon-button",
@@ -3285,6 +3317,9 @@
         ],
         "ix-group-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-group"
         ]
       },
       "props": [
@@ -3526,7 +3561,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-group"
+        "ix-group",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3536,6 +3572,9 @@
           "ix-icon"
         ],
         "ix-group": [
+          "ix-group-item"
+        ],
+        "my-component": [
           "ix-group-item"
         ]
       },
@@ -4581,7 +4620,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown"
@@ -4590,6 +4631,9 @@
         "ix-menu": [
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -5253,7 +5297,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown",
         "ix-menu-avatar-item"
@@ -5268,6 +5314,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-avatar"
         ]
       },
       "props": [
@@ -5336,13 +5385,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/menu-avatar-item",
@@ -5358,7 +5401,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -5371,6 +5415,9 @@
           "ix-icon"
         ],
         "ix-menu-avatar": [
+          "ix-menu-avatar-item"
+        ],
+        "my-component": [
           "ix-menu-avatar-item"
         ]
       },
@@ -5439,11 +5486,15 @@
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
-        "ix-menu"
+        "ix-menu",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -6446,7 +6497,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6475,6 +6528,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-select"
         ]
       },
       "props": [
@@ -6692,7 +6748,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -6705,6 +6762,9 @@
           "ix-icon"
         ],
         "ix-select": [
+          "ix-select-item"
+        ],
+        "my-component": [
           "ix-select-item"
         ]
       },
@@ -6902,7 +6962,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown"
@@ -6911,6 +6973,9 @@
         "ix-split-button": [
           "ix-icon",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-split-button"
         ]
       },
       "props": [
@@ -7165,7 +7230,9 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown-item"
       ],
@@ -7175,6 +7242,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-split-button-item"
         ]
       },
       "props": [
@@ -9206,8 +9276,104 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-avatar",
+        "ix-menu-avatar-item",
+        "ix-menu-item",
+        "ix-select",
+        "ix-select-item",
+        "ix-breadcrumb",
+        "ix-breadcrumb-item",
+        "ix-date-picker",
+        "ix-group",
+        "ix-dropdown-item",
+        "ix-group-item",
+        "ix-split-button",
+        "ix-split-button-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-avatar",
+          "ix-menu-avatar-item",
+          "ix-menu-item",
+          "ix-select",
+          "ix-select-item",
+          "ix-breadcrumb",
+          "ix-breadcrumb-item",
+          "ix-date-picker",
+          "ix-group",
+          "ix-dropdown-item",
+          "ix-group-item",
+          "ix-split-button",
+          "ix-split-button-item"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-menu": [
+          "ix-menu-item",
+          "ix-dropdown"
+        ],
+        "ix-menu-avatar": [
+          "ix-dropdown",
+          "ix-menu-avatar-item"
+        ],
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown",
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-group-item"
+        ],
+        "ix-group-item": [
+          "ix-icon"
+        ],
+        "ix-split-button": [
+          "ix-icon",
+          "ix-dropdown"
+        ],
+        "ix-split-button-item": [
+          "ix-dropdown-item"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

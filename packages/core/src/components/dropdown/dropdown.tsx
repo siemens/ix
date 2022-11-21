@@ -8,11 +8,13 @@
  */
 
 import {
-  createPopper,
-  Instance as PopperInstance,
-  Placement,
-  PositioningStrategy
-} from '@popperjs/core';
+  autoPlacement,
+  autoUpdate,
+  computePosition,
+  ComputePositionConfig,
+  inline,
+  shift,
+} from '@floating-ui/dom';
 import {
   Component,
   Element,
@@ -23,8 +25,9 @@ import {
   Listen,
   Method,
   Prop,
-  Watch
+  Watch,
 } from '@stencil/core';
+import { BasePlacement, Placement, PlaceMentWithAlignment } from './placement';
 
 @Component({
   tag: 'ix-dropdown',
@@ -58,12 +61,12 @@ export class Dropdown {
   /**
    * Placement of the dropdown
    */
-  @Prop() placement: Placement = 'bottom-end';
+  @Prop() placement: Placement = 'bottom-start';
 
   /**
    * Position strategy
    */
-  @Prop() positioningStrategy: PositioningStrategy = 'fixed';
+  @Prop() positioningStrategy: 'absolute' | 'fixed' = 'fixed';
 
   /**
    * Adjust dropdown width to the parent width
@@ -73,6 +76,8 @@ export class Dropdown {
 
   /**
    * Adjust dropdown width to the parent width
+   *
+   * @deprecated Will be removed. Not used anymore
    */
   @Prop() adjustDropdownWidthToReferenceWidth = false;
 
@@ -86,7 +91,8 @@ export class Dropdown {
    */
   @Event() showChanged: EventEmitter<boolean>;
 
-  private popperInstance: PopperInstance;
+  private autoUpdateCleanup: () => void = null;
+
   private triggerElement?: Element;
   private anchorElement?: Element;
 
@@ -102,60 +108,62 @@ export class Dropdown {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
-  private resolveElement(prop: string | HTMLElement) {
-    if (typeof prop === 'string') {
-      return document.querySelector('#' + prop);
-    }
-    return prop;
-  }
-
-  async componentDidLoad() {
-    if (this.trigger) {
-      this.registerListener(this.trigger);
+  private async registerListener(element: string | HTMLElement) {
+    this.triggerElement = await this.resolveElement(element);
+    if (this.triggerElement) {
+      this.triggerElement.addEventListener('click', this.openBind);
     }
   }
 
-  private registerListener(element: string | HTMLElement) {
-    this.triggerElement = this.resolveElement(element);
-    this.triggerElement.addEventListener('click', this.openBind);
-  }
-
-  private unregisterListener(element: string | HTMLElement) {
-    const trigger = this.resolveElement(element);
+  private async unregisterListener(element: string | HTMLElement) {
+    const trigger = await this.resolveElement(element);
     trigger.removeEventListener('click', this.openBind);
   }
 
-  componentDidRender() {
-    this.popperInstance?.update();
+  private getAlignment() {
+    if (this.placement.includes('-end')) {
+      return 'end';
+    } else if (this.placement.includes('-start')) {
+      return 'start';
+    }
+
+    return undefined;
+  }
+
+  private resolveElement(element: string | HTMLElement): Promise<Element> {
+    if (typeof element !== 'string') {
+      return Promise.resolve(element);
+    }
+
+    const selector = `#${element}`;
+    return new Promise((resolve) => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver(() => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector));
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    });
   }
 
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (newShow) {
-      this.anchorElement = this.anchor
+      this.anchorElement = await (this.anchor
         ? this.resolveElement(this.anchor)
-        : this.resolveElement(this.trigger);
+        : this.resolveElement(this.trigger));
 
       if (this.anchorElement) {
-        this.popperInstance?.destroy();
-        this.popperInstance = createPopper(
-          this.anchorElement,
-          this.dropdownRef,
-          {
-            placement: this.placement,
-            strategy: this.positioningStrategy,
-            onFirstUpdate: ({ elements }) => {
-              if (
-                this.adjustDropdownWidthToReferenceWith ||
-                this.adjustDropdownWidthToReferenceWidth
-              ) {
-                const { popper, reference } = elements;
-                const width = reference.getBoundingClientRect().width;
-                popper.style.width = `${width}px`;
-              }
-            },
-          }
-        );
+        this.applyDropdownPosition();
       }
     }
   }
@@ -220,8 +228,74 @@ export class Dropdown {
     this.showChanged.emit(this.show);
   }
 
+  private async applyDropdownPosition() {
+    if (this.anchorElement && this.dropdownRef) {
+      let positionConfig: Partial<ComputePositionConfig> = {
+        strategy: this.positioningStrategy,
+        middleware: [],
+      };
+
+      if (this.placement.includes('auto')) {
+        positionConfig.middleware.push(
+          autoPlacement({
+            alignment: this.getAlignment(),
+          })
+        );
+      } else {
+        positionConfig.placement = this.placement as
+          | BasePlacement
+          | PlaceMentWithAlignment;
+      }
+
+      positionConfig.middleware = [
+        ...positionConfig.middleware,
+        inline(),
+        shift(),
+      ];
+      if (this.autoUpdateCleanup) {
+        this.autoUpdateCleanup();
+        this.autoUpdateCleanup = null;
+      }
+      this.autoUpdateCleanup = autoUpdate(
+        this.anchorElement,
+        this.dropdownRef,
+        async () => {
+          const computeResponse = await computePosition(
+            this.anchorElement,
+            this.dropdownRef,
+            positionConfig
+          );
+          Object.assign(this.dropdownRef.style, {
+            top: '0',
+            left: '0',
+            transform: `translate(${Math.round(
+              computeResponse.x
+            )}px,${Math.round(computeResponse.y)}px)`,
+          });
+        },
+        {
+          ancestorResize: true,
+          ancestorScroll: true,
+          elementResize: true,
+        }
+      );
+    }
+  }
+
+  async componentDidLoad() {
+    if (this.trigger) {
+      this.registerListener(this.trigger);
+    }
+  }
+
+  async componentDidRender() {
+    await this.applyDropdownPosition();
+  }
+
   disconnectedCallback() {
-    this.popperInstance?.destroy();
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
+    }
   }
 
   /**
@@ -229,7 +303,7 @@ export class Dropdown {
    */
   @Method()
   async updatePosition() {
-    await this.popperInstance?.update();
+    this.applyDropdownPosition();
   }
 
   render() {
@@ -243,6 +317,7 @@ export class Dropdown {
         style={{
           margin: '0',
           minWidth: '0px',
+          position: this.positioningStrategy,
         }}
       >
         <div style={{ display: 'contents' }}>

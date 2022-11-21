@@ -43,6 +43,7 @@
     "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.0.6",
     "@stencil/core": "~2.19.2",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",

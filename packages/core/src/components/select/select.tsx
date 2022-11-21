@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -409,9 +409,8 @@ export class Select {
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
-          placement="bottom"
-          positioningStrategy={'fixed'}
-          adjustDropdownWidthToReferenceWidth={true}
+          placement="bottom-start"
+          positioningStrategy={'absolute'}
         >
           <div class="select-list-header">{this.i18nSelectListHeader}</div>
           <slot></slot>

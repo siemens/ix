@@ -8,21 +8,17 @@
  */
 
 import {
-    createPopper,
-    Instance as PopperInstance,
-    Placement
-} from '@popperjs/core';
-import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
+import { Placement } from '../dropdown/placement';
 import { Buttons } from '../utils/button-variants';
 
 @Component({
@@ -31,7 +27,7 @@ import { Buttons } from '../utils/button-variants';
   scoped: true,
 })
 export class SplitButton {
-  @Element() hostElement: HTMLIxSplitButtonElement;
+  @Element() hostElement!: HTMLIxSplitButtonElement;
 
   /**
    * Color variant of button
@@ -87,8 +83,8 @@ export class SplitButton {
    */
   @Event() buttonClick: EventEmitter<MouseEvent>;
 
-  private popover: HTMLIxDropdownElement;
-  private popperInstance: PopperInstance;
+  private triggerElement: HTMLElement;
+  private dropdownElement: HTMLIxDropdownElement;
 
   get splitItems() {
     return Array.from(
@@ -96,44 +92,14 @@ export class SplitButton {
     );
   }
 
-  private clickOutside(e: Event) {
-    if (!this.hostElement.contains(e.target as HTMLElement)) {
-      this.toggle = false;
+  private linkTriggerRef() {
+    if (this.triggerElement && this.dropdownElement) {
+      this.dropdownElement.trigger = this.triggerElement;
     }
   }
 
   componentDidLoad() {
-    const element = this.hostElement.querySelector('.anchor');
-    this.popover = this.hostElement.querySelector('ix-dropdown');
-    this.popperInstance = createPopper(element, this.popover, {
-      strategy: 'fixed',
-      placement: this.placement,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 0],
-          },
-        },
-        {
-          name: 'flip',
-          options: {
-            padding: 8,
-          },
-        },
-      ],
-    });
-
-    window.addEventListener('click', this.clickOutside.bind(this));
-  }
-
-  disconnectedCallback() {
-    this.popperInstance?.destroy();
-    window.removeEventListener('click', this.clickOutside.bind(this));
-  }
-
-  private toggleDropdown() {
-    this.toggle = !this.toggle;
+    this.linkTriggerRef();
   }
 
   render() {
@@ -154,6 +120,7 @@ export class SplitButton {
           {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
         </button>
         <button
+          ref={(r) => (this.triggerElement = r)}
           class={{
             ...getButtonClasses(
               this.variant,
@@ -168,10 +135,9 @@ export class SplitButton {
               anchor: true,
             },
           }}
-          onClick={() => this.toggleDropdown()}
         >
           <ix-icon name={this.splitIcon} />
-          <ix-dropdown show={this.toggle}>
+          <ix-dropdown ref={(r) => (this.dropdownElement = r)}>
             <slot></slot>
           </ix-dropdown>
         </button>
