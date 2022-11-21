@@ -56,6 +56,9 @@ export class MapNavigationOverlay {
       translateX: ['-4rem', 0],
       opacity: [0, 1],
       easing: 'easeOutSine',
+      begin: () => {
+        this.hostElement.classList.remove('d-none');
+      }
     });
   }
 
@@ -69,6 +72,7 @@ export class MapNavigationOverlay {
       easing: 'easeInSine',
       complete: () => {
         this.closeClick.emit();
+        this.hostElement.classList.add('d-none');
       },
     });
   }
