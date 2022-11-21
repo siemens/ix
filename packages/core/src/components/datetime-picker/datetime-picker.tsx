@@ -55,7 +55,7 @@ export class DatePicker {
 
   /**
    * Date format string.
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    *
    * @since 1.1.0
    */
@@ -63,7 +63,7 @@ export class DatePicker {
 
   /**
    * Time format string.
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    *
    * @since 1.1.0
    */
@@ -97,8 +97,9 @@ export class DatePicker {
 
   /**
    * Show time reference input
+   * Time reference is default aligned with @see {this.timeFormat}
    *
-   * @since 1.1.0 time reference is default aligned with formt tt
+   * @since 1.1.0
    */
   @Prop() showTimeReference = undefined;
 
@@ -176,8 +177,8 @@ export class DatePicker {
     this.dateChange.emit(date);
 
     const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.start?.toFormat(this.dateFormat);
-    this._to = currentDateTime.end?.toFormat(this.dateFormat);
+    this._from = currentDateTime.start;
+    this._to = currentDateTime.end;
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
@@ -187,7 +188,7 @@ export class DatePicker {
     this.timeChange.emit(time);
 
     const currentDateTime = await this.timePickerElement.getCurrentTime();
-    this._time = currentDateTime.toFormat(this.timeFormat);
+    this._time = currentDateTime;
   }
 
   componentDidLoad() {

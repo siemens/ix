@@ -6,14 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-{
-  "root": false,
-  "extends": ["./../../../../.eslintrc.json"],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "env": {
-    "es6": true
-  }
-}
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-toggle-disabled',
+  template: ` <ix-toggle disabled></ix-toggle> `,
+})
+export class ToggleCustomDisabled {}

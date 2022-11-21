@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Method,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 
@@ -47,7 +47,6 @@ export class MapNavigation {
   @Prop() hideContextMenu = true;
 
   @State() isSidebarOpen = true;
-
 
   /**
    * Navigation toggled
@@ -81,7 +80,6 @@ export class MapNavigation {
 
   componentDidRender() {
     this.appendMenu();
-    // this.openOverlay('Test', document.createElement('ix-breadcrumb'), 'info', 'color-warning');
     this.closeOverlay();
   }
 
@@ -142,6 +140,7 @@ export class MapNavigation {
 
   /**
    * Open a overlay inside content area
+   * @deprecated will get removed with next major release in favor of slot based approach
    *
    * @param name
    * @param component
@@ -178,6 +177,7 @@ export class MapNavigation {
 
   /**
    * Close current shown overlay
+   * @deprecated will get removed with next major release in favor of slot based approach
    */
   @Method()
   async closeOverlay() {
@@ -189,6 +189,9 @@ export class MapNavigation {
       opacity: [1, 0],
       easing: 'easeInSine',
       complete: () => {
+        if (!this.overlay) {
+          return;
+        }
         this.overlay.firstChild?.remove();
         this.overlay.classList.add('d-none');
       },
@@ -236,7 +239,6 @@ export class MapNavigation {
             <main>
               <slot></slot>
             </main>
-            <div id="overlay"></div>
           </div>
         </div>
       </Host>

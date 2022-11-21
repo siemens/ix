@@ -194,7 +194,7 @@ export const config: Config = {
 
         fs.writeFileSync(
           'component-doc.json',
-          JSON.stringify(docs, undefined, 2)
+          JSON.stringify(docs, undefined, 2).replace(/(?:\\[r])+/g, '')
         );
       },
     },

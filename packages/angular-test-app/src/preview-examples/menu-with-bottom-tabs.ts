@@ -10,7 +10,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle-custom-disabled',
-  template: ` <ix-toggle disabled></ix-toggle> `,
+  selector: 'app-menu-with-bottom-tabs',
+  template: `
+    <ix-menu>
+      <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
+      <ix-menu-item tab-icon="info" slot="bottom"> Bottom tab </ix-menu-item>
+    </ix-menu>
+  `,
 })
-export class ToggleCustomDisabled {}
+export class VerticalTabs {}

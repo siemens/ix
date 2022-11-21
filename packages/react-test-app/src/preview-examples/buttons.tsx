@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton } from '@siemens/ix-react';
+import { IxButton, IxIcon } from '@siemens/ix-react';
 import React from 'react';
 
 export const Buttons: React.FC = () => {
@@ -25,6 +25,21 @@ export const Buttons: React.FC = () => {
       <IxButton className="m-1" invisible>
         Button
       </IxButton>
+
+      <div>
+        <IxButton class="m-1" variant="Primary">
+          <IxIcon name="star"></IxIcon>Button
+        </IxButton>
+        <IxButton class="m-1" variant="Secondary">
+          <IxIcon name="star"></IxIcon>Button
+        </IxButton>
+        <IxButton class="m-1" outline>
+          <IxIcon name="star"></IxIcon>Button
+        </IxButton>
+        <IxButton class="m-1" ghost>
+          <IxIcon name="star"></IxIcon>Button
+        </IxButton>
+      </div>
     </>
   );
 };

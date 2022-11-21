@@ -31,7 +31,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "~2.19.2"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
@@ -39,8 +39,8 @@
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
-    "@stencil/sass": "~1.5.2",
-    "@siemens/ix": "~1.1.0-beta.5"
+    "@siemens/ix": "~1.1.0-beta.5",
+    "@stencil/sass": "~2.0.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",

@@ -34,7 +34,7 @@ export class DatePicker {
 
   /**
    * Date format string.
-   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
@@ -195,16 +195,6 @@ export class DatePicker {
     }
   }
 
-  private selectionProps() {
-    if (this.year !== null) {
-      this.yearValue = this.year;
-    }
-
-    if (this.month !== null) {
-      this.monthValue = this.month;
-    }
-  }
-
   private getStartOfMonth(
     year = DateTime.local().get('year'),
     month = DateTime.local().get('month')
@@ -227,7 +217,6 @@ export class DatePicker {
   }
 
   private calculateCalendar() {
-    this.selectionProps();
     const start = this.getStartOfMonth(this.yearValue, this.monthValue);
     const end = this.getEndOfMonth(this.yearValue, this.monthValue);
     const totalDays = this.getDaysInMonth(start, end);
@@ -286,7 +275,6 @@ export class DatePicker {
     } else {
       this.monthValue += number;
     }
-
     this.calculateCalendar();
   }
 
@@ -423,6 +411,15 @@ export class DatePicker {
     );
   }
 
+  componentWillLoad() {
+    if (this.year !== null) {
+      this.yearValue = this.year;
+    }
+    if (this.month) {
+      this.monthValue = this.month;
+    }
+  }
+
   componentWillRender() {
     this.calculateCalendar();
   }
@@ -433,8 +430,8 @@ export class DatePicker {
   @Method()
   async getCurrentDate() {
     return {
-      start: this.start,
-      end: this.end,
+      start: this.start?.toFormat(this.format),
+      end: this.end?.toFormat(this.format),
     };
   }
 

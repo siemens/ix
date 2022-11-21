@@ -21,7 +21,11 @@ export class MenuItem {
   @Prop() home = false;
 
   /**
+   * Caution: this is no longer working. Please use slot="bottom" instead.
+   *
    * Place tab on bottom
+   *
+   * @deprecated - replaced by slot based implementation
    */
   @Prop() bottom = false;
 

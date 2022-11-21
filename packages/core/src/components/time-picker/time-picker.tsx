@@ -16,7 +16,7 @@ import {
   Host,
   Method,
   Prop,
-  State,
+  State
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -117,7 +117,7 @@ export class TimePicker {
     return this._time.second;
   }
 
-  private _time: DateTime = DateTime.fromFormat(this.time, this.format);
+  private _time: DateTime = DateTime.now();
 
   private updateInput(
     step: 'up' | 'down',
@@ -166,6 +166,7 @@ export class TimePicker {
   }
 
   componentWillLoad() {
+    this._time = DateTime.fromFormat(this.time, this.format);
     if (this.showTimeReference === undefined) {
       const matchedKeys = Object.keys(
         DateTime.fromFormatExplain(this.time, this.format).matches
@@ -179,7 +180,7 @@ export class TimePicker {
    */
   @Method()
   async getCurrentTime() {
-    return this._time;
+    return this._time.toFormat(this.format);
   }
 
   render() {

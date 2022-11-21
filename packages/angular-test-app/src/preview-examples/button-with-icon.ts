@@ -11,6 +11,25 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-button-with-icon',
-  template: ` <ix-icon-button icon="star"> </ix-icon-button> `,
+  template: ` <div class="m-1">
+  <ix-icon-button class="m-1" icon="info" variant="Primary"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" variant="Secondary"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" outline></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" ghost></ix-icon-button>
+</div>
+
+<div class="m-1">
+  <ix-icon-button class="m-1" icon="info" oval variant="Primary"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" oval variant="Secondary"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" oval outline></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" oval ghost></ix-icon-button>
+</div>
+
+<div class="m-1">
+  <ix-icon-button class="m-1" icon="info" size="12"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" size="16"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" size="24"></ix-icon-button>
+  <ix-icon-button class="m-1" icon="info" size="32"></ix-icon-button>
+</div> `,
 })
 export class ButtonWithIcon {}

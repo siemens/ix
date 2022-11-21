@@ -18,12 +18,15 @@ import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.
 
 import SourceMenu from './../../auto-generated/previews/web-component/vertical-tabs.md'
 import SourceMenuWithAvatar from './../../auto-generated/previews/web-component/vertical-tabs-with-avatar.md'
+import SourceMenuWithBottomTabs from './../../auto-generated/previews/web-component/menu-with-bottom-tabs.md'
 
 import SourceReactMenu from './../../auto-generated/previews/react/vertical-tabs.md'
 import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/vertical-tabs-with-avatar.md'
+import SourceReactMenuWithBottomTabs from './../../auto-generated/previews/react/menu-with-bottom-tabs.md'
 
 import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-tabs.md'
 import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.md'
+import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.md'
 
 # Navigation Menu
 
@@ -52,6 +55,24 @@ import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular
   </TabItem>
   <TabItem value="angular">
     <SourceAngularMenuWithAvatar />
+  </TabItem>
+</Preview>
+
+## Bottom tabs
+
+<div class="siemens-brand-section">
+  <strong>Caution</strong>: Since the old implementation using the bottom property on menu items had some problems and will not work anymore please use slot="bottom" instead.
+</div>
+
+<Preview name="menu-with-bottom-tabs" height="30rem" noMargin>
+  <TabItem value="javascript">
+    <SourceMenuWithBottomTabs />
+  </TabItem>
+  <TabItem value="react">
+    <SourceReactMenuWithBottomTabs />
+  </TabItem>
+  <TabItem value="angular">
+    <SourceAngularMenuWithBottomTabs />
   </TabItem>
 </Preview>
 
