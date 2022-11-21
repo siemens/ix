@@ -1,3 +1,7 @@
+# [1.1.0](https://github.com/siemens/ix/compare/v1.1.0-beta.6...v1.1.0) (2022-11-21)
+
+
+
 # [1.1.0-beta.6](https://github.com/siemens/ix/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2022-11-21)
 
 
