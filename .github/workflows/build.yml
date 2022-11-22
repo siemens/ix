@@ -46,6 +46,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-build
+          if-no-files-found: error
           path: |
             packages/core/dist
             packages/core/loader
