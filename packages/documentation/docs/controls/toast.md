@@ -1,5 +1,6 @@
 import Preview from '@site/src/components/Preview';
 import TabItem from '@theme/TabItem';
+import Props from './../auto-generated/ix-toast/props.md';
 
 import SourceToast from './../auto-generated/previews/web-component/toast.md';
 import SourceReactToast from './../auto-generated/previews/react/toast.md';
@@ -36,3 +37,7 @@ import SourceReactToastCustom from './../auto-generated/previews/react/toast-cus
     <SourceReactToastCustom />
   </TabItem>
 </Preview>
+
+## Properties
+
+<Props />
