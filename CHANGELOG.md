@@ -1,4 +1,9 @@
-# [1.1.0](https://github.com/siemens/ix/compare/v1.1.0-beta.6...v1.1.0) (2022-11-21)
+# [1.1.0](https://github.com/siemens/ix/compare/v1.1.0-beta.6...v1.1.0) (2022-11-22)
+
+
+### Bug Fixes
+
+* **core/map-nav-overlay:** prevent overlay from blocking DOM when hidden ([#156](https://github.com/siemens/ix/issues/156)) ([4a7a5b4](https://github.com/siemens/ix/commit/4a7a5b495a8d75b59ab024393b36761ca74b9f75))
 
 
 
