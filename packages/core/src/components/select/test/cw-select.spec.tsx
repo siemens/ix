@@ -43,6 +43,28 @@ describe('ix-select', () => {
 
   it('show add item button in list', async () => {
     const page = await newSpecPage({
+      components: [Select, SelectItem],
+      html: `<ix-select>
+        <ix-select-item data-testid="select-1" value="11" label="Item 1"></ix-select-item>
+        <ix-select-item data-testid="select-1" value="22" label="Item 2"></ix-select-item>
+      </ix-select>`,
+    });
+
+    // (page.win as any).SVGElement = class {};
+    await page.waitForChanges();
+
+    const selectElement = page.doc.querySelector('ix-select');
+
+    selectElement.selectedIndices = '22';
+    await page.waitForChanges();
+
+    expect(
+      (screen.getByTestId('input') as HTMLInputElement).value
+    ).toStrictEqual('Item 2');
+  });
+
+  it('show add item button in list', async () => {
+    const page = await newSpecPage({
       components: [Select],
       html: `<ix-select></ix-select>`,
     });
