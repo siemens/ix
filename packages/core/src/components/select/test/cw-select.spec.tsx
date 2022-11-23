@@ -30,7 +30,7 @@ describe('ix-select', () => {
           </div>
         </div>
       </div>
-      <ix-dropdown adjustdropdownwidthtoreferencewidth=\"\" placement=\"bottom\" positioningstrategy=\"fixed\" style=\"width: 100%;\">
+      <ix-dropdown placement="bottom-start" positioningstrategy="absolute" style="width: 100%;" style=\"width: 100%;\">
         <div class=\"select-list-header\">
           Please select an option
         </div>
