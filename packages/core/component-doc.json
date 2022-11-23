@@ -186,11 +186,15 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-basic-navigation"
+        "ix-basic-navigation",
+        "ix-map-navigation"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-map-navigation": [
           "ix-application-header"
         ]
       },
@@ -4326,11 +4330,13 @@
       "dependents": [],
       "dependencies": [
         "ix-map-navigation-overlay",
+        "ix-application-header",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-map-navigation": [
           "ix-map-navigation-overlay",
+          "ix-application-header",
           "ix-icon-button"
         ],
         "ix-map-navigation-overlay": [
