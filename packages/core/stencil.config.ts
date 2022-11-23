@@ -138,7 +138,6 @@ export const config: Config = {
   ],
   extras: {
     appendChildSlotFix: true,
-    slotChildNodesFix: true,
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',
