@@ -124,9 +124,17 @@ export class Select {
 
   @Watch('selectedIndices')
   watchSelectedIndices(newId: string | string[]) {
-    if (newId) {
-      this.selectValue([...newId]);
+    if (!newId) {
+      this.selectValue([]);
+      return;
     }
+
+    if (Array.isArray(newId)) {
+      this.selectValue([...newId]);
+      return;
+    }
+
+    this.selectValue([newId]);
   }
 
   @Listen('itemClick')

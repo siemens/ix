@@ -20,6 +20,7 @@
   transition: $default-time;
   padding: 0 $small-space;
   min-width: 5rem;
+  gap: $tiny-space;
 
   @include ellipsis;
 
