@@ -80,20 +80,10 @@
       width: 100%;
       padding: 0 $default-space;
 
+      --theme-app-header-logo--color: var(--theme-color-std-text);
+
       button {
         margin-left: $default-space;
-      }
-
-      .map-nav-brand-logo {
-        min-width: 4.75rem;
-        margin-inline-end: 3.5rem;
-      }
-
-      .map-nav-brand-title {
-        @include text-l-title;
-        @include ellipsis;
-        color: var(--theme-map-navigation-header--color);
-        flex-grow: 1;
       }
     }
   }

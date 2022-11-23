@@ -41,7 +41,7 @@ export class ApplicationHeader {
         <div class="logo">
           <slot name="logo"></slot>
         </div>
-        <span class="name">{this.name}</span>
+        <div class="name">{this.name}</div>
         <slot></slot>
       </Host>
     );
