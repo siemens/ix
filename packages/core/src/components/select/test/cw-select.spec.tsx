@@ -50,7 +50,6 @@ describe('ix-select', () => {
       </ix-select>`,
     });
 
-    // (page.win as any).SVGElement = class {};
     await page.waitForChanges();
 
     const selectElement = page.doc.querySelector('ix-select');
