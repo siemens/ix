@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -124,9 +124,17 @@ export class Select {
 
   @Watch('selectedIndices')
   watchSelectedIndices(newId: string | string[]) {
-    if (newId) {
-      this.selectValue([...newId]);
+    if (!newId) {
+      this.selectValue([]);
+      return;
     }
+
+    if (Array.isArray(newId)) {
+      this.selectValue([...newId]);
+      return;
+    }
+
+    this.selectValue([newId]);
   }
 
   @Listen('itemClick')
