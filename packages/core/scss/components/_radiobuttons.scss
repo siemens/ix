@@ -33,8 +33,8 @@
 
   [type='radio'] + label:before {
     content: '';
-    width: $size;
-    height: $size;
+    width: 20px;
+    height: 20px;
     float: left;
     margin-right: $small-space;
 
@@ -99,10 +99,9 @@
       display: block;
       background-color: var(--theme-radiobtn-checked--color);
       border-radius: 100%;
-      transform: scale(1.5);
       position: absolute;
-      top: 7px;
-      left: 7px;
+      top: 5px;
+      left: 5px;
     }
 
     &:hover + label:before {
