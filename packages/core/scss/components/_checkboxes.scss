@@ -28,7 +28,9 @@
   [type='checkbox']:not(:checked) + label,
   [type='checkbox']:checked + label {
     position: relative;
-    line-height: $size;
+    display: flex;
+    align-items: center;
+    line-height: 16px;
     user-select: none;
 
     color: var(--theme-checkbox-label--color);
@@ -40,8 +42,8 @@
 
   [type='checkbox'] + label:before {
     content: '';
-    width: $size;
-    height: $size;
+    width: 18px;
+    height: 18px;
     float: left;
     margin-right: $small-space;
 
@@ -99,16 +101,16 @@
 
     & + label:after {
       content: '';
-      width: 9px;
-      height: 4px;
+      width: 7px;
+      height: 2.5px;
       display: block;
       border-top: none;
       border-right: none;
       border-bottom: 1px solid var(--theme-checkbox-checked--color);
       border-left: 1px solid var(--theme-checkbox-checked--color);
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 7.5px;
+      left: 5.5px;
       transform: rotate(-45deg) scale(2);
     }
 
