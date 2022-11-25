@@ -21,6 +21,11 @@ regressionTest.describe('event-list', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('chevron', async ({ page }) => {
+    await page.goto(`event-list/test/chevron`);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('custom-height', async ({ page }) => {
     await page.goto(`event-list/test/custom-height`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
