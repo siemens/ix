@@ -84,23 +84,20 @@ export class Select {
   @Event() addItem: EventEmitter<string>;
 
   @State() dropdownShow = false;
-
   @State() value: string[];
-
   @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
+  @State() isDropdownEmpty = false;
+  @State() hasFocus = false;
+  @State() navigationItem: HTMLIxSelectItemElement;
+  @State() inputFilterText: string;
+  @State() inputValue: string;
 
   private inputRef!: HTMLInputElement;
   private dropdownRef!: HTMLIxDropdownElement;
   private addItemRef!: HTMLDivElement;
 
-  @State() isDropdownEmpty = false;
-
-  @State() hasFocus = false;
-
-  @State() navigationItem: HTMLIxSelectItemElement;
-
-  @State() inputText: string;
+  private labelMutationObserver: MutationObserver;
 
   get items() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
@@ -143,7 +140,7 @@ export class Select {
     this.emitItemClick(newId);
   }
 
-  @Watch('inputText')
+  @Watch('inputFilterText')
   watchInputText(newValue: string) {
     if (!this.editable) {
       return;
@@ -191,6 +188,13 @@ export class Select {
     });
 
     this.value = this.selectedItems.map((item) => item.label);
+
+    if (this.isSingleMode) {
+      this.inputValue = this.value?.length ? this.value[0] : null;
+      return;
+    }
+
+    this.inputValue = null;
   }
 
   componentWillLoad() {
@@ -200,6 +204,27 @@ export class Select {
           ? this.selectedIndices
           : [this.selectedIndices]
       );
+    }
+  }
+
+  componentDidLoad() {
+    this.labelMutationObserver = new MutationObserver(() => {
+      this.selectValue(
+        Array.isArray(this.selectedIndices)
+          ? this.selectedIndices
+          : [this.selectedIndices]
+      );
+    });
+    this.labelMutationObserver.observe(this.hostElement, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['label'],
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.labelMutationObserver) {
+      this.labelMutationObserver.disconnect();
     }
   }
 
@@ -243,8 +268,8 @@ export class Select {
   }
 
   private async onEnterNavigation() {
-    if (this.editable && !this.itemExists(this.inputText)) {
-      this.emitAddItem(this.inputText);
+    if (this.editable && !this.itemExists(this.inputFilterText)) {
+      this.emitAddItem(this.inputFilterText);
       this.navigationItem = this.items[this.items.length - 1];
     }
 
@@ -282,11 +307,13 @@ export class Select {
   }
 
   private filterItemsWithTypeahead() {
-    this.inputText = this.inputRef.value;
-    if (this.inputText) {
+    this.inputFilterText = this.inputRef.value;
+    if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
-        if (!item.label.toLowerCase().includes(this.inputText.toLowerCase())) {
+        if (
+          !item.label.toLowerCase().includes(this.inputFilterText.toLowerCase())
+        ) {
           item.classList.add('d-none');
         }
       });
@@ -306,7 +333,7 @@ export class Select {
 
   private clearInput() {
     this.inputRef.value = '';
-    this.inputText = '';
+    this.inputFilterText = '';
   }
 
   private clear() {
@@ -314,13 +341,6 @@ export class Select {
     this.value = [];
     this.selectedIndices = [];
     this.itemSelectionChange.emit(null);
-  }
-
-  private getInputValue() {
-    if (this.isSingleMode) {
-      return this.value?.length ? this.value[0] : null;
-    }
-    return null;
   }
 
   render() {
@@ -371,7 +391,7 @@ export class Select {
                     ? this.i18nPlaceholderEditable
                     : this.i18nPlaceholder
                 }
-                value={this.getInputValue()}
+                value={this.inputValue}
                 ref={(ref) => (this.inputRef = ref)}
                 onInput={() => this.filterItemsWithTypeahead()}
               />
@@ -387,7 +407,7 @@ export class Select {
               )}
             </div>
           </div>
-          {this.allowClear && (this.value?.length || this.inputText) ? (
+          {this.allowClear && (this.value?.length || this.inputFilterText) ? (
             <ix-icon-button
               class="clear"
               icon="clear"
@@ -424,7 +444,7 @@ export class Select {
           <div class="select-list-header">{this.i18nSelectListHeader}</div>
           <slot></slot>
           <div ref={(ref) => (this.addItemRef = ref)} class="d-contents"></div>
-          {this.itemExists(this.inputText) ? (
+          {this.itemExists(this.inputFilterText) ? (
             ''
           ) : (
             <ix-dropdown-item
@@ -432,13 +452,13 @@ export class Select {
               icon="plus"
               class={{
                 'add-item': true,
-                'd-none': !(this.editable && this.inputText),
+                'd-none': !(this.editable && this.inputFilterText),
               }}
-              label={this.inputText}
+              label={this.inputFilterText}
               onItemClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                this.emitAddItem(this.inputText);
+                this.emitAddItem(this.inputFilterText);
               }}
             ></ix-dropdown-item>
           )}

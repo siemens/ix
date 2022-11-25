@@ -12,6 +12,13 @@ import { fireEvent, screen } from '@testing-library/dom';
 import { SelectItem } from '../../select-item/select-item';
 import { Select } from '../select';
 
+//@ts-ignore
+global.MutationObserver = class {
+  constructor() {}
+  disconnect() {}
+  observe() {}
+};
+
 describe('ix-select', () => {
   it('renders', async () => {
     const page = await newSpecPage({
