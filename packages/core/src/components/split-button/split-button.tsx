@@ -46,7 +46,7 @@ export class SplitButton {
   /**
    * Button invisible
    *
-   * @deprecated Will removed in 2.0.0. Use ghost property
+   * @deprecated Will be removed in 2.0.0. Use ghost property
    */
   @Prop() invisible = false;
 
