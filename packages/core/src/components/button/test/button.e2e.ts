@@ -15,4 +15,28 @@ regressionTest.describe('button: basic', () => {
     await page.goto(`button/test/basic`);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('should have an hover effect', async ({ page }) => {
+    await page.goto(`button/test/basic`);
+
+    const bodyElement = await page.waitForSelector('body');
+
+    await page.evaluate((body) => {
+      body.querySelectorAll('button').forEach((b) => b.classList.add('hover'));
+    }, bodyElement);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('should have an active effect', async ({ page }) => {
+    await page.goto(`button/test/basic`);
+
+    const bodyElement = await page.waitForSelector('body');
+
+    await page.evaluate((body) => {
+      body.querySelectorAll('button').forEach((b) => b.classList.add('active'));
+    }, bodyElement);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

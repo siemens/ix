@@ -46,6 +46,11 @@ $button-categories: (primary, secondary);
       border-radius: var(--theme-btn--border-radius);
     }
 
+    @if $enable-border == false {
+      --bs-btn-border-width: 0px;
+      --bs-btn-active-border-color: none;
+    }
+
     &,
     &.focus,
     &:focus-visible {
