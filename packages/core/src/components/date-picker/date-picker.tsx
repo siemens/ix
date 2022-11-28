@@ -44,7 +44,7 @@ export class DatePicker {
   @Prop() range: boolean = true;
 
   /**
-   * @deprecated - will get removed with next major release
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() individual: boolean = true;
 
@@ -145,7 +145,7 @@ export class DatePicker {
   /**
    * Date selection confirmed via button action
    *
-   * @deprecated Use `dateSelect`
+   * @deprecated Will be removed in 2.0.0. Use `dateSelect`
    */
   @Event() done: EventEmitter<string>;
 

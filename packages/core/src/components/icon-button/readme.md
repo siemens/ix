@@ -17,7 +17,7 @@ SPDX-License-Identifier: MIT
 | `disabled`  | `disabled`  | Disabled                                                                                     | `boolean`                      | `false`       |
 | `ghost`     | `ghost`     | Button invisible                                                                             | `boolean`                      | `undefined`   |
 | `icon`      | `icon`      | Button icon                                                                                  | `string`                       | `undefined`   |
-| `invisible` | `invisible` | <span style="color:red">**[DEPRECATED]**</span> use ghost property<br/><br/>Button invisible | `boolean`                      | `undefined`   |
+| `invisible` | `invisible` | <span style="color:red">**[DEPRECATED]**</span> Use ghost property<br/><br/>Button invisible | `boolean`                      | `undefined`   |
 | `outline`   | `outline`   | Button outline                                                                               | `boolean`                      | `undefined`   |
 | `oval`      | `oval`      | Button in oval shape                                                                         | `boolean`                      | `undefined`   |
 | `selected`  | `selected`  | Selected state only working with outline or invisible                                        | `boolean`                      | `false`       |

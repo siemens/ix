@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run copy-lib && npm run generate-api && docusaurus start",
-    "build": "npm run copy-lib && npm run generate-api && docusaurus build",
+    "start": "npm run generate-static-docs && docusaurus start",
+    "build": "npm run generate-static-docs && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -14,9 +14,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "copy-lib": "npm run rimraf && node ./scripts/copy-webcomponents.mjs",
-    "generate-api": "node ./scripts/generate-api.mjs",
-    "generate-version": "npm run generate-api && npm run copy-lib && node ./scripts/generate-version.mjs"
+    "generate-static-docs": "node ./scripts/generate-api.mjs",
+    "generate-version": "npm run generate-static-docs && node ./scripts/generate-version.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",

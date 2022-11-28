@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
@@ -36,7 +36,7 @@ export class AnimatedTabs {
   @State() activeIndex: number;
 
   /**
-   * @deprecated - For debugging purposes only
+   * @internal For debugging purposes only
    */
   @Prop() disableAnimations = false;
 

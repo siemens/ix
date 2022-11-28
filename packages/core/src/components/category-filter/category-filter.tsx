@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { convertToRemString } from '../utils/rwd.util';
 import { FilterState } from './filter-state';
@@ -56,7 +56,7 @@ export class CategoryFilter {
   /**
    * When set this will initially populate the component with the provided search criteria.
    * This will trigger all input events accordingly.
-   * @deprecated will get removed with next major release (7.0.0). Use the member filterState instead.
+   * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
    */
   @Prop() initialState: FilterState;
 
@@ -117,7 +117,7 @@ export class CategoryFilter {
   @Prop() repeatCategories = true;
 
   /**
-   * @deprecated For debugging purposes only!
+   * @internal For debugging purposes only!
    */
   @Prop() tmpDisableScrollIntoView = true;
 

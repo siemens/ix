@@ -10,8 +10,9 @@
 import { readFileSync } from 'fs';
 import fse from 'fs-extra';
 import fs from 'fs';
-import path, { join } from 'path';
+import path from 'path';
 import { appendDocsTags } from './docs-tags.mjs';
+import copyLib from './copy-webcomponents.mjs';
 
 const __dirname = path.resolve();
 
@@ -66,8 +67,7 @@ function renderTableCellWithDocsTags(name, docsTags) {
     tags = appendDocsTags(tags, docsTags);
   }
 
-  const eventNameContainer = `<div className="Api__Table"> <div>${eventName}</div> <div className="Api__Table Docs__Tags">${tags}</div></div>`;
-
+  const eventNameContainer = `<div className="Api__Table"><div>${eventName}</div><div className="Api__Table Docs__Tags">${tags}</div></div>`;
   return removeNewLines(eventNameContainer);
 }
 
@@ -88,11 +88,12 @@ function writeEvents(events) {
 |------------|-------------------------------|------------------|--------|
 ${events
   .map((event) => {
-    const eventName = renderTableCellWithDocsTags(event.event, event.docsTags);
+    const eventDocs = renderTableCellWithDocsTags(
+      formatMultiline(event.docs),
+      event.docsTags
+    );
 
-    const eventEntry = `|${eventName}| ${formatMultiline(event.docs)} | \`${
-      event.detail
-    }\``;
+    const eventEntry = `|${event.event}| ${eventDocs} | \`${event.detail}\``;
 
     return eventEntry;
   })
@@ -108,15 +109,17 @@ function writeProps(properties) {
   return `| Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 ${properties
-  .map(
-    (prop) =>
-      `|${renderTableCellWithDocsTags(
-        prop.name,
-        prop.docsTags
-      )}| ${formatMultiline(prop.docs)} | \`${
-        prop.attr
-      }\` | \`${prop.type.replace(/\|/g, '\uff5c')}\` | \`${prop.default}\` |`
-  )
+  .map((prop) => {
+    const propName = prop.name;
+    const propDescription = renderTableCellWithDocsTags(
+      formatMultiline(prop.docs),
+      prop.docsTags
+    );
+
+    const propType = prop.type.replace(/\|/g, '\uff5c');
+
+    return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
+  })
   .join('\n')}
 `;
 }
@@ -247,7 +250,9 @@ function writeAngularPreviews() {
   });
 }
 
-(function () {
+(async function () {
+  await copyLib();
+
   const { components } = readComponents();
   components.forEach(writeApi);
 
