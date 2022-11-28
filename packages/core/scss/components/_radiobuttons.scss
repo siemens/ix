@@ -8,7 +8,7 @@
  */
 
 @mixin radio-basic() {
-  $size: 20px;
+  $size: 1.25rem;
 
   /* Base for label styling */
   [type='radio']:not(:checked),
