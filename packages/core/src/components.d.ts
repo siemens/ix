@@ -20,7 +20,6 @@ import { ModalConfig } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
-import { Placement as Placement1 } from "@popperjs/core";
 export namespace Components {
     interface IxAnimatedTab {
         /**
@@ -1438,7 +1437,7 @@ export namespace Components {
         /**
           * Placement of the tooltip
          */
-        "placement": Placement1;
+        "placement": Placement;
     }
     interface IxWorkflowStep {
         /**
@@ -3645,7 +3644,7 @@ declare namespace LocalJSX {
         /**
           * Placement of the tooltip
          */
-        "placement"?: Placement1;
+        "placement"?: Placement;
     }
     interface IxWorkflowStep {
         /**

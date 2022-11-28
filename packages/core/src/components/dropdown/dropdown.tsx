@@ -27,6 +27,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { getAlignment } from './alignment';
 import { BasePlacement, Placement, PlaceMentWithAlignment } from './placement';
 
 @Component({
@@ -118,16 +119,6 @@ export class Dropdown {
   private async unregisterListener(element: string | HTMLElement) {
     const trigger = await this.resolveElement(element);
     trigger.removeEventListener('click', this.openBind);
-  }
-
-  private getAlignment() {
-    if (this.placement.includes('-end')) {
-      return 'end';
-    } else if (this.placement.includes('-start')) {
-      return 'start';
-    }
-
-    return undefined;
   }
 
   private resolveElement(element: string | HTMLElement): Promise<Element> {
@@ -238,7 +229,7 @@ export class Dropdown {
       if (this.placement.includes('auto')) {
         positionConfig.middleware.push(
           autoPlacement({
-            alignment: this.getAlignment(),
+            alignment: getAlignment(this.placement),
           })
         );
       } else {

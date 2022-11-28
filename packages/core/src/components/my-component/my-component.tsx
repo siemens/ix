@@ -99,6 +99,74 @@ export class MyComponent {
                 <ix-split-button-item label="4"></ix-split-button-item>
                 <ix-split-button-item label="5"></ix-split-button-item>
               </ix-split-button>
+              <form
+                class="row g-3 needs-validation"
+                novalidate
+                onSubmit={(evt) => {
+                  evt.preventDefault();
+                  console.log(evt);
+                }}
+              >
+                <div class="row">
+                  <div class="col-md-4">
+                    <label htmlFor="validationCustom01" class="form-label">
+                      First name
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      value=""
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label htmlFor="validationCustom02" class="form-label">
+                      {' '}
+                      Last name{' '}
+                    </label>
+                    <ix-validation-tooltip message="Cannot be empty!">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="validationCustom02"
+                        value=""
+                        required
+                      />
+                    </ix-validation-tooltip>
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label
+                      htmlFor="validationCustomUsername"
+                      class="form-label"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustomUsername"
+                      aria-describedby="inputGroupPrepend"
+                      required
+                      minlength="4"
+                    />
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">
+                    Submit form
+                  </button>
+                </div>
+              </form>
             </div>
           </ix-basic-navigation>
         </div>
