@@ -89,6 +89,9 @@ export class MenuAvatar {
           trigger={this.avatarElementId}
           placement={'right-start'}
           positioningStrategy={'absolute'}
+          offset={{
+            mainAxis: 12,
+          }}
         >
           <slot></slot>
           <ix-menu-avatar-item

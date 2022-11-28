@@ -13,6 +13,7 @@ import {
   computePosition,
   ComputePositionConfig,
   inline,
+  offset,
   shift,
 } from '@floating-ui/dom';
 import {
@@ -86,6 +87,15 @@ export class Dropdown {
    * An optional header shown at the top of the dropdown
    */
   @Prop() header?: string;
+
+  /**
+   * Move dropdown along main axis of alignment
+   *
+   * @internal
+   */
+  @Prop() offset: {
+    mainAxis: number;
+  };
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -243,6 +253,11 @@ export class Dropdown {
         inline(),
         shift(),
       ];
+
+      if (this.offset) {
+        positionConfig.middleware.push(offset(this.offset));
+      }
+
       if (this.autoUpdateCleanup) {
         this.autoUpdateCleanup();
         this.autoUpdateCleanup = null;

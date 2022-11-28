@@ -8899,9 +8899,15 @@
         }
       ],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-validation-tooltip"
+        ]
+      },
       "props": [
         {
           "name": "message",
@@ -9297,7 +9303,8 @@
         "ix-dropdown-item",
         "ix-group-item",
         "ix-split-button",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "ix-validation-tooltip"
       ],
       "dependencyGraph": {
         "my-component": [
@@ -9315,7 +9322,8 @@
           "ix-dropdown-item",
           "ix-group-item",
           "ix-split-button",
-          "ix-split-button-item"
+          "ix-split-button-item",
+          "ix-validation-tooltip"
         ],
         "ix-basic-navigation": [
           "ix-application-header"

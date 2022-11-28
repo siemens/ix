@@ -439,6 +439,12 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset": {
+    mainAxis: number;
+  };
+        /**
           * Placement of the dropdown
          */
         "placement": Placement;
@@ -2573,6 +2579,12 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset"?: {
+    mainAxis: number;
+  };
         /**
           * Fire event after visibility of dropdown has changed
          */
