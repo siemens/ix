@@ -11,6 +11,7 @@
   ix-button:first-child .btn {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    border-right: 0px;
   }
 
   ix-button:last-child .btn {
@@ -20,5 +21,6 @@
 
   ix-button:not(:first-child):not(:last-child) .btn {
     border-radius: 0px;
+    border-right: 0px;
   }
 }
