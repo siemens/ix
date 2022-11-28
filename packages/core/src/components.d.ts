@@ -1116,7 +1116,7 @@ export namespace Components {
         "icon": string;
         /**
           * Button invisible
-          * @deprecated Will removed in 2.0.0. Use ghost property
+          * @deprecated Will be removed in 2.0.0. Use ghost property
          */
         "invisible": boolean;
         /**
@@ -3286,7 +3286,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Button invisible
-          * @deprecated Will removed in 2.0.0. Use ghost property
+          * @deprecated Will be removed in 2.0.0. Use ghost property
          */
         "invisible"?: boolean;
         /**

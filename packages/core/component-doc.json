@@ -6935,11 +6935,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will removed in 2.0.0. Use ghost property"
+              "text": "Will be removed in 2.0.0. Use ghost property"
             }
           ],
           "default": "false",
-          "deprecation": "Will removed in 2.0.0. Use ghost property",
+          "deprecation": "Will be removed in 2.0.0. Use ghost property",
           "values": [
             {
               "type": "boolean"
