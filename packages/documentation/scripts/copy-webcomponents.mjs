@@ -36,8 +36,8 @@ async function loadLib(libName, destPath) {
   );
 }
 
-(async () => {
+export default async () => {
   console.log('Start copy');
   await Promise.all([loadLib('@siemens/html-test-app', examplePathPath)]);
   console.log('Copy finished!');
-})();
+};

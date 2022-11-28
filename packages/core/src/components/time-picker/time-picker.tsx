@@ -16,7 +16,7 @@ import {
   Host,
   Method,
   Prop,
-  State
+  State,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -42,7 +42,7 @@ export class TimePicker {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * @deprecated - will get removed with next major release
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() individual: boolean = true;
 

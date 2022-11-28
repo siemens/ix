@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
 } from '@stencil/core';
 
 @Component({
@@ -41,7 +41,7 @@ export class CuiToggle {
 
   /**
    * Basic and status colors from color palette
-   * @deprecated - Has no effect on the rendered control
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() color = 'accent';
 

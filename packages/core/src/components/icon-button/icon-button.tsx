@@ -29,7 +29,7 @@ export class IconButton implements Button {
   /**
    * Button invisible
    *
-   * @deprecated use ghost property
+   * @deprecated Use ghost property
    */
   @Prop() invisible: boolean;
 

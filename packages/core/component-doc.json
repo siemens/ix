@@ -87,29 +87,6 @@
       },
       "props": [
         {
-          "name": "disableAnimations",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "disable-animations",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "- For debugging purposes only"
-            }
-          ],
-          "default": "false",
-          "deprecation": "- For debugging purposes only",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "selectedIndex",
           "type": "number",
           "mutable": false,
@@ -818,10 +795,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release (7.0.0). Use the member filterState instead."
+              "text": "Will be removed with 2.0.0. Use the member filterState instead."
             }
           ],
-          "deprecation": "will get removed with next major release (7.0.0). Use the member filterState instead.",
+          "deprecation": "Will be removed with 2.0.0. Use the member filterState instead.",
           "values": [
             {
               "type": "FilterState"
@@ -906,29 +883,6 @@
           "values": [
             {
               "type": "string[]"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "tmpDisableScrollIntoView",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "tmp-disable-scroll-into-view",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "For debugging purposes only!"
-            }
-          ],
-          "default": "true",
-          "deprecation": "For debugging purposes only!",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -1427,11 +1381,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- will get removed with next major release"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "true",
-          "deprecation": "- will get removed with next major release",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "boolean"
@@ -1610,10 +1564,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Use `dateSelect`"
+              "text": "Will be removed in 2.0.0. Use `dateSelect`"
             }
           ],
-          "deprecation": "Use `dateSelect`"
+          "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
         }
       ],
       "styles": [],
@@ -2356,11 +2310,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead."
+              "text": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead."
             }
           ],
           "default": "false",
-          "deprecation": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.",
+          "deprecation": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.",
           "values": [
             {
               "type": "boolean"
@@ -2938,11 +2892,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 7.0.0. Use color with alpha value."
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "1",
-          "deprecation": "Will be removed in 7.0.0. Use color with alpha value.",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "number"
@@ -4017,10 +3971,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "use ghost property"
+              "text": "Use ghost property"
             }
           ],
-          "deprecation": "use ghost property",
+          "deprecation": "Use ghost property",
           "values": [
             {
               "type": "boolean"
@@ -4411,10 +4365,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release in favor of slot based approach"
+              "text": "Will be removed in 2.0.0. Use slot based approach"
             }
           ],
-          "deprecation": "will get removed with next major release in favor of slot based approach"
+          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
         },
         {
           "name": "openOverlay",
@@ -4428,7 +4382,7 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release in favor of slot based approach"
+              "text": "Will be removed in 2.0.0. Use slot based approach"
             },
             {
               "name": "param",
@@ -4447,7 +4401,7 @@
               "text": "color"
             }
           ],
-          "deprecation": "will get removed with next major release in favor of slot based approach"
+          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
         }
       ],
       "events": [
@@ -5480,11 +5434,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- replaced by slot based implementation"
+              "text": "Will be removed in 2.0.0. Replaced by slot based implementation"
             }
           ],
           "default": "false",
-          "deprecation": "- replaced by slot based implementation",
+          "deprecation": "Will be removed in 2.0.0. Replaced by slot based implementation",
           "values": [
             {
               "type": "boolean"
@@ -6981,11 +6935,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "use ghost property"
+              "text": "Will removed in 2.0.0. Use ghost property"
             }
           ],
           "default": "false",
-          "deprecation": "use ghost property",
+          "deprecation": "Will removed in 2.0.0. Use ghost property",
           "values": [
             {
               "type": "boolean"
@@ -7695,11 +7649,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- will get removed with next major release"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "true",
-          "deprecation": "- will get removed with next major release",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "boolean"
@@ -8199,11 +8153,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- Has no effect on the rendered control"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "'accent'",
-          "deprecation": "- Has no effect on the rendered control",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "string"
