@@ -87,7 +87,7 @@ export class EventListItem {
           <div class="event-content">
             <slot></slot>
           </div>
-          <i class="glyph glyph-16 glyph-chevron-right chevron-icon"></i>
+          { this.chevron ? <i class="glyph glyph-16 glyph-chevron-right chevron-icon"></i> : '' }
         </div>
       </div>
     );
