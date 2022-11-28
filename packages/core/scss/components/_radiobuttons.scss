@@ -8,7 +8,7 @@
  */
 
 @mixin radio-basic() {
-  $size: $large-space;
+  $size: 20px;
 
   /* Base for label styling */
   [type='radio']:not(:checked),
@@ -33,8 +33,8 @@
 
   [type='radio'] + label:before {
     content: '';
-    width: 20px;
-    height: 20px;
+    width: $size;
+    height: $size;
     float: left;
     margin-right: $small-space;
 
