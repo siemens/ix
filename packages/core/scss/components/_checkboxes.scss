@@ -8,7 +8,7 @@
  */
 
 @mixin checkbox-basic() {
-  $size: $large-space;
+  $size: 18px;
 
   /* Base for label styling */
   [type='checkbox']:not(:checked),
@@ -42,8 +42,8 @@
 
   [type='checkbox'] + label:before {
     content: '';
-    width: 18px;
-    height: 18px;
+    width: $size;
+    height: $size;
     float: left;
     margin-right: $small-space;
 
