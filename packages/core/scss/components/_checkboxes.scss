@@ -146,12 +146,12 @@
     & + label:after {
       content: '';
       display: block;
-      width: 14px;
-      height: 1px;
+      width: 10px;
+      height: 2px;
       border-bottom: 2px solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      top: 11px;
-      left: 5px;
+      top: 8px;
+      left: 4px;
     }
 
     & + label:before {
