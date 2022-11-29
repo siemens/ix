@@ -8,7 +8,7 @@
  */
 
 @mixin checkbox-basic() {
-  $size: 18px;
+  $size: 1.125rem;
 
   /* Base for label styling */
   [type='checkbox']:not(:checked),
@@ -30,7 +30,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    line-height: 16px;
+    line-height: 1rem;
     user-select: none;
 
     color: var(--theme-checkbox-label--color);
@@ -101,17 +101,17 @@
 
     & + label:after {
       content: '';
-      width: 7px;
-      height: 2.5px;
+      width: 0.45rem;
+      height: 0.25rem;
       display: block;
       border-top: none;
       border-right: none;
       border-bottom: 1px solid var(--theme-checkbox-checked--color);
       border-left: 1px solid var(--theme-checkbox-checked--color);
       position: absolute;
-      top: 7.5px;
-      left: 5.5px;
-      transform: rotate(-45deg) scale(2);
+      top: 0.3rem;
+      left: 0.35rem;
+      transform: rotate(-53deg) scale(2);
     }
 
     &:hover + label:before {
@@ -146,12 +146,12 @@
     & + label:after {
       content: '';
       display: block;
-      width: 10px;
-      height: 2px;
+      width: 0.625rem;
+      height: 0.125rm;
       border-bottom: 2px solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      top: 8px;
-      left: 4px;
+      top: 0.5rem;
+      left: 0.25rem;
     }
 
     & + label:before {
