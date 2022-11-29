@@ -47,14 +47,14 @@
 
   [type='radio'] + label:focus-visible {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
   [type='radio']:focus-visible + label {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
@@ -94,14 +94,14 @@
 
     & + label:after {
       content: '';
-      width: 10px;
-      height: 10px;
+      width: 0.625rem;
+      height: 0.625rem;
       display: block;
       background-color: var(--theme-radiobtn-checked--color);
       border-radius: 100%;
       position: absolute;
-      top: 5px;
-      left: 5px;
+      top: 0.3125rem;
+      left: 0.3125rem;
     }
 
     &:hover + label:before {
@@ -137,10 +137,10 @@
       content: '';
       position: relative;
       display: block;
-      width: 14px;
-      height: 1px;
-      border-bottom: 2px solid var(--theme-radiobtn-mixed--color);
-      transform: translateX(5px) translateY(-0.8rem);
+      width: 0.875rem;
+      height: 0.0625rem;
+      border-bottom: 0.125rem solid var(--theme-radiobtn-mixed--color);
+      transform: translateX(0.3125rem) translateY(-0.8rem);
     }
 
     & + label:before {
