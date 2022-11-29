@@ -14,7 +14,7 @@
   [type='radio']:not(:checked),
   [type='radio']:checked {
     position: absolute;
-    display: none;
+    opacity: 0;
     pointer-events: none;
   }
 
