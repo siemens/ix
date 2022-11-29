@@ -15,6 +15,7 @@
   [type='radio']:checked {
     position: absolute;
     display: none;
+    pointer-events: none;
   }
 
   [type='radio']:not(:checked) + label,
