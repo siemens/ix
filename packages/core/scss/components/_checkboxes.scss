@@ -30,7 +30,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    line-height: 1rem;
+    line-height: $default-space;
     user-select: none;
 
     color: var(--theme-checkbox-label--color);
@@ -54,14 +54,14 @@
 
   [type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
   [type='checkbox']:focus-visible + label {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
@@ -106,8 +106,8 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 1px solid var(--theme-checkbox-checked--color);
-      border-left: 1px solid var(--theme-checkbox-checked--color);
+      border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
+      border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
       top: 0.3rem;
       left: 0.35rem;
@@ -147,11 +147,11 @@
       content: '';
       display: block;
       width: 0.625rem;
-      height: 0.125rm;
-      border-bottom: 2px solid var(--theme-checkbox-mixed--color);
+      height: 0.125rem;
+      border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      top: 0.5rem;
-      left: 0.25rem;
+      top: $small-space;
+      left: $tiny-space;
     }
 
     & + label:before {
