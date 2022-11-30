@@ -4,72 +4,58 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-# [1.1.0](https://github.com/siemens/ix/compare/v1.1.0-beta.6...v1.1.0) (2022-11-21)
-
-
-
-# [1.1.0-beta.6](https://github.com/siemens/ix/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2022-11-21)
+## [1.1.1](https://github.com/siemens/ix/compare/v1.1.0...v1.1.1) (2022-11-30)
 
 
 ### Bug Fixes
 
-* **core/button:** add space between leading icon and text ([#149](https://github.com/siemens/ix/issues/149)) ([8392ef6](https://github.com/siemens/ix/commit/8392ef6d979d330571bba6140bcec7f9f76aca90))
-* **core/datepicker:** date picker months and years ([#145](https://github.com/siemens/ix/issues/145)) ([e42cae2](https://github.com/siemens/ix/commit/e42cae247a77f9c598a944eeb7122e6aa3ca3e5e))
-* **core/datepicker:** remove luxon typing from component interface ([#135](https://github.com/siemens/ix/issues/135)) ([0cafe03](https://github.com/siemens/ix/commit/0cafe030828d0e221993fd2ffe5831ea78c9a87b))
-* **core/dropdown:** show scrollbar ([#129](https://github.com/siemens/ix/issues/129)) ([d801ddd](https://github.com/siemens/ix/commit/d801dddae7eae7eccc83041139c8005187739704))
-* **core/map-navigation:** adjust styling of sidepanel ([#150](https://github.com/siemens/ix/issues/150)) ([ae79b20](https://github.com/siemens/ix/commit/ae79b20bd29785ff94dd8b3032fbc5f0d7297cbc))
-* **core/menu-item:** deprecate bottom property in favor of slot based implementation ([#147](https://github.com/siemens/ix/issues/147)) ([6873415](https://github.com/siemens/ix/commit/68734159d07487795dcd1feb87752f82e6b70a43))
-* **core:** bump stencil to current version ([#139](https://github.com/siemens/ix/issues/139)) ([0e0e669](https://github.com/siemens/ix/commit/0e0e6696111cb51e635068575c48efd78666dbec))
-* **core:** eol uniformization ([#148](https://github.com/siemens/ix/issues/148)) ([8088522](https://github.com/siemens/ix/commit/808852242fbbeed42e2944039007a9e075c689ab))
+* **core/button:** remove border from ghost button ([#184](https://github.com/siemens/ix/issues/184)) ([a11bf31](https://github.com/siemens/ix/commit/a11bf318702af96ab7e2fb1e3f3b7e5758775171))
+* **core/event-list-item:** use correct custom properties ([#180](https://github.com/siemens/ix/issues/180)) ([a1fe4c9](https://github.com/siemens/ix/commit/a1fe4c9cc556d9bc050cd000ae0832dc92be5035))
+* **core/event-list:** prevent event list from hiding chevron ([#185](https://github.com/siemens/ix/issues/185)) ([ca937a2](https://github.com/siemens/ix/commit/ca937a214d76b5d82bb35eeef0bbe403391c461f))
+* **core/map-navigation:** use ix-application-header for header part ([#169](https://github.com/siemens/ix/issues/169)) ([de31afa](https://github.com/siemens/ix/commit/de31afad548b4ed3357583e4dcc34cb14ea2417d))
+* **core/select:** observer child label change ([#181](https://github.com/siemens/ix/issues/181)) ([f968e34](https://github.com/siemens/ix/commit/f968e3408c4d24fea6da59225fc36fa9cc090cfa))
+* **core/select:** prevent string to be spread by '...' operator ([#166](https://github.com/siemens/ix/issues/166)) ([ec6744a](https://github.com/siemens/ix/commit/ec6744a2e3f75ea3111aa59de47711db732be16d))
+* **core:** button group borders ([#170](https://github.com/siemens/ix/issues/170)) ([07f34ae](https://github.com/siemens/ix/commit/07f34aeb9b562501d6d72347593f09cb9912bd08))
+* **core:** checkbox changes to match design ([#187](https://github.com/siemens/ix/issues/187)) ([61deb8c](https://github.com/siemens/ix/commit/61deb8ccf4a9228c84edeb65bf67935320e756ff))
+* **core:** radiobutton corrected design spec ([#186](https://github.com/siemens/ix/issues/186)) ([f79e099](https://github.com/siemens/ix/commit/f79e099e51744a106c4479db676687c692318596))
 
 
 ### Features
 
-* **core/map-navigation:** overlay can be configured via slot attribute ([#133](https://github.com/siemens/ix/issues/133)) ([be58975](https://github.com/siemens/ix/commit/be589758a6e63b6e8069603754c1b06f9e012507))
+* **documentation:** add deprecated tag to api table ([#189](https://github.com/siemens/ix/issues/189)) ([eddc41b](https://github.com/siemens/ix/commit/eddc41b6b66f298fa48c1fb932183bd1b9c163f2))
+* update @siemens/ix-icons to v1.0.2 ([#196](https://github.com/siemens/ix/issues/196)) ([1816654](https://github.com/siemens/ix/commit/1816654fa435660dbf75460b82463621f758c8f7))
 
 
 
-# [1.1.0-beta.5](https://github.com/siemens/ix/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2022-11-14)
-
-
-### Bug Fixes
-
-* **angular:** remove files section ([bbf3cb3](https://github.com/siemens/ix/commit/bbf3cb3153bf9aba98e45f7c32fee51583679c98))
-
-
-
-# [1.1.0-beta.4](https://github.com/siemens/ix/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2022-11-14)
-
-
-
-# [1.1.0-beta.3](https://github.com/siemens/ix/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2022-11-14)
-
-
-
-# [1.1.0-beta.2](https://github.com/siemens/ix/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2022-11-14)
-
-
-
-# [1.1.0-beta.1](https://github.com/siemens/ix/compare/v1.0.0...v1.1.0-beta.1) (2022-11-11)
+# [1.1.0](https://github.com/siemens/ix/compare/v1.0.0...v1.1.0) (2022-11-22)
 
 
 ### Bug Fixes
 
 * **core, documentation:** add missing autogenerated files ([4c861b4](https://github.com/siemens/ix/commit/4c861b4178a332974fbe1ae2b200fe06bebbbf4a))
+* **core/button:** add space between leading icon and text ([#149](https://github.com/siemens/ix/issues/149)) ([8392ef6](https://github.com/siemens/ix/commit/8392ef6d979d330571bba6140bcec7f9f76aca90))
+* **core/datepicker:** date picker months and years ([#145](https://github.com/siemens/ix/issues/145)) ([e42cae2](https://github.com/siemens/ix/commit/e42cae247a77f9c598a944eeb7122e6aa3ca3e5e))
+* **core/datepicker:** remove luxon typing from component interface ([#135](https://github.com/siemens/ix/issues/135)) ([0cafe03](https://github.com/siemens/ix/commit/0cafe030828d0e221993fd2ffe5831ea78c9a87b))
 * **core/datetime-picker:** remove box-shadow ([09c760f](https://github.com/siemens/ix/commit/09c760f60558def46ffc6babaf2e2a48eb9aeec3))
+* **core/dropdown:** show scrollbar ([#129](https://github.com/siemens/ix/issues/129)) ([d801ddd](https://github.com/siemens/ix/commit/d801dddae7eae7eccc83041139c8005187739704))
 * **core/event-list-item:** replace generic hover values with event-list hover values ([385f12f](https://github.com/siemens/ix/commit/385f12fd3e099d8c5dc93fcd690b8cb5a8501a71))
 * **core/expanding-seach:** change to a inline style ([7e7bd94](https://github.com/siemens/ix/commit/7e7bd94f035015b23b101fff89f600cff5d774f8))
+* **core/map-nav-overlay:** prevent overlay from blocking DOM when hidden ([#156](https://github.com/siemens/ix/issues/156)) ([4a7a5b4](https://github.com/siemens/ix/commit/4a7a5b495a8d75b59ab024393b36761ca74b9f75))
+* **core/map-navigation:** adjust styling of sidepanel ([#150](https://github.com/siemens/ix/issues/150)) ([ae79b20](https://github.com/siemens/ix/commit/ae79b20bd29785ff94dd8b3032fbc5f0d7297cbc))
+* **core/menu-item:** deprecate bottom property in favor of slot based implementation ([#147](https://github.com/siemens/ix/issues/147)) ([6873415](https://github.com/siemens/ix/commit/68734159d07487795dcd1feb87752f82e6b70a43))
 * **core/menu:** close overlays if menu item is clicked ([59b5fe4](https://github.com/siemens/ix/commit/59b5fe412ab2cd45b0bb67692a0710100bd8a9d3))
 * **core/menu:** use container to collapse overlay ([dc9e692](https://github.com/siemens/ix/commit/dc9e6927a181d14f43f5f513ac24cc6db7a22f8e))
 * **core/styles:** lint ([aaa034c](https://github.com/siemens/ix/commit/aaa034c0b34592c71abcd580fabd08ca67fb5cc5))
 * **core/toast:** set default icon to info ([de4a2a1](https://github.com/siemens/ix/commit/de4a2a1ce2c8525fff5d8be02766a3b5b3d1a296))
 * **core/tree-item:** replace with tree-item custom properties ([cbda870](https://github.com/siemens/ix/commit/cbda8707c973e5f5406db544c4f0f4bd6dc89550))
 * **core:** build fix ([2a98ae9](https://github.com/siemens/ix/commit/2a98ae9ce6e5bdd6026104bfb8062f4d6496eda8))
+* **core:** bump stencil to current version ([#139](https://github.com/siemens/ix/issues/139)) ([0e0e669](https://github.com/siemens/ix/commit/0e0e6696111cb51e635068575c48efd78666dbec))
 * **core:** changed focus to focus-visible ([f0bade4](https://github.com/siemens/ix/commit/f0bade4b9c76e555077a438f1ab9c2d4d45ab413))
 * **core:** changed to MouseEvent ([e000263](https://github.com/siemens/ix/commit/e000263b1f4fce46bde467d41f55eecbc50a40f4))
 * **core:** close overlays ([6e1ede3](https://github.com/siemens/ix/commit/6e1ede3fa50a84900bc84631ecaaeb4c62cb517c))
 * **core:** datepicker timepicker shadows ([417a5a8](https://github.com/siemens/ix/commit/417a5a87876058b5eb7ac5618252d332412781f7))
 * **core:** datetimepicker fix heigh & center ([313c26f](https://github.com/siemens/ix/commit/313c26fdf2a94baa37dc47e0ff0cdca740a534d7))
+* **core:** eol uniformization ([#148](https://github.com/siemens/ix/issues/148)) ([8088522](https://github.com/siemens/ix/commit/808852242fbbeed42e2944039007a9e075c689ab))
 * **core:** event name changed ([efa2019](https://github.com/siemens/ix/commit/efa2019872d12d30828762256f531710decba24f))
 * **core:** expanding search sizing ([3f7728a](https://github.com/siemens/ix/commit/3f7728ae5c4cb5a76d74720584c854c1de1db482))
 * **core:** fix build error ([1ec9c1f](https://github.com/siemens/ix/commit/1ec9c1f0bc27faf74aa4d92365aaa1878c99e6c6))
@@ -98,6 +84,7 @@ sidebar_position: 100
 
 * **angular-test-app:** add rounded tabs example ([#123](https://github.com/siemens/ix/issues/123)) ([6a63afe](https://github.com/siemens/ix/commit/6a63afec405208d665134f29823cd4cfc2f66387))
 * **core/date-time-picker:** add additional properties to configure pickers ([#69](https://github.com/siemens/ix/issues/69)) ([30a4d1e](https://github.com/siemens/ix/commit/30a4d1ee90632bb1709893122b4813084400a08e))
+* **core/map-navigation:** overlay can be configured via slot attribute ([#133](https://github.com/siemens/ix/issues/133)) ([be58975](https://github.com/siemens/ix/commit/be589758a6e63b6e8069603754c1b06f9e012507))
 * **core/map-navigation:** remove static about and legal tab ([3d84a1b](https://github.com/siemens/ix/commit/3d84a1b54a1c0d357ee6e6d8e950e18bc00e7058))
 * **documentation/generate-api:** generate docs tags into api table ([19f8722](https://github.com/siemens/ix/commit/19f87222da7c31a67af7f9f5236d25c7fa60bac1))
 * **documentation/generate-version:** replace local assets with cdn links ([111bfbb](https://github.com/siemens/ix/commit/111bfbbceded3609c24ef3717b7be89b6896081a))
