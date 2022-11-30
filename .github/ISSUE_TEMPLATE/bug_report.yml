@@ -1,11 +1,12 @@
 name: Bug Report
-description: Found a bug in our library 📚
+description: Siemens iX bug report 📚
 labels: ['type: bug', 'triage']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thank you for taking the time to fill out this bug report!
+        Make sure to not violate these rules:
         - Do not leak any internal company information!
         - Do not post internal links or code snippets!
 
@@ -34,8 +35,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Which version of ix do you use?
-      description: Type the version here.
+      label: Which version of iX do you use?
+      description: The exact version of Siemens iX you use.
       placeholder: v1.x.x
     validations:
       required: true

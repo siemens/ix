@@ -32,9 +32,9 @@ Please check if your PR fulfills the following requirements:
 
 Please check the type of change your PR introduces:
 
-- [ ] Bugfix
+- [ ] Bug fix
 - [ ] Feature
-- [ ] Refactoring (no functional changes, no api changes)
+- [ ] Refactoring (no functional changes, no API changes)
 - [ ] Build related changes
 - [ ] Documentation content changes
 - [ ] Other (please describe):

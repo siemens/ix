@@ -1,5 +1,5 @@
 name: Bug Report for `ix.siemens.io`
-description: Found a bug in our documentation 📑
+description: Documentation bug report 📑
 labels: ['component: documentation', 'type: bug', 'triage']
 body:
   - type: markdown
