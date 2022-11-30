@@ -242,7 +242,7 @@ export class DatePicker {
     weekdays = days.reduce((result, item, index) => {
       const weekIndex = Math.floor(index / this.daysInWeek);
 
-      if (!result[weekIndex]) result[weekIndex] = []; // start a new chunk
+      if (!result[weekIndex]) result[weekIndex] = [];
 
       result[weekIndex].push(item);
 

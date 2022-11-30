@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
  *
@@ -13,6 +14,7 @@ import ReactDOM from 'react-dom/client';
 import { createReactComponent } from '../react-component-lib';
 import { StyleReactProps } from '../react-component-lib/interfaces';
 
+// eslint-disable-next-line no-inline-comments
 const InternalIxTree = /*@__PURE__*/ createReactComponent<
   JSX.IxTree,
   HTMLIxTreeElement

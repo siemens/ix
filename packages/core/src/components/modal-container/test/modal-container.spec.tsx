@@ -14,8 +14,8 @@ describe('ix-modal-container', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [ModalContainer],
-      html: `<ix-modal-container></ix-modal-container>`,
+      html: '<ix-modal-container></ix-modal-container>',
     });
-    expect(page.root).toEqualHtml(`<ix-modal-container></ix-modal-container>`);
+    expect(page.root).toEqualHtml('<ix-modal-container></ix-modal-container>');
   });
 });

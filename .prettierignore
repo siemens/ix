@@ -1,4 +1,19 @@
 # Add files here to ignore them from prettier formatting
 
+# Add files here to ignore them from prettier formatting
+.angular/
+.docusaurus/
+.turbo/
+node_modules/
+
 /dist
+/CHANGELOG.md
+/CODE_OF_CONDUCT.md
 /coverage
+/packages/*/build/
+/packages/*/dist/
+/packages/*/dist-transpiled/
+/packages/*/loader/
+/packages/*/www/
+
+/packages/documentation/static/webcomponent-examples/*

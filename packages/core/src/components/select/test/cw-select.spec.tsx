@@ -23,7 +23,7 @@ describe('ix-select', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
     expect(page.root).toEqualHtml(`
     <ix-select>
@@ -72,7 +72,7 @@ describe('ix-select', () => {
   it('show add item button in list', async () => {
     const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
 
     (page.win as any).SVGElement = class {};
@@ -99,7 +99,7 @@ describe('ix-select', () => {
   it('show not show add item button in list if editing is false', async () => {
     const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
 
     (page.win as any).SVGElement = class {};
@@ -247,7 +247,7 @@ describe('ix-select', () => {
       expect(
         (
           page.root.querySelector(
-            `ix-select-item[value='NEWITEM']`
+            "ix-select-item[value='NEWITEM']"
           ) as HTMLIxSelectItemElement
         ).label
       ).toBe('NEWITEM');
@@ -356,7 +356,7 @@ describe('ix-select', () => {
       expect(
         (
           page.root.querySelector(
-            `ix-select-item[value='NEW ITEM']`
+            "ix-select-item[value='NEW ITEM']"
           ) as HTMLIxSelectItemElement
         ).label
       ).toBe('NEW ITEM');

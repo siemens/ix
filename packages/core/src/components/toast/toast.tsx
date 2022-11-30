@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import { ToastType } from './toast-utils';
 
@@ -102,7 +102,7 @@ export class Toast {
     let progressBarElement: HTMLElement;
     let progressBarStyle: Record<string, string> = {};
 
-    const progressBarClass = [`toast-progress-bar`];
+    const progressBarClass = ['toast-progress-bar'];
 
     if (!this.touched) {
       progressBarStyle = {

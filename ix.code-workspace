@@ -37,6 +37,10 @@
       "path": "./packages/angular-test-app"
     },
     {
+      "name": "eslint-config",
+      "path": "./packages/eslint-config"
+    },
+    {
       "name": "root",
       "path": "."
     }

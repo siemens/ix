@@ -7,4 +7,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const createMutationObserver = (callback: MutationCallback) => new MutationObserver(callback);
+export const createMutationObserver = (callback: MutationCallback) =>
+  new MutationObserver(callback);

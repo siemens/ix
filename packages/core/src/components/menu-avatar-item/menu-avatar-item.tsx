@@ -8,12 +8,12 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Prop
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Prop,
 } from '@stencil/core';
 
 @Component({

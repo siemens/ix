@@ -58,7 +58,7 @@ export class MapNavigationOverlay {
       easing: 'easeOutSine',
       begin: () => {
         this.hostElement.classList.remove('d-none');
-      }
+      },
     });
   }
 

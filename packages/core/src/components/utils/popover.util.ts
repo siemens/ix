@@ -10,7 +10,11 @@
 import { convertToRemString } from './rwd.util';
 
 export class Popover {
-  constructor(private readonly hostElement: HTMLElement, private readonly popoverElement: HTMLElement, private readonly outsideCallback: (e: Event) => void) {}
+  constructor(
+    private readonly hostElement: HTMLElement,
+    private readonly popoverElement: HTMLElement,
+    private readonly outsideCallback: (e: Event) => void
+  ) {}
 
   outside(e: Event) {
     if (!this.hostElement?.contains(e.target as HTMLElement)) {
@@ -20,7 +24,9 @@ export class Popover {
 
   open(maxWidth = 256) {
     this.popoverElement.style.transform = `
-      translateX(${this.hostElement.offsetLeft + this.hostElement.offsetWidth}px)
+      translateX(${
+        this.hostElement.offsetLeft + this.hostElement.offsetWidth
+      }px)
       translateY(-${this.hostElement.offsetHeight}px)
     `;
     this.popoverElement.style.maxWidth = convertToRemString(maxWidth);
