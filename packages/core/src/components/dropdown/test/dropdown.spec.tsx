@@ -70,7 +70,7 @@ describe('ix-dropdown', () => {
     dropdown.show = true;
     await page.waitForChanges();
 
-    fireEvent.click(window); //click outside
+    fireEvent.click(window);
     await page.waitForChanges();
 
     expect(dropdown.show).toBeFalsy();

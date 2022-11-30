@@ -13,7 +13,11 @@ module.exports = {
   plugins: ['prettier'],
   extends: ['turbo', 'prettier'],
   rules: {
-    quotes: ['error', 'single'],
+    quotes: [
+      'error',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
     'prettier/prettier': 'error',
     'no-inline-comments': 'error',
   },

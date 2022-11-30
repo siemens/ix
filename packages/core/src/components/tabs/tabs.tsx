@@ -170,7 +170,7 @@ export class Tabs {
 
   private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
     if (!this.showArrows()) return;
-    if (event.button > 0) return; // ignore right click
+    if (event.button > 0) return;
 
     this.clickAction.timeout =
       this.clickAction.timeout === null
