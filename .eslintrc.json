@@ -1,5 +1,6 @@
 {
   "root": true,
+  "extends": ["prettier"],
   "rules": {
     "react/jsx-no-bind": 0,
     "react/jsx-uses-react": 0,
