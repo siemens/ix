@@ -29,7 +29,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { getAlignment } from './alignment';
-import { BasePlacement, Placement, PlaceMentWithAlignment } from './placement';
+import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
 
 @Component({
   tag: 'ix-dropdown',
@@ -94,7 +94,9 @@ export class Dropdown {
    * @internal
    */
   @Prop() offset: {
-    mainAxis: number;
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
   };
 
   /**
@@ -245,7 +247,7 @@ export class Dropdown {
       } else {
         positionConfig.placement = this.placement as
           | BasePlacement
-          | PlaceMentWithAlignment;
+          | PlacementWithAlignment;
       }
 
       positionConfig.middleware = [

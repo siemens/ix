@@ -88,7 +88,6 @@ export class MenuAvatar {
         <ix-dropdown
           trigger={this.avatarElementId}
           placement={'right-start'}
-          positioningStrategy={'absolute'}
           offset={{
             mainAxis: 12,
           }}

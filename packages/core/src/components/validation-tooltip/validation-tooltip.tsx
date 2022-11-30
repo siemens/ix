@@ -21,7 +21,7 @@ import { getAlignment } from '../dropdown/alignment';
 import {
   BasePlacement,
   Placement,
-  PlaceMentWithAlignment,
+  PlacementWithAlignment,
 } from '../dropdown/placement';
 
 type Position = { x: number; y: number };
@@ -103,7 +103,7 @@ export class ValidationTooltip {
     } else {
       positionConfig.placement = this.placement as
         | BasePlacement
-        | PlaceMentWithAlignment;
+        | PlacementWithAlignment;
     }
 
     this.autoUpdateCleanup = autoUpdate(

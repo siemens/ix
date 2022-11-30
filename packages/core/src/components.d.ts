@@ -442,7 +442,9 @@ export namespace Components {
           * Move dropdown along main axis of alignment
          */
         "offset": {
-    mainAxis: number;
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
   };
         /**
           * Placement of the dropdown
@@ -2583,7 +2585,9 @@ declare namespace LocalJSX {
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
-    mainAxis: number;
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
   };
         /**
           * Fire event after visibility of dropdown has changed

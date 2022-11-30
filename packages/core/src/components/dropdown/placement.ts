@@ -19,7 +19,7 @@ export declare type BasePlacement =
 
 export declare type AutoPlacement = 'auto' | 'auto-start' | 'auto-end';
 
-export declare type PlaceMentWithAlignment =
+export declare type PlacementWithAlignment =
   | 'top-start'
   | 'top-end'
   | 'bottom-start'
@@ -32,4 +32,4 @@ export declare type PlaceMentWithAlignment =
 export declare type Placement =
   | AutoPlacement
   | BasePlacement
-  | PlaceMentWithAlignment;
+  | PlacementWithAlignment;
