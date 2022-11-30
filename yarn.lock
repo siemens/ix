@@ -3478,7 +3478,7 @@
 
 "@types/semver@^7.3.12":
   version "7.3.13"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
   integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
 
 "@types/serve-index@^1.9.1":
@@ -3569,7 +3569,7 @@
 
 "@typescript-eslint/eslint-plugin@^5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.45.0.tgz#ffa505cf961d4844d38cfa19dcec4973a6039e41"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.45.0.tgz#ffa505cf961d4844d38cfa19dcec4973a6039e41"
   integrity sha512-CXXHNlf0oL+Yg021cxgOdMHNTXD17rHkq7iW6RFHoybdFgQBjU3yIXhhcPpGwr1CjZlo6ET8C6tzX5juQoXeGA==
   dependencies:
     "@typescript-eslint/scope-manager" "5.45.0"
@@ -3606,7 +3606,7 @@
 
 "@typescript-eslint/parser@^5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/parser/-/parser-5.45.0.tgz#b18a5f6b3cf1c2b3e399e9d2df4be40d6b0ddd0e"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.45.0.tgz#b18a5f6b3cf1c2b3e399e9d2df4be40d6b0ddd0e"
   integrity sha512-brvs/WSM4fKUmF5Ot/gEve6qYiCMjm6w4HkHPfS6ZNmxTS0m0iNN4yOChImaCkqc1hRwFGqUyanMXuGal6oyyQ==
   dependencies:
     "@typescript-eslint/scope-manager" "5.45.0"
@@ -3624,7 +3624,7 @@
 
 "@typescript-eslint/scope-manager@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/scope-manager/-/scope-manager-5.45.0.tgz#7a4ac1bfa9544bff3f620ab85947945938319a96"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.45.0.tgz#7a4ac1bfa9544bff3f620ab85947945938319a96"
   integrity sha512-noDMjr87Arp/PuVrtvN3dXiJstQR1+XlQ4R1EvzG+NMgXi8CuMCXpb8JqNtFHKceVSQ985BZhfRdowJzbv4yKw==
   dependencies:
     "@typescript-eslint/types" "5.45.0"
@@ -3632,7 +3632,7 @@
 
 "@typescript-eslint/type-utils@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/type-utils/-/type-utils-5.45.0.tgz#aefbc954c40878fcebeabfb77d20d84a3da3a8b2"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.45.0.tgz#aefbc954c40878fcebeabfb77d20d84a3da3a8b2"
   integrity sha512-DY7BXVFSIGRGFZ574hTEyLPRiQIvI/9oGcN8t1A7f6zIs6ftbrU0nhyV26ZW//6f85avkwrLag424n+fkuoJ1Q==
   dependencies:
     "@typescript-eslint/typescript-estree" "5.45.0"
@@ -3647,7 +3647,7 @@
 
 "@typescript-eslint/types@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/types/-/types-5.45.0.tgz#794760b9037ee4154c09549ef5a96599621109c5"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.45.0.tgz#794760b9037ee4154c09549ef5a96599621109c5"
   integrity sha512-QQij+u/vgskA66azc9dCmx+rev79PzX8uDHpsqSjEFtfF2gBUTRCpvYMh2gw2ghkJabNkPlSUCimsyBEQZd1DA==
 
 "@typescript-eslint/typescript-estree@4.33.0":
@@ -3665,7 +3665,7 @@
 
 "@typescript-eslint/typescript-estree@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/typescript-estree/-/typescript-estree-5.45.0.tgz#f70a0d646d7f38c0dfd6936a5e171a77f1e5291d"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.45.0.tgz#f70a0d646d7f38c0dfd6936a5e171a77f1e5291d"
   integrity sha512-maRhLGSzqUpFcZgXxg1qc/+H0bT36lHK4APhp0AEUVrpSwXiRAomm/JGjSG+kNUio5kAa3uekCYu/47cnGn5EQ==
   dependencies:
     "@typescript-eslint/types" "5.45.0"
@@ -3678,7 +3678,7 @@
 
 "@typescript-eslint/utils@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/utils/-/utils-5.45.0.tgz#9cca2996eee1b8615485a6918a5c763629c7acf5"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.45.0.tgz#9cca2996eee1b8615485a6918a5c763629c7acf5"
   integrity sha512-OUg2JvsVI1oIee/SwiejTot2OxwU8a7UfTFMOdlhD2y+Hl6memUSL4s98bpUTo8EpVEr0lmwlU7JSu/p2QpSvA==
   dependencies:
     "@types/json-schema" "^7.0.9"
@@ -3700,7 +3700,7 @@
 
 "@typescript-eslint/visitor-keys@5.45.0":
   version "5.45.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/@typescript-eslint/visitor-keys/-/visitor-keys-5.45.0.tgz#e0d160e9e7fdb7f8da697a5b78e7a14a22a70528"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.45.0.tgz#e0d160e9e7fdb7f8da697a5b78e7a14a22a70528"
   integrity sha512-jc6Eccbn2RtQPr1s7th6jJWQHBHI6GBVQkCHoJFQ5UreaKm59Vxw+ynQUPPY2u2Amquc+7tmEoC2G52ApsGNNg==
   dependencies:
     "@typescript-eslint/types" "5.45.0"
@@ -4247,7 +4247,7 @@ array-includes@^3.1.5:
 
 array-includes@^3.1.6:
   version "3.1.6"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/array-includes/-/array-includes-3.1.6.tgz#9e9e720e194f198266ba9e18c29e6a9b0e4b225f"
+  resolved "https://registry.yarnpkg.com/array-includes/-/array-includes-3.1.6.tgz#9e9e720e194f198266ba9e18c29e6a9b0e4b225f"
   integrity sha512-sgTbLvL6cNnw24FnbaDyjmvddQ2ML8arZsgaJhoABMoplz/4QRhtrYS+alr1BUM1Bwp6dhx8vVCBSLG+StwOFw==
   dependencies:
     call-bind "^1.0.2"
@@ -4273,7 +4273,7 @@ array.prototype.flatmap@^1.3.0:
 
 array.prototype.flatmap@^1.3.1:
   version "1.3.1"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/array.prototype.flatmap/-/array.prototype.flatmap-1.3.1.tgz#1aae7903c2100433cb8261cd4ed310aab5c4a183"
+  resolved "https://registry.yarnpkg.com/array.prototype.flatmap/-/array.prototype.flatmap-1.3.1.tgz#1aae7903c2100433cb8261cd4ed310aab5c4a183"
   integrity sha512-8UGn9O1FDVvMNB0UlLv4voxRMze7+FpHyF5mSMRjWHUMlpoDViniy05870VlxhfgTnLbpuwTzvD76MTtWxB/mQ==
   dependencies:
     call-bind "^1.0.2"
@@ -4283,7 +4283,7 @@ array.prototype.flatmap@^1.3.1:
 
 array.prototype.tosorted@^1.1.1:
   version "1.1.1"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/array.prototype.tosorted/-/array.prototype.tosorted-1.1.1.tgz#ccf44738aa2b5ac56578ffda97c03fd3e23dd532"
+  resolved "https://registry.yarnpkg.com/array.prototype.tosorted/-/array.prototype.tosorted-1.1.1.tgz#ccf44738aa2b5ac56578ffda97c03fd3e23dd532"
   integrity sha512-pZYPXPRl2PqWcsUs6LOMn+1f1532nEoPTYowBtqLwAW+W8vSVhkIGnmOX1t/UQjD6YGI0vcD2B1U7ZFGQH9jnQ==
   dependencies:
     call-bind "^1.0.2"
@@ -6507,7 +6507,7 @@ es-abstract@^1.19.0, es-abstract@^1.19.1, es-abstract@^1.19.2, es-abstract@^1.19
 
 es-abstract@^1.20.4:
   version "1.20.4"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/es-abstract/-/es-abstract-1.20.4.tgz#1d103f9f8d78d4cf0713edcd6d0ed1a46eed5861"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.20.4.tgz#1d103f9f8d78d4cf0713edcd6d0ed1a46eed5861"
   integrity sha512-0UtvRN79eMe2L+UNEF1BwRe364sj/DXhQ/k5FmivgoSdpM90b8Jc0mDzKMGo7QS0BVbOP/bTwBKNnDc9rNzaPA==
   dependencies:
     call-bind "^1.0.2"
@@ -6904,7 +6904,7 @@ eslint-plugin-react@^7.26.1:
 
 eslint-plugin-react@^7.31.11:
   version "7.31.11"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/eslint-plugin-react/-/eslint-plugin-react-7.31.11.tgz#011521d2b16dcf95795df688a4770b4eaab364c8"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.31.11.tgz#011521d2b16dcf95795df688a4770b4eaab364c8"
   integrity sha512-TTvq5JsT5v56wPa9OYHzsrOlHzKZKjV+aLgS+55NJP/cuzdiQPC7PfYoUjMoxlffKtvijpk7vA/jmuqRb9nohw==
   dependencies:
     array-includes "^3.1.6"
@@ -10480,7 +10480,7 @@ nanoid@^3.1.30, nanoid@^3.3.4:
 
 natural-compare-lite@^1.4.0:
   version "1.4.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz#17b09581988979fddafe0201e931ba933c96cbb4"
+  resolved "https://registry.yarnpkg.com/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz#17b09581988979fddafe0201e931ba933c96cbb4"
   integrity sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==
 
 natural-compare@^1.4.0:
@@ -10846,7 +10846,7 @@ object.entries@^1.1.5:
 
 object.entries@^1.1.6:
   version "1.1.6"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/object.entries/-/object.entries-1.1.6.tgz#9737d0e5b8291edd340a3e3264bb8a3b00d5fa23"
+  resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.1.6.tgz#9737d0e5b8291edd340a3e3264bb8a3b00d5fa23"
   integrity sha512-leTPzo4Zvg3pmbQ3rDK69Rl8GQvIqMWubrkxONG9/ojtFE2rD9fjMKfSI5BxW3osRH1m6VdzmqK8oAY9aT4x5w==
   dependencies:
     call-bind "^1.0.2"
@@ -10864,7 +10864,7 @@ object.fromentries@^2.0.5:
 
 object.fromentries@^2.0.6:
   version "2.0.6"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/object.fromentries/-/object.fromentries-2.0.6.tgz#cdb04da08c539cffa912dcd368b886e0904bfa73"
+  resolved "https://registry.yarnpkg.com/object.fromentries/-/object.fromentries-2.0.6.tgz#cdb04da08c539cffa912dcd368b886e0904bfa73"
   integrity sha512-VciD13dswC4j1Xt5394WR4MzmAQmlgN72phd/riNp9vtD7tp4QQWJ0R4wvclXcafgcYK8veHRed2W6XeGBvcfg==
   dependencies:
     call-bind "^1.0.2"
@@ -10881,7 +10881,7 @@ object.hasown@^1.1.1:
 
 object.hasown@^1.1.2:
   version "1.1.2"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/object.hasown/-/object.hasown-1.1.2.tgz#f919e21fad4eb38a57bc6345b3afd496515c3f92"
+  resolved "https://registry.yarnpkg.com/object.hasown/-/object.hasown-1.1.2.tgz#f919e21fad4eb38a57bc6345b3afd496515c3f92"
   integrity sha512-B5UIT3J1W+WuWIU55h0mjlwaqxiE5vYENJXIXZ4VFe05pNYrkKuK0U/6aFcb0pKywYJh7IhfoqUfKVmrJJHZHw==
   dependencies:
     define-properties "^1.1.4"
@@ -10898,7 +10898,7 @@ object.values@^1.1.5:
 
 object.values@^1.1.6:
   version "1.1.6"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/object.values/-/object.values-1.1.6.tgz#4abbaa71eba47d63589d402856f908243eea9b1d"
+  resolved "https://registry.yarnpkg.com/object.values/-/object.values-1.1.6.tgz#4abbaa71eba47d63589d402856f908243eea9b1d"
   integrity sha512-FVVTkD1vENCsAcwNs9k6jea2uHC/X0+JcjG8YA60FN5CMaJmG95wT9jek/xX9nornqGRrBkKtzuAu2wuHpKqvw==
   dependencies:
     call-bind "^1.0.2"
@@ -13844,7 +13844,7 @@ string.prototype.matchall@^4.0.7:
 
 string.prototype.matchall@^4.0.8:
   version "4.0.8"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/siemens-npm/string.prototype.matchall/-/string.prototype.matchall-4.0.8.tgz#3bf85722021816dcd1bf38bb714915887ca79fd3"
+  resolved "https://registry.yarnpkg.com/string.prototype.matchall/-/string.prototype.matchall-4.0.8.tgz#3bf85722021816dcd1bf38bb714915887ca79fd3"
   integrity sha512-6zOCOcJ+RJAQshcTvXPHoxoQGONa3e/Lqx90wUA+wEzX78sg5Bo+1tQo4N0pohS0erG9qtCqJDjNCQBjeWVxyg==
   dependencies:
     call-bind "^1.0.2"
