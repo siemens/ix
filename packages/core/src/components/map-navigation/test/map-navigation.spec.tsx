@@ -18,7 +18,7 @@ describe('map-navigation', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [MapNavigation],
-      html: `<map-navigation></map-navigation>`,
+      html: '<map-navigation></map-navigation>',
     });
     mapNavigation = page.doc.querySelector('ix-map-navigation');
   });

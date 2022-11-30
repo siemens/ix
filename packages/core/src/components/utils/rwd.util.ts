@@ -28,7 +28,7 @@ export const convertToAbbreviationString = (num: number) => {
     { unit: 'K', value: Math.pow(10, 3) }, // 1000
   ];
 
-  units.some(pow => {
+  units.some((pow) => {
     let formattedNum = Math.abs(num);
     if (formattedNum >= pow.value) {
       formattedNum /= pow.value;

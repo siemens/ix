@@ -12,12 +12,12 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('html-table', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`html-table/test/basic`);
+    await page.goto('html-table/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('striped', async ({ page }) => {
-    await page.goto(`html-table/test/striped`);
+    await page.goto('html-table/test/striped');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

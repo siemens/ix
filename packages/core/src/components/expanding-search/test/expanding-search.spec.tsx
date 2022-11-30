@@ -21,7 +21,7 @@ describe('ix-expanding-search', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [ExpandingSearch],
-      html: `<ix-expanding-search></ix-expanding-search>`,
+      html: '<ix-expanding-search></ix-expanding-search>',
     });
     expandingSearch = page.doc.querySelector('ix-expanding-search');
     button = page.doc.querySelector('[data-testid="button"]');

@@ -12,12 +12,12 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('checkbox', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`checkbox/test/basic`);
+    await page.goto('checkbox/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('indeterminate', async ({ page }) => {
-    await page.goto(`checkbox/test/indeterminate`);
+    await page.goto('checkbox/test/indeterminate');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

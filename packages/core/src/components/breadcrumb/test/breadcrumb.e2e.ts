@@ -12,12 +12,12 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('breadcrumb', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`breadcrumb/test/basic`);
+    await page.goto('breadcrumb/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('lazyLoaded', async ({ page }) => {
-    await page.goto(`breadcrumb/test/lazyLoaded`);
+    await page.goto('breadcrumb/test/lazyLoaded');
     await page.locator('text=Item3').click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

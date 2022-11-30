@@ -35,7 +35,7 @@ describe('ix-dropdown', () => {
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
       components: [Dropdown],
-      html: `<div></div>`,
+      html: '<div></div>',
     });
 
     const anchor = page.doc.createElement('ix-button');

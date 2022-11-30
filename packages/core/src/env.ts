@@ -7,4 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const version = '1.0.0-beta.1'
+export const version = '1.0.0-beta.1';
