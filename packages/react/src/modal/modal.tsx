@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * SPDX-FileCopyrightText: 2022 Siemens AG
  *
@@ -11,25 +12,35 @@ import { closeModal, dismissModal } from '@siemens/ix';
 import React, { useImperativeHandle, useRef } from 'react';
 
 export interface ModalRef {
-  close: (result: any) => void;
-  dismiss: (result?: any) => void;
+  close: <T = any>(result: T) => void;
+  dismiss: <T = any>(result?: T) => void;
 }
 
 export const Modal = React.forwardRef<
   ModalRef,
   React.PropsWithChildren<{
-    onClose?: (result: any) => void;
-    onDismiss?: (result?: any) => void;
+    onClose?: <T = any>(result: T) => void;
+    onDismiss?: <T = any>(result?: T) => void;
   }>
 >((props, ref) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
-    close: (result: any) => {
-      closeModal(modalRef.current!, result);
+    close: (result: unknown) => {
+      const modalElement = modalRef.current;
+      if (!modalElement) {
+        console.error('Modal cannot find modal reference');
+        return;
+      }
+      closeModal(modalElement, result);
     },
-    dismiss: (result?: any) => {
-      dismissModal(modalRef.current!, result);
+    dismiss: (result?: unknown) => {
+      const modalElement = modalRef.current;
+      if (!modalElement) {
+        console.error('Modal cannot find modal reference');
+        return;
+      }
+      dismissModal(modalElement, result);
     },
   }));
 
