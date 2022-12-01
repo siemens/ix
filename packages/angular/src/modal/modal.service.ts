@@ -8,12 +8,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import {
-  closeModal,
-  dismissModal,
-  modal,
-  ModalConfig as IxModalConfig,
-} from '@siemens/ix';
+import { closeModal, dismissModal, modal } from '@siemens/ix';
 import { ModalConfig } from './modal.config';
 
 @Injectable({
@@ -22,9 +17,7 @@ import { ModalConfig } from './modal.config';
 export class ModalService {
   constructor() {}
 
-  async open<TDATA = any>(
-    config: Omit<IxModalConfig, 'content'> & ModalConfig<TDATA>
-  ) {
+  async open<TDATA = any>(config: ModalConfig) {
     const context: {
       close: ((result: any) => void) | null;
       dismiss: ((result?: any) => void) | null;

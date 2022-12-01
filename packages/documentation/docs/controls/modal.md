@@ -7,8 +7,6 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
 
 # Modal
 
-## Usage
-
 <Preview name="modal" height="35rem">
   <TabItem value="javascript">
     <SourceModal />
@@ -17,6 +15,16 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
     <SourceReactModal />
   </TabItem>
   <TabItem value="angular">
-    <SourceAngularModal />
+
+#### Usage of `ModalService`
+
+`@siemens/ix-angular` provides you an service to show modal dialogs based on an `ng-template` reference.  
+It is also provide a data object which will be available during rendering phase. If you define `let-modal` inside  
+your `ng-template` you can access the data with the `data`-property.
+
+A complete example can be seen here:
+
+  <SourceAngularModal />
+
   </TabItem>
 </Preview>
