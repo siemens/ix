@@ -119,6 +119,7 @@ $button-categories: (primary, secondary);
 
     &.disabled,
     &:disabled {
+      pointer-events: none;
       cursor: initial;
 
       @if $enable-border {
@@ -151,16 +152,4 @@ $button-categories: (primary, secondary);
 .btn-oval {
   border-radius: 6.25rem;
   width: $default-control-height;
-}
-
-.btn-icon-xs {
-  height: $default-space;
-  width: $default-space;
-  min-width: $default-space;
-}
-
-.btn-icon-s {
-  height: $large-space;
-  width: $large-space;
-  min-width: $large-space;
 }
