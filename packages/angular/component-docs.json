@@ -1,0 +1,396 @@
+{
+	"id": 0,
+	"name": "@siemens/ix-angular",
+	"kind": 1,
+	"flags": {},
+	"originalName": "",
+	"children": [
+		{
+			"id": 1,
+			"name": "modal.config",
+			"kind": 2,
+			"kindString": "Module",
+			"flags": {},
+			"children": [
+				{
+					"id": 2,
+					"name": "ModalConfig",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "angular/src/modal/modal.config.ts",
+							"line": 13,
+							"character": 12,
+							"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.config.ts#L13"
+						}
+					],
+					"typeParameters": [
+						{
+							"id": 6,
+							"name": "TDATA",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {},
+							"default": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "intersection",
+						"types": [
+							{
+								"type": "reference",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "IxModalConfig"
+									},
+									{
+										"type": "literal",
+										"value": "content"
+									}
+								],
+								"name": "Omit",
+								"qualifiedName": "Omit",
+								"package": "typescript"
+							},
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 3,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 4,
+											"name": "content",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "angular/src/modal/modal.config.ts",
+													"line": 14,
+													"character": 2,
+													"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.config.ts#L14"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"typeArguments": [
+													{
+														"type": "intrinsic",
+														"name": "any"
+													}
+												],
+												"name": "TemplateRef",
+												"qualifiedName": "TemplateRef",
+												"package": "@angular/core"
+											}
+										},
+										{
+											"id": 5,
+											"name": "data",
+											"kind": 1024,
+											"kindString": "Property",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "angular/src/modal/modal.config.ts",
+													"line": 15,
+													"character": 2,
+													"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.config.ts#L15"
+												}
+											],
+											"type": {
+												"type": "reference",
+												"id": 6,
+												"name": "TDATA"
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Properties",
+											"children": [
+												4,
+												5
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "angular/src/modal/modal.config.ts",
+											"line": 13,
+											"character": 72,
+											"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.config.ts#L13"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Type Aliases",
+					"children": [
+						2
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "angular/src/modal/modal.config.ts",
+					"line": 10,
+					"character": 0,
+					"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.config.ts#L10"
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "modal.service",
+			"kind": 2,
+			"kindString": "Module",
+			"flags": {},
+			"children": [
+				{
+					"id": 8,
+					"name": "ModalService",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {},
+					"children": [
+						{
+							"id": 9,
+							"name": "constructor",
+							"kind": 512,
+							"kindString": "Constructor",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "angular/src/modal/modal.service.ts",
+									"line": 18,
+									"character": 2,
+									"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.service.ts#L18"
+								}
+							],
+							"signatures": [
+								{
+									"id": 10,
+									"name": "new ModalService",
+									"kind": 16384,
+									"kindString": "Constructor signature",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"id": 8,
+										"name": "ModalService"
+									}
+								}
+							]
+						},
+						{
+							"id": 11,
+							"name": "open",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "angular/src/modal/modal.service.ts",
+									"line": 20,
+									"character": 8,
+									"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.service.ts#L20"
+								}
+							],
+							"signatures": [
+								{
+									"id": 12,
+									"name": "open",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"typeParameter": [
+										{
+											"id": 13,
+											"name": "TDATA",
+											"kind": 131072,
+											"kindString": "Type parameter",
+											"flags": {},
+											"default": {
+												"type": "intrinsic",
+												"name": "any"
+											}
+										}
+									],
+									"parameters": [
+										{
+											"id": 14,
+											"name": "config",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"id": 2,
+												"typeArguments": [
+													{
+														"type": "intrinsic",
+														"name": "any"
+													}
+												],
+												"name": "ModalConfig"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"typeArguments": [
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 15,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"children": [
+														{
+															"id": 16,
+															"name": "onClose",
+															"kind": 1024,
+															"kindString": "Property",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "core/dist/types/components/modal/modal-utils.d.ts",
+																	"line": 22,
+																	"character": 2
+																}
+															],
+															"type": {
+																"type": "reference",
+																"typeArguments": [
+																	{
+																		"type": "intrinsic",
+																		"name": "any"
+																	}
+																],
+																"name": "TypedEvent"
+															}
+														},
+														{
+															"id": 17,
+															"name": "onDismiss",
+															"kind": 1024,
+															"kindString": "Property",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "core/dist/types/components/modal/modal-utils.d.ts",
+																	"line": 23,
+																	"character": 2
+																}
+															],
+															"type": {
+																"type": "reference",
+																"typeArguments": [
+																	{
+																		"type": "intrinsic",
+																		"name": "any"
+																	}
+																],
+																"name": "TypedEvent"
+															}
+														}
+													],
+													"groups": [
+														{
+															"title": "Properties",
+															"children": [
+																16,
+																17
+															]
+														}
+													],
+													"sources": [
+														{
+															"fileName": "core/dist/types/components/modal/modal-utils.d.ts",
+															"line": 21,
+															"character": 60
+														}
+													]
+												}
+											}
+										],
+										"name": "Promise",
+										"qualifiedName": "Promise",
+										"package": "typescript"
+									}
+								}
+							]
+						}
+					],
+					"groups": [
+						{
+							"title": "Constructors",
+							"children": [
+								9
+							]
+						},
+						{
+							"title": "Methods",
+							"children": [
+								11
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "angular/src/modal/modal.service.ts",
+							"line": 17,
+							"character": 13,
+							"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.service.ts#L17"
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Classes",
+					"children": [
+						8
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "angular/src/modal/modal.service.ts",
+					"line": 10,
+					"character": 0,
+					"url": "https://github.com/siemens/ix/blob/ba32c3ed/packages/angular/src/modal/modal.service.ts#L10"
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Modules",
+			"children": [
+				1,
+				7
+			]
+		}
+	]
+}
