@@ -13,14 +13,7 @@ import { ModalService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-modal',
   template: `
-    <div>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.
-    </div>
-    <ix-button (click)="test()">Show Modal</ix-button>
+    <ix-button (click)="test()">Show modal</ix-button>
 
     <ng-template #customModal let-modal>
       <div>
