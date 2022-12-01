@@ -9,10 +9,10 @@
 
 import { Injectable } from '@angular/core';
 import {
-    closeModal,
-    dismissModal,
-    modal,
-    ModalConfig as IxModalConfig
+  closeModal,
+  dismissModal,
+  modal,
+  ModalConfig as IxModalConfig,
 } from '@siemens/ix';
 import { ModalConfig } from './modal.config';
 
@@ -22,13 +22,17 @@ import { ModalConfig } from './modal.config';
 export class ModalService {
   constructor() {}
 
-  async open(config: Omit<IxModalConfig, 'content'> & ModalConfig) {
+  async open<TDATA = any>(
+    config: Omit<IxModalConfig, 'content'> & ModalConfig<TDATA>
+  ) {
     const context: {
       close: ((result: any) => void) | null;
       dismiss: ((result?: any) => void) | null;
+      data?: TDATA;
     } = {
       close: null,
       dismiss: null,
+      data: config.data,
     };
     const embeddedView = config.content.createEmbeddedView({
       $implicit: context,

@@ -12,6 +12,9 @@
       ],
       "outputMode": "new-only"
     },
+    "test": {
+      "cache": false
+    },
     "start": {
       "cache": false
     },

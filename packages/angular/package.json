@@ -11,7 +11,8 @@
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
-    "fix-packagejson": ""
+    "fix-packagejson": "",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {

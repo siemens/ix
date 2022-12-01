@@ -34,7 +34,7 @@ import { ModalService } from '@siemens/ix-angular';
             (click)="modal.dismiss('dismiss')"
           ></ix-icon-button>
         </div>
-        <div class="modal-body">Message text lorem ipsum</div>
+        <div class="modal-body">Message text lorem ipsum: {{ modal.data }}</div>
         <div class="modal-footer">
           <ix-button
             outline
@@ -61,6 +61,7 @@ export class Modal {
     const instance = await this.modalService.open({
       content: this.customModalRef,
       title: '',
+      data: 'Some data',
     });
 
     instance.onClose.on((a) => {

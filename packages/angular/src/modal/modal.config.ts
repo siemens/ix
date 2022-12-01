@@ -9,6 +9,7 @@
 
 import { TemplateRef } from '@angular/core';
 
-export type ModalConfig = {
+export interface ModalConfig<TDATA = any> {
   content: TemplateRef<any>;
-};
+  data?: TDATA;
+}
