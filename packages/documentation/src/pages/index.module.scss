@@ -125,8 +125,15 @@
 
     .icons {
       display: flex;
-      align-items: space-between;
+      align-items: center;
       font-size: 15vw;
+      justify-content: center;
+    }
+
+    .plus {
+      font-size: 10vw;
+      width: 10vw;
+      height: 10vw;
     }
   }
 

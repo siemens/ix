@@ -274,15 +274,14 @@ function Welcome() {
       <div className={styles.title}>Welcome!</div>
       <div className={styles.icons}>
         <i className={clsx('glyph glyph-' + 'bulb', styles.icons)}></i>
-        <i className={clsx('glyph glyph-' + 'plus', styles.icons)}></i>
+        <i
+          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
+        ></i>
         <i className={clsx('glyph glyph-' + 'cloud-upload', styles.icons)}></i>
-        <i className={clsx('glyph glyph-' + 'plus', styles.icons)}></i>
+        <i
+          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
+        ></i>
         <i className={clsx('glyph glyph-' + 'heart', styles.icons)}></i>
-        {/* <ix-icon name="bulb" size="32"></ix-icon>
-        <ix-icon name="plus" size="32"></ix-icon>
-        <ix-icon name="cloud-upload" size="32"></ix-icon>
-        <ix-icon name="plus" size="32"></ix-icon>
-        <ix-icon name="heart" size="32"></ix-icon> */}
       </div>
     </div>
   );
