@@ -9,6 +9,9 @@
 import React from 'react';
 import Example from './Example';
 
+import '@siemens/ix-icons/dist/css/ix-icons.css';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+
 export default function App() {
   return (
     <div>

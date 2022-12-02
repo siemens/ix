@@ -6,22 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import GitHubImage from '@site/static/img/github.svg';
+import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useState } from 'react';
 import Demo, { DemoProps } from '../Demo';
-import { TargetFramework } from './framework-types';
+import { isTargetFramework, TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
-
 type MdxContent = ({}) => {};
-
-interface PlaygroundProps {
-  frameworks?: {
-    react?: Record<string, MdxContent> | MdxContent;
-    angular?: Record<string, MdxContent> | MdxContent;
-    webcomponents?: Record<string, MdxContent> | MdxContent;
-  };
-}
 
 function ButtonOpenGithub({
   name,
@@ -31,18 +25,17 @@ function ButtonOpenGithub({
   framework: TargetFramework;
 }) {
   return (
-    <ix-icon-button
+    <button
+      className="btn-icon-s btn btn-invisible-primary btn-icon btn-oval"
       onClick={() =>
         openGitHubFile({
           name,
           framework,
         })
       }
-      icon="rocket"
-      size="16"
-      ghost
-      variant="Primary"
-    ></ix-icon-button>
+    >
+      <GitHubImage />
+    </button>
   );
 }
 
@@ -56,7 +49,8 @@ function ButtonOpenStackBlitz({
   framework: TargetFramework;
 }) {
   return (
-    <ix-icon-button
+    <button
+      className="btn-icon-s btn btn-invisible-primary btn-icon btn-oval"
       onClick={() =>
         openStackBlitz({
           name,
@@ -64,12 +58,39 @@ function ButtonOpenStackBlitz({
           baseUrl,
         })
       }
-      icon="star"
-      size="16"
+    >
+      <StackBlitzImage />
+    </button>
+  );
+}
+
+function ButtonToggleCode({
+  onClick,
+}: {
+  onClick: React.MouseEventHandler<HTMLIxIconButtonElement>;
+}) {
+  return (
+    <ix-icon-button
+      onClick={onClick}
+      icon="document-reference"
+      oval
       ghost
-      variant="Primary"
+      size="16"
     ></ix-icon-button>
   );
+}
+
+interface PlaygroundProps {
+  hideInitalCodePreview?: boolean;
+  frameworks?: {
+    react?: Record<string, MdxContent> | MdxContent;
+    angular?: Record<string, MdxContent> | MdxContent;
+    webcomponents?: Record<string, MdxContent> | MdxContent;
+  };
+}
+
+function getPathId(pathname: string) {
+  return `docusaurus.playground${pathname.replace(/\//g, '.')}`;
 }
 
 export default function Playground({
@@ -78,14 +99,26 @@ export default function Playground({
   noMargin,
   theme,
   frameworks,
+  hideInitalCodePreview,
 }: DemoProps & PlaygroundProps) {
+  const { pathname } = useLocation();
   const baseUrl = useBaseUrl('/');
+  const [showCode, setShowCode] = useState<boolean>(!hideInitalCodePreview);
+
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
-    TargetFramework.REACT
+    TargetFramework.ANGULAR
   );
 
   const [sourceCodeSnippets, setSourceCodeSnippets] =
     useState<Record<TargetFramework, React.ReactNode>>();
+
+  useEffect(() => {
+    const id = getPathId(pathname);
+    const localStorageItem = localStorage.getItem(id);
+    if (localStorageItem && isTargetFramework(localStorageItem)) {
+      setTargetFramework(localStorageItem);
+    }
+  }, []);
 
   useEffect(() => {
     const snippets: Record<TargetFramework, React.ReactNode> = {} as any;
@@ -97,9 +130,15 @@ export default function Playground({
     setSourceCodeSnippets(snippets);
   }, [frameworks, setSourceCodeSnippets]);
 
-  function changeFramework(framework: TargetFramework) {
+  const changeFramework = (framework: TargetFramework) => {
     setTargetFramework(framework);
-  }
+    if (pathname) {
+      localStorage.setItem(
+        `docusaurus.playground${pathname.replace(/\//g, '.')}`,
+        framework
+      );
+    }
+  };
 
   function renderSourceCodeSnippet() {
     if (!sourceCodeSnippets || !sourceCodeSnippets[targetFramework]) {
@@ -131,6 +170,7 @@ export default function Playground({
           JavaScript
         </ix-button>
         <div className="Playground__Toolbar__Actions">
+          <ButtonToggleCode onClick={() => setShowCode(!showCode)} />
           <ButtonOpenGithub name={name} framework={targetFramework} />
           <ButtonOpenStackBlitz
             name={name}
@@ -140,7 +180,7 @@ export default function Playground({
         </div>
       </div>
       <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
-      {renderSourceCodeSnippet()}
+      {showCode ? renderSourceCodeSnippet() : null}
     </div>
   );
 }

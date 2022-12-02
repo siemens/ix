@@ -23,18 +23,6 @@ frameworks={{
 }}>
 </Playground>
 
-<Preview name="blind" height="16rem">
-  <TabItem value="javascript">
-    <WebComponent />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReact />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngular />
-  </TabItem>
-</Preview>
-
 ## Properties
 
 ### Props

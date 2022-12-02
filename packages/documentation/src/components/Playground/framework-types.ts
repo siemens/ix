@@ -12,3 +12,11 @@ export enum TargetFramework {
   REACT = 'react',
   JAVASCRIPT = 'javascript',
 }
+
+export function isTargetFramework(arg: any): arg is TargetFramework {
+  return (
+    arg === TargetFramework.ANGULAR ||
+    arg === TargetFramework.JAVASCRIPT ||
+    arg === TargetFramework.REACT
+  );
+}
