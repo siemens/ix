@@ -8,7 +8,9 @@
  */
 
 import { TemplateRef } from '@angular/core';
+import { ModalConfig as IxModalConfig } from '@siemens/ix';
 
-export type ModalConfig = {
+export type ModalConfig<TDATA = any> = Omit<IxModalConfig, 'content'> & {
   content: TemplateRef<any>;
+  data?: TDATA;
 };
