@@ -44,6 +44,7 @@ export class ModalService {
     embeddedView.detectChanges();
 
     const modalInstance = await modal({
+      ...config,
       title: '',
       content: node,
     });
