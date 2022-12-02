@@ -8,14 +8,14 @@
  */
 
 import {
-    IxMenu,
-    IxMenuAvatar,
-    IxMenuAvatarItem,
-    IxMenuItem
+  IxMenu,
+  IxMenuAvatar,
+  IxMenuAvatarItem,
+  IxMenuItem,
 } from '@siemens/ix-react';
 import React from 'react';
 
-export const Menu: React.FC = () => {
+export default () => {
   return (
     <IxMenu>
       <IxMenuAvatar>

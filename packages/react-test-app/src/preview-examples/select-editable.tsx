@@ -10,7 +10,7 @@
 import { IxSelect, IxSelectItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const SelectEditable: React.FC = () => {
+export default () => {
   return (
     <IxSelect selectedIndices={'1'} editable>
       <IxSelectItem label="Item 1" value="1"></IxSelectItem>

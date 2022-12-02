@@ -10,6 +10,6 @@
 import { IxToggle } from '@siemens/ix-react';
 import React from 'react';
 
-export const ToggleDisabled: React.FC = () => {
+export default () => {
   return <IxToggle disabled />;
 };

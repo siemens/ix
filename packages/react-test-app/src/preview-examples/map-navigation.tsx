@@ -10,7 +10,7 @@
 import { IxIcon, IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const MapNavigation: React.FC = () => {
+export default () => {
   return (
     <IxMapNavigation
       applicationName="Test Application"

@@ -10,7 +10,7 @@
 import { IxButton } from '@siemens/ix-react';
 import React from 'react';
 
-export const ButtonGroup: React.FC = () => (
+export default () => (
   <>
     <div className="btn-group">
       <IxButton variant="Primary" outline>

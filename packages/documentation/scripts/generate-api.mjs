@@ -10,6 +10,7 @@
 import { readFileSync } from 'fs';
 import fse from 'fs-extra';
 import fs from 'fs';
+import fsp from 'fs/promises';
 import path from 'path';
 import { appendDocsTags } from './docs-tags.mjs';
 import copyLib from './copy-webcomponents.mjs';
@@ -20,6 +21,8 @@ const htmlPreviewPath = path.join(
   __dirname,
   '../html-test-app/src/preview-examples'
 );
+
+const staticPath = path.join(__dirname, 'static', 'auto-generated', 'previews');
 
 function autoGenerationWarning(previewPath) {
   // unix/win normalization
@@ -169,11 +172,13 @@ function writeWebComponentPreviews() {
   });
 }
 
-function writeReactPreviews() {
+async function writeReactPreviews() {
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
+
+  const reactPreviewSourceCodePath = path.join(staticPath, 'react');
 
   const reactPreviewPath = path.join(
     __dirname,
@@ -193,19 +198,27 @@ function writeReactPreviews() {
     })
     .map((name) => [name, path.join(reactPreviewPath, `${name}.tsx`)]);
 
-  reactPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'react'
-    );
-    fse.ensureDirSync(writePath);
-    const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, 'tsx', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+  fse.ensureDirSync(reactPreviewSourceCodePath);
+
+  await Promise.all(
+    reactPreviewPaths.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'react'
+      );
+      fse.ensureDirSync(writePath);
+      const code = fs.readFileSync(previewPath).toString();
+      const markdown = generateMarkdown(previewPath, 'tsx', code);
+
+      return [
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(path.join(staticPath, 'react', `${name}.txt`), code),
+      ];
+    })
+  );
 }
 
 function writeAngularPreviews() {
@@ -250,24 +263,6 @@ function writeAngularPreviews() {
   });
 }
 
-function copyPreviewsToStatic() {
-  const previewPath = path.join(
-    __dirname,
-    'docs',
-    'auto-generated',
-    'previews'
-  );
-
-  const staticPath = path.join(
-    __dirname,
-    'static',
-    'auto-generated',
-    'previews'
-  );
-
-  fse.copySync(previewPath, staticPath, { overwrite: true, recursive: true });
-}
-
 (async function () {
   await copyLib();
 
@@ -275,8 +270,6 @@ function copyPreviewsToStatic() {
   components.forEach(writeApi);
 
   writeWebComponentPreviews();
-  writeReactPreviews();
+  await writeReactPreviews();
   writeAngularPreviews();
-
-  copyPreviewsToStatic();
 })();

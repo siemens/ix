@@ -14,80 +14,81 @@ import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import { AboutAndLegal } from './preview-examples/about-and-legal';
-import { AGGrid } from './preview-examples/aggrid';
-import { BasicNavigation } from './preview-examples/basic-navigation';
-import { BasicNavigationWithoutHeader } from './preview-examples/basic-navigation-without-header';
-import { Blind } from './preview-examples/blind';
-import { Breadcrumb } from './preview-examples/breadcrumb';
-import { BreadcrumbNextItems } from './preview-examples/breadcrumb-next-items';
-import { BreadcrumbTruncate } from './preview-examples/breadcrumb-truncate';
-import { ButtonGroup } from './preview-examples/button-group';
-import { ButtonSelected } from './preview-examples/button-selected';
-import { ButtonWithIcon } from './preview-examples/button-with-icon';
-import { Buttons } from './preview-examples/buttons';
-import { Checkbox } from './preview-examples/checkbox';
-import { CheckboxIndeterminate } from './preview-examples/checkbox-indeterminate';
-import { Chip } from './preview-examples/chip';
-import { Datepicker } from './preview-examples/datepicker';
-import { DatepickerRange } from './preview-examples/datepicker-range';
-import { Datetimepicker } from './preview-examples/datetimepicker';
-import { DrawerFullHeight } from './preview-examples/drawer-full-height';
-import { Dropdown } from './preview-examples/dropdown';
-import { DropdownIcon } from './preview-examples/dropdown-icon';
-import { EventList } from './preview-examples/event-list';
-import { EventListCompact } from './preview-examples/event-list-compact';
-import { EventListCustomHeight } from './preview-examples/event-list-custom-item-height';
-import { EventListSelected } from './preview-examples/event-list-selected';
-import { ExpandingSearch } from './preview-examples/expanding-search';
-import { FlipTile } from './preview-examples/flip-tile';
-import { Group } from './preview-examples/group';
-import { GroupContextMenu } from './preview-examples/group-context-menu';
-import { GroupCustomEntry } from './preview-examples/group-custom-entry';
-import { GroupHeaderSuppressed } from './preview-examples/group-header-suppressed';
-import { Input } from './preview-examples/input';
-import { InputDisabled } from './preview-examples/input-disabled';
-import { InputReadonly } from './preview-examples/input-readonly';
-import { InputWithIcon } from './preview-examples/input-with-icon';
-import { Kpi } from './preview-examples/kpi';
-import { MapNavigation } from './preview-examples/map-navigation';
-import { MessageBar } from './preview-examples/message-bar';
-import { ModalExample } from './preview-examples/modal';
-import { Pill } from './preview-examples/pill';
-import { PopoverNews } from './preview-examples/popover-news';
-import { RadioButton } from './preview-examples/radio-button';
-import { Select } from './preview-examples/select';
-import { SelectEditable } from './preview-examples/select-editable';
-import { SelectMultiple } from './preview-examples/select-multiple';
-import { Settings } from './preview-examples/settings';
-import { Spinner } from './preview-examples/spinner';
-import { SpinnerLarge } from './preview-examples/spinner-large';
-import { Splitbutton } from './preview-examples/split-button';
-import { SplitbuttonIcons } from './preview-examples/split-button-icons';
-import { Tabs } from './preview-examples/tabs';
-import { Textarea } from './preview-examples/textarea';
-import { TextareaDisabled } from './preview-examples/textarea-disabled';
-import { TextareaReadonly } from './preview-examples/textarea-readonly';
-import { Tile } from './preview-examples/tile';
-import { Timepicker } from './preview-examples/timepicker';
-import { Toast } from './preview-examples/toast';
-import { ToastCustom } from './preview-examples/toast-custom';
-import { Toggle } from './preview-examples/toggle';
-import { ToggleColor } from './preview-examples/toggle-color';
-import { ToggleDisabled } from './preview-examples/toggle-disabled';
-import { ToggleCustomLabel } from './preview-examples/toggle-custom-label';
-import { Tree } from './preview-examples/tree';
-import { TreeCustom } from './preview-examples/tree-custom';
-import { Validation } from './preview-examples/validation';
-import { Workflow } from './preview-examples/workflow';
-import { WorkflowVertical } from './preview-examples/workflow-vertical';
+import AboutAndLegal from './preview-examples/about-and-legal';
+import AGGrid from './preview-examples/aggrid';
+import BasicNavigation from './preview-examples/basic-navigation';
+import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
+import Blind from './preview-examples/blind';
+import Breadcrumb from './preview-examples/breadcrumb';
+import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items';
+import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
+import ButtonGroup from './preview-examples/button-group';
+import ButtonSelected from './preview-examples/button-selected';
+import ButtonWithIcon from './preview-examples/button-with-icon';
+import Buttons from './preview-examples/buttons';
+import Checkbox from './preview-examples/checkbox';
+import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
+import Chip from './preview-examples/chip';
+import Datepicker from './preview-examples/datepicker';
+import DatepickerRange from './preview-examples/datepicker-range';
+import Datetimepicker from './preview-examples/datetimepicker';
+import DrawerFullHeight from './preview-examples/drawer-full-height';
+import Dropdown from './preview-examples/dropdown';
+import DropdownIcon from './preview-examples/dropdown-icon';
+import EventList from './preview-examples/event-list';
+import EventListCompact from './preview-examples/event-list-compact';
+import EventListCustomHeight from './preview-examples/event-list-custom-item-height';
+import EventListSelected from './preview-examples/event-list-selected';
+import ExpandingSearch from './preview-examples/expanding-search';
+import FlipTile from './preview-examples/flip-tile';
+import Group from './preview-examples/group';
+import GroupContextMenu from './preview-examples/group-context-menu';
+import GroupCustomEntry from './preview-examples/group-custom-entry';
+import GroupHeaderSuppressed from './preview-examples/group-header-suppressed';
+import Input from './preview-examples/input';
+import InputDisabled from './preview-examples/input-disabled';
+import InputReadonly from './preview-examples/input-readonly';
+import InputWithIcon from './preview-examples/input-with-icon';
+import Kpi from './preview-examples/kpi';
+import MapNavigation from './preview-examples/map-navigation';
+import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
+import MessageBar from './preview-examples/message-bar';
+import ModalExample from './preview-examples/modal';
+import Pill from './preview-examples/pill';
+import PopoverNews from './preview-examples/popover-news';
+import RadioButton from './preview-examples/radio-button';
+import Select from './preview-examples/select';
+import SelectEditable from './preview-examples/select-editable';
+import SelectMultiple from './preview-examples/select-multiple';
+import Settings from './preview-examples/settings';
+import Spinner from './preview-examples/spinner';
+import SpinnerLarge from './preview-examples/spinner-large';
+import Splitbutton from './preview-examples/split-button';
+import SplitbuttonIcons from './preview-examples/split-button-icons';
+import Tabs from './preview-examples/tabs';
+import Textarea from './preview-examples/textarea';
+import TextareaDisabled from './preview-examples/textarea-disabled';
+import TextareaReadonly from './preview-examples/textarea-readonly';
+import Tile from './preview-examples/tile';
+import Timepicker from './preview-examples/timepicker';
+import Toast from './preview-examples/toast';
+import ToastCustom from './preview-examples/toast-custom';
+import Toggle from './preview-examples/toggle';
+import ToggleColor from './preview-examples/toggle-color';
+import ToggleCustomLabel from './preview-examples/toggle-custom-label';
+import ToggleDisabled from './preview-examples/toggle-disabled';
+import Tree from './preview-examples/tree';
+import TreeCustom from './preview-examples/tree-custom';
+import Validation from './preview-examples/validation';
+import Workflow from './preview-examples/workflow';
+import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
-import { MapNavigationOverlay } from './preview-examples/map-navigation-overlay';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
@@ -220,7 +221,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element={<BasicNavigationWithoutHeader />}
       />
       <Route path="/preview/map-navigation" element={<MapNavigation />} />
-      <Route path="/preview/map-navigation-overlay" element={<MapNavigationOverlay />} />
+      <Route
+        path="/preview/map-navigation-overlay"
+        element={<MapNavigationOverlay />}
+      />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

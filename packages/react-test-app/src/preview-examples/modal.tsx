@@ -48,7 +48,7 @@ function CustomModal() {
   );
 }
 
-export const ModalExample: React.FC = () => {
+export default () => {
   function show() {
     showModal({
       title: 'test',

@@ -19,7 +19,7 @@ function CustomToast() {
   );
 }
 
-export const ToastCustom: React.FC = () => {
+export default () => {
   return (
     <>
       <IxButton

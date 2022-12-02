@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import React, { useEffect, useState } from 'react';
 import Demo, { DemoProps } from '../Demo';
 import { TargetFramework } from './framework-types';
@@ -48,7 +49,9 @@ function ButtonOpenGithub({
 function ButtonOpenStackBlitz({
   name,
   framework,
+  baseUrl,
 }: {
+  baseUrl: string;
   name: string;
   framework: TargetFramework;
 }) {
@@ -58,6 +61,7 @@ function ButtonOpenStackBlitz({
         openStackBlitz({
           name,
           framework,
+          baseUrl,
         })
       }
       icon="star"
@@ -75,8 +79,9 @@ export default function Playground({
   theme,
   frameworks,
 }: DemoProps & PlaygroundProps) {
+  const baseUrl = useBaseUrl('/');
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
-    TargetFramework.ANGULAR
+    TargetFramework.REACT
   );
 
   const [sourceCodeSnippets, setSourceCodeSnippets] =
@@ -127,7 +132,11 @@ export default function Playground({
         </ix-button>
         <div className="Playground__Toolbar__Actions">
           <ButtonOpenGithub name={name} framework={targetFramework} />
-          <ButtonOpenStackBlitz name={name} framework={targetFramework} />
+          <ButtonOpenStackBlitz
+            name={name}
+            framework={targetFramework}
+            baseUrl={baseUrl}
+          />
         </div>
       </div>
       <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
