@@ -112,8 +112,8 @@ function Homepage() {
         <div className={styles.logo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="70"
-            height="70"
+            width="120"
+            height="120"
             viewBox="0 0 70 70"
           >
             <g fill="none" fill-rule="evenodd">
@@ -273,11 +273,16 @@ function Welcome() {
     >
       <div className={styles.title}>Welcome!</div>
       <div className={styles.icons}>
-        <ix-icon name="bulb" size="32"></ix-icon>
+        <i className={clsx('glyph glyph-' + 'bulb', styles.icons)}></i>
+        <i className={clsx('glyph glyph-' + 'plus', styles.icons)}></i>
+        <i className={clsx('glyph glyph-' + 'cloud-upload', styles.icons)}></i>
+        <i className={clsx('glyph glyph-' + 'plus', styles.icons)}></i>
+        <i className={clsx('glyph glyph-' + 'heart', styles.icons)}></i>
+        {/* <ix-icon name="bulb" size="32"></ix-icon>
         <ix-icon name="plus" size="32"></ix-icon>
         <ix-icon name="cloud-upload" size="32"></ix-icon>
         <ix-icon name="plus" size="32"></ix-icon>
-        <ix-icon name="heart" size="32"></ix-icon>
+        <ix-icon name="heart" size="32"></ix-icon> */}
       </div>
     </div>
   );
