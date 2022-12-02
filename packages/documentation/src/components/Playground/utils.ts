@@ -51,6 +51,57 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
+async function openAngularStackBlitz(baseUrl: string, sourceCode: string) {
+  const [
+    angular_json,
+    app_component_css,
+    app_component_html,
+    app_component_ts,
+    app_module_ts,
+    main_ts,
+    styles_css,
+    tsconfig_json,
+  ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/angular/angular.json`,
+    `${baseUrl}code-runtime/angular/app.component.css`,
+    `${baseUrl}code-runtime/angular/app.component.html`,
+    `${baseUrl}code-runtime/angular/app.component.ts`,
+    `${baseUrl}code-runtime/angular/app.module.ts`,
+    `${baseUrl}code-runtime/angular/main.ts`,
+    `${baseUrl}code-runtime/angular/styles.css`,
+    `${baseUrl}code-runtime/angular/tsconfig.json`,
+  ]);
+
+  sdk.openProject(
+    {
+      template: 'angular-cli',
+      title: 'iX angular app',
+      description: 'iX angular playground',
+      files: {
+        'src/main.ts': main_ts,
+        'src/polyfills.ts': `import 'zone.js/dist/zone';`,
+        'src/app/app.module.ts': app_module_ts,
+        'src/app/app.component.ts': app_component_ts,
+        'src/app/app.component.html': app_component_html,
+        'src/app/example.component.ts': sourceCode,
+        'src/app/app.component.css': app_component_css,
+        'src/index.html': '<app-root></app-root>',
+        'src/styles.css': styles_css,
+        'angular.json': angular_json,
+        'tsconfig.json': tsconfig_json,
+      },
+      dependencies: {
+        '@siemens/ix': '^1.1.1',
+        '@siemens/ix-icons': '^1.0.2',
+        '@siemens/ix-angular': '^1.1.1',
+      },
+    },
+    {
+      openFile: 'src/app/example.component.ts',
+    }
+  );
+}
+
 async function openReactStackBlitz(baseUrl: string, sourceCode: string) {
   const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
     await loadSourceCodeFromStatic([
@@ -97,6 +148,10 @@ export async function openStackBlitz({
   const [sourceFile] = await loadSourceCodeFromStatic([examplePath]);
 
   if (framework === TargetFramework.REACT) {
-    await openReactStackBlitz(baseUrl, sourceFile);
+    return openReactStackBlitz(baseUrl, sourceFile);
+  }
+
+  if (framework === TargetFramework.ANGULAR) {
+    return openAngularStackBlitz(baseUrl, sourceFile);
   }
 }

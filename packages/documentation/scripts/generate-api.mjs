@@ -221,7 +221,10 @@ async function writeReactPreviews() {
   );
 }
 
-function writeAngularPreviews() {
+async function writeAngularPreviews() {
+  const angularPreviewSourceCodePath = path.join(staticPath, 'angular');
+  fse.ensureDirSync(angularPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -247,20 +250,28 @@ function writeAngularPreviews() {
     })
     .map((name) => [name, path.join(angularPreviewPath, `${name}.ts`)]);
 
-  angularPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'angular'
-    );
-    fse.ensureDirSync(writePath);
+  await Promise.all(
+    angularPreviewPaths.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'angular'
+      );
+      fse.ensureDirSync(writePath);
 
-    const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, 'typescript', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+      const code = fs.readFileSync(previewPath).toString();
+      const markdown = generateMarkdown(previewPath, 'typescript', code);
+      return [
+        fs.writeFileSync(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(
+          path.join(angularPreviewSourceCodePath, `${name}.txt`),
+          code
+        ),
+      ];
+    })
+  );
 }
 
 (async function () {
