@@ -262,30 +262,35 @@ function CallToActions() {
         alt=""
         className={styles.call_to_actions_background}
       ></img>
-      <Button
-        link={useBaseUrl('/docs/getting-started-for-designers')}
-        icon="arrow-right"
-        label="iX for Designers"
-        style="primary"
-      />
-      <Button
-        link={useBaseUrl('/docs/getting-started')}
-        icon="arrow-right"
-        label="iX for Developers"
-        style="secondary"
-      />
-      <Button
-        link={useBaseUrl('/docs/team')}
-        icon="user-management-filled"
-        label="Meet the Team"
-        style="grey"
-      />
-      <Button
-        link={'https://github.com/siemens/ix/discussions'}
-        icon="user-management-filled"
-        label="iX Community"
-        style="grey"
-      />
+      <div className={styles.lines}>
+        <Button
+          link={useBaseUrl('/docs/getting-started-for-designers')}
+          icon="arrow-right"
+          label="iX for Designers"
+          style="primary"
+        />
+        <Button
+          link={useBaseUrl('/docs/getting-started')}
+          icon="arrow-right"
+          label="iX for Developers"
+          style="secondary"
+        />
+      </div>
+
+      <div className={styles.lines}>
+        <Button
+          link={useBaseUrl('/docs/team')}
+          icon="user-management-filled"
+          label="Meet the Team"
+          style="grey"
+        />
+        <Button
+          link={'https://github.com/siemens/ix/discussions'}
+          icon="user-management-filled"
+          label="iX Community"
+          style="grey"
+        />
+      </div>
     </div>
   );
 }
