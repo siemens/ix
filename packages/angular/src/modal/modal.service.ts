@@ -9,10 +9,10 @@
 
 import { Injectable } from '@angular/core';
 import {
-    closeModal,
-    dismissModal,
-    modal,
-    ModalConfig as IxModalConfig
+  closeModal,
+  dismissModal,
+  modal,
+  ModalConfig as IxModalConfig,
 } from '@siemens/ix';
 import { ModalConfig } from './modal.config';
 
@@ -47,6 +47,7 @@ export class ModalService {
     embeddedView.detectChanges();
 
     const modalInstance = await modal({
+      ...config,
       title: '',
       content: node,
     });
