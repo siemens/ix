@@ -250,6 +250,24 @@ function writeAngularPreviews() {
   });
 }
 
+function copyPreviewsToStatic() {
+  const previewPath = path.join(
+    __dirname,
+    'docs',
+    'auto-generated',
+    'previews'
+  );
+
+  const staticPath = path.join(
+    __dirname,
+    'static',
+    'auto-generated',
+    'previews'
+  );
+
+  fse.copySync(previewPath, staticPath, { overwrite: true, recursive: true });
+}
+
 (async function () {
   await copyLib();
 
@@ -259,4 +277,6 @@ function writeAngularPreviews() {
   writeWebComponentPreviews();
   writeReactPreviews();
   writeAngularPreviews();
+
+  copyPreviewsToStatic();
 })();

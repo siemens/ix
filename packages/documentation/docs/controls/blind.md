@@ -7,9 +7,21 @@ import WebComponent from './../auto-generated/previews/web-component/blind.md'
 import SourceReact from './../auto-generated/previews/react/blind.md'
 import SourceAngular from './../auto-generated/previews/angular/blind.md'
 
+import Playground from '@site/src/components/Playground'
+
 # Blind
 
 ## Usage
+
+<Playground
+name="blind"
+height="16rem"
+frameworks={{
+    react: SourceReact,
+    angular: SourceAngular,
+    javascript: WebComponent
+}}>
+</Playground>
 
 <Preview name="blind" height="16rem">
   <TabItem value="javascript">
