@@ -10,11 +10,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-textarea',
+  selector: 'app-example',
   template: `
     <textarea class="form-control" placeholder="Enter text here">
   Some example text
 </textarea>
   `,
 })
-export class Textarea {}
+export default class Textarea {}

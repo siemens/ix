@@ -10,10 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-ghost',
+  selector: 'app-example',
   template: buttonGhost(),
 })
-export class Buttons {}
+export default class Buttons {}
 function buttonGhost(): string | undefined {
   return `
       <ix-button class="m-1" invisible variant="Primary">
@@ -24,4 +24,3 @@ function buttonGhost(): string | undefined {
       </ix-button>
   `;
 }
-

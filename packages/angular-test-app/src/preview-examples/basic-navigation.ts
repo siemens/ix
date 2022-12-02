@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-basic-navigation',
+  selector: 'app-example',
   template: `
     <ix-basic-navigation>
       <ix-menu>
@@ -20,4 +20,4 @@ import { Component } from '@angular/core';
     </ix-basic-navigation>
   `,
 })
-export class BasicNavigation {}
+export default class BasicNavigation {}

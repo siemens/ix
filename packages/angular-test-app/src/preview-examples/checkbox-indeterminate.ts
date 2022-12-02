@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-checkbox-indeterminate',
+  selector: 'app-example',
   template: `
     <div>
       <input type="checkbox" id="checkbox_01" [indeterminate]="true" />
@@ -18,4 +18,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class CheckboxIndeterminate {}
+export default class CheckboxIndeterminate {}

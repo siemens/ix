@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-validation',
+  selector: 'app-example',
   template: `
     <form
       class="row g-3 needs-validation"
@@ -74,7 +74,7 @@ import { Component } from '@angular/core';
     </form>
   `,
 })
-export class Validation {
+export default class Validation {
   data = {
     firstName: '',
     lastName: '',

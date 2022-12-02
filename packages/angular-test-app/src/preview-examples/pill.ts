@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-pill',
+  selector: 'app-example',
   template: `
     <ix-pill variant="custom" color="white" background="purple">
       Label
@@ -35,4 +35,4 @@ import { Component } from '@angular/core';
     </ix-pill>
   `,
 })
-export class Pill {}
+export default class Pill {}

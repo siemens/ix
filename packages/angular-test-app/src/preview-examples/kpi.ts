@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-kpi',
+  selector: 'app-example',
   template: `
     <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
     <ix-kpi label="Motor speed" value="{122.6}" unit="rpm"></ix-kpi>
@@ -27,4 +27,4 @@ import { Component } from '@angular/core';
     ></ix-kpi>
   `,
 })
-export class Kpi {}
+export default class Kpi {}

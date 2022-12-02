@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-datetimepicker',
+  selector: 'app-example',
   template: `<ix-datetime-picker></ix-datetime-picker>`,
 })
-export class Datetimepicker {}
+export default class Datetimepicker {}

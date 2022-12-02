@@ -11,7 +11,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
-  selector: 'app-toast',
+  selector: 'app-example',
   template: `
     <div>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -23,7 +23,7 @@ import { ToastService } from '@siemens/ix-angular';
     <ix-button (click)="showToastMessage()">Show Toast</ix-button>
   `,
 })
-export class Toast {
+export default class Toast {
   @ViewChild('customToast', { read: TemplateRef })
   customModalRef!: TemplateRef<any>;
 
