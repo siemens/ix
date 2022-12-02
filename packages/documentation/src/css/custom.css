@@ -124,6 +124,7 @@ aside {
 
 .navbar.navbar--fixed-top {
   height: var(--ifm-navbar-height);
+  background-color: #000028;
 }
 
 .dropdown__menu {

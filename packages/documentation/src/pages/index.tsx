@@ -40,14 +40,6 @@ function parallax(id: string, min: number, max: number, translateMax: number) {
   });
 }
 
-function Video() {
-  return (
-    <video className={styles.intro} muted autoPlay>
-      <source src={useBaseUrl('/img/iX_Intro_clean.mp4')} type="video/mp4" />
-    </video>
-  );
-}
-
 function Headline({
   title,
   subtitle,
@@ -117,13 +109,35 @@ function Homepage() {
   return (
     <div className={clsx(styles.container, styles.industrial_experiance)}>
       <div className={styles.content}>
+        <div className={styles.logo}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="70"
+            height="70"
+            viewBox="0 0 70 70"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <rect width="70" height="70" fill="#333353" />
+              <path
+                fill="#00BEDC"
+                fill-rule="nonzero"
+                d="M12.0848633,54 L12.0848633,28.562891 L18.5033203,28.562891 L18.5033203,54 L12.0848633,54 Z M15.3075195,16.130566 C16.4712565,16.130566 17.4246257,16.5065429 18.167627,17.258496 C18.9106283,18.0104491 19.2821289,18.9772464 19.2821289,20.158887 C19.2821289,21.322624 18.9106283,22.2849451 18.167627,23.04585 C17.4246257,23.8067549 16.4802083,24.187207 15.334375,24.187207 C14.1527344,24.187207 13.1904134,23.8067549 12.4474121,23.04585 C11.7044108,22.2849451 11.3329102,21.3047203 11.3329102,20.105176 C11.3329102,18.9593427 11.7088867,18.0104491 12.4608398,17.258496 C13.212793,16.5065429 14.1616862,16.130566 15.3075195,16.130566 Z"
+              />
+              <polygon
+                fill="#00BEDC"
+                fill-rule="nonzero"
+                points="23.874 54 37.436 34.557 24.546 15.946 32.307 15.946 41.626 29.481 51.186 15.946 58.733 15.946 45.466 34.583 59.001 54 50.998 54 41.411 39.981 31.662 54"
+              />
+            </g>
+          </svg>
+        </div>
         <Headline
           size="h1"
           title="Siemens"
           subtitle="Industrial Experience"
-          description="iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
+          description="Siemens Industrial Experience is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
           noLine
-          description_width="340px"
+          description_width="427px"
         ></Headline>
 
         <div className={styles.Card_Box}>
@@ -248,6 +262,24 @@ function Button(props: {
         {props.label}
       </div>
     </a>
+  );
+}
+
+function Welcome() {
+  return (
+    <div
+      id="getting-started"
+      className={clsx(styles.container, styles.welcome)}
+    >
+      <div className={styles.title}>Welcome!</div>
+      <div className={styles.icons}>
+        <ix-icon name="bulb" size="32"></ix-icon>
+        <ix-icon name="plus" size="32"></ix-icon>
+        <ix-icon name="cloud-upload" size="32"></ix-icon>
+        <ix-icon name="plus" size="32"></ix-icon>
+        <ix-icon name="heart" size="32"></ix-icon>
+      </div>
+    </div>
   );
 }
 
@@ -669,15 +701,10 @@ export default function Home() {
     <BrowserOnly>
       {() => (
         <>
-          <Video />
-          <Anime
-            easing="easeInOutExpo"
-            delay="1500"
-            duration="1500"
-            opacity={[0, 1]}
-          >
+          <Anime easing="easeInOutExpo" duration="2000" opacity={[0, 1]}>
             <Layout>
               <Homepage />
+              <Welcome />
               <CallToActions />
               <Devices />
               <UX />
