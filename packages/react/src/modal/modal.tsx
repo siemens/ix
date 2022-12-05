@@ -44,7 +44,7 @@ export const Modal = React.forwardRef<
       }
       dismissModal(modalElement, result);
     },
-    htmlElement: modalRef.current
+    htmlElement: modalRef.current,
   }));
 
   return <div ref={modalRef}>{props.children}</div>;
