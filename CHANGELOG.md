@@ -1,3 +1,21 @@
+# [1.2.0-beta.0](https://github.com/siemens/ix/compare/v1.1.1...v1.2.0-beta.0) (2022-12-05)
+
+
+### Bug Fixes
+
+* **angular/modal-service:** pass config object to modal function ([#200](https://github.com/siemens/ix/issues/200)) ([8b5f163](https://github.com/siemens/ix/commit/8b5f163a9f13ddf58069957f6c566f9f21aed903))
+* **angular:** downgrade @angular/compiler to v13-lts ([#194](https://github.com/siemens/ix/issues/194)) ([cb3c15b](https://github.com/siemens/ix/commit/cb3c15bf36bb1f121a58c534c7f65beefed5644c))
+* **core/menu-avatar:** show avatar icon ([#201](https://github.com/siemens/ix/issues/201)) ([dee02b8](https://github.com/siemens/ix/commit/dee02b84e2684db08de8aa64b880305b94890aae))
+* **documentation:** fix buttons responsiveness ([#203](https://github.com/siemens/ix/issues/203)) ([ff1b946](https://github.com/siemens/ix/commit/ff1b9461b7632d3de27f1047cf8fb86a7f8e790e))
+
+
+### Features
+
+* **angular/modal-service:** add property to pass data into context ([#206](https://github.com/siemens/ix/issues/206)) ([0408cd4](https://github.com/siemens/ix/commit/0408cd43eaad120f68bed91da83725df29aaf96b))
+* **core:** add dynamic import flag to compile library ([b4eeedf](https://github.com/siemens/ix/commit/b4eeedfd1df2d91d8e47cd7dd5eb44badaf9094e))
+
+
+
 ## [1.1.1](https://github.com/siemens/ix/compare/v1.1.0...v1.1.1) (2022-11-30)
 
 
