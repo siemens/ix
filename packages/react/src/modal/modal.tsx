@@ -14,6 +14,7 @@ import React, { useImperativeHandle, useRef } from 'react';
 export interface ModalRef {
   close: <T = any>(result: T) => void;
   dismiss: <T = any>(result?: T) => void;
+  htmlElement: HTMLElement | null;
 }
 
 export const Modal = React.forwardRef<
@@ -21,6 +22,7 @@ export const Modal = React.forwardRef<
   React.PropsWithChildren<{
     onClose?: <T = any>(result: T) => void;
     onDismiss?: <T = any>(result?: T) => void;
+    htmlElement?: HTMLElement;
   }>
 >((props, ref) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -42,6 +44,7 @@ export const Modal = React.forwardRef<
       }
       dismissModal(modalElement, result);
     },
+    htmlElement: modalRef.current
   }));
 
   return <div ref={modalRef}>{props.children}</div>;

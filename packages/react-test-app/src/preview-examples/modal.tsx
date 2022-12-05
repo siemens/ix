@@ -50,10 +50,16 @@ function CustomModal() {
 
 export const ModalExample: React.FC = () => {
   function show() {
-    showModal({
+    const modal = showModal({
       title: 'test',
       content: <CustomModal />,
     });
+
+    modal.then((modal) =>
+      modal.htmlElement.addEventListener('keydown', (keyboardEvent: KeyboardEvent) =>
+        console.log(keyboardEvent.key)
+      )
+    );
   }
 
   return (
