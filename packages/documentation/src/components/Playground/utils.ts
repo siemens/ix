@@ -51,49 +51,81 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
+async function openHtmlStackBlitz(baseUrl: string, sourceCode: string) {
+  const [index_html, main_js, package_json, vite_config_ts] =
+    await loadSourceCodeFromStatic([
+      `${baseUrl}code-runtime/html/src/index.html`,
+      `${baseUrl}code-runtime/html/src/main.js`,
+      `${baseUrl}code-runtime/html/package.json`,
+      `${baseUrl}code-runtime/html/vite.config.ts`,
+    ]);
+
+  sdk.openProject(
+    {
+      template: 'node',
+      title: 'iX html app',
+      description: 'iX html playground',
+      files: {
+        'src/index.html': index_html.replace(
+          '<!-- IX_INJECT_SOURCE_CODE -->',
+          sourceCode
+        ),
+        'src/main.js': main_js,
+        'package.json': package_json,
+        'vite.config.ts': vite_config_ts,
+      },
+    },
+    {
+      openFile: ['src/index.html'],
+    }
+  );
+}
+
 async function openAngularStackBlitz(baseUrl: string, sourceCode: string) {
   const [
-    angular_json,
     app_component_css,
     app_component_html,
     app_component_ts,
     app_module_ts,
+    index_html,
     main_ts,
     styles_css,
+    angular_json,
+    package_json,
+    tsconfig_app_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/angular/src/app/app.component.css`,
+    `${baseUrl}code-runtime/angular/src/app/app.component.html`,
+    `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
+    `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
+    `${baseUrl}code-runtime/angular/src/index.html`,
+    `${baseUrl}code-runtime/angular/src/main.ts`,
+    `${baseUrl}code-runtime/angular/src/styles.css`,
     `${baseUrl}code-runtime/angular/angular.json`,
-    `${baseUrl}code-runtime/angular/app.component.css`,
-    `${baseUrl}code-runtime/angular/app.component.html`,
-    `${baseUrl}code-runtime/angular/app.component.ts`,
-    `${baseUrl}code-runtime/angular/app.module.ts`,
-    `${baseUrl}code-runtime/angular/main.ts`,
-    `${baseUrl}code-runtime/angular/styles.css`,
+    `${baseUrl}code-runtime/angular/package.json`,
+    `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
   sdk.openProject(
     {
-      template: 'angular-cli',
+      template: 'node',
       title: 'iX angular app',
       description: 'iX angular playground',
       files: {
-        'src/main.ts': main_ts,
-        'src/polyfills.ts': `import 'zone.js/dist/zone';`,
-        'src/app/app.module.ts': app_module_ts,
-        'src/app/app.component.ts': app_component_ts,
-        'src/app/app.component.html': app_component_html,
         'src/app/example.component.ts': sourceCode,
         'src/app/app.component.css': app_component_css,
-        'src/index.html': '<app-root></app-root>',
+        'src/app/app.component.html': app_component_html,
+        'src/app/app.component.ts': app_component_ts,
+        'src/app/app.module.ts': app_module_ts,
+        'src/index.html': index_html,
+        'src/main.ts': main_ts,
         'src/styles.css': styles_css,
         'angular.json': angular_json,
+        'package.json': package_json,
+        'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
-      },
-      dependencies: {
-        '@siemens/ix': '^1.1.1',
-        '@siemens/ix-icons': '^1.0.2',
-        '@siemens/ix-angular': '^1.1.1',
       },
     },
     {
@@ -153,5 +185,9 @@ export async function openStackBlitz({
 
   if (framework === TargetFramework.ANGULAR) {
     return openAngularStackBlitz(baseUrl, sourceFile);
+  }
+
+  if (framework === TargetFramework.JAVASCRIPT) {
+    return openHtmlStackBlitz(baseUrl, sourceFile);
   }
 }

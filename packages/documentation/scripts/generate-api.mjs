@@ -7,13 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import fse from 'fs-extra';
-import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
-import { appendDocsTags } from './docs-tags.mjs';
 import copyLib from './copy-webcomponents.mjs';
+import { appendDocsTags } from './docs-tags.mjs';
 
 const __dirname = path.resolve();
 
@@ -137,7 +136,10 @@ function writeApi(component) {
   fse.outputFileSync(path.join(output, 'events.md'), data);
 }
 
-function writeWebComponentPreviews() {
+async function writeWebComponentPreviews() {
+  const htmlPreviewSourceCodePath = path.join(staticPath, 'javascript');
+  fse.ensureDirSync(htmlPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -146,39 +148,48 @@ function writeWebComponentPreviews() {
       path.join(htmlPreviewPath, name),
     ]);
 
-  webComponentPreviews.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'web-component'
-    );
-    fse.ensureDirSync(writePath);
+  await Promise.all(
+    webComponentPreviews.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'web-component'
+      );
+      fse.ensureDirSync(writePath);
 
-    let code = fs.readFileSync(previewPath).toString();
-    const CODE_SPLIT = '<!-- Preview code -->\n';
-    const splitHtmlContent = code.split(CODE_SPLIT);
-    if (splitHtmlContent?.length === 3) {
-      code = splitHtmlContent[1]
-        .split('\n')
-        .map((line) => line.replace(/[ ]{4}/, ''))
-        .join('\n')
-        .trimEnd();
-    }
+      let code = fs.readFileSync(previewPath).toString();
+      const CODE_SPLIT = '<!-- Preview code -->\n';
+      const splitHtmlContent = code.split(CODE_SPLIT);
+      if (splitHtmlContent?.length === 3) {
+        code = splitHtmlContent[1]
+          .split('\n')
+          .map((line) => line.replace(/[ ]{4}/, ''))
+          .join('\n')
+          .trimEnd();
+      }
 
-    const markdown = generateMarkdown(previewPath, 'html', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+      const markdown = generateMarkdown(previewPath, 'html', code);
+      return [
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(
+          path.join(htmlPreviewSourceCodePath, `${name}.txt`),
+          code
+        ),
+      ];
+    })
+  );
 }
 
 async function writeReactPreviews() {
+  const reactPreviewSourceCodePath = path.join(staticPath, 'react');
+  fse.ensureDirSync(reactPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
     .map((name) => name.replace('.html', ''));
-
-  const reactPreviewSourceCodePath = path.join(staticPath, 'react');
 
   const reactPreviewPath = path.join(
     __dirname,
@@ -197,8 +208,6 @@ async function writeReactPreviews() {
       return exist;
     })
     .map((name) => [name, path.join(reactPreviewPath, `${name}.tsx`)]);
-
-  fse.ensureDirSync(reactPreviewSourceCodePath);
 
   await Promise.all(
     reactPreviewPaths.flatMap(([name, previewPath]) => {
@@ -264,7 +273,7 @@ async function writeAngularPreviews() {
       const code = fs.readFileSync(previewPath).toString();
       const markdown = generateMarkdown(previewPath, 'typescript', code);
       return [
-        fs.writeFileSync(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
         fsp.writeFile(
           path.join(angularPreviewSourceCodePath, `${name}.txt`),
           code
@@ -280,7 +289,7 @@ async function writeAngularPreviews() {
   const { components } = readComponents();
   components.forEach(writeApi);
 
-  writeWebComponentPreviews();
+  await writeWebComponentPreviews();
   await writeReactPreviews();
-  writeAngularPreviews();
+  await writeAngularPreviews();
 })();
