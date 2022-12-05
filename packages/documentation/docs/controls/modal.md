@@ -7,7 +7,8 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
 
 # Modal
 
-## Usage
+How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
+Select the appropriate tab below for the respective usage information.
 
 <Preview name="modal" height="35rem">
   <TabItem value="javascript">
@@ -17,6 +18,11 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
     <SourceReactModal />
   </TabItem>
   <TabItem value="angular">
-    <SourceAngularModal />
+
+`@siemens/ix-angular` provides an injectable service that allows you to open modal dialogs based on a `ng-template` reference.
+If you want to pass arbitrary data to the modal use the `data`-property. In order to access that inside the modal template use `let-modal` as seen in this example:
+
+  <SourceAngularModal />
+
   </TabItem>
 </Preview>

@@ -108,9 +108,25 @@
     justify-content: center;
     padding: 211px 0;
     gap: 45px;
+
+    .lines {
+      display: flex;
+      gap: 45px;
+    }
   }
 
   @media (max-width: 1024px) {
+    &.call_to_actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lines {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 1700px) {
     &.call_to_actions {
       flex-direction: column;
       align-items: center;

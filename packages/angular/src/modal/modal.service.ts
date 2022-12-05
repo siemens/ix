@@ -8,12 +8,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import {
-    closeModal,
-    dismissModal,
-    modal,
-    ModalConfig as IxModalConfig
-} from '@siemens/ix';
+import { closeModal, dismissModal, modal } from '@siemens/ix';
 import { ModalConfig } from './modal.config';
 
 @Injectable({
@@ -22,13 +17,15 @@ import { ModalConfig } from './modal.config';
 export class ModalService {
   constructor() {}
 
-  async open(config: Omit<IxModalConfig, 'content'> & ModalConfig) {
+  async open<TDATA = any>(config: ModalConfig) {
     const context: {
       close: ((result: any) => void) | null;
       dismiss: ((result?: any) => void) | null;
+      data?: TDATA;
     } = {
       close: null,
       dismiss: null,
+      data: config.data,
     };
     const embeddedView = config.content.createEmbeddedView({
       $implicit: context,
@@ -47,6 +44,7 @@ export class ModalService {
     embeddedView.detectChanges();
 
     const modalInstance = await modal({
+      ...config,
       title: '',
       content: node,
     });
