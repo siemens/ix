@@ -45,6 +45,10 @@
     content: '';
     width: $size;
     height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
     float: left;
     margin-right: $small-space;
 
@@ -110,8 +114,7 @@
       border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
       border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
-      top: 0.3rem;
-      left: 0.35rem;
+      margin: 0 5px 3px;
       transform: rotate(-53deg) scale(2);
     }
 
@@ -151,8 +154,7 @@
       height: 0.125rem;
       border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      top: $small-space;
-      left: $tiny-space;
+      margin: 0 0 0 4px;
     }
 
     & + label:before {

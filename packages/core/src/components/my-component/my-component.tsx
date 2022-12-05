@@ -16,6 +16,29 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div
+          style={{
+            marginBottom: '1rem',
+          }}
+        >
+          <input type="checkbox" id="checkbox_01" checked />
+          <label htmlFor="checkbox_01" style={{ width: '9rem' }}>
+            Simple checkbox long long long long long long long
+          </label>
+        </div>
+        <div
+          style={{
+            marginBottom: '1rem',
+          }}
+        >
+          <input type="radio" id="radiobutton_01" checked />
+          <label htmlFor="radiobutton_01" style={{ width: '9rem' }}>
+            Simple checkbox long long long long long long long
+          </label>
+        </div>
+      </Host>
+    );
   }
 }
