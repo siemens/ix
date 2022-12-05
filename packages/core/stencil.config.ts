@@ -139,6 +139,7 @@ export const config: Config = {
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
+    experimentalImportInjection: true,
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',
@@ -205,7 +206,7 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null, // disable service workers
+      serviceWorker: null,
       copy: copyAssets,
     },
   ],
