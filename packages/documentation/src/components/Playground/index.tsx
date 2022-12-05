@@ -70,13 +70,9 @@ function ButtonToggleCode({
   onClick: React.MouseEventHandler<HTMLIxIconButtonElement>;
 }) {
   return (
-    <ix-icon-button
-      onClick={onClick}
-      icon="document-reference"
-      oval
-      ghost
-      size="16"
-    ></ix-icon-button>
+    <ix-button onClick={onClick} ghost>
+      Toggle Code
+    </ix-button>
   );
 }
 
@@ -153,16 +149,9 @@ export default function Playground({
       <div className="Playground__Toolbar Location__Top">
         <div className="Playground__Toolbar__Actions">
           <ButtonToggleCode onClick={() => setShowCode(!showCode)} />
-          <ButtonOpenGithub name={name} framework={targetFramework} />
-          <ButtonOpenStackBlitz
-            name={name}
-            framework={targetFramework}
-            baseUrl={baseUrl}
-          />
         </div>
       </div>
       <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
-
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
@@ -184,6 +173,14 @@ export default function Playground({
             >
               JavaScript
             </ix-button>
+            <div className="Playground__Toolbar__Actions">
+              <ButtonOpenGithub name={name} framework={targetFramework} />
+              <ButtonOpenStackBlitz
+                name={name}
+                framework={targetFramework}
+                baseUrl={baseUrl}
+              />
+            </div>
           </div>
           {renderSourceCodeSnippet()}
         </>

@@ -4,6 +4,7 @@ title: Button
 
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-button/props.md';
 import PropsIcon from './../auto-generated/ix-icon-button/props.md';
 
@@ -45,17 +46,14 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
 
 ### Primary
 
-<Preview name="buttons">
-  <TabItem value="angular" key="angular">
-    <AngularButtons />
-  </TabItem>
-  <TabItem value="react" key="react">
-    <ReactButtons />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtons />
-  </TabItem>
-</Preview>
+<Playground
+name="buttons"
+frameworks={{
+  react: ReactButtons,
+  angular: AngularButtons,
+  javascript: WebComponentButtons
+}}>
+</Playground>
 
 ### Primary Outline
 
@@ -65,17 +63,14 @@ Will be used in UX context as **Secondary**
 
 :::
 
-<Preview name="button-secondary">
-  <TabItem value="angular" key="angular">
-    <AngularButtonSecondary />
-  </TabItem>
-  <TabItem value="react" key="react">
-    <ReactButtonSecondary />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonSecondary />
-  </TabItem>
-</Preview>
+<Playground
+name="button-secondary"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonSecondary,
+  angular: AngularButtonSecondary,
+  javascript: WebComponentButtonSecondary
+}}></Playground>
 
 ### Primary Ghost
 
@@ -85,17 +80,14 @@ Will be used in UX context as **Ghost**
 
 :::
 
-<Preview name="button-ghost">
-  <TabItem value="angular" key="angular">
-    <AngularButtonGhost />
-  </TabItem>
-    <TabItem value="react" key="react">
-    <ReactButtonGhost />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonGhost />
-  </TabItem>
-</Preview>
+<Playground
+name="button-ghost"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonGhost,
+  angular: AngularButtonGhost,
+  javascript: WebComponentButtonGhost
+}}></Playground>
 
 ### Secondary
 
@@ -105,17 +97,14 @@ Will be used in UX context as **Grey button**
 
 :::
 
-<Preview name="button-grey">
-  <TabItem value="angular" key="angular">
-    <AngularButtonGrey />
-  </TabItem>
-    <TabItem value="react" key="react">
-    <ReactButtonGrey />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonGrey />
-  </TabItem>
-</Preview>
+<Playground
+name="button-grey"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonGrey,
+  angular: AngularButtonGrey,
+  javascript: WebComponentButtonGrey
+}}></Playground>
 
 ### Secondary Outline
 
@@ -125,17 +114,14 @@ Will be used in UX context as **Grey secondary**
 
 :::
 
-<Preview name="button-grey-secondary">
-  <TabItem value="angular" key="angular">
-    <AngularButtonGreySecondary />
-  </TabItem>
-    <TabItem value="react" key="react">
-    <ReactButtonGreySecondary />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonGreySecondary />
-  </TabItem>
-</Preview>
+<Playground
+name="button-grey-secondary"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonGreySecondary,
+  angular: AngularButtonGreySecondary,
+  javascript: WebComponentButtonGreySecondary
+}}></Playground>
 
 ### Secondary Ghost
 
@@ -145,17 +131,14 @@ Will be used in UX context as **Grey ghost**
 
 :::
 
-<Preview name="button-grey-ghost">
-  <TabItem value="angular" key="angular">
-    <AngularButtonGreyGhost />
-  </TabItem>
-    <TabItem value="react" key="react">
-    <ReactButtonGreyGhost />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonGreyGhost />
-  </TabItem>
-</Preview>
+<Playground
+name="button-grey-ghost"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonGreyGhost,
+  angular: AngularButtonGreyGhost,
+  javascript: WebComponentButtonGreyGhost
+}}></Playground>
 
 ### Selectable button
 
@@ -165,59 +148,47 @@ Only available in secondary ghost state
 
 :::
 
-<Preview name="button-selected">
-  <TabItem value="angular" key="angular">
-<AngularButtonSelected />
-  </TabItem>
-  <TabItem value="react" key="react">
-<ReactButtonSelected />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-<WebComponentButtonSelected />
-  </TabItem>
-</Preview>
+<Playground
+name="button-selected"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonSelected,
+  angular: AngularButtonSelected,
+  javascript: WebComponentButtonSelected
+}}></Playground>
 
 ### Button group
 
-<Preview name="button-group">
-  <TabItem value="angular" key="angular">
-<AngularButtonGroup />
-  </TabItem>
-  <TabItem value="react" key="react">
-<ReactButtonGroup />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-<WebComponentButtonGroup />
-  </TabItem>
-</Preview>
+<Playground
+name="button-group"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonGroup,
+  angular: AngularButtonGroup,
+  javascript: WebComponentButtonGroup
+}}></Playground>
 
 ### Button with text and icon
 
-<Preview name="button-text-icon">
-  <TabItem value="angular" key="angular">
-    <AngularButtonTextIcon />
-  </TabItem>
-    <TabItem value="react" key="react">
-    <ReactButtonTextIcon />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-    <WebComponentButtonTextIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="button-text-icon"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonTextIcon,
+  angular: AngularButtonTextIcon,
+  javascript: WebComponentButtonTextIcon
+}}></Playground>
 
 ### Icon button
 
-<Preview name="button-with-icon">
-  <TabItem value="angular" key="angular">
-<AngularButtonIcon />
-  </TabItem>
-  <TabItem value="react" key="react">
-<ReactButtonIcon />
-  </TabItem>
-  <TabItem value="javascript" key="javascript">
-<WebComponentButtonIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="button-with-icon"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonIcon,
+  angular: AngularButtonIcon,
+  javascript: WebComponentButtonIcon
+}}></Playground>
 
 ## Properties (ix-button)
 
