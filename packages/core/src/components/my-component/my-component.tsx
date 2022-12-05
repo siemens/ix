@@ -17,27 +17,30 @@ import { Component, h, Host } from '@stencil/core';
 export class MyComponent {
   render() {
     return (
-      <Host>
-        <div
-          style={{
-            marginBottom: '1rem',
+      <Host style={{ width: '8rem' }}>
+        <input
+          type="checkbox"
+          id="cb_1"
+          ref={(r) => {
+            r.indeterminate = true;
           }}
-        >
-          <input type="checkbox" id="checkbox_01" checked />
-          <label htmlFor="checkbox_01" style={{ width: '9rem' }}>
-            Simple checkbox long long long long long long long
-          </label>
-        </div>
-        <div
-          style={{
-            marginBottom: '1rem',
-          }}
-        >
-          <input type="radio" id="radiobutton_01" checked />
-          <label htmlFor="radiobutton_01" style={{ width: '9rem' }}>
-            Simple checkbox long long long long long long long
-          </label>
-        </div>
+        />
+        <label htmlFor="cb_1">Test</label>
+
+        <input checked id="checkbox_1_1" name="group_1" type="radio" />
+        <label htmlFor="checkbox_1_1">
+          Checkbox extra long text long so long a little bit longer please
+        </label>
+
+        <input id="checkbox_1_2" name="group_1" type="radio" />
+        <label htmlFor="checkbox_1_2">
+          Checkbox extra long text long so long a little bit longer please
+        </label>
+
+        <input disabled id="checkbox_1_3" name="group_1" type="radio" />
+        <label htmlFor="checkbox_1_3">
+          Checkbox extra long text long so long a little bit longer please
+        </label>
       </Host>
     );
   }

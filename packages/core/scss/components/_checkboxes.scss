@@ -29,9 +29,8 @@
   [type='checkbox']:not(:checked) + label,
   [type='checkbox']:checked + label {
     position: relative;
-    display: flex;
-    align-items: center;
-    line-height: $default-space;
+    display: inline-flex;
+    align-items: flex-start;
     user-select: none;
 
     color: var(--theme-checkbox-label--color);
@@ -114,7 +113,7 @@
       border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
       border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
-      margin: 0 5px 3px;
+      margin: 0.3125rem 0.3125rem 0.1875rem;
       transform: rotate(-53deg) scale(2);
     }
 
@@ -154,7 +153,7 @@
       height: 0.125rem;
       border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      margin: 0 0 0 4px;
+      margin: 0.5rem 0 0 0.25rem;
     }
 
     & + label:before {
