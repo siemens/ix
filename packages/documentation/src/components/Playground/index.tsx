@@ -150,25 +150,7 @@ export default function Playground({
 
   return (
     <div className="Playground">
-      <div className="Playground__Toolbar">
-        <ix-button
-          ghost={targetFramework !== TargetFramework.ANGULAR}
-          onClick={() => changeFramework(TargetFramework.ANGULAR)}
-        >
-          Angular
-        </ix-button>
-        <ix-button
-          ghost={targetFramework !== TargetFramework.REACT}
-          onClick={() => changeFramework(TargetFramework.REACT)}
-        >
-          React
-        </ix-button>
-        <ix-button
-          ghost={targetFramework !== TargetFramework.JAVASCRIPT}
-          onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
-        >
-          JavaScript
-        </ix-button>
+      <div className="Playground__Toolbar Location__Top">
         <div className="Playground__Toolbar__Actions">
           <ButtonToggleCode onClick={() => setShowCode(!showCode)} />
           <ButtonOpenGithub name={name} framework={targetFramework} />
@@ -180,7 +162,32 @@ export default function Playground({
         </div>
       </div>
       <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
-      {showCode ? renderSourceCodeSnippet() : null}
+
+      {showCode ? (
+        <>
+          <div className="Playground__Toolbar Location__Bottom">
+            <ix-button
+              ghost={targetFramework !== TargetFramework.ANGULAR}
+              onClick={() => changeFramework(TargetFramework.ANGULAR)}
+            >
+              Angular
+            </ix-button>
+            <ix-button
+              ghost={targetFramework !== TargetFramework.REACT}
+              onClick={() => changeFramework(TargetFramework.REACT)}
+            >
+              React
+            </ix-button>
+            <ix-button
+              ghost={targetFramework !== TargetFramework.JAVASCRIPT}
+              onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
+            >
+              JavaScript
+            </ix-button>
+          </div>
+          {renderSourceCodeSnippet()}
+        </>
+      ) : null}
     </div>
   );
 }

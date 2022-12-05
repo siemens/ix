@@ -19,7 +19,14 @@
     display: flex;
     position: relative;
     padding: 0.5rem;
-    border-bottom: var(--docs-playground-border);
+
+    &.Location__Top {
+      border-bottom: var(--docs-playground-border);
+    }
+
+    &.Location__Bottom {
+      border-top: var(--docs-playground-border);
+    }
   }
 
   .Playground__Toolbar__Actions {
