@@ -20,8 +20,9 @@
 
   [type='radio']:not(:checked) + label,
   [type='radio']:checked + label {
+    display: inline-flex;
+    align-items: flex-start;
     position: relative;
-    line-height: $size;
     user-select: none;
 
     color: var(--theme-radiobtn-label--color);
@@ -36,6 +37,10 @@
     content: '';
     width: $size;
     height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
     float: left;
     margin-right: $small-space;
 
