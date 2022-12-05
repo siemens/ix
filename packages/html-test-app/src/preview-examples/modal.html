@@ -56,9 +56,12 @@ SPDX-License-Identifier: MIT
         );
 
         const button = document.querySelector('ix-button');
-        button.addEventListener('click', () => {
-          modal({
+        button.addEventListener('click', async () => {
+          const m = await modal({
             content: customModal,
+          });
+          m.htmlElement.addEventListener('keydown', (keyEvent) => {
+            console.log(keyEvent.key);
           });
         });
       })();

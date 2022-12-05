@@ -993,7 +993,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
+        "showModal": (config: ModalConfig) => Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
     }
     interface IxModalExample {
     }

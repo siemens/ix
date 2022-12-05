@@ -54,6 +54,7 @@ export class ModalContainer {
     });
 
     return {
+      htmlElement: modal,
       onClose,
       onDismiss,
     };

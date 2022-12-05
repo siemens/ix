@@ -6171,10 +6171,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+            "type": "Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+          "signature": "showModal(config: ModalConfig) => Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [

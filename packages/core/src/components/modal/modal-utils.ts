@@ -36,7 +36,7 @@ function getModalContainer() {
   const [container] = containerList;
   if (containerList.length > 1) {
     console.warn(
-      'Multiple modal container are found. Only there first is used.'
+      'Multiple modal containers were found. The one instatiated fist will be used.'
     );
     return container;
   }

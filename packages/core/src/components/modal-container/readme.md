@@ -13,13 +13,13 @@ SPDX-License-Identifier: MIT
 
 ## Methods
 
-### `showModal(config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
+### `showModal(config: ModalConfig) => Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
 
 Display modal dialog
 
 #### Returns
 
-Type: `Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
+Type: `Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>`
 
 
 

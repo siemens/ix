@@ -36,9 +36,9 @@ import { ModalService } from '@siemens/ix-angular';
           >
             Cancel
           </ix-button>
-          <ix-button class="close-modal" (click)="modal.close('okay')"
-            >OK</ix-button
-          >
+          <ix-button class="close-modal" (click)="modal.close('okay')">
+            OK
+          </ix-button>
         </div>
       </div>
     </ng-template>
@@ -60,5 +60,12 @@ export class Modal {
     instance.onClose.on((a) => {
       console.log(a);
     });
+
+    instance.htmlElement.addEventListener(
+      'keydown',
+      (keyboardEvent: KeyboardEvent) => {
+        console.log(keyboardEvent.key);
+      }
+    );
   }
 }
