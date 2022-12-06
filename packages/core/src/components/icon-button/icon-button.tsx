@@ -13,6 +13,7 @@ import { Button } from '../button/button';
 
 @Component({
   tag: 'ix-icon-button',
+  styleUrl: 'icon-button.scss',
   scoped: true,
 })
 export class IconButton implements Button {
@@ -75,8 +76,6 @@ export class IconButton implements Button {
 
   private getIconButtonClasses() {
     return {
-      'btn-icon-xs': this.size === '12',
-      'btn-icon-s': this.size === '16',
       ...getButtonClasses(
         this.variant,
         this.outline,
@@ -86,6 +85,10 @@ export class IconButton implements Button {
         this.selected,
         this.disabled
       ),
+      'icon-button': true,
+      'btn-icon-12': this.size === '12',
+      'btn-icon-16': this.size === '16',
+      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
     };
   }
 
