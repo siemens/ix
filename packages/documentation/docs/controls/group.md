@@ -71,6 +71,15 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
 
 ### Group with context menu
 
+:::note
+
+During migration from Core UI to iX we discovered an issue inside the slot rendering of the context menu.
+Unfortunately we missed to adapt the documentation for version < 1.2.0.
+
+:::
+
+To show a context menu place a `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
+
 <Preview name="group-context-menu" height="16rem">
   <TabItem value="javascript">
     <SourceGroupContext />
