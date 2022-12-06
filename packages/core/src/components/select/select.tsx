@@ -8,16 +8,16 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State,
-    Watch
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -347,37 +347,37 @@ export class Select {
                     {item.label}
                   </ix-filter-chip>
                 ))}
+                <div class="trigger">
+                  <input
+                    data-testid="input"
+                    disabled={this.disabled}
+                    readOnly={this.readonly}
+                    type="text"
+                    class={{
+                      'allow-clear': this.allowClear && !!this.value?.length,
+                    }}
+                    placeholder={
+                      this.editable
+                        ? this.i18nPlaceholderEditable
+                        : this.i18nPlaceholder
+                    }
+                    value={this.getInputValue()}
+                    ref={(ref) => (this.inputRef = ref)}
+                    onInput={() => this.filterItemsWithTypeahead()}
+                  />
+                  {this.disabled || this.readonly ? null : (
+                    <div
+                      class="chevron-down-container"
+                      ref={(ref) => {
+                        if (this.editable) this.dropdownWrapperRef = ref;
+                      }}
+                    >
+                      <ix-icon class="chevron" name="chevron-down-small" />
+                    </div>
+                  )}
+                </div>
               </div>
             ) : null}
-            <div class="trigger">
-              <input
-                data-testid="input"
-                disabled={this.disabled}
-                readOnly={this.readonly}
-                type="text"
-                class={{
-                  'allow-clear': this.allowClear && !!this.value?.length,
-                }}
-                placeholder={
-                  this.editable
-                    ? this.i18nPlaceholderEditable
-                    : this.i18nPlaceholder
-                }
-                value={this.getInputValue()}
-                ref={(ref) => (this.inputRef = ref)}
-                onInput={() => this.filterItemsWithTypeahead()}
-              />
-              {this.disabled || this.readonly ? null : (
-                <div
-                  class="chevron-down-container"
-                  ref={(ref) => {
-                    if (this.editable) this.dropdownWrapperRef = ref;
-                  }}
-                >
-                  <ix-icon class="chevron" name="chevron-down-small" />
-                </div>
-              )}
-            </div>
           </div>
           {this.allowClear && (this.value?.length || this.inputText) ? (
             <ix-icon-button

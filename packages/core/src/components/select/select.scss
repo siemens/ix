@@ -68,10 +68,10 @@
       align-items: center;
       flex-wrap: wrap;
       height: 100%;
-      max-width: 70%;
-      flex-shrink: 0;
-
-      margin: auto;
+      flex-grow: 1;
+      // max-width: 70%;
+      // flex-shrink: 0;
+      // margin: auto;
 
       > ix-filter-chip {
         margin: 0.1rem;
