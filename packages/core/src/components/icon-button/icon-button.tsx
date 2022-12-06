@@ -88,7 +88,7 @@ export class IconButton implements Button {
       'icon-button': true,
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-24': this.size === '24' || !this.size,
+      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
     };
   }
 
