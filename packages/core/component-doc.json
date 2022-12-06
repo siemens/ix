@@ -6084,7 +6084,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "close(result: any) => Promise<void>",
+          "signature": "close<T = any>(result: T) => Promise<void>",
           "parameters": [],
           "docs": "Close modal",
           "docsTags": [
@@ -6100,7 +6100,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "dismiss(reason?: any) => Promise<void>",
+          "signature": "dismiss<T = any>(reason?: T) => Promise<void>",
           "parameters": [],
           "docs": "Dismiss modal instance",
           "docsTags": [
@@ -6171,10 +6171,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+            "type": "Promise<ModalInstance<any>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<{ htmlElement: HTMLIxModalElement; onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [

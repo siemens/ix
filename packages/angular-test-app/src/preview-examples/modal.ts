@@ -13,7 +13,7 @@ import { ModalService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-modal',
   template: `
-    <ix-button (click)="test()">Show modal</ix-button>
+    <ix-button (click)="openModal()">Show modal</ix-button>
 
     <ng-template #customModal let-modal>
       <div>
@@ -50,7 +50,7 @@ export class Modal {
 
   constructor(private readonly modalService: ModalService) {}
 
-  async test() {
+  async openModal() {
     const instance = await this.modalService.open({
       content: this.customModalRef,
       title: '',

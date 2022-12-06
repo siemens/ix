@@ -8,44 +8,46 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { closeModal, dismissModal } from '@siemens/ix';
+import { closeModal, dismissModal, ModalInstance } from '@siemens/ix';
 import React, { useImperativeHandle, useRef } from 'react';
 
 export interface ModalRef {
   close: <T = any>(result: T) => void;
   dismiss: <T = any>(result?: T) => void;
-  htmlElement: HTMLElement | null;
+  modalElement: HTMLIxModalElement | null;
 }
 
 export const Modal = React.forwardRef<
   ModalRef,
-  React.PropsWithChildren<{
-    onClose?: <T = any>(result: T) => void;
-    onDismiss?: <T = any>(result?: T) => void;
-    htmlElement?: HTMLElement;
-  }>
+  React.PropsWithChildren<ModalInstance>
 >((props, ref) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useImperativeHandle(ref, () => ({
-    close: (result: unknown) => {
-      const modalElement = modalRef.current;
-      if (!modalElement) {
-        console.error('Modal cannot find modal reference');
-        return;
-      }
-      closeModal(modalElement, result);
-    },
-    dismiss: (result?: unknown) => {
-      const modalElement = modalRef.current;
-      if (!modalElement) {
-        console.error('Modal cannot find modal reference');
-        return;
-      }
-      dismissModal(modalElement, result);
-    },
-    htmlElement: modalRef.current,
-  }));
+  useImperativeHandle(ref, () => {
+    let htmlElement: HTMLIxModalElement | null = null;
+    if (wrapperRef.current) {
+      htmlElement = wrapperRef.current.closest('ix-modal');
+    }
+    return {
+      close: (result: unknown) => {
+        const modalElement = wrapperRef.current;
+        if (!modalElement) {
+          console.error('Modal cannot find modal reference');
+          return;
+        }
+        closeModal(modalElement, result);
+      },
+      dismiss: (result?: unknown) => {
+        const modalElement = wrapperRef.current;
+        if (!modalElement) {
+          console.error('Modal cannot find modal reference');
+          return;
+        }
+        dismissModal(modalElement, result);
+      },
+      modalElement: htmlElement,
+    };
+  });
 
-  return <div ref={modalRef}>{props.children}</div>;
+  return <div ref={wrapperRef}>{props.children}</div>;
 });

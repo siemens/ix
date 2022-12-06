@@ -8,14 +8,15 @@
  */
 
 import { NotificationColor } from '../utils/notification-color';
+import { TypedEvent } from '../utils/typed-event';
 
-export interface ModalConfig {
+export interface ModalConfig<TReason = any> {
   animation?: boolean;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
   backdrop?: boolean | 'static';
   backdropClass?: string;
-  beforeDismiss?: (reason?: any) => boolean | Promise<boolean>;
+  beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
   content: string | HTMLElement;
@@ -27,6 +28,12 @@ export interface ModalConfig {
   windowClass?: string;
   icon?: string;
   iconColor?: NotificationColor;
+}
+
+export interface ModalInstance<TReason = any> {
+  htmlElement: HTMLIxModalElement;
+  onClose: TypedEvent<TReason>;
+  onDismiss: TypedEvent<TReason>;
 }
 
 function getModalContainer() {
@@ -49,7 +56,9 @@ function getModalContainer() {
   return container;
 }
 
-export async function modal(config: ModalConfig) {
+export async function modal<TReson = any>(
+  config: ModalConfig<TReson>
+): Promise<ModalInstance<TReson>> {
   const modalContainer = getModalContainer();
   const modalInstance = await modalContainer.showModal(config);
 
@@ -60,7 +69,10 @@ function getIxModal(element: Element) {
   return element.closest('ix-modal');
 }
 
-export function closeModal(element: Element, closeResult: any) {
+export function closeModal<TClose = any>(
+  element: Element,
+  closeResult: TClose
+) {
   getIxModal(element).close(closeResult);
 }
 

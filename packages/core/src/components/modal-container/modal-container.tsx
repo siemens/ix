@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host, Method } from '@stencil/core';
-import { ModalConfig } from '../modal/modal-utils';
+import { ModalConfig, ModalInstance } from '../modal/modal-utils';
 import { TypedEvent } from '../utils/typed-event';
 
 @Component({
@@ -25,7 +25,7 @@ export class ModalContainer {
    * @param config
    */
   @Method()
-  async showModal(config: ModalConfig) {
+  async showModal(config: ModalConfig): Promise<ModalInstance> {
     const onClose = new TypedEvent<any>();
     const onDismiss = new TypedEvent<any>();
 
