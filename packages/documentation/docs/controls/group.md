@@ -73,12 +73,12 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
 
 :::note
 
-During migration from Core UI to iX we discovered an issue inside the slot rendering of the context menu.
-Unfortunately we missed to adapt the documentation for version < 1.2.0.
+Please note that there is an issue with the slot rendering that can only be fixed with the next major version of Siemens iX.
+Luckily there exists a workaround for rendering context menus inside the group component.
 
 :::
 
-To show a context menu place a `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
+To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
 
 <Preview name="group-context-menu" height="16rem">
   <TabItem value="javascript">
