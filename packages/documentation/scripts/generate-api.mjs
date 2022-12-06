@@ -43,9 +43,11 @@ SPDX-License-Identifier: MIT
 }
 
 function generateMarkdown(previewPath, type, code) {
+  let sourceCode = code.replace(/\/\*.*SPD.*\*\/\n\n/gms, '');
+
   return `${autoGenerationWarning(
     previewPath
-  )}\n\`\`\`${type}\n${code.trimEnd()}\n\`\`\`\n`;
+  )}\n\`\`\`${type}\n${sourceCode.trimEnd()}\n\`\`\`\n`;
 }
 
 function formatMultiline(str) {
