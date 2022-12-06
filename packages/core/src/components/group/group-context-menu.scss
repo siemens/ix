@@ -9,9 +9,9 @@
 :host {
   display: block;
   position: relative;
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-left: auto;
+  margin-top: 0.3125rem;
+  margin-block-end: 0.3125rem;
+  margin-block-start: auto;
 
   ix-icon-button {
     &::after {
