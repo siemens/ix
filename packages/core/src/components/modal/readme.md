@@ -41,7 +41,7 @@ SPDX-License-Identifier: MIT
 
 ## Methods
 
-### `close(result: any) => Promise<void>`
+### `close<T = any>(result: T) => Promise<void>`
 
 Close modal
 
@@ -51,7 +51,7 @@ Type: `Promise<void>`
 
 
 
-### `dismiss(reason?: any) => Promise<void>`
+### `dismiss<T = any>(reason?: T) => Promise<void>`
 
 Dismiss modal instance
 

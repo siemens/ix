@@ -15,9 +15,9 @@ import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
-import { TypedEvent } from "./components/utils/typed-event";
-import { ModalConfig } from "./components/modal/modal-utils";
+import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
+import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
@@ -945,7 +945,7 @@ export namespace Components {
           * Close modal
           * @param result
          */
-        "close": (result: any) => Promise<void>;
+        "close": <T = any>(result: T) => Promise<void>;
         /**
           * Content of modal
          */
@@ -954,7 +954,7 @@ export namespace Components {
           * Dismiss modal instance
           * @param reason
          */
-        "dismiss": (reason?: any) => Promise<void>;
+        "dismiss": <T = any>(reason?: T) => Promise<void>;
         /**
           * Header title
          */
@@ -993,7 +993,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
+        "showModal": (config: ModalConfig) => Promise<ModalInstance>;
     }
     interface IxModalExample {
     }
