@@ -39,4 +39,14 @@ regressionTest.describe('radiobutton', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('no checked', async ({ page }) => {
+    await page.goto(`radiobutton/test/no-checked`);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('long text', async ({ page }) => {
+    await page.goto(`radiobutton/test/long-text`);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

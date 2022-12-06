@@ -1,37 +1,3 @@
-@media (max-width: 768px) {
-  .intro {
-    height: 170vh !important;
-    min-height: 170vh;
-    width: 100% !important;
-    position: absolute;
-    top: -250px !important;
-  }
-}
-
-@media (max-width: 428px) {
-  .intro {
-    height: 1400px !important;
-    min-height: 100vh !important;
-  }
-}
-
-// @media (max-width: 1024px) {
-//   .intro {
-//     height: 170vh !important;
-//     min-height: 170vh;
-//     position: absolute;
-//     top: -150px;
-//   }
-// }
-
-.intro {
-  position: absolute;
-  z-index: -1;
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-
 @media (max-width: 428px) {
   .container {
     padding: 50px 40px 50px 40px !important;
@@ -67,6 +33,12 @@
     padding: 81px 97px 0 66px;
     height: calc(100vh - var(--ifm-navbar-height));
     overflow: hidden;
+    background-color: #000028;
+
+    .logo {
+      margin-bottom: 45px;
+      margin-left: 24px;
+    }
 
     @media (max-width: 768px) {
       .scroll_down {
@@ -84,6 +56,10 @@
       .headline {
         margin-left: 0 !important;
       }
+
+      .logo {
+        margin-left: 0 !important;
+      }
     }
 
     .scroll_down {
@@ -94,6 +70,36 @@
       bottom: 40px;
       text-decoration: none;
       animation-duration: 10s;
+    }
+  }
+
+  &.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 211px 0;
+    background-color: #00ffb9;
+    color: #000028;
+    font-size: 70px;
+
+    .title {
+      display: flex;
+      margin-bottom: 58px;
+      font-weight: bold;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      font-size: 15vw;
+      justify-content: center;
+    }
+
+    .plus {
+      font-size: 10vw;
+      width: 10vw;
+      height: 10vw;
     }
   }
 
@@ -736,6 +742,12 @@
     }
   }
 
+  @media (max-width: 376px) {
+    .text_dark {
+      width: 318px !important;
+    }
+  }
+
   .line {
     height: 100%;
     background-image: linear-gradient(to bottom, #00ffb9, #00cccc);
@@ -825,8 +837,6 @@
   gap: 30px;
   height: auto;
   width: 365px;
-  //background-color: var(--theme-color-2);
-  //box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   padding: 26px;
   position: absolute;
@@ -855,7 +865,7 @@
 
   .Card_Box {
     justify-content: left !important;
-    margin-top: 50%;
+    margin-top: 10%;
   }
 
   .Card_Line {
@@ -878,6 +888,10 @@
 
   .Card_Line {
     width: auto !important;
+  }
+
+  .Card_Box {
+    margin-top: -20%;
   }
 }
 

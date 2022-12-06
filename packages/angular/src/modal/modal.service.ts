@@ -17,11 +17,11 @@ import { ModalConfig } from './modal.config';
 export class ModalService {
   constructor() {}
 
-  async open<TDATA = any>(config: ModalConfig) {
+  async open<TData = any, TReason = any>(config: ModalConfig<TData>) {
     const context: {
       close: ((result: any) => void) | null;
       dismiss: ((result?: any) => void) | null;
-      data?: TDATA;
+      data?: TData;
     } = {
       close: null,
       dismiss: null,
@@ -43,7 +43,7 @@ export class ModalService {
 
     embeddedView.detectChanges();
 
-    const modalInstance = await modal({
+    const modalInstance = await modal<TReason>({
       ...config,
       title: '',
       content: node,

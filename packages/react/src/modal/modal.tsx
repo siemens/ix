@@ -14,35 +14,45 @@ import React, { useImperativeHandle, useRef } from 'react';
 export interface ModalRef {
   close: <T = any>(result: T) => void;
   dismiss: <T = any>(result?: T) => void;
+  modalElement: HTMLIxModalElement | null;
 }
 
 export const Modal = React.forwardRef<
   ModalRef,
-  React.PropsWithChildren<{
+  {
     onClose?: <T = any>(result: T) => void;
     onDismiss?: <T = any>(result?: T) => void;
-  }>
->((props, ref) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+    htmlElement?: HTMLElement;
+    children: React.ReactNode;
+  }
+>((props, ref: React.ForwardedRef<ModalRef>) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useImperativeHandle(ref, () => ({
-    close: (result: unknown) => {
-      const modalElement = modalRef.current;
-      if (!modalElement) {
-        console.error('Modal cannot find modal reference');
-        return;
-      }
-      closeModal(modalElement, result);
-    },
-    dismiss: (result?: unknown) => {
-      const modalElement = modalRef.current;
-      if (!modalElement) {
-        console.error('Modal cannot find modal reference');
-        return;
-      }
-      dismissModal(modalElement, result);
-    },
-  }));
+  useImperativeHandle(ref, () => {
+    let htmlElement: HTMLIxModalElement | null = null;
+    if (wrapperRef.current) {
+      htmlElement = wrapperRef.current.closest('ix-modal');
+    }
+    return {
+      close: (result: unknown) => {
+        const modalElement = wrapperRef.current;
+        if (!modalElement) {
+          console.error('Modal cannot find modal reference');
+          return;
+        }
+        closeModal(modalElement, result);
+      },
+      dismiss: (result?: unknown) => {
+        const modalElement = wrapperRef.current;
+        if (!modalElement) {
+          console.error('Modal cannot find modal reference');
+          return;
+        }
+        dismissModal(modalElement, result);
+      },
+      modalElement: htmlElement,
+    };
+  });
 
-  return <div ref={modalRef}>{props.children}</div>;
+  return <div ref={wrapperRef}>{props.children}</div>;
 });
