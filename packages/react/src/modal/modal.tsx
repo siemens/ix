@@ -8,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { closeModal, dismissModal, ModalInstance } from '@siemens/ix';
+import { closeModal, dismissModal } from '@siemens/ix';
 import React, { useImperativeHandle, useRef } from 'react';
 
 export interface ModalRef {
@@ -19,8 +19,13 @@ export interface ModalRef {
 
 export const Modal = React.forwardRef<
   ModalRef,
-  React.PropsWithChildren<ModalInstance>
->((props, ref) => {
+  {
+    onClose?: <T = any>(result: T) => void;
+    onDismiss?: <T = any>(result?: T) => void;
+    htmlElement?: HTMLElement;
+    children: React.ReactNode;
+  }
+>((props, ref: React.ForwardedRef<ModalRef>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => {
