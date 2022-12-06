@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -26,8 +26,6 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test:watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
   "dependencies": {
@@ -39,11 +37,11 @@
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "~1.1.0",
+    "@siemens/ix": "~1.1.1",
     "@stencil/sass": "~2.0.0"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
-    "@siemens/ix": "~1.1.0"
+    "@siemens/ix": "~1.1.1"
   }
 }

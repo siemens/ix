@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('icon', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`icon/test/basic`);
+    await page.goto('icon/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

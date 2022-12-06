@@ -14,7 +14,7 @@ describe('ix-icon', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Icon],
-      html: `<ix-icon name="star"></ix-icon>`,
+      html: '<ix-icon name="star"></ix-icon>',
     });
 
     expect(page.root).toEqualHtml(`
@@ -27,7 +27,7 @@ describe('ix-icon', () => {
   it('renders different sizes', async () => {
     const page = await newSpecPage({
       components: [Icon],
-      html: `<ix-icon name="star" size="16"></ix-icon>`,
+      html: '<ix-icon name="star" size="16"></ix-icon>',
     });
 
     expect(page.root).toEqualHtml(

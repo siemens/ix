@@ -140,7 +140,7 @@ export class MapNavigation {
 
   /**
    * Open a overlay inside content area
-   * @deprecated will get removed with next major release in favor of slot based approach
+   * @deprecated Will be removed in 2.0.0. Use slot based approach
    *
    * @param name
    * @param component
@@ -177,7 +177,7 @@ export class MapNavigation {
 
   /**
    * Close current shown overlay
-   * @deprecated will get removed with next major release in favor of slot based approach
+   * @deprecated Will be removed in 2.0.0. Use slot based approach
    */
   @Method()
   async closeOverlay() {

@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -70,7 +70,7 @@
     "autoprefixer": "10.4.5",
     "bootstrap": "~5.2.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.32.0",
+    "eslint-config-ix": "*",
     "eslint-plugin-react": "^7.26.1",
     "fs-extra": "^10.0.0",
     "http-server": "^14.1.1",

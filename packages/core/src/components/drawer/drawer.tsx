@@ -8,13 +8,13 @@
  */
 
 import {
-    Component,
-    Event,
-    EventEmitter,
-    h,
-    Method,
-    Prop,
-    Watch
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Method,
+  Prop,
+  Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 
@@ -110,7 +110,11 @@ export class Drawer {
     const closestElement = target.closest('#div-container');
     const btn = target.closest('#drawer-btn');
 
-    if (evt.target.type !== "button" && closestElement !== this.divElement && target !== btn) {
+    if (
+      evt.target.type !== 'button' &&
+      closestElement !== this.divElement &&
+      target !== btn
+    ) {
       this.show = false;
     }
   }

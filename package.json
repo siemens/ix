@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "ix",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "description": "Siemens iX monorepo",
   "author": "Siemens AG",
@@ -35,7 +35,7 @@
     "sonarqube": "sonar-scanner",
     "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix run test:e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
-    "test": "yarn workspace @siemens/ix run test",
+    "test": "turbo run test",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -47,11 +47,14 @@
     "colorette": "^2.0.19",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
     "execa": "^5.1.1",
     "husky": "^8.0.1",
     "inquirer": "^8.2.4",
     "listr": "^0.14.3",
     "prettier": "^2.6.2",
+    "prettier-plugin-organize-imports": "^3.2.1",
     "semver": "^7.3.7",
     "sonarqube-scanner": "^2.8.1",
     "turbo": "^1.4.3",

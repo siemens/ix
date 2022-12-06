@@ -11,7 +11,7 @@ import {
   createPopper,
   Instance as PopperInstance,
   Placement,
-  PositioningStrategy
+  PositioningStrategy,
 } from '@popperjs/core';
 import {
   Component,
@@ -23,7 +23,7 @@ import {
   Listen,
   Method,
   Prop,
-  Watch
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -67,7 +67,7 @@ export class Dropdown {
 
   /**
    * Adjust dropdown width to the parent width
-   * @deprecated - property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.
+   * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
    */
   @Prop() adjustDropdownWidthToReferenceWith = false;
 

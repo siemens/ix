@@ -15,7 +15,7 @@ describe('select-item', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [SelectItem],
-      html: `<ix-select-item value="test" label="Test"></ix-select-item>`,
+      html: '<ix-select-item value="test" label="Test"></ix-select-item>',
     });
 
     expect(page.root).toEqualHtml(`<ix-select-item label=Test value=test>
@@ -26,7 +26,7 @@ describe('select-item', () => {
   it('should throw exception if value is missing', (done) => {
     newSpecPage({
       components: [SelectItem],
-      html: `<ix-select-item></ix-select-item>`,
+      html: '<ix-select-item></ix-select-item>',
     }).catch((e: Error) => {
       expect(e.message).toBe('ix-select-item must have a `value` property');
       done();
@@ -38,7 +38,7 @@ describe('select-item', () => {
 
     const page = await newSpecPage({
       components: [DropdownItem, SelectItem],
-      html: `<ix-select-item value="test" label="Test"></ix-select-item>`,
+      html: '<ix-select-item value="test" label="Test"></ix-select-item>',
     });
 
     page.doc

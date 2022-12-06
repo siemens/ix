@@ -30,7 +30,7 @@ SPDX-License-Identifier: MIT
 
 ### `closeOverlay() => Promise<void>`
 
-<span style="color:red">**[DEPRECATED]**</span> will get removed with next major release in favor of slot based approach<br/><br/>Close current shown overlay
+<span style="color:red">**[DEPRECATED]**</span> Will be removed in 2.0.0. Use slot based approach<br/><br/>Close current shown overlay
 
 #### Returns
 
@@ -40,7 +40,7 @@ Type: `Promise<void>`
 
 ### `openOverlay(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>`
 
-<span style="color:red">**[DEPRECATED]**</span> will get removed with next major release in favor of slot based approach<br/><br/>Open a overlay inside content area
+<span style="color:red">**[DEPRECATED]**</span> Will be removed in 2.0.0. Use slot based approach<br/><br/>Open a overlay inside content area
 
 #### Returns
 

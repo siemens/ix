@@ -1,0 +1,12 @@
+{
+  "name": "eslint-config-ix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-config-turbo": "latest",
+    "prettier": "latest"
+  }
+}

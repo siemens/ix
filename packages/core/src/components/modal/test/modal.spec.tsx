@@ -14,7 +14,7 @@ describe('modal', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Modal],
-      html: `<ix-modal></ix-modal>`,
+      html: '<ix-modal></ix-modal>',
     });
     expect(page.root).toMatchSnapshot();
   });

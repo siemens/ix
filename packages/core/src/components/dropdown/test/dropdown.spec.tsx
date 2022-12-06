@@ -35,7 +35,7 @@ describe('ix-dropdown', () => {
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
       components: [Dropdown],
-      html: `<div></div>`,
+      html: '<div></div>',
     });
 
     const anchor = page.doc.createElement('ix-button');
@@ -70,7 +70,7 @@ describe('ix-dropdown', () => {
     dropdown.show = true;
     await page.waitForChanges();
 
-    fireEvent.click(window); //click outside
+    fireEvent.click(window);
     await page.waitForChanges();
 
     expect(dropdown.show).toBeFalsy();

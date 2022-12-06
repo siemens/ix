@@ -49,10 +49,14 @@ function CustomModal() {
 }
 
 export const ModalExample: React.FC = () => {
-  function show() {
-    showModal({
+  async function show() {
+    const modal = await showModal({
       title: 'test',
       content: <CustomModal />,
+    });
+
+    modal.htmlElement.addEventListener('keypress', (keyboardEvent) => {
+      console.log(keyboardEvent.key);
     });
   }
 

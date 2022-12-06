@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('dropdown', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`dropdown/test/basic`);
+    await page.goto('dropdown/test/basic');
 
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
@@ -23,7 +23,7 @@ regressionTest.describe('dropdown', () => {
   });
 
   regressionTest('overflow', async ({ page }) => {
-    await page.goto(`dropdown/test/overflow`);
+    await page.goto('dropdown/test/overflow');
 
     const menuHandle = await page.waitForSelector('.dropdown-menu.show');
 

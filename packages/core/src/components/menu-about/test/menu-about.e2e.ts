@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('menu-about', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`menu-about/test/basic`);
+    await page.goto('menu-about/test/basic');
 
     await page.locator('#aboutAndLegal').click();
     await page.waitForTimeout(500);

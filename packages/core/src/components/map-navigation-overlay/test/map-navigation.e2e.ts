@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('map-navigation-overlay', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`map-navigation-overlay/test/basic`);
+    await page.goto('map-navigation-overlay/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

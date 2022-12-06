@@ -19,6 +19,10 @@ export function appendDocsTags(name, docsTags) {
     if (docsTag.name === 'since') {
       value += `<span className="Api__Table Docs__Tag">Since: ${docsTag.text}</span>`;
     }
+
+    if (docsTag.name === 'deprecated') {
+      value += `<span className="Api__Table Docs__Tag Docs__Tag__Deprecated" title="${docsTag.text}">Deprecated: ${docsTag.text}</span>`;
+    }
   });
   return value;
 }

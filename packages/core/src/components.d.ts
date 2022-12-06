@@ -15,9 +15,9 @@ import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement, PositioningStrategy } from "@popperjs/core";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
-import { TypedEvent } from "./components/utils/typed-event";
-import { ModalConfig } from "./components/modal/modal-utils";
+import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
+import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
@@ -32,9 +32,6 @@ export namespace Components {
         "icon": string;
     }
     interface IxAnimatedTabs {
-        /**
-          * @deprecated - For debugging purposes only
-         */
         "disableAnimations": boolean;
         /**
           * Current selected tab index
@@ -154,7 +151,7 @@ export namespace Components {
         "icon": string;
         /**
           * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated will get removed with next major release (7.0.0). Use the member filterState instead.
+          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
          */
         "initialState": FilterState;
         /**
@@ -179,9 +176,6 @@ export namespace Components {
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */
         "suggestions": string[];
-        /**
-          * @deprecated For debugging purposes only!
-         */
         "tmpDisableScrollIntoView": boolean;
     }
     interface IxChip {
@@ -274,7 +268,7 @@ export namespace Components {
          */
         "getCurrentDate": () => Promise<{ start: string; end: string; }>;
         /**
-          * @deprecated - will get removed with next major release
+          * @deprecated Will be removed in 2.0.0
          */
         "individual": boolean;
         /**
@@ -422,7 +416,7 @@ export namespace Components {
         "adjustDropdownWidthToReferenceWidth": boolean;
         /**
           * Adjust dropdown width to the parent width
-          * @deprecated - property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.
+          * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
          */
         "adjustDropdownWidthToReferenceWith": boolean;
         /**
@@ -517,7 +511,7 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 7.0.0. Use color with alpha value.
+          * @deprecated Will be removed in 2.0.0
          */
         "opacity": number;
         /**
@@ -662,7 +656,7 @@ export namespace Components {
         "icon": string;
         /**
           * Button invisible
-          * @deprecated use ghost property
+          * @deprecated Use ghost property
          */
         "invisible": boolean;
         /**
@@ -706,7 +700,7 @@ export namespace Components {
         "applicationName": string;
         /**
           * Close current shown overlay
-          * @deprecated will get removed with next major release in favor of slot based approach
+          * @deprecated Will be removed in 2.0.0. Use slot based approach
          */
         "closeOverlay": () => Promise<void>;
         /**
@@ -719,7 +713,7 @@ export namespace Components {
         "navigationTitle": string;
         /**
           * Open a overlay inside content area
-          * @deprecated will get removed with next major release in favor of slot based approach
+          * @deprecated Will be removed in 2.0.0. Use slot based approach
           * @param name
           * @param component
           * @param icon
@@ -876,7 +870,7 @@ export namespace Components {
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated - replaced by slot based implementation
+          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -953,7 +947,7 @@ export namespace Components {
           * Close modal
           * @param result
          */
-        "close": (result: any) => Promise<void>;
+        "close": <T = any>(result: T) => Promise<void>;
         /**
           * Content of modal
          */
@@ -962,7 +956,7 @@ export namespace Components {
           * Dismiss modal instance
           * @param reason
          */
-        "dismiss": (reason?: any) => Promise<void>;
+        "dismiss": <T = any>(reason?: T) => Promise<void>;
         /**
           * Header title
          */
@@ -1001,7 +995,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>;
+        "showModal": (config: ModalConfig) => Promise<ModalInstance>;
     }
     interface IxModalExample {
     }
@@ -1124,7 +1118,7 @@ export namespace Components {
         "icon": string;
         /**
           * Button invisible
-          * @deprecated use ghost property
+          * @deprecated Will be removed in 2.0.0. Use ghost property
          */
         "invisible": boolean;
         /**
@@ -1235,7 +1229,7 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string>;
         /**
-          * @deprecated - will get removed with next major release
+          * @deprecated Will be removed in 2.0.0
          */
         "individual": boolean;
         /**
@@ -1313,7 +1307,7 @@ export namespace Components {
         "checked": boolean;
         /**
           * Basic and status colors from color palette
-          * @deprecated - Has no effect on the rendered control
+          * @deprecated Will be removed in 2.0.0
          */
         "color": string;
         /**
@@ -2109,9 +2103,6 @@ declare namespace LocalJSX {
         "icon"?: string;
     }
     interface IxAnimatedTabs {
-        /**
-          * @deprecated - For debugging purposes only
-         */
         "disableAnimations"?: boolean;
         /**
           * Tab navigated
@@ -2247,7 +2238,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated will get removed with next major release (7.0.0). Use the member filterState instead.
+          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
          */
         "initialState"?: FilterState;
         /**
@@ -2280,9 +2271,6 @@ declare namespace LocalJSX {
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
-        /**
-          * @deprecated For debugging purposes only!
-         */
         "tmpDisableScrollIntoView"?: boolean;
     }
     interface IxChip {
@@ -2375,7 +2363,7 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
-          * @deprecated - will get removed with next major release
+          * @deprecated Will be removed in 2.0.0
          */
         "individual"?: boolean;
         /**
@@ -2405,7 +2393,7 @@ declare namespace LocalJSX {
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
-          * @deprecated Use `dateSelect`
+          * @deprecated Will be removed in 2.0.0. Use `dateSelect`
          */
         "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
         /**
@@ -2565,7 +2553,7 @@ declare namespace LocalJSX {
         "adjustDropdownWidthToReferenceWidth"?: boolean;
         /**
           * Adjust dropdown width to the parent width
-          * @deprecated - property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.
+          * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
          */
         "adjustDropdownWidthToReferenceWith"?: boolean;
         /**
@@ -2664,7 +2652,7 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
         /**
           * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 7.0.0. Use color with alpha value.
+          * @deprecated Will be removed in 2.0.0
          */
         "opacity"?: number;
         /**
@@ -2833,7 +2821,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Button invisible
-          * @deprecated use ghost property
+          * @deprecated Use ghost property
          */
         "invisible"?: boolean;
         /**
@@ -3053,7 +3041,7 @@ declare namespace LocalJSX {
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated - replaced by slot based implementation
+          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**
@@ -3309,7 +3297,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Button invisible
-          * @deprecated use ghost property
+          * @deprecated Will be removed in 2.0.0. Use ghost property
          */
         "invisible"?: boolean;
         /**
@@ -3424,7 +3412,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * @deprecated - will get removed with next major release
+          * @deprecated Will be removed in 2.0.0
          */
         "individual"?: boolean;
         /**
@@ -3509,7 +3497,7 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         /**
           * Basic and status colors from color palette
-          * @deprecated - Has no effect on the rendered control
+          * @deprecated Will be removed in 2.0.0
          */
         "color"?: string;
         /**

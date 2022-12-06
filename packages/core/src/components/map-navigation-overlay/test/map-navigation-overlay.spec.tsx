@@ -16,7 +16,7 @@ describe('map-navigation-overlay', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [MapNavigationOverlay],
-      html: `<map-navigation-overlay></map-navigation-overlay>`,
+      html: '<map-navigation-overlay></map-navigation-overlay>',
     });
     mapNavigationOverlay = page.doc.querySelector('ix-map-navigation');
   });
