@@ -9,6 +9,7 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import Anime from 'react-anime';
+import { useVideoAnimtation } from './hooks/video-animation';
 import styles from './index.module.scss';
 
 function parallax(id: string, min: number, max: number, translateMax: number) {
@@ -588,6 +589,8 @@ function BrandDesign() {
 }
 
 function Components() {
+  const videoRef = useVideoAnimtation();
+
   return (
     <div className={clsx(styles.container, styles.components)}>
       <div className={styles.content}>
@@ -598,7 +601,7 @@ function Components() {
           description="Meet the mood and preference of your users with our light and dark modes for every component"
         ></Headline>
 
-        <video className={styles.video} muted autoPlay>
+        <video className={styles.video} muted ref={videoRef}>
           <source src={useBaseUrl('/img/iX_components.mp4')} type="video/mp4" />
         </video>
       </div>
