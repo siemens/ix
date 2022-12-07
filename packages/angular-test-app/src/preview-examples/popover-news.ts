@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
   selector: 'app-popover-news',
   template: `
     <ix-basic-navigation>
+      <div class="placeholder-logo" slot="logo"></div>
       <ix-menu>
         <ix-menu-about>
           <ix-menu-about-item label="Example"> </ix-menu-about-item>

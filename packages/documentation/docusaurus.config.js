@@ -33,6 +33,7 @@ const customCss = [
   require.resolve('./src/css/custom.css'),
   require.resolve('./src/css/search.css'),
   require.resolve('./src/css/api-table.css'),
+  require.resolve('./src/css/cards.css'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';

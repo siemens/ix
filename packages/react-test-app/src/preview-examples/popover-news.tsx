@@ -8,17 +8,18 @@
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuAbout,
-    IxMenuAboutItem,
-    IxMenuAboutNews
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuAbout,
+  IxMenuAboutItem,
+  IxMenuAboutNews,
 } from '@siemens/ix-react';
 import React from 'react';
 
 export const PopoverNews: React.FC = () => {
   return (
     <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuAbout>
           <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
