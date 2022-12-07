@@ -68,7 +68,10 @@ function Headline({
           )}
         ></div>
         <div className={clsx(styles.content)}>
-          <div className={dark || text === 'dark' ? styles.text_dark : ''}>
+          <div
+            className={dark || text === 'dark' ? styles.text_dark : ''}
+            style={{ opacity: 0.75 }}
+          >
             {title}
           </div>
           <div
