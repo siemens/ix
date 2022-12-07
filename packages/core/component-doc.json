@@ -504,6 +504,7 @@
       "dependents": [
         "ix-date-picker",
         "ix-datetime-picker",
+        "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -514,6 +515,9 @@
           "ix-button"
         ],
         "ix-datetime-picker": [
+          "ix-button"
+        ],
+        "ix-dropdown-button": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -2547,30 +2551,152 @@
       "readmePath": "./src/components/dropdown-button/readme.md",
       "usagesDir": "./src/components/dropdown-button/usage",
       "tag": "ix-dropdown-button",
+      "readme": "# ix-dropdown-button\n\n\n",
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "encapsulation": "scoped",
+      "dependents": [],
       "dependencies": [
-        "ix-icon-button",
-        "ix-icon"
+        "ix-button",
+        "ix-icon",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-dropdown-button": [
-          "ix-icon-button",
-          "ix-icon"
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-dropdown-button"
         ]
       },
-      "props": [],
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Active button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Button icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Set label",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button varaint",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -3937,6 +4063,23 @@
           "attr": "disabled",
           "reflectToAttr": false,
           "docs": "Disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "dropdownTriangle",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dropdown-triangle",
+          "reflectToAttr": false,
+          "docs": "Enable dropdown button triangle",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9147,21 +9290,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-dropdown-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-dropdown-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-icon-button",
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

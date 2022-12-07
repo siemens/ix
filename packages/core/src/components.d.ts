@@ -460,15 +460,15 @@ export namespace Components {
         /**
           * Disable button
          */
-        "disable": boolean;
+        "disabled": boolean;
         /**
           * Button with no background or outline
          */
         "ghost": boolean;
         /**
-          * Icon button
+          * Button icon
          */
-        "icon": boolean;
+        "icon": string;
         /**
           * Set label
          */
@@ -674,6 +674,10 @@ export namespace Components {
           * Disabled
          */
         "disabled": boolean;
+        /**
+          * Enable dropdown button triangle
+         */
+        "dropdownTriangle": boolean;
         /**
           * Button invisible
          */
@@ -2481,15 +2485,15 @@ declare namespace LocalJSX {
         /**
           * Disable button
          */
-        "disable"?: boolean;
+        "disabled"?: boolean;
         /**
           * Button with no background or outline
          */
         "ghost"?: boolean;
         /**
-          * Icon button
+          * Button icon
          */
-        "icon"?: boolean;
+        "icon"?: string;
         /**
           * Set label
          */
@@ -2723,6 +2727,10 @@ declare namespace LocalJSX {
           * Disabled
          */
         "disabled"?: boolean;
+        /**
+          * Enable dropdown button triangle
+         */
+        "dropdownTriangle"?: boolean;
         /**
           * Button invisible
          */

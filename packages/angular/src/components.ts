@@ -457,12 +457,14 @@ export class IxDropdown {
 export declare interface IxDropdownButton extends Components.IxDropdownButton {}
 
 @ProxyCmp({
-  defineCustomElementFn: undefined
+  defineCustomElementFn: undefined,
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant']
 })
 export class IxDropdownButton {
   protected el: HTMLElement;
@@ -757,13 +759,13 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
+  inputs: ['color', 'disabled', 'dropdownTriangle', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
+  inputs: ['color', 'disabled', 'dropdownTriangle', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
 })
 export class IxIconButton {
   protected el: HTMLElement;

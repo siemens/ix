@@ -33,4 +33,18 @@
     min-width: $x-large-space;
     min-height: $x-large-space;
   }
+
+  .triangle {
+    position: absolute;
+    margin-left: 22px;
+    margin-top: 22px;
+    border-right: 0 solid transparent;
+    border-left: 4px solid transparent;
+    border-top: 0 solid transparent;
+    border-bottom: 4px solid;
+  }
+
+  .hide {
+    display: none;
+  }
 }

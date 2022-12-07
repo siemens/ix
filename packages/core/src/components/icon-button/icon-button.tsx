@@ -74,6 +74,11 @@ export class IconButton implements Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Enable dropdown button triangle
+   */
+  @Prop() dropdownTriangle = false;
+
   private getIconButtonClasses() {
     return {
       ...getButtonClasses(
@@ -99,6 +104,9 @@ export class IconButton implements Button {
         <div style={{ display: 'none' }}>
           <slot></slot>
         </div>
+        <div
+          class={{ hide: this.dropdownTriangle === false, triangle: true }}
+        ></div>
       </button>
     );
   }

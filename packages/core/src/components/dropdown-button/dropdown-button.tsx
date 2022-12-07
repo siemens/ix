@@ -7,22 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// import {
-//   createPopper,
-//   Instance as PopperInstance,
-//   Placement,
-//   PositioningStrategy,
-// } from '@popperjs/core';
-
 import { Component, h, Host, Prop } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  shadow: true,
+  scoped: true,
 })
-export class DropdownButton {
+export class TimePicker {
   /**
    * Button varaint
    */
@@ -46,7 +39,7 @@ export class DropdownButton {
   /**
    * Disable button
    */
-  @Prop() disable = false;
+  @Prop() disabled = false;
 
   /**
    * Set label
@@ -54,47 +47,39 @@ export class DropdownButton {
   @Prop() label = '';
 
   /**
-   * Icon button
+   * Button icon
    */
-  @Prop() icon = false;
-
-  private buttonClass = () => {
-    return {
-      button: true,
-      primary: this.variant === 'Primary',
-      secondary: this.variant === 'Secondary',
-      outline: this.outline,
-      ghost: this.ghost,
-      active: this.active,
-      disable: this.disable,
-    };
-  };
-
-  private textClass = () => {
-    return {
-      text: true,
-      primary: this.variant === 'Primary',
-      secondary: this.variant === 'Secondary',
-      outline: this.outline,
-      ghost: this.ghost,
-      active: this.active,
-      disable: this.disable,
-    };
-  };
+  @Prop() icon: string;
 
   render() {
     return (
-      <div>
-        <div class={this.buttonClass()}>
-          <div class={this.textClass()}>
-            <slot></slot>
-            {this.label}
-          </div>
-          <div class={{ hide: this.icon === true && this.label === '' }}>
-            <ix-icon name="star" size="16"></ix-icon>
-          </div>
-        </div>
-      </div>
+      <Host>
+        <ix-button
+          variant={this.variant}
+          outline={this.outline}
+          ghost={this.ghost}
+          disabled={this.disabled}
+          class={{ hide: this.label === '' }}
+        >
+          <ix-icon
+            name={this.icon}
+            size="24"
+            class={{ hide: this.icon === '' }}
+          ></ix-icon>
+          {this.label}
+          <ix-icon name="chevron-down-small" size="24"></ix-icon>
+        </ix-button>
+
+        <ix-icon-button
+          icon={this.icon}
+          variant={this.variant}
+          outline={this.outline}
+          ghost={this.ghost}
+          disabled={this.disabled}
+          class={{ hide: this.label !== '' }}
+          dropdownTriangle
+        ></ix-icon-button>
+      </Host>
     );
   }
 }
