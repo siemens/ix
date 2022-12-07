@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useState } from 'react';
 import {
   IxButton,
   IxMapNavigation,
@@ -15,6 +14,7 @@ import {
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-react';
+import React, { useState } from 'react';
 
 export const MapNavigationOverlay: React.FC = () => {
   const [overlay, setOverlay] = useState(false);
@@ -29,6 +29,7 @@ export const MapNavigationOverlay: React.FC = () => {
 
   return (
     <IxMapNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
         <IxMenuItem>Item 2</IxMenuItem>

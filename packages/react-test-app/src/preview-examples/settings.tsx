@@ -8,10 +8,10 @@
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuSettings,
-    IxMenuSettingsItem
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuSettings,
+  IxMenuSettingsItem,
 } from '@siemens/ix-react';
 import React, { useLayoutEffect, useRef } from 'react';
 
@@ -26,6 +26,7 @@ export const Settings: React.FC = () => {
 
   return (
     <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu ref={ref}>
         <IxMenuSettings>
           <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>

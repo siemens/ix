@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxIcon, IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
+import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
 export const MapNavigation: React.FC = () => {
@@ -16,7 +16,7 @@ export const MapNavigation: React.FC = () => {
       applicationName="Test Application"
       navigationTitle="Some other content"
     >
-      <IxIcon name="rocket" slot="logo" />
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
         <IxMenuItem>Item 2</IxMenuItem>
