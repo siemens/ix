@@ -1,12 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
-import {useThemeConfig} from '@docusaurus/theme-common';
+import { useLocation } from '@docusaurus/router';
+import { useThemeConfig } from '@docusaurus/theme-common';
 import {
   useHideableNavbar,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
 import NavbarMobileSidebar from '@theme/Navbar/MobileSidebar';
+import clsx from 'clsx';
+import React from 'react';
 import styles from './styles.module.css';
+
 function NavbarBackdrop(props) {
   return (
     <div
@@ -16,19 +18,14 @@ function NavbarBackdrop(props) {
     />
   );
 }
-export default function NavbarLayout({children}) {
+export default function NavbarLayout({ children }) {
   const {
-    navbar: {hideOnScroll, style},
+    navbar: { hideOnScroll, style },
   } = useThemeConfig();
+  const { pathname } = useLocation();
   const mobileSidebar = useNavbarMobileSidebar();
-  const {navbarRef, isNavbarVisible} = useHideableNavbar(hideOnScroll);
-  const isDocs = () => {
-    if (typeof window === 'undefined') {
-      return true;
-    }
+  const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
 
-    return location.href.indexOf('/docs/') === -1;
-  };
   return (
     <nav
       ref={navbarRef}
@@ -43,9 +40,10 @@ export default function NavbarLayout({children}) {
           'navbar--dark': style === 'dark',
           'navbar--primary': style === 'primary',
           'navbar-sidebar--show': mobileSidebar.shown,
-          'navbar-root-background': isDocs()
-        },
-      )}>
+          'navbar-root-background': pathname === '/',
+        }
+      )}
+    >
       {children}
       <NavbarBackdrop onClick={mobileSidebar.toggle} />
       <NavbarMobileSidebar />
