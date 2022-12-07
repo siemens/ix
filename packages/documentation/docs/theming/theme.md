@@ -4,9 +4,9 @@ sidebar_position: 2
 
 # Themes
 
-Siemens iX supports theming for all of its components.
+Siemens Industrial Experience supports theming for all of its components.
 
-Everyone can use the two embedded themes that already ship with Siemens iX:
+Everyone can use the two embedded themes that already ship with Siemens Industrial Experience:
 
 - Classic light (theme-classic-light)
 - Classic dark (theme-classic-dark)

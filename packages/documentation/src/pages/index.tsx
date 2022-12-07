@@ -265,28 +265,6 @@ function Button(props: {
   );
 }
 
-function Welcome() {
-  return (
-    <div
-      id="getting-started"
-      className={clsx(styles.container, styles.welcome)}
-    >
-      <div className={styles.title}>Welcome!</div>
-      <div className={styles.icons}>
-        <i className={clsx('glyph glyph-' + 'bulb', styles.icons)}></i>
-        <i
-          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
-        ></i>
-        <i className={clsx('glyph glyph-' + 'cloud-upload', styles.icons)}></i>
-        <i
-          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
-        ></i>
-        <i className={clsx('glyph glyph-' + 'heart', styles.icons)}></i>
-      </div>
-    </div>
-  );
-}
-
 function CallToActions() {
   return (
     <div
@@ -713,7 +691,6 @@ export default function Home() {
           <Anime easing="easeInOutExpo" duration="2000" opacity={[0, 1]}>
             <Layout>
               <Homepage />
-              <Welcome />
               <CallToActions />
               <Devices />
               <UX />

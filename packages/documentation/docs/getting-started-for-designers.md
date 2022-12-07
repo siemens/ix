@@ -10,7 +10,7 @@ import {Card, CardList} from '@site/src/components/Card';
 import {Layout} from '@site/src/components/Layout';
 
 <Layout
-description="iX is a component based system which allows you to build highly complex apps based on your needs."> </Layout>
+description="Siemens Industrial Experience is a component based system which allows you to build highly complex apps based on your needs."> </Layout>
 
 <CardList>
   <Card label="iX Design Kits" isPrimary={true} size="big" link="design-kit" icon="disk" />

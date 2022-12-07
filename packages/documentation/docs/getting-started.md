@@ -10,7 +10,7 @@ import {Card, CardList} from '@site/src/components/Card';
 import {Layout} from '@site/src/components/Layout';
 
 <Layout
-description="Working with iX is really simple – just follow the steps below and you will be ready to build great apps!">
+description="Working with Siemens Industrial Experience is really simple – just follow the steps below and you will be ready to build great apps!">
 </Layout>
 
 <CardList>
