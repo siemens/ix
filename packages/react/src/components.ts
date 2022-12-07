@@ -24,6 +24,7 @@ export const IxDateTimeCard = /*@__PURE__*/createReactComponent<JSX.IxDateTimeCa
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker');
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer');
 export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTMLIxDropdownElement>('ix-dropdown');
+export const IxDropdownButton = /*@__PURE__*/createReactComponent<JSX.IxDropdownButton, HTMLIxDropdownButtonElement>('ix-dropdown-button');
 export const IxDropdownItem = /*@__PURE__*/createReactComponent<JSX.IxDropdownItem, HTMLIxDropdownItemElement>('ix-dropdown-item');
 export const IxEventList = /*@__PURE__*/createReactComponent<JSX.IxEventList, HTMLIxEventListElement>('ix-event-list');
 export const IxEventListItem = /*@__PURE__*/createReactComponent<JSX.IxEventListItem, HTMLIxEventListItemElement>('ix-event-list-item');

@@ -1,0 +1,199 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// @import '~bootstrap/scss/functions';
+// @import 'common-variables';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins';
+// @import '~bootstrap/scss/dropdown';
+
+// @import 'mixins/fonts';
+// @import 'mixins/text-truncation';
+// @import 'components/dropdown';
+
+.button {
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 4px 4px 8px;
+  isolation: isolate;
+  position: absolute;
+  height: 32px;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+
+  &.primary {
+    background: #00cccc;
+    border: 1px solid #00cccc;
+    color: #000028;
+
+    &:hover {
+      background: #00ffb9;
+      border: 1px solid #00ffb9;
+    }
+
+    &.active {
+      background: #00f2b0;
+      border: 1px solid #00f2b0;
+      color: #000000;
+    }
+
+    &.disable {
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0);
+      color: #000000;
+      cursor: default;
+    }
+
+    &.outline {
+      background: #000028;
+      border: 1px solid #00cccc;
+      color: #00cccc;
+
+      &:hover {
+        background: #001f39;
+        border: 1px solid #00ffb9;
+        color: #00ffb9;
+      }
+
+      &.active {
+        background: #00182b;
+        border: 1px solid #00f2b0;
+        color: #00ffb9;
+      }
+
+      &.disable {
+        background: transparent;
+        border: 1px solid rgba(232, 232, 227, 0.15);
+        color: rgba(255, 255, 255, 0.3);
+        cursor: default;
+      }
+    }
+
+    &.ghost {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #00cccc;
+
+      &:hover {
+        background: rgba(0, 255, 185, 0.12);
+        border: 1px solid rgba(0, 255, 185, 0.12);
+        color: #00ffb9;
+      }
+
+      &.active {
+        background: rgba(0, 128, 82, 0.17);
+        border: 1px solid rgba(0, 128, 82, 0.17);
+        color: #00ffb9;
+      }
+
+      &.disable {
+        background: transparent;
+        border: 1px solid transparent;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: default;
+      }
+    }
+  }
+
+  &.secondary {
+    background: rgba(157, 157, 150, 0.2);
+    border: 1px solid rgba(157, 157, 150, 0);
+    color: rgba(255, 255, 255, 0.6);
+
+    &.active {
+      background: rgba(125, 125, 120, 0.35);
+      border: 1px solid rgba(125, 125, 120, 0);
+      color: #ffffff;
+    }
+
+    &.disable {
+      background: rgba(157, 157, 150, 0.2);
+      border: 1px solid rgba(157, 157, 150, 0);
+      color: rgba(255, 255, 255, 0.3);
+      cursor: default;
+    }
+
+    &:hover {
+      background: rgba(157, 157, 150, 0.35);
+      border: 1px solid rgba(157, 157, 150, 0);
+      color: #ffffff;
+    }
+
+    &.outline {
+      background: #000028;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.6);
+
+      &:hover {
+        background: rgba(157, 157, 150, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        color: #ffffff;
+      }
+
+      &.active {
+        background: rgba(105, 105, 99, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        color: #ffffff;
+      }
+
+      &.disable {
+        background: transparent;
+        border: 1px solid rgba(232, 232, 227, 0.15);
+        color: rgba(255, 255, 255, 0.3);
+        cursor: default;
+      }
+    }
+
+    &.ghost {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255, 255, 255, 0.6);
+
+      &:hover {
+        background: rgba(157, 157, 150, 0.15);
+        border: 1px solid rgba(157, 157, 150, 0);
+        color: #ffffff;
+      }
+
+      &.active {
+        background: rgba(105, 105, 99, 0.15);
+        border: 1px solid rgba(105, 105, 99, 0);
+        color: #ffffff;
+      }
+
+      &.disable {
+        background: transparent;
+        border: 1px solid transparent;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: default;
+      }
+    }
+  }
+
+  .text {
+    font-family: 'Siemens Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 7px;
+    margin-right: 6.28px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .hide {
+    display: none;
+  }
+}

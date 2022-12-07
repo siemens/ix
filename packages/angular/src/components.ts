@@ -454,6 +454,25 @@ export class IxDropdown {
 }
 
 
+export declare interface IxDropdownButton extends Components.IxDropdownButton {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-dropdown-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxDropdownButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxDropdownItem extends Components.IxDropdownItem {
   /**
    * Click on item 
