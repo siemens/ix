@@ -9,17 +9,19 @@
 
 import { DOCUMENT } from '@angular/common';
 import {
-    APP_INITIALIZER,
-    ModuleWithProviders,
-    NgModule,
-    NgZone
+  APP_INITIALIZER,
+  ModuleWithProviders,
+  NgModule,
+  NgZone,
 } from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
+import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { ModalService } from './modal';
 import { ToastService } from './toast';
 import * as tree from './tree';
-const DECLARATIONS = [...DIRECTIVES, tree.IxTree];
+
+const DECLARATIONS = [...DIRECTIVES, tree.IxTree, IxDropdownTriggerDirective];
 
 @NgModule({
   declarations: DECLARATIONS,
