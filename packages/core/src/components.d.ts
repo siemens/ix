@@ -180,7 +180,7 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only working witht `variant="primary"`
+          * Display chip in active state. Only works with `variant="primary"`
          */
         "active": boolean;
         /**
@@ -2275,7 +2275,7 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only working witht `variant="primary"`
+          * Display chip in active state. Only works with `variant="primary"`
          */
         "active"?: boolean;
         /**
