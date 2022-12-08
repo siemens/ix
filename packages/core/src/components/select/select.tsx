@@ -235,6 +235,10 @@ export class Select {
   }
 
   private async onEnterNavigation() {
+    if (this.isMultipleMode) {
+      return;
+    }
+
     if (this.editable && !this.itemExists(this.inputText)) {
       this.emitAddItem(this.inputText);
       this.navigationItem = this.items[this.items.length - 1];
@@ -306,6 +310,7 @@ export class Select {
     this.value = [];
     this.selectedIndices = [];
     this.itemSelectionChange.emit(null);
+    this.dropdownShow = false;
   }
 
   private getInputValue() {
@@ -333,9 +338,8 @@ export class Select {
           }}
         >
           <div class="input-container">
-            {this.isMultipleMode ? (
               <div class="chips">
-                {this.selectedItems?.map((item) => (
+                {this.isMultipleMode ? this.selectedItems?.map((item) => (
                   <ix-filter-chip
                     disabled={this.disabled || this.readonly}
                     onCloseClick={(e) => {
@@ -346,7 +350,7 @@ export class Select {
                   >
                     {item.label}
                   </ix-filter-chip>
-                ))}
+                )): ''}
                 <div class="trigger">
                   <input
                     data-testid="input"
@@ -365,6 +369,20 @@ export class Select {
                     ref={(ref) => (this.inputRef = ref)}
                     onInput={() => this.filterItemsWithTypeahead()}
                   />
+                  {this.isMultipleMode && this.allowClear && (this.value?.length || this.inputText) ? (
+                    <ix-icon-button
+                      class="clear"
+                      icon="clear"
+                      ghost
+                      oval
+                      size="24"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.clear();
+                      }}
+                    />
+                  ) : null}
                   {this.disabled || this.readonly ? null : (
                     <div
                       class="chevron-down-container"
@@ -377,22 +395,7 @@ export class Select {
                   )}
                 </div>
               </div>
-            ) : null}
           </div>
-          {this.allowClear && (this.value?.length || this.inputText) ? (
-            <ix-icon-button
-              class="clear"
-              icon="clear"
-              ghost
-              oval
-              size="24"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.clear();
-              }}
-            />
-          ) : null}
         </div>
         <ix-dropdown
           ref={(ref) => (this.dropdownRef = ref)}
@@ -413,7 +416,9 @@ export class Select {
           positioningStrategy={'fixed'}
           adjustDropdownWidthToReferenceWidth={true}
         >
-          <div class="select-list-header">{this.i18nSelectListHeader}</div>
+          <div class="select-list-header" title={this.i18nSelectListHeader}>
+            {this.i18nSelectListHeader}
+          </div>
           <slot></slot>
           <div ref={(ref) => (this.addItemRef = ref)} class="d-contents"></div>
           {this.itemExists(this.inputText) ? (
