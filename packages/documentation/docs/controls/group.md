@@ -37,7 +37,7 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
     <SourceReactGroup />
   </TabItem>
   <TabItem value="angular">
-    <SourceReactGroup />
+    <SourceAngularGroup />
   </TabItem>
 </Preview>
 
