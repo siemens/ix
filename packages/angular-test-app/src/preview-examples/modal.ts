@@ -13,14 +13,7 @@ import { ModalService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-modal',
   template: `
-    <div>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.
-    </div>
-    <ix-button (click)="test()">Show Modal</ix-button>
+    <ix-button (click)="openModal()">Show modal</ix-button>
 
     <ng-template #customModal let-modal>
       <div>
@@ -34,7 +27,7 @@ import { ModalService } from '@siemens/ix-angular';
             (click)="modal.dismiss('dismiss')"
           ></ix-icon-button>
         </div>
-        <div class="modal-body">Message text lorem ipsum</div>
+        <div class="modal-body">Message text lorem ipsum: {{ modal.data }}</div>
         <div class="modal-footer">
           <ix-button
             outline
@@ -43,9 +36,9 @@ import { ModalService } from '@siemens/ix-angular';
           >
             Cancel
           </ix-button>
-          <ix-button class="close-modal" (click)="modal.close('okay')"
-            >OK</ix-button
-          >
+          <ix-button class="close-modal" (click)="modal.close('okay')">
+            OK
+          </ix-button>
         </div>
       </div>
     </ng-template>
@@ -57,14 +50,22 @@ export class Modal {
 
   constructor(private readonly modalService: ModalService) {}
 
-  async test() {
+  async openModal() {
     const instance = await this.modalService.open({
       content: this.customModalRef,
       title: '',
+      data: 'Some data',
     });
 
     instance.onClose.on((a) => {
       console.log(a);
     });
+
+    instance.htmlElement.addEventListener(
+      'keydown',
+      (keyboardEvent: KeyboardEvent) => {
+        console.log(keyboardEvent.key);
+      }
+    );
   }
 }

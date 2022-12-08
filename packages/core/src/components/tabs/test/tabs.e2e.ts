@@ -12,11 +12,11 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('tabs', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`tabs/test/basic`);
+    await page.goto('tabs/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('rounded', async ({ page }) => {
-    await page.goto(`tabs/test/rounded`);
+    await page.goto('tabs/test/rounded');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

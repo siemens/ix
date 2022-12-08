@@ -37,10 +37,10 @@ export class Icon {
           color: this.color ? `var(--theme-${this.color})` : 'inherit',
         }}
         class={{
-          [`size-12`]: this.size === '12',
-          [`size-16`]: this.size === '16',
-          [`size-24`]: this.size === '24',
-          [`size-32`]: this.size === '32',
+          ['size-12']: this.size === '12',
+          ['size-16']: this.size === '16',
+          ['size-24']: this.size === '24',
+          ['size-32']: this.size === '32',
         }}
       >
         <i

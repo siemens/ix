@@ -23,7 +23,7 @@ SPDX-License-Identifier: MIT
 | `content`          | `content`            | Content of modal                                                                                                                                                             | `HTMLElement \| string`                                                                   | `undefined`        |
 | `headerTitle`      | `header-title`       | Header title                                                                                                                                                                 | `string`                                                                                  | `undefined`        |
 | `icon`             | `icon`               | Optional icon displayed next to the title                                                                                                                                    | `string`                                                                                  | `undefined`        |
-| `iconColor`        | `icon-color`         | Color of the header {@link icon}                                                                                                                                             | `"color-alarm" \| "color-info" \| "color-std-text" \| "color-success" \| "color-warning"` | `'color-std-text'` |
+| `iconColor`        | `icon-color`         | Color of the header {@see ix-icon}                                                                                                                                           | `"color-alarm" \| "color-info" \| "color-std-text" \| "color-success" \| "color-warning"` | `'color-std-text'` |
 | `keyboard`         | `keyboard`           | ESC close modal dialog                                                                                                                                                       | `boolean`                                                                                 | `true`             |
 | `modalDialogClass` | `modal-dialog-class` | Modal dialog class                                                                                                                                                           | `string`                                                                                  | `undefined`        |
 | `scrollable`       | `scrollable`         | Modal scollable                                                                                                                                                              | `boolean`                                                                                 | `true`             |
@@ -41,7 +41,7 @@ SPDX-License-Identifier: MIT
 
 ## Methods
 
-### `close(result: any) => Promise<void>`
+### `close<T = any>(result: T) => Promise<void>`
 
 Close modal
 
@@ -51,7 +51,7 @@ Type: `Promise<void>`
 
 
 
-### `dismiss(reason?: any) => Promise<void>`
+### `dismiss<T = any>(reason?: T) => Promise<void>`
 
 Dismiss modal instance
 

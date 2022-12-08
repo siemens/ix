@@ -12,14 +12,14 @@
  */
 
 import {
-  Element,
   Component,
+  Element,
+  Fragment,
   h,
   Host,
   Prop,
   State,
   Watch,
-  Fragment,
 } from '@stencil/core';
 
 @Component({

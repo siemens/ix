@@ -12,19 +12,47 @@ import { fireEvent, screen } from '@testing-library/dom';
 import { SelectItem } from '../../select-item/select-item';
 import { Select } from '../select';
 
+//@ts-ignore
+global.MutationObserver = class {
+  constructor() {}
+  disconnect() {}
+  observe() {}
+};
+
 describe('ix-select', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
     expect(page.root).toMatchSnapshot();
   });
 
   it('show add item button in list', async () => {
     const page = await newSpecPage({
+      components: [Select, SelectItem],
+      html: `<ix-select>
+        <ix-select-item data-testid="select-1" value="11" label="Item 1"></ix-select-item>
+        <ix-select-item data-testid="select-1" value="22" label="Item 2"></ix-select-item>
+      </ix-select>`,
+    });
+
+    await page.waitForChanges();
+
+    const selectElement = page.doc.querySelector('ix-select');
+
+    selectElement.selectedIndices = '22';
+    await page.waitForChanges();
+
+    expect(
+      (screen.getByTestId('input') as HTMLInputElement).value
+    ).toStrictEqual('Item 2');
+  });
+
+  it('show add item button in list', async () => {
+    const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
 
     (page.win as any).SVGElement = class {};
@@ -51,7 +79,7 @@ describe('ix-select', () => {
   it('show not show add item button in list if editing is false', async () => {
     const page = await newSpecPage({
       components: [Select],
-      html: `<ix-select></ix-select>`,
+      html: '<ix-select></ix-select>',
     });
 
     (page.win as any).SVGElement = class {};
@@ -101,6 +129,47 @@ describe('ix-select', () => {
   });
 
   describe('single mode selection', () => {
+    it('change label of selected item', async () => {
+      let updateCallback = jest.fn();
+
+      //@ts-ignore
+      global.MutationObserver = class {
+        constructor(callback) {
+          updateCallback = callback;
+        }
+        disconnect() {}
+        observe() {}
+      };
+
+      const page = await newSpecPage({
+        components: [Select, SelectItem],
+        html: `
+        <ix-select data-testid="select">
+          <ix-select-item data-testid="select-1" value="1" label="ABC"></ix-select-item>
+          <ix-select-item data-testid="select-2" value="2" label="ABC 2"></ix-select-item>
+          <ix-select-item data-testid="select-3" value="3" label="XYZ"></ix-select-item>
+        </ix-select>`,
+      });
+      await page.waitForChanges();
+
+      const selectElement = page.doc.querySelector('ix-select');
+      selectElement.selectedIndices = ['2'];
+      await page.waitForChanges();
+
+      const inputElement = screen.getByTestId('input') as HTMLInputElement;
+      expect(inputElement.value).toBe('ABC 2');
+
+      const selectItemElement = screen.getByTestId(
+        'select-2'
+      ) as HTMLIxSelectItemElement;
+      selectItemElement.label = 'CHANGED!';
+      updateCallback();
+
+      await page.waitForChanges();
+
+      expect(inputElement.value).toBe('CHANGED!');
+    });
+
     it('select item', async () => {
       const page = await newSpecPage({
         components: [Select, SelectItem],
@@ -158,7 +227,7 @@ describe('ix-select', () => {
       expect(
         (
           page.root.querySelector(
-            `ix-select-item[value='NEWITEM']`
+            "ix-select-item[value='NEWITEM']"
           ) as HTMLIxSelectItemElement
         ).label
       ).toBe('NEWITEM');
@@ -267,7 +336,7 @@ describe('ix-select', () => {
       expect(
         (
           page.root.querySelector(
-            `ix-select-item[value='NEW ITEM']`
+            "ix-select-item[value='NEW ITEM']"
           ) as HTMLIxSelectItemElement
         ).label
       ).toBe('NEW ITEM');

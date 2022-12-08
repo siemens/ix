@@ -8,13 +8,14 @@
  */
 
 @mixin checkbox-basic() {
-  $size: $large-space;
+  $size: 1.125rem;
 
   /* Base for label styling */
   [type='checkbox']:not(:checked),
   [type='checkbox']:checked {
     position: absolute;
     opacity: 0;
+    pointer-events: none;
   }
 
   .ag-checkbox-input-wrapper {
@@ -28,7 +29,8 @@
   [type='checkbox']:not(:checked) + label,
   [type='checkbox']:checked + label {
     position: relative;
-    line-height: $size;
+    display: inline-flex;
+    align-items: flex-start;
     user-select: none;
 
     color: var(--theme-checkbox-label--color);
@@ -42,6 +44,10 @@
     content: '';
     width: $size;
     height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
     float: left;
     margin-right: $small-space;
 
@@ -52,14 +58,14 @@
 
   [type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
   [type='checkbox']:focus-visible + label {
     &:before {
-      outline: 1px solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--focus--border-color);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
@@ -99,17 +105,16 @@
 
     & + label:after {
       content: '';
-      width: 9px;
-      height: 4px;
+      width: 0.45rem;
+      height: 0.25rem;
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 1px solid var(--theme-checkbox-checked--color);
-      border-left: 1px solid var(--theme-checkbox-checked--color);
+      border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
+      border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
-      top: 8px;
-      left: 8px;
-      transform: rotate(-45deg) scale(2);
+      margin: 0.3125rem 0.3125rem 0.1875rem;
+      transform: rotate(-53deg) scale(2);
     }
 
     &:hover + label:before {
@@ -144,12 +149,11 @@
     & + label:after {
       content: '';
       display: block;
-      width: 14px;
-      height: 1px;
-      border-bottom: 2px solid var(--theme-checkbox-mixed--color);
+      width: 0.625rem;
+      height: 0.125rem;
+      border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      top: 11px;
-      left: 5px;
+      margin: 0.5rem 0 0 0.25rem;
     }
 
     & + label:before {

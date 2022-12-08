@@ -43,7 +43,7 @@ export class TabItem {
   /**
    * Set counter value
    */
-   @Prop() counter: number;
+  @Prop() counter: number;
 
   /**
    * Set layout width style
@@ -72,7 +72,7 @@ export class TabItem {
       stretched: props.layout === 'stretched',
       bottom: props.placement === 'bottom',
       top: props.placement === 'top',
-      circle: props.circle
+      circle: props.circle,
     };
   }
 
@@ -90,10 +90,24 @@ export class TabItem {
         })}
         tabIndex={0}
       >
-        <div class={{ circle: this.rounded, text: !this.rounded, selected: this.selected, disabled: this.disabled }}>
-            <slot></slot>
+        <div
+          class={{
+            circle: this.rounded,
+            text: !this.rounded,
+            selected: this.selected,
+            disabled: this.disabled,
+          }}
+        >
+          <slot></slot>
         </div>
-        <div class={{ counter: true, selected: this.selected, hidden: !(this.rounded && this.counter !== undefined), disabled: this.disabled }}>
+        <div
+          class={{
+            counter: true,
+            selected: this.selected,
+            hidden: !(this.rounded && this.counter !== undefined),
+            disabled: this.disabled,
+          }}
+        >
           {this.counter}
         </div>
       </Host>

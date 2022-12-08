@@ -42,7 +42,7 @@ export class TimePicker {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * @deprecated - will get removed with next major release
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() individual: boolean = true;
 
@@ -117,7 +117,7 @@ export class TimePicker {
     return this._time.second;
   }
 
-  private _time: DateTime = DateTime.fromFormat(this.time, this.format);
+  private _time: DateTime = DateTime.now();
 
   private updateInput(
     step: 'up' | 'down',
@@ -166,6 +166,7 @@ export class TimePicker {
   }
 
   componentWillLoad() {
+    this._time = DateTime.fromFormat(this.time, this.format);
     if (this.showTimeReference === undefined) {
       const matchedKeys = Object.keys(
         DateTime.fromFormatExplain(this.time, this.format).matches

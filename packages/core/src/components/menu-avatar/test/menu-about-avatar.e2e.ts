@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('menu-avatar', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`menu-avatar/test/basic`);
+    await page.goto('menu-avatar/test/basic');
     await page.locator('.burger-menu-button').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();

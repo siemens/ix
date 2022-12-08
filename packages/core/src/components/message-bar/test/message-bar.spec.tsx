@@ -19,7 +19,7 @@ describe('ix-message-bar', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [MessageBar],
-      html: `<ix-message-bar type="danger"></ix-message-bar>`,
+      html: '<ix-message-bar type="danger"></ix-message-bar>',
     });
 
     messageBar = document.querySelector('ix-message-bar');

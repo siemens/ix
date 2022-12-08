@@ -130,7 +130,7 @@
     }
 
     .crumb-text + .glyph-chevron-right-small {
-      margin-inline-start: $small-space;
+      margin-inline-start: $tiny-space;
       margin-inline-end: 0; // Overwrite global selector: .btn .glyph
     }
 

@@ -1,0 +1,17 @@
+name: Bug Report for `ix.siemens.io`
+description: Documentation bug report 📑
+labels: ['component: documentation', 'type: bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the issue here.
+      placeholder: Tell us what you see!
+    validations:
+      required: true

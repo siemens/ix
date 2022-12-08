@@ -20,7 +20,7 @@ $height-single-line: 2.5rem;
   height: $height-single-line;
   max-height: $height-single-line;
   border-radius: $default-border-radius;
-  background-color: var(--theme-event-list-item-bg);
+  background-color: var(--theme-event-item--background);
   overflow: hidden;
   cursor: pointer;
 
@@ -54,7 +54,7 @@ $height-single-line: 2.5rem;
     width: calc(100% - (#{$default-space} + #{$small-space}));
     height: 100%;
     border: 0.062rem solid;
-    border-color: var(--theme-event-list-item-border);
+    border-color: var(--theme-event-item--border);
     border-top-left-radius: 0;
     border-top-right-radius: $default-border-radius;
     border-bottom-left-radius: 0;
@@ -89,7 +89,6 @@ $height-single-line: 2.5rem;
   }
 
   .chevron-icon {
-    display: none;
     margin-left: auto;
     margin-right: $small-space;
     opacity: 0.6;

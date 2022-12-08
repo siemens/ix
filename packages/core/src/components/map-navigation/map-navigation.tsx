@@ -140,7 +140,7 @@ export class MapNavigation {
 
   /**
    * Open a overlay inside content area
-   * @deprecated will get removed with next major release in favor of slot based approach
+   * @deprecated Will be removed in 2.0.0. Use slot based approach
    *
    * @param name
    * @param component
@@ -177,7 +177,7 @@ export class MapNavigation {
 
   /**
    * Close current shown overlay
-   * @deprecated will get removed with next major release in favor of slot based approach
+   * @deprecated Will be removed in 2.0.0. Use slot based approach
    */
   @Method()
   async closeOverlay() {
@@ -205,12 +205,12 @@ export class MapNavigation {
         <div class="map-nav">
           <div class="map-nav-sidebar">
             <div class="map-nav-header">
-              <div class="map-nav-header-brand">
-                <div class="map-nav-brand-logo">
-                  <slot name="logo"></slot>
-                </div>
-                <span class="map-nav-brand-title">{this.applicationName}</span>
-              </div>
+              <ix-application-header
+                name={this.applicationName}
+                class="map-nav-header-brand"
+              >
+                <slot name="logo"></slot>
+              </ix-application-header>
             </div>
             <div class="map-nav-sidebar-content">
               <div class="map-nav-sidebar-static-content">

@@ -13,11 +13,10 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property            | Attribute            | Description                                                                             | Type                | Default |
-| ------------------- | -------------------- | --------------------------------------------------------------------------------------- | ------------------- | ------- |
-| `disableAnimations` | `disable-animations` | <span style="color:red">**[DEPRECATED]**</span> - For debugging purposes only<br/><br/> | `boolean`           | `false` |
-| `selectedIndex`     | `selected-index`     | Current selected tab index                                                              | `number`            | `0`     |
-| `tabPlacement`      | `tab-placement`      | Placement of the tabs                                                                   | `"bottom" \| "top"` | `'top'` |
+| Property        | Attribute        | Description                | Type                | Default |
+| --------------- | ---------------- | -------------------------- | ------------------- | ------- |
+| `selectedIndex` | `selected-index` | Current selected tab index | `number`            | `0`     |
+| `tabPlacement`  | `tab-placement`  | Placement of the tabs      | `"bottom" \| "top"` | `'top'` |
 
 
 ## Events

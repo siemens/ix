@@ -16,6 +16,21 @@ import { Component } from '@angular/core';
     <ix-button class="m-1" variant="secondary">Button</ix-button>
     <ix-button class="m-1" outline>Button</ix-button>
     <ix-button class="m-1" invisible>Button</ix-button>
+
+    <div>
+        <ix-button class="m-1" variant="Primary">
+          <ix-icon name="star"></ix-icon>Button
+        </ix-button>
+        <ix-button class="m-1" variant="Secondary">
+          <ix-icon name="star"></ix-icon>Button
+        </ix-button>
+        <ix-button class="m-1" outline>
+          <ix-icon name="star"></ix-icon>Button
+        </ix-button>
+        <ix-button class="m-1" ghost>
+          <ix-icon name="star"></ix-icon>Button
+        </ix-button>
+      </div>
   `,
 })
 export class Buttons {}

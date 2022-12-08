@@ -11,7 +11,10 @@ export type TreeItemId = string;
 export type TreeContext = Record<string, TreeItemContext>;
 export type TreeModel<T> = Record<TreeItemId, TreeItem<T>>;
 
-export type UpdateCallback = (treeItem: TreeItem<any>, context: TreeContext) => void;
+export type UpdateCallback = (
+  treeItem: TreeItem<any>,
+  context: TreeContext
+) => void;
 
 export interface TreeItem<T> {
   id: TreeItemId;

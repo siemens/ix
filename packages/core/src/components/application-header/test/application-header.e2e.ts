@@ -12,14 +12,14 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('application header: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
-    await page.goto(`application-header/test/basic`);
+    await page.goto('application-header/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest(
     'should not have visual regressions - svg',
     async ({ page }) => {
-      await page.goto(`application-header/test/basic-svg`);
+      await page.goto('application-header/test/basic-svg');
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     }
   );

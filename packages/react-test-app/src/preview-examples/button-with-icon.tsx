@@ -13,7 +13,40 @@ import React from 'react';
 export const ButtonWithIcon: React.FC = () => {
   return (
     <>
-      <IxIconButton icon="star" />
+      <div>
+        <IxIconButton class="m-1" icon="info" variant="Primary"></IxIconButton>
+        <IxIconButton
+          class="m-1"
+          icon="info"
+          variant="Secondary"
+        ></IxIconButton>
+        <IxIconButton class="m-1" icon="info" outline></IxIconButton>
+        <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
+      </div>
+
+      <div>
+        <IxIconButton
+          class="m-1"
+          icon="info"
+          oval
+          variant="Primary"
+        ></IxIconButton>
+        <IxIconButton
+          class="m-1"
+          icon="info"
+          oval
+          variant="Secondary"
+        ></IxIconButton>
+        <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
+        <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>
+      </div>
+
+      <div>
+        <IxIconButton class="m-1" icon="info" size="12"></IxIconButton>
+        <IxIconButton class="m-1" icon="info" size="16"></IxIconButton>
+        <IxIconButton class="m-1" icon="info" size="24"></IxIconButton>
+        <IxIconButton class="m-1" icon="info" size="32"></IxIconButton>
+      </div>
     </>
   );
 };

@@ -8,14 +8,14 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
 } from '@stencil/core';
 import animejs from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';

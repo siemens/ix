@@ -24,9 +24,9 @@ describe('ix-application-header', () => {
         <div class="logo">
           <slot name="logo"></slot>
         </div>
-        <span class="name">
+        <div class="name">
           Test App
-        </span>
+        </div>
         <slot></slot>
       </mock:shadow-root>
       <div slot="logo">

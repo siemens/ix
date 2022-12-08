@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`select/test/basic`);
+    await page.goto('select/test/basic');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
@@ -21,7 +21,7 @@ regressionTest.describe('select', () => {
   });
 
   regressionTest('mode-multiple', async ({ page }) => {
-    await page.goto(`select/test/mode-multiple`);
+    await page.goto('select/test/mode-multiple');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
