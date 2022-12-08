@@ -272,8 +272,8 @@ export class Select {
       return;
     }
 
-    if (this.editable && !this.itemExists(this.inputText)) {
-      this.emitAddItem(this.inputText);
+    if (this.editable && !this.itemExists(this.inputFilterText)) {
+      this.emitAddItem(this.inputFilterText);
       this.navigationItem = this.items[this.items.length - 1];
     }
 
@@ -366,63 +366,67 @@ export class Select {
           }}
         >
           <div class="input-container">
-              <div class="chips">
-                {this.isMultipleMode ? this.selectedItems?.map((item) => (
-                  <ix-filter-chip
-                    disabled={this.disabled || this.readonly}
-                    onCloseClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.emitItemClick(item.value);
-                    }}
-                  >
-                    {item.label}
-                  </ix-filter-chip>
-                )): ''}
-                <div class="trigger">
-                  <input
-                    data-testid="input"
-                    disabled={this.disabled}
-                    readOnly={this.readonly}
-                    type="text"
-                    class={{
-                      'allow-clear': this.allowClear && !!this.value?.length,
-                    }}
-                    placeholder={
-                      this.editable
-                        ? this.i18nPlaceholderEditable
-                        : this.i18nPlaceholder
-                    }
-                    value={this.getInputValue()}
-                    ref={(ref) => (this.inputRef = ref)}
-                    onInput={() => this.filterItemsWithTypeahead()}
-                  />
-                  {this.isMultipleMode && this.allowClear && (this.value?.length || this.inputText) ? (
-                    <ix-icon-button
-                      class="clear"
-                      icon="clear"
-                      ghost
-                      oval
-                      size="24"
-                      onClick={(e) => {
+            <div class="chips">
+              {this.isMultipleMode
+                ? this.selectedItems?.map((item) => (
+                    <ix-filter-chip
+                      disabled={this.disabled || this.readonly}
+                      onCloseClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        this.clear();
-                      }}
-                    />
-                  ) : null}
-                  {this.disabled || this.readonly ? null : (
-                    <div
-                      class="chevron-down-container"
-                      ref={(ref) => {
-                        if (this.editable) this.dropdownWrapperRef = ref;
+                        this.emitItemClick(item.value);
                       }}
                     >
-                      <ix-icon class="chevron" name="chevron-down-small" />
-                    </div>
-                  )}
-                </div>
+                      {item.label}
+                    </ix-filter-chip>
+                  ))
+                : ''}
+              <div class="trigger">
+                <input
+                  data-testid="input"
+                  disabled={this.disabled}
+                  readOnly={this.readonly}
+                  type="text"
+                  class={{
+                    'allow-clear': this.allowClear && !!this.value?.length,
+                  }}
+                  placeholder={
+                    this.editable
+                      ? this.i18nPlaceholderEditable
+                      : this.i18nPlaceholder
+                  }
+                  value={this.inputValue}
+                  ref={(ref) => (this.inputRef = ref)}
+                  onInput={() => this.filterItemsWithTypeahead()}
+                />
+                {this.isMultipleMode &&
+                this.allowClear &&
+                (this.value?.length || this.inputFilterText) ? (
+                  <ix-icon-button
+                    class="clear"
+                    icon="clear"
+                    ghost
+                    oval
+                    size="24"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      this.clear();
+                    }}
+                  />
+                ) : null}
+                {this.disabled || this.readonly ? null : (
+                  <div
+                    class="chevron-down-container"
+                    ref={(ref) => {
+                      if (this.editable) this.dropdownWrapperRef = ref;
+                    }}
+                  >
+                    <ix-icon class="chevron" name="chevron-down-small" />
+                  </div>
+                )}
               </div>
+            </div>
           </div>
         </div>
         <ix-dropdown
