@@ -1513,6 +1513,150 @@ export namespace Components {
     interface MyComponent {
     }
 }
+export interface IxAnimatedTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxAnimatedTabsElement;
+}
+export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxBlindElement;
+}
+export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxBreadcrumbElement;
+}
+export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCategoryFilterElement;
+}
+export interface IxChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChipElement;
+}
+export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatePickerElement;
+}
+export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatetimePickerElement;
+}
+export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDrawerElement;
+}
+export interface IxDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDropdownElement;
+}
+export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDropdownItemElement;
+}
+export interface IxEventListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxEventListItemElement;
+}
+export interface IxExpandingSearchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxExpandingSearchElement;
+}
+export interface IxFilterChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxFilterChipElement;
+}
+export interface IxGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxGroupElement;
+}
+export interface IxGroupItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxGroupItemElement;
+}
+export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMapNavigationElement;
+}
+export interface IxMapNavigationOverlayCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMapNavigationOverlayElement;
+}
+export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuElement;
+}
+export interface IxMenuAboutCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAboutElement;
+}
+export interface IxMenuAboutNewsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAboutNewsElement;
+}
+export interface IxMenuAvatarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAvatarElement;
+}
+export interface IxMenuAvatarItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAvatarItemElement;
+}
+export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsElement;
+}
+export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMessageBarElement;
+}
+export interface IxModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxModalElement;
+}
+export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSelectElement;
+}
+export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSelectItemElement;
+}
+export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSplitButtonElement;
+}
+export interface IxSplitButtonItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSplitButtonItemElement;
+}
+export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTimePickerElement;
+}
+export interface IxToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxToastElement;
+}
+export interface IxToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxToggleElement;
+}
+export interface IxTreeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTreeElement;
+}
+export interface IxTreeItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTreeItemElement;
+}
+export interface IxUploadCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxUploadElement;
+}
+export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxWorkflowStepsElement;
+}
 declare global {
     interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
     }
@@ -1995,7 +2139,7 @@ declare namespace LocalJSX {
         /**
           * Tab navigated
          */
-        "onTabClick"?: (event: CustomEvent<any>) => void;
+        "onTabClick"?: (event: IxAnimatedTabsCustomEvent<any>) => void;
         /**
           * Current selected tab index
          */
@@ -2033,7 +2177,7 @@ declare namespace LocalJSX {
         /**
           * Collapsed state changed
          */
-        "onCollapsedChange"?: (event: CustomEvent<boolean>) => void;
+        "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
     }
     interface IxBreadcrumb {
         /**
@@ -2047,11 +2191,11 @@ declare namespace LocalJSX {
         /**
           * Crumb item clicked event
          */
-        "onItemClick"?: (event: CustomEvent<string>) => void;
+        "onItemClick"?: (event: IxBreadcrumbCustomEvent<string>) => void;
         /**
           * Next item clicked event
          */
-        "onNextClick"?: (event: CustomEvent<{ event: UIEvent; item: string }>) => void;
+        "onNextClick"?: (event: IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>) => void;
         /**
           * Excess items will get hidden inside of dropdown
          */
@@ -2142,11 +2286,11 @@ declare namespace LocalJSX {
         /**
           * Event dispatched whenever the filter state changes.
          */
-        "onFilterChanged"?: (event: CustomEvent<FilterState>) => void;
+        "onFilterChanged"?: (event: IxCategoryFilterCustomEvent<FilterState>) => void;
         /**
           * Event dispatched whenever the text input changes.
          */
-        "onInputChanged"?: (event: CustomEvent<InputState>) => void;
+        "onInputChanged"?: (event: IxCategoryFilterCustomEvent<InputState>) => void;
         /**
           * Placeholder text to be displayed in an empty input field.
          */
@@ -2185,7 +2329,7 @@ declare namespace LocalJSX {
         /**
           * Fire event if close button is clicked
          */
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: IxChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
          */
@@ -2268,22 +2412,22 @@ declare namespace LocalJSX {
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
           * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
-        "onDateChange"?: (event: CustomEvent<LegacyDateChangeEvent>) => void;
+        "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;
         /**
           * Date range change. Only triggered if datepicker is in range mode
           * @since 1.1.0
          */
-        "onDateRangeChange"?: (event: CustomEvent<DateChangeEvent>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: CustomEvent<DateChangeEvent>) => void;
+        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
           * @deprecated Will be removed in 2.0.0. Use `dateSelect`
          */
-        "onDone"?: (event: CustomEvent<string>) => void;
+        "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
         /**
           * If true a range of dates can be selected.
          */
@@ -2339,21 +2483,21 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: CustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        "onDateChange"?: (event: IxDatetimePickerCustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
         /**
           * Date selection event is fired after confirm button is pressend
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: CustomEvent<DateTimeSelectEvent>) => void;
+        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
           * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
          */
-        "onDone"?: (event: CustomEvent<string>) => void;
+        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Time change
           * @since 1.1.0
          */
-        "onTimeChange"?: (event: CustomEvent<string>) => void;
+        "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Set range size
          */
@@ -2420,11 +2564,11 @@ declare namespace LocalJSX {
         /**
           * Fire event after drawer is close
          */
-        "onDrawerClose"?: (event: CustomEvent<any>) => void;
+        "onDrawerClose"?: (event: IxDrawerCustomEvent<any>) => void;
         /**
           * Fire event after drawer is open
          */
-        "onOpen"?: (event: CustomEvent<any>) => void;
+        "onOpen"?: (event: IxDrawerCustomEvent<any>) => void;
         /**
           * Show or hide the drawer
          */
@@ -2459,7 +2603,7 @@ declare namespace LocalJSX {
         /**
           * Fire event after visibility of dropdown has changed
          */
-        "onShowChanged"?: (event: CustomEvent<boolean>) => void;
+        "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
         /**
           * Placement of the dropdown
          */
@@ -2531,7 +2675,7 @@ declare namespace LocalJSX {
         /**
           * Click on item
          */
-        "onItemClick"?: (event: CustomEvent<HTMLIxDropdownItemElement>) => void;
+        "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
     }
     interface IxEventList {
         /**
@@ -2567,7 +2711,7 @@ declare namespace LocalJSX {
         /**
           * Event list item click
          */
-        "onItemClick"?: (event: CustomEvent<any>) => void;
+        "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
         /**
           * Opacity of the status indicator. Defaults to 1.0
           * @deprecated Will be removed in 2.0.0
@@ -2586,7 +2730,7 @@ declare namespace LocalJSX {
         /**
           * Value changed
          */
-        "onValueChange"?: (event: CustomEvent<string>) => void;
+        "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
         /**
           * Placeholder text
          */
@@ -2604,7 +2748,7 @@ declare namespace LocalJSX {
         /**
           * Close clicked
          */
-        "onCloseClick"?: (event: CustomEvent<void>) => void;
+        "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
     }
     interface IxFlipTile {
         /**
@@ -2638,15 +2782,15 @@ declare namespace LocalJSX {
         /**
           * Group collapsed
          */
-        "onCollapsedChanged"?: (event: CustomEvent<boolean>) => void;
+        "onCollapsedChanged"?: (event: IxGroupCustomEvent<boolean>) => void;
         /**
           * Emits when whole group gets selected.
          */
-        "onSelectGroup"?: (event: CustomEvent<boolean>) => void;
+        "onSelectGroup"?: (event: IxGroupCustomEvent<boolean>) => void;
         /**
           * Emits when group item gets selected.
          */
-        "onSelectItem"?: (event: CustomEvent<number>) => void;
+        "onSelectItem"?: (event: IxGroupCustomEvent<number>) => void;
         /**
           * Whether the group is selected.
          */
@@ -2686,7 +2830,7 @@ declare namespace LocalJSX {
         /**
           * Selection changed
          */
-        "onSelectedChanged"?: (event: CustomEvent<HTMLIxGroupItemElement>) => void;
+        "onSelectedChanged"?: (event: IxGroupItemCustomEvent<HTMLIxGroupItemElement>) => void;
         /**
           * Group item secondary text
          */
@@ -2794,11 +2938,11 @@ declare namespace LocalJSX {
         /**
           * Context menu clicked
          */
-        "onContextMenuClick"?: (event: CustomEvent<void>) => void;
+        "onContextMenuClick"?: (event: IxMapNavigationCustomEvent<void>) => void;
         /**
           * Navigation toggled
          */
-        "onNavigationToggled"?: (event: CustomEvent<boolean>) => void;
+        "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
     }
     interface IxMapNavigationOverlay {
         /**
@@ -2816,7 +2960,7 @@ declare namespace LocalJSX {
         /**
           * Event closed
          */
-        "onCloseClick"?: (event: CustomEvent<any>) => void;
+        "onCloseClick"?: (event: IxMapNavigationOverlayCustomEvent<any>) => void;
     }
     interface IxMenu {
         /**
@@ -2856,11 +3000,11 @@ declare namespace LocalJSX {
         /**
           * Menu expanded
          */
-        "onExpandChange"?: (event: CustomEvent<boolean>) => void;
+        "onExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
           * Map Sidebar expanded
          */
-        "onMapExpandChange"?: (event: CustomEvent<boolean>) => void;
+        "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
           * Is about tab visible
          */
@@ -2882,7 +3026,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */
@@ -2915,11 +3059,11 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClosePopover"?: (event: CustomEvent<void>) => void;
+        "onClosePopover"?: (event: IxMenuAboutNewsCustomEvent<void>) => void;
         /**
           * Show More button is pressed
          */
-        "onShowMore"?: (event: CustomEvent<MouseEvent>) => void;
+        "onShowMore"?: (event: IxMenuAboutNewsCustomEvent<MouseEvent>) => void;
         /**
           * Show about news
          */
@@ -2934,7 +3078,7 @@ declare namespace LocalJSX {
         /**
           * Logout click
          */
-        "onLogoutClick"?: (event: CustomEvent<any>) => void;
+        "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * First line of text
          */
@@ -2952,7 +3096,7 @@ declare namespace LocalJSX {
         /**
           * Avatar dropdown item clicked
          */
-        "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
     interface IxMenuItem {
         /**
@@ -2993,7 +3137,7 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: CustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<MouseEvent>) => void;
         /**
           * Internal
          */
@@ -3013,7 +3157,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the close button is clicked
          */
-        "onClosedChange"?: (event: CustomEvent<any>) => void;
+        "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
          */
@@ -3069,11 +3213,11 @@ declare namespace LocalJSX {
         /**
           * Modal closed
          */
-        "onClosed"?: (event: CustomEvent<any>) => void;
+        "onClosed"?: (event: IxModalCustomEvent<any>) => void;
         /**
           * Modal dismissed
          */
-        "onDismissed"?: (event: CustomEvent<any>) => void;
+        "onDismissed"?: (event: IxModalCustomEvent<any>) => void;
         /**
           * Modal scollable
          */
@@ -3156,11 +3300,11 @@ declare namespace LocalJSX {
         /**
           * Item added to selection
          */
-        "onAddItem"?: (event: CustomEvent<string>) => void;
+        "onAddItem"?: (event: IxSelectCustomEvent<string>) => void;
         /**
           * Item selection changed
          */
-        "onItemSelectionChange"?: (event: CustomEvent<string | string[]>) => void;
+        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
         /**
           * If true the select will be in readonly mode
          */
@@ -3182,7 +3326,7 @@ declare namespace LocalJSX {
         /**
           * Item clicked
          */
-        "onItemClick"?: (event: CustomEvent<string>) => void;
+        "onItemClick"?: (event: IxSelectItemCustomEvent<string>) => void;
         /**
           * Whether the item is selected.
          */
@@ -3227,7 +3371,7 @@ declare namespace LocalJSX {
         /**
           * Button clicked
          */
-        "onButtonClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onButtonClick"?: (event: IxSplitButtonCustomEvent<MouseEvent>) => void;
         /**
           * Button outline variant
          */
@@ -3257,7 +3401,7 @@ declare namespace LocalJSX {
         /**
           * Dropdown item clicked
          */
-        "onItemClick"?: (event: CustomEvent<MouseEvent>) => void;
+        "onItemClick"?: (event: IxSplitButtonItemCustomEvent<MouseEvent>) => void;
     }
     interface IxTabItem {
         /**
@@ -3338,11 +3482,11 @@ declare namespace LocalJSX {
         /**
           * Time event
          */
-        "onDone"?: (event: CustomEvent<string>) => void;
+        "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Time change event
          */
-        "onTimeChange"?: (event: CustomEvent<string>) => void;
+        "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Show hour input
          */
@@ -3395,7 +3539,7 @@ declare namespace LocalJSX {
         /**
           * Toast closed
          */
-        "onCloseToast"?: (event: CustomEvent<any>) => void;
+        "onCloseToast"?: (event: IxToastCustomEvent<any>) => void;
         /**
           * Toast title
          */
@@ -3435,7 +3579,7 @@ declare namespace LocalJSX {
         /**
           * An event will be dispatched each time the slide-toggle changes its value.
          */
-        "onCheckedChange"?: (event: CustomEvent<boolean>) => void;
+        "onCheckedChange"?: (event: IxToggleCustomEvent<boolean>) => void;
         /**
           * Text for indeterminate state
          */
@@ -3461,11 +3605,11 @@ declare namespace LocalJSX {
         /**
           * Context changed
          */
-        "onContextChange"?: (event: CustomEvent<TreeContext>) => void;
+        "onContextChange"?: (event: IxTreeCustomEvent<TreeContext>) => void;
         /**
           * Emits removed nodes
          */
-        "onNodeRemoved"?: (event: CustomEvent<any>) => void;
+        "onNodeRemoved"?: (event: IxTreeCustomEvent<any>) => void;
         /**
           * Render function of tree items
          */
@@ -3493,11 +3637,11 @@ declare namespace LocalJSX {
         /**
           * Clicked
          */
-        "onItemClick"?: (event: CustomEvent<void>) => void;
+        "onItemClick"?: (event: IxTreeItemCustomEvent<void>) => void;
         /**
           * Expand/Collapsed toggled
          */
-        "onToggle"?: (event: CustomEvent<void>) => void;
+        "onToggle"?: (event: IxTreeItemCustomEvent<void>) => void;
         /**
           * Text
          */
@@ -3535,7 +3679,7 @@ declare namespace LocalJSX {
         /**
           * You get an array of Files after drop-action or browse action is finished
          */
-        "onFilesChanged"?: (event: CustomEvent<Array<File>>) => void;
+        "onFilesChanged"?: (event: IxUploadCustomEvent<Array<File>>) => void;
         /**
           * Will be used by state = UploadFileState.SELECT_FILE
          */
@@ -3601,7 +3745,7 @@ declare namespace LocalJSX {
         /**
           * On step selected event
          */
-        "onStepSelected"?: (event: CustomEvent<number>) => void;
+        "onStepSelected"?: (event: IxWorkflowStepsCustomEvent<number>) => void;
         /**
           * Activate navigation click
          */

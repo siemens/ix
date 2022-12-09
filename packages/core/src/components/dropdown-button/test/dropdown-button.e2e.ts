@@ -10,7 +10,6 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-
 regressionTest.describe('basic', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('dropdown-button/test/basic');
