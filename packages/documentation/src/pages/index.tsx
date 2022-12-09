@@ -138,7 +138,7 @@ function Homepage() {
           size="h1"
           title="Siemens"
           subtitle="Industrial Experience"
-          description="Siemens Industrial Experience is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
+          description="Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
           noLine
           description_width="427px"
         ></Headline>
@@ -342,7 +342,7 @@ function UX() {
         <Headline
           dark
           title="iX design libraries are built"
-          subtitle="for UX Designers"
+          subtitle="for UX designers"
           description="Rapidly create consistent prototypes using our libraries to support the exchange of ideas with your stakeholders and developers"
         ></Headline>
 
