@@ -35,4 +35,19 @@ regressionTest.describe('select', () => {
       maxDiffPixelRatio: 0.05,
     });
   });
+
+  regressionTest('mode-multiple-overflow scroll down', async ({ page }) => {
+    await page.goto('select/test/mode-multiple-overflow');
+
+    const inputHandle = await page.waitForSelector('div.chips');
+
+    page.evaluate((menuElement) => {
+      menuElement.scrollTop = 9999;
+      menuElement.classList.add('__SCROLLED__');
+    }, inputHandle);
+
+    await page.waitForSelector('div.chips.__SCROLLED__');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
