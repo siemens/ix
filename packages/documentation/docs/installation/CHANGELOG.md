@@ -4,21 +4,30 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-# [1.2.0-beta.0](https://github.com/siemens/ix/compare/v1.1.1...v1.2.0-beta.0) (2022-12-05)
+# [1.2.0](https://github.com/siemens/ix/compare/v1.1.1...v1.2.0) (2022-12-12)
 
 
 ### Bug Fixes
 
 * **angular/modal-service:** pass config object to modal function ([#200](https://github.com/siemens/ix/issues/200)) ([8b5f163](https://github.com/siemens/ix/commit/8b5f163a9f13ddf58069957f6c566f9f21aed903))
 * **angular:** downgrade @angular/compiler to v13-lts ([#194](https://github.com/siemens/ix/issues/194)) ([cb3c15b](https://github.com/siemens/ix/commit/cb3c15bf36bb1f121a58c534c7f65beefed5644c))
+* **core/checkbox, core/radiobutton:** hide native intput ([#235](https://github.com/siemens/ix/issues/235)) ([c481a6b](https://github.com/siemens/ix/commit/c481a6bd0c6582ffc924268bba386aead0196a64))
+* **core/group:** show context-menu based on dropdown ([#222](https://github.com/siemens/ix/issues/222)) ([2bffcb7](https://github.com/siemens/ix/commit/2bffcb74d7e1a5cee45f1f166e1d9e62c710e10b))
+* **core/icon-button:** adjust styling of smaller buttons ([#218](https://github.com/siemens/ix/issues/218)) ([e29271b](https://github.com/siemens/ix/commit/e29271bc6e5f8273c3b67f22061577e939445baf))
 * **core/menu-avatar:** show avatar icon ([#201](https://github.com/siemens/ix/issues/201)) ([dee02b8](https://github.com/siemens/ix/commit/dee02b84e2684db08de8aa64b880305b94890aae))
+* **core/modal:** update header alignment ([#217](https://github.com/siemens/ix/issues/217)) ([83391ba](https://github.com/siemens/ix/commit/83391ba5b3a73aee4f7915826926965c0b8fa19a))
+* **core/select:** handle overflow of pills ([#224](https://github.com/siemens/ix/issues/224)) ([81aca1f](https://github.com/siemens/ix/commit/81aca1fc521561e33dc0f44340dbeda43e010712))
+* **core:** radio button indeterminate ([#213](https://github.com/siemens/ix/issues/213)) ([dbc0124](https://github.com/siemens/ix/commit/dbc01241b4acb2753438b0bb6560dca18a274c33))
 * **documentation:** fix buttons responsiveness ([#203](https://github.com/siemens/ix/issues/203)) ([ff1b946](https://github.com/siemens/ix/commit/ff1b9461b7632d3de27f1047cf8fb86a7f8e790e))
 
 
 ### Features
 
+* **angular/dropdown:** add trigger directive ([#223](https://github.com/siemens/ix/issues/223)) ([e698bc9](https://github.com/siemens/ix/commit/e698bc9b6e5a13a711f066ffb5cf32f0c4c3476c))
 * **angular/modal-service:** add property to pass data into context ([#206](https://github.com/siemens/ix/issues/206)) ([0408cd4](https://github.com/siemens/ix/commit/0408cd43eaad120f68bed91da83725df29aaf96b))
-* **core:** add dynamic import flag to compile library ([b4eeedf](https://github.com/siemens/ix/commit/b4eeedfd1df2d91d8e47cd7dd5eb44badaf9094e))
+* **core/modal:** return modal instance when opening a new modal ([#215](https://github.com/siemens/ix/issues/215)) ([097acfc](https://github.com/siemens/ix/commit/097acfc04efce151904c5dea2999a19558d02adc))
+* **core/radiobutton, core/checkbox:** align text if line break occurs ([#214](https://github.com/siemens/ix/issues/214)) ([354db6c](https://github.com/siemens/ix/commit/354db6c586ae3f37f5528eb7a09eb777c1313fb9))
+* **core:** activate additional compiler features ([#219](https://github.com/siemens/ix/issues/219)) ([90363be](https://github.com/siemens/ix/commit/90363be066ffcfc5cba5eca7f573f9e5dcdafb6f))
 
 
 
