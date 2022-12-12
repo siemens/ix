@@ -25,27 +25,7 @@ describe('ix-select', () => {
       components: [Select],
       html: '<ix-select></ix-select>',
     });
-    expect(page.root).toEqualHtml(`
-    <ix-select>
-      <div class=\"form-control select\">
-        <div class=\"input-container\">
-          <div class=\"trigger\">
-            <input data-testid=\"input\" placeholder=\"Select an option\" type=\"text\">
-            <div class=\"chevron-down-container\">
-              <ix-icon class=\"chevron\" name=\"chevron-down-small\"></ix-icon>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ix-dropdown adjustdropdownwidthtoreferencewidth=\"\" placement=\"bottom\" positioningstrategy=\"fixed\" style=\"width: 100%;\">
-        <div class=\"select-list-header\">
-          Please select an option
-        </div>
-        <div class=\"d-contents\"></div>
-        <ix-dropdown-item class=\"add-item d-none\" data-testid=\"add-item\" icon=\"plus\"></ix-dropdown-item>
-      </ix-dropdown>
-    </ix-select>
-    `);
+    expect(page.root).toMatchSnapshot();
   });
 
   it('show add item button in list', async () => {

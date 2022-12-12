@@ -6445,8 +6445,8 @@
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
-        "ix-icon",
         "ix-icon-button",
+        "ix-icon",
         "ix-dropdown",
         "ix-dropdown-item"
       ],
@@ -6454,8 +6454,8 @@
         "ix-select": [
           "ix-select-item",
           "ix-filter-chip",
-          "ix-icon",
           "ix-icon-button",
+          "ix-icon",
           "ix-dropdown",
           "ix-dropdown-item"
         ],
