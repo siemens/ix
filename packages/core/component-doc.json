@@ -2255,8 +2255,7 @@
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
-        "ix-split-button",
-        "my-component"
+        "ix-split-button"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2276,9 +2275,6 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
-          "ix-dropdown"
-        ],
-        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -2575,8 +2571,7 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item",
-        "my-component"
+        "ix-split-button-item"
       ],
       "dependencies": [
         "ix-icon"
@@ -2601,9 +2596,6 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -3228,9 +3220,7 @@
       "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon",
         "ix-group-context-menu",
@@ -3250,9 +3240,6 @@
         ],
         "ix-group-item": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-group"
         ]
       },
       "props": [
@@ -3532,8 +3519,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-group",
-        "my-component"
+        "ix-group"
       ],
       "dependencies": [
         "ix-icon"
@@ -3543,9 +3529,6 @@
           "ix-icon"
         ],
         "ix-group": [
-          "ix-group-item"
-        ],
-        "my-component": [
           "ix-group-item"
         ]
       },
@@ -9218,37 +9201,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-group",
-        "ix-dropdown",
-        "ix-dropdown-item",
-        "ix-group-item"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-group",
-          "ix-dropdown",
-          "ix-dropdown-item",
-          "ix-group-item"
-        ],
-        "ix-group": [
-          "ix-icon",
-          "ix-group-context-menu",
-          "ix-group-item"
-        ],
-        "ix-group-context-menu": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
