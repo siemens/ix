@@ -28,4 +28,11 @@ regressionTest.describe('select', () => {
       maxDiffPixelRatio: 0.05,
     });
   });
+
+  regressionTest('mode-multiple-overflow', async ({ page }) => {
+    await page.goto('select/test/mode-multiple-overflow');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.05,
+    });
+  });
 });
