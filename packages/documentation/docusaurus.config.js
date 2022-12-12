@@ -82,7 +82,7 @@ const config = {
         {
           name: 'description',
           content:
-            'Siemens Industrial Experience is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+            'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
         },
       ],
       colorMode: {

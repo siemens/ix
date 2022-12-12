@@ -1,16 +1,11 @@
 ---
 sidebar_position: 1
-sidebar_title: iX for Designer
+sidebar_title: iX for Designers
 title: iX for Designers
 hide_table_of_contents: true
 ---
 
 import {Card, CardList} from '@site/src/components/Card';
-
-import {Layout} from '@site/src/components/Layout';
-
-<Layout
-description="Siemens Industrial Experience is a component based system which allows you to build highly complex apps based on your needs."> </Layout>
 
 <CardList>
   <Card label="iX Design Kits" isPrimary={true} size="big" link="design-kit" icon="disk" />
