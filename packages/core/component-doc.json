@@ -951,7 +951,7 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only working witht `variant=\"primary\"`",
+          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
           "docsTags": [],
           "default": "false",
           "values": [
