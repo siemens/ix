@@ -26,7 +26,8 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "test:e2e": "playwright test --reporter html"
   },
   "dependencies": {
     "@stencil/core": "~2.19.2"
@@ -38,7 +39,8 @@
     "puppeteer": "^10.0.0",
     "ag-grid-community": "^28.0.2",
     "@siemens/ix": "~1.2.0",
-    "@stencil/sass": "~2.0.0"
+    "@stencil/sass": "~2.0.0",
+    "@playwright/test": "^1.24.1"
   },
   "peerDependencies": {
     "ag-grid-community": "^28.0.2",
