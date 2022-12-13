@@ -26,7 +26,7 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null, // disable service workers
+      serviceWorker: null,
       copy: [
         {
           src: './../../../node_modules/@siemens/ix-icons/dist',

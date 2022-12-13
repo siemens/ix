@@ -21,8 +21,9 @@
   --ag-header-column-resize-handle-width: 1px;
 
   --ag-input-focus-box-shadow: none;
-
+  --ag-input-focus-border-color: var(--theme-color-input--focus);
   --ag-checkbox-checked-color: var(--theme-color-input--focus);
+  --ag-control-panel-background-color: var(--theme-color-1);
 
   .ag-checkbox-input {
     clip: inherit !important;
@@ -39,10 +40,12 @@
   }
 
   .ag-filter {
+    color: var(--theme-color-std-text);
     background-color: var(--ag-control-panel-background-color);
   }
 
   .ag-select-list {
+    color: var(--theme-color-std-text);
     background-color: var(--ag-control-panel-background-color);
     font-family: Siemens Sans;
     font-size: 14px;
