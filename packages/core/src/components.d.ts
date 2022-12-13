@@ -111,7 +111,7 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Show button as selected. Should be used with outline or invisible
+          * Show button as selected. Should be used with outline or ghost
          */
         "selected": boolean;
         /**
@@ -2198,7 +2198,7 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Show button as selected. Should be used with outline or invisible
+          * Show button as selected. Should be used with outline or ghost
          */
         "selected"?: boolean;
         /**
