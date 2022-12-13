@@ -615,7 +615,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Show button as selected. Should be used with outline or invisible",
+          "docs": "Show button as selected. Should be used with outline or ghost",
           "docsTags": [],
           "default": "false",
           "values": [
