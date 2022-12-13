@@ -13,10 +13,10 @@ import React from 'react';
 export const ButtonSelected: React.FC = () => {
   return (
     <>
-      <IxButton class="m-1" variant="Secondary" invisible>
+      <IxButton class="m-1" variant="Secondary" ghost>
         Not selected
       </IxButton>
-      <IxButton class="m-1" variant="Secondary" invisible selected>
+      <IxButton class="m-1" variant="Secondary" ghost selected>
         Selected
       </IxButton>
     </>

@@ -13,10 +13,10 @@ import React from 'react';
 export const ButtonsGhost: React.FC = () => {
   return (
     <>
-      <IxButton class="m-1" invisible variant="Primary">
+      <IxButton class="m-1" ghost variant="Primary">
         Button
       </IxButton>
-      <IxButton class="m-1" disabled invisible variant="Primary">
+      <IxButton class="m-1" disabled ghost variant="Primary">
         Button
       </IxButton>
     </>

@@ -16,12 +16,11 @@ import { Component } from '@angular/core';
 export class Buttons {}
 function buttonGhost(): string | undefined {
   return `
-      <ix-button class="m-1" invisible variant="Primary">
+      <ix-button class="m-1" ghost variant="Primary">
         Button
       </ix-button>
-      <ix-button class="m-1" disabled invisible variant="Primary">
+      <ix-button class="m-1" disabled ghost variant="Primary">
         Button
       </ix-button>
   `;
 }
-
