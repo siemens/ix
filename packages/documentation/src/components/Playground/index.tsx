@@ -66,12 +66,14 @@ function ButtonOpenStackBlitz({
 
 function ButtonToggleCode({
   onClick,
+  showCode,
 }: {
+  showCode: boolean;
   onClick: React.MouseEventHandler<HTMLIxIconButtonElement>;
 }) {
   return (
     <ix-button onClick={onClick} ghost>
-      Toggle Code
+      {showCode ? 'Hide Code' : 'Show Code'}
     </ix-button>
   );
 }
@@ -148,7 +150,10 @@ export default function Playground({
     <div className="Playground">
       <div className="Playground__Toolbar Location__Top">
         <div className="Playground__Toolbar__Actions">
-          <ButtonToggleCode onClick={() => setShowCode(!showCode)} />
+          <ButtonToggleCode
+            onClick={() => setShowCode(!showCode)}
+            showCode={showCode}
+          />
         </div>
       </div>
       <Demo name={name} height={height} noMargin={noMargin} theme={theme} />

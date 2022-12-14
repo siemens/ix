@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-drawer/props.md';
 import Events from './../auto-generated/ix-drawer/events.md';
 
@@ -16,31 +15,24 @@ import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/
 
 ## Usage
 
-<Preview name="drawer-full-height" height="24rem">
-  <TabItem value="javascript">
-    <SourceDrawer />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDrawer />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDrawer />
-  </TabItem>
-</Preview>
+<Playground
+name="drawer-full-height" height="24rem"
+frameworks={{
+  react: SourceReactDrawer,
+  angular: SourceAngularDrawer,
+  javascript: SourceDrawer
+}}></Playground>
 
 ### Auto height
 
-<Preview name="drawer" height="24rem">
-  <TabItem value="javascript">
-    <SourceDrawerFullHeight />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDrawerFullHeight />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDrawerFullHeight />
-  </TabItem>
-</Preview>
+<Playground
+name="drawer" height="24rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactDrawerFullHeight,
+  angular: SourceAngularDrawerFullHeight,
+  javascript: SourceDrawerFullHeight
+}}></Playground>
 
 ## Properties
 

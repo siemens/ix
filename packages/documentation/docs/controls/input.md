@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import SourceInput from './../auto-generated/previews/web-component/input.md'
 import SourceInputDisabled from './../auto-generated/previews/web-component/input-disabled.md'
@@ -20,56 +19,43 @@ import SourceAngularInputIcon from './../auto-generated/previews/angular/input-w
 
 ## Usage
 
-<Preview name="input">
-  <TabItem value="javascript">
-    <SourceInput />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInput />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInput />
-  </TabItem>
-</Preview>
+<Playground
+name="input"
+frameworks={{
+  react: SourceReactInput,
+  angular: SourceAngularInput,
+  javascript: SourceInput
+}}></Playground>
 
 ### Disabled
 
-<Preview name="input-disabled">
-  <TabItem value="javascript">
-    <SourceInputDisabled />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputDisabled />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputDisabled />
-  </TabItem>
-</Preview>
+<Playground
+name="input-disabled"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputDisabled,
+  angular: SourceAngularInputDisabled,
+  javascript: SourceInputDisabled
+}}></Playground>
 
 ### Readonly
 
-<Preview name="input-readonly">
-  <TabItem value="javascript">
-    <SourceInputReadonly />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputReadonly />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputReadonly />
-  </TabItem>
-</Preview>
+<Playground
+name="input-readonly"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputReadonly,
+  angular: SourceAngularInputReadonly,
+  javascript: SourceInputReadonly
+}}></Playground>
 
 ### with Icon
 
-<Preview name="input-with-icon">
-  <TabItem value="javascript">
-    <SourceInputIcon />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputIcon />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="input-with-icon"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputIcon,
+  angular: SourceAngularInputIcon,
+  javascript: SourceInputIcon
+}}></Playground>

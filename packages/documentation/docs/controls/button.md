@@ -2,8 +2,6 @@
 title: Button
 ---
 
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
 import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-button/props.md';
 import PropsIcon from './../auto-generated/ix-icon-button/props.md';

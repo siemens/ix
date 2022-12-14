@@ -3384,10 +3384,9 @@
       "readmePath": "./src/components/group/readme.md",
       "usagesDir": "./src/components/group/usage",
       "tag": "ix-group-context-menu",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-group\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [

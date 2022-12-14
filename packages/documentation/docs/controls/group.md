@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-group/props.md';
 import Events from './../auto-generated/ix-group/events.md';
@@ -29,45 +28,35 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
 
 ## Usage
 
-<Preview name="group" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroup />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroup />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroup />
-  </TabItem>
-</Preview>
+<Playground
+name="group" height="16rem"
+frameworks={{
+  react: SourceReactGroup,
+  angular: SourceAngularGroup,
+  javascript: SourceGroup
+}}></Playground>
 
 ### Suppress header selection
 
-<Preview name="group-header-suppressed" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupSuppressed />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroupSuppressed />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupSuppressed />
-  </TabItem>
-</Preview>
+<Playground
+name="group-header-suppressed" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupSuppressed,
+  angular: SourceAngularGroupSuppressed,
+  javascript: SourceGroupSuppressed
+}}></Playground>
 
 ### Custom group entry
 
-<Preview name="group-custom-entry" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupCustomEntry />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroupCustomEntry />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupCustomEntry />
-  </TabItem>
-</Preview>
+<Playground
+name="group-custom-entry" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupCustomEntry,
+  angular: SourceAngularGroupCustomEntry,
+  javascript: SourceGroupCustomEntry
+}}></Playground>
 
 ### Group with context menu
 
@@ -80,17 +69,14 @@ Luckily there exists a workaround for rendering context menus inside the group c
 
 To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
 
-<Preview name="group-context-menu" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupContext />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroupContext />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupContext />
-  </TabItem>
-</Preview>
+<Playground
+name="group-context-menu" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupContext,
+  angular: SourceAngularGroupContext,
+  javascript: SourceGroupContext
+}}></Playground>
 
 ## Properties (ix-group)
 

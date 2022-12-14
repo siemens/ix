@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-date-picker/props.md';
 import Events from './../auto-generated/ix-date-picker/events.md';
 
@@ -15,33 +14,24 @@ import SourceAngularDatepickerRange from './../auto-generated/previews/angular/d
 
 ## Usage
 
-<Preview name="datepicker" height="35rem">
-  <TabItem value="javascript">
-    <SourceDatepicker />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDatepicker />
-  </TabItem>
-
-  <TabItem value="angular">
-    <SourceAngularDatepicker />
-  </TabItem>
-</Preview>
+<Playground
+name="datepicker" height="35rem"
+frameworks={{
+  react: SourceReactDatepicker,
+  angular: SourceAngularDatepicker,
+  javascript: SourceDatepicker
+}}></Playground>
 
 ### with range selection
 
-<Preview name="datepicker-range" height="35rem">
-  <TabItem value="javascript">
-    <SourceDatepicker />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDatepicker />
-  </TabItem>
-
-  <TabItem value="angular">
-    <SourceAngularDatepicker />
-  </TabItem>
-</Preview>
+<Playground
+name="datepicker-range" height="35rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactDatepickerRange,
+  angular: SourceAngularDatepickerRange,
+  javascript: SourceDatepickerRange
+}}></Playground>
 
 ## Properties
 

@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-dropdown/props.md';
 import Events from './../auto-generated/ix-dropdown/events.md';
@@ -20,31 +19,24 @@ import SourceAngularDropdownIcon from './../auto-generated/previews/angular/drop
 
 ## Usage
 
-<Preview name="dropdown" height="16rem">
-  <TabItem value="javascript">
-    <SourceDropdown />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdown />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdown />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown" height="16rem"
+frameworks={{
+  react: SourceReactDropdown,
+  angular: SourceAngularDropdown,
+  javascript: SourceDropdown
+}}></Playground>
 
 ### Dropdown with icon
 
-<Preview name="dropdown-icon" height="16rem">
-  <TabItem value="javascript">
-    <SourceDropdownIcon />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdownIcon />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdownIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown-icon" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactDropdownIcon,
+  angular: SourceAngularDropdownIcon,
+  javascript: SourceDropdownIcon
+}}></Playground>
 
 ## Properties (ix-dropdown)
 
