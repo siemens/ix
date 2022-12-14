@@ -39,7 +39,7 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Display chip in active state. Only working witht `variant="primary"`
+   * Display chip in active state. Only works with `variant="primary"`
    */
   @Prop() active = false;
 

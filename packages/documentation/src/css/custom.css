@@ -43,6 +43,11 @@ body {
   --bs-alert-bg: var(--theme-color-alarm) !important;
 }
 
+.theme-admonition-note {
+  background-color: var(--theme-color-7) !important;
+  color: var(--theme-color-inv-std-text);
+}
+
 .theme-admonition-caution {
   background-color: var(--theme-color-warning) !important;
   color: var(--theme-color-inv-std-text);
@@ -124,6 +129,10 @@ aside {
 
 .navbar.navbar--fixed-top {
   height: var(--ifm-navbar-height);
+}
+
+.navbar-root-background {
+  background-color: #000028;
 }
 
 .dropdown__menu {

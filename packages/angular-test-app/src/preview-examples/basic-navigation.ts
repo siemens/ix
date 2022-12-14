@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-basic-navigation>
+      <div class="placeholder-logo" slot="logo"></div>
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>

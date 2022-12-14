@@ -40,7 +40,7 @@ export class Button {
   @Prop() ghost = false;
 
   /**
-   * Show button as selected. Should be used with outline or invisible
+   * Show button as selected. Should be used with outline or ghost
    */
   @Prop() selected = false;
 

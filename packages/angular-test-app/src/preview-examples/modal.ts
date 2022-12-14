@@ -13,7 +13,7 @@ import { ModalService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button (click)="test()">Show modal</ix-button>
+    <ix-button (click)="openModal()">Show modal</ix-button>
 
     <ng-template #customModal let-modal>
       <div>
@@ -36,9 +36,9 @@ import { ModalService } from '@siemens/ix-angular';
           >
             Cancel
           </ix-button>
-          <ix-button class="close-modal" (click)="modal.close('okay')"
-            >OK</ix-button
-          >
+          <ix-button class="close-modal" (click)="modal.close('okay')">
+            OK
+          </ix-button>
         </div>
       </div>
     </ng-template>
@@ -50,7 +50,7 @@ export default class Modal {
 
   constructor(private readonly modalService: ModalService) {}
 
-  async test() {
+  async openModal() {
     const instance = await this.modalService.open({
       content: this.customModalRef,
       title: '',
@@ -60,5 +60,12 @@ export default class Modal {
     instance.onClose.on((a) => {
       console.log(a);
     });
+
+    instance.htmlElement.addEventListener(
+      'keydown',
+      (keyboardEvent: KeyboardEvent) => {
+        console.log(keyboardEvent.key);
+      }
+    );
   }
 }

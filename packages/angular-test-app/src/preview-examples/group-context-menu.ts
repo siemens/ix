@@ -13,10 +13,10 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-group header="Header text" sub-header="Subheader text">
-      <div slot="dropdown">
+      <ix-dropdown slot="dropdown">
         <ix-group-dropdown-item label="Item 1"></ix-group-dropdown-item>
         <ix-group-dropdown-item label="Item 2"></ix-group-dropdown-item>
-      </div>
+      </ix-dropdown>
       <ix-group-item text="Example text 1"></ix-group-item>
       <ix-group-item text="Example text 2"></ix-group-item>
       <ix-group-item text="Example text 3"></ix-group-item>

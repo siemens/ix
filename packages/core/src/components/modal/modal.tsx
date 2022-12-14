@@ -206,7 +206,7 @@ export class Modal {
    * @param reason
    */
   @Method()
-  async dismiss(reason?: any) {
+  async dismiss<T = any>(reason?: T) {
     if (this.beforeDismiss) {
       const result = await this.beforeDismiss(reason);
       if (result !== false) {
@@ -222,7 +222,7 @@ export class Modal {
    * @param result
    */
   @Method()
-  async close(result: any) {
+  async close<T = any>(result: T) {
     this.slideUp(this.modalContent, () => this.closed.emit(result));
   }
 

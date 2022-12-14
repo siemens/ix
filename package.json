@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "ix",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "license": "MIT",
   "description": "Siemens iX monorepo",
   "author": "Siemens AG",
@@ -33,7 +33,7 @@
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
-    "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix run test:e2e",
+    "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix test:e2e && yarn workspace @siemens/ix-aggrid test:e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
     "test": "turbo run test",
     "prepare": "husky install"

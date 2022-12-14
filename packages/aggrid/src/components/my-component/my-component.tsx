@@ -8,6 +8,7 @@
  */
 
 import { Component, h, Host } from '@stencil/core';
+import { themeSwitcher } from '@utils/test/theme-switcher';
 import { ColDef, GridOptions } from 'ag-grid-community';
 
 const columnDefs: ColDef[] = [
@@ -34,6 +35,10 @@ export class MyComponent {
     rowSelection: 'multiple',
     suppressCellFocus: true,
   };
+
+  componentDidLoad() {
+    themeSwitcher();
+  }
 
   render() {
     return (

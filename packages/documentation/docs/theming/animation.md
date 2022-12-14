@@ -1,6 +1,6 @@
 # Animation
 
-Siemens iX uses meaningful animations to make applications appear physically tangible.
+Siemens Industrial Experience uses meaningful animations to make applications appear physically tangible.
 This way UIs become predictable and interactions easier to follow along with for users.  
 Abrupt state changes are prevented in oder to make UIs feel smooth and anchored in reality.
 

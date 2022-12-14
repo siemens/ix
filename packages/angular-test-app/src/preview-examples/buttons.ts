@@ -12,8 +12,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button class="m-1" variant="Primary"> Button </ix-button>
-    <ix-button class="m-1" disabled variant="Primary"> Button </ix-button>
+    <ix-button class="m-1" variant="primary">Button</ix-button>
+    <ix-button class="m-1" variant="primary" disabled>Button</ix-button>
   `,
 })
 export default class Buttons {}

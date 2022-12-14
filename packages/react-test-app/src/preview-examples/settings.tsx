@@ -26,6 +26,7 @@ export default () => {
 
   return (
     <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu ref={ref}>
         <IxMenuSettings>
           <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>

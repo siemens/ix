@@ -607,7 +607,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Show button as selected. Should be used with outline or invisible",
+          "docs": "Show button as selected. Should be used with outline or ghost",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -941,7 +941,7 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only working witht `variant=\"primary\"`",
+          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -2236,7 +2236,6 @@
       "dependents": [
         "ix-breadcrumb",
         "ix-date-picker",
-        "ix-group",
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
@@ -2248,9 +2247,6 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-group": [
           "ix-dropdown"
         ],
         "ix-menu": [
@@ -3203,16 +3199,17 @@
       "dependents": [],
       "dependencies": [
         "ix-icon",
-        "ix-icon-button",
-        "ix-dropdown",
+        "ix-group-context-menu",
         "ix-group-item"
       ],
       "dependencyGraph": {
         "ix-group": [
           "ix-icon",
-          "ix-icon-button",
-          "ix-dropdown",
+          "ix-group-context-menu",
           "ix-group-item"
+        ],
+        "ix-group-context-menu": [
+          "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-icon"
@@ -3379,6 +3376,44 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "./src/components/group",
+      "filePath": "./src/components/group/group-context-menu.tsx",
+      "fileName": "group-context-menu.tsx",
+      "readmePath": "./src/components/group/readme.md",
+      "usagesDir": "./src/components/group/usage",
+      "tag": "ix-group-context-menu",
+      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-group\n",
+      "overview": "",
+      "usage": {},
+      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docsTags": [],
+      "encapsulation": "scoped",
+      "dependents": [
+        "ix-group"
+      ],
+      "dependencies": [
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-group-context-menu"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "./src/components/group-dropdown-item",
@@ -3802,7 +3837,7 @@
         "ix-drawer",
         "ix-expanding-search",
         "ix-flip-tile",
-        "ix-group",
+        "ix-group-context-menu",
         "ix-map-navigation",
         "ix-map-navigation-overlay",
         "ix-menu-about",
@@ -3833,7 +3868,7 @@
         "ix-flip-tile": [
           "ix-icon-button"
         ],
-        "ix-group": [
+        "ix-group-context-menu": [
           "ix-icon-button"
         ],
         "ix-map-navigation": [
@@ -6041,7 +6076,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "close(result: any) => Promise<void>",
+          "signature": "close<T = any>(result: T) => Promise<void>",
           "parameters": [],
           "docs": "Close modal",
           "docsTags": [
@@ -6057,7 +6092,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "dismiss(reason?: any) => Promise<void>",
+          "signature": "dismiss<T = any>(reason?: T) => Promise<void>",
           "parameters": [],
           "docs": "Dismiss modal instance",
           "docsTags": [
@@ -6127,10 +6162,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+            "type": "Promise<ModalInstance<any>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [
@@ -6363,8 +6398,8 @@
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
-        "ix-icon",
         "ix-icon-button",
+        "ix-icon",
         "ix-dropdown",
         "ix-dropdown-item"
       ],
@@ -6372,8 +6407,8 @@
         "ix-select": [
           "ix-select-item",
           "ix-filter-chip",
-          "ix-icon",
           "ix-icon-button",
+          "ix-icon",
           "ix-dropdown",
           "ix-dropdown-item"
         ],

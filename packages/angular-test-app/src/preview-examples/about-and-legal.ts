@@ -13,6 +13,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-basic-navigation>
+      <div class="placeholder-logo" slot="logo"></div>
       <ix-menu #menu>
         <ix-menu-about>
           <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>

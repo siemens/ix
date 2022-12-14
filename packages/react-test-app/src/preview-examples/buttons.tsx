@@ -16,7 +16,7 @@ export default () => {
       <IxButton className="m-1" variant="Primary">
         Button
       </IxButton>
-      <IxButton className="m-1" disabled variant="Primary">
+      <IxButton className="m-1" variant="Primary" disabled>
         Button
       </IxButton>
     </>
