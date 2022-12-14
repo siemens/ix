@@ -4,6 +4,16 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+## [1.2.1](https://github.com/siemens/ix/compare/v1.2.0...v1.2.1) (2022-12-14)
+
+
+### Bug Fixes
+
+* **aggrid:** set theme font colors ([#238](https://github.com/siemens/ix/issues/238)) ([2f0aeda](https://github.com/siemens/ix/commit/2f0aeda0a54b98f6190d2e7d21a06ce23e2b83c3))
+* **html-test-app/modal:** create web component in example ([1ab58b5](https://github.com/siemens/ix/commit/1ab58b59129fad2c8e63950107a99b0e075be4cf))
+
+
+
 # [1.2.0](https://github.com/siemens/ix/compare/v1.1.1...v1.2.0) (2022-12-12)
 
 

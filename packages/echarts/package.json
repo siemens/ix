@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/echarts"
   },
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Siemens iX theme for echarts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
