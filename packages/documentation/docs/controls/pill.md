@@ -5,7 +5,7 @@ import Events from './../auto-generated/ix-pill/events.md';
 
 import SourcePill from './../auto-generated/previews/web-component/pill.md';
 import SourceReactPill from './../auto-generated/previews/react/pill.md';
-import SourceAngularPill from './../auto-generated/previews/angular/pill.md';
+import SourceAngularPill from './../auto-generated/previews/angular/pill.ts.md';
 
 # Pill
 

@@ -11,6 +11,10 @@ import fse from 'fs-extra';
 import fsp from 'fs/promises';
 import path from 'path';
 
+function isExternalTemplate(componentCode: string) {
+  return /@Component.*templateUrl.*}\)/gms.test(componentCode);
+}
+
 export async function writeAngularPreviews(
   staticPath: string,
   htmlPreviewPath: string,
@@ -56,13 +60,40 @@ export async function writeAngularPreviews(
       );
       fse.ensureDirSync(writePath);
 
+      const angularComponentCode: {
+        filename: string;
+        code: string;
+      }[] = [];
+
       const code = fs.readFileSync(previewPath).toString();
-      const markdown = generateMarkdown(previewPath, 'typescript', code);
+
+      angularComponentCode.push({
+        filename: `${name}.ts`,
+        code,
+      });
+
+      if (isExternalTemplate(code)) {
+        angularComponentCode.push({
+          filename: `${name}.html`,
+          code: fs
+            .readFileSync(path.join(angularPreviewPath, `${name}.html`))
+            .toString(),
+        });
+      }
+
+      // const markdown = generateMarkdown(previewPath, 'typescript', code);
       return [
-        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
-        fsp.writeFile(
-          path.join(angularPreviewSourceCodePath, `${name}.txt`),
-          code
+        ...angularComponentCode.map((file) =>
+          fsp.writeFile(
+            path.join(writePath, `${file.filename}.md`),
+            generateMarkdown(previewPath, 'typescript', file.code)
+          )
+        ),
+        ...angularComponentCode.map((file) =>
+          fsp.writeFile(
+            path.join(angularPreviewSourceCodePath, `${file.filename}.txt`),
+            file.code
+          )
         ),
       ];
     })
