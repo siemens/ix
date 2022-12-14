@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop, State, Element } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 
 @Component({
@@ -15,7 +15,8 @@ import { Buttons } from '../utils/button-variants';
   styleUrl: 'dropdown-button.scss',
   scoped: true,
 })
-export class TimePicker {
+export class DropdownButton {
+  @Element() hostElement!: HTMLIxSelectElement;
   /**
    * Button varaint
    */
@@ -51,34 +52,64 @@ export class TimePicker {
    */
   @Prop() icon: string;
 
+  @State() dropdownWrapperRef!: HTMLElement;
+  @State() dropdownAnchor!: HTMLElement;
+  @State() dropdownShow = false;
+
+  get items() {
+    return Array.from(
+      this.hostElement.querySelectorAll('ix-dropdown-button-item')
+    );
+  }
+
   render() {
     return (
       <Host>
-        <ix-button
-          variant={this.variant}
-          outline={this.outline}
-          ghost={this.ghost}
-          disabled={this.disabled}
-          class={{ hide: this.label === '' }}
+        <div
+          style={{ width: 'fit-content' }}
+          ref={(ref) => {
+            this.dropdownAnchor = ref;
+            this.dropdownWrapperRef = ref;
+          }}
         >
-          <ix-icon
-            name={this.icon}
-            size="24"
-            class={{ hide: this.icon === '' }}
-          ></ix-icon>
-          {this.label}
-          <ix-icon name="chevron-down-small" size="24"></ix-icon>
-        </ix-button>
+          <ix-button
+            variant={this.variant}
+            outline={this.outline}
+            ghost={this.ghost}
+            disabled={this.disabled}
+            class={{ hide: this.label === '' }}
+          >
+            <ix-icon
+              name={this.icon}
+              size="24"
+              class={{ hide: this.icon === '' }}
+            ></ix-icon>
+            {this.label}
+            <ix-icon name="chevron-down-small" size="24"></ix-icon>
+          </ix-button>
 
-        <ix-icon-button
-          icon={this.icon}
-          variant={this.variant}
-          outline={this.outline}
-          ghost={this.ghost}
-          disabled={this.disabled}
-          class={{ hide: this.label !== '' }}
-          dropdownTriangle
-        ></ix-icon-button>
+          <ix-icon-button
+            icon={this.icon}
+            variant={this.variant}
+            outline={this.outline}
+            ghost={this.ghost}
+            disabled={this.disabled}
+            class={{ hide: this.label !== '' }}
+          ></ix-icon-button>
+          <div class={{ triangle: true, hide: this.label !== '' }}></div>
+        </div>
+
+        <ix-dropdown
+          show={this.dropdownShow}
+          class="dropdown"
+          anchor={this.dropdownAnchor}
+          trigger={this.dropdownWrapperRef}
+          placement="bottom"
+          positioningStrategy={'fixed'}
+          adjustDropdownWidthToReferenceWidth={true}
+        >
+          <slot></slot>
+        </ix-dropdown>
       </Host>
     );
   }

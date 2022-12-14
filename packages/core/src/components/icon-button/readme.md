@@ -11,20 +11,19 @@ SPDX-License-Identifier: MIT
 
 ## Properties
 
-| Property           | Attribute           | Description                                                                                  | Type                           | Default       |
-| ------------------ | ------------------- | -------------------------------------------------------------------------------------------- | ------------------------------ | ------------- |
-| `color`            | `color`             | Color of icon in  button                                                                     | `string`                       | `undefined`   |
-| `disabled`         | `disabled`          | Disabled                                                                                     | `boolean`                      | `false`       |
-| `dropdownTriangle` | `dropdown-triangle` | Enable dropdown button triangle                                                              | `boolean`                      | `false`       |
-| `ghost`            | `ghost`             | Button invisible                                                                             | `boolean`                      | `undefined`   |
-| `icon`             | `icon`              | Button icon                                                                                  | `string`                       | `undefined`   |
-| `invisible`        | `invisible`         | <span style="color:red">**[DEPRECATED]**</span> Use ghost property<br/><br/>Button invisible | `boolean`                      | `undefined`   |
-| `outline`          | `outline`           | Button outline                                                                               | `boolean`                      | `undefined`   |
-| `oval`             | `oval`              | Button in oval shape                                                                         | `boolean`                      | `undefined`   |
-| `selected`         | `selected`          | Selected state only working with outline or invisible                                        | `boolean`                      | `false`       |
-| `size`             | `size`              | Size of icon in button                                                                       | `"12" \| "16" \| "24" \| "32"` | `'24'`        |
-| `type`             | `type`              | Type of the button                                                                           | `"button" \| "submit"`         | `'button'`    |
-| `variant`          | `variant`           | Variant of button                                                                            | `"Primary" \| "Secondary"`     | `'Secondary'` |
+| Property    | Attribute   | Description                                                                                  | Type                           | Default       |
+| ----------- | ----------- | -------------------------------------------------------------------------------------------- | ------------------------------ | ------------- |
+| `color`     | `color`     | Color of icon in  button                                                                     | `string`                       | `undefined`   |
+| `disabled`  | `disabled`  | Disabled                                                                                     | `boolean`                      | `false`       |
+| `ghost`     | `ghost`     | Button invisible                                                                             | `boolean`                      | `undefined`   |
+| `icon`      | `icon`      | Button icon                                                                                  | `string`                       | `undefined`   |
+| `invisible` | `invisible` | <span style="color:red">**[DEPRECATED]**</span> Use ghost property<br/><br/>Button invisible | `boolean`                      | `undefined`   |
+| `outline`   | `outline`   | Button outline                                                                               | `boolean`                      | `undefined`   |
+| `oval`      | `oval`      | Button in oval shape                                                                         | `boolean`                      | `undefined`   |
+| `selected`  | `selected`  | Selected state only working with outline or invisible                                        | `boolean`                      | `false`       |
+| `size`      | `size`      | Size of icon in button                                                                       | `"12" \| "16" \| "24" \| "32"` | `'24'`        |
+| `type`      | `type`      | Type of the button                                                                           | `"button" \| "submit"`         | `'button'`    |
+| `variant`   | `variant`   | Variant of button                                                                            | `"Primary" \| "Secondary"`     | `'Secondary'` |
 
 
 ----------------------------------------------

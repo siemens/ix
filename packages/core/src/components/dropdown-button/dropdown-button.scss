@@ -7,6 +7,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.hide {
-  display: none;
+:host {
+  .hide {
+    display: none;
+  }
+
+  .triangle {
+    position: absolute;
+    margin-left: 25px;
+    margin-top: -7px;
+    border-right: 0 solid transparent;
+    border-left: 4px solid transparent;
+    border-top: 0 solid transparent;
+    border-bottom: 4px solid;
+    color: var(--theme-color-dynamic);
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .dropdown {
+    width: auto !important;
+    inset: auto !important;
+    transform: unset !important;
+  }
 }
