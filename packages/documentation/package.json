@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run generate-static-docs && docusaurus start",
-    "build": "npm run generate-static-docs && docusaurus build",
+    "start": "npm run generate-api && docusaurus start",
+    "build": "npm run generate-api && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -14,8 +14,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "generate-static-docs": "node ./scripts/generate-api.mjs",
-    "generate-version": "npm run generate-static-docs && node ./scripts/generate-version.mjs"
+    "generate-api": "node ./scripts/generate-api.mjs",
+    "generate-version": "npm run generate-api && node ./scripts/generate-version.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
@@ -27,6 +27,7 @@
     "@siemens/ix-react": "~1.2.1",
     "@siemens/ix-echarts": "~1.2.1",
     "@siemens/html-test-app": "~1.2.1",
+    "@stackblitz/sdk": "^1.8.1",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",
     "docusaurus-plugin-sass": "^0.2.2",

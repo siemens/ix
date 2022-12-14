@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dropdown-icon',
+  selector: 'app-example',
   template: `
     <ix-button id="iconTriggerId">Open</ix-button>
     <ix-dropdown trigger="iconTriggerId">
@@ -20,4 +20,4 @@ import { Component } from '@angular/core';
     </ix-dropdown>
   `,
 })
-export class DropdownIcon {}
+export default class DropdownIcon {}

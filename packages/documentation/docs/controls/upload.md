@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-upload/props.md';
 import Events from './../auto-generated/ix-upload/events.md';
@@ -12,17 +11,14 @@ import SourceAngularUpload from './../auto-generated/previews/angular/upload.md'
 
 ## Usage
 
-<Preview name="upload" height="5rem">
-  <TabItem value="javascript">
-    <SourceUpload />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactUpload />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularUpload />
-  </TabItem>
-</Preview>
+<Playground
+name="upload" height="8rem"
+frameworks={{
+  react: SourceReactUpload,
+  angular: SourceAngularUpload,
+  javascript: SourceUpload
+}}>
+</Playground>
 
 ## Properties
 

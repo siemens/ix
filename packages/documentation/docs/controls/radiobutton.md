@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import SourceRadio from './../auto-generated/previews/web-component/radio-button.md';
 import SourceReactRadio from './../auto-generated/previews/react/radio-button.md';
@@ -9,14 +8,11 @@ import SourceAngularRadio from './../auto-generated/previews/angular/radio-butto
 
 ## Usage
 
-<Preview name="radio-button">
-  <TabItem value="javascript">
-    <SourceRadio />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactRadio />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularRadio />
-  </TabItem>
-</Preview>
+<Playground
+name="radio-button"
+frameworks={{
+  react: SourceReactRadio,
+  angular: SourceAngularRadio,
+  javascript: SourceRadio
+}}>
+</Playground>

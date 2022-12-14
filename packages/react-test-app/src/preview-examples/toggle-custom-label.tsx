@@ -10,6 +10,6 @@
 import { IxToggle } from '@siemens/ix-react';
 import React from 'react';
 
-export const ToggleCustomLabel: React.FC = () => {
+export default () => {
   return <IxToggle text-off="Offline" text-on="Online"></IxToggle>;
 };

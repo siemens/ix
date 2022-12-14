@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-spinner',
+  selector: 'app-example',
   template: ` <ix-spinner></ix-spinner> `,
 })
-export class Spinner {}
+export default class Spinner {}

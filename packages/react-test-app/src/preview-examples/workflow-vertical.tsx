@@ -8,7 +8,7 @@
  */
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-react';
 import React from 'react';
-export const WorkflowVertical: React.FC = () => {
+export default () => {
   return (
     <IxWorkflowSteps vertical>
       <IxWorkflowStep status="done">Step 1</IxWorkflowStep>

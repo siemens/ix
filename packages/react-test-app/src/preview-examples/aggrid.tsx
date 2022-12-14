@@ -27,7 +27,7 @@ const gridOptions = {
   suppressCellFocus: true,
 } as GridOptions;
 
-export const AGGrid: React.FC = () => {
+export default () => {
   return (
     <div
       style={{ height: '12rem', width: '100%' }}

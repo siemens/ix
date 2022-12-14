@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-category-filter',
+  selector: 'app-example',
   template: `
     <ix-category-filter
       placeholder="Filter by"
@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
     ></ix-category-filter>
   `,
 })
-export class CategoryFilter {
+export default class CategoryFilter {
   repeatCategories = false;
   filterState = {
     tokens: ['Custom filter text'],

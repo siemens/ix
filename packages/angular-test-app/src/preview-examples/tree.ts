@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { TreeModel } from '@siemens/ix';
 
 @Component({
-  selector: 'app-tree',
+  selector: 'app-example',
   styles: [
     `
       .example {
@@ -26,7 +26,7 @@ import { TreeModel } from '@siemens/ix';
     <ix-tree root="root" [model]="model"></ix-tree>
   </div>`,
 })
-export class Tree {
+export default class Tree {
   model: TreeModel<{
     name: string;
   }> = {

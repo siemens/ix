@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-message-bar',
+  selector: 'app-example',
   template: `
     <ix-message-bar>Message text</ix-message-bar>
     <ix-message-bar type="warning">Message text</ix-message-bar>
@@ -21,4 +21,4 @@ import { Component } from '@angular/core';
     </ix-message-bar>
   `,
 })
-export class MessageBar {}
+export default class MessageBar {}

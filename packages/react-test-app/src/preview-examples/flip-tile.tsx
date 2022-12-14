@@ -11,7 +11,7 @@ import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
 import React from 'react';
 
-export const FlipTile: React.FC = () => {
+export default () => {
   return (
     <div className="example">
       <IxFlipTile>

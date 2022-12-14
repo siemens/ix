@@ -10,9 +10,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-expanding-search',
+  selector: 'app-example',
   template: `
     <ix-expanding-search placeholder="Search..."></ix-expanding-search>
   `,
 })
-export class ExpandingSearch {}
+export default class ExpandingSearch {}

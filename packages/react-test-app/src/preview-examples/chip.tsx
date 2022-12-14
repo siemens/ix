@@ -10,7 +10,7 @@
 import { IxChip } from '@siemens/ix-react';
 import React, { CSSProperties } from 'react';
 
-export const Chip: React.FC = () => {
+export default () => {
   const styled: CSSProperties = {
     width: '10rem',
   };

@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-map-navigation',
+  selector: 'app-example',
   template: `
     <ix-map-navigation
       application-name="Test Application"
@@ -27,4 +27,4 @@ import { Component } from '@angular/core';
     </ix-map-navigation>
   `,
 })
-export class MapNavigation {}
+export default class MapNavigation {}

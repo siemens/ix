@@ -10,7 +10,7 @@
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-react';
 import React from 'react';
 
-export const Tile: React.FC = () => {
+export default () => {
   return (
     <div className="example">
       <IxTile size="small">92.8 °C</IxTile>

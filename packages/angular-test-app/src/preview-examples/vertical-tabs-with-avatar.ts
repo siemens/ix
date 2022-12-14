@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-vertical-tabs-with-avatar',
+  selector: 'app-example',
   template: `
     <ix-menu>
       <ix-menu-avatar>
@@ -26,4 +26,4 @@ import { Component } from '@angular/core';
     </ix-menu>
   `,
 })
-export class VerticalTabsWithAvatar {}
+export default class VerticalTabsWithAvatar {}

@@ -2,8 +2,8 @@
 sidebar_position: 4
 ---
 
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../../auto-generated/ix-menu-settings/props.md';
 import Events from './../../auto-generated/ix-menu-settings/events.md';
 import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
@@ -16,17 +16,14 @@ import SourceAngularSettings from './../../auto-generated/previews/angular/setti
 
 ## Usage
 
-<Preview name="settings" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <SourceSettings />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactSettings />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularSettings />
-  </TabItem>
-</Preview>
+<Playground
+name="settings" height="30rem" noMargin
+frameworks={{
+  react: SourceReactSettings,
+  angular: SourceAngularSettings,
+  javascript: SourceSettings
+}}>
+</Playground>
 
 ## Properties (ix-menu-settings)
 

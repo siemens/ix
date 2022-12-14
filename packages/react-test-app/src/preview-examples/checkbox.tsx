@@ -9,7 +9,7 @@
 
 import React from 'react';
 
-export const Checkbox: React.FC = () => {
+export default () => {
   return (
     <>
       <div style={{ marginBottom: '1rem' }}>

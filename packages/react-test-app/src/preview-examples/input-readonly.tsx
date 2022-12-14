@@ -9,7 +9,7 @@
 
 import React from 'react';
 
-export const InputReadonly: React.FC = () => {
+export default () => {
   return (
     <form className="needs-validation m-2">
       <input

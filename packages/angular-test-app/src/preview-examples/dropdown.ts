@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dropdown',
+  selector: 'app-example',
   template: `
     <ix-button #trigger>Open</ix-button>
     <ix-dropdown [ixDropdownTrigger]="trigger">
@@ -20,4 +20,4 @@ import { Component } from '@angular/core';
     </ix-dropdown>
   `,
 })
-export class Dropdown {}
+export default class Dropdown {}

@@ -10,7 +10,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'app-example',
   template: `
     <ix-basic-navigation>
       <div class="placeholder-logo" slot="logo"></div>
@@ -27,7 +27,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
     </ix-basic-navigation>
   `,
 })
-export class Settings implements AfterViewInit {
+export default class Settings implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })
   menuRef!: ElementRef<HTMLIxMenuElement>;
 

@@ -10,7 +10,7 @@
 import { IxPill } from '@siemens/ix-react';
 import React, { CSSProperties } from 'react';
 
-export const Pill: React.FC = () => {
+export default () => {
   const styled: CSSProperties = {
     width: '8rem',
   };

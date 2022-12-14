@@ -15,7 +15,7 @@ import {
 } from '@siemens/ix-react';
 import React, { useLayoutEffect, useRef } from 'react';
 
-export const Settings: React.FC = () => {
+export default () => {
   const ref = useRef<HTMLIxMenuElement>(null);
 
   useLayoutEffect(() => {

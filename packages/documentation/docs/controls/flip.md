@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-flip-tile/props.md';
 import Events from './../auto-generated/ix-flip-tile/events.md';
 
@@ -11,17 +10,14 @@ import SourceAngularFlip from './../auto-generated/previews/angular/flip-tile.md
 
 ## Usage
 
-<Preview name="flip-tile" height="35rem">
-  <TabItem value="javascript">
-    <SourceFlip />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactFlip />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularFlip />
-  </TabItem>
-</Preview>
+<Playground
+name="flip-tile" height="20rem"
+frameworks={{
+  react: SourceReactFlip,
+  angular: SourceAngularFlip,
+  javascript: SourceFlip
+}}>
+</Playground>
 
 ## Properties
 

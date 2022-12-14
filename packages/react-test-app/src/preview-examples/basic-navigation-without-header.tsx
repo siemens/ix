@@ -10,7 +10,7 @@
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const BasicNavigationWithoutHeader: React.FC = () => {
+export default () => {
   return (
     <IxBasicNavigation hideHeader>
       <IxMenu>

@@ -1,5 +1,5 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../auto-generated/ix-time-picker/props.md';
 import Events from './../auto-generated/ix-time-picker/events.md';
 
@@ -11,17 +11,14 @@ import SourceAngularTimepicker from './../auto-generated/previews/angular/timepi
 
 ## Usage
 
-<Preview name="timepicker" height="35rem">
-  <TabItem value="javascript">
-    <SourceTimepicker />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTimepicker />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTimepicker />
-  </TabItem>
-</Preview>
+<Playground
+name="timepicker" height="35rem"
+frameworks={{
+  react: SourceReactTimepicker,
+  angular: SourceAngularTimepicker,
+  javascript: SourceTimepicker
+}}>
+</Playground>
 
 ## Properties
 

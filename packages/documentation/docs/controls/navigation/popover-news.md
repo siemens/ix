@@ -1,5 +1,5 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../../auto-generated/ix-menu-about-news/props.md';
 import Events from './../../auto-generated/ix-menu-about-news/events.md';
 
@@ -11,17 +11,14 @@ import SourceAngularPopoverNews from './../../auto-generated/previews/angular/po
 
 ## Usage
 
-<Preview name="popover-news" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <SourcePopoverNews />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactPopoverNews />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularPopoverNews />
-  </TabItem>
-</Preview>
+<Playground
+name="popover-news" height="30rem" noMargin
+frameworks={{
+  react: SourceReactPopoverNews,
+  angular: SourceAngularPopoverNews,
+  javascript: SourcePopoverNews
+}}>
+</Playground>
 
 ## Properties
 

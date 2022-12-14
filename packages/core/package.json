@@ -23,12 +23,11 @@
     "README.md",
     "dist/",
     "loader/",
-    "src/**/*.md",
     "scss/"
   ],
   "scripts": {
-    "build": "stencil build --docs --prod",
-    "build:dev": "stencil build --docs",
+    "build": "stencil build --prod",
+    "build:dev": "stencil build",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "start": "stencil build --dev --watch --serve",
     "dev": "stencil build --watch",

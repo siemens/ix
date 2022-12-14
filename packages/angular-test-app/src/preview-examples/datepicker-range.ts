@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-datepicker-range',
+  selector: 'app-example',
   template: `
     <ix-date-picker
       [range]="isRange"
@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
     ></ix-date-picker>
   `,
 })
-export class DatepickerRange {
+export default class DatepickerRange {
   isRange = true;
 
   fromDate = '2022/12/15';

@@ -11,7 +11,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-example',
   template: `
     <ix-button (click)="openModal()">Show modal</ix-button>
 
@@ -44,7 +44,7 @@ import { ModalService } from '@siemens/ix-angular';
     </ng-template>
   `,
 })
-export class Modal {
+export default class Modal {
   @ViewChild('customModal', { read: TemplateRef })
   customModalRef!: TemplateRef<any>;
 

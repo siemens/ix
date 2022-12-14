@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import SourceTextarea from './../auto-generated/previews/web-component/textarea.md';
 import SourceTextareaDisabled from './../auto-generated/previews/web-component/textarea-disabled.md';
@@ -17,42 +16,32 @@ import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/
 
 ## Usage
 
-<Preview name="textarea" height="7rem">
-  <TabItem value="javascript">
-    <SourceTextarea />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTextarea />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTextarea />
-  </TabItem>
-</Preview>
+<Playground
+name="textarea" height="7rem"
+frameworks={{
+  react: SourceReactTextarea,
+  angular: SourceAngularTextarea,
+  javascript: SourceTextarea
+}}></Playground>
 
 ### Disabled
 
-<Preview name="textarea-disabled" height="7rem">
-  <TabItem value="javascript">
-    <SourceTextareaDisabled />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTextareaDisabled />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTextareaDisabled />
-  </TabItem>
-</Preview>
+<Playground
+name="textarea-disabled" height="7rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactTextareaDisabled,
+  angular: SourceAngularTextareaDisabled,
+  javascript: SourceTextareaDisabled
+}}></Playground>
 
 ### Readonly
 
-<Preview name="textarea-readonly" height="7rem">
-  <TabItem value="javascript">
-    <SourceTextareaReadonly />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTextareaReadonly />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTextareaReadonly />
-  </TabItem>
-</Preview>
+<Playground
+name="textarea-readonly" height="7rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactTextareaReadonly,
+  angular: SourceAngularTextareaReadonly,
+  javascript: SourceTextareaReadonly
+}}></Playground>
