@@ -8,6 +8,7 @@
  */
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ import Demo, { DemoProps } from '../Demo';
 import { isTargetFramework, TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
+
 type MdxContent = ({}) => {};
 
 function ButtonOpenGithub({
@@ -91,6 +93,46 @@ function getPathId(pathname: string) {
   return `docusaurus.playground${pathname.replace(/\//g, '.')}`;
 }
 
+function FileTabs(props: {
+  files: {
+    filename: string;
+    node: React.ReactNode;
+  }[];
+}) {
+  const [selectedTab, setSelectedTab] = useState(props.files[0].filename);
+  const changeTab = (filename: string) => setSelectedTab(filename);
+
+  function getCode() {
+    const SourceNode = props.files.find((f) => f.filename === selectedTab)
+      ?.node as any;
+
+    if (!SourceNode) {
+      return null;
+    }
+
+    return <SourceNode></SourceNode>;
+  }
+
+  return (
+    <>
+      <IxTabs>
+        {props.files.map((source) => {
+          const SourceNode = source.node as any;
+          return (
+            <IxTabItem
+              key={source.filename}
+              onClick={() => changeTab(source.filename)}
+            >
+              {source.filename}
+            </IxTabItem>
+          );
+        })}
+      </IxTabs>
+      {getCode()}
+    </>
+  );
+}
+
 export default function Playground({
   name,
   height,
@@ -107,8 +149,15 @@ export default function Playground({
     TargetFramework.ANGULAR
   );
 
-  const [sourceCodeSnippets, setSourceCodeSnippets] =
-    useState<Record<TargetFramework, React.ReactNode>>();
+  const [sourceCodeSnippets, setSourceCodeSnippets] = useState<
+    Record<
+      TargetFramework,
+      Array<{
+        filename: string;
+        node: React.ReactNode;
+      }>
+    >
+  >();
 
   useEffect(() => {
     const id = getPathId(pathname);
@@ -119,12 +168,36 @@ export default function Playground({
   }, []);
 
   useEffect(() => {
-    const snippets: Record<TargetFramework, React.ReactNode> = {} as any;
-
+    const snippets: Record<
+      TargetFramework,
+      Array<{
+        filename: string;
+        node: React.ReactNode;
+      }>
+    > = {} as any;
     Object.keys(frameworks).forEach((framework) => {
-      snippets[framework] = frameworks[framework]({});
-    });
+      if (typeof frameworks[framework] === 'function') {
+        snippets[framework] = [
+          {
+            filename: '',
+            node: frameworks[framework]({}),
+          },
+        ];
+      }
 
+      if (typeof frameworks[framework] === 'object') {
+        if (!snippets[framework]) {
+          snippets[framework] = [];
+        }
+
+        Object.keys(frameworks[framework]).forEach((fileName) => {
+          snippets[framework].push({
+            filename: fileName,
+            node: frameworks[framework][fileName],
+          });
+        });
+      }
+    });
     setSourceCodeSnippets(snippets);
   }, [frameworks, setSourceCodeSnippets]);
 
@@ -138,12 +211,17 @@ export default function Playground({
     }
   };
 
-  function renderSourceCodeSnippet() {
+  function renderSourceCodeSnippet(): React.ReactNode {
     if (!sourceCodeSnippets || !sourceCodeSnippets[targetFramework]) {
       return null;
     }
 
-    return sourceCodeSnippets[targetFramework];
+    if (sourceCodeSnippets[targetFramework].length === 1) {
+      const [{ node }] = sourceCodeSnippets[targetFramework];
+      return node;
+    }
+
+    return <FileTabs files={sourceCodeSnippets[targetFramework]} />;
   }
 
   return (

@@ -5,7 +5,8 @@ import Events from './../auto-generated/ix-blind/events.md';
 
 import WebComponent from './../auto-generated/previews/web-component/blind.md'
 import SourceReact from './../auto-generated/previews/react/blind.md'
-import SourceAngular from './../auto-generated/previews/angular/blind.ts.md'
+import SourceAngularTs from './../auto-generated/previews/angular/blind.ts.md'
+import SourceAngularHtml from './../auto-generated/previews/angular/blind.html.md'
 
 import Playground from '@site/src/components/Playground'
 
@@ -18,7 +19,10 @@ name="blind"
 height="16rem"
 frameworks={{
     react: SourceReact,
-    angular: SourceAngular,
+    angular: {
+        "blind.html": SourceAngularHtml,
+        "blind.ts": SourceAngularTs
+    },
     javascript: WebComponent
 }}>
 </Playground>
