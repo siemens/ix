@@ -52,6 +52,7 @@ import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
+import ModalByComponent from 'src/preview-examples/modal-by-component';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -87,11 +88,6 @@ import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'preview/buttons',
-  },
   {
     path: 'testing',
     children: [
@@ -138,6 +134,10 @@ const routes: Routes = [
       {
         path: 'modal',
         component: Modal,
+      },
+      {
+        path: 'modal-by-component',
+        component: ModalByComponent,
       },
       {
         path: 'toast',

@@ -92,6 +92,9 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import ModalByComponent, {
+  ModalExampleComponent,
+} from './../preview-examples/modal-by-component';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({
@@ -173,6 +176,8 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     MapNavigationOverlay,
     TabsRounded,
     DatepickerRange,
+    ModalByComponent,
+    ModalExampleComponent,
   ],
   imports: [
     BrowserModule,
