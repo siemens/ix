@@ -8375,7 +8375,7 @@
           "type": "{ [x: string]: TreeItem<any>; }",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Tree modal",
+          "docs": "Tree model",
           "docsTags": [],
           "values": [
             {

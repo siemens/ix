@@ -42,7 +42,7 @@ export class Tree {
   @Prop() root: string;
 
   /**
-   * Tree modal
+   * Tree model
    */
   @Prop() model: TreeModel<any>;
 
