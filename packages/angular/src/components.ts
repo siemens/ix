@@ -475,35 +475,6 @@ export class IxDropdownButton {
 }
 
 
-export declare interface IxDropdownButtonItem extends Components.IxDropdownButtonItem {
-  /**
-   * Item clicked 
-   */
-  itemClick: EventEmitter<CustomEvent<string>>;
-
-}
-
-@ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['hover', 'label', 'selected', 'value'],
-  methods: ['onItemClick']
-})
-@Component({
-  selector: 'ix-dropdown-button-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['hover', 'label', 'selected', 'value']
-})
-export class IxDropdownButtonItem {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClick']);
-  }
-}
-
-
 export declare interface IxDropdownItem extends Components.IxDropdownItem {
   /**
    * Click on item 

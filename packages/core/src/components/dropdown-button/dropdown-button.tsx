@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop, State, Element } from '@stencil/core';
+import { Component, h, Host, Prop, State } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 
 @Component({
@@ -16,7 +16,6 @@ import { Buttons } from '../utils/button-variants';
   scoped: true,
 })
 export class DropdownButton {
-  @Element() hostElement!: HTMLIxSelectElement;
   /**
    * Button varaint
    */
@@ -52,13 +51,21 @@ export class DropdownButton {
    */
   @Prop() icon: string;
 
-  @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
-  @State() dropdownShow = false;
 
-  get items() {
-    return Array.from(
-      this.hostElement.querySelectorAll('ix-dropdown-button-item')
+  private getTriangle() {
+    return (
+      <div
+        class={{
+          triangle: true,
+          hide: this.label !== '',
+          primary: this.variant === 'Primary',
+          secondary: this.variant === 'Secondary',
+          ghost: this.ghost,
+          outline: this.outline,
+          disabled: this.disabled,
+        }}
+      ></div>
     );
   }
 
@@ -66,10 +73,9 @@ export class DropdownButton {
     return (
       <Host>
         <div
-          style={{ width: 'fit-content' }}
+          class="dropdown-button"
           ref={(ref) => {
             this.dropdownAnchor = ref;
-            this.dropdownWrapperRef = ref;
           }}
         >
           <ix-button
@@ -96,14 +102,12 @@ export class DropdownButton {
             disabled={this.disabled}
             class={{ hide: this.label !== '' }}
           ></ix-icon-button>
-          <div class={{ triangle: true, hide: this.label !== '' }}></div>
+          {this.getTriangle()}
         </div>
 
         <ix-dropdown
-          show={this.dropdownShow}
           class="dropdown"
-          anchor={this.dropdownAnchor}
-          trigger={this.dropdownWrapperRef}
+          trigger={this.dropdownAnchor}
           placement="bottom"
           positioningStrategy={'fixed'}
           adjustDropdownWidthToReferenceWidth={true}

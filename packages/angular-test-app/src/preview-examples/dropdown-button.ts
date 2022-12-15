@@ -11,62 +11,36 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown-button',
-  template: DropdownButton(),
+  template: `
+    <ix-dropdown-button label="Dropdown" variant="Primary" icon="checkboxes">
+      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown-button
+      label="Dropdown"
+      variant="Primary"
+      outline
+      icon="checkboxes"
+    >
+      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown-button
+      label="Dropdown"
+      variant="Primary"
+      ghost
+      icon="checkboxes"
+    >
+      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown-button
+      label="Dropdown"
+      variant="Primary"
+      disabled
+      icon="checkboxes"
+    >
+    </ix-dropdown-button>
+  `,
 })
 export class Dropdown {}
-function DropdownButton(): string | undefined {
-  return `
-<ix-dropdown-button
-  label="Dropdown"
-  variant="Primary"
-  icon="checkboxes"
->
-  <ix-dropdown-button-item
-  label="Item 1"
-  value="1"
-  ></ix-dropdown-button-item>
-  <ix-dropdown-button-item
-  label="Item 2"
-  value="2"
-  ></ix-dropdown-button-item>
-</ix-dropdown-button>
-<ix-dropdown-button
-  label="Dropdown"
-  variant="Primary"
-  outline
-  icon="checkboxes"
->
-  <ix-dropdown-button-item
-  label="Item 1"
-  value="1"
-  ></ix-dropdown-button-item>
-  <ix-dropdown-button-item
-  label="Item 2"
-  value="2"
-  ></ix-dropdown-button-item>
-</ix-dropdown-button>
-<ix-dropdown-button
-  label="Dropdown"
-  variant="Primary"
-  ghost
-  icon="checkboxes"
->
-  <ix-dropdown-button-item
-  label="Item 1"
-  value="1"
-  ></ix-dropdown-button-item>
-  <ix-dropdown-button-item
-  label="Item 2"
-  value="2"
-  ></ix-dropdown-button-item>
-</ix-dropdown-button>
-<ix-dropdown-button
-  label="Dropdown"
-  variant="Primary"
-  disabled
-  icon="checkboxes"
->
-</ix-dropdown-button>
-  `;
-}
-

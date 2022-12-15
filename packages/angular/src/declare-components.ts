@@ -19,7 +19,6 @@ export const DIRECTIVES = [
   d.IxDrawer,
   d.IxDropdown,
   d.IxDropdownButton,
-  d.IxDropdownButtonItem,
   d.IxDropdownItem,
   d.IxEventList,
   d.IxEventListItem,

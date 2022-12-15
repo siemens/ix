@@ -20,4 +20,15 @@ regressionTest.describe('basic', () => {
     await page.goto('dropdown-button/test/dropdown-button-icon');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('dropdown should open', async ({ page }) => {
+    await page.goto('dropdown-button/test/dropdown');
+
+    const triggerHandle = await page.waitForSelector('.dropdown-button');
+    await triggerHandle.click();
+
+    await page.waitForSelector('.dropdown.show');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

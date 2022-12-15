@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxDropdownButton, IxDropdownButtonItem } from '@siemens/ix-react';
+import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 import React from 'react';
 
 export const DropdownButton: React.FC = () => {
   return (
     <>
       <IxDropdownButton label="Dropdown" variant="Primary" icon="checkboxes">
-        <IxDropdownButtonItem label="Item 1" value="1"></IxDropdownButtonItem>
-        <IxDropdownButtonItem label="Item 2" value="2"></IxDropdownButtonItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
@@ -23,8 +23,8 @@ export const DropdownButton: React.FC = () => {
         outline
         icon="checkboxes"
       >
-        <IxDropdownButtonItem label="Item 1" value="1"></IxDropdownButtonItem>
-        <IxDropdownButtonItem label="Item 2" value="2"></IxDropdownButtonItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
@@ -32,8 +32,8 @@ export const DropdownButton: React.FC = () => {
         ghost
         icon="checkboxes"
       >
-        <IxDropdownButtonItem label="Item 1" value="1"></IxDropdownButtonItem>
-        <IxDropdownButtonItem label="Item 2" value="2"></IxDropdownButtonItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
