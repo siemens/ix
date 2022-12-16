@@ -10,7 +10,7 @@ import SourceDatepickerRange from './../auto-generated/previews/web-component/da
 import SourceReactDatepickerRange from './../auto-generated/previews/react/datepicker-range.md'
 import SourceAngularDatepickerRange from './../auto-generated/previews/angular/datepicker-range.md'
 
-# Datepicker
+# Date picker
 
 ## Usage
 

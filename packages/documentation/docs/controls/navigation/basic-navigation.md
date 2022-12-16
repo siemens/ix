@@ -1,6 +1,6 @@
 ---
 sidebar_position: 0
-title: Basic Navigation
+title: Basic navigation
 ---
 
 import Playground from '@site/src/components/Playground';

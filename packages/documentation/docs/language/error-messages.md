@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
-sidebar_title: Error, warning & notification messages
-title: Error, warning & notification messages
+sidebar_title: Errors, warnings and notifications
+title: Errors, warnings and notifications
 ---
 
 import {Guideline} from '@site/src/components/Guideline';
