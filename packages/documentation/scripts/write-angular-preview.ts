@@ -24,33 +24,15 @@ export async function writeAngularPreviews(
   const angularPreviewSourceCodePath = path.join(staticPath, 'angular');
   fse.ensureDirSync(angularPreviewSourceCodePath);
 
-  const webComponentPreviews = fs
-    .readdirSync(htmlPreviewPath)
-    .filter((name) => name.includes('.html'))
-    .map((name) => name.replace('.html', ''));
-
   const angularPreviewPath = path.join(
     __dirname,
     '../angular-test-app/src/preview-examples'
   );
 
   const angularPreviews = fs.readdirSync(angularPreviewPath);
-  const angularPreviewPaths = webComponentPreviews
-    .filter((name) => {
-      const exist = angularPreviews.includes(`${name}.ts`);
-
-      if (!exist) {
-        console.warn(
-          `Angular preview for ${name} is missing in angular-test-app`
-        );
-      }
-
-      return exist;
-    })
-    .map((name) => [name, path.join(angularPreviewPath, `${name}.ts`)]);
 
   await Promise.all(
-    angularPreviewPaths.flatMap(([name, previewPath]) => {
+    angularPreviews.flatMap((previewPath) => {
       const writePath = path.join(
         __dirname,
         'docs',
@@ -59,41 +41,19 @@ export async function writeAngularPreviews(
         'angular'
       );
       fse.ensureDirSync(writePath);
+      const fileType = previewPath.substring(previewPath.lastIndexOf('.') + 1);
 
-      const angularComponentCode: {
-        filename: string;
-        code: string;
-      }[] = [];
-
-      const code = fs.readFileSync(previewPath).toString();
-
-      angularComponentCode.push({
-        filename: `${name}.ts`,
-        code,
-      });
-
-      if (isExternalTemplate(code)) {
-        angularComponentCode.push({
-          filename: `${name}.html`,
-          code: fs
-            .readFileSync(path.join(angularPreviewPath, `${name}.html`))
-            .toString(),
-        });
-      }
-
-      // const markdown = generateMarkdown(previewPath, 'typescript', code);
+      const code = fs
+        .readFileSync(path.join(angularPreviewPath, previewPath))
+        .toString();
       return [
-        ...angularComponentCode.map((file) =>
-          fsp.writeFile(
-            path.join(writePath, `${file.filename}.md`),
-            generateMarkdown(previewPath, 'typescript', file.code)
-          )
+        fsp.writeFile(
+          path.join(writePath, `${previewPath}.md`),
+          generateMarkdown(previewPath, fileType, code)
         ),
-        ...angularComponentCode.map((file) =>
-          fsp.writeFile(
-            path.join(angularPreviewSourceCodePath, `${file.filename}.txt`),
-            file.code
-          )
+        fsp.writeFile(
+          path.join(angularPreviewSourceCodePath, `${previewPath}.txt`),
+          code
         ),
       ];
     })

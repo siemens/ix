@@ -51,7 +51,10 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
-async function openHtmlStackBlitz(baseUrl: string, sourceCode: string) {
+async function openHtmlStackBlitz(
+  baseUrl: string,
+  sourceFiles: { filename: string; sourceCode: string }[]
+) {
   const [index_html, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/html/src/index.html`,
@@ -60,15 +63,23 @@ async function openHtmlStackBlitz(baseUrl: string, sourceCode: string) {
       `${baseUrl}code-runtime/html/vite.config.ts`,
     ]);
 
+  const [renderFirstExample, ...additionalFiles] = sourceFiles;
+
+  const files = {};
+  additionalFiles.forEach((file) => {
+    files[`src/${file.filename}`] = file.sourceCode;
+  });
+
   sdk.openProject(
     {
       template: 'node',
       title: 'iX html app',
       description: 'iX html playground',
       files: {
+        ...files,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
-          sourceCode
+          renderFirstExample.sourceCode
         ),
         'src/main.js': main_js,
         'package.json': package_json,
@@ -81,7 +92,11 @@ async function openHtmlStackBlitz(baseUrl: string, sourceCode: string) {
   );
 }
 
-async function openAngularStackBlitz(baseUrl: string, sourceCode: string) {
+async function openAngularStackBlitz(
+  baseUrl: string,
+  name: string,
+  additionalFiles: { filename: string; sourceCode: string }[]
+) {
   const [
     app_component_css,
     app_component_html,
@@ -108,13 +123,39 @@ async function openAngularStackBlitz(baseUrl: string, sourceCode: string) {
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
+  const declareComponents = [];
+  additionalFiles.forEach(({ filename, sourceCode }) => {
+    if (/@Component/gms.test(sourceCode)) {
+      declareComponents.push(filename);
+    }
+  });
+  const declare_component_ts = `
+    ${declareComponents.map(
+      (filename, index) =>
+        `import COMPONENT_${index} from './${filename.substring(
+          0,
+          filename.lastIndexOf('.')
+        )}'`
+    )}
+
+    export const DECLARE = [
+      //@__DELCARE__COMPONENTS
+      ${declareComponents.map((_, index) => `COMPONENT_${index},`)}
+    ];
+  `;
+
+  const exampleFiles = {};
+  additionalFiles.forEach(({ filename, sourceCode }) => {
+    exampleFiles[`src/app/${filename}`] = sourceCode;
+  });
+
   sdk.openProject(
     {
       template: 'node',
       title: 'iX angular app',
       description: 'iX angular playground',
       files: {
-        'src/app/example.component.ts': sourceCode,
+        'src/app/declare-component.ts': declare_component_ts,
         'src/app/app.component.css': app_component_css,
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
@@ -126,15 +167,19 @@ async function openAngularStackBlitz(baseUrl: string, sourceCode: string) {
         'package.json': package_json,
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
+        ...exampleFiles,
       },
     },
     {
-      openFile: 'src/app/example.component.ts',
+      openFile: `src/app/${name}.ts`,
     }
   );
 }
 
-async function openReactStackBlitz(baseUrl: string, sourceCode: string) {
+async function openReactStackBlitz(
+  baseUrl: string,
+  sourceFiles: { filename: string; sourceCode: string }[]
+) {
   const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/react/App.tsx`,
@@ -144,16 +189,36 @@ async function openReactStackBlitz(baseUrl: string, sourceCode: string) {
       `${baseUrl}code-runtime/react/tsconfig.json`,
     ]);
 
+  const [renderFirstExample] = sourceFiles;
+
+  const patchAppTs = () => {
+    return app_tsx
+      .replace(
+        /\/\/@_IMPORT_COMPONENT/gms,
+        `import Example from './${renderFirstExample.filename.substring(
+          0,
+          renderFirstExample.filename.lastIndexOf('.')
+        )}'\n`
+      )
+      .replace(/\{\/\* @_RENDER_COMPONENT \*\/\}/gms, '\n<Example />\n');
+  };
+
+  const files: Record<string, string> = {};
+
+  sourceFiles.forEach(({ filename, sourceCode }) => {
+    files[`src/${filename}`] = sourceCode;
+  });
+
   sdk.openProject(
     {
       template: 'node',
       title: 'iX React App',
       description: 'iX react playground',
       files: {
+        ...files,
         'public/index.html': index_html,
         'src/index.tsx': index_tsx,
-        'src/App.tsx': app_tsx,
-        'src/Example.tsx': sourceCode,
+        'src/App.tsx': patchAppTs(),
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
@@ -162,32 +227,79 @@ async function openReactStackBlitz(baseUrl: string, sourceCode: string) {
       },
     },
     {
-      openFile: 'src/Example.tsx',
+      openFile: `src/${renderFirstExample.filename}`,
     }
   );
+}
+
+// export async function openStackBlitz({
+//   name,
+//   framework,
+//   baseUrl,
+// }: {
+//   name: string;
+//   framework: TargetFramework;
+//   baseUrl: string;
+// }) {
+//   const examplePath = `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
+//   const [sourceFile] = await loadSourceCodeFromStatic([examplePath]);
+
+//   if (framework === TargetFramework.REACT) {
+//     return openReactStackBlitz(baseUrl, sourceFile);
+//   }
+
+//   if (framework === TargetFramework.ANGULAR) {
+//     // return openAngularStackBlitz(baseUrl, sourceFile);
+//   }
+
+//   if (framework === TargetFramework.JAVASCRIPT) {
+//     return openHtmlStackBlitz(baseUrl, sourceFile);
+//   }
+// }
+
+async function getSourceCodeFiles(
+  baseUrl: string,
+  framework: TargetFramework,
+  filenames: string[]
+) {
+  const getPath = (name: string) =>
+    `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
+
+  const sourceFiles: { filename: string; sourceCode: string }[] = [];
+  const files = await loadSourceCodeFromStatic(filenames.map(getPath));
+
+  files.forEach((value, index) => {
+    sourceFiles.push({
+      filename: filenames[index],
+      sourceCode: value,
+    });
+  });
+
+  return sourceFiles;
 }
 
 export async function openStackBlitz({
   name,
   framework,
+  files,
   baseUrl,
 }: {
   name: string;
+  files: string[];
   framework: TargetFramework;
   baseUrl: string;
 }) {
-  const examplePath = `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
-  const [sourceFile] = await loadSourceCodeFromStatic([examplePath]);
+  const additionalFiles = await getSourceCodeFiles(baseUrl, framework, files);
 
   if (framework === TargetFramework.REACT) {
-    return openReactStackBlitz(baseUrl, sourceFile);
+    return openReactStackBlitz(baseUrl, additionalFiles);
   }
 
   if (framework === TargetFramework.ANGULAR) {
-    return openAngularStackBlitz(baseUrl, sourceFile);
+    return openAngularStackBlitz(baseUrl, name, additionalFiles);
   }
 
   if (framework === TargetFramework.JAVASCRIPT) {
-    return openHtmlStackBlitz(baseUrl, sourceFile);
+    return openHtmlStackBlitz(baseUrl, additionalFiles);
   }
 }

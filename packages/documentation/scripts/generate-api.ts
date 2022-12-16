@@ -154,16 +154,10 @@ ${properties
     const htmlPreviewSourceCodePath = path.join(staticPath, 'javascript');
     fse.ensureDirSync(htmlPreviewSourceCodePath);
 
-    const webComponentPreviews = fs
-      .readdirSync(htmlPreviewPath)
-      .filter((name) => name.includes('.html'))
-      .map((name) => [
-        name.replace('.html', ''),
-        path.join(htmlPreviewPath, name),
-      ]);
+    const webComponentPreviews = fs.readdirSync(htmlPreviewPath);
 
     await Promise.all(
-      webComponentPreviews.flatMap(([name, previewPath]) => {
+      webComponentPreviews.flatMap((previewPath) => {
         const writePath = path.join(
           __dirname,
           'docs',
@@ -173,7 +167,9 @@ ${properties
         );
         fse.ensureDirSync(writePath);
 
-        let code = fs.readFileSync(previewPath).toString();
+        let code = fs
+          .readFileSync(path.join(htmlPreviewPath, previewPath))
+          .toString();
         const CODE_SPLIT = '<!-- Preview code -->\n';
         const splitHtmlContent = code.split(CODE_SPLIT);
         if (splitHtmlContent?.length === 3) {
@@ -186,9 +182,15 @@ ${properties
 
         const markdown = generateMarkdown(previewPath, 'html', code);
         return [
-          fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
           fsp.writeFile(
-            path.join(htmlPreviewSourceCodePath, `${name}.txt`),
+            path.join(
+              writePath,
+              `${previewPath.substring(0, previewPath.lastIndexOf('.'))}.md`
+            ),
+            markdown
+          ),
+          fsp.writeFile(
+            path.join(htmlPreviewSourceCodePath, `${previewPath}.txt`),
             code
           ),
         ];
@@ -200,33 +202,14 @@ ${properties
     const reactPreviewSourceCodePath = path.join(staticPath, 'react');
     fse.ensureDirSync(reactPreviewSourceCodePath);
 
-    const webComponentPreviews = fs
-      .readdirSync(htmlPreviewPath)
-      .filter((name) => name.includes('.html'))
-      .map((name) => name.replace('.html', ''));
-
     const reactPreviewPath = path.join(
       __dirname,
       '../react-test-app/src/preview-examples'
     );
-
     const reactPreviews = fs.readdirSync(reactPreviewPath);
-    const reactPreviewPaths = webComponentPreviews
-      .filter((name) => {
-        const exist = reactPreviews.includes(`${name}.tsx`);
-
-        if (!exist) {
-          console.warn(
-            `React preview for ${name} is missing in react-test-app`
-          );
-        }
-
-        return exist;
-      })
-      .map((name) => [name, path.join(reactPreviewPath, `${name}.tsx`)]);
-
     await Promise.all(
-      reactPreviewPaths.flatMap(([name, previewPath]) => {
+      reactPreviews.flatMap((previewPath) => {
+        const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
         const writePath = path.join(
           __dirname,
           'docs',
@@ -235,12 +218,17 @@ ${properties
           'react'
         );
         fse.ensureDirSync(writePath);
-        const code = fs.readFileSync(previewPath).toString();
+        const code = fs
+          .readFileSync(path.join(reactPreviewPath, previewPath))
+          .toString();
         const markdown = generateMarkdown(previewPath, 'tsx', code);
 
         return [
           fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
-          fsp.writeFile(path.join(staticPath, 'react', `${name}.txt`), code),
+          fsp.writeFile(
+            path.join(staticPath, 'react', `${previewPath}.txt`),
+            code
+          ),
         ];
       })
     );

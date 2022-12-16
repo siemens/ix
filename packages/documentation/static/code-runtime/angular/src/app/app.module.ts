@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IxModule } from '@siemens/ix-angular';
 import { AppComponent } from './app.component';
-import ExampleComponent from './example.component';
+import { DECLARE } from './declare-component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent],
+  declarations: [AppComponent, ...DECLARE],
   imports: [BrowserModule, IxModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],

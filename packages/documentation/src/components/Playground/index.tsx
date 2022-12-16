@@ -43,11 +43,13 @@ function ButtonOpenGithub({
 
 function ButtonOpenStackBlitz({
   name,
+  files,
   framework,
   baseUrl,
 }: {
-  baseUrl: string;
   name: string;
+  baseUrl: string;
+  files: string[];
   framework: TargetFramework;
 }) {
   return (
@@ -56,6 +58,7 @@ function ButtonOpenStackBlitz({
       onClick={() =>
         openStackBlitz({
           name,
+          files,
           framework,
           baseUrl,
         })
@@ -177,9 +180,20 @@ export default function Playground({
     > = {} as any;
     Object.keys(frameworks).forEach((framework) => {
       if (typeof frameworks[framework] === 'function') {
+        let filename = name;
+        if (framework === TargetFramework.REACT) {
+          filename = filename.concat('.tsx');
+        }
+        if (framework === TargetFramework.JAVASCRIPT) {
+          filename = filename.concat('.html');
+        }
+        if (framework === TargetFramework.ANGULAR) {
+          filename = filename.concat('.ts');
+        }
+
         snippets[framework] = [
           {
-            filename: '',
+            filename,
             node: frameworks[framework]({}),
           },
         ];
@@ -215,13 +229,20 @@ export default function Playground({
     if (!sourceCodeSnippets || !sourceCodeSnippets[targetFramework]) {
       return null;
     }
-
     if (sourceCodeSnippets[targetFramework].length === 1) {
       const [{ node }] = sourceCodeSnippets[targetFramework];
       return node;
     }
 
     return <FileTabs files={sourceCodeSnippets[targetFramework]} />;
+  }
+
+  function getFileNames() {
+    if (!sourceCodeSnippets) {
+      return [];
+    }
+
+    return sourceCodeSnippets[targetFramework].map((file) => file.filename);
   }
 
   return (
@@ -262,6 +283,7 @@ export default function Playground({
                 name={name}
                 framework={targetFramework}
                 baseUrl={baseUrl}
+                files={getFileNames()}
               />
             </div>
           </div>
