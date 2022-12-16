@@ -14,7 +14,8 @@
 $border-radius: 100px;
 
 :host {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   position: relative;
   align-items: center;
   border-radius: $border-radius;
