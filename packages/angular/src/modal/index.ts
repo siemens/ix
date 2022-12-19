@@ -7,4 +7,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export { IxActiveModal } from './modal-ref';
 export * from './modal.service';
