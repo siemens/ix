@@ -1341,7 +1341,7 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
-          * Tree modal
+          * Tree model
          */
         "model": TreeModel<any>;
         /**
@@ -3535,7 +3535,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Tree modal
+          * Tree model
          */
         "model"?: TreeModel<any>;
         /**

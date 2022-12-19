@@ -12,7 +12,7 @@ import SourceAngularTextarea from './../auto-generated/previews/angular/textarea
 import SourceAngularTextareaDisabled from './../auto-generated/previews/angular/textarea-disabled.md';
 import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/textarea-readonly.md';
 
-# Textarea
+# Text area
 
 ## Usage
 

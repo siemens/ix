@@ -1,7 +1,9 @@
 import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-tree/props.md';
+import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
 import Events from './../auto-generated/ix-tree/events.md';
+import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 import TabItem from '@theme/TabItem';
 
 import SourceTree from './../auto-generated/previews/web-component/tree.md';
@@ -36,7 +38,7 @@ frameworks={{
   javascript: SourceTreeCustom
 }}></Playground>
 
-## Properties
+## Properties (ix-tree)
 
 ### Props
 
@@ -45,3 +47,13 @@ frameworks={{
 ### Events
 
 <Events />
+
+## Properties (ix-tree-item)
+
+### Props
+
+<TreeItemProps />
+
+### Events
+
+<TreeItemEvents />

@@ -21,7 +21,7 @@ import SourceAngularEventListSelected from './../auto-generated/previews/angular
 import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.md'
 import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.md'
 
-# Event List
+# Event list
 
 ## Usage
 

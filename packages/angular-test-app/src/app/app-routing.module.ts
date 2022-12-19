@@ -88,11 +88,6 @@ import { NavigationTestComponent } from './components/navigation-test.component'
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'preview/buttons',
-  },
-  {
     path: 'testing',
     children: [
       {

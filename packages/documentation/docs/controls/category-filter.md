@@ -13,7 +13,7 @@ import SourceAngularCategoryFilterSuggestions from './../auto-generated/previews
 
 import Playground from '@site/src/components/Playground';
 
-# Category Filter
+# Category filter
 
 ## Usage
 

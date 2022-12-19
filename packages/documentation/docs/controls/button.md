@@ -1,5 +1,5 @@
 ---
-title: Button
+title: Buttons
 ---
 
 import Playground from '@site/src/components/Playground';

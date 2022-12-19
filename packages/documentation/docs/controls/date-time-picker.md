@@ -6,7 +6,7 @@ import SourceDatetimepicker from './../auto-generated/previews/web-component/dat
 import SourceReactDatetimepicker from './../auto-generated/previews/react/datetimepicker.md'
 import SourceAngularDatetimepicker from './../auto-generated/previews/angular/datetimepicker.md'
 
-# Datetimepicker
+# Date time picker
 
 ## Usage
 
