@@ -7,7 +7,7 @@ import SourceMessage from './../auto-generated/previews/web-component/message-ba
 import SourceReactMessage from './../auto-generated/previews/react/message-bar.md';
 import SourceAnuglarMessage from './../auto-generated/previews/angular/message-bar.md';
 
-# Messagebar
+# Message bar
 
 ## Usage
 

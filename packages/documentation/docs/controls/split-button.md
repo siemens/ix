@@ -15,7 +15,7 @@ import SourceReactSplitButtonIcons from './../auto-generated/previews/react/spli
 import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.md';
 import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.md';
 
-# Split Button
+# Split button
 
 ## Usage
 

@@ -28,7 +28,7 @@ import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-
 import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.md'
 import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.md'
 
-# Navigation Menu
+# Navigation menu
 
 ## Usage
 

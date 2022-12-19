@@ -7,7 +7,7 @@ import SourceTimepicker from './../auto-generated/previews/web-component/timepic
 import SourceReactTimepicker from './../auto-generated/previews/react/timepicker.md'
 import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.md'
 
-# Timepicker
+# Time picker
 
 ## Usage
 
