@@ -9,6 +9,10 @@
 
 [class*='ag-theme-ix'] {
   --ag-background-color: transparent;
+
+  --ag-foreground-color: var(--theme-color-std-text);
+  --ag-secondary-foreground-color: var(--theme-color-std-text);
+
   --ag-header-background-color: transparent;
   --ag-odd-row-background-color: transparent;
   --ag-row-hover-color: var(--theme-table-data-row--background--hover);
@@ -68,6 +72,17 @@
 
   .ag-icon {
     color: var(--theme-table-header-sort--color);
+  }
+
+  .ag-paging-button {
+    color: var(--theme-btn-invisible-primary--color);
+    &.ag-disabled {
+      color: var(--theme-btn-invisible-primary--color--disabled);
+
+      .ag-icon {
+        color: inherit;
+      }
+    }
   }
 
   .ag-header-cell-resize::after {

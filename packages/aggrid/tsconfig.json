@@ -15,8 +15,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@utils/test": ["src/utils/test"],
-      "@utils/test/*": ["src/utils/test/*"]
+      "@utils/test": ["src/components/tests/utils/test"],
+      "@utils/test/*": ["src/components/tests/utils/test/*"]
     }
   },
   "include": ["src"],
