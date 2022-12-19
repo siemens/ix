@@ -25,14 +25,16 @@
   --ag-checkbox-checked-color: var(--theme-color-input--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
 
-  .ag-checkbox-input {
-    clip: inherit !important;
-    clip-path: inherit !important;
-    height: inherit !important;
-    width: inherit !important;
-    overflow: inherit !important;
-    position: inherit !important;
-    white-space: inherit !important;
+  .ag-input-wrapper {
+    input {
+      clip: unset !important;
+      clip-path: unset !important;
+      height: inherit !important;
+      width: inherit !important;
+      overflow: inherit !important;
+      position: inherit !important;
+      white-space: inherit !important;
+    }
   }
 
   .ag-root-wrapper {
