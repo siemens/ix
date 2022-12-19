@@ -232,31 +232,6 @@ async function openReactStackBlitz(
   );
 }
 
-// export async function openStackBlitz({
-//   name,
-//   framework,
-//   baseUrl,
-// }: {
-//   name: string;
-//   framework: TargetFramework;
-//   baseUrl: string;
-// }) {
-//   const examplePath = `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
-//   const [sourceFile] = await loadSourceCodeFromStatic([examplePath]);
-
-//   if (framework === TargetFramework.REACT) {
-//     return openReactStackBlitz(baseUrl, sourceFile);
-//   }
-
-//   if (framework === TargetFramework.ANGULAR) {
-//     // return openAngularStackBlitz(baseUrl, sourceFile);
-//   }
-
-//   if (framework === TargetFramework.JAVASCRIPT) {
-//     return openHtmlStackBlitz(baseUrl, sourceFile);
-//   }
-// }
-
 async function getSourceCodeFiles(
   baseUrl: string,
   framework: TargetFramework,
