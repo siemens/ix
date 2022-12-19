@@ -20,14 +20,6 @@ global.MutationObserver = class {
 };
 
 describe('ix-select', () => {
-  it('renders', async () => {
-    const page = await newSpecPage({
-      components: [Select],
-      html: '<ix-select></ix-select>',
-    });
-    expect(page.root).toMatchSnapshot();
-  });
-
   it('show add item button in list', async () => {
     const page = await newSpecPage({
       components: [Select, SelectItem],

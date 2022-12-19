@@ -19,7 +19,6 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { Popover } from '../utils/popover.util';
 import { convertToRemString } from '../utils/rwd.util';
 import { toggleVariant } from '../utils/toggle-theme';
 
@@ -261,22 +260,11 @@ export class Menu {
     return this.hostElement.querySelector('#menu-tabs');
   }
 
-  private popoverListener: Popover;
-
   private showTab(index: number) {
     return index + 1 <= this.visibleMenuItems;
   }
 
   componentDidLoad() {
-    const anchor = this.hostElement.querySelector('#more-tab');
-    this.popoverListener = new Popover(
-      anchor as HTMLElement,
-      this.moreItemsDropdown,
-      () => {
-        this.showMoreItems = false;
-      }
-    );
-
     this.settings?.addEventListener('close', () => {
       this.showSettings = false;
       this.settings.show = this.showSettings;
@@ -312,9 +300,7 @@ export class Menu {
     });
   }
 
-  disconnectedCallback() {
-    this.popoverListener?.destroy();
-  }
+  disconnectedCallback() {}
 
   componentWillRender() {
     this.appendTabs();
@@ -518,14 +504,6 @@ export class Menu {
     return Math.min(visibleCount - 2, this.maxVisibleMenuItems);
   }
 
-  private toggleShowMoreDropdown() {
-    if (this.moreItemsDropdown.querySelectorAll('.appended').length === 0) {
-      return;
-    }
-    this.popoverListener.open();
-    this.showMoreItems = !this.showMoreItems;
-  }
-
   /**
    * Toggle map sidebar expand
    * @param show
@@ -666,8 +644,7 @@ export class Menu {
     const path = event.composedPath();
 
     const menuItems = (path as HTMLElement[])
-
-      .filter((element) => element.id !== 'more-tab')
+      .filter((element) => element.id !== 'ix-menu-more-tab')
       .filter((element) => {
         return element.tagName === 'IX-MENU-ITEM';
       });
@@ -753,7 +730,7 @@ export class Menu {
               ) : null}
             </div>
             <ix-menu-item
-              id="more-tab"
+              id="ix-menu-more-tab"
               tabIcon="more-menu"
               class={{
                 'internal-tab': true,
@@ -763,10 +740,13 @@ export class Menu {
               }}
               title="Show more"
               notifications={this.countMoreNotifications}
-              onClick={() => this.toggleShowMoreDropdown()}
             >
               {this.i18nMore}
-              <ix-dropdown show={this.showMoreItems}>
+              <ix-dropdown
+                trigger={'ix-menu-more-tab'}
+                positioningStrategy={'fixed'}
+                placement={'right-start'}
+              >
                 {this.menuItems
                   .filter(
                     (elm: HTMLIxMenuItemElement, index) =>
