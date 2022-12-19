@@ -685,6 +685,25 @@ export class IxGroup {
 }
 
 
+export declare interface IxGroupContextMenu extends Components.IxGroupContextMenu {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-group-context-menu',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxGroupContextMenu {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxGroupDropdownItem extends Components.IxGroupDropdownItem {}
 
 @ProxyCmp({

@@ -8,14 +8,14 @@
  */
 
 import {
-    IxBasicNavigation,
-    IxMenu,
-    IxMenuAbout,
-    IxMenuAboutItem
+  IxBasicNavigation,
+  IxMenu,
+  IxMenuAbout,
+  IxMenuAboutItem,
 } from '@siemens/ix-react';
 import React, { useLayoutEffect, useRef } from 'react';
 
-export const AboutAndLegal: React.FC = () => {
+export default () => {
   const ref = useRef<HTMLIxMenuElement>(null);
 
   useLayoutEffect(() => {
@@ -27,6 +27,7 @@ export const AboutAndLegal: React.FC = () => {
 
   return (
     <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu ref={ref}>
         <IxMenuAbout>
           <IxMenuAboutItem label="Tab 1">Content 1</IxMenuAboutItem>

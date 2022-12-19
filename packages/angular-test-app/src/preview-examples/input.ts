@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-example',
   template: `
     <form class="needs-validation m-2">
       <input
@@ -22,4 +22,4 @@ import { Component } from '@angular/core';
     </form>
   `,
 })
-export class Input {}
+export default class Input {}

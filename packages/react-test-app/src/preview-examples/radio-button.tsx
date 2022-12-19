@@ -9,7 +9,7 @@
 
 import React from 'react';
 
-export const RadioButton: React.FC = () => {
+export default () => {
   return (
     <>
       <input defaultChecked id="checkbox_1_1" name="group_1" type="radio" />

@@ -1,5 +1,5 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../auto-generated/ix-kpi/props.md';
 
 import SourceKPI from './../auto-generated/previews/web-component/kpi.md'
@@ -10,17 +10,14 @@ import SourceAngularKPI from './../auto-generated/previews/angular/kpi.md'
 
 ## Usage
 
-<Preview name="kpi" height="35rem">
-  <TabItem value="javascript">
-    <SourceKPI />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactKPI />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularKPI />
-  </TabItem>
-</Preview>
+<Playground
+name="kpi" height="28rem"
+frameworks={{
+  react: SourceReactKPI,
+  angular: SourceAngularKPI,
+  javascript: SourceKPI
+}}>
+</Playground>
 
 ## Properties
 

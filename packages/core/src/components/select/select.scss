@@ -53,12 +53,7 @@
     display: flex;
     position: relative;
     align-items: flex-start;
-    height: calc(#{$x-large-space} - 2 * var(--theme-input--border-thickness));
     width: 100%;
-
-    &.allow-clear {
-      padding-right: 3.5rem;
-    }
 
     .chips {
       position: relative;
@@ -66,13 +61,12 @@
       align-items: center;
       flex-wrap: wrap;
       height: 100%;
-      max-width: 70%;
-      flex-shrink: 0;
-
-      margin: auto;
+      max-height: 3.5rem;
+      flex-grow: 1;
+      overflow-y: auto;
 
       > ix-filter-chip {
-        margin: 0.1rem;
+        margin: 0 0.1rem;
       }
     }
 
@@ -82,7 +76,6 @@
       background: transparent;
       height: 1.75rem;
       width: 100%;
-      margin-inline-end: $x-large-space;
 
       &,
       &:hover,
@@ -126,11 +119,6 @@
     }
   }
 
-  .clear {
-    position: absolute;
-    right: $x-large-space;
-  }
-
   .add-item {
     display: flex;
     justify-content: flex-start;
@@ -140,6 +128,7 @@
   }
 
   .select-list-header {
+    @include ellipsis;
     display: flex;
     align-items: center;
     height: $default-control-height;

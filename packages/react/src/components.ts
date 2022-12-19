@@ -33,6 +33,7 @@ export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, 
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile');
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content');
 export const IxGroup = /*@__PURE__*/createReactComponent<JSX.IxGroup, HTMLIxGroupElement>('ix-group');
+export const IxGroupContextMenu = /*@__PURE__*/createReactComponent<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement>('ix-group-context-menu');
 export const IxGroupDropdownItem = /*@__PURE__*/createReactComponent<JSX.IxGroupDropdownItem, HTMLIxGroupDropdownItemElement>('ix-group-dropdown-item');
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item');
 export const IxIcon = /*@__PURE__*/createReactComponent<JSX.IxIcon, HTMLIxIconElement>('ix-icon');

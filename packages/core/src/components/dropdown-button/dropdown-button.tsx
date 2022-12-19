@@ -88,7 +88,7 @@ export class DropdownButton {
             <ix-icon
               name={this.icon}
               size="24"
-              class={{ hide: this.icon === '' }}
+              class={{ hide: this.icon === '' || this.icon === undefined }}
             ></ix-icon>
             {this.label}
             <ix-icon name="chevron-down-small" size="24"></ix-icon>

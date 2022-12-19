@@ -10,7 +10,7 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const EventListCompact: React.FC = () => {
+export default () => {
   return (
     <IxEventList compact>
       <IxEventListItem color="color-primary">Text 1</IxEventListItem>

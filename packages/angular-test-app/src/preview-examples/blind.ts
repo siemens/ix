@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-blind',
+  selector: 'app-example',
   template: `
     <ix-blind label="Example">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -25,4 +25,4 @@ import { Component } from '@angular/core';
     </ix-blind>
   `,
 })
-export class Blind {}
+export default class Blind {}

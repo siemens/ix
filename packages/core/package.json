@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "1.1.1",
+  "version": "1.2.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -23,12 +23,11 @@
     "README.md",
     "dist/",
     "loader/",
-    "src/**/*.md",
     "scss/"
   ],
   "scripts": {
-    "build": "stencil build --docs --prod",
-    "build:dev": "stencil build --docs",
+    "build": "stencil build --prod",
+    "build:dev": "stencil build",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "start": "stencil build --dev --watch --serve",
     "dev": "stencil build --watch",

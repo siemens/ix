@@ -10,7 +10,7 @@
 import { IxButton, IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const DropdownIcon: React.FC = () => {
+export default () => {
   return (
     <>
       <IxButton id="triggerId">Open</IxButton>

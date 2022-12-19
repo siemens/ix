@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-breacrumb',
+  selector: 'app-example',
   template: `
     <ix-breadcrumb visibleItemCount="3">
       <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
@@ -21,4 +21,4 @@ import { Component } from '@angular/core';
     </ix-breadcrumb>
   `,
 })
-export class Breadcrumb {}
+export default class Breadcrumb {}

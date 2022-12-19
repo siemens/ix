@@ -10,7 +10,7 @@
 import { IxBlind } from '@siemens/ix-react';
 import React from 'react';
 
-export const Blind: React.FC = () => {
+export default () => {
   return (
     <IxBlind label="Example">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy

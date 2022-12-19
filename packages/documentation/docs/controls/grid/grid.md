@@ -20,7 +20,7 @@ Follow the offical AG Grid [installation instructions](https://www.ag-grid.com/a
 
 Follow the offical AG Grid [installation instruction](https://www.ag-grid.com/javascript-data-grid/getting-started/) for JavaScript.
 
-### Siemens iX theme for AG Grid
+### Siemens Industrial Experience theme for AG Grid
 
 Install the `@siemens/ix-aggrid` package.
 
@@ -34,7 +34,7 @@ and apply the style file in one of your project's style files e.g. styles.scss
 @import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 ```
 
-Siemens iX theming for AG Grid (`ag-theme-ix`) is based on `ag-theme-alpine-dark`.
+Siemens Industrial Experience theming for AG Grid (`ag-theme-ix`) is based on `ag-theme-alpine-dark`.
 Therefore it is vital to apply the two CSS theme classes in the correct order:
 
 1. `ag-theme-alpine-dark`

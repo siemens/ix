@@ -10,6 +10,6 @@
 import { IxUpload } from '@siemens/ix-react';
 import React from 'react';
 
-export const Upload: React.FC = () => {
+export default () => {
   return <IxUpload />;
 };

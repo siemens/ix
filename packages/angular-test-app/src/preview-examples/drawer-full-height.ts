@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-drawer-full-height',
+  selector: 'app-example',
   template: `
     <ix-drawer [fullHeight]="true" [closeOnClickOutside]="true" [show]="show">
       <span>Some content of drawer</span>
@@ -19,6 +19,6 @@ import { Component } from '@angular/core';
     <ix-button (click)="show = !show">Toggle drawer</ix-button>
   `,
 })
-export class DrawerFullHeight {
+export default class DrawerFullHeight {
   show = false;
 }

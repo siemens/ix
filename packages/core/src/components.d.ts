@@ -111,7 +111,7 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Show button as selected. Should be used with outline or invisible
+          * Show button as selected. Should be used with outline or ghost
          */
         "selected": boolean;
         /**
@@ -180,7 +180,7 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only working witht `variant="primary"`
+          * Display chip in active state. Only works with `variant="primary"`
          */
         "active": boolean;
         /**
@@ -610,6 +610,8 @@ export namespace Components {
           * Prevent header from being selectable
          */
         "suppressHeaderSelection": boolean;
+    }
+    interface IxGroupContextMenu {
     }
     interface IxGroupDropdownItem {
         /**
@@ -1369,7 +1371,7 @@ export namespace Components {
          */
         "context": TreeContext;
         /**
-          * Tree modal
+          * Tree model
          */
         "model": TreeModel<any>;
         /**
@@ -1804,6 +1806,12 @@ declare global {
         prototype: HTMLIxGroupElement;
         new (): HTMLIxGroupElement;
     };
+    interface HTMLIxGroupContextMenuElement extends Components.IxGroupContextMenu, HTMLStencilElement {
+    }
+    var HTMLIxGroupContextMenuElement: {
+        prototype: HTMLIxGroupContextMenuElement;
+        new (): HTMLIxGroupContextMenuElement;
+    };
     interface HTMLIxGroupDropdownItemElement extends Components.IxGroupDropdownItem, HTMLStencilElement {
     }
     var HTMLIxGroupDropdownItemElement: {
@@ -2076,6 +2084,7 @@ declare global {
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
         "ix-group": HTMLIxGroupElement;
+        "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon": HTMLIxIconElement;
@@ -2226,7 +2235,7 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Show button as selected. Should be used with outline or invisible
+          * Show button as selected. Should be used with outline or ghost
          */
         "selected"?: boolean;
         /**
@@ -2303,7 +2312,7 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only working witht `variant="primary"`
+          * Display chip in active state. Only works with `variant="primary"`
          */
         "active"?: boolean;
         /**
@@ -2799,6 +2808,8 @@ declare namespace LocalJSX {
           * Prevent header from being selectable
          */
         "suppressHeaderSelection"?: boolean;
+    }
+    interface IxGroupContextMenu {
     }
     interface IxGroupDropdownItem {
         /**
@@ -3591,7 +3602,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Tree modal
+          * Tree model
          */
         "model"?: TreeModel<any>;
         /**
@@ -3775,6 +3786,7 @@ declare namespace LocalJSX {
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
         "ix-group": IxGroup;
+        "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
         "ix-icon": IxIcon;
@@ -3847,6 +3859,7 @@ declare module "@stencil/core" {
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
+            "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;

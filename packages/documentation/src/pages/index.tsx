@@ -68,7 +68,10 @@ function Headline({
           )}
         ></div>
         <div className={clsx(styles.content)}>
-          <div className={dark || text === 'dark' ? styles.text_dark : ''}>
+          <div
+            className={dark || text === 'dark' ? styles.text_dark : ''}
+            style={{ opacity: 0.75 }}
+          >
             {title}
           </div>
           <div
@@ -116,16 +119,16 @@ function Homepage() {
             height="120"
             viewBox="0 0 70 70"
           >
-            <g fill="none" fill-rule="evenodd">
+            <g fill="none" fillRule="evenodd">
               <rect width="70" height="70" fill="#333353" />
               <path
                 fill="#00BEDC"
-                fill-rule="nonzero"
+                fillRule="nonzero"
                 d="M12.0848633,54 L12.0848633,28.562891 L18.5033203,28.562891 L18.5033203,54 L12.0848633,54 Z M15.3075195,16.130566 C16.4712565,16.130566 17.4246257,16.5065429 18.167627,17.258496 C18.9106283,18.0104491 19.2821289,18.9772464 19.2821289,20.158887 C19.2821289,21.322624 18.9106283,22.2849451 18.167627,23.04585 C17.4246257,23.8067549 16.4802083,24.187207 15.334375,24.187207 C14.1527344,24.187207 13.1904134,23.8067549 12.4474121,23.04585 C11.7044108,22.2849451 11.3329102,21.3047203 11.3329102,20.105176 C11.3329102,18.9593427 11.7088867,18.0104491 12.4608398,17.258496 C13.212793,16.5065429 14.1616862,16.130566 15.3075195,16.130566 Z"
               />
               <polygon
                 fill="#00BEDC"
-                fill-rule="nonzero"
+                fillRule="nonzero"
                 points="23.874 54 37.436 34.557 24.546 15.946 32.307 15.946 41.626 29.481 51.186 15.946 58.733 15.946 45.466 34.583 59.001 54 50.998 54 41.411 39.981 31.662 54"
               />
             </g>
@@ -135,7 +138,7 @@ function Homepage() {
           size="h1"
           title="Siemens"
           subtitle="Industrial Experience"
-          description="Siemens Industrial Experience is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
+          description="Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers"
           noLine
           description_width="427px"
         ></Headline>
@@ -265,28 +268,6 @@ function Button(props: {
   );
 }
 
-function Welcome() {
-  return (
-    <div
-      id="getting-started"
-      className={clsx(styles.container, styles.welcome)}
-    >
-      <div className={styles.title}>Welcome!</div>
-      <div className={styles.icons}>
-        <i className={clsx('glyph glyph-' + 'bulb', styles.icons)}></i>
-        <i
-          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
-        ></i>
-        <i className={clsx('glyph glyph-' + 'cloud-upload', styles.icons)}></i>
-        <i
-          className={clsx('glyph glyph-' + 'plus', styles.icons, styles.plus)}
-        ></i>
-        <i className={clsx('glyph glyph-' + 'heart', styles.icons)}></i>
-      </div>
-    </div>
-  );
-}
-
 function CallToActions() {
   return (
     <div
@@ -361,7 +342,7 @@ function UX() {
         <Headline
           dark
           title="iX design libraries are built"
-          subtitle="for UX Designers"
+          subtitle="for UX designers"
           description="Rapidly create consistent prototypes using our libraries to support the exchange of ideas with your stakeholders and developers"
         ></Headline>
 
@@ -713,7 +694,6 @@ export default function Home() {
           <Anime easing="easeInOutExpo" duration="2000" opacity={[0, 1]}>
             <Layout>
               <Homepage />
-              <Welcome />
               <CallToActions />
               <Devices />
               <UX />

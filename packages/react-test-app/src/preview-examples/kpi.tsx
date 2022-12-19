@@ -10,7 +10,7 @@
 import { IxKpi } from '@siemens/ix-react';
 import React from 'react';
 
-export const Kpi: React.FC = () => {
+export default () => {
   return (
     <div className="example">
       <IxKpi label="Motor speed" value="Nominal"></IxKpi>

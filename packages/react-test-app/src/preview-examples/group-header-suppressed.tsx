@@ -10,7 +10,7 @@
 import { IxGroup, IxGroupItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const GroupHeaderSuppressed: React.FC = () => {
+export default () => {
   return (
     <IxGroup
       header="Header text"

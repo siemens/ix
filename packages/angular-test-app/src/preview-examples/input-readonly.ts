@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-input-readonly',
+  selector: 'app-example',
   template: `
     <form class="needs-validation m-2">
       <input
@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     </form>
   `,
 })
-export class InputReadonly {}
+export default class InputReadonly {}

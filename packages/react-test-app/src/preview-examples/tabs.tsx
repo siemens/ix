@@ -10,7 +10,7 @@
 import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
-export const Tabs: React.FC = () => {
+export default () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const changeTab = (tabId: number) => setSelectedTab(tabId);

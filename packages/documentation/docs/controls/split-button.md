@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-select/props.md';
 import Events from './../auto-generated/ix-select/events.md';
@@ -16,35 +15,28 @@ import SourceReactSplitButtonIcons from './../auto-generated/previews/react/spli
 import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.md';
 import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.md';
 
-# Split Button
+# Split button
 
 ## Usage
 
-<Preview name="split-button" height="16rem">
-  <TabItem value="javascript">
-    <SourceSplitButton />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactSplitButton />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularSplitButton />
-  </TabItem>
-</Preview>
+<Playground
+name="split-button" height="16rem"
+frameworks={{
+  react: SourceReactSplitButton,
+  angular: SourceAngularSplitButton,
+  javascript: SourceSplitButton
+}}></Playground>
 
 ### With icon only
 
-<Preview name="split-button-icons" height="16rem">
-  <TabItem value="javascript">
-    <SourceSplitButtonIcons />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceReactSplitButtonIcons />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularSplitButtonIcons />
-  </TabItem>
-</Preview>
+<Playground
+name="split-button-icons" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactSplitButtonIcons,
+  angular: SourceAngularSplitButtonIcons,
+  javascript: SourceSplitButtonIcons
+}}></Playground>
 
 ## Properties (ix-split-button)
 

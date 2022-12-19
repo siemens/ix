@@ -9,7 +9,7 @@
 
 import React, { useLayoutEffect, useRef } from 'react';
 
-export const CheckboxIndeterminate: React.FC = () => {
+export default () => {
   const ref = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {

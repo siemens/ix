@@ -16,7 +16,7 @@ type TreeData = {
 };
 
 @Component({
-  selector: 'app-tree',
+  selector: 'app-example',
   styles: [
     `
       .example {
@@ -49,7 +49,7 @@ type TreeData = {
     </ng-template>
   </div>`,
 })
-export class TreeCustom {
+export default class TreeCustom {
   context: TreeContext = {};
   model: TreeModel<TreeData> = {
     root: {

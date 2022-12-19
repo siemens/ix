@@ -33,14 +33,15 @@ const customCss = [
   require.resolve('./src/css/custom.css'),
   require.resolve('./src/css/search.css'),
   require.resolve('./src/css/api-table.css'),
+  require.resolve('./src/css/cards.css'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Siemens iX',
-  tagline: 'Siemens iX',
+  title: 'Siemens Industrial Experience',
+  tagline: 'Siemens Industrial Experience',
   url: 'https://ix.siemens.io',
   baseUrl: baseUrl,
   onBrokenLinks: 'throw',
@@ -75,19 +76,20 @@ const config = {
       metadata: [
         {
           name: 'keywords',
-          content: 'siemens-ix, ix, stenciljs, angular, webcomponent, react',
+          content:
+            'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience',
         },
         {
           name: 'description',
           content:
-            'Siemens iX is an open source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+            'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
         },
       ],
       colorMode: {
         disableSwitch: true,
       },
       navbar: {
-        title: 'Siemens iX',
+        title: 'Siemens Industrial Experience',
         logo: {
           alt: 'Siemens AG',
           src: 'img/logo.svg',

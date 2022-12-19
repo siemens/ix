@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import WorkflowStepProps from './../auto-generated/ix-workflow-step/props.md';
 import WorkflowStepEvents from './../auto-generated/ix-workflow-step/events.md';
@@ -18,31 +17,24 @@ import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/
 
 ## Usage
 
-<Preview name="workflow" height="24rem">
-  <TabItem value="javascript">
-    <SourceWorkflow />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactWorkflow />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularWorkflow />
-  </TabItem>
-</Preview>
+<Playground
+name="workflow"
+frameworks={{
+  react: SourceReactWorkflow,
+  angular: SourceAngularWorkflow,
+  javascript: SourceWorkflow
+}}></Playground>
 
 ### Vertical
 
-<Preview name="workflow-vertical" height="24rem">
-  <TabItem value="javascript">
-    <SourceWorkflowVertical />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactWorkflowVertical />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularWorkflowVertical />
-  </TabItem>
-</Preview>
+<Playground
+name="workflow-vertical" height="27rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactWorkflowVertical,
+  angular: SourceAngularWorkflowVertical,
+  javascript: SourceWorkflowVertical
+}}></Playground>
 
 ## Properties ix-workflow-steps
 

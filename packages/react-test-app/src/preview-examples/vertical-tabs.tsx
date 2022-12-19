@@ -10,7 +10,7 @@
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const Menu: React.FC = () => {
+export default () => {
   return (
     <IxMenu>
       <IxMenuItem home-tab tab-icon="home">

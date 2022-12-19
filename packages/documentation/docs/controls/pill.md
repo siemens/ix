@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-pill/props.md';
 import Events from './../auto-generated/ix-pill/events.md';
@@ -12,17 +11,14 @@ import SourceAngularPill from './../auto-generated/previews/angular/pill.md';
 
 ## Usage
 
-<Preview name="pill" height="24rem">
-  <TabItem value="javascript">
-    <SourcePill />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactPill />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularPill />
-  </TabItem>
-</Preview>
+<Playground
+name="pill" height="24rem"
+frameworks={{
+  react: SourceReactPill,
+  angular: SourceAngularPill,
+  javascript: SourcePill
+}}>
+</Playground>
 
 ## Properties
 

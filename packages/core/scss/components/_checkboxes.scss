@@ -13,17 +13,13 @@
   /* Base for label styling */
   [type='checkbox']:not(:checked),
   [type='checkbox']:checked {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
     position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .ag-checkbox-input-wrapper {
-    [type='checkbox']:not(:checked),
-    [type='checkbox']:checked {
-      position: absolute;
-      visibility: unset;
-    }
+    white-space: nowrap;
   }
 
   [type='checkbox']:not(:checked) + label,
@@ -32,7 +28,6 @@
     display: inline-flex;
     align-items: flex-start;
     user-select: none;
-
     color: var(--theme-checkbox-label--color);
   }
 

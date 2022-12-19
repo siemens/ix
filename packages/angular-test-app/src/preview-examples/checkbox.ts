@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-checkbox',
+  selector: 'app-example',
   template: `
     <div style="margin-bottom: 1rem">
       <input type="checkbox" id="checkbox_01" />
@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class Checkbox {}
+export default class Checkbox {}

@@ -1,3 +1,4 @@
+import Playground from '@site/src/components/Playground';
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
@@ -13,35 +14,27 @@ import SourceReactDropdownButtonIcon from './../auto-generated/previews/react/dr
 import SourceAngularDropdownButton from './../auto-generated/previews/angular/dropdown-button.md';
 import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angular/dropdown-button-icon.md';
 
-# Dropdown Button
+# Dropdown button
 
 ## Usage
 
-<Preview name="dropdown-button" height="18rem">
-  <TabItem value="javascript">
-    <SourceDropdownButton />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdownButton />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdownButton />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown-button" height="16rem"
+frameworks={{
+  react: SourceReactDropdownButton,
+  angular: SourceAngularDropdownButton,
+  javascript: SourceDropdownButton
+}}></Playground>
 
 ### Icon
 
-<Preview name="dropdown-button-icon" height="18rem">
-  <TabItem value="javascript">
-    <SourceDropdownButtonIcon />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdownButtonIcon />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdownButtonIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown-button-icon" height="16rem"
+frameworks={{
+  react: SourceReactDropdownButtonIcon,
+  angular: SourceAngularDropdownButtonIcon,
+  javascript: SourceDropdownButtonIcon
+}}></Playground>
 
 ## Properties (ix-dropdown-button)
 

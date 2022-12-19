@@ -10,10 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-secondary',
+  selector: 'app-example',
   template: buttonGreySecondary(),
 })
-export class Buttons {}
+export default class Buttons {}
 function buttonGreySecondary(): string | undefined {
   return `
       <ix-button class="m-1" outline variant="Secondary">
@@ -24,4 +24,3 @@ function buttonGreySecondary(): string | undefined {
       </ix-button>
   `;
 }
-

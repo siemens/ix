@@ -12,54 +12,84 @@ SPDX-License-Identifier: MIT
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <ix-button>Show modal</ix-button>
-
-    <template id="custom-modal">
-      <div>
-        <div class="modal-header">
-          Message headline
-          <ix-icon-button
-            data-button-close
-            ghost
-            icon="close"
-            class="dismiss-modal"
-          ></ix-icon-button>
-        </div>
-        <div class="modal-body">Message text lorem ipsum</div>
-        <div class="modal-footer">
-          <ix-button outline class="dismiss-modal"> Cancel </ix-button>
-          <ix-button class="close-modal">OK</ix-button>
-        </div>
-      </div>
-    </template>
-
     <script type="module">
       import { modal, closeModal, dismissModal } from '@siemens/ix';
 
-      (async function () {
-        await window.customElements.whenDefined('ix-button');
+      function createExampleModal() {
+        const name = 'modal-example';
+        window.customElements.define(
+          name,
+          class extends HTMLElement {
+            isInitalRender = false;
 
-        const customModal = document.createElement('div');
-        const template = document.getElementById('custom-modal');
-        const templateContent = template.content;
-        customModal.appendChild(templateContent);
+            constructor() {
+              super();
+            }
 
-        customModal
-          .querySelector('.close-modal')
-          .addEventListener('click', () => {
-            closeModal(customModal, 'Done!');
-          });
+            connectedCallback() {
+              if (this.isInitalRender) {
+                return;
+              }
 
-        customModal.querySelectorAll('.dismiss-modal').forEach((item) =>
-          item.addEventListener('click', () => {
-            dismissModal(customModal, 'canceled!');
-          })
+              this.isInitalRender = true;
+              this.firstRender();
+            }
+
+            firstRender() {
+              const modalTemplate = document.createElement('template');
+              modalTemplate.innerHTML = `
+              <div>
+                <div class="modal-header">
+                Message headline
+                <ix-icon-button
+                  data-button-close
+                  ghost
+                  icon="close"
+                  class="dismiss-modal"
+                ></ix-icon-button>
+                </div>
+                <div class="modal-body">Message text lorem ipsum</div>
+                <div class="modal-footer">
+                  <ix-button outline class="dismiss-modal"> Cancel </ix-button>
+                  <ix-button class="close-modal">OK</ix-button>
+                </div>
+              </div>
+              `;
+
+              const template = modalTemplate.content.cloneNode(true);
+              this.append(template);
+            }
+          }
         );
 
+        return name;
+      }
+
+      (async function () {
+        const exampleModalName = createExampleModal();
+
+        await window.customElements.whenDefined('ix-button');
         const button = document.querySelector('ix-button');
+
         button.addEventListener('click', async () => {
+          const customModal = document.createElement(exampleModalName);
+
           const m = await modal({
             content: customModal,
           });
+
+          m.htmlElement
+            .querySelector('.close-modal')
+            .addEventListener('click', () => {
+              closeModal(customModal, 'Done!');
+            });
+
+          m.htmlElement.querySelectorAll('.dismiss-modal').forEach((item) =>
+            item.addEventListener('click', () => {
+              dismissModal(customModal, 'cancelled!');
+            })
+          );
+
           m.htmlElement.addEventListener('keydown', (keyEvent) => {
             console.log(keyEvent.key);
           });

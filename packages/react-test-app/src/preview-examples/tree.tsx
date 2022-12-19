@@ -16,7 +16,7 @@ type TreeData = {
   icon: string;
 };
 
-export const Tree: React.FC = () => {
+export default () => {
   const [model] = useState<TreeModel<TreeData>>({
     root: {
       id: 'root',

@@ -9,7 +9,7 @@
 
 import React from 'react';
 
-export const TextareaDisabled: React.FC = () => {
+export default () => {
   return (
     <textarea
       className="form-control"

@@ -10,9 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-popover-news',
+  selector: 'app-example',
   template: `
     <ix-basic-navigation>
+      <div class="placeholder-logo" slot="logo"></div>
       <ix-menu>
         <ix-menu-about>
           <ix-menu-about-item label="Example"> </ix-menu-about-item>
@@ -24,4 +25,4 @@ import { Component } from '@angular/core';
     </ix-basic-navigation>
   `,
 })
-export class PopoverNews {}
+export default class PopoverNews {}

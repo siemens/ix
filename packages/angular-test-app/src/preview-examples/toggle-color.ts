@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle-color',
+  selector: 'app-example',
   template: ` <ix-toggle color="warning"></ix-toggle> `,
 })
-export class ToggleColor {}
+export default class ToggleColor {}

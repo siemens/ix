@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';
 
@@ -40,7 +40,7 @@ export class Button {
   @Prop() ghost = false;
 
   /**
-   * Show button as selected. Should be used with outline or invisible
+   * Show button as selected. Should be used with outline or ghost
    */
   @Prop() selected = false;
 
@@ -56,20 +56,22 @@ export class Button {
 
   render() {
     return (
-      <button
-        type={this.type}
-        class={getButtonClasses(
-          this.variant,
-          this.outline,
-          this.ghost || this.invisible,
-          false,
-          false,
-          this.selected,
-          this.disabled
-        )}
-      >
-        <slot></slot>
-      </button>
+      <Host>
+        <button
+          type={this.type}
+          class={getButtonClasses(
+            this.variant,
+            this.outline,
+            this.ghost || this.invisible,
+            false,
+            false,
+            this.selected,
+            this.disabled
+          )}
+        >
+          <slot></slot>
+        </button>
+      </Host>
     );
   }
 }

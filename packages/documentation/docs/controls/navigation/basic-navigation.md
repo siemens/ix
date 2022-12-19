@@ -1,11 +1,9 @@
 ---
 sidebar_position: 0
-title: Basic Navigation
+title: Basic navigation
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../../auto-generated/ix-basic-navigation/props.md';
 
 import WebComponent from './../../auto-generated/previews/web-component/basic-navigation.md'
@@ -20,33 +18,24 @@ import AngularComponentWithoutHeader from './../../auto-generated/previews/angul
 
 ### Default
 
-<Preview name="basic-navigation" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <WebComponent />
-  </TabItem>
-  <TabItem value="react">
-    <ReactComponent />
-  </TabItem>
-  <TabItem value="angular">
-    <AngularComponent />
-  </TabItem>
-</Preview>
+<Playground
+name="basic-navigation" height="30rem" noMargin
+frameworks={{
+  react: ReactComponent,
+  angular: AngularComponent,
+  javascript: WebComponent
+}}></Playground>
 
 ### Without header
 
-<Preview name="basic-navigation-without-header" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <WebComponentWithoutHeader />
-  </TabItem>
-
-  <TabItem value="react">
-    <ReactComponentWithoutHeader />
-  </TabItem>
-
-  <TabItem value="angular">
-    <AngularComponentWithoutHeader />
-  </TabItem>
-</Preview>
+<Playground
+name="basic-navigation-without-header" height="30rem" noMargin
+hideInitalCodePreview
+frameworks={{
+  react: ReactComponentWithoutHeader,
+  angular: AngularComponentWithoutHeader,
+  javascript: WebComponentWithoutHeader
+}}></Playground>
 
 ### ix-basic-navigation
 

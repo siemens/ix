@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-drawer',
+  selector: 'app-example',
   template: `
     <ix-drawer [closeOnClickOutside]="true" [show]="show">
       <span>Some content of drawer</span>
@@ -19,6 +19,6 @@ import { Component } from '@angular/core';
     <ix-button (click)="show = !show">Toggle drawer</ix-button>
   `,
 })
-export class Drawer {
+export default class Drawer {
   show = false;
 }

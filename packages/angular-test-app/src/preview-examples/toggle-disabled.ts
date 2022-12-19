@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle-disabled',
+  selector: 'app-example',
   template: ` <ix-toggle disabled></ix-toggle> `,
 })
-export class ToggleCustomDisabled {}
+export default class ToggleCustomDisabled {}
