@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest.describe('time picker', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`time-picker/test/basic`);
+    await page.goto('time-picker/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

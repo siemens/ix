@@ -15,7 +15,7 @@ describe('ix-toast', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [Toast],
-      html: `<ix-toast toast-title="Test title">Test message</ix-toast>`,
+      html: '<ix-toast toast-title="Test title">Test message</ix-toast>',
     });
 
     await page.waitForChanges();

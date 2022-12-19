@@ -10,7 +10,7 @@
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const BreadcrumbTruncate: React.FC = () => {
+export default () => {
   return (
     <IxBreadcrumb visibleItemCount={3}>
       <IxBreadcrumbItem label="Item 1"></IxBreadcrumbItem>

@@ -13,10 +13,9 @@
       "readmePath": "./src/components/animated-tab/readme.md",
       "usagesDir": "./src/components/animated-tab/usage",
       "tag": "ix-animated-tab",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# animated-tab\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -70,10 +69,9 @@
       "readmePath": "./src/components/animated-tabs/readme.md",
       "usagesDir": "./src/components/animated-tabs/usage",
       "tag": "ix-animated-tabs",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# animated-tabs\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -86,29 +84,6 @@
         ]
       },
       "props": [
-        {
-          "name": "disableAnimations",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "disable-animations",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "- For debugging purposes only"
-            }
-          ],
-          "default": "false",
-          "deprecation": "- For debugging purposes only",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "selectedIndex",
           "type": "number",
@@ -179,10 +154,9 @@
       "readmePath": "./src/components/application-header/readme.md",
       "usagesDir": "./src/components/application-header/usage",
       "tag": "ix-application-header",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-application-header\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
@@ -230,10 +204,9 @@
       "readmePath": "./src/components/basic-navigation/readme.md",
       "usagesDir": "./src/components/basic-navigation/usage",
       "tag": "ix-basic-navigation",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-basic-navigation\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -294,10 +267,9 @@
       "readmePath": "./src/components/blind/readme.md",
       "usagesDir": "./src/components/blind/usage",
       "tag": "ix-blind",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-blind\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -362,10 +334,9 @@
       "readmePath": "./src/components/breadcrumb/readme.md",
       "usagesDir": "./src/components/breadcrumb/usage",
       "tag": "ix-breadcrumb",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# cui-breadcrumb\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -469,10 +440,9 @@
       "readmePath": "./src/components/breadcrumb-item/readme.md",
       "usagesDir": "./src/components/breadcrumb-item/usage",
       "tag": "ix-breadcrumb-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-breadcrumb-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -526,10 +496,9 @@
       "readmePath": "./src/components/button/readme.md",
       "usagesDir": "./src/components/button/usage",
       "tag": "ix-button",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-button\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -638,7 +607,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Show button as selected. Should be used with outline or invisible",
+          "docs": "Show button as selected. Should be used with outline or ghost",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -708,10 +677,9 @@
       "readmePath": "./src/components/category-filter/readme.md",
       "usagesDir": "./src/components/category-filter/usage",
       "tag": "ix-category-filter",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-category-filter\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -818,10 +786,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release (7.0.0). Use the member filterState instead."
+              "text": "Will be removed with 2.0.0. Use the member filterState instead."
             }
           ],
-          "deprecation": "will get removed with next major release (7.0.0). Use the member filterState instead.",
+          "deprecation": "Will be removed with 2.0.0. Use the member filterState instead.",
           "values": [
             {
               "type": "FilterState"
@@ -910,29 +878,6 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "tmpDisableScrollIntoView",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "tmp-disable-scroll-into-view",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "For debugging purposes only!"
-            }
-          ],
-          "default": "true",
-          "deprecation": "For debugging purposes only!",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [],
@@ -975,10 +920,9 @@
       "readmePath": "./src/components/chip/readme.md",
       "usagesDir": "./src/components/chip/usage",
       "tag": "ix-chip",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# cui-chip\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -997,7 +941,7 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only working witht `variant=\"primary\"`",
+          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1161,10 +1105,9 @@
       "readmePath": "./src/components/counter-pill/readme.md",
       "usagesDir": "./src/components/counter-pill/usage",
       "tag": "ix-counter-pill",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-counter-pill\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -1298,10 +1241,9 @@
       "readmePath": "./src/components/date-picker/readme.md",
       "usagesDir": "./src/components/date-picker/usage",
       "tag": "ix-date-picker",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-date-picker\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -1427,11 +1369,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- will get removed with next major release"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "true",
-          "deprecation": "- will get removed with next major release",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "boolean"
@@ -1610,10 +1552,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Use `dateSelect`"
+              "text": "Will be removed in 2.0.0. Use `dateSelect`"
             }
           ],
-          "deprecation": "Use `dateSelect`"
+          "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
         }
       ],
       "styles": [],
@@ -1628,10 +1570,9 @@
       "readmePath": "./src/components/date-time-card/readme.md",
       "usagesDir": "./src/components/date-time-card/usage",
       "tag": "ix-date-time-card",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-date-time-card\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -1706,10 +1647,9 @@
       "readmePath": "./src/components/datetime-picker/readme.md",
       "usagesDir": "./src/components/datetime-picker/usage",
       "tag": "ix-datetime-picker",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-datetime-picker\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -2113,10 +2053,9 @@
       "readmePath": "./src/components/drawer/readme.md",
       "usagesDir": "./src/components/drawer/usage",
       "tag": "ix-drawer",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-drawer\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -2289,16 +2228,14 @@
       "readmePath": "./src/components/dropdown/readme.md",
       "usagesDir": "./src/components/dropdown/usage",
       "tag": "ix-dropdown",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-dropdown\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
         "ix-date-picker",
-        "ix-group",
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
@@ -2310,9 +2247,6 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-group": [
           "ix-dropdown"
         ],
         "ix-menu": [
@@ -2362,11 +2296,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead."
+              "text": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead."
             }
           ],
           "default": "false",
-          "deprecation": "- property has a typo and will get removed in the next major version. Use `adjustDropdownWidthToReferenceWidth` instead.",
+          "deprecation": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.",
           "values": [
             {
               "type": "boolean"
@@ -2615,10 +2549,9 @@
       "readmePath": "./src/components/dropdown-item/readme.md",
       "usagesDir": "./src/components/dropdown-item/usage",
       "tag": "ix-dropdown-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-dropdown-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -2776,10 +2709,9 @@
       "readmePath": "./src/components/event-list/readme.md",
       "usagesDir": "./src/components/event-list/usage",
       "tag": "ix-event-list",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-event-list\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -2876,10 +2808,9 @@
       "readmePath": "./src/components/event-list-item/readme.md",
       "usagesDir": "./src/components/event-list-item/usage",
       "tag": "ix-event-list-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-event-list-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [],
@@ -2944,11 +2875,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 7.0.0. Use color with alpha value."
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "1",
-          "deprecation": "Will be removed in 7.0.0. Use color with alpha value.",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "number"
@@ -3004,10 +2935,9 @@
       "readmePath": "./src/components/expanding-search/readme.md",
       "usagesDir": "./src/components/expanding-search/usage",
       "tag": "ix-expanding-search",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# expanding-search\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -3101,10 +3031,9 @@
       "readmePath": "./src/components/filter-chip/readme.md",
       "usagesDir": "./src/components/filter-chip/usage",
       "tag": "ix-filter-chip",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# cui-filter-chip\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -3168,10 +3097,9 @@
       "readmePath": "./src/components/flip-tile/readme.md",
       "usagesDir": "./src/components/flip-tile/usage",
       "tag": "ix-flip-tile",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-flip-tile\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -3246,10 +3174,9 @@
       "readmePath": "./src/components/flip-tile-content/readme.md",
       "usagesDir": "./src/components/flip-tile-content/usage",
       "tag": "ix-flip-tile-content",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-flip-tile-content\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
@@ -3270,25 +3197,25 @@
       "readmePath": "./src/components/group/readme.md",
       "usagesDir": "./src/components/group/usage",
       "tag": "ix-group",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-group\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
         "ix-icon",
-        "ix-icon-button",
-        "ix-dropdown",
+        "ix-group-context-menu",
         "ix-group-item"
       ],
       "dependencyGraph": {
         "ix-group": [
           "ix-icon",
-          "ix-icon-button",
-          "ix-dropdown",
+          "ix-group-context-menu",
           "ix-group-item"
+        ],
+        "ix-group-context-menu": [
+          "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-icon"
@@ -3457,16 +3384,52 @@
       ]
     },
     {
+      "dirPath": "./src/components/group",
+      "filePath": "./src/components/group/group-context-menu.tsx",
+      "fileName": "group-context-menu.tsx",
+      "readmePath": "./src/components/group/readme.md",
+      "usagesDir": "./src/components/group/usage",
+      "tag": "ix-group-context-menu",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "scoped",
+      "dependents": [
+        "ix-group"
+      ],
+      "dependencies": [
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-group-context-menu"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/group-dropdown-item",
       "filePath": "./src/components/group-dropdown-item/group-dropdown-item.tsx",
       "fileName": "group-dropdown-item.tsx",
       "readmePath": "./src/components/group-dropdown-item/readme.md",
       "usagesDir": "./src/components/group-dropdown-item/usage",
       "tag": "ix-group-dropdown-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-group-dropdown-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -3529,10 +3492,9 @@
       "readmePath": "./src/components/group-item/readme.md",
       "usagesDir": "./src/components/group-item/usage",
       "tag": "ix-group-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-group-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -3695,10 +3657,9 @@
       "readmePath": "./src/components/icon/readme.md",
       "usagesDir": "./src/components/icon/usage",
       "tag": "ix-icon",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-icon\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -3871,10 +3832,9 @@
       "readmePath": "./src/components/icon-button/readme.md",
       "usagesDir": "./src/components/icon-button/usage",
       "tag": "ix-icon-button",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-icon-button\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -3882,7 +3842,7 @@
         "ix-drawer",
         "ix-expanding-search",
         "ix-flip-tile",
-        "ix-group",
+        "ix-group-context-menu",
         "ix-map-navigation",
         "ix-map-navigation-overlay",
         "ix-menu-about",
@@ -3913,7 +3873,7 @@
         "ix-flip-tile": [
           "ix-icon-button"
         ],
-        "ix-group": [
+        "ix-group-context-menu": [
           "ix-icon-button"
         ],
         "ix-map-navigation": [
@@ -4023,10 +3983,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "use ghost property"
+              "text": "Use ghost property"
             }
           ],
-          "deprecation": "use ghost property",
+          "deprecation": "Use ghost property",
           "values": [
             {
               "type": "boolean"
@@ -4173,10 +4133,9 @@
       "readmePath": "./src/components/input-group/readme.md",
       "usagesDir": "./src/components/input-group/usage",
       "tag": "ix-input-group",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-input-group\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -4197,10 +4156,9 @@
       "readmePath": "./src/components/kpi/readme.md",
       "usagesDir": "./src/components/kpi/usage",
       "tag": "ix-kpi",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-kpi\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -4327,10 +4285,9 @@
       "readmePath": "./src/components/map-navigation/readme.md",
       "usagesDir": "./src/components/map-navigation/usage",
       "tag": "ix-map-navigation",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-map-navigation\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -4417,10 +4374,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release in favor of slot based approach"
+              "text": "Will be removed in 2.0.0. Use slot based approach"
             }
           ],
-          "deprecation": "will get removed with next major release in favor of slot based approach"
+          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
         },
         {
           "name": "openOverlay",
@@ -4434,7 +4391,7 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "will get removed with next major release in favor of slot based approach"
+              "text": "Will be removed in 2.0.0. Use slot based approach"
             },
             {
               "name": "param",
@@ -4453,7 +4410,7 @@
               "text": "color"
             }
           ],
-          "deprecation": "will get removed with next major release in favor of slot based approach"
+          "deprecation": "Will be removed in 2.0.0. Use slot based approach"
         }
       ],
       "events": [
@@ -4488,10 +4445,9 @@
       "readmePath": "./src/components/map-navigation-overlay/readme.md",
       "usagesDir": "./src/components/map-navigation-overlay/usage",
       "tag": "ix-map-navigation-overlay",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-map-navigation-overlay\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -4587,10 +4543,9 @@
       "readmePath": "./src/components/menu/readme.md",
       "usagesDir": "./src/components/menu/usage",
       "tag": "ix-menu",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [],
@@ -4965,10 +4920,9 @@
       "readmePath": "./src/components/menu-about/readme.md",
       "usagesDir": "./src/components/menu-about/usage",
       "tag": "ix-menu-about",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-about\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5063,10 +5017,9 @@
       "readmePath": "./src/components/menu-about-item/readme.md",
       "usagesDir": "./src/components/menu-about-item/usage",
       "tag": "ix-menu-about-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-about-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5104,10 +5057,9 @@
       "readmePath": "./src/components/menu-about-news/readme.md",
       "usagesDir": "./src/components/menu-about-news/usage",
       "tag": "ix-menu-about-news",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-about-news\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5259,10 +5211,9 @@
       "readmePath": "./src/components/menu-avatar/readme.md",
       "usagesDir": "./src/components/menu-avatar/usage",
       "tag": "ix-menu-avatar",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-avatar\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5357,10 +5308,9 @@
       "readmePath": "./src/components/menu-avatar-item/readme.md",
       "usagesDir": "./src/components/menu-avatar-item/usage",
       "tag": "ix-menu-avatar-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-avatar-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -5438,10 +5388,9 @@
       "readmePath": "./src/components/menu-item/readme.md",
       "usagesDir": "./src/components/menu-item/usage",
       "tag": "ix-menu-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
@@ -5480,11 +5429,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- replaced by slot based implementation"
+              "text": "Will be removed in 2.0.0. Replaced by slot based implementation"
             }
           ],
           "default": "false",
-          "deprecation": "- replaced by slot based implementation",
+          "deprecation": "Will be removed in 2.0.0. Replaced by slot based implementation",
           "values": [
             {
               "type": "boolean"
@@ -5574,10 +5523,9 @@
       "readmePath": "./src/components/menu-settings/readme.md",
       "usagesDir": "./src/components/menu-settings/usage",
       "tag": "ix-menu-settings",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-settings\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5672,10 +5620,9 @@
       "readmePath": "./src/components/menu-settings-item/readme.md",
       "usagesDir": "./src/components/menu-settings-item/usage",
       "tag": "ix-menu-settings-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-menu-settings-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5713,10 +5660,9 @@
       "readmePath": "./src/components/message-bar/readme.md",
       "usagesDir": "./src/components/message-bar/usage",
       "tag": "ix-message-bar",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# message-bar\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -5802,10 +5748,9 @@
       "readmePath": "./src/components/modal/readme.md",
       "usagesDir": "./src/components/modal/usage",
       "tag": "ix-modal",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-modal\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -6130,7 +6075,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "close(result: any) => Promise<void>",
+          "signature": "close<T = any>(result: T) => Promise<void>",
           "parameters": [],
           "docs": "Close modal",
           "docsTags": [
@@ -6146,7 +6091,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "dismiss(reason?: any) => Promise<void>",
+          "signature": "dismiss<T = any>(reason?: T) => Promise<void>",
           "parameters": [],
           "docs": "Dismiss modal instance",
           "docsTags": [
@@ -6189,10 +6134,9 @@
       "readmePath": "./src/components/modal-container/readme.md",
       "usagesDir": "./src/components/modal-container/usage",
       "tag": "ix-modal-container",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# overlay-container\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -6217,10 +6161,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+            "type": "Promise<ModalInstance<any>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<{ onClose: TypedEvent<any>; onDismiss: TypedEvent<any>; }>",
+          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [
@@ -6244,10 +6188,9 @@
       "readmePath": "./src/components/my-component/readme.md",
       "usagesDir": "./src/components/my-component/usage",
       "tag": "ix-modal-example",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# my-component\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [],
@@ -6287,10 +6230,9 @@
       "readmePath": "./src/components/pill/readme.md",
       "usagesDir": "./src/components/pill/usage",
       "tag": "ix-pill",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-pill\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -6446,18 +6388,17 @@
       "readmePath": "./src/components/select/readme.md",
       "usagesDir": "./src/components/select/usage",
       "tag": "ix-select",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-select\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
-        "ix-icon",
         "ix-icon-button",
+        "ix-icon",
         "ix-dropdown",
         "ix-dropdown-item"
       ],
@@ -6465,8 +6406,8 @@
         "ix-select": [
           "ix-select-item",
           "ix-filter-chip",
-          "ix-icon",
           "ix-icon-button",
+          "ix-icon",
           "ix-dropdown",
           "ix-dropdown-item"
         ],
@@ -6691,10 +6632,9 @@
       "readmePath": "./src/components/select-item/readme.md",
       "usagesDir": "./src/components/select-item/usage",
       "tag": "ix-select-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-select-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -6823,10 +6763,9 @@
       "readmePath": "./src/components/spinner/readme.md",
       "usagesDir": "./src/components/spinner/usage",
       "tag": "ix-spinner",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-spinner\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -6902,10 +6841,9 @@
       "readmePath": "./src/components/split-button/readme.md",
       "usagesDir": "./src/components/split-button/usage",
       "tag": "ix-split-button",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-split-button\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -6981,11 +6919,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "use ghost property"
+              "text": "Will be removed in 2.0.0. Use ghost property"
             }
           ],
           "default": "false",
-          "deprecation": "use ghost property",
+          "deprecation": "Will be removed in 2.0.0. Use ghost property",
           "values": [
             {
               "type": "boolean"
@@ -7165,10 +7103,9 @@
       "readmePath": "./src/components/split-button-item/readme.md",
       "usagesDir": "./src/components/split-button-item/usage",
       "tag": "ix-split-button-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-split-button-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -7241,10 +7178,9 @@
       "readmePath": "./src/components/tab-item/readme.md",
       "usagesDir": "./src/components/tab-item/usage",
       "tag": "ix-tab-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-tab-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
@@ -7421,10 +7357,9 @@
       "readmePath": "./src/components/tabs/readme.md",
       "usagesDir": "./src/components/tabs/usage",
       "tag": "ix-tabs",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-tabs\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
@@ -7558,10 +7493,9 @@
       "readmePath": "./src/components/tile/readme.md",
       "usagesDir": "./src/components/tile/usage",
       "tag": "ix-tile",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-tile\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -7609,10 +7543,9 @@
       "readmePath": "./src/components/time-picker/readme.md",
       "usagesDir": "./src/components/time-picker/usage",
       "tag": "ix-time-picker",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-time-picker\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -7695,11 +7628,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- will get removed with next major release"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "true",
-          "deprecation": "- will get removed with next major release",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "boolean"
@@ -7893,10 +7826,9 @@
       "readmePath": "./src/components/toast/readme.md",
       "usagesDir": "./src/components/toast/usage",
       "tag": "ix-toast",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-toast-container\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -8056,10 +7988,9 @@
       "readmePath": "./src/components/toast/readme.md",
       "usagesDir": "./src/components/toast/usage",
       "tag": "ix-toast-container",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-toast-container\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -8162,10 +8093,9 @@
       "readmePath": "./src/components/toggle/readme.md",
       "usagesDir": "./src/components/toggle/usage",
       "tag": "ix-toggle",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-toggle\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -8199,11 +8129,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "- Has no effect on the rendered control"
+              "text": "Will be removed in 2.0.0"
             }
           ],
           "default": "'accent'",
-          "deprecation": "- Has no effect on the rendered control",
+          "deprecation": "Will be removed in 2.0.0",
           "values": [
             {
               "type": "string"
@@ -8346,10 +8276,9 @@
       "readmePath": "./src/components/tree/readme.md",
       "usagesDir": "./src/components/tree/usage",
       "tag": "ix-tree",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-tree\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -8386,7 +8315,7 @@
           "type": "{ [x: string]: TreeItem<any>; }",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Tree modal",
+          "docs": "Tree model",
           "docsTags": [],
           "values": [
             {
@@ -8461,10 +8390,9 @@
       "readmePath": "./src/components/tree-item/readme.md",
       "usagesDir": "./src/components/tree-item/usage",
       "tag": "ix-tree-item",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-tree-item\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
@@ -8563,10 +8491,9 @@
       "readmePath": "./src/components/upload/readme.md",
       "usagesDir": "./src/components/upload/usage",
       "tag": "ix-upload",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-upload\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -8818,10 +8745,9 @@
       "readmePath": "./src/components/validation-tooltip/readme.md",
       "usagesDir": "./src/components/validation-tooltip/usage",
       "tag": "ix-validation-tooltip",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# ix-validation-tooltip\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [
         {
           "name": "slot",
@@ -8943,10 +8869,9 @@
       "readmePath": "./src/components/workflow-step/readme.md",
       "usagesDir": "./src/components/workflow-step/usage",
       "tag": "ix-workflow-step",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# cw-workflow-step\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -9102,10 +9027,9 @@
       "readmePath": "./src/components/workflow-steps/readme.md",
       "usagesDir": "./src/components/workflow-steps/usage",
       "tag": "ix-workflow-steps",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# cw-workflow-steps\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
@@ -9205,10 +9129,9 @@
       "readmePath": "./src/components/my-component/readme.md",
       "usagesDir": "./src/components/my-component/usage",
       "tag": "my-component",
-      "readme": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->\n\n# my-component\n\n\n",
       "overview": "",
       "usage": {},
-      "docs": "<!--\nSPDX-FileCopyrightText: 2022 Siemens AG\n\nSPDX-License-Identifier: MIT\n-->",
+      "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],

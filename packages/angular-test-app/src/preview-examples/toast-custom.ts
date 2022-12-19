@@ -11,7 +11,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
-  selector: 'app-toast',
+  selector: 'app-example',
   template: `
     <div>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -29,7 +29,7 @@ import { ToastService } from '@siemens/ix-angular';
     </ng-template>
   `,
 })
-export class ToastCustom {
+export default class ToastCustom {
   @ViewChild('customToast', { read: TemplateRef })
   customToastRef!: TemplateRef<any>;
 

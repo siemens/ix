@@ -10,6 +10,6 @@
 import { IxToggle } from '@siemens/ix-react';
 import React from 'react';
 
-export const ToggleColor: React.FC = () => {
+export default () => {
   return <IxToggle color="warning" />;
 };

@@ -1,6 +1,3 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-
 import Props from './../auto-generated/ix-breadcrumb/props.md';
 import Events from './../auto-generated/ix-breadcrumb/events.md';
 
@@ -18,49 +15,47 @@ import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadc
 import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.md'
 import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.md'
 
+import Playground from '@site/src/components/Playground'
+
 # Breadcrumb
 
 ## Usage
 
-<Preview name="breadcrumb" height="8rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumb />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumb />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumb />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb"
+height="8rem"
+frameworks={{
+    react: SourceReactBreadcrumb,
+    angular: SourceAngularBreadcrumb,
+    javascript: SourceBreadcrumb
+}}>
+</Playground>
 
 ### Truncate
 
-<Preview name="breadcrumb-truncate" height="10rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumbTruncate />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumbTruncate />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumbTruncate />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb-truncate"
+height="10rem"
+hideInitalCodePreview
+frameworks={{
+    react: SourceReactBreadcrumbTruncate,
+    angular: SourceAngularBreadcrumbTruncate,
+    javascript: SourceBreadcrumbTruncate
+}}>
+</Playground>
 
 ### Lazy loaded next items
 
-<Preview name="breadcrumb-next-items" height="8rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumbNextItems />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumbNextItems />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumbNextItems />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb-next-items"
+height="8rem"
+hideInitalCodePreview
+frameworks={{
+    react: SourceReactBreadcrumbNextItems,
+    angular: SourceAngularBreadcrumbNextItems,
+    javascript: SourceBreadcrumbNextItems
+}}>
+</Playground>
 
 ## Properties (ix-breadcrumb)
 

@@ -69,7 +69,7 @@ describe('event-list', () => {
   it('animated', async () => {
     const page = await newSpecPage({
       components: [EventList],
-      html: `<div></div>`,
+      html: '<div></div>',
     });
 
     const eventList = page.doc.createElement('ix-event-list');
@@ -97,7 +97,7 @@ describe('event-list', () => {
   it('not animated', async () => {
     const page = await newSpecPage({
       components: [EventList],
-      html: `<div></div>`,
+      html: '<div></div>',
     });
 
     const eventList = page.doc.createElement('ix-event-list');

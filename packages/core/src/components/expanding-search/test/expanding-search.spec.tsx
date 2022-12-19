@@ -21,7 +21,7 @@ describe('ix-expanding-search', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [ExpandingSearch],
-      html: `<ix-expanding-search></ix-expanding-search>`,
+      html: '<ix-expanding-search></ix-expanding-search>',
     });
     expandingSearch = page.doc.querySelector('ix-expanding-search');
     button = page.doc.querySelector('[data-testid="button"]');
@@ -35,14 +35,14 @@ describe('ix-expanding-search', () => {
   });
 
   it('expands input', async () => {
-    fireEvent.click(button); //expandInput method is called with onClick
+    fireEvent.click(button);
     await page.waitForChanges();
 
     expect(inputWrapper.classList.contains('expanded')).toBeTruthy();
   });
 
   it('collapses input', async () => {
-    fireEvent.click(button); //expandInput method is called with onClick
+    fireEvent.click(button);
     fireEvent.blur(input);
     await page.waitForChanges();
 
@@ -82,7 +82,7 @@ describe('ix-expanding-search', () => {
   });
 
   it('should not collapse input, if it is filled', async () => {
-    fireEvent.click(button); //expandInput method is called with onClick
+    fireEvent.click(button);
     fireEvent.input(input, { target: { value: 'new input' } });
     fireEvent.blur(input);
     await page.waitForChanges();

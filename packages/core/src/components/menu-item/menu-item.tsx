@@ -25,7 +25,7 @@ export class MenuItem {
    *
    * Place tab on bottom
    *
-   * @deprecated - replaced by slot based implementation
+   * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
    */
   @Prop() bottom = false;
 

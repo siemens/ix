@@ -69,6 +69,7 @@ export function Card(
           })}
         >
           {props.label}
+          {props.children}
         </div>
         {props.icon ? (
           <>
@@ -76,7 +77,6 @@ export function Card(
             <div className={clsx(styles.Icon)}>{getIcon()}</div>
           </>
         ) : null}
-        {props.children}
       </div>
     </Link>
   );

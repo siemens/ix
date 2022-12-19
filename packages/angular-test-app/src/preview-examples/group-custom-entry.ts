@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-group-custom-entry',
+  selector: 'app-example',
   template: `
     <ix-group header="Header text" sub-header="Subheader text">
       <ix-group-item text="Example text 1"></ix-group-item>
@@ -19,4 +19,4 @@ import { Component } from '@angular/core';
     </ix-group>
   `,
 })
-export class GroupCustomEntry {}
+export default class GroupCustomEntry {}

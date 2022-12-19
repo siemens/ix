@@ -39,13 +39,13 @@ export declare interface IxAnimatedTabs extends Components.IxAnimatedTabs {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['disableAnimations', 'selectedIndex', 'tabPlacement']
+  inputs: ['selectedIndex', 'tabPlacement']
 })
 @Component({
   selector: 'ix-animated-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['disableAnimations', 'selectedIndex', 'tabPlacement']
+  inputs: ['selectedIndex', 'tabPlacement']
 })
 export class IxAnimatedTabs {
   protected el: HTMLElement;
@@ -216,13 +216,13 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions', 'tmpDisableScrollIntoView']
+  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions']
 })
 @Component({
   selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions', 'tmpDisableScrollIntoView']
+  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions']
 })
 export class IxCategoryFilter {
   protected el: HTMLElement;
@@ -298,7 +298,7 @@ Only triggered if datepicker is in range mode @since 1.1.0
    */
   dateRangeChange: EventEmitter<CustomEvent<IDatePickerDateChangeEvent>>;
   /**
-   * Date selection confirmed via button action @deprecated Use `dateSelect`
+   * Date selection confirmed via button action @deprecated Will be removed in 2.0.0. Use `dateSelect`
    */
   done: EventEmitter<CustomEvent<string>>;
   /**
@@ -660,6 +660,25 @@ export class IxGroup {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['selectGroup', 'selectItem', 'collapsedChanged']);
+  }
+}
+
+
+export declare interface IxGroupContextMenu extends Components.IxGroupContextMenu {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-group-context-menu',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxGroupContextMenu {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 

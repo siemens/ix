@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tabs',
+  selector: 'app-example',
   styles: [
     `
       :host {
@@ -35,7 +35,7 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class Tabs {
+export default class Tabs {
   selectedTab = 1;
 
   changeTab(tabIndex: number) {

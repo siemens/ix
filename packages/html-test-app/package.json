@@ -1,7 +1,7 @@
 {
   "name": "@siemens/html-test-app",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,9 +14,9 @@
   ],
   "devDependencies": {
     "vite": "^3.1.0",
-    "@siemens/ix": "~1.1.0",
-    "@siemens/ix-aggrid": "~1.1.0",
-    "@siemens/ix-echarts": "~1.1.0",
+    "@siemens/ix": "~1.2.1",
+    "@siemens/ix-aggrid": "~1.2.1",
+    "@siemens/ix-echarts": "~1.2.1",
     "@siemens/ix-icons": "~1.0.0"
   }
 }

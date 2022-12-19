@@ -16,7 +16,7 @@ type TreeData = {
   icon: string;
 };
 
-export const TreeCustom: React.FC = () => {
+export default () => {
   const [context, setContext] = useState<TreeContext>();
   const [model] = useState<TreeModel<TreeData>>({
     root: {

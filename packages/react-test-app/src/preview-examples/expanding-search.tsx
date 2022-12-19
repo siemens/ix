@@ -10,6 +10,6 @@
 import { IxExpandingSearch } from '@siemens/ix-react';
 import React from 'react';
 
-export const ExpandingSearch: React.FC = () => {
+export default () => {
   return <IxExpandingSearch placeholder="Search..."></IxExpandingSearch>;
 };

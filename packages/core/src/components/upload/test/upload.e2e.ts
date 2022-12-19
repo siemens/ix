@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('upload', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`upload/test/basic`);
+    await page.goto('upload/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

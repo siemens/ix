@@ -7,10 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { readFileSync } from 'fs';
+import fs, { readFileSync } from 'fs';
 import fse from 'fs-extra';
-import fs from 'fs';
-import path, { join } from 'path';
+import fsp from 'fs/promises';
+import path from 'path';
+import copyLib from './copy-webcomponents.mjs';
 import { appendDocsTags } from './docs-tags.mjs';
 
 const __dirname = path.resolve();
@@ -19,6 +20,8 @@ const htmlPreviewPath = path.join(
   __dirname,
   '../html-test-app/src/preview-examples'
 );
+
+const staticPath = path.join(__dirname, 'static', 'auto-generated', 'previews');
 
 function autoGenerationWarning(previewPath) {
   // unix/win normalization
@@ -40,9 +43,11 @@ SPDX-License-Identifier: MIT
 }
 
 function generateMarkdown(previewPath, type, code) {
+  let sourceCode = code.replace(/\/\*.*SPD.*\*\/\n\n/gms, '');
+
   return `${autoGenerationWarning(
     previewPath
-  )}\n\`\`\`${type}\n${code.trimEnd()}\n\`\`\`\n`;
+  )}\n\`\`\`${type}\n${sourceCode.trimEnd()}\n\`\`\`\n`;
 }
 
 function formatMultiline(str) {
@@ -66,8 +71,7 @@ function renderTableCellWithDocsTags(name, docsTags) {
     tags = appendDocsTags(tags, docsTags);
   }
 
-  const eventNameContainer = `<div className="Api__Table"> <div>${eventName}</div> <div className="Api__Table Docs__Tags">${tags}</div></div>`;
-
+  const eventNameContainer = `<div className="Api__Table"><div>${eventName}</div><div className="Api__Table Docs__Tags">${tags}</div></div>`;
   return removeNewLines(eventNameContainer);
 }
 
@@ -88,11 +92,12 @@ function writeEvents(events) {
 |------------|-------------------------------|------------------|--------|
 ${events
   .map((event) => {
-    const eventName = renderTableCellWithDocsTags(event.event, event.docsTags);
+    const eventDocs = renderTableCellWithDocsTags(
+      formatMultiline(event.docs),
+      event.docsTags
+    );
 
-    const eventEntry = `|${eventName}| ${formatMultiline(event.docs)} | \`${
-      event.detail
-    }\``;
+    const eventEntry = `|${event.event}| ${eventDocs} | \`${event.detail}\``;
 
     return eventEntry;
   })
@@ -108,15 +113,17 @@ function writeProps(properties) {
   return `| Name       | Description                   | Attribute        | Type                                      | Default             |
 |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
 ${properties
-  .map(
-    (prop) =>
-      `|${renderTableCellWithDocsTags(
-        prop.name,
-        prop.docsTags
-      )}| ${formatMultiline(prop.docs)} | \`${
-        prop.attr
-      }\` | \`${prop.type.replace(/\|/g, '\uff5c')}\` | \`${prop.default}\` |`
-  )
+  .map((prop) => {
+    const propName = prop.name;
+    const propDescription = renderTableCellWithDocsTags(
+      formatMultiline(prop.docs),
+      prop.docsTags
+    );
+
+    const propType = prop.type.replace(/\|/g, '\uff5c');
+
+    return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
+  })
   .join('\n')}
 `;
 }
@@ -131,7 +138,10 @@ function writeApi(component) {
   fse.outputFileSync(path.join(output, 'events.md'), data);
 }
 
-function writeWebComponentPreviews() {
+async function writeWebComponentPreviews() {
+  const htmlPreviewSourceCodePath = path.join(staticPath, 'javascript');
+  fse.ensureDirSync(htmlPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -140,33 +150,44 @@ function writeWebComponentPreviews() {
       path.join(htmlPreviewPath, name),
     ]);
 
-  webComponentPreviews.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'web-component'
-    );
-    fse.ensureDirSync(writePath);
+  await Promise.all(
+    webComponentPreviews.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'web-component'
+      );
+      fse.ensureDirSync(writePath);
 
-    let code = fs.readFileSync(previewPath).toString();
-    const CODE_SPLIT = '<!-- Preview code -->\n';
-    const splitHtmlContent = code.split(CODE_SPLIT);
-    if (splitHtmlContent?.length === 3) {
-      code = splitHtmlContent[1]
-        .split('\n')
-        .map((line) => line.replace(/[ ]{4}/, ''))
-        .join('\n')
-        .trimEnd();
-    }
+      let code = fs.readFileSync(previewPath).toString();
+      const CODE_SPLIT = '<!-- Preview code -->\n';
+      const splitHtmlContent = code.split(CODE_SPLIT);
+      if (splitHtmlContent?.length === 3) {
+        code = splitHtmlContent[1]
+          .split('\n')
+          .map((line) => line.replace(/[ ]{4}/, ''))
+          .join('\n')
+          .trimEnd();
+      }
 
-    const markdown = generateMarkdown(previewPath, 'html', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+      const markdown = generateMarkdown(previewPath, 'html', code);
+      return [
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(
+          path.join(htmlPreviewSourceCodePath, `${name}.txt`),
+          code
+        ),
+      ];
+    })
+  );
 }
 
-function writeReactPreviews() {
+async function writeReactPreviews() {
+  const reactPreviewSourceCodePath = path.join(staticPath, 'react');
+  fse.ensureDirSync(reactPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -190,22 +211,31 @@ function writeReactPreviews() {
     })
     .map((name) => [name, path.join(reactPreviewPath, `${name}.tsx`)]);
 
-  reactPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'react'
-    );
-    fse.ensureDirSync(writePath);
-    const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, 'tsx', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+  await Promise.all(
+    reactPreviewPaths.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'react'
+      );
+      fse.ensureDirSync(writePath);
+      const code = fs.readFileSync(previewPath).toString();
+      const markdown = generateMarkdown(previewPath, 'tsx', code);
+
+      return [
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(path.join(staticPath, 'react', `${name}.txt`), code),
+      ];
+    })
+  );
 }
 
-function writeAngularPreviews() {
+async function writeAngularPreviews() {
+  const angularPreviewSourceCodePath = path.join(staticPath, 'angular');
+  fse.ensureDirSync(angularPreviewSourceCodePath);
+
   const webComponentPreviews = fs
     .readdirSync(htmlPreviewPath)
     .filter((name) => name.includes('.html'))
@@ -231,27 +261,37 @@ function writeAngularPreviews() {
     })
     .map((name) => [name, path.join(angularPreviewPath, `${name}.ts`)]);
 
-  angularPreviewPaths.forEach(([name, previewPath]) => {
-    const writePath = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      'previews',
-      'angular'
-    );
-    fse.ensureDirSync(writePath);
+  await Promise.all(
+    angularPreviewPaths.flatMap(([name, previewPath]) => {
+      const writePath = path.join(
+        __dirname,
+        'docs',
+        'auto-generated',
+        'previews',
+        'angular'
+      );
+      fse.ensureDirSync(writePath);
 
-    const code = fs.readFileSync(previewPath).toString();
-    const markdown = generateMarkdown(previewPath, 'typescript', code);
-    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
-  });
+      const code = fs.readFileSync(previewPath).toString();
+      const markdown = generateMarkdown(previewPath, 'typescript', code);
+      return [
+        fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+        fsp.writeFile(
+          path.join(angularPreviewSourceCodePath, `${name}.txt`),
+          code
+        ),
+      ];
+    })
+  );
 }
 
-(function () {
+(async function () {
+  await copyLib();
+
   const { components } = readComponents();
   components.forEach(writeApi);
 
-  writeWebComponentPreviews();
-  writeReactPreviews();
-  writeAngularPreviews();
+  await writeWebComponentPreviews();
+  await writeReactPreviews();
+  await writeAngularPreviews();
 })();

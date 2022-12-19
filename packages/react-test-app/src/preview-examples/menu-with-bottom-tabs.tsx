@@ -7,19 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-    IxMenu,
-    IxMenuItem
-} from '@siemens/ix-react';
+import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const Menu: React.FC = () => {
+export default () => {
   return (
     <IxMenu>
       <IxMenuItem home-tab tab-icon="home">
         Home
       </IxMenuItem>
-      <IxMenuItem tab-icon="globe" slot="bottom"> Bottom Tab </IxMenuItem>
+      <IxMenuItem tab-icon="globe" slot="bottom">
+        {' '}
+        Bottom Tab{' '}
+      </IxMenuItem>
     </IxMenu>
   );
 };

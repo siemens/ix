@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Button } from '../button/button';
 
 @Component({
   tag: 'ix-icon-button',
+  styleUrl: 'icon-button.scss',
   scoped: true,
 })
 export class IconButton implements Button {
@@ -29,7 +30,7 @@ export class IconButton implements Button {
   /**
    * Button invisible
    *
-   * @deprecated use ghost property
+   * @deprecated Use ghost property
    */
   @Prop() invisible: boolean;
 
@@ -75,8 +76,6 @@ export class IconButton implements Button {
 
   private getIconButtonClasses() {
     return {
-      'btn-icon-xs': this.size === '12',
-      'btn-icon-s': this.size === '16',
       ...getButtonClasses(
         this.variant,
         this.outline,
@@ -86,17 +85,23 @@ export class IconButton implements Button {
         this.selected,
         this.disabled
       ),
+      'icon-button': true,
+      'btn-icon-12': this.size === '12',
+      'btn-icon-16': this.size === '16',
+      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
     };
   }
 
   render() {
     return (
-      <button class={this.getIconButtonClasses()} type={this.type}>
-        <ix-icon size={this.size} name={this.icon} color={this.color} />
-        <div style={{ display: 'none' }}>
-          <slot></slot>
-        </div>
-      </button>
+      <Host class={{ disabled: this.disabled }}>
+        <button class={this.getIconButtonClasses()} type={this.type}>
+          <ix-icon size={this.size} name={this.icon} color={this.color} />
+          <div style={{ display: 'none' }}>
+            <slot></slot>
+          </div>
+        </button>
+      </Host>
     );
   }
 }

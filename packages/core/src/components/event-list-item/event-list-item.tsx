@@ -50,7 +50,7 @@ export class EventListItem {
    * Opacity of the status indicator.
    * Defaults to 1.0
    *
-   * @deprecated Will be removed in 7.0.0. Use color with alpha value.
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() opacity = 1;
 
@@ -87,7 +87,11 @@ export class EventListItem {
           <div class="event-content">
             <slot></slot>
           </div>
-          { this.chevron ? <i class="glyph glyph-16 glyph-chevron-right chevron-icon"></i> : '' }
+          {this.chevron ? (
+            <i class="glyph glyph-16 glyph-chevron-right chevron-icon"></i>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     );

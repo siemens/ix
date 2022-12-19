@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-expanding-search/props.md';
 import Events from './../auto-generated/ix-expanding-search/events.md';
 
@@ -11,17 +10,14 @@ import SourceAngularExpandingSearch from './../auto-generated/previews/angular/e
 
 ## Usage
 
-<Preview name="expanding-search" height="4rem">
-  <TabItem value="javascript">
-    <SourceExpandingSearch />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactExpandingSearch />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularExpandingSearch />
-  </TabItem>
-</Preview>
+<Playground
+name="expanding-search" height="4rem"
+frameworks={{
+  react: SourceReactExpandingSearch,
+  angular: SourceAngularExpandingSearch,
+  javascript: SourceExpandingSearch
+}}>
+</Playground>
 
 ## Properties
 

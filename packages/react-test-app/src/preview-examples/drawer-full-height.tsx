@@ -10,7 +10,7 @@
 import { IxButton, IxDrawer } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
-export const DrawerFullHeight: React.FC = () => {
+export default () => {
   const [show, setShow] = useState(false);
 
   return (

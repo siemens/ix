@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-event-list/props.md';
 import Events from './../auto-generated/ix-event-list/events.md';
@@ -22,63 +21,50 @@ import SourceAngularEventListSelected from './../auto-generated/previews/angular
 import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.md'
 import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.md'
 
-# Event List
+# Event list
 
 ## Usage
 
-<Preview name="event-list" height="14rem">
-  <TabItem value="javascript">
-    <SourceEventList />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactEventList />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularEventList />
-  </TabItem>
-</Preview>
+<Playground
+name="event-list" height="14rem"
+frameworks={{
+  react: SourceReactEventList,
+  angular: SourceAngularEventList,
+  javascript: SourceEventList
+}}></Playground>
 
 ### Selected
 
-<Preview name="event-list-selected" height="14rem">
-  <TabItem value="javascript">
-    <SourceEventListSelected />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactEventListSelected />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularEventListSelected />
-  </TabItem>
-</Preview>
+<Playground
+name="event-list-selected" height="14rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactEventListSelected,
+  angular: SourceAngularEventListSelected,
+  javascript: SourceEventListSelected
+}}></Playground>
 
 ### Custom item height
 
-<Preview name="event-list-custom-item-height" height="15rem">
-  <TabItem value="javascript">
-    <SourceEventListHeight />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactEventListHeight />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularEventListHeight />
-  </TabItem>
-</Preview>
+<Playground
+name="event-list-custom-item-height" height="15rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactEventListHeight,
+  angular: SourceAngularEventListHeight,
+  javascript: SourceEventListHeight
+}}></Playground>
 
 ### Compact
 
-<Preview name="event-list-compact" height="14rem">
-  <TabItem value="javascript">
-    <SourceEventListCompact />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactEventListCompact />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularEventListCompact />
-  </TabItem>
-</Preview>
+<Playground
+name="event-list-compact" height="14rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactEventListCompact,
+  angular: SourceAngularEventListCompact,
+  javascript: SourceEventListCompact
+}}></Playground>
 
 ## Properties (ix-event-list)
 

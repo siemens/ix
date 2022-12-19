@@ -2,9 +2,9 @@ import {Card, CardList} from '@site/src/components/Card';
 import DesignKit from '@site/src/components/design-kit/DesignKit';
 import Separator from '@site/src/components/separator/Separator';
 
-# iX Design Kits
+# iX design kits
 
-Download our iX Design System here. There are two Sketch libraries available, one for Siemens employees with brand elements and one open-source library.
+Download our Siemens Industrial Experience Design System here. There are two Sketch libraries available, one for Siemens employees with brand elements and one open-source library.
 
 The Figma library is coming soon.
 

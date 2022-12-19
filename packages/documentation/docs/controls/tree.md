@@ -1,6 +1,9 @@
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../auto-generated/ix-tree/props.md';
+import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
 import Events from './../auto-generated/ix-tree/events.md';
+import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 import TabItem from '@theme/TabItem';
 
 import SourceTree from './../auto-generated/previews/web-component/tree.md';
@@ -16,33 +19,26 @@ import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-c
 
 ## Usage
 
-<Preview name="tree" height="16rem">
-  <TabItem value="javascript">
-    <SourceTree />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTree />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTree />
-  </TabItem>
-</Preview>
+<Playground
+name="tree" height="16rem"
+frameworks={{
+  react: SourceReactTree,
+  angular: SourceAngularTree,
+  javascript: SourceTree
+}}></Playground>
 
 ### Custom tree node
 
-<Preview name="tree-custom" height="16rem">
-  <TabItem value="javascript">
-    <SourceTreeCustom />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTreeCustom />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTreeCustom />
-  </TabItem>
-</Preview>
+<Playground
+name="tree-custom" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactTreeCustom,
+  angular: SourceAngularTreeCustom,
+  javascript: SourceTreeCustom
+}}></Playground>
 
-## Properties
+## Properties (ix-tree)
 
 ### Props
 
@@ -51,3 +47,13 @@ import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-c
 ### Events
 
 <Events />
+
+## Properties (ix-tree-item)
+
+### Props
+
+<TreeItemProps />
+
+### Events
+
+<TreeItemEvents />

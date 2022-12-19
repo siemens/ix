@@ -2,8 +2,8 @@
 sidebar_position: 2
 ---
 
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../../auto-generated/ix-menu-settings/props.md';
 
 import MenuProps from './../../auto-generated/ix-menu/props.md';
@@ -28,35 +28,29 @@ import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-
 import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.md'
 import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.md'
 
-# Navigation Menu
+# Navigation menu
 
 ## Usage
 
-<Preview name="vertical-tabs" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <SourceMenu />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactMenu />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularMenu />
-  </TabItem>
-</Preview>
+<Playground
+name="vertical-tabs" height="30rem" noMargin
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactMenu,
+  angular: SourceAngularMenu,
+  javascript: SourceMenu
+}}></Playground>
 
 ## Avatar
 
-<Preview name="vertical-tabs-with-avatar" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <SourceMenuWithAvatar />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactMenuWithAvatar />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularMenuWithAvatar />
-  </TabItem>
-</Preview>
+<Playground
+name="vertical-tabs-with-avatar" height="30rem" noMargin
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactMenuWithAvatar,
+  angular: SourceAngularMenuWithAvatar,
+  javascript: SourceMenuWithAvatar
+}}></Playground>
 
 ## Bottom tabs
 
@@ -64,17 +58,14 @@ import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/ang
   <strong>Caution</strong>: Since the old implementation using the bottom property on menu items had some problems and will not work anymore please use slot="bottom" instead.
 </div>
 
-<Preview name="menu-with-bottom-tabs" height="30rem" noMargin>
-  <TabItem value="javascript">
-    <SourceMenuWithBottomTabs />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactMenuWithBottomTabs />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularMenuWithBottomTabs />
-  </TabItem>
-</Preview>
+<Playground
+name="menu-with-bottom-tabs" height="30rem" noMargin
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactMenuWithBottomTabs,
+  angular: SourceAngularMenuWithBottomTabs,
+  javascript: SourceMenuWithBottomTabs
+}}></Playground>
 
 ## Properties (ix-menu)
 

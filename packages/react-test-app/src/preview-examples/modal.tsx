@@ -14,7 +14,7 @@ import {
   ModalRef,
   showModal,
 } from '@siemens/ix-react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 function CustomModal() {
   const modalRef = useRef<ModalRef>(null);
@@ -48,11 +48,15 @@ function CustomModal() {
   );
 }
 
-export const ModalExample: React.FC = () => {
-  function show() {
-    showModal({
+export default () => {
+  async function show() {
+    const modal = await showModal({
       title: 'test',
       content: <CustomModal />,
+    });
+
+    modal.htmlElement.addEventListener('keypress', (keyboardEvent) => {
+      console.log(keyboardEvent.key);
     });
   }
 

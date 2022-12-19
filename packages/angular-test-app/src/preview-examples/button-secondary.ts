@@ -10,18 +10,17 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-secondary',
+  selector: 'app-example',
   template: buttonSecondary(),
 })
-export class Buttons {}
+export default class Buttons {}
 function buttonSecondary(): string | undefined {
   return `
-      <ix-button class="m-1" invisible variant="Primary">
+      <ix-button class="m-1" ghost variant="Primary">
         Button
       </ix-button>
-      <ix-button class="m-1" disabled invisible variant="Primary">
+      <ix-button class="m-1" disabled ghost variant="Primary">
         Button
       </ix-button>
   `;
 }
-

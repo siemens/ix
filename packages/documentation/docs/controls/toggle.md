@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-toggle/props.md';
 import Events from './../auto-generated/ix-toggle/events.md';
@@ -23,59 +22,46 @@ import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/to
 
 ## Usage
 
-<Preview name="toggle">
-  <TabItem value="javascript">
-    <SourceToggle />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToggle />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToggle />
-  </TabItem>
-</Preview>
+<Playground
+name="toggle"
+frameworks={{
+  react: SourceReactToggle,
+  angular: SourceAngularToggle,
+  javascript: SourceToggle
+}}></Playground>
 
 ### Custom label
 
-<Preview name="toggle-custom-label">
-  <TabItem value="javascript">
-    <SourceToggleLabel />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToggleLabel />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToggleLabel />
-  </TabItem>
-</Preview>
+<Playground
+name="toggle-custom-label"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactToggleLabel,
+  angular: SourceAngularToggleLabel,
+  javascript: SourceToggleLabel
+}}></Playground>
 
 ### Different colors
 
-<Preview name="toggle-color">
-  <TabItem value="javascript">
-    <SourceToggleColor />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToggleColor />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToggleColor />
-  </TabItem>
-</Preview>
+<Playground
+name="toggle-color"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactToggleColor,
+  angular: SourceAngularToggleColor,
+  javascript: SourceToggleColor
+}}></Playground>
 
 ### Disabled
 
-<Preview name="toggle-custom-disable">
-  <TabItem value="javascript">
-    <SourceToggleDisbaled />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToggleDisbaled />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToggleDisbaled />
-  </TabItem>
-</Preview>
+<Playground
+name="toggle-disabled"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactToggleDisbaled,
+  angular: SourceAngularToggleDisbaled,
+  javascript: SourceToggleDisbaled
+}}></Playground>
 
 ## Properties
 

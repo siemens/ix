@@ -21,20 +21,6 @@
   max-width: 19.75rem;
   border-color: var(--theme-group-item--border-color);
 
-  .group-header-context-button {
-    display: block;
-    position: relative;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-left: auto;
-
-    ix-icon-button {
-      &::after {
-        display: none;
-      }
-    }
-  }
-
   .group-header {
     height: 4rem;
     min-height: 4rem;
@@ -144,7 +130,7 @@
 
   .group-header.selected {
     .group-header-selection-indicator {
-      background-color: var(--theme-color-input-focus);
+      background-color: var(--theme-color-input--focus);
     }
   }
 

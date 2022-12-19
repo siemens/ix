@@ -15,18 +15,19 @@ export type ModalConfig = {
   content: React.ReactNode;
 };
 
-export async function showModal(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function showModal<TReason = any>(
   config: Omit<IxModalConfig, 'content'> & ModalConfig
 ) {
   if (typeof config.content === 'string') {
-    return modal(config as IxModalConfig);
+    return modal<TReason>(config as IxModalConfig);
   }
 
   const container = document.createElement('DIV');
   const root = ReactDOMClient.createRoot(container);
   root.render(config.content);
 
-  const modalInstance = await modal({
+  const modalInstance = await modal<TReason>({
     ...config,
     content: container,
   });

@@ -19,7 +19,7 @@ describe('ix-drawer', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [Drawer],
-      html: `<ix-drawer></ix-drawer>`,
+      html: '<ix-drawer></ix-drawer>',
     });
 
     drawer = document.querySelector('ix-drawer');

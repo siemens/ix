@@ -44,7 +44,7 @@ export class DatePicker {
   @Prop() range: boolean = true;
 
   /**
-   * @deprecated - will get removed with next major release
+   * @deprecated Will be removed in 2.0.0
    */
   @Prop() individual: boolean = true;
 
@@ -145,7 +145,7 @@ export class DatePicker {
   /**
    * Date selection confirmed via button action
    *
-   * @deprecated Use `dateSelect`
+   * @deprecated Will be removed in 2.0.0. Use `dateSelect`
    */
   @Event() done: EventEmitter<string>;
 
@@ -242,7 +242,7 @@ export class DatePicker {
     weekdays = days.reduce((result, item, index) => {
       const weekIndex = Math.floor(index / this.daysInWeek);
 
-      if (!result[weekIndex]) result[weekIndex] = []; // start a new chunk
+      if (!result[weekIndex]) result[weekIndex] = [];
 
       result[weekIndex].push(item);
 

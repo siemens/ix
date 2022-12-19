@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-chip',
+  selector: 'app-example',
   template: `
     <ix-chip closable outline> Primary </ix-chip>
     <ix-chip icon="print">Primary with icon</ix-chip>
@@ -36,4 +36,4 @@ import { Component } from '@angular/core';
     </ix-chip>
   `,
 })
-export class Chip {}
+export default class Chip {}

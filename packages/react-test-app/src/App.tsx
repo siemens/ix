@@ -6,34 +6,20 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { IxButton } from '@siemens/ix-react';
+import React, { useState } from 'react';
 
-import { IxDropdown, IxDropdownItem, IxIcon } from '@siemens/ix-react';
-import { useState } from 'react';
+function ToggleMe(props: { toggle: boolean }) {
+  return <IxButton>{props.toggle ? 'Test 1' : 'Test 2'}</IxButton>;
+}
 
 function App() {
-  const [items] = useState(['Item 1', 'Abc 2', 'Blabla 3']);
-  const [filter, setFilter] = useState('');
+  const [toggle, setToggle] = useState(false);
 
   return (
     <div>
-      <IxIcon name="print" style={{ color: 'red' }} id="test" />
-      <IxDropdown trigger={'test'} closeBehavior="outside">
-        <input
-          onInput={(e) => setFilter((e.target as HTMLInputElement).value)}
-        />
-
-        {items
-          .filter((i) => {
-            if (!filter) {
-              return true;
-            }
-
-            return i.includes(filter);
-          })
-          .map((i) => (
-            <IxDropdownItem label={i} key={i} />
-          ))}
-      </IxDropdown>
+      <IxButton onClick={() => setToggle(!toggle)}>Toggle!</IxButton>
+      <ToggleMe toggle={toggle} />
     </div>
   );
 }

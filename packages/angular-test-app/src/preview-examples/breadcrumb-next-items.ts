@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-breacrumb-next-items',
+  selector: 'app-example',
   template: `
     <ix-breadcrumb [nextItems]="nextItems">
       <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
@@ -19,6 +19,6 @@ import { Component } from '@angular/core';
     </ix-breadcrumb>
   `,
 })
-export class BreadcrumbNextItems {
+export default class BreadcrumbNextItems {
   nextItems = ['Next Item 1'];
 }

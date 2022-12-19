@@ -15,7 +15,7 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('workflow-steps', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto(`workflow-steps/test/basic`);
+    await page.goto('workflow-steps/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

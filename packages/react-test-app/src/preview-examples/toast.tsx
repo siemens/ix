@@ -10,7 +10,7 @@
 import { IxButton, showToast } from '@siemens/ix-react';
 import React from 'react';
 
-export const Toast: React.FC = () => {
+export default () => {
   return (
     <>
       <IxButton

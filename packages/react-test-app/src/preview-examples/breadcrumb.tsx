@@ -10,7 +10,7 @@
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const Breadcrumb: React.FC = () => {
+export default () => {
   return (
     <IxBreadcrumb>
       <IxBreadcrumbItem label="Item 1"></IxBreadcrumbItem>

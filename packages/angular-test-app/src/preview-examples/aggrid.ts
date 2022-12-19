@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-aggrid',
+  selector: 'app-example',
   template: `
     <ag-grid-angular
       style="height: 12rem; width: 100%"
@@ -20,7 +20,7 @@ import { GridOptions } from 'ag-grid-community';
     ></ag-grid-angular>
   `,
 })
-export class AGGrid {
+export default class AGGrid {
   gridOptions = {
     columnDefs: [
       { field: 'make', resizable: true, checkboxSelection: true },

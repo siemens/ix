@@ -8,15 +8,15 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Listen,
-    Prop,
-    State
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
 } from '@stencil/core';
 
 @Component({
@@ -228,17 +228,9 @@ export class Group {
               <slot name="header"></slot>
             </div>
           </div>
-          <div class={{ 'group-header-context-button': true, 'd-none': false }}>
-            <ix-icon-button
-              ref={(ref) => (this.dropdownTriggerRef = ref)}
-              size="24"
-              ghost={true}
-              icon="context-menu"
-            ></ix-icon-button>
-            <ix-dropdown trigger={this.dropdownTriggerRef}>
-              <slot name="dropdown"></slot>
-            </ix-dropdown>
-          </div>
+          <ix-group-context-menu>
+            <slot name="dropdown"></slot>
+          </ix-group-context-menu>
         </div>
         <div
           class={{

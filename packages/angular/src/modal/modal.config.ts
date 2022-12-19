@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { TemplateRef } from '@angular/core';
+import { ModalConfig as IxModalConfig } from '@siemens/ix';
 
-export type ModalConfig = {
-  content: TemplateRef<any>;
+export type ModalConfig<TDATA = any> = Omit<IxModalConfig, 'content'> & {
+  content: any;
+  data?: TDATA;
 };

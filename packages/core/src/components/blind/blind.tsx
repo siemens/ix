@@ -15,7 +15,7 @@ import {
   h,
   Host,
   Prop,
-  Watch
+  Watch,
 } from '@stencil/core';
 import anime from 'animejs';
 

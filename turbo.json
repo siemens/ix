@@ -12,10 +12,16 @@
       ],
       "outputMode": "new-only"
     },
+    "test": {
+      "cache": false
+    },
     "start": {
       "cache": false
     },
     "lint": {
+      "cache": false
+    },
+    "test:e2e": {
       "cache": false
     }
   }

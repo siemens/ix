@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-group-header-suppressed',
+  selector: 'app-example',
   template: `
     <ix-group
       header="Header text"
@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     </ix-group>
   `,
 })
-export class GroupHeaderSuppressed {}
+export default class GroupHeaderSuppressed {}

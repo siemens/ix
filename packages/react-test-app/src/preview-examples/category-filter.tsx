@@ -11,7 +11,7 @@ import { FilterState, LogicalFilterOperator } from '@siemens/ix';
 import { IxCategoryFilter } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
-export const CategoryFilter: React.FC = () => {
+export default () => {
   const [filter] = useState<FilterState>({
     tokens: ['Custom filter text'],
     categories: [

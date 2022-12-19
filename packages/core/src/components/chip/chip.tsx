@@ -8,13 +8,13 @@
  */
 
 import {
-    Component,
-    Element,
-    Event,
-    EventEmitter,
-    h,
-    Host,
-    Prop
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
 } from '@stencil/core';
 
 @Component({
@@ -39,7 +39,7 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Display chip in active state. Only working witht `variant="primary"`
+   * Display chip in active state. Only works with `variant="primary"`
    */
   @Prop() active = false;
 

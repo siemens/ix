@@ -38,13 +38,14 @@ $classic-dark: (
     color-inv-weak-text: rgba(0, 0, 0, 0.3),
     color-lightbox: rgba(0, 0, 0, 0.55),
     color-backdrop: rgba(16, 24, 28, 0.85),
-    color-input-focus: #00ffb9,
+    color-input--focus: #00ffb9,
     app-header--color: rgba(255, 255, 255, 0.85),
     app-header--background: #555f69,
     app-header--border-color: rgba(0, 0, 0, 0),
     link-btn--border-color--hover: #41aaaa,
     btn-secondary--background--disabled: rgba(255, 255, 255, 0.25),
-    btn-invisible-secondary--background--selected-active: rgba(113, 191, 191, 0.32),
+    btn-invisible-secondary--background--selected-active:
+      rgba(113, 191, 191, 0.32),
     btn-secondary--color--active: rgba(255, 255, 255, 0.75),
     btn-primary--border-color--hover: rgba(255, 255, 255, 0),
     btn-secondary--color: rgba(255, 255, 255, 0.75),
@@ -823,5 +824,4 @@ $classic-dark: (
     chart-16: #baba9d,
     chart-17-40: rgba(181, 189, 0, 0.4),
     chart-17: #b5bd00,
-
 );

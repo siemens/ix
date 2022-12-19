@@ -58,7 +58,7 @@ export class MapNavigationOverlay {
       easing: 'easeOutSine',
       begin: () => {
         this.hostElement.classList.remove('d-none');
-      }
+      },
     });
   }
 
@@ -100,7 +100,7 @@ export class MapNavigationOverlay {
           </div>
           <ix-icon-button
             class="overlay-close"
-            invisible
+            ghost
             icon="close"
             size="24"
             onClick={() => this.closeOverlay()}

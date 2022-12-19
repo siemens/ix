@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tabs-rounded',
+  selector: 'app-example',
   styles: [
     `
       :host {
@@ -39,4 +39,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class TabsRounded {}
+export default class TabsRounded {}

@@ -1,5 +1,4 @@
-import Preview from '@site/src/components/Preview';
-import TabItem from '@theme/TabItem';
+import Playground from '@site/src/components/Playground';
 
 import SourceToast from './../auto-generated/previews/web-component/toast.md';
 import SourceReactToast from './../auto-generated/previews/react/toast.md';
@@ -11,28 +10,21 @@ import SourceReactToastCustom from './../auto-generated/previews/react/toast-cus
 
 # Toast
 
-<Preview name="toast" height="18rem">
-  <TabItem value="javascript">
-    <SourceToast />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToast />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToast />
-  </TabItem>
-</Preview>
+<Playground
+name="toast" height="18rem"
+frameworks={{
+  react: SourceReactToast,
+  angular: SourceAngularToast,
+  javascript: SourceToast
+}}></Playground>
 
 ## Custom toast message
 
-<Preview name="toast-custom" height="18rem">
-  <TabItem value="javascript">
-    <SourceToastCustom />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularToastCustom />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactToastCustom />
-  </TabItem>
-</Preview>
+<Playground
+name="toast-custom" height="18rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactToastCustom,
+  angular: SourceAngularToastCustom,
+  javascript: SourceToastCustom
+}}></Playground>

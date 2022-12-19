@@ -10,9 +10,10 @@
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const BasicNavigation: React.FC = () => {
+export default () => {
   return (
     <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
         <IxMenuItem>Item 2</IxMenuItem>
