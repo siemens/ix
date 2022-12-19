@@ -14,7 +14,7 @@
 $border-radius: 100px;
 
 :host {
-  display: flex;
+  display: inline-flex;
   width: fit-content;
   position: relative;
   align-items: center;
@@ -28,6 +28,11 @@ $border-radius: 100px;
 
   .with-icon {
     margin-right: $tiny-space;
+  }
+
+  .hidden {
+    width: 0 !important;
+    margin-right: 0 !important;
   }
 
   margin-left: $tiny-space;
