@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Button } from '../button/button';
 
@@ -94,12 +94,14 @@ export class IconButton implements Button {
 
   render() {
     return (
-      <button class={this.getIconButtonClasses()} type={this.type}>
-        <ix-icon size={this.size} name={this.icon} color={this.color} />
-        <div style={{ display: 'none' }}>
-          <slot></slot>
-        </div>
-      </button>
+      <Host class={{ disabled: this.disabled }}>
+        <button class={this.getIconButtonClasses()} type={this.type}>
+          <ix-icon size={this.size} name={this.icon} color={this.color} />
+          <div style={{ display: 'none' }}>
+            <slot></slot>
+          </div>
+        </button>
+      </Host>
     );
   }
 }

@@ -7,6 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 :host {
+  &.disabled {
+    pointer-events: none;
+  }
+
   .icon-button {
     padding: 0;
     overflow: hidden;
