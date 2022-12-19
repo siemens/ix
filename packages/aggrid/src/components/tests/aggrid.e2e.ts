@@ -11,12 +11,12 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('aggrid', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('basic.html');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('filter', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('basic.html');
 
     const filterHandle = await page.waitForSelector('.ag-header-cell:nth-child(2) [ref="eMenu"]');
     await filterHandle.click();
@@ -24,6 +24,11 @@ regressionTest.describe('aggrid', () => {
     const inputHandle = await page.waitForSelector('.ag-input-field-input.ag-text-field-input');
     await inputHandle.fill('Test');
 
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('pagination', async ({ page }) => {
+    await page.goto('pagination.html');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
