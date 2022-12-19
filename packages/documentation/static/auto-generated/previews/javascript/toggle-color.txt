@@ -1,0 +1,1 @@
+<ix-toggle color="warning"></ix-toggle>

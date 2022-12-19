@@ -1,0 +1,1 @@
+<ix-time-picker style="display: block; width: 20rem"></ix-time-picker>
