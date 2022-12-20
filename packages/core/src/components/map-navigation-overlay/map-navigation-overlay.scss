@@ -59,5 +59,10 @@
   .overlay-close {
     margin-left: auto;
     margin-right: $default-space;
+    cursor: pointer;
+  }
+
+  .overlay-close:hover {
+    background-color: red;
   }
 }
