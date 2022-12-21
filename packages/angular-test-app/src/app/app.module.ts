@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import AGGrid from 'src/preview-examples/aggrid';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
@@ -183,5 +184,6 @@ import { NavigationTestComponent } from './components/navigation-test.component'
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,0 +1,51 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Theme switcher example</title>
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-button id="toggleModeButton" class="mb-2">Toggle mode</ix-button>
+    <ix-select id="selectTheme">
+      <ix-select-item
+        label="Classic light"
+        value="theme-classic-light"
+      ></ix-select-item>
+      <ix-select-item
+        label="Classic dark"
+        value="theme-classic-dark"
+      ></ix-select-item>
+    </ix-select>
+
+    <script type="module">
+      import { ThemeSwitcher } from '@siemens/ix';
+
+      (async function () {
+        const themeSwitcher = new ThemeSwitcher();
+
+        document
+          .getElementById('toggleModeButton')
+          .addEventListener('click', () => {
+            themeSwitcher.toggleMode();
+          });
+
+        document
+          .getElementById('selectTheme')
+          .addEventListener('itemSelectionChange', (theme) => {
+            themeSwitcher.setTheme(theme.detail);
+          });
+
+        themeSwitcher.themeChanged.on((theme) => console.log(theme));
+      })();
+    </script>
+
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

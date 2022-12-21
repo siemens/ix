@@ -68,6 +68,7 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
+import ThemeService from 'src/preview-examples/theme-service';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
@@ -245,6 +246,7 @@ const routes: Routes = [
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
+      { path: 'theme-service', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-color', component: ToggleColor },
