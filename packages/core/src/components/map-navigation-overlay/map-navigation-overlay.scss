@@ -6,63 +6,49 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-@import 'common-variables';
-@import 'fonts';
-@import 'mixins/text-truncation';
-
-:host {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  top: 0;
-
-  background-color: var(--theme-overlay--background);
-
-  .overlay-header {
-    display: flex;
-    position: relative;
-    justify-content: flex-start;
-    align-items: center;
-    height: 3.5rem;
-
-    background-color: var(--theme-overlay-header--background);
-  }
-
-  .overlay-header-content {
-    display: flex;
-    align-items: center;
-    min-width: 0;
-
-    ix-icon {
-      margin-left: $default-space;
-      color: var(--theme-overlay-header--color);
-    }
-
-    .overlay-header-title {
-      @include text-h2;
-      @include ellipsis;
-      color: var(--theme-overlay-header--color);
-      margin-left: $default-space;
-    }
-  }
-
-  .color-indicator {
-    display: inline-block;
-    position: relative;
-    width: $small-space;
-    height: 100%;
-    background-color: var(--theme-color-neutral);
-  }
-
-  .overlay-close {
-    margin-left: auto;
-    margin-right: $default-space;
-    cursor: pointer;
-  }
-
-  .overlay-close:hover {
-    background-color: red;
-  }
-}
+ @import 'common-variables';
+ @import 'fonts';
+ @import 'mixins/text-truncation';
+ :host {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   z-index: 2;
+   top: 0;
+   background-color: var(--theme-overlay--background);
+   .overlay-header {
+     display: flex;
+     position: relative;
+     justify-content: flex-start;
+     align-items: center;
+     height: 3.5rem;
+     background-color: var(--theme-overlay-header--background);
+   }
+   .overlay-header-content {
+     display: flex;
+     align-items: center;
+     min-width: 0;
+     ix-icon {
+       margin-left: $default-space;
+       color: var(--theme-overlay-header--color);
+     }
+     .overlay-header-title {
+       @include text-h2;
+       @include ellipsis;
+       color: var(--theme-overlay-header--color);
+       margin-left: $default-space;
+     }
+   }
+   .color-indicator {
+     display: inline-block;
+     position: relative;
+     width: $small-space;
+     height: 100%;
+     background-color: var(--theme-color-neutral);
+   }
+   .overlay-close {
+     margin-left: auto;
+     margin-right: $default-space;
+     cursor: pointer;
+   }
+ }
