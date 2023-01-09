@@ -5,8 +5,8 @@ sidebar_position: 2
 import Playground from '@site/src/components/Playground';
 
 import SourceWebComponent from './../auto-generated/previews/web-component/theme-switcher.md'
-import ReactComponent from './../auto-generated/previews/angular/theme-service.md'
-import AngularComponent from './../auto-generated/previews/angular/theme-service.md'
+import ReactComponent from './../auto-generated/previews/angular/theme-switcher.md'
+import AngularComponent from './../auto-generated/previews/angular/theme-switcher.md'
 
 # Themes
 
