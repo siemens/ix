@@ -32,6 +32,7 @@ export default {
     borderColor: '#000000',
     borderWidth: 0,
     visualMapColor: ['#dc0031', '#ff8d00', '#f0b800'],
+    legendTextColor: '#000000',
     legend: {
       textStyle: {
         color: '#000000',

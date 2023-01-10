@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import * as echarts from 'echarts';
-import brandDarkProject from './themes/brand-dark.project';
-import brandLightProject from './themes/brand-light.project';
-import classicDarkProject from './themes/classic-dark.project';
-import classicLightProject from './themes/classic-light.project';
+import brandDarkProject from './themes/brand-dark';
+import brandLightProject from './themes/brand-light';
+import classicDarkProject from './themes/classic-dark';
+import classicLightProject from './themes/classic-light';
 
-export default function registerEChartsThemes() {
-  if (echarts === undefined) {
+export default function registerEChartsThemes(echartsInstance?: any) {
+  const e = echartsInstance ?? echarts;
+  if (e === undefined) {
     console.error('echarts not found!');
   }
 
@@ -23,6 +24,6 @@ export default function registerEChartsThemes() {
     brandDarkProject,
     brandLightProject,
   ].forEach((themeBundle) => {
-    echarts.registerTheme(themeBundle.themeName, themeBundle.theme);
+    e.registerTheme(themeBundle.themeName, themeBundle.theme);
   });
 }
