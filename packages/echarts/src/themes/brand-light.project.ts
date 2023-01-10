@@ -32,7 +32,11 @@ export default {
     borderColor: 'rgba(0,0,40,0.3)',
     borderWidth: 0,
     visualMapColor: ['#d72339', '#e96401', '#e9c32a'],
-    legendTextColor: '#000028',
+    legend: {
+      textStyle: {
+        color: '#000028',
+      },
+    },
     kColor: '#d72339',
     kColor0: '#01893a',
     kBorderColor: '#d72339',
