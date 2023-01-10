@@ -16,7 +16,7 @@ import { ThemeService } from '@siemens/ix-angular';
     <ix-button class="mb-2" (click)="themeService.toggleMode()">
       Toggle mode
     </ix-button>
-    <ix-select (itemSelectionChange)="themeService.setTheme($event)">
+    <ix-select (itemSelectionChange)="onItemSelectionChange($event)">
       <ix-select-item
         label="Classic light"
         value="theme-classic-light"
@@ -28,6 +28,11 @@ import { ThemeService } from '@siemens/ix-angular';
     </ix-select>
   `,
 })
-export default class Modal {
-  constructor(private readonly themeService: ThemeService) {}
+export default class ThemeSwitcher {
+  constructor(readonly themeService: ThemeService) {}
+
+  onItemSelectionChange(event: Event) {
+    const customEvent = event as CustomEvent<string | string[]>;
+    this.themeService.setTheme(customEvent.detail[0]);
+  }
 }
