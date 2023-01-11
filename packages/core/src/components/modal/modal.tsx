@@ -176,9 +176,8 @@ export class Modal {
 
   componentDidLoad() {
     if (this.backdrop === 'static') {
-      this.modalBackdrop.addEventListener(
-        'click',
-        this.onBackdropClick.bind(this)
+      this.modalBackdrop.addEventListener('click', (event) =>
+        this.onBackdropClick(event)
       );
     }
 
