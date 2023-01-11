@@ -10,10 +10,10 @@ import SourceReactInputDisabled from './../auto-generated/previews/react/input-d
 import SourceReactInputReadonly from './../auto-generated/previews/react/input-readonly.md'
 import SourceReactInputIcon from './../auto-generated/previews/react/input-with-icon.md'
 
-import SourceAngularInput from './../auto-generated/previews/angular/input.md'
-import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.md'
-import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.md'
-import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.md'
+import SourceAngularInput from './../auto-generated/previews/angular/input.ts.md'
+import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.ts.md'
+import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.ts.md'
+import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.ts.md'
 
 # Input
 

@@ -7,11 +7,11 @@ import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md
 
 import SourceWorkflow from './../auto-generated/previews/web-component/workflow.md';
 import SourceReactWorkflow from './../auto-generated/previews/react/workflow.md';
-import SourceAngularWorkflow from './../auto-generated/previews/angular/workflow.md';
+import SourceAngularWorkflow from './../auto-generated/previews/angular/workflow.ts.md';
 
 import SourceWorkflowVertical from './../auto-generated/previews/web-component/workflow-vertical.md';
 import SourceReactWorkflowVertical from './../auto-generated/previews/react/workflow-vertical.md';
-import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/workflow-vertical.md';
+import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/workflow-vertical.ts.md';
 
 # Workflow
 

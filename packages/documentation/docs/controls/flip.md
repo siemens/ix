@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-flip-tile/events.md';
 
 import SourceFlip from './../auto-generated/previews/web-component/flip-tile.md'
 import SourceReactFlip from './../auto-generated/previews/react/flip-tile.md'
-import SourceAngularFlip from './../auto-generated/previews/angular/flip-tile.md'
+import SourceAngularFlip from './../auto-generated/previews/angular/flip-tile.ts.md'
 
 # Flip
 

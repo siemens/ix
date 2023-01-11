@@ -13,10 +13,10 @@ import SourceReactToggleLabel from './../auto-generated/previews/react/toggle-cu
 import SourceReactToggleColor from './../auto-generated/previews/react/toggle-color.md';
 import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-disabled.md';
 
-import SourceAngularToggle from './../auto-generated/previews/angular/toggle.md';
-import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.md';
-import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.md';
-import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-disabled.md';
+import SourceAngularToggle from './../auto-generated/previews/angular/toggle.ts.md';
+import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.ts.md';
+import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.ts.md';
+import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-disabled.ts.md';
 
 # Toggle
 
