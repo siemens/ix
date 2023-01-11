@@ -4,20 +4,35 @@ export class ThemeSwitcher {
   readonly prefixTheme = 'theme-';
   readonly suffixLight = '-light';
   readonly suffixDark = '-dark';
+  readonly defaultTheme = 'theme-classic-dark';
 
   mutationObserver: MutationObserver;
+  _themeChanged = new TypedEvent<string>();
 
-  themeChanged = new TypedEvent<string>();
+  public get themeChanged() {
+    return this._themeChanged;
+  }
+
+  private hasVariantSuffix(className: string) {
+    return (
+      className.endsWith(this.suffixDark) ||
+      className.endsWith(this.suffixLight)
+    );
+  }
 
   private isThemeClass(className: string) {
     return (
-      className.startsWith(this.prefixTheme) &&
-      (className.endsWith(this.suffixDark) ||
-        className.endsWith(this.suffixLight))
+      className.startsWith(this.prefixTheme) && this.hasVariantSuffix(className)
     );
   }
 
   public setTheme(themeName: string) {
+    if (!this.isThemeClass(themeName)) {
+      throw Error(
+        `Provided theme name ${themeName} does not match our naming conventions. (theme-<name>-(dark,light))`
+      );
+    }
+
     const oldThemes: string[] = [];
 
     document.body.classList.forEach((className) => {
@@ -38,6 +53,11 @@ export class ThemeSwitcher {
         oldThemes.push(className);
       }
     });
+
+    if (oldThemes.length === 0) {
+      document.body.classList.add(this.getOppositeMode(this.defaultTheme));
+      return;
+    }
 
     oldThemes.forEach((themeName) => {
       document.body.classList.replace(
@@ -65,7 +85,7 @@ export class ThemeSwitcher {
           this.isThemeClass(className) &&
           !mutation.oldValue?.includes(className)
         ) {
-          this.themeChanged.emit(className);
+          this._themeChanged.emit(className);
         }
       });
     });
@@ -82,3 +102,5 @@ export class ThemeSwitcher {
     });
   }
 }
+
+export const themeSwitcher = new ThemeSwitcher();

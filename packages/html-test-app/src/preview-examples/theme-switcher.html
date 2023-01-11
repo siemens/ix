@@ -24,11 +24,9 @@ SPDX-License-Identifier: MIT
     </ix-select>
 
     <script type="module">
-      import { ThemeSwitcher } from '@siemens/ix';
+      import { themeSwitcher } from '@siemens/ix';
 
       (async function () {
-        const themeSwitcher = new ThemeSwitcher();
-
         document
           .getElementById('toggleModeButton')
           .addEventListener('click', () => {
@@ -37,8 +35,8 @@ SPDX-License-Identifier: MIT
 
         document
           .getElementById('selectTheme')
-          .addEventListener('itemSelectionChange', (theme) => {
-            themeSwitcher.setTheme(theme.detail);
+          .addEventListener('itemSelectionChange', ({ detail: [theme] }) => {
+            themeSwitcher.setTheme(theme);
           });
 
         themeSwitcher.themeChanged.on((theme) => console.log(theme));

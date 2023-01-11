@@ -246,7 +246,7 @@ const routes: Routes = [
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
-      { path: 'theme-service', component: ThemeService },
+      { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-color', component: ToggleColor },

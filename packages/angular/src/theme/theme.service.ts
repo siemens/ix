@@ -8,7 +8,7 @@
  */
 
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { ThemeSwitcher } from '@siemens/ix';
+import { themeSwitcher, ThemeSwitcher } from '@siemens/ix';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +16,10 @@ import { ThemeSwitcher } from '@siemens/ix';
 export class ThemeService {
   @Output() themeChanged = new EventEmitter<string>();
 
-  private themeSwitcher = new ThemeSwitcher();
+  private themeSwitcher: ThemeSwitcher;
 
   constructor() {
+    this.themeSwitcher = themeSwitcher;
     this.themeSwitcher.themeChanged.on((theme: string) =>
       this.themeChanged.emit(theme)
     );
