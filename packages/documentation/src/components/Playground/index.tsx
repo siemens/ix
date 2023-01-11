@@ -8,7 +8,7 @@
  */
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { IxTabItem, IxTabs } from '@siemens/ix-react';
+import { IxButton, IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useState } from 'react';
@@ -259,24 +259,27 @@ export default function Playground({
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
-            <ix-button
+            <IxButton
+              className="Playground__Framework__Button"
               ghost={targetFramework !== TargetFramework.ANGULAR}
               onClick={() => changeFramework(TargetFramework.ANGULAR)}
             >
               Angular
-            </ix-button>
-            <ix-button
+            </IxButton>
+            <IxButton
+              className="Playground__Framework__Button"
               ghost={targetFramework !== TargetFramework.REACT}
               onClick={() => changeFramework(TargetFramework.REACT)}
             >
               React
-            </ix-button>
-            <ix-button
+            </IxButton>
+            <IxButton
+              className="Playground__Framework__Button"
               ghost={targetFramework !== TargetFramework.JAVASCRIPT}
               onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
             >
               JavaScript
-            </ix-button>
+            </IxButton>
             <div className="Playground__Toolbar__Actions">
               <ButtonOpenGithub name={name} framework={targetFramework} />
               <ButtonOpenStackBlitz
