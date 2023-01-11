@@ -8,7 +8,21 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Dropdown example</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <script>
+      function detectThemeSwitching() {
+        const searchParams = new URLSearchParams(location.search);
+
+        if (!searchParams.has('theme')) {
+          return 'brand-dark';
+        }
+        const theme = searchParams.get('theme');
+        return theme.substring('theme-'.length, theme.length);
+      }
+
+      const theme = detectThemeSwitching();
+      window.demoTheme = theme;
+    </script>
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
@@ -17,9 +31,15 @@ SPDX-License-Identifier: MIT
       style="display: block; position: relative; width: 100%; height: 40rem"
     ></div>
     <script type="module">
-      var myChart = echarts.init(document.querySelector('#main'), 'brand-dark');
-      // Draw the chart
+      import { registerTheme } from '@siemens/ix-echarts';
 
+      registerTheme(echarts);
+
+      var myChart = echarts.init(
+        document.querySelector('#main'),
+        window.demoTheme // brand-dark, brand-light, classic-dark or classic-light
+      );
+      // Draw the chart
       myChart.setOption({
         tooltip: {
           trigger: 'axis',
