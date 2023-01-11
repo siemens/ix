@@ -21,7 +21,7 @@ import {
 } from '@stencil/core';
 import { Popover } from '../utils/popover.util';
 import { convertToRemString } from '../utils/rwd.util';
-import { ThemeSwitcher } from '../utils/theme-switcher';
+import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
   tag: 'ix-menu',
@@ -122,8 +122,6 @@ export class Menu {
   @State() activeTab: HTMLIxMenuItemElement;
 
   @State() isMoreTabEmpty = false;
-
-  private themeSwitcher = new ThemeSwitcher();
 
   private readonly domObserver = new MutationObserver(
     this.onDomChange.bind(this)
@@ -827,7 +825,7 @@ export class Menu {
           {this.enableToggleTheme ? (
             <ix-menu-item
               id="toggleTheme"
-              onClick={() => this.themeSwitcher.toggleMode()}
+              onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
               tabIcon="bulb"
             >

@@ -96,6 +96,13 @@ export class ThemeSwitcher {
       return;
     }
 
+    if (!('MutationOberver' in window)) {
+      console.warn(
+        'ThemeSwitcher not supported by your browser. Missing MutationObserver API'
+      );
+      return;
+    }
+
     this.mutationObserver = new MutationObserver((mutations) => {
       this.handleMutations(mutations);
     });
