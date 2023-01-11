@@ -452,6 +452,36 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
+    interface IxDropdownButton {
+        /**
+          * Active button
+         */
+        "active": boolean;
+        /**
+          * Disable button
+         */
+        "disabled": boolean;
+        /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
+          * Button icon
+         */
+        "icon": string;
+        /**
+          * Set label
+         */
+        "label": string;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
+          * Button varaint
+         */
+        "variant": Buttons;
+    }
     interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
@@ -1722,6 +1752,12 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
+    }
+    var HTMLIxDropdownButtonElement: {
+        prototype: HTMLIxDropdownButtonElement;
+        new (): HTMLIxDropdownButtonElement;
+    };
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
     }
     var HTMLIxDropdownItemElement: {
@@ -2039,6 +2075,7 @@ declare global {
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
+        "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
@@ -2588,6 +2625,36 @@ declare namespace LocalJSX {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement;
+    }
+    interface IxDropdownButton {
+        /**
+          * Active button
+         */
+        "active"?: boolean;
+        /**
+          * Disable button
+         */
+        "disabled"?: boolean;
+        /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
+          * Button icon
+         */
+        "icon"?: string;
+        /**
+          * Set label
+         */
+        "label"?: string;
+        /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
+          * Button varaint
+         */
+        "variant"?: Buttons;
     }
     interface IxDropdownItem {
         /**
@@ -3710,6 +3777,7 @@ declare namespace LocalJSX {
         "ix-datetime-picker": IxDatetimePicker;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
+        "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
@@ -3782,6 +3850,7 @@ declare module "@stencil/core" {
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
