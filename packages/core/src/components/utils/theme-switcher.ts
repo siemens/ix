@@ -91,7 +91,11 @@ export class ThemeSwitcher {
     });
   }
 
-  public constructor() {
+  private registerMutationObserver() {
+    if (typeof (window as any) === 'undefined') {
+      return;
+    }
+
     this.mutationObserver = new MutationObserver((mutations) => {
       this.handleMutations(mutations);
     });
@@ -100,6 +104,10 @@ export class ThemeSwitcher {
       attributeFilter: ['class'],
       attributeOldValue: true,
     });
+  }
+
+  public constructor() {
+    this.registerMutationObserver();
   }
 }
 
