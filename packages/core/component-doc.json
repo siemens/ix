@@ -2557,9 +2557,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-button",
         "ix-icon",
@@ -2575,9 +2573,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -9319,23 +9314,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-dropdown-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-dropdown-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-button",
-          "ix-icon",
-          "ix-icon-button",
-          "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
