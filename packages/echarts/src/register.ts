@@ -13,8 +13,8 @@ import classicDarkProject from './themes/classic-dark';
 import classicLightProject from './themes/classic-light';
 
 export default function registerEChartsThemes(echartsInstance?: any) {
-  const e = echartsInstance ?? echarts;
-  if (e === undefined) {
+  const chart = echartsInstance ?? echarts;
+  if (chart === undefined) {
     console.error('echarts not found!');
   }
 
@@ -24,6 +24,6 @@ export default function registerEChartsThemes(echartsInstance?: any) {
     brandDarkProject,
     brandLightProject,
   ].forEach((themeBundle) => {
-    e.registerTheme(themeBundle.themeName, themeBundle.theme);
+    chart.registerTheme(themeBundle.themeName, themeBundle.theme);
   });
 }
