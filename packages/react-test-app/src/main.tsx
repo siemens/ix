@@ -74,6 +74,7 @@ import Tabs from './preview-examples/tabs';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
+import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
 import Toast from './preview-examples/toast';
@@ -207,6 +208,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element={<ToggleCustomLabel />}
       />
       <Route path="/preview/tree" element={<Tree />} />
+      <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
       <Route path="/preview/tree-custom" element={<TreeCustom />} />
       <Route path="/preview/popover-news" element={<PopoverNews />} />
       <Route path="/preview/settings" element={<Settings />} />

@@ -2,6 +2,12 @@
 sidebar_position: 2
 ---
 
+import Playground from '@site/src/components/Playground';
+
+import SourceWebComponent from './../auto-generated/previews/web-component/theme-switcher.md'
+import ReactComponent from './../auto-generated/previews/react/theme-switcher.md'
+import AngularComponent from './../auto-generated/previews/angular/theme-switcher.md'
+
 # Themes
 
 Siemens Industrial Experience supports theming for all of its components.
@@ -29,10 +35,20 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 
 ## Siemens AG Corporate Brand Theme
 
-<div class="siemens-brand-section">
+<div className="siemens-brand-section">
 
 The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
 
 Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
 
 </div>
+
+## Working with themes during runtime
+
+<Playground
+name="theme-switcher" height="15rem"
+frameworks={{
+  react: ReactComponent,
+  angular: AngularComponent,
+  javascript: SourceWebComponent
+}}></Playground>
