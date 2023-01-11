@@ -2557,7 +2557,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon",
@@ -2573,6 +2575,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -2725,7 +2730,8 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -2750,6 +2756,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -9314,8 +9323,28 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-dropdown-button",
+        "ix-dropdown-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-dropdown-button",
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
