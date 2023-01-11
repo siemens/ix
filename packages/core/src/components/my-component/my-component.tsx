@@ -16,59 +16,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-dropdown-button
-          label="Dropdown"
-          variant="Primary"
-          icon="checkboxes"
-        >
-          <ix-dropdown-item label="123"></ix-dropdown-item>
-          <ix-dropdown-item label="123"></ix-dropdown-item>
-          <ix-dropdown-item label="123"></ix-dropdown-item>
-          <ix-dropdown-item label="123"></ix-dropdown-item>
-        </ix-dropdown-button>
-        <ix-dropdown-button
-          label="Dropdown"
-          variant="Primary"
-          outline
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label="Dropdown"
-          variant="Primary"
-          ghost
-          icon="checkboxes"
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label="Dropdown"
-          variant="Primary"
-          disabled
-          icon="checkboxes"
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label=""
-          variant="Primary"
-          icon="checkboxes"
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label=""
-          variant="Primary"
-          outline
-          icon="checkboxes"
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label=""
-          variant="Primary"
-          ghost
-          icon="checkboxes"
-        ></ix-dropdown-button>
-        <ix-dropdown-button
-          label=""
-          variant="Primary"
-          disabled
-          icon="checkboxes"
-        ></ix-dropdown-button>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
