@@ -114,6 +114,6 @@
     position: relative;
     height: 100%;
     overflow: hidden;
-    z-index: calc(var(--theme-z-index-sticky) - 1);
+    z-index: 0;
   }
 }
