@@ -167,9 +167,19 @@ export class Modal {
     });
   }
 
+  private onBackdropClick(event: Event) {
+    const target = event.target as Element;
+    if (target.classList.contains('backdrop')) {
+      this.dismiss(event);
+    }
+  }
+
   componentDidLoad() {
     if (this.backdrop === 'static') {
-      this.modalBackdrop.addEventListener('click', this.dismiss.bind(this));
+      this.modalBackdrop.addEventListener(
+        'click',
+        this.onBackdropClick.bind(this)
+      );
     }
 
     if (this.backdropClass) {
