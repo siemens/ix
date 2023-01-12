@@ -6835,23 +6835,6 @@
       },
       "props": [
         {
-          "name": "hover",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "hover",
-          "reflectToAttr": false,
-          "docs": "***Internal***",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "label",
           "type": "string",
           "mutable": false,
@@ -6901,24 +6884,7 @@
           "required": true
         }
       ],
-      "methods": [
-        {
-          "name": "onItemClick",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>",
-          "parameters": [],
-          "docs": "Internal",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "event"
-            }
-          ]
-        }
-      ],
+      "methods": [],
       "events": [
         {
           "event": "itemClick",

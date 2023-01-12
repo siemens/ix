@@ -1299,14 +1299,13 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['hover', 'label', 'selected', 'value'],
-  methods: ['onItemClick']
+  inputs: ['label', 'selected', 'value']
 })
 @Component({
   selector: 'ix-select-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['hover', 'label', 'selected', 'value']
+  inputs: ['label', 'selected', 'value']
 })
 export class IxSelectItem {
   protected el: HTMLElement;

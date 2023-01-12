@@ -13,6 +13,7 @@ import fsp from 'fs/promises';
 import path from 'path';
 import copyLib from './copy-webcomponents';
 import { appendDocsTags } from './docs-tags';
+import { escapeMarkdown } from './utils';
 import { writeAngularPreviews } from './write-angular-preview';
 
 (async function () {
@@ -95,16 +96,18 @@ SPDX-License-Identifier: MIT
       return 'No events available for this component.';
     }
 
-    return `| Name       | Description                   | Attribute        | Detail |
-|------------|-------------------------------|------------------|--------|
+    return `| Name       | Description                   | Type        |
+|------------|-------------------------------|------------------|
 ${events
   .map((event) => {
-    const eventDocs = renderTableCellWithDocsTags(
+    let eventDocs = renderTableCellWithDocsTags(
       formatMultiline(event.docs),
       event.docsTags
     );
 
-    const eventEntry = `|${event.event}| ${eventDocs} | \`${event.detail}\``;
+    let detail = escapeMarkdown(event.detail);
+
+    const eventEntry = `|${event.event}| ${eventDocs} | \`${detail}\``;
 
     return eventEntry;
   })
@@ -127,7 +130,7 @@ ${properties
       prop.docsTags
     );
 
-    const propType = prop.type.replace(/\|/g, '\uff5c');
+    const propType = escapeMarkdown(prop.type);
 
     return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
   })
