@@ -19,6 +19,7 @@ import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
 import styles from './styles.module.css';
 import { SwitchTheme } from '@site/src/components/SwitchTheme';
+import SearchBar from '@theme/SearchBar';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -73,7 +74,10 @@ export default function NavbarContent() {
           <NavbarItems items={rightItems} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {isDocs() ? null : (
-            <SwitchTheme icon="image" label="Theme"></SwitchTheme>
+            <>
+              <SearchBar />
+              <SwitchTheme icon="image" label="Theme"></SwitchTheme>
+            </>
           )}
         </>
       }
