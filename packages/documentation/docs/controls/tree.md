@@ -12,8 +12,8 @@ import SourceTreeCustom from './../auto-generated/previews/web-component/tree-cu
 import SourceReactTree from './../auto-generated/previews/react/tree.md';
 import SourceReactTreeCustom from './../auto-generated/previews/react/tree-custom.md';
 
-import SourceAngularTree from './../auto-generated/previews/angular/tree.md';
-import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-custom.md';
+import SourceAngularTree from './../auto-generated/previews/angular/tree.ts.md';
+import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-custom.ts.md';
 
 # Tree
 

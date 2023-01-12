@@ -19,6 +19,6 @@
     "resolveJsonModule": true,
     "preserveSymlinks": true
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx", "scripts/generate-version.mjs"],
   "exclude": ["static/code-runtime"]
 }

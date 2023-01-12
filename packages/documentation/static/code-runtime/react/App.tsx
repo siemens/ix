@@ -7,15 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import Example from './Example';
+//@_IMPORT_COMPONENT
 
 import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 export default function App() {
-  return (
-    <div>
-      <Example />
-    </div>
-  );
+  return <div>{/* @_RENDER_COMPONENT */}</div>;
 }

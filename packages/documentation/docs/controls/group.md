@@ -19,10 +19,10 @@ import SourceReactGroupSuppressed from './../auto-generated/previews/react/group
 import SourceReactGroupCustomEntry from './../auto-generated/previews/react/group-custom-entry.md'
 import SourceReactGroupContext from './../auto-generated/previews/react/group-context-menu.md'
 
-import SourceAngularGroup from './../auto-generated/previews/angular/group.md'
-import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.md'
-import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.md'
-import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.md'
+import SourceAngularGroup from './../auto-generated/previews/angular/group.ts.md'
+import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.ts.md'
+import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.ts.md'
+import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.ts.md'
 
 # Group
 

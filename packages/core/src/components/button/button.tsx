@@ -56,7 +56,11 @@ export class Button {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          'button-disabled': this.disabled,
+        }}
+      >
         <button
           type={this.type}
           class={getButtonClasses(

@@ -55,6 +55,7 @@
       border: var(--modal--border-thickness) solid
         var(--theme-modal--border-color);
       padding: $large-space;
+      max-height: 100vh;
 
       .state-icon-container {
         margin-inline-end: $default-space;

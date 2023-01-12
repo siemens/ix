@@ -24,9 +24,9 @@ import SourceReactMenu from './../../auto-generated/previews/react/vertical-tabs
 import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/vertical-tabs-with-avatar.md'
 import SourceReactMenuWithBottomTabs from './../../auto-generated/previews/react/menu-with-bottom-tabs.md'
 
-import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-tabs.md'
-import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.md'
-import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.md'
+import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-tabs.ts.md'
+import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.ts.md'
+import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.ts.md'
 
 # Navigation menu
 

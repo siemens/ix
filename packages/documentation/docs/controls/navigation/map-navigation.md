@@ -12,11 +12,11 @@ import EventsOverlay from './../../auto-generated/ix-map-navigation-overlay/even
 
 import SourceWebComponent from './../../auto-generated/previews/web-component/map-navigation.md'
 import ReactComponent from './../../auto-generated/previews/react/map-navigation.md'
-import AngularComponent from './../../auto-generated/previews/angular/map-navigation.md'
+import AngularComponent from './../../auto-generated/previews/angular/map-navigation.ts.md'
 
 import OverlayWebComponent from './../../auto-generated/previews/web-component/map-navigation-overlay.md'
 import OverlayReactComponent from './../../auto-generated/previews/react/map-navigation-overlay.md'
-import OverlayAngularComponent from './../../auto-generated/previews/angular/map-navigation-overlay.md'
+import OverlayAngularComponent from './../../auto-generated/previews/angular/map-navigation-overlay.ts.md'
 
 ## Usage
 

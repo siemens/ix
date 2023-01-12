@@ -5,7 +5,7 @@ import Playground from '@site/src/components/Playground';
 
 import SourceModal from './../auto-generated/previews/web-component/modal.md'
 import SourceReactModal from './../auto-generated/previews/react/modal.md'
-import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
+import SourceAngularModal from './../auto-generated/previews/angular/modal.ts.md'
 
 # Modal
 
