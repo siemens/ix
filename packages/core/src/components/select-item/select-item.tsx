@@ -42,7 +42,7 @@ export class SelectItem {
   @Prop() selected = false;
 
   /**
-   * ***Internal***
+   * @internal
    */
   @Prop() hover = false;
 
@@ -52,7 +52,7 @@ export class SelectItem {
   @Event() itemClick: EventEmitter<string>;
 
   /**
-   * Internal
+   * @internal
    * @param event
    */
   @Method()
