@@ -16,7 +16,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
-
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import AGGrid from 'src/preview-examples/aggrid';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
@@ -76,6 +75,7 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
+import ThemeSwitcherService from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
@@ -157,6 +157,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Textarea,
     TextareaReadonly,
     TextareaDisabled,
+    ThemeSwitcherService,
     Tile,
     Timepicker,
     ToggleColor,

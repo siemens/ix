@@ -18,6 +18,7 @@ import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
 import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { ModalService } from './modal';
+import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
 
@@ -39,6 +40,7 @@ export class IxModule {
           deps: [DOCUMENT, NgZone],
         },
         ModalService,
+        ThemeService,
         ToastService,
       ],
     };
