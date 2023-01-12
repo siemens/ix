@@ -11,8 +11,8 @@ import SourceDropdownButtonIcon from './../auto-generated/previews/web-component
 import SourceReactDropdownButton from './../auto-generated/previews/react/dropdown-button.md';
 import SourceReactDropdownButtonIcon from './../auto-generated/previews/react/dropdown-button-icon.md';
 
-import SourceAngularDropdownButton from './../auto-generated/previews/angular/dropdown-button.md';
-import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angular/dropdown-button-icon.md';
+import SourceAngularDropdownButton from './../auto-generated/previews/angular/dropdown-button.ts.md';
+import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angular/dropdown-button-icon.ts.md';
 
 # Dropdown button
 
