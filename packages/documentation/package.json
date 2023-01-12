@@ -18,7 +18,6 @@
     "generate-version": "npm run generate-api && node ./scripts/generate-version.mjs"
   },
   "dependencies": {
-    "@cmfcmf/docusaurus-search-local": "^0.11.0",
     "@docusaurus/core": "^2.2.0",
     "@docusaurus/preset-classic": "^2.2.0",
     "@docusaurus/theme-live-codeblock": "^2.2.0",
