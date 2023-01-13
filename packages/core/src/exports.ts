@@ -14,3 +14,4 @@ export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';
 export * from './components/tree/tree-model';
 export * from './components/upload/upload-file-state';
+export * from './components/utils/theme-switcher';

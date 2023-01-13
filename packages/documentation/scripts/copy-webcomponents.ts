@@ -19,7 +19,9 @@ const node_modules = path.join(__dirname, '../../', 'node_modules');
 
 async function loadLib(libName, destPath) {
   const libPath = path.join(node_modules, libName);
-  const pkg = JSON.parse(fsExtra.readFileSync(`${libPath}/package.json`));
+  const pkg = JSON.parse(
+    fsExtra.readFileSync(`${libPath}/package.json`).toString()
+  );
   return Promise.all(
     pkg.files.map(async (file) => {
       try {

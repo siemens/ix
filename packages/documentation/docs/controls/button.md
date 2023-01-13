@@ -29,16 +29,16 @@ import ReactButtonGreySecondary from './../auto-generated/previews/react/button-
 import ReactButtonGreyGhost from './../auto-generated/previews/react/button-grey-ghost.md'
 import ReactButtonTextIcon from './../auto-generated/previews/react/button-text-icon.md'
 
-import AngularButtons from './../auto-generated/previews/angular/buttons.md'
-import AngularButtonGroup from './../auto-generated/previews/angular/button-group.md'
-import AngularButtonIcon from './../auto-generated/previews/angular/button-with-icon.md'
-import AngularButtonSelected from './../auto-generated/previews/angular/button-selected.md'
-import AngularButtonSecondary from './../auto-generated/previews/angular/button-secondary.md'
-import AngularButtonGhost from './../auto-generated/previews/angular/button-ghost.md'
-import AngularButtonGrey from './../auto-generated/previews/angular/button-grey.md'
-import AngularButtonGreySecondary from './../auto-generated/previews/angular/button-grey-secondary.md'
-import AngularButtonGreyGhost from './../auto-generated/previews/angular/button-grey-ghost.md'
-import AngularButtonTextIcon from './../auto-generated/previews/angular/button-text-icon.md'
+import AngularButtons from './../auto-generated/previews/angular/buttons.ts.md'
+import AngularButtonGroup from './../auto-generated/previews/angular/button-group.ts.md'
+import AngularButtonIcon from './../auto-generated/previews/angular/button-with-icon.ts.md'
+import AngularButtonSelected from './../auto-generated/previews/angular/button-selected.ts.md'
+import AngularButtonSecondary from './../auto-generated/previews/angular/button-secondary.ts.md'
+import AngularButtonGhost from './../auto-generated/previews/angular/button-ghost.ts.md'
+import AngularButtonGrey from './../auto-generated/previews/angular/button-grey.ts.md'
+import AngularButtonGreySecondary from './../auto-generated/previews/angular/button-grey-secondary.ts.md'
+import AngularButtonGreyGhost from './../auto-generated/previews/angular/button-grey-ghost.ts.md'
+import AngularButtonTextIcon from './../auto-generated/previews/angular/button-text-icon.ts.md'
 
 ## Usage
 

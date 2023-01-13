@@ -504,6 +504,7 @@
       "dependents": [
         "ix-date-picker",
         "ix-datetime-picker",
+        "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -514,6 +515,9 @@
           "ix-button"
         ],
         "ix-datetime-picker": [
+          "ix-button"
+        ],
+        "ix-dropdown-button": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -2236,6 +2240,7 @@
       "dependents": [
         "ix-breadcrumb",
         "ix-date-picker",
+        "ix-dropdown-button",
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
@@ -2247,6 +2252,9 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
+          "ix-dropdown"
+        ],
+        "ix-dropdown-button": [
           "ix-dropdown"
         ],
         "ix-menu": [
@@ -2535,6 +2543,169 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "./src/components/dropdown-button",
+      "filePath": "./src/components/dropdown-button/dropdown-button.tsx",
+      "fileName": "dropdown-button.tsx",
+      "readmePath": "./src/components/dropdown-button/readme.md",
+      "usagesDir": "./src/components/dropdown-button/usage",
+      "tag": "ix-dropdown-button",
+      "readme": "# ix-dropdown-button\n\n\n",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "scoped",
+      "dependents": [],
+      "dependencies": [
+        "ix-button",
+        "ix-icon",
+        "ix-icon-button",
+        "ix-dropdown"
+      ],
+      "dependencyGraph": {
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Active button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Button icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Set label",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button varaint",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "./src/components/dropdown-item",
@@ -3662,6 +3833,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-date-picker",
+        "ix-dropdown-button",
         "ix-dropdown-item",
         "ix-expanding-search",
         "ix-filter-chip",
@@ -3695,6 +3867,9 @@
           "ix-icon"
         ],
         "ix-date-picker": [
+          "ix-icon"
+        ],
+        "ix-dropdown-button": [
           "ix-icon"
         ],
         "ix-dropdown-item": [
@@ -3834,6 +4009,7 @@
       "dependents": [
         "ix-date-picker",
         "ix-drawer",
+        "ix-dropdown-button",
         "ix-expanding-search",
         "ix-flip-tile",
         "ix-group-context-menu",
@@ -3859,6 +4035,9 @@
           "ix-icon-button"
         ],
         "ix-drawer": [
+          "ix-icon-button"
+        ],
+        "ix-dropdown-button": [
           "ix-icon-button"
         ],
         "ix-expanding-search": [
@@ -6656,23 +6835,6 @@
       },
       "props": [
         {
-          "name": "hover",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "hover",
-          "reflectToAttr": false,
-          "docs": "***Internal***",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "label",
           "type": "string",
           "mutable": false,
@@ -6722,24 +6884,7 @@
           "required": true
         }
       ],
-      "methods": [
-        {
-          "name": "onItemClick",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "onItemClick(event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>",
-          "parameters": [],
-          "docs": "Internal",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "event"
-            }
-          ]
-        }
-      ],
+      "methods": [],
       "events": [
         {
           "event": "itemClick",

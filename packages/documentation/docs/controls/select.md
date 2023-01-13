@@ -14,9 +14,9 @@ import SourceReactSelect from './../auto-generated/previews/react/select.md';
 import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
 import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
 
-import SourceAngularSelect from './../auto-generated/previews/angular/select.md';
-import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.md';
-import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.md';
+import SourceAngularSelect from './../auto-generated/previews/angular/select.ts.md';
+import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.ts.md';
+import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.ts.md';
 
 # Select
 

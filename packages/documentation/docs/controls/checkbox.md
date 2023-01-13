@@ -4,8 +4,8 @@ import SourceCheckbox from './../auto-generated/previews/web-component/checkbox.
 import SourceCheckboxInderterminate from './../auto-generated/previews/web-component/checkbox-indeterminate.md'
 import SourceReactCheckbox from './../auto-generated/previews/react/checkbox.md'
 import SourceReactCheckboxInderterminate from './../auto-generated/previews/react/checkbox-indeterminate.md'
-import SourceAngularCheckbox from './../auto-generated/previews/angular/checkbox.md'
-import SourceAngularCheckboxInderterminate from './../auto-generated/previews/angular/checkbox-indeterminate.md'
+import SourceAngularCheckbox from './../auto-generated/previews/angular/checkbox.ts.md'
+import SourceAngularCheckboxInderterminate from './../auto-generated/previews/angular/checkbox-indeterminate.ts.md'
 
 # Checkbox
 

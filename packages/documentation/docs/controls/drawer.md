@@ -8,8 +8,8 @@ import SourceDrawerFullHeight from './../auto-generated/previews/web-component/d
 import SourceReactDrawer from './../auto-generated/previews/react/drawer.md'
 import SourceReactDrawerFullHeight from './../auto-generated/previews/react/drawer-full-height.md'
 
-import SourceAngularDrawer from './../auto-generated/previews/angular/drawer.md'
-import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/drawer-full-height.md'
+import SourceAngularDrawer from './../auto-generated/previews/angular/drawer.ts.md'
+import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/drawer-full-height.ts.md'
 
 # Drawer
 
