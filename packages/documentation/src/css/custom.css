@@ -270,3 +270,6 @@ a.menu__link {
   display: table !important;
   width: 100%;
 }
+.navbar__search {
+  margin-right: 1rem;
+}
