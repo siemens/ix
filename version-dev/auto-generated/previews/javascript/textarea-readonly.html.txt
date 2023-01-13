@@ -1,0 +1,3 @@
+<textarea class="form-control" placeholder="Enter text here" readonly>
+  Some example text
+</textarea>
