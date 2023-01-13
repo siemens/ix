@@ -25,8 +25,8 @@ yarn add @siemens/ix @siemens/ix-icons
 
 ## Build
 
-There a several different possibilities to build and serve web apps with the library.
-In the following section we describe how you can build a application with [vite](https://vitejs.dev/guide/)
+There are several different possibilities to build and serve web apps with the library.
+In the following section we will describe how you can build an application with [vite](https://vitejs.dev/guide/).
 
 `index.html`
 
