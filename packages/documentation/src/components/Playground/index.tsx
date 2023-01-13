@@ -90,6 +90,7 @@ interface PlaygroundProps {
     angular?: Record<string, MdxContent> | MdxContent;
     webcomponents?: Record<string, MdxContent> | MdxContent;
   };
+  availableFrameworks?: TargetFramework[];
 }
 
 function getPathId(pathname: string) {
@@ -136,6 +137,16 @@ function FileTabs(props: {
   );
 }
 
+function getDefaultTargetFramework(availableFrameworks?: TargetFramework[]) {
+  if (!availableFrameworks) {
+    return TargetFramework.ANGULAR;
+  }
+  return (
+    (availableFrameworks.length !== 0 ? availableFrameworks[0] : undefined) ||
+    TargetFramework.ANGULAR
+  );
+}
+
 export default function Playground({
   name,
   height,
@@ -143,13 +154,14 @@ export default function Playground({
   theme,
   frameworks,
   hideInitalCodePreview,
+  availableFrameworks,
 }: DemoProps & PlaygroundProps) {
   const { pathname } = useLocation();
   const baseUrl = useBaseUrl('/');
   const [showCode, setShowCode] = useState<boolean>(!hideInitalCodePreview);
 
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
-    TargetFramework.ANGULAR
+    getDefaultTargetFramework(availableFrameworks)
   );
 
   const [sourceCodeSnippets, setSourceCodeSnippets] = useState<
@@ -245,6 +257,16 @@ export default function Playground({
     return sourceCodeSnippets[targetFramework].map((file) => file.filename);
   }
 
+  function isFrameworkConfigured(framework: TargetFramework) {
+    if (!availableFrameworks) {
+      return true;
+    }
+    return (
+      availableFrameworks.length === 0 ||
+      availableFrameworks.includes(framework)
+    );
+  }
+
   return (
     <div className="Playground">
       <div className="Playground__Toolbar Location__Top">
@@ -259,27 +281,36 @@ export default function Playground({
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
-            <IxButton
-              className="Playground__Framework__Button"
-              ghost={targetFramework !== TargetFramework.ANGULAR}
-              onClick={() => changeFramework(TargetFramework.ANGULAR)}
-            >
-              Angular
-            </IxButton>
-            <IxButton
-              className="Playground__Framework__Button"
-              ghost={targetFramework !== TargetFramework.REACT}
-              onClick={() => changeFramework(TargetFramework.REACT)}
-            >
-              React
-            </IxButton>
-            <IxButton
-              className="Playground__Framework__Button"
-              ghost={targetFramework !== TargetFramework.JAVASCRIPT}
-              onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
-            >
-              JavaScript
-            </IxButton>
+            {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.ANGULAR}
+                onClick={() => changeFramework(TargetFramework.ANGULAR)}
+              >
+                Angular
+              </IxButton>
+            ) : null}
+
+            {isFrameworkConfigured(TargetFramework.REACT) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.REACT}
+                onClick={() => changeFramework(TargetFramework.REACT)}
+              >
+                React
+              </IxButton>
+            ) : null}
+
+            {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.JAVASCRIPT}
+                onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
+              >
+                JavaScript
+              </IxButton>
+            ) : null}
+
             <div className="Playground__Toolbar__Actions">
               <ButtonOpenGithub name={name} framework={targetFramework} />
               <ButtonOpenStackBlitz
