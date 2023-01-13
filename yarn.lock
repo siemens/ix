@@ -3237,9 +3237,9 @@
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
 "@siemens/ix-icons@~1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-1.0.2.tgz#826be263c80bfe841711018da99eff1545bf9266"
-  integrity sha512-brsVEeWxQwNMZfI+desHaRA5AyUwGnP3aNyADlKebQnm0O9NWIIXWrkc/uY2YukWUHPdVZslPnVxGrPbevT/eA==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-1.0.3.tgz#09e4c590d25959e4d7a727a984054008df4cdaa8"
+  integrity sha512-CHNdi+CmnCmk4XfQlPLnMtQMfqWGxSBQz9S1wg3WA+R/HZUToZkdZKbu3nt5T4x5iBIPUksbGXEvxWrvjZGVOA==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.44"
