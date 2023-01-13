@@ -12,5 +12,6 @@ export * from './components';
 export * from './dropdown/trigger.directive';
 export * from './modal';
 export * from './module';
+export * from './theme';
 export * from './toast';
 export * from './tree';

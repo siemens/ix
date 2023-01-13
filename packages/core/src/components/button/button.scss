@@ -11,7 +11,7 @@
   display: inline-block;
   height: 2rem;
 
-  &[disabled] {
+  &.button-disabled {
     pointer-events: none;
   }
 }

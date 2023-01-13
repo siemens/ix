@@ -1,4 +1,4 @@
-# Animation
+# Animations
 
 Siemens Industrial Experience uses meaningful animations to make applications appear physically tangible.
 This way UIs become predictable and interactions easier to follow along with for users.  

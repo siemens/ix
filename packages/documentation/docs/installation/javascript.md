@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-sidebar_title: Javascript
-title: Javascript
+sidebar_title: JavaScript
+title: JavaScript
 ---
 
 ### Installation

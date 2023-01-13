@@ -9,6 +9,10 @@
 
 [class*='ag-theme-ix'] {
   --ag-background-color: transparent;
+
+  --ag-foreground-color: var(--theme-color-std-text);
+  --ag-secondary-foreground-color: var(--theme-color-std-text);
+
   --ag-header-background-color: transparent;
   --ag-odd-row-background-color: transparent;
   --ag-row-hover-color: var(--theme-table-data-row--background--hover);
@@ -25,14 +29,16 @@
   --ag-checkbox-checked-color: var(--theme-color-input--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
 
-  .ag-checkbox-input {
-    clip: inherit !important;
-    clip-path: inherit !important;
-    height: inherit !important;
-    width: inherit !important;
-    overflow: inherit !important;
-    position: inherit !important;
-    white-space: inherit !important;
+  .ag-input-wrapper {
+    input {
+      clip: unset !important;
+      clip-path: unset !important;
+      height: inherit !important;
+      width: inherit !important;
+      overflow: inherit !important;
+      position: inherit !important;
+      white-space: inherit !important;
+    }
   }
 
   .ag-root-wrapper {
@@ -66,6 +72,17 @@
 
   .ag-icon {
     color: var(--theme-table-header-sort--color);
+  }
+
+  .ag-paging-button {
+    color: var(--theme-btn-invisible-primary--color);
+    &.ag-disabled {
+      color: var(--theme-btn-invisible-primary--color--disabled);
+
+      .ag-icon {
+        color: inherit;
+      }
+    }
   }
 
   .ag-header-cell-resize::after {

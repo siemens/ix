@@ -92,10 +92,9 @@ Contains the wrapper components for angular.
 
 ### Package `html-test-app`, `react-test-app` and `angular-test-app`
 
-Contains a playground application to explore and test `ix` components.
-Inside the `x-test-app`'s are also the preview source code for the documentation. (`src/preview-examples`)
-
-This preview-examples will be generated into markdown files and will copied into `./packages/documentation/docs/auto-generated/previews`.
+These packages contain playground applications to explore and test the respective `ix` components.
+The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
+These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
 
 **_Not published_**
 

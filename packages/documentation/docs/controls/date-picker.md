@@ -4,13 +4,13 @@ import Events from './../auto-generated/ix-date-picker/events.md';
 
 import SourceDatepicker from './../auto-generated/previews/web-component/datepicker.md'
 import SourceReactDatepicker from './../auto-generated/previews/react/datepicker.md'
-import SourceAngularDatepicker from './../auto-generated/previews/angular/datepicker.md'
+import SourceAngularDatepicker from './../auto-generated/previews/angular/datepicker.ts.md'
 
 import SourceDatepickerRange from './../auto-generated/previews/web-component/datepicker-range.md'
 import SourceReactDatepickerRange from './../auto-generated/previews/react/datepicker-range.md'
-import SourceAngularDatepickerRange from './../auto-generated/previews/angular/datepicker-range.md'
+import SourceAngularDatepickerRange from './../auto-generated/previews/angular/datepicker-range.ts.md'
 
-# Datepicker
+# Date picker
 
 ## Usage
 

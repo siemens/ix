@@ -12,10 +12,10 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
 import SourceReactSplitButton from './../auto-generated/previews/react/split-button.md';
 import SourceReactSplitButtonIcons from './../auto-generated/previews/react/split-button-icons.md';
 
-import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.md';
-import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.md';
+import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.ts.md';
+import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.ts.md';
 
-# Split Button
+# Split button
 
 ## Usage
 

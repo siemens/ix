@@ -5,9 +5,9 @@ import Events from './../auto-generated/ix-time-picker/events.md';
 
 import SourceTimepicker from './../auto-generated/previews/web-component/timepicker.md'
 import SourceReactTimepicker from './../auto-generated/previews/react/timepicker.md'
-import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.md'
+import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.ts.md'
 
-# Timepicker
+# Time picker
 
 ## Usage
 

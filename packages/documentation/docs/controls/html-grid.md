@@ -3,7 +3,7 @@ import Playground from '@site/src/components/Playground';
 import SourceTable from './../auto-generated/previews/web-component/html-table.md'
 import SourceTableStriped from './../auto-generated/previews/web-component/html-table-striped.md'
 
-# HTML Table
+# HTML table
 
 ## Usage
 
