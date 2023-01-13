@@ -6,13 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import fs, { readFileSync } from 'fs';
 import fse from 'fs-extra';
 import fsp from 'fs/promises';
 import path from 'path';
-import copyLib from './copy-webcomponents';
+import rimraf from 'rimraf';
+import copyLib, { examplePathPath } from './copy-webcomponents';
 import { appendDocsTags } from './docs-tags';
+import { escapeMarkdown } from './utils';
 import { writeAngularPreviews } from './write-angular-preview';
 
 (async function () {
@@ -29,6 +30,8 @@ import { writeAngularPreviews } from './write-angular-preview';
     'auto-generated',
     'previews'
   );
+
+  const docsAutogenerationPath = path.join(__dirname, 'docs', 'auto-generated');
 
   function autoGenerationWarning(previewPath) {
     // unix/win normalization
@@ -95,16 +98,18 @@ SPDX-License-Identifier: MIT
       return 'No events available for this component.';
     }
 
-    return `| Name       | Description                   | Attribute        | Detail |
-|------------|-------------------------------|------------------|--------|
+    return `| Name       | Description                   | Type        |
+|------------|-------------------------------|------------------|
 ${events
   .map((event) => {
-    const eventDocs = renderTableCellWithDocsTags(
+    let eventDocs = renderTableCellWithDocsTags(
       formatMultiline(event.docs),
       event.docsTags
     );
 
-    const eventEntry = `|${event.event}| ${eventDocs} | \`${event.detail}\``;
+    let detail = escapeMarkdown(event.detail);
+
+    const eventEntry = `|${event.event}| ${eventDocs} | \`${detail}\``;
 
     return eventEntry;
   })
@@ -127,7 +132,7 @@ ${properties
       prop.docsTags
     );
 
-    const propType = prop.type.replace(/\|/g, '\uff5c');
+    const propType = escapeMarkdown(prop.type);
 
     return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
   })
@@ -234,6 +239,19 @@ ${properties
     );
   }
 
+  function clearDirectories() {
+    const paths = [staticPath, docsAutogenerationPath, examplePathPath];
+
+    return Promise.all(
+      paths.map((p) => {
+        return new Promise((r) => {
+          rimraf(p, r);
+        });
+      })
+    );
+  }
+
+  await clearDirectories();
   await copyLib();
 
   const { components } = readComponents();

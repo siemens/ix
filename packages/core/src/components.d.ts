@@ -1101,16 +1101,12 @@ export namespace Components {
         "selectedIndices": string | string[];
     }
     interface IxSelectItem {
-        /**
-          * ***Internal***
-         */
         "hover": boolean;
         /**
           * Displayed name of the item
          */
         "label": string;
         /**
-          * Internal
           * @param event
          */
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
@@ -3318,9 +3314,6 @@ declare namespace LocalJSX {
         "selectedIndices"?: string | string[];
     }
     interface IxSelectItem {
-        /**
-          * ***Internal***
-         */
         "hover"?: boolean;
         /**
           * Displayed name of the item

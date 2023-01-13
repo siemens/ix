@@ -72,9 +72,14 @@ export class Pill {
         }
         title={this.el.textContent}
       >
-        {this.icon ? (
-          <ix-icon class={'with-icon'} name={this.icon} size={'16'} />
-        ) : null}
+        <ix-icon
+          class={{
+            'with-icon': true,
+            hidden: this.icon === undefined || this.icon === '',
+          }}
+          name={this.icon}
+          size={'16'}
+        />
         <div class="slot">
           <slot></slot>
         </div>
