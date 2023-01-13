@@ -20,10 +20,10 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "yarn clean && yarn compile",
     "compile": "yarn tsc",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "lint": "eslint src"
   },
   "dependencies": {
     "@siemens/ix": "~1.2.1",
@@ -31,7 +31,11 @@
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint-config-ix": "*",
+    "eslint-plugin-vue": "^9.9.0"
   },
   "peerDependencies": {
     "vue": ">=3.2.45"
