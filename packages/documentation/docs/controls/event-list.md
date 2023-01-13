@@ -17,6 +17,11 @@ import SourceReactEventListSelected from './../auto-generated/previews/react/eve
 import SourceReactEventListHeight from './../auto-generated/previews/react/event-list-custom-item-height.md'
 import SourceReactEventListCompact from './../auto-generated/previews/react/event-list-compact.md'
 
+import SourceVueEventList from './../auto-generated/previews/vue/event-list.md'
+import SourceVueEventListSelected from './../auto-generated/previews/vue/event-list-selected.md'
+import SourceVueEventListHeight from './../auto-generated/previews/vue/event-list-custom-item-height.md'
+import SourceVueEventListCompact from './../auto-generated/previews/vue/event-list-compact.md'
+
 import SourceAngularEventList from './../auto-generated/previews/angular/event-list.md'
 import SourceAngularEventListSelected from './../auto-generated/previews/angular/event-list-selected.md'
 import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.md'
@@ -33,6 +38,9 @@ import SourceAngularEventListCompact from './../auto-generated/previews/angular/
   <TabItem value="react">
     <SourceReactEventList />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueEventList />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularEventList />
   </TabItem>
@@ -46,6 +54,9 @@ import SourceAngularEventListCompact from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactEventListSelected />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueEventListSelected />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularEventListSelected />
@@ -61,6 +72,9 @@ import SourceAngularEventListCompact from './../auto-generated/previews/angular/
   <TabItem value="react">
     <SourceReactEventListHeight />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueEventListHeight />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularEventListHeight />
   </TabItem>
@@ -74,6 +88,9 @@ import SourceAngularEventListCompact from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactEventListCompact />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueEventListCompact />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularEventListCompact />

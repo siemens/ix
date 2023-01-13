@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-datetime-picker/events.md';
 import SourceDatetimepicker from './../auto-generated/previews/web-component/datetimepicker.md'
 import SourceReactDatetimepicker from './../auto-generated/previews/react/datetimepicker.md'
 import SourceAngularDatetimepicker from './../auto-generated/previews/angular/datetimepicker.md'
+import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepicker.md'
 
 # Datetimepicker
 
@@ -17,6 +18,9 @@ import SourceAngularDatetimepicker from './../auto-generated/previews/angular/da
   </TabItem>
   <TabItem value="react">
     <SourceReactDatetimepicker />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueDatetimepicker />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularDatetimepicker />

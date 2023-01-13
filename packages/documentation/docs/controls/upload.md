@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-upload/events.md';
 
 import SourceUpload from './../auto-generated/previews/web-component/upload.md';
 import SourceReactUpload from './../auto-generated/previews/react/upload.md';
+import SourceVueUpload from './../auto-generated/previews/vue/upload.md';
 import SourceAngularUpload from './../auto-generated/previews/angular/upload.md';
 
 # Upload
@@ -18,6 +19,9 @@ import SourceAngularUpload from './../auto-generated/previews/angular/upload.md'
   </TabItem>
   <TabItem value="react">
     <SourceReactUpload />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueUpload />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularUpload />

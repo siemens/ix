@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from 'react';
 
-export type SupportedFrameworks = 'angular' | 'webcomponent' | 'react';
+export type SupportedFrameworks = 'angular' | 'webcomponent' | 'react' | 'vue';
 
 export const useFramework = (initalFramework: SupportedFrameworks) => {
   const [framework, _setFramework] = useState<SupportedFrameworks>();

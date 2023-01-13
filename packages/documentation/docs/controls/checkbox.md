@@ -7,6 +7,8 @@ import SourceReactCheckbox from './../auto-generated/previews/react/checkbox.md'
 import SourceReactCheckboxInderterminate from './../auto-generated/previews/react/checkbox-indeterminate.md'
 import SourceAngularCheckbox from './../auto-generated/previews/angular/checkbox.md'
 import SourceAngularCheckboxInderterminate from './../auto-generated/previews/angular/checkbox-indeterminate.md'
+import SourceVueCheckbox from './../auto-generated/previews/vue/checkbox.md'
+import SourceVueCheckboxInderterminate from './../auto-generated/previews/vue/checkbox-indeterminate.md'
 
 # Checkbox
 
@@ -18,6 +20,9 @@ import SourceAngularCheckboxInderterminate from './../auto-generated/previews/an
   </TabItem>
   <TabItem value="react">
     <SourceReactCheckbox />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueCheckbox />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularCheckbox />
@@ -32,6 +37,9 @@ import SourceAngularCheckboxInderterminate from './../auto-generated/previews/an
   </TabItem>
   <TabItem value="react">
     <SourceReactCheckboxInderterminate />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueCheckboxInderterminate />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularCheckboxInderterminate />

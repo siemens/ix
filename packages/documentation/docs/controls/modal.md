@@ -3,6 +3,7 @@ import Preview from '@site/src/components/Preview';
 
 import SourceModal from './../auto-generated/previews/web-component/modal.md'
 import SourceReactModal from './../auto-generated/previews/react/modal.md'
+import SourceVueModal from './../auto-generated/previews/vue/modal.md'
 import SourceAngularModal from './../auto-generated/previews/angular/modal.md'
 
 # Modal
@@ -16,6 +17,9 @@ Select the appropriate tab below for the respective usage information.
   </TabItem>
   <TabItem value="react">
     <SourceReactModal />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueModal />
   </TabItem>
   <TabItem value="angular">
 

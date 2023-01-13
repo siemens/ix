@@ -18,6 +18,10 @@ import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadc
 import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.md'
 import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.md'
 
+import SourceVueBreadcrumb from './../auto-generated/previews/vue/breadcrumb.md'
+import SourceVueBreadcrumbTruncate from './../auto-generated/previews/vue/breadcrumb-truncate.md'
+import SourceVueBreadcrumbNextItems from './../auto-generated/previews/vue/breadcrumb-next-items.md'
+
 # Breadcrumb
 
 ## Usage
@@ -31,6 +35,9 @@ import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angul
   </TabItem>
   <TabItem value="angular">
     <SourceAngularBreadcrumb />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueBreadcrumb />
   </TabItem>
 </Preview>
 
@@ -46,6 +53,9 @@ import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angul
   <TabItem value="angular">
     <SourceAngularBreadcrumbTruncate />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueBreadcrumbTruncate />
+  </TabItem>
 </Preview>
 
 ### Lazy loaded next items
@@ -59,6 +69,9 @@ import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angul
   </TabItem>
   <TabItem value="angular">
     <SourceAngularBreadcrumbNextItems />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueBreadcrumbNextItems />
   </TabItem>
 </Preview>
 

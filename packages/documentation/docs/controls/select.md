@@ -15,6 +15,10 @@ import SourceReactSelect from './../auto-generated/previews/react/select.md';
 import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
 import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
 
+import SourceVueSelect from './../auto-generated/previews/vue/select.md';
+import SourceVueEditable from './../auto-generated/previews/vue/select-editable.md';
+import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.md';
+
 import SourceAngularSelect from './../auto-generated/previews/angular/select.md';
 import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.md';
 import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.md';
@@ -30,6 +34,9 @@ import SourceAngularMultiple from './../auto-generated/previews/angular/select-m
   <TabItem value="react">
     <SourceReactSelect />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueSelect />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularSelect />
   </TabItem>
@@ -44,6 +51,9 @@ import SourceAngularMultiple from './../auto-generated/previews/angular/select-m
   <TabItem value="react">
     <SourceReactEditable />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueEditable />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularEditable />
   </TabItem>
@@ -57,6 +67,9 @@ import SourceAngularMultiple from './../auto-generated/previews/angular/select-m
   </TabItem>
   <TabItem value="react">
     <SourceReactMultiple />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueMultiple />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularMultiple />

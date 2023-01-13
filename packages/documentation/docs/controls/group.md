@@ -20,6 +20,11 @@ import SourceReactGroupSuppressed from './../auto-generated/previews/react/group
 import SourceReactGroupCustomEntry from './../auto-generated/previews/react/group-custom-entry.md'
 import SourceReactGroupContext from './../auto-generated/previews/react/group-context-menu.md'
 
+import SourceVueGroup from './../auto-generated/previews/vue/group.md'
+import SourceVueGroupSuppressed from './../auto-generated/previews/vue/group-header-suppressed.md'
+import SourceVueGroupCustomEntry from './../auto-generated/previews/vue/group-custom-entry.md'
+import SourceVueGroupContext from './../auto-generated/previews/vue/group-context-menu.md'
+
 import SourceAngularGroup from './../auto-generated/previews/angular/group.md'
 import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.md'
 import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.md'
@@ -36,6 +41,9 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
   <TabItem value="react">
     <SourceReactGroup />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueGroup />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularGroup />
   </TabItem>
@@ -48,7 +56,10 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
     <SourceGroupSuppressed />
   </TabItem>
   <TabItem value="react">
-    <SourceReactGroupSuppressed />
+    <SourceVueGroupSuppressed />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueGroupSuppressed />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularGroupSuppressed />
@@ -63,6 +74,9 @@ import SourceAngularGroupContext from './../auto-generated/previews/angular/grou
   </TabItem>
   <TabItem value="react">
     <SourceReactGroupCustomEntry />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueGroupCustomEntry />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularGroupCustomEntry />
@@ -86,6 +100,9 @@ To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined wi
   </TabItem>
   <TabItem value="react">
     <SourceReactGroupContext />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueGroupContext />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularGroupContext />

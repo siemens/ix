@@ -9,7 +9,11 @@
 
 import { SupportedFrameworks } from './useFramework';
 
-export function getFrameworkSelection(): 'angular' | 'webcomponents' {
+export function getFrameworkSelection():
+  | 'angular'
+  | 'webcomponents'
+  | 'react'
+  | 'vue' {
   const framework = localStorage.getItem('framework') as
     | 'angular'
     | 'webcomponents';

@@ -12,6 +12,9 @@ import SourceReactDrawerFullHeight from './../auto-generated/previews/react/draw
 import SourceAngularDrawer from './../auto-generated/previews/angular/drawer.md'
 import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/drawer-full-height.md'
 
+import SourceVueDrawer from './../auto-generated/previews/vue/drawer.md'
+import SourceVueDrawerFullHeight from './../auto-generated/previews/vue/drawer-full-height.md'
+
 # Drawer
 
 ## Usage
@@ -22,6 +25,9 @@ import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactDrawer />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueDrawer />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularDrawer />
@@ -36,6 +42,9 @@ import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactDrawerFullHeight />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueDrawer />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularDrawerFullHeight />

@@ -250,6 +250,45 @@ function writeAngularPreviews() {
   });
 }
 
+function writeVuePreviews() {
+  const webComponentPreviews = fs
+    .readdirSync(htmlPreviewPath)
+    .filter((name) => name.includes('.html'))
+    .map((name) => name.replace('.html', ''));
+
+  const vuePreviewPath = path.join(
+    __dirname,
+    '../vue-test-app/src/preview-examples'
+  );
+
+  const vuePreviews = fs.readdirSync(vuePreviewPath);
+  const vuePreviewPaths = webComponentPreviews
+    .filter((name) => {
+      const exist = vuePreviews.includes(`${name}.vue`);
+
+      if (!exist) {
+        console.warn(`Vue preview for ${name} is missing in vue-test-app`);
+      }
+
+      return exist;
+    })
+    .map((name) => [name, path.join(vuePreviewPath, `${name}.vue`)]);
+
+  vuePreviewPaths.forEach(([name, previewPath]) => {
+    const writePath = path.join(
+      __dirname,
+      'docs',
+      'auto-generated',
+      'previews',
+      'vue'
+    );
+    fse.ensureDirSync(writePath);
+    const code = fs.readFileSync(previewPath).toString();
+    const markdown = generateMarkdown(previewPath, 'html', code);
+    fs.writeFileSync(path.join(writePath, `${name}.md`), markdown);
+  });
+}
+
 (async function () {
   await copyLib();
 
@@ -259,4 +298,5 @@ function writeAngularPreviews() {
   writeWebComponentPreviews();
   writeReactPreviews();
   writeAngularPreviews();
+  writeVuePreviews();
 })();

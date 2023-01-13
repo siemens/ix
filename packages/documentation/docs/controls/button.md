@@ -22,7 +22,6 @@ import ReactButtons from './../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
 import ReactButtonIcon from './../auto-generated/previews/react/button-with-icon.md'
 import ReactButtonSelected from './../auto-generated/previews/react/button-selected.md'
-
 import ReactButtonSecondary from './../auto-generated/previews/react/button-secondary.md'
 import ReactButtonGhost from './../auto-generated/previews/react/button-ghost.md'
 import ReactButtonGrey from './../auto-generated/previews/react/button-grey.md'
@@ -41,6 +40,17 @@ import AngularButtonGreySecondary from './../auto-generated/previews/angular/but
 import AngularButtonGreyGhost from './../auto-generated/previews/angular/button-grey-ghost.md'
 import AngularButtonTextIcon from './../auto-generated/previews/angular/button-text-icon.md'
 
+import VueButtons from './../auto-generated/previews/vue/buttons.md'
+import VueButtonGroup from './../auto-generated/previews/vue/button-group.md'
+import VueButtonIcon from './../auto-generated/previews/vue/button-with-icon.md'
+import VueButtonSelected from './../auto-generated/previews/vue/button-selected.md'
+import VueButtonSecondary from './../auto-generated/previews/vue/button-secondary.md'
+import VueButtonGhost from './../auto-generated/previews/vue/button-ghost.md'
+import VueButtonGrey from './../auto-generated/previews/vue/button-grey.md'
+import VueButtonGreySecondary from './../auto-generated/previews/vue/button-grey-secondary.md'
+import VueButtonGreyGhost from './../auto-generated/previews/vue/button-grey-ghost.md'
+import VueButtonTextIcon from './../auto-generated/previews/vue/button-text-icon.md'
+
 ## Usage
 
 ### Primary
@@ -51,6 +61,9 @@ import AngularButtonTextIcon from './../auto-generated/previews/angular/button-t
   </TabItem>
   <TabItem value="react" key="react">
     <ReactButtons />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtons />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtons />
@@ -72,6 +85,9 @@ Will be used in UX context as **Secondary**
   <TabItem value="react" key="react">
     <ReactButtonSecondary />
   </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonSecondary />
+  </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonSecondary />
   </TabItem>
@@ -89,8 +105,11 @@ Will be used in UX context as **Ghost**
   <TabItem value="angular" key="angular">
     <AngularButtonGhost />
   </TabItem>
-    <TabItem value="react" key="react">
+  <TabItem value="react" key="react">
     <ReactButtonGhost />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonGhost />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonGhost />
@@ -109,8 +128,11 @@ Will be used in UX context as **Grey button**
   <TabItem value="angular" key="angular">
     <AngularButtonGrey />
   </TabItem>
-    <TabItem value="react" key="react">
+  <TabItem value="react" key="react">
     <ReactButtonGrey />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonGrey />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonGrey />
@@ -129,8 +151,11 @@ Will be used in UX context as **Grey secondary**
   <TabItem value="angular" key="angular">
     <AngularButtonGreySecondary />
   </TabItem>
-    <TabItem value="react" key="react">
+  <TabItem value="react" key="react">
     <ReactButtonGreySecondary />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonGreySecondary />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonGreySecondary />
@@ -149,8 +174,11 @@ Will be used in UX context as **Grey ghost**
   <TabItem value="angular" key="angular">
     <AngularButtonGreyGhost />
   </TabItem>
-    <TabItem value="react" key="react">
+  <TabItem value="react" key="react">
     <ReactButtonGreyGhost />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonGreyGhost />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonGreyGhost />
@@ -170,7 +198,10 @@ Only available in secondary ghost state
 <AngularButtonSelected />
   </TabItem>
   <TabItem value="react" key="react">
-<ReactButtonSelected />
+    <ReactButtonSelected />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonSelected />
   </TabItem>
   <TabItem value="javascript" key="javascript">
 <WebComponentButtonSelected />
@@ -184,7 +215,10 @@ Only available in secondary ghost state
 <AngularButtonGroup />
   </TabItem>
   <TabItem value="react" key="react">
-<ReactButtonGroup />
+    <ReactButtonGroup />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonGroup />
   </TabItem>
   <TabItem value="javascript" key="javascript">
 <WebComponentButtonGroup />
@@ -197,8 +231,11 @@ Only available in secondary ghost state
   <TabItem value="angular" key="angular">
     <AngularButtonTextIcon />
   </TabItem>
-    <TabItem value="react" key="react">
+  <TabItem value="react" key="react">
     <ReactButtonTextIcon />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonTextIcon />
   </TabItem>
   <TabItem value="javascript" key="javascript">
     <WebComponentButtonTextIcon />
@@ -212,7 +249,10 @@ Only available in secondary ghost state
 <AngularButtonIcon />
   </TabItem>
   <TabItem value="react" key="react">
-<ReactButtonIcon />
+    <ReactButtonIcon />
+  </TabItem>
+  <TabItem value="vue" key="vue">
+    <VueButtonIcon />
   </TabItem>
   <TabItem value="javascript" key="javascript">
 <WebComponentButtonIcon />

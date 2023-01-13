@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-tile/events.md';
 
 import SourceTile from './../auto-generated/previews/web-component/tile.md';
 import SourceReactTile from './../auto-generated/previews/react/tile.md';
+import SourceVueTile from './../auto-generated/previews/vue/tile.md';
 import SourceAngularTile from './../auto-generated/previews/angular/tile.md';
 
 # Tile
@@ -18,6 +19,9 @@ import SourceAngularTile from './../auto-generated/previews/angular/tile.md';
   </TabItem>
   <TabItem value="react">
     <SourceReactTile />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueTile />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularTile />

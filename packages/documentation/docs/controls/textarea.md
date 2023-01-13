@@ -9,6 +9,10 @@ import SourceReactTextarea from './../auto-generated/previews/react/textarea.md'
 import SourceReactTextareaDisabled from './../auto-generated/previews/react/textarea-disabled.md';
 import SourceReactTextareaReadonly from './../auto-generated/previews/react/textarea-readonly.md';
 
+import SourceVueTextarea from './../auto-generated/previews/vue/textarea.md';
+import SourceVueTextareaDisabled from './../auto-generated/previews/vue/textarea-disabled.md';
+import SourceVueTextareaReadonly from './../auto-generated/previews/vue/textarea-readonly.md';
+
 import SourceAngularTextarea from './../auto-generated/previews/angular/textarea.md';
 import SourceAngularTextareaDisabled from './../auto-generated/previews/angular/textarea-disabled.md';
 import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/textarea-readonly.md';
@@ -24,6 +28,9 @@ import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/
   <TabItem value="react">
     <SourceReactTextarea />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueTextarea />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularTextarea />
   </TabItem>
@@ -38,6 +45,9 @@ import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/
   <TabItem value="react">
     <SourceReactTextareaDisabled />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueTextareaDisabled />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularTextareaDisabled />
   </TabItem>
@@ -51,6 +61,9 @@ import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactTextareaReadonly />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueTextareaReadonly />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularTextareaReadonly />

@@ -11,6 +11,11 @@ import SourceReactInputDisabled from './../auto-generated/previews/react/input-d
 import SourceReactInputReadonly from './../auto-generated/previews/react/input-readonly.md'
 import SourceReactInputIcon from './../auto-generated/previews/react/input-with-icon.md'
 
+import SourceVueInput from './../auto-generated/previews/vue/input.md'
+import SourceVueInputDisabled from './../auto-generated/previews/vue/input-disabled.md'
+import SourceVueInputReadonly from './../auto-generated/previews/vue/input-readonly.md'
+import SourceVueInputIcon from './../auto-generated/previews/vue/input-with-icon.md'
+
 import SourceAngularInput from './../auto-generated/previews/angular/input.md'
 import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.md'
 import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.md'
@@ -27,6 +32,9 @@ import SourceAngularInputIcon from './../auto-generated/previews/angular/input-w
   <TabItem value="react">
     <SourceReactInput />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueInput />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularInput />
   </TabItem>
@@ -40,6 +48,9 @@ import SourceAngularInputIcon from './../auto-generated/previews/angular/input-w
   </TabItem>
   <TabItem value="react">
     <SourceReactInputDisabled />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueInputDisabled />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularInputDisabled />
@@ -55,6 +66,9 @@ import SourceAngularInputIcon from './../auto-generated/previews/angular/input-w
   <TabItem value="react">
     <SourceReactInputReadonly />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueInputReadonly />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularInputReadonly />
   </TabItem>
@@ -68,6 +82,9 @@ import SourceAngularInputIcon from './../auto-generated/previews/angular/input-w
   </TabItem>
   <TabItem value="react">
     <SourceReactInputIcon />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueInputIcon />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularInputIcon />

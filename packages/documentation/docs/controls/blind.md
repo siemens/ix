@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-blind/events.md';
 import WebComponent from './../auto-generated/previews/web-component/blind.md'
 import SourceReact from './../auto-generated/previews/react/blind.md'
 import SourceAngular from './../auto-generated/previews/angular/blind.md'
+import SourceVue from './../auto-generated/previews/vue/blind.md'
 
 # Blind
 
@@ -20,6 +21,9 @@ import SourceAngular from './../auto-generated/previews/angular/blind.md'
   </TabItem>
   <TabItem value="angular">
     <SourceAngular />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVue />
   </TabItem>
 </Preview>
 

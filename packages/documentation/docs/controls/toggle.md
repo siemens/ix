@@ -14,6 +14,11 @@ import SourceReactToggleLabel from './../auto-generated/previews/react/toggle-cu
 import SourceReactToggleColor from './../auto-generated/previews/react/toggle-color.md';
 import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-disabled.md';
 
+import SourceVueToggle from './../auto-generated/previews/vue/toggle.md';
+import SourceVueToggleLabel from './../auto-generated/previews/vue/toggle-custom-label.md';
+import SourceVueToggleColor from './../auto-generated/previews/vue/toggle-color.md';
+import SourceVueToggleDisbaled from './../auto-generated/previews/vue/toggle-disabled.md';
+
 import SourceAngularToggle from './../auto-generated/previews/angular/toggle.md';
 import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.md';
 import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.md';
@@ -30,6 +35,9 @@ import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/to
   <TabItem value="react">
     <SourceReactToggle />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueToggle />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularToggle />
   </TabItem>
@@ -43,6 +51,9 @@ import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/to
   </TabItem>
   <TabItem value="react">
     <SourceReactToggleLabel />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueToggleLabel />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularToggleLabel />
@@ -58,6 +69,9 @@ import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/to
   <TabItem value="react">
     <SourceReactToggleColor />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueToggleColor />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularToggleColor />
   </TabItem>
@@ -71,6 +85,9 @@ import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/to
   </TabItem>
   <TabItem value="react">
     <SourceReactToggleDisbaled />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueToggleDisbaled />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularToggleDisbaled />

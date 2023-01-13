@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-pill/events.md';
 
 import SourcePill from './../auto-generated/previews/web-component/pill.md';
 import SourceReactPill from './../auto-generated/previews/react/pill.md';
+import SourceVuePill from './../auto-generated/previews/vue/pill.md';
 import SourceAngularPill from './../auto-generated/previews/angular/pill.md';
 
 # Pill
@@ -18,6 +19,9 @@ import SourceAngularPill from './../auto-generated/previews/angular/pill.md';
   </TabItem>
   <TabItem value="react">
     <SourceReactPill />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVuePill />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularPill />

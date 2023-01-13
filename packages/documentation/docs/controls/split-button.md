@@ -13,6 +13,9 @@ import SourceSplitButtonIcons from './../auto-generated/previews/web-component/s
 import SourceReactSplitButton from './../auto-generated/previews/react/split-button.md';
 import SourceReactSplitButtonIcons from './../auto-generated/previews/react/split-button-icons.md';
 
+import SourceVueSplitButton from './../auto-generated/previews/vue/split-button.md';
+import SourceVueSplitButtonIcons from './../auto-generated/previews/vue/split-button-icons.md';
+
 import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.md';
 import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.md';
 
@@ -27,6 +30,9 @@ import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/
   <TabItem value="react">
     <SourceReactSplitButton />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueSplitButton />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularSplitButton />
   </TabItem>
@@ -38,8 +44,11 @@ import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/
   <TabItem value="javascript">
     <SourceSplitButtonIcons />
   </TabItem>
-  <TabItem value="angular">
+  <TabItem value="react">
     <SourceReactSplitButtonIcons />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueSplitButtonIcons />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularSplitButtonIcons />

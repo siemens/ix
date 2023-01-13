@@ -8,10 +8,12 @@ import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md
 
 import SourceWorkflow from './../auto-generated/previews/web-component/workflow.md';
 import SourceReactWorkflow from './../auto-generated/previews/react/workflow.md';
+import SourceVueWorkflow from './../auto-generated/previews/vue/workflow.md';
 import SourceAngularWorkflow from './../auto-generated/previews/angular/workflow.md';
 
 import SourceWorkflowVertical from './../auto-generated/previews/web-component/workflow-vertical.md';
 import SourceReactWorkflowVertical from './../auto-generated/previews/react/workflow-vertical.md';
+import SourceVueWorkflowVertical from './../auto-generated/previews/vue/workflow-vertical.md';
 import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/workflow-vertical.md';
 
 # Workflow
@@ -24,6 +26,9 @@ import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactWorkflow />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueWorkflow />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularWorkflow />
@@ -38,6 +43,9 @@ import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/
   </TabItem>
   <TabItem value="react">
     <SourceReactWorkflowVertical />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueWorkflowVertical />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularWorkflowVertical />

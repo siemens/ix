@@ -1,0 +1,39 @@
+{
+  "name": "@siemens/ix-vue",
+  "homepage": "https://ix.siemens.io",
+  "author": "Siemens AG",
+  "license": "MIT",
+  "version": "1.2.1",
+  "description": "Siemens iX for Vue",
+  "bugs": "https://github.com/siemens/ix/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siemens/ix",
+    "directory": "packages/vue"
+  },
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "yarn clean && yarn compile",
+    "compile": "yarn tsc",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@siemens/ix": "~1.2.1",
+    "@siemens/ix-icons": "~1.0.0"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "vue": "^3.2.45"
+  },
+  "peerDependencies": {
+    "vue": ">=3.2.45"
+  }
+}

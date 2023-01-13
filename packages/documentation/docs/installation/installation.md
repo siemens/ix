@@ -19,4 +19,5 @@ Follow the links below to the respective installation guides:
   <Card link="installation/angular"><AngularIcon class="Card_Icon" />Angular</Card>
   <Card link="installation/react"><ReactIcon class="Card_Icon" />React</Card>
   <Card link="installation/javascript"><WebComponentsIcon class="Card_Icon" />Web Components</Card>
+  <Card link="installation/vue"><WebComponentsIcon class="Card_Icon" />Vue</Card>
 </CardList>

@@ -77,7 +77,7 @@ const config = {
         {
           name: 'keywords',
           content:
-            'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience',
+            'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience, vue',
         },
         {
           name: 'description',

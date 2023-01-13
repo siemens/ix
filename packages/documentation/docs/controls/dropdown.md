@@ -16,6 +16,9 @@ import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown
 import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.md'
 import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.md'
 
+import SourceVueDropdown from './../auto-generated/previews/vue/dropdown.md'
+import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-icon.md'
+
 # Dropdown
 
 ## Usage
@@ -26,6 +29,9 @@ import SourceAngularDropdownIcon from './../auto-generated/previews/angular/drop
   </TabItem>
   <TabItem value="react">
     <SourceReactDropdown />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueDropdown />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularDropdown />
@@ -40,6 +46,9 @@ import SourceAngularDropdownIcon from './../auto-generated/previews/angular/drop
   </TabItem>
   <TabItem value="react">
     <SourceReactDropdownIcon />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueDropdown />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularDropdownIcon />

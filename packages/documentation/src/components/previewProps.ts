@@ -11,7 +11,7 @@ export interface PreviewProps {
   name: string;
   height: string;
   hideCode?: boolean;
-  framework?: 'webcomponent' | 'angular';
+  framework?: 'webcomponent' | 'angular' | 'react' | 'vue';
   activeTab?: string;
   theme?: string;
 }

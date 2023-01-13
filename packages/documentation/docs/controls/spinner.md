@@ -10,6 +10,9 @@ import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinn
 import SourceReactSpinner from './../auto-generated/previews/react/spinner.md';
 import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-large.md';
 
+import SourceVueSpinner from './../auto-generated/previews/vue/spinner.md';
+import SourceVueSpinnerLarge from './../auto-generated/previews/vue/spinner-large.md';
+
 import SourceAngularSpinner from './../auto-generated/previews/angular/spinner.md';
 import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spinner-large.md';
 
@@ -24,6 +27,9 @@ import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spin
   <TabItem value="react">
     <SourceReactSpinner />
   </TabItem>
+  <TabItem value="vue">
+    <SourceVueSpinner />
+  </TabItem>
   <TabItem value="angular">
     <SourceAngularSpinner />
   </TabItem>
@@ -37,6 +43,9 @@ import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spin
   </TabItem>
   <TabItem value="react">
     <SourceReactSpinnerLarge />
+  </TabItem>
+  <TabItem value="vue">
+    <SourceVueSpinnerLarge />
   </TabItem>
   <TabItem value="angular">
     <SourceAngularSpinnerLarge />
