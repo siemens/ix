@@ -11,7 +11,11 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 
 const __dirname = path.resolve();
-const examplePathPath = path.join(__dirname, 'static', 'webcomponent-examples');
+export const examplePathPath = path.join(
+  __dirname,
+  'static',
+  'webcomponent-examples'
+);
 
 const libDestPath = path.join(examplePathPath, 'lib');
 
