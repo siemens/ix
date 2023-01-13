@@ -6,7 +6,7 @@ import Playground from '@site/src/components/Playground';
 
 import SourceWebComponent from './../auto-generated/previews/web-component/theme-switcher.md'
 import ReactComponent from './../auto-generated/previews/react/theme-switcher.md'
-import AngularComponent from './../auto-generated/previews/angular/theme-switcher.md'
+import AngularComponent from './../auto-generated/previews/angular/theme-switcher.ts.md'
 
 # Themes
 
