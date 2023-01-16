@@ -330,6 +330,19 @@ export class Dropdown {
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
+          {/* <button class="submenu">Submenu <ix-icon name='chevron-right' size='16'></ix-icon> </button> */}
+
+          <div>
+            <div>
+            <ix-icon name="star" size="16"></ix-icon>
+            <ix-icon name="star" size="16"></ix-icon>
+            <ix-icon name="star" size="16"></ix-icon>
+            <ix-icon name="star" size="16"></ix-icon>
+            <ix-icon name="star" size="16"></ix-icon>
+            </div>
+            <hr class="line"></hr>
+          </div>
+
           <slot></slot>
         </div>
       </Host>

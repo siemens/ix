@@ -19,4 +19,34 @@
 
 :host {
   min-width: 0px;
+
+
+  .submenu {
+    display: block;
+    min-width: 10rem;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--theme-color-std-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    &:hover {
+      background-color: var(--theme-color-ghost--hover);
+    }
+
+    &:active {
+     background-color: var(--theme-color-ghost--active);
+    }
+  }
+
+
+  .line {
+    width: 181px;
+    border: 0.5px solid #9D9D96;
+    color: red;
+    background-color: var(--theme-color-xweak-bdr);
+  }
 }
