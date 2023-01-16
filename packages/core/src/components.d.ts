@@ -12,7 +12,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
-import { Placement, PositioningStrategy } from "@popperjs/core";
+import { Placement } from "./components/dropdown/placement";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -412,6 +412,7 @@ export namespace Components {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth": boolean;
         /**
@@ -432,13 +433,21 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset": {
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
+  };
+        /**
           * Placement of the dropdown
          */
         "placement": Placement;
         /**
           * Position strategy
          */
-        "positioningStrategy": PositioningStrategy;
+        "positioningStrategy": 'absolute' | 'fixed';
         /**
           * Show dropdown
          */
@@ -2582,6 +2591,7 @@ declare namespace LocalJSX {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth"?: boolean;
         /**
@@ -2602,6 +2612,14 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset"?: {
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
+  };
+        /**
           * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
@@ -2612,7 +2630,7 @@ declare namespace LocalJSX {
         /**
           * Position strategy
          */
-        "positioningStrategy"?: PositioningStrategy;
+        "positioningStrategy"?: 'absolute' | 'fixed';
         /**
           * Show dropdown
          */

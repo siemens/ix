@@ -441,9 +441,8 @@ export class Select {
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
-          placement="bottom"
-          positioningStrategy={'fixed'}
-          adjustDropdownWidthToReferenceWidth={true}
+          placement="bottom-start"
+          positioningStrategy={'absolute'}
         >
           <div class="select-list-header" title={this.i18nSelectListHeader}>
             {this.i18nSelectListHeader}

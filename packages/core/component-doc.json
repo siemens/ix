@@ -2278,8 +2278,14 @@
           "attr": "adjust-dropdown-width-to-reference-width",
           "reflectToAttr": false,
           "docs": "Adjust dropdown width to the parent width",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed. Not used anymore"
+            }
+          ],
           "default": "false",
+          "deprecation": "Will be removed. Not used anymore",
           "values": [
             {
               "type": "boolean"
@@ -2383,7 +2389,7 @@
           "reflectToAttr": false,
           "docs": "Placement of the dropdown",
           "docsTags": [],
-          "default": "'bottom-end'",
+          "default": "'bottom-start'",
           "values": [
             {
               "value": "auto",
@@ -5472,13 +5478,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/menu-avatar-item",
