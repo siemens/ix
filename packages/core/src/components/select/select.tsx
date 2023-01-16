@@ -19,6 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 
 @Component({
   tag: 'ix-select',
@@ -207,19 +208,15 @@ export class Select {
     }
   }
 
-  componentDidLoad() {
-    this.labelMutationObserver = new MutationObserver(() => {
-      this.selectValue(
-        Array.isArray(this.selectedIndices)
-          ? this.selectedIndices
-          : [this.selectedIndices]
-      );
-    });
-    this.labelMutationObserver.observe(this.hostElement, {
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['label'],
-    });
+  @Listen('ix-select-item:labelChange')
+  onLabelChange(event: IxSelectItemLabelChangeEvent) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.selectValue(
+      Array.isArray(this.selectedIndices)
+        ? this.selectedIndices
+        : [this.selectedIndices]
+    );
   }
 
   disconnectedCallback() {

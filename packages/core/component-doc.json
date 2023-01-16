@@ -6797,6 +6797,11 @@
           "passive": false
         },
         {
+          "event": "ix-select-item:labelChange",
+          "capture": false,
+          "passive": false
+        },
+        {
           "event": "keydown",
           "target": "window",
           "capture": false,
