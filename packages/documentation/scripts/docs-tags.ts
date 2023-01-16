@@ -7,21 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/**
- *
- * @param {string} name
- * @param {Array<{ name: string, text: string }>} docsTags
- * @returns
- */
+export function renderSinceTag(value: string) {
+  return `<span className="Api__Table Docs__Tag">Since: ${value}</span>`;
+}
+
+export function renderDeprecatedTag(value: string) {
+  return `<span className="Api__Table Docs__Tag Docs__Tag__Deprecated" title="${value}">Deprecated: ${value}</span>`;
+}
+
 export function appendDocsTags(name, docsTags) {
   let value = name;
   docsTags.forEach((docsTag) => {
     if (docsTag.name === 'since') {
-      value += `<span className="Api__Table Docs__Tag">Since: ${docsTag.text}</span>`;
+      value += renderSinceTag(docsTag.text);
     }
 
     if (docsTag.name === 'deprecated') {
-      value += `<span className="Api__Table Docs__Tag Docs__Tag__Deprecated" title="${docsTag.text}">Deprecated: ${docsTag.text}</span>`;
+      value += renderDeprecatedTag(docsTag.text);
     }
   });
   return value;
