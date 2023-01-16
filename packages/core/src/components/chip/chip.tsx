@@ -39,9 +39,10 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Display chip in active state. Only works with `variant="primary"`
+   * Determinate if the chip is interactive.
+   * If active is false no closable icon is visible and no interaction is possible.
    */
-  @Prop() active = false;
+  @Prop() active = true;
 
   /**
    * Show close icon
@@ -95,21 +96,33 @@ export class Chip {
   }
 
   render() {
+    const isActive = this.active === false;
+
+    let customStyle = {};
+
+    if (this.variant === 'custom' && this.outline === false) {
+      customStyle = {
+        color: this.color,
+        backgroundColor: this.background,
+      };
+    }
+
+    if (this.variant === 'custom' && this.outline === true) {
+      customStyle = {
+        color: this.color,
+        borderColor: this.background,
+      };
+    }
+
     return (
       <Host
         class={{
           outline: this.outline,
+          readonly: isActive,
         }}
         tabIndex="-1"
         title={this.el.textContent}
-        style={
-          this.variant === 'custom'
-            ? {
-                color: this.color,
-                backgroundColor: this.background,
-              }
-            : {}
-        }
+        style={{ ...customStyle }}
       >
         <ix-icon
           class={{
@@ -122,7 +135,7 @@ export class Chip {
         <span class="slot-container">
           <slot></slot>
         </span>
-        {this.closable ? this.getCloseButton() : null}
+        {isActive === false && this.closable ? this.getCloseButton() : null}
       </Host>
     );
   }

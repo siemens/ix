@@ -180,7 +180,7 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determinate if the chip is interactive. If active is false no closable icon is visible and no interaction is possible.
          */
         "active": boolean;
         /**
@@ -2317,7 +2317,7 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determinate if the chip is interactive. If active is false no closable icon is visible and no interaction is possible.
          */
         "active"?: boolean;
         /**

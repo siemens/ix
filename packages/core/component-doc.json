@@ -945,9 +945,9 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
+          "docs": "Determinate if the chip is interactive.\nIf active is false no closable icon is visible and no interaction is possible.",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
