@@ -12,7 +12,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
-import { Placement, PositioningStrategy } from "@popperjs/core";
+import { Placement } from "./components/dropdown/placement";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -412,6 +412,7 @@ export namespace Components {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth": boolean;
         /**
@@ -432,13 +433,21 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset": {
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
+  };
+        /**
           * Placement of the dropdown
          */
         "placement": Placement;
         /**
           * Position strategy
          */
-        "positioningStrategy": PositioningStrategy;
+        "positioningStrategy": 'absolute' | 'fixed';
         /**
           * Show dropdown
          */
@@ -451,6 +460,36 @@ export namespace Components {
           * Update position of dropdown
          */
         "updatePosition": () => Promise<void>;
+    }
+    interface IxDropdownButton {
+        /**
+          * Active button
+         */
+        "active": boolean;
+        /**
+          * Disable button
+         */
+        "disabled": boolean;
+        /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
+          * Button icon
+         */
+        "icon": string;
+        /**
+          * Set label
+         */
+        "label": string;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
+          * Button varaint
+         */
+        "variant": Buttons;
     }
     interface IxDropdownItem {
         /**
@@ -1071,16 +1110,12 @@ export namespace Components {
         "selectedIndices": string | string[];
     }
     interface IxSelectItem {
-        /**
-          * ***Internal***
-         */
         "hover": boolean;
         /**
           * Displayed name of the item
          */
         "label": string;
         /**
-          * Internal
           * @param event
          */
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
@@ -1722,6 +1757,12 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
+    }
+    var HTMLIxDropdownButtonElement: {
+        prototype: HTMLIxDropdownButtonElement;
+        new (): HTMLIxDropdownButtonElement;
+    };
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
     }
     var HTMLIxDropdownItemElement: {
@@ -2039,6 +2080,7 @@ declare global {
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
+        "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
@@ -2549,6 +2591,7 @@ declare namespace LocalJSX {
     interface IxDropdown {
         /**
           * Adjust dropdown width to the parent width
+          * @deprecated Will be removed. Not used anymore
          */
         "adjustDropdownWidthToReferenceWidth"?: boolean;
         /**
@@ -2569,6 +2612,14 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Move dropdown along main axis of alignment
+         */
+        "offset"?: {
+    mainAxis?: number;
+    crossAxis?: number;
+    alignmentAxis?: number;
+  };
+        /**
           * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
@@ -2579,7 +2630,7 @@ declare namespace LocalJSX {
         /**
           * Position strategy
          */
-        "positioningStrategy"?: PositioningStrategy;
+        "positioningStrategy"?: 'absolute' | 'fixed';
         /**
           * Show dropdown
          */
@@ -2588,6 +2639,36 @@ declare namespace LocalJSX {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement;
+    }
+    interface IxDropdownButton {
+        /**
+          * Active button
+         */
+        "active"?: boolean;
+        /**
+          * Disable button
+         */
+        "disabled"?: boolean;
+        /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
+          * Button icon
+         */
+        "icon"?: string;
+        /**
+          * Set label
+         */
+        "label"?: string;
+        /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
+          * Button varaint
+         */
+        "variant"?: Buttons;
     }
     interface IxDropdownItem {
         /**
@@ -3251,9 +3332,6 @@ declare namespace LocalJSX {
         "selectedIndices"?: string | string[];
     }
     interface IxSelectItem {
-        /**
-          * ***Internal***
-         */
         "hover"?: boolean;
         /**
           * Displayed name of the item
@@ -3710,6 +3788,7 @@ declare namespace LocalJSX {
         "ix-datetime-picker": IxDatetimePicker;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
+        "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
@@ -3782,6 +3861,7 @@ declare module "@stencil/core" {
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;

@@ -8,6 +8,7 @@
  */
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { IxButton, IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ import Demo, { DemoProps } from '../Demo';
 import { isTargetFramework, TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
+
 type MdxContent = ({}) => {};
 
 function ButtonOpenGithub({
@@ -41,11 +43,13 @@ function ButtonOpenGithub({
 
 function ButtonOpenStackBlitz({
   name,
+  files,
   framework,
   baseUrl,
 }: {
-  baseUrl: string;
   name: string;
+  baseUrl: string;
+  files: string[];
   framework: TargetFramework;
 }) {
   return (
@@ -54,6 +58,7 @@ function ButtonOpenStackBlitz({
       onClick={() =>
         openStackBlitz({
           name,
+          files,
           framework,
           baseUrl,
         })
@@ -85,10 +90,61 @@ interface PlaygroundProps {
     angular?: Record<string, MdxContent> | MdxContent;
     webcomponents?: Record<string, MdxContent> | MdxContent;
   };
+  availableFrameworks?: TargetFramework[];
 }
 
 function getPathId(pathname: string) {
   return `docusaurus.playground${pathname.replace(/\//g, '.')}`;
+}
+
+function FileTabs(props: {
+  files: {
+    filename: string;
+    node: React.ReactNode;
+  }[];
+}) {
+  const [selectedTab, setSelectedTab] = useState(props.files[0].filename);
+  const changeTab = (filename: string) => setSelectedTab(filename);
+
+  function getCode() {
+    const SourceNode = props.files.find((f) => f.filename === selectedTab)
+      ?.node as any;
+
+    if (!SourceNode) {
+      return null;
+    }
+
+    return <SourceNode></SourceNode>;
+  }
+
+  return (
+    <>
+      <IxTabs>
+        {props.files.map((source) => {
+          const SourceNode = source.node as any;
+          return (
+            <IxTabItem
+              key={source.filename}
+              onClick={() => changeTab(source.filename)}
+            >
+              {source.filename}
+            </IxTabItem>
+          );
+        })}
+      </IxTabs>
+      {getCode()}
+    </>
+  );
+}
+
+function getDefaultTargetFramework(availableFrameworks?: TargetFramework[]) {
+  if (!availableFrameworks) {
+    return TargetFramework.ANGULAR;
+  }
+  return (
+    (availableFrameworks.length !== 0 ? availableFrameworks[0] : undefined) ||
+    TargetFramework.ANGULAR
+  );
 }
 
 export default function Playground({
@@ -98,17 +154,25 @@ export default function Playground({
   theme,
   frameworks,
   hideInitalCodePreview,
+  availableFrameworks,
 }: DemoProps & PlaygroundProps) {
   const { pathname } = useLocation();
   const baseUrl = useBaseUrl('/');
   const [showCode, setShowCode] = useState<boolean>(!hideInitalCodePreview);
 
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
-    TargetFramework.ANGULAR
+    getDefaultTargetFramework(availableFrameworks)
   );
 
-  const [sourceCodeSnippets, setSourceCodeSnippets] =
-    useState<Record<TargetFramework, React.ReactNode>>();
+  const [sourceCodeSnippets, setSourceCodeSnippets] = useState<
+    Record<
+      TargetFramework,
+      Array<{
+        filename: string;
+        node: React.ReactNode;
+      }>
+    >
+  >();
 
   useEffect(() => {
     const id = getPathId(pathname);
@@ -119,12 +183,47 @@ export default function Playground({
   }, []);
 
   useEffect(() => {
-    const snippets: Record<TargetFramework, React.ReactNode> = {} as any;
-
+    const snippets: Record<
+      TargetFramework,
+      Array<{
+        filename: string;
+        node: React.ReactNode;
+      }>
+    > = {} as any;
     Object.keys(frameworks).forEach((framework) => {
-      snippets[framework] = frameworks[framework]({});
-    });
+      if (typeof frameworks[framework] === 'function') {
+        let filename = name;
+        if (framework === TargetFramework.REACT) {
+          filename = filename.concat('.tsx');
+        }
+        if (framework === TargetFramework.JAVASCRIPT) {
+          filename = filename.concat('.html');
+        }
+        if (framework === TargetFramework.ANGULAR) {
+          filename = filename.concat('.ts');
+        }
 
+        snippets[framework] = [
+          {
+            filename,
+            node: frameworks[framework]({}),
+          },
+        ];
+      }
+
+      if (typeof frameworks[framework] === 'object') {
+        if (!snippets[framework]) {
+          snippets[framework] = [];
+        }
+
+        Object.keys(frameworks[framework]).forEach((fileName) => {
+          snippets[framework].push({
+            filename: fileName,
+            node: frameworks[framework][fileName],
+          });
+        });
+      }
+    });
     setSourceCodeSnippets(snippets);
   }, [frameworks, setSourceCodeSnippets]);
 
@@ -138,12 +237,34 @@ export default function Playground({
     }
   };
 
-  function renderSourceCodeSnippet() {
+  function renderSourceCodeSnippet(): React.ReactNode {
     if (!sourceCodeSnippets || !sourceCodeSnippets[targetFramework]) {
       return null;
     }
+    if (sourceCodeSnippets[targetFramework].length === 1) {
+      const [{ node }] = sourceCodeSnippets[targetFramework];
+      return node;
+    }
 
-    return sourceCodeSnippets[targetFramework];
+    return <FileTabs files={sourceCodeSnippets[targetFramework]} />;
+  }
+
+  function getFileNames() {
+    if (!sourceCodeSnippets) {
+      return [];
+    }
+
+    return sourceCodeSnippets[targetFramework].map((file) => file.filename);
+  }
+
+  function isFrameworkConfigured(framework: TargetFramework) {
+    if (!availableFrameworks) {
+      return true;
+    }
+    return (
+      availableFrameworks.length === 0 ||
+      availableFrameworks.includes(framework)
+    );
   }
 
   return (
@@ -160,30 +281,43 @@ export default function Playground({
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
-            <ix-button
-              ghost={targetFramework !== TargetFramework.ANGULAR}
-              onClick={() => changeFramework(TargetFramework.ANGULAR)}
-            >
-              Angular
-            </ix-button>
-            <ix-button
-              ghost={targetFramework !== TargetFramework.REACT}
-              onClick={() => changeFramework(TargetFramework.REACT)}
-            >
-              React
-            </ix-button>
-            <ix-button
-              ghost={targetFramework !== TargetFramework.JAVASCRIPT}
-              onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
-            >
-              JavaScript
-            </ix-button>
+            {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.ANGULAR}
+                onClick={() => changeFramework(TargetFramework.ANGULAR)}
+              >
+                Angular
+              </IxButton>
+            ) : null}
+
+            {isFrameworkConfigured(TargetFramework.REACT) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.REACT}
+                onClick={() => changeFramework(TargetFramework.REACT)}
+              >
+                React
+              </IxButton>
+            ) : null}
+
+            {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
+              <IxButton
+                className="Playground__Framework__Button"
+                ghost={targetFramework !== TargetFramework.JAVASCRIPT}
+                onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
+              >
+                JavaScript
+              </IxButton>
+            ) : null}
+
             <div className="Playground__Toolbar__Actions">
               <ButtonOpenGithub name={name} framework={targetFramework} />
               <ButtonOpenStackBlitz
                 name={name}
                 framework={targetFramework}
                 baseUrl={baseUrl}
+                files={getFileNames()}
               />
             </div>
           </div>

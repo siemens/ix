@@ -11,7 +11,11 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 
 const __dirname = path.resolve();
-const examplePathPath = path.join(__dirname, 'static', 'webcomponent-examples');
+export const examplePathPath = path.join(
+  __dirname,
+  'static',
+  'webcomponent-examples'
+);
 
 const libDestPath = path.join(examplePathPath, 'lib');
 
@@ -19,7 +23,9 @@ const node_modules = path.join(__dirname, '../../', 'node_modules');
 
 async function loadLib(libName, destPath) {
   const libPath = path.join(node_modules, libName);
-  const pkg = JSON.parse(fsExtra.readFileSync(`${libPath}/package.json`));
+  const pkg = JSON.parse(
+    fsExtra.readFileSync(`${libPath}/package.json`).toString()
+  );
   return Promise.all(
     pkg.files.map(async (file) => {
       try {

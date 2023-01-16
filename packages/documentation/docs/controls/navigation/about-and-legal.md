@@ -11,7 +11,7 @@ import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
 
 import SourceWebComponent from './../../auto-generated/previews/web-component/about-and-legal.md'
 import SourceReact from './../../auto-generated/previews/react/about-and-legal.md'
-import SourceAngular from './../../auto-generated/previews/angular/about-and-legal.md'
+import SourceAngular from './../../auto-generated/previews/angular/about-and-legal.ts.md'
 
 ## Usage
 

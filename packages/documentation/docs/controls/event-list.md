@@ -16,10 +16,10 @@ import SourceReactEventListSelected from './../auto-generated/previews/react/eve
 import SourceReactEventListHeight from './../auto-generated/previews/react/event-list-custom-item-height.md'
 import SourceReactEventListCompact from './../auto-generated/previews/react/event-list-compact.md'
 
-import SourceAngularEventList from './../auto-generated/previews/angular/event-list.md'
-import SourceAngularEventListSelected from './../auto-generated/previews/angular/event-list-selected.md'
-import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.md'
-import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.md'
+import SourceAngularEventList from './../auto-generated/previews/angular/event-list.ts.md'
+import SourceAngularEventListSelected from './../auto-generated/previews/angular/event-list-selected.ts.md'
+import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.ts.md'
+import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.ts.md'
 
 # Event list
 

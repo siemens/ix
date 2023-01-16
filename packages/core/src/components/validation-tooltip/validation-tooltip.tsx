@@ -6,10 +6,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import '@popperjs/core';
-import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
+import {
+  arrow,
+  autoPlacement,
+  autoUpdate,
+  computePosition,
+  ComputePositionConfig,
+  inline,
+  offset,
+  shift,
+} from '@floating-ui/dom';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { getAlignment } from '../dropdown/alignment';
+import {
+  BasePlacement,
+  Placement,
+  PlacementWithAlignment,
+} from '../dropdown/placement';
+
+type Position = { x: number; y: number };
 
 /**
  * @slot tooltip-message - Custom tooltip message with html support
@@ -33,16 +48,16 @@ export class ValidationTooltip {
   @Prop() placement: Placement = 'top';
 
   @State() isInputValid = true;
-
-  private popper?: Popper;
+  @State() tooltipPosition: Position;
+  @State() arrowPosition: Position;
 
   private onSubmitBind = this.onSubmit.bind(this);
   private onInputFocusBind = this.onInputFocus.bind(this);
-
+  private autoUpdateCleanup: () => void;
   private observer: MutationObserver;
 
   get arrow() {
-    return this.hostElement.querySelector('#arrow');
+    return this.hostElement.querySelector('#arrow') as HTMLElement;
   }
 
   get inputElement() {
@@ -55,6 +70,81 @@ export class ValidationTooltip {
 
   get tooltipElement(): HTMLElement {
     return this.hostElement.querySelector('.validation-tooltip');
+  }
+
+  private destoryAutoUpdate() {
+    this.tooltipElement.style.display = 'none';
+
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
+    }
+  }
+
+  private applyTooltipPosition() {
+    this.tooltipElement.style.display = 'block';
+
+    let positionConfig: Partial<ComputePositionConfig> = {
+      strategy: 'fixed',
+      middleware: [
+        inline(),
+        shift(),
+        offset({
+          mainAxis: 8,
+        }),
+      ],
+    };
+
+    if (this.placement.includes('auto')) {
+      positionConfig.middleware.push(
+        autoPlacement({
+          alignment: getAlignment(this.placement),
+        })
+      );
+    } else {
+      positionConfig.placement = this.placement as
+        | BasePlacement
+        | PlacementWithAlignment;
+    }
+
+    this.autoUpdateCleanup = autoUpdate(
+      this.inputElement,
+      this.tooltipElement,
+      async () => {
+        positionConfig.middleware = [
+          ...positionConfig.middleware,
+          arrow({
+            element: this.arrow,
+          }),
+        ];
+        const computeResponse = await computePosition(
+          this.inputElement,
+          this.tooltipElement,
+          positionConfig
+        );
+
+        if (computeResponse.middlewareData.arrow) {
+          const { x, y } = computeResponse.middlewareData.arrow;
+          this.arrowPosition = {
+            x,
+            y,
+          };
+          Object.assign(this.arrow.style, {
+            left: x != null ? `${x}px` : '',
+            top: y != null ? `${y}px` : '',
+          });
+        }
+
+        this.tooltipPosition = {
+          x: computeResponse.x,
+          y: computeResponse.y,
+        };
+      },
+      {
+        ancestorResize: true,
+        ancestorScroll: true,
+        elementResize: true,
+      }
+    );
   }
 
   componentDidLoad() {
@@ -98,7 +188,7 @@ export class ValidationTooltip {
 
   disconnectedCallback() {
     this.observer?.disconnect();
-    this.popper?.destroy();
+    this.destoryAutoUpdate();
 
     this.formElement.removeEventListener('submit', this.onSubmitBind);
     this.inputElement.removeEventListener('focus', this.onInputFocusBind);
@@ -107,32 +197,9 @@ export class ValidationTooltip {
   @Watch('isInputValid')
   validationChanged() {
     if (!this.isInputValid) {
-      this.tooltipElement.style.display = 'block';
-      this.popper = createPopper(
-        this.inputElement,
-        this.tooltipElement as HTMLElement,
-        {
-          placement: this.placement,
-          strategy: 'absolute',
-          modifiers: [
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 8],
-              },
-            },
-            {
-              name: 'arrow',
-              options: {
-                element: this.arrow,
-              },
-            },
-          ],
-        }
-      );
+      this.applyTooltipPosition();
     } else {
-      this.tooltipElement.style.display = 'none';
-      this.popper.destroy();
+      this.destoryAutoUpdate();
     }
   }
 
@@ -142,12 +209,20 @@ export class ValidationTooltip {
         <slot></slot>
         <div
           role="tooltip"
-          style={{ display: 'none' }}
+          style={{
+            display: 'none',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            transform: `translate(${Math.round(
+              this.tooltipPosition?.x || 0
+            )}px,${Math.round(this.tooltipPosition?.y || 0)}px)`,
+          }}
           class="validation-tooltip text-default"
         >
           {this.message}
           <slot name="tooltip-message"></slot>
-          <div id="arrow" data-popper-arrow></div>
+          <div id="arrow"></div>
         </div>
       </Host>
     );
