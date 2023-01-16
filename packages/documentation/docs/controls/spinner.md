@@ -9,8 +9,8 @@ import SourceSpinnerLarge from './../auto-generated/previews/web-component/spinn
 import SourceReactSpinner from './../auto-generated/previews/react/spinner.md';
 import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-large.md';
 
-import SourceAngularSpinner from './../auto-generated/previews/angular/spinner.md';
-import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spinner-large.md';
+import SourceAngularSpinner from './../auto-generated/previews/angular/spinner.ts.md';
+import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spinner-large.ts.md';
 
 # Spinner
 

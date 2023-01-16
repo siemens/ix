@@ -8,9 +8,9 @@ import SourceReactTextarea from './../auto-generated/previews/react/textarea.md'
 import SourceReactTextareaDisabled from './../auto-generated/previews/react/textarea-disabled.md';
 import SourceReactTextareaReadonly from './../auto-generated/previews/react/textarea-readonly.md';
 
-import SourceAngularTextarea from './../auto-generated/previews/angular/textarea.md';
-import SourceAngularTextareaDisabled from './../auto-generated/previews/angular/textarea-disabled.md';
-import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/textarea-readonly.md';
+import SourceAngularTextarea from './../auto-generated/previews/angular/textarea.ts.md';
+import SourceAngularTextareaDisabled from './../auto-generated/previews/angular/textarea-disabled.ts.md';
+import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/textarea-readonly.ts.md';
 
 # Text area
 

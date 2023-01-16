@@ -20,7 +20,7 @@ import {
   State,
 } from '@stencil/core';
 import { convertToRemString } from '../utils/rwd.util';
-import { toggleVariant } from '../utils/toggle-theme';
+import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
   tag: 'ix-menu',
@@ -805,7 +805,7 @@ export class Menu {
           {this.enableToggleTheme ? (
             <ix-menu-item
               id="toggleTheme"
-              onClick={() => toggleVariant()}
+              onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
               tabIcon="bulb"
             >

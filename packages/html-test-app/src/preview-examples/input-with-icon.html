@@ -20,6 +20,11 @@ SPDX-License-Identifier: MIT
       </ix-input-group>
     </form>
     <!-- Preview code -->
+    <script>
+      document
+        .querySelector('form')
+        .addEventListener('submit', (evt) => evt.preventDefault());
+    </script>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

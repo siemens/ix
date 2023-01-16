@@ -81,7 +81,7 @@ ix-menu {
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
-    transition: all $default-time ease-out;
+    transition: all $medium-time ease-out;
   }
 
   .menu-overlay-invisible {

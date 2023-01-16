@@ -16,6 +16,7 @@ $chip-height: 1.25rem;
 
 :host {
   display: inline-flex;
+  width: fit-content;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -41,5 +42,10 @@ $chip-height: 1.25rem;
 
   .slot {
     @include ellipsis;
+  }
+
+  .hidden {
+    width: 0px;
+    margin-right: 0px;
   }
 }
