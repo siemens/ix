@@ -16,7 +16,9 @@ import {
   Host,
   Method,
   Prop,
+  Watch,
 } from '@stencil/core';
+import { IxSelectItemLabelChangeEvent } from './events';
 
 @Component({
   tag: 'ix-select-item',
@@ -67,6 +69,16 @@ export class SelectItem {
     if (!this.value) {
       throw Error('ix-select-item must have a `value` property');
     }
+  }
+
+  @Watch('label')
+  labelChange(newValue: string, oldValue: string) {
+    this.hostElement.dispatchEvent(
+      new IxSelectItemLabelChangeEvent({
+        newValue: newValue,
+        oldValue: oldValue,
+      })
+    );
   }
 
   render() {
