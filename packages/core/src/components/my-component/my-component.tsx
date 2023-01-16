@@ -8,7 +8,6 @@
  */
 
 import { Component, h, Host } from '@stencil/core';
-import { LogicalFilterOperator } from '../category-filter/logical-filter-operator';
 
 @Component({
   tag: 'my-component',
@@ -17,31 +16,6 @@ import { LogicalFilterOperator } from '../category-filter/logical-filter-operato
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-category-filter
-          filterState={{
-            tokens: ['Custom filter text'],
-            categories: [
-              {
-                id: 'ID_1',
-                value: 'IBM',
-                operator: LogicalFilterOperator.NOT_EQUAL,
-              },
-            ],
-          }}
-          categories={{
-            ID_1: {
-              label: 'Vendor',
-              options: ['Apple', 'MS', 'Siemens'],
-            },
-            ID_2: {
-              label: 'Product',
-              options: ['iPhone X', 'Windows', 'APS'],
-            },
-          }}
-        ></ix-category-filter>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
