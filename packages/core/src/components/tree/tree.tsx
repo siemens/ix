@@ -207,8 +207,7 @@ export class Tree {
   }
 
   componentDidLoad() {
-    const config = this.getVirtualizerOptions();
-    this.hyperlist = new Hyperlist(this.host, config);
+    this.initList();
 
     this.observer = new MutationObserver((records) => {
       let removed = [];
@@ -243,13 +242,18 @@ export class Tree {
 
   @Watch('model')
   modelChange() {
-    this.refreshList();
+    this.initList();
   }
 
   private refreshList() {
     if (this.hyperlist) {
       this.hyperlist.refresh(this.host, this.getVirtualizerOptions());
     }
+  }
+
+  private initList() {
+    const config = this.getVirtualizerOptions();
+    this.hyperlist = new Hyperlist(this.host, config);
   }
 
   render() {
