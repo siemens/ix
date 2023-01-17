@@ -1370,6 +1370,16 @@ export namespace Components {
          */
         "textOn": string;
     }
+    interface IxTooltip {
+        /**
+          * Anchor point to show tooltip
+         */
+        "anchor": string;
+        /**
+          * Define if the user can access the tooltip via mouse.
+         */
+        "tooltipSelectable": boolean;
+    }
     interface IxTree {
         /**
           * Selection and collapsed state management
@@ -2021,6 +2031,12 @@ declare global {
         prototype: HTMLIxToggleElement;
         new (): HTMLIxToggleElement;
     };
+    interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
+    }
+    var HTMLIxTooltipElement: {
+        prototype: HTMLIxTooltipElement;
+        new (): HTMLIxTooltipElement;
+    };
     interface HTMLIxTreeElement extends Components.IxTree, HTMLStencilElement {
     }
     var HTMLIxTreeElement: {
@@ -2124,6 +2140,7 @@ declare global {
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
+        "ix-tooltip": HTMLIxTooltipElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
         "ix-upload": HTMLIxUploadElement;
@@ -3607,6 +3624,16 @@ declare namespace LocalJSX {
          */
         "textOn"?: string;
     }
+    interface IxTooltip {
+        /**
+          * Anchor point to show tooltip
+         */
+        "anchor"?: string;
+        /**
+          * Define if the user can access the tooltip via mouse.
+         */
+        "tooltipSelectable"?: boolean;
+    }
     interface IxTree {
         /**
           * Selection and collapsed state management
@@ -3832,6 +3859,7 @@ declare namespace LocalJSX {
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
+        "ix-tooltip": IxTooltip;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
         "ix-upload": IxUpload;
@@ -3905,6 +3933,7 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;

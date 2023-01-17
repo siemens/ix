@@ -16,6 +16,22 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host
+        style={{
+          padding: '12rem',
+        }}
+      >
+        <div class="cont">
+          <ix-button data-ix-tooltip="test" style={{ marginBottom: '4rem' }}>
+            xxxx
+          </ix-button>
+          <ix-button data-ix-tooltip="test">xxxx</ix-button>
+        </div>
+        <ix-tooltip anchor="test" tooltipSelectable={true}>
+          Helloworld
+        </ix-tooltip>
+      </Host>
+    );
   }
 }
