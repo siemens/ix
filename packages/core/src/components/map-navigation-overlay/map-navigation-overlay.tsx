@@ -63,7 +63,6 @@ export class MapNavigationOverlay {
   }
 
   private closeOverlay() {
-    console.log('CLICKED');
     anime({
       targets: this.hostElement,
       duration: MapNavigationOverlay.slowTime,
@@ -94,7 +93,7 @@ export class MapNavigationOverlay {
             }}
           ></div>
           <div class="overlay-header-content">
-            <ix-icon size="32" name="star"></ix-icon>
+            <ix-icon size="32" name={this.icon}></ix-icon>
             <span class="overlay-header-title" title={this.name}>
               {this.name}
             </span>
