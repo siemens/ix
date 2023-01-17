@@ -507,7 +507,8 @@
         "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -527,6 +528,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -8420,6 +8424,74 @@
       ]
     },
     {
+      "dirPath": "./src/components/tooltip",
+      "filePath": "./src/components/tooltip/tooltip.tsx",
+      "fileName": "tooltip.tsx",
+      "readmePath": "./src/components/tooltip/readme.md",
+      "usagesDir": "./src/components/tooltip/usage",
+      "tag": "ix-tooltip",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.3.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-tooltip"
+        ]
+      },
+      "props": [
+        {
+          "name": "anchor",
+          "type": "string",
+          "mutable": false,
+          "attr": "anchor",
+          "reflectToAttr": false,
+          "docs": "Anchor point to show tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "tooltipSelectable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "tooltip-selectable",
+          "reflectToAttr": false,
+          "docs": "Define if the user can access the tooltip via mouse.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/tree",
       "filePath": "./src/components/tree/tree.tsx",
       "fileName": "tree.tsx",
@@ -9285,8 +9357,16 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-tooltip"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-tooltip"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
