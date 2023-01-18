@@ -10,14 +10,8 @@
 @import 'common-variables';
 
 :host {
-  display: block;
+  display: flex;
   position: relative;
   width: 100vw;
   height: 100vh;
-
-  .cont {
-    display: flex;
-    flex-direction: column;
-    width: 5rem;
-  }
 }

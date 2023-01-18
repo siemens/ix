@@ -3859,6 +3859,7 @@
         "ix-select",
         "ix-split-button",
         "ix-toast",
+        "ix-tooltip",
         "ix-tree-item",
         "ix-workflow-step"
       ],
@@ -3925,6 +3926,9 @@
           "ix-icon"
         ],
         "ix-toast": [
+          "ix-icon"
+        ],
+        "ix-tooltip": [
           "ix-icon"
         ],
         "ix-tree-item": [
@@ -8443,18 +8447,25 @@
       "dependents": [
         "my-component"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography"
+      ],
       "dependencyGraph": {
+        "ix-tooltip": [
+          "ix-icon",
+          "ix-typography"
+        ],
         "my-component": [
           "ix-tooltip"
         ]
       },
       "props": [
         {
-          "name": "anchor",
+          "name": "for",
           "type": "string",
           "mutable": false,
-          "attr": "anchor",
+          "attr": "for",
           "reflectToAttr": false,
           "docs": "Anchor point to show tooltip",
           "docsTags": [],
@@ -8467,10 +8478,10 @@
           "required": false
         },
         {
-          "name": "tooltipSelectable",
+          "name": "interactive",
           "type": "boolean",
           "mutable": false,
-          "attr": "tooltip-selectable",
+          "attr": "interactive",
           "reflectToAttr": false,
           "docs": "Define if the user can access the tooltip via mouse.",
           "docsTags": [],
@@ -8478,6 +8489,38 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "titleContent",
+          "type": "string",
+          "mutable": false,
+          "attr": "title-content",
+          "reflectToAttr": false,
+          "docs": "Title of the tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "titleIcon",
+          "type": "string",
+          "mutable": false,
+          "attr": "title-icon",
+          "reflectToAttr": false,
+          "docs": "Title icon of the tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -9359,12 +9402,18 @@
       "dependents": [],
       "dependencies": [
         "ix-button",
-        "ix-tooltip"
+        "ix-tooltip",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
-          "ix-tooltip"
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-icon",
+          "ix-typography"
         ]
       },
       "props": [],

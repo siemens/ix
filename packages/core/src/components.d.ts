@@ -19,6 +19,7 @@ import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -1374,11 +1375,19 @@ export namespace Components {
         /**
           * Anchor point to show tooltip
          */
-        "anchor": string;
+        "for": string;
         /**
           * Define if the user can access the tooltip via mouse.
          */
-        "tooltipSelectable": boolean;
+        "interactive": boolean;
+        /**
+          * Title of the tooltip
+         */
+        "titleContent": string;
+        /**
+          * Title icon of the tooltip
+         */
+        "titleIcon": string;
     }
     interface IxTree {
         /**
@@ -1417,6 +1426,12 @@ export namespace Components {
           * Text
          */
         "text": string;
+    }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant": TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -2049,6 +2064,12 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
+    interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
+    }
+    var HTMLIxTypographyElement: {
+        prototype: HTMLIxTypographyElement;
+        new (): HTMLIxTypographyElement;
+    };
     interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
     }
     var HTMLIxUploadElement: {
@@ -2143,6 +2164,7 @@ declare global {
         "ix-tooltip": HTMLIxTooltipElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
+        "ix-typography": HTMLIxTypographyElement;
         "ix-upload": HTMLIxUploadElement;
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
@@ -3628,11 +3650,19 @@ declare namespace LocalJSX {
         /**
           * Anchor point to show tooltip
          */
-        "anchor"?: string;
+        "for"?: string;
         /**
           * Define if the user can access the tooltip via mouse.
          */
-        "tooltipSelectable"?: boolean;
+        "interactive"?: boolean;
+        /**
+          * Title of the tooltip
+         */
+        "titleContent"?: string;
+        /**
+          * Title icon of the tooltip
+         */
+        "titleIcon"?: string;
     }
     interface IxTree {
         /**
@@ -3687,6 +3717,12 @@ declare namespace LocalJSX {
           * Text
          */
         "text"?: string;
+    }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -3862,6 +3898,7 @@ declare namespace LocalJSX {
         "ix-tooltip": IxTooltip;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
+        "ix-typography": IxTypography;
         "ix-upload": IxUpload;
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
@@ -3936,6 +3973,7 @@ declare module "@stencil/core" {
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;

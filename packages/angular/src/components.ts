@@ -1572,13 +1572,13 @@ export declare interface IxTooltip extends Components.IxTooltip {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['anchor', 'tooltipSelectable']
+  inputs: ['for', 'interactive', 'titleContent', 'titleIcon']
 })
 @Component({
   selector: 'ix-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['anchor', 'tooltipSelectable']
+  inputs: ['for', 'interactive', 'titleContent', 'titleIcon']
 })
 export class IxTooltip {
   protected el: HTMLElement;

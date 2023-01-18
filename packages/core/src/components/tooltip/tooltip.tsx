@@ -8,6 +8,7 @@
  */
 import {
   arrow,
+  autoPlacement,
   autoUpdate,
   computePosition,
   offset,
@@ -27,12 +28,22 @@ export class Tooltip {
   /**
    * Anchor point to show tooltip
    */
-  @Prop() anchor: string;
+  @Prop() for: string;
 
   /**
    * Define if the user can access the tooltip via mouse.
    */
-  @Prop() tooltipSelectable = false;
+  @Prop() interactive = false;
+
+  /**
+   * Title of the tooltip
+   */
+  @Prop() titleContent: string;
+
+  /**
+   * Title icon of the tooltip
+   */
+  @Prop() titleIcon: string;
 
   @State() visible = false;
 
@@ -63,7 +74,7 @@ export class Tooltip {
 
   private hideTooltip() {
     this.hideTooltipTimeout = setTimeout(() => {
-      this.visible = false;
+      this.visible = true;
     }, this.tooltipCloseTimeInMS);
     this.destroyAutoUpdate();
   }
@@ -84,6 +95,10 @@ export class Tooltip {
               offset(8),
               arrow({
                 element: this.arrowElement,
+              }),
+              autoPlacement({
+                alignment: 'start',
+                allowedPlacements: ['top', 'bottom', 'right', 'left'],
               }),
             ],
           }
@@ -113,9 +128,7 @@ export class Tooltip {
   }
 
   private queryAnchorElements() {
-    return Array.from(
-      document.querySelectorAll(`[data-ix-tooltip="${this.anchor}"]`)
-    );
+    return Array.from(document.querySelectorAll(this.for));
   }
 
   private registerTriggerListener() {
@@ -128,7 +141,7 @@ export class Tooltip {
 
   private registerTooltipListener() {
     this.hostElement.addEventListener('mouseenter', () => {
-      if (this.tooltipSelectable) {
+      if (this.interactive) {
         clearTimeout(this.hideTooltipTimeout);
       }
     });
@@ -138,7 +151,7 @@ export class Tooltip {
   }
 
   componentDidLoad() {
-    if (this.tooltipSelectable) {
+    if (this.interactive) {
       this.tooltipCloseTimeInMS = 150;
     }
 
@@ -163,13 +176,29 @@ export class Tooltip {
   }
 
   render() {
+    const tooltipContentClass = {
+      'tooltip-content': true,
+    };
     return (
       <Host
         class={{
           visible: this.visible,
         }}
       >
-        <slot></slot>
+        <div class={'tooltip-title'}>
+          {this.titleIcon ? (
+            <ix-icon size="12" name={this.titleIcon}></ix-icon>
+          ) : null}
+          {(
+            <ix-typography variant="default-title">
+              {this.titleContent}
+              <slot name="title"></slot>
+            </ix-typography>
+          ) ?? null}
+        </div>
+        <div class={tooltipContentClass}>
+          <slot></slot>
+        </div>
         <div class="arrow"></div>
       </Host>
     );
