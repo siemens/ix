@@ -84,6 +84,8 @@ import Toggle from 'src/preview-examples/toggle';
 import ToggleColor from 'src/preview-examples/toggle-color';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
+import Tooltip from 'src/preview-examples/tooltip';
+import TooltipTitle from 'src/preview-examples/tooltip-title';
 import Tree from 'src/preview-examples/tree';
 import TreeCustom from 'src/preview-examples/tree-custom';
 import Upload from 'src/preview-examples/upload';
@@ -174,6 +176,8 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     MapNavigationOverlay,
     TabsRounded,
     DatepickerRange,
+    Tooltip,
+    TooltipTitle,
   ],
   imports: [
     BrowserModule,

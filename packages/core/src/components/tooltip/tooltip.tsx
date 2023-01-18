@@ -74,7 +74,7 @@ export class Tooltip {
 
   private hideTooltip() {
     this.hideTooltipTimeout = setTimeout(() => {
-      this.visible = true;
+      this.visible = false;
     }, this.tooltipCloseTimeInMS);
     this.destroyAutoUpdate();
   }
