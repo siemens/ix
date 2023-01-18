@@ -15,12 +15,18 @@
   width: 100vw;
   height: 100vh;
 
-  main {
+  .example {
+    display: block;
+    position: relative;
+    height: 100%;
     width: 100%;
-    padding: 2rem;
   }
 
-  ix-chip {
-    margin-block-end: $default-space;
+  .item-a {
+    background-color: rgba(0, 255, 0.2);
+  }
+
+  .item-b {
+    background-color: rgba(0, 255, 255, 0.2);
   }
 }

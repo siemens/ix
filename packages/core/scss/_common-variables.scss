@@ -58,3 +58,12 @@ $short-time: 0ms;
 $input-padding-y: 0.5rem;
 $input-padding-x: 0.5rem;
 $input-min-width: 2rem;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
