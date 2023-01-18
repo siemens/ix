@@ -23,8 +23,8 @@ height="16rem"
 frameworks={{
     react: SourceReact,
     angular: {
-        "blind.html": SourceAngularHtml,
-        "blind.ts": SourceAngularTs
+        "tooltip.html": SourceAngularHtml,
+        "tooltip.ts": SourceAngularTs
     },
     javascript: SourceJavascript
 }}>

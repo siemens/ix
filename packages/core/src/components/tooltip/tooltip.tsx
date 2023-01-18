@@ -26,7 +26,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 })
 export class Tooltip {
   /**
-   * Anchor point to show tooltip
+   * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
   @Prop() for: string;
 

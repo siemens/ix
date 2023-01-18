@@ -8472,7 +8472,7 @@
           "mutable": false,
           "attr": "for",
           "reflectToAttr": false,
-          "docs": "Anchor point to show tooltip",
+          "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
           "docsTags": [],
           "values": [
             {

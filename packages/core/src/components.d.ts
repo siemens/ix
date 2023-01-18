@@ -1373,7 +1373,7 @@ export namespace Components {
     }
     interface IxTooltip {
         /**
-          * Anchor point to show tooltip
+          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for": string;
         /**
@@ -3648,7 +3648,7 @@ declare namespace LocalJSX {
     }
     interface IxTooltip {
         /**
-          * Anchor point to show tooltip
+          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for"?: string;
         /**
