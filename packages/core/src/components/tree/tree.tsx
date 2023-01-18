@@ -252,6 +252,7 @@ export class Tree {
   }
 
   private initList() {
+    this.hyperlist?.destroy();
     const config = this.getVirtualizerOptions();
     this.hyperlist = new Hyperlist(this.host, config);
   }
