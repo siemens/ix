@@ -6,7 +6,7 @@ title: React
 
 ### Install dependencies
 
-Install `@siemens/ix-react` and `@siemens/ix-icons` using a package manager:
+Install `@siemens/ix-react`, `@siemens/ix` and `@siemens/ix-icons` using a package manager:
 
 #### npm
 
