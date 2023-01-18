@@ -2,6 +2,8 @@ import Playground from '@site/src/components/Playground';
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
+import Overview from './../auto-generated/ix-dropdown-button/overview.md';
+import Tags from './../auto-generated/ix-dropdown-button/tags.md';
 import Props from './../auto-generated/ix-dropdown-button/props.md';
 import Events from './../auto-generated/ix-dropdown-button/events.md';
 
@@ -15,6 +17,10 @@ import SourceAngularDropdownButton from './../auto-generated/previews/angular/dr
 import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angular/dropdown-button-icon.ts.md';
 
 # Dropdown button
+
+<Tags />
+
+<Overview />
 
 ## Usage
 

@@ -10,6 +10,9 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
 import { Buttons } from '../utils/button-variants';
 
+/**
+ * @since 1.3.0
+ */
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
