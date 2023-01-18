@@ -945,7 +945,7 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Determinate if the chip is interactive.\nIf active is false no closable icon is visible and no interaction is possible.",
+          "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
           "docsTags": [],
           "default": "true",
           "values": [

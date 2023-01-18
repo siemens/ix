@@ -60,6 +60,6 @@ $border-radius: 100px;
   }
 }
 
-:host(.readonly) {
+:host(.inactive) {
   pointer-events: none;
 }

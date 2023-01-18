@@ -39,8 +39,8 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Determinate if the chip is interactive.
-   * If active is false no closable icon is visible and no interaction is possible.
+   * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)
+   * will be possible and also the close button will not be present.
    */
   @Prop() active = true;
 
@@ -96,7 +96,7 @@ export class Chip {
   }
 
   render() {
-    const isActive = this.active === false;
+    const isInactive = this.active === false;
 
     let customStyle = {};
 
@@ -118,7 +118,7 @@ export class Chip {
       <Host
         class={{
           outline: this.outline,
-          readonly: isActive,
+          inactive: isInactive,
         }}
         tabIndex="-1"
         title={this.el.textContent}
@@ -135,7 +135,7 @@ export class Chip {
         <span class="slot-container">
           <slot></slot>
         </span>
-        {isActive === false && this.closable ? this.getCloseButton() : null}
+        {isInactive === false && this.closable ? this.getCloseButton() : null}
       </Host>
     );
   }
