@@ -12,8 +12,7 @@ import fsp from 'fs/promises';
 import path from 'path';
 import rimraf from 'rimraf';
 import copyLib, { examplePathPath } from './copy-webcomponents';
-import { appendDocsTags } from './docs-tags';
-import { escapeMarkdown } from './utils';
+import { writeApi } from './renderer/api-renderer';
 import { writeAngularPreviews } from './write-angular-preview';
 
 (async function () {
@@ -31,7 +30,7 @@ import { writeAngularPreviews } from './write-angular-preview';
     'previews'
   );
 
-  const docsAutogenerationPath = path.join(__dirname, 'docs', 'auto-generated');
+  const docsGenerationPath = path.join(__dirname, 'docs', 'auto-generated');
 
   function autoGenerationWarning(previewPath) {
     // unix/win normalization
@@ -60,99 +59,12 @@ SPDX-License-Identifier: MIT
     )}\n\`\`\`${type}\n${sourceCode.trimEnd()}\n\`\`\`\n`;
   }
 
-  function formatMultiline(str) {
-    return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
-  }
-
-  function removeNewLines(str) {
-    return str.replace(/\n/g, str);
-  }
-
-  /**
-   *
-   * @param {string} name
-   * @param {Array<{ name: string, text: string }>} docsTags
-   * @returns
-   */
-  function renderTableCellWithDocsTags(name, docsTags) {
-    let eventName = name;
-    let tags = '';
-    if (!!docsTags.length) {
-      tags = appendDocsTags(tags, docsTags);
-    }
-
-    const eventNameContainer = `<div className="Api__Table"><div>${eventName}</div><div className="Api__Table Docs__Tags">${tags}</div></div>`;
-    return removeNewLines(eventNameContainer);
-  }
-
   function readComponents() {
     const raw = readFileSync(
       path.join(__dirname, '..', 'core', 'component-doc.json')
     ).toString();
 
     return JSON.parse(raw);
-  }
-
-  function writeEvents(events) {
-    if (events.length === 0) {
-      return 'No events available for this component.';
-    }
-
-    return `| Name       | Description                   | Type        |
-|------------|-------------------------------|------------------|
-${events
-  .map((event) => {
-    let eventDocs = renderTableCellWithDocsTags(
-      formatMultiline(event.docs),
-      event.docsTags
-    );
-
-    let detail = escapeMarkdown(event.detail);
-
-    const eventEntry = `|${event.event}| ${eventDocs} | \`${detail}\``;
-
-    return eventEntry;
-  })
-  .join('\n')}
-`;
-  }
-
-  function writeProps(properties) {
-    if (properties.length === 0) {
-      return 'No properties available for this component.';
-    }
-
-    return `| Name       | Description                   | Attribute        | Type                                      | Default             |
-|------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-${properties
-  .map((prop) => {
-    const propName = prop.name;
-    const propDescription = renderTableCellWithDocsTags(
-      formatMultiline(prop.docs),
-      prop.docsTags
-    );
-
-    const propType = escapeMarkdown(prop.type);
-
-    return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
-  })
-  .join('\n')}
-`;
-  }
-
-  function writeApi(component) {
-    const output = path.join(
-      __dirname,
-      'docs',
-      'auto-generated',
-      component.tag
-    );
-
-    let data = [writeProps(component.props)].join('');
-    fse.outputFileSync(path.join(output, 'props.md'), data);
-
-    data = [writeEvents(component.events)].join('');
-    fse.outputFileSync(path.join(output, 'events.md'), data);
   }
 
   async function writeWebComponentPreviews() {
@@ -240,7 +152,7 @@ ${properties
   }
 
   function clearDirectories() {
-    const paths = [staticPath, docsAutogenerationPath, examplePathPath];
+    const paths = [staticPath, docsGenerationPath, examplePathPath];
 
     return Promise.all(
       paths.map((p) => {
@@ -255,7 +167,9 @@ ${properties
   await copyLib();
 
   const { components } = readComponents();
-  components.forEach(writeApi);
+  await Promise.all(
+    components.map((component: any) => writeApi(component, docsGenerationPath))
+  );
 
   await writeWebComponentPreviews();
   await writeReactPreviews();

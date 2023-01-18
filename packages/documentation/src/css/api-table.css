@@ -16,7 +16,7 @@
   margin-top: 0.15rem;
 }
 
-.Api__Table .Docs__Tag {
+.Docs__Tag {
   display: inline-block;
   position: relative;
   width: auto;
@@ -32,8 +32,11 @@
   border-radius: 2px;
   padding: 0.15rem 0.25rem;
   margin-right: 0.15rem;
+
+  color: var(--theme-color-inv-std-text);
+  font-weight: bold;
 }
 
-.Api__Table .Docs__Tag.Docs__Tag__Deprecated {
+.Docs__Tag.Docs__Tag__Deprecated {
   background-color: var(--theme-color-alarm);
 }
