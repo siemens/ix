@@ -14,7 +14,7 @@ import Playground from '@site/src/components/Playground'
 
 Blinds are UI controls that allow the users to hide or reveal content by clicking on a control element. 
 
-![Blind overview](packages\documentation\static\img\pattern illustrations\Blind_overview.png)
+![Blind overview](/img/pattern_illustrations/Blind_overview.png)
 
 Go to:
 - [Code](#Code)
@@ -71,7 +71,16 @@ frameworks={{
 
 The user expands and collapses the blind by pressing anywhere in the header section. When the blind is expanded, content below the blind is moved downwards. 
 
+### Create accordion 
+
+Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is ...
+
+![Blind states collapsed](/img/pattern_illustrations/Blind_accordion.png)
+
 ## States
+
+![Blind states collapsed](/img/pattern_illustrations/Blind_states1.png)
+![Blind states expanded](/img/pattern_illustrations/Blind_states2.png)
 
 | State              | Description|
 | ------------------ | -------------- |
@@ -95,19 +104,11 @@ The blinds consists of a header section on top and a content section below. The 
 - The content section has a flexible height according to the content displayed. The minimum height is ... and the maximum height is ... ?
 - The blind has a minimum width of ... and a maximum width of ...?
 
-### Spacing
-
-There is no space between the header and the content section. 
-Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is ...
-
-packages\documentation\static\img\pattern illustrations\Blind_accordion.png
-
 ### Alignment
 
 The chevron icon and the blind name are left-justified within the header section. The content within the content section can be alighned freely.
 
-
 ## Dos and don't
 
-- Don't use a blind if there is only a single category to be displayed. The recommened number of blinds ranges between three and seven blinds.
-- Do not use Accordions to display hierarchically structured files or objects - rather use a tree for such cases.
+- Don't use a blind if there is only a single category to be displayed. The recommened number of blinds ranges between three and seven.
+- Do not use blinds to display hierarchically structured files or objects - rather use a tree for such cases.
