@@ -22,6 +22,7 @@
     "@docusaurus/preset-classic": "^2.2.0",
     "@docusaurus/theme-live-codeblock": "^2.2.0",
     "@mdx-js/react": "^1.6.22",
+    "@siemens/react-test-app": "~1.2.1",
     "@siemens/html-test-app": "~1.2.1",
     "@siemens/ix": "~1.2.1",
     "@siemens/ix-echarts": "~1.2.1",
