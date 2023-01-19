@@ -8431,7 +8431,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tree-item"
       ],
@@ -8441,6 +8443,9 @@
         ],
         "ix-tree-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-tree"
         ]
       },
       "props": [
@@ -9285,8 +9290,20 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-tree"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-tree"
+        ],
+        "ix-tree": [
+          "ix-tree-item"
+        ],
+        "ix-tree-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

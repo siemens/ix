@@ -48,7 +48,7 @@ SPDX-License-Identifier: MIT
           },
         };
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 100; i++) {
           const id = `sample-child-${i}`;
           model[id] = {
             id,
@@ -61,15 +61,13 @@ SPDX-License-Identifier: MIT
           model.sample.children.push(id);
         }
 
-        this.context['sample-child-85'] = {
+        context['sample-child-85'] = {
           isExpanded: false,
           isSelected: true,
         };
 
         tree.model = { ...model };
         tree.context = { ...context };
-
-        // document.querySelectorAll('ix-tree-item')[80].scrollIntoView();
       })();
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
