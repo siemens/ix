@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-workflow',
+  selector: 'app-example',
   template: `<ix-workflow-steps vertical>
     <ix-workflow-step status="done">Step 1</ix-workflow-step>
     <ix-workflow-step status="success">Step 2</ix-workflow-step>
@@ -20,4 +20,4 @@ import { Component } from '@angular/core';
     <ix-workflow-step disabled>Step 6</ix-workflow-step>
   </ix-workflow-steps>`,
 })
-export class WorkflowVertical {}
+export default class WorkflowVertical {}

@@ -10,10 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-grey-ghost',
+  selector: 'app-example',
   template: buttonGreyGhost(),
 })
-export class Buttons {}
+export default class Buttons {}
 function buttonGreyGhost(): string | undefined {
   return `
       <ix-button class="m-1" ghost variant="Secondary">

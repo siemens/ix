@@ -153,3 +153,26 @@ $button-categories: (primary, secondary);
   border-radius: 6.25rem;
   width: $default-control-height;
 }
+
+.btn-icon-xs,
+.btn-icon-12 {
+  height: $default-space;
+  width: $default-space;
+  min-width: $default-space;
+  min-height: $default-space;
+}
+
+.btn-icon-s,
+.btn-icon-16 {
+  height: $large-space;
+  width: $large-space;
+  min-width: $large-space;
+  min-height: $large-space;
+}
+
+.btn-icon-32 {
+  height: $x-large-space;
+  width: $x-large-space;
+  min-width: $x-large-space;
+  min-height: $x-large-space;
+}

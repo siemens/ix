@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-selected',
+  selector: 'app-example',
   template: `
     <ix-button class="m-1" variant="Secondary" ghost>Not selected</ix-button>
     <ix-button class="m-1" variant="Secondary" ghost selected
@@ -18,4 +18,4 @@ import { Component } from '@angular/core';
     >
   `,
 })
-export class ButtonSelected {}
+export default class ButtonSelected {}

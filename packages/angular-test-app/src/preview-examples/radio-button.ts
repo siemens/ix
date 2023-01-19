@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-radiobutton',
+  selector: 'app-example',
   template: `
     <input checked id="checkbox_1_1" name="group_1" type="radio" />
     <label for="checkbox_1_1"> Checked </label>
@@ -22,4 +22,4 @@ import { Component } from '@angular/core';
     <label for="checkbox_1_3"> Disabled </label>
   `,
 })
-export class Radiobutton {}
+export default class Radiobutton {}

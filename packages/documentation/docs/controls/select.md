@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-select/props.md';
 import Events from './../auto-generated/ix-select/events.md';
@@ -15,66 +14,50 @@ import SourceReactSelect from './../auto-generated/previews/react/select.md';
 import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
 import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
 
+import SourceAngularSelect from './../auto-generated/previews/angular/select.ts.md';
+import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.ts.md';
+import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.ts.md';
+
 import SourceVueSelect from './../auto-generated/previews/vue/select.md';
 import SourceVueEditable from './../auto-generated/previews/vue/select-editable.md';
 import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.md';
-
-import SourceAngularSelect from './../auto-generated/previews/angular/select.md';
-import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.md';
-import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.md';
 
 # Select
 
 ## Usage
 
-<Preview name="select" height="18rem">
-  <TabItem value="javascript">
-    <SourceSelect />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactSelect />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueSelect />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularSelect />
-  </TabItem>
-</Preview>
+<Playground
+name="select" height="18rem"
+frameworks={{
+  react: SourceReactSelect,
+  angular: SourceAngularSelect,
+  javascript: SourceSelect,
+  vue: SourceVueSelect
+}}></Playground>
 
 ### Editable
 
-<Preview name="select-editable" height="18rem">
-  <TabItem value="javascript">
-    <SourceEditable />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactEditable />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueEditable />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularEditable />
-  </TabItem>
-</Preview>
+<Playground
+name="select-editable" height="18rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactEditable,
+  angular: SourceAngularEditable,
+  javascript: SourceEditable,
+  vue: SourceVueEditable
+}}></Playground>
 
 ### Multiselect
 
-<Preview name="select-multiple" height="18rem">
-  <TabItem value="javascript">
-    <SourceMultiple />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactMultiple />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueMultiple />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularMultiple />
-  </TabItem>
-</Preview>
+<Playground
+name="select-multiple" height="18rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactMultiple,
+  angular: SourceAngularMultiple,
+  javascript: SourceMultiple,
+  vue: SourceVueMultiple
+}}></Playground>
 
 ## Properties (ix-select)
 

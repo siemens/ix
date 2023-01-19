@@ -10,7 +10,7 @@
 import { IxGroup, IxGroupItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const Group: React.FC = () => {
+export default () => {
   return (
     <IxGroup header="Header text" sub-header="Subheader text">
       <IxGroupItem text="Example text 1"></IxGroupItem>

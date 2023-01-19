@@ -10,7 +10,7 @@
 import { IxSplitButton, IxSplitButtonItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const SplitbuttonIcons: React.FC = () => {
+export default () => {
   return (
     <IxSplitButton label="Action text">
       <IxSplitButtonItem label="Item 1" icon="cut"></IxSplitButtonItem>

@@ -10,7 +10,7 @@
 import { IxButton, IxMessageBar } from '@siemens/ix-react';
 import React from 'react';
 
-export const MessageBar: React.FC = () => {
+export default () => {
   return (
     <>
       <IxMessageBar>Message text</IxMessageBar>

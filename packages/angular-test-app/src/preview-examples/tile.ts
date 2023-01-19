@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tile',
+  selector: 'app-example',
   template: `
     <ix-tile size="small">92.8 °C</ix-tile>
 
@@ -50,4 +50,4 @@ import { Component } from '@angular/core';
     </ix-tile>
   `,
 })
-export class Tile {}
+export default class Tile {}

@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import SourceInput from './../auto-generated/previews/web-component/input.md'
 import SourceInputDisabled from './../auto-generated/previews/web-component/input-disabled.md'
@@ -11,82 +10,61 @@ import SourceReactInputDisabled from './../auto-generated/previews/react/input-d
 import SourceReactInputReadonly from './../auto-generated/previews/react/input-readonly.md'
 import SourceReactInputIcon from './../auto-generated/previews/react/input-with-icon.md'
 
+import SourceAngularInput from './../auto-generated/previews/angular/input.ts.md'
+import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.ts.md'
+import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.ts.md'
+import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.ts.md'
+
 import SourceVueInput from './../auto-generated/previews/vue/input.md'
 import SourceVueInputDisabled from './../auto-generated/previews/vue/input-disabled.md'
 import SourceVueInputReadonly from './../auto-generated/previews/vue/input-readonly.md'
 import SourceVueInputIcon from './../auto-generated/previews/vue/input-with-icon.md'
 
-import SourceAngularInput from './../auto-generated/previews/angular/input.md'
-import SourceAngularInputDisabled from './../auto-generated/previews/angular/input-disabled.md'
-import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.md'
-import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.md'
-
 # Input
 
 ## Usage
 
-<Preview name="input">
-  <TabItem value="javascript">
-    <SourceInput />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInput />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueInput />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInput />
-  </TabItem>
-</Preview>
+<Playground
+name="input"
+frameworks={{
+  react: SourceReactInput,
+  angular: SourceAngularInput,
+  javascript: SourceInput,
+  vue: SourceVueInput
+}}></Playground>
 
 ### Disabled
 
-<Preview name="input-disabled">
-  <TabItem value="javascript">
-    <SourceInputDisabled />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputDisabled />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueInputDisabled />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputDisabled />
-  </TabItem>
-</Preview>
+<Playground
+name="input-disabled"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputDisabled,
+  angular: SourceAngularInputDisabled,
+  javascript: SourceInputDisabled,
+  vue: SourceVueInputDisabled
+}}></Playground>
 
 ### Readonly
 
-<Preview name="input-readonly">
-  <TabItem value="javascript">
-    <SourceInputReadonly />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputReadonly />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueInputReadonly />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputReadonly />
-  </TabItem>
-</Preview>
+<Playground
+name="input-readonly"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputReadonly,
+  angular: SourceAngularInputReadonly,
+  javascript: SourceInputReadonly,
+  vue: SourceVueInputReadonly
+}}></Playground>
 
 ### with Icon
 
-<Preview name="input-with-icon">
-  <TabItem value="javascript">
-    <SourceInputIcon />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactInputIcon />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueInputIcon />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularInputIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="input-with-icon"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactInputIcon,
+  angular: SourceAngularInputIcon,
+  javascript: SourceInputIcon,
+  vue: SourceVueInputIcon
+}}></Playground>

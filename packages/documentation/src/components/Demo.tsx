@@ -13,12 +13,14 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { getDefaultTheme } from './config';
 
-export default function Demo(props: {
+export interface DemoProps {
   name: string;
   theme?: string;
   height?: string;
   noMargin?: boolean;
-}) {
+}
+
+export default function Demo(props: DemoProps) {
   const context = useDocusaurusContext();
   const [error] = useState(false);
 

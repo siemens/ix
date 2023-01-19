@@ -16,7 +16,7 @@ import {
 } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
-export const MapNavigationOverlay: React.FC = () => {
+export default () => {
   const [overlay, setOverlay] = useState(false);
 
   function openOverlay() {

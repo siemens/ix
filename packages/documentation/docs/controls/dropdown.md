@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-dropdown/props.md';
 import Events from './../auto-generated/ix-dropdown/events.md';
@@ -13,8 +12,8 @@ import SourceDropdownIcon from './../auto-generated/previews/web-component/dropd
 import SourceReactDropdown from './../auto-generated/previews/react/dropdown.md'
 import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown-icon.md'
 
-import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.md'
-import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.md'
+import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.ts.md'
+import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.ts.md'
 
 import SourceVueDropdown from './../auto-generated/previews/vue/dropdown.md'
 import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-icon.md'
@@ -23,37 +22,26 @@ import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-ico
 
 ## Usage
 
-<Preview name="dropdown" height="16rem">
-  <TabItem value="javascript">
-    <SourceDropdown />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdown />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueDropdown />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdown />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown" height="16rem"
+frameworks={{
+  react: SourceReactDropdown,
+  angular: SourceAngularDropdown,
+  javascript: SourceDropdown,
+  vue: SourceVueDropdown
+}}></Playground>
 
 ### Dropdown with icon
 
-<Preview name="dropdown-icon" height="16rem">
-  <TabItem value="javascript">
-    <SourceDropdownIcon />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactDropdownIcon />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueDropdown />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularDropdownIcon />
-  </TabItem>
-</Preview>
+<Playground
+name="dropdown-icon" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactDropdownIcon,
+  angular: SourceAngularDropdownIcon,
+  javascript: SourceDropdownIcon,
+  vue: SourceVueDropdownIcon
+}}></Playground>
 
 ## Properties (ix-dropdown)
 

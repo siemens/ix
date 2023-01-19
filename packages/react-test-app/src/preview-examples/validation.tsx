@@ -17,7 +17,7 @@ import { IxValidationTooltip } from '@siemens/ix-react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const Validation: React.FC = () => {
+export default () => {
   const [wasValidated, setValidation] = useState(false);
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {

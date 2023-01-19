@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-map-navigation-overlay',
+  selector: 'app-example',
   template: `
     <ix-map-navigation
       application-name="Test Application"
@@ -34,6 +34,6 @@ import { Component } from '@angular/core';
     </ix-map-navigation>
   `,
 })
-export class MapNavigationOverlay {
+export default class MapNavigationOverlay {
   showOverlay = true;
 }

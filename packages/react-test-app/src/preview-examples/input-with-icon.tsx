@@ -10,7 +10,7 @@
 import { IxInputGroup } from '@siemens/ix-react';
 import React from 'react';
 
-export const InputWithIcon: React.FC = () => {
+export default () => {
   return (
     <form className="needs-validation m-2">
       <IxInputGroup>

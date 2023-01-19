@@ -1,23 +1,24 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import SourceTable from './../auto-generated/previews/web-component/html-table.md'
 import SourceTableStriped from './../auto-generated/previews/web-component/html-table-striped.md'
 
-# HTML Table
+# HTML table
 
 ## Usage
 
-<Preview name="html-table" height="12rem">
-  <TabItem value="javascript">
-    <SourceTable />
-  </TabItem>
-</Preview>
+<Playground
+name="html-table" height="12rem"
+hideInitalCodePreview
+frameworks={{
+  javascript: SourceTable
+}}></Playground>
 
 ### Striped
 
-<Preview name="html-table-striped" height="12rem">
-  <TabItem value="javascript">
-    <SourceTableStriped />
-  </TabItem>
-</Preview>
+<Playground
+name="html-table-striped" height="12rem"
+hideInitalCodePreview
+frameworks={{
+  javascript: SourceTableStriped
+}}></Playground>

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 import Icons from '@site/src/components/Icons';
 
-# Industrial Icon system
+# Industrial icon system
 
 Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG.
 

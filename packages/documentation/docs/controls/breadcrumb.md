@@ -1,6 +1,3 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-
 import Props from './../auto-generated/ix-breadcrumb/props.md';
 import Events from './../auto-generated/ix-breadcrumb/events.md';
 
@@ -14,9 +11,11 @@ import SourceReactBreadcrumb from './../auto-generated/previews/react/breadcrumb
 import SourceReactBreadcrumbTruncate from './../auto-generated/previews/react/breadcrumb-truncate.md'
 import SourceReactBreadcrumbNextItems from './../auto-generated/previews/react/breadcrumb-next-items.md'
 
-import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadcrumb.md'
-import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.md'
-import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.md'
+import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadcrumb.ts.md'
+import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.ts.md'
+import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.ts.md'
+
+import Playground from '@site/src/components/Playground'
 
 import SourceVueBreadcrumb from './../auto-generated/previews/vue/breadcrumb.md'
 import SourceVueBreadcrumbTruncate from './../auto-generated/previews/vue/breadcrumb-truncate.md'
@@ -26,54 +25,44 @@ import SourceVueBreadcrumbNextItems from './../auto-generated/previews/vue/bread
 
 ## Usage
 
-<Preview name="breadcrumb" height="8rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumb />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumb />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumb />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueBreadcrumb />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb"
+height="8rem"
+frameworks={{
+    react: SourceReactBreadcrumb,
+    angular: SourceAngularBreadcrumb,
+    javascript: SourceBreadcrumb,
+    vue: SourceVueBreadcrumb
+}}>
+</Playground>
 
 ### Truncate
 
-<Preview name="breadcrumb-truncate" height="10rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumbTruncate />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumbTruncate />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumbTruncate />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueBreadcrumbTruncate />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb-truncate"
+height="10rem"
+hideInitalCodePreview
+frameworks={{
+    react: SourceReactBreadcrumbTruncate,
+    angular: SourceAngularBreadcrumbTruncate,
+    javascript: SourceBreadcrumbTruncate,
+    vue: SourceVueBreadcrumbTruncate
+}}>
+</Playground>
 
 ### Lazy loaded next items
 
-<Preview name="breadcrumb-next-items" height="8rem">
-  <TabItem value="javascript">
-    <SourceBreadcrumbNextItems />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactBreadcrumbNextItems />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularBreadcrumbNextItems />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueBreadcrumbNextItems />
-  </TabItem>
-</Preview>
+<Playground
+name="breadcrumb-next-items"
+height="8rem"
+hideInitalCodePreview
+frameworks={{
+    react: SourceReactBreadcrumbNextItems,
+    angular: SourceAngularBreadcrumbNextItems,
+    javascript: SourceBreadcrumbNextItems,
+    vue: SourceVueBreadcrumbNextItems
+}}>
+</Playground>
 
 ## Properties (ix-breadcrumb)
 

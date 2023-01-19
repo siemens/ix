@@ -23,12 +23,11 @@
     "README.md",
     "dist/",
     "loader/",
-    "src/**/*.md",
     "scss/"
   ],
   "scripts": {
-    "build": "stencil build --docs --prod",
-    "build:dev": "stencil build --docs",
+    "build": "stencil build --prod",
+    "build:dev": "stencil build",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "start": "stencil build --dev --watch --serve",
     "dev": "stencil build --watch",
@@ -43,6 +42,7 @@
     "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.0.6",
     "@stencil/core": "~2.19.2",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
@@ -50,7 +50,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.24.1",
-    "@popperjs/core": "~2.11.0",
     "@siemens/ix-icons": "~1.0.0",
     "@stencil/angular-output-target": "^0.4.0",
     "@stencil/eslint-plugin": "^0.4.0",
@@ -69,7 +68,7 @@
     "@typescript-eslint/parser": "^4.33.0",
     "animate.css": "~4.1.1",
     "autoprefixer": "10.4.5",
-    "bootstrap": "~5.2.0",
+    "bootstrap": "^5.2.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-config-ix": "*",
     "eslint-plugin-react": "^7.26.1",

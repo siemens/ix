@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-group-context-menu',
+  selector: 'app-example',
   template: `
     <ix-group header="Header text" sub-header="Subheader text">
       <ix-dropdown slot="dropdown">
@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     </ix-group>
   `,
 })
-export class GroupContextMenu {}
+export default class GroupContextMenu {}

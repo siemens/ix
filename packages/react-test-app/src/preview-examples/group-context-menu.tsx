@@ -15,7 +15,7 @@ import {
 } from '@siemens/ix-react';
 import React from 'react';
 
-export const GroupContextMenu: React.FC = () => {
+export default () => {
   return (
     <IxGroup header="Header text" subHeader="Subheader text">
       <IxDropdown slot="dropdown">

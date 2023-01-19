@@ -10,7 +10,7 @@
 import { IxButton, IxGroup, IxGroupItem } from '@siemens/ix-react';
 import React from 'react';
 
-export const GroupCustomEntry: React.FC = () => {
+export default () => {
   return (
     <IxGroup header="Header text" subHeader="Subheader text">
       <IxGroupItem text="Example text 1"></IxGroupItem>

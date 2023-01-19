@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-flip-tile',
+  selector: 'app-example',
   template: `
     <ix-flip-tile>
       <div slot="header">Flip header</div>
@@ -75,4 +75,4 @@ import { Component } from '@angular/core';
     </ix-flip-tile>
   `,
 })
-export class FlipTile {}
+export default class FlipTile {}

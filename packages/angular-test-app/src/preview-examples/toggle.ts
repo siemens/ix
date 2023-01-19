@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle',
+  selector: 'app-example',
   template: ` <ix-toggle></ix-toggle> `,
 })
-export class Toggle {}
+export default class Toggle {}

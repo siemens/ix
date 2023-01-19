@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-category-filter-suggestions',
+  selector: 'app-example',
   template: `
     <ix-category-filter
       placeholder="Filter by"
@@ -18,6 +18,6 @@ import { Component } from '@angular/core';
     ></ix-category-filter>
   `,
 })
-export class CategoryFilterSuggestions {
+export default class CategoryFilterSuggestions {
   suggestions = ['Item 1', 'Item 2'];
 }

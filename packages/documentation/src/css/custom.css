@@ -58,7 +58,6 @@ body {
 }
 
 .markdown h1 {
-  padding-bottom: 1.5rem;
   border-bottom: var(--theme-soft-bdr-1);
 }
 
@@ -269,4 +268,7 @@ a.menu__link {
 .markdown table {
   display: table !important;
   width: 100%;
+}
+.navbar__search {
+  margin-right: 1rem;
 }

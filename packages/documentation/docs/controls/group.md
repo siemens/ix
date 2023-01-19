@@ -1,5 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-group/props.md';
 import Events from './../auto-generated/ix-group/events.md';
@@ -20,68 +19,52 @@ import SourceReactGroupSuppressed from './../auto-generated/previews/react/group
 import SourceReactGroupCustomEntry from './../auto-generated/previews/react/group-custom-entry.md'
 import SourceReactGroupContext from './../auto-generated/previews/react/group-context-menu.md'
 
+import SourceAngularGroup from './../auto-generated/previews/angular/group.ts.md'
+import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.ts.md'
+import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.ts.md'
+import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.ts.md'
+
 import SourceVueGroup from './../auto-generated/previews/vue/group.md'
 import SourceVueGroupSuppressed from './../auto-generated/previews/vue/group-header-suppressed.md'
 import SourceVueGroupCustomEntry from './../auto-generated/previews/vue/group-custom-entry.md'
 import SourceVueGroupContext from './../auto-generated/previews/vue/group-context-menu.md'
 
-import SourceAngularGroup from './../auto-generated/previews/angular/group.md'
-import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/group-header-suppressed.md'
-import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.md'
-import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.md'
-
 # Group
 
 ## Usage
 
-<Preview name="group" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroup />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroup />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueGroup />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroup />
-  </TabItem>
-</Preview>
+<Playground
+name="group" height="16rem"
+frameworks={{
+  react: SourceReactGroup,
+  angular: SourceAngularGroup,
+  javascript: SourceGroup,
+  vue: SourceVueGroup
+}}></Playground>
 
 ### Suppress header selection
 
-<Preview name="group-header-suppressed" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupSuppressed />
-  </TabItem>
-  <TabItem value="react">
-    <SourceVueGroupSuppressed />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueGroupSuppressed />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupSuppressed />
-  </TabItem>
-</Preview>
+<Playground
+name="group-header-suppressed" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupSuppressed,
+  angular: SourceAngularGroupSuppressed,
+  javascript: SourceGroupSuppressed,
+  vue: SourceVueGroupSuppressed
+}}></Playground>
 
 ### Custom group entry
 
-<Preview name="group-custom-entry" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupCustomEntry />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroupCustomEntry />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueGroupCustomEntry />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupCustomEntry />
-  </TabItem>
-</Preview>
+<Playground
+name="group-custom-entry" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupCustomEntry,
+  angular: SourceAngularGroupCustomEntry,
+  javascript: SourceGroupCustomEntry,
+  vue: SourceVueGroupCustomEntry
+}}></Playground>
 
 ### Group with context menu
 
@@ -94,20 +77,15 @@ Luckily there exists a workaround for rendering context menus inside the group c
 
 To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
 
-<Preview name="group-context-menu" height="16rem">
-  <TabItem value="javascript">
-    <SourceGroupContext />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactGroupContext />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueGroupContext />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularGroupContext />
-  </TabItem>
-</Preview>
+<Playground
+name="group-context-menu" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactGroupContext,
+  angular: SourceAngularGroupContext,
+  javascript: SourceGroupContext,
+  vue: SourceVueGroupContext
+}}></Playground>
 
 ## Properties (ix-group)
 

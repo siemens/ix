@@ -208,11 +208,6 @@ export const config: Config = {
       },
     },
     {
-      type: 'docs-readme',
-      footer: '',
-      dependencies: false,
-    },
-    {
       type: 'www',
       serviceWorker: null,
       copy: copyAssets,

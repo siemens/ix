@@ -10,6 +10,6 @@
 import { IxSpinner } from '@siemens/ix-react';
 import React from 'react';
 
-export const Spinner: React.FC = () => {
+export default () => {
   return <IxSpinner></IxSpinner>;
 };

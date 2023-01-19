@@ -111,9 +111,14 @@ export class Chip {
             : {}
         }
       >
-        {this.icon ? (
-          <ix-icon class={'with-icon'} name={this.icon} size={'24'} />
-        ) : null}
+        <ix-icon
+          class={{
+            'with-icon': true,
+            hidden: this.icon === undefined || this.icon === '',
+          }}
+          name={this.icon}
+          size={'24'}
+        />
         <span class="slot-container">
           <slot></slot>
         </span>

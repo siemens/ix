@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-vertical-tabs',
+  selector: 'app-example',
   template: `
     <ix-menu>
       <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
@@ -23,4 +23,4 @@ import { Component } from '@angular/core';
     </ix-menu>
   `,
 })
-export class VerticalTabs {}
+export default class VerticalTabs {}

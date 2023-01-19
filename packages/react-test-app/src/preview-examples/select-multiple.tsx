@@ -10,7 +10,7 @@
 import { IxSelect, IxSelectItem } from '@siemens/ix-react';
 import React, { useLayoutEffect, useState } from 'react';
 
-export const SelectMultiple: React.FC = () => {
+export default () => {
   const [selection, setSelection] = useState<string[]>([]);
 
   useLayoutEffect(() => {

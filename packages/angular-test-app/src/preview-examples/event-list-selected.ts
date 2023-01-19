@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-event-list-selected',
+  selector: 'app-example',
   template: `
     <ix-event-list>
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
@@ -22,4 +22,4 @@ import { Component } from '@angular/core';
     </ix-event-list>
   `,
 })
-export class EventListSelected {}
+export default class EventListSelected {}

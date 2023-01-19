@@ -1,31 +1,26 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
+import Playground from '@site/src/components/Playground';
+
 import Props from './../auto-generated/ix-time-picker/props.md';
 import Events from './../auto-generated/ix-time-picker/events.md';
 
 import SourceTimepicker from './../auto-generated/previews/web-component/timepicker.md'
 import SourceReactTimepicker from './../auto-generated/previews/react/timepicker.md'
+import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.ts.md'
 import SourceVueTimepicker from './../auto-generated/previews/vue/timepicker.md'
-import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.md'
 
-# Timepicker
+# Time picker
 
 ## Usage
 
-<Preview name="timepicker" height="35rem">
-  <TabItem value="javascript">
-    <SourceTimepicker />
-  </TabItem>
-  <TabItem value="react">
-    <SourceReactTimepicker />
-  </TabItem>
-  <TabItem value="vue">
-    <SourceVueTimepicker />
-  </TabItem>
-  <TabItem value="angular">
-    <SourceAngularTimepicker />
-  </TabItem>
-</Preview>
+<Playground
+name="timepicker" height="35rem"
+frameworks={{
+  react: SourceReactTimepicker,
+  angular: SourceAngularTimepicker,
+  javascript: SourceTimepicker,
+  vue: SourceVueTimepicker
+}}>
+</Playground>
 
 ## Properties
 

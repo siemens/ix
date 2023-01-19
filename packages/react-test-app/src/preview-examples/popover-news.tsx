@@ -16,7 +16,7 @@ import {
 } from '@siemens/ix-react';
 import React from 'react';
 
-export const PopoverNews: React.FC = () => {
+export default () => {
   return (
     <IxBasicNavigation>
       <div className="placeholder-logo" slot="logo"></div>

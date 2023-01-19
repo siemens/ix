@@ -10,7 +10,7 @@
 import { IxCategoryFilter } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
-export const CategoryFilterSuggestions: React.FC = () => {
+export default () => {
   const [suggestions] = useState(['Item 1', 'Item 2']);
 
   return (

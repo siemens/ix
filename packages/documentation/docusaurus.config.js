@@ -146,8 +146,18 @@ const config = {
         theme2: require('prism-react-renderer/themes/dracula'),
       },
     }),
-  plugins: ['docusaurus-plugin-sass'],
-  // plugins: [require.resolve('@cmfcmf/docusaurus-search-local')],
+  plugins: [
+    'docusaurus-plugin-sass',
+    [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        excludeRoutes: [
+          '/docs/auto-generated/**/*',
+          '/docs/installation/CHANGELOG',
+        ],
+      },
+    ],
+  ],
 };
 
 module.exports = config;

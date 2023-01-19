@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-group',
+  selector: 'app-example',
   template: `
     <div class="btn-group">
       <ix-button variant="Primary" outline> Left </ix-button>
@@ -19,4 +19,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class ButtonGroup {}
+export default class ButtonGroup {}

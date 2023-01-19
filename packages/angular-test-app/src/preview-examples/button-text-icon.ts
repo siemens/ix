@@ -10,10 +10,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button-text-icon',
+  selector: 'app-example',
   template: buttonTextIcon(),
 })
-export class Buttons {}
+export default class Buttons {}
 function buttonTextIcon(): string | undefined {
   return `
       <ix-button class="m-1" variant="Primary">
@@ -30,4 +30,3 @@ function buttonTextIcon(): string | undefined {
       </ix-button>
   `;
 }
-

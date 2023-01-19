@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-spinner-large',
+  selector: 'app-example',
   template: ` <ix-spinner size="large"></ix-spinner> `,
 })
-export class SpinnerLarge {}
+export default class SpinnerLarge {}

@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-upload',
+  selector: 'app-example',
   template: ` <ix-upload></ix-upload> `,
 })
-export class Upload {}
+export default class Upload {}

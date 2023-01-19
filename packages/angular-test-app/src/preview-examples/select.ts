@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-select',
+  selector: 'app-example',
   template: `
     <ix-select [selectedIndices]="selectedIndices">
       <ix-select-item label="Item 1" value="1"></ix-select-item>
@@ -20,6 +20,6 @@ import { Component } from '@angular/core';
     </ix-select>
   `,
 })
-export class Select {
+export default class Select {
   selectedIndices = '1';
 }

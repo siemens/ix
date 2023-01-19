@@ -10,7 +10,7 @@
 import { IxButton } from '@siemens/ix-react';
 import React from 'react';
 
-export const ButtonsGhost: React.FC = () => {
+export default () => {
   return (
     <>
       <IxButton class="m-1" ghost variant="Primary">

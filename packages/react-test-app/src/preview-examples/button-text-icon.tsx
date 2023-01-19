@@ -10,7 +10,7 @@
 import { IxButton, IxIcon } from '@siemens/ix-react';
 import React from 'react';
 
-export const ButtonsTextIcon: React.FC = () => {
+export default () => {
   return (
     <>
       <IxButton class="m-1" variant="Primary">

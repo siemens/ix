@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-split-button',
+  selector: 'app-example',
   template: `
     <ix-split-button label="Action text">
       <ix-split-button-item label="Item 1"></ix-split-button-item>
@@ -18,4 +18,4 @@ import { Component } from '@angular/core';
     </ix-split-button>
   `,
 })
-export class SplitButton {}
+export default class SplitButton {}
