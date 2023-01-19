@@ -37,8 +37,6 @@ export class CssGrid {
 
   @State() currentTemplate: string[][];
 
-  private lastActiveType: CssGridTemplateType;
-
   private disposeMediaQueryListener: ((event: MediaQueryListEvent) => void)[] =
     [];
   private mediaQueries: {
@@ -94,7 +92,6 @@ export class CssGrid {
     const template = this.templates[active.name];
 
     if (template) {
-      this.lastActiveType = active.name;
       this.currentTemplate = template;
     } else {
       this.currentTemplate = this.findNextTemplate(active.name);

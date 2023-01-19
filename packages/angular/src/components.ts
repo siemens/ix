@@ -282,6 +282,48 @@ export class IxCounterPill {
   }
 }
 
+
+export declare interface IxCssGrid extends Components.IxCssGrid {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['templates']
+})
+@Component({
+  selector: 'ix-css-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['templates']
+})
+export class IxCssGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCssGridItem extends Components.IxCssGridItem {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['itemName']
+})
+@Component({
+  selector: 'ix-css-grid-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['itemName']
+})
+export class IxCssGridItem {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 import type { LegacyDateChangeEvent as IDatePickerLegacyDateChangeEvent } from '@siemens/ix';
 import type { DateChangeEvent as IDatePickerDateChangeEvent } from '@siemens/ix';
 export declare interface IxDatePicker extends Components.IxDatePicker {
@@ -641,6 +683,67 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
   template: '<ng-content></ng-content>'
 })
 export class IxFlipTileContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxGrid extends Components.IxGrid {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['variant']
+})
+@Component({
+  selector: 'ix-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['variant']
+})
+export class IxGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxGridColumn extends Components.IxGridColumn {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['column']
+})
+@Component({
+  selector: 'ix-grid-column',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['column']
+})
+export class IxGridColumn {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxGridRow extends Components.IxGridRow {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-grid-row',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxGridRow {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
