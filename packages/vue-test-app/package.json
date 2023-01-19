@@ -1,6 +1,6 @@
 {
   "name": "vue-test-app",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ag-grid-community": "^28.2.1",
-    "@siemens/ix-vue": "*",
+    "@siemens/ix-vue": "1.2.1",
     "@siemens/ix-icons": "~1.0.0",
     "@siemens/ix-aggrid": "~1.2.1",
     "ag-grid-vue3": "^28.2.1",

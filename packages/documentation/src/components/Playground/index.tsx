@@ -197,11 +197,14 @@ export default function Playground({
         if (framework === TargetFramework.REACT) {
           filename = filename.concat('.tsx');
         }
-        if (framework === TargetFramework.JAVASCRIPT || framework === TargetFramework.VUE) {
+        if (framework === TargetFramework.JAVASCRIPT) {
           filename = filename.concat('.html');
         }
         if (framework === TargetFramework.ANGULAR) {
           filename = filename.concat('.ts');
+        }
+        if (framework === TargetFramework.VUE) {
+          filename = filename.concat('.vue');
         }
 
         snippets[framework] = [
