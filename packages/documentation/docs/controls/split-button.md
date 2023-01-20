@@ -1,10 +1,10 @@
 import Playground from '@site/src/components/Playground';
 
-import Props from './../auto-generated/ix-select/props.md';
-import Events from './../auto-generated/ix-select/events.md';
+import Props from './../auto-generated/ix-split-button/props.md';
+import Events from './../auto-generated/ix-split-button/events.md';
 
-import ItemProps from './../auto-generated/ix-select-item/props.md';
-import ItemEvents from './../auto-generated/ix-select-item/events.md';
+import ItemProps from './../auto-generated/ix-split-button-item/props.md';
+import ItemEvents from './../auto-generated/ix-split-button-item/events.md';
 
 import SourceSplitButton from './../auto-generated/previews/web-component/split-button.md';
 import SourceSplitButtonIcons from './../auto-generated/previews/web-component/split-button-icons.md';
