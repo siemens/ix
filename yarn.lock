@@ -5092,7 +5092,7 @@ boolbase@^1.0.0:
 
 bootstrap@^5.2.0:
   version "5.2.3"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/pd_de-npm-all/bootstrap/-/bootstrap-5.2.3.tgz#54739f4414de121b9785c5da3c87b37ff008322b"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.3.tgz#54739f4414de121b9785c5da3c87b37ff008322b"
   integrity sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==
 
 boxen@^5.0.0:
