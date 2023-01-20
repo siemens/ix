@@ -6,6 +6,7 @@ import {Card, CardList} from '@site/src/components/Card';
 import AngularIcon from '@site/static/img/angular.svg';
 import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';
+import VueIcon from '@site/static/img/vue.svg';
 
 # Installation
 
@@ -19,5 +20,5 @@ Follow the links below to the respective installation guides:
   <Card link="installation/angular"><AngularIcon class="Card_Icon" />Angular</Card>
   <Card link="installation/react"><ReactIcon class="Card_Icon" />React</Card>
   <Card link="installation/javascript"><WebComponentsIcon class="Card_Icon" />Web Components</Card>
-  <Card link="installation/vue"><WebComponentsIcon class="Card_Icon" />Vue</Card>
+  <Card link="installation/vue"><VueIcon class="Card_Icon" />Vue&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
 </CardList>
