@@ -21,34 +21,6 @@ SPDX-License-Identifier: MIT
     <link rel="stylesheet" href="/build/ix-icons/css/ix-icons.css" />
   </head>
   <body style="margin: 0px; height: 100vh">
-    <ix-map-navigation
-      application-name="Test Application"
-      navigation-title="Some other content"
-    >
-      <div class="placeholder-logo" slot="logo"></div>
-
-      <ix-menu>
-        <ix-menu-item>Item 1</ix-menu-item>
-      </ix-menu>
-      <ix-button id="btn-open-overlay">Open overlay</ix-button>
-      <div id="overlay-content"></div>
-    </ix-map-navigation>
-
-    <script type="module">
-      const mapNav = document.querySelector('#overlay-content');
-      const buttonOpenOverlay = document.getElementById('btn-open-overlay');
-
-      buttonOpenOverlay.addEventListener('click', () => {
-        const overlay = document.createElement('ix-map-navigation-overlay');
-        overlay.slot = 'overlay';
-        overlay.name = 'Custom overlay';
-        overlay.icon = 'bulb';
-        mapNav.appendChild(overlay);
-
-        overlay.addEventListener('closeClick', (e) => {
-          overlay.parentNode.removeChild(overlay);
-        });
-      });
-    </script>
+    <my-compnent />
   </body>
 </html>
