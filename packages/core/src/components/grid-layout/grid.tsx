@@ -24,6 +24,7 @@ export class GridLayout {
     const hostClass = {
       container: this.variant === 'normal',
       'container-fluid': this.variant === 'fluid',
+      'ix-container': true,
     };
 
     return (

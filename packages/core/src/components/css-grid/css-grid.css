@@ -11,7 +11,7 @@
   display: grid;
 
   column-gap: 1.5rem;
-  padding: 0 calc(1.5rem * 0.5);
+  padding: 0 2rem;
 
   width: 100%;
   height: 100%;

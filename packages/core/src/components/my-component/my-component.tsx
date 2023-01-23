@@ -10,12 +10,13 @@
 import { Component, h, Host } from '@stencil/core';
 
 const normal = [
-  ['item-a', '.', '     .'],
-  ['item-a', 'item-b', 'item-b'],
+  ['item-a', '.', '     item-c'],
+  ['item-a', 'item-b', 'item-c'],
 ];
 const mobile = [
-  ['item-a', 'item-b'],
-  ['item-a', 'item-b'],
+  ['item-a', 'item-a'],
+  ['item-b', 'item-b'],
+  ['item-c', 'item-c'],
 ];
 
 @Component({
@@ -38,6 +39,9 @@ export class MyComponent {
           </ix-css-grid-item>
           <ix-css-grid-item itemName="item-b">
             <div class={'example item-b'}>Item B</div>
+          </ix-css-grid-item>
+          <ix-css-grid-item itemName="item-c">
+            <div class={'example item-b'}>Item C</div>
           </ix-css-grid-item>
         </ix-css-grid>
 

@@ -17,7 +17,7 @@ import { Component, h, Host } from '@stencil/core';
 export class GridLayout {
   render() {
     return (
-      <Host class={'row gx-4'}>
+      <Host class={'row gx-4 ix-row'}>
         <slot></slot>
       </Host>
     );
