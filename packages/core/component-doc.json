@@ -507,7 +507,8 @@
         "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -527,6 +528,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2244,7 +2248,8 @@
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2267,6 +2272,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -2363,6 +2371,22 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "enableQuickActions",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enable-quick-actions",
+          "reflectToAttr": false,
+          "docs": "An optional quick actions bar shown at the top of the dropdown",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -2731,7 +2755,8 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -2756,6 +2781,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -3856,7 +3884,8 @@
         "ix-split-button",
         "ix-toast",
         "ix-tree-item",
-        "ix-workflow-step"
+        "ix-workflow-step",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3927,6 +3956,9 @@
           "ix-icon"
         ],
         "ix-workflow-step": [
+          "ix-icon"
+        ],
+        "my-component": [
           "ix-icon"
         ]
       },
@@ -9285,8 +9317,23 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

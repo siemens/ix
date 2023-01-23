@@ -89,6 +89,11 @@ export class Dropdown {
   @Prop() header?: string;
 
   /**
+   * An optional quick actions bar shown at the top of the dropdown
+   */
+  @Prop() enableQuickActions?: boolean;
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -330,18 +335,11 @@ export class Dropdown {
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
-          {/* <button class="submenu">Submenu <ix-icon name='chevron-right' size='16'></ix-icon> </button> */}
 
-          <div>
-            <div>
-            <ix-icon name="star" size="16"></ix-icon>
-            <ix-icon name="star" size="16"></ix-icon>
-            <ix-icon name="star" size="16"></ix-icon>
-            <ix-icon name="star" size="16"></ix-icon>
-            <ix-icon name="star" size="16"></ix-icon>
-            </div>
-            <hr class="line"></hr>
+          <div class={{ hide: !this.enableQuickActions, quickActions: true }}>
+            <slot name="quick-actions"></slot>
           </div>
+          <div class={{ hide: !this.enableQuickActions, line: true }}></div>
 
           <slot></slot>
         </div>

@@ -8,6 +8,8 @@ import ItemEvents from './../auto-generated/ix-dropdown/events.md';
 
 import SourceDropdown from './../auto-generated/previews/web-component/dropdown.md'
 import SourceDropdownIcon from './../auto-generated/previews/web-component/dropdown-icon.md'
+import SourceDropdownHeader from './../auto-generated/previews/web-component/dropdown-header.md'
+import SourceDropdownSubmenu from './../auto-generated/previews/web-component/dropdown-submenu.md'
 
 import SourceReactDropdown from './../auto-generated/previews/react/dropdown.md'
 import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown-icon.md'
@@ -36,6 +38,24 @@ frameworks={{
   react: SourceReactDropdownIcon,
   angular: SourceAngularDropdownIcon,
   javascript: SourceDropdownIcon
+}}></Playground>
+
+### Dropdown with header
+
+<Playground
+name="dropdown-header" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  javascript: SourceDropdownHeader
+}}></Playground>
+
+### Dropdown with submenu
+
+<Playground
+name="dropdown-submenu" height="16rem"
+hideInitalCodePreview
+frameworks={{
+  javascript: SourceDropdownSubmenu
 }}></Playground>
 
 ## Properties (ix-dropdown)

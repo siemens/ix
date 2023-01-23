@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown header example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-button id="iconTriggerId">Open</ix-button>
+    <ix-dropdown enableQuickActions trigger="iconTriggerId">
+      <div slot="quick-actions">
+        <ix-dropdown-item icon="cut"></ix-dropdown-item>
+        <ix-dropdown-item icon="copy"></ix-dropdown-item>
+        <ix-dropdown-item icon="screen"></ix-dropdown-item>
+        <ix-dropdown-item icon="trashcan"></ix-dropdown-item>
+      </div>
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+    </ix-dropdown>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

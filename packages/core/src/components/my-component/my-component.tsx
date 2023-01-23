@@ -16,15 +16,29 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host>
-      <ix-button id="iconTriggerId">Open</ix-button>
-      <ix-dropdown  trigger="iconTriggerId">
-        <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
-        <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
-        <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
-      </ix-dropdown>
+    return (
+      <Host>
+        <ix-button id="iconTriggerId">Open</ix-button>
+        <ix-dropdown enableQuickActions trigger="iconTriggerId">
+          <div slot="quick-actions">
+            <ix-dropdown-item icon="cut"></ix-dropdown-item>
+            <ix-dropdown-item icon="copy"></ix-dropdown-item>
+            <ix-dropdown-item icon="screen"></ix-dropdown-item>
+            <ix-dropdown-item icon="trashcan"></ix-dropdown-item>
+          </div>
 
-      <ix-date-picker></ix-date-picker>
-    </Host>;
+          <ix-dropdown-item id="submenuTrigger" label="Submenu">
+            <ix-icon name="chevron-right-small" size="24"></ix-icon>
+          </ix-dropdown-item>
+          <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+          <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-dropdown trigger="submenuTrigger" placement="right-start">
+          <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+        </ix-dropdown>
+      </Host>
+    );
   }
 }

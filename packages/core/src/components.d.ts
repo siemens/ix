@@ -429,6 +429,10 @@ export namespace Components {
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
+          * An optional quick actions bar shown at the top of the dropdown
+         */
+        "enableQuickActions"?: boolean;
+        /**
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
@@ -2607,6 +2611,10 @@ declare namespace LocalJSX {
           * Close behavior
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        /**
+          * An optional quick actions bar shown at the top of the dropdown
+         */
+        "enableQuickActions"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */
