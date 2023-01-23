@@ -22,11 +22,10 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 1</ix-menu-item>
       </ix-menu>
       <ix-button id="btn-open-overlay">Open overlay</ix-button>
-      <div id="overlay-content"></div>
     </ix-map-navigation>
 
     <script type="module">
-      const mapNav = document.querySelector('#overlay-content');
+      const mapNav = document.querySelector('ix-map-navigation');
       const buttonOpenOverlay = document.getElementById('btn-open-overlay');
 
       buttonOpenOverlay.addEventListener('click', () => {

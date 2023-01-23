@@ -16,6 +16,7 @@
   height: 100%;
   z-index: 2;
   top: 0;
+  left: 0;
 
   background-color: var(--theme-overlay--background);
 
@@ -35,7 +36,7 @@
     min-width: 0;
 
     ix-icon {
-      margin-left: $default-space;
+      margin-inline-start: $default-space;
       color: var(--theme-overlay-header--color);
     }
 
@@ -43,7 +44,7 @@
       @include text-h2;
       @include ellipsis;
       color: var(--theme-overlay-header--color);
-      margin-left: $default-space;
+      margin-inline-start: $default-space;
     }
   }
 
@@ -56,8 +57,7 @@
   }
 
   .overlay-close {
-    margin-left: auto;
-    margin-right: $default-space;
-    cursor: pointer;
+    margin-inline-start: auto;
+    margin-inline-end: $default-space;
   }
 }
