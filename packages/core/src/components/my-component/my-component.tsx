@@ -43,16 +43,15 @@ export class MyComponent {
 
         <ix-grid variant="fluid">
           <ix-grid-row>
-            <ix-grid-column column="col-sm-2 col-sm-2" class="item-a">
-              Item A
+            <ix-grid-column column="col-sm-2">
+              <div style={{ background: 'rgba(255,0,0,0.2)' }}>Item A</div>
             </ix-grid-column>
-            <ix-grid-column column="col-sm-10"></ix-grid-column>
-          </ix-grid-row>
-          <ix-grid-row>
-            <ix-grid-column column="col-sm-6 col-lg-10" class="item-b">
-              Item B
+            <ix-grid-column column="col-sm-2">
+              <div style={{ background: 'rgba(0,255,0,0.2)' }}>Item B</div>
             </ix-grid-column>
-            <ix-grid-column column="col-sm-6 col-lg-2"></ix-grid-column>
+            <ix-grid-column column="col-sm-8">
+              <div style={{ background: 'rgba(0,0,255,0.2)' }}>Item C</div>
+            </ix-grid-column>
           </ix-grid-row>
         </ix-grid>
       </Host>

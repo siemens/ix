@@ -10,6 +10,9 @@
 :host {
   display: grid;
 
+  column-gap: 1.5rem;
+  padding: 0 calc(1.5rem * 0.5);
+
   width: 100%;
   height: 100%;
 }
