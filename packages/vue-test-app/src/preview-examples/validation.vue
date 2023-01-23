@@ -26,7 +26,6 @@ const onSubmit = async (data: any) => {
         class="form-control"
         :required="!!firstName.error"
         :class="[firstName.error ? 'is-invalid' : '']"
-        :ref="firstName.ref"
         v-model="firstName.value"
       />
       <div class="valid-feedback">Looks good!</div>
@@ -42,7 +41,6 @@ const onSubmit = async (data: any) => {
           class="form-control"
           :required="!!lastName.error"
           :class="[lastName.error ? 'is-invalid' : '']"
-          :ref="lastName.ref"
           v-model="lastName.value"
         />
       </IxValidationTooltip>
@@ -59,7 +57,6 @@ const onSubmit = async (data: any) => {
         class="form-control"
         :required="!!userName.error"
         :class="[userName.error ? 'is-invalid' : '']"
-        :ref="userName.ref"
         v-model="userName.value"
       />
       <div class="invalid-feedback">Please choose a username.</div>

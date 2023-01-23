@@ -89,7 +89,6 @@ onMounted(() => {
       :model="model"
       :context="context"
       @contextChange="({ detail }) => (context = detail)"
-      :renderItem="renderItem"
     >
     </IxTree>
   </div>
