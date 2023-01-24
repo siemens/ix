@@ -10,14 +10,9 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('chip', () => {
-  regressionTest('basic', async ({ page }) => {
-    await page.goto('chip/test/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('custom', async ({ page }) => {
-    await page.goto('chip/test/custom');
+regressionTest.describe('category-filter', () => {
+  regressionTest('should not have visual regressions', async ({ page }) => {
+    await page.goto('category-filter/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

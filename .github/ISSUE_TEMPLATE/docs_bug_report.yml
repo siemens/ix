@@ -1,6 +1,6 @@
 name: Bug Report for `ix.siemens.io`
 description: Documentation bug report 📑
-labels: ['component: documentation', 'type: bug', 'triage']
+labels: ['component: documentation', 'triage']
 body:
   - type: markdown
     attributes:
