@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export * from './components/css-grid/types';
 export * from './components/date-picker/events';
 export * from './components/datetime-picker/event';
 export * from './components/modal/modal-utils';

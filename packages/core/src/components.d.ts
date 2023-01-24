@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Buttons } from "./components/utils/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { CssGridTemplateType } from "./components/css-grid/types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -243,6 +244,15 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Test
+         */
+        "itemName": string;
     }
     interface IxDatePicker {
         /**
@@ -589,6 +599,17 @@ export namespace Components {
         "state": FlipTileState;
     }
     interface IxFlipTileContent {
+    }
+    interface IxGrid {
+        "variant": 'normal' | 'fluid';
+    }
+    interface IxGridColumn {
+        /**
+          * Column definition based on bootstrap grid system
+         */
+        "column": string | [];
+    }
+    interface IxGridRow {
     }
     interface IxGroup {
         /**
@@ -1727,6 +1748,18 @@ declare global {
         prototype: HTMLIxCounterPillElement;
         new (): HTMLIxCounterPillElement;
     };
+    interface HTMLIxCssGridElement extends Components.IxCssGrid, HTMLStencilElement {
+    }
+    var HTMLIxCssGridElement: {
+        prototype: HTMLIxCssGridElement;
+        new (): HTMLIxCssGridElement;
+    };
+    interface HTMLIxCssGridItemElement extends Components.IxCssGridItem, HTMLStencilElement {
+    }
+    var HTMLIxCssGridItemElement: {
+        prototype: HTMLIxCssGridItemElement;
+        new (): HTMLIxCssGridItemElement;
+    };
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
     var HTMLIxDatePickerElement: {
@@ -1804,6 +1837,24 @@ declare global {
     var HTMLIxFlipTileContentElement: {
         prototype: HTMLIxFlipTileContentElement;
         new (): HTMLIxFlipTileContentElement;
+    };
+    interface HTMLIxGridElement extends Components.IxGrid, HTMLStencilElement {
+    }
+    var HTMLIxGridElement: {
+        prototype: HTMLIxGridElement;
+        new (): HTMLIxGridElement;
+    };
+    interface HTMLIxGridColumnElement extends Components.IxGridColumn, HTMLStencilElement {
+    }
+    var HTMLIxGridColumnElement: {
+        prototype: HTMLIxGridColumnElement;
+        new (): HTMLIxGridColumnElement;
+    };
+    interface HTMLIxGridRowElement extends Components.IxGridRow, HTMLStencilElement {
+    }
+    var HTMLIxGridRowElement: {
+        prototype: HTMLIxGridRowElement;
+        new (): HTMLIxGridRowElement;
     };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
@@ -2075,6 +2126,8 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
+        "ix-css-grid": HTMLIxCssGridElement;
+        "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -2088,6 +2141,9 @@ declare global {
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
+        "ix-grid": HTMLIxGridElement;
+        "ix-grid-column": HTMLIxGridColumnElement;
+        "ix-grid-row": HTMLIxGridRowElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
@@ -2384,6 +2440,15 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Test
+         */
+        "itemName"?: string;
     }
     interface IxDatePicker {
         /**
@@ -2780,6 +2845,17 @@ declare namespace LocalJSX {
         "state"?: FlipTileState;
     }
     interface IxFlipTileContent {
+    }
+    interface IxGrid {
+        "variant"?: 'normal' | 'fluid';
+    }
+    interface IxGridColumn {
+        /**
+          * Column definition based on bootstrap grid system
+         */
+        "column"?: string | [];
+    }
+    interface IxGridRow {
     }
     interface IxGroup {
         /**
@@ -3783,6 +3859,8 @@ declare namespace LocalJSX {
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-counter-pill": IxCounterPill;
+        "ix-css-grid": IxCssGrid;
+        "ix-css-grid-item": IxCssGridItem;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -3796,6 +3874,9 @@ declare namespace LocalJSX {
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
+        "ix-grid": IxGrid;
+        "ix-grid-column": IxGridColumn;
+        "ix-grid-row": IxGridRow;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
@@ -3856,6 +3937,8 @@ declare module "@stencil/core" {
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
+            "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
+            "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
@@ -3869,6 +3952,9 @@ declare module "@stencil/core" {
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            "ix-grid": LocalJSX.IxGrid & JSXBase.HTMLAttributes<HTMLIxGridElement>;
+            "ix-grid-column": LocalJSX.IxGridColumn & JSXBase.HTMLAttributes<HTMLIxGridColumnElement>;
+            "ix-grid-row": LocalJSX.IxGridRow & JSXBase.HTMLAttributes<HTMLIxGridRowElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;

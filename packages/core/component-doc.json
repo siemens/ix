@@ -1239,6 +1239,97 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/css-grid",
+      "filePath": "./src/components/css-grid/css-grid.tsx",
+      "fileName": "css-grid.tsx",
+      "readmePath": "./src/components/css-grid/readme.md",
+      "usagesDir": "./src/components/css-grid/usage",
+      "tag": "ix-css-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-css-grid"
+        ]
+      },
+      "props": [
+        {
+          "name": "templates",
+          "type": "{ sm?: string[][]; md?: string[][]; lg?: string[][]; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ sm?: string[][]; md?: string[][]; lg?: string[][]; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/css-grid",
+      "filePath": "./src/components/css-grid/css-grid-item.tsx",
+      "fileName": "css-grid-item.tsx",
+      "readmePath": "./src/components/css-grid/readme.md",
+      "usagesDir": "./src/components/css-grid/usage",
+      "tag": "ix-css-grid-item",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-css-grid-item"
+        ]
+      },
+      "props": [
+        {
+          "name": "itemName",
+          "type": "string",
+          "mutable": false,
+          "attr": "item-name",
+          "reflectToAttr": false,
+          "docs": "Test",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/date-picker",
       "filePath": "./src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -3358,6 +3449,137 @@
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid-layout",
+      "filePath": "./src/components/grid-layout/grid.tsx",
+      "fileName": "grid.tsx",
+      "readmePath": "./src/components/grid-layout/readme.md",
+      "usagesDir": "./src/components/grid-layout/usage",
+      "tag": "ix-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-grid"
+        ]
+      },
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"fluid\" | \"normal\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'normal'",
+          "values": [
+            {
+              "value": "fluid",
+              "type": "string"
+            },
+            {
+              "value": "normal",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid-layout",
+      "filePath": "./src/components/grid-layout/grid-column.tsx",
+      "fileName": "grid-column.tsx",
+      "readmePath": "./src/components/grid-layout/readme.md",
+      "usagesDir": "./src/components/grid-layout/usage",
+      "tag": "ix-grid-column",
+      "overview": "Extra small (xs)\nSmall (sm)\nMedium (md)\nLarge (lg)\nExtra large (xl)\nExtra extra large (xxl)",
+      "usage": {},
+      "docs": "Extra small (xs)\nSmall (sm)\nMedium (md)\nLarge (lg)\nExtra large (xl)\nExtra extra large (xxl)",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-grid-column"
+        ]
+      },
+      "props": [
+        {
+          "name": "column",
+          "type": "[] | string",
+          "mutable": false,
+          "attr": "column",
+          "reflectToAttr": false,
+          "docs": "Column definition based on bootstrap grid system",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "[]"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid-layout",
+      "filePath": "./src/components/grid-layout/grid-row.tsx",
+      "fileName": "grid-row.tsx",
+      "readmePath": "./src/components/grid-layout/readme.md",
+      "usagesDir": "./src/components/grid-layout/usage",
+      "tag": "ix-grid-row",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-grid-row"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -9290,8 +9512,22 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-css-grid",
+        "ix-css-grid-item",
+        "ix-grid",
+        "ix-grid-row",
+        "ix-grid-column"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-css-grid",
+          "ix-css-grid-item",
+          "ix-grid",
+          "ix-grid-row",
+          "ix-grid-column"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
