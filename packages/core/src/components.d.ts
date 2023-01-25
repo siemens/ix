@@ -182,7 +182,7 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
          */
         "active": boolean;
         /**
@@ -2388,7 +2388,7 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
          */
         "active"?: boolean;
         /**
