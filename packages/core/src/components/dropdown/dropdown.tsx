@@ -46,7 +46,7 @@ export class Dropdown {
 
   /**
    * Define an element that triggers the dropdown.
-   * A trigger can either be a string that will be interprated as id attribute or a DOM element.
+   * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
   @Prop() trigger: string | HTMLElement;
 
@@ -89,11 +89,6 @@ export class Dropdown {
   @Prop() header?: string;
 
   /**
-   * An optional quick actions bar shown at the top of the dropdown
-   */
-  @Prop() enableQuickActions?: boolean;
-
-  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -103,6 +98,12 @@ export class Dropdown {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+
+  /**
+   * Define event to open element
+   * @since 1.3.0
+   */
+  @Prop() triggerEvent: 'click' | 'mouseover' = 'click';
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -129,13 +130,13 @@ export class Dropdown {
   private async registerListener(element: string | HTMLElement) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
-      this.triggerElement.addEventListener('click', this.openBind);
+      this.triggerElement.addEventListener(this.triggerEvent, this.openBind);
     }
   }
 
   private async unregisterListener(element: string | HTMLElement) {
     const trigger = await this.resolveElement(element);
-    trigger.removeEventListener('click', this.openBind);
+    trigger.removeEventListener(this.triggerEvent, this.openBind);
   }
 
   private resolveElement(element: string | HTMLElement): Promise<Element> {
@@ -335,11 +336,6 @@ export class Dropdown {
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
-
-          <div class={{ hide: !this.enableQuickActions, quickActions: true }}>
-            <slot name="quick-actions"></slot>
-          </div>
-          <div class={{ hide: !this.enableQuickActions, line: true }}></div>
 
           <slot></slot>
         </div>

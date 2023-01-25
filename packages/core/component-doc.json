@@ -507,8 +507,7 @@
         "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -528,9 +527,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -2055,6 +2051,29 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/divider",
+      "filePath": "./src/components/divider/divider.tsx",
+      "fileName": "divider.tsx",
+      "readmePath": "./src/components/divider/readme.md",
+      "usagesDir": "./src/components/divider/usage",
+      "tag": "ix-divider",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/drawer",
       "filePath": "./src/components/drawer/drawer.tsx",
       "fileName": "drawer.tsx",
@@ -2248,8 +2267,7 @@
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
-        "ix-split-button",
-        "my-component"
+        "ix-split-button"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2272,9 +2290,6 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
-          "ix-dropdown"
-        ],
-        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -2371,22 +2386,6 @@
             }
           ],
           "optional": false,
-          "required": false
-        },
-        {
-          "name": "enableQuickActions",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "enable-quick-actions",
-          "reflectToAttr": false,
-          "docs": "An optional quick actions bar shown at the top of the dropdown",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
           "required": false
         },
         {
@@ -2524,13 +2523,40 @@
           "mutable": false,
           "attr": "trigger",
           "reflectToAttr": false,
-          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interprated as id attribute or a DOM element.",
+          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interpreted as id attribute or a DOM element.",
           "docsTags": [],
           "values": [
             {
               "type": "HTMLElement"
             },
             {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "triggerEvent",
+          "type": "\"click\" | \"mouseover\"",
+          "mutable": false,
+          "attr": "trigger-event",
+          "reflectToAttr": false,
+          "docs": "Define event to open element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.3.0"
+            }
+          ],
+          "default": "'click'",
+          "values": [
+            {
+              "value": "click",
+              "type": "string"
+            },
+            {
+              "value": "mouseover",
               "type": "string"
             }
           ],
@@ -2755,8 +2781,7 @@
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item",
-        "my-component"
+        "ix-split-button-item"
       ],
       "dependencies": [
         "ix-icon"
@@ -2781,9 +2806,6 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -2896,6 +2918,29 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/dropdown-quick-actions",
+      "filePath": "./src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
+      "fileName": "dropdown-quick-actions.tsx",
+      "readmePath": "./src/components/dropdown-quick-actions/readme.md",
+      "usagesDir": "./src/components/dropdown-quick-actions/usage",
+      "tag": "ix-dropdown-quick-actions",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -3884,8 +3929,7 @@
         "ix-split-button",
         "ix-toast",
         "ix-tree-item",
-        "ix-workflow-step",
-        "my-component"
+        "ix-workflow-step"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3956,9 +4000,6 @@
           "ix-icon"
         ],
         "ix-workflow-step": [
-          "ix-icon"
-        ],
-        "my-component": [
           "ix-icon"
         ]
       },
@@ -9317,23 +9358,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-button",
-        "ix-dropdown",
-        "ix-dropdown-item",
-        "ix-icon"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-button",
-          "ix-dropdown",
-          "ix-dropdown-item",
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

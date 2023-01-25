@@ -8,11 +8,13 @@ import ItemEvents from './../auto-generated/ix-dropdown/events.md';
 
 import SourceDropdown from './../auto-generated/previews/web-component/dropdown.md'
 import SourceDropdownIcon from './../auto-generated/previews/web-component/dropdown-icon.md'
-import SourceDropdownHeader from './../auto-generated/previews/web-component/dropdown-header.md'
+import SourceDropdownQuickActions from './../auto-generated/previews/web-component/dropdown-quick-actions.md'
 import SourceDropdownSubmenu from './../auto-generated/previews/web-component/dropdown-submenu.md'
 
 import SourceReactDropdown from './../auto-generated/previews/react/dropdown.md'
 import SourceReactDropdownIcon from './../auto-generated/previews/react/dropdown-icon.md'
+import SourceReactDropdownQuickActions from './../auto-generated/previews/react/dropdown-quick-actions.md'
+import SourceReactDropdownSubmenu from './../auto-generated/previews/react/dropdown-submenu.md'
 
 import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.ts.md'
 import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.ts.md'
@@ -40,13 +42,15 @@ frameworks={{
   javascript: SourceDropdownIcon
 }}></Playground>
 
-### Dropdown with header
+### Dropdown with quick actions menu
 
 <Playground
-name="dropdown-header" height="16rem"
+name="dropdown-quick-actions" height="16rem"
 hideInitalCodePreview
 frameworks={{
-  javascript: SourceDropdownHeader
+  react: SourceReactDropdownQuickActions,
+  angular: SourceDropdownQuickActions,
+  javascript: SourceDropdownQuickActions
 }}></Playground>
 
 ### Dropdown with submenu
@@ -55,6 +59,8 @@ frameworks={{
 name="dropdown-submenu" height="16rem"
 hideInitalCodePreview
 frameworks={{
+  react: SourceReactDropdownSubmenu,
+  angular: SourceDropdownSubmenu,
   javascript: SourceDropdownSubmenu
 }}></Playground>
 

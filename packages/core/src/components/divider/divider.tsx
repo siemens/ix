@@ -6,16 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import { Component, h, Host } from '@stencil/core';
-
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.scss',
-  scoped: true,
+  tag: 'ix-divider',
+  styleUrl: 'divider.scss',
+  shadow: true,
 })
-export class MyComponent {
+export class Divider {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div class="line"></div>
+      </Host>
+    );
   }
 }

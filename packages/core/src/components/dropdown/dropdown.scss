@@ -19,31 +19,4 @@
 
 :host {
   min-width: 0px;
-
-
-  .line {
-    width: auto;
-    border: 0.031rem solid #9D9D96;
-    opacity: 0.5;
-    background-color: var(--theme-color-xweak-bdr);
-    margin-bottom: 0.25rem;
-  }
-
-  .quickActions {
-    height: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  slot[name=quick-actions]::slotted(*) {
-    display: flex;
-  }
 }

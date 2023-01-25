@@ -392,6 +392,25 @@ export class IxDatetimePicker {
 }
 
 
+export declare interface IxDivider extends Components.IxDivider {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-divider',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxDivider {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxDrawer extends Components.IxDrawer {
   /**
    * Fire event after drawer is open 
@@ -435,14 +454,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'enableQuickActions', 'header', 'placement', 'positioningStrategy', 'show', 'trigger'],
+  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger', 'triggerEvent'],
   methods: ['updatePosition']
 })
 @Component({
   selector: 'ix-dropdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'enableQuickActions', 'header', 'placement', 'positioningStrategy', 'show', 'trigger']
+  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger', 'triggerEvent']
 })
 export class IxDropdown {
   protected el: HTMLElement;
@@ -500,6 +519,25 @@ export class IxDropdownItem {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['itemClick']);
+  }
+}
+
+
+export declare interface IxDropdownQuickActions extends Components.IxDropdownQuickActions {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-dropdown-quick-actions',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxDropdownQuickActions {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 
