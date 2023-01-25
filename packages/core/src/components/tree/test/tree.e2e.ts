@@ -16,10 +16,6 @@ regressionTest.describe('tree', () => {
 
     const treeViewportHandle = await page.waitForSelector('ix-tree');
 
-    await page.evaluate((treeViewport) => {
-      treeViewport.scrollTop = 32 * 999;
-    }, treeViewportHandle);
-
     await page.evaluate((tree) => {
       const model = tree.model;
 
@@ -33,7 +29,12 @@ regressionTest.describe('tree', () => {
       model['sample'].children.push('last-child');
 
       tree.model = { ...model };
-      tree.scrollTop = 32 * 999;
+    }, treeViewportHandle);
+
+    await page.waitForTimeout(100);
+
+    await page.evaluate((treeViewport) => {
+      treeViewport.scrollTop = 32 * 999;
     }, treeViewportHandle);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

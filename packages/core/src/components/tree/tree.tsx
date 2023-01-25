@@ -72,7 +72,7 @@ export class Tree {
    */
   @Event() nodeRemoved: EventEmitter<any>;
 
-  private hyperlist: any;
+  private hyperlist: Hyperlist;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
@@ -232,7 +232,11 @@ export class Tree {
   }
 
   componentWillRender() {
-    this.refreshList();
+    if (this.isListInitialized()) {
+      this.refreshList();
+    } else {
+      this.initList();
+    }
   }
 
   disconnectedCallback() {
@@ -242,7 +246,21 @@ export class Tree {
 
   @Watch('model')
   modelChange() {
-    this.initList();
+    if (!this.isListInitialized()) {
+      this.initList();
+    }
+  }
+
+  private isListInitialized() {
+    const itemPositions = this.hyperlist?._itemPositions;
+
+    return (
+      itemPositions !== undefined &&
+      itemPositions.length &&
+      !itemPositions?.some(
+        (item: number) => item === undefined || Number.isNaN(item)
+      )
+    );
   }
 
   private refreshList() {
