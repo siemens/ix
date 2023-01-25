@@ -21,11 +21,6 @@ Go to:
 - [States](#States)
 - [Dos and don't](#Dos-and-don't)
 
-See also:
-- Tabs
-- Tree
-- Workflow
-
 ## Usage
 
 Blinds are often used to display a large amount of content in a compact space, or to present information in an organized and hierarchical way.​ Blinds can reduce cognitive load of the user be removing clutter and less important information from an interface.
@@ -73,7 +68,7 @@ The user expands and collapses the blind by pressing anywhere in the header sect
 
 ### Create accordion 
 
-Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is ...
+Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is 8 px/ ... rem
 
 ![Blind states collapsed](/img/pattern_illustrations/Blind_accordion.png)
 
@@ -93,9 +88,7 @@ Multiple blinds can be placed below each other to create an accordion. The recom
 ## Anatomy
 
 ### Main elements
-The blinds consists of a header section on top and a content section below. The header section contains a chevron icon on the left, followed by the blind name. Within the content section, content can be placed freely.
-
---> Abstract visualisation of the elements of a blind ()
+The blinds consists of a header section on top and a content section below. The header section contains a chevron icon on the left, followed by the blind's name. Within the content section, content can be placed freely.
 
 ### Sizing
 
@@ -108,7 +101,13 @@ The blinds consists of a header section on top and a content section below. The 
 
 The chevron icon and the blind name are left-justified within the header section. The content within the content section can be alighned freely.
 
-## Dos and don't
+## Dos and don'ts
 
 - Don't use a blind if there is only a single category to be displayed. The recommened number of blinds ranges between three and seven.
 - Do not use blinds to display hierarchically structured files or objects - rather use a tree for such cases.
+
+
+## Related patterns:
+- Tabs
+- Tree
+- Workflow
