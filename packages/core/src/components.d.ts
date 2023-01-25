@@ -20,6 +20,7 @@ import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -601,6 +602,7 @@ export namespace Components {
     interface IxFlipTileContent {
     }
     interface IxGrid {
+        "noPadding": boolean;
         "variant": 'normal' | 'fluid';
     }
     interface IxGridColumn {
@@ -1429,6 +1431,12 @@ export namespace Components {
          */
         "text": string;
     }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant": TypographyVariants;
+    }
     interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
@@ -2084,6 +2092,12 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
+    interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
+    }
+    var HTMLIxTypographyElement: {
+        prototype: HTMLIxTypographyElement;
+        new (): HTMLIxTypographyElement;
+    };
     interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
     }
     var HTMLIxUploadElement: {
@@ -2182,6 +2196,7 @@ declare global {
         "ix-toggle": HTMLIxToggleElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
+        "ix-typography": HTMLIxTypographyElement;
         "ix-upload": HTMLIxUploadElement;
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
@@ -2847,6 +2862,7 @@ declare namespace LocalJSX {
     interface IxFlipTileContent {
     }
     interface IxGrid {
+        "noPadding"?: boolean;
         "variant"?: 'normal' | 'fluid';
     }
     interface IxGridColumn {
@@ -3737,6 +3753,12 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant"?: TypographyVariants;
+    }
     interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
@@ -3915,6 +3937,7 @@ declare namespace LocalJSX {
         "ix-toggle": IxToggle;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
+        "ix-typography": IxTypography;
         "ix-upload": IxUpload;
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
@@ -3993,6 +4016,7 @@ declare module "@stencil/core" {
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;

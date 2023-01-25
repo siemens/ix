@@ -695,13 +695,13 @@ export declare interface IxGrid extends Components.IxGrid {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['variant']
+  inputs: ['noPadding', 'variant']
 })
 @Component({
   selector: 'ix-grid',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['variant']
+  inputs: ['noPadding', 'variant']
 })
 export class IxGrid {
   protected el: HTMLElement;
@@ -1699,6 +1699,27 @@ export class IxTreeItem {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['toggle', 'itemClick']);
+  }
+}
+
+
+export declare interface IxTypography extends Components.IxTypography {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['variant']
+})
+@Component({
+  selector: 'ix-typography',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['variant']
+})
+export class IxTypography {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 

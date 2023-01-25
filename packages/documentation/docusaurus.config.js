@@ -157,6 +157,24 @@ const config = {
         ],
       },
     ],
+    async function myPlugin(context, options) {
+      // ...
+      return {
+        name: 'my-plugin',
+        async loadContent() {
+          // ...
+        },
+        async contentLoaded({ content, actions }) {
+          const { addRoute } = actions;
+          addRoute({
+            component: '',
+            path: '/blueprints/dist/:route',
+            exact: true,
+          });
+        },
+        /* other lifecycle API */
+      };
+    },
   ],
 };
 

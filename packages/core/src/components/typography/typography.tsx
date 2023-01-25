@@ -10,9 +10,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { TypographyVariants, VariantsMapping } from './types';
 
-/**
- * @internal
- */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',

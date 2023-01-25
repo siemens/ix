@@ -49,7 +49,10 @@ const EmbeddedReactIFrame = (props: EmbeddedIFrameProps) => {
     };
   }, []);
 
-  // http://localhost:5173/?theme=theme-classic-light#/blueprints/master-detail
+  const url = `${baseUrl}blueprints/dist/${props.name}?theme=${
+    props.theme ? props.theme : theme
+  }`;
+
   return (
     <>
       <iframe
@@ -57,9 +60,7 @@ const EmbeddedReactIFrame = (props: EmbeddedIFrameProps) => {
           width: '100%',
           height: `${props.height}`,
         }}
-        src={`${baseUrl}blueprints/dist/?theme=${
-          props.theme ? props.theme : theme
-        }#/${props.name}`}
+        src={`${url}`}
       ></iframe>
     </>
   );

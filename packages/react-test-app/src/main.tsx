@@ -16,7 +16,7 @@ import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import React, { Suspense, useLayoutEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import routes from '~react-pages';
 import App from './App';
 import './index.css';
@@ -32,7 +32,7 @@ const Routing = () => {
     <Suspense fallback={<p>Loading...</p>}>
       {useRoutes([
         {
-          path: '/',
+          path: '/blueprints/dist/',
           element: <App />,
         },
         ...routes,
@@ -43,9 +43,9 @@ const Routing = () => {
 
 function Bootstrap() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routing />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

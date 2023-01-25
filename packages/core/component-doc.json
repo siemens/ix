@@ -3480,6 +3480,23 @@
       },
       "props": [
         {
+          "name": "noPadding",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-padding",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"fluid\" | \"normal\"",
           "mutable": false,
@@ -8856,6 +8873,92 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/typography",
+      "filePath": "./src/components/typography/typography.tsx",
+      "fileName": "typography.tsx",
+      "readmePath": "./src/components/typography/readme.md",
+      "usagesDir": "./src/components/typography/usage",
+      "tag": "ix-typography",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"caption\" | \"caption-single\" | \"default\" | \"default-single\" | \"default-title\" | \"default-title-single\" | \"display-large\" | \"h2\" | \"large\" | \"large-single\" | \"small\" | \"x-small\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Font variant",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "caption",
+              "type": "string"
+            },
+            {
+              "value": "caption-single",
+              "type": "string"
+            },
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "default-single",
+              "type": "string"
+            },
+            {
+              "value": "default-title",
+              "type": "string"
+            },
+            {
+              "value": "default-title-single",
+              "type": "string"
+            },
+            {
+              "value": "display-large",
+              "type": "string"
+            },
+            {
+              "value": "h2",
+              "type": "string"
+            },
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "large-single",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            },
+            {
+              "value": "x-small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],

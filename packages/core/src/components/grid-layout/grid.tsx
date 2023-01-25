@@ -20,11 +20,17 @@ export class GridLayout {
    */
   @Prop() variant: 'normal' | 'fluid' = 'normal';
 
+  /**
+   *
+   */
+  @Prop() noPadding = false;
+
   render() {
     const hostClass = {
       container: this.variant === 'normal',
       'container-fluid': this.variant === 'fluid',
       'ix-container': true,
+      'no-padding': this.noPadding,
     };
 
     return (

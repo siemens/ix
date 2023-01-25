@@ -2,6 +2,9 @@
 @import 'mixins/fonts';
 
 :host {
+  display: inline-block;
+  position: relative;
+
   .text-xs {
     @include text-xs;
   }

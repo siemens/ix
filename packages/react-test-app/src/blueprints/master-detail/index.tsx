@@ -6,43 +6,122 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
-import clsx from 'clsx';
+import {
+  IxBasicNavigation,
+  IxDropdownButton,
+  IxDropdownItem,
+  IxEventList,
+  IxEventListItem,
+  IxGrid,
+  IxGridColumn,
+  IxGridRow,
+  IxIcon,
+  IxInputGroup,
+  IxMenu,
+  IxMenuItem,
+  IxTabItem,
+  IxTabs,
+  IxTypography,
+} from '@siemens/ix-react';
 import React from 'react';
-import styles from './master-detail.module.scss';
+import styles from './main-detail.module.scss';
 
-function Divider() {
-  return <div className={styles.Divider}></div>;
+function EventItem() {
+  return (
+    <IxEventListItem color="color-primary">
+      <div className={styles.Event__Item}>
+        <div className={styles.Event__Item__Head}>
+          <IxIcon name="bulb" class={styles.Event__Item__Icon}></IxIcon>
+          <IxTypography variant="default-title-single">Test title</IxTypography>
+          <IxDropdownButton
+            className={styles.Context__Menu}
+            ghost
+            icon="context-menu"
+          >
+            <IxDropdownItem label="Item 1" />
+            <IxDropdownItem label="Item 2" />
+            <IxDropdownItem label="Item 3" />
+            <IxDropdownItem label="Item 4" />
+            <IxDropdownItem label="Item 5" />
+          </IxDropdownButton>
+        </div>
+      </div>
+    </IxEventListItem>
+  );
 }
 
-function Master() {
+function Main() {
   return (
-    <div className={clsx('col-4 container', styles.Master)}>
-      <div className="text-l-single">Master</div>
+    <div className={styles.Main}>
+      <IxGrid variant="fluid">
+        <IxGridRow>
+          <IxGridColumn column={'col-11'}>
+            <IxTypography variant="h2" className={styles.Title}>
+              List items
+            </IxTypography>
+
+            <div className={styles.Filter}>
+              <IxInputGroup>
+                <IxIcon
+                  slot="input-start"
+                  name="filter"
+                  size="12"
+                  color="color-primary"
+                ></IxIcon>
+                <input type="text" className="form-control" />
+              </IxInputGroup>
+            </div>
+
+            <IxEventList itemHeight={84}>
+              <EventItem />
+              <EventItem />
+              <EventItem />
+              <EventItem />
+            </IxEventList>
+          </IxGridColumn>
+        </IxGridRow>
+      </IxGrid>
     </div>
   );
 }
 
 function Detail() {
   return (
-    <div className={clsx('col-8 container', styles.Detail)}>
-      <div className="text-l-single">Detail</div>
-    </div>
+    <IxGrid variant="fluid">
+      <IxGridRow>
+        <IxGridColumn column={'col-auto'}>
+          <IxTypography variant="h2" className={styles.Title}>
+            Detail
+          </IxTypography>
+          <IxTabs selected={3}>
+            <IxTabItem>Tab 1</IxTabItem>
+            <IxTabItem>Tab 2</IxTabItem>
+            <IxTabItem>Tab 3</IxTabItem>
+            <IxTabItem>Tab 4</IxTabItem>
+            <IxTabItem>Tab 5</IxTabItem>
+          </IxTabs>
+        </IxGridColumn>
+      </IxGridRow>
+    </IxGrid>
   );
 }
 
-function MasterDetail() {
+function MainDetail() {
   return (
-    <div className="container-fluid">
-      <div className={clsx('row', styles.Master__Detail)}>
-        <Master />
-        <Detail />
-      </div>
-    </div>
+    <IxGrid variant="fluid">
+      <IxGridRow className={styles.Main__Detail}>
+        <IxGridColumn column={'col-3'}>
+          <Main />
+        </IxGridColumn>
+        <IxGridColumn column={'col-auto'}>
+          <Detail />
+        </IxGridColumn>
+      </IxGridRow>
+    </IxGrid>
   );
 }
 
-export default function MasterDetailBlueprint() {
+export default function MainDetailBlueprint() {
   return (
     <IxBasicNavigation applicationName="Application Name">
       <IxMenu>
@@ -60,7 +139,7 @@ export default function MasterDetailBlueprint() {
         <IxMenuItem tabIcon="calendar">Item</IxMenuItem>
         <IxMenuItem tabIcon="user-management">Item</IxMenuItem>
       </IxMenu>
-      <MasterDetail />
+      <MainDetail />
     </IxBasicNavigation>
   );
 }
