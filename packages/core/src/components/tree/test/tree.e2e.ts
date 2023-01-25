@@ -31,7 +31,7 @@ regressionTest.describe('tree', () => {
       tree.model = { ...model };
     }, treeViewportHandle);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(500);
 
     await page.evaluate((treeViewport) => {
       treeViewport.scrollTop = 32 * 999;
