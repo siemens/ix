@@ -6,22 +6,38 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+$padding: 2rem 2rem 0;
 
 @mixin divider() {
-  border-right: 2px solid red;
+  border-right: 2px solid var(--theme-color-4);
 }
 
 .Main {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  min-width: 22rem;
   @include divider();
+
+  padding: $padding;
 }
 
 .Detail {
+  display: block;
+  position: relative;
+  width: 80%;
   height: 100%;
+  overflow-x: hidden;
+
+  padding: $padding;
 }
 
 .Main__Detail {
   height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .Title {
@@ -39,6 +55,7 @@
   width: 100%;
   padding: 0.5rem;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .Event__Item__Icon {
@@ -55,4 +72,13 @@
   > .Context__Menu {
     margin: 0 0 0 auto;
   }
+}
+
+.Event__Item__Body {
+  display: block;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: 0px;
+  overflow: hidden;
+  white-space: break-spaces;
 }

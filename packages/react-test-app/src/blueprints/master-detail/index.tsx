@@ -6,15 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import {
   IxBasicNavigation,
   IxDropdownButton,
   IxDropdownItem,
   IxEventList,
   IxEventListItem,
-  IxGrid,
-  IxGridColumn,
-  IxGridRow,
   IxIcon,
   IxInputGroup,
   IxMenu,
@@ -23,16 +21,59 @@ import {
   IxTabs,
   IxTypography,
 } from '@siemens/ix-react';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './main-detail.module.scss';
 
-function EventItem() {
+type MyEvent = {
+  id: number;
+  title: string;
+  message: string;
+};
+
+const exampleEvents: MyEvent[] = [
+  {
+    id: 1,
+    message: 'MyPlant > Cooling water circuit',
+    title: 'Alarm: High temperature',
+  },
+  {
+    id: 2,
+    message: 'My custom event message',
+    title: 'Event Type: Event Title',
+  },
+  {
+    id: 3,
+    message: 'My custom event message',
+    title: 'Type: High temperature',
+  },
+  {
+    id: 4,
+    message: 'My custom event message',
+    title: 'Alarm: High temperature',
+  },
+];
+
+function EventItem({
+  event,
+  selected,
+  onClick,
+}: {
+  event: MyEvent;
+  selected: boolean;
+  onClick: React.MouseEventHandler<HTMLIxEventListItemElement>;
+}) {
   return (
-    <IxEventListItem color="color-primary">
+    <IxEventListItem
+      color="color-primary"
+      selected={selected}
+      onClick={onClick}
+    >
       <div className={styles.Event__Item}>
         <div className={styles.Event__Item__Head}>
-          <IxIcon name="bulb" class={styles.Event__Item__Icon}></IxIcon>
-          <IxTypography variant="default-title-single">Test title</IxTypography>
+          <IxIcon name="alarm" class={styles.Event__Item__Icon}></IxIcon>
+          <IxTypography variant="default-title-single">
+            {event.title}
+          </IxTypography>
           <IxDropdownButton
             className={styles.Context__Menu}
             ghost
@@ -45,83 +86,84 @@ function EventItem() {
             <IxDropdownItem label="Item 5" />
           </IxDropdownButton>
         </div>
+        <div className={styles.Event__Item__Body}>
+          <IxTypography variant="small">{event.message}</IxTypography>
+        </div>
       </div>
     </IxEventListItem>
   );
 }
 
-function Main() {
+function Main(prop: { onEventSelection: (event: MyEvent) => void }) {
+  const [selectedEvent, setSelectedEvent] = useState(exampleEvents[0]);
+  const [events] = useState(exampleEvents);
+
+  const onEventSelectionChange = (event: MyEvent) => {
+    setSelectedEvent(event);
+    prop.onEventSelection(event);
+  };
+
   return (
     <div className={styles.Main}>
-      <IxGrid variant="fluid">
-        <IxGridRow>
-          <IxGridColumn column={'col-11'}>
-            <IxTypography variant="h2" className={styles.Title}>
-              List items
-            </IxTypography>
+      <IxTypography variant="h2" className={styles.Title}>
+        List items
+      </IxTypography>
 
-            <div className={styles.Filter}>
-              <IxInputGroup>
-                <IxIcon
-                  slot="input-start"
-                  name="filter"
-                  size="12"
-                  color="color-primary"
-                ></IxIcon>
-                <input type="text" className="form-control" />
-              </IxInputGroup>
-            </div>
+      <div className={styles.Filter}>
+        <IxInputGroup>
+          <IxIcon
+            slot="input-start"
+            name="filter"
+            size="12"
+            color="color-primary"
+          ></IxIcon>
+          <input type="text" className="form-control" />
+        </IxInputGroup>
+      </div>
 
-            <IxEventList itemHeight={84}>
-              <EventItem />
-              <EventItem />
-              <EventItem />
-              <EventItem />
-            </IxEventList>
-          </IxGridColumn>
-        </IxGridRow>
-      </IxGrid>
+      <IxEventList itemHeight={84}>
+        {events.map((event) => (
+          <EventItem
+            key={event.id}
+            event={event}
+            selected={event.id === selectedEvent.id}
+            onClick={() => onEventSelectionChange(event)}
+          />
+        ))}
+      </IxEventList>
     </div>
   );
 }
 
-function Detail() {
+function Detail({ event }: { event: MyEvent | null }) {
   return (
-    <IxGrid variant="fluid">
-      <IxGridRow>
-        <IxGridColumn column={'col-auto'}>
-          <IxTypography variant="h2" className={styles.Title}>
-            Detail
-          </IxTypography>
-          <IxTabs selected={3}>
-            <IxTabItem>Tab 1</IxTabItem>
-            <IxTabItem>Tab 2</IxTabItem>
-            <IxTabItem>Tab 3</IxTabItem>
-            <IxTabItem>Tab 4</IxTabItem>
-            <IxTabItem>Tab 5</IxTabItem>
-          </IxTabs>
-        </IxGridColumn>
-      </IxGridRow>
-    </IxGrid>
+    <div className={styles.Detail}>
+      <IxTypography variant="h2" className={styles.Title}>
+        Item details: {event?.title}
+      </IxTypography>
+      <IxTabs selected={3}>
+        <IxTabItem>First tab</IxTabItem>
+        <IxTabItem>Second tab</IxTabItem>
+        <IxTabItem>Third tab</IxTabItem>
+        <IxTabItem>Fourth tab</IxTabItem>
+        <IxTabItem>Fifth tab</IxTabItem>
+      </IxTabs>
+    </div>
   );
 }
 
 function MainDetail() {
+  const [event, setEvent] = useState(exampleEvents[0]);
+
   return (
-    <IxGrid variant="fluid">
-      <IxGridRow className={styles.Main__Detail}>
-        <IxGridColumn column={'col-3'}>
-          <Main />
-        </IxGridColumn>
-        <IxGridColumn column={'col-auto'}>
-          <Detail />
-        </IxGridColumn>
-      </IxGridRow>
-    </IxGrid>
+    <div className={styles.Main__Detail}>
+      <Main onEventSelection={setEvent} />
+      <Detail event={event} />
+    </div>
   );
 }
 
-export default function MainDetailBlueprint() {
+export default function MainDetailApp() {
   return (
     <IxBasicNavigation applicationName="Application Name">
       <IxMenu>
