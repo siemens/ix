@@ -113,11 +113,6 @@ ix-menu-item {
     }
   }
 
-  &.home-tab,
-  &[slot='home'] {
-    margin-bottom: 1.5rem;
-  }
-
   &.bottom-tab,
   &[slot='bottom'] {
     $bottom-height: 2.25rem;

@@ -183,7 +183,7 @@ export class Menu {
   get menuItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
+        'ix-menu-item:not(.internal-tab):not(.bottom-tab)'
       )
     ).filter(this.isVisible);
   }
@@ -191,13 +191,9 @@ export class Menu {
   get menuBottomItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'ix-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
+        'ix-menu-item.bottom-tab:not(.internal-tab)'
       )
     ).filter(this.isVisible);
-  }
-
-  get homeTab() {
-    return this.hostElement.querySelector('ix-menu-item.home-tab');
   }
 
   get moreItemsDropdown(): HTMLElement {
@@ -334,11 +330,6 @@ export class Menu {
   private appendTabs() {
     this.activeTab = null;
 
-    if (this.homeTab) {
-      this.hostElement.querySelector('.tabs-top').appendChild(this.homeTab);
-      this.homeTab.addEventListener('click', this.resetOverlay);
-    }
-
     this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
       if (this.showTab(index)) {
         item.classList.remove('d-none');
@@ -349,9 +340,6 @@ export class Menu {
           this.activeTab = item;
         }
       }
-
-      // TODO: Find better solution to handle home tab
-      this.homeTab?.classList.remove('d-none');
 
       item.addEventListener('click', this.resetOverlay);
     });
@@ -423,7 +411,7 @@ export class Menu {
 
   private getAvailableHeight() {
     const heightBurgerMenu = 60;
-    const heightHome = 72;
+    // const heightHome = 72;
     const heightAvatar = 56;
     const heightBottomTab = 36;
 
@@ -435,9 +423,9 @@ export class Menu {
       availableHeight -= heightAvatar;
     }
 
-    if (this.homeTab) {
-      availableHeight -= heightHome;
-    }
+    // if (this.homeTab) {
+    //   availableHeight -= heightHome;
+    // }
 
     if (this.showAbout) {
       availableHeight -= heightBottomTab;
@@ -717,6 +705,7 @@ export class Menu {
             }}
           >
             <div class="tabs-top"></div>
+            <slot name="home"></slot>
             <slot></slot>
             <div class="active-more-tab">
               {this.activeTab ? (

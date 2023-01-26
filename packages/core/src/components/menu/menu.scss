@@ -123,6 +123,10 @@ ix-menu {
   .bottom-tab-divider {
     margin-top: auto;
   }
+
+  [slot='home'] {
+    margin-bottom: 1.5rem;
+  }
 }
 
 // Remove text-decoration if a tag is used inside ix-menu

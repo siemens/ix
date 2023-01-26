@@ -70,7 +70,6 @@ export class MenuItem {
       <Host
         class={{
           disabled: this.disabled,
-          'home-tab': this.home,
           'bottom-tab': this.bottom,
           active: this.active,
         }}
