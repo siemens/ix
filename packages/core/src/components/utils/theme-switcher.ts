@@ -96,7 +96,7 @@ export class ThemeSwitcher {
       return;
     }
 
-    if (!('MutationOberver' in window)) {
+    if (!('MutationObserver' in window)) {
       console.warn(
         'ThemeSwitcher not supported by your browser. Missing MutationObserver API'
       );

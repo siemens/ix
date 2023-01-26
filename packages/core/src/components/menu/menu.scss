@@ -124,3 +124,8 @@ ix-menu {
     margin-top: auto;
   }
 }
+
+// Remove text-decoration if a tag is used inside ix-menu
+a[href]:has(> ix-menu-item) {
+  text-decoration: none;
+}
