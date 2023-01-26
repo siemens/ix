@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxButton, IxDrawer } from '@siemens/ix-vue/dist';
+import { IxButton, IxDrawer } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const show = ref(false);

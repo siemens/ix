@@ -13,12 +13,17 @@
   },
   "module": "dist/index.js",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "yarn clean && yarn compile",
     "compile": "yarn tsc",

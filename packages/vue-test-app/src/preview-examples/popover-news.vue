@@ -5,7 +5,7 @@ import {
   IxMenuAbout,
   IxMenuAboutItem,
   IxMenuAboutNews,
-} from '@siemens/ix-vue/dist';
+} from '@siemens/ix-vue';
 </script>
 
 <template>

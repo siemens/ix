@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue/dist';
+import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-vue';
 </script>
 
 <template>

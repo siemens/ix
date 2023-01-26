@@ -4,7 +4,7 @@ import {
   IxMenuAvatar,
   IxMenuAvatarItem,
   IxMenuItem,
-} from '@siemens/ix-vue/dist';
+} from '@siemens/ix-vue';
 </script>
 
 <template>

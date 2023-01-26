@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxEventList, IxEventListItem } from '@siemens/ix-vue/dist';
+import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 </script>
 
 <template>

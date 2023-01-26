@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxBlind } from '@siemens/ix-vue/dist';
+import { IxBlind } from '@siemens/ix-vue';
 </script>
 
 <template>

@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { IxButton } from '@siemens/ix-vue/dist';
+import { IxButton } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const toggle = ref(false);

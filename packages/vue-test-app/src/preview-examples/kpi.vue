@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxKpi } from '@siemens/ix-vue/dist';
+import { IxKpi } from '@siemens/ix-vue';
 </script>
 
 <template>

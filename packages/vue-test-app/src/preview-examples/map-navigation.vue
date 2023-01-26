@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue/dist';
+import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
 <template>

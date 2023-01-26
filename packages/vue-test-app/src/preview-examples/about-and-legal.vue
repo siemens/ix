@@ -4,7 +4,7 @@ import {
   IxMenu,
   IxMenuAbout,
   IxMenuAboutItem,
-} from '@siemens/ix-vue/dist';
+} from '@siemens/ix-vue';
 import { ref, watch } from 'vue';
 
 const menu = ref<HTMLIxMenuElement>();

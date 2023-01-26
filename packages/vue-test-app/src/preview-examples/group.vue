@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxGroup, IxGroupItem } from '@siemens/ix-vue/dist';
+import { IxGroup, IxGroupItem } from '@siemens/ix-vue';
 </script>
 
 <template>

@@ -9,7 +9,7 @@
  */
 
 import { FilterState, LogicalFilterOperator } from '@siemens/ix';
-import { IxCategoryFilter } from '@siemens/ix-vue/dist';
+import { IxCategoryFilter } from '@siemens/ix-vue';
 
 const filter: FilterState = {
   tokens: ['Custom filter text'],

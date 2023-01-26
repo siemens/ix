@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue/dist';
+import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 
 function navigate(href: string) {
   window.location.href = href;

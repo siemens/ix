@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxToggle } from '@siemens/ix-vue/dist';
+import { IxToggle } from '@siemens/ix-vue';
 </script>
 
 <template>

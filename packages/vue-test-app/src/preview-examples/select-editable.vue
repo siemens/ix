@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxSelect, IxSelectItem } from '@siemens/ix-vue/dist';
+import { IxSelect, IxSelectItem } from '@siemens/ix-vue';
 </script>
 
 <template>

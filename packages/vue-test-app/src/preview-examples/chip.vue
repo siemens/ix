@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxChip } from '@siemens/ix-vue/dist';
+import { IxChip } from '@siemens/ix-vue';
 
 const styled = {
   width: '10rem',

@@ -4,6 +4,11 @@ sidebar_title: Vue
 title: Vue
 ---
 
+### Experimental disclamer
+
+The vue wrapper will be in a experimental state meaning that full component support is not garanteed.
+Additionally any related bugs that affect only this wrapper will not be a priority for now.
+
 ### Install dependencies
 
 Install `@siemens/ix-vue` and `@siemens/ix-icons` using a package manager:
@@ -27,7 +32,7 @@ import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import { createApp } from 'vue';
-import { ixPlugin } from '@siemens/ix-vue/dist';
+import { ixPlugin } from '@siemens/ix-vue';
 import Root from './App.vue';
 
 const app = createApp(App);

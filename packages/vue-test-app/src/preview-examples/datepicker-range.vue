@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxDatePicker } from '@siemens/ix-vue/dist';
+import { IxDatePicker } from '@siemens/ix-vue';
 </script>
 
 <template>

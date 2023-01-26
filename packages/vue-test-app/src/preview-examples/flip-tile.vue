@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FlipTileState } from '@siemens/ix';
-import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue/dist';
+import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
 </script>
 
 <template>

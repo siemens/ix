@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxSplitButton, IxSplitButtonItem } from '@siemens/ix-vue/dist';
+import { IxSplitButton, IxSplitButtonItem } from '@siemens/ix-vue';
 </script>
 
 <template>

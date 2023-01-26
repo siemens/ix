@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { TreeContext, TreeModel } from '@siemens/ix';
-import { IxButton, IxTree } from '@siemens/ix-vue/dist';
+import { IxButton, IxTree } from '@siemens/ix-vue';
 import { defineComponent, onMounted, ref } from 'vue';
 
 type TreeData = {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxTabItem, IxTabs } from '@siemens/ix-vue/dist';
+import { IxTabItem, IxTabs } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const selectedTab = ref(0);

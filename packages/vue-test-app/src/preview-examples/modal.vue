@@ -13,7 +13,7 @@ import {
   IxButton,
   IxIconButton,
   IxModal,
-} from '@siemens/ix-vue/dist';
+} from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const modalRef = ref<HTMLRefElement<HTMLIxModalElement>>();

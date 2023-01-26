@@ -6,7 +6,7 @@ import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import './style.css';
 
-import { ixPlugin } from '@siemens/ix-vue/dist';
+import { ixPlugin } from '@siemens/ix-vue';
 import { createApp } from 'vue';
 import reportWebVitals from './reportWebVitals';
 import Root from './Root.vue';

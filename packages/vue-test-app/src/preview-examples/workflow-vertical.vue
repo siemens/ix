@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-vue/dist';
+import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-vue';
 </script>
 
 <template>

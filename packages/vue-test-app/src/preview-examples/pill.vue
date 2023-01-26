@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxPill } from '@siemens/ix-vue/dist';
+import { IxPill } from '@siemens/ix-vue';
 
 const styled = {
   width: '8rem',

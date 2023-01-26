@@ -5,7 +5,7 @@ import {
   IxMapNavigationOverlay,
   IxMenu,
   IxMenuItem,
-} from '@siemens/ix-vue/dist';
+} from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const overlay = ref(false);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxButton, IxDropdown, IxDropdownItem } from '@siemens/ix-vue/dist';
+import { IxButton, IxDropdown, IxDropdownItem } from '@siemens/ix-vue';
 </script>
 
 <template>

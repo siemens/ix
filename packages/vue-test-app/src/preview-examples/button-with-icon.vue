@@ -8,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxIconButton } from '@siemens/ix-vue/dist';
+import { IxIconButton } from '@siemens/ix-vue';
 </script>
 
 <template>

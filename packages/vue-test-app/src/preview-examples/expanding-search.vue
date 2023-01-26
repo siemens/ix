@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxExpandingSearch } from '@siemens/ix-vue/dist';
+import { IxExpandingSearch } from '@siemens/ix-vue';
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IxValidationTooltip } from '@siemens/ix-vue/dist';
+import { IxValidationTooltip } from '@siemens/ix-vue';
 import { useForm } from 'vue-hooks-form';
 
 const { useField, validateFields } = useForm({ defaultValues: {} });
