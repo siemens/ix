@@ -19,7 +19,11 @@ export const examplePathPath = path.join(
   'webcomponent-examples'
 );
 
-export const blueprintDistPath = path.join(__dirname, 'static', 'blueprints');
+export const blueprintDistPath = path.join(
+  __dirname,
+  'static',
+  'react-test-app'
+);
 const node_modules = path.join(__dirname, '../../', 'node_modules');
 
 function deleteFolder(path: string) {
@@ -35,7 +39,7 @@ async function loadLib(libName, destPath) {
   return Promise.all(
     pkg.files.map(async (file) => {
       try {
-        await fsExtra.copy(`${libPath}/${file}`, path.join(destPath, file));
+        await fsExtra.copy(`${libPath}/${file}`, path.join(destPath));
       } catch (e) {
         console.warn('Cannot copy resource', file, e);
       }

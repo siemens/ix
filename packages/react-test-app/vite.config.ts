@@ -11,8 +11,11 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import Pages from 'vite-plugin-pages';
 
+const baseUrl = process.env.BASE_URL ?? '/';
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: `${baseUrl}react-test-app/`,
   plugins: [
     react(),
     Pages({

@@ -49,7 +49,7 @@ const EmbeddedReactIFrame = (props: EmbeddedIFrameProps) => {
     };
   }, []);
 
-  const url = `${baseUrl}blueprints/dist/${props.name}?theme=${
+  const url = `${baseUrl}react-test-app/#/${props.name}?theme=${
     props.theme ? props.theme : theme
   }`;
 
@@ -66,8 +66,8 @@ const EmbeddedReactIFrame = (props: EmbeddedIFrameProps) => {
   );
 };
 
-const EmbeddedIFrame = ({ name }: EmbeddedIFrameProps) => {
-  return <EmbeddedReactIFrame name={name} />;
+const EmbeddedIFrame = (props: EmbeddedIFrameProps) => {
+  return <EmbeddedReactIFrame {...props} />;
 };
 
 export default EmbeddedIFrame;

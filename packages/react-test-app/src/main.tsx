@@ -14,43 +14,38 @@ import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
-import React, { Suspense, useLayoutEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, useRoutes } from 'react-router-dom';
-import routes from '~react-pages';
-import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-const Routing = () => {
-  useLayoutEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const theme = searchParams.get('theme');
-    document.body.className = theme ?? 'theme-classic-dark';
-  });
+import { BrowserRouter, HashRouter, useRoutes } from 'react-router-dom';
+import routes from '~react-pages';
+import './index.css';
+
+const TestAppRouting = () => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <>
       {useRoutes([
         {
-          path: '/blueprints/dist/',
-          element: <App />,
+          path: '/',
+          element: null,
         },
         ...routes,
       ])}
-    </Suspense>
+    </>
   );
 };
 
-function Bootstrap() {
-  return (
-    <BrowserRouter>
-      <Routing />
-    </BrowserRouter>
-  );
-}
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Bootstrap />
+  <React.StrictMode>
+    <HashRouter>
+      <TestAppRouting />
+    </HashRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <TestAppRouting />
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

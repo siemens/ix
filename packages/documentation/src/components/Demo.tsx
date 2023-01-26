@@ -35,13 +35,12 @@ export default function Demo(props: DemoProps) {
     const currentVersion: string = preferredVersion?.name;
     if (currentVersion === undefined || currentVersion === 'current') {
       setBase(
-        baseUrl +
-          `webcomponent-examples/dist/preview-examples/${props.name}.html`
+        baseUrl + `webcomponent-examples/preview-examples/${props.name}.html`
       );
     } else {
       setBase(
         baseUrl +
-          `versioned_examples/version-${currentVersion}/webcomponent-examples/dist/preview-examples/${props.name}.html`
+          `versioned_examples/version-${currentVersion}/webcomponent-examples/preview-examples/${props.name}.html`
       );
     }
   }, [baseUrl, preferredVersion?.name, props.name]);
