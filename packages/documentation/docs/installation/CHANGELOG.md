@@ -4,6 +4,17 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+# [1.3.0-beta.1](https://github.com/siemens/ix/compare/v1.3.0-beta.0...v1.3.0-beta.1) (2023-01-26)
+
+
+### Bug Fixes
+
+* **core/menu:** remove text decoration ([#321](https://github.com/siemens/ix/issues/321)) ([f45ac44](https://github.com/siemens/ix/commit/f45ac44ffa62601d8b04f7024b99b5256fe84b4d))
+* **core/theme-switcher:** correct typo for MutationObserver ([#320](https://github.com/siemens/ix/issues/320)) ([fce302c](https://github.com/siemens/ix/commit/fce302c45cbd1f3162c87d9364824cfeb08f86c6))
+* **core/tree:** initializing tree ([#319](https://github.com/siemens/ix/issues/319)) ([7d9b373](https://github.com/siemens/ix/commit/7d9b3732cd5406bb8cc9073ea3794033b75952ae))
+
+
+
 # [1.3.0-beta.0](https://github.com/siemens/ix/compare/v1.2.1...v1.3.0-beta.0) (2023-01-23)
 
 
