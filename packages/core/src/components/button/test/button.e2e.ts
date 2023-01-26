@@ -25,6 +25,8 @@ regressionTest.describe('button: basic', () => {
       body.querySelectorAll('button').forEach((b) => b.classList.add('hover'));
     }, bodyElement);
 
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
