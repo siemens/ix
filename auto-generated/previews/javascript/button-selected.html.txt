@@ -1,0 +1,4 @@
+<ix-button class="m-1" variant="Secondary" ghost>Not selected</ix-button>
+<ix-button class="m-1" variant="Secondary" ghost selected
+  >Selected</ix-button
+>
