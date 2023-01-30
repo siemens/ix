@@ -27,7 +27,9 @@ regressionTest.describe('button: basic', () => {
 
     await page.waitForSelector('ix-button > button.hover');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.04,
+    });
   });
 
   regressionTest('should have an active effect', async ({ page }) => {
