@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import { IxButton, IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Demo, { DemoProps } from '../Demo';
 import { isTargetFramework, TargetFramework } from './framework-types';
 import './playground.scss';
@@ -139,11 +139,11 @@ function FileTabs(props: {
 
 function getDefaultTargetFramework(availableFrameworks?: TargetFramework[]) {
   if (!availableFrameworks) {
-    return TargetFramework.ANGULAR;
+    return TargetFramework.PREVIEW;
   }
   return (
     (availableFrameworks.length !== 0 ? availableFrameworks[0] : undefined) ||
-    TargetFramework.ANGULAR
+    TargetFramework.PREVIEW
   );
 }
 
@@ -153,12 +153,11 @@ export default function Playground({
   noMargin,
   theme,
   frameworks,
-  hideInitalCodePreview,
   availableFrameworks,
 }: DemoProps & PlaygroundProps) {
-  const { pathname } = useLocation();
+  const { pathname: _pathname } = useLocation();
   const baseUrl = useBaseUrl('/');
-  const [showCode, setShowCode] = useState<boolean>(!hideInitalCodePreview);
+  const [showCode, setShowCode] = useState<boolean>(!false);
 
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
     getDefaultTargetFramework(availableFrameworks)
@@ -174,9 +173,13 @@ export default function Playground({
     >
   >();
 
+  const pathname = useMemo(
+    () => getPathId(_pathname + name),
+    [name, _pathname]
+  );
+
   useEffect(() => {
-    const id = getPathId(pathname);
-    const localStorageItem = localStorage.getItem(id);
+    const localStorageItem = localStorage.getItem(pathname);
     if (localStorageItem && isTargetFramework(localStorageItem)) {
       setTargetFramework(localStorageItem);
     }
@@ -230,14 +233,16 @@ export default function Playground({
   const changeFramework = (framework: TargetFramework) => {
     setTargetFramework(framework);
     if (pathname) {
-      localStorage.setItem(
-        `docusaurus.playground${pathname.replace(/\//g, '.')}`,
-        framework
-      );
+      localStorage.setItem(pathname, framework);
     }
   };
 
   function renderSourceCodeSnippet(): React.ReactNode {
+    if (targetFramework === TargetFramework.PREVIEW) {
+      return (
+        <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
+      );
+    }
     if (!sourceCodeSnippets || !sourceCodeSnippets[targetFramework]) {
       return null;
     }
@@ -254,10 +259,17 @@ export default function Playground({
       return [];
     }
 
+    if (targetFramework === TargetFramework.PREVIEW) {
+      return [];
+    }
+
     return sourceCodeSnippets[targetFramework].map((file) => file.filename);
   }
 
   function isFrameworkConfigured(framework: TargetFramework) {
+    if (framework === TargetFramework.PREVIEW) {
+      return true;
+    }
     if (!availableFrameworks) {
       return true;
     }
@@ -269,18 +281,16 @@ export default function Playground({
 
   return (
     <div className="Playground">
-      <div className="Playground__Toolbar Location__Top">
-        <div className="Playground__Toolbar__Actions">
-          <ButtonToggleCode
-            onClick={() => setShowCode(!showCode)}
-            showCode={showCode}
-          />
-        </div>
-      </div>
-      <Demo name={name} height={height} noMargin={noMargin} theme={theme} />
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
+            <IxButton
+              className="Playground__Framework__Button"
+              ghost={targetFramework !== TargetFramework.PREVIEW}
+              onClick={() => changeFramework(TargetFramework.PREVIEW)}
+            >
+              Preview
+            </IxButton>
             {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
               <IxButton
                 className="Playground__Framework__Button"
@@ -312,13 +322,17 @@ export default function Playground({
             ) : null}
 
             <div className="Playground__Toolbar__Actions">
-              <ButtonOpenGithub name={name} framework={targetFramework} />
-              <ButtonOpenStackBlitz
-                name={name}
-                framework={targetFramework}
-                baseUrl={baseUrl}
-                files={getFileNames()}
-              />
+              {targetFramework !== TargetFramework.PREVIEW ? (
+                <>
+                  <ButtonOpenGithub name={name} framework={targetFramework} />
+                  <ButtonOpenStackBlitz
+                    name={name}
+                    framework={targetFramework}
+                    baseUrl={baseUrl}
+                    files={getFileNames()}
+                  />
+                </>
+              ) : null}
             </div>
           </div>
           {renderSourceCodeSnippet()}

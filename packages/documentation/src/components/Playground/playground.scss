@@ -12,7 +12,6 @@
   display: block;
   position: relative;
 
-  border: var(--docs-playground-border);
   border-radius: 4px;
 
   .Playground__Toolbar {
@@ -25,7 +24,6 @@
     }
 
     &.Location__Bottom {
-      border-top: var(--docs-playground-border);
     }
   }
 
