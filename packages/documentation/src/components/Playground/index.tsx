@@ -13,7 +13,7 @@ import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useMemo, useState } from 'react';
 import Demo, { DemoProps } from '../Demo';
-import { isTargetFramework, TargetFramework } from './framework-types';
+import { TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
 
@@ -179,13 +179,6 @@ export default function Playground({
   );
 
   useEffect(() => {
-    const localStorageItem = localStorage.getItem(pathname);
-    if (localStorageItem && isTargetFramework(localStorageItem)) {
-      setTargetFramework(localStorageItem);
-    }
-  }, []);
-
-  useEffect(() => {
     const snippets: Record<
       TargetFramework,
       Array<{
@@ -232,9 +225,6 @@ export default function Playground({
 
   const changeFramework = (framework: TargetFramework) => {
     setTargetFramework(framework);
-    if (pathname) {
-      localStorage.setItem(pathname, framework);
-    }
   };
 
   function renderSourceCodeSnippet(): React.ReactNode {
