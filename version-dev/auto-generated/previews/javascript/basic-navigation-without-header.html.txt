@@ -1,6 +1,0 @@
-<ix-basic-navigation hide-header>
-  <ix-menu>
-    <ix-menu-item>Item 1</ix-menu-item>
-    <ix-menu-item>Item 2</ix-menu-item>
-  </ix-menu>
-</ix-basic-navigation>

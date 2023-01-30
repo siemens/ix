@@ -1,1 +1,0 @@
-<ix-toggle text-off="Offline" text-on="Online"></ix-toggle>
