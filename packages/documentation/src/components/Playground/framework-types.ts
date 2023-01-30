@@ -12,10 +12,13 @@ export enum TargetFramework {
   REACT = 'react',
   JAVASCRIPT = 'javascript',
   VUE = 'vue',
+  // Workaround for flat tab selection
+  PREVIEW = 'preview',
 }
 
 export function isTargetFramework(arg: any): arg is TargetFramework {
   return (
+    arg === TargetFramework.PREVIEW ||
     arg === TargetFramework.ANGULAR ||
     arg === TargetFramework.JAVASCRIPT ||
     arg === TargetFramework.REACT ||
