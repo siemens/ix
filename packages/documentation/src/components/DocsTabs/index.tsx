@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import React, { useMemo, useState } from 'react';
 import './DocsTabs.scss';
@@ -75,4 +76,6 @@ const DocsTabs = (props: DocsTabsProps) => {
   );
 };
 
-export default DocsTabs;
+export default (props) => {
+  return <BrowserOnly>{() => <DocsTabs {...props} />}</BrowserOnly>;
+};
