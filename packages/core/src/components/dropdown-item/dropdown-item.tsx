@@ -85,12 +85,14 @@ export class DropdownItem {
             <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
           ) : null}
 
-          <span
-            class={{
-              glyph: true,
-              [`glyph-${this.icon}`]: true,
-            }}
-          ></span>
+          {this.icon ? (
+            <span
+              class={{
+                glyph: true,
+                [`glyph-${this.icon}`]: true,
+              }}
+            ></span>
+          ) : null}
 
           {this.label ? <span class="label">{this.label}</span> : null}
           <slot></slot>
