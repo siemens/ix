@@ -174,4 +174,19 @@ $border-radius: 100px;
       }
     }
   }
+
+  &[variant='custom'].outline {
+    border: solid 1px transparent;
+    background-color: transparent;
+
+    @if $interaction {
+      &:hover {
+        background-color: rgba(0, 0, 0, var(--theme-l-hover));
+      }
+
+      &:active {
+        background-color: rgba(0, 0, 0, var(--theme-l-active));
+      }
+    }
+  }
 }
