@@ -10,7 +10,6 @@
 :host {
   .line {
     width: auto;
-    border: 0.031rem solid #9d9d96;
-    opacity: 20%;
+    border: 0.0625rem solid var(--theme-color-x-weak-bdr);
   }
 }

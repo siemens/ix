@@ -7,16 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import 'common-variables';
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-  margin-bottom: 0.25rem;
+  margin-inline-start: $large-space;
+  margin-inline-end: $large-space;
+  margin-block-end: $tiny-space;
 
   slot::slotted(*) {
     display: flex;
-    margin-right: 0.625rem;
+    margin-inline-end: 0.625rem;
   }
 }
