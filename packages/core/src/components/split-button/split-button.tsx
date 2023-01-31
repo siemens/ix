@@ -107,15 +107,20 @@ export class SplitButton {
       <Host>
         <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
           <button
-            class={getButtonClasses(
-              this.variant,
-              this.outline,
-              this.ghost || this.invisible,
-              !this.label,
-              false,
-              false,
-              this.disabled
-            )}
+            class={{
+              ...getButtonClasses(
+                this.variant,
+                this.outline,
+                this.ghost || this.invisible,
+                !this.label,
+                false,
+                false,
+                this.disabled
+              ),
+              ...{
+                'left-button-border': !this.outline,
+              },
+            }}
             onClick={(e) => this.buttonClick.emit(e)}
           >
             {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
