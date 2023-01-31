@@ -13,7 +13,8 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('blind/test/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    const blind = await page.waitForSelector('ix-blind');
+    expect(await blind.screenshot()).toMatchSnapshot();
   });
 
   regressionTest('collapsed', async ({ page }) => {
@@ -21,6 +22,7 @@ regressionTest.describe('blind', () => {
     await page.locator('.blind-header').click();
     await page.waitForSelector('.blind-header.closed');
     await page.waitForTimeout(800);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    const blind = await page.waitForSelector('ix-blind');
+    expect(await blind.screenshot()).toMatchSnapshot();
   });
 });
