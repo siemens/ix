@@ -22,9 +22,6 @@
     &.Location__Top {
       border-bottom: var(--docs-playground-border);
     }
-
-    &.Location__Bottom {
-    }
   }
 
   .Playground__Toolbar__Actions {
@@ -38,8 +35,4 @@
   div.theme-code-block {
     margin-bottom: 0 !important;
   }
-}
-
-.Playground__Framework__Button {
-  margin-right: 0.5rem;
 }
