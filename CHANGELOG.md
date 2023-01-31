@@ -1,3 +1,46 @@
+# [1.3.0](https://github.com/siemens/ix/compare/v1.3.0-beta.1...v1.3.0) (2023-01-27)
+
+
+
+# [1.3.0-beta.1](https://github.com/siemens/ix/compare/v1.3.0-beta.0...v1.3.0-beta.1) (2023-01-26)
+
+
+### Bug Fixes
+
+* **core/menu:** remove text decoration ([#321](https://github.com/siemens/ix/issues/321)) ([f45ac44](https://github.com/siemens/ix/commit/f45ac44ffa62601d8b04f7024b99b5256fe84b4d))
+* **core/theme-switcher:** correct typo for MutationObserver ([#320](https://github.com/siemens/ix/issues/320)) ([fce302c](https://github.com/siemens/ix/commit/fce302c45cbd1f3162c87d9364824cfeb08f86c6))
+* **core/tree:** initializing tree ([#319](https://github.com/siemens/ix/issues/319)) ([7d9b373](https://github.com/siemens/ix/commit/7d9b3732cd5406bb8cc9073ea3794033b75952ae))
+
+
+
+# [1.3.0-beta.0](https://github.com/siemens/ix/compare/v1.2.1...v1.3.0-beta.0) (2023-01-23)
+
+
+### Bug Fixes
+
+* **aggrid:** remove clip from ag-radiobutton ([#260](https://github.com/siemens/ix/issues/260)) ([7536529](https://github.com/siemens/ix/commit/7536529a4751221a15a7d12d38c85603ffe89e14))
+* **core/button:** apply correct disable state ([#286](https://github.com/siemens/ix/issues/286)) ([11f97cc](https://github.com/siemens/ix/commit/11f97ccc815670de2af5eaab74c4b464c4ef2f20))
+* **core/category-filter, core/expanding-search:** adjust clear button ([#303](https://github.com/siemens/ix/issues/303)) ([87574a6](https://github.com/siemens/ix/commit/87574a65a3a0ef00729fb8ae704da84be4c5ebec))
+* **core/chip:** implement inactive state ([#302](https://github.com/siemens/ix/issues/302)) ([ea0381e](https://github.com/siemens/ix/commit/ea0381ea553dc5ec7057bea0f9750e7d9b398e9b))
+* **core/icon-button:** prevent events during disable state ([#262](https://github.com/siemens/ix/issues/262)) ([56d0f3a](https://github.com/siemens/ix/commit/56d0f3af6424a290bb407fbf6b97a8f2e15160cf))
+* **core/map-navigation:** overlay close functionality ([#269](https://github.com/siemens/ix/issues/269)) ([014b7ca](https://github.com/siemens/ix/commit/014b7cadd9fe6cab301fb8e70cfbf639a00979b8))
+* **core/menu:** update overlay animation ([#282](https://github.com/siemens/ix/issues/282)) ([1feb147](https://github.com/siemens/ix/commit/1feb147152572a9d67c7ba8167cabd2b718194f2))
+* **core/modal:** backdrop static only dismisses modal on actual backdrop ([#285](https://github.com/siemens/ix/issues/285)) ([6d55b93](https://github.com/siemens/ix/commit/6d55b93e7be2402caadf147784cffd6dedec2b18))
+* **core/modal:** set max-height ([#283](https://github.com/siemens/ix/issues/283)) ([066b356](https://github.com/siemens/ix/commit/066b356ddc17939ffaf29cb75d0fd5998dac95fa))
+* **core/select:** replace mutation observer with dom events ([#300](https://github.com/siemens/ix/issues/300)) ([c9ec1ff](https://github.com/siemens/ix/commit/c9ec1fffffc6fa4d413396135b66e711bec41e75))
+* **core:** chip alignment  ([#259](https://github.com/siemens/ix/issues/259)) ([1b490dd](https://github.com/siemens/ix/commit/1b490dd2441ddf5e21273a50d1c158caa1b1f08a))
+* **core:** pill alignment ([#255](https://github.com/siemens/ix/issues/255)) ([1e0fa2f](https://github.com/siemens/ix/commit/1e0fa2f07b522872d5ed95c1d0cad6617cf6eac2))
+* **echarts:** update theme colors ([#281](https://github.com/siemens/ix/issues/281)) ([8a0cbff](https://github.com/siemens/ix/commit/8a0cbff918171f17ca98036cac71e1a3819881dd))
+
+
+### Features
+
+* **aggrid:** add pagination theme support ([#261](https://github.com/siemens/ix/issues/261)) ([8496a00](https://github.com/siemens/ix/commit/8496a00f91b9811d09aa306ad386cb8e9eb3de0e))
+* **angular/modal:** support modal content by component class ([#256](https://github.com/siemens/ix/issues/256)) ([d7479d9](https://github.com/siemens/ix/commit/d7479d98f8fc78835d716b9a5c821cb4608016f3))
+* **core/dropdown-button:** add dropdown-button ([#229](https://github.com/siemens/ix/issues/229)) ([8d6ae8b](https://github.com/siemens/ix/commit/8d6ae8b83d3fd2ed9e291a1414e1c4395142e93c))
+
+
+
 ## [1.2.1](https://github.com/siemens/ix/compare/v1.2.0...v1.2.1) (2022-12-14)
 
 
