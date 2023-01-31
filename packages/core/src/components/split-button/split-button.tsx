@@ -104,43 +104,46 @@ export class SplitButton {
 
   render() {
     return (
-      <Host class="btn-group">
-        <button
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost || this.invisible,
-            !this.label,
-            false,
-            false,
-            this.disabled
-          )}
-          onClick={(e) => this.buttonClick.emit(e)}
-        >
-          {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
-        </button>
-        <button
-          ref={(r) => (this.triggerElement = r)}
-          class={{
-            ...getButtonClasses(
+      <Host>
+        <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
+          <button
+            class={getButtonClasses(
               this.variant,
               this.outline,
               this.ghost || this.invisible,
-              true,
+              !this.label,
               false,
               false,
               this.disabled
-            ),
-            ...{
-              anchor: true,
-            },
-          }}
-        >
-          <ix-icon name={this.splitIcon} />
-          <ix-dropdown ref={(r) => (this.dropdownElement = r)}>
-            <slot></slot>
-          </ix-dropdown>
-        </button>
+            )}
+            onClick={(e) => this.buttonClick.emit(e)}
+          >
+            {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
+          </button>
+          <button
+            ref={(r) => (this.triggerElement = r)}
+            class={{
+              ...getButtonClasses(
+                this.variant,
+                this.outline,
+                this.ghost || this.invisible,
+                true,
+                false,
+                false,
+                this.disabled
+              ),
+              ...{
+                anchor: true,
+              },
+            }}
+          >
+            <ix-icon name={this.splitIcon} />
+          </button>
+        </div>
+
+        <ix-dropdown ref={(r) => (this.dropdownElement = r)}>
+          <slot></slot>
+        </ix-dropdown>
       </Host>
     );
   }

@@ -9,4 +9,15 @@
 
 :host {
   display: block;
+
+  .middle-gap {
+    gap: 2px;
+  }
+
+  .middleBorder {
+    border-top-width: 2px;
+    border-right-width: 1px;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+  }
 }
