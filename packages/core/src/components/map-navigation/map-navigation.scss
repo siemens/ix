@@ -81,9 +81,7 @@
       padding: 0 $default-space;
 
       --theme-app-header--color: var(--theme-map-navigation-header--color);
-      --theme-app-header-logo--color: var(
-        --theme-map-navigation-header-logo--color
-      );
+      --theme-app-header-logo--color: var(--theme-map-navigation-logo--color);
 
       button {
         margin-left: $default-space;
