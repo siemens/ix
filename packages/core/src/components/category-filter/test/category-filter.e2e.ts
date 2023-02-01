@@ -13,16 +13,14 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('category-filter', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/test/basic');
-    await page.waitForSelector('input');
     await page.locator('input').click();
-    await page.waitForTimeout(500);
-    await page.waitForSelector('ix-dropdown');
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('categories', async ({ page }) => {
     await page.goto('category-filter/test/categories');
-    await page.waitForTimeout(500);
+    await page.locator('input').click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

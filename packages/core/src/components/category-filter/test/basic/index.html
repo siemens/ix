@@ -24,11 +24,11 @@ SPDX-License-Identifier: MIT
     </style>
   </head>
   <body>
-    <ix-category-filter placeholder="Filter by text.."></ix-category-filter>
-    <script>
+    <ix-category-filter placeholder="Filter by.."></ix-category-filter>
+    <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-category-filter');
-        const categoryFilter = document.querySelector('ix-category-filger');
+        const categoryFilter = document.querySelector('ix-category-filter');
         categoryFilter.suggestions = [
           'Option A',
           'Option B',
