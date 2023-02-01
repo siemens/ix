@@ -1,6 +1,15 @@
 name: build
 
-on: [push, pull_request, workflow_dispatch, workflow_call]
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/*'
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+  workflow_call:
 
 concurrency:
   group: ci-${{ github.event_name }}-${{ github.ref }}-${{ github.sha }}
