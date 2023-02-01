@@ -20,6 +20,8 @@ regressionTest.describe('input', () => {
     await page.goto('input/test/basic');
     const input = await page.waitForSelector('input');
     await input.hover();
+
+    await page.waitForTimeout(1000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
@@ -27,6 +29,8 @@ regressionTest.describe('input', () => {
     await page.goto('input/test/basic');
     const input = await page.waitForSelector('input');
     await input.focus();
+
+    await page.waitForTimeout(1000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
@@ -34,6 +38,8 @@ regressionTest.describe('input', () => {
     await page.goto('input/test/basic');
     const input = await page.waitForSelector('input');
     await input.fill('Example content');
+
+    await page.waitForTimeout(1000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });
