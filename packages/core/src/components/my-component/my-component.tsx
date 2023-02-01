@@ -23,49 +23,6 @@ export class MyComponent {
           padding: '12rem',
         }}
       >
-        <ix-button data-tooltip="Test1" style={{ marginRight: '4rem' }}>
-          Long text
-        </ix-button>
-        <ix-button data-tooltip="Test2" style={{ marginRight: '4rem' }}>
-          Short
-        </ix-button>
-        <ix-button data-tooltip="Test3" style={{ marginRight: '4rem' }}>
-          Long text short words
-        </ix-button>
-        <ix-button data-tooltip="with-title" style={{ marginRight: '4rem' }}>
-          With title
-        </ix-button>
-
-        <ix-tooltip
-          for='[data-tooltip="Test3"]'
-          interactive={false}
-          titleIcon="rocket"
-          titleContent="test title"
-        >
-          Very very very very very very long long long text
-        </ix-tooltip>
-        <ix-tooltip for='[data-tooltip="Test2"]' interactive={false}>
-          1
-        </ix-tooltip>
-        <ix-tooltip
-          for='[data-tooltip="Test1"]'
-          interactive={true}
-          titleIcon="rocket"
-          titleContent="test title"
-        >
-          Very very very very very very
-          looooooooooooooooooooooooooooooooooooooooong text
-        </ix-tooltip>
-
-        <ix-tooltip
-          for='[data-tooltip="with-title"]'
-          interactive={true}
-          titleIcon="rocket"
-          titleContent="test title"
-        >
-          Some Content
-        </ix-tooltip>
-
         <div
           style={{
             display: 'flex',

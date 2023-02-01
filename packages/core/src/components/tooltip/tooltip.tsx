@@ -17,6 +17,9 @@ import {
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
 /**
+ * @slot title-icon - Icon of tooltip title
+ * @slot title-content - Content of tooltip title
+ *
  * @since 1.3.0
  */
 @Component({
@@ -31,19 +34,14 @@ export class Tooltip {
   @Prop() for: string;
 
   /**
-   * Define if the user can access the tooltip via mouse.
-   */
-  @Prop() interactive = false;
-
-  /**
    * Title of the tooltip
    */
   @Prop() titleContent: string;
 
   /**
-   * Title icon of the tooltip
+   * Define if the user can access the tooltip via mouse.
    */
-  @Prop() titleIcon: string;
+  @Prop() interactive = false;
 
   @State() visible = false;
 
@@ -179,6 +177,7 @@ export class Tooltip {
     const tooltipContentClass = {
       'tooltip-content': true,
     };
+
     return (
       <Host
         class={{
@@ -186,15 +185,11 @@ export class Tooltip {
         }}
       >
         <div class={'tooltip-title'}>
-          {this.titleIcon ? (
-            <ix-icon size="12" name={this.titleIcon}></ix-icon>
-          ) : null}
-          {(
-            <ix-typography variant="default-title">
-              {this.titleContent}
-              <slot name="title"></slot>
-            </ix-typography>
-          ) ?? null}
+          <slot name="title-icon"></slot>
+          <ix-typography variant="default-title">
+            {this.titleContent}
+            <slot name="title-content"></slot>
+          </ix-typography>
         </div>
         <div class={tooltipContentClass}>
           <slot></slot>

@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
 
-    ix-icon {
+    ::slotted(ix-icon) {
       margin-right: 0.35rem;
     }
   }

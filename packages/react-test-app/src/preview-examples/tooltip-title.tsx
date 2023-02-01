@@ -7,18 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, IxTooltip } from '@siemens/ix-react';
+import { IxButton, IxIcon, IxTooltip } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
     <div style={{ padding: '4rem' }}>
       <IxButton data-tooltip="myTooltip">Hover me</IxButton>
-      <IxTooltip
-        for="[data-tooltip='myTooltip']"
-        titleIcon="rocket"
-        titleContent="My Tooltip"
-      >
+      <IxTooltip for="[data-tooltip='myTooltip']" titleContent="My Tooltip">
+        <IxIcon slot="title-icon" name="rocket" />
         Some example content
       </IxTooltip>
     </div>

@@ -2,6 +2,7 @@ import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 import Tags from './../auto-generated/ix-tooltip/tags.md';
 import Props from './../auto-generated/ix-tooltip/props.md';
+import Slots from './../auto-generated/ix-tooltip/slots.md';
 
 import SourceJavascript from './../auto-generated/previews/web-component/tooltip.md'
 
@@ -35,3 +36,7 @@ frameworks={{
 ### Props
 
 <Props />
+
+### Slots
+
+<Slots />

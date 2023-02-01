@@ -1384,10 +1384,6 @@ export namespace Components {
           * Title of the tooltip
          */
         "titleContent": string;
-        /**
-          * Title icon of the tooltip
-         */
-        "titleIcon": string;
     }
     interface IxTree {
         /**
@@ -3659,10 +3655,6 @@ declare namespace LocalJSX {
           * Title of the tooltip
          */
         "titleContent"?: string;
-        /**
-          * Title icon of the tooltip
-         */
-        "titleIcon"?: string;
     }
     interface IxTree {
         /**

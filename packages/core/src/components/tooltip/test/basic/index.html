@@ -18,12 +18,17 @@ SPDX-License-Identifier: MIT
     <ix-button data-tooltip="Test2">Short</ix-button>
     <ix-button data-tooltip="Test3">Long text short words</ix-button>
 
-    <ix-tooltip for='[data-tooltip="Test1"]'>
+    <ix-tooltip for='[data-tooltip="Test1"]' title-content="Title content">
       Very very very very very very looooooooooooooooooooooooooooooooooooooooong
       text
     </ix-tooltip>
-    <ix-tooltip for='[data-tooltip="Test2"]'> Short </ix-tooltip>
+    <ix-tooltip for='[data-tooltip="Test2"]' title-content="Title content">
+      <ix-icon slot="title-icon" name="rocket"></ix-icon>
+      Short
+    </ix-tooltip>
     <ix-tooltip for='[data-tooltip="Test3"]'>
+      <ix-icon slot="title-icon" name="rocket"></ix-icon>
+      <span slot="title-content">Slot based content</span>
       Very very very very very very long long long text
     </ix-tooltip>
 
