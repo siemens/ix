@@ -8,6 +8,8 @@ on:
   pull_request:
     branches:
       - '**'
+  workflow_dispatch:
+  workflow_call:
 
 concurrency:
   group: ci-${{ github.event_name }}-${{ github.ref }}-${{ github.sha }}
