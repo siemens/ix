@@ -22,13 +22,14 @@
     box-shadow: 0 0 $tiny-space 0 var(--theme-color-primary) !important;
   }
 
-  .btn-close {
+  .reset-button {
     position: absolute;
     top: $tiny-space;
     right: $tiny-space;
-    min-width: $large-space;
-    width: $large-space;
-    height: $large-space;
+  }
+
+  .reset-button.hide-reset-button {
+    display: none;
   }
 
   .input-container {

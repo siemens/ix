@@ -170,9 +170,10 @@ export class MapNavigation {
     overlayInstance.setAttribute('color', color);
     overlayInstance.setAttribute('name', name);
     overlayInstance.setAttribute('icon', icon);
+    overlayInstance.setAttribute('slot', 'overlay');
     overlayInstance.addEventListener('closeClick', () => this.closeOverlay());
     overlayInstance.appendChild(component);
-    this.overlay.appendChild(overlayInstance);
+    this.hostElement.appendChild(overlayInstance);
   }
 
   /**
@@ -238,6 +239,7 @@ export class MapNavigation {
             </div>
             <main>
               <slot></slot>
+              <slot name="overlay"></slot>
             </main>
           </div>
         </div>

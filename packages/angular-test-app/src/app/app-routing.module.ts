@@ -74,7 +74,6 @@ import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
 import Toggle from 'src/preview-examples/toggle';
-import ToggleColor from 'src/preview-examples/toggle-color';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
 import Tooltip from 'src/preview-examples/tooltip';
@@ -251,7 +250,6 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
-      { path: 'toggle-color', component: ToggleColor },
       { path: 'toggle-disabled', component: ToggleCustomDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
       { path: 'toggle', component: Toggle },

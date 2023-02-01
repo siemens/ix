@@ -15,10 +15,9 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
-/* Default themes */
+/* Default Theme */
 @import './theme/classic-dark';
 @import './theme/classic-light';
-@import './theme/static-colors';
 
 /* Common */
 @import './common-variables';

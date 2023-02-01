@@ -12,7 +12,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxSplitButton label="Action text">
+    <IxSplitButton label="Action text" splitIcon='chevron-down-small'>
       <IxSplitButtonItem label="Item 1"></IxSplitButtonItem>
       <IxSplitButtonItem label="Item 2"></IxSplitButtonItem>
     </IxSplitButton>

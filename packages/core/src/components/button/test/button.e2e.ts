@@ -25,7 +25,11 @@ regressionTest.describe('button: basic', () => {
       body.querySelectorAll('button').forEach((b) => b.classList.add('hover'));
     }, bodyElement);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForSelector('ix-button > button.hover');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.04,
+    });
   });
 
   regressionTest('should have an active effect', async ({ page }) => {

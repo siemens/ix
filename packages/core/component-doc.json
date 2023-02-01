@@ -692,13 +692,18 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
+        "ix-icon-button",
         "ix-icon",
         "ix-filter-chip"
       ],
       "dependencyGraph": {
         "ix-category-filter": [
+          "ix-icon-button",
           "ix-icon",
           "ix-filter-chip"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "ix-filter-chip": [
           "ix-icon"
@@ -949,9 +954,9 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
+          "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -4026,6 +4031,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
+        "ix-category-filter",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -4049,6 +4055,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-category-filter": [
+          "ix-icon-button"
         ],
         "ix-date-picker": [
           "ix-icon-button"

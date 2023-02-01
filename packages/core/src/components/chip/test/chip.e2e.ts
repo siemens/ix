@@ -15,4 +15,9 @@ regressionTest.describe('chip', () => {
     await page.goto('chip/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('custom', async ({ page }) => {
+    await page.goto('chip/test/custom');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

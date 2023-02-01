@@ -172,7 +172,7 @@ export class DatePicker {
     this.done.emit(this.getOutputFormat());
 
     this.dateSelect.emit({
-      from: this.start.toFormat(this.format),
+      from: this.start?.toFormat(this.format),
       to: this.end?.toFormat(this.format),
     });
   }
