@@ -573,6 +573,24 @@ export class CategoryFilter {
     }
   }
 
+  private getResetButton() {
+    return (
+      <ix-icon-button
+        onClick={() => this.resetFilter()}
+        class={{
+          'reset-button': true,
+          'hide-reset-button': !this.filterTokens.length && !this.category,
+        }}
+        variant="Secondary"
+        ghost
+        oval
+        icon="clear"
+        size="16"
+        tabindex="1"
+      ></ix-icon-button>
+    );
+  }
+
   render() {
     return (
       <Host>
@@ -630,19 +648,7 @@ export class CategoryFilter {
                 ></input>
               </ul>
             </div>
-            <button
-              class={{
-                btn: true,
-                'btn-invisible-secondary': true,
-                'btn-oval': true,
-                'btn-close': true,
-                'd-none': !this.filterTokens.length && !this.category,
-              }}
-              onClick={() => this.resetFilter()}
-              tabindex="1"
-            >
-              <span class="glyph glyph-error glyph-16"></span>
-            </button>
+            {this.getResetButton()}
           </div>
         </form>
 

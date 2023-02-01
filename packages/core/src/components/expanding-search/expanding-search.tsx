@@ -158,7 +158,7 @@ export class ExpandingSearch {
               class="btn-clear"
               icon="clear"
               ghost={true}
-              size="24"
+              size="16"
               data-testid="clear-button"
               onClick={() => this.clearClicked()}
             />
