@@ -63,7 +63,6 @@ ix-tab-item {
       pointer-events: none;
     }
 
-    display: inline-flex;
     vertical-align: middle;
   }
 
@@ -98,7 +97,6 @@ ix-tab-item {
     outline: 1px solid var(--focus--border-color);
   }
 
-
   &.disabled {
     color: var(--theme-tab--color--disabled);
     background-color: var(--theme-tab--background--disabled);
@@ -129,7 +127,6 @@ ix-tab-item {
       padding: $default-space $tiny-space;
     }
   }
-
 
   .circle {
     display: flex;
@@ -169,7 +166,6 @@ ix-tab-item {
       background-color: var(--theme-animated-tab-circle--background--disabled);
       border-color: var(--theme-animated-tab-circle--border-color--disabled);
     }
-
   }
 
   .counter {
@@ -203,5 +199,4 @@ ix-tab-item {
   .hidden {
     display: none;
   }
-
 }
