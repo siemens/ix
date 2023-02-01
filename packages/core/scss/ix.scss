@@ -15,16 +15,9 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
-/* Default themes v2 */
-// Legacy themes will be replaced with v2 themes
-
-// @import './theme/classic-dark';
-// @import './theme/classic-light';
-// @import './theme/static-colors';
-
-/* Default themes v2 */
-@import './theme/v2/classic-dark';
-@import './theme/v2/classic-light';
+/* Default Theme */
+@import './theme/classic-dark';
+@import './theme/classic-light';
 
 /* Common */
 @import './common-variables';
