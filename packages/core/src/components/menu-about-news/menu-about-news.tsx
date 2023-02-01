@@ -101,15 +101,7 @@ export class MenuAboutNews {
             </button>
           </div>
         ) : null}
-        <svg
-          id="arrow"
-          xmlns="http://www.w3.org/2000/svg"
-          width="8"
-          height="12"
-          viewBox="0 0 8 12"
-        >
-          <path d="M8 0 L0 6 L8 12" />
-        </svg>
+        <div id="arrow"></div>
       </Host>
     );
   }
