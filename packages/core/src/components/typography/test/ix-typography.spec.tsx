@@ -5,13 +5,16 @@ describe('ix-typography', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [IxTypography],
-      html: `<ix-typography></ix-typography>`,
+      html: `<ix-typography>Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
       <ix-typography>
         <mock:shadow-root>
+        <div class="text-default">
           <slot></slot>
+        </div>
         </mock:shadow-root>
+        Example content
       </ix-typography>
     `);
   });

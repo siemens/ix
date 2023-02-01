@@ -1,9 +1,4 @@
 :host {
-  --tooltip-background: var(--theme-tootlip--background);
-  --tooltip-border-radius: 4px;
-}
-
-:host {
   display: inline-block;
   position: absolute;
   left: 0px;
@@ -15,12 +10,11 @@
   visibility: collapse;
   overflow-wrap: break-word;
 
-  border-radius: var(--tooltip-border-radius);
-  background-color: var(--tooltip-background);
+  border-radius: 0.25rem;
+  background-color: var(--theme-tootlip--background);
   padding: 0.375rem 0.75rem 0.375rem 0.875rem;
 
-  filter: drop-shadow(0px 12px 18px rgba(0, 0, 0, 0.6))
-    drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0px 0px 2px #000000);
+  box-shadow: var(--theme-shadow-4);
 
   .tooltip-title {
     display: flex;
