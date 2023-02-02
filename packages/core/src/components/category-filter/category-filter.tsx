@@ -30,7 +30,7 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  private textInput?: HTMLInputElement;
+  @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty: boolean;
 
