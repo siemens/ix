@@ -8,7 +8,6 @@
  */
 
 import { Component, h, Host } from '@stencil/core';
-import { TypographyVariants } from '../typography/types';
 
 @Component({
   tag: 'my-component',
@@ -17,40 +16,6 @@ import { TypographyVariants } from '../typography/types';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host
-        style={{
-          padding: '12rem',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          {(
-            [
-              'h2',
-              'display-large',
-              'large',
-              'large-single',
-              'default-title',
-              'default-title-single',
-              'default',
-              'default-single',
-              'caption',
-              'caption-single',
-              'small',
-              'x-small',
-            ] as Array<TypographyVariants>
-          ).map((v) => (
-            <div>
-              <ix-typography variant={v}>{v}</ix-typography>
-            </div>
-          ))}
-        </div>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

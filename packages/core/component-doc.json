@@ -9400,14 +9400,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-typography"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
