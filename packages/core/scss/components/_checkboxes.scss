@@ -100,16 +100,16 @@
 
     & + label:after {
       content: '';
-      width: 0.45rem;
-      height: 0.25rem;
+      width: 0.4rem;
+      height: 0.26rem;
       display: block;
       border-top: none;
       border-right: none;
       border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
       border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
-      margin: 0.3125rem 0.3125rem 0.1875rem;
-      transform: rotate(-53deg) scale(2);
+      margin: 0.31rem 0.42rem 0.1875rem;
+      transform: rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
 
     &:hover + label:before {
