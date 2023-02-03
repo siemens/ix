@@ -103,7 +103,7 @@ export class Dropdown {
    * Define event to open element
    * @since 1.3.0
    */
-  @Prop() triggerEvent: 'click' | 'mouseover' = 'click';
+  @Prop() triggerEvent: 'click' | 'mouseover' | string[] = 'click';
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -130,13 +130,25 @@ export class Dropdown {
   private async registerListener(element: string | HTMLElement) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
-      this.triggerElement.addEventListener(this.triggerEvent, this.openBind);
+      if (Array.isArray(this.triggerEvent)) {
+        this.triggerEvent.forEach((triggerEvent) => {
+          this.triggerElement.addEventListener(triggerEvent, this.openBind);
+        });
+      } else {
+        this.triggerElement.addEventListener(this.triggerEvent, this.openBind);
+      }
     }
   }
 
   private async unregisterListener(element: string | HTMLElement) {
     const trigger = await this.resolveElement(element);
-    trigger.removeEventListener(this.triggerEvent, this.openBind);
+    if (Array.isArray(this.triggerEvent)) {
+      this.triggerEvent.forEach((triggerEvent) => {
+        trigger.removeEventListener(triggerEvent, this.openBind);
+      });
+    } else {
+      trigger.removeEventListener(this.triggerEvent, this.openBind);
+    }
   }
 
   private resolveElement(element: string | HTMLElement): Promise<Element> {
