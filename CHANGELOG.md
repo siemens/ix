@@ -1,3 +1,19 @@
+# [1.4.0-beta.0](https://github.com/siemens/ix/compare/v1.3.0...v1.4.0-beta.0) (2023-02-03)
+
+
+### Bug Fixes
+
+* **core/date-picker:** handle empty from date ([#334](https://github.com/siemens/ix/issues/334)) ([0890165](https://github.com/siemens/ix/commit/089016597e91b9786bd70f533e3b92c39288c4ae))
+* **core/event-list:** selection and transition effect ([#335](https://github.com/siemens/ix/issues/335)) ([eb24a9e](https://github.com/siemens/ix/commit/eb24a9edf84d5ecf6aa2691667cd7dd12576c29a))
+* **core/split-button:** dropdown behavior and middle space ([#339](https://github.com/siemens/ix/issues/339)) ([aa8778e](https://github.com/siemens/ix/commit/aa8778e742a1fb2240d47b824acd6e12ada259a2))
+
+
+### Features
+
+* **core/theme:** adjust theme colors ([#337](https://github.com/siemens/ix/issues/337)) ([a180cb8](https://github.com/siemens/ix/commit/a180cb8ef57b347e189120564e9db0e356770c26))
+
+
+
 # [1.3.0](https://github.com/siemens/ix/compare/v1.3.0-beta.1...v1.3.0) (2023-01-27)
 
 
