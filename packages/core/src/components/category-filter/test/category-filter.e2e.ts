@@ -11,8 +11,17 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('category-filter', () => {
-  regressionTest('should not have visual regressions', async ({ page }) => {
+  regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/test/basic');
+    await page.locator('input').click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('categories', async ({ page }) => {
+    await page.goto('category-filter/test/categories');
+    await page.locator('input').click();
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

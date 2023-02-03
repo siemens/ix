@@ -44,7 +44,7 @@
     border-color: var(--theme-input--border-color--focus);
     outline-offset: var(--theme-input--focus--outline-offset);
     box-shadow: var(--theme-input--box-shadow);
-    outline: 1px solid var(--focus--border-color);
+    outline: 1px solid var(--theme-color-focus-bdr);
   }
 }
 

@@ -159,7 +159,7 @@ export namespace Components {
          */
         "labelCategories": string;
         /**
-          * In certain use cases some categories are not available for selection any more. To allow proper display of set filters with these categories this ID to label mapping can be populated. Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
@@ -2311,7 +2311,7 @@ declare namespace LocalJSX {
          */
         "labelCategories"?: string;
         /**
-          * In certain use cases some categories are not available for selection any more. To allow proper display of set filters with these categories this ID to label mapping can be populated. Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
