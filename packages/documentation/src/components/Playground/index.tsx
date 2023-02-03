@@ -8,7 +8,7 @@
  */
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { IxButton, IxTabItem, IxTabs } from '@siemens/ix-react';
+import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -66,20 +66,6 @@ function ButtonOpenStackBlitz({
     >
       <StackBlitzImage />
     </button>
-  );
-}
-
-function ButtonToggleCode({
-  onClick,
-  showCode,
-}: {
-  showCode: boolean;
-  onClick: React.MouseEventHandler<HTMLIxIconButtonElement>;
-}) {
-  return (
-    <ix-button onClick={onClick} ghost>
-      {showCode ? 'Hide Code' : 'Show Code'}
-    </ix-button>
   );
 }
 
@@ -187,6 +173,10 @@ export default function Playground({
         node: React.ReactNode;
       }>
     > = {} as any;
+
+    if (!frameworks) {
+      return;
+    }
     Object.keys(frameworks).forEach((framework) => {
       if (typeof frameworks[framework] === 'function') {
         let filename = name;
@@ -278,41 +268,39 @@ export default function Playground({
       {showCode ? (
         <>
           <div className="Playground__Toolbar Location__Bottom">
-            <IxButton
-              className="Playground__Framework__Button"
-              ghost={targetFramework !== TargetFramework.PREVIEW}
-              onClick={() => changeFramework(TargetFramework.PREVIEW)}
-            >
-              Preview
-            </IxButton>
+            <IxTabs>
+              <IxTabItem
+                selected={targetFramework === TargetFramework.PREVIEW}
+                onClick={() => changeFramework(TargetFramework.PREVIEW)}
+              >
+                Preview
+              </IxTabItem>
+            </IxTabs>
             {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
-              <IxButton
-                className="Playground__Framework__Button"
-                ghost={targetFramework !== TargetFramework.ANGULAR}
+              <IxTabItem
+                selected={targetFramework === TargetFramework.ANGULAR}
                 onClick={() => changeFramework(TargetFramework.ANGULAR)}
               >
                 Angular
-              </IxButton>
+              </IxTabItem>
             ) : null}
 
             {isFrameworkConfigured(TargetFramework.REACT) ? (
-              <IxButton
-                className="Playground__Framework__Button"
-                ghost={targetFramework !== TargetFramework.REACT}
+              <IxTabItem
+                selected={targetFramework === TargetFramework.REACT}
                 onClick={() => changeFramework(TargetFramework.REACT)}
               >
                 React
-              </IxButton>
+              </IxTabItem>
             ) : null}
 
             {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
-              <IxButton
-                className="Playground__Framework__Button"
-                ghost={targetFramework !== TargetFramework.JAVASCRIPT}
+              <IxTabItem
+                selected={targetFramework === TargetFramework.JAVASCRIPT}
                 onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
               >
                 JavaScript
-              </IxButton>
+              </IxTabItem>
             ) : null}
 
             {isFrameworkConfigured(TargetFramework.VUE) ? (

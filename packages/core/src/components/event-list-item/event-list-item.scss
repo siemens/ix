@@ -22,6 +22,7 @@ $height-single-line: 2.5rem;
   border-radius: $default-border-radius;
   background-color: var(--theme-event-item--background);
   overflow: hidden;
+  transition: $default-time;
   cursor: pointer;
 
   @include hover {
@@ -75,6 +76,9 @@ $height-single-line: 2.5rem;
     .event-list-item-container {
       background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected);
+    }
+    :hover {
+      border-color: var(--theme-event-item--border--selected) !important;
     }
   }
 

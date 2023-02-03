@@ -15,7 +15,7 @@
   height: 2.75rem;
   padding-left: 1rem;
 
-  color: var(--theme-app-header-logo--color);
+  color: var(--theme-app-header--color);
   background-color: var(--theme-app-header--background);
 
   border-bottom: var(--theme-app-header--border-width) solid
@@ -24,6 +24,7 @@
   .name {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+    color: var(--theme-app-header--color);
   }
 
   .logo {
@@ -33,5 +34,6 @@
     height: 32px;
     overflow: hidden;
     line-height: 0rem;
+    color: var(--theme-app-header-logo--color);
   }
 }

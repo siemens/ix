@@ -81,7 +81,6 @@ import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
 import Toggle from 'src/preview-examples/toggle';
-import ToggleColor from 'src/preview-examples/toggle-color';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
 import Tree from 'src/preview-examples/tree';
@@ -160,7 +159,6 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     ThemeSwitcherService,
     Tile,
     Timepicker,
-    ToggleColor,
     ToggleCustomDisabled,
     ToggleCustomLabel,
     Toggle,

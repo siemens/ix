@@ -5,22 +5,18 @@ import Events from './../auto-generated/ix-toggle/events.md';
 
 import SourceToggle from './../auto-generated/previews/web-component/toggle.md';
 import SourceToggleLabel from './../auto-generated/previews/web-component/toggle-custom-label.md';
-import SourceToggleColor from './../auto-generated/previews/web-component/toggle-color.md';
-import SourceToggleDisbaled from './../auto-generated/previews/web-component/toggle-disabled.md';
+import SourceToggleDisabled from './../auto-generated/previews/web-component/toggle-disabled.md';
 
 import SourceReactToggle from './../auto-generated/previews/react/toggle.md';
 import SourceReactToggleLabel from './../auto-generated/previews/react/toggle-custom-label.md';
-import SourceReactToggleColor from './../auto-generated/previews/react/toggle-color.md';
-import SourceReactToggleDisbaled from './../auto-generated/previews/react/toggle-disabled.md';
+import SourceReactToggleDisabled from './../auto-generated/previews/react/toggle-disabled.md';
 
 import SourceAngularToggle from './../auto-generated/previews/angular/toggle.ts.md';
 import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.ts.md';
-import SourceAngularToggleColor from './../auto-generated/previews/angular/toggle-color.ts.md';
-import SourceAngularToggleDisbaled from './../auto-generated/previews/angular/toggle-disabled.ts.md';
+import SourceAngularToggleDisabled from './../auto-generated/previews/angular/toggle-disabled.ts.md';
 
 import SourceVueToggle from './../auto-generated/previews/vue/toggle.md';
 import SourceVueToggleLabel from './../auto-generated/previews/vue/toggle-custom-label.md';
-import SourceVueToggleColor from './../auto-generated/previews/vue/toggle-color.md';
 import SourceVueToggleDisbaled from './../auto-generated/previews/vue/toggle-disabled.md';
 
 # Toggle
@@ -48,27 +44,15 @@ frameworks={{
   vue: SourceVueToggleLabel
 }}></Playground>
 
-### Different colors
-
-<Playground
-name="toggle-color"
-hideInitalCodePreview
-frameworks={{
-  react: SourceReactToggleColor,
-  angular: SourceAngularToggleColor,
-  javascript: SourceToggleColor,
-  vue: SourceVueToggleColor
-}}></Playground>
-
 ### Disabled
 
 <Playground
 name="toggle-disabled"
 hideInitalCodePreview
 frameworks={{
-  react: SourceReactToggleDisbaled,
-  angular: SourceAngularToggleDisbaled,
-  javascript: SourceToggleDisbaled,
+  react: SourceReactToggleDisabled,
+  angular: SourceAngularToggleDisabled,
+  javascript: SourceToggleDisabled,
   vue: SourceVueToggleDisbaled
 }}></Playground>
 
