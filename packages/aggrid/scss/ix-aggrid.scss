@@ -19,14 +19,14 @@
   --ag-selected-row-background-color: var(--theme-table-data-row--background--selected);
 
   --ag-range-selection-background-color: var(--theme-table-data-row--background--selected);
-  --ag-range-selection-border-color: var(--theme-color-input--focus);
+  --ag-range-selection-border-color: var(--theme-input--border-color--focus);
   --ag-header-column-resize-handle-color: var(--theme-table-header-splitter--background);
   --ag-header-column-resize-handle-height: 100%;
   --ag-header-column-resize-handle-width: 1px;
 
   --ag-input-focus-box-shadow: none;
-  --ag-input-focus-border-color: var(--theme-color-input--focus);
-  --ag-checkbox-checked-color: var(--theme-color-input--focus);
+  --ag-input-focus-border-color: var(--theme-input--border-color--focus);
+  --ag-checkbox-checked-color: var(--theme-input--border-color--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
 
   .ag-input-wrapper {

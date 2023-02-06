@@ -24,37 +24,19 @@ SPDX-License-Identifier: MIT
     </style>
   </head>
   <body>
-    <ix-category-filter placeholder="Filter by"></ix-category-filter>
+    <ix-category-filter placeholder="Filter by.."></ix-category-filter>
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-category-filter');
-
-        const repeatCategories = false;
-        const filterState = {
-          tokens: ['Custom filter text'],
-          categories: [
-            {
-              id: 'ID_1',
-              value: 'IBM',
-              operator: 'Not equal',
-            },
-          ],
-        };
-        const categories = {
-          ID_1: {
-            label: 'Vendor',
-            options: ['Apple', 'MS', 'Siemens'],
-          },
-          ID_2: {
-            label: 'Product',
-            options: ['iPhone X', 'Windows', 'APS'],
-          },
-        };
-
         const categoryFilter = document.querySelector('ix-category-filter');
-        categoryFilter.repeatCategories = repeatCategories;
-        categoryFilter.filterState = filterState;
-        categoryFilter.categories = categories;
+        categoryFilter.suggestions = [
+          'Option A',
+          'Option B',
+          'Option C',
+          'Option D',
+          'Option E',
+          'Option F',
+        ];
       })();
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>

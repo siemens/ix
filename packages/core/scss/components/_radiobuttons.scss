@@ -57,14 +57,14 @@
 
   [type='radio'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
   [type='radio']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid var(--focus--border-color);
+      outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
