@@ -2060,7 +2060,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -2550,7 +2555,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "1.3.0"
+              "text": "1.4.0"
             }
           ],
           "default": "'click'",
@@ -2945,7 +2950,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],

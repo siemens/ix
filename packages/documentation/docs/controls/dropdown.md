@@ -2,6 +2,7 @@ import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-dropdown/props.md';
 import Events from './../auto-generated/ix-dropdown/events.md';
+import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags.md';
 
 import ItemProps from './../auto-generated/ix-dropdown/props.md';
 import ItemEvents from './../auto-generated/ix-dropdown/events.md';
@@ -18,6 +19,8 @@ import SourceReactDropdownSubmenu from './../auto-generated/previews/react/dropd
 
 import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown.ts.md'
 import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.ts.md'
+import SourceAngularDropdownQuickActionsTs from './../auto-generated/previews/angular/dropdown-quick-actions.ts.md'
+import SourceAngularDropdownQuickActionsHtml from './../auto-generated/previews/angular/dropdown-quick-actions.html.md'
 
 # Dropdown
 
@@ -44,12 +47,17 @@ frameworks={{
 
 ### Dropdown with quick actions menu
 
+<TagsQuickActions />
+
 <Playground
 name="dropdown-quick-actions" height="16rem"
 hideInitalCodePreview
 frameworks={{
   react: SourceReactDropdownQuickActions,
-  angular: SourceDropdownQuickActions,
+      angular: {
+        "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsTs,
+        "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsHtml
+    },
   javascript: SourceDropdownQuickActions
 }}></Playground>
 

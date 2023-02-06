@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: block;
-  position: initial;
+import { IxDivider } from '@siemens/ix-react';
+import React from 'react';
 
-  .line {
-    width: auto;
-    border: 0.0625rem solid var(--theme-color-x-weak-bdr);
-  }
-}
+export default () => {
+  return (
+    <>
+      <IxDivider></IxDivider>
+    </>
+  );
+};

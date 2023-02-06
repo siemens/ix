@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: block;
-  position: initial;
+import { Component } from '@angular/core';
 
-  .line {
-    width: auto;
-    border: 0.0625rem solid var(--theme-color-x-weak-bdr);
-  }
-}
+@Component({
+  selector: 'app-example',
+  template: `
+    <ix-divider></ix-divider>
+  `,
+})
+export default class Divider {}

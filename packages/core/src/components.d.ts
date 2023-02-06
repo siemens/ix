@@ -460,7 +460,7 @@ export namespace Components {
         "trigger": string | HTMLElement;
         /**
           * Define event to open element
-          * @since 1.3.0
+          * @since 1.4.0
          */
         "triggerEvent": 'click' | 'mouseover' | string[];
         /**
@@ -2666,7 +2666,7 @@ declare namespace LocalJSX {
         "trigger"?: string | HTMLElement;
         /**
           * Define event to open element
-          * @since 1.3.0
+          * @since 1.4.0
          */
         "triggerEvent"?: 'click' | 'mouseover' | string[];
     }

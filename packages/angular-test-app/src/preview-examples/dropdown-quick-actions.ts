@@ -11,21 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-button #trigger>Open</ix-button>
-    <ix-dropdown [ixDropdownTrigger]="trigger">
-      <ix-dropdown-quick-actions>
-        <ix-icon-button icon="cut" ghost></ix-icon-button>
-        <ix-icon-button icon="bulb" outline></ix-icon-button>
-        <ix-icon-button icon="trashcan"></ix-icon-button>
-      </ix-dropdown-quick-actions>
-
-      <ix-divider></ix-divider>
-
-      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
-      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
-      <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
-    </ix-dropdown>
-  `,
+  templateUrl: './dropdown-quick-actions.html',
 })
 export default class DropdownQuickActions {}
