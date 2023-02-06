@@ -205,17 +205,16 @@
   &.disabled {
     .slider {
       cursor: initial;
+      opacity: 0.5;
 
       &:before {
         background-color: var(--theme-switch-thumb-off--background--disabled);
         border-color: var(--theme-switch-thumb-off--border-color--disabled);
-        z-index: 1;
       }
 
       .slider-track {
         background-color: var(--theme-switch-off--background--disabled);
         border-color: var(--theme-switch-off--border-color--disabled);
-        opacity: 0.5;
       }
     }
 
