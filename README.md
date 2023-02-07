@@ -51,10 +51,26 @@ yarn test
 **_Docker cli must be installed on your system_**  
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
+- Build the library
+
 ```sh
 yarn build
-yarn visual-regression
 ```
+
+- Start playwright docker container. (Currently v1.30.0-focal but can be a newer version)
+
+```sh
+docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+```
+
+- Start the test suite
+
+  - All tests run `yarn visual-regression-ci`
+  - Workspace run `yarn workspace @siemens/ix test:e2e`
+
+- Check the results in `packages/<workspace>/playwright-report/index.html`
+- Adapt and update snapshots with `yarn workspace @siemens/ix test:e2e <test name> -u`
+- Check the git diff and commit changes 🎉
 
 ### Documentation
 
