@@ -19,7 +19,7 @@ export default class ModalByInstance {
   constructor(private readonly modalService: ModalService) {}
 
   async openModal() {
-    const instance = await this.modalService.open({
+    await this.modalService.open({
       content: ModalByInstanceExample,
       title: '',
       data: 'Some data',

@@ -11,10 +11,10 @@ import { Component } from '@angular/core';
 import { IxActiveModal } from '@siemens/ix-angular';
 
 @Component({
-  template: ` <ix-button (click)="close()">Close</ix-button> `,
+  templateUrl: './modal-by-instance-example.html',
 })
 export default class ModalByInstanceExample {
-  constructor(private readonly activeModal: IxActiveModal) {}
+  constructor(readonly activeModal: IxActiveModal) {}
 
   close() {
     this.activeModal.close('My close response');
