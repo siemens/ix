@@ -94,8 +94,13 @@ export class IconButton implements Button {
 
   render() {
     return (
-      <Host class={this.getIconButtonClasses()} type={this.type}>
-        <ix-icon size={this.size} name={this.icon} color={this.color} />
+      <Host class={{ disabled: this.disabled }}>
+        <button class={this.getIconButtonClasses()} type={this.type}>
+          <ix-icon size={this.size} name={this.icon} color={this.color} />
+          <div style={{ display: 'none' }}>
+            <slot></slot>
+          </div>
+        </button>
       </Host>
     );
   }

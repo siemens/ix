@@ -488,7 +488,7 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Button variant
+          * Button varaint
          */
         "variant": Buttons;
     }
@@ -2701,7 +2701,7 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Button variant
+          * Button varaint
          */
         "variant"?: Buttons;
     }
