@@ -22,10 +22,12 @@ regressionTest.describe('button: basic', () => {
     const bodyElement = await page.waitForSelector('body');
 
     await page.evaluate((body) => {
-      body.querySelectorAll('button').forEach((b) => b.classList.add('hover'));
+      body
+        .querySelectorAll('ix-button')
+        .forEach((b) => b.classList.add('hover'));
     }, bodyElement);
 
-    await page.waitForSelector('ix-button > button.hover');
+    await page.waitForSelector('ix-button.hover');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.04,
@@ -38,7 +40,9 @@ regressionTest.describe('button: basic', () => {
     const bodyElement = await page.waitForSelector('body');
 
     await page.evaluate((body) => {
-      body.querySelectorAll('button').forEach((b) => b.classList.add('active'));
+      body
+        .querySelectorAll('ix-button')
+        .forEach((b) => b.classList.add('active'));
     }, bodyElement);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

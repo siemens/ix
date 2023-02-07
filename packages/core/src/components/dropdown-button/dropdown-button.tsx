@@ -20,7 +20,7 @@ import { Buttons } from '../utils/button-variants';
 })
 export class DropdownButton {
   /**
-   * Button varaint
+   * Button variant
    */
   @Prop() variant: Buttons = 'Primary';
 
@@ -74,28 +74,31 @@ export class DropdownButton {
 
   render() {
     return (
-      <Host>
+      <Host disabled={this.disabled}>
         <div
           class="dropdown-button"
           ref={(ref) => {
             this.dropdownAnchor = ref;
           }}
         >
-          <ix-button
-            variant={this.variant}
-            outline={this.outline}
-            ghost={this.ghost}
-            disabled={this.disabled}
-            class={{ hide: this.label === '' }}
-          >
-            <ix-icon
-              name={this.icon}
-              size="24"
-              class={{ hide: this.icon === '' || this.icon === undefined }}
-            ></ix-icon>
-            {this.label}
-            <ix-icon name="chevron-down-small" size="24"></ix-icon>
-          </ix-button>
+          {this.label ? (
+            <ix-button
+              variant={this.variant}
+              outline={this.outline}
+              ghost={this.ghost}
+              disabled={this.disabled}
+            >
+              <div class="button-container">
+                <ix-icon
+                  name={this.icon}
+                  size="24"
+                  class={{ hide: this.icon === '' || this.icon === undefined }}
+                ></ix-icon>
+                {this.label}
+              </div>
+              <ix-icon name="chevron-down-small" size="24"></ix-icon>
+            </ix-button>
+          ) : null}
 
           <ix-icon-button
             icon={this.icon}

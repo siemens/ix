@@ -9,16 +9,40 @@
 @import 'common-variables';
 
 :host {
+  ix-button {
+    margin: 0;
+  }
+
+  ix-icon-button {
+    margin: 0;
+  }
+}
+
+:host {
   display: inline-block;
   position: relative;
   height: $x-large-space;
+  appearance: button;
 
   .dropdown-button {
+    display: block;
     position: relative;
+    width: 100%;
   }
 
-  .hide {
-    display: none;
+  .dropdown-button ix-button {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .button-container {
+    display: flex;
+    align-items: center;
+
+    > ix-icon {
+      margin-right: 0.25rem;
+    }
   }
 
   .triangle {
@@ -85,4 +109,8 @@
     inset: auto !important;
     transform: unset !important;
   }
+}
+
+:host([disabled], .disabled) {
+  pointer-events: none;
 }

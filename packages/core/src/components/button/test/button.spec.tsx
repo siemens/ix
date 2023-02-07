@@ -21,9 +21,7 @@ describe('ix-button', () => {
 
     await page.waitForChanges();
 
-    expect(page.doc.querySelector('ix-button').className).toContain(
-      'button-disabled'
-    );
+    expect(page.doc.querySelector('ix-button').className).toContain('disabled');
   });
 
   it('should be disabled with "true"', async () => {
@@ -34,9 +32,7 @@ describe('ix-button', () => {
 
     await page.waitForChanges();
 
-    expect(page.doc.querySelector('ix-button').className).toContain(
-      'button-disabled'
-    );
+    expect(page.doc.querySelector('ix-button').className).toContain('disabled');
   });
 
   it('should NOT disabled with "false"', async () => {
@@ -48,7 +44,7 @@ describe('ix-button', () => {
     await page.waitForChanges();
 
     expect(page.doc.querySelector('ix-button').className).not.toContain(
-      'button-disabled'
+      'disabled'
     );
   });
 });

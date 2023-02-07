@@ -2698,7 +2698,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button varaint",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'Primary'",
           "values": [
