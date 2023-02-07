@@ -160,6 +160,8 @@ $button-categories: (primary, secondary);
   width: $default-space;
   min-width: $default-space;
   min-height: $default-space;
+  max-width: $default-space;
+  max-height: $default-space;
 }
 
 .btn-icon-s,
@@ -168,6 +170,8 @@ $button-categories: (primary, secondary);
   width: $large-space;
   min-width: $large-space;
   min-height: $large-space;
+  max-width: $large-space;
+  max-height: $large-space;
 }
 
 .btn-icon-32 {
@@ -175,4 +179,6 @@ $button-categories: (primary, secondary);
   width: $x-large-space;
   min-width: $x-large-space;
   min-height: $x-large-space;
+  max-width: $x-large-space;
+  max-height: $x-large-space;
 }
