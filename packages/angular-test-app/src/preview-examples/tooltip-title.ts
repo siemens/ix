@@ -7,11 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
+import { Component } from '@angular/core';
 
-:host {
-  display: flex;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
+@Component({
+  selector: 'app-example',
+  templateUrl: './tooltip-title.html',
+})
+export default class TooltipTitle {}

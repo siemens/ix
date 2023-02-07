@@ -8519,6 +8519,107 @@
       ]
     },
     {
+      "dirPath": "./src/components/tooltip",
+      "filePath": "./src/components/tooltip/tooltip.tsx",
+      "fileName": "tooltip.tsx",
+      "readmePath": "./src/components/tooltip/readme.md",
+      "usagesDir": "./src/components/tooltip/usage",
+      "tag": "ix-tooltip",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "title-icon - Icon of tooltip title"
+        },
+        {
+          "name": "slot",
+          "text": "title-content - Content of tooltip title"
+        },
+        {
+          "name": "since",
+          "text": "1.3.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "for",
+          "type": "string",
+          "mutable": false,
+          "attr": "for",
+          "reflectToAttr": false,
+          "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "interactive",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "interactive",
+          "reflectToAttr": false,
+          "docs": "Define if the user can access the tooltip via mouse.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "titleContent",
+          "type": "string",
+          "mutable": false,
+          "attr": "title-content",
+          "reflectToAttr": false,
+          "docs": "Title of the tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "title-content",
+          "docs": "Content of tooltip title"
+        },
+        {
+          "name": "title-icon",
+          "docs": "Icon of tooltip title"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/tree",
       "filePath": "./src/components/tree/tree.tsx",
       "fileName": "tree.tsx",
