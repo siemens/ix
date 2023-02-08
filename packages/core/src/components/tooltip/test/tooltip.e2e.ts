@@ -22,7 +22,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.2,
+      maxDiffPixelRatio: 0.02,
     });
   });
 
@@ -37,7 +37,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.2,
+      maxDiffPixelRatio: 0.02,
     });
   });
 
@@ -52,7 +52,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.2,
+      maxDiffPixelRatio: 0.02,
     });
   });
 });
