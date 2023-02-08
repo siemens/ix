@@ -10,6 +10,19 @@
 :host {
   display: inline-block;
 
+  .btn-group {
+    // Overwrite styling from bootstrap button group
+    width: 100%;
+
+    > button:nth-child(1) {
+      width: calc(100% - 2rem);
+    }
+
+    > button:nth-child(2) {
+      width: 2rem;
+    }
+  }
+
   .middle-gap {
     gap: 0.125rem;
   }

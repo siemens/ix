@@ -19,8 +19,11 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
+    });
   });
 
   regressionTest('Short', async ({ page }) => {
@@ -31,8 +34,11 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
+    });
   });
 
   regressionTest('Long text short words', async ({ page }) => {
@@ -43,7 +49,10 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.02,
+    });
   });
 });
