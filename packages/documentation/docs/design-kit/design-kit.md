@@ -32,6 +32,8 @@ Our Siemens brand Sketch library contains specific brand elements that are only 
 
 › [Download here](https://siemens-ix.code.siemens.io/ix-brand-theme/sketch.zip)
 
-## Siemens Figma library
+## Figma Siemens brand library
 
-Coming soon
+The Siemens brand library contains Siemens specific brand elements and is only accessible to Siemens employees and business partners.
+
+› [Get more information here](https://siemens-ix.code.siemens.io/ix-brand-theme/)
