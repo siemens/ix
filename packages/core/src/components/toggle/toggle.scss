@@ -205,6 +205,7 @@
   &.disabled {
     .slider {
       cursor: initial;
+      opacity: 0.5;
 
       &:before {
         background-color: var(--theme-switch-thumb-off--background--disabled);

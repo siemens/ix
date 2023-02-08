@@ -15,4 +15,9 @@ regressionTest.describe('toggle', () => {
     await page.goto('toggle/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('disabled', async ({ page }) => {
+    await page.goto('toggle/test/disabled');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
