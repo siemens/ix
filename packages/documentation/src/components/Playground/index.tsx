@@ -271,33 +271,33 @@ export default function Playground({
               >
                 Preview
               </IxTabItem>
+              {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.ANGULAR}
+                  onClick={() => changeFramework(TargetFramework.ANGULAR)}
+                >
+                  Angular
+                </IxTabItem>
+              ) : null}
+
+              {isFrameworkConfigured(TargetFramework.REACT) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.REACT}
+                  onClick={() => changeFramework(TargetFramework.REACT)}
+                >
+                  React
+                </IxTabItem>
+              ) : null}
+
+              {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.JAVASCRIPT}
+                  onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
+                >
+                  JavaScript
+                </IxTabItem>
+              ) : null}
             </IxTabs>
-            {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.ANGULAR}
-                onClick={() => changeFramework(TargetFramework.ANGULAR)}
-              >
-                Angular
-              </IxTabItem>
-            ) : null}
-
-            {isFrameworkConfigured(TargetFramework.REACT) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.REACT}
-                onClick={() => changeFramework(TargetFramework.REACT)}
-              >
-                React
-              </IxTabItem>
-            ) : null}
-
-            {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.JAVASCRIPT}
-                onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
-              >
-                JavaScript
-              </IxTabItem>
-            ) : null}
 
             <div className="Playground__Toolbar__Actions">
               {targetFramework !== TargetFramework.PREVIEW ? (
