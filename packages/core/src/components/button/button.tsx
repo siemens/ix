@@ -57,18 +57,24 @@ export class Button {
   render() {
     return (
       <Host
-        type={this.type}
-        class={getButtonClasses(
-          this.variant,
-          this.outline,
-          this.ghost || this.invisible,
-          false,
-          false,
-          this.selected,
-          this.disabled
-        )}
+        class={{
+          'button-disabled': this.disabled,
+        }}
       >
-        <slot></slot>
+        <button
+          type={this.type}
+          class={getButtonClasses(
+            this.variant,
+            this.outline,
+            this.ghost || this.invisible,
+            false,
+            false,
+            this.selected,
+            this.disabled
+          )}
+        >
+          <slot></slot>
+        </button>
       </Host>
     );
   }
