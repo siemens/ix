@@ -463,7 +463,7 @@ export namespace Components {
           * Define event to open element
           * @since 1.4.0
          */
-        "triggerEvent": 'click' | 'mouseover' | string[];
+        "triggerEvent": ('click' | 'mouseover') | ('click' | 'mouseover')[];
         /**
           * Update position of dropdown
          */
@@ -2703,7 +2703,7 @@ declare namespace LocalJSX {
           * Define event to open element
           * @since 1.4.0
          */
-        "triggerEvent"?: 'click' | 'mouseover' | string[];
+        "triggerEvent"?: ('click' | 'mouseover') | ('click' | 'mouseover')[];
     }
     interface IxDropdownButton {
         /**

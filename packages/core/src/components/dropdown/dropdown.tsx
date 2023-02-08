@@ -103,7 +103,8 @@ export class Dropdown {
    * Define event to open element
    * @since 1.4.0
    */
-  @Prop() triggerEvent: 'click' | 'mouseover' | string[] = 'click';
+  @Prop() triggerEvent: ('click' | 'mouseover') | ('click' | 'mouseover')[] =
+    'click';
 
   /**
    * Fire event after visibility of dropdown has changed

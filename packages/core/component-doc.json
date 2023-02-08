@@ -2547,7 +2547,7 @@
         },
         {
           "name": "triggerEvent",
-          "type": "\"click\" | \"mouseover\" | string[]",
+          "type": "\"click\" | \"mouseover\" | (\"click\" | \"mouseover\")[]",
           "mutable": false,
           "attr": "trigger-event",
           "reflectToAttr": false,
@@ -2569,7 +2569,10 @@
               "type": "string"
             },
             {
-              "type": "string[]"
+              "type": "(\"click\""
+            },
+            {
+              "type": "\"mouseover\")[]"
             }
           ],
           "optional": false,
