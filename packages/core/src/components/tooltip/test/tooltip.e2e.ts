@@ -19,6 +19,7 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -31,6 +32,7 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -43,6 +45,7 @@ regressionTest.describe('tooltip', () => {
     );
 
     await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
