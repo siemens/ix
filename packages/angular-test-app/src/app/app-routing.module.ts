@@ -52,6 +52,7 @@ import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
+import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -259,6 +260,7 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'modal-by-instance', component: ModalByInstance },
     ],
   },
 ];
