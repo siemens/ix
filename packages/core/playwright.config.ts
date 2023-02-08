@@ -39,7 +39,7 @@ function buildProjectsWithThemes() {
  */
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config: PlaywrightTestConfig = {
-  testMatch: '*.e2e.ts',
+  testMatch: '/src/**/*.e2e.ts',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
