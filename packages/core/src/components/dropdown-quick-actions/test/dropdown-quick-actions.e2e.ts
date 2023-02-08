@@ -17,8 +17,6 @@ regressionTest.describe('dropdown-quick-actions', () => {
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
