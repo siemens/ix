@@ -9,16 +9,16 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal.ts.md
 import SourceAngularModalByInstance from './../auto-generated/previews/angular/modal-by-instance.ts.md'
 import SourceAngularModalByInstanceContent from './../auto-generated/previews/angular/modal-by-instance-content.ts.md'
 
-import PropsJavaScript from './../auto-generated//ix-modal/props.md'
+import PropsJavaScript from './../auto-generated/ix-modal/props.md'
 
 import EventsJavaScript from './../auto-generated/ix-modal/events.md'
 
-import ApiModalConfigAngular from './../angular/ix-modal/modal-config.md'
-import ApiModalServiceAngular from './../angular/ix-modal/modal-service.html.md'
-import ApiModalInstanceAngular from './../angular/ix-modal/modal-instance.html.md'
+import ApiModalConfigAngular from './\_modal/angular/modal-config.md'
+import ApiModalServiceAngular from './\_modal/angular/modal-service.html.md'
+import ApiModalInstanceAngular from './\_modal/angular/modal-instance.html.md'
 
-import ApiModalConfigReact from './../react/ix-modal/modal-config.md'
-import ApiModalRefReact from './../react/ix-modal/modal-ref.html.md'
+import ApiModalConfigReact from './\_modal/react/modal-config.md'
+import ApiModalRefReact from './\_modal/react/modal-ref.html.md'
 
 # Modal
 
