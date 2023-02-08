@@ -115,7 +115,8 @@ export class Tabs {
       return (
         this.showArrows() &&
         this.scrollActionAmount >
-          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
+          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1 &&
+        window.innerWidth <= tabWrapper.scrollWidth
       );
     } catch (error) {
       return false;
