@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { menuController } from '../utils/menu-controller/menu-controller';
+import { getCurrentMode, Mode, onModeChange } from '../utils/mode';
 
 @Component({
   tag: 'ix-application-header',
@@ -22,6 +24,13 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
+  @State() mode: Mode;
+
+  componentWillLoad() {
+    onModeChange().on((mode) => (this.mode = mode));
+    this.mode = getCurrentMode();
+  }
+
   componentDidLoad() {
     this.attachSiemensLogoIfLoaded();
   }
@@ -35,9 +44,16 @@ export class ApplicationHeader {
     }
   }
 
+  private async onMenuClick() {
+    menuController.open();
+  }
+
   render() {
     return (
-      <Host>
+      <Host class={{ [`mode-${this.mode}`]: true }}>
+        {this.mode === 'mobile' ? (
+          <ix-burger-menu onClick={() => this.onMenuClick()}></ix-burger-menu>
+        ) : null}
         <div class="logo">
           <slot name="logo"></slot>
         </div>

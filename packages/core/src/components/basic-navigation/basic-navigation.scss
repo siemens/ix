@@ -34,3 +34,12 @@
     }
   }
 }
+
+:host(.mode-mobile) {
+  .content {
+    margin-left: 0px;
+    width: 100%;
+
+    background-color: green;
+  }
+}

@@ -19,13 +19,15 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { menuController } from '../utils/menu-controller/menu-controller';
+import { getCurrentMode, Mode, onModeChange } from '../utils/mode';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',
-  scoped: false,
+  scoped: true,
 })
 export class Menu {
   @Element() hostElement!: HTMLIxMenuElement;
@@ -121,6 +123,8 @@ export class Menu {
   @State() activeTab: HTMLIxMenuItemElement;
 
   @State() isMoreTabEmpty = false;
+
+  @State() mode: Mode = 'desktop';
 
   private readonly domObserver = new MutationObserver(
     this.onDomChange.bind(this)
@@ -298,6 +302,12 @@ export class Menu {
       childList: true,
       subtree: true,
     });
+  }
+
+  componentWillLoad() {
+    menuController.register(this.hostElement);
+    onModeChange().on((mode) => (this.mode = mode));
+    this.mode = getCurrentMode();
   }
 
   disconnectedCallback() {}
@@ -657,6 +667,7 @@ export class Menu {
       <Host
         class={{
           expanded: this.expand,
+          [`mode-${this.mode}`]: true,
         }}
       >
         <div
@@ -668,42 +679,13 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div
+          <ix-burger-menu
             onClick={async () => this.toggleMenu()}
+            expanded={this.expand}
             class={{
-              'burger-menu-button': true,
-              expanded: this.expand,
+              'burger-menu': true,
             }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              width="32"
-              height="32"
-            >
-              <rect
-                class="line line-1"
-                x="5"
-                y="9.5"
-                width="22"
-                height="2"
-              ></rect>
-              <rect
-                class="line line-2"
-                x="5"
-                y="15.5"
-                width="22"
-                height="2"
-              ></rect>
-              <rect
-                class="line line-3"
-                x="5"
-                y="21.5"
-                width="22"
-                height="2"
-              ></rect>
-            </svg>
-          </div>
+          ></ix-burger-menu>
           <div id="avatar-tab-placeholder"></div>
           <div
             id="menu-tabs"

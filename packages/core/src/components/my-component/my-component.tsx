@@ -8,7 +8,6 @@
  */
 
 import { Component, h, Host } from '@stencil/core';
-
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
@@ -16,6 +15,53 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-basic-navigation>
+          <ix-menu>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
+            <ix-menu-about>
+              <ix-menu-about-item>Item 1</ix-menu-about-item>
+              <ix-menu-about-item>Item 1</ix-menu-about-item>
+              <ix-menu-about-item>Item 1</ix-menu-about-item>
+            </ix-menu-about>
+            <ix-menu-settings>
+              <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+              <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+              <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+            </ix-menu-settings>
+          </ix-menu>
+          <div
+            style={{
+              backgroundColor: '#ff0000aa',
+              width: '10rem',
+              height: '10rem',
+            }}
+          ></div>
+        </ix-basic-navigation>
+      </Host>
+    );
   }
 }

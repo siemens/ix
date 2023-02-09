@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/utils/button-variants";
+import { Buttons } from "./components/button/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -92,6 +92,12 @@ export namespace Components {
           * Breadcrumb label
          */
         "label": string;
+    }
+    interface IxBurgerMenu {
+        /**
+          * Is menu displayed as expanded
+         */
+        "expanded": boolean;
     }
     interface IxButton {
         /**
@@ -1724,6 +1730,12 @@ declare global {
         prototype: HTMLIxBreadcrumbItemElement;
         new (): HTMLIxBreadcrumbItemElement;
     };
+    interface HTMLIxBurgerMenuElement extends Components.IxBurgerMenu, HTMLStencilElement {
+    }
+    var HTMLIxBurgerMenuElement: {
+        prototype: HTMLIxBurgerMenuElement;
+        new (): HTMLIxBurgerMenuElement;
+    };
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
     var HTMLIxButtonElement: {
@@ -2104,6 +2116,7 @@ declare global {
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
+        "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
@@ -2255,6 +2268,12 @@ declare namespace LocalJSX {
           * Breadcrumb label
          */
         "label"?: string;
+    }
+    interface IxBurgerMenu {
+        /**
+          * Is menu displayed as expanded
+         */
+        "expanded"?: boolean;
     }
     interface IxButton {
         /**
@@ -3834,6 +3853,7 @@ declare namespace LocalJSX {
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
+        "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
@@ -3909,6 +3929,7 @@ declare module "@stencil/core" {
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
+            "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
