@@ -15,14 +15,13 @@ SPDX-License-Identifier: MIT
     <style>
       .test {
         margin-bottom: 2rem;
-        width: 40rem;
-        background-color: #ff00006a;
+        width: 50%;
       }
     </style>
   </head>
   <body>
-    <div style="margin-bottom: 2rem; width: 40rem; background-color: #ff00006a">
-      <ix-tabs>
+    <div class="test">
+      <ix-tabs layout="stretched">
         <ix-tab-item>Example</ix-tab-item>
         <ix-tab-item>Example</ix-tab-item>
         <ix-tab-item>Example</ix-tab-item>
@@ -36,7 +35,7 @@ SPDX-License-Identifier: MIT
     </div>
 
     <div class="test">
-      <ix-tabs small>
+      <ix-tabs small layout="stretched">
         <ix-tab-item><ix-icon name="success"></ix-icon></ix-tab-item>
         <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
         <ix-tab-item><ix-icon name="tree"></ix-icon></ix-tab-item>
@@ -55,7 +54,7 @@ SPDX-License-Identifier: MIT
     </div>
 
     <div class="test">
-      <ix-tabs placement="top">
+      <ix-tabs placement="top" layout="stretched">
         <ix-tab-item>Example</ix-tab-item>
         <ix-tab-item>Example</ix-tab-item>
         <ix-tab-item>Example</ix-tab-item>
@@ -67,6 +66,7 @@ SPDX-License-Identifier: MIT
         <ix-tab-item>Example</ix-tab-item>
       </ix-tabs>
     </div>
+
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>
