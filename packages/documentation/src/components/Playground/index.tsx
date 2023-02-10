@@ -247,16 +247,13 @@ export default function Playground({
   }
 
   function isFrameworkConfigured(framework: TargetFramework) {
-    if (framework === TargetFramework.PREVIEW) {
-      return true;
+    if (availableFrameworks) {
+      return (
+        availableFrameworks.length === 0 ||
+        availableFrameworks.includes(framework)
+      );
     }
-    if (!availableFrameworks) {
-      return true;
-    }
-    return (
-      availableFrameworks.length === 0 ||
-      availableFrameworks.includes(framework)
-    );
+    return Object.keys(frameworks).some((key) => key === framework);
   }
 
   return (
