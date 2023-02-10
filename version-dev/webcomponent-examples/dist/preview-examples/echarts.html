@@ -1,0 +1,42 @@
+<!--
+SPDX-FileCopyrightText: 2022 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown example</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <script>
+      function detectThemeSwitching() {
+        const searchParams = new URLSearchParams(location.search);
+
+        if (!searchParams.has('theme')) {
+          return 'brand-dark';
+        }
+        const theme = searchParams.get('theme');
+        return theme.substring('theme-'.length, theme.length);
+      }
+
+      const theme = detectThemeSwitching();
+      window.demoTheme = theme;
+    </script>
+    <script type="module" crossorigin src="../assets/echarts.eb4cacc3.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/index.0928911b.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.fcf08389.js">
+    <link rel="stylesheet" href="../assets/index.4f80a72a.css">
+    <link rel="stylesheet" href="../assets/init.9ff99c30.css">
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div
+      id="main"
+      style="display: block; position: relative; width: 100%; height: 40rem"
+    ></div>
+    
+    <!-- Preview code -->
+    
+  </body>
+</html>

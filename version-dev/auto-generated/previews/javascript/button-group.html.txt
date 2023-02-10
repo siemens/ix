@@ -1,0 +1,6 @@
+<div class="btn-group">
+  <ix-button outline>Button 1</ix-button>
+  <ix-button>Button 2</ix-button>
+  <ix-button outline>Button 3</ix-button>
+  <ix-button outline>Button 4</ix-button>
+</div>

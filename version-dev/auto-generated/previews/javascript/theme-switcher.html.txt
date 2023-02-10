@@ -1,0 +1,31 @@
+<ix-button id="toggleModeButton" class="mb-2">Toggle mode</ix-button>
+<ix-select id="selectTheme">
+  <ix-select-item
+    label="Classic light"
+    value="theme-classic-light"
+  ></ix-select-item>
+  <ix-select-item
+    label="Classic dark"
+    value="theme-classic-dark"
+  ></ix-select-item>
+</ix-select>
+
+<script type="module">
+  import { themeSwitcher } from '@siemens/ix';
+
+  (async function () {
+    document
+      .getElementById('toggleModeButton')
+      .addEventListener('click', () => {
+        themeSwitcher.toggleMode();
+      });
+
+    document
+      .getElementById('selectTheme')
+      .addEventListener('itemSelectionChange', ({ detail: [theme] }) => {
+        themeSwitcher.setTheme(theme);
+      });
+
+    themeSwitcher.themeChanged.on((theme) => console.log(theme));
+  })();
+</script>
