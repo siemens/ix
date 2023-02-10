@@ -55,6 +55,8 @@ export class Tabs {
   @State() totalItems = 0;
   @State() currentScrollAmount = 0;
   @State() scrollAmount = 100;
+  @State() styleNextArrow = {};
+  @State() stylePreviousArrow = {};
 
   @State() scrollActionAmount = 0;
   private clickAction: {
@@ -112,11 +114,11 @@ export class Tabs {
     try {
       const tabWrapper = this.getTabsWrapper();
       const tabWrapperRect = tabWrapper.getBoundingClientRect();
+
       return (
         this.showArrows() &&
         this.scrollActionAmount >
-          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1 &&
-        window.innerWidth <= tabWrapper.scrollWidth
+          (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
       );
     } catch (error) {
       return false;
@@ -223,6 +225,13 @@ export class Tabs {
     });
   }
 
+  componentWillRender() {
+    requestAnimationFrame(() => {
+      this.styleNextArrow = this.getArrowStyle(this.showNextArrow());
+      this.stylePreviousArrow = this.getArrowStyle(this.showPreviousArrow());
+    });
+  }
+
   componentDidLoad() {
     const tabs = this.getTabs();
     tabs.forEach((element, index) => {
@@ -239,13 +248,10 @@ export class Tabs {
   render() {
     return (
       <Host>
-        <div
-          class="overflow-shadow"
-          style={this.getArrowStyle(this.showPreviousArrow())}
-        ></div>
+        <div class="overflow-shadow" style={this.stylePreviousArrow}></div>
         <div
           class="arrow"
-          style={this.getArrowStyle(this.showPreviousArrow())}
+          style={this.stylePreviousArrow}
           onClick={() => this.move(this.scrollAmount, true)}
         >
           <span class="glyph glyph-chevron-left-small"></span>
@@ -255,13 +261,10 @@ export class Tabs {
             <slot></slot>
           </div>
         </div>
-        <div
-          class="overflow-shadow right"
-          style={this.getArrowStyle(this.showNextArrow())}
-        ></div>
+        <div class="overflow-shadow right" style={this.styleNextArrow}></div>
         <div
           class="arrow right"
-          style={this.getArrowStyle(this.showNextArrow())}
+          style={this.styleNextArrow}
           onClick={() => this.move(-this.scrollAmount, true)}
         >
           <span class="glyph glyph-chevron-right-small"></span>

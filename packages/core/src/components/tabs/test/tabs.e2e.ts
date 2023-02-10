@@ -19,4 +19,12 @@ regressionTest.describe('tabs', () => {
     await page.goto('tabs/test/rounded');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('tabs/test/overflow');
+
+    const selectItem = await page.waitForSelector("[data-tab-id='3']");
+    await selectItem.click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
