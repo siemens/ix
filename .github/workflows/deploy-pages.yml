@@ -72,7 +72,6 @@ jobs:
         if: ${{ github.event.inputs.deployment == 'prod' }}
         with:
           folder: ./packages/documentation/build
-          clean: true
           clean-exclude: version-*
 
       - name: Deploy dev instance 🚀
