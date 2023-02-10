@@ -111,19 +111,12 @@ export class Menu {
    * Map Sidebar expanded
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
-
   @State() showMoreItems = false;
-
   @State() visibleMenuItems = 0;
-
   @State() countMoreNotifications = 0;
-
   @State() mapExpand = true;
-
   @State() activeTab: HTMLIxMenuItemElement;
-
   @State() isMoreTabEmpty = false;
-
   @State() mode: Mode = 'desktop';
 
   private readonly domObserver = new MutationObserver(
@@ -622,6 +615,8 @@ export class Menu {
     if (this.about) {
       this.about.show = this.showAbout;
     }
+
+    this.toggleMenu(false);
   }
 
   private showMoreButton() {
@@ -652,7 +647,6 @@ export class Menu {
 
   private isMenuItemClicked(event: MouseEvent) {
     const path = event.composedPath();
-
     const menuItems = (path as HTMLElement[])
       .filter((element) => element.id !== 'ix-menu-more-tab')
       .filter((element) => {
@@ -742,9 +736,10 @@ export class Menu {
                         tabIcon={e.tabIcon}
                         active={e.active}
                         class="internal-tab appended"
-                        onClick={() =>
-                          e.dispatchEvent(new CustomEvent('click'))
-                        }
+                        onClick={() => {
+                          this.resetOverlay();
+                          e.dispatchEvent(new CustomEvent('click'));
+                        }}
                       >
                         {e.innerText}
                       </ix-menu-item>

@@ -33,6 +33,15 @@
       height: 100%;
     }
   }
+
+  .content::after {
+    content: 'Desktop';
+    border: 2px dashed #ff0000aa;
+    padding: 2rem;
+    font-size: 55px;
+    position: absolute;
+    transform: translate(50vw, 40vh) rotate(45deg);
+  }
 }
 
 :host(.mode-mobile) {
@@ -41,5 +50,14 @@
     width: 100%;
 
     background-color: green;
+  }
+
+  .content::after {
+    content: 'Mobile';
+    border: 2px dashed #ff0000aa;
+    padding: 2rem;
+    font-size: 55px;
+    position: absolute;
+    transform: translate(50vw, 40vh) rotate(45deg);
   }
 }

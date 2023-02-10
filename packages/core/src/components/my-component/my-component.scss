@@ -14,4 +14,27 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+
+  .debug-element {
+    position: relative;
+    background-color: #ff000069;
+    width: 10rem;
+    height: 10rem;
+  }
+  .debug-element::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '🚧';
+    border: 2px dashed #ff0000aa;
+    padding: 2rem;
+    font-size: 55px;
+
+    width: 8rem;
+    height: 5rem;
+
+    left: 10%;
+    top: 25%;
+  }
 }

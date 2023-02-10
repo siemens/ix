@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { TypedEvent } from '../typed-event';
+
 const createMenuController = () => {
   let menuElm: HTMLIxMenuElement = null;
+
+  const expandChange = new TypedEvent<{ show: boolean }>();
 
   const register = (menu: HTMLIxMenuElement) => {
     if (menuElm) {
@@ -17,6 +21,11 @@ const createMenuController = () => {
     }
 
     menuElm = menu;
+    menuElm.addEventListener('expandChange', (evt: CustomEvent<boolean>) => {
+      expandChange.emit({
+        show: evt.detail,
+      });
+    });
   };
 
   const open = async () => {
@@ -37,6 +46,15 @@ const createMenuController = () => {
     return false;
   };
 
+  const toggle = async () => {
+    if (menuElm) {
+      menuElm.toggleMenu();
+      return true;
+    }
+
+    return false;
+  };
+
   const getElement = () => {
     return menuElm;
   };
@@ -44,8 +62,10 @@ const createMenuController = () => {
   return {
     open,
     close,
+    toggle,
     register,
     getElement,
+    expandChange,
   };
 };
 

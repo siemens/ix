@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { menuController } from '../utils/menu-controller/menu-controller';
 import { getCurrentMode, Mode, onModeChange } from '../utils/mode';
+import { Disposable } from '../utils/typed-event';
 
 @Component({
   tag: 'ix-application-header',
@@ -26,13 +27,25 @@ export class ApplicationHeader {
 
   @State() mode: Mode;
 
+  @State() menuExpanded = false;
+
+  private disposable: Disposable;
+
   componentWillLoad() {
     onModeChange().on((mode) => (this.mode = mode));
     this.mode = getCurrentMode();
+
+    this.disposable = menuController.expandChange.on(({ show }) => {
+      this.menuExpanded = show;
+    });
   }
 
   componentDidLoad() {
     this.attachSiemensLogoIfLoaded();
+  }
+
+  disconnectedCallback() {
+    this.disposable?.dispose();
   }
 
   private async attachSiemensLogoIfLoaded() {
@@ -45,14 +58,17 @@ export class ApplicationHeader {
   }
 
   private async onMenuClick() {
-    menuController.open();
+    menuController.toggle();
   }
 
   render() {
     return (
       <Host class={{ [`mode-${this.mode}`]: true }}>
         {this.mode === 'mobile' ? (
-          <ix-burger-menu onClick={() => this.onMenuClick()}></ix-burger-menu>
+          <ix-burger-menu
+            onClick={() => this.onMenuClick()}
+            expanded={this.menuExpanded}
+          ></ix-burger-menu>
         ) : null}
         <div class="logo">
           <slot name="logo"></slot>

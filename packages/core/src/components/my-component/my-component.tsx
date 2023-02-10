@@ -7,13 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, State } from '@stencil/core';
+import { Mode } from '../utils/mode';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
   scoped: true,
 })
 export class MyComponent {
+  @State() mode: Mode = 'desktop';
+
+  compinn;
+
   render() {
     return (
       <Host>
@@ -53,13 +58,7 @@ export class MyComponent {
               <ix-menu-settings-item>Item 1</ix-menu-settings-item>
             </ix-menu-settings>
           </ix-menu>
-          <div
-            style={{
-              backgroundColor: '#ff0000aa',
-              width: '10rem',
-              height: '10rem',
-            }}
-          ></div>
+          <div class="debug-element"></div>
         </ix-basic-navigation>
       </Host>
     );

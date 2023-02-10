@@ -99,11 +99,17 @@
   }
 
   .menu {
+    transition: max-width var(--animate-duration);
     padding-top: 2rem;
   }
 
   .menu .burger-menu {
     display: none;
+  }
+
+  .menu-overlay {
+    left: 0px;
+    width: calc(100vw);
   }
 }
 

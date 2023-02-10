@@ -9,7 +9,7 @@
 import { TypedEvent } from './typed-event';
 
 export type Mode = 'desktop' | 'mobile';
-const mobileMediaQuery = `only screen and (max-width: 55rem)`;
+const mobileMediaQuery = `only screen and (max-width: 767px)`;
 
 type IxContext = {
   mode: {
