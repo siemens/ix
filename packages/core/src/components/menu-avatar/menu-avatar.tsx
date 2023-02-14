@@ -76,7 +76,9 @@ export class MenuAvatar {
   @Prop() image: string;
 
   /**
-   * Display the initials of the user. Will be overwritten by image.
+   * Display the initials of the user. Will be overwritten by image
+   *
+   * @since 1.4.0
    */
   @Prop() initials: string;
 

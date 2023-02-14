@@ -5486,8 +5486,13 @@
           "mutable": false,
           "attr": "initials",
           "reflectToAttr": false,
-          "docs": "Display the initials of the user. Will be overwritten by image.",
-          "docsTags": [],
+          "docs": "Display the initials of the user. Will be overwritten by image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"

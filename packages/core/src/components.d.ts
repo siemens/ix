@@ -897,7 +897,8 @@ export namespace Components {
          */
         "image": string;
         /**
-          * Display the initials of the user. Will be overwritten by image.
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
          */
         "initials": string;
         /**
@@ -3148,7 +3149,8 @@ declare namespace LocalJSX {
          */
         "image"?: string;
         /**
-          * Display the initials of the user. Will be overwritten by image.
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
          */
         "initials"?: string;
         /**
