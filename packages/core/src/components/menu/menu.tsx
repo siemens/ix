@@ -27,7 +27,7 @@ import { themeSwitcher } from '../utils/theme-switcher';
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',
-  scoped: true,
+  scoped: false,
 })
 export class Menu {
   @Element() hostElement!: HTMLIxMenuElement;
@@ -339,7 +339,7 @@ export class Menu {
 
     if (this.homeTab) {
       this.hostElement.querySelector('.tabs-top').appendChild(this.homeTab);
-      this.homeTab.addEventListener('click', this.resetOverlay);
+      this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
     }
 
     this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
@@ -356,7 +356,7 @@ export class Menu {
       // TODO: Find better solution to handle home tab
       this.homeTab?.classList.remove('d-none');
 
-      item.addEventListener('click', this.resetOverlay);
+      item.addEventListener('click', this.resetOverlay.bind(this));
     });
   }
 

@@ -10,7 +10,7 @@
 @import 'common-variables';
 @import 'mixins/hover';
 
-:host {
+ix-menu {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -93,13 +93,12 @@
   }
 }
 
-:host(.mode-mobile) {
+ix-menu.mode-mobile {
   .menu:not(.expanded) {
-    max-width: 0;
+    width: 0;
   }
 
   .menu {
-    transition: max-width var(--animate-duration);
     padding-top: 2rem;
   }
 
