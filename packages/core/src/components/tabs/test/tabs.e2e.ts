@@ -15,14 +15,21 @@ regressionTest.describe('tabs', () => {
     await page.goto('tabs/test/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
   regressionTest('rounded', async ({ page }) => {
     await page.goto('tabs/test/rounded');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('stretched', async ({ page }) => {
+    await page.goto('tabs/test/stretched');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('overflow', async ({ page }) => {
     await page.goto('tabs/test/overflow');
 
-    const selectItem = await page.waitForSelector("[data-tab-id='3']");
+    const selectItem = await page.waitForSelector("[data-tab-id='7']");
     await selectItem.click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
