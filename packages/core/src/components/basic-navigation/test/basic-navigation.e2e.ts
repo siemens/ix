@@ -20,7 +20,78 @@ regressionTest.describe('basic navigation', () => {
     await page.goto('basic-navigation/test/basic');
     await page.locator('.burger-menu-button').click();
     await page.waitForSelector('.burger-menu-button.expanded');
+
     await page.waitForTimeout(800);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile', async ({ page }) => {
+    await page.goto('basic-navigation/test/mobile');
+    await page.setViewportSize({
+      height: 1200,
+      width: 500,
+    });
+
+    await page.waitForTimeout(500);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile expanded', async ({ page }) => {
+    await page.goto('basic-navigation/test/mobile');
+    await page.setViewportSize({
+      height: 1200,
+      width: 500,
+    });
+
+    await page.waitForTimeout(500);
+    const menuElement = await page.waitForSelector(
+      'ix-application-header ix-burger-menu'
+    );
+    await menuElement.click();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile overlay', async ({ page }) => {
+    await page.goto('basic-navigation/test/mobile');
+    await page.setViewportSize({
+      height: 1200,
+      width: 500,
+    });
+
+    await page.waitForTimeout(500);
+    const menuElement = await page.waitForSelector(
+      'ix-application-header ix-burger-menu'
+    );
+    await menuElement.click();
+    await page.waitForTimeout(500);
+    const settingsButton = await page.waitForSelector('#settings');
+    await settingsButton.click();
+
+    await page.waitForTimeout(500);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile expanded overlay', async ({ page }) => {
+    await page.goto('basic-navigation/test/mobile');
+    await page.setViewportSize({
+      height: 1200,
+      width: 500,
+    });
+
+    await page.waitForTimeout(500);
+    const menuElement = await page.waitForSelector(
+      'ix-application-header ix-burger-menu'
+    );
+    await menuElement.click();
+    await page.waitForTimeout(500);
+    const settingsButton = await page.waitForSelector('#settings');
+
+    await settingsButton.click();
+    await menuElement.click();
+
+    await page.waitForTimeout(500);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

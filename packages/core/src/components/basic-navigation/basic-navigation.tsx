@@ -8,12 +8,8 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import {
-  getCurrentMode,
-  Mode,
-  onModeChange,
-  setupIxContext,
-} from '../utils/mode';
+import { Mode } from '../utils/screen/mode';
+import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -40,12 +36,11 @@ export class BasicNavigation {
     return this.hostElement.querySelector('ix-menu');
   }
 
-  private disposeModeListener: Disposable;
+  private modeDisposable: Disposable;
 
   componentWillLoad() {
-    setupIxContext();
-    this.disposeModeListener = onModeChange().on((mode) => (this.mode = mode));
-    this.mode = getCurrentMode();
+    this.modeDisposable = screenMode.onChange.on((mode) => (this.mode = mode));
+    this.mode = screenMode.mode;
   }
 
   componentDidRender() {
@@ -57,7 +52,7 @@ export class BasicNavigation {
   }
 
   disconnectedCallback() {
-    this.disposeModeListener?.dispose();
+    this.modeDisposable?.dispose();
   }
 
   private appendMenu() {

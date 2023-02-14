@@ -19,9 +19,10 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { menuController } from '../utils/menu-controller/menu-controller';
-import { getCurrentMode, Mode, onModeChange } from '../utils/mode';
+import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
+import { Mode } from '../utils/screen/mode';
+import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
@@ -299,11 +300,9 @@ export class Menu {
 
   componentWillLoad() {
     menuController.register(this.hostElement);
-    onModeChange().on((mode) => (this.mode = mode));
-    this.mode = getCurrentMode();
+    screenMode.onChange.on((mode) => (this.mode = mode));
+    this.mode = screenMode.mode;
   }
-
-  disconnectedCallback() {}
 
   componentWillRender() {
     this.appendTabs();

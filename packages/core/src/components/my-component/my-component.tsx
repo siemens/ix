@@ -8,7 +8,7 @@
  */
 
 import { Component, h, Host, State } from '@stencil/core';
-import { Mode } from '../utils/mode';
+import { Mode } from '../utils/screen/mode';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
@@ -16,8 +16,6 @@ import { Mode } from '../utils/mode';
 })
 export class MyComponent {
   @State() mode: Mode = 'desktop';
-
-  compinn;
 
   render() {
     return (

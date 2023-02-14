@@ -8,8 +8,9 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { menuController } from '../utils/menu-controller/menu-controller';
-import { getCurrentMode, Mode, onModeChange } from '../utils/mode';
+import { menuController } from '../utils/menu-service/menu-service';
+import { Mode } from '../utils/screen/mode';
+import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -29,13 +30,14 @@ export class ApplicationHeader {
 
   @State() menuExpanded = false;
 
-  private disposable: Disposable;
+  private menuDisposable?: Disposable;
+  private modeDisposable?: Disposable;
 
   componentWillLoad() {
-    onModeChange().on((mode) => (this.mode = mode));
-    this.mode = getCurrentMode();
+    this.modeDisposable = screenMode.onChange.on((mode) => (this.mode = mode));
+    this.mode = screenMode.mode;
 
-    this.disposable = menuController.expandChange.on(({ show }) => {
+    this.menuDisposable = menuController.expandChange.on((show) => {
       this.menuExpanded = show;
     });
   }
@@ -45,7 +47,8 @@ export class ApplicationHeader {
   }
 
   disconnectedCallback() {
-    this.disposable?.dispose();
+    this.menuDisposable?.dispose();
+    this.modeDisposable?.dispose();
   }
 
   private async attachSiemensLogoIfLoaded() {
