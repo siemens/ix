@@ -70,8 +70,7 @@ export class TreeItem {
         </div>
         <div
           class="tree-node-container"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
             this.itemClick.emit();
           }}
         >
