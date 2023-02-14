@@ -15,7 +15,6 @@ class ScreenMode {
 
   constructor() {
     createModeListener((mode) => {
-      console.log(mode);
       this.#modeChangeListener.emit(mode);
       this.#mode = mode;
     });

@@ -9,6 +9,7 @@
 
 import { newSpecPage } from '@stencil/core/testing';
 import { ApplicationHeader } from '../application-header';
+(global as any).matchMedia = 'asdasdasdasd';
 
 describe('ix-application-header', () => {
   it('renders', async () => {

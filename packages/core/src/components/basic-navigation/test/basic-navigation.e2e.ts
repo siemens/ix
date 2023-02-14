@@ -18,13 +18,15 @@ regressionTest.describe('basic navigation', () => {
 
   regressionTest('expanded', async ({ page }) => {
     await page.goto('basic-navigation/test/basic');
-    await page.locator('.burger-menu-button').click();
-    await page.waitForSelector('.burger-menu-button.expanded');
+    await page.locator('ix-menu ix-burger-menu').click();
+    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
     await page.waitForTimeout(800);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
 
+regressionTest.describe('basic navigation mobile', () => {
   regressionTest('mobile', async ({ page }) => {
     await page.goto('basic-navigation/test/mobile');
     await page.setViewportSize({
