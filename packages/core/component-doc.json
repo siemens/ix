@@ -5448,9 +5448,46 @@
           "mutable": false,
           "attr": "i-1-8n-logout",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Use for translation",
           "docsTags": [],
           "default": "'Logout'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "mutable": false,
+          "attr": "image",
+          "reflectToAttr": false,
+          "docs": "Display a avatar image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "mutable": false,
+          "attr": "initials",
+          "reflectToAttr": false,
+          "docs": "Display the initials of the user. Will be overwritten by image.",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
