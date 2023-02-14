@@ -32,6 +32,8 @@ regressionTest.describe('tabs', () => {
     const selectItem = await page.waitForSelector("[data-tab-id='7']");
     await selectItem.click();
 
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
