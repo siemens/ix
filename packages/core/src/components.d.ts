@@ -13,6 +13,7 @@ import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement } from "./components/dropdown/placement";
+import { triggerEvent } from "./components/dropdown/dropdown";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -460,10 +461,9 @@ export namespace Components {
          */
         "trigger": string | HTMLElement;
         /**
-          * Define event to open element
-          * @since 1.4.0
+          * Define one or more events to open dropdown
          */
-        "triggerEvent": ('click' | 'mouseover') | ('click' | 'mouseover')[];
+        "triggerEvent": triggerEvent | triggerEvent[];
         /**
           * Update position of dropdown
          */
@@ -2700,10 +2700,9 @@ declare namespace LocalJSX {
          */
         "trigger"?: string | HTMLElement;
         /**
-          * Define event to open element
-          * @since 1.4.0
+          * Define one or more events to open dropdown
          */
-        "triggerEvent"?: ('click' | 'mouseover') | ('click' | 'mouseover')[];
+        "triggerEvent"?: triggerEvent | triggerEvent[];
     }
     interface IxDropdownButton {
         /**

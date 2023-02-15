@@ -31,6 +31,11 @@ import {
 import { getAlignment } from './alignment';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
 
+/**
+ * @internal
+ */
+export type triggerEvent = 'click' | 'hover' | 'focus';
+
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',
@@ -100,11 +105,10 @@ export class Dropdown {
   };
 
   /**
-   * Define event to open element
-   * @since 1.4.0
+   * Define one or more events to open dropdown
+   * @internal
    */
-  @Prop() triggerEvent: ('click' | 'mouseover') | ('click' | 'mouseover')[] =
-    'click';
+  @Prop() triggerEvent: triggerEvent | triggerEvent[] = 'click';
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -119,13 +123,56 @@ export class Dropdown {
   private dropdownRef: HTMLElement;
 
   private openBind: any;
+  private closeBind: any;
+  private toggleBind: any;
 
   constructor() {
     this.openBind = this.open.bind(this);
+    this.closeBind = this.close.bind(this);
+    this.toggleBind = this.toggle.bind(this);
   }
 
   get dropdownItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
+  }
+
+  private addEventListenersFor(triggerEvent: triggerEvent) {
+    switch (triggerEvent) {
+      case 'click':
+        this.triggerElement.addEventListener('click', this.toggleBind);
+        break;
+
+      case 'hover':
+        this.triggerElement.addEventListener('mouseenter', this.openBind);
+        this.triggerElement.addEventListener('click', this.closeBind);
+        break;
+
+      case 'focus':
+        this.triggerElement.addEventListener('focusin', this.openBind);
+        this.triggerElement.addEventListener('click', this.closeBind);
+        break;
+    }
+  }
+
+  private removeEventListenersFor(
+    triggerEvent: triggerEvent,
+    triggerElement: Element
+  ) {
+    switch (triggerEvent) {
+      case 'click':
+        triggerElement.removeEventListener(triggerEvent, this.toggleBind);
+        break;
+
+      case 'hover':
+        triggerElement.removeEventListener('mouseenter', this.openBind);
+        triggerElement.removeEventListener('click', this.closeBind);
+        break;
+
+      case 'focus':
+        triggerElement.removeEventListener('focusin', this.openBind);
+        triggerElement.removeEventListener('click', this.closeBind);
+        break;
+    }
   }
 
   private async registerListener(element: string | HTMLElement) {
@@ -133,10 +180,10 @@ export class Dropdown {
     if (this.triggerElement) {
       if (Array.isArray(this.triggerEvent)) {
         this.triggerEvent.forEach((triggerEvent) => {
-          this.triggerElement.addEventListener(triggerEvent, this.openBind);
+          this.addEventListenersFor(triggerEvent);
         });
       } else {
-        this.triggerElement.addEventListener(this.triggerEvent, this.openBind);
+        this.addEventListenersFor(this.triggerEvent);
       }
     }
   }
@@ -145,10 +192,10 @@ export class Dropdown {
     const trigger = await this.resolveElement(element);
     if (Array.isArray(this.triggerEvent)) {
       this.triggerEvent.forEach((triggerEvent) => {
-        trigger.removeEventListener(triggerEvent, this.openBind);
+        this.removeEventListenersFor(triggerEvent, trigger);
       });
     } else {
-      trigger.removeEventListener(this.triggerEvent, this.openBind);
+      this.removeEventListenersFor(this.triggerEvent, trigger);
     }
   }
 
@@ -237,7 +284,7 @@ export class Dropdown {
     }
   }
 
-  private open(event?: Event) {
+  private toggle(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
 
@@ -245,9 +292,14 @@ export class Dropdown {
     this.showChanged.emit(this.show);
   }
 
+  private open() {
+    this.show = true;
+    this.showChanged.emit(true);
+  }
+
   private close() {
     this.show = false;
-    this.showChanged.emit(this.show);
+    this.showChanged.emit(false);
   }
 
   private async applyDropdownPosition() {

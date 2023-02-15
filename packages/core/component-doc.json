@@ -2544,39 +2544,6 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "triggerEvent",
-          "type": "\"click\" | \"mouseover\" | (\"click\" | \"mouseover\")[]",
-          "mutable": false,
-          "attr": "trigger-event",
-          "reflectToAttr": false,
-          "docs": "Define event to open element",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.4.0"
-            }
-          ],
-          "default": "'click'",
-          "values": [
-            {
-              "value": "click",
-              "type": "string"
-            },
-            {
-              "value": "mouseover",
-              "type": "string"
-            },
-            {
-              "type": "(\"click\""
-            },
-            {
-              "type": "\"mouseover\")[]"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [
