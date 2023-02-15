@@ -24,8 +24,8 @@ const comp = window.customElements.define(
     }
 
     firstRender() {
-      const modalTemplate = document.createElement('template');
-      modalTemplate.innerHTML = `
+      const _template = document.createElement('template');
+      _template.innerHTML = `
       <svg xmlns='http://www.w3.org/2000/svg' width='136.221' height='12' viewBox='0 0 136.221 12'>
         <g id='Gruppe_4763' data-name='Gruppe 4763' transform='translate(-85 -28)'>
           <g id='Polygon_3' data-name='Polygon 3' transform='translate(111 28)' fill='none'>
@@ -45,7 +45,7 @@ const comp = window.customElements.define(
       </svg>
     `;
 
-      const template = modalTemplate.content.cloneNode(true);
+      const template = _template.content.cloneNode(true);
       this.append(template);
     }
   }
