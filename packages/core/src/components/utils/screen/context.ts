@@ -7,7 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const hostContext = (selector: string, element: HTMLElement) => {
+export function isBasicNavigationLayout(
+  element: HTMLElement
+): element is HTMLIxBasicNavigationElement {
+  return element && element.tagName === 'IX-BASIC-NAVIGATION';
+}
+
+export const hostContext = (
+  selector: string,
+  element: HTMLElement
+): HTMLIxBasicNavigationElement | HTMLIxMapNavigationElement => {
   return element.closest(selector);
 };
 

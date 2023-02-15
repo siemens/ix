@@ -55,7 +55,7 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Hide application header
+          * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader": boolean;
     }
@@ -2219,7 +2219,7 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Hide application header
+          * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader"?: boolean;
     }

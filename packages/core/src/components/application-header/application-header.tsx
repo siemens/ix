@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
+import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
 import { Mode } from '../utils/screen/mode';
 import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
@@ -26,7 +27,7 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
-  @State() mode: Mode;
+  @State() mode: Mode = 'desktop';
 
   @State() menuExpanded = false;
 
@@ -34,12 +35,17 @@ export class ApplicationHeader {
   private modeDisposable?: Disposable;
 
   componentWillLoad() {
-    this.modeDisposable = screenMode.onChange.on((mode) => (this.mode = mode));
-    this.mode = screenMode.mode;
+    const layout = hostContext('ix-basic-navigation', this.host);
+    if (isBasicNavigationLayout(layout)) {
+      this.modeDisposable = screenMode.onChange.on(
+        (mode) => (this.mode = mode)
+      );
+      this.mode = screenMode.mode;
 
-    this.menuDisposable = menuController.expandChange.on((show) => {
-      this.menuExpanded = show;
-    });
+      this.menuDisposable = menuController.expandChange.on((show) => {
+        this.menuExpanded = show;
+      });
+    }
   }
 
   componentDidLoad() {

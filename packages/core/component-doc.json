@@ -214,9 +214,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-application-header"
       ],
@@ -226,9 +224,6 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
-        ],
-        "my-component": [
-          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -254,7 +249,7 @@
           "mutable": false,
           "attr": "hide-header",
           "reflectToAttr": false,
-          "docs": "Hide application header",
+          "docs": "Hide application header. Will disable responsive feature of basic navigation.",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4756,9 +4751,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item",
@@ -4769,9 +4762,6 @@
           "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
-        ],
-        "my-component": [
-          "ix-menu"
         ]
       },
       "props": [
@@ -5140,9 +5130,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -5156,9 +5144,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-menu-about"
         ]
       },
       "props": [
@@ -5242,15 +5227,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-menu-about-item"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "label",
@@ -5620,15 +5599,11 @@
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [
-        "ix-menu",
-        "my-component"
+        "ix-menu"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu": [
-          "ix-menu-item"
-        ],
-        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -5758,9 +5733,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -5774,9 +5747,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-menu-settings"
         ]
       },
       "props": [
@@ -5860,15 +5830,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-menu-settings-item"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "label",
@@ -9448,50 +9412,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-basic-navigation",
-        "ix-menu",
-        "ix-menu-item",
-        "ix-menu-about",
-        "ix-menu-about-item",
-        "ix-menu-settings",
-        "ix-menu-settings-item"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-basic-navigation",
-          "ix-menu",
-          "ix-menu-item",
-          "ix-menu-about",
-          "ix-menu-about-item",
-          "ix-menu-settings",
-          "ix-menu-settings-item"
-        ],
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-application-header": [
-          "ix-burger-menu"
-        ],
-        "ix-menu": [
-          "ix-burger-menu",
-          "ix-menu-item",
-          "ix-dropdown"
-        ],
-        "ix-menu-about": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-menu-settings": [
-          "ix-tab-item",
-          "ix-icon-button",
-          "ix-tabs"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

@@ -26,7 +26,7 @@ export class BasicNavigation {
   @Prop() applicationName: string;
 
   /**
-   * Hide application header
+   * Hide application header. Will disable responsive feature of basic navigation.
    */
   @Prop() hideHeader = false;
 
@@ -39,8 +39,12 @@ export class BasicNavigation {
   private modeDisposable: Disposable;
 
   componentWillLoad() {
-    this.modeDisposable = screenMode.onChange.on((mode) => (this.mode = mode));
-    this.mode = screenMode.mode;
+    if (this.hideHeader === false) {
+      this.modeDisposable = screenMode.onChange.on(
+        (mode) => (this.mode = mode)
+      );
+      this.mode = screenMode.mode;
+    }
   }
 
   componentDidRender() {

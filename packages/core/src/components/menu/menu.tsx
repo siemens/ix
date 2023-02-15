@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
+import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
 import { Mode } from '../utils/screen/mode';
 import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
@@ -300,8 +301,11 @@ export class Menu {
 
   componentWillLoad() {
     menuController.register(this.hostElement);
-    screenMode.onChange.on((mode) => (this.mode = mode));
-    this.mode = screenMode.mode;
+    const layout = hostContext('ix-basic-navigation', this.hostElement);
+    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
+      screenMode.onChange.on((mode) => (this.mode = mode));
+      this.mode = screenMode.mode;
+    }
   }
 
   componentWillRender() {
