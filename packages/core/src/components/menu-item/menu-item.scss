@@ -11,7 +11,7 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
-ix-menu-item {
+:host {
   position: relative;
   display: block;
 
