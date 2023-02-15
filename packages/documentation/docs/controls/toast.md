@@ -56,6 +56,5 @@ frameworks={{
   <TabItem value="JavaScript">
     <h3>ToastConfig</h3>
     <ApiToastConfigJavaScript />
-    <h3>Toast instance events</h3>
   </TabItem>
 </Tabs>
