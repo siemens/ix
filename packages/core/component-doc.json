@@ -5584,7 +5584,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "scoped",
       "dependents": [
         "ix-menu"
       ],

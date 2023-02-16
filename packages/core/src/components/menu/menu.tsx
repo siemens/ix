@@ -183,7 +183,7 @@ export class Menu {
   get menuItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
+        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab):not([slot="bottom"])'
       )
     ).filter(this.isVisible);
   }
