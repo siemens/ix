@@ -51,7 +51,7 @@ ix-tab-item {
 
   &.stretched {
     flex-basis: 100%;
-    max-width: max-content;
+    width: 100%;
     @include ellipsis;
   }
 
@@ -63,7 +63,6 @@ ix-tab-item {
       pointer-events: none;
     }
 
-    display: inline-flex;
     vertical-align: middle;
   }
 
@@ -98,7 +97,6 @@ ix-tab-item {
     outline: 1px solid var(--focus--border-color);
   }
 
-
   &.disabled {
     color: var(--theme-tab--color--disabled);
     background-color: var(--theme-tab--background--disabled);
@@ -130,7 +128,6 @@ ix-tab-item {
     }
   }
 
-
   .circle {
     display: flex;
     justify-content: center;
@@ -149,7 +146,9 @@ ix-tab-item {
       border-color: var(--theme-animated-tab-circle--border-color--selected);
 
       &:hover {
-        background-color: var(--theme-animated-tab-circle--background--selected);
+        background-color: var(
+          --theme-animated-tab-circle--background--selected
+        );
       }
     }
 
@@ -169,7 +168,6 @@ ix-tab-item {
       background-color: var(--theme-animated-tab-circle--background--disabled);
       border-color: var(--theme-animated-tab-circle--border-color--disabled);
     }
-
   }
 
   .counter {
@@ -203,5 +201,4 @@ ix-tab-item {
   .hidden {
     display: none;
   }
-
 }

@@ -163,8 +163,13 @@
         "ix-basic-navigation",
         "ix-map-navigation"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-burger-menu"
+      ],
       "dependencyGraph": {
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
@@ -216,6 +221,9 @@
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -241,7 +249,7 @@
           "mutable": false,
           "attr": "hide-header",
           "reflectToAttr": false,
-          "docs": "Hide application header",
+          "docs": "Hide application header. Will disable responsive feature of basic navigation.",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4556,6 +4564,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -4798,11 +4809,13 @@
       "encapsulation": "none",
       "dependents": [],
       "dependencies": [
+        "ix-burger-menu",
         "ix-menu-item",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
         ]
@@ -5504,9 +5517,51 @@
           "mutable": false,
           "attr": "i-1-8n-logout",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Use for translation",
           "docsTags": [],
           "default": "'Logout'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "mutable": false,
+          "attr": "image",
+          "reflectToAttr": false,
+          "docs": "Display a avatar image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "mutable": false,
+          "attr": "initials",
+          "reflectToAttr": false,
+          "docs": "Display the initials of the user. Will be overwritten by image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -5640,7 +5695,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "scoped",
       "dependents": [
         "ix-menu"
       ],

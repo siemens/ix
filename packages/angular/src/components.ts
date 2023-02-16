@@ -1058,13 +1058,13 @@ export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['bottom', 'i18nLogout', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
 })
 @Component({
   selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['bottom', 'i18nLogout', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
 })
 export class IxMenuAvatar {
   protected el: HTMLElement;

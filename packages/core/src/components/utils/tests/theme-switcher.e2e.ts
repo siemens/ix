@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { ThemeSwitcher } from './theme-switcher';
+import { ThemeSwitcher } from '../theme-switcher';
 
 regressionTest.fixme('theme-switcher', () => {
   regressionTest('basic', async ({ page }) => {

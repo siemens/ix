@@ -8,8 +8,8 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';
+import { Buttons } from './button-variants';
 
 @Component({
   tag: 'ix-button',

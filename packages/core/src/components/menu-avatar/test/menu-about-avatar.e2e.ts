@@ -13,6 +13,26 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('menu-avatar', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-avatar/test/basic');
+    await page.locator('ix-burger-menu').click();
+    await page.waitForSelector('.expanded');
+    await page.locator('ix-menu-avatar').click();
+    await page.waitForSelector('ix-dropdown.show');
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('image', async ({ page }) => {
+    await page.goto('menu-avatar/test/image');
+    await page.locator('.burger-menu-button').click();
+    await page.waitForSelector('.expanded');
+    await page.locator('ix-menu-avatar').click();
+    await page.waitForSelector('ix-dropdown.show');
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('initials', async ({ page }) => {
+    await page.goto('menu-avatar/test/initials');
     await page.locator('.burger-menu-button').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
