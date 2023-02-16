@@ -11,6 +11,7 @@ export { Components, JSX } from './components';
 export { FilterState } from './components/category-filter/filter-state';
 export { InputState } from './components/category-filter/input-state';
 export { LogicalFilterOperator } from './components/category-filter/logical-filter-operator';
+export { DropdownTriggerEvent } from './components/dropdown/dropdown-trigger-event';
 export { FlipTileState } from './components/flip-tile/flip-tile-state';
 export { ModalContainer } from './components/modal-container/modal-container';
 export { Modal } from './components/modal/modal';

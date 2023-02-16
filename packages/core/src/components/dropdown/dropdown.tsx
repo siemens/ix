@@ -29,12 +29,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { getAlignment } from './alignment';
+import { DropdownTriggerEvent } from './dropdown-trigger-event';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
-
-/**
- * @internal
- */
-export type triggerEvent = 'click' | 'hover' | 'focus';
 
 @Component({
   tag: 'ix-dropdown',
@@ -108,7 +104,7 @@ export class Dropdown {
    * Define one or more events to open dropdown
    * @internal
    */
-  @Prop() triggerEvent: triggerEvent | triggerEvent[] = 'click';
+  @Prop() triggerEvent: DropdownTriggerEvent | DropdownTriggerEvent[] = 'click';
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -136,7 +132,7 @@ export class Dropdown {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
-  private addEventListenersFor(triggerEvent: triggerEvent) {
+  private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
         this.triggerElement.addEventListener('click', this.toggleBind);
@@ -155,7 +151,7 @@ export class Dropdown {
   }
 
   private removeEventListenersFor(
-    triggerEvent: triggerEvent,
+    triggerEvent: DropdownTriggerEvent,
     triggerElement: Element
   ) {
     switch (triggerEvent) {
