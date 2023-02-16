@@ -655,6 +655,7 @@ export class CategoryFilter {
         <ix-dropdown
           closeBehavior="outside"
           trigger={this.textInput}
+          triggerEvent={['click', 'focus']}
           header={this.getDropdownHeader()}
           class={{ 'd-none': !this.displayDropdown() }}
         >

@@ -119,13 +119,9 @@ export class Dropdown {
   private dropdownRef: HTMLElement;
 
   private openBind: any;
-  private closeBind: any;
-  private toggleBind: any;
 
   constructor() {
     this.openBind = this.open.bind(this);
-    this.closeBind = this.close.bind(this);
-    this.toggleBind = this.toggle.bind(this);
   }
 
   get dropdownItems() {
@@ -135,17 +131,15 @@ export class Dropdown {
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        this.triggerElement.addEventListener('click', this.toggleBind);
+        this.triggerElement.addEventListener('click', this.openBind);
         break;
 
       case 'hover':
         this.triggerElement.addEventListener('mouseenter', this.openBind);
-        this.triggerElement.addEventListener('click', this.closeBind);
         break;
 
       case 'focus':
         this.triggerElement.addEventListener('focusin', this.openBind);
-        this.triggerElement.addEventListener('click', this.closeBind);
         break;
     }
   }
@@ -156,17 +150,15 @@ export class Dropdown {
   ) {
     switch (triggerEvent) {
       case 'click':
-        triggerElement.removeEventListener(triggerEvent, this.toggleBind);
+        triggerElement.removeEventListener(triggerEvent, this.openBind);
         break;
 
       case 'hover':
         triggerElement.removeEventListener('mouseenter', this.openBind);
-        triggerElement.removeEventListener('click', this.closeBind);
         break;
 
       case 'focus':
         triggerElement.removeEventListener('focusin', this.openBind);
-        triggerElement.removeEventListener('click', this.closeBind);
         break;
     }
   }
@@ -278,14 +270,6 @@ export class Dropdown {
       default:
         this.close();
     }
-  }
-
-  private toggle(event?: Event) {
-    event?.preventDefault();
-    event?.stopPropagation();
-
-    this.show = !this.show;
-    this.showChanged.emit(this.show);
   }
 
   private open() {
