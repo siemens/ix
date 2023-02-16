@@ -18,8 +18,8 @@ import {
   State,
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
+import { Buttons } from '../button/button-variants';
 import { Placement } from '../dropdown/placement';
-import { Buttons } from '../utils/button-variants';
 
 @Component({
   tag: 'ix-split-button',

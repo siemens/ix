@@ -163,8 +163,13 @@
         "ix-basic-navigation",
         "ix-map-navigation"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-burger-menu"
+      ],
       "dependencyGraph": {
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
@@ -216,6 +221,9 @@
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -241,7 +249,7 @@
           "mutable": false,
           "attr": "hide-header",
           "reflectToAttr": false,
-          "docs": "Hide application header",
+          "docs": "Hide application header. Will disable responsive feature of basic navigation.",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4500,6 +4508,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -4742,11 +4753,13 @@
       "encapsulation": "none",
       "dependents": [],
       "dependencies": [
+        "ix-burger-menu",
         "ix-menu-item",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
         ]

@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Mode } from '../utils/screen/mode';
+import { screenMode } from '../utils/screen/service';
+import { Disposable } from '../utils/typed-event';
 
 @Component({
   tag: 'ix-basic-navigation',
@@ -23,12 +26,25 @@ export class BasicNavigation {
   @Prop() applicationName: string;
 
   /**
-   * Hide application header
+   * Hide application header. Will disable responsive feature of basic navigation.
    */
   @Prop() hideHeader = false;
 
+  @State() mode: Mode = 'desktop';
+
   get menu(): HTMLIxMenuElement {
     return this.hostElement.querySelector('ix-menu');
+  }
+
+  private modeDisposable: Disposable;
+
+  componentWillLoad() {
+    if (this.hideHeader === false) {
+      this.modeDisposable = screenMode.onChange.on(
+        (mode) => (this.mode = mode)
+      );
+      this.mode = screenMode.mode;
+    }
   }
 
   componentDidRender() {
@@ -37,6 +53,10 @@ export class BasicNavigation {
       this.adjustMenuHeight();
       this.menu.applicationName = this.applicationName;
     }
+  }
+
+  disconnectedCallback() {
+    this.modeDisposable?.dispose();
   }
 
   private appendMenu() {
@@ -52,8 +72,10 @@ export class BasicNavigation {
   render() {
     return (
       <Host
+        data-role=""
         class={{
           'hide-header': this.hideHeader,
+          [`mode-${this.mode}`]: true,
         }}
       >
         {!this.hideHeader ? (

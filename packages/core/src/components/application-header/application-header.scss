@@ -37,3 +37,11 @@
     color: var(--theme-app-header-logo--color);
   }
 }
+
+:host(.mode-mobile) {
+  padding-left: 0.5rem;
+
+  .logo {
+    margin-left: 0.5rem;
+  }
+}
