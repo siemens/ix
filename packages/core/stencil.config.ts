@@ -156,6 +156,9 @@ export const config: Config = {
     experimentalImportInjection: true,
     scopedSlotTextContentFix: true,
   },
+  testing: {
+    setupFilesAfterEnv: ['<rootDir>/src/utils/test/matchMedia.mock.js'],
+  },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',
   minifyCss: false,
