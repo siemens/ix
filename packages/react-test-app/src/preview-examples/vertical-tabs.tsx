@@ -13,7 +13,7 @@ import React from 'react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuItem home-tab tab-icon="home">
+      <IxMenuItem home tab-icon="home">
         Home
       </IxMenuItem>
       <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>

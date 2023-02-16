@@ -887,7 +887,20 @@ export namespace Components {
           * Second line of text
          */
         "bottom": string;
+        /**
+          * Use for translation
+         */
         "i18nLogout": string;
+        /**
+          * Display a avatar image
+          * @since 1.4.0
+         */
+        "image": string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
+         */
+        "initials": string;
         /**
           * First line of text
          */
@@ -3126,7 +3139,20 @@ declare namespace LocalJSX {
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Use for translation
+         */
         "i18nLogout"?: string;
+        /**
+          * Display a avatar image
+          * @since 1.4.0
+         */
+        "image"?: string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
+         */
+        "initials"?: string;
         /**
           * Logout click
          */
