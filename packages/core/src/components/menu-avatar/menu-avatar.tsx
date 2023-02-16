@@ -83,10 +83,6 @@ export class MenuAvatar {
   @Prop() initials: string;
 
   /**
-   * initials
-   */
-
-  /**
    * Use for translation
    */
   @Prop() i18nLogout = 'Logout';
