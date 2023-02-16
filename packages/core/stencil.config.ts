@@ -25,6 +25,20 @@ const copyAssets = [
   },
 ];
 
+try {
+  const brandTheme = require.resolve('@siemens/ix-brand-theme');
+
+  if (brandTheme) {
+    const themeFolder = path.join(brandTheme, '..', '..');
+    copyAssets.push({
+      src: themeFolder,
+      dest: 'build/ix-brand-theme',
+    });
+  }
+} catch (e) {
+  console.warn('No additional theme fround');
+}
+
 export const config: Config = {
   bundles: [
     {

@@ -40,7 +40,25 @@ export async function writeApi(component: any, folderPath: string) {
     fse.outputFile(path.join(output, 'tags.md'), writeTags(component))
   );
 
+  promises.push(
+    fse.outputFile(path.join(output, 'slots.md'), writeSlots(component.slots))
+  );
+
   return Promise.all(promises);
+}
+
+export function writeSlots(slots: { name: string; docs: string }[]) {
+  if (slots.length === 0) {
+    return 'No events available for this component.';
+  }
+
+  const tableStart = `| Name       | Description                   |\n|------------|-------------------------------|\n`;
+  const rows: string[] = [];
+  slots.forEach(({ docs, name }) => {
+    rows.push(`|${name}|${docs}`);
+  });
+
+  return tableStart.concat(rows.join('\n'));
 }
 
 function writeEvents(events) {

@@ -1568,6 +1568,27 @@ export class IxToggle {
 }
 
 
+export declare interface IxTooltip extends Components.IxTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['for', 'interactive', 'titleContent']
+})
+@Component({
+  selector: 'ix-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['for', 'interactive', 'titleContent']
+})
+export class IxTooltip {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxTreeItem extends Components.IxTreeItem {
   /**
    * Expand/Collapsed toggled 

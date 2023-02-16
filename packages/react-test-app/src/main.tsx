@@ -82,6 +82,8 @@ import ToastCustom from './preview-examples/toast-custom';
 import Toggle from './preview-examples/toggle';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
+import Tooltip from './preview-examples/tooltip';
+import TooltipTitle from './preview-examples/tooltip-title';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
 import Validation from './preview-examples/validation';
@@ -225,6 +227,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         path="/preview/map-navigation-overlay"
         element={<MapNavigationOverlay />}
       />
+      <Route path="/preview/tooltip" element={<Tooltip />} />
+      <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

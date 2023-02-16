@@ -52,6 +52,7 @@ import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
+import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -76,6 +77,8 @@ import ToastCustom from 'src/preview-examples/toast-custom';
 import Toggle from 'src/preview-examples/toggle';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
+import Tooltip from 'src/preview-examples/tooltip';
+import TooltipTitle from 'src/preview-examples/tooltip-title';
 import Tree from 'src/preview-examples/tree';
 import TreeCustom from 'src/preview-examples/tree-custom';
 import Upload from 'src/preview-examples/upload';
@@ -259,6 +262,9 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'tooltip', component: Tooltip },
+      { path: 'tooltip-title', component: TooltipTitle },
+      { path: 'modal-by-instance', component: ModalByInstance },
     ],
   },
 ];

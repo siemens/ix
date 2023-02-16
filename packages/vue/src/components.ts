@@ -581,6 +581,13 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
 ]);
 
 
+export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-tooltip', undefined, [
+  'for',
+  'titleContent',
+  'interactive'
+]);
+
+
 export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', undefined, [
   'root',
   'model',

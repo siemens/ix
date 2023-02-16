@@ -61,6 +61,10 @@ body {
   border-bottom: var(--theme-soft-bdr-1);
 }
 
+.markdown h1:first-child {
+  border-bottom: none;
+}
+
 .container {
   margin-top: 5.125rem;
   margin-left: 6.25rem;

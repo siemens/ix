@@ -251,16 +251,13 @@ export default function Playground({
   }
 
   function isFrameworkConfigured(framework: TargetFramework) {
-    if (framework === TargetFramework.PREVIEW) {
-      return true;
+    if (availableFrameworks) {
+      return (
+        availableFrameworks.length === 0 ||
+        availableFrameworks.includes(framework)
+      );
     }
-    if (!availableFrameworks) {
-      return true;
-    }
-    return (
-      availableFrameworks.length === 0 ||
-      availableFrameworks.includes(framework)
-    );
+    return Object.keys(frameworks).some((key) => key === framework);
   }
 
   return (
@@ -275,43 +272,42 @@ export default function Playground({
               >
                 Preview
               </IxTabItem>
-            </IxTabs>
-            {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.ANGULAR}
-                onClick={() => changeFramework(TargetFramework.ANGULAR)}
-              >
-                Angular
-              </IxTabItem>
-            ) : null}
+              {isFrameworkConfigured(TargetFramework.ANGULAR) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.ANGULAR}
+                  onClick={() => changeFramework(TargetFramework.ANGULAR)}
+                >
+                  Angular
+                </IxTabItem>
+              ) : null}
 
-            {isFrameworkConfigured(TargetFramework.REACT) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.REACT}
-                onClick={() => changeFramework(TargetFramework.REACT)}
-              >
-                React
-              </IxTabItem>
-            ) : null}
+              {isFrameworkConfigured(TargetFramework.REACT) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.REACT}
+                  onClick={() => changeFramework(TargetFramework.REACT)}
+                >
+                  React
+                </IxTabItem>
+              ) : null}
 
-            {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.JAVASCRIPT}
-                onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
-              >
-                JavaScript
-              </IxTabItem>
-            ) : null}
+              {isFrameworkConfigured(TargetFramework.JAVASCRIPT) ? (
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.JAVASCRIPT}
+                  onClick={() => changeFramework(TargetFramework.JAVASCRIPT)}
+                >
+                  JavaScript
+                </IxTabItem>
+              ) : null}
 
-            {isFrameworkConfigured(TargetFramework.VUE) ? (
-              <IxButton
-                className="Playground__Framework__Button"
-                ghost={targetFramework !== TargetFramework.VUE}
+              {isFrameworkConfigured(TargetFramework.VUE) ? (
+              <IxTabItem
+                selected={targetFramework === TargetFramework.VUE}
                 onClick={() => changeFramework(TargetFramework.VUE)}
               >
                 Vue
-              </IxButton>
+              </IxTabItem>
             ) : null}
+            </IxTabs>
 
             <div className="Playground__Toolbar__Actions">
               {targetFramework !== TargetFramework.PREVIEW ? (
