@@ -118,9 +118,11 @@ export class Dropdown {
 
   private dropdownRef: HTMLElement;
 
+  private toggleBind: any;
   private openBind: any;
 
   constructor() {
+    this.toggleBind = this.toggle.bind(this);
     this.openBind = this.open.bind(this);
   }
 
@@ -131,7 +133,11 @@ export class Dropdown {
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        this.triggerElement.addEventListener('click', this.openBind);
+        if (this.closeBehavior === 'outside') {
+          this.triggerElement.addEventListener('click', this.openBind);
+        } else {
+          this.triggerElement.addEventListener('click', this.toggleBind);
+        }
         break;
 
       case 'hover':
@@ -150,7 +156,11 @@ export class Dropdown {
   ) {
     switch (triggerEvent) {
       case 'click':
-        triggerElement.removeEventListener(triggerEvent, this.openBind);
+        if (this.closeBehavior === 'outside') {
+          triggerElement.removeEventListener('click', this.openBind);
+        } else {
+          triggerElement.removeEventListener('click', this.toggleBind);
+        }
         break;
 
       case 'hover':
@@ -257,27 +267,41 @@ export class Dropdown {
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
 
       case 'inside':
         if (this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
 
       default:
-        this.close();
+        this.close(event);
     }
   }
 
-  private open() {
+  private toggle(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.show = !this.show;
+    this.showChanged.emit(this.show);
+  }
+
+  private open(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
     this.show = true;
     this.showChanged.emit(true);
   }
 
-  private close() {
+  private close(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
     this.show = false;
     this.showChanged.emit(false);
   }
