@@ -23,7 +23,7 @@ regressionTest.describe('menu-avatar', () => {
 
   regressionTest('image', async ({ page }) => {
     await page.goto('menu-avatar/test/image');
-    await page.locator('.burger-menu-button').click();
+    await page.locator('ix-burger-menu').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
     await page.waitForSelector('ix-dropdown.show');
@@ -33,7 +33,7 @@ regressionTest.describe('menu-avatar', () => {
 
   regressionTest('initials', async ({ page }) => {
     await page.goto('menu-avatar/test/initials');
-    await page.locator('.burger-menu-button').click();
+    await page.locator('ix-burger-menu').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
     await page.waitForSelector('ix-dropdown.show');

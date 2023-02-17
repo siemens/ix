@@ -13,6 +13,7 @@ import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement } from "./components/dropdown/placement";
+import { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -385,6 +386,8 @@ export namespace Components {
          */
         "to": string | null;
     }
+    interface IxDivider {
+    }
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
@@ -460,9 +463,13 @@ export namespace Components {
          */
         "show": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger": string | HTMLElement;
+        /**
+          * Define one or more events to open dropdown
+         */
+        "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
           * Update position of dropdown
          */
@@ -523,6 +530,8 @@ export namespace Components {
           * Label of dropdown item
          */
         "label": string;
+    }
+    interface IxDropdownQuickActions {
     }
     interface IxEventList {
         /**
@@ -1791,6 +1800,12 @@ declare global {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
     };
+    interface HTMLIxDividerElement extends Components.IxDivider, HTMLStencilElement {
+    }
+    var HTMLIxDividerElement: {
+        prototype: HTMLIxDividerElement;
+        new (): HTMLIxDividerElement;
+    };
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
     }
     var HTMLIxDrawerElement: {
@@ -1814,6 +1829,12 @@ declare global {
     var HTMLIxDropdownItemElement: {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
+    };
+    interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
+    }
+    var HTMLIxDropdownQuickActionsElement: {
+        prototype: HTMLIxDropdownQuickActionsElement;
+        new (): HTMLIxDropdownQuickActionsElement;
     };
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
@@ -2137,10 +2158,12 @@ declare global {
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
+        "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
+        "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
@@ -2621,6 +2644,8 @@ declare namespace LocalJSX {
          */
         "to"?: string | null;
     }
+    interface IxDivider {
+    }
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
@@ -2703,9 +2728,13 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement;
+        /**
+          * Define one or more events to open dropdown
+         */
+        "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
     interface IxDropdownButton {
         /**
@@ -2762,6 +2791,8 @@ declare namespace LocalJSX {
           * Click on item
          */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
+    }
+    interface IxDropdownQuickActions {
     }
     interface IxEventList {
         /**
@@ -3887,10 +3918,12 @@ declare namespace LocalJSX {
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
+        "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
         "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
+        "ix-dropdown-quick-actions": IxDropdownQuickActions;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
@@ -3963,10 +3996,12 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;

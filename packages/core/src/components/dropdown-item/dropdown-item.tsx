@@ -84,6 +84,7 @@ export class DropdownItem {
           {this.checked ? (
             <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
           ) : null}
+
           {this.icon ? (
             <span
               class={{
@@ -92,6 +93,7 @@ export class DropdownItem {
               }}
             ></span>
           ) : null}
+
           {this.label ? <span class="label">{this.label}</span> : null}
           <slot></slot>
         </button>

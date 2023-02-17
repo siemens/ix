@@ -37,4 +37,15 @@ regressionTest.describe('dropdown', () => {
       maxDiffPixelRatio: 0.02,
     });
   });
+
+  regressionTest('tigger events', async ({ page }) => {
+    await page.goto('dropdown/test/trigger-events');
+
+    await page.locator('input').focus();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.05,
+    });
+  });
 });

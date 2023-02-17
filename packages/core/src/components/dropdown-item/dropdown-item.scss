@@ -18,6 +18,10 @@
   &.icon-only {
     min-width: 0;
 
+    .dropdown-item > .glyph {
+      margin-inline-end: 0;
+    }
+
     .dropdown-item {
       padding: $tiny-space $small-space;
 
@@ -39,4 +43,8 @@
   .label {
     @include ellipsis;
   }
+}
+
+::slotted(ix-icon) {
+  margin-inline-start: auto;
 }
