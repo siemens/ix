@@ -145,6 +145,10 @@
   > .glyph {
     color: var(--theme-menu-item-icon--color);
 
+    &.disabled {
+      color: var(--color-weak-text);
+    }
+
     &.glyph-single-check {
       color: var(--theme-menu-item-icon-check--color);
     }

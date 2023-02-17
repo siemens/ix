@@ -71,6 +71,7 @@ export class DropdownItem {
           checked: this.checked,
           'icon-text': this.label !== undefined && this.icon !== undefined,
           'icon-only': this.label === undefined && this.icon !== undefined,
+          disabled: this.disabled,
         }}
       >
         <button
@@ -89,6 +90,7 @@ export class DropdownItem {
               class={{
                 glyph: true,
                 [`glyph-${this.icon}`]: true,
+                disabled: this.disabled,
               }}
             ></span>
           ) : null}
