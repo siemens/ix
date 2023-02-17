@@ -2059,6 +2059,34 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/divider",
+      "filePath": "./src/components/divider/divider.tsx",
+      "fileName": "divider.tsx",
+      "readmePath": "./src/components/divider/readme.md",
+      "usagesDir": "./src/components/divider/usage",
+      "tag": "ix-divider",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/drawer",
       "filePath": "./src/components/drawer/drawer.tsx",
       "fileName": "drawer.tsx",
@@ -2512,7 +2540,7 @@
           "mutable": false,
           "attr": "trigger",
           "reflectToAttr": false,
-          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interprated as id attribute or a DOM element.",
+          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interpreted as id attribute or a DOM element.",
           "docsTags": [],
           "values": [
             {
@@ -2885,6 +2913,34 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/dropdown-quick-actions",
+      "filePath": "./src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
+      "fileName": "dropdown-quick-actions.tsx",
+      "readmePath": "./src/components/dropdown-quick-actions/readme.md",
+      "usagesDir": "./src/components/dropdown-quick-actions/usage",
+      "tag": "ix-dropdown-quick-actions",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],

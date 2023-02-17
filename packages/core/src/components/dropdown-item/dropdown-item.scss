@@ -18,6 +18,10 @@
   &.icon-only {
     min-width: 0;
 
+    .dropdown-item > .glyph {
+      margin-inline-end: 0;
+    }
+
     .dropdown-item {
       padding: $tiny-space $small-space;
 
@@ -43,4 +47,8 @@
   &.disabled {
     pointer-events: none;
   }
+}
+
+::slotted(ix-icon) {
+  margin-inline-start: auto;
 }

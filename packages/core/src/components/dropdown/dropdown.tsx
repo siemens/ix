@@ -29,6 +29,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { getAlignment } from './alignment';
+import { DropdownTriggerEvent } from './dropdown-trigger-event';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
 
 @Component({
@@ -46,7 +47,7 @@ export class Dropdown {
 
   /**
    * Define an element that triggers the dropdown.
-   * A trigger can either be a string that will be interprated as id attribute or a DOM element.
+   * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
   @Prop() trigger: string | HTMLElement;
 
@@ -100,6 +101,12 @@ export class Dropdown {
   };
 
   /**
+   * Define one or more events to open dropdown
+   * @internal
+   */
+  @Prop() triggerEvent: DropdownTriggerEvent | DropdownTriggerEvent[] = 'click';
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged: EventEmitter<boolean>;
@@ -111,9 +118,11 @@ export class Dropdown {
 
   private dropdownRef: HTMLElement;
 
+  private toggleBind: any;
   private openBind: any;
 
   constructor() {
+    this.toggleBind = this.toggle.bind(this);
     this.openBind = this.open.bind(this);
   }
 
@@ -121,16 +130,71 @@ export class Dropdown {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
+  private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
+    switch (triggerEvent) {
+      case 'click':
+        if (this.closeBehavior === 'outside') {
+          this.triggerElement.addEventListener('click', this.openBind);
+        } else {
+          this.triggerElement.addEventListener('click', this.toggleBind);
+        }
+        break;
+
+      case 'hover':
+        this.triggerElement.addEventListener('mouseenter', this.openBind);
+        break;
+
+      case 'focus':
+        this.triggerElement.addEventListener('focusin', this.openBind);
+        break;
+    }
+  }
+
+  private removeEventListenersFor(
+    triggerEvent: DropdownTriggerEvent,
+    triggerElement: Element
+  ) {
+    switch (triggerEvent) {
+      case 'click':
+        if (this.closeBehavior === 'outside') {
+          triggerElement.removeEventListener('click', this.openBind);
+        } else {
+          triggerElement.removeEventListener('click', this.toggleBind);
+        }
+        break;
+
+      case 'hover':
+        triggerElement.removeEventListener('mouseenter', this.openBind);
+        break;
+
+      case 'focus':
+        triggerElement.removeEventListener('focusin', this.openBind);
+        break;
+    }
+  }
+
   private async registerListener(element: string | HTMLElement) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
-      this.triggerElement.addEventListener('click', this.openBind);
+      if (Array.isArray(this.triggerEvent)) {
+        this.triggerEvent.forEach((triggerEvent) => {
+          this.addEventListenersFor(triggerEvent);
+        });
+      } else {
+        this.addEventListenersFor(this.triggerEvent);
+      }
     }
   }
 
   private async unregisterListener(element: string | HTMLElement) {
     const trigger = await this.resolveElement(element);
-    trigger.removeEventListener('click', this.openBind);
+    if (Array.isArray(this.triggerEvent)) {
+      this.triggerEvent.forEach((triggerEvent) => {
+        this.removeEventListenersFor(triggerEvent, trigger);
+      });
+    } else {
+      this.removeEventListenersFor(this.triggerEvent, trigger);
+    }
   }
 
   private resolveElement(element: string | HTMLElement): Promise<Element> {
@@ -203,22 +267,22 @@ export class Dropdown {
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
 
       case 'inside':
         if (this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
 
       default:
-        this.close();
+        this.close(event);
     }
   }
 
-  private open(event?: Event) {
+  private toggle(event?: Event) {
     event?.preventDefault();
     event?.stopPropagation();
 
@@ -226,9 +290,20 @@ export class Dropdown {
     this.showChanged.emit(this.show);
   }
 
-  private close() {
+  private open(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    this.show = true;
+    this.showChanged.emit(true);
+  }
+
+  private close(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
     this.show = false;
-    this.showChanged.emit(this.show);
+    this.showChanged.emit(false);
   }
 
   private async applyDropdownPosition() {
@@ -330,6 +405,7 @@ export class Dropdown {
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
+
           <slot></slot>
         </div>
       </Host>
