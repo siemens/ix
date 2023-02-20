@@ -19,8 +19,6 @@ export class GroupContextMenu {
 
   @State() showContextMenu = false;
 
-  private observer!: MutationObserver;
-
   get dropdownElement() {
     return this.host.querySelector('ix-dropdown');
   }
@@ -36,10 +34,6 @@ export class GroupContextMenu {
 
   componentWillRender() {
     this.showContextMenu = !!this.dropdownElement;
-  }
-
-  disconnectedCallback() {
-    this.observer.disconnect();
   }
 
   render() {
