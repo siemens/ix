@@ -34,7 +34,7 @@
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll --no-cache",
     "test:coverage": "stencil test --spec --coverage",
-    "test:e2e": "playwright test --reporter html",
+    "test:e2e": "playwright test basic-navigation --reporter html --update-snapshots",
     "test:e2e:list": "playwright test --reporter list",
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
