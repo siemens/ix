@@ -50,7 +50,7 @@ regressionTest.describe('dropdown', () => {
   });
 
   regressionTest('disabled', async ({ page }) => {
-    await page.goto('dropdown/test/disabled');
+    await page.goto('dropdown/disabled');
 
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
