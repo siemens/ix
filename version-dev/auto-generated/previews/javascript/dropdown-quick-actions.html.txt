@@ -1,0 +1,15 @@
+<ix-button id="iconTriggerId">Open</ix-button>
+
+<ix-dropdown trigger="iconTriggerId">
+  <ix-dropdown-quick-actions>
+    <ix-icon-button icon="cut" ghost></ix-icon-button>
+    <ix-icon-button icon="bulb" outline></ix-icon-button>
+    <ix-icon-button icon="trashcan"></ix-icon-button>
+  </ix-dropdown-quick-actions>
+
+  <ix-divider></ix-divider>
+
+  <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+  <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+  <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+</ix-dropdown>

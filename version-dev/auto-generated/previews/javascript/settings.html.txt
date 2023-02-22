@@ -1,5 +1,5 @@
 <ix-basic-navigation>
-  <div class="placeholder-logo" slot="logo"></div>
+  <placeholder-logo slot="logo"></placeholder-logo>
   <ix-menu>
     <ix-menu-settings>
       <ix-menu-settings-item

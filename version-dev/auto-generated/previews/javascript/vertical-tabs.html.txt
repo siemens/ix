@@ -1,5 +1,5 @@
 <ix-menu>
-  <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
+  <ix-menu-item home tab-icon="home"> Home </ix-menu-item>
   <ix-menu-item tab-icon="globe"> Normal Tab </ix-menu-item>
   <ix-menu-item tab-icon="star" disabled> Disabled tab </ix-menu-item>
   <ix-menu-item tab-icon="star"> With other icon </ix-menu-item>
