@@ -4,8 +4,8 @@ import Props from './../auto-generated/ix-dropdown/props.md';
 import Events from './../auto-generated/ix-dropdown/events.md';
 import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags.md';
 
-import ItemProps from './../auto-generated/ix-dropdown/props.md';
-import ItemEvents from './../auto-generated/ix-dropdown/events.md';
+import ItemProps from './../auto-generated/ix-dropdown-item/props.md';
+import ItemEvents from './../auto-generated/ix-dropdown-item/events.md';
 
 import SourceDropdown from './../auto-generated/previews/web-component/dropdown.md'
 import SourceDropdownIcon from './../auto-generated/previews/web-component/dropdown-icon.md'
