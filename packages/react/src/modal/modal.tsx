@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
