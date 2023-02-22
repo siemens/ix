@@ -20,6 +20,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
       `http://127.0.0.1:8080/src/tests/${url}?theme=${theme}`,
       options
     );
+
     // Inital timeout for webKit to render Web Components
     await page.waitForTimeout(1000);
     return response;
