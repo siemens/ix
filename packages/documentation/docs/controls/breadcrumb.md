@@ -23,10 +23,11 @@ Breadcrumb navigation is a UI control that allows users to track their location 
 
 <!-- What is offered by the iX component?  -->
 
-<!-- Add here illustration breadcrumb overview -->
+<!-- Add here illustration/ example breadcrumb overview -->
 
 Go to:
-- [Code](#code)
+- [Variants](#variants)
+- [Behavior in context](#behavior-in-context)
 - [States](#states)
 - [Dos and don't](#dos-and-don't)
 
@@ -80,77 +81,50 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties (ix-breadcrumb)
-
-### Props
-
-<Props />
-
-### Events
-
-<Events />
-
-## Properties (ix-breadcrumb-item)
-
-### Props
-
-<ItemProps />
 
 ## Variants
 
-<!-- add illustration -->
-
 ### Emphasis 
 
-Breadcrumbs are available as ghost variant and with solid background. The ghost variant is the default variant as its visual design is lighter and poses less perceptual strain on the user. There are no differences in the behavior of both variants.
+In order to vary the visual emphasis of a breadcrumbs control, a ghost variant (default) and a solid variant are available. Both variants differ in font color and fill color but not in their interaction patterns.
 
-<!-- add illustration -->
+### Item position
 
-### Interaction options/ simple vs. advanced
-
-siblings available vs. simple breadcrumb? Last item vs. first item?
-
-<!-- add illustration -->
-<!-- what is the leading difference for item look: no siblings or position in the path? -->
+Breadcrumb items vary depending on their position in the path. Items with child elements include a chevron icon pointing right after the item label and offer hover and active states. Pressing the item triggers a flyout listing all child elements. The last item of the path doesn't support user interaction.
 
 ### Content
 
 Breadcrumb items can, but don't have to, include an icon. The icon is positioned before the breadcrumb label. Icons can be included for each item or only for specific items (e.g. the root item).
 
-### Item position
-
-<!-- content depends on interaction option variant -->
-
 ## Behavior in context
 
 ### Population
 
-The breadcrum is populated by adding items according to the (path of the user / the hierachy of the application and the position withing this hierarchy ?)
+The breadcrumb is populated by adding items according to the (path of the user / the hierachy of the application and the position withing this hierarchy ?)
 
 <!-- which one is it? -->
 
 ### Overflow 
 
-The breadcrumbs control is set to display a limited number of items (default: 9 items). If the number of items exceeds the defined limit, excessive items at the beginning of the path are hidden within a dropdown menu. The dropdown menu is triggered by pressing the respective item. The truncation is visualized with a ellipsis.
+The breadcrumb control is set to display a limited number of items (default: 9 items). If the number of items exceeds the defined limit, excessive items are hidden within a dropdown menu at the beginning of the path. The dropdown menu is triggered by pressing the respective item. The truncation is visualized with a ellipsis.
 
 The overflow behaviour can also be triggered if the available space does not allow the complete display of the breadcrumb in one line.
 
-<!-- add illustration -->
 <!-- Open question: ellipsis is text or icon?  -->
 
-Overflow is also applied to individual breadcrumb items. The label name is truncated with an ellipsis if the maximum width of the breadcrumb item is exceeded.
+Truncation is applied to individual breadcrumb items if the maximum width of the breadcrumb item is exceeded. The label name is truncated with an ellipsis.
 
-<!-- add illustration -->
+<!-- add example overflow & truncation-->
 <!-- Open question: How is the limit defined for the labels? -->
 
 ### Lazy loading
 
-<!-- add illustration -->
+<!-- add example -->
 <!-- Open question: How is it done? -->
 
 ### Placement
 
-Breadcrumbs are placed at the top left side of the page/ content area. They are position below the header and above the page title.
+Breadcrumbs are placed at the top left side of the page/ content area. They are positioned below the header and above the page title.
 
 ## States
 
@@ -166,11 +140,12 @@ Breadcrumbs are placed at the top left side of the page/ content area. They are 
 
 | State   | Description                                                                 |
 | --------| --------------------------------------------------------------------------- |
-| Hover   | The hover state is indicated by a font-weight to Bold.                      |
+| Hover   | The hover state is indicated by ...                      |
 | Active  | Not available.                                                              |
 | Focused | The focused state is indicated by a focus frame.                            |
 
 <!-- focused state on last item/ no siblings available? -->
+<!-- hover state last item: bold in light theme, white in dark theme? -->
 
 ## Anatomy
 
@@ -178,11 +153,9 @@ Breadcrumbs are placed at the top left side of the page/ content area. They are 
 
 The breadcrumb consists of at least one item. Each item contains a breadcrumb label. All but the last item in the breadcrumb path are followed by a chevron icon. 
 
-<!-- add illustration -->
-
 ### Sizing
 
-- The breadcrumb has a fix height defined by breadcrumb item height
+- The breadcrumb has a fix height defined by breadcrumb item height.
 - The breadcrumb item has a fixed height for single-line text entries.
 - The breadcrumb item has a minimum width of ... and maximum width of .... Between these limits, the item width is depending on the content.
 
