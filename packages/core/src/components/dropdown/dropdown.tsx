@@ -258,8 +258,8 @@ export class Dropdown {
     if (
       this.show === false ||
       this.closeBehavior === false ||
-      this.anchorElement === target ||
-      this.triggerElement === target
+      this.anchorElement?.contains(target) ||
+      this.triggerElement?.contains(target)
     ) {
       return;
     }
@@ -267,24 +267,23 @@ export class Dropdown {
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close(event);
+          this.close();
         }
         break;
 
       case 'inside':
         if (this.dropdownRef.contains(target)) {
-          this.close(event);
+          this.close();
         }
         break;
 
       default:
-        this.close(event);
+        this.close();
     }
   }
 
   private toggle(event?: Event) {
     event?.preventDefault();
-    event?.stopPropagation();
 
     this.show = !this.show;
     this.showChanged.emit(this.show);
@@ -292,15 +291,15 @@ export class Dropdown {
 
   private open(event?: Event) {
     event?.preventDefault();
-    event?.stopPropagation();
 
     this.show = true;
     this.showChanged.emit(true);
   }
 
   private close(event?: Event) {
-    event?.preventDefault();
-    event?.stopPropagation();
+    if (event?.defaultPrevented) {
+      return;
+    }
 
     this.show = false;
     this.showChanged.emit(false);
