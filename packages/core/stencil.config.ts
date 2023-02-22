@@ -157,7 +157,7 @@ export const config: Config = {
     scopedSlotTextContentFix: true,
   },
   testing: {
-    setupFilesAfterEnv: ['<rootDir>/src/utils/test/matchMedia.mock.js'],
+    setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',
