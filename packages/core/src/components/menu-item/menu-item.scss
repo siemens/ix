@@ -130,6 +130,7 @@
 
     .tab::before {
       height: $bottom-height;
+      background-color: transparent;
     }
 
     &.active,
