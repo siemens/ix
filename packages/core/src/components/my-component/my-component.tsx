@@ -15,6 +15,23 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-basic-navigation>
+          <ix-menu>
+            <ix-menu-avatar top="top line" bottom="bottom line">
+              <ix-menu-avatar-item label="Option 1"></ix-menu-avatar-item>
+            </ix-menu-avatar>
+            <ix-menu-item active notifications={12}>
+              Test
+            </ix-menu-item>
+            <ix-menu-settings>
+              <ix-menu-settings-item label="Test">123</ix-menu-settings-item>
+            </ix-menu-settings>
+            <ix-menu-item slot="bottom">xxx</ix-menu-item>
+          </ix-menu>
+        </ix-basic-navigation>
+      </Host>
+    );
   }
 }
