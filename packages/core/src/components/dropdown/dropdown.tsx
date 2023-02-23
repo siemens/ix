@@ -107,6 +107,14 @@ export class Dropdown {
   @Prop() triggerEvent: DropdownTriggerEvent | DropdownTriggerEvent[] = 'click';
 
   /**
+   * @internal
+   */
+  @Prop() dropdownStyleDelegate: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged: EventEmitter<boolean>;
@@ -354,6 +362,14 @@ export class Dropdown {
               computeResponse.x
             )}px,${Math.round(computeResponse.y)}px)`,
           });
+          if (this.dropdownStyleDelegate) {
+            const overwriteStyle = await this.dropdownStyleDelegate({
+              dropdownRef: this.dropdownRef,
+              triggerRef: this.triggerElement as HTMLElement,
+            });
+
+            Object.assign(this.dropdownRef.style, overwriteStyle);
+          }
         },
         {
           ancestorResize: true,

@@ -10,8 +10,18 @@
 @import 'common-variables';
 
 :host {
-  display: flex;
+  display: block;
   position: relative;
   width: 100vw;
   height: 100vh;
+
+  .test {
+    background-color: #ff00004a;
+    display: block;
+    position: absolute;
+    width: 40rem;
+    height: 10rem;
+    overflow: hidden;
+    bottom: 0;
+  }
 }

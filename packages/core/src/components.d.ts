@@ -438,6 +438,10 @@ export namespace Components {
           * Close behavior
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        "dropdownStyleDelegate": (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -2699,6 +2703,10 @@ declare namespace LocalJSX {
           * Close behavior
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        "dropdownStyleDelegate"?: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * An optional header shown at the top of the dropdown
          */

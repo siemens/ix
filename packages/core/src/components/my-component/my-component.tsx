@@ -15,6 +15,15 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-blind class={'test'}>
+          <ix-select selectedIndices={'2'} mode="multiple">
+            <ix-select-item value={'1'} label={'Test'}></ix-select-item>
+            <ix-select-item value={'2'} label={'Test 2'}></ix-select-item>
+          </ix-select>
+        </ix-blind>
+      </Host>
+    );
   }
 }
