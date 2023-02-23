@@ -43,6 +43,10 @@
   .label {
     @include ellipsis;
   }
+
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 ::slotted(ix-icon) {
