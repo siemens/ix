@@ -280,9 +280,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind"
+        ]
+      },
       "props": [
         {
           "name": "collapsed",
@@ -6696,7 +6702,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6725,6 +6733,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-select"
         ]
       },
       "props": [
@@ -6946,7 +6957,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -6959,6 +6971,9 @@
           "ix-icon"
         ],
         "ix-select": [
+          "ix-select-item"
+        ],
+        "my-component": [
           "ix-select-item"
         ]
       },
@@ -9510,8 +9525,38 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-blind",
+        "ix-select",
+        "ix-select-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind",
+          "ix-select",
+          "ix-select-item"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

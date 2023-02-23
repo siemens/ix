@@ -8,10 +8,10 @@
  */
 
 import {
-  autoPlacement,
   autoUpdate,
   computePosition,
   ComputePositionConfig,
+  flip,
   inline,
   offset,
   shift,
@@ -28,7 +28,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { getAlignment } from './alignment';
 import { DropdownTriggerEvent } from './dropdown-trigger-event';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
 
@@ -321,11 +320,7 @@ export class Dropdown {
       };
 
       if (this.placement.includes('auto')) {
-        positionConfig.middleware.push(
-          autoPlacement({
-            alignment: getAlignment(this.placement),
-          })
-        );
+        positionConfig.middleware.push(flip());
       } else {
         positionConfig.placement = this.placement as
           | BasePlacement
