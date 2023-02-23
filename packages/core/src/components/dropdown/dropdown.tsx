@@ -270,12 +270,13 @@ export class Dropdown {
           this.close();
         }
         break;
-
       case 'inside':
-        if (this.dropdownRef.contains(target)) {
+        if (this.dropdownRef.contains(target) && this.hostElement !== target) {
           this.close();
         }
         break;
+      case 'both':
+        if (this.hostElement !== target) this.close();
 
       default:
         this.close();
