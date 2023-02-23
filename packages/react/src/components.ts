@@ -57,6 +57,7 @@ export const IxMessageBar = /*@__PURE__*/createReactComponent<JSX.IxMessageBar, 
 export const IxModal = /*@__PURE__*/createReactComponent<JSX.IxModal, HTMLIxModalElement>('ix-modal');
 export const IxModalContainer = /*@__PURE__*/createReactComponent<JSX.IxModalContainer, HTMLIxModalContainerElement>('ix-modal-container');
 export const IxModalExample = /*@__PURE__*/createReactComponent<JSX.IxModalExample, HTMLIxModalExampleElement>('ix-modal-example');
+export const IxPagination = /*@__PURE__*/createReactComponent<JSX.IxPagination, HTMLIxPaginationElement>('ix-pagination');
 export const IxPill = /*@__PURE__*/createReactComponent<JSX.IxPill, HTMLIxPillElement>('ix-pill');
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select');
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item');

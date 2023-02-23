@@ -1274,6 +1274,38 @@ export class IxModalExample {
 }
 
 
+export declare interface IxPagination extends Components.IxPagination {
+  /**
+   * Page selection event 
+   */
+  pageSelected: EventEmitter<CustomEvent<number>>;
+  /**
+   * Item count change event 
+   */
+  itemCountChanged: EventEmitter<CustomEvent<number>>;
+
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
+})
+@Component({
+  selector: 'ix-pagination',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
+})
+export class IxPagination {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pageSelected', 'itemCountChanged']);
+  }
+}
+
+
 export declare interface IxPill extends Components.IxPill {}
 
 @ProxyCmp({
