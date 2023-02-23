@@ -30,8 +30,8 @@ frameworks={{
 name="spinner-large" height="16rem"
 hideInitalCodePreview
 frameworks={{
-  react: SourceAngularSpinnerLarge,
-  angular: SourceReactSpinnerLarge,
+  react: SourceReactSpinnerLarge,
+  angular: SourceAngularSpinnerLarge,
   javascript: SourceSpinnerLarge
 }}></Playground>
 
