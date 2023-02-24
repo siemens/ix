@@ -438,10 +438,6 @@ export namespace Components {
           * Close behavior
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
-        "dropdownStyleDelegate": (delegate: {
-    dropdownRef: HTMLElement;
-    triggerRef?: HTMLElement;
-  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -454,6 +450,10 @@ export namespace Components {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "overwriteDropdownStyle": (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */
@@ -2703,10 +2703,6 @@ declare namespace LocalJSX {
           * Close behavior
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
-        "dropdownStyleDelegate"?: (delegate: {
-    dropdownRef: HTMLElement;
-    triggerRef?: HTMLElement;
-  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -2723,6 +2719,10 @@ declare namespace LocalJSX {
           * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
+        "overwriteDropdownStyle"?: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */
