@@ -108,7 +108,7 @@ export class Dropdown {
   /**
    * @internal
    */
-  @Prop() dropdownStyleDelegate: (delegate: {
+  @Prop() overwriteDropdownStyle: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
   }) => Promise<Partial<CSSStyleDeclaration>>;
@@ -357,8 +357,8 @@ export class Dropdown {
               computeResponse.x
             )}px,${Math.round(computeResponse.y)}px)`,
           });
-          if (this.dropdownStyleDelegate) {
-            const overwriteStyle = await this.dropdownStyleDelegate({
+          if (this.overwriteDropdownStyle) {
+            const overwriteStyle = await this.overwriteDropdownStyle({
               dropdownRef: this.dropdownRef,
               triggerRef: this.triggerElement as HTMLElement,
             });

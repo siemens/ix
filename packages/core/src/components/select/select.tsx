@@ -439,7 +439,7 @@ export class Select {
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="auto-start"
-          dropdownStyleDelegate={async (delegateConfig) => {
+          overwriteDropdownStyle={async (delegateConfig) => {
             return {
               width: `${delegateConfig.triggerRef.clientWidth}px`,
             };
