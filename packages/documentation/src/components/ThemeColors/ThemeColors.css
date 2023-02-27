@@ -24,8 +24,6 @@
 }
 
 .Theme__Colors .Section .Color__Name {
-  width: auto;
-  min-width: 15rem;
   margin-right: 1rem;
   overflow: hidden;
   white-space: nowrap;

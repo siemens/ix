@@ -93,7 +93,7 @@ function ThemeColors() {
                 oval
                 onClick={() => copyToClipboard(color)}
               />
-              <div className="col Color__Name">{color}</div>
+              <div className="col-7 Color__Name">{color}</div>
               <div className="col">{colorValue}</div>
             </div>
           );
