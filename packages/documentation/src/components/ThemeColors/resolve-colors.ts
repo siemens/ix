@@ -126,6 +126,9 @@ export const themeColors = [
 ];
 
 export const resolveColorValue = (name: string) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const computedStyle = getComputedStyle(document.body);
   return computedStyle.getPropertyValue(name);
 };
