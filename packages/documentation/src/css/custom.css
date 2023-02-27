@@ -272,6 +272,7 @@ a.menu__link {
 /**
 * MENU
 **/
+
 .theme-doc-sidebar-item-category {
   padding: 4px 0px;
 }
@@ -281,13 +282,6 @@ a.menu__link {
   border-left: none;
   border-right: none;
   border-bottom: none;
-}
-
-.theme-doc-sidebar-item-category:not(.menu__list-item--collapsed)
-  > .menu__list-item-collapsible {
-  background-color: var(--theme-color-component-1);
-  border-radius: 0px;
-  border-left: 0.25rem solid var(--theme-color-primary);
 }
 
 .theme-doc-sidebar-item-link > .menu__link--active {
