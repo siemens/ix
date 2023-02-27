@@ -8,6 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
+import { Buttons } from '../button/button-variants';
 
 /**
  * @internal
@@ -19,11 +20,14 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class IxIndexButton {
   /**
-   *
+   * Button variant
+   */
+  @Prop() variant: Buttons = 'Primary';
+
+  /**
+   * Selection state
    */
   @Prop() selected: boolean;
-
-  // @Event() selected: new EventEmitter<boolean>();
 
   render() {
     return (
@@ -31,10 +35,10 @@ export class IxIndexButton {
         <button
           class={{
             btn: true,
-            'btn-invisible-primary': true,
+            'btn-invisible-primary': this.variant === 'Primary',
+            'btn-invisible-secondary': this.variant === 'Secondary',
             selected: this.selected,
           }}
-          // (click)={}
         >
           <slot></slot>
         </button>

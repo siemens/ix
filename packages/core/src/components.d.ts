@@ -740,7 +740,14 @@ export namespace Components {
         "variant": 'Primary' | 'Secondary';
     }
     interface IxIndexButton {
+        /**
+          * Selection state
+         */
         "selected": boolean;
+        /**
+          * Button variant
+         */
+        "variant": Buttons;
     }
     interface IxInputGroup {
     }

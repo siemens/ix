@@ -17,14 +17,18 @@
     align-items: center;
   }
 
+  .basic-pagination {
+    padding: 0 0.125rem;
+  }
+
   .advanced-pagination {
-    padding: 0 $small-space;
+    padding: 0 $medium-space;
   }
 
   input {
     width: 4.125rem;
     text-align: center;
-    margin: 0 $small-space;
+    margin: 0 $tiny-space;
   }
 
   .page-buttons {
@@ -47,6 +51,6 @@
   }
 
   ix-index-button + ix-index-button {
-    margin-inline-start: $tiny-space;
+    margin-inline-start: 0.125rem;
   }
 }
