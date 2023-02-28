@@ -429,9 +429,6 @@ export class Select {
         <ix-dropdown
           ref={(ref) => (this.dropdownRef = ref)}
           show={this.dropdownShow}
-          style={{
-            width: '100%',
-          }}
           class={{
             'd-none':
               this.disabled ||
@@ -441,8 +438,12 @@ export class Select {
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
-          placement="bottom-start"
-          positioningStrategy={'absolute'}
+          placement="auto-start"
+          overwriteDropdownStyle={async (delegateConfig) => {
+            return {
+              width: `${delegateConfig.triggerRef.clientWidth}px`,
+            };
+          }}
         >
           <div class="select-list-header" title={this.i18nSelectListHeader}>
             {this.i18nSelectListHeader}
