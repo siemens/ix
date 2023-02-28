@@ -1,5 +1,5 @@
 
-Breadcrumb navigation is a UI control that allows users to track their location within a website or application and easily navigate to previous or child pages.
+Breadcrumb navigation is a UI control that allows users to track their location within an application and easily navigate to previous or child pages.
 
 
 ![Breadcrumb overview](/img/pattern_illustrations/breadcrumb_overview.png)
@@ -16,11 +16,11 @@ Breadcrumbs make the structure of your appliction transparent to the user. They 
 
 ### When to use
 
-Use breadcrumb navigation when your website or application has a deep hierarchy of pages or content. This can help users understand where they are within the application, and make it easier for them to navigate back to previous pages.
+Use breadcrumb navigation when your application has a deep hierarchy of pages or content. This can help users understand where they are within the application, and make it easier for them to navigate back to previous pages.
 
 ### When not to use
 
-Breadcrumbs should not be used for an information architecture of two levels or less. Don't use breadcrumbs as replacement for a main navigation. If the information structure is extremly complex, consider using a tree instead of a breadcrumb. 
+Breadcrumbs should not be used for an information architecture of two levels or less. Don't use breadcrumbs as replacement for a main navigation. If the information structure is extremely complex, consider using a tree instead of a breadcrumb. 
 
 ## Variants
 
@@ -32,7 +32,7 @@ In order to vary the visual emphasis of a breadcrumbs control, a ghost variant (
 
 ### Item interactivity
 
-Breadcrumb item are interactive and allow the user to navigate to their respective location by pressing the item. An expection is the last item in a breadcrumb control representing the current page. By default, this item does not offer any user interaction. An interactive item variant is available which allows the user to browse to children elements of the current page. Pressing the item triggers a flyout listing all child elements.
+Breadcrumb items are interactive and allow the user to navigate to their respective location by pressing the item. An exception is the last item in a breadcrumb control representing the current page. By default, this item does not offer any user interaction. An interactive item variant is available which allows the user to browse to children elements of the current page. Pressing the item triggers a dropdown listing all child elements.
 
 ### Content
 
@@ -87,7 +87,7 @@ Breadcrumbs are placed at the top left side of the page/ content area. They are 
 
 ### Main elements
 
-The breadcrumb consists of at least one item. Each item contains a breadcrumb label. All but the last item in the breadcrumb path are followed by a chevron icon. 
+The breadcrumb consists of at least one item. Each item contains a breadcrumb label. All but the last item in the breadcrumb path are always followed by a chevron icon. 
 
 ### Sizing
 
@@ -109,7 +109,7 @@ Between breadcrumb items, a space of 0.25 rem is introduced.
 
 ## Related patterns:
 
-- Workflow
+- Dropdown
 - Basic navigation
 - Map navigation
-- Dropdown.
+- Workflow.
