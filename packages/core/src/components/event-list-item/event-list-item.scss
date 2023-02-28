@@ -72,12 +72,17 @@ $height-single-line: 2.5rem;
     }
   }
 
-  &.selected:not(:active, .active) {
+  &.selected {
     .event-list-item-container {
       background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected);
     }
     :hover {
+      border-color: var(--theme-event-item--border--selected) !important;
+    }
+
+    :active {
+      background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected) !important;
     }
   }

@@ -30,4 +30,10 @@ regressionTest.describe('event-list', () => {
     await page.goto('event-list/custom-height');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('hover', async ({ page }) => {
+    await page.goto('event-list/basic');
+    await (await page.waitForSelector('text="Text 3"')).hover();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
