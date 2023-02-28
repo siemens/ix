@@ -8564,7 +8564,7 @@
         },
         {
           "name": "since",
-          "text": "1.3.0"
+          "text": "1.4.0"
         }
       ],
       "encapsulation": "shadow",
