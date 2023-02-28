@@ -78,6 +78,7 @@ function ThemeShadows() {
           return (
             <div key={border} className={'Section row'}>
               <ShadowPreview border={border} />
+              <div className="col-8 Shadow__Name">{border}</div>
               <IxIconButton
                 icon="copy"
                 ghost
@@ -86,7 +87,6 @@ function ThemeShadows() {
                 oval
                 onClick={() => copyToClipboard(border)}
               />
-              <div className="col-7 Shadow__Name">{border}</div>
             </div>
           );
         })}

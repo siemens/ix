@@ -38,7 +38,8 @@ function Search(props: { onChange: (value: string) => void }) {
 function FontPreview(props: { font: string }) {
   return (
     <div className="col-4 Font__Preview" style={{ font: `var(${props.font})` }}>
-      The quick brown fox jumps over the lazy dog.
+      The quick brown fox
+      <br /> jumps over the lazy dog.
     </div>
   );
 }
@@ -74,6 +75,9 @@ function ThemeFonts() {
           return (
             <div key={font} className={'Section row'}>
               <FontPreview font={font} />
+              <div className="col-7 Fonts__Name">
+                {font.substring('--theme-'.length)}
+              </div>
               <IxIconButton
                 icon="copy"
                 ghost
@@ -83,9 +87,6 @@ function ThemeFonts() {
                   copyToClipboard(font.substring('--theme-'.length))
                 }
               />
-              <div className="col-7 Fonts__Name">
-                {font.substring('--theme-'.length)}
-              </div>
             </div>
           );
         })}

@@ -16,15 +16,14 @@
 }
 
 .Theme__Shadows .Copy__Icon {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .Theme__Shadows .Section:hover .Copy__Icon {
-  visibility: visible;
+  opacity: 1;
 }
 
 .Theme__Shadows .Section .Shadow__Name {
-  margin-right: 1rem;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -35,9 +34,6 @@
 
   justify-content: center;
   align-items: center;
-
-  margin-left: 0.5rem;
-  margin-right: 1rem;
 
   background-color: var(--theme-color-3);
 

@@ -35,9 +35,9 @@ function Search(props: { onChange: (value: string) => void }) {
   );
 }
 
-function BorderPreview(props: { border: string }) {
+function BorderPreview(props: { border: string; col: string }) {
   return (
-    <div className="col-2 Border__Preview">
+    <div className={`col-${props.col} Border__Preview`}>
       <div
         style={{
           borderTop: `var(${props.border})`,
@@ -77,7 +77,9 @@ function ThemeBorders() {
         {borders.map((border) => {
           return (
             <div key={border} className={'Section row'}>
-              <BorderPreview border={border} />
+              <BorderPreview border={border} col={'2'} />
+
+              <div className="col-8 Border__Name">{border}</div>
               <IxIconButton
                 icon="copy"
                 ghost
@@ -86,7 +88,6 @@ function ThemeBorders() {
                 oval
                 onClick={() => copyToClipboard(border)}
               />
-              <div className="col-7 Border__Name">{border}</div>
             </div>
           );
         })}

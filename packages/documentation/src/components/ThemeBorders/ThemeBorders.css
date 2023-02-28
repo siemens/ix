@@ -16,15 +16,14 @@
 }
 
 .Theme__Borders .Copy__Icon {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .Theme__Borders .Section:hover .Copy__Icon {
-  visibility: visible;
+  opacity: 1;
 }
 
 .Theme__Borders .Section .Border__Name {
-  margin-right: 1rem;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -32,8 +31,6 @@
 .Border__Preview {
   position: relative;
   display: block;
-  margin-left: 0.5rem;
-  margin-right: 1rem;
 }
 
 .Border__Preview > div {

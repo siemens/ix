@@ -12,9 +12,5 @@ export const themeShadows = [
   '--theme-shadow-2',
   '--theme-shadow-3',
   '--theme-shadow-4',
-  '--theme-menu--box-shadow',
-  '--theme-navigation--box-shadow',
-  '--theme-modal--box-shadow',
-  '--theme-switch-thumb--box-shadow',
-  '--theme-toast--box-shadow',
+  '--theme-inset-shadow-1',
 ];

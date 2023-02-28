@@ -16,15 +16,14 @@
 }
 
 .Theme__Fonts .Copy__Icon {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .Theme__Fonts .Section:hover .Copy__Icon {
-  visibility: visible;
+  opacity: 1;
 }
 
 .Theme__Fonts .Section .Font__Name {
-  margin-right: 1rem;
   overflow: hidden;
   white-space: nowrap;
 }

@@ -85,6 +85,8 @@ function ThemeColors() {
           return (
             <div key={color} className={'Section row'}>
               <ColorPreview color={colorValue} />
+              <div className="col-7 Color__Name">{color}</div>
+              <div className="col">{colorValue}</div>
               <IxIconButton
                 icon="copy"
                 ghost
@@ -93,8 +95,6 @@ function ThemeColors() {
                 oval
                 onClick={() => copyToClipboard(color)}
               />
-              <div className="col-7 Color__Name">{color}</div>
-              <div className="col">{colorValue}</div>
             </div>
           );
         })}
