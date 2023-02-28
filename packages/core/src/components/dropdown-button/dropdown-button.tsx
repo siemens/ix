@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,7 +8,7 @@
  */
 
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { Buttons } from '../utils/button-variants';
+import { Buttons } from '../button/button-variants';
 
 /**
  * @since 1.3.0
@@ -74,38 +74,44 @@ export class DropdownButton {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <div
           class="dropdown-button"
           ref={(ref) => {
             this.dropdownAnchor = ref;
           }}
         >
-          <ix-button
-            variant={this.variant}
-            outline={this.outline}
-            ghost={this.ghost}
-            disabled={this.disabled}
-            class={{ hide: this.label === '' }}
-          >
-            <ix-icon
-              name={this.icon}
-              size="24"
-              class={{ hide: this.icon === '' || this.icon === undefined }}
-            ></ix-icon>
-            {this.label}
-            <ix-icon name="chevron-down-small" size="24"></ix-icon>
-          </ix-button>
-
-          <ix-icon-button
-            icon={this.icon}
-            variant={this.variant}
-            outline={this.outline}
-            ghost={this.ghost}
-            disabled={this.disabled}
-            class={{ hide: this.label !== '' }}
-          ></ix-icon-button>
-          {this.getTriangle()}
+          {this.label !== '' ? (
+            <ix-button
+              variant={this.variant}
+              outline={this.outline}
+              ghost={this.ghost}
+              disabled={this.disabled}
+            >
+              <ix-icon
+                name={this.icon}
+                size="24"
+                class={{ hide: this.icon === '' || this.icon === undefined }}
+              ></ix-icon>
+              <div class={'button-label'}>{this.label}</div>
+              <ix-icon name="chevron-down-small" size="24"></ix-icon>
+            </ix-button>
+          ) : (
+            <div>
+              <ix-icon-button
+                icon={this.icon}
+                variant={this.variant}
+                outline={this.outline}
+                ghost={this.ghost}
+                disabled={this.disabled}
+              ></ix-icon-button>
+              {this.getTriangle()}
+            </div>
+          )}
         </div>
 
         <ix-dropdown

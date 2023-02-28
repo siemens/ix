@@ -1,0 +1,74 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-top: 2rem;
+      "
+    >
+      <ix-chip closable outline> Primary </ix-chip>
+      <ix-chip icon="print">Primary with icon</ix-chip>
+      <ix-chip
+        icon="print"
+        style="width: 10rem"
+        closable
+        onClose="{console.log}"
+        onClick="{console.log}"
+      >
+        Primary
+      </ix-chip>
+
+      <ix-chip variant="critical" closable outline> Alarm </ix-chip>
+      <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
+      <ix-chip
+        variant="alarm"
+        icon="print"
+        style="width: 10rem"
+        closable
+        onClose="{console.log}"
+        onClick="{console.log}"
+      >
+        Alarm
+      </ix-chip>
+      <ix-chip
+        variant="warning"
+        icon="print"
+        style="width: 10rem"
+        closable
+        onClose="{console.log}"
+        onClick="{console.log}"
+      >
+        Alarm
+      </ix-chip>
+      <ix-chip
+        background="purple"
+        color="green"
+        variant="custom"
+        icon="print"
+        style="width: 10rem"
+        closable
+        onClose="{console.log}"
+        onClick="{console.log}"
+      >
+        Custom
+      </ix-chip>
+    </div>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

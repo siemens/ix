@@ -163,8 +163,13 @@
         "ix-basic-navigation",
         "ix-map-navigation"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-burger-menu"
+      ],
       "dependencyGraph": {
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
@@ -216,6 +221,9 @@
       "dependencyGraph": {
         "ix-basic-navigation": [
           "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -241,7 +249,7 @@
           "mutable": false,
           "attr": "hide-header",
           "reflectToAttr": false,
-          "docs": "Hide application header",
+          "docs": "Hide application header. Will disable responsive feature of basic navigation.",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -688,13 +696,20 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
+        "ix-icon-button",
         "ix-icon",
-        "ix-filter-chip"
+        "ix-filter-chip",
+        "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-category-filter": [
+          "ix-icon-button",
           "ix-icon",
-          "ix-filter-chip"
+          "ix-filter-chip",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "ix-filter-chip": [
           "ix-icon"
@@ -824,7 +839,7 @@
           "type": "{ [id: string]: string; }",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "In certain use cases some categories are not available for selection any more.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
+          "docs": "In certain use cases some categories may not be available for selection anymore.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\n\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
           "docsTags": [],
           "default": "{}",
           "values": [
@@ -908,14 +923,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "resize",
-          "target": "window",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/chip",
@@ -945,9 +953,9 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Display chip in active state. Only works with `variant=\"primary\"`",
+          "docs": "Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)\nwill be possible and also the close button will not be present.",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -2051,6 +2059,34 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/divider",
+      "filePath": "./src/components/divider/divider.tsx",
+      "fileName": "divider.tsx",
+      "readmePath": "./src/components/divider/readme.md",
+      "usagesDir": "./src/components/divider/usage",
+      "tag": "ix-divider",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/drawer",
       "filePath": "./src/components/drawer/drawer.tsx",
       "fileName": "drawer.tsx",
@@ -2239,6 +2275,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
+        "ix-category-filter",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu",
@@ -2249,6 +2286,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-breadcrumb": [
+          "ix-dropdown"
+        ],
+        "ix-category-filter": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -2500,7 +2540,7 @@
           "mutable": false,
           "attr": "trigger",
           "reflectToAttr": false,
-          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interprated as id attribute or a DOM element.",
+          "docs": "Define an element that triggers the dropdown.\nA trigger can either be a string that will be interpreted as id attribute or a DOM element.",
           "docsTags": [],
           "values": [
             {
@@ -2873,6 +2913,34 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/dropdown-quick-actions",
+      "filePath": "./src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
+      "fileName": "dropdown-quick-actions.tsx",
+      "readmePath": "./src/components/dropdown-quick-actions/readme.md",
+      "usagesDir": "./src/components/dropdown-quick-actions/usage",
+      "tag": "ix-dropdown-quick-actions",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.4.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -4018,6 +4086,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
+        "ix-category-filter",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -4041,6 +4110,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-category-filter": [
+          "ix-icon-button"
         ],
         "ix-date-picker": [
           "ix-icon-button"
@@ -4492,6 +4564,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
         ]
       },
       "props": [
@@ -4734,11 +4809,13 @@
       "encapsulation": "none",
       "dependents": [],
       "dependencies": [
+        "ix-burger-menu",
         "ix-menu-item",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-menu": [
+          "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
         ]
@@ -5440,9 +5517,51 @@
           "mutable": false,
           "attr": "i-1-8n-logout",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Use for translation",
           "docsTags": [],
           "default": "'Logout'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "mutable": false,
+          "attr": "image",
+          "reflectToAttr": false,
+          "docs": "Display a avatar image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "mutable": false,
+          "attr": "initials",
+          "reflectToAttr": false,
+          "docs": "Display the initials of the user. Will be overwritten by image",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -5576,7 +5695,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "scoped",
       "dependents": [
         "ix-menu"
       ],
@@ -8423,6 +8542,107 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "./src/components/tooltip",
+      "filePath": "./src/components/tooltip/tooltip.tsx",
+      "fileName": "tooltip.tsx",
+      "readmePath": "./src/components/tooltip/readme.md",
+      "usagesDir": "./src/components/tooltip/usage",
+      "tag": "ix-tooltip",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "title-icon - Icon of tooltip title"
+        },
+        {
+          "name": "slot",
+          "text": "title-content - Content of tooltip title"
+        },
+        {
+          "name": "since",
+          "text": "1.3.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "for",
+          "type": "string",
+          "mutable": false,
+          "attr": "for",
+          "reflectToAttr": false,
+          "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "interactive",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "interactive",
+          "reflectToAttr": false,
+          "docs": "Define if the user can access the tooltip via mouse.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "titleContent",
+          "type": "string",
+          "mutable": false,
+          "attr": "title-content",
+          "reflectToAttr": false,
+          "docs": "Title of the tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "title-content",
+          "docs": "Content of tooltip title"
+        },
+        {
+          "name": "title-icon",
+          "docs": "Icon of tooltip title"
+        }
+      ],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "./src/components/tree",

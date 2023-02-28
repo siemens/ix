@@ -1,35 +1,23 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+:root {
+  body {
+    --theme-box-shadow-lvl-1: var(--theme-shadow-1);
+    --theme-box-shadow-lvl-2: var(--theme-shadow-2);
+    --theme-box-shadow-lvl-3: var(--theme-shadow-3);
+    --theme-box-shadow-lvl-4: var(--theme-shadow-4);
 
-@import './../theme/define-theme-variable';
+    --theme-box-shadow-level-1: var(--theme-shadow-1);
+    --theme-box-shadow-level-2: var(--theme-shadow-2);
+    --theme-box-shadow-level-3: var(--theme-shadow-3);
+    --theme-box-shadow-level-4: var(--theme-shadow-4);
 
-@mixin shadows {
-  $box-shadow-lvl-1: 0 1px 4px 0 var(--theme-color-shadow-1),
-    0 0 4px 0 var(--theme-color-shadow-2);
-  $box-shadow-lvl-2: 0 2px 6px 0 var(--theme-color-shadow-1),
-    0 0 8px 0 var(--theme-color-shadow-2);
-  $box-shadow-lvl-3: 0 4px 8px 0 var(--theme-color-shadow-1),
-    0 0 16px 0 var(--theme-color-shadow-2);
-  $box-shadow-lvl-4: 0 8px 16px 0 var(--theme-color-shadow-1),
-    0 0 32px 0 var(--theme-color-shadow-2);
-  $box-shadow-lvl-5: 0 16px 32px 0 var(--theme-color-shadow-1),
-    0 0 64px 0 var(--theme-color-shadow-2);
-
-  @include define-theme-variable('box-shadow-lvl-1', $box-shadow-lvl-1);
-  @include define-theme-variable('box-shadow-lvl-2', $box-shadow-lvl-2);
-  @include define-theme-variable('box-shadow-lvl-3', $box-shadow-lvl-3);
-  @include define-theme-variable('box-shadow-lvl-4', $box-shadow-lvl-4);
-  @include define-theme-variable('box-shadow-lvl-5', $box-shadow-lvl-5);
-
-  @include define-theme-variable('box-shadow-level-1', $box-shadow-lvl-1);
-  @include define-theme-variable('box-shadow-level-2', $box-shadow-lvl-2);
-  @include define-theme-variable('box-shadow-level-3', $box-shadow-lvl-3);
-  @include define-theme-variable('box-shadow-level-4', $box-shadow-lvl-4);
-  @include define-theme-variable('box-shadow-level-5', $box-shadow-lvl-5);
+    --theme-box-shadow-insert: var(--theme-inset-shadow-1);
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,8 +8,8 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';
+import { Buttons } from './button-variants';
 
 @Component({
   tag: 'ix-button',
@@ -58,7 +58,7 @@ export class Button {
     return (
       <Host
         class={{
-          'button-disabled': this.disabled,
+          disabled: this.disabled,
         }}
       >
         <button

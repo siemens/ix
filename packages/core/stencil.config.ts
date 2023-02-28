@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -23,6 +23,20 @@ const copyAssets = [
     dest: 'build/ix-icons',
   },
 ];
+
+try {
+  const brandTheme = require.resolve('@siemens/ix-brand-theme');
+
+  if (brandTheme) {
+    const themeFolder = path.join(brandTheme, '..', '..');
+    copyAssets.push({
+      src: themeFolder,
+      dest: 'build/ix-brand-theme',
+    });
+  }
+} catch (e) {
+  console.warn('No additional theme fround');
+}
 
 export const config: Config = {
   bundles: [
@@ -141,6 +155,9 @@ export const config: Config = {
     slotChildNodesFix: true,
     experimentalImportInjection: true,
     scopedSlotTextContentFix: true,
+  },
+  testing: {
+    setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',

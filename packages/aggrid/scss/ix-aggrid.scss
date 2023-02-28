@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,14 +19,14 @@
   --ag-selected-row-background-color: var(--theme-table-data-row--background--selected);
 
   --ag-range-selection-background-color: var(--theme-table-data-row--background--selected);
-  --ag-range-selection-border-color: var(--theme-color-input--focus);
+  --ag-range-selection-border-color: var(--theme-input--border-color--focus);
   --ag-header-column-resize-handle-color: var(--theme-table-header-splitter--background);
   --ag-header-column-resize-handle-height: 100%;
   --ag-header-column-resize-handle-width: 1px;
 
   --ag-input-focus-box-shadow: none;
-  --ag-input-focus-border-color: var(--theme-color-input--focus);
-  --ag-checkbox-checked-color: var(--theme-color-input--focus);
+  --ag-input-focus-border-color: var(--theme-input--border-color--focus);
+  --ag-checkbox-checked-color: var(--theme-input--border-color--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
 
   .ag-input-wrapper {
@@ -54,7 +54,7 @@
     color: var(--theme-color-std-text);
     background-color: var(--ag-control-panel-background-color);
     font-family: Siemens Sans;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -111,7 +111,7 @@
 
   .ag-header-cell {
     font-family: Siemens Sans;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -122,7 +122,7 @@
 
   .ag-cell {
     font-family: Siemens Sans;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

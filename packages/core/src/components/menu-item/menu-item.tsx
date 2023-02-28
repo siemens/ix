@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -12,7 +12,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 @Component({
   tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
-  scoped: false,
+  scoped: true,
 })
 export class MenuItem {
   /**

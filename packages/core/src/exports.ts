@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -9,6 +9,7 @@
 
 export * from './components/date-picker/events';
 export * from './components/datetime-picker/event';
+export * from './components/dropdown/dropdown-trigger-event';
 export * from './components/modal/modal-utils';
 export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';

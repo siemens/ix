@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -80,9 +80,10 @@ import Timepicker from './preview-examples/timepicker';
 import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
 import Toggle from './preview-examples/toggle';
-import ToggleColor from './preview-examples/toggle-color';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
+import Tooltip from './preview-examples/tooltip';
+import TooltipTitle from './preview-examples/tooltip-title';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
 import Validation from './preview-examples/validation';
@@ -202,7 +203,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/toast-custom" element={<ToastCustom />} />
       <Route path="/preview/toggle" element={<Toggle />} />
       <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
-      <Route path="/preview/toggle-color" element={<ToggleColor />} />
       <Route
         path="/preview/toggle-custom-toggle"
         element={<ToggleCustomLabel />}
@@ -227,6 +227,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         path="/preview/map-navigation-overlay"
         element={<MapNavigationOverlay />}
       />
+      <Route path="/preview/tooltip" element={<Tooltip />} />
+      <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

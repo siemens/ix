@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,10 +11,13 @@ export enum TargetFramework {
   ANGULAR = 'angular',
   REACT = 'react',
   JAVASCRIPT = 'javascript',
+  // Workaround for flat tab selection
+  PREVIEW = 'preview',
 }
 
 export function isTargetFramework(arg: any): arg is TargetFramework {
   return (
+    arg === TargetFramework.PREVIEW ||
     arg === TargetFramework.ANGULAR ||
     arg === TargetFramework.JAVASCRIPT ||
     arg === TargetFramework.REACT

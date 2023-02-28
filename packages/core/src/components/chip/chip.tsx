@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -39,9 +39,10 @@ export class Chip {
     | 'custom' = 'primary';
 
   /**
-   * Display chip in active state. Only works with `variant="primary"`
+   * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation)
+   * will be possible and also the close button will not be present.
    */
-  @Prop() active = false;
+  @Prop() active = true;
 
   /**
    * Show close icon
@@ -95,21 +96,33 @@ export class Chip {
   }
 
   render() {
+    const isInactive = this.active === false;
+
+    let customStyle = {};
+
+    if (this.variant === 'custom' && this.outline === false) {
+      customStyle = {
+        color: this.color,
+        backgroundColor: this.background,
+      };
+    }
+
+    if (this.variant === 'custom' && this.outline === true) {
+      customStyle = {
+        color: this.color,
+        borderColor: this.background,
+      };
+    }
+
     return (
       <Host
         class={{
           outline: this.outline,
+          inactive: isInactive,
         }}
         tabIndex="-1"
         title={this.el.textContent}
-        style={
-          this.variant === 'custom'
-            ? {
-                color: this.color,
-                backgroundColor: this.background,
-              }
-            : {}
-        }
+        style={{ ...customStyle }}
       >
         <ix-icon
           class={{
@@ -122,7 +135,7 @@ export class Chip {
         <span class="slot-container">
           <slot></slot>
         </span>
-        {this.closable ? this.getCloseButton() : null}
+        {isInactive === false && this.closable ? this.getCloseButton() : null}
       </Host>
     );
   }

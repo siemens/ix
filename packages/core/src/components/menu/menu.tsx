@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,7 +19,11 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
+import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
+import { Mode } from '../utils/screen/mode';
+import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
@@ -109,18 +113,13 @@ export class Menu {
    * Map Sidebar expanded
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
-
   @State() showMoreItems = false;
-
   @State() visibleMenuItems = 0;
-
   @State() countMoreNotifications = 0;
-
   @State() mapExpand = true;
-
   @State() activeTab: HTMLIxMenuItemElement;
-
   @State() isMoreTabEmpty = false;
+  @State() mode: Mode = 'desktop';
 
   private readonly domObserver = new MutationObserver(
     this.onDomChange.bind(this)
@@ -183,7 +182,7 @@ export class Menu {
   get menuItems() {
     return Array.from(
       this.hostElement.querySelectorAll(
-        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab)'
+        'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab):not([slot="bottom"])'
       )
     ).filter(this.isVisible);
   }
@@ -300,7 +299,14 @@ export class Menu {
     });
   }
 
-  disconnectedCallback() {}
+  componentWillLoad() {
+    menuController.register(this.hostElement);
+    const layout = hostContext('ix-basic-navigation', this.hostElement);
+    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
+      screenMode.onChange.on((mode) => (this.mode = mode));
+      this.mode = screenMode.mode;
+    }
+  }
 
   componentWillRender() {
     this.appendTabs();
@@ -336,7 +342,7 @@ export class Menu {
 
     if (this.homeTab) {
       this.hostElement.querySelector('.tabs-top').appendChild(this.homeTab);
-      this.homeTab.addEventListener('click', this.resetOverlay);
+      this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
     }
 
     this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
@@ -353,7 +359,7 @@ export class Menu {
       // TODO: Find better solution to handle home tab
       this.homeTab?.classList.remove('d-none');
 
-      item.addEventListener('click', this.resetOverlay);
+      item.addEventListener('click', this.resetOverlay.bind(this));
     });
   }
 
@@ -612,6 +618,8 @@ export class Menu {
     if (this.about) {
       this.about.show = this.showAbout;
     }
+
+    this.toggleMenu(false);
   }
 
   private showMoreButton() {
@@ -642,7 +650,6 @@ export class Menu {
 
   private isMenuItemClicked(event: MouseEvent) {
     const path = event.composedPath();
-
     const menuItems = (path as HTMLElement[])
       .filter((element) => element.id !== 'ix-menu-more-tab')
       .filter((element) => {
@@ -657,6 +664,7 @@ export class Menu {
       <Host
         class={{
           expanded: this.expand,
+          [`mode-${this.mode}`]: true,
         }}
       >
         <div
@@ -668,42 +676,13 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div
+          <ix-burger-menu
             onClick={async () => this.toggleMenu()}
+            expanded={this.expand}
             class={{
-              'burger-menu-button': true,
-              expanded: this.expand,
+              'burger-menu': true,
             }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              width="32"
-              height="32"
-            >
-              <rect
-                class="line line-1"
-                x="5"
-                y="9.5"
-                width="22"
-                height="2"
-              ></rect>
-              <rect
-                class="line line-2"
-                x="5"
-                y="15.5"
-                width="22"
-                height="2"
-              ></rect>
-              <rect
-                class="line line-3"
-                x="5"
-                y="21.5"
-                width="22"
-                height="2"
-              ></rect>
-            </svg>
-          </div>
+          ></ix-burger-menu>
           <div id="avatar-tab-placeholder"></div>
           <div
             id="menu-tabs"
@@ -760,9 +739,10 @@ export class Menu {
                         tabIcon={e.tabIcon}
                         active={e.active}
                         class="internal-tab appended"
-                        onClick={() =>
-                          e.dispatchEvent(new CustomEvent('click'))
-                        }
+                        onClick={() => {
+                          this.resetOverlay();
+                          e.dispatchEvent(new CustomEvent('click'));
+                        }}
                       >
                         {e.innerText}
                       </ix-menu-item>

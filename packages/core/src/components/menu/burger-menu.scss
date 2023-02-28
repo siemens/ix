@@ -1,0 +1,62 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'common-variables';
+@import 'mixins/hover';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2.5rem;
+  border-radius: var(--theme-btn--border-radius);
+
+  svg {
+    display: inline-block;
+    position: relative;
+  }
+
+  .line {
+    fill: var(--theme-menu-btn--color);
+    opacity: 1;
+    x: 2px;
+    transition: x 0.075s ease-in 0.15s, transform 0.075s ease-in-out 0.075s,
+      y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
+    transform-origin: center;
+  }
+}
+
+:host(:hover) {
+  background-color: var(--theme-menu-btn--background--hover);
+  border-radius: var(--theme-btn--border-radius);
+}
+
+:host(:active) {
+  background-color: var(--theme-menu-btn--background--active);
+  border-radius: var(--theme-btn--border-radius);
+}
+
+:host(.expanded) {
+  svg .line-1 {
+    opacity: 1;
+    transform: rotate(-45deg);
+    y: 11px;
+  }
+
+  svg .line-2 {
+    opacity: 0;
+    x: 9;
+  }
+
+  svg .line-3 {
+    opacity: 1;
+    transform: rotate(45deg);
+    y: 11px;
+  }
+}

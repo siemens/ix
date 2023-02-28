@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -12,7 +12,6 @@
   display: block;
   position: relative;
 
-  border: var(--docs-playground-border);
   border-radius: 4px;
 
   .Playground__Toolbar {
@@ -22,10 +21,6 @@
 
     &.Location__Top {
       border-bottom: var(--docs-playground-border);
-    }
-
-    &.Location__Bottom {
-      border-top: var(--docs-playground-border);
     }
   }
 
@@ -40,8 +35,4 @@
   div.theme-code-block {
     margin-bottom: 0 !important;
   }
-}
-
-.Playground__Framework__Button {
-  margin-right: 0.5rem;
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -72,7 +72,7 @@ export class Tree {
    */
   @Event() nodeRemoved: EventEmitter<any>;
 
-  private hyperlist: any;
+  private hyperlist: Hyperlist;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
@@ -207,8 +207,7 @@ export class Tree {
   }
 
   componentDidLoad() {
-    const config = this.getVirtualizerOptions();
-    this.hyperlist = new Hyperlist(this.host, config);
+    this.initList();
 
     this.observer = new MutationObserver((records) => {
       let removed = [];
@@ -233,7 +232,11 @@ export class Tree {
   }
 
   componentWillRender() {
-    this.refreshList();
+    if (this.isListInitialized()) {
+      this.refreshList();
+    } else {
+      this.initList();
+    }
   }
 
   disconnectedCallback() {
@@ -243,13 +246,33 @@ export class Tree {
 
   @Watch('model')
   modelChange() {
-    this.refreshList();
+    if (!this.isListInitialized()) {
+      this.initList();
+    }
+  }
+
+  private isListInitialized() {
+    const itemPositions = this.hyperlist?._itemPositions;
+
+    return (
+      itemPositions !== undefined &&
+      itemPositions.length &&
+      !itemPositions?.some(
+        (item: number) => item === undefined || Number.isNaN(item)
+      )
+    );
   }
 
   private refreshList() {
     if (this.hyperlist) {
       this.hyperlist.refresh(this.host, this.getVirtualizerOptions());
     }
+  }
+
+  private initList() {
+    this.hyperlist?.destroy();
+    const config = this.getVirtualizerOptions();
+    this.hyperlist = new Hyperlist(this.host, config);
   }
 
   render() {

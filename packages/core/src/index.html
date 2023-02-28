@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2022 Siemens AG
+SPDX-FileCopyrightText: 2023 Siemens AG
 
 SPDX-License-Identifier: MIT
 -->
@@ -18,7 +18,15 @@ SPDX-License-Identifier: MIT
     <script nomodule src="/build/siemens-ix.js"></script>
 
     <link rel="stylesheet" href="/build/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="/build/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
     <link rel="stylesheet" href="/build/ix-icons/css/ix-icons.css" />
+    <script type="module">
+      import { defineCustomElements } from '/build/ix-brand-theme/loader/index.es2017.js';
+      defineCustomElements();
+    </script>
   </head>
   <body style="margin: 0px; height: 100vh">
     <my-component />

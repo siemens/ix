@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,6 +19,7 @@ ix-tabs {
   .tab-items {
     overflow: hidden;
     scroll-behavior: smooth;
+    width: 100%;
 
     .items-content {
       display: flex;

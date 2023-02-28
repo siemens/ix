@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,6 +11,8 @@
 @import 'mixins/shadows';
 
 :host {
+  --margin: 0.5rem;
+
   $left: 4rem;
   display: block;
   position: fixed;
@@ -24,9 +26,9 @@
   z-index: 10000;
   transition: left var(--animate-duration);
 
-  margin-left: 0.5rem !important;
+  margin-left: var(--margin) !important;
 
-  @include box-shadow(2);
+  @include box-shadow(4);
 
   &.expanded {
     left: calc(#{$left} + 12rem);
@@ -74,26 +76,19 @@
     margin-top: 1rem;
   }
 
-  #arrow {
-    bottom: 14px;
-    position: relative;
-    left: -10px;
-  }
-
   ix-icon-button {
     top: $small-space;
     right: $small-space;
     position: absolute;
   }
 
-  svg#arrow {
+  #arrow {
     position: absolute;
-    left: -$small-space;
-    bottom: 0.4rem;
-
-    path {
-      fill: var(--theme-color-1);
-      stroke: var(--theme-color-weak-bdr-1);
-    }
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--theme-color-1);
+    border-left: var(--theme-weak-bdr-1);
+    border-bottom: var(--theme-weak-bdr-1);
+    transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
   }
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -116,9 +116,11 @@ export class Toast {
     }
 
     const updateProgress = () => {
-      if (progressBarElement) {
-        progressBarElement.style.transform = `scaleX(${this.progress})`;
-      }
+      requestAnimationFrame(() => {
+        if (progressBarElement) {
+          progressBarElement.style.transform = `scaleX(${this.progress})`;
+        }
+      });
     };
 
     return (
@@ -163,7 +165,9 @@ export class Toast {
             class={progressBarClass.join(' ')}
             style={progressBarStyle}
             ref={(r) => (progressBarElement = r)}
-            onAnimationEnd={() => this.close()}
+            onAnimationEnd={() => {
+              this.close();
+            }}
             onTransitionEnd={() => {
               if (this.progress === 0) {
                 this.close();

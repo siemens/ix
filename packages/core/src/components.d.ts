@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/utils/button-variants";
+import { Buttons } from "./components/button/button-variants";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -13,12 +13,14 @@ import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker/event";
 import { Placement } from "./components/dropdown/placement";
+import { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -54,7 +56,7 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Hide application header
+          * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader": boolean;
     }
@@ -91,6 +93,12 @@ export namespace Components {
           * Breadcrumb label
          */
         "label": string;
+    }
+    interface IxBurgerMenu {
+        /**
+          * Is menu displayed as expanded
+         */
+        "expanded": boolean;
     }
     interface IxButton {
         /**
@@ -159,7 +167,7 @@ export namespace Components {
          */
         "labelCategories": string;
         /**
-          * In certain use cases some categories are not available for selection any more. To allow proper display of set filters with these categories this ID to label mapping can be populated. Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
@@ -180,7 +188,7 @@ export namespace Components {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
          */
         "active": boolean;
         /**
@@ -378,6 +386,8 @@ export namespace Components {
          */
         "to": string | null;
     }
+    interface IxDivider {
+    }
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
@@ -440,6 +450,10 @@ export namespace Components {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "overwriteDropdownStyle": (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */
@@ -453,9 +467,13 @@ export namespace Components {
          */
         "show": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger": string | HTMLElement;
+        /**
+          * Define one or more events to open dropdown
+         */
+        "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
           * Update position of dropdown
          */
@@ -516,6 +534,8 @@ export namespace Components {
           * Label of dropdown item
          */
         "label": string;
+    }
+    interface IxDropdownQuickActions {
     }
     interface IxEventList {
         /**
@@ -886,7 +906,20 @@ export namespace Components {
           * Second line of text
          */
         "bottom": string;
+        /**
+          * Use for translation
+         */
         "i18nLogout": string;
+        /**
+          * Display a avatar image
+          * @since 1.4.0
+         */
+        "image": string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
+         */
+        "initials": string;
         /**
           * First line of text
          */
@@ -1370,6 +1403,20 @@ export namespace Components {
          */
         "textOn": string;
     }
+    interface IxTooltip {
+        /**
+          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+         */
+        "for": string;
+        /**
+          * Define if the user can access the tooltip via mouse.
+         */
+        "interactive": boolean;
+        /**
+          * Title of the tooltip
+         */
+        "titleContent": string;
+    }
     interface IxTree {
         /**
           * Selection and collapsed state management
@@ -1407,6 +1454,12 @@ export namespace Components {
           * Text
          */
         "text": string;
+    }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant": TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -1703,6 +1756,12 @@ declare global {
         prototype: HTMLIxBreadcrumbItemElement;
         new (): HTMLIxBreadcrumbItemElement;
     };
+    interface HTMLIxBurgerMenuElement extends Components.IxBurgerMenu, HTMLStencilElement {
+    }
+    var HTMLIxBurgerMenuElement: {
+        prototype: HTMLIxBurgerMenuElement;
+        new (): HTMLIxBurgerMenuElement;
+    };
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
     var HTMLIxButtonElement: {
@@ -1745,6 +1804,12 @@ declare global {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
     };
+    interface HTMLIxDividerElement extends Components.IxDivider, HTMLStencilElement {
+    }
+    var HTMLIxDividerElement: {
+        prototype: HTMLIxDividerElement;
+        new (): HTMLIxDividerElement;
+    };
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
     }
     var HTMLIxDrawerElement: {
@@ -1768,6 +1833,12 @@ declare global {
     var HTMLIxDropdownItemElement: {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
+    };
+    interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
+    }
+    var HTMLIxDropdownQuickActionsElement: {
+        prototype: HTMLIxDropdownQuickActionsElement;
+        new (): HTMLIxDropdownQuickActionsElement;
     };
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
@@ -2021,6 +2092,12 @@ declare global {
         prototype: HTMLIxToggleElement;
         new (): HTMLIxToggleElement;
     };
+    interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
+    }
+    var HTMLIxTooltipElement: {
+        prototype: HTMLIxTooltipElement;
+        new (): HTMLIxTooltipElement;
+    };
     interface HTMLIxTreeElement extends Components.IxTree, HTMLStencilElement {
     }
     var HTMLIxTreeElement: {
@@ -2032,6 +2109,12 @@ declare global {
     var HTMLIxTreeItemElement: {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
+    };
+    interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
+    }
+    var HTMLIxTypographyElement: {
+        prototype: HTMLIxTypographyElement;
+        new (): HTMLIxTypographyElement;
     };
     interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
     }
@@ -2071,6 +2154,7 @@ declare global {
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
+        "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
@@ -2078,10 +2162,12 @@ declare global {
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
+        "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
+        "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
@@ -2124,8 +2210,10 @@ declare global {
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
+        "ix-tooltip": HTMLIxTooltipElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
+        "ix-typography": HTMLIxTypographyElement;
         "ix-upload": HTMLIxUploadElement;
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
@@ -2171,7 +2259,7 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Hide application header
+          * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader"?: boolean;
     }
@@ -2220,6 +2308,12 @@ declare namespace LocalJSX {
           * Breadcrumb label
          */
         "label"?: string;
+    }
+    interface IxBurgerMenu {
+        /**
+          * Is menu displayed as expanded
+         */
+        "expanded"?: boolean;
     }
     interface IxButton {
         /**
@@ -2288,7 +2382,7 @@ declare namespace LocalJSX {
          */
         "labelCategories"?: string;
         /**
-          * In certain use cases some categories are not available for selection any more. To allow proper display of set filters with these categories this ID to label mapping can be populated. Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
+          * In certain use cases some categories may not be available for selection anymore. To allow proper display of set filters with these categories this ID to label mapping can be populated.  Configuration object hash used to supply labels to the filter chips in the input field. Each ID maps to a string representing the label to display.
          */
         "nonSelectableCategories"?: {
     [id: string]: string;
@@ -2317,7 +2411,7 @@ declare namespace LocalJSX {
     }
     interface IxChip {
         /**
-          * Display chip in active state. Only works with `variant="primary"`
+          * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
          */
         "active"?: boolean;
         /**
@@ -2554,6 +2648,8 @@ declare namespace LocalJSX {
          */
         "to"?: string | null;
     }
+    interface IxDivider {
+    }
     interface IxDrawer {
         /**
           * Fired in case of an outside click during drawer showed state
@@ -2623,6 +2719,10 @@ declare namespace LocalJSX {
           * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
+        "overwriteDropdownStyle"?: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */
@@ -2636,9 +2736,13 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interprated as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement;
+        /**
+          * Define one or more events to open dropdown
+         */
+        "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
     interface IxDropdownButton {
         /**
@@ -2695,6 +2799,8 @@ declare namespace LocalJSX {
           * Click on item
          */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
+    }
+    interface IxDropdownQuickActions {
     }
     interface IxEventList {
         /**
@@ -3091,7 +3197,20 @@ declare namespace LocalJSX {
           * Second line of text
          */
         "bottom"?: string;
+        /**
+          * Use for translation
+         */
         "i18nLogout"?: string;
+        /**
+          * Display a avatar image
+          * @since 1.4.0
+         */
+        "image"?: string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+          * @since 1.4.0
+         */
+        "initials"?: string;
         /**
           * Logout click
          */
@@ -3607,6 +3726,20 @@ declare namespace LocalJSX {
          */
         "textOn"?: string;
     }
+    interface IxTooltip {
+        /**
+          * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+         */
+        "for"?: string;
+        /**
+          * Define if the user can access the tooltip via mouse.
+         */
+        "interactive"?: boolean;
+        /**
+          * Title of the tooltip
+         */
+        "titleContent"?: string;
+    }
     interface IxTree {
         /**
           * Selection and collapsed state management
@@ -3660,6 +3793,12 @@ declare namespace LocalJSX {
           * Text
          */
         "text"?: string;
+    }
+    interface IxTypography {
+        /**
+          * Font variant
+         */
+        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -3779,6 +3918,7 @@ declare namespace LocalJSX {
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
+        "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
@@ -3786,10 +3926,12 @@ declare namespace LocalJSX {
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
+        "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
         "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
+        "ix-dropdown-quick-actions": IxDropdownQuickActions;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
@@ -3832,8 +3974,10 @@ declare namespace LocalJSX {
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
+        "ix-tooltip": IxTooltip;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
+        "ix-typography": IxTypography;
         "ix-upload": IxUpload;
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
@@ -3852,6 +3996,7 @@ declare module "@stencil/core" {
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
+            "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
@@ -3859,10 +4004,12 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
@@ -3905,8 +4052,10 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;

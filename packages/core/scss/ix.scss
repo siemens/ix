@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,10 +15,9 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
-/* Default themes */
+/* Default Theme */
 @import './theme/classic-dark';
 @import './theme/classic-light';
-@import './theme/static-colors';
 
 /* Common */
 @import './common-variables';

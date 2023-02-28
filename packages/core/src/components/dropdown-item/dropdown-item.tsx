@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -71,6 +71,7 @@ export class DropdownItem {
           checked: this.checked,
           'icon-text': this.label !== undefined && this.icon !== undefined,
           'icon-only': this.label === undefined && this.icon !== undefined,
+          disabled: this.disabled,
         }}
       >
         <button
@@ -84,14 +85,17 @@ export class DropdownItem {
           {this.checked ? (
             <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
           ) : null}
+
           {this.icon ? (
             <span
               class={{
                 glyph: true,
                 [`glyph-${this.icon}`]: true,
+                disabled: this.disabled,
               }}
             ></span>
           ) : null}
+
           {this.label ? <span class="label">{this.label}</span> : null}
           <slot></slot>
         </button>

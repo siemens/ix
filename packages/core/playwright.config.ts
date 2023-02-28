@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -9,6 +9,7 @@
 
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
+import path from 'path';
 
 /**
  * Read environment variables from file.
@@ -39,7 +40,7 @@ function buildProjectsWithThemes() {
  */
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config: PlaywrightTestConfig = {
-  testMatch: '*.e2e.ts',
+  testMatch: path.join(__dirname, 'src', 'tests', '**', '*.e2e.ts'),
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

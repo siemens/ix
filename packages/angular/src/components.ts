@@ -392,6 +392,25 @@ export class IxDatetimePicker {
 }
 
 
+export declare interface IxDivider extends Components.IxDivider {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-divider',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxDivider {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
 export declare interface IxDrawer extends Components.IxDrawer {
   /**
    * Fire event after drawer is open 
@@ -500,6 +519,25 @@ export class IxDropdownItem {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['itemClick']);
+  }
+}
+
+
+export declare interface IxDropdownQuickActions extends Components.IxDropdownQuickActions {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined
+})
+@Component({
+  selector: 'ix-dropdown-quick-actions',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>'
+})
+export class IxDropdownQuickActions {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 
@@ -1020,13 +1058,13 @@ export declare interface IxMenuAvatar extends Components.IxMenuAvatar {
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['bottom', 'i18nLogout', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
 })
 @Component({
   selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['bottom', 'i18nLogout', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
 })
 export class IxMenuAvatar {
   protected el: HTMLElement;
@@ -1564,6 +1602,27 @@ export class IxToggle {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['checkedChange']);
+  }
+}
+
+
+export declare interface IxTooltip extends Components.IxTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['for', 'interactive', 'titleContent']
+})
+@Component({
+  selector: 'ix-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['for', 'interactive', 'titleContent']
+})
+export class IxTooltip {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
   }
 }
 

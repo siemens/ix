@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -70,8 +70,7 @@ export class TreeItem {
         </div>
         <div
           class="tree-node-container"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
             this.itemClick.emit();
           }}
         >

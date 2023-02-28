@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: ` <ix-split-button icon="document">
+  template: ` <ix-split-button icon="document" splitIcon="chevron-down-small">
     <ix-split-button-item icon="cut"></ix-split-button-item>
     <ix-split-button-item icon="bulb"></ix-split-button-item>
   </ix-split-button>`,
