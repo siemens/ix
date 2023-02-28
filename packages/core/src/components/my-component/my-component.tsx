@@ -15,14 +15,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <input
-          type="number"
-          class={'form-control'}
-          style={{ width: '20rem' }}
-        />
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
