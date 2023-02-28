@@ -42,7 +42,7 @@ Therefore it is important to choose the correct timing for the respective situat
 
 ### Animation timing variables
 
-All animation timing values are also available through css variables:
+All animation timing values are also available through CSS variables:
 
 ```css
 --theme-x-slow-time: 1s;
