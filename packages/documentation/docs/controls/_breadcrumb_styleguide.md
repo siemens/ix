@@ -1,9 +1,8 @@
 
-Breadcrumb navigation is a UI control that allows users to track their location within a website or application and easily navigate to previous and/ or sibling pages.
+Breadcrumb navigation is a UI control that allows users to track their location within a website or application and easily navigate to previous or child pages.
 
-<!-- What is offered by the iX component?  -->
 
-<!-- Add here illustration/ example breadcrumb overview -->
+![Breadcrumb overview](/img/pattern_illustrations/breadcrumb_overview.png)
 
 Go to:
 - [Variants](#variants)
@@ -25,13 +24,15 @@ Breadcrumbs should not be used for an information architecture of two levels or 
 
 ## Variants
 
+![Breadcrumb variants](/img/pattern_illustrations/breadcrumb_variants.png)
+
 ### Emphasis 
 
 In order to vary the visual emphasis of a breadcrumbs control, a ghost variant (default) and a solid variant are available. Both variants differ in font color and fill color but not in their interaction patterns.
 
-### Item capabilities
-<!-- hier weiter -->
-Breadcrumb items vary depending on their position in the path. Items with child elements include a chevron icon pointing right after the item label and offer hover and active states. Pressing the item triggers a flyout listing all child elements. The last item of the path doesn't support user interaction.
+### Item interactivity
+
+Breadcrumb item are interactive and allow the user to navigate to their respective location by pressing the item. An expection is the last item in a breadcrumb control representing the current page. By default, this item does not offer any user interaction. An interactive item variant is available which allows the user to browse to children elements of the current page. Pressing the item triggers a flyout listing all child elements.
 
 ### Content
 
@@ -41,7 +42,7 @@ Breadcrumb items can, but don't have to, include an icon. The icon is positioned
 
 ### Population
 
-The breadcrumb should be populated location-based to reflect the hierarchy of the application and the loction of the user in it.
+The breadcrumb should be populated location-based to reflect the hierarchy of the application and the loction of the user in it. The current location should always be included in the breadcrumb.
 
 ### Overflow 
 
@@ -60,24 +61,27 @@ Breadcrumbs are placed at the top left side of the page/ content area. They are 
 
 ## States
 
-### Default item
+### Interactive item
+
+| State   | Description                                                                          |
+| --------| ------------------------------------------------------------------------------------ |
+| Hover   | The hover state is indicated by font and fill color change.                          |
+| Active  | The active state is indicated by font and fill color change. Equal to pressed state. |
+| Focused | The focused state is indicated by a focus frame.                                     |
+
+<!-- focused state on interactive item available? -->
+
+
+### Not interactive item
 
 | State   | Description                                                                 |
 | --------| --------------------------------------------------------------------------- |
-| Hover   | The hover state is indicated by fill color change.                          |
-| Active  | The active state is indicated by fill color change. Equal to pressed state. |
-| Focused | The focused state is indicated by a focus frame.                            |
-
-### Last item
-
-| State   | Description                                                                 |
-| --------| --------------------------------------------------------------------------- |
-| Hover   | The hover state is indicated by ...                      |
+| Hover   | The hover state is indicated by ...                                         |
 | Active  | Not available.                                                              |
 | Focused | The focused state is indicated by a focus frame.                            |
 
-<!-- focused state on last item/ no siblings(no next item) available? -->
-<!-- hover state last item: bold in light theme, white in dark theme? -->
+<!-- focused state on not interactive item available? -->
+<!-- hover state not interactive item: bold in light theme, white in dark theme? -->
 
 ## Anatomy
 
@@ -88,8 +92,11 @@ The breadcrumb consists of at least one item. Each item contains a breadcrumb la
 ### Sizing
 
 - The breadcrumb has a fix height defined by breadcrumb item height.
+- The breadcrumb has a maximum width defined by the content area width. Exceeding the width will trigger truncation.
 - The breadcrumb item has a fixed height for single-line text entries.
 - The breadcrumb item has a minimum width of ... and maximum width of .... Between these limits, the item width is depending on the content.
+
+<!-- fill in sizing -->
 
 ### Spacing
 
