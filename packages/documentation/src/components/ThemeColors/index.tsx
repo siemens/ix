@@ -86,7 +86,7 @@ function ThemeColors() {
             <div key={color} className={'Section row'}>
               <ColorPreview color={colorValue} />
               <div className="col-7 Color__Name">{color}</div>
-              <div className="col">{colorValue}</div>
+              <div className="col Color__RGB">{colorValue}</div>
               <IxIconButton
                 icon="copy"
                 ghost

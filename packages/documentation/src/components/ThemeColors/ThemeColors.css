@@ -28,6 +28,10 @@
   white-space: nowrap;
 }
 
+.Theme__Colors .Section .Color__RGB {
+  color: var(--theme-color-soft-text);
+}
+
 .Color__Preview {
   position: relative;
   display: block;
