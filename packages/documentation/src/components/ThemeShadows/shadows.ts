@@ -7,14 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.features {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  width: 40rem;
-}
-
-.featureSvg {
-  height: 85px;
-  width: 85px;
-}
+export const themeShadows = [
+  '--theme-shadow-1',
+  '--theme-shadow-2',
+  '--theme-shadow-3',
+  '--theme-shadow-4',
+  '--theme-inset-shadow-1',
+];

@@ -27,7 +27,7 @@ import SourceAngularDropdownQuickActionsHtml from './../auto-generated/previews/
 ## Usage
 
 <Playground
-name="dropdown" height="16rem"
+name="dropdown" height="18rem"
 frameworks={{
   react: SourceReactDropdown,
   angular: SourceAngularDropdown,
@@ -37,8 +37,7 @@ frameworks={{
 ### Dropdown with icon
 
 <Playground
-name="dropdown-icon" height="16rem"
-hideInitalCodePreview
+name="dropdown-icon" height="18rem"
 frameworks={{
   react: SourceReactDropdownIcon,
   angular: SourceAngularDropdownIcon,
@@ -50,8 +49,7 @@ frameworks={{
 <TagsQuickActions />
 
 <Playground
-name="dropdown-quick-actions" height="16rem"
-hideInitalCodePreview
+name="dropdown-quick-actions" height="22rem"
 frameworks={{
   react: SourceReactDropdownQuickActions,
       angular: {
@@ -64,8 +62,7 @@ frameworks={{
 ### Dropdown with submenu
 
 <Playground
-name="dropdown-submenu" height="16rem"
-hideInitalCodePreview
+name="dropdown-submenu" height="22rem"
 frameworks={{
   react: SourceReactDropdownSubmenu,
   angular: SourceDropdownSubmenu,
