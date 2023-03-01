@@ -1103,7 +1103,7 @@ export namespace Components {
          */
         "itemCount": number;
         /**
-          * Currently selected page
+          * Zero based index of currently selected page
          */
         "selectedPage": number;
         /**
@@ -3091,7 +3091,14 @@ declare namespace LocalJSX {
         "variant"?: 'Primary' | 'Secondary';
     }
     interface IxIndexButton {
+        /**
+          * Selection state
+         */
         "selected"?: boolean;
+        /**
+          * Button variant
+         */
+        "variant"?: Buttons;
     }
     interface IxInputGroup {
     }
@@ -3462,7 +3469,7 @@ declare namespace LocalJSX {
          */
         "onPageSelected"?: (event: IxPaginationCustomEvent<number>) => void;
         /**
-          * Currently selected page
+          * Zero based index of currently selected page
          */
         "selectedPage"?: number;
         /**

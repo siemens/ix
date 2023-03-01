@@ -39,7 +39,7 @@ export class IxPagination {
   @Prop() count: number;
 
   /**
-   * Currently selected page
+   * Zero based index of currently selected page
    */
   @Prop({ mutable: true }) selectedPage = 0;
 
@@ -70,6 +70,11 @@ export class IxPagination {
   @Event() itemCountChanged: EventEmitter<number>;
 
   private selectPage(index: number) {
+    if (index < 0 || index >= this.count) {
+      console.warn(`ix-pagination - invalid index ${index}`);
+      return;
+    }
+
     this.selectedPage = index;
     this.pageSelected.emit(index);
   }
@@ -167,7 +172,7 @@ export class IxPagination {
                 this.selectedPage + Math.max(0, 2 * pageCount + 1)
               );
             } else {
-              this.selectPage(this.maxCountPages);
+              this.selectPage(this.maxCountPages - 1);
             }
           }}
         >
