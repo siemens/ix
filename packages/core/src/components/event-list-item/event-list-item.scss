@@ -77,12 +77,14 @@ $height-single-line: 2.5rem;
       background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected);
     }
+
     :hover {
       border-color: var(--theme-event-item--border--selected) !important;
+      background-color: var(--theme-event-item--background--selected) !important;
     }
 
     :active {
-      background-color: var(--theme-event-item--background--selected);
+      background-color: var(--theme-event-item--background--selected) !important;
       border-color: var(--theme-event-item--border--selected) !important;
     }
   }
