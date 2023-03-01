@@ -450,6 +450,10 @@ export namespace Components {
     crossAxis?: number;
     alignmentAxis?: number;
   };
+        "overwriteDropdownStyle": (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */
@@ -2777,6 +2781,10 @@ declare namespace LocalJSX {
           * Fire event after visibility of dropdown has changed
          */
         "onShowChanged"?: (event: IxDropdownCustomEvent<boolean>) => void;
+        "overwriteDropdownStyle"?: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
         /**
           * Placement of the dropdown
          */

@@ -4415,22 +4415,22 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
-ag-grid-angular@^28.1.0:
-  version "28.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-28.2.0.tgz#0f17e7e4b520dcde9789f30a5e026dfba79caf9a"
-  integrity sha512-FNjfAaVs1d0OR3RrBDI2Tc6oivl4Mv9RvqxyFsK/pT3eX+n8IZYUcgOWMK1huWI5A2AljxYbuNz8RgVIAK1iew==
+ag-grid-angular@^29.1.0:
+  version "29.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-29.1.0.tgz#e5a428b885ebc408c8f02bff9e5fbcaab8e5a23d"
+  integrity sha512-Kp3mRsWeRbiyaeN5WulifavqibsFjPtoOqkBMSnwzhecEadvbxN2RPn0K8nsCFWMVl/V0yhrhadviqT9jpKhFg==
   dependencies:
     tslib "^2.3.0"
 
-ag-grid-community@^28.0.2, ag-grid-community@^28.1.0:
-  version "28.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-28.2.0.tgz#3ea2be65c4ca930f0be5998d998684dc65132b66"
-  integrity sha512-mL55V1H7c8zMWv3aumARCoU6ilDzN5lB69bFY9lhC2mzbvL/DyNWpX1v417IRidt2bHsVfQewPs6DOMkav7fqg==
+ag-grid-community@29.1.0, ag-grid-community@^29.1.0:
+  version "29.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-29.1.0.tgz#acf74ecb9018d9ee3b2a7e468ffba595e6621606"
+  integrity sha512-QJZi1qP7fpK/sxXbEFZWR3/Jf3HVRK0Xm3Tw55tn0ehNdkuSxRBOmOvjE3lPWqgRlT2rcL1xmjdqM4mpB1fobQ==
 
-ag-grid-react@^28.1.0:
-  version "28.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-28.2.0.tgz#07e18ba14a02255c3c3fdc704378ca117a575448"
-  integrity sha512-lf62QxThDVX6q9UK6gNEHDMxkUOVoh/l3/rmQCE3tw/Xh1X29Q0bCo8XkA+TdaxwsExCyKUJnIEddy6NX83jxQ==
+ag-grid-react@^29.1.0:
+  version "29.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-29.1.0.tgz#06d75de91f753a865650ba3b01e2f6bc016a4590"
+  integrity sha512-csAT+PEodEjJ1GhBrx0kVAgkfm8eafsxA8ugSEM+iiSGwc13mPS2Qrye3yz/Wp0vf7ho1CDJgnZraWfSBER42Q==
   dependencies:
     prop-types "^15.8.1"
 

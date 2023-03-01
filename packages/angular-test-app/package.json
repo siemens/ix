@@ -21,8 +21,8 @@
     "@siemens/ix": "~1.3.0",
     "@siemens/ix-aggrid": "~1.3.0",
     "@siemens/ix-angular": "~1.3.0",
-    "ag-grid-angular": "^28.1.0",
-    "ag-grid-community": "^28.1.0",
+    "ag-grid-angular": "^29.1.0",
+    "ag-grid-community": "^29.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
