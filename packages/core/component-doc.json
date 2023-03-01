@@ -6542,9 +6542,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-index-button",
         "ix-icon-button",
@@ -6577,9 +6575,6 @@
         ],
         "ix-filter-chip": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-pagination"
         ]
       },
       "props": [
@@ -9737,40 +9732,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-pagination"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-pagination"
-        ],
-        "ix-pagination": [
-          "ix-index-button",
-          "ix-icon-button",
-          "ix-select",
-          "ix-select-item"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-select-item",
-          "ix-filter-chip",
-          "ix-icon-button",
-          "ix-icon",
-          "ix-dropdown",
-          "ix-dropdown-item"
-        ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
