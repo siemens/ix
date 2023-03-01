@@ -6689,7 +6689,7 @@
           "mutable": true,
           "attr": "selected-page",
           "reflectToAttr": false,
-          "docs": "Currently selected page",
+          "docs": "Zero based index of currently selected page",
           "docsTags": [],
           "default": "0",
           "values": [
