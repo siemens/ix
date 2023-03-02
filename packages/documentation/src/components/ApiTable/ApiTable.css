@@ -77,14 +77,18 @@
   font-size: 12px;
   background-color: var(--theme-color-primary);
   border-radius: 2px;
-  padding: 0.15rem 0.25rem;
-  margin-right: 0.15rem;
-  margin-bottom: 0.15rem;
+  padding: 0.25rem 0.5rem;
 
   color: var(--theme-color-inv-std-text);
-  font-weight: bold;
+  font: var(--theme-text-default-title-single);
+
+  margin: 0.5rem 0;
 }
 
 .ApiTable .Tag.Tag--Deprecated {
   background-color: var(--theme-color-alarm);
+}
+
+.ApiTable .Tag__Message--Deprecated {
+  color: var(--theme-color-alarm-text);
 }

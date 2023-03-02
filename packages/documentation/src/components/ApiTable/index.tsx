@@ -9,8 +9,10 @@
 import React from 'react';
 import './ApiTable.css';
 
+export type ApiTableTagType = 'since' | 'deprecated';
+
 export type ApiTableTag = {
-  type: 'since' | 'deprecated';
+  type: ApiTableTagType;
   message: string;
 };
 
@@ -32,8 +34,19 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
       <div className="col-sm-6">
         <div className="ApiTable__Name">
           {props?.attribute?.name}
-          <div className="Tag">sdsd</div>
-          <div className="Tag Tag--Deprecated">sdsd</div>
+          {props?.attribute?.tags
+            ?.filter((tag) => tag.type === 'since')
+            .map((tag) => (
+              <div className="Tag">Since {tag.message}</div>
+            ))}
+          {props?.attribute?.tags
+            ?.filter((tag) => tag.type === 'deprecated')
+            .map((tag) => (
+              <>
+                <div className="Tag Tag--Deprecated">Deprecated</div>
+                <div className="Tag__Message--Deprecated">{tag.message}</div>
+              </>
+            ))}
         </div>
       </div>
       <div className="col-sm-6">

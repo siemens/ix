@@ -6,7 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ApiTableEntry } from '@site/src/components/ApiTable';
+import {
+  ApiTableEntry,
+  ApiTableTag,
+  ApiTableTagType,
+} from '@site/src/components/ApiTable';
 import fse from 'fs-extra';
 import path from 'path';
 import { appendDocsTags, renderSinceTag } from '../docs-tags';
@@ -121,9 +125,23 @@ function writeProps(properties) {
     const propDescription = prop.docs;
     const propType = escapeMarkdown(prop.type);
 
-    console.log(prop.docsTags);
+    const propTags: ApiTableTag[] = [];
 
-    attributes.push({
+    prop.docsTags.forEach((tag) => {
+      const type = tag.name;
+
+      if (type === 'since' || type === 'deprecated') {
+        propTags.push({
+          type: tag.name as ApiTableTagType,
+          message: tag.text,
+        });
+        return;
+      }
+
+      console.log(`DocsTag not supported ${tag.name}`);
+    });
+
+    const attributeEntry: ApiTableEntry = {
       name: propName,
       description: propDescription,
       definition: [
@@ -140,7 +158,10 @@ function writeProps(properties) {
           value: prop.default,
         },
       ],
-    });
+      tags: propTags,
+    };
+
+    attributes.push(attributeEntry);
   });
 
   const staticCode = `import ApiTable from '@site/src/components/ApiTable';
