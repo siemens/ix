@@ -94,7 +94,7 @@
       position: absolute;
     }
 
-    .tab > .glyph {
+    .tab>.glyph {
       color: var(--theme-nav-item-primary-icon--color--selected);
     }
   }
@@ -104,7 +104,7 @@
     pointer-events: none;
     cursor: default;
 
-    .tab > .glyph {
+    .tab>.glyph {
       color: var(--theme-color-weak-text);
     }
 
@@ -136,7 +136,7 @@
     &.active,
     &.selected {
       .tab {
-        background-color: var(--theme-color-1);
+        background-color: var(--theme-nav-item-secondary--background--selected);
       }
     }
   }
