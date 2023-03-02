@@ -1,3 +1,40 @@
+# [1.4.0-beta.2](https://github.com/siemens/ix/compare/v1.3.0...v1.4.0-beta.2) (2023-03-02)
+
+
+### Bug Fixes
+
+* **aggrid:** convert px to rem ([#378](https://github.com/siemens/ix/issues/378)) ([d3d3c36](https://github.com/siemens/ix/commit/d3d3c36f9afe77e944665900bf6e40f8598a4d1a))
+* **core/box-shadow:** use correct style for insert shadow ([553f6a9](https://github.com/siemens/ix/commit/553f6a9dad9ee36b938c860740ad6e6c2367786b))
+* **core/button:** remove wrapper level ([#357](https://github.com/siemens/ix/issues/357)) ([25107ff](https://github.com/siemens/ix/commit/25107ff11a2287967d1fef2d6c12230ff96790f2))
+* **core/button:** sizing behavior ([#364](https://github.com/siemens/ix/issues/364)) ([da87f98](https://github.com/siemens/ix/commit/da87f984de95ddaca92816b4cffc7a62f36eee0f))
+* **core/checkbox:** adjust checkmark size ([#352](https://github.com/siemens/ix/issues/352)) ([7098927](https://github.com/siemens/ix/commit/7098927637990f533600a9010411ff09ca678de5))
+* **core/date-picker:** handle empty from date ([#334](https://github.com/siemens/ix/issues/334)) ([0890165](https://github.com/siemens/ix/commit/089016597e91b9786bd70f533e3b92c39288c4ae))
+* **core/dropdown-item:** dropdown item disabled state events & icon color ([#390](https://github.com/siemens/ix/issues/390)) ([e906b50](https://github.com/siemens/ix/commit/e906b50c31b8b483787d75d29308069cc1052f35))
+* **core/dropdown:** handle multiple dropdowns at once ([#393](https://github.com/siemens/ix/issues/393)) ([4ab0246](https://github.com/siemens/ix/commit/4ab02463890ad4cedbba4e5867a245793684cccc))
+* **core/event-list:** selection and transition effect ([#335](https://github.com/siemens/ix/issues/335)) ([eb24a9e](https://github.com/siemens/ix/commit/eb24a9edf84d5ecf6aa2691667cd7dd12576c29a))
+* **core/eventlist:** selected active/hover effect and visual regression test ([#410](https://github.com/siemens/ix/issues/410)) ([93641c5](https://github.com/siemens/ix/commit/93641c597c40eb5eb0f11303633567a5d6b9c3d2))
+* **core/form-validation:** form-validation invalid correction ([#383](https://github.com/siemens/ix/issues/383)) ([e9e7fce](https://github.com/siemens/ix/commit/e9e7fcedbf31da40a170efd1080e845e9280ddc8))
+* **core/group-context-menu:** prune unused code ([#392](https://github.com/siemens/ix/issues/392)) ([2a0591f](https://github.com/siemens/ix/commit/2a0591f553270c646f4201e172d248a6fbfbe7ce))
+* **core/menu:** use scoped context in menu item ([#379](https://github.com/siemens/ix/issues/379)) ([bb1e6db](https://github.com/siemens/ix/commit/bb1e6db38ffe8bed5e3e114709651a0ffde22d78))
+* **core/select:** adjust dropdown placement ([#398](https://github.com/siemens/ix/issues/398)) ([0a8e0a2](https://github.com/siemens/ix/commit/0a8e0a2670383bea69fd04c6d30e465364ed336e))
+* **core/split-button:** dropdown behavior and middle space ([#339](https://github.com/siemens/ix/issues/339)) ([aa8778e](https://github.com/siemens/ix/commit/aa8778e742a1fb2240d47b824acd6e12ada259a2))
+* **core/tabs:** layout stretched ([#345](https://github.com/siemens/ix/issues/345)) ([a8bbca8](https://github.com/siemens/ix/commit/a8bbca83ac7edf1c70ef56f3b75b21e16eb4694f))
+* **core/toast:** delay animation into next frame ([#376](https://github.com/siemens/ix/issues/376)) ([2a6ce17](https://github.com/siemens/ix/commit/2a6ce17d5973f23e6550621b27b1d857086bd926))
+* **core/toggle:** toggle disable style ([#356](https://github.com/siemens/ix/issues/356)) ([5c4faf8](https://github.com/siemens/ix/commit/5c4faf838af5cefbbdc9640e573889d2d67a2738))
+* **core/tree:** allow child elements to receive pointer events ([#369](https://github.com/siemens/ix/issues/369)) ([ed43a53](https://github.com/siemens/ix/commit/ed43a53f2dbf68ab7602ffd9e77753c38fc9fc31))
+
+
+### Features
+
+* **core/avatar:** initals and image support ([#375](https://github.com/siemens/ix/issues/375)) ([b586eda](https://github.com/siemens/ix/commit/b586edab4daca22cd9d8753e1ca902314fbe4166))
+* **core/basic-navigation:** add mobile support ([#380](https://github.com/siemens/ix/issues/380)) ([2b862c8](https://github.com/siemens/ix/commit/2b862c8e56b4c171b9deecaf93ade6717e0d96b6))
+* **core/dropdown:** implement submenu and quick actions ([#325](https://github.com/siemens/ix/issues/325)) ([6694625](https://github.com/siemens/ix/commit/6694625f3a4fc4b901e6a5a4d1cf679fcafc16dc))
+* **core/menu:** replace burger menu animation ([#411](https://github.com/siemens/ix/issues/411)) ([37b4789](https://github.com/siemens/ix/commit/37b478917163fd2f1971f6d358a2d8784f370495))
+* **core/theme:** adjust theme colors ([#337](https://github.com/siemens/ix/issues/337)) ([a180cb8](https://github.com/siemens/ix/commit/a180cb8ef57b347e189120564e9db0e356770c26))
+* **core/tooltip:** add ix-tooltip ([#309](https://github.com/siemens/ix/issues/309)) ([ca3e8a2](https://github.com/siemens/ix/commit/ca3e8a27c082e908877a530a5a0f88f11f89f882))
+
+
+
 # [1.3.0](https://github.com/siemens/ix/compare/v1.3.0-beta.1...v1.3.0) (2023-01-27)
 
 

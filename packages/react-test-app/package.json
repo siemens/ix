@@ -1,6 +1,6 @@
 {
   "name": "react-test-app",
-  "version": "1.3.0",
+  "version": "1.4.0-beta.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@siemens/ix": "~1.3.0",
-    "@siemens/ix-aggrid": "~1.3.0",
+    "@siemens/ix": "~1.4.0-beta.2",
+    "@siemens/ix-aggrid": "~1.4.0-beta.2",
     "@siemens/ix-icons": "~1.0.0",
-    "@siemens/ix-react": "~1.3.0",
+    "@siemens/ix-react": "~1.4.0-beta.2",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",
     "react": "^18.2.0",
