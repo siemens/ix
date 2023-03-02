@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { ApiTableEntry } from '@site/src/components/ApiTable';
 import fse from 'fs-extra';
 import path from 'path';
 import { appendDocsTags, renderSinceTag } from '../docs-tags';
@@ -85,27 +86,69 @@ ${events
 `;
 }
 
+// function writeProps(properties) {
+//   if (properties.length === 0) {
+//     return 'No properties available for this component.';
+//   }
+
+//   return `| Name       | Description                   | Attribute        | Type                                      | Default             |
+// |------------|-------------------------------|------------------|-------------------------------------------|---------------------|
+// ${properties
+//   .map((prop) => {
+//     const propName = prop.name;
+//     const propDescription = renderTableCellWithDocsTags(
+//       formatMultiline(prop.docs),
+//       prop.docsTags
+//     );
+
+//     const propType = escapeMarkdown(prop.type);
+
+//     return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
+//   })
+//   .join('\n')}
+// `;
+// }
+
 function writeProps(properties) {
   if (properties.length === 0) {
     return 'No properties available for this component.';
   }
 
-  return `| Name       | Description                   | Attribute        | Type                                      | Default             |
-|------------|-------------------------------|------------------|-------------------------------------------|---------------------|
-${properties
-  .map((prop) => {
-    const propName = prop.name;
-    const propDescription = renderTableCellWithDocsTags(
-      formatMultiline(prop.docs),
-      prop.docsTags
-    );
+  const attributes: ApiTableEntry[] = [];
 
+  properties.forEach((prop) => {
+    const propName = prop.name;
+    const propDescription = prop.docs;
     const propType = escapeMarkdown(prop.type);
 
-    return `|${propName}| ${propDescription} | \`${prop.attr}\` | \`${propType}\` | \`${prop.default}\` |`;
-  })
-  .join('\n')}
-`;
+    console.log(prop.docsTags);
+
+    attributes.push({
+      name: propName,
+      description: propDescription,
+      definition: [
+        {
+          name: 'Attribute',
+          value: prop.attr,
+        },
+        {
+          name: 'Type',
+          value: propType,
+        },
+        {
+          name: 'Default',
+          value: prop.default,
+        },
+      ],
+    });
+  });
+
+  const staticCode = `import ApiTable from '@site/src/components/ApiTable';
+
+
+  <ApiTable attributes={${JSON.stringify(attributes)}} />`;
+
+  return staticCode;
 }
 
 function writeOverview(component: any) {
