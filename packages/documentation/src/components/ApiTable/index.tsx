@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
+import { ApiTableDeprecatedTag, ApiTableSinceTag } from '../ApiTableTag';
 import './ApiTable.css';
 
 export type ApiTableTagType = 'since' | 'deprecated';
@@ -37,15 +38,18 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
           {props?.attribute?.tags
             ?.filter((tag) => tag.type === 'since')
             .map((tag) => (
-              <div className="Tag">Since {tag.message}</div>
+              <ApiTableSinceTag
+                message={tag.message}
+                key={`Tag_Since_${props?.attribute?.name}`}
+              />
             ))}
           {props?.attribute?.tags
             ?.filter((tag) => tag.type === 'deprecated')
             .map((tag) => (
-              <>
-                <div className="Tag Tag--Deprecated">Deprecated</div>
-                <div className="Tag__Message--Deprecated">{tag.message}</div>
-              </>
+              <ApiTableDeprecatedTag
+                message={tag.message}
+                key={`Tag_Deprecated_${props?.attribute?.name}`}
+              />
             ))}
         </div>
       </div>
