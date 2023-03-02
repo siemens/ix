@@ -50,4 +50,18 @@ regressionTest.describe('select', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('select/overflow');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('autoplacement', async ({ page }) => {
+    await page.goto('select/autoplacement');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

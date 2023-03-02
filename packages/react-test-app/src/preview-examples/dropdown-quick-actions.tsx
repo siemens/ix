@@ -24,8 +24,8 @@ export default () => {
       <IxDropdown trigger="iconTriggerId">
         <IxDropdownQuickActions>
           <IxIconButton icon="cut" ghost></IxIconButton>
-          <IxIconButton icon="bulb" outline></IxIconButton>
-          <IxIconButton icon="trashcan"></IxIconButton>
+          <IxIconButton icon="bulb" ghost></IxIconButton>
+          <IxIconButton icon="trashcan" ghost></IxIconButton>
         </IxDropdownQuickActions>
 
         <IxDivider></IxDivider>

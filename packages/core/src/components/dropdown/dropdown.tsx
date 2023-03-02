@@ -8,10 +8,10 @@
  */
 
 import {
-  autoPlacement,
   autoUpdate,
   computePosition,
   ComputePositionConfig,
+  flip,
   inline,
   offset,
   shift,
@@ -28,7 +28,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { getAlignment } from './alignment';
 import { DropdownTriggerEvent } from './dropdown-trigger-event';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
 
@@ -105,6 +104,14 @@ export class Dropdown {
    * @internal
    */
   @Prop() triggerEvent: DropdownTriggerEvent | DropdownTriggerEvent[] = 'click';
+
+  /**
+   * @internal
+   */
+  @Prop() overwriteDropdownStyle: (delegate: {
+    dropdownRef: HTMLElement;
+    triggerRef?: HTMLElement;
+  }) => Promise<Partial<CSSStyleDeclaration>>;
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -270,13 +277,14 @@ export class Dropdown {
           this.close();
         }
         break;
-
       case 'inside':
-        if (this.dropdownRef.contains(target)) {
+        if (this.dropdownRef.contains(target) && this.hostElement !== target) {
           this.close();
         }
         break;
-
+      case 'both':
+        if (this.hostElement !== target) this.close();
+        break;
       default:
         this.close();
     }
@@ -313,11 +321,7 @@ export class Dropdown {
       };
 
       if (this.placement.includes('auto')) {
-        positionConfig.middleware.push(
-          autoPlacement({
-            alignment: getAlignment(this.placement),
-          })
-        );
+        positionConfig.middleware.push(flip());
       } else {
         positionConfig.placement = this.placement as
           | BasePlacement
@@ -354,6 +358,14 @@ export class Dropdown {
               computeResponse.x
             )}px,${Math.round(computeResponse.y)}px)`,
           });
+          if (this.overwriteDropdownStyle) {
+            const overwriteStyle = await this.overwriteDropdownStyle({
+              dropdownRef: this.dropdownRef,
+              triggerRef: this.triggerElement as HTMLElement,
+            });
+
+            Object.assign(this.dropdownRef.style, overwriteStyle);
+          }
         },
         {
           ancestorResize: true,
