@@ -28,7 +28,7 @@ Select the appropriate tab below for the respective usage information.
 ## Usage
 
 <Playground
-name="modal" height="35rem"
+name="modal" height="18rem"
 frameworks={{
   react: SourceReactModal,
   angular: {
