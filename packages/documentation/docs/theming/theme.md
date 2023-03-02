@@ -8,6 +8,8 @@ import SourceWebComponent from './../auto-generated/previews/web-component/theme
 import ReactComponent from './../auto-generated/previews/react/theme-switcher.md'
 import AngularComponent from './../auto-generated/previews/angular/theme-switcher.ts.md'
 
+import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
+
 # Themes
 
 Siemens Industrial Experience supports theming for all of its components.
@@ -44,6 +46,8 @@ Siemens AG employees can access the Corporate Brand Theme [here](https://code.si
 </div>
 
 ## Working with themes during runtime
+
+<ApiTableSinceTag message="1.3.0" />
 
 <Playground
 name="theme-switcher" height="15rem"
