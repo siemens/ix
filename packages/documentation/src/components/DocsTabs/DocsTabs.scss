@@ -26,11 +26,13 @@
   cursor: pointer;
   background-color: var(--theme-color-component-1);
 
+  font-weight: 700;
+
   > svg {
     width: 24px;
     height: 24px;
     fill: var(--theme-color-std-text);
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
   }
 }
 
