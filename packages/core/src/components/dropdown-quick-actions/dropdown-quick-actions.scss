@@ -10,15 +10,21 @@
 @import 'common-variables';
 
 :host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-inline-start: $large-space;
-  margin-inline-end: $large-space;
-  margin-block-end: $tiny-space;
+  .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-start: $large-space;
+    margin-inline-end: $large-space;
+    margin-block-end: $tiny-space;
+  }
 
   slot::slotted(*) {
     display: flex;
     margin-inline-end: 0.625rem;
+  }
+
+  .divider {
+    margin-bottom: 0.25rem;
   }
 }

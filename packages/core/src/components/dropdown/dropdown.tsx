@@ -284,14 +284,21 @@ export class Dropdown {
         break;
       case 'both':
         if (this.hostElement !== target) this.close();
-
+        break;
       default:
         this.close();
     }
   }
 
   private toggle(event?: Event) {
+    const target = event.target as HTMLElement;
+
     event?.preventDefault();
+    if (
+      target.classList.contains('sc-ix-dropdown-item') === true ||
+      target.classList.contains('sc-ix-icon') === true
+    )
+      event?.stopPropagation();
 
     this.show = !this.show;
     this.showChanged.emit(this.show);
@@ -299,12 +306,15 @@ export class Dropdown {
 
   private open(event?: Event) {
     event?.preventDefault();
+    event?.stopPropagation();
 
     this.show = true;
     this.showChanged.emit(true);
   }
 
   private close(event?: Event) {
+    event?.preventDefault();
+    event?.stopPropagation();
     if (event?.defaultPrevented) {
       return;
     }

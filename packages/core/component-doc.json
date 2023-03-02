@@ -2075,9 +2075,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-dropdown-quick-actions"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-dropdown-quick-actions": [
+          "ix-divider"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -2936,8 +2942,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-divider"
+      ],
+      "dependencyGraph": {
+        "ix-dropdown-quick-actions": [
+          "ix-divider"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

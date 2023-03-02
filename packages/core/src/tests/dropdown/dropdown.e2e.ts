@@ -71,4 +71,16 @@ regressionTest.describe('dropdown', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('submenu', async ({ page }) => {
+    await page.goto('dropdown/submenu');
+
+    await page.locator('ix-button').click();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    await (await page.waitForSelector('text="Submenu"')).click();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

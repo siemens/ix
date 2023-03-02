@@ -20,7 +20,11 @@ export class DropdownQuickActions {
   render() {
     return (
       <Host>
-        <slot></slot>
+        <div class="items">
+          <slot></slot>
+        </div>
+
+        <ix-divider class="divider"></ix-divider>
       </Host>
     );
   }
