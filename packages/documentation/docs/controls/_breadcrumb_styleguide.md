@@ -52,7 +52,6 @@ The overflow behaviour can also be triggered if the available space does not all
 Truncation is applied to individual breadcrumb items if the maximum width of the breadcrumb item is exceeded. The label name is truncated with an ellipsis.
 
 <!-- add example overflow & truncation-->
-<!-- Open question: How is the limit defined for the labels? Bug fix? -->
 
 ### Placement
 
@@ -68,18 +67,9 @@ Breadcrumbs are placed at the top left side of the page/ content area. They are 
 | Active  | The active state is indicated by font and fill color change. Equal to pressed state. |
 | Focused | The focused state is indicated by a focus frame.                                     |
 
-<!-- focused state on interactive item available? -->
-
 ### Not interactive item
 
-| State   | Description                                      |
-| ------- | ------------------------------------------------ |
-| Hover   | The hover state is indicated by ...              |
-| Active  | Not available.                                   |
-| Focused | The focused state is indicated by a focus frame. |
-
-<!-- focused state on not interactive item available? -->
-<!-- hover state not interactive item: bold in light theme, white in dark theme? -->
+No interactions available.
 
 ## Anatomy
 
@@ -92,9 +82,7 @@ The breadcrumb consists of at least one item. Each item contains a breadcrumb la
 - The breadcrumb has a fix height defined by breadcrumb item height.
 - The breadcrumb has a maximum width defined by the content area width. Exceeding the width will trigger truncation.
 - The breadcrumb item has a fixed height for single-line text entries.
-- The breadcrumb item has a minimum width of ... and maximum width of .... Between these limits, the item width is depending on the content.
-
-<!-- fill in sizing -->
+- The breadcrumb item width depends on the content and is limited to a maximum width of 14 rem.
 
 ### Spacing
 
