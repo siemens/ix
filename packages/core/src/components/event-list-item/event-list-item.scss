@@ -25,14 +25,6 @@ $height-single-line: 2.5rem;
   transition: $default-time;
   cursor: pointer;
 
-  @include hover {
-    background-color: var(--theme-event-item--background--hover);
-  }
-
-  @include active {
-    background-color: var(--theme-event-item--background--active);
-  }
-
   .indicator {
     height: 100%;
     width: $small-space;
@@ -62,13 +54,25 @@ $height-single-line: 2.5rem;
     border-bottom-right-radius: $default-border-radius;
     border-left: none;
     padding-left: $default-space;
+  }
 
+  &:not(.selected) {
     @include hover {
-      border-color: var(--theme-event-item--border--hover);
+      background-color: var(--theme-event-item--background--hover);
     }
 
     @include active {
-      border-color: var(--theme-event-item--border--active);
+      background-color: var(--theme-event-item--background--active);
+    }
+
+    .event-list-item-container {
+      @include hover {
+        border-color: var(--theme-event-item--border--hover);
+      }
+
+      @include active {
+        border-color: var(--theme-event-item--border--active);
+      }
     }
   }
 
@@ -76,16 +80,6 @@ $height-single-line: 2.5rem;
     .event-list-item-container {
       background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected);
-    }
-
-    :hover {
-      border-color: var(--theme-event-item--border--selected) !important;
-      background-color: var(--theme-event-item--background--selected) !important;
-    }
-
-    :active {
-      background-color: var(--theme-event-item--background--selected) !important;
-      border-color: var(--theme-event-item--border--selected) !important;
     }
   }
 
