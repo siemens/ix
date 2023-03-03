@@ -651,13 +651,13 @@ export declare interface IxFlipTile extends Components.IxFlipTile {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['footer', 'state']
+  inputs: ['footer', 'height', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['footer', 'state']
+  inputs: ['footer', 'height', 'state', 'width']
 })
 export class IxFlipTile {
   protected el: HTMLElement;

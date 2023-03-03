@@ -3366,10 +3366,37 @@
           "attr": "footer",
           "reflectToAttr": false,
           "docs": "Tmp property name",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 2.0.0. Setting this property has no effect"
+            }
+          ],
+          "deprecation": "Will be removed in 2.0.0. Setting this property has no effect",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "\"auto\" | number",
+          "mutable": false,
+          "attr": "height",
+          "reflectToAttr": false,
+          "docs": "Height interpreted as REM",
+          "docsTags": [],
+          "default": "15.125",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -3398,6 +3425,27 @@
             },
             {
               "type": "FlipTileState.Warning"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | number",
+          "mutable": false,
+          "attr": "width",
+          "reflectToAttr": false,
+          "docs": "Width interpreted as REM",
+          "docsTags": [],
+          "default": "16",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "type": "number"
             }
           ],
           "optional": false,
