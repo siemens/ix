@@ -290,8 +290,16 @@ export class Dropdown {
     }
   }
 
+  private isNestedDropdown(element: Element) {
+    return element.closest('ix-dropdown');
+  }
+
   private toggle(event?: Event) {
     event?.preventDefault();
+
+    if (this.isNestedDropdown(event.target as HTMLElement)) {
+      event?.stopPropagation();
+    }
 
     this.show = !this.show;
     this.showChanged.emit(this.show);
@@ -299,6 +307,10 @@ export class Dropdown {
 
   private open(event?: Event) {
     event?.preventDefault();
+
+    if (this.isNestedDropdown(event.target as HTMLElement)) {
+      event?.stopPropagation();
+    }
 
     this.show = true;
     this.showChanged.emit(true);
