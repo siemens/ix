@@ -601,12 +601,21 @@ export namespace Components {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer": string;
+        /**
+          * Height interpreted as REM
+         */
+        "height": number | 'auto';
         /**
           * Variation of the Flip
          */
         "state": FlipTileState;
+        /**
+          * Width interpreted as REM
+         */
+        "width": number | 'auto';
     }
     interface IxFlipTileContent {
     }
@@ -2878,12 +2887,21 @@ declare namespace LocalJSX {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer"?: string;
+        /**
+          * Height interpreted as REM
+         */
+        "height"?: number | 'auto';
         /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
+        /**
+          * Width interpreted as REM
+         */
+        "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
     }
