@@ -348,6 +348,10 @@ export class Dropdown {
       middleware: [],
     };
 
+    if (isSubmenu) {
+      positionConfig.placement = 'right-start';
+    }
+
     if (this.placement.includes('auto') || isSubmenu) {
       positionConfig.middleware.push(flip());
     } else {
