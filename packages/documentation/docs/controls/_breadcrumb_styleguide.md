@@ -90,12 +90,12 @@ Between breadcrumb items, a space of 0.25 rem is introduced.
 
 ## Dos and don'ts
 
-- Don't use breadcrumbs to display a multistep process. Use a workflow control instead.
+- Don't use breadcrumbs to display a multistep process. Use a [workflow](workflow.md) control instead.
 - Don't show multiple breadcrumbs on one screen (e.g. in a content area and in a drawer).
 
 ## Related patterns:
 
-- Dropdown
-- Basic navigation
-- Map navigation
-- Workflow.
+- [Dropdown](dropdown.md)
+- [Basic navigation](navigation/basic-navigation.md)
+- [Map navigation](navigation/map-navigation.md)
+- [Workflow](workflow.md)
