@@ -80,6 +80,8 @@ export class Tree {
 
   private observer: MutationObserver;
 
+  private hasFirstRender = false;
+
   private getVirtualizerOptions() {
     const list = this.buildTreeList(this.model[this.root]);
 
@@ -232,6 +234,8 @@ export class Tree {
   }
 
   componentWillRender() {
+    this.hasFirstRender = true;
+
     if (this.isListInitialized()) {
       this.refreshList();
     } else {
@@ -246,7 +250,7 @@ export class Tree {
 
   @Watch('model')
   modelChange() {
-    if (!this.isListInitialized()) {
+    if (this.hasFirstRender && !this.isListInitialized()) {
       this.initList();
     }
   }
