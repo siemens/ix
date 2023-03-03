@@ -18,4 +18,9 @@ regressionTest.describe('workflow-steps', () => {
     await page.goto('workflow-steps/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('workflow-steps/overflow');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
