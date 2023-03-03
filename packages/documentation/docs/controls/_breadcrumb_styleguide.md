@@ -11,7 +11,7 @@ Go to:
 
 ## Usage
 
-Breadcrumbs make the structure of your appliction transparent to the user. They offer means to navigate through the application.
+Breadcrumbs make the structure of your application transparent to the user. They offer means to navigate through the application.
 
 ### When to use
 
@@ -41,7 +41,7 @@ Breadcrumb items can, but don't have to, include an icon. The icon is positioned
 
 ### Population
 
-The breadcrumb should be populated location-based to reflect the hierarchy of the application and the loction of the user in it. The current location should always be included in the breadcrumb.
+The breadcrumb should be populated location-based to reflect the hierarchy of the application and the location of the user in it. The current location should always be included in the breadcrumb.
 
 ### Overflow
 
@@ -55,7 +55,7 @@ Truncation is applied to individual breadcrumb items if the maximum width of the
 
 ### Placement
 
-Breadcrumbs are placed at the top left side of the page/ content area. They are positioned below the header and above the page title.
+Breadcrumbs are placed at the top left side of the page/content area. They are positioned below the header and above the page title.
 
 ## States
 
@@ -79,7 +79,7 @@ The breadcrumb consists of at least one item. Each item contains a breadcrumb la
 
 ### Sizing
 
-- The breadcrumb has a fix height defined by breadcrumb item height.
+- The breadcrumb has a fixed height defined by breadcrumb item height.
 - The breadcrumb has a maximum width defined by the content area width. Exceeding the width will trigger truncation.
 - The breadcrumb item has a fixed height for single-line text entries.
 - The breadcrumb item width depends on the content and is limited to a maximum width of 14 rem.
