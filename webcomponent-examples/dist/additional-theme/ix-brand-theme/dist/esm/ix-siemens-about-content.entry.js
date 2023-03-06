@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-f8ce3cbe.js';
+import { r as registerInstance, h, H as Host } from './index-978423ef.js';
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
@@ -54,37 +54,14 @@ const siemensAboutContentCss = ".text-xs{-webkit-font-smoothing:antialiased;-moz
 const SiemensAboutContent = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    /**
-     * Should only be set if you use ix-menu standalone
-     */
+    this.applicationName = undefined;
     this.applicationDescription = '';
-    /**
-     * Language of the links in the About & Legal Tab
-     */
     this.imprintLanguage = 'global/en';
-    /**
-     * Copyright
-     */
     this.copyrightYears = '1996 - 2022';
-    /**
-     *
-     */
     this.i18nCorporateLabel = 'Corporate Information';
-    /**
-     *
-     */
     this.i18nPrivacyNoticeLabel = 'Privacy Notice';
-    /**
-     *
-     */
     this.i18nTermsOfUseLabel = 'Terms of Use';
-    /**
-     *
-     */
     this.i18nCookieNoticeLabel = 'Cookie Notice';
-    /**
-     *
-     */
     this.i18nDigitalId = 'Digital ID';
   }
   render() {
