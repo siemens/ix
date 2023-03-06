@@ -438,6 +438,7 @@ export class Dropdown {
         class={{
           'dropdown-menu': true,
           show: this.show,
+          overflow: true,
         }}
         style={{
           margin: '0',
