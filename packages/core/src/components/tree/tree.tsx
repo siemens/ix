@@ -85,6 +85,24 @@ export class Tree {
   private getVirtualizerOptions() {
     const list = this.buildTreeList(this.model[this.root]);
 
+    let setToggleListener = (
+      item: TreeItemVisual<any>,
+      el: HTMLElement,
+      index: number
+    ) => {
+      if (item.hasChildren && !this.toggleListener.has(el)) {
+        const toggleCallback = (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const context = this.getContext(list[index].id);
+          context.isExpanded = !context.isExpanded;
+          this.setContext(item.id, context);
+        };
+        el.addEventListener('toggle', toggleCallback);
+        this.toggleListener.set(el, toggleCallback);
+      }
+    };
+
     return {
       itemHeight: 32,
       total: list.length,
@@ -99,6 +117,8 @@ export class Tree {
         if (renderedTreeItem) {
           renderedTreeItem.hasChildren = item.hasChildren;
           renderedTreeItem.context = { ...context };
+
+          setToggleListener(item, renderedTreeItem, index);
 
           if (this.updates.has(item.id)) {
             const doUpdate = this.updates.get(item.id);
@@ -145,17 +165,7 @@ export class Tree {
           this.itemClickListener.set(el, itemClickCallback);
         }
 
-        if (item.hasChildren && !this.toggleListener.has(el)) {
-          const toggleCallback = (e: Event) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const context = this.getContext(list[index].id);
-            context.isExpanded = !context.isExpanded;
-            this.setContext(item.id, context);
-          };
-          el.addEventListener('toggle', toggleCallback);
-          this.toggleListener.set(el, toggleCallback);
-        }
+        setToggleListener(item, el, index);
 
         return el;
       },
