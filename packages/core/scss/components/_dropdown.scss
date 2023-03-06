@@ -62,9 +62,6 @@
 .dropdown-menu {
   position: absolute;
 
-  max-height: 50vh;
-  overflow-y: auto;
-
   background-color: var(--theme-menu--background);
   @include text-default-single;
   border: var(--theme-menu--border-thickness) solid

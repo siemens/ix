@@ -20,7 +20,7 @@ import { Buttons } from '../button/button-variants';
 })
 export class DropdownButton {
   /**
-   * Button varaint
+   * Button variant
    */
   @Prop() variant: Buttons = 'Primary';
 
@@ -47,7 +47,7 @@ export class DropdownButton {
   /**
    * Set label
    */
-  @Prop() label = '';
+  @Prop() label: string;
 
   /**
    * Button icon
@@ -85,7 +85,7 @@ export class DropdownButton {
             this.dropdownAnchor = ref;
           }}
         >
-          {this.label !== '' ? (
+          {this.label ? (
             <ix-button
               variant={this.variant}
               outline={this.outline}

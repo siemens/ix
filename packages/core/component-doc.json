@@ -2703,7 +2703,6 @@
           "reflectToAttr": false,
           "docs": "Set label",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
@@ -2735,7 +2734,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button varaint",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'Primary'",
           "values": [

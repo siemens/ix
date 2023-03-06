@@ -290,8 +290,25 @@ export class Dropdown {
     }
   }
 
+  private isNestedDropdown(element: Element) {
+    return element.closest('ix-dropdown');
+  }
+
+  private isAnchorSubmenu() {
+    const anchor = this.anchorElement?.closest('ix-dropdown-item');
+    if (!anchor) {
+      return false;
+    }
+
+    return true;
+  }
+
   private toggle(event?: Event) {
     event?.preventDefault();
+
+    if (this.isNestedDropdown(event.target as HTMLElement)) {
+      event?.stopPropagation();
+    }
 
     this.show = !this.show;
     this.showChanged.emit(this.show);
@@ -299,6 +316,10 @@ export class Dropdown {
 
   private open(event?: Event) {
     event?.preventDefault();
+
+    if (this.isNestedDropdown(event.target as HTMLElement)) {
+      event?.stopPropagation();
+    }
 
     this.show = true;
     this.showChanged.emit(true);
@@ -314,66 +335,76 @@ export class Dropdown {
   }
 
   private async applyDropdownPosition() {
-    if (this.anchorElement && this.dropdownRef) {
-      let positionConfig: Partial<ComputePositionConfig> = {
-        strategy: this.positioningStrategy,
-        middleware: [],
-      };
-
-      if (this.placement.includes('auto')) {
-        positionConfig.middleware.push(flip());
-      } else {
-        positionConfig.placement = this.placement as
-          | BasePlacement
-          | PlacementWithAlignment;
-      }
-
-      positionConfig.middleware = [
-        ...positionConfig.middleware,
-        inline(),
-        shift(),
-      ];
-
-      if (this.offset) {
-        positionConfig.middleware.push(offset(this.offset));
-      }
-
-      if (this.autoUpdateCleanup) {
-        this.autoUpdateCleanup();
-        this.autoUpdateCleanup = null;
-      }
-      this.autoUpdateCleanup = autoUpdate(
-        this.anchorElement,
-        this.dropdownRef,
-        async () => {
-          const computeResponse = await computePosition(
-            this.anchorElement,
-            this.dropdownRef,
-            positionConfig
-          );
-          Object.assign(this.dropdownRef.style, {
-            top: '0',
-            left: '0',
-            transform: `translate(${Math.round(
-              computeResponse.x
-            )}px,${Math.round(computeResponse.y)}px)`,
-          });
-          if (this.overwriteDropdownStyle) {
-            const overwriteStyle = await this.overwriteDropdownStyle({
-              dropdownRef: this.dropdownRef,
-              triggerRef: this.triggerElement as HTMLElement,
-            });
-
-            Object.assign(this.dropdownRef.style, overwriteStyle);
-          }
-        },
-        {
-          ancestorResize: true,
-          ancestorScroll: true,
-          elementResize: true,
-        }
-      );
+    if (!this.anchorElement) {
+      return;
     }
+    if (!this.dropdownRef) {
+      return;
+    }
+    const isSubmenu = this.isAnchorSubmenu();
+
+    let positionConfig: Partial<ComputePositionConfig> = {
+      strategy: this.positioningStrategy,
+      middleware: [],
+    };
+
+    if (isSubmenu) {
+      positionConfig.placement = 'right-start';
+    }
+
+    if (this.placement.includes('auto') || isSubmenu) {
+      positionConfig.middleware.push(flip());
+    } else {
+      positionConfig.placement = this.placement as
+        | BasePlacement
+        | PlacementWithAlignment;
+    }
+
+    positionConfig.middleware = [
+      ...positionConfig.middleware,
+      inline(),
+      shift(),
+    ];
+
+    if (this.offset) {
+      positionConfig.middleware.push(offset(this.offset));
+    }
+
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
+      this.autoUpdateCleanup = null;
+    }
+    this.autoUpdateCleanup = autoUpdate(
+      this.anchorElement,
+      this.dropdownRef,
+      async () => {
+        const computeResponse = await computePosition(
+          this.anchorElement,
+          this.dropdownRef,
+          positionConfig
+        );
+        Object.assign(this.dropdownRef.style, {
+          top: '0',
+          left: '0',
+          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
+            computeResponse.y
+          )}px)`,
+        });
+        if (this.overwriteDropdownStyle) {
+          const overwriteStyle = await this.overwriteDropdownStyle({
+            dropdownRef: this.dropdownRef,
+            triggerRef: this.triggerElement as HTMLElement,
+          });
+
+          Object.assign(this.dropdownRef.style, overwriteStyle);
+        }
+      },
+      {
+        ancestorResize: true,
+        ancestorScroll: true,
+        elementResize: true,
+      }
+    );
   }
 
   async componentDidLoad() {
@@ -407,6 +438,7 @@ export class Dropdown {
         class={{
           'dropdown-menu': true,
           show: this.show,
+          overflow: true,
         }}
         style={{
           margin: '0',
