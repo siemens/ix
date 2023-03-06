@@ -1,5 +1,5 @@
 <ix-basic-navigation>
-  <div class="placeholder-logo" slot="logo"></div>
+  <placeholder-logo slot="logo"></placeholder-logo>
   <ix-menu>
     <ix-menu-about>
       <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>

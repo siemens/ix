@@ -1,0 +1,6 @@
+<div style="padding: 4rem">
+  <ix-button data-tooltip="myTooltip">Hover me</ix-button>
+  <ix-tooltip for="[data-tooltip='myTooltip']">
+    Some example content
+  </ix-tooltip>
+</div>

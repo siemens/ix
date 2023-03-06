@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -34,12 +34,12 @@ import { Component } from '@angular/core';
         <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="col-md-4">
-        <label htmlFor="validationCustom02" class="form-label">
-          Last name
-        </label>
         <ix-validation-tooltip
           message="Error hint textError hint textError hint textError hint textError hint textError hint textError hint textError hint textError hint text"
         >
+          <label htmlFor="validationCustom02" class="form-label">
+            Last name
+          </label>
           <input
             name="lastName"
             type="text"

@@ -2,7 +2,7 @@
   application-name="Test Application"
   navigation-title="Some other content"
 >
-  <div class="placeholder-logo" slot="logo"></div>
+  <placeholder-logo slot="logo"></placeholder-logo>
   <ix-menu>
     <ix-menu-item>Item 1</ix-menu-item>
     <ix-menu-item>Item 2</ix-menu-item>

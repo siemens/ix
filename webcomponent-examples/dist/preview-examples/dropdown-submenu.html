@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown submenu example</title>
+    <script type="module" crossorigin src="../assets/index.352cb90e.js"></script>
+    <script type="module" crossorigin src="../assets/init.2f521542.js"></script>
+    <link rel="stylesheet" href="../assets/index.e2a99819.css">
+    <link rel="stylesheet" href="../assets/init.07a8d447.css">
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-button id="iconTriggerId">Open</ix-button>
+    <ix-dropdown trigger="iconTriggerId">
+      <ix-dropdown-item id="submenuTrigger" label="Submenu">
+        <ix-icon name="chevron-right-small" size="24"></ix-icon>
+      </ix-dropdown-item>
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>
+    </ix-dropdown>
+    <ix-dropdown trigger="submenuTrigger" placement="right-start">
+      <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
+    </ix-dropdown>
+    <!-- Preview code -->
+    
+  </body>
+</html>
