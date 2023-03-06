@@ -284,7 +284,7 @@ export class Dropdown {
         break;
       case 'both':
         if (this.hostElement !== target) this.close();
-
+        break;
       default:
         this.close();
     }

@@ -1,4 +1,4 @@
-import Color from '@site/src/components/Color';
+import ThemeColors from '@site/src/components/ThemeColors';
 
 # Colors
 
@@ -11,6 +11,4 @@ To access them the `var()` CSS function can be called with the color's name:
 }
 ```
 
-## Base colors
-
-<Color></Color>
+<ThemeColors></ThemeColors>

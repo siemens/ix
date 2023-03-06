@@ -20,7 +20,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
  * @slot title-icon - Icon of tooltip title
  * @slot title-content - Content of tooltip title
  *
- * @since 1.3.0
+ * @since 1.4.0
  */
 @Component({
   tag: 'ix-tooltip',
