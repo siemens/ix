@@ -58,8 +58,8 @@ export class MenuItem {
   }
 
   componentDidRender() {
-    const spanElement = this.tabLabel;
-    const newTitle = spanElement.innerHTML.replace('&amp;', '&');
+    const spanElement = this.tabLabel as HTMLElement;
+    const newTitle = spanElement.innerText.replace('&amp;', '&');
     if (this.title !== newTitle) {
       this.title = newTitle;
     }
