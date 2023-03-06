@@ -9,18 +9,6 @@
 
 @import '../mixins/hover';
 
-.dropup,
-.dropright,
-.dropdown,
-.dropleft {
-  .btn {
-    @include ellipsis;
-    display: inline-block;
-    text-align: left;
-    width: 100%;
-  }
-}
-
 .dropdown-group {
   margin: 0.687rem;
   display: block;
