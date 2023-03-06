@@ -55,7 +55,7 @@ describe('ix-dropdown', () => {
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-    <ix-dropdown class="dropdown-menu show" show="" style="margin: 0; min-width: 0px; position: fixed;">
+    <ix-dropdown class="dropdown-menu overflow show" show="" style="margin: 0; min-width: 0px; position: fixed;">
       <mock:shadow-root>
         <div style="display: contents;">
           <slot></slot>
