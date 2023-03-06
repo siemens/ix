@@ -49,7 +49,7 @@ jobs:
           ROOT=$(pwd)
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          npm install @siemens/ix-brand-theme@^1.1.0 --no-save
+          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
           rm .npmrc
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
           sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
