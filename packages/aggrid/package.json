@@ -31,16 +31,16 @@
     "host-root": "http-server -a 127.0.0.1"
   },
   "dependencies": {
-    "@stencil/core": "~2.19.2"
+    "@stencil/core": "^3.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.3",
-    "jest": "^27.4.5",
-    "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0",
+    "@types/jest": "^27.5.2",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "puppeteer": "^19.5.2",
     "ag-grid-community": "29.1.0",
     "@siemens/ix": "~1.4.0",
-    "@stencil/sass": "~2.0.0",
+    "@stencil/sass": "~3.0.0",
     "@playwright/test": "^1.24.1",
     "http-server": "^14.1.1"
   },
