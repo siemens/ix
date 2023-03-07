@@ -124,12 +124,6 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
 ]);
 
 
-export const IxDateTimeCard = /*@__PURE__*/ defineContainer<JSX.IxDateTimeCard>('ix-date-time-card', undefined, [
-  'individual',
-  'corners'
-]);
-
-
 export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePicker>('ix-datetime-picker', undefined, [
   'range',
   'showHour',
@@ -151,6 +145,9 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'dateChange',
   'dateSelect'
 ]);
+
+
+export const IxDivider = /*@__PURE__*/ defineContainer<JSX.IxDivider>('ix-divider', undefined);
 
 
 export const IxDrawer = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer', undefined, [
@@ -176,6 +173,8 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'adjustDropdownWidthToReferenceWidth',
   'header',
   'offset',
+  'triggerEvent',
+  'overwriteDropdownStyle',
   'showChanged'
 ]);
 
@@ -199,6 +198,9 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
   'checked',
   'itemClick'
 ]);
+
+
+export const IxDropdownQuickActions = /*@__PURE__*/ defineContainer<JSX.IxDropdownQuickActions>('ix-dropdown-quick-actions', undefined);
 
 
 export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-event-list', undefined, [
@@ -377,6 +379,8 @@ export const IxMenuAboutNews = /*@__PURE__*/ defineContainer<JSX.IxMenuAboutNews
 export const IxMenuAvatar = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-menu-avatar', undefined, [
   'top',
   'bottom',
+  'image',
+  'initials',
   'i18nLogout',
   'logoutClick'
 ]);
