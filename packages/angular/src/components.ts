@@ -380,6 +380,7 @@ export class IxDatetimePicker {
 }
 
 
+import type { DateTimeDateChangeEvent as IIxDatetimePickerDateTimeDateChangeEvent } from '@siemens/ix';
 import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from '@siemens/ix';
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
@@ -396,7 +397,7 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
   /**
    * Date change @since 1.1.0
    */
-  dateChange: EventEmitter<CustomEvent<IIxDatetimePickerstring | Omit<[object Object], 'time'>>>;
+  dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
    * Date selection event is fired after confirm button is pressend @since 1.1.0
    */

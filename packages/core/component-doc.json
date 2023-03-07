@@ -1514,7 +1514,7 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "DateChangeEvent | string",
+          "detail": "string | { from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1529,7 +1529,7 @@
         },
         {
           "event": "dateRangeChange",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1543,7 +1543,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2018,7 +2018,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateTimeSelectEvent",
+          "detail": "{ from: string; to: string; time: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

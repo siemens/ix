@@ -9,7 +9,8 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from './base-button';
-import { Buttons } from './button-variants';
+
+export type Buttons = 'Primary' | 'Secondary';
 
 @Component({
   tag: 'ix-button',

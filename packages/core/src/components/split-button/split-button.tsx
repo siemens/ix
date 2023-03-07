@@ -17,8 +17,8 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { Buttons } from 'src/components';
 import { getButtonClasses } from '../button/base-button';
-import { Buttons } from '../button/button-variants';
 import { Placement } from '../dropdown/placement';
 
 @Component({

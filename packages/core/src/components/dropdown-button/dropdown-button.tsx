@@ -8,7 +8,7 @@
  */
 
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { Buttons } from '../button/button-variants';
+import { Buttons } from 'src/components';
 
 /**
  * @since 1.3.0

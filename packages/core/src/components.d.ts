@@ -5,15 +5,16 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/button/button-variants";
+import { Buttons } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "./components/datetime-picker/event";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 import { Placement } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
+import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+import { Buttons as Buttons1 } from "src/components";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -22,15 +23,16 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { Buttons } from "./components/button/button-variants";
+export { Buttons } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
+export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeSelectEvent } from "./components/datetime-picker/event";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 export { Placement } from "./components/dropdown/placement";
-export { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
+export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+export { Buttons as Buttons1 } from "src/components";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -530,7 +532,7 @@ export namespace Components {
         /**
           * Button variant
          */
-        "variant": Buttons;
+        "variant": Buttons1;
     }
     interface IxDropdownItem {
         /**
@@ -1234,7 +1236,7 @@ export namespace Components {
         /**
           * Color variant of button
          */
-        "variant": Buttons;
+        "variant": Buttons1;
     }
     interface IxSplitButtonItem {
         /**
@@ -2628,7 +2630,7 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: IxDatetimePickerCustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Date selection event is fired after confirm button is pressend
           * @since 1.1.0
@@ -2819,7 +2821,7 @@ declare namespace LocalJSX {
         /**
           * Button variant
          */
-        "variant"?: Buttons;
+        "variant"?: Buttons1;
     }
     interface IxDropdownItem {
         /**
@@ -3570,7 +3572,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of button
          */
-        "variant"?: Buttons;
+        "variant"?: Buttons1;
     }
     interface IxSplitButtonItem {
         /**

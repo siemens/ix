@@ -28,8 +28,12 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { DropdownTriggerEvent } from './dropdown-trigger-event';
 import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
+
+/**
+ * @internal
+ */
+export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 @Component({
   tag: 'ix-dropdown',
