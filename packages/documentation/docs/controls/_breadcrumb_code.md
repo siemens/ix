@@ -27,7 +27,7 @@ height="8rem"
 frameworks={{
     react: SourceReactBreadcrumb,
     angular: SourceAngularBreadcrumb,
-    javascript: SourceBreadcrumb
+    javascript: SourceBreadcrumb,
     vue: SourceVueBreadcrumb
 }}>
 </Playground>
@@ -41,7 +41,7 @@ hideInitalCodePreview
 frameworks={{
     react: SourceReactBreadcrumbTruncate,
     angular: SourceAngularBreadcrumbTruncate,
-    javascript: SourceBreadcrumbTruncate
+    javascript: SourceBreadcrumbTruncate,
     vue: SourceVueBreadcrumbTruncate
 }}>
 </Playground>
@@ -55,7 +55,7 @@ hideInitalCodePreview
 frameworks={{
     react: SourceReactBreadcrumbNextItems,
     angular: SourceAngularBreadcrumbNextItems,
-    javascript: SourceBreadcrumbNextItems
+    javascript: SourceBreadcrumbNextItems,
     vue: SourceVueBreadcrumbNextItems
 }}>
 </Playground>
