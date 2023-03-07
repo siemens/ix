@@ -20,6 +20,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { SplitButtonVariant } from "./components/split-button/split-button";
+import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -40,6 +41,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 export { SplitButtonVariant } from "./components/split-button/split-button";
+export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -1318,7 +1320,7 @@ export namespace Components {
         /**
           * Corner style
          */
-        "corners": DateTimeCardCorners;
+        "corners": TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0
@@ -3658,7 +3660,7 @@ declare namespace LocalJSX {
         /**
           * Corner style
          */
-        "corners"?: DateTimeCardCorners;
+        "corners"?: TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0

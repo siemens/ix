@@ -339,28 +339,6 @@ Only triggered if datepicker is in range mode @since 1.1.0
 
 
 @ProxyCmp({
-  inputs: ['corners', 'individual']
-})
-@Component({
-  selector: 'ix-date-time-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'individual'],
-})
-export class IxDateTimeCard {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxDateTimeCard extends Components.IxDateTimeCard {}
-
-
-@ProxyCmp({
   inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to']
 })
 @Component({

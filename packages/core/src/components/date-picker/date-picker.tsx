@@ -28,6 +28,8 @@ export type DateChangeEvent = {
 
 export type LegacyDateChangeEvent = DateChangeEvent | string;
 
+export type DateTimeCorners = DateTimeCardCorners;
+
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
