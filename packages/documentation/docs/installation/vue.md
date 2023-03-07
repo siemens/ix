@@ -4,10 +4,12 @@ sidebar_title: Vue
 title: Vue
 ---
 
-### Experimental disclamer
+:::caution Experimental disclaimer
 
 The vue wrapper will be in a experimental state meaning that full component support is not garanteed.
 Additionally any related bugs that affect only this wrapper will not be a priority for now.
+
+:::
 
 ### Install dependencies
 
