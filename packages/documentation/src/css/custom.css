@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -39,7 +39,7 @@ body {
   --ifm-leading: calc(var(--ifm-leading-desktop) * 1rem);
   --ifm-hr-background-color: var(--theme-color-contrast-text);
   --ifm-hr-height: 0.125rem;
-
+  --ifm-code-border-radius: 0px;
   --bs-alert-bg: var(--theme-color-alarm) !important;
 }
 
@@ -174,14 +174,6 @@ aside {
   margin: 0px;
 }
 
-.theme-doc-sidebar-item-category {
-  padding: 4px 0px;
-  border: 2px solid var(--theme-color-1);
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-}
-
 .navbar__logo {
   height: 1rem;
 }
@@ -275,4 +267,98 @@ a.menu__link {
 }
 .navbar__search {
   margin-right: 1rem;
+}
+
+/*
+* Links
+*/
+
+a[href] {
+  text-decoration: none;
+}
+
+a[href]:not(.disabled):not(:disabled):hover {
+  text-decoration: underline;
+}
+
+/**
+* MENU
+**/
+
+.theme-doc-sidebar-item-category {
+  padding: 4px 0px;
+}
+
+.theme-doc-sidebar-item-category-level-1 {
+  border: 2px solid var(--theme-color-1);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.theme-doc-sidebar-item-link > .menu__link--active {
+  position: relative;
+  background-color: var(--theme-color-1);
+  border-radius: 0px;
+}
+
+.theme-doc-sidebar-item-link > .menu__link--active::before {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 100%;
+  left: 0px;
+  border-radius: 0px;
+  border-left: 0.25rem solid var(--theme-color-dynamic);
+}
+
+/**
+* Table of contents
+**/
+
+.table-of-contents {
+  font-family: 'Siemens Sans';
+  font-size: 1rem;
+}
+
+.table-of-contents__link {
+  text-decoration: none;
+}
+
+/**
+* Markdown
+**/
+
+p {
+  line-height: 1.5rem;
+}
+
+p + h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+  margin-top: 2rem;
+}
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 + p {
+  margin-bottom: 1rem;
 }

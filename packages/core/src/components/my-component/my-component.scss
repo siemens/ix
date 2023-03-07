@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -10,7 +10,7 @@
 @import 'common-variables';
 
 :host {
-  display: flex;
+  display: block;
   position: relative;
   width: 100vw;
   height: 100vh;

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,8 +8,9 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { Buttons } from '../utils/button-variants';
 import { getButtonClasses } from './base-button';
+
+export type ButtonVariant = 'Primary' | 'Secondary';
 
 @Component({
   tag: 'ix-button',
@@ -20,7 +21,7 @@ export class Button {
   /**
    * Button varaint
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: ButtonVariant = 'Primary';
 
   /**
    * Outline button

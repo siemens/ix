@@ -42,20 +42,18 @@ Therefore it is important to choose the correct timing for the respective situat
 
 ### Animation timing variables
 
-All animation timing values are also available through SASS variables:
+All animation timing values are also available through CSS variables:
 
-```
-$x-slow-time: 1s;
-$slow-time: 500ms;
-$medium-time: 300ms;
-$default-time: 150ms;
-$short-time: 0ms;
+```css
+--theme-x-slow-time: 1s;
+--theme-slow-time: 500ms;
+--theme-medium-time: 300ms;
+--theme-default-time: 150ms;
+--theme-short-time: 0ms;
 ```
 
 Usage example:
 
-```
-@import '@siemens/ix/scss/common-variables';
-
-transition: $default-time;
+```css
+transition: var(--theme-default-time);
 ```

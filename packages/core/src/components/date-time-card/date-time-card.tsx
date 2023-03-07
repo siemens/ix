@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,6 +11,9 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 
+/**
+ * @internal
+ */
 @Component({
   tag: 'ix-date-time-card',
   styleUrl: 'date-time-card.scss',

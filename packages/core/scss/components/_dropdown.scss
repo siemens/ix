@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,18 +8,6 @@
  */
 
 @import '../mixins/hover';
-
-.dropup,
-.dropright,
-.dropdown,
-.dropleft {
-  .btn {
-    @include ellipsis;
-    display: inline-block;
-    text-align: left;
-    width: 100%;
-  }
-}
 
 .dropdown-group {
   margin: 0.687rem;
@@ -61,9 +49,6 @@
 
 .dropdown-menu {
   position: absolute;
-
-  max-height: 50vh;
-  overflow-y: auto;
 
   background-color: var(--theme-menu--background);
   @include text-default-single;
@@ -144,6 +129,10 @@
 
   > .glyph {
     color: var(--theme-menu-item-icon--color);
+
+    &.disabled {
+      color: var(--color-weak-text);
+    }
 
     &.glyph-single-check {
       color: var(--theme-menu-item-icon-check--color);

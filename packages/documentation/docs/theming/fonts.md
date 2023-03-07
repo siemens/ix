@@ -1,4 +1,4 @@
-import Fonts from '@site/src/components/Fonts';
+import ThemeFonts from '@site/src/components/ThemeFonts';
 
 # Fonts
 
@@ -13,4 +13,4 @@ Theme changes will apply to texts automatically (e.g. change color).
 
 ## Variants
 
-<Fonts />
+<ThemeFonts />

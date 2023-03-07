@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -655,6 +655,7 @@ export class CategoryFilter {
         <ix-dropdown
           closeBehavior="outside"
           trigger={this.textInput}
+          triggerEvent={['click', 'focus']}
           header={this.getDropdownHeader()}
           class={{ 'd-none': !this.displayDropdown() }}
         >

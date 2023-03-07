@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -156,6 +156,9 @@ export const config: Config = {
     slotChildNodesFix: true,
     experimentalImportInjection: true,
     scopedSlotTextContentFix: true,
+  },
+  testing: {
+    setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',

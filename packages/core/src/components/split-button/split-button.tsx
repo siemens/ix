@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -18,8 +18,10 @@ import {
   State,
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
+import { ButtonVariant } from '../button/button';
 import { Placement } from '../dropdown/placement';
-import { Buttons } from '../utils/button-variants';
+
+export type SplitButtonVariant = ButtonVariant;
 
 @Component({
   tag: 'ix-split-button',
@@ -32,7 +34,7 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'Primary';
 
   /**
    * Button outline variant

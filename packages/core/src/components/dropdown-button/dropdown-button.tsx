@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,7 +8,9 @@
  */
 
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { Buttons } from '../utils/button-variants';
+import { ButtonVariant } from '../button/button';
+
+export type DropdownButtonVariant = ButtonVariant;
 
 /**
  * @since 1.3.0
@@ -20,9 +22,9 @@ import { Buttons } from '../utils/button-variants';
 })
 export class DropdownButton {
   /**
-   * Button varaint
+   * Button variant
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: DropdownButtonVariant = 'Primary';
 
   /**
    * Outline button
@@ -47,7 +49,7 @@ export class DropdownButton {
   /**
    * Set label
    */
-  @Prop() label = '';
+  @Prop() label: string;
 
   /**
    * Button icon
@@ -85,7 +87,7 @@ export class DropdownButton {
             this.dropdownAnchor = ref;
           }}
         >
-          {this.label !== '' ? (
+          {this.label ? (
             <ix-button
               variant={this.variant}
               outline={this.outline}

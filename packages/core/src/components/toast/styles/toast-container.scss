@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -17,10 +17,10 @@
 
 .toast-container {
   display: block;
-  position: absolute;
+  position: fixed;
 }
 
 .toast-container--bottom-right {
   right: 1rem;
-  bottom: 1rem;
+  bottom: 2rem;
 }

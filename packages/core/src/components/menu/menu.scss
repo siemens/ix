@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -26,6 +26,7 @@ ix-menu {
     width: 4rem;
     height: 100%;
     padding-block-end: 1rem;
+    overflow: hidden;
 
     &.expanded {
       box-shadow: var(--theme-navigation--box-shadow);
@@ -34,41 +35,8 @@ ix-menu {
     background-color: var(--theme-nav--background);
     transition: width var(--animate-duration);
 
-    .burger-menu-button {
-      @include ghost-hover-pressed;
-
-      display: flex;
-      justify-content: center;
-      margin-top: $medium-space;
-      margin-left: $medium-space;
-      margin-bottom: $default-space;
-      height: $x-large-space;
-      width: 2.5rem;
-      border-radius: $tiny-space;
-
-      svg {
-        display: inline-block;
-        fill: var(--theme-menu-btn--color);
-        position: relative;
-
-        .line {
-          opacity: 1;
-          transform: rotate(0) translateY(0) translateX(0);
-          transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
-        }
-      }
-
-      &.expanded {
-        svg .line-1 {
-          transform: translate(0.6875rem, -0.05rem) rotate(45deg);
-        }
-        svg .line-2 {
-          opacity: 0;
-        }
-        svg .line-3 {
-          transform: translate(-0.75625rem, 0.8125rem) rotate(-45deg);
-        }
-      }
+    .burger-menu {
+      margin: 0.75rem 0 1rem 0.75rem;
     }
   }
 
@@ -122,6 +90,25 @@ ix-menu {
 
   .bottom-tab-divider {
     margin-top: auto;
+  }
+}
+
+ix-menu.mode-mobile {
+  .menu:not(.expanded) {
+    width: 0;
+  }
+
+  .menu {
+    padding-top: 2rem;
+  }
+
+  .menu .burger-menu {
+    display: none;
+  }
+
+  .menu-overlay {
+    left: 0px;
+    width: calc(100vw);
   }
 }
 

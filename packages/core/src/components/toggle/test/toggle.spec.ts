@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
