@@ -16,8 +16,8 @@ export interface Disposable {
 }
 
 export class TypedEvent<T> {
-  private readonly listeners: Listener<T>[] = [];
-  private listenersOncer: Listener<T>[] = [];
+  public readonly listeners: Listener<T>[] = [];
+  public listenersOncer: Listener<T>[] = [];
 
   on = (listener: Listener<T>): Disposable => {
     this.listeners.push(listener);

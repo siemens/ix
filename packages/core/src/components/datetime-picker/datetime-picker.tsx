@@ -8,15 +8,24 @@
  */
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import { DateChangeEvent } from '../date-picker/events';
-import { DateTimeSelectEvent } from './event';
+import { DateChangeEvent } from 'src/components';
+
+export type DateTimeSelectEvent = {
+  from: string;
+  to: string;
+  time: string;
+};
+
+export type DateTimeDateChangeEvent =
+  | string
+  | Omit<DateTimeSelectEvent, 'time'>;
 
 @Component({
   tag: 'ix-datetime-picker',
   styleUrl: 'datetime-picker.scss',
   scoped: true,
 })
-export class DatePicker {
+export class DateTimePicker {
   /**
    * Set range size
    */
@@ -142,7 +151,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Event() dateChange: EventEmitter<string | Omit<DateTimeSelectEvent, 'time'>>;
+  @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
    * Date selection event is fired after confirm button is pressend
