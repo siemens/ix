@@ -17,9 +17,11 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { Buttons } from 'src/components';
 import { getButtonClasses } from '../button/base-button';
+import { ButtonVariant } from '../button/button';
 import { Placement } from '../dropdown/placement';
+
+export type SplitButtonVariant = ButtonVariant;
 
 @Component({
   tag: 'ix-split-button',
@@ -32,7 +34,7 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'Primary';
 
   /**
    * Button outline variant

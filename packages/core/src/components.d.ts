@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/button/button";
+import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -14,16 +14,18 @@ import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-t
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 import { Placement } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
-import { Buttons as Buttons1 } from "src/components";
+import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { SplitButtonVariant } from "./components/split-button/split-button";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { Buttons } from "./components/button/button";
+export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -32,10 +34,12 @@ export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-t
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 export { Placement } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
-export { Buttons as Buttons1 } from "src/components";
+export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { SplitButtonVariant } from "./components/split-button/split-button";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -148,7 +152,7 @@ export namespace Components {
         /**
           * Button varaint
          */
-        "variant": Buttons;
+        "variant": ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -532,7 +536,7 @@ export namespace Components {
         /**
           * Button variant
          */
-        "variant": Buttons1;
+        "variant": DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -769,7 +773,7 @@ export namespace Components {
         /**
           * Variant of button
          */
-        "variant": 'Primary' | 'Secondary';
+        "variant": IconButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -1095,7 +1099,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<ModalInstance>;
+        "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
     interface IxModalExample {
     }
@@ -1236,7 +1240,7 @@ export namespace Components {
         /**
           * Color variant of button
          */
-        "variant": Buttons1;
+        "variant": SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**
@@ -2387,7 +2391,7 @@ declare namespace LocalJSX {
         /**
           * Button varaint
          */
-        "variant"?: Buttons;
+        "variant"?: ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -2821,7 +2825,7 @@ declare namespace LocalJSX {
         /**
           * Button variant
          */
-        "variant"?: Buttons1;
+        "variant"?: DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -3086,7 +3090,7 @@ declare namespace LocalJSX {
         /**
           * Variant of button
          */
-        "variant"?: 'Primary' | 'Secondary';
+        "variant"?: IconButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -3572,7 +3576,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of button
          */
-        "variant"?: Buttons1;
+        "variant"?: SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**

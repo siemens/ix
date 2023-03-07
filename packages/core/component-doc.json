@@ -6464,10 +6464,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<ModalInstance<any>>",
+            "type": "Promise<ModalInstance<T>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
+          "signature": "showModal<T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [

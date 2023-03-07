@@ -8,7 +8,9 @@
  */
 
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { Buttons } from 'src/components';
+import { ButtonVariant } from '../button/button';
+
+export type DropdownButtonVariant = ButtonVariant;
 
 /**
  * @since 1.3.0
@@ -22,7 +24,7 @@ export class DropdownButton {
   /**
    * Button variant
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: DropdownButtonVariant = 'Primary';
 
   /**
    * Outline button
