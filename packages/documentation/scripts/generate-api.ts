@@ -151,6 +151,42 @@ SPDX-License-Identifier: MIT
     );
   }
 
+  async function writeVuePreviews() {
+    const vuePreviewSourceCodePath = path.join(staticPath, 'vue');
+    fse.ensureDirSync(vuePreviewSourceCodePath);
+
+    const vuePreviewPath = path.join(
+      __dirname,
+      '../vue-test-app/src/preview-examples'
+    );
+    const vuePreviews = fs.readdirSync(vuePreviewPath);
+    await Promise.all(
+      vuePreviews.flatMap((previewPath) => {
+        const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
+        const writePath = path.join(
+          __dirname,
+          'docs',
+          'auto-generated',
+          'previews',
+          'vue'
+        );
+        fse.ensureDirSync(writePath);
+        const code = fs
+          .readFileSync(path.join(vuePreviewPath, previewPath))
+          .toString();
+        const markdown = generateMarkdown(previewPath, 'html', code);
+
+        return [
+          fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+          fsp.writeFile(
+            path.join(staticPath, 'vue', `${previewPath}.txt`),
+            code
+          ),
+        ];
+      })
+    );
+  }
+
   function clearDirectories() {
     const paths = [staticPath, docsGenerationPath, examplePathPath];
 
@@ -179,4 +215,5 @@ SPDX-License-Identifier: MIT
     __dirname,
     generateMarkdown
   );
+  await writeVuePreviews();
 })();

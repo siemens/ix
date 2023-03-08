@@ -15,6 +15,11 @@ import SourceAngularInputDisabled from './../auto-generated/previews/angular/inp
 import SourceAngularInputReadonly from './../auto-generated/previews/angular/input-readonly.ts.md'
 import SourceAngularInputIcon from './../auto-generated/previews/angular/input-with-icon.ts.md'
 
+import SourceVueInput from './../auto-generated/previews/vue/input.md'
+import SourceVueInputDisabled from './../auto-generated/previews/vue/input-disabled.md'
+import SourceVueInputReadonly from './../auto-generated/previews/vue/input-readonly.md'
+import SourceVueInputIcon from './../auto-generated/previews/vue/input-with-icon.md'
+
 # Input
 
 ## Usage
@@ -24,7 +29,8 @@ name="input"
 frameworks={{
   react: SourceReactInput,
   angular: SourceAngularInput,
-  javascript: SourceInput
+  javascript: SourceInput,
+  vue: SourceVueInput
 }}></Playground>
 
 ### Disabled
@@ -35,7 +41,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactInputDisabled,
   angular: SourceAngularInputDisabled,
-  javascript: SourceInputDisabled
+  javascript: SourceInputDisabled,
+  vue: SourceVueInputDisabled
 }}></Playground>
 
 ### Readonly
@@ -46,7 +53,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactInputReadonly,
   angular: SourceAngularInputReadonly,
-  javascript: SourceInputReadonly
+  javascript: SourceInputReadonly,
+  vue: SourceVueInputReadonly
 }}></Playground>
 
 ### with Icon
@@ -57,5 +65,6 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactInputIcon,
   angular: SourceAngularInputIcon,
-  javascript: SourceInputIcon
+  javascript: SourceInputIcon,
+  vue: SourceVueInputIcon
 }}></Playground>

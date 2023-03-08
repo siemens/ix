@@ -14,6 +14,9 @@ import SourceTabsRounded from './../auto-generated/previews/web-component/tabs-r
 import SourceReactTabsRounded from './../auto-generated/previews/react/tabs-rounded.md';
 import SourceAngularTabsRounded from './../auto-generated/previews/angular/tabs-rounded.ts.md';
 
+import SourceVueTabs from './../auto-generated/previews/vue/tabs.md';
+import SourceVueTabsRounded from './../auto-generated/previews/vue/tabs-rounded.md';
+
 # Tabs
 
 ## Usage
@@ -23,7 +26,8 @@ name="tabs" height="20rem"
 frameworks={{
   react: SourceReactTabs,
   angular: SourceAngularTabs,
-  javascript: SourceTabs
+  javascript: SourceTabs,
+  vue: SourceVueTabs
 }}></Playground>
 
 ### Tabs Rounded
@@ -34,7 +38,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactTabsRounded,
   angular: SourceAngularTabsRounded,
-  javascript: SourceTabsRounded
+  javascript: SourceTabsRounded,
+  vue: SourceVueTabsRounded
 }}></Playground>
 
 ## Properties (ix-tabs)

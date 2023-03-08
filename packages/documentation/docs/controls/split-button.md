@@ -15,6 +15,9 @@ import SourceReactSplitButtonIcons from './../auto-generated/previews/react/spli
 import SourceAngularSplitButton from './../auto-generated/previews/angular/split-button.ts.md';
 import SourceAngularSplitButtonIcons from './../auto-generated/previews/angular/split-button-icons.ts.md';
 
+import SourceVueSplitButton from './../auto-generated/previews/vue/split-button.md';
+import SourceVueSplitButtonIcons from './../auto-generated/previews/vue/split-button-icons.md';
+
 # Split button
 
 ## Usage
@@ -24,7 +27,8 @@ name="split-button" height="16rem"
 frameworks={{
   react: SourceReactSplitButton,
   angular: SourceAngularSplitButton,
-  javascript: SourceSplitButton
+  javascript: SourceSplitButton,
+  vue: SourceVueSplitButton
 }}></Playground>
 
 ### With icon only
@@ -35,7 +39,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactSplitButtonIcons,
   angular: SourceAngularSplitButtonIcons,
-  javascript: SourceSplitButtonIcons
+  javascript: SourceSplitButtonIcons,
+  vue: SourceVueSplitButtonIcons
 }}></Playground>
 
 ## Properties (ix-split-button)
