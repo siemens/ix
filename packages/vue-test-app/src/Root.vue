@@ -74,6 +74,7 @@ import ToggleColor from './preview-examples/toggle-color.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import Toggle from './preview-examples/toggle.vue';
+import Tooltip from './preview-examples/tooltip.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import Validation from './preview-examples/validation.vue';
@@ -151,6 +152,7 @@ const routes: any = {
   '/preview/basic-navigation-without-header': BasicNavigationWithoutHeader,
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
+  '/preview/tooltip': Tooltip,
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
