@@ -75,6 +75,7 @@ interface PlaygroundProps {
     react?: Record<string, MdxContent> | MdxContent;
     angular?: Record<string, MdxContent> | MdxContent;
     webcomponents?: Record<string, MdxContent> | MdxContent;
+    vue?: Record<string, MdxContent> | MdxContent;
   };
   availableFrameworks?: TargetFramework[];
 }
@@ -188,6 +189,9 @@ export default function Playground({
         if (framework === TargetFramework.ANGULAR) {
           filename = filename.concat('.ts');
         }
+        if (framework === TargetFramework.VUE) {
+          filename = filename.concat('.vue');
+        }
 
         snippets[framework] = [
           {
@@ -294,6 +298,15 @@ export default function Playground({
                   JavaScript
                 </IxTabItem>
               ) : null}
+
+              {isFrameworkConfigured(TargetFramework.VUE) ? (
+              <IxTabItem
+                selected={targetFramework === TargetFramework.VUE}
+                onClick={() => changeFramework(TargetFramework.VUE)}
+              >
+                Vue
+              </IxTabItem>
+            ) : null}
             </IxTabs>
 
             <div className="Playground__Toolbar__Actions">

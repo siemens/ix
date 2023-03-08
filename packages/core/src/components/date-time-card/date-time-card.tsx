@@ -11,6 +11,9 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 
+/**
+ * @internal
+ */
 @Component({
   tag: 'ix-date-time-card',
   styleUrl: 'date-time-card.scss',

@@ -25,9 +25,9 @@ export class ModalContainer {
    * @param config
    */
   @Method()
-  async showModal(config: ModalConfig): Promise<ModalInstance> {
-    const onClose = new TypedEvent<any>();
-    const onDismiss = new TypedEvent<any>();
+  async showModal<T = any>(config: ModalConfig<T>): Promise<ModalInstance<T>> {
+    const onClose = new TypedEvent<T>();
+    const onDismiss = new TypedEvent<T>();
 
     const modal = document.createElement('ix-modal');
     let { title, content, ...modifiedConfig } = config;
@@ -44,11 +44,11 @@ export class ModalContainer {
 
     this.hostElement.appendChild(modal);
 
-    modal.addEventListener('closed', (event: CustomEvent<any>) => {
+    modal.addEventListener('closed', (event: CustomEvent<T>) => {
       this.hostElement.removeChild(modal);
       onClose.emit(event.detail);
     });
-    modal.addEventListener('dismissed', (event: CustomEvent<any>) => {
+    modal.addEventListener('dismissed', (event: CustomEvent<T>) => {
       this.hostElement.removeChild(modal);
       onDismiss.emit(event.detail);
     });

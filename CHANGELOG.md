@@ -1,3 +1,12 @@
+# [1.5.0-beta.0](https://github.com/siemens/ix/compare/v1.4.0...v1.5.0-beta.0) (2023-03-08)
+
+
+### Features
+
+* **vue:** add vue support ([#291](https://github.com/siemens/ix/issues/291)) ([d7bb12c](https://github.com/siemens/ix/commit/d7bb12cb8251ea38fdee344ef12d46f05bc91327))
+
+
+
 # [1.4.0](https://github.com/siemens/ix/compare/v1.3.0...v1.4.0) (2023-03-06)
 
 
