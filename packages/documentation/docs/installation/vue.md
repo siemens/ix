@@ -6,8 +6,9 @@ title: Vue
 
 :::caution Experimental disclaimer
 
-The vue wrapper will be in a experimental state meaning that full component support is not garanteed.
-Additionally any related bugs that affect only this wrapper will not be a priority for now.
+There is no guarantee that the core functionality is fully covered by the Vue wrappers.
+Bug reports and feature requests related to Vue can only be handled with low priority.
+Nevertheless feedback of any kind will be helpful.
 
 :::
 
