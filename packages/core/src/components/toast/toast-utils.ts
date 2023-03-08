@@ -19,7 +19,7 @@ export interface ToastConfig {
   iconColor?: string;
 }
 
-function getToastContainer() {
+export function getToastContainer() {
   const containerList = Array.from(
     document.querySelectorAll('ix-toast-container')
   );

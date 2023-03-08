@@ -16,6 +16,7 @@ export { DropdownTriggerEvent } from './components/dropdown/dropdown-trigger-eve
 export { FlipTileState } from './components/flip-tile/flip-tile-state';
 export { ModalContainer } from './components/modal-container/modal-container';
 export { Modal } from './components/modal/modal';
+export { getToastContainer } from './components/toast/toast-utils';
 export { NotificationColor } from './components/utils/notification-color';
 export {
   convertToAbbreviationString,

@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-toast-container></ix-toast-container>
+
+    <ix-button id="toastButton">Trigger toast</ix-button>
+    <script type="module">
+      import { toast } from '@siemens/ix';
+
+      (async function () {
+        await window.customElements.whenDefined('ix-toast-container');
+        const toastContainer = document.querySelector('ix-toast-container');
+        toastContainer.position = 'top-right';
+        document.getElementById('toastButton').addEventListener('click', () => {
+          toast({
+            message: 'My toast message!',
+          });
+        });
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

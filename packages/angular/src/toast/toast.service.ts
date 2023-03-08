@@ -8,14 +8,26 @@
  */
 
 import { Injectable } from '@angular/core';
-import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
+import {
+  getToastContainer,
+  toast,
+  ToastConfig as IxToastConfig,
+} from '@siemens/ix';
 import { ToastConfig } from './toast.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  public async show(config: ToastConfig) {
+  setPosition(position: 'bottom-right' | 'top-right') {
+    getToastContainer().position = position;
+  }
+
+  getPosition() {
+    return getToastContainer().position;
+  }
+
+  async show(config: ToastConfig) {
     if (typeof config.message === 'string') {
       return toast(config as IxToastConfig);
     }

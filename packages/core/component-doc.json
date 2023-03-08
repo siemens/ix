@@ -8320,7 +8320,7 @@
         },
         {
           "name": "position",
-          "type": "string",
+          "type": "\"bottom-right\" | \"top-right\"",
           "mutable": false,
           "attr": "position",
           "reflectToAttr": false,
@@ -8329,6 +8329,11 @@
           "default": "'bottom-right'",
           "values": [
             {
+              "value": "bottom-right",
+              "type": "string"
+            },
+            {
+              "value": "top-right",
               "type": "string"
             }
           ],

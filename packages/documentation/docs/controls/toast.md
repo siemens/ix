@@ -10,6 +10,10 @@ import SourceToastCustom from './../auto-generated/previews/web-component/toast-
 import SourceAngularToastCustom from './../auto-generated/previews/angular/toast-custom.ts.md';
 import SourceReactToastCustom from './../auto-generated/previews/react/toast-custom.md';
 
+import SourceToastPosition from './../auto-generated/previews/web-component/toast-position.md';
+import SourceAngularToastPosition from './../auto-generated/previews/angular/toast-position.ts.md';
+import SourceReactToastPosition from './../auto-generated/previews/react/toast-position.md';
+
 import ApiToastConfigJavaScript from './\_toast/javascript/toast-config.md';
 
 import ApiToastServiceAngular from './\_toast/angular/toast-service.html.md';
@@ -36,6 +40,16 @@ frameworks={{
   react: SourceReactToastCustom,
   angular: SourceAngularToastCustom,
   javascript: SourceToastCustom
+}}></Playground>
+
+## Position
+
+<Playground
+name="toast-position" height="18rem"
+frameworks={{
+  react: SourceReactToastPosition,
+  angular: SourceAngularToastPosition,
+  javascript: SourceToastPosition
 }}></Playground>
 
 ## API
