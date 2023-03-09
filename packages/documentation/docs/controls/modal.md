@@ -5,6 +5,7 @@ import Playground from '@site/src/components/Playground';
 
 import SourceModal from './../auto-generated/previews/web-component/modal.md'
 import SourceReactModal from './../auto-generated/previews/react/modal.md'
+import SourceVueModal from './../auto-generated/previews/vue/modal.md'
 import SourceAngularModal from './../auto-generated/previews/angular/modal.ts.md'
 import SourceAngularModalByInstance from './../auto-generated/previews/angular/modal-by-instance.ts.md'
 import SourceAngularModalByInstanceContent from './../auto-generated/previews/angular/modal-by-instance-content.ts.md'
@@ -37,6 +38,7 @@ frameworks={{
     "modal-by-instance-content.ts": SourceAngularModalByInstanceContent,
     },
   javascript: SourceModal,
+  vue: SourceVueModal,
 }}>
 </Playground>
 

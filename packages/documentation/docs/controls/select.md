@@ -18,6 +18,10 @@ import SourceAngularSelect from './../auto-generated/previews/angular/select.ts.
 import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.ts.md';
 import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.ts.md';
 
+import SourceVueSelect from './../auto-generated/previews/vue/select.md';
+import SourceVueEditable from './../auto-generated/previews/vue/select-editable.md';
+import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.md';
+
 # Select
 
 ## Usage
@@ -27,7 +31,8 @@ name="select" height="18rem"
 frameworks={{
   react: SourceReactSelect,
   angular: SourceAngularSelect,
-  javascript: SourceSelect
+  javascript: SourceSelect,
+  vue: SourceVueSelect
 }}></Playground>
 
 ### Editable
@@ -38,7 +43,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEditable,
   angular: SourceAngularEditable,
-  javascript: SourceEditable
+  javascript: SourceEditable,
+  vue: SourceVueEditable
 }}></Playground>
 
 ### Multiselect
@@ -49,7 +55,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactMultiple,
   angular: SourceAngularMultiple,
-  javascript: SourceMultiple
+  javascript: SourceMultiple,
+  vue: SourceVueMultiple
 }}></Playground>
 
 ## Properties (ix-select)

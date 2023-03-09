@@ -15,6 +15,10 @@ import SourceAngularBreadcrumb from './../auto-generated/previews/angular/breadc
 import SourceAngularBreadcrumbTruncate from './../auto-generated/previews/angular/breadcrumb-truncate.ts.md'
 import SourceAngularBreadcrumbNextItems from './../auto-generated/previews/angular/breadcrumb-next-items.ts.md'
 
+import SourceVueBreadcrumb from './../auto-generated/previews/vue/breadcrumb.md'
+import SourceVueBreadcrumbTruncate from './../auto-generated/previews/vue/breadcrumb-truncate.md'
+import SourceVueBreadcrumbNextItems from './../auto-generated/previews/vue/breadcrumb-next-items.md'
+
 import Playground from '@site/src/components/Playground'
 
 <Playground
@@ -23,7 +27,8 @@ height="8rem"
 frameworks={{
     react: SourceReactBreadcrumb,
     angular: SourceAngularBreadcrumb,
-    javascript: SourceBreadcrumb
+    javascript: SourceBreadcrumb,
+    vue: SourceVueBreadcrumb
 }}>
 </Playground>
 
@@ -36,7 +41,8 @@ hideInitalCodePreview
 frameworks={{
     react: SourceReactBreadcrumbTruncate,
     angular: SourceAngularBreadcrumbTruncate,
-    javascript: SourceBreadcrumbTruncate
+    javascript: SourceBreadcrumbTruncate,
+    vue: SourceVueBreadcrumbTruncate
 }}>
 </Playground>
 
@@ -49,7 +55,8 @@ hideInitalCodePreview
 frameworks={{
     react: SourceReactBreadcrumbNextItems,
     angular: SourceAngularBreadcrumbNextItems,
-    javascript: SourceBreadcrumbNextItems
+    javascript: SourceBreadcrumbNextItems,
+    vue: SourceVueBreadcrumbNextItems
 }}>
 </Playground>
 

@@ -7,6 +7,9 @@ import SourceReactCheckboxInderterminate from './../auto-generated/previews/reac
 import SourceAngularCheckbox from './../auto-generated/previews/angular/checkbox.ts.md'
 import SourceAngularCheckboxInderterminate from './../auto-generated/previews/angular/checkbox-indeterminate.ts.md'
 
+import SourceVueCheckbox from './../auto-generated/previews/vue/checkbox.md'
+import SourceVueCheckboxInderterminate from './../auto-generated/previews/vue/checkbox-indeterminate.md'
+
 # Checkbox
 
 ## Usage
@@ -16,7 +19,8 @@ name="checkbox" height="8rem"
 frameworks={{
   react: SourceReactCheckbox,
   angular: SourceAngularCheckbox,
-  javascript: SourceCheckbox
+  javascript: SourceCheckbox,
+  vue: SourceVueCheckbox
 }}></Playground>
 
 ### Indeterminate
@@ -27,5 +31,6 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactCheckboxInderterminate,
   angular: SourceAngularCheckboxInderterminate,
-  javascript: SourceCheckboxInderterminate
+  javascript: SourceCheckboxInderterminate,
+  vue: SourceVueCheckboxInderterminate
 }}></Playground>

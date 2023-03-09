@@ -6,6 +6,7 @@ import Events from './../auto-generated/ix-upload/events.md';
 import SourceUpload from './../auto-generated/previews/web-component/upload.md';
 import SourceReactUpload from './../auto-generated/previews/react/upload.md';
 import SourceAngularUpload from './../auto-generated/previews/angular/upload.ts.md';
+import SourceVueUpload from './../auto-generated/previews/vue/upload.md';
 
 # Upload
 
@@ -16,7 +17,8 @@ name="upload" height="8rem"
 frameworks={{
   react: SourceReactUpload,
   angular: SourceAngularUpload,
-  javascript: SourceUpload
+  javascript: SourceUpload,
+  vue: SourceVueUpload
 }}>
 </Playground>
 

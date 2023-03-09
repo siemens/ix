@@ -11,6 +11,9 @@ import SourceCategoryFilterSuggestions from './../auto-generated/previews/web-co
 import SourceReactCategoryFilterSuggestions from './../auto-generated/previews/react/category-filter-suggestions.md'
 import SourceAngularCategoryFilterSuggestions from './../auto-generated/previews/angular/category-filter-suggestions.ts.md'
 
+import SourceVueCategoryFilter from './../auto-generated/previews/vue/category-filter.md'
+import SourceVueCategoryFilterSuggestions from './../auto-generated/previews/vue/category-filter-suggestions.md'
+
 import Playground from '@site/src/components/Playground';
 
 # Category filter
@@ -23,7 +26,8 @@ height="12rem"
 frameworks={{
   react: SourceReactCategoryFilter,
   angular: SourceAngularCategoryFilter,
-  javascript: SourceCategoryFilter
+  javascript: SourceCategoryFilter,
+  vue: SourceVueCategoryFilter
 }}></Playground>
 
 ### without categories
@@ -35,7 +39,8 @@ height="12rem"
 frameworks={{
   react: SourceReactCategoryFilterSuggestions,
   angular: SourceAngularCategoryFilterSuggestions,
-  javascript: SourceCategoryFilterSuggestions
+  javascript: SourceCategoryFilterSuggestions,
+  vue: SourceVueCategoryFilterSuggestions
 }}></Playground>
 
 ## Properties

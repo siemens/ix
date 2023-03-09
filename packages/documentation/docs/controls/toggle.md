@@ -15,6 +15,10 @@ import SourceAngularToggle from './../auto-generated/previews/angular/toggle.ts.
 import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.ts.md';
 import SourceAngularToggleDisabled from './../auto-generated/previews/angular/toggle-disabled.ts.md';
 
+import SourceVueToggle from './../auto-generated/previews/vue/toggle.md';
+import SourceVueToggleLabel from './../auto-generated/previews/vue/toggle-custom-label.md';
+import SourceVueToggleDisbaled from './../auto-generated/previews/vue/toggle-disabled.md';
+
 # Toggle
 
 ## Usage
@@ -24,7 +28,8 @@ name="toggle"
 frameworks={{
   react: SourceReactToggle,
   angular: SourceAngularToggle,
-  javascript: SourceToggle
+  javascript: SourceToggle,
+  vue: SourceVueToggle
 }}></Playground>
 
 ### Custom label
@@ -35,7 +40,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactToggleLabel,
   angular: SourceAngularToggleLabel,
-  javascript: SourceToggleLabel
+  javascript: SourceToggleLabel,
+  vue: SourceVueToggleLabel
 }}></Playground>
 
 ### Disabled
@@ -46,7 +52,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactToggleDisabled,
   angular: SourceAngularToggleDisabled,
-  javascript: SourceToggleDisabled
+  javascript: SourceToggleDisabled,
+  vue: SourceVueToggleDisbaled
 }}></Playground>
 
 ## Properties
