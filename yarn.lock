@@ -3358,13 +3358,6 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-aggrid@~1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-aggrid/-/ix-aggrid-1.2.1.tgz#f5850c6c0ce6ec7a8b81ebbfa6a43934cea8b709"
-  integrity sha512-Wp3DLPIsZXw/8r/sH84FrwIt1owxNUsqwej1UaK6+3kEtjpf7M3Bs3uolX0fhy1cxVZPlp6/LK67VfGh7ZPsqA==
-  dependencies:
-    "@stencil/core" "~2.19.2"
-
 "@siemens/ix-icons@~1.0.0":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-1.0.3.tgz#09e4c590d25959e4d7a727a984054008df4cdaa8"
@@ -3445,11 +3438,6 @@
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.1.0.tgz#a1320516ebeda056f5f20000628c3488656a4435"
   integrity sha512-Zfe+evaw9m2L/HkTO97Hu8go2ThXrObyWkVqa7V3HjTnq+8TUd/nwld9PC0bOItC/eyMRXsWHdEDCpJAZ1tEVQ==
-
-"@stencil/core@~2.19.2":
-  version "2.19.3"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.19.3.tgz#34a35d11982070801300d984ab8cbf9353fac698"
-  integrity sha512-rb6pBWTfD5xDg5M/uEJUeclatE/tqBE3zCCNrEB47AtdkNCzC9fOikdzCYbpdAEpU6GvC60REFr0bd8QFUjn3Q==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"

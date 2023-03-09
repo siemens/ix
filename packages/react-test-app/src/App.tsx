@@ -6,20 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxButton } from '@siemens/ix-react';
-import React, { useState } from 'react';
-
-function ToggleMe(props: { toggle: boolean }) {
-  return <IxButton>{props.toggle ? 'Test 1' : 'Test 2'}</IxButton>;
-}
+import { IxChip } from '@siemens/ix-react';
+import React from 'react';
 
 function App() {
-  const [toggle, setToggle] = useState(false);
-
   return (
     <div>
-      <IxButton onClick={() => setToggle(!toggle)}>Toggle!</IxButton>
-      <ToggleMe toggle={toggle} />
+      <IxChip closable onClose={console.log}>
+        test
+      </IxChip>
+
+      {/* <IxChip closable ref={(r) => r?.addEventListener('close', console.log)}>
+        test
+      </IxChip> */}
     </div>
   );
 }

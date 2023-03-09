@@ -16,4 +16,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-test-app';
+
+  close(event: CustomEvent<any>) {
+    console.log(event);
+  }
 }
