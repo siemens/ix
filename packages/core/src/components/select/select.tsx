@@ -368,6 +368,7 @@ export class Select {
                 ? this.selectedItems?.map((item) => (
                     <ix-filter-chip
                       disabled={this.disabled || this.readonly}
+                      key={item.value}
                       onCloseClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -439,9 +440,9 @@ export class Select {
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="auto-start"
-          overwriteDropdownStyle={async (delegateConfig) => {
+          overwriteDropdownStyle={async () => {
             return {
-              width: `${delegateConfig.triggerRef.clientWidth}px`,
+              width: `${this.hostElement.clientWidth}px`,
             };
           }}
         >
