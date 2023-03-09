@@ -3815,9 +3815,17 @@ declare namespace LocalJSX {
          */
         "onContextChange"?: (event: IxTreeCustomEvent<TreeContext>) => void;
         /**
+          * Node clicked event
+         */
+        "onNodeClicked"?: (event: IxTreeCustomEvent<string>) => void;
+        /**
           * Emits removed nodes
          */
         "onNodeRemoved"?: (event: IxTreeCustomEvent<any>) => void;
+        /**
+          * Node toggled event
+         */
+        "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpaned: boolean }>) => void;
         /**
           * Render function of tree items
          */

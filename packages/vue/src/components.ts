@@ -598,6 +598,8 @@ export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', undef
   'renderItem',
   'context',
   'contextChange',
+  'nodeToggled',
+  'nodeClicked',
   'nodeRemoved'
 ]);
 
