@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-sidebar_title: iX for developers
-title: iX for developers
+sidebar_title: Getting started
+title: Getting started
 hide_table_of_contents: true
 ---
 
