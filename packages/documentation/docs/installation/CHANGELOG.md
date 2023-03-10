@@ -4,6 +4,15 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+## [1.4.1](https://github.com/siemens/ix/compare/v1.4.0...v1.4.1) (2023-03-10)
+
+
+### Bug Fixes
+
+* **core/dropdown:** fix editable dropdown width ([#435](https://github.com/siemens/ix/issues/435)) ([de19669](https://github.com/siemens/ix/commit/de196698f205c0823f356914e4e8e7e67e5f7b8c))
+
+
+
 # [1.4.0](https://github.com/siemens/ix/compare/v1.3.0...v1.4.0) (2023-03-06)
 
 
