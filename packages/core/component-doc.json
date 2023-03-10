@@ -1102,6 +1102,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Fire event if close button is clicked",
+          "docsTags": [
+            {
+              "name": "deprecated"
+            }
+          ],
+          "deprecation": ""
+        },
+        {
+          "event": "closeChip",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event if close button is clicked",
           "docsTags": []
         }
       ],

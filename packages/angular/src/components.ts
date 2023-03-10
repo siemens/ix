@@ -255,16 +255,20 @@ export class IxChip {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['close', 'closeChip']);
   }
 }
 
 
 export declare interface IxChip extends Components.IxChip {
   /**
-   * Fire event if close button is clicked
+   * Fire event if close button is clicked @deprecated undefined
    */
   close: EventEmitter<CustomEvent<any>>;
+  /**
+   * Fire event if close button is clicked
+   */
+  closeChip: EventEmitter<CustomEvent<any>>;
 }
 
 

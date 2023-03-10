@@ -71,8 +71,15 @@ export class Chip {
 
   /**
    * Fire event if close button is clicked
+   *
+   *  @deprecated
    */
   @Event() close: EventEmitter;
+
+  /**
+   * Fire event if close button is clicked
+   */
+  @Event() closeChip: EventEmitter;
 
   private getCloseButton() {
     return (
@@ -80,7 +87,11 @@ export class Chip {
         <button
           type="button"
           class="btn btn-invisible-secondary btn-icon btn-oval close-button"
-          onClick={(event) => this.close.emit(event)}
+          onClick={(event) => {
+            this.close.emit(event);
+            this.closeChip.emit(event);
+            event.stopImmediatePropagation();
+          }}
         >
           {this.variant === 'custom' ? (
             <i
