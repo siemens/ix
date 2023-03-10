@@ -292,10 +292,10 @@ export namespace Components {
          */
         "format": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string;
+        "from": string | null;
         /**
           * Get the current DateTime
          */
@@ -2543,10 +2543,10 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string;
+        "from"?: string | null;
         /**
           * @deprecated Will be removed in 2.0.0
          */
@@ -2562,7 +2562,7 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.
           * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;

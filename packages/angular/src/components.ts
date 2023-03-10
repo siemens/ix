@@ -319,7 +319,7 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
    * Date change event
 
 If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerLegacyDateChangeEvent>>;
   /**
