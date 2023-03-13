@@ -14,6 +14,8 @@
 :host {
   position: relative;
   display: block;
+  cursor: pointer;
+  @include ghost-hover-pressed;
 
   .tab {
     display: flex;
@@ -22,12 +24,6 @@
     height: 3rem;
     z-index: 500;
     padding-left: 1.25rem;
-
-    &:not(.selected) {
-      cursor: pointer;
-
-      @include ghost-hover-pressed;
-    }
   }
 
   i.glyph {
@@ -130,12 +126,21 @@
 
     .tab::before {
       height: $bottom-height;
+      background-color: transparent;
     }
 
     &.active,
     &.selected {
       .tab {
-        background-color: var(--theme-color-1);
+        background-color: var(--theme-nav-item-secondary--background--selected);
+      }
+
+      &:hover {
+        background-color: var(--theme-nav-item-secondary--background--selected);
+      }
+
+      &:active {
+        background-color: var(--theme-nav-item-secondary--background--selected);
       }
     }
   }
