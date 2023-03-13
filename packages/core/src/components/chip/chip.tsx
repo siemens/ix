@@ -92,7 +92,7 @@ export class Chip {
           onClick={(event) => {
             this.close.emit(event);
             this.closeChip.emit(event);
-            event.stopImmediatePropagation();
+            event.stopPropagation();
           }}
         >
           {this.variant === 'custom' ? (
