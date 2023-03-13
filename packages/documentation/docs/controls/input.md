@@ -22,6 +22,7 @@ import SourceVueInput from './../auto-generated/previews/vue/input.md'
 import SourceVueInputDisabled from './../auto-generated/previews/vue/input-disabled.md'
 import SourceVueInputReadonly from './../auto-generated/previews/vue/input-readonly.md'
 import SourceVueInputIcon from './../auto-generated/previews/vue/input-with-icon.md'
+import SourceVueInputSearch from './../auto-generated/previews/vue/input-search.md'
 
 # Input
 
@@ -79,6 +80,7 @@ name="input-search"
 hideInitalCodePreview
 frameworks={{
   react: SourceReactInputSearch,
-    angular: SourceAngularInputSearch,
-  javascript: SourceInputSearch
+  angular: SourceAngularInputSearch,
+  javascript: SourceInputSearch,
+  vue: SourceVueInputSearch
 }}></Playground>
