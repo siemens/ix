@@ -93,7 +93,8 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'background',
   'color',
   'outline',
-  'close'
+  'close',
+  'closeChip'
 ]);
 
 

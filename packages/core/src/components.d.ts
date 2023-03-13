@@ -2481,8 +2481,14 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
+          * @deprecated Will be removed in 2.0.0. Use `closeChip`
          */
         "onClose"?: (event: IxChipCustomEvent<any>) => void;
+        /**
+          * Fire event if close button is clicked
+          * @since 1.5.0
+         */
+        "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
          */
