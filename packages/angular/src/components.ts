@@ -262,11 +262,11 @@ export class IxChip {
 
 export declare interface IxChip extends Components.IxChip {
   /**
-   * Fire event if close button is clicked @deprecated undefined
+   * Fire event if close button is clicked @deprecated Will be removed in 2.0.0. Use `closeChip`
    */
   close: EventEmitter<CustomEvent<any>>;
   /**
-   * Fire event if close button is clicked
+   * Fire event if close button is clicked @since 1.5.0
    */
   closeChip: EventEmitter<CustomEvent<any>>;
 }
