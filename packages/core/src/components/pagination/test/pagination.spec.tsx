@@ -8,12 +8,12 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { IxPagination } from '../pagination';
+import { Pagination } from '../pagination';
 
 describe('ix-pagination', () => {
   it('overflow end select higher page', async () => {
     const page = await newSpecPage({
-      components: [IxPagination],
+      components: [Pagination],
       html: `<ix-pagination count="10"></ix-pagination>`,
     });
     const pagination = page.doc.querySelector('ix-pagination');
@@ -26,7 +26,7 @@ describe('ix-pagination', () => {
 
   it('overflow both select higher page', async () => {
     const page = await newSpecPage({
-      components: [IxPagination],
+      components: [Pagination],
       html: `<ix-pagination count="10" selected-page="4"></ix-pagination>`,
     });
     const pagination = page.doc.querySelector('ix-pagination');
@@ -39,7 +39,7 @@ describe('ix-pagination', () => {
 
   it('overflow both select lower page', async () => {
     const page = await newSpecPage({
-      components: [IxPagination],
+      components: [Pagination],
       html: `<ix-pagination count="10" selected-page="4"></ix-pagination>`,
     });
     const pagination = page.doc.querySelector('ix-pagination');
@@ -52,7 +52,7 @@ describe('ix-pagination', () => {
 
   it('overflow start select lower page', async () => {
     const page = await newSpecPage({
-      components: [IxPagination],
+      components: [Pagination],
       html: `<ix-pagination count="10" selected-page="9"></ix-pagination>`,
     });
     const pagination = page.doc.querySelector('ix-pagination');

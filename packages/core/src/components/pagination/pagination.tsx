@@ -9,12 +9,15 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @since 1.5.0
+ */
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',
   scoped: true,
 })
-export class IxPagination {
+export class Pagination {
   private readonly maxCountPages = 7;
 
   /**

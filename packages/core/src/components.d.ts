@@ -1117,6 +1117,9 @@ export namespace Components {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.5.0
+     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -2116,6 +2119,9 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    /**
+     * @since 1.5.0
+     */
     interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
     }
     var HTMLIxPaginationElement: {
@@ -3509,6 +3515,9 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.5.0
+     */
     interface IxPagination {
         /**
           * Advanced mode
@@ -4234,6 +4243,9 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            /**
+             * @since 1.5.0
+             */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;

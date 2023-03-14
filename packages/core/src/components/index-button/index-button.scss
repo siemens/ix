@@ -17,8 +17,8 @@
     height: $x-large-space;
 
     &.selected {
-      background-color: var(--theme-btn-invisible-secondary--background--selected) !important;
-      color: var(--theme-btn-invisible-secondary--color--selected) !important;
+      background-color: var(--theme-btn-invisible-secondary--background--selected);
+      color: var(--theme-btn-invisible-secondary--color--selected);
     }
   }
 }
