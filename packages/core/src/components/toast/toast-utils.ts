@@ -39,6 +39,10 @@ export function getToastContainer() {
   return container;
 }
 
+export function setToastPosition(position: 'bottom-right' | 'top-right') {
+  getToastContainer().position = position;
+}
+
 async function toast(config: ToastConfig) {
   const context = getToastContainer();
   const toast = await context.showToast(config);

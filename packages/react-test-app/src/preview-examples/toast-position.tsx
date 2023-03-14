@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getToastContainer } from '@siemens/ix';
+import { setToastPosition } from '@siemens/ix';
 import { IxButton, showToast } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
-  getToastContainer().position = 'top-right';
+  setToastPosition('top-right');
 
   return (
     <>

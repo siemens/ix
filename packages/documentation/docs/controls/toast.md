@@ -15,6 +15,7 @@ import SourceVueToastCustom from './../auto-generated/previews/vue/toast-custom.
 import SourceToastPosition from './../auto-generated/previews/web-component/toast-position.md';
 import SourceAngularToastPosition from './../auto-generated/previews/angular/toast-position.ts.md';
 import SourceReactToastPosition from './../auto-generated/previews/react/toast-position.md';
+import SourceVueToastPosition from './../auto-generated/previews/vue/toast-position.md';
 
 import ApiToastConfigJavaScript from './\_toast/javascript/toast-config.md';
 
@@ -53,7 +54,8 @@ name="toast-position" height="18rem"
 frameworks={{
   react: SourceReactToastPosition,
   angular: SourceAngularToastPosition,
-  javascript: SourceToastPosition
+  javascript: SourceToastPosition,
+  vue: SourceVueToastPosition,
 }}></Playground>
 
 ## API
