@@ -11,6 +11,9 @@ import SourceReactDrawerFullHeight from './../auto-generated/previews/react/draw
 import SourceAngularDrawer from './../auto-generated/previews/angular/drawer.ts.md'
 import SourceAngularDrawerFullHeight from './../auto-generated/previews/angular/drawer-full-height.ts.md'
 
+import SourceVueDrawer from './../auto-generated/previews/vue/drawer.md'
+import SourceVueDrawerFullHeight from './../auto-generated/previews/vue/drawer-full-height.md'
+
 # Drawer
 
 ## Usage
@@ -20,7 +23,8 @@ name="drawer-full-height" height="24rem"
 frameworks={{
   react: SourceReactDrawer,
   angular: SourceAngularDrawer,
-  javascript: SourceDrawer
+  javascript: SourceDrawer,
+  vue: SourceVueDrawer
 }}></Playground>
 
 ### Auto height
@@ -31,7 +35,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactDrawerFullHeight,
   angular: SourceAngularDrawerFullHeight,
-  javascript: SourceDrawerFullHeight
+  javascript: SourceDrawerFullHeight,
+  vue: SourceVueDrawerFullHeight
 }}></Playground>
 
 ## Properties

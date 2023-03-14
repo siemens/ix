@@ -29,6 +29,10 @@ function getSourceCodeFile({
   if (framework === TargetFramework.REACT) {
     return `${repositoryUrl}/react-test-app/src/preview-examples/${name}.tsx`;
   }
+
+  if (framework === TargetFramework.VUE) {
+    return `${repositoryUrl}/vue-test-app/src/preview-examples/${name}.vue`;
+  }
 }
 
 export function openGitHubFile({
@@ -232,6 +236,70 @@ async function openReactStackBlitz(
   );
 }
 
+async function openVueStackBlitz(
+  baseUrl: string,
+  sourceFiles: { filename: string; sourceCode: string }[]
+) {
+  const [
+    app_vue,
+    index_html,
+    index_ts,
+    package_json,
+    tsconfig_json,
+    viteconfig_ts,
+    env_d_ts,
+  ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/vue/App.vue`,
+    `${baseUrl}code-runtime/vue/index.html`,
+    `${baseUrl}code-runtime/vue/main.ts`,
+    `${baseUrl}code-runtime/vue/package.json`,
+    `${baseUrl}code-runtime/vue/tsconfig.json`,
+    `${baseUrl}code-runtime/vue/vite.config.ts`,
+    `${baseUrl}code-runtime/vue/env.d.ts`,
+  ]);
+
+  const [renderFirstExample] = sourceFiles;
+
+  const patchAppTs = () => {
+    return app_vue
+      .replace(
+        /\/\/@_IMPORT_COMPONENT/gms,
+        `import Example from './${renderFirstExample.filename}'`
+      )
+      .replace(/<!-- @_RENDER_COMPONENT -->/gms, ' <Example />');
+  };
+
+  const files: Record<string, string> = {};
+
+  sourceFiles.forEach(({ filename, sourceCode }) => {
+    files[`src/${filename}`] = sourceCode;
+  });
+
+  sdk.openProject(
+    {
+      template: 'node',
+      title: 'iX Vue App',
+      description: 'iX vue playground',
+      files: {
+        ...files,
+        'index.html': index_html,
+        'src/main.ts': index_ts,
+        'src/App.vue': patchAppTs(),
+        'src/env.d.ts': env_d_ts,
+        'package.json': package_json,
+        'tsconfig.json': tsconfig_json,
+        'vite.config.ts': viteconfig_ts,
+        '.stackblitzrc': `{
+          "startCommand": "yarn run dev"
+        }`,
+      },
+    },
+    {
+      openFile: `src/${renderFirstExample.filename}`,
+    }
+  );
+}
+
 async function getSourceCodeFiles(
   baseUrl: string,
   framework: TargetFramework,
@@ -276,5 +344,9 @@ export async function openStackBlitz({
 
   if (framework === TargetFramework.JAVASCRIPT) {
     return openHtmlStackBlitz(baseUrl, additionalFiles);
+  }
+
+  if (framework === TargetFramework.VUE) {
+    return openVueStackBlitz(baseUrl, additionalFiles);
   }
 }

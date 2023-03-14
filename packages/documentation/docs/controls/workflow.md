@@ -13,6 +13,9 @@ import SourceWorkflowVertical from './../auto-generated/previews/web-component/w
 import SourceReactWorkflowVertical from './../auto-generated/previews/react/workflow-vertical.md';
 import SourceAngularWorkflowVertical from './../auto-generated/previews/angular/workflow-vertical.ts.md';
 
+import SourceVueWorkflow from './../auto-generated/previews/vue/workflow.md';
+import SourceVueWorkflowVertical from './../auto-generated/previews/vue/workflow-vertical.md';
+
 # Workflow
 
 ## Usage
@@ -22,7 +25,8 @@ name="workflow"
 frameworks={{
   react: SourceReactWorkflow,
   angular: SourceAngularWorkflow,
-  javascript: SourceWorkflow
+  javascript: SourceWorkflow,
+  vue: SourceVueWorkflow
 }}></Playground>
 
 ### Vertical
@@ -33,7 +37,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactWorkflowVertical,
   angular: SourceAngularWorkflowVertical,
-  javascript: SourceWorkflowVertical
+  javascript: SourceWorkflowVertical,
+  vue: SourceVueWorkflowVertical
 }}></Playground>
 
 ## Properties ix-workflow-steps

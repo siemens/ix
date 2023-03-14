@@ -5,23 +5,48 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/button/button-variants";
+import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "./components/datetime-picker/event";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 import { Placement } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
+import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { SplitButtonVariant } from "./components/split-button/split-button";
+import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
+export { ButtonVariant } from "./components/button/button";
+export { FilterState } from "./components/category-filter/filter-state";
+export { InputState } from "./components/category-filter/input-state";
+export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { Placement } from "./components/dropdown/placement";
+export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { IconButtonVariant } from "./components/icon-button/icon-button";
+export { NotificationColor } from "./components/utils/notification-color";
+export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { SplitButtonVariant } from "./components/split-button/split-button";
+export { TimePickerCorners } from "./components/time-picker/time-picker";
+export { ToastConfig, ToastType } from "./components/toast/toast-utils";
+export { TypedEvent } from "./components/utils/typed-event";
+export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+export { TypographyVariants } from "./components/typography/types";
+export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
         /**
@@ -129,7 +154,7 @@ export namespace Components {
         /**
           * Button varaint
          */
-        "variant": Buttons;
+        "variant": ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -308,7 +333,7 @@ export namespace Components {
         /**
           * Set corners style
          */
-        "corners": DateTimeCardCorners;
+        "corners": DateTimeCardCorners1;
         /**
           * set styles
          */
@@ -386,6 +411,9 @@ export namespace Components {
          */
         "to": string | null;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -479,6 +507,9 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
+    /**
+     * @since 1.3.0
+     */
     interface IxDropdownButton {
         /**
           * Active button
@@ -505,9 +536,9 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Button varaint
+          * Button variant
          */
-        "variant": Buttons;
+        "variant": DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -535,6 +566,9 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDropdownQuickActions {
     }
     interface IxEventList {
@@ -752,7 +786,7 @@ export namespace Components {
         /**
           * Variant of button
          */
-        "variant": 'Primary' | 'Secondary';
+        "variant": IconButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -1078,7 +1112,7 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<ModalInstance>;
+        "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
     interface IxModalExample {
     }
@@ -1219,7 +1253,7 @@ export namespace Components {
         /**
           * Color variant of button
          */
-        "variant": Buttons;
+        "variant": SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**
@@ -1297,7 +1331,7 @@ export namespace Components {
         /**
           * Corner style
          */
-        "corners": DateTimeCardCorners;
+        "corners": TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0
@@ -1414,6 +1448,9 @@ export namespace Components {
          */
         "textOn": string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxTooltip {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
@@ -1815,6 +1852,9 @@ declare global {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxDividerElement extends Components.IxDivider, HTMLStencilElement {
     }
     var HTMLIxDividerElement: {
@@ -1833,6 +1873,9 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    /**
+     * @since 1.3.0
+     */
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
     }
     var HTMLIxDropdownButtonElement: {
@@ -1845,6 +1888,9 @@ declare global {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
     }
     var HTMLIxDropdownQuickActionsElement: {
@@ -2103,6 +2149,9 @@ declare global {
         prototype: HTMLIxToggleElement;
         new (): HTMLIxToggleElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
     }
     var HTMLIxTooltipElement: {
@@ -2355,7 +2404,7 @@ declare namespace LocalJSX {
         /**
           * Button varaint
          */
-        "variant"?: Buttons;
+        "variant"?: ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -2443,8 +2492,14 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
+          * @deprecated Will be removed in 2.0.0. Use `closeChip`
          */
         "onClose"?: (event: IxChipCustomEvent<any>) => void;
+        /**
+          * Fire event if close button is clicked
+          * @since 1.5.0
+         */
+        "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
          */
@@ -2525,7 +2580,7 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
-          * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+          * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;
         /**
@@ -2562,7 +2617,7 @@ declare namespace LocalJSX {
         /**
           * Set corners style
          */
-        "corners"?: DateTimeCardCorners;
+        "corners"?: DateTimeCardCorners1;
         /**
           * set styles
          */
@@ -2598,7 +2653,7 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: IxDatetimePickerCustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Date selection event is fired after confirm button is pressend
           * @since 1.1.0
@@ -2659,6 +2714,9 @@ declare namespace LocalJSX {
          */
         "to"?: string | null;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -2755,6 +2813,9 @@ declare namespace LocalJSX {
          */
         "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
+    /**
+     * @since 1.3.0
+     */
     interface IxDropdownButton {
         /**
           * Active button
@@ -2781,9 +2842,9 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Button varaint
+          * Button variant
          */
-        "variant"?: Buttons;
+        "variant"?: DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -2811,6 +2872,9 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDropdownQuickActions {
     }
     interface IxEventList {
@@ -3056,7 +3120,7 @@ declare namespace LocalJSX {
         /**
           * Variant of button
          */
-        "variant"?: 'Primary' | 'Secondary';
+        "variant"?: IconButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -3542,7 +3606,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of button
          */
-        "variant"?: Buttons;
+        "variant"?: SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**
@@ -3624,7 +3688,7 @@ declare namespace LocalJSX {
         /**
           * Corner style
          */
-        "corners"?: DateTimeCardCorners;
+        "corners"?: TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0
@@ -3748,6 +3812,9 @@ declare namespace LocalJSX {
          */
         "textOn"?: string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxTooltip {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
@@ -4026,11 +4093,20 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            /**
+             * @since 1.3.0
+             */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
@@ -4074,6 +4150,9 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;

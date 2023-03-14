@@ -13,6 +13,7 @@ import { JsonDocs } from '@stencil/core/internal';
 import { postcss } from '@stencil/postcss';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
+import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import fs from 'fs';
 import path from 'path';
@@ -171,6 +172,12 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
+    vueOutputTarget({
+      componentCorePackage: '@siemens/ix',
+      proxiesFile: '../vue/src/components.ts',
+      excludeComponents: ['my-component'],
+      includeDefineCustomElements: true,
+    }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',

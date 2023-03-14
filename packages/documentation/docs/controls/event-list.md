@@ -21,6 +21,11 @@ import SourceAngularEventListSelected from './../auto-generated/previews/angular
 import SourceAngularEventListHeight from './../auto-generated/previews/angular/event-list-custom-item-height.ts.md'
 import SourceAngularEventListCompact from './../auto-generated/previews/angular/event-list-compact.ts.md'
 
+import SourceVueEventList from './../auto-generated/previews/vue/event-list.md'
+import SourceVueEventListSelected from './../auto-generated/previews/vue/event-list-selected.md'
+import SourceVueEventListHeight from './../auto-generated/previews/vue/event-list-custom-item-height.md'
+import SourceVueEventListCompact from './../auto-generated/previews/vue/event-list-compact.md'
+
 # Event list
 
 ## Usage
@@ -30,7 +35,8 @@ name="event-list" height="14rem"
 frameworks={{
   react: SourceReactEventList,
   angular: SourceAngularEventList,
-  javascript: SourceEventList
+  javascript: SourceEventList,
+  vue: SourceVueEventList
 }}></Playground>
 
 ### Selected
@@ -41,7 +47,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListSelected,
   angular: SourceAngularEventListSelected,
-  javascript: SourceEventListSelected
+  javascript: SourceEventListSelected,
+  vue: SourceVueEventListSelected
 }}></Playground>
 
 ### Custom item height
@@ -52,7 +59,7 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListHeight,
   angular: SourceAngularEventListHeight,
-  javascript: SourceEventListHeight
+  javascript: SourceVueEventListHeight
 }}></Playground>
 
 ### Compact
@@ -63,7 +70,7 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListCompact,
   angular: SourceAngularEventListCompact,
-  javascript: SourceEventListCompact
+  javascript: SourceVueEventListCompact
 }}></Playground>
 
 ## Properties (ix-event-list)

@@ -16,6 +16,9 @@ import SourceReactDropdownButtonIcon from './../auto-generated/previews/react/dr
 import SourceAngularDropdownButton from './../auto-generated/previews/angular/dropdown-button.ts.md';
 import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angular/dropdown-button-icon.ts.md';
 
+import SourceVueDropdownButton from './../auto-generated/previews/vue/dropdown-button.md';
+import SourceVueDropdownButtonIcon from './../auto-generated/previews/vue/dropdown-button-icon.md';
+
 # Dropdown button
 
 <Tags />
@@ -29,7 +32,8 @@ name="dropdown-button" height="16rem"
 frameworks={{
   react: SourceReactDropdownButton,
   angular: SourceAngularDropdownButton,
-  javascript: SourceDropdownButton
+  javascript: SourceDropdownButton,
+  vue: SourceVueDropdownButton
 }}></Playground>
 
 ### Icon
@@ -39,7 +43,8 @@ name="dropdown-button-icon" height="16rem"
 frameworks={{
   react: SourceReactDropdownButtonIcon,
   angular: SourceAngularDropdownButtonIcon,
-  javascript: SourceDropdownButtonIcon
+  javascript: SourceDropdownButtonIcon,
+  vue: SourceVueDropdownButtonIcon
 }}></Playground>
 
 ## Properties (ix-dropdown-button)

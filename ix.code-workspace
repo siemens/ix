@@ -13,6 +13,10 @@
       "path": "./packages/angular"
     },
     {
+      "name": "@siemens/ix-vue (experimental)",
+      "path": "./packages/vue"
+    },
+    {
       "name": "@siemens/ix-aggrid",
       "path": "./packages/aggrid"
     },
@@ -35,6 +39,10 @@
     {
       "name": "angular-test-app",
       "path": "./packages/angular-test-app"
+    },
+    {
+      "name": "vue-test-app",
+      "path": "./packages/vue-test-app"
     },
     {
       "name": "eslint-config",

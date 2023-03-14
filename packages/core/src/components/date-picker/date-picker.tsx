@@ -20,7 +20,15 @@ import {
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import { DateChangeEvent, LegacyDateChangeEvent } from './events';
+
+export type DateChangeEvent = {
+  from: string;
+  to: string;
+};
+
+export type LegacyDateChangeEvent = DateChangeEvent | string;
+
+export type DateTimeCorners = DateTimeCardCorners;
 
 @Component({
   tag: 'ix-date-picker',
@@ -130,7 +138,7 @@ export class DatePicker {
    * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
    * `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
    *
-   * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+   * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
   @Event() dateChange: EventEmitter<LegacyDateChangeEvent>;
 

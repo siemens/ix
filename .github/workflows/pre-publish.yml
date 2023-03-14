@@ -40,6 +40,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Publish ix-vue beta version to npmjs.org
+        run: |
+          yarn workspace @siemens/ix-vue publish --access public --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish ix-aggrid beta version to npmjs.org
         run: |
           yarn workspace @siemens/ix-aggrid publish --access public --tag beta

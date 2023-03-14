@@ -7,6 +7,7 @@ import Slots from './../auto-generated/ix-tooltip/slots.md';
 import SourceJavascript from './../auto-generated/previews/web-component/tooltip.md'
 
 import SourceReact from './../auto-generated/previews/react/tooltip.md'
+import SourceVue from './../auto-generated/previews/vue/tooltip.md'
 import SourceAngularTs from './../auto-generated/previews/angular/tooltip.ts.md'
 import SourceAngularHtml from './../auto-generated/previews/angular/tooltip.html.md'
 
@@ -27,7 +28,8 @@ frameworks={{
         "tooltip.html": SourceAngularHtml,
         "tooltip.ts": SourceAngularTs
     },
-    javascript: SourceJavascript
+    javascript: SourceJavascript,
+    vue: SourceVue
 }}>
 </Playground>
 

@@ -269,6 +269,18 @@ a.menu__link {
   margin-right: 1rem;
 }
 
+/*
+* Links
+*/
+
+a[href] {
+  text-decoration: none;
+}
+
+a[href]:not(.disabled):not(:disabled):hover {
+  text-decoration: underline;
+}
+
 /**
 * MENU
 **/
@@ -301,8 +313,25 @@ a.menu__link {
 }
 
 /**
+* Table of contents
+**/
+
+.table-of-contents {
+  font-family: 'Siemens Sans';
+  font-size: 1rem;
+}
+
+.table-of-contents__link {
+  text-decoration: none;
+}
+
+/**
 * Markdown
 **/
+
+p {
+  line-height: 1.5rem;
+}
 
 p + h6,
 .h6,
