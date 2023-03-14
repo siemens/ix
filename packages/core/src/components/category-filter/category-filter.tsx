@@ -156,7 +156,7 @@ export class CategoryFilter {
 
     if (this.textInput == null) {
       console.warn(
-        'Core UI category filter - unable to add event listeners to native input element'
+        'ix-category-filter - unable to add event listeners to native input element'
       );
       return;
     }

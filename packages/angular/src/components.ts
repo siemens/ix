@@ -1525,6 +1525,54 @@ export class IxModalExample {
 export declare interface IxModalExample extends Components.IxModalExample {}
 
 @ProxyCmp({
+  inputs: [
+    'advanced',
+    'count',
+    'i18nItems',
+    'i18nOf',
+    'i18nPage',
+    'itemCount',
+    'selectedPage',
+    'showItemCount',
+  ],
+})
+@Component({
+  selector: 'ix-pagination',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [
+    'advanced',
+    'count',
+    'i18nItems',
+    'i18nOf',
+    'i18nPage',
+    'itemCount',
+    'selectedPage',
+    'showItemCount',
+  ],
+})
+export class IxPagination {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pageSelected', 'itemCountChanged']);
+  }
+}
+
+export declare interface IxPagination extends Components.IxPagination {
+  /**
+   * Page selection event
+   */
+  pageSelected: EventEmitter<CustomEvent<number>>;
+  /**
+   * Item count change event
+   */
+  itemCountChanged: EventEmitter<CustomEvent<number>>;
+}
+
+@ProxyCmp({
   inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant'],
 })
 @Component({

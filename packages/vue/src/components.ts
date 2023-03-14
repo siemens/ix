@@ -452,6 +452,20 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
 
 
+export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
+  'advanced',
+  'itemCount',
+  'showItemCount',
+  'count',
+  'selectedPage',
+  'i18nPage',
+  'i18nOf',
+  'i18nItems',
+  'pageSelected',
+  'itemCountChanged'
+]);
+
+
 export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', undefined, [
   'variant',
   'outline',
