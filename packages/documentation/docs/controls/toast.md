@@ -1,5 +1,6 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Playground';
 
 import SourceToast from './../auto-generated/previews/web-component/toast.md';
@@ -48,6 +49,8 @@ frameworks={{
 }}></Playground>
 
 ## Position
+
+<ApiTableSinceTag message="1.5.0" />
 
 <Playground
 name="toast-position" height="18rem"
