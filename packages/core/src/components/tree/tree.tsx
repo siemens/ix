@@ -69,11 +69,13 @@ export class Tree {
 
   /**
    * Node toggled event
+   * @since 1.5.0
    */
   @Event() nodeToggled: EventEmitter<{ id: string; isExpaned: boolean }>;
 
   /**
    * Node clicked event
+   * @since 1.5.0
    */
   @Event() nodeClicked: EventEmitter<string>;
 

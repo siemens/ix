@@ -8673,7 +8673,12 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node clicked event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         },
         {
           "event": "nodeRemoved",
@@ -8691,7 +8696,12 @@
           "cancelable": true,
           "composed": true,
           "docs": "Node toggled event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         }
       ],
       "styles": [],
