@@ -8,7 +8,9 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { Buttons } from '../button/button-variants';
+import { ButtonVariant } from '../button/button';
+
+export type IndexButtonVariant = ButtonVariant;
 
 /**
  * @internal
@@ -22,7 +24,7 @@ export class IxIndexButton {
   /**
    * Button variant
    */
-  @Prop() variant: Buttons = 'Primary';
+  @Prop() variant: IndexButtonVariant = 'Primary';
 
   /**
    * Selection state

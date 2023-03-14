@@ -12,6 +12,9 @@ import SourceReactSpinnerLarge from './../auto-generated/previews/react/spinner-
 import SourceAngularSpinner from './../auto-generated/previews/angular/spinner.ts.md';
 import SourceAngularSpinnerLarge from './../auto-generated/previews/angular/spinner-large.ts.md';
 
+import SourceVueSpinner from './../auto-generated/previews/vue/spinner.md';
+import SourceVueSpinnerLarge from './../auto-generated/previews/vue/spinner-large.md';
+
 # Spinner
 
 ## Usage
@@ -21,7 +24,8 @@ name="spinner" height="5rem"
 frameworks={{
   react: SourceReactSpinner,
   angular: SourceAngularSpinner,
-  javascript: SourceSpinner
+  javascript: SourceSpinner,
+  vue: SourceVueSpinner
 }}></Playground>
 
 ### Large
@@ -30,9 +34,10 @@ frameworks={{
 name="spinner-large" height="16rem"
 hideInitalCodePreview
 frameworks={{
-  react: SourceReactSpinnerLarge,
   angular: SourceAngularSpinnerLarge,
-  javascript: SourceSpinnerLarge
+  react: SourceReactSpinnerLarge,
+  javascript: SourceSpinnerLarge,
+  vue: SourceVueSpinnerLarge
 }}></Playground>
 
 ## Properties

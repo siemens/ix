@@ -24,6 +24,11 @@ import SourceAngularGroupSuppressed from './../auto-generated/previews/angular/g
 import SourceAngularGroupCustomEntry from './../auto-generated/previews/angular/group-custom-entry.ts.md'
 import SourceAngularGroupContext from './../auto-generated/previews/angular/group-context-menu.ts.md'
 
+import SourceVueGroup from './../auto-generated/previews/vue/group.md'
+import SourceVueGroupSuppressed from './../auto-generated/previews/vue/group-header-suppressed.md'
+import SourceVueGroupCustomEntry from './../auto-generated/previews/vue/group-custom-entry.md'
+import SourceVueGroupContext from './../auto-generated/previews/vue/group-context-menu.md'
+
 # Group
 
 ## Usage
@@ -33,7 +38,8 @@ name="group" height="16rem"
 frameworks={{
   react: SourceReactGroup,
   angular: SourceAngularGroup,
-  javascript: SourceGroup
+  javascript: SourceGroup,
+  vue: SourceVueGroup
 }}></Playground>
 
 ### Suppress header selection
@@ -44,7 +50,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactGroupSuppressed,
   angular: SourceAngularGroupSuppressed,
-  javascript: SourceGroupSuppressed
+  javascript: SourceGroupSuppressed,
+  vue: SourceVueGroupSuppressed
 }}></Playground>
 
 ### Custom group entry
@@ -55,7 +62,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactGroupCustomEntry,
   angular: SourceAngularGroupCustomEntry,
-  javascript: SourceGroupCustomEntry
+  javascript: SourceGroupCustomEntry,
+  vue: SourceVueGroupCustomEntry
 }}></Playground>
 
 ### Group with context menu
@@ -75,7 +83,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactGroupContext,
   angular: SourceAngularGroupContext,
-  javascript: SourceGroupContext
+  javascript: SourceGroupContext,
+  vue: SourceVueGroupContext
 }}></Playground>
 
 ## Properties (ix-group)

@@ -20,6 +20,15 @@ regressionTest.describe('select', () => {
     });
   });
 
+  regressionTest('editable', async ({ page }) => {
+    await page.goto('select/editable');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.05,
+    });
+  });
+
   regressionTest('mode-multiple', async ({ page }) => {
     await page.goto('select/mode-multiple');
     await page.locator('.chevron-down-container').click();

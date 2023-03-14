@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "2.19.3",
-    "typescriptVersion": "4.7.4"
+    "version": "3.1.0",
+    "typescriptVersion": "4.9.5"
   },
   "components": [
     {
@@ -1102,7 +1102,27 @@
           "cancelable": true,
           "composed": true,
           "docs": "Fire event if close button is clicked",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 2.0.0. Use `closeChip`"
+            }
+          ],
+          "deprecation": "Will be removed in 2.0.0. Use `closeChip`"
+        },
+        {
+          "event": "closeChip",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event if close button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -1514,21 +1534,22 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "DateChangeEvent | string",
+          "detail": "string | { from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
           "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.",
           "docsTags": [
             {
-              "name": "depracted",
+              "name": "deprecated",
               "text": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
             }
-          ]
+          ],
+          "deprecation": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
         },
         {
           "event": "dateRangeChange",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1542,7 +1563,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1570,83 +1591,6 @@
           "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
         }
       ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/date-time-card",
-      "filePath": "./src/components/date-time-card/date-time-card.tsx",
-      "fileName": "date-time-card.tsx",
-      "readmePath": "./src/components/date-time-card/readme.md",
-      "usagesDir": "./src/components/date-time-card/usage",
-      "tag": "ix-date-time-card",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-date-picker",
-        "ix-time-picker"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-date-picker": [
-          "ix-date-time-card"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card"
-        ]
-      },
-      "props": [
-        {
-          "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
-          "mutable": false,
-          "attr": "corners",
-          "reflectToAttr": false,
-          "docs": "Set corners style",
-          "docsTags": [],
-          "default": "'rounded'",
-          "values": [
-            {
-              "value": "left",
-              "type": "string"
-            },
-            {
-              "value": "right",
-              "type": "string"
-            },
-            {
-              "value": "rounded",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "individual",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "set styles",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -2017,7 +1961,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateTimeSelectEvent",
+          "detail": "{ from: string; to: string; time: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2702,7 +2646,6 @@
           "reflectToAttr": false,
           "docs": "Set label",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
@@ -2734,7 +2677,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button varaint",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'Primary'",
           "values": [
@@ -6468,10 +6411,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<ModalInstance<any>>",
+            "type": "Promise<ModalInstance<T>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
+          "signature": "showModal<T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [

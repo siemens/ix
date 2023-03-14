@@ -22,6 +22,9 @@ import SourceAngularDropdownIcon from './../auto-generated/previews/angular/drop
 import SourceAngularDropdownQuickActionsTs from './../auto-generated/previews/angular/dropdown-quick-actions.ts.md'
 import SourceAngularDropdownQuickActionsHtml from './../auto-generated/previews/angular/dropdown-quick-actions.html.md'
 
+import SourceVueDropdown from './../auto-generated/previews/vue/dropdown.md'
+import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-icon.md'
+
 # Dropdown
 
 ## Usage
@@ -31,7 +34,8 @@ name="dropdown" height="18rem"
 frameworks={{
   react: SourceReactDropdown,
   angular: SourceAngularDropdown,
-  javascript: SourceDropdown
+  javascript: SourceDropdown,
+  vue: SourceVueDropdown
 }}></Playground>
 
 ### Dropdown with icon
@@ -41,7 +45,8 @@ name="dropdown-icon" height="18rem"
 frameworks={{
   react: SourceReactDropdownIcon,
   angular: SourceAngularDropdownIcon,
-  javascript: SourceDropdownIcon
+  javascript: SourceDropdownIcon,
+  vue: SourceVueDropdownIcon
 }}></Playground>
 
 ### Dropdown with quick actions menu

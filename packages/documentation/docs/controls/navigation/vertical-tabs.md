@@ -28,6 +28,10 @@ import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-
 import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.ts.md'
 import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.ts.md'
 
+import SourceVueMenu from './../../auto-generated/previews/vue/vertical-tabs.md'
+import SourceVueMenuWithAvatar from './../../auto-generated/previews/vue/vertical-tabs-with-avatar.md'
+import SourceVueMenuWithBottomTabs from './../../auto-generated/previews/vue/menu-with-bottom-tabs.md'
+
 # Navigation menu
 
 ## Usage
@@ -38,7 +42,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactMenu,
   angular: SourceAngularMenu,
-  javascript: SourceMenu
+  javascript: SourceMenu,
+  vue: SourceVueMenu
 }}></Playground>
 
 ## Avatar
@@ -49,7 +54,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactMenuWithAvatar,
   angular: SourceAngularMenuWithAvatar,
-  javascript: SourceMenuWithAvatar
+  javascript: SourceMenuWithAvatar,
+  vue: SourceVueMenuWithAvatar
 }}></Playground>
 
 ## Bottom tabs
@@ -64,7 +70,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactMenuWithBottomTabs,
   angular: SourceAngularMenuWithBottomTabs,
-  javascript: SourceMenuWithBottomTabs
+  javascript: SourceMenuWithBottomTabs,
+  vue: SourceVueMenuWithBottomTabs
 }}></Playground>
 
 ## Properties (ix-menu)

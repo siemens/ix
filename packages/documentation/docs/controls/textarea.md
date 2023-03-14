@@ -12,6 +12,10 @@ import SourceAngularTextarea from './../auto-generated/previews/angular/textarea
 import SourceAngularTextareaDisabled from './../auto-generated/previews/angular/textarea-disabled.ts.md';
 import SourceAngularTextareaReadonly from './../auto-generated/previews/angular/textarea-readonly.ts.md';
 
+import SourceVueTextarea from './../auto-generated/previews/vue/textarea.md';
+import SourceVueTextareaDisabled from './../auto-generated/previews/vue/textarea-disabled.md';
+import SourceVueTextareaReadonly from './../auto-generated/previews/vue/textarea-readonly.md';
+
 # Text area
 
 ## Usage
@@ -21,7 +25,8 @@ name="textarea" height="7rem"
 frameworks={{
   react: SourceReactTextarea,
   angular: SourceAngularTextarea,
-  javascript: SourceTextarea
+  javascript: SourceTextarea,
+  vue: SourceVueTextarea
 }}></Playground>
 
 ### Disabled
@@ -32,7 +37,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactTextareaDisabled,
   angular: SourceAngularTextareaDisabled,
-  javascript: SourceTextareaDisabled
+  javascript: SourceTextareaDisabled,
+  vue: SourceVueTextareaDisabled
 }}></Playground>
 
 ### Readonly
@@ -43,5 +49,6 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactTextareaReadonly,
   angular: SourceAngularTextareaReadonly,
-  javascript: SourceTextareaReadonly
+  javascript: SourceTextareaReadonly,
+  vue: SourceVueTextareaReadonly
 }}></Playground>

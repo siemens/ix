@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { GridOptions } from "ag-grid-community";
+export { GridOptions } from "ag-grid-community";
 export namespace Components {
     interface IxAgGrid {
         "gridOptions": GridOptions;
