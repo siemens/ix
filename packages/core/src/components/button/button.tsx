@@ -8,7 +8,6 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from './base-button';
 
 export type ButtonVariant = 'Primary' | 'Secondary';
 
@@ -57,25 +56,10 @@ export class Button {
 
   render() {
     return (
-      <Host
-        class={{
-          disabled: this.disabled,
-        }}
-      >
-        <button
-          type={this.type}
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost || this.invisible,
-            false,
-            false,
-            this.selected,
-            this.disabled
-          )}
-        >
+      <Host>
+        <div class={'test-class'}>
           <slot></slot>
-        </button>
+        </div>
       </Host>
     );
   }
