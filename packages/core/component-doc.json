@@ -3388,7 +3388,12 @@
           "attr": "height",
           "reflectToAttr": false,
           "docs": "Height interpreted as REM",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
           "default": "15.125",
           "values": [
             {
@@ -3437,7 +3442,12 @@
           "attr": "width",
           "reflectToAttr": false,
           "docs": "Width interpreted as REM",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
           "default": "16",
           "values": [
             {

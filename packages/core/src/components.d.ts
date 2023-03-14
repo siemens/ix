@@ -606,6 +606,7 @@ export namespace Components {
         "footer": string;
         /**
           * Height interpreted as REM
+          * @since 1.5.0
          */
         "height": number | 'auto';
         /**
@@ -614,6 +615,7 @@ export namespace Components {
         "state": FlipTileState;
         /**
           * Width interpreted as REM
+          * @since 1.5.0
          */
         "width": number | 'auto';
     }
@@ -2892,6 +2894,7 @@ declare namespace LocalJSX {
         "footer"?: string;
         /**
           * Height interpreted as REM
+          * @since 1.5.0
          */
         "height"?: number | 'auto';
         /**
@@ -2900,6 +2903,7 @@ declare namespace LocalJSX {
         "state"?: FlipTileState;
         /**
           * Width interpreted as REM
+          * @since 1.5.0
          */
         "width"?: number | 'auto';
     }
