@@ -33,8 +33,21 @@ export class FlipTile {
 
   /**
    * Tmp property name
+   * @deprecated Will be removed in 2.0.0. Setting this property has no effect
    */
   @Prop() footer: string;
+
+  /**
+   * Height interpreted as REM
+   * @since 1.5.0
+   */
+  @Prop() height: number | 'auto' = 15.125;
+
+  /**
+   * Width interpreted as REM
+   * @since 1.5.0
+   */
+  @Prop() width: number | 'auto' = 16;
 
   componentDidLoad() {
     this.contentItems = this.contentContainerElement.querySelectorAll(
@@ -78,7 +91,16 @@ export class FlipTile {
 
   render() {
     return (
-      <Host>
+      <Host
+        style={{
+          height: `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          'min-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          'max-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
+          width: `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+          'min-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+          'max-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+        }}
+      >
         <div
           class={{
             'flip-tile-container': true,

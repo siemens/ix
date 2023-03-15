@@ -649,14 +649,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['footer', 'state']
+  inputs: ['footer', 'height', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['footer', 'state'],
+  inputs: ['footer', 'height', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
