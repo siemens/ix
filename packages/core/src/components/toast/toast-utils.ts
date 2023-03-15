@@ -8,6 +8,7 @@
  */
 
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
+export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
   title?: string;
@@ -39,7 +40,7 @@ export function getToastContainer() {
   return container;
 }
 
-export function setToastPosition(position: 'bottom-right' | 'top-right') {
+export function setToastPosition(position: ToastPosition) {
   getToastContainer().position = position;
 }
 

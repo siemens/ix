@@ -7,12 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { setToastPosition } from '@siemens/ix';
+import { setToastPosition, ToastPosition } from '@siemens/ix';
 import { IxButton, showToast } from '@siemens/ix-react';
-import React from 'react';
+import React, { useEffect } from 'react';
+
+function useToastPosition(position: ToastPosition) {
+  useEffect(() => {
+    setToastPosition(position);
+  }, []);
+}
 
 export default () => {
-  setToastPosition('top-right');
+  useToastPosition('top-right');
 
   return (
     <>
