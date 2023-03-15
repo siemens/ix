@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "2.19.3",
-    "typescriptVersion": "4.7.4"
+    "version": "3.1.0",
+    "typescriptVersion": "4.9.5"
   },
   "components": [
     {
@@ -1102,7 +1102,27 @@
           "cancelable": true,
           "composed": true,
           "docs": "Fire event if close button is clicked",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 2.0.0. Use `closeChip`"
+            }
+          ],
+          "deprecation": "Will be removed in 2.0.0. Use `closeChip`"
+        },
+        {
+          "event": "closeChip",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event if close button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -1514,7 +1534,7 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "DateChangeEvent | string",
+          "detail": "string | { from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1529,7 +1549,7 @@
         },
         {
           "event": "dateRangeChange",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1543,7 +1563,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateChangeEvent",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1571,83 +1591,6 @@
           "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
         }
       ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/date-time-card",
-      "filePath": "./src/components/date-time-card/date-time-card.tsx",
-      "fileName": "date-time-card.tsx",
-      "readmePath": "./src/components/date-time-card/readme.md",
-      "usagesDir": "./src/components/date-time-card/usage",
-      "tag": "ix-date-time-card",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-date-picker",
-        "ix-time-picker"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-date-picker": [
-          "ix-date-time-card"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card"
-        ]
-      },
-      "props": [
-        {
-          "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
-          "mutable": false,
-          "attr": "corners",
-          "reflectToAttr": false,
-          "docs": "Set corners style",
-          "docsTags": [],
-          "default": "'rounded'",
-          "values": [
-            {
-              "value": "left",
-              "type": "string"
-            },
-            {
-              "value": "right",
-              "type": "string"
-            },
-            {
-              "value": "rounded",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "individual",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "set styles",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -2018,7 +1961,7 @@
         },
         {
           "event": "dateSelect",
-          "detail": "DateTimeSelectEvent",
+          "detail": "{ from: string; to: string; time: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2703,7 +2646,6 @@
           "reflectToAttr": false,
           "docs": "Set label",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
@@ -2735,7 +2677,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button varaint",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'Primary'",
           "values": [
@@ -4101,6 +4043,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
+        "ix-pagination",
         "ix-select",
         "ix-time-picker",
         "ix-toast"
@@ -4152,6 +4095,9 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-pagination": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -6465,10 +6411,10 @@
         {
           "name": "showModal",
           "returns": {
-            "type": "Promise<ModalInstance<any>>",
+            "type": "Promise<ModalInstance<T>>",
             "docs": ""
           },
-          "signature": "showModal(config: ModalConfig) => Promise<ModalInstance>",
+          "signature": "showModal<T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>",
           "parameters": [],
           "docs": "Display modal dialog",
           "docsTags": [
@@ -6522,6 +6468,220 @@
       "props": [],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/pagination",
+      "filePath": "./src/components/pagination/pagination.tsx",
+      "fileName": "pagination.tsx",
+      "readmePath": "./src/components/pagination/readme.md",
+      "usagesDir": "./src/components/pagination/usage",
+      "tag": "ix-pagination",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.5.0"
+        }
+      ],
+      "encapsulation": "scoped",
+      "dependents": [],
+      "dependencies": [
+        "ix-index-button",
+        "ix-icon-button",
+        "ix-select",
+        "ix-select-item"
+      ],
+      "dependencyGraph": {
+        "ix-pagination": [
+          "ix-index-button",
+          "ix-icon-button",
+          "ix-select",
+          "ix-select-item"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "advanced",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "advanced",
+          "reflectToAttr": false,
+          "docs": "Advanced mode",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "mutable": false,
+          "attr": "count",
+          "reflectToAttr": false,
+          "docs": "Total number of pages",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nItems",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-items",
+          "reflectToAttr": false,
+          "docs": "/**\n  i18n",
+          "docsTags": [],
+          "default": "'Items'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nOf",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-of",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'of'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPage",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-page",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'Page'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemCount",
+          "type": "number",
+          "mutable": false,
+          "attr": "item-count",
+          "reflectToAttr": false,
+          "docs": "Number of items shown at once.\nCan only be changed in advaced mode.",
+          "docsTags": [],
+          "default": "15",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selectedPage",
+          "type": "number",
+          "mutable": true,
+          "attr": "selected-page",
+          "reflectToAttr": false,
+          "docs": "Zero based index of currently selected page",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showItemCount",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-item-count",
+          "reflectToAttr": false,
+          "docs": "Show item count in advanced mode",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemCountChanged",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Item count change event",
+          "docsTags": []
+        },
+        {
+          "event": "pageSelected",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Page selection event",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -6697,7 +6857,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "ix-pagination"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6726,6 +6888,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select"
         ]
       },
       "props": [
@@ -6947,6 +7112,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
+        "ix-pagination",
         "ix-select"
       ],
       "dependencies": [
@@ -6958,6 +7124,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select-item"
         ],
         "ix-select": [
           "ix-select-item"

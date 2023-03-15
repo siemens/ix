@@ -31,6 +31,11 @@
     }
   }
 
+  :focus {
+    background-color: transparent;
+    color: var(--theme-menu-item--color);
+  }
+
   .checkmark {
     position: absolute;
     left: $small-space;

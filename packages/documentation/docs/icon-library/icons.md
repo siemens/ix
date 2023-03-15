@@ -43,6 +43,14 @@ Integrate our growing and comprehensive icon system for industrial applications 
 <ix-icon name="star" size="32"></ix-icon>
 ```
 
+### Vue
+
+```html
+<IxIcon name="star" size="16"></IxIcon>
+<IxIcon name="star" size="24"></IxIcon>
+<IxIcon name="star" size="32"></IxIcon>
+```
+
 ## Icon library
 
 <Icons></Icons>

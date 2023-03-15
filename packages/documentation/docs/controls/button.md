@@ -21,7 +21,6 @@ import ReactButtons from './../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
 import ReactButtonIcon from './../auto-generated/previews/react/button-with-icon.md'
 import ReactButtonSelected from './../auto-generated/previews/react/button-selected.md'
-
 import ReactButtonSecondary from './../auto-generated/previews/react/button-secondary.md'
 import ReactButtonGhost from './../auto-generated/previews/react/button-ghost.md'
 import ReactButtonGrey from './../auto-generated/previews/react/button-grey.md'
@@ -40,6 +39,17 @@ import AngularButtonGreySecondary from './../auto-generated/previews/angular/but
 import AngularButtonGreyGhost from './../auto-generated/previews/angular/button-grey-ghost.ts.md'
 import AngularButtonTextIcon from './../auto-generated/previews/angular/button-text-icon.ts.md'
 
+import VueButtons from './../auto-generated/previews/vue/buttons.md'
+import VueButtonGroup from './../auto-generated/previews/vue/button-group.md'
+import VueButtonIcon from './../auto-generated/previews/vue/button-with-icon.md'
+import VueButtonSelected from './../auto-generated/previews/vue/button-selected.md'
+import VueButtonSecondary from './../auto-generated/previews/vue/button-secondary.md'
+import VueButtonGhost from './../auto-generated/previews/vue/button-ghost.md'
+import VueButtonGrey from './../auto-generated/previews/vue/button-grey.md'
+import VueButtonGreySecondary from './../auto-generated/previews/vue/button-grey-secondary.md'
+import VueButtonGreyGhost from './../auto-generated/previews/vue/button-grey-ghost.md'
+import VueButtonTextIcon from './../auto-generated/previews/vue/button-text-icon.md'
+
 ## Usage
 
 ### Primary
@@ -49,7 +59,8 @@ name="buttons"
 frameworks={{
   react: ReactButtons,
   angular: AngularButtons,
-  javascript: WebComponentButtons
+  javascript: WebComponentButtons,
+  vue: VueButtons
 }}>
 </Playground>
 
@@ -67,7 +78,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonSecondary,
   angular: AngularButtonSecondary,
-  javascript: WebComponentButtonSecondary
+  javascript: WebComponentButtonSecondary,
+  vue: VueButtonSecondary
 }}></Playground>
 
 ### Primary Ghost
@@ -84,7 +96,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonGhost,
   angular: AngularButtonGhost,
-  javascript: WebComponentButtonGhost
+  javascript: WebComponentButtonGhost,
+  vue: VueButtonGhost
 }}></Playground>
 
 ### Secondary
@@ -101,7 +114,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonGrey,
   angular: AngularButtonGrey,
-  javascript: WebComponentButtonGrey
+  javascript: WebComponentButtonGrey,
+  vue: VueButtonGrey
 }}></Playground>
 
 ### Secondary Outline
@@ -118,7 +132,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonGreySecondary,
   angular: AngularButtonGreySecondary,
-  javascript: WebComponentButtonGreySecondary
+  javascript: WebComponentButtonGreySecondary,
+  vue: VueButtonGreySecondary
 }}></Playground>
 
 ### Secondary Ghost
@@ -135,7 +150,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonGreyGhost,
   angular: AngularButtonGreyGhost,
-  javascript: WebComponentButtonGreyGhost
+  javascript: WebComponentButtonGreyGhost,
+  vue: VueButtonGreyGhost
 }}></Playground>
 
 ### Selectable button
@@ -152,7 +168,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonSelected,
   angular: AngularButtonSelected,
-  javascript: WebComponentButtonSelected
+  javascript: WebComponentButtonSelected,
+  vue: VueButtonSelected
 }}></Playground>
 
 ### Button group
@@ -163,7 +180,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonGroup,
   angular: AngularButtonGroup,
-  javascript: WebComponentButtonGroup
+  javascript: WebComponentButtonGroup,
+  vue: VueButtonGroup
 }}></Playground>
 
 ### Button with text and icon
@@ -174,7 +192,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonTextIcon,
   angular: AngularButtonTextIcon,
-  javascript: WebComponentButtonTextIcon
+  javascript: WebComponentButtonTextIcon,
+  vue: VueButtonTextIcon
 }}></Playground>
 
 ### Icon button
@@ -185,7 +204,8 @@ hideInitalCodePreview
 frameworks={{
   react: ReactButtonIcon,
   angular: AngularButtonIcon,
-  javascript: WebComponentButtonIcon
+  javascript: WebComponentButtonIcon,
+  vue: VueButtonIcon
 }}></Playground>
 
 ## Properties (ix-button)

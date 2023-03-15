@@ -10,6 +10,9 @@ import SourceDatepickerRange from './../auto-generated/previews/web-component/da
 import SourceReactDatepickerRange from './../auto-generated/previews/react/datepicker-range.md'
 import SourceAngularDatepickerRange from './../auto-generated/previews/angular/datepicker-range.ts.md'
 
+import SourceVueDatepicker from './../auto-generated/previews/vue/datepicker.md'
+import SourceVueDatepickerRange from './../auto-generated/previews/vue/datepicker-range.md'
+
 # Date picker
 
 ## Usage
@@ -19,7 +22,8 @@ name="datepicker" height="35rem"
 frameworks={{
   react: SourceReactDatepicker,
   angular: SourceAngularDatepicker,
-  javascript: SourceDatepicker
+  javascript: SourceDatepicker,
+  vue: SourceVueDatepicker
 }}></Playground>
 
 ### with range selection
@@ -30,7 +34,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactDatepickerRange,
   angular: SourceAngularDatepickerRange,
-  javascript: SourceDatepickerRange
+  javascript: SourceDatepickerRange,
+  vue: SourceVueDatepickerRange
 }}></Playground>
 
 ## Properties

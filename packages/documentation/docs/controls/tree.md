@@ -15,6 +15,9 @@ import SourceReactTreeCustom from './../auto-generated/previews/react/tree-custo
 import SourceAngularTree from './../auto-generated/previews/angular/tree.ts.md';
 import SourceAngularTreeCustom from './../auto-generated/previews/angular/tree-custom.ts.md';
 
+import SourceVueTree from './../auto-generated/previews/vue/tree.md';
+import SourceVueTreeCustom from './../auto-generated/previews/vue/tree-custom.md';
+
 # Tree
 
 ## Usage
@@ -24,7 +27,8 @@ name="tree" height="16rem"
 frameworks={{
   react: SourceReactTree,
   angular: SourceAngularTree,
-  javascript: SourceTree
+  javascript: SourceTree,
+  vue: SourceVueTree
 }}></Playground>
 
 ### Custom tree node
@@ -35,7 +39,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactTreeCustom,
   angular: SourceAngularTreeCustom,
-  javascript: SourceTreeCustom
+  javascript: SourceTreeCustom,
+  vue: SourceVueTreeCustom
 }}></Playground>
 
 ## Properties (ix-tree)

@@ -9,7 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
-import { Button } from '../button/button';
+import { Button, ButtonVariant } from '../button/button';
+
+export type IconButtonVariant = ButtonVariant;
 
 @Component({
   tag: 'ix-icon-button',
@@ -20,7 +22,7 @@ export class IconButton implements Button {
   /**
    * Variant of button
    */
-  @Prop() variant: 'Primary' | 'Secondary' = 'Secondary';
+  @Prop() variant: IconButtonVariant = 'Secondary';
 
   /**
    * Button outline

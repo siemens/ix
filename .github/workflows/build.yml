@@ -61,6 +61,7 @@ jobs:
             packages/core/loader
             packages/core/www
             packages/react/dist
+            packages/vue/dist
             packages/angular/dist
             packages/aggrid/dist
             packages/aggrid/www

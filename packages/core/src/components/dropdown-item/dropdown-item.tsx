@@ -75,6 +75,7 @@ export class DropdownItem {
         }}
       >
         <button
+          type="button"
           class={{
             'dropdown-item': true,
             hover: this.hover,

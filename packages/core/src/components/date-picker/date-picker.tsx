@@ -20,7 +20,15 @@ import {
 } from '@stencil/core';
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import { DateChangeEvent, LegacyDateChangeEvent } from './events';
+
+export type DateChangeEvent = {
+  from: string;
+  to: string;
+};
+
+export type LegacyDateChangeEvent = DateChangeEvent | string;
+
+export type DateTimeCorners = DateTimeCardCorners;
 
 @Component({
   tag: 'ix-date-picker',

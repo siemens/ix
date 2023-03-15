@@ -56,11 +56,11 @@ function getModalContainer() {
   return container;
 }
 
-export async function modal<TReson = any>(
-  config: ModalConfig<TReson>
-): Promise<ModalInstance<TReson>> {
+export async function modal<T = any>(
+  config: ModalConfig<T>
+): Promise<ModalInstance<T>> {
   const modalContainer = getModalContainer();
-  const modalInstance = await modalContainer.showModal(config);
+  const modalInstance = await modalContainer.showModal<T>(config);
 
   return modalInstance;
 }
