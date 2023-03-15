@@ -36,6 +36,12 @@ export class Blind {
   @Prop() label: string;
 
   /**
+   * Optional icon to be displayed next to the header label
+   * @since 1.5.0
+   */
+  @Prop() icon: string;
+
+  /**
    * Collapsed state changed
    */
   @Event() collapsedChange: EventEmitter<boolean>;
@@ -47,6 +53,10 @@ export class Blind {
   constructor() {}
 
   private onHeaderClick(e: Event) {
+    if ((e.target as Element).closest('.header-actions')) {
+      return;
+    }
+
     e.preventDefault();
     e.stopImmediatePropagation();
 
@@ -124,7 +134,17 @@ export class Blind {
           ></span>
           <div class="blind-header-title">
             {this.label !== undefined ? (
-              <span class="blind-header-title-default">{this.label}</span>
+              <span class="blind-header-title-basic">
+                {this.icon !== undefined ? (
+                  <ix-icon name={this.icon}></ix-icon>
+                ) : (
+                  ''
+                )}
+                <span class="blind-header-title-default">{this.label}</span>
+                <span class="header-actions">
+                  <slot name="header-actions"></slot>
+                </span>
+              </span>
             ) : (
               <slot name="custom-header"></slot>
             )}
