@@ -1455,7 +1455,7 @@ export namespace Components {
     interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
-        "position": string;
+        "position": 'bottom-right' | 'top-right';
         /**
           * Display a toast message
           * @param config
@@ -3896,7 +3896,7 @@ declare namespace LocalJSX {
     interface IxToastContainer {
         "containerClass"?: string;
         "containerId"?: string;
-        "position"?: string;
+        "position"?: 'bottom-right' | 'top-right';
     }
     interface IxToggle {
         /**
