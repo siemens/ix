@@ -68,6 +68,18 @@ export class Tree {
   @Event() contextChange: EventEmitter<TreeContext>;
 
   /**
+   * Node toggled event
+   * @since 1.5.0
+   */
+  @Event() nodeToggled: EventEmitter<{ id: string; isExpaned: boolean }>;
+
+  /**
+   * Node clicked event
+   * @since 1.5.0
+   */
+  @Event() nodeClicked: EventEmitter<string>;
+
+  /**
    * Emits removed nodes
    */
   @Event() nodeRemoved: EventEmitter<any>;
@@ -96,6 +108,7 @@ export class Tree {
           e.stopPropagation();
           const context = this.getContext(list[index].id);
           context.isExpanded = !context.isExpanded;
+          this.nodeToggled.emit({ id: item.id, isExpaned: context.isExpanded });
           this.setContext(item.id, context);
         };
         el.addEventListener('toggle', toggleCallback);
@@ -160,6 +173,7 @@ export class Tree {
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
+            this.nodeClicked.emit(item.id);
           };
           el.addEventListener('itemClick', itemClickCallback);
           this.itemClickListener.set(el, itemClickCallback);

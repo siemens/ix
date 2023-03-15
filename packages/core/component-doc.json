@@ -8972,6 +8972,20 @@
           "docsTags": []
         },
         {
+          "event": "nodeClicked",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Node clicked event",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
+        },
+        {
           "event": "nodeRemoved",
           "detail": "any",
           "bubbles": true,
@@ -8979,6 +8993,20 @@
           "composed": true,
           "docs": "Emits removed nodes",
           "docsTags": []
+        },
+        {
+          "event": "nodeToggled",
+          "detail": "{ id: string; isExpaned: boolean; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Node toggled event",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         }
       ],
       "styles": [],
