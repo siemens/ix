@@ -22,14 +22,13 @@ regressionTest.describe('workflow-steps', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('workflow-steps/overflow');
 
-    const stepItem = await page.waitForSelector('ix-workflow-step');
+    const stepItem = await page.waitForSelector(
+      'ix-workflow-step:nth-child(5)'
+    );
 
+    stepItem.scrollIntoViewIfNeeded();
     await stepItem.click();
 
-    for (let index = 0; index < 20; index++) {
-      page.keyboard.press('ArrowRight');
-    }
-    await page.waitForTimeout(300);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
