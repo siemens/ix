@@ -7,7 +7,7 @@
   max-width: 18.25rem;
 
   opacity: 0;
-  visibility: collapse;
+  visibility: collapse !important;
   overflow-wrap: break-word;
 
   border-radius: 0.25rem;
@@ -28,10 +28,10 @@
 
 :host(.visible) {
   opacity: 1;
-  visibility: visible;
+  visibility: visible !important;
 }
 
-:host {
+:host(.visible) {
   .arrow,
   .arrow::before {
     position: absolute;
