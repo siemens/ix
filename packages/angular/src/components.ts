@@ -799,14 +799,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['color', 'name', 'size']
+  inputs: ['color', 'icon', 'name', 'size', 'src']
 })
 @Component({
   selector: 'ix-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'name', 'size'],
+  inputs: ['color', 'icon', 'name', 'size', 'src'],
 })
 export class IxIcon {
   protected el: HTMLElement;

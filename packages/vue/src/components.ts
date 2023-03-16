@@ -285,7 +285,9 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undefined, [
   'size',
   'color',
-  'name'
+  'name',
+  'src',
+  'icon'
 ]);
 
 

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import '@siemens/ix-icons';
 export * from './components';
 export * from './components/category-filter/filter-state';
 export * from './components/category-filter/input-state';
