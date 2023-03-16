@@ -66,11 +66,21 @@
     @include hover {
       background-color: var(--theme-group-item--background--hover);
       border-color: var(--theme-group-item--border-color--hover);
+
+      &.selected {
+        border-color: var(--theme-group-item--border-color--selected);
+        background-color: var(--theme-group-item--background--selected);
+      }
     }
 
     @include active {
       background-color: var(--theme-group-item--background--active);
       border-color: var(--theme-group-item--border-color--active);
+
+      &.selected {
+        border-color: var(--theme-group-item--border-color--selected);
+        background-color: var(--theme-group-item--background--selected);
+      }
     }
   }
 
