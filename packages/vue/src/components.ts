@@ -238,7 +238,9 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', undefined, [
   'state',
-  'footer'
+  'footer',
+  'height',
+  'width'
 ]);
 
 
@@ -452,6 +454,20 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
 
 
+export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
+  'advanced',
+  'itemCount',
+  'showItemCount',
+  'count',
+  'selectedPage',
+  'i18nPage',
+  'i18nOf',
+  'i18nItems',
+  'pageSelected',
+  'itemCountChanged'
+]);
+
+
 export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', undefined, [
   'variant',
   'outline',
@@ -599,6 +615,8 @@ export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', undef
   'renderItem',
   'context',
   'contextChange',
+  'nodeToggled',
+  'nodeClicked',
   'nodeRemoved'
 ]);
 

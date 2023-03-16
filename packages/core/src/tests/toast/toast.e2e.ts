@@ -16,4 +16,10 @@ regressionTest.describe('toast', () => {
     await page.waitForTimeout(200);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('position', async ({ page }) => {
+    await page.goto('toast/position');
+    await page.waitForTimeout(200);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

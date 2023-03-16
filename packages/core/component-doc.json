@@ -3309,10 +3309,42 @@
           "attr": "footer",
           "reflectToAttr": false,
           "docs": "Tmp property name",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 2.0.0. Setting this property has no effect"
+            }
+          ],
+          "deprecation": "Will be removed in 2.0.0. Setting this property has no effect",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "\"auto\" | number",
+          "mutable": false,
+          "attr": "height",
+          "reflectToAttr": false,
+          "docs": "Height interpreted as REM",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "default": "15.125",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -3341,6 +3373,32 @@
             },
             {
               "type": "FlipTileState.Warning"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | number",
+          "mutable": false,
+          "attr": "width",
+          "reflectToAttr": false,
+          "docs": "Width interpreted as REM",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "default": "16",
+          "values": [
+            {
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -4043,6 +4101,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
+        "ix-pagination",
         "ix-select",
         "ix-time-picker",
         "ix-toast"
@@ -4094,6 +4153,9 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-pagination": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -6470,6 +6532,220 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/pagination",
+      "filePath": "./src/components/pagination/pagination.tsx",
+      "fileName": "pagination.tsx",
+      "readmePath": "./src/components/pagination/readme.md",
+      "usagesDir": "./src/components/pagination/usage",
+      "tag": "ix-pagination",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.5.0"
+        }
+      ],
+      "encapsulation": "scoped",
+      "dependents": [],
+      "dependencies": [
+        "ix-index-button",
+        "ix-icon-button",
+        "ix-select",
+        "ix-select-item"
+      ],
+      "dependencyGraph": {
+        "ix-pagination": [
+          "ix-index-button",
+          "ix-icon-button",
+          "ix-select",
+          "ix-select-item"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "advanced",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "advanced",
+          "reflectToAttr": false,
+          "docs": "Advanced mode",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "mutable": false,
+          "attr": "count",
+          "reflectToAttr": false,
+          "docs": "Total number of pages",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nItems",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-items",
+          "reflectToAttr": false,
+          "docs": "/**\n  i18n",
+          "docsTags": [],
+          "default": "'Items'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nOf",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-of",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'of'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nPage",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-page",
+          "reflectToAttr": false,
+          "docs": "i18n",
+          "docsTags": [],
+          "default": "'Page'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemCount",
+          "type": "number",
+          "mutable": false,
+          "attr": "item-count",
+          "reflectToAttr": false,
+          "docs": "Number of items shown at once.\nCan only be changed in advaced mode.",
+          "docsTags": [],
+          "default": "15",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selectedPage",
+          "type": "number",
+          "mutable": true,
+          "attr": "selected-page",
+          "reflectToAttr": false,
+          "docs": "Zero based index of currently selected page",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showItemCount",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-item-count",
+          "reflectToAttr": false,
+          "docs": "Show item count in advanced mode",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "itemCountChanged",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Item count change event",
+          "docsTags": []
+        },
+        {
+          "event": "pageSelected",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Page selection event",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/pill",
       "filePath": "./src/components/pill/pill.tsx",
       "fileName": "pill.tsx",
@@ -6639,7 +6915,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "ix-pagination"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -6668,6 +6946,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select"
         ]
       },
       "props": [
@@ -6889,6 +7170,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
+        "ix-pagination",
         "ix-select"
       ],
       "dependencies": [
@@ -6900,6 +7182,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select-item"
         ],
         "ix-select": [
           "ix-select-item"
@@ -8263,7 +8548,7 @@
         },
         {
           "name": "position",
-          "type": "string",
+          "type": "\"bottom-right\" | \"top-right\"",
           "mutable": false,
           "attr": "position",
           "reflectToAttr": false,
@@ -8272,6 +8557,11 @@
           "default": "'bottom-right'",
           "values": [
             {
+              "value": "bottom-right",
+              "type": "string"
+            },
+            {
+              "value": "top-right",
               "type": "string"
             }
           ],
@@ -8687,6 +8977,20 @@
           "docsTags": []
         },
         {
+          "event": "nodeClicked",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Node clicked event",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
+        },
+        {
           "event": "nodeRemoved",
           "detail": "any",
           "bubbles": true,
@@ -8694,6 +8998,20 @@
           "composed": true,
           "docs": "Emits removed nodes",
           "docsTags": []
+        },
+        {
+          "event": "nodeToggled",
+          "detail": "{ id: string; isExpaned: boolean; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Node toggled event",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ]
         }
       ],
       "styles": [],

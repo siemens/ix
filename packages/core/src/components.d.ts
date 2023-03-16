@@ -17,6 +17,7 @@ import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
+import { IndexButtonVariant } from "./components/index-button/index-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -38,6 +39,7 @@ export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
+export { IndexButtonVariant } from "./components/index-button/index-button";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -635,12 +637,23 @@ export namespace Components {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer": string;
+        /**
+          * Height interpreted as REM
+          * @since 1.5.0
+         */
+        "height": number | 'auto';
         /**
           * Variation of the Flip
          */
         "state": FlipTileState;
+        /**
+          * Width interpreted as REM
+          * @since 1.5.0
+         */
+        "width": number | 'auto';
     }
     interface IxFlipTileContent {
     }
@@ -776,6 +789,16 @@ export namespace Components {
           * Variant of button
          */
         "variant": IconButtonVariant;
+    }
+    interface IxIndexButton {
+        /**
+          * Selection state
+         */
+        "selected": boolean;
+        /**
+          * Button variant
+         */
+        "variant": IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -1105,6 +1128,43 @@ export namespace Components {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.5.0
+     */
+    interface IxPagination {
+        /**
+          * Advanced mode
+         */
+        "advanced": boolean;
+        /**
+          * Total number of pages
+         */
+        "count": number;
+        /**
+          * /**   i18n
+         */
+        "i18nItems": string;
+        /**
+          * i18n
+         */
+        "i18nOf": string;
+        /**
+          * i18n
+         */
+        "i18nPage": string;
+        /**
+          * Number of items shown at once. Can only be changed in advaced mode.
+         */
+        "itemCount": number;
+        /**
+          * Zero based index of currently selected page
+         */
+        "selectedPage": number;
+        /**
+          * Show item count in advanced mode
+         */
+        "showItemCount": boolean;
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -1395,7 +1455,7 @@ export namespace Components {
     interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
-        "position": string;
+        "position": 'bottom-right' | 'top-right';
         /**
           * Display a toast message
           * @param config
@@ -1706,6 +1766,10 @@ export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
 }
+export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPaginationElement;
+}
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectElement;
@@ -1958,6 +2022,12 @@ declare global {
         prototype: HTMLIxIconButtonElement;
         new (): HTMLIxIconButtonElement;
     };
+    interface HTMLIxIndexButtonElement extends Components.IxIndexButton, HTMLStencilElement {
+    }
+    var HTMLIxIndexButtonElement: {
+        prototype: HTMLIxIndexButtonElement;
+        new (): HTMLIxIndexButtonElement;
+    };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -2059,6 +2129,15 @@ declare global {
     var HTMLIxModalExampleElement: {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
+    };
+    /**
+     * @since 1.5.0
+     */
+    interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
+    }
+    var HTMLIxPaginationElement: {
+        prototype: HTMLIxPaginationElement;
+        new (): HTMLIxPaginationElement;
     };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
@@ -2229,6 +2308,7 @@ declare global {
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
+        "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -2246,6 +2326,7 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -2942,12 +3023,23 @@ declare namespace LocalJSX {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer"?: string;
+        /**
+          * Height interpreted as REM
+          * @since 1.5.0
+         */
+        "height"?: number | 'auto';
         /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
+        /**
+          * Width interpreted as REM
+          * @since 1.5.0
+         */
+        "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
     }
@@ -3099,6 +3191,16 @@ declare namespace LocalJSX {
           * Variant of button
          */
         "variant"?: IconButtonVariant;
+    }
+    interface IxIndexButton {
+        /**
+          * Selection state
+         */
+        "selected"?: boolean;
+        /**
+          * Button variant
+         */
+        "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -3435,6 +3537,51 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.5.0
+     */
+    interface IxPagination {
+        /**
+          * Advanced mode
+         */
+        "advanced"?: boolean;
+        /**
+          * Total number of pages
+         */
+        "count"?: number;
+        /**
+          * /**   i18n
+         */
+        "i18nItems"?: string;
+        /**
+          * i18n
+         */
+        "i18nOf"?: string;
+        /**
+          * i18n
+         */
+        "i18nPage"?: string;
+        /**
+          * Number of items shown at once. Can only be changed in advaced mode.
+         */
+        "itemCount"?: number;
+        /**
+          * Item count change event
+         */
+        "onItemCountChanged"?: (event: IxPaginationCustomEvent<number>) => void;
+        /**
+          * Page selection event
+         */
+        "onPageSelected"?: (event: IxPaginationCustomEvent<number>) => void;
+        /**
+          * Zero based index of currently selected page
+         */
+        "selectedPage"?: number;
+        /**
+          * Show item count in advanced mode
+         */
+        "showItemCount"?: boolean;
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -3749,7 +3896,7 @@ declare namespace LocalJSX {
     interface IxToastContainer {
         "containerClass"?: string;
         "containerId"?: string;
-        "position"?: string;
+        "position"?: 'bottom-right' | 'top-right';
     }
     interface IxToggle {
         /**
@@ -3821,9 +3968,19 @@ declare namespace LocalJSX {
          */
         "onContextChange"?: (event: IxTreeCustomEvent<TreeContext>) => void;
         /**
+          * Node clicked event
+          * @since 1.5.0
+         */
+        "onNodeClicked"?: (event: IxTreeCustomEvent<string>) => void;
+        /**
           * Emits removed nodes
          */
         "onNodeRemoved"?: (event: IxTreeCustomEvent<any>) => void;
+        /**
+          * Node toggled event
+          * @since 1.5.0
+         */
+        "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpaned: boolean }>) => void;
         /**
           * Render function of tree items
          */
@@ -4011,6 +4168,7 @@ declare namespace LocalJSX {
         "ix-group-item": IxGroupItem;
         "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
+        "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
@@ -4028,6 +4186,7 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
+        "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -4098,6 +4257,7 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
@@ -4115,6 +4275,10 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            /**
+             * @since 1.5.0
+             */
+            "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;

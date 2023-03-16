@@ -70,6 +70,7 @@ import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import Toast from './preview-examples/toast.vue';
+import ToastPosition from './preview-examples/toast-position.vue';
 import ToggleColor from './preview-examples/toggle-color.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
@@ -135,6 +136,7 @@ const routes: any = {
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
   '/preview/toast-custom': ToastCustom,
+  '/preview/toast-position': ToastPosition,
   '/preview/toggle': Toggle,
   '/preview/toggle-disabled': ToggleDisabled,
   '/preview/toggle-color': ToggleColor,

@@ -18,4 +18,17 @@ regressionTest.describe('workflow-steps', () => {
     await page.goto('workflow-steps/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('workflow-steps/overflow');
+
+    const stepItem = await page.waitForSelector(
+      'ix-workflow-step:nth-child(5)'
+    );
+
+    stepItem.scrollIntoViewIfNeeded();
+    await stepItem.click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

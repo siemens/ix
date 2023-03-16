@@ -8,6 +8,7 @@
  */
 
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
+export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
   title?: string;
@@ -19,7 +20,7 @@ export interface ToastConfig {
   iconColor?: string;
 }
 
-function getToastContainer() {
+export function getToastContainer() {
   const containerList = Array.from(
     document.querySelectorAll('ix-toast-container')
   );
@@ -37,6 +38,10 @@ function getToastContainer() {
     return toastContainer;
   }
   return container;
+}
+
+export function setToastPosition(position: ToastPosition) {
+  getToastContainer().position = position;
 }
 
 async function toast(config: ToastConfig) {
