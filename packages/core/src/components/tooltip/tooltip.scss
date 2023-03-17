@@ -3,6 +3,7 @@
   position: fixed;
   left: 0px;
   top: 0px;
+  z-index: var(--theme-z-index-tooltip);
 
   max-width: 18.25rem;
 
