@@ -8,9 +8,9 @@
  */
 import {
   arrow,
-  autoPlacement,
   autoUpdate,
   computePosition,
+  flip,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -87,7 +87,7 @@ export class Tooltip {
             target,
             this.hostElement,
             {
-              strategy: 'absolute',
+              strategy: 'fixed',
               placement: 'top',
               middleware: [
                 shift(),
@@ -95,16 +95,19 @@ export class Tooltip {
                 arrow({
                   element: this.arrowElement,
                 }),
-                autoPlacement({
-                  alignment: 'start',
-                  allowedPlacements: ['top', 'bottom', 'right', 'left'],
+                flip({
+                  fallbackStrategy: 'initialPlacement',
                 }),
               ],
             }
           );
 
           if (computeResponse.middlewareData.arrow) {
-            const { x, y } = computeResponse.middlewareData.arrow;
+            let { x, y } = computeResponse.middlewareData.arrow;
+
+            if (computeResponse.placement === 'bottom') {
+              y = -4;
+            }
 
             Object.assign(this.arrowElement.style, {
               left: x != null ? `${x}px` : '',

@@ -22,7 +22,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.01,
     });
   });
 
@@ -37,7 +37,7 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.01,
     });
   });
 
@@ -52,7 +52,22 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
+  regressionTest('fallback placement', async ({ page }) => {
+    await page.goto('tooltip/placement-fallback');
+
+    const tooltipTriggerHandler = await page.waitForSelector(
+      '[data-tooltip="Test3"]'
+    );
+
+    await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.01,
     });
   });
 });
