@@ -12,7 +12,7 @@ import SourceVueExpandingSearch from './../auto-generated/previews/vue/expanding
 ## Usage
 
 <Playground
-name="expanding-search" height="4rem"
+name="expanding-search" height="5rem"
 frameworks={{
   react: SourceReactExpandingSearch,
   angular: SourceAngularExpandingSearch,
