@@ -93,6 +93,11 @@ export namespace Components {
          */
         "collapsed": boolean;
         /**
+          * Optional icon to be displayed next to the header label
+          * @since 1.5.0
+         */
+        "icon": string;
+        /**
           * Label of blind
          */
         "label": string;
@@ -2398,6 +2403,11 @@ declare namespace LocalJSX {
           * Collapsed state
          */
         "collapsed"?: boolean;
+        /**
+          * Optional icon to be displayed next to the header label
+          * @since 1.5.0
+         */
+        "icon"?: string;
         /**
           * Label of blind
          */
