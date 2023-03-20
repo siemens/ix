@@ -26,5 +26,12 @@ regressionTest.describe('group', () => {
     });
   });
 
+  regressionTest('selected', async ({ page }) => {
+    await page.goto('group/basic');
+    await page.click("[id='group']");
+    await page.hover("[id='group']");
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   // ix-icon-button
 });
