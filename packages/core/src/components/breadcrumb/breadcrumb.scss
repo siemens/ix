@@ -118,8 +118,7 @@
     @include crumb-hover('btn');
 
     .crumb-text {
-      @include ellipsis;
-      display: inline-block;
+      display: flex;
       align-items: center;
       min-width: 0;
       font-weight: $font-weight-bold;
@@ -127,6 +126,10 @@
       ix-icon {
         margin-inline-end: $tiny-space;
       }
+    }
+
+    .crumb-ellipsis {
+      @include ellipsis;
     }
 
     .crumb-text + .glyph-chevron-right-small {
