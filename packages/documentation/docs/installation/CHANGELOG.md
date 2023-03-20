@@ -4,6 +4,17 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+## [1.4.2](https://github.com/siemens/ix/compare/v1.4.1...v1.4.2) (2023-03-20)
+
+
+### Bug Fixes
+
+* **core/menu-item:** adjust bottom background color ([#420](https://github.com/siemens/ix/issues/420)) ([9f23265](https://github.com/siemens/ix/commit/9f23265687d248c887b88e09dedd429362e9c4a7))
+* **core/select:** stop form trigger ([#446](https://github.com/siemens/ix/issues/446)) ([0a295be](https://github.com/siemens/ix/commit/0a295be0061fc6271d4c608402ccccaeef26ea26))
+* **core/tooltip:** remove arrow if not visible ([#451](https://github.com/siemens/ix/issues/451)) ([368a240](https://github.com/siemens/ix/commit/368a240c5a7bf4f7826113b0a66088b50501f01a))
+
+
+
 ## [1.4.1](https://github.com/siemens/ix/compare/v1.4.0...v1.4.1) (2023-03-10)
 
 

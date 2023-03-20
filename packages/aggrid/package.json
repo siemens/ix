@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -39,13 +39,13 @@
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0",
     "ag-grid-community": "29.1.0",
-    "@siemens/ix": "~1.4.1",
+    "@siemens/ix": "~1.4.2",
     "@stencil/sass": "~2.0.0",
     "@playwright/test": "^1.24.1",
     "http-server": "^14.1.1"
   },
   "peerDependencies": {
     "ag-grid-community": "^28 || ^29",
-    "@siemens/ix": "~1.4.1"
+    "@siemens/ix": "~1.4.2"
   }
 }
