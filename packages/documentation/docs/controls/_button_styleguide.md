@@ -71,7 +71,7 @@ The selected state is only available for tertiary (ghost) grey buttons to visual
 
 ### Button group
 
-A Button group, also known as segmented buttons or toggle buttons, is an element consisting of two or more adjacent Buttons. Selection/activation of the buttons can either be mutually exclusive (single-select) or not (multi-select). Buttons within a button group should be of the same content variant, i.e. not mixing icon only, text only and icon and text buttons in one group. All buttons within a button group are secondary (outline) buttons. Button groups should be used for closely related actions, e.g. switching between different views.
+A Button group, also known as segmented buttons or toggle buttons, is an element consisting of two or more adjacent buttons. Selection/activation of the buttons can either be mutually exclusive (single-select) or not (multi-select). Buttons within a button group should be of the same content variant, i.e. not mixing icon only, text only and icon and text buttons in one group. All buttons within a button group are secondary (outline) buttons and switch to primary when selected/ active. Button groups should be used for closely related actions, e.g. switching between different views.
 
 ![Button group](/img/pattern_illustrations/button_group.png)
 
