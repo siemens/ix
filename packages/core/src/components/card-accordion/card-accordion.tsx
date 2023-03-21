@@ -1,25 +1,37 @@
 import { Component, h, Host, State } from '@stencil/core';
 
+const SPACE_KEY = ' ';
+let accordingControlId = 0;
+const getAriaControlsId = (prefix: string = 'expand-content') => {
+  return [prefix, accordingControlId++].join('-');
+};
+
 @Component({
-  tag: 'ix-card-list',
-  styleUrl: 'card-list.scss',
+  tag: 'ix-card-accordion',
+  styleUrl: 'card-accordion.scss',
   scoped: true,
 })
-export class CardList {
+export class CardAccordion {
   @State() expandContent = false;
 
   onExpandActionClick(event: Event) {
     event.preventDefault();
-
     this.expandContent = !this.expandContent;
   }
 
   render() {
     return (
-      <Host slot="expand-list">
+      <Host slot="card-accordion">
         <div
+          tabIndex={0}
           class={{ 'expand-action': true, show: this.expandContent }}
           onClick={(event) => this.onExpandActionClick(event)}
+          onKeyPress={(event) => {
+            event.key === SPACE_KEY && this.onExpandActionClick(event);
+          }}
+          role="button"
+          aria-expanded={this.expandContent}
+          aria-controls={getAriaControlsId()}
         >
           <ix-icon
             name="chevron-down-small"
@@ -36,7 +48,9 @@ export class CardList {
             show: this.expandContent,
           }}
         >
-          <slot></slot>
+          <div class={'expand-content-body'}>
+            <slot></slot>
+          </div>
           <div class={'expand-content-footer'}></div>
         </div>
       </Host>

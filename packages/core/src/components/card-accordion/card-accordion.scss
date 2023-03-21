@@ -20,6 +20,8 @@
     display: flex;
     position: relative;
 
+    appearance: button;
+
     height: $action-height;
     width: 100%;
 
@@ -58,6 +60,10 @@
   .expand-content.show {
     height: 15rem;
     opacity: 1;
+  }
+
+  .expand-content-body {
+    overflow: auto;
   }
 
   .expand-content-footer {

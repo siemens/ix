@@ -165,11 +165,11 @@ export namespace Components {
     }
     interface IxCard {
     }
+    interface IxCardAccordion {
+    }
     interface IxCardContent {
     }
     interface IxCardHeader {
-    }
-    interface IxCardList {
     }
     interface IxCategoryFilter {
         /**
@@ -1892,6 +1892,12 @@ declare global {
         prototype: HTMLIxCardElement;
         new (): HTMLIxCardElement;
     };
+    interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
+    }
+    var HTMLIxCardAccordionElement: {
+        prototype: HTMLIxCardAccordionElement;
+        new (): HTMLIxCardAccordionElement;
+    };
     interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
     }
     var HTMLIxCardContentElement: {
@@ -1903,12 +1909,6 @@ declare global {
     var HTMLIxCardHeaderElement: {
         prototype: HTMLIxCardHeaderElement;
         new (): HTMLIxCardHeaderElement;
-    };
-    interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
-    }
-    var HTMLIxCardListElement: {
-        prototype: HTMLIxCardListElement;
-        new (): HTMLIxCardListElement;
     };
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
     }
@@ -2326,9 +2326,9 @@ declare global {
         "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
         "ix-card": HTMLIxCardElement;
+        "ix-card-accordion": HTMLIxCardAccordionElement;
         "ix-card-content": HTMLIxCardContentElement;
         "ix-card-header": HTMLIxCardHeaderElement;
-        "ix-card-list": HTMLIxCardListElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
@@ -2528,11 +2528,11 @@ declare namespace LocalJSX {
     }
     interface IxCard {
     }
+    interface IxCardAccordion {
+    }
     interface IxCardContent {
     }
     interface IxCardHeader {
-    }
-    interface IxCardList {
     }
     interface IxCategoryFilter {
         /**
@@ -4207,9 +4207,9 @@ declare namespace LocalJSX {
         "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
         "ix-card": IxCard;
+        "ix-card-accordion": IxCardAccordion;
         "ix-card-content": IxCardContent;
         "ix-card-header": IxCardHeader;
-        "ix-card-list": IxCardList;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-counter-pill": IxCounterPill;
@@ -4291,9 +4291,9 @@ declare module "@stencil/core" {
             "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
             "ix-card-header": LocalJSX.IxCardHeader & JSXBase.HTMLAttributes<HTMLIxCardHeaderElement>;
-            "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;

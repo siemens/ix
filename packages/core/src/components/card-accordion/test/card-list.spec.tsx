@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CardList } from '../card-list';
+import { CardAccordion } from '../card-accordion';
 
-describe('card-list', () => {
+describe('card-according', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CardList],
-      html: `<card-list></card-list>`,
+      components: [CardAccordion],
+      html: `<ix-card-accordion></ix-card-accordion>`,
     });
     expect(page.root).toEqualHtml(`
-      <card-list>
+      <ix-card-accordion>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </card-list>
+      </ix-card-accordion>
     `);
   });
 });

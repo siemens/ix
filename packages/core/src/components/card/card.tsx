@@ -12,7 +12,7 @@ export class Card {
         <div class="card-content">
           <slot></slot>
         </div>
-        <slot name="expand-list"></slot>
+        <slot name="card-accordion"></slot>
       </Host>
     );
   }

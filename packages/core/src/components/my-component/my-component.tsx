@@ -24,7 +24,15 @@ export class MyComponent {
               <ix-typography variant={'h2'}>10</ix-typography>
 
               <ix-icon-button
+                icon="warning"
+                color="color-warning"
+                ghost
+                slot="actions"
+              ></ix-icon-button>
+
+              <ix-icon-button
                 icon="document"
+                color="color-primary"
                 ghost
                 slot="actions"
               ></ix-icon-button>
@@ -38,7 +46,7 @@ export class MyComponent {
                 Secondary text
               </ix-typography>
             </ix-card-content>
-            <ix-card-list></ix-card-list>
+            <ix-card-accordion></ix-card-accordion>
           </ix-card>
 
           <ix-card>
@@ -55,7 +63,7 @@ export class MyComponent {
                 Secondary text
               </ix-typography>
             </ix-card-content>
-            <ix-card-list></ix-card-list>
+            <ix-card-accordion></ix-card-accordion>
           </ix-card>
 
           <ix-card>
@@ -72,7 +80,79 @@ export class MyComponent {
                 Secondary text
               </ix-typography>
             </ix-card-content>
-            <ix-card-list>test</ix-card-list>
+            <ix-card-accordion>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colSpan={2}>Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ix-card-accordion>
           </ix-card>
         </div>
       </Host>
