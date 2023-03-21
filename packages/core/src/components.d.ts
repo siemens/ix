@@ -25,7 +25,7 @@ import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyVariants } from "./components/typography/types";
+import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -47,7 +47,7 @@ export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyVariants } from "./components/typography/types";
+export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -162,6 +162,14 @@ export namespace Components {
           * Button varaint
          */
         "variant": ButtonVariant;
+    }
+    interface IxCard {
+    }
+    interface IxCardContent {
+    }
+    interface IxCardHeader {
+    }
+    interface IxCardList {
     }
     interface IxCategoryFilter {
         /**
@@ -1559,7 +1567,11 @@ export namespace Components {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color": TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant": TypographyVariants;
     }
@@ -1873,6 +1885,30 @@ declare global {
     var HTMLIxButtonElement: {
         prototype: HTMLIxButtonElement;
         new (): HTMLIxButtonElement;
+    };
+    interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
+    }
+    var HTMLIxCardElement: {
+        prototype: HTMLIxCardElement;
+        new (): HTMLIxCardElement;
+    };
+    interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
+    }
+    var HTMLIxCardContentElement: {
+        prototype: HTMLIxCardContentElement;
+        new (): HTMLIxCardContentElement;
+    };
+    interface HTMLIxCardHeaderElement extends Components.IxCardHeader, HTMLStencilElement {
+    }
+    var HTMLIxCardHeaderElement: {
+        prototype: HTMLIxCardHeaderElement;
+        new (): HTMLIxCardHeaderElement;
+    };
+    interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
+    }
+    var HTMLIxCardListElement: {
+        prototype: HTMLIxCardListElement;
+        new (): HTMLIxCardListElement;
     };
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
     }
@@ -2289,6 +2325,10 @@ declare global {
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
         "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
+        "ix-card": HTMLIxCardElement;
+        "ix-card-content": HTMLIxCardContentElement;
+        "ix-card-header": HTMLIxCardHeaderElement;
+        "ix-card-list": HTMLIxCardListElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
@@ -2485,6 +2525,14 @@ declare namespace LocalJSX {
           * Button varaint
          */
         "variant"?: ButtonVariant;
+    }
+    interface IxCard {
+    }
+    interface IxCardContent {
+    }
+    interface IxCardHeader {
+    }
+    interface IxCardList {
     }
     interface IxCategoryFilter {
         /**
@@ -4030,7 +4078,11 @@ declare namespace LocalJSX {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color"?: TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant"?: TypographyVariants;
     }
@@ -4154,6 +4206,10 @@ declare namespace LocalJSX {
         "ix-breadcrumb-item": IxBreadcrumbItem;
         "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
+        "ix-card": IxCard;
+        "ix-card-content": IxCardContent;
+        "ix-card-header": IxCardHeader;
+        "ix-card-list": IxCardList;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-counter-pill": IxCounterPill;
@@ -4234,6 +4290,10 @@ declare module "@stencil/core" {
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            "ix-card-header": LocalJSX.IxCardHeader & JSXBase.HTMLAttributes<HTMLIxCardHeaderElement>;
+            "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;

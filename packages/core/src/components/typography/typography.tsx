@@ -8,7 +8,32 @@
  */
 
 import { Component, h, Prop } from '@stencil/core';
-import { TypographyVariants, VariantsMapping } from './types';
+import { VariantsMapping } from './type-mapping';
+
+export type TypographyVariants =
+  | 'x-small'
+  | 'small'
+  | 'caption'
+  | 'caption-single'
+  | 'default'
+  | 'default-single'
+  | 'default-title'
+  | 'default-title-single'
+  | 'large'
+  | 'large-single'
+  | 'h2'
+  | 'display-large';
+
+export type TypographyColors =
+  | 'contrast-text'
+  | 'std-text'
+  | 'soft-text'
+  | 'weak-text'
+  | 'inv-contrast-text'
+  | 'inv-std-text'
+  | 'inv-soft-text'
+  | 'inv-weak-text'
+  | 'alarm-text';
 
 /**
  * @internal
@@ -20,16 +45,29 @@ import { TypographyVariants, VariantsMapping } from './types';
 })
 export class IxTypography {
   /**
-   * Font variant
+   * Font variant based on theme variables
    */
   @Prop() variant: TypographyVariants = 'default';
+
+  /**
+   * Text color based on theme variables
+   */
+  @Prop() color: TypographyColors = 'std-text';
 
   render() {
     const typographyClass = {
       [VariantsMapping[this.variant]]: true,
     };
+
+    const fontColor = this.color ?? 'std-text';
+
     return (
-      <div class={typographyClass}>
+      <div
+        class={typographyClass}
+        style={{
+          color: `var(--theme-color-${fontColor})`,
+        }}
+      >
         <slot></slot>
       </div>
     );

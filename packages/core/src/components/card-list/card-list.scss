@@ -1,0 +1,76 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/hover';
+
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+
+  $action-height: 2.5rem;
+
+  .expand-action {
+    display: flex;
+    position: relative;
+
+    height: $action-height;
+    width: 100%;
+
+    background-color: var(--theme-color-component-1);
+    align-items: center;
+    justify-content: center;
+    @include ghost-hover-pressed();
+  }
+
+  .expand-action:not(.show) {
+    border-bottom-left-radius: var(--theme-default-border-radius);
+    border-bottom-right-radius: var(--theme-default-border-radius);
+  }
+
+  .expand-icon {
+    transition: var(--theme-default-time) transform ease-in-out;
+  }
+
+  .expand-icon.show {
+    transform: rotate(180deg);
+  }
+
+  .expand-content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ix-card-background);
+    opacity: 0;
+    position: absolute;
+    top: $action-height;
+    transition: var(--theme-default-time) ease-in-out;
+    width: 100%;
+    height: 0;
+    max-height: 20rem;
+  }
+
+  .expand-content.show {
+    height: 15rem;
+    opacity: 1;
+  }
+
+  .expand-content-footer {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 1rem;
+
+    margin-top: auto;
+    margin-bottom: 0px;
+
+    background-color: var(--theme-color-component-1);
+    border-bottom-left-radius: var(--theme-default-border-radius);
+    border-bottom-right-radius: var(--theme-default-border-radius);
+  }
+}

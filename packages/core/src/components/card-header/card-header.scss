@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  padding-bottom: 0.5rem;
+  gap: 1rem;
+
+  .header-actions {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    gap: 1rem;
+    margin-left: auto;
+  }
+}

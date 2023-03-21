@@ -14,4 +14,11 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  padding: 1rem;
+
+  .list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
 }
