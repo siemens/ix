@@ -65,6 +65,50 @@ export class WorkflowSteps {
     });
   }
 
+  private observer: MutationObserver;
+
+  componentDidLoad() {
+    let steps = this.getSteps();
+
+    let mList = document.getElementById('stepList'),
+      options = {
+        childList: true,
+      };
+    this.observer = new MutationObserver(callback);
+
+    function callback(mutations) {
+      for (let mutation of mutations) {
+        steps.push(mutation.addedNodes[0]);
+
+        if (mutation.type === 'childList') {
+          steps.forEach((element, index) => {
+            element.setAttribute(
+              'vertical',
+              this.vertical === true ? 'true' : 'false'
+            );
+            element.setAttribute(
+              'clickable',
+              this.clickable === true ? 'true' : 'false'
+            );
+            if (index === 0) element.setAttribute('position', 'first');
+            if (index === steps.length - 1)
+              element.setAttribute('position', 'last');
+            if (index > 0 && index < steps.length - 1)
+              element.setAttribute('position', 'undefined');
+          });
+        }
+      }
+    }
+
+    this.observer.observe(mList, options);
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   componentDidRender() {
     const steps = this.getSteps();
 
@@ -103,21 +147,13 @@ export class WorkflowSteps {
         element.setAttribute('selected', 'true');
         this.stepSelected.emit(index);
       });
-      // const isEnabled = element.getAttribute('first');
-      // if(isEnabled){
-
-      // }
-      // console.log(isEnabled)
-      // const isDisabled = element.getAttribute('disabled') !== null;
-      // if (!isDisabled) element.addEventListener('click', () => '');
-      //element.addEventListener('mousedown', event => this.clicked(element, index));
     });
   }
 
   render() {
     return (
       <Host>
-        <div class={{ steps: true, vertical: this.vertical }}>
+        <div id="stepList" class={{ steps: true, vertical: this.vertical }}>
           <slot></slot>
         </div>
       </Host>
