@@ -46,19 +46,19 @@ Buttons can contain only text, only icons or both text and icons.
 
 | Variant       | Description and usage                                                                                                |
 | ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Icon and text | Use if an icon is wanted and the icon metapher might not be known to the user.                                       |
-| Text-only     | If no well-known icon metapher exists for the function or no icon is wanted to reduce graphical screen complexity.   |
-| Icon-only     | If a well-known icon metapher is used or the meaning of the icon metapher is clear from the context. Use cautiously. |
+| Icon and text | Use if an icon is wanted and the icon metaphor might not be known to the user.                                       |
+| Text-only     | If no well-known icon metaphor exists for the function or no icon is wanted to reduce graphical screen complexity.   |
+| Icon-only     | If a well-known icon metaphor is used or the meaning of the icon metaphor is clear from the context. Use cautiously. |
 
 ### Icon button
 
 Icon buttons are available in three sizes and two shapes.
 
-| Icon size    | Description and usage                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------- |
-| XS / 12      | Extra small icon size, used for very small parent components.                                        |
-| S / 16       | Small icon size, used for buttons within a parent component, e.g. clear button within search fields. |
-| Default / 24 | Default icon size, used for all icon buttons without space restrictions due to parent components.    |
+| Icon size  | Description and usage                                                                                |
+| ---------- | ---------------------------------------------------------------------------------------------------- |
+| XS/12      | Extra small icon size, used for very small parent components.                                        |
+| S/16       | Small icon size, used for buttons within a parent component, e.g. clear button within search fields. |
+| Default/24 | Default icon size, used for all icon buttons without space restrictions due to parent components.    |
 
 | Button shape | Description and usage                                          |
 | ------------ | -------------------------------------------------------------- |
@@ -67,11 +67,11 @@ Icon buttons are available in three sizes and two shapes.
 
 ### Selectable button
 
-The selected state is only available for tertiary (ghost) grey buttons to visualize an on/off state. Hover and active state are available for the selected variant. The selectable button is commonly used withing toolbars.
+The selected state is only available for tertiary (ghost) grey buttons to visualize an on/off state. Hover and active state are available for the selected variant. The selectable button is commonly used within toolbars.
 
 ### Button group
 
-A Button group, also known as segmented buttons or toggle buttons, is an element consisting of two or more adjacent buttons. Selection/activation of the buttons can either be mutually exclusive (single-select) or not (multi-select). Buttons within a button group should be of the same content variant, i.e. not mixing icon only, text only and icon and text buttons in one group. All buttons within a button group are secondary (outline) buttons and switch to primary when selected/ active. Button groups should be used for closely related actions, e.g. switching between different views.
+A button group, also known as segmented buttons or toggle buttons, is an element consisting of two or more adjacent buttons. Selection/activation of the buttons can either be mutually exclusive (single-select) or not (multi-select). Buttons within a button group should be of the same content variant, i.e. not mixing icon only, text only and icon and text buttons in one group. All buttons within a button group are secondary (outline) buttons and switch to primary when selected/active. Button groups should be used for closely related actions, e.g. switching between different views.
 
 ![Button group](/img/pattern_illustrations/button_group.png)
 
@@ -79,11 +79,11 @@ A Button group, also known as segmented buttons or toggle buttons, is an element
 
 ### Interaction
 
-Button can be triggered by clicking/ pressing anywhere within the button container. When the button is focused, it can be triggered by pressing <kbd>Space</kbd>.
+A button can be triggered by clicking/pressing anywhere within the button container. When the button is focused, it can be triggered by pressing <kbd>Space</kbd>.
 
 ### Text truncation
 
-Button labels are not truncated. All text on buttons is 1-line only. Labels should be kept concise to allow users to quickly scan, understand and remember them.
+Button labels are not truncated. All text on buttons is one line only. Labels should be kept concise to allow users to quickly scan, understand and remember them.
 
 ### Alignment
 
@@ -97,10 +97,10 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 
 | State           | Description                                                                                                                    |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Hover           | The hover state is indicated by fill color change and text/ icon color change (except primary button).                         |
-| Active          | The active state is indicated by fill color changeand text/ icon color change (except primary button). Equal to pressed state. |
-| Disabled        | The disblabed state is indicated by fill color change and text/ icon color change (except primary button).                     |
-| Selected        | The selected state is indicated by text/ icon and fill color change. Only available for tertiary (ghost) grey button.          |
+| Hover           | The hover state is indicated by fill color change and text/icon color change (except primary button).                          |
+| Active          | The active state is indicated by fill color change and text/icon color change (except primary button). Equal to pressed state. |
+| Disabled        | The disabled state is indicated by fill color change and text/icon color change (except primary button).                      |
+| Selected        | The selected state is indicated by text/icon and fill color change. Only available for tertiary (ghost) grey button.           |
 | Selected Hover  | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
 | Selected Active | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
 | Focused         | The focused state is indicated by a focus frame.                                                                               |
@@ -109,25 +109,25 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 
 ### Sizing
 
-- All Buttons have a fix height.
-- Icon-only buttons also have a fix width.
+- All buttons have a fixed height.
+- Icon-only buttons also have a fixed width.
 - Text-only and icon and text buttons have a minimum width of 5rem.
 - For text-only and icon and text buttons, no maximum width is defined.
 - The width of Primary and Secondary buttons can either depend on screen context or text length.
 - The width of Tertiatry buttons with text depends on the text length.
-- Text on text-only Buttons is horizontally centered.
-- On icon-and-text Buttons, there is a fix margin between icon and text of <kbd>0.25rem</kbd>. Icon and text together are horizontally centered. The icon should be placed on the leading side of the button (e.g. left for left-to-right languages).
+- Text on text-only buttons is horizontally centered.
+- On icon-and-text buttons, there is a fixed margin between icon and text of <kbd>0.25rem</kbd>. Icon and text together are horizontally centered. The icon should be placed on the leading side of the button (e.g. left for left-to-right languages).
 
 ### Spacing
 
-A default margin between adjacent Buttons of <kbd>0.5rem</kbd> is defined. Depending on the context, this margin may be increased, though.
+A default margin between adjacent buttons of <kbd>0.5rem</kbd> is defined. Depending on the context, this margin may be increased, though.
 
 ## Dos and don'ts
 
-- If space allows, place buttons next to one another instead of one below the other.
+- Given enough space, buttons should be aligned horizontally rather than vertically.
 - When grouping multiple buttons, e.g. in a dialog, buttons should be right-justified with the primary action on the very right.
-- Avoid generic button labels (e.g. Yes/ No), use meaningful labels instead (e.g. Save, Download, Edit) so that the user easily understands which action is triggered by pressing the button.
-- For more information, see also the UX writing guidelines on [Diaglogs and Buttons](#dialogs-and-buttons.md).
+- Avoid generic button labels (e.g. Yes/No), use meaningful labels instead (e.g. Save, Download, Edit) so that the user easily understands which action is triggered by pressing the button.
+- For more information, see also the UX writing guidelines on [Diaglogs and buttons](#dialogs-and-buttons.md).
 
 ## Related patterns:
 
