@@ -1,4 +1,17 @@
-import Playground from '@site/src/components/Playground'
+import Playground from '@site/src/components/Playground';
+import Props from './../auto-generated/ix-button/props.md';
+import PropsIcon from './../auto-generated/ix-icon-button/props.md';
+
+import WebComponentButtons from './../auto-generated/previews/web-component/buttons.md'
+import WebComponentButtonSecondary from './../auto-generated/previews/web-component/button-secondary.md'
+import WebComponentButtonGhost from './../auto-generated/previews/web-component/button-ghost.md'
+import WebComponentButtonGrey from './../auto-generated/previews/web-component/button-grey.md'
+import WebComponentButtonGreySecondary from './../auto-generated/previews/web-component/button-grey-secondary.md'
+import WebComponentButtonGreyGhost from './../auto-generated/previews/web-component/button-grey-ghost.md'
+import WebComponentButtonTextIcon from './../auto-generated/previews/web-component/button-text-icon.md'
+import WebComponentButtonGroup from './../auto-generated/previews/web-component/button-group.md'
+import WebComponentButtonIcon from './../auto-generated/previews/web-component/button-with-icon.md'
+import WebComponentButtonSelected from './../auto-generated/previews/web-component/button-selected.md'
 
 import ReactButtons from './../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
