@@ -25,4 +25,11 @@ regressionTest.describe('blind', () => {
     const blind = await page.waitForSelector('ix-blind');
     expect(await blind.screenshot()).toMatchSnapshot();
   });
+
+  regressionTest('header-actions', async ({ page }) => {
+    await page.goto('blind/header-actions');
+    await page.locator('#context-menu').click();
+    await page.waitForSelector('ix-dropdown.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

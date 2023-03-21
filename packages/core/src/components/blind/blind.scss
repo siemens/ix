@@ -45,12 +45,21 @@
       padding: $tiny-space $small-space;
     }
 
-    .blind-header-title {
+    .blind-header-title,
+    .blind-header-title-basic {
       @include ellipsis;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
 
       .blind-header-title-default {
         @include text-l-title;
+        flex-grow: 1;
       }
+    }
+
+    .blind-header-title-basic ix-icon {
+      margin-inline-end: $small-space;
     }
 
     @include hover {
@@ -92,11 +101,6 @@
         }
       }
     }
-  }
-
-  .blind-custom-header {
-    display: flex;
-    align-items: center;
   }
 
   .blind-content {

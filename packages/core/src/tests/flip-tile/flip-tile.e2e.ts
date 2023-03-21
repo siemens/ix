@@ -15,4 +15,9 @@ regressionTest.describe('flip-tile', () => {
     await page.goto('flip-tile/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('custom sizes', async ({ page }) => {
+    await page.goto('flip-tile/custom-sizes');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

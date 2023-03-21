@@ -11,6 +11,7 @@ import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
 import SourceSettings from './../../auto-generated/previews/web-component/settings.md'
 import SourceReactSettings from './../../auto-generated/previews/react/settings.md'
 import SourceAngularSettings from './../../auto-generated/previews/angular/settings.ts.md'
+import SourceVueSettings from './../../auto-generated/previews/vue/settings.md'
 
 # Settings
 
@@ -21,7 +22,8 @@ name="settings" height="30rem" noMargin
 frameworks={{
   react: SourceReactSettings,
   angular: SourceAngularSettings,
-  javascript: SourceSettings
+  javascript: SourceSettings,
+  vue: SourceVueSettings
 }}>
 </Playground>
 

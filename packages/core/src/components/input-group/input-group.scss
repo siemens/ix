@@ -28,4 +28,8 @@
   .group-end {
     right: 0px;
   }
+
+  ::slotted(*) {
+    display: flex;
+  }
 }

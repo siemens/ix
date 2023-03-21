@@ -21,6 +21,8 @@ import {
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
+export type TimePickerCorners = DateTimeCardCorners;
+
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
@@ -39,7 +41,7 @@ export class TimePicker {
   /**
    * Corner style
    */
-  @Prop() corners: DateTimeCardCorners = 'rounded';
+  @Prop() corners: TimePickerCorners = 'rounded';
 
   /**
    * @deprecated Will be removed in 2.0.0

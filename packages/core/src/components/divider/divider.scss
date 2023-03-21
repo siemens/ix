@@ -9,10 +9,9 @@
 
 :host {
   display: block;
-  position: initial;
+  position: relative;
 
-  .line {
-    width: auto;
-    border: 0.0625rem solid var(--theme-color-x-weak-bdr);
-  }
+  width: 100%;
+  border: 0.0625rem solid var(--theme-color-x-weak-bdr);
+  margin: 0.25rem 0px;
 }

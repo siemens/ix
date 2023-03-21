@@ -18,10 +18,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class Divider {
   render() {
-    return (
-      <Host>
-        <div class="line"></div>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

@@ -20,3 +20,8 @@
 :host {
   min-width: 0px;
 }
+
+:host(.overflow) {
+  max-height: 50vh;
+  overflow-y: auto;
+}

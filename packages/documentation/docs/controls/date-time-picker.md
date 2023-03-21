@@ -5,6 +5,7 @@ import Events from './../auto-generated/ix-datetime-picker/events.md';
 import SourceDatetimepicker from './../auto-generated/previews/web-component/datetimepicker.md'
 import SourceReactDatetimepicker from './../auto-generated/previews/react/datetimepicker.md'
 import SourceAngularDatetimepicker from './../auto-generated/previews/angular/datetimepicker.ts.md'
+import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepicker.md'
 
 # Date time picker
 
@@ -15,7 +16,8 @@ name="datetimepicker" height="35rem"
 frameworks={{
   react: SourceReactDatetimepicker,
   angular: SourceAngularDatetimepicker,
-  javascript: SourceDatetimepicker
+  javascript: SourceDatetimepicker,
+  vue: SourceVueDatetimepicker
 }}></Playground>
 
 ## Properties

@@ -5,23 +5,50 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Buttons } from "./components/button/button-variants";
+import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/events";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "./components/datetime-picker/event";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
 import { Placement } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown-trigger-event";
+import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { IconButtonVariant } from "./components/icon-button/icon-button";
+import { IndexButtonVariant } from "./components/index-button/index-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { SplitButtonVariant } from "./components/split-button/split-button";
+import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyVariants } from "./components/typography/types";
 import { UploadFileState } from "./components/upload/upload-file-state";
+export { ButtonVariant } from "./components/button/button";
+export { FilterState } from "./components/category-filter/filter-state";
+export { InputState } from "./components/category-filter/input-state";
+export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { Placement } from "./components/dropdown/placement";
+export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
+export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { IconButtonVariant } from "./components/icon-button/icon-button";
+export { IndexButtonVariant } from "./components/index-button/index-button";
+export { NotificationColor } from "./components/utils/notification-color";
+export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { SplitButtonVariant } from "./components/split-button/split-button";
+export { TimePickerCorners } from "./components/time-picker/time-picker";
+export { ToastConfig, ToastType } from "./components/toast/toast-utils";
+export { TypedEvent } from "./components/utils/typed-event";
+export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
+export { TypographyVariants } from "./components/typography/types";
+export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
         /**
@@ -65,6 +92,11 @@ export namespace Components {
           * Collapsed state
          */
         "collapsed": boolean;
+        /**
+          * Optional icon to be displayed next to the header label
+          * @since 1.5.0
+         */
+        "icon": string;
         /**
           * Label of blind
          */
@@ -129,7 +161,7 @@ export namespace Components {
         /**
           * Button varaint
          */
-        "variant": Buttons;
+        "variant": ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -308,7 +340,7 @@ export namespace Components {
         /**
           * Set corners style
          */
-        "corners": DateTimeCardCorners;
+        "corners": DateTimeCardCorners1;
         /**
           * set styles
          */
@@ -386,6 +418,9 @@ export namespace Components {
          */
         "to": string | null;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -479,6 +514,9 @@ export namespace Components {
          */
         "updatePosition": () => Promise<void>;
     }
+    /**
+     * @since 1.3.0
+     */
     interface IxDropdownButton {
         /**
           * Active button
@@ -505,9 +543,9 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Button varaint
+          * Button variant
          */
-        "variant": Buttons;
+        "variant": DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -535,6 +573,9 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDropdownQuickActions {
     }
     interface IxEventList {
@@ -601,12 +642,23 @@ export namespace Components {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer": string;
+        /**
+          * Height interpreted as REM
+          * @since 1.5.0
+         */
+        "height": number | 'auto';
         /**
           * Variation of the Flip
          */
         "state": FlipTileState;
+        /**
+          * Width interpreted as REM
+          * @since 1.5.0
+         */
+        "width": number | 'auto';
     }
     interface IxFlipTileContent {
     }
@@ -741,7 +793,17 @@ export namespace Components {
         /**
           * Variant of button
          */
-        "variant": 'Primary' | 'Secondary';
+        "variant": IconButtonVariant;
+    }
+    interface IxIndexButton {
+        /**
+          * Selection state
+         */
+        "selected": boolean;
+        /**
+          * Button variant
+         */
+        "variant": IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -1067,9 +1129,46 @@ export namespace Components {
           * Display modal dialog
           * @param config
          */
-        "showModal": (config: ModalConfig) => Promise<ModalInstance>;
+        "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
     interface IxModalExample {
+    }
+    /**
+     * @since 1.5.0
+     */
+    interface IxPagination {
+        /**
+          * Advanced mode
+         */
+        "advanced": boolean;
+        /**
+          * Total number of pages
+         */
+        "count": number;
+        /**
+          * /**   i18n
+         */
+        "i18nItems": string;
+        /**
+          * i18n
+         */
+        "i18nOf": string;
+        /**
+          * i18n
+         */
+        "i18nPage": string;
+        /**
+          * Number of items shown at once. Can only be changed in advaced mode.
+         */
+        "itemCount": number;
+        /**
+          * Zero based index of currently selected page
+         */
+        "selectedPage": number;
+        /**
+          * Show item count in advanced mode
+         */
+        "showItemCount": boolean;
     }
     interface IxPill {
         /**
@@ -1208,7 +1307,7 @@ export namespace Components {
         /**
           * Color variant of button
          */
-        "variant": Buttons;
+        "variant": SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**
@@ -1286,7 +1385,7 @@ export namespace Components {
         /**
           * Corner style
          */
-        "corners": DateTimeCardCorners;
+        "corners": TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0
@@ -1361,7 +1460,7 @@ export namespace Components {
     interface IxToastContainer {
         "containerClass": string;
         "containerId": string;
-        "position": string;
+        "position": 'bottom-right' | 'top-right';
         /**
           * Display a toast message
           * @param config
@@ -1403,6 +1502,9 @@ export namespace Components {
          */
         "textOn": string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxTooltip {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
@@ -1669,6 +1771,10 @@ export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
 }
+export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPaginationElement;
+}
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectElement;
@@ -1804,6 +1910,9 @@ declare global {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxDividerElement extends Components.IxDivider, HTMLStencilElement {
     }
     var HTMLIxDividerElement: {
@@ -1822,6 +1931,9 @@ declare global {
         prototype: HTMLIxDropdownElement;
         new (): HTMLIxDropdownElement;
     };
+    /**
+     * @since 1.3.0
+     */
     interface HTMLIxDropdownButtonElement extends Components.IxDropdownButton, HTMLStencilElement {
     }
     var HTMLIxDropdownButtonElement: {
@@ -1834,6 +1946,9 @@ declare global {
         prototype: HTMLIxDropdownItemElement;
         new (): HTMLIxDropdownItemElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxDropdownQuickActionsElement extends Components.IxDropdownQuickActions, HTMLStencilElement {
     }
     var HTMLIxDropdownQuickActionsElement: {
@@ -1911,6 +2026,12 @@ declare global {
     var HTMLIxIconButtonElement: {
         prototype: HTMLIxIconButtonElement;
         new (): HTMLIxIconButtonElement;
+    };
+    interface HTMLIxIndexButtonElement extends Components.IxIndexButton, HTMLStencilElement {
+    }
+    var HTMLIxIndexButtonElement: {
+        prototype: HTMLIxIndexButtonElement;
+        new (): HTMLIxIndexButtonElement;
     };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
@@ -2014,6 +2135,15 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    /**
+     * @since 1.5.0
+     */
+    interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
+    }
+    var HTMLIxPaginationElement: {
+        prototype: HTMLIxPaginationElement;
+        new (): HTMLIxPaginationElement;
+    };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
     var HTMLIxPillElement: {
@@ -2092,6 +2222,9 @@ declare global {
         prototype: HTMLIxToggleElement;
         new (): HTMLIxToggleElement;
     };
+    /**
+     * @since 1.4.0
+     */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
     }
     var HTMLIxTooltipElement: {
@@ -2180,6 +2313,7 @@ declare global {
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
+        "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -2197,6 +2331,7 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -2268,6 +2403,11 @@ declare namespace LocalJSX {
           * Collapsed state
          */
         "collapsed"?: boolean;
+        /**
+          * Optional icon to be displayed next to the header label
+          * @since 1.5.0
+         */
+        "icon"?: string;
         /**
           * Label of blind
          */
@@ -2344,7 +2484,7 @@ declare namespace LocalJSX {
         /**
           * Button varaint
          */
-        "variant"?: Buttons;
+        "variant"?: ButtonVariant;
     }
     interface IxCategoryFilter {
         /**
@@ -2432,8 +2572,14 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
+          * @deprecated Will be removed in 2.0.0. Use `closeChip`
          */
         "onClose"?: (event: IxChipCustomEvent<any>) => void;
+        /**
+          * Fire event if close button is clicked
+          * @since 1.5.0
+         */
+        "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
         /**
           * Show chip with outline style
          */
@@ -2514,7 +2660,7 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
-          * @depracted String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+          * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;
         /**
@@ -2551,7 +2697,7 @@ declare namespace LocalJSX {
         /**
           * Set corners style
          */
-        "corners"?: DateTimeCardCorners;
+        "corners"?: DateTimeCardCorners1;
         /**
           * set styles
          */
@@ -2587,7 +2733,7 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: IxDatetimePickerCustomEvent<string | Omit<DateTimeSelectEvent, 'time'>>) => void;
+        "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Date selection event is fired after confirm button is pressend
           * @since 1.1.0
@@ -2648,6 +2794,9 @@ declare namespace LocalJSX {
          */
         "to"?: string | null;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDivider {
     }
     interface IxDrawer {
@@ -2744,6 +2893,9 @@ declare namespace LocalJSX {
          */
         "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
+    /**
+     * @since 1.3.0
+     */
     interface IxDropdownButton {
         /**
           * Active button
@@ -2770,9 +2922,9 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Button varaint
+          * Button variant
          */
-        "variant"?: Buttons;
+        "variant"?: DropdownButtonVariant;
     }
     interface IxDropdownItem {
         /**
@@ -2800,6 +2952,9 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxDropdownQuickActions {
     }
     interface IxEventList {
@@ -2878,12 +3033,23 @@ declare namespace LocalJSX {
     interface IxFlipTile {
         /**
           * Tmp property name
+          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
          */
         "footer"?: string;
+        /**
+          * Height interpreted as REM
+          * @since 1.5.0
+         */
+        "height"?: number | 'auto';
         /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
+        /**
+          * Width interpreted as REM
+          * @since 1.5.0
+         */
+        "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
     }
@@ -3034,7 +3200,17 @@ declare namespace LocalJSX {
         /**
           * Variant of button
          */
-        "variant"?: 'Primary' | 'Secondary';
+        "variant"?: IconButtonVariant;
+    }
+    interface IxIndexButton {
+        /**
+          * Selection state
+         */
+        "selected"?: boolean;
+        /**
+          * Button variant
+         */
+        "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -3371,6 +3547,51 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.5.0
+     */
+    interface IxPagination {
+        /**
+          * Advanced mode
+         */
+        "advanced"?: boolean;
+        /**
+          * Total number of pages
+         */
+        "count"?: number;
+        /**
+          * /**   i18n
+         */
+        "i18nItems"?: string;
+        /**
+          * i18n
+         */
+        "i18nOf"?: string;
+        /**
+          * i18n
+         */
+        "i18nPage"?: string;
+        /**
+          * Number of items shown at once. Can only be changed in advaced mode.
+         */
+        "itemCount"?: number;
+        /**
+          * Item count change event
+         */
+        "onItemCountChanged"?: (event: IxPaginationCustomEvent<number>) => void;
+        /**
+          * Page selection event
+         */
+        "onPageSelected"?: (event: IxPaginationCustomEvent<number>) => void;
+        /**
+          * Zero based index of currently selected page
+         */
+        "selectedPage"?: number;
+        /**
+          * Show item count in advanced mode
+         */
+        "showItemCount"?: boolean;
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -3520,7 +3741,7 @@ declare namespace LocalJSX {
         /**
           * Color variant of button
          */
-        "variant"?: Buttons;
+        "variant"?: SplitButtonVariant;
     }
     interface IxSplitButtonItem {
         /**
@@ -3602,7 +3823,7 @@ declare namespace LocalJSX {
         /**
           * Corner style
          */
-        "corners"?: DateTimeCardCorners;
+        "corners"?: TimePickerCorners;
         /**
           * Format of time string
           * @since 1.1.0
@@ -3685,7 +3906,7 @@ declare namespace LocalJSX {
     interface IxToastContainer {
         "containerClass"?: string;
         "containerId"?: string;
-        "position"?: string;
+        "position"?: 'bottom-right' | 'top-right';
     }
     interface IxToggle {
         /**
@@ -3726,6 +3947,9 @@ declare namespace LocalJSX {
          */
         "textOn"?: string;
     }
+    /**
+     * @since 1.4.0
+     */
     interface IxTooltip {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
@@ -3754,9 +3978,19 @@ declare namespace LocalJSX {
          */
         "onContextChange"?: (event: IxTreeCustomEvent<TreeContext>) => void;
         /**
+          * Node clicked event
+          * @since 1.5.0
+         */
+        "onNodeClicked"?: (event: IxTreeCustomEvent<string>) => void;
+        /**
           * Emits removed nodes
          */
         "onNodeRemoved"?: (event: IxTreeCustomEvent<any>) => void;
+        /**
+          * Node toggled event
+          * @since 1.5.0
+         */
+        "onNodeToggled"?: (event: IxTreeCustomEvent<{ id: string; isExpaned: boolean }>) => void;
         /**
           * Render function of tree items
          */
@@ -3944,6 +4178,7 @@ declare namespace LocalJSX {
         "ix-group-item": IxGroupItem;
         "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
+        "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
@@ -3961,6 +4196,7 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
+        "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -4004,11 +4240,20 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-divider": LocalJSX.IxDivider & JSXBase.HTMLAttributes<HTMLIxDividerElement>;
             "ix-drawer": LocalJSX.IxDrawer & JSXBase.HTMLAttributes<HTMLIxDrawerElement>;
             "ix-dropdown": LocalJSX.IxDropdown & JSXBase.HTMLAttributes<HTMLIxDropdownElement>;
+            /**
+             * @since 1.3.0
+             */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
@@ -4022,6 +4267,7 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
@@ -4039,6 +4285,10 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            /**
+             * @since 1.5.0
+             */
+            "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
@@ -4052,6 +4302,9 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            /**
+             * @since 1.4.0
+             */
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;

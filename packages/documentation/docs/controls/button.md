@@ -2,11 +2,10 @@
 title: Buttons
 ---
 
-import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 
-import DocsUx from './\_button_styleguide.md'
-import DocsCode from './\_button_code.md'
+import DocsUx from './\_button_styleguide.md';
+import DocsCode from './\_button_code.md';
 
 # Button
 
