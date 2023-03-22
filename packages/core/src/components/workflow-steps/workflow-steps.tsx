@@ -65,40 +65,39 @@ export class WorkflowSteps {
     });
   }
 
+  styling(extraSteps: HTMLIxWorkflowStepElement[] = []) {
+    let steps = [...this.getSteps(), ...extraSteps];
+    steps.forEach((element, index) => {
+      element.setAttribute('vertical', this.vertical ? 'true' : 'false');
+      element.setAttribute('clickable', this.clickable ? 'true' : 'false');
+      element.setAttribute(
+        'selected',
+        this.selectedIndex === index ? 'true' : 'false'
+      );
+      if (index === 0) element.setAttribute('position', 'first');
+      if (index === steps.length - 1) element.setAttribute('position', 'last');
+      if (index > 0 && index < steps.length - 1)
+        element.setAttribute('position', 'undefined');
+    });
+  }
+
   private observer: MutationObserver;
 
   componentDidLoad() {
-    let steps = this.getSteps();
-
-    let mList = document.getElementById('stepList'),
-      options = {
-        childList: true,
-      };
-    this.observer = new MutationObserver(callback);
-
-    function callback(mutations) {
+    const steps: HTMLIxWorkflowStepElement[] = [];
+    const mList = this.hostElement.querySelector('.steps');
+    const options = {
+      childList: true,
+    };
+    this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
-        steps.push(mutation.addedNodes[0]);
+        steps.push(mutation.addedNodes[0] as HTMLIxWorkflowStepElement);
 
         if (mutation.type === 'childList') {
-          steps.forEach((element, index) => {
-            element.setAttribute(
-              'vertical',
-              this.vertical === true ? 'true' : 'false'
-            );
-            element.setAttribute(
-              'clickable',
-              this.clickable === true ? 'true' : 'false'
-            );
-            if (index === 0) element.setAttribute('position', 'first');
-            if (index === steps.length - 1)
-              element.setAttribute('position', 'last');
-            if (index > 0 && index < steps.length - 1)
-              element.setAttribute('position', 'undefined');
-          });
+          this.styling(steps);
         }
       }
-    }
+    });
 
     this.observer.observe(mList, options);
   }
@@ -110,24 +109,7 @@ export class WorkflowSteps {
   }
 
   componentDidRender() {
-    const steps = this.getSteps();
-
-    steps.forEach((element, index) => {
-      element.setAttribute(
-        'vertical',
-        this.vertical === true ? 'true' : 'false'
-      );
-      element.setAttribute(
-        'clickable',
-        this.clickable === true ? 'true' : 'false'
-      );
-      element.setAttribute(
-        'selected',
-        this.selectedIndex === index ? 'true' : 'false'
-      );
-      if (index === 0) element.setAttribute('position', 'first');
-      if (index === steps.length - 1) element.setAttribute('position', 'last');
-    });
+    this.styling();
   }
 
   componentWillRender() {
@@ -153,7 +135,7 @@ export class WorkflowSteps {
   render() {
     return (
       <Host>
-        <div id="stepList" class={{ steps: true, vertical: this.vertical }}>
+        <div class={{ steps: true, vertical: this.vertical }}>
           <slot></slot>
         </div>
       </Host>
