@@ -8,9 +8,9 @@
  */
 import {
   arrow,
-  autoPlacement,
   autoUpdate,
   computePosition,
+  flip,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -59,7 +59,7 @@ export class Tooltip {
   }
 
   private destroyAutoUpdate() {
-    if (this.disposeAutoUpdate) {
+    if (this.disposeAutoUpdate !== undefined) {
       this.disposeAutoUpdate();
     }
   }
@@ -82,39 +82,44 @@ export class Tooltip {
       target,
       this.hostElement,
       async () => {
-        const computeResponse = await computePosition(
-          target,
-          this.hostElement,
-          {
-            strategy: 'absolute',
-            placement: 'top',
-            middleware: [
-              shift(),
-              offset(8),
-              arrow({
-                element: this.arrowElement,
-              }),
-              autoPlacement({
-                alignment: 'start',
-                allowedPlacements: ['top', 'bottom', 'right', 'left'],
-              }),
-            ],
+        requestAnimationFrame(async () => {
+          const computeResponse = await computePosition(
+            target,
+            this.hostElement,
+            {
+              strategy: 'fixed',
+              placement: 'top',
+              middleware: [
+                shift(),
+                offset(8),
+                arrow({
+                  element: this.arrowElement,
+                }),
+                flip({
+                  fallbackStrategy: 'initialPlacement',
+                }),
+              ],
+            }
+          );
+
+          if (computeResponse.middlewareData.arrow) {
+            let { x, y } = computeResponse.middlewareData.arrow;
+
+            if (computeResponse.placement === 'bottom') {
+              y = -4;
+            }
+
+            Object.assign(this.arrowElement.style, {
+              left: x != null ? `${x}px` : '',
+              top: y != null ? `${y}px` : '',
+            });
           }
-        );
 
-        if (computeResponse.middlewareData.arrow) {
-          const { x, y } = computeResponse.middlewareData.arrow;
-
-          Object.assign(this.arrowElement.style, {
-            left: x != null ? `${x}px` : '',
-            top: y != null ? `${y}px` : '',
+          const { x, y } = computeResponse;
+          Object.assign(this.hostElement.style, {
+            left: x !== null ? `${x}px` : '',
+            top: y !== null ? `${y}px` : '',
           });
-        }
-
-        const { x, y } = computeResponse;
-        Object.assign(this.hostElement.style, {
-          left: x !== null ? `${x}px` : '',
-          top: y !== null ? `${y}px` : '',
         });
       },
       {

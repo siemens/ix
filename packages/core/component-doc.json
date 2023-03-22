@@ -281,8 +281,14 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-blind": [
+          "ix-icon"
+        ]
+      },
       "props": [
         {
           "name": "collapsed",
@@ -296,6 +302,27 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional icon to be displayed next to the header label",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -3909,6 +3936,7 @@
       "encapsulation": "scoped",
       "dependents": [
         "ix-animated-tabs",
+        "ix-blind",
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-chip",
@@ -3935,6 +3963,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-animated-tabs": [
+          "ix-icon"
+        ],
+        "ix-blind": [
           "ix-icon"
         ],
         "ix-breadcrumb": [
