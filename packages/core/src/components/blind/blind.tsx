@@ -131,13 +131,13 @@ export class Blind {
       <Host>
         <div
           class={{
-            "blind-header": true,
+            'blind-header': true,
             closed: this.collapsed,
           }}
           role="button"
           tabindex="0"
-          aria-labelledby={"ix-blind-header-title-" + this.id}
-          aria-controls={"ix-blind-content-section-" + this.id}
+          aria-labelledby={'ix-blind-header-title-' + this.id}
+          aria-controls={'ix-blind-content-section-' + this.id}
           aria-expanded={this.collapsed ? 'false' : 'true'}
           onClick={(e) => this.onHeaderClick(e)}
           onKeyPress={(e) => this.onHeaderKeyPress(e)}
@@ -145,11 +145,14 @@ export class Blind {
           <span
             class={{
               glyph: true,
-              "glyph-chevron-right-small": true,
+              'glyph-chevron-right-small': true,
             }}
             ref={(ref) => (this.chevronRef = ref)}
           ></span>
-          <div class="blind-header-title" id={"ix-blind-header-title-" + this.id}>
+          <div
+            class="blind-header-title"
+            id={'ix-blind-header-title-' + this.id}
+          >
             {this.label !== undefined ? (
               <span class="blind-header-title-basic">
                 {this.icon !== undefined ? (
@@ -168,12 +171,12 @@ export class Blind {
           </div>
         </div>
         <section
-          id={"ix-blind-content-section-" + this.id}
-          aria-labelledby={"ix-blind-header-title-" + this.id}
+          id={'ix-blind-content-section-' + this.id}
+          aria-labelledby={'ix-blind-header-title-' + this.id}
         >
           <div
             class={{
-              "blind-content": true,
+              'blind-content': true,
               hide: this.collapsed,
             }}
           >
