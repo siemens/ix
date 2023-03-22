@@ -7,13 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, Element, h, Host } from '@stencil/core';
+
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
   scoped: true,
 })
 export class MyComponent {
+  @Element() hostElement: HTMLMyComponentElement;
+
+  componentDidRender() {}
+
   render() {
     return (
       <Host>
@@ -42,41 +47,7 @@ export class MyComponent {
                 New devices have been discovered and are ready for onboarding
               </ix-typography>
 
-              <ix-typography variant="default" color="soft-text">
-                Secondary text
-              </ix-typography>
-            </ix-card-content>
-            <ix-card-accordion></ix-card-accordion>
-          </ix-card>
-
-          <ix-card>
-            <ix-card-header>
-              <ix-icon name="rocket" size="32"></ix-icon>
-              <ix-typography variant={'h2'}>10</ix-typography>
-            </ix-card-header>
-            <ix-card-content>
-              <ix-typography variant="default-title">
-                New devices have been discovered and are ready for onboarding
-              </ix-typography>
-
-              <ix-typography variant="default" color="soft-text">
-                Secondary text
-              </ix-typography>
-            </ix-card-content>
-            <ix-card-accordion></ix-card-accordion>
-          </ix-card>
-
-          <ix-card>
-            <ix-card-header>
-              <ix-icon name="rocket" size="32"></ix-icon>
-              <ix-typography variant={'h2'}>10</ix-typography>
-            </ix-card-header>
-            <ix-card-content>
-              <ix-typography variant="default-title">
-                New devices have been discovered and are ready for onboarding
-              </ix-typography>
-
-              <ix-typography variant="default" color="soft-text">
+              <ix-typography variant="default" color="soft">
                 Secondary text
               </ix-typography>
             </ix-card-content>
@@ -104,54 +75,56 @@ export class MyComponent {
                     <td>@fat</td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
                     <th scope="row">3</th>
                     <td colSpan={2}>Larry the Bird</td>
                     <td>@twitter</td>
                   </tr>
                 </tbody>
               </table>
+            </ix-card-accordion>
+          </ix-card>
+
+          <ix-card>
+            <ix-card-header>
+              <ix-icon name="rocket" size="32"></ix-icon>
+              <ix-typography variant={'h2'}>10</ix-typography>
+            </ix-card-header>
+            <ix-card-content>
+              <ix-typography variant="default-title">
+                New devices have been discovered and are ready for onboarding
+              </ix-typography>
+
+              <ix-typography variant="default" color="soft">
+                Secondary text
+              </ix-typography>
+            </ix-card-content>
+            <ix-card-accordion></ix-card-accordion>
+          </ix-card>
+
+          <ix-card>
+            <ix-card-header>
+              <ix-icon name="rocket" size="32"></ix-icon>
+              <ix-typography variant={'h2'}>10</ix-typography>
+            </ix-card-header>
+            <ix-card-content>
+              <ix-typography variant="default-title">
+                New devices have been discovered and are ready for onboarding
+              </ix-typography>
+
+              <ix-typography variant="default" color="soft">
+                Secondary text
+              </ix-typography>
+            </ix-card-content>
+            <ix-card-accordion>
+              <iframe
+                src="https://giphy.com/embed/MDJ9IbxxvDUQM"
+                width="100%"
+                height="100%"
+                style={{ position: 'absolute' }}
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+              ></iframe>
             </ix-card-accordion>
           </ix-card>
         </div>

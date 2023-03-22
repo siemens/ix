@@ -14,11 +14,14 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  padding: 1rem;
+  padding: 1rem 0rem 0rem 1rem;
 
   .list {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    // flex-wrap: nowrap;
+    // overflow: hidden;
   }
 }

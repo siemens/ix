@@ -21,7 +21,12 @@ export class CardAccordion {
 
   render() {
     return (
-      <Host slot="card-accordion">
+      <Host
+        slot="card-accordion"
+        class={{
+          show: this.expandContent,
+        }}
+      >
         <div
           tabIndex={0}
           class={{ 'expand-action': true, show: this.expandContent }}

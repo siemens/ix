@@ -7,11 +7,14 @@
   padding-bottom: 0.5rem;
   gap: 1rem;
 
+  width: 100%;
+
   .header-actions {
     display: flex;
     position: relative;
     flex-direction: row;
     gap: 0.25rem;
     margin-left: auto;
+    margin-right: 0px;
   }
 }

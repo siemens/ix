@@ -8,13 +8,14 @@
  */
 @import 'mixins/hover';
 
+$action-height: 2.5rem;
+$expand-content-height: 15rem;
+
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
-
-  $action-height: 2.5rem;
 
   .expand-action {
     display: flex;
@@ -47,7 +48,6 @@
   .expand-content {
     display: flex;
     flex-direction: column;
-    background-color: var(--ix-card-background);
     opacity: 0;
     position: absolute;
     top: $action-height;
@@ -58,11 +58,17 @@
   }
 
   .expand-content.show {
-    height: 15rem;
+    height: $expand-content-height;
     opacity: 1;
   }
 
-  .expand-content-body {
+  .expand-content.show .expand-content-body {
+    display: none;
+    overflow: hidden;
+  }
+
+  .expand-content.show .expand-content-body {
+    display: block;
     overflow: auto;
   }
 
@@ -79,4 +85,8 @@
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
   }
+}
+
+:host(.show) {
+  height: calc(#{$expand-content-height} + #{$action-height});
 }

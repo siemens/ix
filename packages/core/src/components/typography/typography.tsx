@@ -25,15 +25,15 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
-  | 'contrast-text'
-  | 'std-text'
-  | 'soft-text'
-  | 'weak-text'
-  | 'inv-contrast-text'
-  | 'inv-std-text'
-  | 'inv-soft-text'
-  | 'inv-weak-text'
-  | 'alarm-text';
+  | 'contrast'
+  | 'std'
+  | 'soft'
+  | 'weak'
+  | 'inv-contrast'
+  | 'inv-std'
+  | 'inv-soft'
+  | 'inv-weak'
+  | 'alarm';
 
 /**
  * @internal
@@ -52,20 +52,20 @@ export class IxTypography {
   /**
    * Text color based on theme variables
    */
-  @Prop() color: TypographyColors = 'std-text';
+  @Prop() color: TypographyColors = 'std';
 
   render() {
     const typographyClass = {
       [VariantsMapping[this.variant]]: true,
     };
 
-    const fontColor = this.color ?? 'std-text';
+    const fontColor = this.color ?? 'std';
 
     return (
       <div
         class={typographyClass}
         style={{
-          color: `var(--theme-color-${fontColor})`,
+          color: `var(--theme-color-${fontColor}-text)`,
         }}
       >
         <slot></slot>

@@ -1,3 +1,14 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$paddingContentLeftRight: 1rem;
+
 :host {
   --ix-card-background: var(--theme-color-component-1);
 }
@@ -7,9 +18,8 @@
   position: relative;
   flex-direction: column;
   align-items: flex-start;
+  align-self: flex-start;
   gap: 0.5rem;
-
-  max-height: 15rem;
 
   min-width: 20rem;
   max-width: 20rem;
@@ -18,7 +28,9 @@
   border-radius: var(--theme-default-border-radius);
 
   .card-content {
-    padding: 0.5rem 1rem;
+    position: relative;
+    width: calc(100% - #{$paddingContentLeftRight * 2});
+    padding: 0.5rem $paddingContentLeftRight;
   }
 
   .card-footer {
