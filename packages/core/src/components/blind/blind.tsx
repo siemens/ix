@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 
+let sequentialInstanceId = 0;
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
@@ -43,15 +44,25 @@ export class Blind {
   @Element() hostElement!: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
+  private id = ++sequentialInstanceId;
 
   constructor() {}
 
-  private onHeaderClick(e: Event) {
+  private onHeaderToggle(e: Event) {
     e.preventDefault();
     e.stopImmediatePropagation();
 
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
+  }
+
+  private onHeaderClick(e: MouseEvent) {
+    this.onHeaderToggle(e);
+  }
+
+  private onHeaderKeyPress(e: KeyboardEvent) {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.code === 'Space')
+      this.onHeaderToggle(e);
   }
 
   componentDidLoad() {
@@ -110,19 +121,25 @@ export class Blind {
       <Host>
         <div
           class={{
-            'blind-header': true,
+            "blind-header": true,
             closed: this.collapsed,
           }}
+          role="button"
+          tabindex="0"
+          aria-labelledby={"ix-blind-header-title-" + this.id}
+          aria-controls={"ix-blind-content-section-" + this.id}
+          aria-expanded={this.collapsed ? 'false' : 'true'}
           onClick={(e) => this.onHeaderClick(e)}
+          onKeyPress={(e) => this.onHeaderKeyPress(e)}
         >
           <span
-            ref={(ref) => (this.chevronRef = ref)}
             class={{
               glyph: true,
-              'glyph-chevron-right-small': true,
+              "glyph-chevron-right-small": true,
             }}
+            ref={(ref) => (this.chevronRef = ref)}
           ></span>
-          <div class="blind-header-title">
+          <div class="blind-header-title" id={"ix-blind-header-title-" + this.id}>
             {this.label !== undefined ? (
               <span class="blind-header-title-default">{this.label}</span>
             ) : (
@@ -130,14 +147,19 @@ export class Blind {
             )}
           </div>
         </div>
-        <div
-          class={{
-            'blind-content': true,
-            hide: this.collapsed,
-          }}
+        <section
+          id={"ix-blind-content-section-" + this.id}
+          aria-labelledby={"ix-blind-header-title-" + this.id}
         >
-          <slot></slot>
-        </div>
+          <div
+            class={{
+              "blind-content": true,
+              hide: this.collapsed,
+            }}
+          >
+            <slot></slot>
+          </div>
+        </section>
       </Host>
     );
   }

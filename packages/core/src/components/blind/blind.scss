@@ -21,6 +21,10 @@
   border-radius: var(--theme-blind--border-radius);
   overflow: hidden;
 
+  :focus {
+    outline-color: var(--theme-color-focus-bdr);
+  }
+
   .blind-header {
     @include ellipsis;
 
