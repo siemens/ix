@@ -28,7 +28,7 @@
     border-radius: 0.25rem;
     display: flex;
     background-color: var(--theme-group-item--background);
-    border: 1px solid var(--theme-group-item--border-color);
+    border: 0.125rem solid var(--theme-group-item--border-color);
     color: var(--theme-group-header--color);
 
     cursor: pointer;
@@ -98,7 +98,7 @@
       font-weight: $font-weight-bold;
       height: 1.5rem;
 
-      & > * {
+      &>* {
         @include ellipsis;
 
         min-width: 0;
