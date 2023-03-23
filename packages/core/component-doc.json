@@ -9587,7 +9587,7 @@
         },
         {
           "name": "position",
-          "type": "\"first\" | \"last\" | \"undefined\"",
+          "type": "\"first\" | \"last\" | \"single\" | \"undefined\"",
           "mutable": false,
           "attr": "position",
           "reflectToAttr": false,
@@ -9601,6 +9601,10 @@
             },
             {
               "value": "last",
+              "type": "string"
+            },
+            {
+              "value": "single",
               "type": "string"
             },
             {
