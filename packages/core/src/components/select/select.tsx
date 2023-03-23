@@ -397,7 +397,7 @@ export class Select {
                   ref={(ref) => (this.inputRef = ref)}
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
-                {this.allowClear &&
+                {this.allowClear === true &&
                 (this.value?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
