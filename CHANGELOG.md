@@ -1,3 +1,30 @@
+# [1.5.0-beta.1](https://github.com/siemens/ix/compare/v1.5.0-beta.0...v1.5.0-beta.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **core/breadcrumb:**  handle overflow ([#452](https://github.com/siemens/ix/issues/452)) ([d931353](https://github.com/siemens/ix/commit/d931353a6ae1c89090df7c785c8582e2d524667b))
+* **core/chip:** new custom event  ([#441](https://github.com/siemens/ix/issues/441)) ([f713fbd](https://github.com/siemens/ix/commit/f713fbd8622acab99d9f54c33a49d2fcc2c67d77))
+* **core/dropdown:** fix editable dropdown width ([#435](https://github.com/siemens/ix/issues/435)) ([ca2312b](https://github.com/siemens/ix/commit/ca2312bf3fb6b0361687af4ac7c9d632776b18a1))
+* **core/filter-chip:** align styling to latest styleguide changes ([#458](https://github.com/siemens/ix/issues/458)) ([03a78a8](https://github.com/siemens/ix/commit/03a78a8622f52b5d3abc2482c1b3727b34c4981c))
+* **core/menu-item:** adjust bottom background color ([#420](https://github.com/siemens/ix/issues/420)) ([f1f243c](https://github.com/siemens/ix/commit/f1f243c36644ef71131d56b0442517a066e2933c))
+* **core/select:** stop form trigger ([#446](https://github.com/siemens/ix/issues/446)) ([03b04a6](https://github.com/siemens/ix/commit/03b04a6434f9502cf05ee1d2c22fe4e1dbdd803d))
+* **core/tooltip:** remove arrow if not visible ([#451](https://github.com/siemens/ix/issues/451)) ([6d02372](https://github.com/siemens/ix/commit/6d02372a917e2615e99e5e0568edc6807435d4e3))
+* **core/upload:** export update state ([7057c46](https://github.com/siemens/ix/commit/7057c464535f3edc5bb7d4b75d11802265c55e35))
+* **core:** add luxon types to dependencies ([b9217be](https://github.com/siemens/ix/commit/b9217be28fe13d39814e87eea7772d3529bbd2b7))
+
+
+### Features
+
+* **core/blind:** add icon and actions slot ([#448](https://github.com/siemens/ix/issues/448)) ([57d5ecc](https://github.com/siemens/ix/commit/57d5ecce10ddf86a85579a028a716ddfce05e886))
+* **core/flip-tile:** add support for custom sizing ([#427](https://github.com/siemens/ix/issues/427)) ([d35f60a](https://github.com/siemens/ix/commit/d35f60a4b5dc6e1b70ffded60b01f7b2c60961e4))
+* **core/pagination:** add pagination component ([#413](https://github.com/siemens/ix/issues/413)) ([97abbd3](https://github.com/siemens/ix/commit/97abbd3ae24fef9fcdc6d8c02dc724ac5ec0f83a))
+* **core/toast:** add position top-right ([#432](https://github.com/siemens/ix/issues/432)) ([ed88175](https://github.com/siemens/ix/commit/ed88175f3a6951a8194c226fefdcf4a281d0a457))
+* **core/tree:** add node clicked and toggled events ([#438](https://github.com/siemens/ix/issues/438)) ([da7d4a6](https://github.com/siemens/ix/commit/da7d4a62d3e53168dd6571380a9f8dd37c358d17))
+* **input:** search input example ([#439](https://github.com/siemens/ix/issues/439)) ([e78dc2c](https://github.com/siemens/ix/commit/e78dc2c410fcc8907c56a65f318ecb6e8971ba9a))
+
+
+
 # [1.5.0-beta.0](https://github.com/siemens/ix/compare/v1.4.0...v1.5.0-beta.0) (2023-03-08)
 
 
