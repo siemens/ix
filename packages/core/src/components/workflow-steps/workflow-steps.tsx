@@ -81,8 +81,11 @@ export class WorkflowSteps {
         'selected',
         this.selectedIndex === index ? 'true' : 'false'
       );
-      if (index === 0) element.setAttribute('position', 'first');
-      if (index === steps.length - 1) element.setAttribute('position', 'last');
+      if (index === 0 && steps.length > 1)
+        element.setAttribute('position', 'first');
+      if (steps.length === 1) element.setAttribute('position', 'single');
+      if (index === steps.length - 1 && steps.length > 1)
+        element.setAttribute('position', 'last');
     });
   }
 
@@ -103,14 +106,6 @@ export class WorkflowSteps {
         element.setAttribute('selected', 'true');
         this.stepSelected.emit(index);
       });
-      // const isEnabled = element.getAttribute('first');
-      // if(isEnabled){
-
-      // }
-      // console.log(isEnabled)
-      // const isDisabled = element.getAttribute('disabled') !== null;
-      // if (!isDisabled) element.addEventListener('click', () => '');
-      //element.addEventListener('mousedown', event => this.clicked(element, index));
     });
   }
 

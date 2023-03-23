@@ -58,7 +58,7 @@ export class WorkflowStep {
   /**
    * Activate navigation click
    */
-  @Prop() position: 'first' | 'last' | 'undefined' = 'undefined';
+  @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';

@@ -1636,7 +1636,7 @@ export namespace Components {
         /**
           * Activate navigation click
          */
-        "position": 'first' | 'last' | 'undefined';
+        "position": 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
@@ -4106,7 +4106,7 @@ declare namespace LocalJSX {
         /**
           * Activate navigation click
          */
-        "position"?: 'first' | 'last' | 'undefined';
+        "position"?: 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
