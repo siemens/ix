@@ -49,7 +49,7 @@ export class FilterChip {
         </div>
         <button
           disabled={this.disabled}
-          class="btn btn-invisible-secondary btn-oval"
+          class="btn btn-invisible-primary btn-oval"
           onClick={(e) => this.onCloseClick(e)}
         >
           <ix-icon name="close-small" size="16"></ix-icon>
