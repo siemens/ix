@@ -91,8 +91,6 @@ export class WorkflowSteps {
     };
     this.observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
-        steps.push(mutation.addedNodes[0] as HTMLIxWorkflowStepElement);
-
         if (mutation.type === 'childList') {
           this.styling(steps);
         }
