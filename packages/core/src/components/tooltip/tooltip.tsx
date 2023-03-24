@@ -118,22 +118,22 @@ export class Tooltip {
               value != null ? `${value}px` : '';
             let arrowPosition = {};
 
-            if (computeResponse.placement === 'top') {
+            if (computeResponse.placement.startsWith('top')) {
               arrowPosition['left'] = toCSSValue(x);
               arrowPosition['top'] = toCSSValue(y);
             }
 
-            if (computeResponse.placement === 'right') {
+            if (computeResponse.placement.startsWith('right')) {
               arrowPosition['left'] = toCSSValue(-4);
               arrowPosition['top'] = toCSSValue(y);
             }
 
-            if (computeResponse.placement === 'bottom') {
+            if (computeResponse.placement.startsWith('bottom')) {
               arrowPosition['left'] = toCSSValue(x);
               arrowPosition['top'] = toCSSValue(-4);
             }
 
-            if (computeResponse.placement === 'left') {
+            if (computeResponse.placement.startsWith('left')) {
               arrowPosition['right'] = toCSSValue(-4);
               arrowPosition['top'] = toCSSValue(y);
             }
