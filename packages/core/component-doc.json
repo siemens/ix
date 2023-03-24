@@ -542,8 +542,7 @@
         "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -563,9 +562,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -8836,18 +8832,13 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "my-component": [
-          "ix-tooltip"
         ]
       },
       "props": [
@@ -9846,19 +9837,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-button",
-        "ix-tooltip"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-button",
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
