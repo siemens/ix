@@ -606,7 +606,8 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
 export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-tooltip', undefined, [
   'for',
   'titleContent',
-  'interactive'
+  'interactive',
+  'placement'
 ]);
 
 

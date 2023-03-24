@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
@@ -69,5 +69,73 @@ regressionTest.describe('tooltip', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixelRatio: 0.01,
     });
+  });
+
+  test('tooltip position top', async ({ mount, page }) => {
+    await mount(`
+      <div style="padding: 10rem">
+        <ix-button id="trigger">Trigger</ix-button>
+        <ix-tooltip for="#trigger" placement="top">
+          Tooltip content 123 123
+        </ix-tooltip>
+      </div>
+    `);
+
+    const trigger = await page.waitForSelector('#trigger');
+    await trigger.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  test('tooltip position right', async ({ mount, page }) => {
+    await mount(`
+      <div style="padding: 10rem">
+        <ix-button id="trigger">Trigger</ix-button>
+        <ix-tooltip for="#trigger" placement="right">
+          Tooltip content 123 123
+        </ix-tooltip>
+      </div>
+    `);
+
+    const trigger = await page.waitForSelector('#trigger');
+    await trigger.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  test('tooltip position bottom', async ({ mount, page }) => {
+    await mount(`
+      <div style="padding: 10rem">
+        <ix-button id="trigger">Trigger</ix-button>
+        <ix-tooltip for="#trigger" placement="bottom">
+          Tooltip content 123 123
+        </ix-tooltip>
+      </div>
+    `);
+
+    const trigger = await page.waitForSelector('#trigger');
+    await trigger.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  test('tooltip position left', async ({ mount, page }) => {
+    await mount(`
+      <div style="width: 10rem; height: 10rem">
+        <ix-button id="trigger" style="position: absolute; left: 20rem; top: 10rem;">Trigger</ix-button>
+        <ix-tooltip for="#trigger" placement="left">
+          Tooltip content 123 123
+        </ix-tooltip>
+      </div>
+    `);
+
+    const trigger = await page.waitForSelector('#trigger');
+    await trigger.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

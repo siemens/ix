@@ -542,7 +542,8 @@
         "ix-dropdown-button",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -562,6 +563,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -8832,13 +8836,18 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "my-component": [
+          "ix-tooltip"
         ]
       },
       "props": [
@@ -8870,6 +8879,41 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placement",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Initial placement of the tooltip. If the placement don\"t have enough space,\nthe tooltip will placed on another location.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -9802,8 +9846,19 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-tooltip"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

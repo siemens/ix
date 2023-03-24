@@ -15,6 +15,15 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div style={{ padding: '10rem' }}>
+          <ix-button>Test</ix-button>
+          <ix-tooltip for="ix-button" placement="right">
+            Test test test test
+          </ix-tooltip>
+        </div>
+      </Host>
+    );
   }
 }

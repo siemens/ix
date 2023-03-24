@@ -43,6 +43,14 @@ export class Tooltip {
    */
   @Prop() interactive = false;
 
+  /**
+   * Initial placement of the tooltip. If the placement don"t have enough space,
+   * the tooltip will placed on another location.
+   *
+   * @since 1.5.0
+   */
+  @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
+
   @State() visible = false;
 
   @Element() hostElement: HTMLIxTooltipElement;
@@ -82,13 +90,13 @@ export class Tooltip {
       target,
       this.hostElement,
       async () => {
-        requestAnimationFrame(async () => {
+        setTimeout(async () => {
           const computeResponse = await computePosition(
             target,
             this.hostElement,
             {
               strategy: 'fixed',
-              placement: 'top',
+              placement: this.placement,
               middleware: [
                 shift(),
                 offset(8),
@@ -97,6 +105,7 @@ export class Tooltip {
                 }),
                 flip({
                   fallbackStrategy: 'initialPlacement',
+                  padding: 10,
                 }),
               ],
             }
@@ -105,14 +114,31 @@ export class Tooltip {
           if (computeResponse.middlewareData.arrow) {
             let { x, y } = computeResponse.middlewareData.arrow;
 
-            if (computeResponse.placement === 'bottom') {
-              y = -4;
+            const toCSSValue = (value: number) =>
+              value != null ? `${value}px` : '';
+            let arrowPosition = {};
+
+            if (computeResponse.placement === 'top') {
+              arrowPosition['left'] = toCSSValue(x);
+              arrowPosition['top'] = toCSSValue(y);
             }
 
-            Object.assign(this.arrowElement.style, {
-              left: x != null ? `${x}px` : '',
-              top: y != null ? `${y}px` : '',
-            });
+            if (computeResponse.placement === 'right') {
+              arrowPosition['left'] = toCSSValue(-4);
+              arrowPosition['top'] = toCSSValue(y);
+            }
+
+            if (computeResponse.placement === 'bottom') {
+              arrowPosition['left'] = toCSSValue(x);
+              arrowPosition['top'] = toCSSValue(-4);
+            }
+
+            if (computeResponse.placement === 'left') {
+              arrowPosition['right'] = toCSSValue(-4);
+              arrowPosition['top'] = toCSSValue(y);
+            }
+
+            Object.assign(this.arrowElement.style, arrowPosition);
           }
 
           const { x, y } = computeResponse;
