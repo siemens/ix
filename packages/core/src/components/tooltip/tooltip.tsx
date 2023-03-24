@@ -10,11 +10,20 @@ import {
   arrow,
   autoUpdate,
   computePosition,
+  ComputePositionReturn,
   flip,
   offset,
   shift,
 } from '@floating-ui/dom';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+
+type ArrowPosition = {
+  top?: string;
+  left?: string;
+  right?: string;
+};
+
+const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
 
 /**
  * @slot title-icon - Icon of tooltip title
@@ -85,6 +94,41 @@ export class Tooltip {
     this.destroyAutoUpdate();
   }
 
+  private computeArrowPosition({
+    placement,
+    middlewareData,
+  }: ComputePositionReturn): ArrowPosition {
+    let { x, y } = middlewareData.arrow;
+
+    if (placement.startsWith('top')) {
+      return {
+        left: numberToPixel(x),
+        top: numberToPixel(y),
+      };
+    }
+
+    if (placement.startsWith('right')) {
+      return {
+        left: numberToPixel(-4),
+        top: numberToPixel(y),
+      };
+    }
+
+    if (placement.startsWith('bottom')) {
+      return {
+        left: numberToPixel(x),
+        top: numberToPixel(-4),
+      };
+    }
+
+    if (placement.startsWith('left')) {
+      return {
+        right: numberToPixel(-4),
+        top: numberToPixel(y),
+      };
+    }
+  }
+
   private async computeTooltipPosition(target: HTMLElement) {
     this.disposeAutoUpdate = autoUpdate(
       target,
@@ -112,32 +156,7 @@ export class Tooltip {
           );
 
           if (computeResponse.middlewareData.arrow) {
-            let { x, y } = computeResponse.middlewareData.arrow;
-
-            const toCSSValue = (value: number) =>
-              value != null ? `${value}px` : '';
-            let arrowPosition = {};
-
-            if (computeResponse.placement.startsWith('top')) {
-              arrowPosition['left'] = toCSSValue(x);
-              arrowPosition['top'] = toCSSValue(y);
-            }
-
-            if (computeResponse.placement.startsWith('right')) {
-              arrowPosition['left'] = toCSSValue(-4);
-              arrowPosition['top'] = toCSSValue(y);
-            }
-
-            if (computeResponse.placement.startsWith('bottom')) {
-              arrowPosition['left'] = toCSSValue(x);
-              arrowPosition['top'] = toCSSValue(-4);
-            }
-
-            if (computeResponse.placement.startsWith('left')) {
-              arrowPosition['right'] = toCSSValue(-4);
-              arrowPosition['top'] = toCSSValue(y);
-            }
-
+            const arrowPosition = this.computeArrowPosition(computeResponse);
             Object.assign(this.arrowElement.style, arrowPosition);
           }
 
