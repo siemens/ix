@@ -74,8 +74,8 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('clear', async ({ page }) => {
-    await page.goto('select/clear');
+  regressionTest('allow-clear', async ({ page }) => {
+    await page.goto('select/allow-clear');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
     await page.locator('text=Item 2').first().click();
