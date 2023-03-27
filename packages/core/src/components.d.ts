@@ -1515,6 +1515,11 @@ export namespace Components {
          */
         "interactive": boolean;
         /**
+          * Initial placement of the tooltip. If the placement don"t have enough space, the tooltip will placed on another location.
+          * @since 1.5.0
+         */
+        "placement": 'top' | 'right' | 'bottom' | 'left';
+        /**
           * Title of the tooltip
          */
         "titleContent": string;
@@ -3959,6 +3964,11 @@ declare namespace LocalJSX {
           * Define if the user can access the tooltip via mouse.
          */
         "interactive"?: boolean;
+        /**
+          * Initial placement of the tooltip. If the placement don"t have enough space, the tooltip will placed on another location.
+          * @since 1.5.0
+         */
+        "placement"?: 'top' | 'right' | 'bottom' | 'left';
         /**
           * Title of the tooltip
          */
