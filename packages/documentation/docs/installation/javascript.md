@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-sidebar_title: JavaScript
-title: JavaScript
+sidebar_title: Web Components
+title: Web Components
 ---
 
 import Playground from '@site/src/components/Playground';

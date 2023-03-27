@@ -6,8 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import { Page, test as base, TestInfo } from '@playwright/test';
+import { ElementHandle, Page, test as base, TestInfo } from '@playwright/test';
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
@@ -21,7 +20,6 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
       options
     );
 
-    // Inital timeout for webKit to render Web Components
     await page.waitForTimeout(1000);
     return response;
   };
@@ -33,5 +31,53 @@ export const regressionTest = base.extend({
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
     await use(page);
+  },
+});
+
+export const test = base.extend<{
+  mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
+  createElement: (
+    selector: string,
+    appendTo?: ElementHandle<Element>
+  ) => Promise<ElementHandle<HTMLElement>>;
+}>({
+  createElement: async ({ page }, use) => {
+    use((selector, appendTo) =>
+      page.evaluateHandle(
+        async ({ selector, appendTo }) => {
+          const elm = document.createElement(selector);
+
+          if (appendTo) {
+            appendTo.appendChild(elm);
+          }
+
+          return elm;
+        },
+        {
+          selector,
+          appendTo,
+        }
+      )
+    );
+  },
+  mount: async ({ page }, use, testInfo) => {
+    const theme = testInfo.project.metadata.theme;
+    testInfo.annotations.push({
+      type: theme,
+    });
+    await page.goto(
+      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
+    );
+    use((selector) => {
+      return page.evaluateHandle(
+        async ({ componentSelector }) => {
+          await window.customElements.whenDefined('ix-button');
+          const mount = document.querySelector('#mount');
+          mount.innerHTML = componentSelector;
+          return mount.children.item(0) as HTMLElement;
+        },
+        { componentSelector: selector }
+      );
+    });
   },
 });
