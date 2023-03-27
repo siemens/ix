@@ -20,6 +20,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-workflow-steps',
@@ -89,7 +90,7 @@ export class WorkflowSteps {
     const options = {
       childList: true,
     };
-    this.observer = new MutationObserver((mutations) => {
+    this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
           this.styling(steps);
