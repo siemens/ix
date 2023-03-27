@@ -66,8 +66,8 @@ export class WorkflowSteps {
     });
   }
 
-  styling(extraSteps: HTMLIxWorkflowStepElement[] = []) {
-    let steps = [...this.getSteps(), ...extraSteps];
+  styling() {
+    let steps = this.getSteps();
     steps.forEach((element, index) => {
       element.setAttribute('vertical', this.vertical ? 'true' : 'false');
       element.setAttribute('clickable', this.clickable ? 'true' : 'false');
@@ -85,20 +85,17 @@ export class WorkflowSteps {
   private observer: MutationObserver;
 
   componentDidLoad() {
-    const steps: HTMLIxWorkflowStepElement[] = [];
-    const mList = this.hostElement.querySelector('.steps');
-    const options = {
-      childList: true,
-    };
+    const slotDiv = this.hostElement.querySelector('.steps');
+
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
-          this.styling(steps);
+          this.styling();
         }
       }
     });
 
-    this.observer.observe(mList, options);
+    this.observer.observe(slotDiv, { childList: true });
   }
 
   disconnectedCallback() {
