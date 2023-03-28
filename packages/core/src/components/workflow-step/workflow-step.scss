@@ -47,15 +47,23 @@
           margin: 0 auto 0 0;
         }
 
+        &.single {
+          width: 0;
+        }
+
         &.selected {
-          background-color: var(--theme-workflow-step-icon-default--color--selected);
+          background-color: var(
+            --theme-workflow-step-icon-default--color--selected
+          );
         }
 
         &.done {
           background-color: var(--theme-workflow-step-icon-done--color);
 
           &.selected {
-            background-color: var(--theme-workflow-step-icon-done--color--selected);
+            background-color: var(
+              --theme-workflow-step-icon-done--color--selected
+            );
           }
         }
 
@@ -143,7 +151,9 @@
       background-color: var(--theme-workflow-step--background--disabled);
 
       .line {
-        background-color: var(--theme-workflow-step-icon-default--color--disabled) !important;
+        background-color: var(
+          --theme-workflow-step-icon-default--color--disabled
+        ) !important;
       }
 
       .text {

@@ -60,7 +60,7 @@ export class WorkflowStep {
    *
    * @deprecated Will be changed to '@internal' in 2.0.0
    */
-  @Prop() position: 'first' | 'last' | 'undefined' = 'undefined';
+  @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';

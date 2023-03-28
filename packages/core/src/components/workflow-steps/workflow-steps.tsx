@@ -20,6 +20,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-workflow-steps',
@@ -61,25 +62,22 @@ export class WorkflowSteps {
   private deselectAll() {
     const steps = this.getSteps();
     steps.forEach((element) => {
-      element.setAttribute('selected', 'false');
+      element.selected = false;
     });
   }
 
-<<<<<<< HEAD
-=======
   styling() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
-      element.setAttribute('vertical', this.vertical ? 'true' : 'false');
-      element.setAttribute('clickable', this.clickable ? 'true' : 'false');
-      element.setAttribute(
-        'selected',
-        this.selectedIndex === index ? 'true' : 'false'
-      );
-      if (index === 0) element.setAttribute('position', 'first');
-      if (index === steps.length - 1) element.setAttribute('position', 'last');
-      if (index > 0 && index < steps.length - 1)
-        element.setAttribute('position', 'undefined');
+      element.vertical = this.vertical;
+      element.clickable = this.clickable;
+      element.selected = this.selectedIndex === index ? true : false;
+
+      if (index === 0 && steps.length > 1) element.position = 'first';
+      if (steps.length === 1) element.position = 'single';
+      if (index === steps.length - 1 && steps.length > 1)
+        element.position = 'last';
+      if (index > 0 && index < steps.length - 1) element.position = 'undefined';
     });
   }
 
@@ -105,29 +103,8 @@ export class WorkflowSteps {
     }
   }
 
->>>>>>> parent of 67a3e9c6a (fix(core): attribute defining)
   componentDidRender() {
-    const steps = this.getSteps();
-
-    steps.forEach((element, index) => {
-      element.setAttribute(
-        'vertical',
-        this.vertical === true ? 'true' : 'false'
-      );
-      element.setAttribute(
-        'clickable',
-        this.clickable === true ? 'true' : 'false'
-      );
-      element.setAttribute(
-        'selected',
-        this.selectedIndex === index ? 'true' : 'false'
-      );
-      if (index === 0 && steps.length > 1)
-        element.setAttribute('position', 'first');
-      if (steps.length === 1) element.setAttribute('position', 'single');
-      if (index === steps.length - 1 && steps.length > 1)
-        element.setAttribute('position', 'last');
-    });
+    this.styling();
   }
 
   componentWillRender() {
@@ -141,10 +118,10 @@ export class WorkflowSteps {
           previousElement &&
           !['done', 'success'].includes(previousElement?.status)
         ) {
-          return element.setAttribute('selected', 'false');
+          return (element.selected = false);
         }
         this.deselectAll();
-        element.setAttribute('selected', 'true');
+        element.selected = true;
         this.stepSelected.emit(index);
       });
     });

@@ -1642,7 +1642,7 @@ export namespace Components {
           * Activate navigation click
           * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position": 'first' | 'last' | 'undefined';
+        "position": 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
@@ -4118,7 +4118,7 @@ declare namespace LocalJSX {
           * Activate navigation click
           * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position"?: 'first' | 'last' | 'undefined';
+        "position"?: 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
