@@ -21,10 +21,6 @@
   border-radius: var(--theme-blind--border-radius);
   overflow: hidden;
 
-  :focus {
-    outline-color: var(--theme-color-focus-bdr);
-  }
-
   .blind-header {
     @include ellipsis;
 
@@ -35,7 +31,7 @@
     border: solid var(--theme-blind--border-thickness) transparent;
     border-radius: var(--theme-blind--border-radius)
       var(--theme-blind--border-radius) 0 0;
-    padding-right: $default-space;
+    padding-right: $small-space;
     transition: border-radius $default-time;
     cursor: pointer;
 
@@ -55,9 +51,12 @@
       display: flex;
       align-items: center;
       flex-grow: 1;
+      height: 100%;
 
       .blind-header-title-default {
+        @include ellipsis;
         @include text-l-title;
+        margin-inline-end: $small-space;
         flex-grow: 1;
       }
     }
@@ -83,7 +82,8 @@
     }
 
     @include focus-visible {
-      border-color: var(--theme-focus--border-color);
+      border-color: var(--theme-color-focus-bdr);
+      outline: none;
     }
 
     &.closed {

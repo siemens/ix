@@ -136,8 +136,8 @@ export class Blind {
           }}
           role="button"
           tabindex="0"
-          aria-labelledby={'ix-blind-header-title-' + this.id}
-          aria-controls={'ix-blind-content-section-' + this.id}
+          aria-labelledby={`ix-blind-header-title-${this.id}`}
+          aria-controls={`ix-blind-content-section-${this.id}`}
           aria-expanded={this.collapsed ? 'false' : 'true'}
           onClick={(e) => this.onHeaderClick(e)}
           onKeyPress={(e) => this.onHeaderKeyPress(e)}
@@ -151,7 +151,7 @@ export class Blind {
           ></span>
           <div
             class="blind-header-title"
-            id={'ix-blind-header-title-' + this.id}
+            id={`ix-blind-header-title-${this.id}`}
           >
             {this.label !== undefined ? (
               <span class="blind-header-title-basic">
@@ -171,8 +171,8 @@ export class Blind {
           </div>
         </div>
         <section
-          id={'ix-blind-content-section-' + this.id}
-          aria-labelledby={'ix-blind-header-title-' + this.id}
+          id={`ix-blind-content-section-${this.id}`}
+          aria-labelledby={`ix-blind-header-title-${this.id}`}
         >
           <div
             class={{
