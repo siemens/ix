@@ -20,6 +20,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-workflow-steps',
@@ -65,8 +66,6 @@ export class WorkflowSteps {
     });
   }
 
-<<<<<<< HEAD
-=======
   styling() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
@@ -105,7 +104,6 @@ export class WorkflowSteps {
     }
   }
 
->>>>>>> parent of 67a3e9c6a (fix(core): attribute defining)
   componentDidRender() {
     const steps = this.getSteps();
 
