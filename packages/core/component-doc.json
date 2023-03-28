@@ -9576,18 +9576,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-workflow-step": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-workflow-step"
         ]
       },
       "props": [
@@ -9739,15 +9734,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "clickable",
@@ -9848,19 +9837,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-workflow-steps",
-        "ix-workflow-step"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps",
-          "ix-workflow-step"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
