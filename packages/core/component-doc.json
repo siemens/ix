@@ -8876,6 +8876,41 @@
           "required": false
         },
         {
+          "name": "placement",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Initial placement of the tooltip. If the placement don\"t have enough space,\nthe tooltip will placed on another location.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "titleContent",
           "type": "string",
           "mutable": false,
@@ -9541,13 +9576,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-workflow-step": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-workflow-step"
         ]
       },
       "props": [
@@ -9699,9 +9739,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-workflow-steps"
+        ]
+      },
       "props": [
         {
           "name": "clickable",
@@ -9802,8 +9848,19 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-workflow-steps",
+        "ix-workflow-step"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-workflow-steps",
+          "ix-workflow-step"
+        ],
+        "ix-workflow-step": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

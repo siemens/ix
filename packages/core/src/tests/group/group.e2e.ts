@@ -26,5 +26,21 @@ regressionTest.describe('group', () => {
     });
   });
 
+  regressionTest('selected', async ({ page }) => {
+    await page.goto('group/basic');
+    await page.click("[id='group']");
+    await page.hover("[id='group']");
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('item selected', async ({ page }) => {
+    await page.goto('group/basic');
+    await page.locator('.btn-expand-header').click();
+    await page.locator('text=Example text 1').first().click();
+    await page.locator('text=Example text 1').first().hover();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   // ix-icon-button
 });

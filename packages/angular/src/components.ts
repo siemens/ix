@@ -1664,14 +1664,14 @@ export declare interface IxToggle extends Components.IxToggle {
 
 
 @ProxyCmp({
-  inputs: ['for', 'interactive', 'titleContent']
+  inputs: ['for', 'interactive', 'placement', 'titleContent']
 })
 @Component({
   selector: 'ix-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['for', 'interactive', 'titleContent'],
+  inputs: ['for', 'interactive', 'placement', 'titleContent'],
 })
 export class IxTooltip {
   protected el: HTMLElement;

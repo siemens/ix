@@ -20,6 +20,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-workflow-steps',
@@ -65,25 +66,46 @@ export class WorkflowSteps {
     });
   }
 
-  componentDidRender() {
-    const steps = this.getSteps();
-
+  styling() {
+    let steps = this.getSteps();
     steps.forEach((element, index) => {
-      element.setAttribute(
-        'vertical',
-        this.vertical === true ? 'true' : 'false'
-      );
-      element.setAttribute(
-        'clickable',
-        this.clickable === true ? 'true' : 'false'
-      );
+      element.setAttribute('vertical', this.vertical ? 'true' : 'false');
+      element.setAttribute('clickable', this.clickable ? 'true' : 'false');
       element.setAttribute(
         'selected',
         this.selectedIndex === index ? 'true' : 'false'
       );
       if (index === 0) element.setAttribute('position', 'first');
       if (index === steps.length - 1) element.setAttribute('position', 'last');
+      if (index > 0 && index < steps.length - 1)
+        element.setAttribute('position', 'undefined');
     });
+  }
+
+  private observer: MutationObserver;
+
+  componentDidLoad() {
+    const slotDiv = this.hostElement.querySelector('.steps');
+
+    this.observer = createMutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          this.styling();
+        }
+      }
+    });
+
+    this.observer.observe(slotDiv, { childList: true });
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  componentDidRender() {
+    this.styling();
   }
 
   componentWillRender() {
@@ -103,14 +125,6 @@ export class WorkflowSteps {
         element.setAttribute('selected', 'true');
         this.stepSelected.emit(index);
       });
-      // const isEnabled = element.getAttribute('first');
-      // if(isEnabled){
-
-      // }
-      // console.log(isEnabled)
-      // const isDisabled = element.getAttribute('disabled') !== null;
-      // if (!isDisabled) element.addEventListener('click', () => '');
-      //element.addEventListener('mousedown', event => this.clicked(element, index));
     });
   }
 
