@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`modal renders 1`] = `
-<ix-modal>
+<ix-modal id="ix-modal-instance-1">
   <!---->
   <div aria-labelledby="modal-title" class="animation backdrop modal scrollable">
     <div class="modal-dialog modal-sm">
