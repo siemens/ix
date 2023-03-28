@@ -47,10 +47,6 @@
           margin: 0 auto 0 0;
         }
 
-        &.single {
-          width: 0;
-        }
-
         &.selected {
           background-color: var(--theme-workflow-step-icon-default--color--selected);
         }

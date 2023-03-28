@@ -65,6 +65,47 @@ export class WorkflowSteps {
     });
   }
 
+<<<<<<< HEAD
+=======
+  styling() {
+    let steps = this.getSteps();
+    steps.forEach((element, index) => {
+      element.setAttribute('vertical', this.vertical ? 'true' : 'false');
+      element.setAttribute('clickable', this.clickable ? 'true' : 'false');
+      element.setAttribute(
+        'selected',
+        this.selectedIndex === index ? 'true' : 'false'
+      );
+      if (index === 0) element.setAttribute('position', 'first');
+      if (index === steps.length - 1) element.setAttribute('position', 'last');
+      if (index > 0 && index < steps.length - 1)
+        element.setAttribute('position', 'undefined');
+    });
+  }
+
+  private observer: MutationObserver;
+
+  componentDidLoad() {
+    const slotDiv = this.hostElement.querySelector('.steps');
+
+    this.observer = createMutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          this.styling();
+        }
+      }
+    });
+
+    this.observer.observe(slotDiv, { childList: true });
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+>>>>>>> parent of 67a3e9c6a (fix(core): attribute defining)
   componentDidRender() {
     const steps = this.getSteps();
 

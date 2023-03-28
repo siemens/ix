@@ -1515,6 +1515,11 @@ export namespace Components {
          */
         "interactive": boolean;
         /**
+          * Initial placement of the tooltip. If the placement don"t have enough space, the tooltip will placed on another location.
+          * @since 1.5.0
+         */
+        "placement": 'top' | 'right' | 'bottom' | 'left';
+        /**
           * Title of the tooltip
          */
         "titleContent": string;
@@ -1637,7 +1642,7 @@ export namespace Components {
           * Activate navigation click
           * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position": 'first' | 'last' | 'single' | 'undefined';
+        "position": 'first' | 'last' | 'undefined';
         /**
           * Set selected
          */
@@ -3961,6 +3966,11 @@ declare namespace LocalJSX {
          */
         "interactive"?: boolean;
         /**
+          * Initial placement of the tooltip. If the placement don"t have enough space, the tooltip will placed on another location.
+          * @since 1.5.0
+         */
+        "placement"?: 'top' | 'right' | 'bottom' | 'left';
+        /**
           * Title of the tooltip
          */
         "titleContent"?: string;
@@ -4108,7 +4118,7 @@ declare namespace LocalJSX {
           * Activate navigation click
           * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position"?: 'first' | 'last' | 'single' | 'undefined';
+        "position"?: 'first' | 'last' | 'undefined';
         /**
           * Set selected
          */
