@@ -9632,8 +9632,14 @@
           "attr": "position",
           "reflectToAttr": false,
           "docs": "Activate navigation click",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be changed to '@internal' in 2.0.0"
+            }
+          ],
           "default": "'undefined'",
+          "deprecation": "Will be changed to '@internal' in 2.0.0",
           "values": [
             {
               "value": "first",
