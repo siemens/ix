@@ -25,22 +25,27 @@
     height: 4rem;
     min-height: 4rem;
     max-height: 4rem;
-    border-radius: 0.25rem;
+    border-radius: 0.25rem 0.25rem 0 0;
     display: flex;
     background-color: var(--theme-group-item--background);
-    border: 0.125rem solid var(--theme-group-item--border-color);
     color: var(--theme-group-header--color);
 
     cursor: pointer;
 
     @include hover {
       background-color: var(--theme-group-item--background--hover);
-      border-color: var(--theme-group-item--border-color--hover);
+
+      &.selected {
+        background-color: var(--theme-group-item--background--selected);
+      }
     }
 
     @include active {
       background-color: var(--theme-group-item--background--active);
-      border-color: var(--theme-group-item--border-color--active);
+
+      &.selected {
+        background-color: var(--theme-group-item--background--selected);
+      }
     }
 
     @include focus-visible {
@@ -50,12 +55,26 @@
     }
 
     &.selected {
-      border: var(--theme-primary-bdr-2);
       background-color: var(--theme-group-item--background--selected);
+
+      .group-header-selection-indicator {
+        background-color: var(
+          --theme-group-item-indicator--background--selected
+        );
+        border-top-left-radius: 0.25rem;
+      }
+    }
+
+    .group-header-selection-indicator-item-selected {
+      background-color: var(
+        --theme-group-item-indicator--background--selected
+      ) !important;
+      border-top-left-radius: 0.25rem;
     }
 
     .group-header-selection-indicator {
       background-color: var(--theme-color-input--focus);
+      min-width: 4px;
     }
   }
 
@@ -98,7 +117,7 @@
       font-weight: $font-weight-bold;
       height: 1.5rem;
 
-      &>* {
+      & > * {
         @include ellipsis;
 
         min-width: 0;

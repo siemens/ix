@@ -78,6 +78,8 @@ export class Group {
 
   @Element() hostElement!: HTMLIxGroupElement;
 
+  itemSelected = false;
+
   get dropdownItems() {
     return Array.from(
       this.hostElement.querySelectorAll('ix-group-dropdown-item')
@@ -127,13 +129,7 @@ export class Group {
   }
 
   private onExpandClick(event: Event) {
-    const wasCollapsed = this.collapsed;
     this.collapsed = !this.collapsed;
-
-    if (!wasCollapsed && this.index !== undefined) {
-      this.index = undefined;
-      this.setGroupSelection(true);
-    }
 
     this.collapsedChanged.emit(this.collapsed);
     event.stopPropagation();
@@ -155,6 +151,10 @@ export class Group {
       this.index = index;
       this.selectItem.emit(index);
     }
+
+    if (this.index >= 0) {
+      this.itemSelected = true;
+    } else this.itemSelected = false;
 
     this.setGroupSelection(false);
   }
@@ -208,12 +208,19 @@ export class Group {
             class="group-header-clickable"
             onClick={(e) => this.onHeaderClick(e)}
           >
-            <div class="group-header-selection-indicator"></div>
+            <div
+              class={{
+                'group-header-selection-indicator': true,
+                'group-header-selection-indicator-item-selected':
+                  this.itemSelected,
+              }}
+            ></div>
             <ix-icon
               class="btn-expand-header"
               name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
               onClick={(e) => this.onExpandClick(e)}
             ></ix-icon>
+
             <div class="group-header-content">
               {this.header ? (
                 <div class="group-header-props-container">
