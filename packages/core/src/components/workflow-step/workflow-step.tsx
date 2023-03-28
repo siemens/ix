@@ -57,6 +57,8 @@ export class WorkflowStep {
 
   /**
    * Activate navigation click
+   *
+   * @deprecated Will be changed to '@internal' in 2.0.0
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
