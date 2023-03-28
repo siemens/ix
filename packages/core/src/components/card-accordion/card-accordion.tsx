@@ -1,6 +1,5 @@
 import { Component, h, Host, State } from '@stencil/core';
 
-const SPACE_KEY = ' ';
 let accordingControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordingControlId++].join('-');
@@ -27,14 +26,12 @@ export class CardAccordion {
           show: this.expandContent,
         }}
       >
-        <div
+        <button
           tabIndex={0}
           class={{ 'expand-action': true, show: this.expandContent }}
           onClick={(event) => this.onExpandActionClick(event)}
-          onKeyPress={(event) => {
-            event.key === SPACE_KEY && this.onExpandActionClick(event);
-          }}
           role="button"
+          type="button"
           aria-expanded={this.expandContent}
           aria-controls={getAriaControlsId()}
         >
@@ -46,7 +43,7 @@ export class CardAccordion {
             }}
             color="color-primary"
           ></ix-icon>
-        </div>
+        </button>
         <div
           class={{
             'expand-content': true,

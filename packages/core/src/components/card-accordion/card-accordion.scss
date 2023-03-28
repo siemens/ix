@@ -18,6 +18,7 @@ $expand-content-height: 15rem;
   width: 100%;
 
   .expand-action {
+    all: unset;
     display: flex;
     position: relative;
 
@@ -30,6 +31,11 @@ $expand-content-height: 15rem;
     align-items: center;
     justify-content: center;
     @include ghost-hover-pressed();
+
+    @include focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
   }
 
   .expand-action:not(.show) {
