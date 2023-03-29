@@ -73,4 +73,11 @@ regressionTest.describe('select', () => {
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('list-header-hide', async ({ page }) => {
+    await page.goto('select/list-header-hide');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
