@@ -7125,6 +7125,23 @@
           "required": false
         },
         {
+          "name": "selectListHeaderHide",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "select-list-header-hide",
+          "reflectToAttr": false,
+          "docs": "Hide list header",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "selectedIndices",
           "type": "string | string[]",
           "mutable": true,

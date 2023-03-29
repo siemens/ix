@@ -1237,6 +1237,10 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
+          * Hide list header
+         */
+        "selectListHeaderHide": boolean;
+        /**
           * Indices of selected items
          */
         "selectedIndices": string | string[];
@@ -3671,6 +3675,10 @@ declare namespace LocalJSX {
           * If true the select will be in readonly mode
          */
         "readonly"?: boolean;
+        /**
+          * Hide list header
+         */
+        "selectListHeaderHide"?: boolean;
         /**
           * Indices of selected items
          */
