@@ -102,14 +102,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'label']
+  inputs: ['collapsed', 'icon', 'label']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'label'],
+  inputs: ['collapsed', 'icon', 'label'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -255,16 +255,20 @@ export class IxChip {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['close', 'closeChip']);
   }
 }
 
 
 export declare interface IxChip extends Components.IxChip {
   /**
-   * Fire event if close button is clicked
+   * Fire event if close button is clicked @deprecated Will be removed in 2.0.0. Use `closeChip`
    */
   close: EventEmitter<CustomEvent<any>>;
+  /**
+   * Fire event if close button is clicked @since 1.5.0
+   */
+  closeChip: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -645,14 +649,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['footer', 'state']
+  inputs: ['footer', 'height', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['footer', 'state'],
+  inputs: ['footer', 'height', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
@@ -1287,6 +1291,38 @@ export class IxModalExample {
 
 
 export declare interface IxModalExample extends Components.IxModalExample {}
+
+
+@ProxyCmp({
+  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
+})
+@Component({
+  selector: 'ix-pagination',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount'],
+})
+export class IxPagination {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pageSelected', 'itemCountChanged']);
+  }
+}
+
+
+export declare interface IxPagination extends Components.IxPagination {
+  /**
+   * Page selection event
+   */
+  pageSelected: EventEmitter<CustomEvent<number>>;
+  /**
+   * Item count change event
+   */
+  itemCountChanged: EventEmitter<CustomEvent<number>>;
+}
 
 
 @ProxyCmp({

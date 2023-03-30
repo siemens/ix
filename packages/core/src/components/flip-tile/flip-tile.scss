@@ -29,10 +29,6 @@
 :host {
   display: flex;
   flex-direction: column;
-  width: 16rem;
-  min-width: 16rem;
-  max-width: 16rem;
-  height: 15.125rem;
   perspective: 1000px;
 
   .flip-tile-header {

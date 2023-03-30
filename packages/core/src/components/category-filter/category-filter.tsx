@@ -156,7 +156,7 @@ export class CategoryFilter {
 
     if (this.textInput == null) {
       console.warn(
-        'Core UI category filter - unable to add event listeners to native input element'
+        'ix-category-filter - unable to add event listeners to native input element'
       );
       return;
     }
@@ -581,7 +581,7 @@ export class CategoryFilter {
           'reset-button': true,
           'hide-reset-button': !this.filterTokens.length && !this.category,
         }}
-        variant="Secondary"
+        variant="Primary"
         ghost
         oval
         icon="clear"

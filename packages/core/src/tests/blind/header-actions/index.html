@@ -1,0 +1,32 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-blind label="Some label" icon="info">
+      <ix-icon-button
+        id="context-menu"
+        icon="context-menu"
+        slot="header-actions"
+      ></ix-icon-button>
+      <div>Content!</div>
+    </ix-blind>
+    <ix-dropdown trigger="context-menu">
+      <ix-dropdown-item label="Rename..." icon="rename"></ix-dropdown-item>
+      <ix-dropdown-item label="Delete" icon="trashcan"></ix-dropdown-item>
+    </ix-dropdown>
+
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

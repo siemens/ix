@@ -30,6 +30,7 @@
       width: 100%;
       align-items: center;
       justify-content: center;
+      position: relative;
 
       .line {
         width: 100%;
@@ -47,18 +48,14 @@
         }
 
         &.selected {
-          background-color: var(
-            --theme-workflow-step-icon-default--color--selected
-          );
+          background-color: var(--theme-workflow-step-icon-default--color--selected);
         }
 
         &.done {
           background-color: var(--theme-workflow-step-icon-done--color);
 
           &.selected {
-            background-color: var(
-              --theme-workflow-step-icon-done--color--selected
-            );
+            background-color: var(--theme-workflow-step-icon-done--color--selected);
           }
         }
 
@@ -146,9 +143,7 @@
       background-color: var(--theme-workflow-step--background--disabled);
 
       .line {
-        background-color: var(
-          --theme-workflow-step-icon-default--color--disabled
-        ) !important;
+        background-color: var(--theme-workflow-step-icon-default--color--disabled) !important;
       }
 
       .text {

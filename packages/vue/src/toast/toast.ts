@@ -7,11 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
+import {
+  getToastContainer,
+  toast,
+  ToastConfig as IxToastConfig,
+} from '@siemens/ix';
 
 export type ToastConfig = {
   message: string | HTMLElement;
 };
+
+export function setToastPosition(position: 'bottom-right' | 'top-right') {
+  getToastContainer().position = position;
+}
 
 export async function showToast(
   config: Omit<IxToastConfig, 'message'> & ToastConfig

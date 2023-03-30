@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Prop,
+  Watch,
+} from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
 
@@ -28,7 +36,9 @@ export class ToastContainer {
 
   /**
    */
-  @Prop() position = 'bottom-right';
+  @Prop() position: 'bottom-right' | 'top-right' = 'bottom-right';
+
+  private readonly PREFIX_POSITION_CLASS = 'toast-container--';
 
   get hostContainer() {
     return document.getElementById(this.containerId);
@@ -39,9 +49,20 @@ export class ToastContainer {
       const toastContainer = document.createElement('div');
       toastContainer.id = this.containerId;
       toastContainer.classList.add(this.containerClass);
-      toastContainer.classList.add(`toast-container--${this.position}`);
+      toastContainer.classList.add(
+        `${this.PREFIX_POSITION_CLASS}${this.position}`
+      );
       document.body.appendChild(toastContainer);
     }
+  }
+
+  @Watch('position')
+  onPositionChange(newPosition: string, oldPosition: string) {
+    const toastContainer = document.getElementById(this.containerId);
+    toastContainer.classList.remove(
+      `${this.PREFIX_POSITION_CLASS}${oldPosition}`
+    );
+    toastContainer.classList.add(`${this.PREFIX_POSITION_CLASS}${newPosition}`);
   }
 
   /**
