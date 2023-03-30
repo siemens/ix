@@ -31,7 +31,7 @@
     border: solid var(--theme-blind--border-thickness) transparent;
     border-radius: var(--theme-blind--border-radius)
       var(--theme-blind--border-radius) 0 0;
-    padding-right: $default-space;
+    padding-right: $small-space;
     transition: border-radius $default-time;
     cursor: pointer;
 
