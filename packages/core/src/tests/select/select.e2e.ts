@@ -73,4 +73,13 @@ regressionTest.describe('select', () => {
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('allow-clear', async ({ page }) => {
+    await page.goto('select/allow-clear');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
+    await page.locator('text=Item 2').first().click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
