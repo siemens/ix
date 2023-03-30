@@ -66,18 +66,55 @@ export class WorkflowSteps {
     });
   }
 
+  clickListener(steps, element, index) {
+    element.addEventListener('click', () => {
+      if (!this.clickable) return;
+      const previousElement = steps[index - 1];
+      if (
+        this.linear &&
+        previousElement &&
+        !['done', 'success'].includes(previousElement?.status)
+      ) {
+        return (element.selected = false);
+      }
+      this.deselectAll();
+      element.selected = true;
+      this.stepSelected.emit(index);
+    });
+  }
+
   styling() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
+      this.clickListener(steps, element, index);
+
       element.vertical = this.vertical;
       element.clickable = this.clickable;
-      element.selected = this.selectedIndex === index ? true : false;
+      element.selected = this.selectedIndex === index;
 
-      if (index === 0 && steps.length > 1) element.position = 'first';
-      if (steps.length === 1) element.position = 'single';
-      if (index === steps.length - 1 && steps.length > 1)
-        element.position = 'last';
-      if (index > 0 && index < steps.length - 1) element.position = 'undefined';
+      if (steps.length === 1) {
+        element.position = 'single';
+        return;
+      }
+      if (steps.length > 1 && (index === 0 || index === steps.length - 1)) {
+        if (index === 0) element.position = 'first';
+        if (index === steps.length - 1) element.position = 'last';
+      } else element.position = 'undefined';
+
+      element.addEventListener('click', () => {
+        if (!this.clickable) return;
+        const previousElement = steps[index - 1];
+        if (
+          this.linear &&
+          previousElement &&
+          !['done', 'success'].includes(previousElement?.status)
+        ) {
+          return (element.selected = false);
+        }
+        this.deselectAll();
+        element.selected = true;
+        this.stepSelected.emit(index);
+      });
     });
   }
 
@@ -105,26 +142,6 @@ export class WorkflowSteps {
 
   componentDidRender() {
     this.styling();
-  }
-
-  componentWillRender() {
-    const steps = this.getSteps();
-    steps.forEach((element, index) => {
-      element.addEventListener('click', () => {
-        if (!this.clickable) return;
-        const previousElement = steps[index - 1];
-        if (
-          this.linear &&
-          previousElement &&
-          !['done', 'success'].includes(previousElement?.status)
-        ) {
-          return (element.selected = false);
-        }
-        this.deselectAll();
-        element.selected = true;
-        this.stepSelected.emit(index);
-      });
-    });
   }
 
   render() {
