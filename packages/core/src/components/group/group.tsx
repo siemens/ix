@@ -18,6 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-group',
@@ -102,6 +103,8 @@ export class Group {
 
   @State() dropdownTriggerRef: HTMLElement;
 
+  @State() slotSize = this.groupItems.length;
+
   constructor() {}
 
   @Listen('keydown', {
@@ -168,6 +171,12 @@ export class Group {
 
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
+      if (this.selected === true) {
+        item.selected = false;
+        this.index = undefined;
+        this.itemSelected = false;
+        return;
+      }
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
@@ -184,13 +193,28 @@ export class Group {
     }
   }
 
+  private observer: MutationObserver;
+
   componentDidLoad() {
+    const slotDiv = this.hostElement.querySelector('.group-content');
+    this.observer = createMutationObserver(() => {
+      this.slotSize = this.groupItems.length;
+    });
+
+    this.observer.observe(slotDiv, { childList: true });
+
     this.groupContent.addEventListener(
       'selectedChanged',
       (evt: CustomEvent<HTMLIxGroupItemElement>) => {
         this.onItemClick(evt.detail.index);
       }
     );
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   render() {
@@ -215,11 +239,15 @@ export class Group {
                   this.itemSelected,
               }}
             ></div>
-            <ix-icon
-              class="btn-expand-header"
-              name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
-              onClick={(e) => this.onExpandClick(e)}
-            ></ix-icon>
+            <div class="btn-expand-header">
+              <ix-icon
+                class={{
+                  hidden: this.groupItems.length === 0,
+                }}
+                name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
+                onClick={(e) => this.onExpandClick(e)}
+              ></ix-icon>
+            </div>
 
             <div class="group-header-content">
               {this.header ? (

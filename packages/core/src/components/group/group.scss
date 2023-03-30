@@ -49,8 +49,8 @@
     }
 
     @include focus-visible {
-      border-color: var(--focus--border-color);
-      border-radius: var(--theme-group--border-radius--focus);
+      border: 1px solid var(--theme-color-focus-bdr);
+      border-radius: 4px 4px 0px 0px;
       outline: none;
     }
 
@@ -141,6 +141,7 @@
   .btn-expand-header {
     margin: $small-space;
     margin-inline-end: $tiny-space;
+    min-width: 24px;
   }
 
   .group-content {
@@ -151,5 +152,9 @@
   .footer {
     height: auto;
     min-height: 0;
+  }
+
+  .hidden {
+    display: none;
   }
 }

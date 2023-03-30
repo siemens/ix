@@ -90,6 +90,6 @@
   }
 
   @include focus-visible {
-    border-color: var(--focus--border-color) !important;
+    border: 1px solid var(--theme-color-focus-bdr) !important;
   }
 }
