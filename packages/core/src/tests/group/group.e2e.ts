@@ -35,7 +35,7 @@ regressionTest.describe('group', () => {
 
   regressionTest('item selected', async ({ page }) => {
     await page.goto('group/basic');
-    await page.locator('.btn-expand-header').click();
+    await page.locator('.btn-expand-header .sc-ix-icon-h').click();
     await page.locator('text=Example text 1').first().click();
     await page.locator('text=Example text 1').first().hover();
 
