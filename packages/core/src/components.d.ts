@@ -1217,6 +1217,10 @@ export namespace Components {
          */
         "editable": boolean;
         /**
+          * Hide list header
+         */
+        "hideListHeader": boolean;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder": string;
@@ -1236,10 +1240,6 @@ export namespace Components {
           * If true the select will be in readonly mode
          */
         "readonly": boolean;
-        /**
-          * Hide list header
-         */
-        "selectListHeaderHide": boolean;
         /**
           * Indices of selected items
          */
@@ -3648,6 +3648,10 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
+          * Hide list header
+         */
+        "hideListHeader"?: boolean;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder"?: string;
@@ -3675,10 +3679,6 @@ declare namespace LocalJSX {
           * If true the select will be in readonly mode
          */
         "readonly"?: boolean;
-        /**
-          * Hide list header
-         */
-        "selectListHeaderHide"?: boolean;
         /**
           * Indices of selected items
          */

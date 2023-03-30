@@ -77,7 +77,7 @@ export class Select {
   /**
    * Hide list header
    */
-  @Prop() selectListHeaderHide = false;
+  @Prop() hideListHeader = false;
 
   /**
    * Item selection changed
@@ -454,7 +454,7 @@ export class Select {
           <div
             class={{
               'select-list-header': true,
-              hidden: this.selectListHeaderHide === true,
+              hidden: this.hideListHeader === true,
             }}
             title={this.i18nSelectListHeader}
           >
