@@ -70,11 +70,6 @@ export class Blind {
     this.onHeaderToggle(e);
   }
 
-  private onHeaderKeyPress(e: KeyboardEvent) {
-    if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.code === 'Space')
-      this.onHeaderToggle(e);
-  }
-
   componentDidLoad() {
     this.animateCollapse(this.collapsed);
   }
@@ -129,18 +124,18 @@ export class Blind {
   render() {
     return (
       <Host>
-        <div
+        <button
           class={{
             'blind-header': true,
             closed: this.collapsed,
           }}
+          type="button"
           role="button"
           tabindex="0"
           aria-labelledby={`ix-blind-header-title-${this.id}`}
           aria-controls={`ix-blind-content-section-${this.id}`}
           aria-expanded={this.collapsed ? 'false' : 'true'}
           onClick={(e) => this.onHeaderClick(e)}
-          onKeyPress={(e) => this.onHeaderKeyPress(e)}
         >
           <span
             class={{
@@ -169,7 +164,7 @@ export class Blind {
               <slot name="custom-header"></slot>
             )}
           </div>
-        </div>
+        </button>
         <section
           id={`ix-blind-content-section-${this.id}`}
           aria-labelledby={`ix-blind-header-title-${this.id}`}

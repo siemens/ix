@@ -22,6 +22,7 @@
   overflow: hidden;
 
   .blind-header {
+    all: unset;
     @include ellipsis;
 
     display: flex;
