@@ -50,12 +50,19 @@ regressionTest.describe('select', () => {
 
     const inputHandle = await page.waitForSelector('div.chips');
 
+    await page.type(
+      '[data-testid="input"]',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    );
+
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
       menuElement.classList.add('__SCROLLED__');
     }, inputHandle);
 
     await page.waitForSelector('div.chips.__SCROLLED__');
+    await page.locator('[data-testid="input"]').blur();
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
