@@ -134,7 +134,7 @@ export class Blind {
           tabindex="0"
           aria-labelledby={`ix-blind-header-title-${this.id}`}
           aria-controls={`ix-blind-content-section-${this.id}`}
-          aria-expanded={this.collapsed ? 'false' : 'true'}
+          aria-expanded={this.collapsed}
           onClick={(e) => this.onHeaderClick(e)}
         >
           <span
