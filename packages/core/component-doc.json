@@ -7041,7 +7041,15 @@
           "attr": "hide-list-header",
           "reflectToAttr": false,
           "docs": "Hide list header",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            },
+            {
+              "name": ""
+            }
+          ],
           "default": "false",
           "values": [
             {

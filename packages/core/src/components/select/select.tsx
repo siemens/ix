@@ -76,6 +76,9 @@ export class Select {
 
   /**
    * Hide list header
+   *
+   * @since 1.5.0
+   @
    */
   @Prop() hideListHeader = false;
 

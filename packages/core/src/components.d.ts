@@ -1218,6 +1218,8 @@ export namespace Components {
         "editable": boolean;
         /**
           * Hide list header
+          * @since 1.5.0
+          * @
          */
         "hideListHeader": boolean;
         /**
@@ -3649,6 +3651,8 @@ declare namespace LocalJSX {
         "editable"?: boolean;
         /**
           * Hide list header
+          * @since 1.5.0
+          * @
          */
         "hideListHeader"?: boolean;
         /**
