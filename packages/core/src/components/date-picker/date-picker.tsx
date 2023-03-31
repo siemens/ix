@@ -63,12 +63,13 @@ export class DatePicker {
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
+   * If set to `null` no default start date will be pre-selected.
    *
    * Format is based on `format`
    *
    * @since 1.1.0
    */
-  @Prop() from: string = DateTime.now().toFormat(this.format);
+  @Prop() from: string | null = DateTime.now().toFormat(this.format);
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -136,7 +137,7 @@ export class DatePicker {
    * Date change event
    *
    * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-   * `2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.
+   * `2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.
    *
    * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
@@ -165,15 +166,27 @@ export class DatePicker {
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   get year() {
-    return DateTime.fromFormat(this.from, this.format).year;
+    if (this.from) {
+      return DateTime.fromFormat(this.from, this.format).year;
+    }
+
+    return DateTime.now().year;
   }
 
   get day() {
-    return DateTime.fromFormat(this.from, this.format).day;
+    if (this.from) {
+      return DateTime.fromFormat(this.from, this.format).day;
+    }
+
+    return null;
   }
 
   get month() {
-    return DateTime.fromFormat(this.from, this.format).month;
+    if (this.from) {
+      return DateTime.fromFormat(this.from, this.format).month;
+    }
+
+    return DateTime.now().month;
   }
 
   private onDone() {
@@ -186,19 +199,25 @@ export class DatePicker {
   }
 
   private onDateChange() {
+    const from = this.start?.toFormat(this.format);
+    const to = this.end?.toFormat(this.format);
+
+    this.from = from;
+    this.to = to;
+
     if (this.eventDelimiter) {
       this.dateChange.emit(this.getOutputFormat());
     } else {
       this.dateChange.emit({
-        from: this.start?.toFormat(this.format),
-        to: this.end?.toFormat(this.format),
+        from,
+        to,
       });
     }
 
     if (this.range) {
       this.dateRangeChange.emit({
-        from: this.start?.toFormat(this.format),
-        to: this.end?.toFormat(this.format),
+        from,
+        to,
       });
     }
   }
@@ -327,42 +346,36 @@ export class DatePicker {
     this.tempYear = year;
   }
 
-  private todayClass(day: number) {
-    const today = DateTime.local();
-    const daaay = DateTime.local(this.yearValue, this.monthValue, day);
-    const isToday = Math.ceil(daaay.diff(today, 'days').days) === 0;
+  private getDayClasses(day: number) {
+    if (!day) {
+      return;
+    }
+
+    const todayLocal = DateTime.local();
+    const dayLocal = DateTime.local(this.yearValue, this.monthValue, day);
+    const dayIso = dayLocal.toISO();
+    const startIso = this.start?.toISO();
+    const endIso = this.end?.toISO();
+    const isToday = Math.ceil(dayLocal.diff(todayLocal, 'days').days) === 0;
+
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
       today: isToday,
       selected:
-        (this.start && daaay.toISO() === this.start.toISO()) ||
-        (this.end && daaay.toISO() === this.end.toISO()),
-      range:
-        this.start &&
-        this.end &&
-        daaay.toISO() > this.start.toISO() &&
-        daaay.toISO() < this.end.toISO(),
-      disabled:
-        !this.isWithinMinMax(daaay) ||
-        (this.start &&
-          daaay.toISO() < this.start.toISO() &&
-          this.end === null &&
-          this.range),
+        (this.start && dayIso === startIso) || (this.end && dayIso === endIso),
+      range: this.start && this.end && dayIso > startIso && dayIso < endIso,
+      disabled: !this.isWithinMinMax(dayLocal),
     };
   }
 
   private selectDay(day: number) {
     const date = DateTime.local(this.yearValue, this.monthValue, day);
-    const isNotDay = day === undefined;
-    const isFirstDay = this.start === null;
-    const isLastDay = this.end === null;
-    const isPeriod = this.start !== null && this.end !== null;
     const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
     const isSameDay =
       this.start && !this.end && this.start.toISO() === date.toISO();
 
-    if (isNotDay) return;
+    if (day === undefined) return;
 
     if (isSameDay) {
       this.start = null;
@@ -370,21 +383,22 @@ export class DatePicker {
       return;
     }
 
-    if (!this.range) {
+    if (this.range) {
+      if (this.start === null) {
+        this.start = date;
+      } else if (this.end === null) {
+        if (isStartBeforeEnd) {
+          this.end = date;
+        } else {
+          this.end = this.start;
+          this.start = date;
+        }
+      } else {
+        this.start = date;
+        this.end = null;
+      }
+    } else {
       this.start = date;
-    }
-
-    if (this.range && isFirstDay) {
-      this.start = date;
-    }
-
-    if (this.range && isLastDay && isStartBeforeEnd) {
-      this.end = date;
-    }
-
-    if (this.range && isPeriod) {
-      this.start = date;
-      this.end = null;
     }
 
     this.onDateChange();
@@ -420,6 +434,10 @@ export class DatePicker {
   }
 
   componentWillLoad() {
+    if (this.from === null) {
+      this.start = null;
+    }
+
     if (this.year !== null) {
       this.yearValue = this.year;
     }
@@ -544,7 +562,7 @@ export class DatePicker {
                   <div class="calendar-item week-number">{week[0]}</div>
                   {week[1].map((day) => (
                     <div
-                      class={this.todayClass(day)}
+                      class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
                     >
                       {day}
