@@ -54,7 +54,7 @@ export class Blind {
 
   constructor() {}
 
-  private onHeaderToggle(e: Event) {
+  private onHeaderClick(e: Event) {
     if ((e.target as Element).closest('.header-actions')) {
       return;
     }
@@ -64,10 +64,6 @@ export class Blind {
 
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
-  }
-
-  private onHeaderClick(e: MouseEvent) {
-    this.onHeaderToggle(e);
   }
 
   componentDidLoad() {
@@ -129,12 +125,9 @@ export class Blind {
             'blind-header': true,
             closed: this.collapsed,
           }}
-          type="button"
-          role="button"
-          tabindex="0"
           aria-labelledby={`ix-blind-header-title-${this.id}`}
           aria-controls={`ix-blind-content-section-${this.id}`}
-          aria-expanded={this.collapsed}
+          aria-expanded={`${!this.collapsed}`}
           onClick={(e) => this.onHeaderClick(e)}
         >
           <span
