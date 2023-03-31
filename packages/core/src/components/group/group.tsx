@@ -79,7 +79,7 @@ export class Group {
 
   @Element() hostElement!: HTMLIxGroupElement;
 
-  itemSelected = false;
+  @State() itemSelected = false;
 
   get dropdownItems() {
     return Array.from(
@@ -196,12 +196,13 @@ export class Group {
   private observer: MutationObserver;
 
   componentDidLoad() {
-    const slotDiv = this.hostElement.querySelector('.group-content');
     this.observer = createMutationObserver(() => {
       this.slotSize = this.groupItems.length;
     });
 
-    this.observer.observe(slotDiv, { childList: true });
+    this.observer.observe(this.hostElement.querySelector('.group-content'), {
+      childList: true,
+    });
 
     this.groupContent.addEventListener(
       'selectedChanged',
