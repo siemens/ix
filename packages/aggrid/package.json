@@ -41,7 +41,7 @@
     "ag-grid-community": "29.1.0",
     "@siemens/ix": "~1.5.0-beta.1",
     "@stencil/sass": "~3.0.0",
-    "@playwright/test": "^1.28.1",
+    "@playwright/test": "^1.32.1",
     "http-server": "^14.1.1"
   },
   "peerDependencies": {

@@ -3271,7 +3271,7 @@
     os-homedir "^1.0.1"
     regexpu-core "^4.5.4"
 
-"@playwright/test@^1.28.1":
+"@playwright/test@^1.32.1":
   version "1.32.1"
   resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.32.1.tgz#749c9791adb048c266277a39ba0f7e33fe593ffe"
   integrity sha512-FTwjCuhlm1qHUGf4hWjfr64UMJD/z0hXYbk+O387Ioe6WdyZQ+0TBDAc6P+pHjx2xCv1VYNgrKbYrNixFWy4Dg==
