@@ -18,6 +18,7 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { a11yBoolean } from '../utils/a11y';
 
 let sequentialInstanceId = 0;
 @Component({
@@ -128,7 +129,7 @@ export class Blind {
           type="button"
           aria-labelledby={`ix-blind-header-title-${this.id}`}
           aria-controls={`ix-blind-content-section-${this.id}`}
-          aria-expanded={!this.collapsed}
+          aria-expanded={a11yBoolean(!this.collapsed)}
           onClick={(e) => this.onHeaderClick(e)}
         >
           <span
