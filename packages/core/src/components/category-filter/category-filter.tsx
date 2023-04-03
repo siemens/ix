@@ -327,10 +327,6 @@ export class CategoryFilter {
       return;
     }
 
-    if (this.filterTokens.find((value) => value?.value === newToken)) {
-      return;
-    }
-
     const pair = { id: category, value: newToken, operator };
     this.filterTokens = [...this.filterTokens, pair];
     this.textInput.value = '';
@@ -395,8 +391,9 @@ export class CategoryFilter {
 
   private filterDuplicateTokens(value: string) {
     const isTokenAlreadySet = this.filterTokens.some(
-      (token) => token.value === value
+      (token) => token.value === value && token.id === this.category
     );
+
     return !isTokenAlreadySet;
   }
 
