@@ -43,6 +43,7 @@ frameworks={{
 ## Properties
 
 ### Props
+<!-- remove "sencodary" from Spinner Type -->
 
 <Props />
 
