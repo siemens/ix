@@ -200,7 +200,7 @@ export class Group {
       this.slotSize = this.groupItems.length;
     });
 
-    this.observer.observe(this.hostElement.querySelector('.group-content'), {
+    this.observer.observe(this.groupContent, {
       childList: true,
     });
 
