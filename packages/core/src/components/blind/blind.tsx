@@ -18,7 +18,9 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { a11yBoolean } from '../utils/a11y';
 
+let sequentialInstanceId = 0;
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
@@ -49,6 +51,7 @@ export class Blind {
   @Element() hostElement!: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
+  private id = ++sequentialInstanceId;
 
   constructor() {}
 
@@ -118,21 +121,28 @@ export class Blind {
   render() {
     return (
       <Host>
-        <div
+        <button
           class={{
             'blind-header': true,
             closed: this.collapsed,
           }}
+          type="button"
+          aria-labelledby={`ix-blind-header-title-${this.id}`}
+          aria-controls={`ix-blind-content-section-${this.id}`}
+          aria-expanded={a11yBoolean(!this.collapsed)}
           onClick={(e) => this.onHeaderClick(e)}
         >
           <span
-            ref={(ref) => (this.chevronRef = ref)}
             class={{
               glyph: true,
               'glyph-chevron-right-small': true,
             }}
+            ref={(ref) => (this.chevronRef = ref)}
           ></span>
-          <div class="blind-header-title">
+          <div
+            class="blind-header-title"
+            id={`ix-blind-header-title-${this.id}`}
+          >
             {this.label !== undefined ? (
               <span class="blind-header-title-basic">
                 {this.icon !== undefined ? (
@@ -149,15 +159,20 @@ export class Blind {
               <slot name="custom-header"></slot>
             )}
           </div>
-        </div>
-        <div
-          class={{
-            'blind-content': true,
-            hide: this.collapsed,
-          }}
+        </button>
+        <section
+          id={`ix-blind-content-section-${this.id}`}
+          aria-labelledby={`ix-blind-header-title-${this.id}`}
         >
-          <slot></slot>
-        </div>
+          <div
+            class={{
+              'blind-content': true,
+              hide: this.collapsed,
+            }}
+          >
+            <slot></slot>
+          </div>
+        </section>
       </Host>
     );
   }

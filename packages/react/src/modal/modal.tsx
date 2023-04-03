@@ -26,7 +26,7 @@ export const Modal = React.forwardRef<
     children: React.ReactNode;
   }
 >((props, ref: React.ForwardedRef<ModalRef>) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useImperativeHandle(ref, () => {
     let htmlElement: HTMLIxModalElement | null = null;
@@ -54,5 +54,13 @@ export const Modal = React.forwardRef<
     };
   });
 
-  return <div ref={wrapperRef}>{props.children}</div>;
+  return (
+    <>
+      {React.Children.map(props.children, (child) =>
+        React.cloneElement(child as any, {
+          ref: (ref: HTMLDivElement) => (wrapperRef.current = ref),
+        })
+      )}
+    </>
+  );
 });

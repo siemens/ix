@@ -1402,7 +1402,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [
             {
               "name": "since",
@@ -1565,7 +1565,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`.",
+          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.",
           "docsTags": [
             {
               "name": "deprecated",

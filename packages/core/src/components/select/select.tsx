@@ -405,15 +405,14 @@ export class Select {
                   ref={(ref) => (this.inputRef = ref)}
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
-                {this.isMultipleMode &&
-                this.allowClear &&
+                {this.allowClear &&
                 (this.value?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
                     icon="clear"
                     ghost
                     oval
-                    size="24"
+                    size="16"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();

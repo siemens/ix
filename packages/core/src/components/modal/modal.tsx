@@ -21,6 +21,12 @@ import anime from 'animejs';
 import Animation from '../utils/animation';
 import { NotificationColor } from '../utils/notification-color';
 
+let modalInstanceId = 0;
+
+function getNextModalInstanceId() {
+  return `ix-modal-instance-${++modalInstanceId}`;
+}
+
 @Component({
   tag: 'ix-modal',
   styleUrl: 'modal.scss',
@@ -120,6 +126,7 @@ export class Modal {
    */
   @Event() dismissed: EventEmitter;
 
+  private modalId = getNextModalInstanceId();
   private readonly onKeydown = this.handleKeydown.bind(this);
 
   get modal() {
@@ -237,7 +244,7 @@ export class Modal {
 
   render() {
     return (
-      <Host>
+      <Host id={this.modalId}>
         <div
           class={{
             animation: this.animation,
