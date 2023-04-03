@@ -180,10 +180,7 @@ export class Group {
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (
-        !this.footer?.children.length &&
-        index === this.groupItems.length - 1
-      ) {
+      if (!this.footer?.children.length && index === this.slotSize - 1) {
         item.classList.add('last');
       }
     });
@@ -243,7 +240,7 @@ export class Group {
             <div class="btn-expand-header">
               <ix-icon
                 class={{
-                  hidden: this.groupItems.length === 0,
+                  hidden: this.slotSize === 0,
                 }}
                 name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
                 onClick={(e) => this.onExpandClick(e)}
