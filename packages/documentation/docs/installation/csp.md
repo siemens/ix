@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
-sidebar_title: Security
-title: Security
+sidebar_title: Content Security Policy Nonces
+title: Content Security Policy Nonces
 ---
 
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
@@ -10,9 +10,7 @@ import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';
 import VueIcon from '@site/static/img/vue.svg';
 
-# Security
-
-## CSP (Content Security Policy)
+# Content Security Policy Nonces
 
 <ApiTableSinceTag message="1.5.0" />
 
