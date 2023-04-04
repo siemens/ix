@@ -42,6 +42,10 @@
     }
   }
 
+  .hidden {
+    display: none !important;
+  }
+
   .trigger {
     display: flex;
     align-items: center;

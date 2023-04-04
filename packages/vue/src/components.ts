@@ -489,6 +489,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nPlaceholder',
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
+  'hideListHeader',
   'itemSelectionChange',
   'addItem'
 ]);
