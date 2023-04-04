@@ -100,21 +100,6 @@ export class WorkflowSteps {
         if (index === 0) element.position = 'first';
         if (index === steps.length - 1) element.position = 'last';
       } else element.position = 'undefined';
-
-      element.addEventListener('click', () => {
-        if (!this.clickable) return;
-        const previousElement = steps[index - 1];
-        if (
-          this.linear &&
-          previousElement &&
-          !['done', 'success'].includes(previousElement?.status)
-        ) {
-          return (element.selected = false);
-        }
-        this.deselectAll();
-        element.selected = true;
-        this.stepSelected.emit(index);
-      });
     });
   }
 
