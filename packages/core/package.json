@@ -36,7 +36,7 @@
     "test:coverage": "stencil test --spec --coverage",
     "test:e2e": "playwright test --reporter html",
     "test:e2e:list": "playwright test --reporter list",
-    "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash",
+    "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
     "generate": "stencil generate",
     "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
@@ -50,7 +50,7 @@
     "@types/luxon": "^3.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.24.1",
+    "@playwright/test": "^1.32.1",
     "@siemens/ix-icons": "~1.0.0",
     "@stencil/vue-output-target": "^0.7.0",
     "@stencil-community/eslint-plugin": "^0.5.0",
