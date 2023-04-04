@@ -7035,6 +7035,31 @@
           "required": false
         },
         {
+          "name": "hideListHeader",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-list-header",
+          "reflectToAttr": false,
+          "docs": "Hide list header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            },
+            {
+              "name": ""
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nPlaceholder",
           "type": "string",
           "mutable": false,

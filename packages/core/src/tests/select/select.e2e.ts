@@ -50,12 +50,19 @@ regressionTest.describe('select', () => {
 
     const inputHandle = await page.waitForSelector('div.chips');
 
+    await page.type(
+      '[data-testid="input"]',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    );
+
     page.evaluate((menuElement) => {
       menuElement.scrollTop = 9999;
       menuElement.classList.add('__SCROLLED__');
     }, inputHandle);
 
     await page.waitForSelector('div.chips.__SCROLLED__');
+    await page.locator('[data-testid="input"]').blur();
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -79,7 +86,13 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
     await page.locator('text=Item 2').first().click();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 
+  regressionTest('list-header-hide', async ({ page }) => {
+    await page.goto('select/list-header-hide');
+    await page.locator('.chevron-down-container').click();
+    await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

@@ -1217,6 +1217,12 @@ export namespace Components {
          */
         "editable": boolean;
         /**
+          * Hide list header
+          * @since 1.5.0
+          * @
+         */
+        "hideListHeader": boolean;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder": string;
@@ -3643,6 +3649,12 @@ declare namespace LocalJSX {
           * Select is extendable
          */
         "editable"?: boolean;
+        /**
+          * Hide list header
+          * @since 1.5.0
+          * @
+         */
+        "hideListHeader"?: boolean;
         /**
           * Input field placeholder
          */

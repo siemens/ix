@@ -75,6 +75,14 @@ export class Select {
   @Prop() i18nSelectListHeader = 'Please select an option';
 
   /**
+   * Hide list header
+   *
+   * @since 1.5.0
+   @
+   */
+  @Prop() hideListHeader = false;
+
+  /**
    * Item selection changed
    */
   @Event() itemSelectionChange: EventEmitter<string | string[]>;
@@ -445,7 +453,13 @@ export class Select {
             };
           }}
         >
-          <div class="select-list-header" title={this.i18nSelectListHeader}>
+          <div
+            class={{
+              'select-list-header': true,
+              hidden: this.hideListHeader === true,
+            }}
+            title={this.i18nSelectListHeader}
+          >
             {this.i18nSelectListHeader}
           </div>
           <slot></slot>

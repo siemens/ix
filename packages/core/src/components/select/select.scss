@@ -42,6 +42,10 @@
     }
   }
 
+  .hidden {
+    display: none !important;
+  }
+
   .trigger {
     display: flex;
     align-items: center;
@@ -66,7 +70,7 @@
       overflow-y: auto;
 
       > ix-filter-chip {
-        margin: 0 0.1rem;
+        margin: 0.1rem;
       }
     }
 
