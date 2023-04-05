@@ -1,4 +1,4 @@
-import { Component, h, Host, State } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, State } from '@stencil/core';
 
 let accordingControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -11,11 +11,17 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   scoped: true,
 })
 export class CardAccordion {
+  /**
+   * @internal
+   */
+  @Event() cardAccordingExpandChanged: EventEmitter<boolean>;
+
   @State() expandContent = false;
 
   onExpandActionClick(event: Event) {
     event.preventDefault();
     this.expandContent = !this.expandContent;
+    this.cardAccordingExpandChanged.emit(this.expandContent);
   }
 
   render() {
@@ -36,12 +42,12 @@ export class CardAccordion {
           aria-controls={getAriaControlsId()}
         >
           <ix-icon
-            name="chevron-down-small"
+            name="chevron-right-small"
             class={{
               'expand-icon': true,
               show: this.expandContent,
             }}
-            color="color-primary"
+            color={this.expandContent ? 'color-dynamic' : 'color-primary'}
           ></ix-icon>
         </button>
         <div

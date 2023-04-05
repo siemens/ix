@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/button/button";
+import { CardVariant } from "./components/card/card";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -28,6 +29,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
+export { CardVariant } from "./components/card/card";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -164,6 +166,10 @@ export namespace Components {
         "variant": ButtonVariant;
     }
     interface IxCard {
+        /**
+          * Look of the card
+         */
+        "variant": CardVariant;
     }
     interface IxCardAccordion {
     }
@@ -1695,6 +1701,10 @@ export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBreadcrumbElement;
 }
+export interface IxCardAccordionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCardAccordionElement;
+}
 export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
@@ -2527,8 +2537,13 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     interface IxCard {
+        /**
+          * Look of the card
+         */
+        "variant"?: CardVariant;
     }
     interface IxCardAccordion {
+        "onCardAccordingExpandChanged"?: (event: IxCardAccordionCustomEvent<boolean>) => void;
     }
     interface IxCardContent {
     }

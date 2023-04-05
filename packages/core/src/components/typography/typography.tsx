@@ -52,20 +52,23 @@ export class IxTypography {
   /**
    * Text color based on theme variables
    */
-  @Prop() color: TypographyColors = 'std';
+  @Prop() color: TypographyColors;
 
   render() {
     const typographyClass = {
       [VariantsMapping[this.variant]]: true,
     };
 
-    const fontColor = this.color ?? 'std';
+    const fontColor =
+      this.color !== undefined
+        ? `var(--theme-color-${this.color}-text)`
+        : 'inherit';
 
     return (
       <div
         class={typographyClass}
         style={{
-          color: `var(--theme-color-${fontColor}-text)`,
+          color: fontColor,
         }}
       >
         <slot></slot>

@@ -18,10 +18,45 @@
 
   .list {
     display: flex;
+    position: relative;
     flex-direction: row;
     gap: 0.5rem;
     flex-wrap: wrap;
     // flex-wrap: nowrap;
     // overflow: hidden;
+
+    // display: block;
+    // width: 100%;
+    // height: 40rem;
+  }
+
+  .card-parent {
+    display: inline-flex;
+    flex-direction: column;
+    align-self: flex-start;
+
+    position: relative;
+    width: 10rem;
+    height: auto;
+    min-height: 10rem;
+    background-color: red;
+  }
+
+  .card-content {
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    min-height: 10rem;
+    background-color: green;
+  }
+
+  .card-accordion {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 2rem;
+    background-color: yellow;
   }
 }
