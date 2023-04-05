@@ -1,8 +1,8 @@
 import { Component, h, Host } from '@stencil/core';
 
 @Component({
-  tag: 'ix-card-header',
-  styleUrl: 'card-header.scss',
+  tag: 'ix-card-title',
+  styleUrl: 'card-title.scss',
   shadow: true,
 })
 export class CardHeader {
@@ -10,7 +10,7 @@ export class CardHeader {
     return (
       <Host>
         <slot></slot>
-        <div class="header-actions">
+        <div class="title-actions">
           <slot name="actions"></slot>
         </div>
       </Host>

@@ -175,7 +175,7 @@ export namespace Components {
     }
     interface IxCardContent {
     }
-    interface IxCardHeader {
+    interface IxCardTitle {
     }
     interface IxCategoryFilter {
         /**
@@ -1925,11 +1925,11 @@ declare global {
         prototype: HTMLIxCardContentElement;
         new (): HTMLIxCardContentElement;
     };
-    interface HTMLIxCardHeaderElement extends Components.IxCardHeader, HTMLStencilElement {
+    interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
     }
-    var HTMLIxCardHeaderElement: {
-        prototype: HTMLIxCardHeaderElement;
-        new (): HTMLIxCardHeaderElement;
+    var HTMLIxCardTitleElement: {
+        prototype: HTMLIxCardTitleElement;
+        new (): HTMLIxCardTitleElement;
     };
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
     }
@@ -2349,7 +2349,7 @@ declare global {
         "ix-card": HTMLIxCardElement;
         "ix-card-accordion": HTMLIxCardAccordionElement;
         "ix-card-content": HTMLIxCardContentElement;
-        "ix-card-header": HTMLIxCardHeaderElement;
+        "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
@@ -2558,7 +2558,7 @@ declare namespace LocalJSX {
     }
     interface IxCardContent {
     }
-    interface IxCardHeader {
+    interface IxCardTitle {
     }
     interface IxCategoryFilter {
         /**
@@ -4246,7 +4246,7 @@ declare namespace LocalJSX {
         "ix-card": IxCard;
         "ix-card-accordion": IxCardAccordion;
         "ix-card-content": IxCardContent;
-        "ix-card-header": IxCardHeader;
+        "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-counter-pill": IxCounterPill;
@@ -4330,7 +4330,7 @@ declare module "@stencil/core" {
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
             "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
-            "ix-card-header": LocalJSX.IxCardHeader & JSXBase.HTMLAttributes<HTMLIxCardHeaderElement>;
+            "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;

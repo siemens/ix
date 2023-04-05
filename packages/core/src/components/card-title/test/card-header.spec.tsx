@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CardHeader } from '../card-header';
+import { CardHeader } from '../card-title';
 
 describe('card-header', () => {
   it('renders', async () => {
