@@ -31,6 +31,14 @@ export class MyComponent {
     return (
       <Host>
         <div class={'list'} style={{ paddingBottom: '2rem' }}>
+          <ix-notification-card
+            icon="bulb"
+            notification="42"
+            heading="New devices have been discovered and are ready for onboarding"
+            subheading="Secondary text"
+          >
+            <ix-button slot="title-action">Test</ix-button>
+          </ix-notification-card>
           {this.demo.map((variant) => (
             <ix-card style={{ height: '100%' }} variant={variant}>
               <ix-card-title>
@@ -46,14 +54,14 @@ export class MyComponent {
                   icon="warning"
                   color="color-warning"
                   ghost
-                  slot="actions"
+                  slot="title-action"
                 ></ix-icon-button>
 
                 <ix-icon-button
                   icon="document"
                   color="color-primary"
                   ghost
-                  slot="actions"
+                  slot="title-action"
                 ></ix-icon-button>
               </ix-card-title>
               <ix-card-content>

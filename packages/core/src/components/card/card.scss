@@ -52,8 +52,8 @@ $paddingContentLeftRight: 1rem;
     flex-shrink: 0;
     flex-grow: 1;
     width: calc(100% - #{$paddingContentLeftRight * 2});
-    padding: 0.5rem $paddingContentLeftRight;
-    min-height: 13.375rem;
+    padding: 1rem $paddingContentLeftRight;
+    min-height: calc(13.5rem - 2.5rem);
     background-color: var(--ix-card-background);
   }
 

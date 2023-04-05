@@ -1147,6 +1147,24 @@ export namespace Components {
     }
     interface IxModalExample {
     }
+    interface IxNotificationCard {
+        /**
+          * Card heading
+         */
+        "heading": string;
+        /**
+          * Card icon
+         */
+        "icon": string | undefined;
+        /**
+          * Card kpi value
+         */
+        "notification": string;
+        /**
+          * Card subheading
+         */
+        "subheading": string;
+    }
     /**
      * @since 1.5.0
      */
@@ -2192,6 +2210,12 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    interface HTMLIxNotificationCardElement extends Components.IxNotificationCard, HTMLStencilElement {
+    }
+    var HTMLIxNotificationCardElement: {
+        prototype: HTMLIxNotificationCardElement;
+        new (): HTMLIxNotificationCardElement;
+    };
     /**
      * @since 1.5.0
      */
@@ -2392,6 +2416,7 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-notification-card": HTMLIxNotificationCardElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
@@ -3621,6 +3646,24 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    interface IxNotificationCard {
+        /**
+          * Card heading
+         */
+        "heading"?: string;
+        /**
+          * Card icon
+         */
+        "icon"?: string | undefined;
+        /**
+          * Card kpi value
+         */
+        "notification"?: string;
+        /**
+          * Card subheading
+         */
+        "subheading"?: string;
+    }
     /**
      * @since 1.5.0
      */
@@ -4289,6 +4332,7 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
+        "ix-notification-card": IxNotificationCard;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
@@ -4382,6 +4426,7 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            "ix-notification-card": LocalJSX.IxNotificationCard & JSXBase.HTMLAttributes<HTMLIxNotificationCardElement>;
             /**
              * @since 1.5.0
              */

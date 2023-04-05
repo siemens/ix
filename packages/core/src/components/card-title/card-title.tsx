@@ -11,7 +11,7 @@ export class CardHeader {
       <Host>
         <slot></slot>
         <div class="title-actions">
-          <slot name="actions"></slot>
+          <slot name="title-action"></slot>
         </div>
       </Host>
     );
