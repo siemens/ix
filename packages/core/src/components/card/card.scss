@@ -11,7 +11,7 @@ $paddingContentLeftRight: 1rem;
 
 :host(.card-insight) {
   --ix-card-background: transparent;
-  border: var(--theme-soft-bdr-1);
+  --ix-card-border-color: var(--theme-color-soft-bdr);
 }
 
 :host(.card-notification) {
@@ -43,6 +43,7 @@ $paddingContentLeftRight: 1rem;
   width: 20rem;
   min-width: 20rem;
 
+  border: 1px solid var(--ix-card-border-color, transparent);
   border-radius: var(--theme-default-border-radius);
 
   .card-content {

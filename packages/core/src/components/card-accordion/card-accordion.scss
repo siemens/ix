@@ -47,7 +47,8 @@ $expand-content-height: 15rem;
     z-index: -1;
   }
 
-  .expand-action:not(.show) {
+  .expand-action:not(.show),
+  .expand-action:not(.show)::before {
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
   }
