@@ -10,11 +10,20 @@ import {
   arrow,
   autoUpdate,
   computePosition,
+  ComputePositionReturn,
   flip,
   offset,
   shift,
 } from '@floating-ui/dom';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+
+type ArrowPosition = {
+  top?: string;
+  left?: string;
+  right?: string;
+};
+
+const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
 
 /**
  * @slot title-icon - Icon of tooltip title
@@ -42,6 +51,14 @@ export class Tooltip {
    * Define if the user can access the tooltip via mouse.
    */
   @Prop() interactive = false;
+
+  /**
+   * Initial placement of the tooltip. If the placement don"t have enough space,
+   * the tooltip will placed on another location.
+   *
+   * @since 1.5.0
+   */
+  @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   @State() visible = false;
 
@@ -77,18 +94,53 @@ export class Tooltip {
     this.destroyAutoUpdate();
   }
 
+  private computeArrowPosition({
+    placement,
+    middlewareData,
+  }: ComputePositionReturn): ArrowPosition {
+    let { x, y } = middlewareData.arrow;
+
+    if (placement.startsWith('top')) {
+      return {
+        left: numberToPixel(x),
+        top: numberToPixel(y),
+      };
+    }
+
+    if (placement.startsWith('right')) {
+      return {
+        left: numberToPixel(-4),
+        top: numberToPixel(y),
+      };
+    }
+
+    if (placement.startsWith('bottom')) {
+      return {
+        left: numberToPixel(x),
+        top: numberToPixel(-4),
+      };
+    }
+
+    if (placement.startsWith('left')) {
+      return {
+        right: numberToPixel(-4),
+        top: numberToPixel(y),
+      };
+    }
+  }
+
   private async computeTooltipPosition(target: HTMLElement) {
     this.disposeAutoUpdate = autoUpdate(
       target,
       this.hostElement,
       async () => {
-        requestAnimationFrame(async () => {
+        setTimeout(async () => {
           const computeResponse = await computePosition(
             target,
             this.hostElement,
             {
               strategy: 'fixed',
-              placement: 'top',
+              placement: this.placement,
               middleware: [
                 shift(),
                 offset(8),
@@ -97,22 +149,15 @@ export class Tooltip {
                 }),
                 flip({
                   fallbackStrategy: 'initialPlacement',
+                  padding: 10,
                 }),
               ],
             }
           );
 
           if (computeResponse.middlewareData.arrow) {
-            let { x, y } = computeResponse.middlewareData.arrow;
-
-            if (computeResponse.placement === 'bottom') {
-              y = -4;
-            }
-
-            Object.assign(this.arrowElement.style, {
-              left: x != null ? `${x}px` : '',
-              top: y != null ? `${y}px` : '',
-            });
+            const arrowPosition = this.computeArrowPosition(computeResponse);
+            Object.assign(this.arrowElement.style, arrowPosition);
           }
 
           const { x, y } = computeResponse;

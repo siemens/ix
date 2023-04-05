@@ -16,6 +16,8 @@ describe('ix-modal-container', () => {
       components: [ModalContainer],
       html: '<ix-modal-container></ix-modal-container>',
     });
-    expect(page.root).toEqualHtml('<ix-modal-container></ix-modal-container>');
+    expect(page.root).toEqualHtml(
+      '<ix-modal-container><div class="modal-stack"></div></ix-modal-container>'
+    );
   });
 });

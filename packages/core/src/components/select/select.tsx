@@ -75,6 +75,14 @@ export class Select {
   @Prop() i18nSelectListHeader = 'Please select an option';
 
   /**
+   * Hide list header
+   *
+   * @since 1.5.0
+   @
+   */
+  @Prop() hideListHeader = false;
+
+  /**
    * Item selection changed
    */
   @Event() itemSelectionChange: EventEmitter<string | string[]>;
@@ -397,15 +405,14 @@ export class Select {
                   ref={(ref) => (this.inputRef = ref)}
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
-                {this.isMultipleMode &&
-                this.allowClear &&
+                {this.allowClear &&
                 (this.value?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
                     icon="clear"
                     ghost
                     oval
-                    size="24"
+                    size="16"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -446,7 +453,13 @@ export class Select {
             };
           }}
         >
-          <div class="select-list-header" title={this.i18nSelectListHeader}>
+          <div
+            class={{
+              'select-list-header': true,
+              hidden: this.hideListHeader === true,
+            }}
+            title={this.i18nSelectListHeader}
+          >
             {this.i18nSelectListHeader}
           </div>
           <slot></slot>

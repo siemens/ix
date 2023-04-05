@@ -1,6 +1,7 @@
 import Playground from '@site/src/components/Playground';
 
 import Props from './../auto-generated/ix-pagination/props.md';
+import Tags from './../auto-generated/ix-pagination/tags.md';
 import Events from './../auto-generated/ix-pagination/events.md';
 
 import SourcePagination from './../auto-generated/previews/web-component/pagination.md';
@@ -14,6 +15,8 @@ import SourceAngularPaginationAdvanced from './../auto-generated/previews/angula
 import SourceVuePaginationAdvanced from './../auto-generated/previews/vue/pagination-advanced.md';
 
 # Pagination
+
+<Tags />
 
 ## Usage
 

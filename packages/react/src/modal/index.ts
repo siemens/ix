@@ -24,6 +24,7 @@ export async function showModal<TReason = any>(
   }
 
   const container = document.createElement('DIV');
+  container.style.display = 'contents';
   const root = ReactDOMClient.createRoot(container);
   root.render(config.content);
 

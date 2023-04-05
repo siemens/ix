@@ -489,6 +489,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nPlaceholder',
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
+  'hideListHeader',
   'itemSelectionChange',
   'addItem'
 ]);
@@ -606,7 +607,8 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
 export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-tooltip', undefined, [
   'for',
   'titleContent',
-  'interactive'
+  'interactive',
+  'placement'
 ]);
 
 

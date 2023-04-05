@@ -19,6 +19,10 @@ import { TypedEvent } from '../utils/typed-event';
 export class ModalContainer {
   @Element() hostElement: HTMLIxModalContainerElement;
 
+  get modalStack() {
+    return this.hostElement.querySelector(':scope > div.modal-stack');
+  }
+
   /**
    * Display modal dialog
    *
@@ -41,15 +45,18 @@ export class ModalContainer {
     } else {
       modal.appendChild(content);
     }
-
-    this.hostElement.appendChild(modal);
+    this.modalStack.appendChild(modal);
 
     modal.addEventListener('closed', (event: CustomEvent<T>) => {
-      this.hostElement.removeChild(modal);
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      this.modalStack.removeChild(modal);
       onClose.emit(event.detail);
     });
     modal.addEventListener('dismissed', (event: CustomEvent<T>) => {
-      this.hostElement.removeChild(modal);
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      this.modalStack.removeChild(modal);
       onDismiss.emit(event.detail);
     });
 
@@ -61,6 +68,10 @@ export class ModalContainer {
   }
 
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div class="modal-stack"></div>
+      </Host>
+    );
   }
 }

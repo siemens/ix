@@ -323,7 +323,7 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
    * Date change event
 
 If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-`2022/10/22 - 2022/10/24` (start and end). If range mode is choosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerLegacyDateChangeEvent>>;
   /**
@@ -1348,14 +1348,14 @@ export declare interface IxPill extends Components.IxPill {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
 })
 @Component({
   selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
 })
 export class IxSelect {
   protected el: HTMLElement;
@@ -1664,14 +1664,14 @@ export declare interface IxToggle extends Components.IxToggle {
 
 
 @ProxyCmp({
-  inputs: ['for', 'interactive', 'titleContent']
+  inputs: ['for', 'interactive', 'placement', 'titleContent']
 })
 @Component({
   selector: 'ix-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['for', 'interactive', 'titleContent'],
+  inputs: ['for', 'interactive', 'placement', 'titleContent'],
 })
 export class IxTooltip {
   protected el: HTMLElement;
