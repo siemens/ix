@@ -310,9 +310,7 @@ export class Select {
   }
 
   private setHoverEffectForNavigatedSelectItem() {
-    this.items.forEach((item: HTMLIxSelectItemElement) => {
-      item.hover = item === this.navigationItem;
-    });
+    this.navigationItem.querySelector('button').focus();
   }
 
   private filterItemsWithTypeahead() {
