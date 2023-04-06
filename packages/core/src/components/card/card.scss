@@ -55,6 +55,8 @@ $paddingContentLeftRight: 1rem;
     padding: 1rem $paddingContentLeftRight;
     min-height: calc(13.5rem - 2.5rem);
     background-color: var(--ix-card-background);
+    border-top-left-radius: var(--theme-default-border-radius);
+    border-top-right-radius: var(--theme-default-border-radius);
   }
 
   .card-footer {

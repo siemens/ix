@@ -47,7 +47,6 @@ export class CardAccordion {
               'expand-icon': true,
               show: this.expandContent,
             }}
-            color={this.expandContent ? 'color-dynamic' : 'color-primary'}
           ></ix-icon>
         </button>
         <div
