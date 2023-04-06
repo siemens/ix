@@ -54,6 +54,7 @@ export class DatePicker {
   /**
    * @deprecated Will be removed in 2.0.0
    */
+  // TODO: Hide done button for non range selection in v2.0.0.
   @Prop() individual: boolean = true;
 
   /**
@@ -166,7 +167,7 @@ export class DatePicker {
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   get year() {
-    if (this.from) {
+    if (this.from !== null) {
       return DateTime.fromFormat(this.from, this.format).year;
     }
 
@@ -174,7 +175,7 @@ export class DatePicker {
   }
 
   get day() {
-    if (this.from) {
+    if (this.from !== null) {
       return DateTime.fromFormat(this.from, this.format).day;
     }
 
@@ -182,7 +183,7 @@ export class DatePicker {
   }
 
   get month() {
-    if (this.from) {
+    if (this.from !== null) {
       return DateTime.fromFormat(this.from, this.format).month;
     }
 
@@ -493,6 +494,7 @@ export class DatePicker {
                   >
                     {this.years.map((year) => (
                       <div
+                        key={year}
                         class={{ arrowYear: true }}
                         onClick={(event) => this.selectTempYear(event, year)}
                       >
@@ -513,6 +515,7 @@ export class DatePicker {
                   <div class="overflow">
                     {this.monthNames.map((month, index) => (
                       <div
+                        key={month}
                         class={{
                           arrowYear: true,
                           selected: this.tempMonth - 1 === index,
@@ -553,7 +556,9 @@ export class DatePicker {
           <div class="grid">
             <div class="calendar-item week-day"></div>
             {this.dayNames.map((name) => (
-              <div class="calendar-item week-day">{name.slice(0, 3)}</div>
+              <div key={name} class="calendar-item week-day">
+                {name.slice(0, 3)}
+              </div>
             ))}
 
             {this.calendar.map((week) => {
@@ -562,6 +567,7 @@ export class DatePicker {
                   <div class="calendar-item week-number">{week[0]}</div>
                   {week[1].map((day) => (
                     <div
+                      key={day}
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
                     >
