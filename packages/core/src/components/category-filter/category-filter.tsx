@@ -390,9 +390,11 @@ export class CategoryFilter {
   }
 
   private filterDuplicateTokens(value: string) {
-    const isTokenAlreadySet = this.filterTokens.some(
-      (token) => token.value === value && token.id === this.category
-    );
+    const isTokenAlreadySet = this.filterTokens.some((token) => {
+      if (!this.suggestions) {
+        return token.value === value && token.id === this.category;
+      } else return token.value === value;
+    });
 
     return !isTokenAlreadySet;
   }
