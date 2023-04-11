@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 
 /**
  * @since 1.5.0
@@ -19,6 +27,8 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 })
 export class Pagination {
   private readonly maxCountPages = 7;
+
+  @Element() hostElement!: HTMLIxPaginationElement;
 
   /**
    * Advanced mode
@@ -42,9 +52,9 @@ export class Pagination {
   @Prop() count: number;
 
   /**
-   * Zero based index of currently selected page
+   * Index of currently selected page
    */
-  @Prop({ mutable: true }) selectedPage = 0;
+  @Prop({ mutable: true }) selectedPage = 1;
 
   /**
    * i18n
@@ -72,18 +82,26 @@ export class Pagination {
    */
   @Event() itemCountChanged: EventEmitter<number>;
 
+  get pageInput() {
+    return this.hostElement.querySelector(
+      '.advanced-pagination input.form-control'
+    );
+  }
+
   private selectPage(index: number) {
-    if (index < 0 || index >= this.count) {
-      console.warn(`ix-pagination - invalid index ${index}`);
-      return;
+    if (index < 1) {
+      this.selectedPage = 1;
+    } else if (index > this.count) {
+      this.selectedPage = this.count;
+    } else {
+      this.selectedPage = index;
     }
 
-    this.selectedPage = index;
-    this.pageSelected.emit(index);
+    this.pageSelected.emit(this.selectedPage);
   }
 
   private increase() {
-    if (this.selectedPage === this.count - 1) {
+    if (this.selectedPage === this.count) {
       return;
     }
 
@@ -91,7 +109,7 @@ export class Pagination {
   }
 
   private decrease() {
-    if (this.selectedPage === 0) {
+    if (this.selectedPage === 1) {
       return;
     }
 
@@ -107,7 +125,7 @@ export class Pagination {
         }}
         selected={this.selectedPage === index}
       >
-        {index + 1}
+        {index}
       </ix-index-button>
     );
   }
@@ -116,24 +134,24 @@ export class Pagination {
     const pagesBeforeOverflow = Math.floor(this.maxCountPages / 2);
     const hasOverflow = this.count > this.maxCountPages;
     const hasOverflowStart =
-      hasOverflow && this.selectedPage > pagesBeforeOverflow;
+      hasOverflow && this.selectedPage > pagesBeforeOverflow + 1;
     const hasOverflowEnd =
-      hasOverflow && this.selectedPage < this.count - pagesBeforeOverflow - 1;
+      hasOverflow && this.selectedPage < this.count - pagesBeforeOverflow;
     const pageButtons = [];
 
-    let start = 0;
+    let start = 1;
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
 
     if (hasOverflowStart) {
-      pageButtons.push(this.getPageButton(0));
+      pageButtons.push(this.getPageButton(1));
       pageButtons.push(
         <ix-index-button
           variant="Secondary"
           onClick={() => {
             if (hasOverflowEnd) {
               this.selectPage(
-                this.selectedPage - Math.max(0, 2 * pageCount + 1)
+                this.selectedPage - Math.max(1, 2 * pageCount + 1)
               );
             } else {
               this.selectPage(this.count - this.maxCountPages);
@@ -145,9 +163,9 @@ export class Pagination {
       );
 
       if (hasOverflowEnd) {
-        start = this.count - this.maxCountPages + 2;
+        start = this.count - this.maxCountPages + 3;
       } else {
-        start = this.count - this.maxCountPages + 2;
+        start = this.count - this.maxCountPages + 3;
         end = this.count;
       }
     }
@@ -155,13 +173,13 @@ export class Pagination {
     if (hasOverflowEnd) {
       if (hasOverflowStart) {
         start = this.selectedPage - pageCount;
-        end = this.selectedPage + pageCount + 1;
+        end = this.selectedPage + pageCount;
       } else {
         end = this.maxCountPages - 2;
       }
     }
 
-    for (let i = start; i < end; i++) {
+    for (let i = start; i <= end; i++) {
       pageButtons.push(this.getPageButton(i));
     }
 
@@ -182,7 +200,7 @@ export class Pagination {
           ...
         </ix-index-button>
       );
-      pageButtons.push(this.getPageButton(this.count - 1));
+      pageButtons.push(this.getPageButton(this.count));
     }
 
     return <span class="page-buttons">{pageButtons}</span>;
@@ -192,7 +210,7 @@ export class Pagination {
     return (
       <Host>
         <ix-icon-button
-          disabled={this.selectedPage === 0}
+          disabled={this.selectedPage === 1}
           ghost
           icon="chevron-left-small"
           onClick={() => this.decrease()}
@@ -204,6 +222,8 @@ export class Pagination {
             <input
               class="form-control"
               type="number"
+              min="1"
+              max={this.count}
               value={this.selectedPage}
               onChange={(e) => {
                 const index = Number.parseInt(e.target['value']);
@@ -219,7 +239,7 @@ export class Pagination {
         )}
 
         <ix-icon-button
-          disabled={this.selectedPage === this.count - 1}
+          disabled={this.selectedPage === this.count}
           ghost
           icon="chevron-right-small"
           onClick={() => this.increase()}
