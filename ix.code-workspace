@@ -58,6 +58,13 @@
       "blankLinesAfter": 0,
       "forceToTop": true
     },
+    "psi-header.lang-config": [
+      {
+        "language": "vue",
+        "begin": "<!--",
+        "end": "-->"
+      }
+    ],
     "psi-header.templates": [
       {
         "language": "*",

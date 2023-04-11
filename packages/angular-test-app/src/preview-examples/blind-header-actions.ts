@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
       <ix-icon-button
         id="context-menu"
         slot="header-actions"
+        ghost
         icon="context-menu"
       ></ix-icon-button>
       <ix-dropdown trigger="context-menu">test</ix-dropdown>
