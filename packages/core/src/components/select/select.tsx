@@ -354,9 +354,15 @@ export class Select {
   }
 
   private placeholderValue() {
-    if (this.editable) return this.i18nPlaceholderEditable;
-    if (this.readonly) return '';
-    else return this.i18nPlaceholder;
+    if (this.editable) {
+      return this.i18nPlaceholderEditable;
+    }
+
+    if (this.readonly) {
+      return '';
+    }
+
+    return this.i18nPlaceholder;
   }
 
   render() {
