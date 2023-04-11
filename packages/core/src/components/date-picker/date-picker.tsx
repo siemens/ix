@@ -54,7 +54,6 @@ export class DatePicker {
   /**
    * @deprecated Will be removed in 2.0.0
    */
-  // TODO: Hide done button for non range selection in v2.0.0.
   @Prop() individual: boolean = true;
 
   /**
