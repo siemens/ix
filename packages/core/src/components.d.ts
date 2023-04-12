@@ -1248,7 +1248,6 @@ export namespace Components {
         "selectedIndices": string | string[];
     }
     interface IxSelectItem {
-        "hover": boolean;
         /**
           * Displayed name of the item
          */
@@ -3689,7 +3688,6 @@ declare namespace LocalJSX {
         "selectedIndices"?: string | string[];
     }
     interface IxSelectItem {
-        "hover"?: boolean;
         /**
           * Displayed name of the item
          */

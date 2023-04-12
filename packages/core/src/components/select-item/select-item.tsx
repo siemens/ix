@@ -44,11 +44,6 @@ export class SelectItem {
   @Prop() selected = false;
 
   /**
-   * @internal
-   */
-  @Prop() hover = false;
-
-  /**
    * Item clicked
    */
   @Event() itemClick: EventEmitter<string>;
@@ -86,7 +81,6 @@ export class SelectItem {
       <Host>
         <ix-dropdown-item
           checked={this.selected}
-          hover={this.hover}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
         ></ix-dropdown-item>
