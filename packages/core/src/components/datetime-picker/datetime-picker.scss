@@ -13,6 +13,8 @@
   display: block;
   background-color: var(--theme-menu--background);
   border-radius: 4px;
+  position: relative;
+  width: 32.6875rem;
 }
 
 .flex {
@@ -20,11 +22,10 @@
   justify-content: center;
 }
 
-.done {
-  display: inline-flex;
-  justify-content: flex-end;
-  padding: $default-space;
-  width: 100%;
+.btn-select-date{
+  position: absolute;
+  bottom: $default-space;
+  right: $default-space;
 }
 
 .separator {
