@@ -52,9 +52,9 @@ export class Pagination {
   @Prop() count: number;
 
   /**
-   * Index of currently selected page
+   * Zero based index of currently selected page
    */
-  @Prop({ mutable: true }) selectedPage = 1;
+  @Prop({ mutable: true }) selectedPage = 0;
 
   /**
    * i18n
@@ -89,19 +89,20 @@ export class Pagination {
   }
 
   private selectPage(index: number) {
-    if (index < 1) {
-      this.selectedPage = 1;
-    } else if (index > this.count) {
-      this.selectedPage = this.count;
+    if (index < 0) {
+      this.selectedPage = 0;
+    } else if (index > this.count - 1) {
+      this.selectedPage = this.count - 1;
     } else {
       this.selectedPage = index;
     }
 
+    console.log(this.selectedPage);
     this.pageSelected.emit(this.selectedPage);
   }
 
   private increase() {
-    if (this.selectedPage === this.count) {
+    if (this.selectedPage === this.count - 1) {
       return;
     }
 
@@ -109,7 +110,7 @@ export class Pagination {
   }
 
   private decrease() {
-    if (this.selectedPage === 1) {
+    if (this.selectedPage === 0) {
       return;
     }
 
@@ -125,7 +126,7 @@ export class Pagination {
         }}
         selected={this.selectedPage === index}
       >
-        {index}
+        {index + 1}
       </ix-index-button>
     );
   }
@@ -134,24 +135,24 @@ export class Pagination {
     const pagesBeforeOverflow = Math.floor(this.maxCountPages / 2);
     const hasOverflow = this.count > this.maxCountPages;
     const hasOverflowStart =
-      hasOverflow && this.selectedPage > pagesBeforeOverflow + 1;
+      hasOverflow && this.selectedPage > pagesBeforeOverflow;
     const hasOverflowEnd =
-      hasOverflow && this.selectedPage < this.count - pagesBeforeOverflow;
+      hasOverflow && this.selectedPage < this.count - pagesBeforeOverflow - 1;
     const pageButtons = [];
 
-    let start = 1;
+    let start = 0;
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
 
     if (hasOverflowStart) {
-      pageButtons.push(this.getPageButton(1));
+      pageButtons.push(this.getPageButton(0));
       pageButtons.push(
         <ix-index-button
           variant="Secondary"
           onClick={() => {
             if (hasOverflowEnd) {
               this.selectPage(
-                this.selectedPage - Math.max(1, 2 * pageCount + 1)
+                this.selectedPage - Math.max(0, 2 * pageCount + 1)
               );
             } else {
               this.selectPage(this.count - this.maxCountPages);
@@ -163,9 +164,9 @@ export class Pagination {
       );
 
       if (hasOverflowEnd) {
-        start = this.count - this.maxCountPages + 3;
+        start = this.count - this.maxCountPages + 2;
       } else {
-        start = this.count - this.maxCountPages + 3;
+        start = this.count - this.maxCountPages + 2;
         end = this.count;
       }
     }
@@ -173,13 +174,13 @@ export class Pagination {
     if (hasOverflowEnd) {
       if (hasOverflowStart) {
         start = this.selectedPage - pageCount;
-        end = this.selectedPage + pageCount;
+        end = this.selectedPage + pageCount + 1;
       } else {
         end = this.maxCountPages - 2;
       }
     }
 
-    for (let i = start; i <= end; i++) {
+    for (let i = start; i < end; i++) {
       pageButtons.push(this.getPageButton(i));
     }
 
@@ -200,7 +201,7 @@ export class Pagination {
           ...
         </ix-index-button>
       );
-      pageButtons.push(this.getPageButton(this.count));
+      pageButtons.push(this.getPageButton(this.count - 1));
     }
 
     return <span class="page-buttons">{pageButtons}</span>;
@@ -210,7 +211,7 @@ export class Pagination {
     return (
       <Host>
         <ix-icon-button
-          disabled={this.selectedPage === 1}
+          disabled={this.selectedPage === 0}
           ghost
           icon="chevron-left-small"
           onClick={() => this.decrease()}
@@ -224,10 +225,10 @@ export class Pagination {
               type="number"
               min="1"
               max={this.count}
-              value={this.selectedPage}
+              value={this.selectedPage + 1}
               onChange={(e) => {
                 const index = Number.parseInt(e.target['value']);
-                this.selectPage(index);
+                this.selectPage(index - 1);
               }}
             />
             <span class="total-count">
@@ -239,7 +240,7 @@ export class Pagination {
         )}
 
         <ix-icon-button
-          disabled={this.selectedPage === this.count}
+          disabled={this.selectedPage === this.count - 1}
           ghost
           icon="chevron-right-small"
           onClick={() => this.increase()}

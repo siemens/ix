@@ -1162,7 +1162,7 @@ export namespace Components {
          */
         "itemCount": number;
         /**
-          * Index of currently selected page
+          * Zero based index of currently selected page
          */
         "selectedPage": number;
         /**
@@ -3595,7 +3595,7 @@ declare namespace LocalJSX {
          */
         "onPageSelected"?: (event: IxPaginationCustomEvent<number>) => void;
         /**
-          * Index of currently selected page
+          * Zero based index of currently selected page
          */
         "selectedPage"?: number;
         /**

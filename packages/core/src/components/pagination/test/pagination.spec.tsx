@@ -30,7 +30,7 @@ describe('ix-pagination', () => {
     const pagination = page.doc.querySelector('ix-pagination');
     const button = page.doc.querySelectorAll('ix-index-button')[6];
     button.click();
-    expect(pagination.selectedPage).toBe(10);
+    expect(pagination.selectedPage).toBe(9);
   });
 
   it('overflow both select lower page', async () => {
