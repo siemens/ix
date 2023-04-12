@@ -17,9 +17,11 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-workflow-steps>
-          <ix-workflow-step></ix-workflow-step>
-        </ix-workflow-steps>
+        <ix-select>
+          <ix-select-item value={'1'} label="123"></ix-select-item>
+          <ix-select-item value={'12'} label="456"></ix-select-item>
+          <ix-select-item value={'13'} label="789"></ix-select-item>
+        </ix-select>
       </Host>
     );
   }
