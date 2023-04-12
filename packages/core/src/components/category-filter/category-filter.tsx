@@ -321,6 +321,15 @@ export class CategoryFilter {
       return;
     }
 
+    if (
+      this.filterTokens.find(
+        (value) =>
+          value?.value === token && category === 'CW_CUSTOM_FILTER_VALUE'
+      )
+    ) {
+      return;
+    }
+
     const newToken = token.trim();
 
     if (newToken === '') {
