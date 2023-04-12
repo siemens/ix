@@ -660,7 +660,8 @@ export const IxWorkflowStep = /*@__PURE__*/ defineContainer<JSX.IxWorkflowStep>(
   'status',
   'clickable',
   'selected',
-  'position'
+  'position',
+  'selectedChanged'
 ]);
 
 

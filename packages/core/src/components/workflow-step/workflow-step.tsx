@@ -14,9 +14,12 @@
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   Fragment,
   h,
   Host,
+  Listen,
   Prop,
   State,
   Watch,
@@ -65,6 +68,11 @@ export class WorkflowStep {
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';
   @State() iconColor: string = 'workflow-step-icon-default--color';
+
+  /**
+   * Selection changed
+   */
+  @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean;
 
@@ -131,6 +139,13 @@ export class WorkflowStep {
     this.customIconSlot = !!this.hostElement.querySelector(
       '[slot="custom-icon"]'
     );
+  }
+
+  @Listen('click', { passive: true })
+  clickFunction() {
+    if (!this.disabled) {
+      this.selectedChanged.emit(this.hostElement);
+    }
   }
 
   render() {

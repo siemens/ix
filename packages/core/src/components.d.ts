@@ -1821,6 +1821,10 @@ export interface IxUploadCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxUploadElement;
 }
+export interface IxWorkflowStepCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxWorkflowStepElement;
+}
 export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxWorkflowStepsElement;
@@ -4114,6 +4118,10 @@ declare namespace LocalJSX {
           * Set disabled
          */
         "disabled"?: boolean;
+        /**
+          * Selection changed
+         */
+        "onSelectedChanged"?: (event: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElement>) => void;
         /**
           * Activate navigation click
           * @deprecated Will be changed to '@internal' in 2.0.0

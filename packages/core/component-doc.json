@@ -9576,18 +9576,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-workflow-step": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-workflow-step"
         ]
       },
       "props": [
@@ -9731,11 +9726,27 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "selectedChanged",
+          "detail": "HTMLIxWorkflowStepElement",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Selection changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ]
     },
     {
       "dirPath": "./src/components/workflow-steps",
@@ -9749,15 +9760,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "clickable",
@@ -9858,19 +9863,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-workflow-steps",
-        "ix-workflow-step"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps",
-          "ix-workflow-step"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

@@ -59,35 +59,13 @@ export class WorkflowSteps {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
   }
 
-  private deselectAll() {
-    const steps = this.getSteps();
-    steps.forEach((element) => {
-      element.selected = false;
-    });
-  }
-
-  clickListener(steps, element, index) {
-    element.addEventListener('click', () => {
-      if (!this.clickable) return;
-      const previousElement = steps[index - 1];
-      if (
-        this.linear &&
-        previousElement &&
-        !['done', 'success'].includes(previousElement?.status)
-      ) {
-        return (element.selected = false);
-      }
-      this.deselectAll();
-      element.selected = true;
-      this.stepSelected.emit(index);
-    });
+  get stepsContent() {
+    return this.hostElement.querySelector('.steps');
   }
 
   styling() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
-      this.clickListener(steps, element, index);
-
       element.vertical = this.vertical;
       element.clickable = this.clickable;
       element.selected = this.selectedIndex === index;
@@ -106,6 +84,18 @@ export class WorkflowSteps {
   private observer: MutationObserver;
 
   componentDidLoad() {
+    this.stepsContent.addEventListener(
+      'selectedChanged',
+      (event: CustomEvent<HTMLIxWorkflowStepElement>) => {
+        const steps = this.getSteps();
+        steps.forEach((element) => {
+          if (element !== event.target) {
+            element.selected = false;
+          }
+        });
+      }
+    );
+
     const slotDiv = this.hostElement.querySelector('.steps');
 
     this.observer = createMutationObserver((mutations) => {
