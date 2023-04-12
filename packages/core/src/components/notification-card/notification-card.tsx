@@ -9,6 +9,13 @@
 
 import { Component, Host, Prop, h } from '@stencil/core';
 
+export type CardVariant =
+  | 'insight'
+  | 'notification'
+  | 'alarm'
+  | 'critical'
+  | 'warning';
+
 @Component({
   tag: 'ix-notification-card',
   styleUrl: 'notification-card.scss',
@@ -35,9 +42,14 @@ export class NotificationCard {
    */
   @Prop() subheading: string;
 
+  /**
+   * Look of the card
+   */
+  @Prop() variant: CardVariant = 'insight';
+
   render() {
     return (
-      <Host>
+      <Host class={`card-${this.variant}`}>
         <ix-card>
           <ix-card-title>
             <ix-icon
@@ -45,7 +57,6 @@ export class NotificationCard {
               name={this.icon ?? 'rocket'}
               size="32"
             ></ix-icon>
-            <span class={'notification'}>{this.notification ?? 0}</span>
             <slot name="title-action"></slot>
           </ix-card-title>
           <ix-card-content>
@@ -53,6 +64,10 @@ export class NotificationCard {
               {this.heading}
             </ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
+
+            <div class="notification-edge">
+              <span class={'notification'}>{this.notification ?? 0}</span>
+            </div>
           </ix-card-content>
           <ix-card-accordion>
             <slot></slot>

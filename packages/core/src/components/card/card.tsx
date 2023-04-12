@@ -1,11 +1,4 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core';
-
-export type CardVariant =
-  | 'insight'
-  | 'notification'
-  | 'alarm'
-  | 'critical'
-  | 'warning';
+import { Component, Element, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'ix-card',
@@ -13,16 +6,11 @@ export type CardVariant =
   shadow: true,
 })
 export class Card {
-  /**
-   * Look of the card
-   */
-  @Prop() variant: CardVariant = 'insight';
-
   @Element() hostElement: HTMLIxCardElement;
 
   render() {
     return (
-      <Host class={`card-${this.variant}`}>
+      <Host>
         <div class="card-content">
           <slot></slot>
         </div>

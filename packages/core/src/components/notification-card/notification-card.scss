@@ -7,11 +7,42 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+:host(.card-insight) {
+  --ix-card-background: transparent;
+  --ix-card-border-color: var(--theme-color-soft-bdr);
+}
+
+:host(.card-notification) {
+  --ix-card-background: var(--theme-color-component-1);
+}
+
+:host(.card-alarm) {
+  --ix-card-background: var(--theme-color-alarm);
+  color: var(--theme-color-alarm--contrast);
+}
+
+:host(.card-critical) {
+  --ix-card-background: var(--theme-color-critical);
+  color: var(--theme-color-critical--contrast);
+}
+
+:host(.card-warning) {
+  --ix-card-background: var(--theme-color-warning);
+  color: var(--theme-color-warning--contrast);
+}
+
 :host {
   display: block;
 
   .icon {
     transform: scale(1.25);
+  }
+
+  .notification-edge {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
   }
 
   .notification {

@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/button/button";
-import { CardVariant } from "./components/card/card";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -21,6 +20,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { CardVariant } from "./components/notification-card/notification-card";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -29,7 +29,6 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
-export { CardVariant } from "./components/card/card";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -44,6 +43,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { CardVariant } from "./components/notification-card/notification-card";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -166,10 +166,6 @@ export namespace Components {
         "variant": ButtonVariant;
     }
     interface IxCard {
-        /**
-          * Look of the card
-         */
-        "variant": CardVariant;
     }
     interface IxCardAccordion {
     }
@@ -1164,6 +1160,10 @@ export namespace Components {
           * Card subheading
          */
         "subheading": string;
+        /**
+          * Look of the card
+         */
+        "variant": CardVariant;
     }
     /**
      * @since 1.5.0
@@ -2573,10 +2573,6 @@ declare namespace LocalJSX {
         "variant"?: ButtonVariant;
     }
     interface IxCard {
-        /**
-          * Look of the card
-         */
-        "variant"?: CardVariant;
     }
     interface IxCardAccordion {
         "onCardAccordingExpandChanged"?: (event: IxCardAccordionCustomEvent<boolean>) => void;
@@ -3663,6 +3659,10 @@ declare namespace LocalJSX {
           * Card subheading
          */
         "subheading"?: string;
+        /**
+          * Look of the card
+         */
+        "variant"?: CardVariant;
     }
     /**
      * @since 1.5.0
