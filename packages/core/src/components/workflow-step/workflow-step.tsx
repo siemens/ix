@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-
 import {
   Component,
   Element,

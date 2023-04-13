@@ -1663,6 +1663,7 @@ export namespace Components {
         "clickable": boolean;
         /**
           * Select linear mode
+          * @deprecated Has no effect on component. Will get removed in 2.0.0
          */
         "linear": boolean;
         /**
@@ -4144,6 +4145,7 @@ declare namespace LocalJSX {
         "clickable"?: boolean;
         /**
           * Select linear mode
+          * @deprecated Has no effect on component. Will get removed in 2.0.0
          */
         "linear"?: boolean;
         /**

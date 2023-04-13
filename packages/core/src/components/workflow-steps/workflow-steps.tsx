@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-
 import {
   Component,
   Element,
@@ -37,6 +33,7 @@ export class WorkflowSteps {
 
   /**
    * Select linear mode
+   * @deprecated Has no effect on component. Will get removed in 2.0.0
    */
   @Prop() linear: boolean = false;
 
@@ -63,7 +60,7 @@ export class WorkflowSteps {
     return this.hostElement.querySelector('.steps');
   }
 
-  styling() {
+  updateSteps() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
       element.vertical = this.vertical;
@@ -74,10 +71,14 @@ export class WorkflowSteps {
         element.position = 'single';
         return;
       }
-      if (steps.length > 1 && (index === 0 || index === steps.length - 1)) {
-        if (index === 0) element.position = 'first';
-        if (index === steps.length - 1) element.position = 'last';
-      } else element.position = 'undefined';
+
+      if (index === 0) {
+        element.position = 'first';
+      } else if (index === steps.length - 1) {
+        element.position = 'last';
+      } else {
+        element.position = 'undefined';
+      }
     });
   }
 
@@ -101,7 +102,7 @@ export class WorkflowSteps {
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
-          this.styling();
+          this.updateSteps();
         }
       }
     });
@@ -116,7 +117,7 @@ export class WorkflowSteps {
   }
 
   componentDidRender() {
-    this.styling();
+    this.updateSteps();
   }
 
   render() {
