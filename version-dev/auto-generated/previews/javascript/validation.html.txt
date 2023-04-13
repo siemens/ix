@@ -16,8 +16,10 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <label for="validationCustom02" class="form-label"> Last name </label>
       <ix-validation-tooltip message="Cannot be empty!">
+        <label for="validationCustom02" class="form-label">
+          Last name
+        </label>
         <input
           type="text"
           class="form-control"

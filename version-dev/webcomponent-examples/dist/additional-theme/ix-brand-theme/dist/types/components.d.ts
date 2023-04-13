@@ -32,8 +32,6 @@ export namespace Components {
     }
     interface IxSiemensLogo {
     }
-    interface MyComponent {
-    }
 }
 declare global {
     interface HTMLIxSiemensAboutContentElement extends Components.IxSiemensAboutContent, HTMLStencilElement {
@@ -48,16 +46,9 @@ declare global {
         prototype: HTMLIxSiemensLogoElement;
         new (): HTMLIxSiemensLogoElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ix-siemens-about-content": HTMLIxSiemensAboutContentElement;
         "ix-siemens-logo": HTMLIxSiemensLogoElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -86,12 +77,9 @@ declare namespace LocalJSX {
     }
     interface IxSiemensLogo {
     }
-    interface MyComponent {
-    }
     interface IntrinsicElements {
         "ix-siemens-about-content": IxSiemensAboutContent;
         "ix-siemens-logo": IxSiemensLogo;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -100,7 +88,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ix-siemens-about-content": LocalJSX.IxSiemensAboutContent & JSXBase.HTMLAttributes<HTMLIxSiemensAboutContentElement>;
             "ix-siemens-logo": LocalJSX.IxSiemensLogo & JSXBase.HTMLAttributes<HTMLIxSiemensLogoElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

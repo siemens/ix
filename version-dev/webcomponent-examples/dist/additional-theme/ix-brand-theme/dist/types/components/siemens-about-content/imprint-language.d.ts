@@ -1,4 +1,4 @@
-export declare type LegalLinkLanguage = 'global/en' | 'global/es' | 'de/de' | 'cn/zh';
+export type LegalLinkLanguage = 'global/en' | 'global/es' | 'de/de' | 'cn/zh';
 interface LegalTextSource {
   general: string;
   privacy: string;

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-76b8a7e8.js');
+const index = require('./index-7b0a0dd9.js');
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
@@ -58,37 +58,14 @@ const siemensAboutContentCss = ".text-xs{-webkit-font-smoothing:antialiased;-moz
 const SiemensAboutContent = class {
   constructor(hostRef) {
     index.registerInstance(this, hostRef);
-    /**
-     * Should only be set if you use ix-menu standalone
-     */
+    this.applicationName = undefined;
     this.applicationDescription = '';
-    /**
-     * Language of the links in the About & Legal Tab
-     */
     this.imprintLanguage = 'global/en';
-    /**
-     * Copyright
-     */
     this.copyrightYears = '1996 - 2022';
-    /**
-     *
-     */
     this.i18nCorporateLabel = 'Corporate Information';
-    /**
-     *
-     */
     this.i18nPrivacyNoticeLabel = 'Privacy Notice';
-    /**
-     *
-     */
     this.i18nTermsOfUseLabel = 'Terms of Use';
-    /**
-     *
-     */
     this.i18nCookieNoticeLabel = 'Cookie Notice';
-    /**
-     *
-     */
     this.i18nDigitalId = 'Digital ID';
   }
   render() {

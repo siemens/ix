@@ -56,37 +56,14 @@ const SiemensAboutContent = /*@__PURE__*/ proxyCustomElement(class extends HTMLE
     super();
     this.__registerHost();
     this.__attachShadow();
-    /**
-     * Should only be set if you use ix-menu standalone
-     */
+    this.applicationName = undefined;
     this.applicationDescription = '';
-    /**
-     * Language of the links in the About & Legal Tab
-     */
     this.imprintLanguage = 'global/en';
-    /**
-     * Copyright
-     */
     this.copyrightYears = '1996 - 2022';
-    /**
-     *
-     */
     this.i18nCorporateLabel = 'Corporate Information';
-    /**
-     *
-     */
     this.i18nPrivacyNoticeLabel = 'Privacy Notice';
-    /**
-     *
-     */
     this.i18nTermsOfUseLabel = 'Terms of Use';
-    /**
-     *
-     */
     this.i18nCookieNoticeLabel = 'Cookie Notice';
-    /**
-     *
-     */
     this.i18nDigitalId = 'Digital ID';
   }
   render() {

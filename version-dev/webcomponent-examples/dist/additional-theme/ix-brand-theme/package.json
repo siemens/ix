@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-brand-theme",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Theme for Siemens ix",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -20,18 +20,21 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "test:visual-regression": "playwright test --reporter html",
+    "test:e2e": "playwright test --reporter html",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
-    "visual-regression-ci": "npx playwright install chromium && yarn test:visual-regression",
+    "visual-regression-ci": "npx playwright install chromium && yarn test:e2e",
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\""
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "2.22.2"
+  },
+  "peerDependencies": {
+    "@siemens/ix": "^1.4.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.24.1",
-    "@siemens/ix": "~1.0.0",
-    "@siemens/ix-icons": "~1.0.0",
+    "@siemens/ix": "1.4.0",
+    "@siemens/ix-icons": "^1.0.3",
     "@stencil/sass": "^1.5.2",
     "@types/jest": "^27.0.3",
     "conventional-changelog-cli": "^2.2.2",
