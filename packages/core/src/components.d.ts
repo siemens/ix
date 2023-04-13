@@ -4118,9 +4118,6 @@ declare namespace LocalJSX {
           * Set disabled
          */
         "disabled"?: boolean;
-        /**
-          * Selection changed
-         */
         "onSelectedChanged"?: (event: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElement>) => void;
         /**
           * Activate navigation click

@@ -1783,17 +1783,11 @@ export class IxWorkflowStep {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['selectedChanged']);
   }
 }
 
 
-export declare interface IxWorkflowStep extends Components.IxWorkflowStep {
-  /**
-   * Selection changed
-   */
-  selectedChanged: EventEmitter<CustomEvent<HTMLIxWorkflowStepElement>>;
-}
+export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
 
 
 @ProxyCmp({

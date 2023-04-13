@@ -9726,17 +9726,7 @@
         }
       ],
       "methods": [],
-      "events": [
-        {
-          "event": "selectedChanged",
-          "detail": "HTMLIxWorkflowStepElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Selection changed",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],

@@ -70,7 +70,7 @@ export class WorkflowStep {
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
   /**
-   * Selection changed
+   * @internal
    */
   @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
 
@@ -143,7 +143,7 @@ export class WorkflowStep {
 
   @Listen('click', { passive: true })
   clickFunction() {
-    if (!this.disabled) {
+    if (!this.disabled && this.clickable) {
       this.selectedChanged.emit(this.hostElement);
     }
   }
