@@ -9726,27 +9726,11 @@
         }
       ],
       "methods": [],
-      "events": [
-        {
-          "event": "selectedChanged",
-          "detail": "HTMLIxWorkflowStepElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Selection changed",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/workflow-steps",
@@ -9848,7 +9832,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/my-component",

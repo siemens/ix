@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-
 import {
   Component,
   Element,
@@ -18,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -55,6 +52,8 @@ export class WorkflowSteps {
    */
   @Event() stepSelected: EventEmitter<number>;
 
+  private observer: MutationObserver;
+
   private getSteps() {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
   }
@@ -63,45 +62,31 @@ export class WorkflowSteps {
     return this.hostElement.querySelector('.steps');
   }
 
-  styling() {
+  changeWorkflowStepAttributes() {
     let steps = this.getSteps();
-    steps.forEach((element, index) => {
-      element.vertical = this.vertical;
-      element.clickable = this.clickable;
-      element.selected = this.selectedIndex === index;
+    steps.forEach((step, index) => {
+      step.vertical = this.vertical;
+      step.clickable = this.clickable;
+      step.selected = this.selectedIndex === index;
 
       if (steps.length === 1) {
-        element.position = 'single';
+        step.position = 'single';
         return;
       }
       if (steps.length > 1 && (index === 0 || index === steps.length - 1)) {
-        if (index === 0) element.position = 'first';
-        if (index === steps.length - 1) element.position = 'last';
-      } else element.position = 'undefined';
+        if (index === 0) step.position = 'first';
+        if (index === steps.length - 1) step.position = 'last';
+      } else step.position = 'undefined';
     });
   }
 
-  private observer: MutationObserver;
-
   componentDidLoad() {
-    this.stepsContent.addEventListener(
-      'selectedChanged',
-      (event: CustomEvent<HTMLIxWorkflowStepElement>) => {
-        const steps = this.getSteps();
-        steps.forEach((element) => {
-          if (element !== event.target) {
-            element.selected = false;
-          }
-        });
-      }
-    );
-
     const slotDiv = this.hostElement.querySelector('.steps');
 
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
-          this.styling();
+          this.changeWorkflowStepAttributes();
         }
       }
     });
@@ -116,7 +101,30 @@ export class WorkflowSteps {
   }
 
   componentDidRender() {
-    this.styling();
+    this.changeWorkflowStepAttributes();
+  }
+
+  @Listen('click', {
+    passive: false,
+  })
+  onClickEvent(event: Event) {
+    const path = event.composedPath();
+    const [targetStep] = path.filter(
+      (element) => (element as HTMLElement).tagName === 'IX-WORKFLOW-STEP'
+    );
+
+    if (!targetStep) {
+      return;
+    }
+
+    this.selectStepElement(targetStep as HTMLIxWorkflowStepElement);
+  }
+
+  private selectStepElement(stepToSelect: HTMLIxWorkflowStepElement) {
+    const steps = this.getSteps();
+    steps.forEach((element) => {
+      element.selected = element === stepToSelect;
+    });
   }
 
   render() {
