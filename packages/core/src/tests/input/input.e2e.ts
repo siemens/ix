@@ -42,4 +42,9 @@ regressionTest.describe('input', () => {
     await page.waitForTimeout(1000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
+
+  regressionTest('readonly', async ({ page }) => {
+    await page.goto('input/readonly');
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });

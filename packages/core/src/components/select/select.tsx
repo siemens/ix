@@ -353,6 +353,18 @@ export class Select {
     this.dropdownShow = false;
   }
 
+  private placeholderValue() {
+    if (this.editable) {
+      return this.i18nPlaceholderEditable;
+    }
+
+    if (this.readonly) {
+      return '';
+    }
+
+    return this.i18nPlaceholder;
+  }
+
   render() {
     return (
       <Host>
@@ -396,11 +408,7 @@ export class Select {
                   class={{
                     'allow-clear': this.allowClear && !!this.value?.length,
                   }}
-                  placeholder={
-                    this.editable
-                      ? this.i18nPlaceholderEditable
-                      : this.i18nPlaceholder
-                  }
+                  placeholder={this.placeholderValue()}
                   value={this.inputValue}
                   ref={(ref) => (this.inputRef = ref)}
                   onInput={() => this.filterItemsWithTypeahead()}
