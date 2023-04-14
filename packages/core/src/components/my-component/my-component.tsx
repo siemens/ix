@@ -15,12 +15,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-workflow-steps>
-          <ix-workflow-step></ix-workflow-step>
-        </ix-workflow-steps>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
