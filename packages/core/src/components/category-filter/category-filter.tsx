@@ -321,18 +321,13 @@ export class CategoryFilter {
       return;
     }
 
-    if (
-      this.filterTokens.find(
-        (value) =>
-          value?.value === token && category === 'CW_CUSTOM_FILTER_VALUE'
-      )
-    ) {
-      return;
-    }
-
     const newToken = token.trim();
 
     if (newToken === '') {
+      return;
+    }
+
+    if (this.hasToken(newToken)) {
       return;
     }
 
@@ -398,14 +393,28 @@ export class CategoryFilter {
     return !isCategoryAlreadySet;
   }
 
-  private filterDuplicateTokens(value: string) {
-    const isTokenAlreadySet = this.filterTokens.some((token) => {
-      if (!this.suggestions) {
-        return token.value === value && token.id === this.category;
-      } else return token.value === value;
-    });
+  private hasToken(token: string) {
+    return this.filterTokens.some((filterToken) => {
+      const hasSameValue = filterToken.value === token;
 
-    return !isTokenAlreadySet;
+      if (!hasSameValue) {
+        return false;
+      }
+
+      if (this.category) {
+        return this.category === filterToken.id;
+      }
+
+      if (filterToken.id) {
+        return filterToken.id === this.ID_CUSTOM_FILTER_VALUE;
+      }
+
+      return hasSameValue;
+    });
+  }
+
+  private filterDuplicateTokens(value: string) {
+    return !this.hasToken(value);
   }
 
   private filterByInput(value: string) {
