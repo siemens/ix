@@ -9601,18 +9601,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-workflow-step": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-workflow-step"
         ]
       },
       "props": [
@@ -9652,13 +9647,19 @@
         },
         {
           "name": "position",
-          "type": "\"first\" | \"last\" | \"undefined\"",
+          "type": "\"first\" | \"last\" | \"single\" | \"undefined\"",
           "mutable": false,
           "attr": "position",
           "reflectToAttr": false,
           "docs": "Activate navigation click",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be changed to '@internal' in 2.0.0"
+            }
+          ],
           "default": "'undefined'",
+          "deprecation": "Will be changed to '@internal' in 2.0.0",
           "values": [
             {
               "value": "first",
@@ -9666,6 +9667,10 @@
             },
             {
               "value": "last",
+              "type": "string"
+            },
+            {
+              "value": "single",
               "type": "string"
             },
             {
@@ -9750,7 +9755,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ]
     },
     {
       "dirPath": "./src/components/workflow-steps",
@@ -9764,15 +9775,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "clickable",
@@ -9798,8 +9803,14 @@
           "attr": "linear",
           "reflectToAttr": false,
           "docs": "Select linear mode",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Has no effect on component. Will get removed in 2.0.0"
+            }
+          ],
           "default": "false",
+          "deprecation": "Has no effect on component. Will get removed in 2.0.0",
           "values": [
             {
               "type": "boolean"
@@ -9873,19 +9884,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-workflow-steps",
-        "ix-workflow-step"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-workflow-steps",
-          "ix-workflow-step"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

@@ -241,11 +241,9 @@ export class DateTimePicker {
           <div class="separator"></div>
         </div>
 
-        <div class="done">
-          <ix-button onClick={() => this.onDone()}>
-            {this.textSelectDate}
-          </ix-button>
-        </div>
+        <ix-button class="btn-select-date" onClick={() => this.onDone()}>
+          {this.textSelectDate}
+        </ix-button>
       </Host>
     );
   }

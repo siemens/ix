@@ -327,7 +327,7 @@ export class CategoryFilter {
       return;
     }
 
-    if (this.filterTokens.find((value) => value?.value === newToken)) {
+    if (this.hasToken(newToken)) {
       return;
     }
 
@@ -393,11 +393,28 @@ export class CategoryFilter {
     return !isCategoryAlreadySet;
   }
 
+  private hasToken(token: string) {
+    return this.filterTokens.some((filterToken) => {
+      const hasSameValue = filterToken.value === token;
+
+      if (!hasSameValue) {
+        return false;
+      }
+
+      if (this.category) {
+        return this.category === filterToken.id;
+      }
+
+      if (filterToken.id) {
+        return filterToken.id === this.ID_CUSTOM_FILTER_VALUE;
+      }
+
+      return hasSameValue;
+    });
+  }
+
   private filterDuplicateTokens(value: string) {
-    const isTokenAlreadySet = this.filterTokens.some(
-      (token) => token.value === value
-    );
-    return !isTokenAlreadySet;
+    return !this.hasToken(value);
   }
 
   private filterByInput(value: string) {

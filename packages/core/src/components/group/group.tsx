@@ -18,6 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-group',
@@ -78,6 +79,8 @@ export class Group {
 
   @Element() hostElement!: HTMLIxGroupElement;
 
+  @State() itemSelected = false;
+
   get dropdownItems() {
     return Array.from(
       this.hostElement.querySelectorAll('ix-group-dropdown-item')
@@ -99,6 +102,8 @@ export class Group {
   }
 
   @State() dropdownTriggerRef: HTMLElement;
+
+  @State() slotSize = this.groupItems.length;
 
   constructor() {}
 
@@ -127,13 +132,7 @@ export class Group {
   }
 
   private onExpandClick(event: Event) {
-    const wasCollapsed = this.collapsed;
     this.collapsed = !this.collapsed;
-
-    if (!wasCollapsed && this.index !== undefined) {
-      this.index = undefined;
-      this.setGroupSelection(true);
-    }
 
     this.collapsedChanged.emit(this.collapsed);
     event.stopPropagation();
@@ -156,6 +155,10 @@ export class Group {
       this.selectItem.emit(index);
     }
 
+    if (this.index >= 0) {
+      this.itemSelected = true;
+    } else this.itemSelected = false;
+
     this.setGroupSelection(false);
   }
 
@@ -168,13 +171,16 @@ export class Group {
 
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
+      if (this.selected === true) {
+        item.selected = false;
+        this.index = undefined;
+        this.itemSelected = false;
+        return;
+      }
       item.selected = index === this.index;
       item.index = index;
       item.classList.remove('last');
-      if (
-        !this.footer?.children.length &&
-        index === this.groupItems.length - 1
-      ) {
+      if (!this.footer?.children.length && index === this.slotSize - 1) {
         item.classList.add('last');
       }
     });
@@ -184,13 +190,29 @@ export class Group {
     }
   }
 
+  private observer: MutationObserver;
+
   componentDidLoad() {
+    this.observer = createMutationObserver(() => {
+      this.slotSize = this.groupItems.length;
+    });
+
+    this.observer.observe(this.groupContent, {
+      childList: true,
+    });
+
     this.groupContent.addEventListener(
       'selectedChanged',
       (evt: CustomEvent<HTMLIxGroupItemElement>) => {
         this.onItemClick(evt.detail.index);
       }
     );
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   render() {
@@ -208,12 +230,23 @@ export class Group {
             class="group-header-clickable"
             onClick={(e) => this.onHeaderClick(e)}
           >
-            <div class="group-header-selection-indicator"></div>
-            <ix-icon
-              class="btn-expand-header"
-              name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
-              onClick={(e) => this.onExpandClick(e)}
-            ></ix-icon>
+            <div
+              class={{
+                'group-header-selection-indicator': true,
+                'group-header-selection-indicator-item-selected':
+                  this.itemSelected,
+              }}
+            ></div>
+            <div class="btn-expand-header">
+              <ix-icon
+                class={{
+                  hidden: this.slotSize === 0,
+                }}
+                name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
+                onClick={(e) => this.onExpandClick(e)}
+              ></ix-icon>
+            </div>
+
             <div class="group-header-content">
               {this.header ? (
                 <div class="group-header-props-container">

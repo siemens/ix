@@ -21,9 +21,7 @@
   padding: $small-space $large-space $small-space 2.5rem;
   position: relative;
   margin-top: 0.0625rem;
-  border: 1px solid var(--theme-group-item--border-color);
   outline: none;
-
   background-color: var(--theme-group-item--background);
 
   &.last {
@@ -68,7 +66,6 @@
       border-color: var(--theme-group-item--border-color--hover);
 
       &.selected {
-        border-color: var(--theme-group-item--border-color--selected);
         background-color: var(--theme-group-item--background--selected);
       }
     }
@@ -78,7 +75,6 @@
       border-color: var(--theme-group-item--border-color--active);
 
       &.selected {
-        border-color: var(--theme-group-item--border-color--selected);
         background-color: var(--theme-group-item--background--selected);
       }
     }
@@ -86,15 +82,14 @@
 
   &.selected {
     border-top-width: 0.062rem !important;
-    border-color: var(--theme-group-item--border-color--selected);
     background-color: var(--theme-group-item--background--selected);
 
     .group-entry-selection-indicator {
-      background-color: var(--theme-color-input--focus);
+      background-color: var(--theme-group-item-indicator--background--selected);
     }
   }
 
   @include focus-visible {
-    border-color: var(--focus--border-color) !important;
+    border: 1px solid var(--theme-color-focus-bdr) !important;
   }
 }

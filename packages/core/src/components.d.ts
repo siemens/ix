@@ -1650,8 +1650,9 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Activate navigation click
+          * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position": 'first' | 'last' | 'undefined';
+        "position": 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
@@ -1672,6 +1673,7 @@ export namespace Components {
         "clickable": boolean;
         /**
           * Select linear mode
+          * @deprecated Has no effect on component. Will get removed in 2.0.0
          */
         "linear": boolean;
         /**
@@ -1829,6 +1831,10 @@ export interface IxTreeItemCustomEvent<T> extends CustomEvent<T> {
 export interface IxUploadCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxUploadElement;
+}
+export interface IxWorkflowStepCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxWorkflowStepElement;
 }
 export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4133,10 +4139,12 @@ declare namespace LocalJSX {
           * Set disabled
          */
         "disabled"?: boolean;
+        "onSelectedChanged"?: (event: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElement>) => void;
         /**
           * Activate navigation click
+          * @deprecated Will be changed to '@internal' in 2.0.0
          */
-        "position"?: 'first' | 'last' | 'undefined';
+        "position"?: 'first' | 'last' | 'single' | 'undefined';
         /**
           * Set selected
          */
@@ -4157,6 +4165,7 @@ declare namespace LocalJSX {
         "clickable"?: boolean;
         /**
           * Select linear mode
+          * @deprecated Has no effect on component. Will get removed in 2.0.0
          */
         "linear"?: boolean;
         /**

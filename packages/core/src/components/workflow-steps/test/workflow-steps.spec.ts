@@ -40,10 +40,9 @@ describe('workflow-steps', () => {
     observerCallback([{ type: 'childList' }]);
 
     await page.waitForChanges();
-    expect(step).toEqualAttributes({
-      position: 'last',
-      selected: true,
-    });
+
+    expect(step.position).toEqual('single');
+    expect(step.selected).toEqual(true);
   });
 
   it('should re-render workflow steps', async () => {
@@ -62,33 +61,23 @@ describe('workflow-steps', () => {
     observerCallback([{ type: 'childList' }]);
     await page.waitForChanges();
 
-    expect(step).toEqualAttributes({
-      position: 'first',
-      selected: true,
-    });
+    expect(step.position).toEqual('first');
+    expect(step.selected).toEqual(true);
 
-    expect(step1).toEqualAttributes({
-      position: 'last',
-      selected: false,
-    });
+    expect(step1.position).toEqual('last');
+    expect(step1.selected).toEqual(false);
 
     page.root.querySelector('ix-workflow-steps').append(step2);
     observerCallback([{ type: 'childList' }]);
     await page.waitForChanges();
 
-    expect(step).toEqualAttributes({
-      position: 'first',
-      selected: true,
-    });
+    expect(step.position).toEqual('first');
+    expect(step.selected).toEqual(true);
 
-    expect(step1).toEqualAttributes({
-      position: 'undefined',
-      selected: false,
-    });
+    expect(step1.position).toEqual('undefined');
+    expect(step1.selected).toEqual(false);
 
-    expect(step2).toEqualAttributes({
-      position: 'last',
-      selected: false,
-    });
+    expect(step2.position).toEqual('last');
+    expect(step2.selected).toEqual(false);
   });
 });
