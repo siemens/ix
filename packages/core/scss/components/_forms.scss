@@ -29,6 +29,7 @@
   box-shadow: var(--theme-input--box-shadow);
   padding-inline-start: $input-padding-x;
   padding-inline-end: $input-padding-x;
+  cursor: auto !important;
 
   &::placeholder {
     color: var(--theme-input-hint--color);
