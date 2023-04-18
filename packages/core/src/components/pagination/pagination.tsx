@@ -97,7 +97,6 @@ export class Pagination {
       this.selectedPage = index;
     }
 
-    console.log(this.selectedPage);
     this.pageSelected.emit(this.selectedPage);
   }
 
