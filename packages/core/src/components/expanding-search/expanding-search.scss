@@ -11,8 +11,6 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
-$container-width: 11.5625rem;
-
 :host {
   display: inline-flex;
   width: auto;
@@ -21,7 +19,7 @@ $container-width: 11.5625rem;
   justify-content: space-between;
 
   &.right-position {
-    width: $container-width !important;
+    width: max-content !important;
   }
 
   .input-container {
@@ -34,10 +32,11 @@ $container-width: 11.5625rem;
 
   input {
     box-shadow: var(--theme-input--box-shadow);
+    cursor: auto !important;
   }
 
   .expanded {
-    width: $container-width;
+    width: 100%;
   }
 
   .collapsed {
