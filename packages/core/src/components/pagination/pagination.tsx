@@ -229,6 +229,7 @@ export class Pagination {
           <span class="item-count">
             {this.i18nItems}
             <ix-select
+              hideListHeader
               i18nPlaceholder=""
               i18nSelectListHeader=""
               selected-indices={this.itemCount}

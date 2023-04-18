@@ -86,7 +86,6 @@ export class SelectItem {
       <Host>
         <ix-dropdown-item
           checked={this.selected}
-          hover={this.hover}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}
         ></ix-dropdown-item>
