@@ -7,10 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-
 import {
   Component,
   Element,
@@ -37,6 +33,7 @@ export class WorkflowSteps {
 
   /**
    * Select linear mode
+   * @deprecated Has no effect on component. Will get removed in 2.0.0
    */
   @Prop() linear: boolean = false;
 
@@ -59,38 +56,53 @@ export class WorkflowSteps {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
   }
 
-  private deselectAll() {
-    const steps = this.getSteps();
-    steps.forEach((element) => {
-      element.setAttribute('selected', 'false');
-    });
+  get stepsContent() {
+    return this.hostElement.querySelector('.steps');
   }
 
-  styling() {
+  updateSteps() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
-      element.setAttribute('vertical', this.vertical ? 'true' : 'false');
-      element.setAttribute('clickable', this.clickable ? 'true' : 'false');
-      element.setAttribute(
-        'selected',
-        this.selectedIndex === index ? 'true' : 'false'
-      );
-      if (index === 0) element.setAttribute('position', 'first');
-      if (index === steps.length - 1) element.setAttribute('position', 'last');
-      if (index > 0 && index < steps.length - 1)
-        element.setAttribute('position', 'undefined');
+      element.vertical = this.vertical;
+      element.clickable = this.clickable;
+      element.selected = this.selectedIndex === index;
+
+      if (steps.length === 1) {
+        element.position = 'single';
+        return;
+      }
+
+      if (index === 0) {
+        element.position = 'first';
+      } else if (index === steps.length - 1) {
+        element.position = 'last';
+      } else {
+        element.position = 'undefined';
+      }
     });
   }
 
   private observer: MutationObserver;
 
   componentDidLoad() {
+    this.stepsContent.addEventListener(
+      'selectedChanged',
+      (event: CustomEvent<HTMLIxWorkflowStepElement>) => {
+        const steps = this.getSteps();
+        steps.forEach((element) => {
+          if (element !== event.target) {
+            element.selected = false;
+          }
+        });
+      }
+    );
+
     const slotDiv = this.hostElement.querySelector('.steps');
 
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
-          this.styling();
+          this.updateSteps();
         }
       }
     });
@@ -105,27 +117,7 @@ export class WorkflowSteps {
   }
 
   componentDidRender() {
-    this.styling();
-  }
-
-  componentWillRender() {
-    const steps = this.getSteps();
-    steps.forEach((element, index) => {
-      element.addEventListener('click', () => {
-        if (!this.clickable) return;
-        const previousElement = steps[index - 1];
-        if (
-          this.linear &&
-          previousElement &&
-          !['done', 'success'].includes(previousElement?.status)
-        ) {
-          return element.setAttribute('selected', 'false');
-        }
-        this.deselectAll();
-        element.setAttribute('selected', 'true');
-        this.stepSelected.emit(index);
-      });
-    });
+    this.updateSteps();
   }
 
   render() {

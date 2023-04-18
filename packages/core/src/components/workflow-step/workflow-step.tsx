@@ -7,16 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   Fragment,
   h,
   Host,
+  Listen,
   Prop,
   State,
   Watch,
@@ -57,12 +56,19 @@ export class WorkflowStep {
 
   /**
    * Activate navigation click
+   *
+   * @deprecated Will be changed to '@internal' in 2.0.0
    */
-  @Prop() position: 'first' | 'last' | 'undefined' = 'undefined';
+  @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';
   @State() iconColor: string = 'workflow-step-icon-default--color';
+
+  /**
+   * @internal
+   */
+  @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean;
 
@@ -129,6 +135,13 @@ export class WorkflowStep {
     this.customIconSlot = !!this.hostElement.querySelector(
       '[slot="custom-icon"]'
     );
+  }
+
+  @Listen('click', { passive: true })
+  clickFunction() {
+    if (!this.disabled && this.clickable) {
+      this.selectedChanged.emit(this.hostElement);
+    }
   }
 
   render() {

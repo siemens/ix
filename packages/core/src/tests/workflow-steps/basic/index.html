@@ -4,9 +4,6 @@ SPDX-FileCopyrightText: 2023 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<!--
-COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
--->
 <html>
   <head>
     <meta charset="utf-8" />
@@ -19,6 +16,9 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
       .example {
         display: flex;
         margin-top: 2rem;
+      }
+      ix-workflow-steps {
+        margin-inline-end: 2rem;
       }
     </style>
   </head>
@@ -33,6 +33,10 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
         <ix-workflow-step disabled>Step 6</ix-workflow-step>
       </ix-workflow-steps>
 
+      <ix-workflow-steps>
+        <ix-workflow-step status="done">Single step</ix-workflow-step>
+      </ix-workflow-steps>
+
       <ix-workflow-steps vertical>
         <ix-workflow-step status="done">Step 1</ix-workflow-step>
         <ix-workflow-step status="success">Step 2</ix-workflow-step>
@@ -40,6 +44,10 @@ COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
         <ix-workflow-step status="warning">Step 4</ix-workflow-step>
         <ix-workflow-step status="error">Step 5</ix-workflow-step>
         <ix-workflow-step disabled>Step 6</ix-workflow-step>
+      </ix-workflow-steps>
+
+      <ix-workflow-steps vertical>
+        <ix-workflow-step status="done">Single step</ix-workflow-step>
       </ix-workflow-steps>
     </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
