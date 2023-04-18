@@ -7060,6 +7060,23 @@
           "required": false
         },
         {
+          "name": "i18nNoMatches",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-no-matches",
+          "reflectToAttr": false,
+          "docs": "Hint inside of dropdown if no items where found with current filter text",
+          "docsTags": [],
+          "default": "'No matches'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nPlaceholder",
           "type": "string",
           "mutable": false,

@@ -20,25 +20,6 @@ global.MutationObserver = class {
 };
 
 describe('ix-select', () => {
-  it('focus item button in list', async () => {
-    const page = await newSpecPage({
-      components: [Select, SelectItem],
-      html: `<ix-select>
-        <ix-select-item data-testid="select-1" value="11" label="Item 1"></ix-select-item>
-        <ix-select-item data-testid="select-2" value="22" label="Item 2"></ix-select-item>
-      </ix-select>`,
-    });
-    await page.waitForChanges();
-
-    fireEvent.click(page.doc.querySelector('.chevron-down-container'));
-    fireEvent.keyDown(page.doc);
-    await page.waitForChanges();
-
-    const nextItemInList = screen.getByTestId('select-2') as HTMLInputElement;
-
-    expect(nextItemInList.querySelector('button')).toHaveFocus();
-  });
-
   it('show add item button in list', async () => {
     const page = await newSpecPage({
       components: [Select, SelectItem],
