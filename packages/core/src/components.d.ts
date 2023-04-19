@@ -1247,7 +1247,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices": string | string[];
     }
@@ -3698,7 +3698,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices"?: string | string[];
     }

@@ -7172,7 +7172,7 @@
           "mutable": true,
           "attr": "selected-indices",
           "reflectToAttr": false,
-          "docs": "Indices of selected items",
+          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.",
           "docsTags": [],
           "default": "[]",
           "values": [
