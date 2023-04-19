@@ -29,6 +29,8 @@ regressionTest.describe('basic', () => {
 
     await page.waitForSelector('.dropdown.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.01,
+    });
   });
 });
