@@ -77,6 +77,8 @@ export class Select {
 
   /**
    * Hint inside of dropdown if no items where found with current filter text
+   *
+   * @since 1.5.0
    */
   @Prop() i18nNoMatches = 'No matches';
 

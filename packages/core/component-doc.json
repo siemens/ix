@@ -7066,7 +7066,12 @@
           "attr": "i-1-8n-no-matches",
           "reflectToAttr": false,
           "docs": "Hint inside of dropdown if no items where found with current filter text",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
           "default": "'No matches'",
           "values": [
             {
