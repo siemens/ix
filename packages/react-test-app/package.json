@@ -2,6 +2,7 @@
   "name": "react-test-app",
   "version": "1.5.0-beta.1",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "vite",
