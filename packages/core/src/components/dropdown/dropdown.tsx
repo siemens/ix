@@ -357,7 +357,10 @@ export class Dropdown {
     }
 
     if (this.placement.includes('auto') || isSubmenu) {
-      positionConfig.middleware.push(flip());
+      positionConfig.middleware.push(
+        flip({ fallbackStrategy: 'initialPlacement' })
+      );
+      positionConfig.placement = 'bottom-start';
     } else {
       positionConfig.placement = this.placement as
         | BasePlacement

@@ -1223,6 +1223,11 @@ export namespace Components {
          */
         "hideListHeader": boolean;
         /**
+          * Hint inside of dropdown if no items where found with current filter text
+          * @since 1.5.0
+         */
+        "i18nNoMatches": string;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder": string;
@@ -1243,7 +1248,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices": string | string[];
     }
@@ -3662,6 +3667,11 @@ declare namespace LocalJSX {
          */
         "hideListHeader"?: boolean;
         /**
+          * Hint inside of dropdown if no items where found with current filter text
+          * @since 1.5.0
+         */
+        "i18nNoMatches"?: string;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder"?: string;
@@ -3690,7 +3700,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices"?: string | string[];
     }
