@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "ix",
+  "name": "mono-repo-ix",
   "version": "1.5.0-beta.1",
   "license": "MIT",
   "description": "Siemens iX monorepo",
