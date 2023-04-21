@@ -37,6 +37,7 @@
   @include hover {
     background-color: var(--theme-input--background--hover);
     border-color: var(--theme-input--border-color--hover);
+    cursor: auto;
   }
 
   @include focus-visible {
