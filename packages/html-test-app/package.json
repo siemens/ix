@@ -1,6 +1,5 @@
 {
   "name": "@siemens/html-test-app",
-  "license": "MIT",
   "private": true,
   "version": "1.5.0-beta.1",
   "type": "module",

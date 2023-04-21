@@ -2,7 +2,6 @@
   "name": "documentation",
   "version": "1.5.0-beta.1",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "npm run generate-api && docusaurus start",
