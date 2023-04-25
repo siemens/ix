@@ -1,3 +1,40 @@
+# [1.5.0-beta.2](https://github.com/siemens/ix/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2023-04-25)
+
+
+### Bug Fixes
+
+* **core/blind:** adjust padding ([#475](https://github.com/siemens/ix/issues/475)) ([4eb1cc6](https://github.com/siemens/ix/commit/4eb1cc6ccff6c67c9be9a6354a861e6d2c5251c2))
+* **core/blind:** improve keyboard accessibility ([#461](https://github.com/siemens/ix/issues/461)) ([db091cc](https://github.com/siemens/ix/commit/db091cc130b5dfd04c1fed0c8a07630af799997d))
+* **core/blind:** use string value für aria ([cb8a6de](https://github.com/siemens/ix/commit/cb8a6de86b3dbed50c633b6ec5fb8aae5612c205))
+* **core/category-filter:** options ([#479](https://github.com/siemens/ix/issues/479)) ([8ceaac6](https://github.com/siemens/ix/commit/8ceaac60d326773aedda10b1df2fbef1a7806085))
+* **core/datetime-picker:** adjust done button placement ([#484](https://github.com/siemens/ix/issues/484)) ([a595268](https://github.com/siemens/ix/commit/a5952686079ff960aa0c36fa91f13a2371137097))
+* **core/form-controls:** readonly states ([#485](https://github.com/siemens/ix/issues/485)) ([696366d](https://github.com/siemens/ix/commit/696366d49fb139969df13c716d939ddd6eb3225a))
+* **core/group:** group selected style and actions & header correction ([#470](https://github.com/siemens/ix/issues/470)) ([21eead6](https://github.com/siemens/ix/commit/21eead68e4b977c1d2d5bc5844617533e5d03514))
+* **core/group:** header and item hover/active style ([#453](https://github.com/siemens/ix/issues/453)) ([64cd604](https://github.com/siemens/ix/commit/64cd6044b61d055dea67d1d8043d7f913ea42497))
+* **core/modal:** close only target modal ([#469](https://github.com/siemens/ix/issues/469)) ([b3295bb](https://github.com/siemens/ix/commit/b3295bb01431ace565af9b53a91501731c8ffa4c))
+* **core/pagination:** select and overflow behavior ([#486](https://github.com/siemens/ix/issues/486)) ([5aec16b](https://github.com/siemens/ix/commit/5aec16bade90b7fab2cbb556e70a481b288dde3d))
+* **core/select:** add vertical margin to filter chips ([#474](https://github.com/siemens/ix/issues/474)) ([75b7180](https://github.com/siemens/ix/commit/75b71803e33f5ce68ac4b0909bc386082e63a70e))
+* **core/select:** show clear button ([#465](https://github.com/siemens/ix/issues/465)) ([f8e7d93](https://github.com/siemens/ix/commit/f8e7d937d0de6ac6c62e53ca1bbc52ab6963ca06))
+* **core/toggle:** remove attribute selector for disable state ([#478](https://github.com/siemens/ix/issues/478)) ([31a2e94](https://github.com/siemens/ix/commit/31a2e9421c3bdeb3d5b10bf1c519ebc2075aa121))
+* **core/workflow-steps:** single state ([#464](https://github.com/siemens/ix/issues/464)) ([f4cf8b0](https://github.com/siemens/ix/commit/f4cf8b0b0f039c9c9f21b528780783b6d49c2936))
+* **core/workflow-steps:** update step position after first rendering ([#459](https://github.com/siemens/ix/issues/459)) ([715d50d](https://github.com/siemens/ix/commit/715d50d10b557f34ff2d4e9a469568f6cf071e84))
+* **core:** Inputs and Textareas cursor ([#490](https://github.com/siemens/ix/issues/490)) ([fa56486](https://github.com/siemens/ix/commit/fa56486c05f933c35fee5087ea3d7fdebc4db617))
+
+
+### Features
+
+* **core/datepicker:** improve useability of the datepicker for range selection ([#473](https://github.com/siemens/ix/issues/473)) ([c509ec4](https://github.com/siemens/ix/commit/c509ec47849529158da9eb04e9eba2fddca5a995))
+* **core/select:** hide header text ([#471](https://github.com/siemens/ix/issues/471)) ([795d326](https://github.com/siemens/ix/commit/795d326a959e6a9add0d3c760e75eb19fcc20a1a))
+* **core/select:** show info if no matches found and fix selection bug ([#489](https://github.com/siemens/ix/issues/489)) ([6be3a47](https://github.com/siemens/ix/commit/6be3a47bd2b699ff77dce5a65d83e59c15f73988))
+* **core/tooltip:** add position property ([#466](https://github.com/siemens/ix/issues/466)) ([0d18866](https://github.com/siemens/ix/commit/0d188667969a4aef56c1ef74f799a62e430d0d5b))
+
+
+### Reverts
+
+* Revert "chore: add basic license to private modules" ([bbafc1d](https://github.com/siemens/ix/commit/bbafc1d5a25d8c2d138dea2f6affd04f350a22b1))
+
+
+
 # [1.5.0-beta.1](https://github.com/siemens/ix/compare/v1.5.0-beta.0...v1.5.0-beta.1) (2023-03-22)
 
 
