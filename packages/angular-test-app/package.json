@@ -1,6 +1,7 @@
 {
   "name": "angular-test-app",
   "version": "1.5.0-beta.1",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
