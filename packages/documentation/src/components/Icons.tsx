@@ -10,7 +10,6 @@
 import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import styles from './Icons.module.css';
 
 export default function Icons() {
@@ -21,13 +20,16 @@ export default function Icons() {
 
   return (
     <>
-      <ToastContainer></ToastContainer>
       <div className={clsx(styles.Search)}>
         <span className={clsx(styles.Search__Label)}>Search: </span>
         <input
           placeholder="Search Icon"
           className="form-control"
-          onInput={(e) => setSearchIcon((e.target as HTMLInputElement).value.toLocaleLowerCase())}
+          onInput={(e) =>
+            setSearchIcon(
+              (e.target as HTMLInputElement).value.toLocaleLowerCase()
+            )
+          }
         />
       </div>
       <div className={clsx(styles.Icons)}>
@@ -37,7 +39,7 @@ export default function Icons() {
             <div
               key={icon}
               className={clsx(styles.Icon__Tile)}
-              onClick={() => { }}
+              onClick={() => {}}
             >
               <div>
                 <ix-icon name={icon}></ix-icon>
@@ -50,7 +52,7 @@ export default function Icons() {
                 type="text"
                 readOnly
                 value={icon}
-                onChange={() => { }}
+                onChange={() => {}}
               ></input>
             </div>
           ))}

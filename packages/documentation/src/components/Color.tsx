@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import styles from './Color.module.css';
 import alphaBackground from './transparency500.png';
 
@@ -168,7 +167,6 @@ export default function Color() {
 
   return (
     <>
-      <ToastContainer />
       <table className={clsx(styles.table)}>
         <thead>
           <tr>
