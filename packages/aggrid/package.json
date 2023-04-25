@@ -31,7 +31,7 @@
     "host-root": "http-server -a 127.0.0.1"
   },
   "dependencies": {
-    "@stencil/core": "^3.1.0"
+    "@stencil/core": "^3.2.1"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
