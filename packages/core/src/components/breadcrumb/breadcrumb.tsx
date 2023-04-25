@@ -179,7 +179,15 @@ export class Breadcrumb {
         >
           <span class="crumb-text remove-anchor">
             {item.icon ? <ix-icon name={item.icon} size="16"></ix-icon> : ''}
-            {item.label}
+            <span
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {item.label}
+            </span>
           </span>
           {!isLastItem ? (
             <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
