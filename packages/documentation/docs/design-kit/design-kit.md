@@ -1,6 +1,6 @@
 ---
-sidebar_title: iX design kits
-title: iX design kits
+sidebar_title: Design kit
+title: Design kit
 ---
 
 import {Card, CardList} from '@site/src/components/Card';
