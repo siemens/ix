@@ -53,6 +53,21 @@ body {
   color: var(--theme-color-inv-std-text);
 }
 
+.theme-admonition-info {
+  background-color: var(--theme-color-info) !important;
+  color: var(--theme-color-inv-std-text);
+}
+
+.theme-admonition a[href] {
+  color: var(--theme-color-inv-std-text);
+  text-decoration: underline;
+}
+
+.theme-admonition a[href]:hover {
+  color: var(--theme-color-inv-std-text) !important;
+  text-decoration: underline;
+}
+
 .markdown {
   font-size: 1.125rem;
 }

@@ -5,6 +5,7 @@ import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';
 import VueIcon from '@site/static/img/vue.svg';
 import GitHubIcon from '@site/static/img/github.svg';
+import BlazorIcon from '@site/static/img/blazor.svg';
 
 # Introduction
 
@@ -32,6 +33,7 @@ Siemens Industrial Experience provides and maintains a Figma design kit containi
   <Card link="installation/react"><ReactIcon className="Card_Icon" />React</Card>
   <Card link="installation/javascript"><WebComponentsIcon className="Card_Icon" />Web Components</Card>
   <Card link="installation/vue"><VueIcon className="Card_Icon" />Vue&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
+  <Card link="installation/blazor"><BlazorIcon class="Card_Icon" />Blazor&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
 </CardList>
 
 ## Community

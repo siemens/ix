@@ -7,7 +7,7 @@ Go to:
 - [Variants](#variants)
 - [Behavior in context](#behavior-in-context)
 - [States](#states)
-- [Dos and don't](#dos-and-don't)
+- [Do and don't](#do-and-dont)
 
 ## Usage
 
@@ -122,7 +122,7 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 
 A default margin between adjacent buttons of <kbd>0.5rem</kbd> is defined. Depending on the context, this margin may be increased, though.
 
-## Dos and don'ts
+## Do and don't
 
 - Given enough space, buttons should be aligned horizontally rather than vertically.
 - When grouping multiple buttons, e.g. in a dialog, buttons should be right-justified with the primary action on the very right.
