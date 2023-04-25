@@ -1,5 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 {
-  "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
@@ -7,14 +14,10 @@
     "lib": ["DOM", "ES2022"],
     "noEmit": true,
     "noImplicitAny": false,
-    "types": [
-      "node",
-      "@docusaurus/module-type-aliases",
-      "@docusaurus/theme-classic"
-    ],
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@site/*": ["./*"]
+      "@site/*": ["./../*"]
     },
     "resolveJsonModule": true,
     "preserveSymlinks": true

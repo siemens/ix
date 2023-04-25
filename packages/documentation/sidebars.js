@@ -24,14 +24,12 @@
 const sidebars = {
   mySidebar: [
     {
-      type: 'category',
-      label: 'Introduction',
-      items: [
-        {
-          type: 'doc',
-          id: 'team',
-        },
-      ],
+      type: 'doc',
+      id: 'introduction',
+    },
+    {
+      type: 'doc',
+      id: 'team',
     },
     {
       type: 'category',

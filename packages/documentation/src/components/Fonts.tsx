@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
 import styles from './Fonts.module.css';
 
 export default function Fonts() {
@@ -60,7 +59,6 @@ export default function Fonts() {
   ];
   return (
     <>
-      <ToastContainer />
       <table className={clsx(styles.Table)}>
         <thead>
           <tr>
