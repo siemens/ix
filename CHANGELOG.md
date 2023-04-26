@@ -1,3 +1,12 @@
+# [1.5.0-beta.3](https://github.com/siemens/ix/compare/v1.5.0-beta.2...v1.5.0-beta.3) (2023-04-26)
+
+
+### Bug Fixes
+
+* **core/breadcrumb:** align breadcrumb content centered ([5c400ef](https://github.com/siemens/ix/commit/5c400ef8463124ea0cae3b03bc399b2d2302dd31))
+
+
+
 # [1.5.0-beta.2](https://github.com/siemens/ix/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2023-04-25)
 
 
