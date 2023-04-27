@@ -127,8 +127,7 @@ A default margin between adjacent buttons of <kbd>0.5rem</kbd> is defined. Depen
 - Given enough space, buttons should be aligned horizontally rather than vertically.
 - When grouping multiple buttons, e.g. in a dialog, buttons should be right-justified with the primary action on the very right.
 - Avoid generic button labels (e.g. Yes/No), use meaningful labels instead (e.g. Save, Download, Edit) so that the user easily understands which action is triggered by pressing the button.
-- For more information, see also the UX writing guidelines on [Diaglogs and buttons](#dialogs-and-buttons.md).
-
+- For more information, see also the UX writing guidelines on [Diaglogs and buttons](/docs/language/dialogs-and-buttons.md).
 ## Related patterns:
 
 - [Dropdown button](./dropdown-button.md)
