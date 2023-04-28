@@ -154,7 +154,7 @@ export const config: Config = {
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
-    experimentalImportInjection: true,
+    enableImportInjection: true,
     scopedSlotTextContentFix: true,
   },
   testing: {
