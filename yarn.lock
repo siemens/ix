@@ -3451,9 +3451,9 @@
   integrity sha512-U2I6dZdL8hvnogafG9IwtYRaAns5fQMacjee/3WNMRMYagrpz7R6cDdX4O0U8q6jks1ej91GchgZsQOVE9UcKg==
 
 "@stencil/core@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
-  integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
+  version "3.2.2"
+  resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.2.tgz#cf3b4ffb7992d0197aa1987dbc5236c4eb98cb6b"
+  integrity sha512-wXb9cVWL0T3cTwYLveekdTFCRGx6+9hpVDEXna+N8K8OPoW6xtFAHRLv+LjOM7k59PkA8MG3IinAfV7Y+xa0Hw==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
