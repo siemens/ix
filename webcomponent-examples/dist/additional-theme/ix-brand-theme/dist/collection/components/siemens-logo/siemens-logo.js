@@ -16,3 +16,4 @@ export class SiemensLogo {
     };
   }
 }
+//# sourceMappingURL=siemens-logo.js.map

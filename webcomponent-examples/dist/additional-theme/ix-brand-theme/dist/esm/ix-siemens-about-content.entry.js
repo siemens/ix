@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-978423ef.js';
+import { r as registerInstance, h, H as Host } from './index-fa6efa4c.js';
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
@@ -74,3 +74,5 @@ const SiemensAboutContent = class {
 SiemensAboutContent.style = siemensAboutContentCss;
 
 export { SiemensAboutContent as ix_siemens_about_content };
+
+//# sourceMappingURL=ix-siemens-about-content.entry.js.map

@@ -27,3 +27,4 @@ export const regressionTest = base.extend({
     await use(page);
   },
 });
+//# sourceMappingURL=page.js.map

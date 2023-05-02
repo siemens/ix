@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-7b0a0dd9.js');
+const index = require('./index-46224112.js');
 
 const siemensLogoCss = ":host{display:inline-block}:host .logo>path{fill:var(--theme-app-header-logo--color)}";
 
@@ -17,3 +17,5 @@ const SiemensLogo = class {
 SiemensLogo.style = siemensLogoCss;
 
 exports.ix_siemens_logo = SiemensLogo;
+
+//# sourceMappingURL=ix-siemens-logo.cjs.entry.js.map

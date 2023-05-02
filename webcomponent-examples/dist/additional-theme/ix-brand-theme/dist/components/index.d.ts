@@ -1,7 +1,3 @@
-/* IxBrandTheme custom elements */
-export { SiemensAboutContent as IxSiemensAboutContent } from '../types/components/siemens-about-content/siemens-about-content';
-export { SiemensLogo as IxSiemensLogo } from '../types/components/siemens-logo/siemens-logo';
-
 /**
  * Used to manually set the base path where assets can be found.
  * If the script is used as "module", it's recommended to use "import.meta.url",
@@ -29,4 +25,3 @@ export interface SetPlatformOptions {
   rel?: (el: EventTarget, eventName: string, listener: EventListenerOrEventListenerObject, options: boolean | AddEventListenerOptions) => void;
 }
 export declare const setPlatformOptions: (opts: SetPlatformOptions) => void;
-export * from '../types';
