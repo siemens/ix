@@ -25,47 +25,55 @@
     height: 4rem;
     min-height: 4rem;
     max-height: 4rem;
-    border-radius: 0.25rem;
+    border-radius: var(--theme-group--border-radius)
+      var(--theme-group--border-radius) 0 0;
     display: flex;
     background-color: var(--theme-group-item--background);
-    border: 1px solid var(--theme-group-item--border-color);
     color: var(--theme-group-header--color);
 
     cursor: pointer;
 
     @include hover {
       background-color: var(--theme-group-item--background--hover);
-      border-color: var(--theme-group-item--border-color--hover);
 
       &.selected {
-        border: var(--theme-primary-bdr-2);
         background-color: var(--theme-group-item--background--selected);
       }
     }
 
     @include active {
       background-color: var(--theme-group-item--background--active);
-      border-color: var(--theme-group-item--border-color--active);
 
       &.selected {
-        border: var(--theme-primary-bdr-2);
         background-color: var(--theme-group-item--background--selected);
       }
     }
 
     @include focus-visible {
-      border-color: var(--focus--border-color);
-      border-radius: var(--theme-group--border-radius--focus);
+      border: 1px solid var(--theme-color-focus-bdr);
+      border-radius: var(--theme-default-border-radius)
+        var(--theme-default-border-radius) 0px 0px;
       outline: none;
     }
 
     &.selected {
-      border: var(--theme-primary-bdr-2);
       background-color: var(--theme-group-item--background--selected);
+
+      .group-header-selection-indicator {
+        background-color: var(
+          --theme-group-item-indicator--background--selected
+        );
+      }
     }
 
     .group-header-selection-indicator {
       background-color: var(--theme-color-input--focus);
+
+      &.group-header-selection-indicator-item-selected {
+        background-color: var(
+          --theme-group-item-indicator--background--selected
+        );
+      }
     }
   }
 
@@ -77,13 +85,9 @@
     min-width: 0;
   }
 
-  .group-header.expand {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
   .group-header-selection-indicator {
     width: $tiny-space;
+    border-top-left-radius: var(--theme-group--border-radius);
   }
 
   .group-header-content {
@@ -93,9 +97,9 @@
     flex-direction: row;
     justify-content: space-between;
     min-width: 0;
+    flex-grow: 1;
     padding: 0.5rem;
     padding-left: 0;
-    width: 100%;
 
     .group-header-props-container {
       width: 100%;
@@ -132,6 +136,7 @@
   .btn-expand-header {
     margin: $small-space;
     margin-inline-end: $tiny-space;
+    min-width: 1.5rem;
   }
 
   .group-content {
@@ -142,5 +147,9 @@
   .footer {
     height: auto;
     min-height: 0;
+  }
+
+  .hidden {
+    display: none;
   }
 }

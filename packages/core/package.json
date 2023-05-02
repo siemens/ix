@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "1.5.0-beta.1",
+  "version": "1.5.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -43,11 +43,11 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.1.0",
-    "@stencil/core": "^3.1.0",
+    "@stencil/core": "^3.2.1",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
-    "luxon": "^3.0.1",
-    "@types/luxon": "^3.0.0"
+    "luxon": "^3.3.0",
+    "@types/luxon": "^3.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
@@ -62,7 +62,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@types/animejs": "^3.1.4",
     "@types/jest": "^27.5.2",
-    "@types/luxon": "^3.0.0",
     "@types/mustache": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",

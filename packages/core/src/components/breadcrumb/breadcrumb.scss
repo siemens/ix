@@ -119,7 +119,8 @@
 
     .crumb-text {
       @include ellipsis;
-      display: block;
+      display: flex;
+      align-items: center;
       min-width: 0;
       font-weight: $font-weight-bold;
 

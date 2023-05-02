@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.GuidingPrincipleCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 0.75rem;
+
+  min-width: 15.625rem;
+  width: 15.625rem;
+
+  .GuidingPrincipleCard__Image {
+    display: block;
+    position: relative;
+    height: 13.9375rem;
+    width: 100%;
+    background-color: #ff00002a;
+  }
+}

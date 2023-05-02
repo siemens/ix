@@ -37,6 +37,7 @@
   @include hover {
     background-color: var(--theme-input--background--hover);
     border-color: var(--theme-input--border-color--hover);
+    cursor: auto;
   }
 
   @include focus-visible {
@@ -78,6 +79,11 @@
   box-shadow: none !important;
   outline: none !important;
   border-color: var(--theme-input--border-color);
+  cursor: default !important;
+
+  &::placeholder {
+    color: transparent;
+  }
 }
 
 .form-control:disabled,

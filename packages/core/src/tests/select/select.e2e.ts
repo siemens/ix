@@ -95,4 +95,9 @@ regressionTest.describe('select', () => {
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('readonly', async ({ page }) => {
+    await page.goto('select/readonly');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

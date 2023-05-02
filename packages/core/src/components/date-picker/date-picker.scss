@@ -10,6 +10,10 @@
 @import 'common-variables';
 
 :host {
+  ix-date-time-card {
+    display: inline-block;
+  }
+
   .header {
     display: flex;
     align-items: center;

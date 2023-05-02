@@ -7,7 +7,7 @@ Go to:
 - [Variants](#variants)
 - [Behavior in context](#behavior-in-context)
 - [States](#states)
-- [Dos and don't](#dos-and-don't)
+- [Do and don't](#do-and-dont)
 
 ## Usage
 
@@ -122,13 +122,12 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 
 A default margin between adjacent buttons of <kbd>0.5rem</kbd> is defined. Depending on the context, this margin may be increased, though.
 
-## Dos and don'ts
+## Do and don't
 
 - Given enough space, buttons should be aligned horizontally rather than vertically.
 - When grouping multiple buttons, e.g. in a dialog, buttons should be right-justified with the primary action on the very right.
 - Avoid generic button labels (e.g. Yes/No), use meaningful labels instead (e.g. Save, Download, Edit) so that the user easily understands which action is triggered by pressing the button.
-- For more information, see also the UX writing guidelines on [Diaglogs and buttons](#dialogs-and-buttons.md).
-
+- For more information, see also the UX writing guidelines on [Diaglogs and buttons](/docs/language/dialogs-and-buttons.md).
 ## Related patterns:
 
 - [Dropdown button](./dropdown-button.md)

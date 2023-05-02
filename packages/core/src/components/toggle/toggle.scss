@@ -201,8 +201,8 @@
     }
   }
 
-  &[disabled],
   &.disabled {
+    pointer-events: none;
     .slider {
       cursor: initial;
       opacity: 0.5;

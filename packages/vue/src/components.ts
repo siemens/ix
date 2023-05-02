@@ -489,6 +489,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nPlaceholder',
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
+  'i18nNoMatches',
   'hideListHeader',
   'itemSelectionChange',
   'addItem'
@@ -661,7 +662,8 @@ export const IxWorkflowStep = /*@__PURE__*/ defineContainer<JSX.IxWorkflowStep>(
   'status',
   'clickable',
   'selected',
-  'position'
+  'position',
+  'selectedChanged'
 ]);
 
 

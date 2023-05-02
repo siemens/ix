@@ -19,7 +19,12 @@ export default () => {
   return (
     <>
       <IxBlind label="Example">
-        <IxIconButton icon="info" id="context-menu"></IxIconButton>
+        <IxIconButton
+          id="context-menu"
+          slot="header-actions"
+          ghost
+          icon="info"
+        ></IxIconButton>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet

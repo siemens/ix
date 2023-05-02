@@ -7,7 +7,7 @@ Go to:
 - [Variants](#variants)
 - [Behavior in context](#behavior-in-context)
 - [States](#states)
-- [Dos and don't](#dos-and-don't)
+- [Do and don't](#do-and-dont)
 
 ## Usage
 
@@ -88,7 +88,7 @@ The breadcrumb consists of at least one item. Each item contains a breadcrumb la
 
 Between breadcrumb items, a space of 0.25 rem is introduced.
 
-## Dos and don'ts
+## Do and don't
 
 - Don't use breadcrumbs to display a multistep process. Use a [workflow](workflow.md) control instead.
 - Don't show multiple breadcrumbs on one screen (e.g. in a content area and in a drawer).

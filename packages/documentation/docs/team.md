@@ -21,4 +21,6 @@ title: Team
 #### Responsible for Siemens Industrial Experience Design
 
 - [Silvio Wolf](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Kathrin Schalber](https://github.com/siemens/ix/discussions/new?category=q-a)
+- [Katrin Linstedt](https://github.com/siemens/ix/discussions/new?category=q-a)
 - [Lorenz Kunze](https://github.com/siemens/ix/discussions/new?category=q-a)

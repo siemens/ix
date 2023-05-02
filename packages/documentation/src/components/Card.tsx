@@ -28,13 +28,14 @@ export function Card(
   const { preferredVersion } = useDocsPreferredVersion();
 
   function link() {
+    if (props.link?.startsWith('http')) {
+      return props.link;
+    }
+
     if (!preferredVersion) {
       return useBaseUrl(`/docs/${props.link}`);
     }
 
-    if (props.link?.startsWith('http')) {
-      return props.link;
-    }
     const path = preferredVersion.path;
 
     return useBaseUrl(`${path}/${props.link}`);

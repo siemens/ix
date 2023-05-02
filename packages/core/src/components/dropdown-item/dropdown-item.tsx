@@ -82,6 +82,7 @@ export class DropdownItem {
             disabled: this.disabled,
           }}
           onClick={() => this.emitItemClick()}
+          tabindex={0}
         >
           {this.checked ? (
             <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
