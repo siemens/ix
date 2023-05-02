@@ -100,6 +100,21 @@
   background-color: transparent;
   overflow: hidden;
 
+  nav.breadcrumb {
+    all: unset;
+  }
+
+  nav.breadcrumb ol {
+    all: unset;
+    list-style: none;
+  }
+
+  nav.breadcrumb li {
+    all: unset;
+    vertical-align: left;
+    display: inline-block;
+  }
+
   .crumb {
     position: relative;
     display: flex;
@@ -117,10 +132,15 @@
 
     @include crumb-hover('btn');
 
+    @include focus-visible {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: var(--theme-color-focus-bdr);
+    }
+
     .crumb-text {
       @include ellipsis;
-      display: flex;
-      align-items: center;
+      display: block;
       min-width: 0;
       font-weight: $font-weight-bold;
 
@@ -152,34 +172,8 @@
     }
   }
 
-  .crumb-dropdown {
-    overflow: visible;
-
-    .glyph::after {
-      display: none;
-    }
-  }
-
   .remove-anchor::after {
     display: none;
-  }
-
-  .more-text {
-    display: flex;
-
-    .more-text-ellipsis {
-      width: 1rem;
-      display: inline-block;
-      font-weight: $font-weight-bold;
-    }
-
-    .glyph {
-      line-height: unset;
-    }
-  }
-
-  .crumb-items {
-    display: contents;
   }
 
   @include breadcrumb('btn');

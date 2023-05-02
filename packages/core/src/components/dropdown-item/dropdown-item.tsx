@@ -73,6 +73,7 @@ export class DropdownItem {
           'icon-only': this.label === undefined && this.icon !== undefined,
           disabled: this.disabled,
         }}
+        role="listitem"
       >
         <button
           type="button"

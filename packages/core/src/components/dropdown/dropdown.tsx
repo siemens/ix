@@ -294,6 +294,15 @@ export class Dropdown {
     }
   }
 
+  @Listen('keydown', {
+    target: 'window',
+  })
+  keydown(event: KeyboardEvent) {
+    if (!(this.show === false))
+      if (event.code === 'Escape')
+        this.close();
+  }
+
   private isNestedDropdown(element: Element) {
     return element.closest('ix-dropdown');
   }
@@ -452,6 +461,7 @@ export class Dropdown {
           minWidth: '0px',
           position: this.positioningStrategy,
         }}
+        role="list"
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
