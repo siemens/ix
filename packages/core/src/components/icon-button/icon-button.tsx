@@ -125,7 +125,7 @@ export class IconButton implements Button {
   render() {
     return (
       <Host class={{ disabled: this.disabled }}>
-        <button class={this.getIconButtonClasses()} type={this.type} aria-label={this.ariaLabel ? this.ariaLabel : this.fallbackLabel()}>
+        <button class={this.getIconButtonClasses()} type={this.type} aria-label={this.ariaLabel ? this.ariaLabel : this.fallbackLabel()} disabled={this.disabled}>
           <ix-icon size={this.size} name={this.icon} color={this.color} />
           <div style={{ display: 'none' }}>
             <slot></slot>
