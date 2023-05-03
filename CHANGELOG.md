@@ -1,4 +1,8 @@
-# [1.5.0-beta.4](https://github.com/siemens/ix/compare/v1.5.0-beta.3...v1.5.0-beta.4) (2023-04-28)
+# [1.5.0](https://github.com/siemens/ix/compare/v1.5.0-beta.4...v1.5.0) (2023-05-02)
+
+
+
+# [1.5.0-beta.4](https://github.com/siemens/ix/compare/v1.5.0-beta.3...v1.5.0-beta.4) (2023-05-02)
 
 
 

@@ -18,8 +18,8 @@ import {
   State,
 } from '@stencil/core';
 import animejs from 'animejs';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { a11yBoolean } from '../utils/a11y';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequentialInstanceId = 0;
 
@@ -32,12 +32,12 @@ export class Breadcrumb {
   /**
    * Accessibility label for the entire breadcrumb
    */
-  @Prop() ariaLabel: string = "Breadrumb";
+  @Prop() ariaLabel: string = 'Breadrumb';
 
   /**
    * Accessibility label for the dropdown button used to access the dropdown with conditionally hidden previous items
    */
-  @Prop() ariaPreviousButtonLabel: string = "Previous";
+  @Prop() ariaPreviousButtonLabel: string = 'Previous';
 
   /**
    * Excess items will get hidden inside of dropdown
@@ -164,7 +164,10 @@ export class Breadcrumb {
       e.preventDefault();
       e.stopImmediatePropagation();
       this.previousButtonExpanded = this.previousDropdownRef.show;
-      this.previousButtonRef.setAttribute('aria-expanded', a11yBoolean(this.previousButtonExpanded));
+      this.previousButtonRef.setAttribute(
+        'aria-expanded',
+        a11yBoolean(this.previousButtonExpanded)
+      );
     }
   }
 
@@ -173,7 +176,10 @@ export class Breadcrumb {
       e.preventDefault();
       e.stopImmediatePropagation();
       this.nextButtonExpanded = this.nextDropdownRef.show;
-      this.nextButtonRef.setAttribute('aria-expanded', a11yBoolean(this.nextButtonExpanded));
+      this.nextButtonRef.setAttribute(
+        'aria-expanded',
+        a11yBoolean(this.nextButtonExpanded)
+      );
     }
   }
 
@@ -195,8 +201,8 @@ export class Breadcrumb {
 
   private renderPreviousButton() {
     if (this.items?.length > this.visibleItemCount) {
-      const previousButtonId = "ix-bc" + this.id + "-previous-button";
-      const previousDropdownId = "ix-bc" + this.id + "-previous-dropdown";
+      const previousButtonId = 'ix-bc' + this.id + '-previous-button';
+      const previousDropdownId = 'ix-bc' + this.id + '-previous-dropdown';
       // Return list entry with dropdown button and its dropdown
       // for conditionally hidden previous items
       // (Disclosure Navigation Menu)
@@ -215,7 +221,9 @@ export class Breadcrumb {
             <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
           </button>
           <ix-dropdown
-            ref={(ref) => {this.previousDropdownRef = ref;}}
+            ref={(ref) => {
+              this.previousDropdownRef = ref;
+            }}
             id={previousDropdownId}
             aria-label={this.ariaPreviousButtonLabel}
             trigger={this.previousButtonRef}
@@ -228,12 +236,13 @@ export class Breadcrumb {
                   label={item.label}
                   onClick={() => this.onItemClick(item.label)}
                 ></ix-dropdown-item>
-            ))}
+              ))
+            }
           </ix-dropdown>
         </li>
       );
     } else {
-      return (null);
+      return null;
     }
   }
 
@@ -242,8 +251,8 @@ export class Breadcrumb {
       const last = index === array.length - 1;
       const isLastItem = last && !this.nextItems?.length;
       if (last && !isLastItem) {
-        const nextButtonId = "ix-bc" + this.id + "-next-button";
-        const nextDropdownId = "ix-bc" + this.id + "-next-dropdown";
+        const nextButtonId = 'ix-bc' + this.id + '-next-button';
+        const nextDropdownId = 'ix-bc' + this.id + '-next-dropdown';
         // Return list entry with dropdown button and its dropdown
         // for conditionally available next items
         // (Disclosure Navigation Menu)
@@ -262,13 +271,19 @@ export class Breadcrumb {
               data-testid="item"
             >
               <span class="crumb-text remove-anchor">
-                {item.icon ? <ix-icon name={item.icon} size="16"></ix-icon> : ''}
+                {item.icon ? (
+                  <ix-icon name={item.icon} size="16"></ix-icon>
+                ) : (
+                  ''
+                )}
                 {item.label}
               </span>
               <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
             </button>
             <ix-dropdown
-              ref={(ref) => {this.nextDropdownRef = ref;}}
+              ref={(ref) => {
+                this.nextDropdownRef = ref;
+              }}
               id={nextDropdownId}
               aria-label={item.label}
               trigger={this.nextButtonRef}
@@ -277,7 +292,9 @@ export class Breadcrumb {
               {this.nextItems?.map((item) => (
                 <ix-dropdown-item
                   label={item}
-                  onClick={(e) => {this.nextClick.emit({event: e, item,});}}
+                  onClick={(e) => {
+                    this.nextClick.emit({event: e, item,});
+                  }}
                 ></ix-dropdown-item>
               ))}
             </ix-dropdown>
@@ -291,18 +308,22 @@ export class Breadcrumb {
               ref={(ref) => this.handleLastButtonRef(ref, last)}
               class={{
                 crumb: true,
-                ghost: (this.ghost && (last == isLastItem)),
-                btn: !(this.ghost && (last == isLastItem)),
+                ghost: (this.ghost && last == isLastItem),
+                btn: !(this.ghost && last == isLastItem),
                 last: isLastItem,
                 'remove-hover': isLastItem,
               }}
               aria-current={last ? 'page' : false}
               onClick={() => this.clickItem(item.label, last)}
               data-breadcrumb={index}
-              data-testid="item"
+              data-testid='item'
             >
               <span class="crumb-text remove-anchor">
-                {item.icon ? <ix-icon name={item.icon} size="16"></ix-icon> : ''}
+                {item.icon ? (
+                  <ix-icon name={item.icon} size="16"></ix-icon>
+                ) : (
+                  ''
+                )}
                 {item.label}
               </span>
               {!isLastItem ? (
