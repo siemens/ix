@@ -22,7 +22,7 @@ export class IconButton implements Button {
   /**
    * Accessibility label for the icon button
    */
-   @Prop() ariaLabel: string;
+  @Prop() ariaLabel: string;
 
   /**
    * Variant of button
@@ -82,11 +82,14 @@ export class IconButton implements Button {
   @Prop() type: 'button' | 'submit' = 'button';
 
   private fallbackLabel() {
-    if (this.icon) {
+    if (this.icon != null) {
       let label = this.icon;
-      let wordList = label.replace("-filled", '').split('-').filter(item => item);
-      for (let i = 0; i < wordList.length; i++)
-      {
+      let wordList = label
+        .replace('-filled', '')
+        .split('-')
+        .filter(item => item);
+
+      for (let i = 0; i < wordList.length; i++) {
         wordList[i] = wordList[i].trim();
         let digitless = wordList[i].replace(/\d+/g, '');
         if (digitless.length > 0)
@@ -96,12 +99,12 @@ export class IconButton implements Button {
           wordList[i] = wordList[i][0].toUpperCase() + wordList[i].slice(1).toLowerCase();
       }
 
-      label = wordList.filter(item => item).join(" ");
+      label = wordList.filter(item => item).join(' ');
       if (label.length > 0)
         return label;
     }
 
-    return "Unknown"; // Should never occur!
+    return 'Unknown';
   }
 
   private getIconButtonClasses() {
@@ -125,7 +128,12 @@ export class IconButton implements Button {
   render() {
     return (
       <Host class={{ disabled: this.disabled }}>
-        <button class={this.getIconButtonClasses()} type={this.type} aria-label={this.ariaLabel ? this.ariaLabel : this.fallbackLabel()} disabled={this.disabled}>
+        <button
+          class={this.getIconButtonClasses()}
+          type={this.type}
+          aria-label={this.ariaLabel ? this.ariaLabel : this.fallbackLabel()}
+          disabled={this.disabled}
+        >
           <ix-icon size={this.size} name={this.icon} color={this.color} />
           <div style={{ display: 'none' }}>
             <slot></slot>
