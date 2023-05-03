@@ -298,9 +298,9 @@ export class Dropdown {
     target: 'window',
   })
   keydown(event: KeyboardEvent) {
-    if (!(this.show === false))
-      if (event.code === 'Escape')
-        this.close();
+    if (this.show === true && event.code === 'Escape') {
+      this.close();
+    }
   }
 
   private isNestedDropdown(element: Element) {
