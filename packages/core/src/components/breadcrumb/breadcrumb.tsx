@@ -236,8 +236,7 @@ export class Breadcrumb {
                   label={item.label}
                   onClick={() => this.onItemClick(item.label)}
                 ></ix-dropdown-item>
-              ))
-            }
+              ))}
           </ix-dropdown>
         </li>
       );
