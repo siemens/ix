@@ -87,21 +87,25 @@ export class IconButton implements Button {
       let wordList = label
         .replace('-filled', '')
         .split('-')
-        .filter(item => item);
+        .filter((item) => item);
 
       for (let i = 0; i < wordList.length; i++) {
         wordList[i] = wordList[i].trim();
         let digitless = wordList[i].replace(/\d+/g, '');
-        if (digitless.length > 0)
+        if (digitless.length > 0) {
           wordList[i] = digitless;
+        }
 
-        if (wordList[i].length > 0)
-          wordList[i] = wordList[i][0].toUpperCase() + wordList[i].slice(1).toLowerCase();
+        if (wordList[i].length > 0) {
+          wordList[i] =
+            wordList[i][0].toUpperCase() + wordList[i].slice(1).toLowerCase();
+        }
       }
 
-      label = wordList.filter(item => item).join(' ');
-      if (label.length > 0)
+      label = wordList.filter((item) => item).join(' ');
+      if (label.length > 0) {
         return label;
+      }
     }
 
     return 'Unknown';
