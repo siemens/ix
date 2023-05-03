@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "3.2.2",
+    "version": "3.1.0",
     "typescriptVersion": "4.9.5"
   },
   "components": [
@@ -376,21 +376,55 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
         "ix-dropdown",
-        "ix-dropdown-item"
+        "ix-dropdown-item",
+        "ix-icon"
       ],
       "dependencyGraph": {
         "ix-breadcrumb": [
-          "ix-icon",
           "ix-dropdown",
-          "ix-dropdown-item"
+          "ix-dropdown-item",
+          "ix-icon"
         ],
         "ix-dropdown-item": [
           "ix-icon"
         ]
       },
       "props": [
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the entire breadcrumb",
+          "docsTags": [],
+          "default": "'Breadrumb'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ariaPreviousButtonLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-previous-button-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the dropdown button used to access the dropdown with conditionally hidden previous items",
+          "docsTags": [],
+          "default": "'Previous'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "ghost",
           "type": "boolean",
@@ -2555,6 +2589,12 @@
       "listeners": [
         {
           "event": "click",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "keydown",
           "target": "window",
           "capture": false,
           "passive": false
