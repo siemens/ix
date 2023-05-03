@@ -45,6 +45,31 @@ export class MyComponent {
             variant="success"
           ></ix-notification-card>
         </ix-card-list>
+        <ix-card-list label="Some example list">
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-notification-card>
+
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-notification-card>
+
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-notification-card>
+        </ix-card-list>
       </Host>
     );
   }

@@ -12,6 +12,9 @@
   position: relative;
   flex-direction: column;
   align-items: flex-start;
+  margin: 0.5rem;
+  height: auto;
+  overflow: auto;
 
   .CardList_Title {
     display: flex;
