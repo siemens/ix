@@ -1,10 +1,14 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
-function CardExpand(props: {
+function CardListTitle(props: {
   label: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
 }) {
+  if (props.label === '') {
+    return null;
+  }
+
   return (
     <div class="CardList_Title">
       <ix-icon-button
@@ -45,13 +49,11 @@ export class CardList {
   render() {
     return (
       <Host>
-        {this.label !== '' ? (
-          <CardExpand
-            isCollapsed={this.collapsed}
-            label={this.label}
-            onClick={() => this.onCardListVisibilityToggle()}
-          ></CardExpand>
-        ) : null}
+        <CardListTitle
+          isCollapsed={this.collapsed}
+          label={this.label}
+          onClick={() => this.onCardListVisibilityToggle()}
+        ></CardListTitle>
         <div
           class={{
             CardList__Content: true,

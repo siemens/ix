@@ -17,7 +17,6 @@
     display: flex;
     position: relative;
     align-items: center;
-
     margin-bottom: 0.5rem;
   }
 
@@ -35,12 +34,13 @@
     position: relative;
     flex-wrap: wrap;
     gap: 0.75rem;
-    transition: 1s height ease-in-out;
-    height: auto;
-    overflow: hidden;
+    transition: var(--theme-default-time) ease-in-out;
+    max-height: 40rem;
   }
 
   .CardList__Content__Collapsed {
-    height: 0px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
   }
 }
