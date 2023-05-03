@@ -236,8 +236,7 @@ export class Breadcrumb {
                   label={item.label}
                   onClick={() => this.onItemClick(item.label)}
                 ></ix-dropdown-item>
-              ))
-            }
+            ))}
           </ix-dropdown>
         </li>
       );
@@ -293,7 +292,7 @@ export class Breadcrumb {
                 <ix-dropdown-item
                   label={item}
                   onClick={(e) => {
-                    this.nextClick.emit({event: e, item,});
+                    this.nextClick.emit({ event: e, item });
                   }}
                 ></ix-dropdown-item>
               ))}
@@ -308,7 +307,7 @@ export class Breadcrumb {
               ref={(ref) => this.handleLastButtonRef(ref, last)}
               class={{
                 crumb: true,
-                ghost: (this.ghost && last == isLastItem),
+                ghost: this.ghost && last == isLastItem,
                 btn: !(this.ghost && last == isLastItem),
                 last: isLastItem,
                 'remove-hover': isLastItem,
@@ -316,7 +315,7 @@ export class Breadcrumb {
               aria-current={last ? 'page' : false}
               onClick={() => this.clickItem(item.label, last)}
               data-breadcrumb={index}
-              data-testid='item'
+              data-testid="item"
             >
               <span class="crumb-text remove-anchor">
                 {item.icon ? (
