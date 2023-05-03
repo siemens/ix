@@ -31,6 +31,21 @@
   color: var(--theme-color-warning--contrast);
 }
 
+:host(.card-success) {
+  --ix-card-background: var(--theme-color-success);
+  color: var(--theme-color-success--contrast);
+}
+
+:host(.card-info) {
+  --ix-card-background: var(--theme-color-info);
+  color: var(--theme-color-info--contrast);
+}
+
+:host(.card-neutral) {
+  --ix-card-background: var(--theme-color-neutral);
+  color: var(--theme-color-neutral--contrast);
+}
+
 :host {
   display: block;
 

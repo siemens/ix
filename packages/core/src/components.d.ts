@@ -171,6 +171,16 @@ export namespace Components {
     }
     interface IxCardContent {
     }
+    interface IxCardList {
+        /**
+          * Collapse the list
+         */
+        "collapsed": boolean;
+        /**
+          * Name the card list
+         */
+        "label": string;
+    }
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
@@ -1954,6 +1964,12 @@ declare global {
         prototype: HTMLIxCardContentElement;
         new (): HTMLIxCardContentElement;
     };
+    interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
+    }
+    var HTMLIxCardListElement: {
+        prototype: HTMLIxCardListElement;
+        new (): HTMLIxCardListElement;
+    };
     interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
     }
     var HTMLIxCardTitleElement: {
@@ -2384,6 +2400,7 @@ declare global {
         "ix-card": HTMLIxCardElement;
         "ix-card-accordion": HTMLIxCardAccordionElement;
         "ix-card-content": HTMLIxCardContentElement;
+        "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
@@ -2589,6 +2606,16 @@ declare namespace LocalJSX {
         "onCardAccordingExpandChanged"?: (event: IxCardAccordionCustomEvent<boolean>) => void;
     }
     interface IxCardContent {
+    }
+    interface IxCardList {
+        /**
+          * Collapse the list
+         */
+        "collapsed"?: boolean;
+        /**
+          * Name the card list
+         */
+        "label"?: string;
     }
     interface IxCardTitle {
     }
@@ -4308,6 +4335,7 @@ declare namespace LocalJSX {
         "ix-card": IxCard;
         "ix-card-accordion": IxCardAccordion;
         "ix-card-content": IxCardContent;
+        "ix-card-list": IxCardList;
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
@@ -4393,6 +4421,7 @@ declare module "@stencil/core" {
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
             "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;

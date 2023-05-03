@@ -7,14 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 export type CardVariant =
   | 'insight'
   | 'notification'
   | 'alarm'
   | 'critical'
-  | 'warning';
+  | 'warning'
+  | 'info'
+  | 'neutral'
+  | 'success';
 
 @Component({
   tag: 'ix-notification-card',

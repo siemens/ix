@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host } from '@stencil/core';
-import { CardVariant } from '../notification-card/notification-card';
+import { Component, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -16,32 +15,36 @@ import { CardVariant } from '../notification-card/notification-card';
   scoped: true,
 })
 export class MyComponent {
-  private demo: CardVariant[] = [
-    'insight',
-    'notification',
-    'alarm',
-    'critical',
-    'warning',
-  ];
-
-  @Element() hostElement: HTMLMyComponentElement;
-
-  componentDidRender() {}
+  componentDidLoad() {}
 
   render() {
     return (
       <Host>
-        <div class={'list'} style={{ paddingBottom: '2rem' }}>
-          {this.demo.map((v) => (
-            <ix-notification-card
-              icon="bulb"
-              notification="42"
-              heading="New devices have been discovered and are ready for onboarding"
-              subheading="Secondary text"
-              variant={v}
-            ></ix-notification-card>
-          ))}
-        </div>
+        <ix-card-list label="Some example list">
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-notification-card>
+
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-notification-card>
+
+          <ix-notification-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-notification-card>
+        </ix-card-list>
       </Host>
     );
   }
