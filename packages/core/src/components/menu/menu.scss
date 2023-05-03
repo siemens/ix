@@ -23,7 +23,7 @@ ix-menu {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 4rem;
+    width: 3.25rem;
     height: 100%;
     padding-block-end: 1rem;
     overflow: hidden;
@@ -36,7 +36,7 @@ ix-menu {
     transition: width var(--animate-duration);
 
     .burger-menu {
-      margin: 0.75rem 0 1rem 0.75rem;
+      margin: 0.75rem 0 1rem 0.35rem;
     }
   }
 
@@ -45,7 +45,7 @@ ix-menu {
     position: absolute;
     width: calc(100vw - 4rem);
     height: 100%;
-    left: 4rem;
+    left: 3.27rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
