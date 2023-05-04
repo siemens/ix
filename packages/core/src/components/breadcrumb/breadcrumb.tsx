@@ -30,14 +30,15 @@ let sequentialInstanceId = 0;
 })
 export class Breadcrumb {
   /**
-   * Accessibility label for the entire breadcrumb
+   * Accessibility label for the entire breadcrumb (MANDATORY)
    */
-  @Prop() ariaLabel: string = 'Breadrumb';
+  @Prop() ixAriaLabel: string = 'Breadrumb';
 
   /**
-   * Accessibility label for the dropdown button used to access the dropdown with conditionally hidden previous items
+   * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
+   * with conditionally hidden previous items (MANDATORY where applicable)
    */
-  @Prop() ariaPreviousButtonLabel: string = 'Previous';
+  @Prop() ixAriaPreviousButtonLabel: string = 'Previous';
 
   /**
    * Excess items will get hidden inside of dropdown
@@ -213,7 +214,7 @@ export class Breadcrumb {
             class="crumb btn"
             type="button"
             id={previousButtonId}
-            aria-label={this.ariaPreviousButtonLabel}
+            aria-label={this.ixAriaPreviousButtonLabel}
             aria-controls={previousDropdownId}
             aria-expanded={a11yBoolean(this.previousButtonExpanded)}
           >
@@ -225,7 +226,7 @@ export class Breadcrumb {
               this.previousDropdownRef = ref;
             }}
             id={previousDropdownId}
-            aria-label={this.ariaPreviousButtonLabel}
+            aria-label={this.ixAriaPreviousButtonLabel}
             trigger={this.previousButtonRef}
             onShowChanged={(e) => this.onPreviousDropdownShowChanged(e)}
           >
@@ -338,7 +339,7 @@ export class Breadcrumb {
   render() {
     return (
       <Host>
-        <nav class="breadcrumb" aria-label={this.ariaLabel}>
+        <nav class="breadcrumb" aria-label={this.ixAriaLabel}>
           <ol>
             {this.renderPreviousButton()}
             {this.renderVisibleItems()}

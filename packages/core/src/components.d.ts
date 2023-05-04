@@ -104,17 +104,17 @@ export namespace Components {
     }
     interface IxBreadcrumb {
         /**
-          * Accessibility label for the entire breadcrumb
-         */
-        "ariaLabel": string;
-        /**
-          * Accessibility label for the dropdown button used to access the dropdown with conditionally hidden previous items
-         */
-        "ariaPreviousButtonLabel": string;
-        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost": boolean;
+        /**
+          * Accessibility label for the entire breadcrumb (MANDATORY)
+         */
+        "ixAriaLabel": string;
+        /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items (MANDATORY where applicable)
+         */
+        "ixAriaPreviousButtonLabel": string;
         /**
           * Items will be accessible through a dropdown
          */
@@ -2449,17 +2449,17 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumb {
         /**
-          * Accessibility label for the entire breadcrumb
-         */
-        "ariaLabel"?: string;
-        /**
-          * Accessibility label for the dropdown button used to access the dropdown with conditionally hidden previous items
-         */
-        "ariaPreviousButtonLabel"?: string;
-        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost"?: boolean;
+        /**
+          * Accessibility label for the entire breadcrumb (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
+        /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items (MANDATORY where applicable)
+         */
+        "ixAriaPreviousButtonLabel"?: string;
         /**
           * Items will be accessible through a dropdown
          */

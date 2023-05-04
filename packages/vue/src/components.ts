@@ -43,6 +43,8 @@ export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', un
 
 
 export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-breadcrumb', undefined, [
+  'ixAriaLabel',
+  'ixAriaPreviousButtonLabel',
   'visibleItemCount',
   'nextItems',
   'ghost',
