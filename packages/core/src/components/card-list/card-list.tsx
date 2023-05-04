@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 function CardListTitle(props: {
   label: string;
@@ -40,24 +40,30 @@ export class CardList {
   /**
    * Collapse the list
    */
-  @Prop({ mutable: true }) collapsed = false;
+  @Prop({ mutable: true }) collapse = false;
+
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  @Event() collapseChanged: EventEmitter<boolean>;
 
   private onCardListVisibilityToggle() {
-    this.collapsed = !this.collapsed;
+    this.collapse = !this.collapse;
+    this.collapseChanged.emit(this.collapse);
   }
 
   render() {
     return (
       <Host>
         <CardListTitle
-          isCollapsed={this.collapsed}
+          isCollapsed={this.collapse}
           label={this.label}
           onClick={() => this.onCardListVisibilityToggle()}
         ></CardListTitle>
         <div
           class={{
             CardList__Content: true,
-            CardList__Content__Collapsed: this.collapsed,
+            CardList__Content__Collapsed: this.collapse,
           }}
         >
           <slot></slot>

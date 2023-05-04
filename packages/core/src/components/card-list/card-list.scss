@@ -14,7 +14,6 @@
   align-items: flex-start;
   margin: 0.5rem;
   height: auto;
-  overflow: auto;
 
   .CardList_Title {
     display: flex;
@@ -39,6 +38,7 @@
     gap: 0.75rem;
     transition: var(--theme-default-time) ease-in-out;
     max-height: 40rem;
+    overflow: auto;
   }
 
   .CardList__Content__Collapsed {

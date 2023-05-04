@@ -175,7 +175,7 @@ export namespace Components {
         /**
           * Collapse the list
          */
-        "collapsed": boolean;
+        "collapse": boolean;
         /**
           * Name the card list
          */
@@ -1751,6 +1751,10 @@ export interface IxCardAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCardAccordionElement;
 }
+export interface IxCardListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCardListElement;
+}
 export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
@@ -2611,11 +2615,15 @@ declare namespace LocalJSX {
         /**
           * Collapse the list
          */
-        "collapsed"?: boolean;
+        "collapse"?: boolean;
         /**
           * Name the card list
          */
         "label"?: string;
+        /**
+          * Fire event when the collapse state is changed by the user
+         */
+        "onCollapseChanged"?: (event: IxCardListCustomEvent<boolean>) => void;
     }
     interface IxCardTitle {
     }
