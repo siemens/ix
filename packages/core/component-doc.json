@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "3.2.2",
+    "version": "3.1.0",
     "typescriptVersion": "4.9.5"
   },
   "components": [
@@ -4282,6 +4282,22 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ixAriaLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "ix-aria-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the icon button (MANDATORY)",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,

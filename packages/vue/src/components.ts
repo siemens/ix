@@ -291,6 +291,7 @@ export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undef
 
 
 export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', undefined, [
+  'ixAriaLabel',
   'variant',
   'outline',
   'invisible',

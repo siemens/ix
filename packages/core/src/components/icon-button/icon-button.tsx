@@ -20,9 +20,9 @@ export type IconButtonVariant = ButtonVariant;
 })
 export class IconButton implements Button {
   /**
-   * Accessibility label for the icon button
+   * Accessibility label for the icon button (MANDATORY)
    */
-  @Prop() ariaLabel: string;
+  @Prop() ixAriaLabel: string;
 
   /**
    * Variant of button
@@ -135,7 +135,7 @@ export class IconButton implements Button {
         <button
           class={this.getIconButtonClasses()}
           type={this.type}
-          aria-label={this.ariaLabel ? this.ariaLabel : this.fallbackLabel()}
+          aria-label={this.ixAriaLabel ? this.ixAriaLabel : this.fallbackLabel()}
           disabled={this.disabled}
         >
           <ix-icon size={this.size} name={this.icon} color={this.color} />

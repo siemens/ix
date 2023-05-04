@@ -771,6 +771,10 @@ export namespace Components {
          */
         "invisible": boolean;
         /**
+          * Accessibility label for the icon button (MANDATORY)
+         */
+        "ixAriaLabel": string;
+        /**
           * Button outline
          */
         "outline": boolean;
@@ -3199,6 +3203,10 @@ declare namespace LocalJSX {
           * @deprecated Use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Accessibility label for the icon button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
         /**
           * Button outline
          */
