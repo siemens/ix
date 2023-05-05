@@ -85,12 +85,12 @@ body {
   margin-left: 6.25rem;
   margin-right: 0;
 
-  max-width: 100%;
+  max-width: 75rem;
 }
 
 @media (min-width: 1440px) {
   .container {
-    max-width: 100% !important;
+    max-width: 75rem !important;
   }
   .col {
     max-width: 100% !important;
@@ -101,7 +101,7 @@ body {
   .container {
     margin-top: 0;
     margin-left: 0;
-    max-width: 100% !important;
+    max-width: 75rem !important;
   }
   .col {
     max-width: 100% !important;
@@ -376,4 +376,10 @@ h2,
 h1,
 .h1 + p {
   margin-bottom: 1rem;
+}
+
+p > img {
+  display: block;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
