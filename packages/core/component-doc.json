@@ -8341,7 +8341,7 @@
         {
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
-          "mutable": false,
+          "mutable": true,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
