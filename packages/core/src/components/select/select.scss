@@ -17,6 +17,8 @@
   position: relative;
   height: auto;
   width: 100%;
+  box-shadow: inset 3px 3px 5px 6px var(--theme-color-shadow-3);
+  border-radius: var(--theme-input--border-radius);
 
   .select {
     position: relative;
@@ -102,20 +104,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $x-large-space;
-    min-width: $x-large-space;
-    height: 100%;
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+
+    @include hover {
+      color: var(--theme-color-dynamic--hover);
+    }
+
+    @include active {
+      color: var(--theme-color-dynamic--hover);
+    }
   }
 
   .editable {
     .chevron-down-container {
       @include hover {
+        color: var(--theme-color-std-text);
         background-color: var(
           --theme-btn-invisible-secondary--background--hover
         );
       }
 
       @include active {
+        color: var(--theme-color-std-text);
         background-color: var(
           --theme-btn-invisible-secondary--background--active
         );

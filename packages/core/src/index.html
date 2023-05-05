@@ -6,29 +6,38 @@ SPDX-License-Identifier: MIT
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/siemens-ix.esm.js"></script>
-    <script nomodule src="/build/siemens-ix.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
 
-    <link rel="stylesheet" href="/build/siemens-ix.css" />
-    <link
-      rel="stylesheet"
-      href="/build/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
-    />
-    <link rel="stylesheet" href="/build/ix-icons/css/ix-icons.css" />
-    <script type="module">
-      import { defineCustomElements } from '/build/ix-brand-theme/loader/index.es2017.js';
-      defineCustomElements();
-    </script>
-  </head>
-  <body style="margin: 0px; height: 100vh">
-    <my-component />
-  </body>
+  <script type="module" src="/build/siemens-ix.esm.js"></script>
+  <script nomodule src="/build/siemens-ix.js"></script>
+
+  <link rel="stylesheet" href="/build/siemens-ix.css" />
+  <link rel="stylesheet" href="/build/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css" />
+  <link rel="stylesheet" href="/build/ix-icons/css/ix-icons.css" />
+  <script type="module">
+    import { defineCustomElements } from '/build/ix-brand-theme/loader/index.es2017.js';
+    defineCustomElements();
+  </script>
+</head>
+
+<body style="margin: 0px; height: 100vh">
+  <ix-select mode="multiple">
+    <ix-select-item label="Item 1" value="1"></ix-select-item>
+    <ix-select-item label="Item 2" value="2"></ix-select-item>
+    <ix-select-item label="Item 3" value="3"></ix-select-item>
+    <ix-select-item label="Item 4" value="4"></ix-select-item>
+  </ix-select>
+  <script>
+    (async function () {
+      await window.customElements.whenDefined('ix-select');
+      const select = document.querySelector('ix-select');
+      select.selectedIndices = ['1', '3'];
+    })();
+  </script>
+</body>
+
 </html>
