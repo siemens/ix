@@ -28,7 +28,6 @@ $paddingContentLeftRight: 1rem;
     flex-grow: 1;
     width: calc(100% - #{$paddingContentLeftRight * 2});
     padding: 1.5rem $paddingContentLeftRight $paddingContentLeftRight 1rem;
-    min-height: calc(13.5rem - 2.5rem);
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--theme-default-border-radius);
     border-top-right-radius: var(--theme-default-border-radius);

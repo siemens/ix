@@ -7,17 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+$CardList__Title__Height: 1.5rem;
+
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
   margin: 0.5rem;
-  height: auto;
 
   .CardList_Title {
     display: flex;
     position: relative;
+    height: $CardList__Title__Height;
     align-items: center;
     width: 100%;
     margin-bottom: 0.5rem;
@@ -41,7 +43,8 @@
   .CardList__Content {
     display: flex;
     position: relative;
-
+    height: calc(100% - #{$CardList__Title__Height});
+    min-height: 18.75rem;
     width: 100%;
     gap: 0.75rem;
     transition: var(--theme-default-time) ease-in-out;
@@ -50,7 +53,8 @@
   }
 
   .CardList__Content__Collapsed {
-    max-height: 0;
+    min-height: 0px;
+    max-height: 0px;
     overflow: hidden;
     opacity: 0;
   }

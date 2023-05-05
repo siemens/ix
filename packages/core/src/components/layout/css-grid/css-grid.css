@@ -8,5 +8,7 @@
  */
 :host {
   display: grid;
-  column-gap: 1.5rem;
+  position: relative;
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
 }
