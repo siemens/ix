@@ -9,30 +9,6 @@
 
 $paddingContentLeftRight: 1rem;
 
-:host(.card-insight) {
-  --ix-card-background: transparent;
-  --ix-card-border-color: var(--theme-color-soft-bdr);
-}
-
-:host(.card-notification) {
-  --ix-card-background: var(--theme-color-component-1);
-}
-
-:host(.card-alarm) {
-  --ix-card-background: var(--theme-color-alarm);
-  color: var(--theme-color-alarm--contrast);
-}
-
-:host(.card-critical) {
-  --ix-card-background: var(--theme-color-critical);
-  color: var(--theme-color-critical--contrast);
-}
-
-:host(.card-warning) {
-  --ix-card-background: var(--theme-color-warning);
-  color: var(--theme-color-warning--contrast);
-}
-
 :host {
   display: flex;
   position: relative;
@@ -43,7 +19,7 @@ $paddingContentLeftRight: 1rem;
   width: 20rem;
   min-width: 20rem;
 
-  border: 1px solid var(--ix-card-border-color, transparent);
+  border: 1px solid var(--ix-card-border-color, var(--theme-color-soft-bdr));
   border-radius: var(--theme-default-border-radius);
 
   .card-content {
@@ -54,7 +30,7 @@ $paddingContentLeftRight: 1rem;
     width: calc(100% - #{$paddingContentLeftRight * 2});
     padding: 1.5rem $paddingContentLeftRight $paddingContentLeftRight 1rem;
     min-height: calc(13.5rem - 2.5rem);
-    background-color: var(--ix-card-background);
+    background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--theme-default-border-radius);
     border-top-right-radius: var(--theme-default-border-radius);
   }

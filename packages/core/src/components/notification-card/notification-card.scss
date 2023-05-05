@@ -46,6 +46,10 @@
   color: var(--theme-color-neutral--contrast);
 }
 
+:host(:not(.card-insight)) {
+  --ix-card-border-color: transparent;
+}
+
 :host {
   display: block;
 

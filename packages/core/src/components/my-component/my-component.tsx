@@ -20,6 +20,9 @@ export class MyComponent {
   render() {
     return (
       <Host>
+        <ix-card>
+          <ix-card-content>Test</ix-card-content>
+        </ix-card>
         <ix-card-list label="Some example list">
           <ix-notification-card
             icon="bulb"
@@ -28,7 +31,6 @@ export class MyComponent {
             subheading="Subheading"
             variant="neutral"
           ></ix-notification-card>
-
           <ix-notification-card
             icon="bulb"
             notification="99"
@@ -36,7 +38,6 @@ export class MyComponent {
             subheading="Subheading"
             variant="alarm"
           ></ix-notification-card>
-
           <ix-notification-card
             icon="bulb"
             notification="99"
