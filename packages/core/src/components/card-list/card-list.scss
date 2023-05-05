@@ -19,6 +19,7 @@
     display: flex;
     position: relative;
     align-items: center;
+    width: 100%;
     margin-bottom: 0.5rem;
   }
 
@@ -31,10 +32,16 @@
     transform: rotate(-90deg);
   }
 
+  .CardList__Title__Show__More {
+    align-self: center;
+    margin-left: auto;
+    margin-right: 0px;
+  }
+
   .CardList__Content {
     display: flex;
     position: relative;
-    flex-wrap: wrap;
+
     width: 100%;
     gap: 0.75rem;
     transition: var(--theme-default-time) ease-in-out;
@@ -46,5 +53,20 @@
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+  }
+
+  .CardList__Style__Flexbox__Scroll {
+    flex-wrap: wrap;
+  }
+
+  .CardList__Style__Infinite__Scroll {
+    flex-wrap: nowrap;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

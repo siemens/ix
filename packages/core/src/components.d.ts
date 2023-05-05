@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -31,6 +32,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
+export { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -177,9 +179,25 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
+          * i18n Show more button
+         */
+        "i18nShowMore": string;
+        /**
           * Name the card list
          */
         "label": string;
+        /**
+          * List style
+         */
+        "listStyle": 'flexbox' | 'infinite-scroll';
+        /**
+          * Maximal visible cards
+         */
+        "maxVisibleCards": number;
+        /**
+          * Show more counter
+         */
+        "showMoreCounter": number;
     }
     interface IxCardTitle {
     }
@@ -303,6 +321,15 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Test
+         */
+        "itemName": string;
     }
     interface IxDatePicker {
         /**
@@ -1998,6 +2025,18 @@ declare global {
         prototype: HTMLIxCounterPillElement;
         new (): HTMLIxCounterPillElement;
     };
+    interface HTMLIxCssGridElement extends Components.IxCssGrid, HTMLStencilElement {
+    }
+    var HTMLIxCssGridElement: {
+        prototype: HTMLIxCssGridElement;
+        new (): HTMLIxCssGridElement;
+    };
+    interface HTMLIxCssGridItemElement extends Components.IxCssGridItem, HTMLStencilElement {
+    }
+    var HTMLIxCssGridItemElement: {
+        prototype: HTMLIxCssGridItemElement;
+        new (): HTMLIxCssGridItemElement;
+    };
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
     var HTMLIxDatePickerElement: {
@@ -2409,6 +2448,8 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
+        "ix-css-grid": HTMLIxCssGridElement;
+        "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -2617,13 +2658,35 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         /**
+          * i18n Show more button
+         */
+        "i18nShowMore"?: string;
+        /**
           * Name the card list
          */
         "label"?: string;
         /**
+          * List style
+         */
+        "listStyle"?: 'flexbox' | 'infinite-scroll';
+        /**
+          * Maximal visible cards
+         */
+        "maxVisibleCards"?: number;
+        /**
           * Fire event when the collapse state is changed by the user
          */
         "onCollapseChanged"?: (event: IxCardListCustomEvent<boolean>) => void;
+        /**
+          * Fire event when the collapse state is changed by the user
+         */
+        "onShowMoreClick"?: (event: IxCardListCustomEvent<{
+    nativeEvent: MouseEvent;
+  }>) => void;
+        /**
+          * Show more counter
+         */
+        "showMoreCounter"?: number;
     }
     interface IxCardTitle {
     }
@@ -2765,6 +2828,15 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Test
+         */
+        "itemName"?: string;
     }
     interface IxDatePicker {
         /**
@@ -4348,6 +4420,8 @@ declare namespace LocalJSX {
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-counter-pill": IxCounterPill;
+        "ix-css-grid": IxCssGrid;
+        "ix-css-grid-item": IxCssGridItem;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -4434,6 +4508,8 @@ declare module "@stencil/core" {
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
+            "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
+            "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
