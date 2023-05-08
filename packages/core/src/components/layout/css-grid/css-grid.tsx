@@ -27,7 +27,7 @@ const mediaQueryCollection: Array<{
 
 @Component({
   tag: 'ix-css-grid',
-  styleUrl: 'css-grid.css',
+  styleUrl: 'css-grid.scss',
   shadow: true,
 })
 export class CssGrid {

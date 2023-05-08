@@ -46,7 +46,7 @@ $CardList__Title__Height: 1.5rem;
     height: calc(100% - #{$CardList__Title__Height});
     min-height: 18.75rem;
     width: 100%;
-    gap: 0.75rem;
+    gap: 1.5rem;
     transition: var(--theme-default-time) ease-in-out;
     max-height: 40rem;
     overflow: auto;
