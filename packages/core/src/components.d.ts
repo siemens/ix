@@ -1194,7 +1194,7 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * Card kpi value
+          * Card KPI value
          */
         "notification": string;
         /**
@@ -3778,7 +3778,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * Card kpi value
+          * Card KPI value
          */
         "notification"?: string;
         /**

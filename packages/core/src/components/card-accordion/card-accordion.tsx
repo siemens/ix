@@ -1,4 +1,12 @@
-import { Component, Event, EventEmitter, h, Host, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  State,
+} from '@stencil/core';
 
 let accordingControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -11,6 +19,8 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   scoped: true,
 })
 export class CardAccordion {
+  @Element() hostElement: HTMLIxCardAccordionElement;
+
   /**
    * @internal
    */
@@ -18,10 +28,27 @@ export class CardAccordion {
 
   @State() expandContent = false;
 
+  get expandedContent() {
+    return this.hostElement.querySelector('.expand-content');
+  }
+
   onExpandActionClick(event: Event) {
     event.preventDefault();
     this.expandContent = !this.expandContent;
     this.cardAccordingExpandChanged.emit(this.expandContent);
+
+    if (this.expandContent) {
+      this.scrollExpandedContentIntoView();
+    }
+  }
+
+  private scrollExpandedContentIntoView() {
+    setTimeout(() => {
+      const rect = this.expandedContent.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight) {
+        this.hostElement.querySelector('.expand-content').scrollIntoView(false);
+      }
+    }, 150);
   }
 
   render() {

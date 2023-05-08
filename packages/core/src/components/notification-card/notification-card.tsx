@@ -31,7 +31,7 @@ export class NotificationCard {
   @Prop() icon: string | undefined = undefined;
 
   /**
-   * Card kpi value
+   * Card KPI value
    */
   @Prop() notification: string;
 
@@ -60,6 +60,7 @@ export class NotificationCard {
               name={this.icon ?? 'rocket'}
               size="32"
             ></ix-icon>
+            <span class={'notification'}>{this.notification ?? 0}</span>
             <slot name="title-action"></slot>
           </ix-card-title>
           <ix-card-content>
@@ -67,10 +68,6 @@ export class NotificationCard {
               {this.heading}
             </ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
-
-            <div class="notification-edge">
-              <span class={'notification'}>{this.notification ?? 0}</span>
-            </div>
           </ix-card-content>
           <ix-card-accordion>
             <slot></slot>

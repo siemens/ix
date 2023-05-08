@@ -16,6 +16,9 @@ $expand-content-height: 15rem;
   position: relative;
   flex-direction: column;
   width: 100%;
+  height: $action-height;
+  max-height: $action-height;
+  transition: var(--theme-default-time) ease-in-out;
 
   .expand-action {
     all: unset;
@@ -107,4 +110,5 @@ $expand-content-height: 15rem;
 
 :host(.show) {
   height: calc(#{$expand-content-height} + #{$action-height});
+  max-height: calc(#{$expand-content-height} + #{$action-height});
 }

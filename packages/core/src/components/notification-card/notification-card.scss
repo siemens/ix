@@ -57,14 +57,11 @@
     transform: scale(1.25);
   }
 
-  .notification-edge {
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-  }
-
   .notification {
     font-size: 40px;
   }
+}
+
+ix-card-title {
+  height: 3rem;
 }
