@@ -74,12 +74,17 @@ export class CardList {
    *
    * @internal
    */
-  @Prop() maxVisibleCards = 4;
+  @Prop() maxVisibleCards = 5;
 
   /**
    * Show more counter
    * */
   @Prop() showMoreCounter: number;
+
+  /**
+   * Suppress the overflow handling of child elements
+   */
+  @Prop() suppressOverflowHandling = false;
 
   /**
    * i18n Show more button
@@ -146,8 +151,17 @@ export class CardList {
     this.checkOverflow();
   }
 
-  componentDidLoad() {
+  private shouldHandleOverflow() {
+    if (this.suppressOverflowHandling) {
+      return false;
+    }
     if (this.listStyle === 'infinite-scroll' || this.listStyle === 'flexbox') {
+      return true;
+    }
+  }
+
+  componentDidLoad() {
+    if (this.shouldHandleOverflow()) {
       this.registerOverflowHandler();
     }
   }

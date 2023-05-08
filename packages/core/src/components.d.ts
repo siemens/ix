@@ -198,6 +198,10 @@ export namespace Components {
           * Show more counter
          */
         "showMoreCounter": number;
+        /**
+          * Suppress the overflow handling of child elements
+         */
+        "suppressOverflowHandling": boolean;
     }
     interface IxCardTitle {
     }
@@ -2687,6 +2691,10 @@ declare namespace LocalJSX {
           * Show more counter
          */
         "showMoreCounter"?: number;
+        /**
+          * Suppress the overflow handling of child elements
+         */
+        "suppressOverflowHandling"?: boolean;
     }
     interface IxCardTitle {
     }
