@@ -21,6 +21,8 @@ export type TypographyVariants =
   | 'default-title-single'
   | 'large'
   | 'large-single'
+  | 'large-title'
+  | 'large-title-single'
   | 'h2'
   | 'display-large';
 

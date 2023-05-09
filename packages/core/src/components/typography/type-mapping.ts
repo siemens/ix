@@ -17,6 +17,8 @@ export const VariantsMapping: Record<TypographyVariants, string> = {
   'default-single': 'text-default-single',
   large: 'text-l',
   'large-single': 'text-l-single',
+  'large-title': 'text-l-title',
+  'large-title-single': 'text-l-title-single',
   h2: 'text-h2',
   'display-large': 'text-xl',
   'default-title': 'text-default-title',
