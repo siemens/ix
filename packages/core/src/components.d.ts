@@ -734,20 +734,6 @@ export namespace Components {
          */
         "text": string;
     }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color": string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name": string;
-        /**
-          * Size of the icon
-         */
-        "size": '12' | '16' | '24' | '32';
-    }
     interface IxIconButton {
         /**
           * Color of icon in  button
@@ -2037,12 +2023,6 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
-    interface HTMLIxIconElement extends Components.IxIcon, HTMLStencilElement {
-    }
-    var HTMLIxIconElement: {
-        prototype: HTMLIxIconElement;
-        new (): HTMLIxIconElement;
-    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -2333,7 +2313,6 @@ declare global {
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
-        "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
@@ -3162,20 +3141,6 @@ declare namespace LocalJSX {
           * Group item text
          */
         "text"?: string;
-    }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color"?: string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name"?: string;
-        /**
-          * Size of the icon
-         */
-        "size"?: '12' | '16' | '24' | '32';
     }
     interface IxIconButton {
         /**
@@ -4217,7 +4182,6 @@ declare namespace LocalJSX {
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
-        "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
@@ -4306,7 +4270,6 @@ declare module "@stencil/core" {
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
-            "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
