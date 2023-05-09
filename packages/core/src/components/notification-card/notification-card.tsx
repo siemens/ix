@@ -19,6 +19,8 @@ export type CardVariant =
   | 'neutral'
   | 'success';
 
+export type NotifiactionCardVariant = CardVariant;
+
 @Component({
   tag: 'ix-notification-card',
   styleUrl: 'notification-card.scss',
@@ -48,7 +50,7 @@ export class NotificationCard {
   /**
    * Look of the card
    */
-  @Prop() variant: CardVariant = 'insight';
+  @Prop() variant: NotifiactionCardVariant = 'insight';
 
   render() {
     return (
