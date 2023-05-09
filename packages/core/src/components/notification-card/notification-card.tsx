@@ -8,16 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-
-export type CardVariant =
-  | 'insight'
-  | 'notification'
-  | 'alarm'
-  | 'critical'
-  | 'warning'
-  | 'info'
-  | 'neutral'
-  | 'success';
+import { CardVariant } from '../card/card';
 
 export type NotifiactionCardVariant = CardVariant;
 
@@ -48,14 +39,14 @@ export class NotificationCard {
   @Prop() subheading: string;
 
   /**
-   * Look of the card
+   * Card variant
    */
   @Prop() variant: NotifiactionCardVariant = 'insight';
 
   render() {
     return (
-      <Host class={`card-${this.variant}`}>
-        <ix-card>
+      <Host>
+        <ix-card variant={this.variant}>
           <ix-card-title>
             <ix-icon
               class={'icon'}
