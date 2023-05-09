@@ -6,9 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 :host {
-  display: grid;
-  position: relative;
-  row-gap: 0.5rem;
-  column-gap: 0.5rem;
+  ix-card {
+    display: block;
+    width: 13.375rem;
+    height: 7.5rem;
+    min-height: 7.5rem;
+  }
 }

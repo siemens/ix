@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ActionCardVariant } from "./components/action-card/action-card";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { FilterState } from "./components/category-filter/filter-state";
@@ -30,6 +31,7 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
+export { ActionCardVariant } from "./components/action-card/action-card";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -56,6 +58,24 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    interface IxActionCard {
+        /**
+          * Card heading
+         */
+        "heading": string;
+        /**
+          * Card icon
+         */
+        "icon": string | undefined;
+        /**
+          * Card subheading
+         */
+        "subheading": string;
+        /**
+          * Card variant
+         */
+        "variant": ActionCardVariant;
+    }
     interface IxAnimatedTab {
         /**
           * Show notification number
@@ -1933,6 +1953,12 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
+    }
+    var HTMLIxActionCardElement: {
+        prototype: HTMLIxActionCardElement;
+        new (): HTMLIxActionCardElement;
+    };
     interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
     }
     var HTMLIxAnimatedTabElement: {
@@ -2441,6 +2467,7 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ix-action-card": HTMLIxActionCardElement;
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -2526,6 +2553,24 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface IxActionCard {
+        /**
+          * Card heading
+         */
+        "heading"?: string;
+        /**
+          * Card icon
+         */
+        "icon"?: string | undefined;
+        /**
+          * Card subheading
+         */
+        "subheading"?: string;
+        /**
+          * Card variant
+         */
+        "variant"?: ActionCardVariant;
+    }
     interface IxAnimatedTab {
         /**
           * Show notification number
@@ -4421,6 +4466,7 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
+        "ix-action-card": IxActionCard;
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
@@ -4509,6 +4555,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;

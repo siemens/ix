@@ -9,6 +9,14 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
 
+export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', undefined, [
+  'variant',
+  'icon',
+  'heading',
+  'subheading'
+]);
+
+
 export const IxAnimatedTab = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTab>('ix-animated-tab', undefined, [
   'icon',
   'count'
@@ -68,6 +76,35 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
 ]);
 
 
+export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', undefined, [
+  'variant'
+]);
+
+
+export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [
+  'cardAccordingExpandChanged'
+]);
+
+
+export const IxCardContent = /*@__PURE__*/ defineContainer<JSX.IxCardContent>('ix-card-content', undefined);
+
+
+export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card-list', undefined, [
+  'label',
+  'collapse',
+  'listStyle',
+  'maxVisibleCards',
+  'showMoreCounter',
+  'suppressOverflowHandling',
+  'i18nShowMore',
+  'collapseChanged',
+  'showMoreClick'
+]);
+
+
+export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-card-title', undefined);
+
+
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
   'initialState',
   'filterState',
@@ -105,6 +142,16 @@ export const IxCounterPill = /*@__PURE__*/ defineContainer<JSX.IxCounterPill>('i
   'background',
   'color',
   'alignLeft'
+]);
+
+
+export const IxCssGrid = /*@__PURE__*/ defineContainer<JSX.IxCssGrid>('ix-css-grid', undefined, [
+  'templates'
+]);
+
+
+export const IxCssGridItem = /*@__PURE__*/ defineContainer<JSX.IxCssGridItem>('ix-css-grid-item', undefined, [
+  'itemName'
 ]);
 
 
@@ -453,6 +500,15 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 
 
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
+
+
+export const IxNotificationCard = /*@__PURE__*/ defineContainer<JSX.IxNotificationCard>('ix-notification-card', undefined, [
+  'icon',
+  'notification',
+  'heading',
+  'subheading',
+  'variant'
+]);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [

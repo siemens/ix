@@ -8,6 +8,28 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
+  inputs: ['heading', 'icon', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-action-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading', 'icon', 'subheading', 'variant'],
+})
+export class IxActionCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxActionCard extends Components.IxActionCard {}
+
+
+@ProxyCmp({
   inputs: ['count', 'icon']
 })
 @Component({
@@ -206,6 +228,123 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
+  inputs: ['variant']
+})
+@Component({
+  selector: 'ix-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['variant'],
+})
+export class IxCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCard extends Components.IxCard {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-accordion',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardAccordion {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardAccordion extends Components.IxCardAccordion {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardContent extends Components.IxCardContent {}
+
+
+@ProxyCmp({
+  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCounter', 'suppressOverflowHandling']
+})
+@Component({
+  selector: 'ix-card-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCounter', 'suppressOverflowHandling'],
+})
+export class IxCardList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['collapseChanged', 'showMoreClick']);
+  }
+}
+
+
+export declare interface IxCardList extends Components.IxCardList {
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  collapseChanged: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  showMoreClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-title',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardTitle {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardTitle extends Components.IxCardTitle {}
+
+
+@ProxyCmp({
   inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions']
 })
 @Component({
@@ -292,6 +431,50 @@ export class IxCounterPill {
 
 
 export declare interface IxCounterPill extends Components.IxCounterPill {}
+
+
+@ProxyCmp({
+  inputs: ['templates']
+})
+@Component({
+  selector: 'ix-css-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['templates'],
+})
+export class IxCssGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCssGrid extends Components.IxCssGrid {}
+
+
+@ProxyCmp({
+  inputs: ['itemName']
+})
+@Component({
+  selector: 'ix-css-grid-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['itemName'],
+})
+export class IxCssGridItem {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCssGridItem extends Components.IxCssGridItem {}
 
 
 @ProxyCmp({
@@ -1291,6 +1474,28 @@ export class IxModalExample {
 
 
 export declare interface IxModalExample extends Components.IxModalExample {}
+
+
+@ProxyCmp({
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-notification-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant'],
+})
+export class IxNotificationCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxNotificationCard extends Components.IxNotificationCard {}
 
 
 @ProxyCmp({

@@ -15,6 +15,7 @@ $paddingContentLeftRight: 1rem;
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-start;
+  overflow: hidden;
 
   width: 20rem;
 
@@ -28,7 +29,8 @@ $paddingContentLeftRight: 1rem;
     flex-grow: 1;
     width: calc(100% - #{$paddingContentLeftRight * 2});
     padding: 1rem $paddingContentLeftRight;
-    min-height: calc(13.5rem - 2.5rem);
+    // min-height: calc(13.5rem - 2.5rem);
+    height: calc(100% - 2rem);
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--theme-default-border-radius);
     border-top-right-radius: var(--theme-default-border-radius);
