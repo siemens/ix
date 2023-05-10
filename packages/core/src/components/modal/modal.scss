@@ -56,7 +56,7 @@
         var(--theme-modal--border-color);
       padding: $large-space;
       max-height: 100vh;
-      border-radius: 0.25rem;
+      border-radius: var(--theme-default-border-radius);
 
       .state-icon-container {
         margin-inline-end: $default-space;
