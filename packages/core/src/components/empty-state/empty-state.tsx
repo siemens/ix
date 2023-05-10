@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';
@@ -43,7 +52,12 @@ export class EmptyState {
       <Host class={`emptyState emptyState--${this.layout}`}>
         {this.icon && (
           <div class="emptyState__icon">
-            <ix-icon name={this.icon} size="32" color="color-soft-text" />
+            {/* TODO: replace size for large layout with '56' if available */}
+            <ix-icon
+              name={this.icon}
+              size={this.layout === 'large' ? '32' : '32'}
+              color="color-soft-text"
+            />
           </div>
         )}
 
