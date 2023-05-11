@@ -2932,9 +2932,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon",
         "ix-typography",
@@ -2945,9 +2943,6 @@
           "ix-icon",
           "ix-typography",
           "ix-button"
-        ],
-        "my-component": [
-          "ix-empty-state"
         ]
       },
       "props": [
@@ -10053,19 +10048,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-empty-state"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-empty-state"
-        ],
-        "ix-empty-state": [
-          "ix-icon",
-          "ix-typography",
-          "ix-button"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
