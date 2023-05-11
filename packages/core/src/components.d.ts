@@ -580,6 +580,9 @@ export namespace Components {
      */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -2005,6 +2008,9 @@ declare global {
         prototype: HTMLIxDropdownQuickActionsElement;
         new (): HTMLIxDropdownQuickActionsElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
     }
     var HTMLIxEmptyStateElement: {
@@ -3014,6 +3020,9 @@ declare namespace LocalJSX {
      */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxEmptyState {
         /**
           * Optional empty state action
@@ -4358,6 +4367,9 @@ declare module "@stencil/core" {
              * @since 1.4.0
              */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;

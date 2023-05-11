@@ -1,5 +1,6 @@
 import Playground from '@site/src/components/Playground';
 
+import Tags from './../auto-generated/ix-empty-state/tags.md';
 import Props from './../auto-generated/ix-empty-state/props.md';
 import Events from './../auto-generated/ix-empty-state/events.md';
 
@@ -19,6 +20,8 @@ import SourceAngularEmptyStateCompactBreak from './../auto-generated/previews/an
 import SourceVueEmptyStateCompactBreak from './../auto-generated/previews/vue/empty-state-compact-break.md'
 
 # Empty state
+
+<Tags />
 
 ## Usage
 

@@ -2930,7 +2930,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
