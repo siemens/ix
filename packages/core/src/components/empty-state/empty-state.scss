@@ -13,6 +13,18 @@
   align-items: center;
   gap: $default-space;
 
+  .emptyState__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ix-icon {
+      transform: scale(1.75);
+    }
+  }
+
   .emptyState__content {
     display: flex;
     flex-direction: column;

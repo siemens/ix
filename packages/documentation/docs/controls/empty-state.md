@@ -18,7 +18,7 @@ import SourceReactEmptyStateCompactBreak from './../auto-generated/previews/reac
 import SourceAngularEmptyStateCompactBreak from './../auto-generated/previews/angular/empty-state-compact-break.ts.md'
 import SourceVueEmptyStateCompactBreak from './../auto-generated/previews/vue/empty-state-compact-break.md'
 
-# Empty State
+# Empty state
 
 ## Usage
 
