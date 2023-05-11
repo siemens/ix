@@ -52,6 +52,6 @@
   },
   "dependencies": {
     "@siemens/ix": "~1.5.0",
-    "@siemens/ix-icons": "1.1.0-beta.0"
+    "@siemens/ix-icons": "1.1.0-beta.1"
   }
 }

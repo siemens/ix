@@ -3374,10 +3374,10 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-icons@1.1.0-beta.0":
-  version "1.1.0-beta.0"
-  resolved "https://registry.npmjs.org/@siemens/ix-icons/-/ix-icons-1.1.0-beta.0.tgz#4f09dadb3021b44e30e915bc35455593da8c9ab9"
-  integrity sha512-zkNldtiiPXM9HSbTgcLQyACP7EoZT1zyLRgsnv+YbeQW2bWLQXC03o5yVjp7d5HPisdDwsqvvI0ilh/ZaKzjiQ==
+"@siemens/ix-icons@1.1.0-beta.1":
+  version "1.1.0-beta.1"
+  resolved "https://registry.npmjs.org/@siemens/ix-icons/-/ix-icons-1.1.0-beta.1.tgz#8b38e2f2ed6db46720237b2da9cc2a60089675e1"
+  integrity sha512-Z5om9JVUkHLhHvmDCo6OpRFqZNu6PlK0Gxblunx+ErzvGWzzruB3UXEgTlUYp84VHVw3/I5oLa5+p3nVG3ydug==
   dependencies:
     "@stencil/core" "^3.0.0"
 
