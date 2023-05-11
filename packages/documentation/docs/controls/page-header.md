@@ -13,7 +13,7 @@ import SourceVuePageHeader from './../auto-generated/previews/vue/page-header.md
 ## Usage
 
 <Playground
-name="page-header" height="35rem"
+name="page-header"
 frameworks={{
   react: SourceReactPageHeader,
   angular: SourceAngularPageHeader,
