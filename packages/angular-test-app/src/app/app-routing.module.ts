@@ -53,6 +53,7 @@ import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
+import PageHeader from 'src/preview-examples/page-header';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -265,6 +266,7 @@ const routes: Routes = [
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
       { path: 'modal-by-instance', component: ModalByInstance },
+      { path: 'page-header', component: PageHeader },
     ],
   },
 ];

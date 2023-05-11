@@ -61,6 +61,7 @@ import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
+import PageHeader from 'src/preview-examples/page-header';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -180,6 +181,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     TooltipTitle,
     ModalByInstance,
     ModalByInstanceExample,
+    PageHeader,
   ],
   imports: [
     BrowserModule,

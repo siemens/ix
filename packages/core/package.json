@@ -39,7 +39,8 @@
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
     "generate": "stencil generate",
-    "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
+    "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme",
+    "playwright.docker.windows": "docker run --rm --network host -v %cd%/../..:/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.1.0",

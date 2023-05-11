@@ -51,6 +51,7 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
+import PageHeader from './preview-examples/page-header.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -69,8 +70,8 @@ import Textarea from './preview-examples/textarea.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
-import Toast from './preview-examples/toast.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
+import Toast from './preview-examples/toast.vue';
 import ToggleColor from './preview-examples/toggle-color.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
@@ -155,6 +156,7 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/tooltip': Tooltip,
+  '/preview/page-header': PageHeader,
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
