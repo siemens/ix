@@ -12,7 +12,7 @@
   "dependencies": {
     "@siemens/ix": "~1.5.0",
     "@siemens/ix-aggrid": "~1.5.0",
-    "@siemens/ix-icons": "~1.0.0",
+    "@siemens/ix-icons": "1.1.0-beta.0",
     "@siemens/ix-react": "~1.5.0",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",

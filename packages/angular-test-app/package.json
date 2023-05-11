@@ -18,7 +18,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@siemens/ix-icons": "~1.0.0",
+    "@siemens/ix-icons": "1.1.0-beta.0",
     "@siemens/ix": "~1.5.0",
     "@siemens/ix-aggrid": "~1.5.0",
     "@siemens/ix-angular": "~1.5.0",

@@ -3374,10 +3374,12 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-icons@~1.0.0":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@siemens/ix-icons/-/ix-icons-1.0.4.tgz#12d28ce7b594a4f669f00bf0be3274d660c8f700"
-  integrity sha512-A3odcGEdf1N4lYuXE8NcqrtJ7w1ijlClnLaHXa3xvAFyUHl+HL39GaMgxOUBuBJ7k+LiaY3wwFQnX+AotlXm+Q==
+"@siemens/ix-icons@1.1.0-beta.0":
+  version "1.1.0-beta.0"
+  resolved "https://registry.npmjs.org/@siemens/ix-icons/-/ix-icons-1.1.0-beta.0.tgz#4f09dadb3021b44e30e915bc35455593da8c9ab9"
+  integrity sha512-zkNldtiiPXM9HSbTgcLQyACP7EoZT1zyLRgsnv+YbeQW2bWLQXC03o5yVjp7d5HPisdDwsqvvI0ilh/ZaKzjiQ==
+  dependencies:
+    "@stencil/core" "^3.0.0"
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.44"
@@ -3450,7 +3452,7 @@
   resolved "https://registry.yarnpkg.com/@stencil/angular-output-target/-/angular-output-target-0.5.0.tgz#5fd70c80ed12f9f67c2ceb2d03267602c76dadef"
   integrity sha512-U2I6dZdL8hvnogafG9IwtYRaAns5fQMacjee/3WNMRMYagrpz7R6cDdX4O0U8q6jks1ej91GchgZsQOVE9UcKg==
 
-"@stencil/core@^3.2.1":
+"@stencil/core@^3.0.0", "@stencil/core@^3.2.1":
   version "3.2.2"
   resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.2.tgz#cf3b4ffb7992d0197aa1987dbc5236c4eb98cb6b"
   integrity sha512-wXb9cVWL0T3cTwYLveekdTFCRGx6+9hpVDEXna+N8K8OPoW6xtFAHRLv+LjOM7k59PkA8MG3IinAfV7Y+xa0Hw==
