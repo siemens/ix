@@ -87,7 +87,7 @@ export class MyComponent {
         </ix-card-list>
         <ix-card-list
           label="Layout 3 Infinite"
-          listStyle="infinite-scroll"
+          listStyle="scroll"
           showMoreCount={12}
         >
           <ix-push-card
@@ -156,7 +156,7 @@ export class MyComponent {
         </ix-card-list>
         <ix-card-list
           label="Layout 4 Infinite"
-          listStyle="flexbox"
+          listStyle="stack"
           showMoreCount={3}
         >
           <ix-action-card

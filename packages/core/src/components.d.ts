@@ -234,7 +234,7 @@ export namespace Components {
         /**
           * List style
          */
-        "listStyle": 'flexbox' | 'infinite-scroll';
+        "listStyle": 'stack' | 'scroll';
         /**
           * Maximal visible cards
          */
@@ -2771,7 +2771,7 @@ declare namespace LocalJSX {
         /**
           * List style
          */
-        "listStyle"?: 'flexbox' | 'infinite-scroll';
+        "listStyle"?: 'stack' | 'scroll';
         /**
           * Maximal visible cards
          */

@@ -70,7 +70,7 @@ export class CardList {
   /**
    * List style
    */
-  @Prop() listStyle: 'flexbox' | 'infinite-scroll' = 'flexbox';
+  @Prop() listStyle: 'stack' | 'scroll' = 'stack';
 
   /**
    * Maximal visible cards
@@ -158,7 +158,7 @@ export class CardList {
     if (this.suppressOverflowHandling) {
       return false;
     }
-    if (this.listStyle === 'infinite-scroll' || this.listStyle === 'flexbox') {
+    if (this.listStyle === 'stack' || this.listStyle === 'scroll') {
       return true;
     }
   }
@@ -190,9 +190,8 @@ export class CardList {
           class={{
             CardList__Content: true,
             CardList__Content__Collapsed: this.collapse,
-            CardList__Style__Flexbox__Scroll: this.listStyle === 'flexbox',
-            CardList__Style__Infinite__Scroll:
-              this.listStyle === 'infinite-scroll',
+            CardList__Style__Flexbox__Scroll: this.listStyle === 'stack',
+            CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
           }}
         >
           <slot></slot>

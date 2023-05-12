@@ -1124,20 +1124,20 @@
         },
         {
           "name": "listStyle",
-          "type": "\"flexbox\" | \"infinite-scroll\"",
+          "type": "\"scroll\" | \"stack\"",
           "mutable": false,
           "attr": "list-style",
           "reflectToAttr": false,
           "docs": "List style",
           "docsTags": [],
-          "default": "'flexbox'",
+          "default": "'stack'",
           "values": [
             {
-              "value": "flexbox",
+              "value": "scroll",
               "type": "string"
             },
             {
-              "value": "infinite-scroll",
+              "value": "stack",
               "type": "string"
             }
           ],
