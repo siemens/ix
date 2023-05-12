@@ -58,6 +58,9 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    /**
+     * @since 1.6.0
+     */
     interface IxActionCard {
         /**
           * Card heading
@@ -189,16 +192,28 @@ export namespace Components {
          */
         "variant": ButtonVariant;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCard {
         /**
           * Card variant
          */
         "variant": CardVariant;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardAccordion {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardContent {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardList {
         /**
           * Collapse the list
@@ -229,6 +244,9 @@ export namespace Components {
          */
         "suppressOverflowHandling": boolean;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
@@ -1196,6 +1214,9 @@ export namespace Components {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxNotificationCard {
         /**
           * Card heading
@@ -1939,6 +1960,9 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
     }
     var HTMLIxActionCardElement: {
@@ -1999,30 +2023,45 @@ declare global {
         prototype: HTMLIxButtonElement;
         new (): HTMLIxButtonElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
     }
     var HTMLIxCardElement: {
         prototype: HTMLIxCardElement;
         new (): HTMLIxCardElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
     }
     var HTMLIxCardAccordionElement: {
         prototype: HTMLIxCardAccordionElement;
         new (): HTMLIxCardAccordionElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
     }
     var HTMLIxCardContentElement: {
         prototype: HTMLIxCardContentElement;
         new (): HTMLIxCardContentElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
     }
     var HTMLIxCardListElement: {
         prototype: HTMLIxCardListElement;
         new (): HTMLIxCardListElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
     }
     var HTMLIxCardTitleElement: {
@@ -2296,6 +2335,9 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    /**
+     * @since 1.6.0
+     */
     interface HTMLIxNotificationCardElement extends Components.IxNotificationCard, HTMLStencilElement {
     }
     var HTMLIxNotificationCardElement: {
@@ -2532,6 +2574,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * @since 1.6.0
+     */
     interface IxActionCard {
         /**
           * Card heading
@@ -2679,17 +2724,29 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCard {
         /**
           * Card variant
          */
         "variant"?: CardVariant;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardAccordion {
         "onCardAccordingExpandChanged"?: (event: IxCardAccordionCustomEvent<boolean>) => void;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardContent {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardList {
         /**
           * Collapse the list
@@ -2730,6 +2787,9 @@ declare namespace LocalJSX {
          */
         "suppressOverflowHandling"?: boolean;
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
@@ -3788,6 +3848,9 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 1.6.0
+     */
     interface IxNotificationCard {
         /**
           * Card heading
@@ -4519,6 +4582,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @since 1.6.0
+             */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
@@ -4529,10 +4595,25 @@ declare module "@stencil/core" {
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
@@ -4586,6 +4667,9 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            /**
+             * @since 1.6.0
+             */
             "ix-notification-card": LocalJSX.IxNotificationCard & JSXBase.HTMLAttributes<HTMLIxNotificationCardElement>;
             /**
              * @since 1.5.0

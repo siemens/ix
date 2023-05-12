@@ -48,6 +48,9 @@ function CardListTitle(props: {
   );
 }
 
+/**
+ * @since 1.6.0
+ */
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',

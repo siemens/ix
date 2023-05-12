@@ -10,6 +10,9 @@ export type CardVariant =
   | 'neutral'
   | 'success';
 
+/**
+ * @since 1.6.0
+ */
 @Component({
   tag: 'ix-card',
   styleUrl: 'card.scss',

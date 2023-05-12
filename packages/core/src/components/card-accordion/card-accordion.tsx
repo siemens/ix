@@ -13,6 +13,9 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordingControlId++].join('-');
 };
 
+/**
+ * @since 1.6.0
+ */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',

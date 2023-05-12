@@ -12,10 +12,13 @@ import { CardVariant } from '../card/card';
 
 export type ActionCardVariant = CardVariant;
 
+/**
+ * @since 1.6.0
+ */
 @Component({
   tag: 'ix-action-card',
   styleUrl: 'action-card.scss',
-  scoped: true,
+  shadow: true,
 })
 export class IxActionCard {
   /**
@@ -62,9 +65,7 @@ export class IxActionCard {
               >
                 {this.subheading}
               </ix-typography>
-            ) : (
-              ''
-            )}
+            ) : null}
             <slot></slot>
           </ix-card-content>
         </ix-card>
