@@ -26,7 +26,7 @@ import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyVariants } from "./components/typography/types";
+import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -49,7 +49,7 @@ export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyVariants } from "./components/typography/types";
+export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -1595,7 +1595,11 @@ export namespace Components {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color": TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant": TypographyVariants;
     }
@@ -4121,7 +4125,11 @@ declare namespace LocalJSX {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color"?: TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant"?: TypographyVariants;
     }

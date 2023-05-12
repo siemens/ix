@@ -7,15 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 export type PageHeaderVariant = 'Primary' | 'Secondary';
 
@@ -45,8 +37,6 @@ export class PageHeader {
    */
   @Prop() hasBackButton: boolean = false;
 
-  @Element() hostElement: HTMLIxPageHeaderElement;
-
   /**
    * triggered when back button is clicked
    */
@@ -57,6 +47,7 @@ export class PageHeader {
       <Host>
         {this.hasBackButton ? (
           <ix-icon-button
+            class={'backButton'}
             variant="Primary"
             icon="arrow-left"
             ghost={true}
@@ -65,16 +56,15 @@ export class PageHeader {
         ) : null}
 
         <div class="titleGroup">
-          <span
-            class={{
-              headerTitle: true,
-              secondary: this.variant === 'Secondary',
-            }}
+          <ix-typography
+            variant={this.variant === 'Secondary' ? 'large-single' : 'h2'}
           >
             {this.headerTitle}
-          </span>
+          </ix-typography>
           {this.headerSubtitle !== undefined ? (
-            <span class="headerSubtitle">{this.headerSubtitle}</span>
+            <ix-typography variant={'caption'} color={'soft'} class="subtitle">
+              {this.headerSubtitle}
+            </ix-typography>
           ) : null}
         </div>
         <div class="buttons">
