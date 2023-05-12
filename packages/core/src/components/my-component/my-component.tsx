@@ -88,7 +88,7 @@ export class MyComponent {
         <ix-card-list
           label="Layout 3 Infinite"
           listStyle="infinite-scroll"
-          showMoreCounter={12}
+          showMoreCount={12}
         >
           <ix-notification-card
             icon="bulb"
@@ -157,7 +157,7 @@ export class MyComponent {
         <ix-card-list
           label="Layout 4 Infinite"
           listStyle="flexbox"
-          showMoreCounter={3}
+          showMoreCount={3}
         >
           <ix-action-card
             selected

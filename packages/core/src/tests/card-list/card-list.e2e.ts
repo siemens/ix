@@ -10,14 +10,22 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('action card: basic', () => {
+regressionTest.describe('card-list: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
-    await page.goto('action-card/basic');
+    await page.goto('card-list/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('should have selected state', async ({ page }) => {
-    await page.goto('action-card/selected');
+  regressionTest('layout scrolling', async ({ page }) => {
+    await page.goto('card-list/layout-scroll');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('layout scrolling end', async ({ page }) => {
+    await page.goto('card-list/layout-scroll');
+
+    await page.locator('#end').scrollIntoViewIfNeeded();
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

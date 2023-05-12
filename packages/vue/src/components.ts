@@ -13,7 +13,8 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
   'variant',
   'icon',
   'heading',
-  'subheading'
+  'subheading',
+  'selected'
 ]);
 
 
@@ -94,7 +95,7 @@ export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card
   'collapse',
   'listStyle',
   'maxVisibleCards',
-  'showMoreCounter',
+  'showMoreCount',
   'suppressOverflowHandling',
   'i18nShowMore',
   'collapseChanged',

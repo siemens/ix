@@ -242,7 +242,7 @@ export namespace Components {
         /**
           * Show more counter
          */
-        "showMoreCounter": number;
+        "showMoreCount": number;
         /**
           * Suppress the overflow handling of child elements
          */
@@ -2789,7 +2789,7 @@ declare namespace LocalJSX {
         /**
           * Show more counter
          */
-        "showMoreCounter"?: number;
+        "showMoreCount"?: number;
         /**
           * Suppress the overflow handling of child elements
          */

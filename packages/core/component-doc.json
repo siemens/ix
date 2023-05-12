@@ -16,8 +16,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
@@ -67,6 +72,23 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Card selecting",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -859,7 +881,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -939,8 +966,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
       "dependents": [
         "ix-notification-card"
       ],
@@ -973,7 +1005,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
@@ -1006,8 +1043,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
@@ -1103,10 +1145,10 @@
           "required": false
         },
         {
-          "name": "showMoreCounter",
+          "name": "showMoreCount",
           "type": "number",
           "mutable": false,
-          "attr": "show-more-counter",
+          "attr": "show-more-count",
           "reflectToAttr": false,
           "docs": "Show more counter",
           "docsTags": [],
@@ -1172,7 +1214,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-notification-card"
@@ -6954,8 +7001,13 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],

@@ -77,12 +77,12 @@ export class CardList {
    *
    * @internal
    */
-  @Prop() maxVisibleCards = 5;
+  @Prop() maxVisibleCards = 12;
 
   /**
    * Show more counter
    * */
-  @Prop() showMoreCounter: number;
+  @Prop() showMoreCount: number;
 
   /**
    * Suppress the overflow handling of child elements
@@ -182,7 +182,7 @@ export class CardList {
           isCollapsed={this.collapse}
           label={this.label}
           showMoreLabel={this.i18nShowMore}
-          showMoreCounter={this.showMoreCounter}
+          showMoreCounter={this.showMoreCount}
           onClick={() => this.onCardListVisibilityToggle()}
           onShowMoreClick={(e) => this.onShowMoreClick(e)}
         ></CardListTitle>

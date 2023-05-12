@@ -8,14 +8,14 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
-  inputs: ['heading', 'icon', 'subheading', 'variant']
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['heading', 'icon', 'subheading', 'variant'],
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant'],
 })
 export class IxActionCard {
   protected el: HTMLElement;
@@ -292,14 +292,14 @@ export declare interface IxCardContent extends Components.IxCardContent {}
 
 
 @ProxyCmp({
-  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCounter', 'suppressOverflowHandling']
+  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCount', 'suppressOverflowHandling']
 })
 @Component({
   selector: 'ix-card-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCounter', 'suppressOverflowHandling'],
+  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCount', 'suppressOverflowHandling'],
 })
 export class IxCardList {
   protected el: HTMLElement;

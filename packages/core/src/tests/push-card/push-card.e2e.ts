@@ -10,14 +10,23 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('action card: basic', () => {
+regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
-    await page.goto('action-card/basic');
+    await page.goto('push-card/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('should have selected state', async ({ page }) => {
-    await page.goto('action-card/selected');
+  regressionTest('should click accordion', async ({ page }) => {
+    await page.goto('push-card/basic');
+
+    for (const element of await page.locator('ix-card-accordion').all()) {
+      const button = element.locator('button');
+      await button.click();
+    }
+
+    // Animation time
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
