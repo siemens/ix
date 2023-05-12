@@ -71,6 +71,10 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
+          * Card selecting
+         */
+        "selected": boolean;
+        /**
           * Card subheading
          */
         "subheading": string;
@@ -2586,6 +2590,10 @@ declare namespace LocalJSX {
           * Card icon
          */
         "icon"?: string | undefined;
+        /**
+          * Card selecting
+         */
+        "selected"?: boolean;
         /**
           * Card subheading
          */

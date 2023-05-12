@@ -41,10 +41,19 @@ export class IxActionCard {
    */
   @Prop() subheading: string;
 
+  /**
+   * Card selecting
+   */
+  @Prop() selected = false;
+
   render() {
     return (
-      <Host>
-        <ix-card variant={this.variant}>
+      <Host
+        class={{
+          selected: this.selected,
+        }}
+      >
+        <ix-card variant={this.variant} class={'pointer'}>
           <ix-card-content>
             {this.icon ? (
               <ix-icon class={'icon'} name={this.icon} size="24"></ix-icon>

@@ -156,57 +156,65 @@ export class MyComponent {
         </ix-card-list>
         <ix-card-list
           label="Layout 4 Infinite"
-          listStyle="infinite-scroll"
+          listStyle="flexbox"
           showMoreCounter={3}
         >
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="notification"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="alarm"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="critical"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="warning"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="info"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="neutral"
           ></ix-action-card>
           <ix-action-card
+            selected
             icon="refresh"
             heading="Scan forn new devices"
             subheading="Secondary text"
             variant="success"
           ></ix-action-card>
-          <ix-action-card>
+          <ix-action-card selected>
             <div
               class="d-flex flex-column align-items-center"
               style={{ color: '#FF00FF' }}
