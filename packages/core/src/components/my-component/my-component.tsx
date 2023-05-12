@@ -20,30 +20,6 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-card-list label="Layout 1 CSS Grid">
-          <ix-css-grid
-            style={{ width: '100%' }}
-            templates={{
-              lg: [
-                ['item-a', 'item-b', 'item-c'],
-                ['item-a', 'item-d', 'item-c'],
-              ],
-            }}
-          >
-            <ix-css-grid-item itemName="item-a">
-              <ix-card>Item A</ix-card>
-            </ix-css-grid-item>
-            <ix-css-grid-item itemName="item-b">
-              <ix-card>Item B</ix-card>
-            </ix-css-grid-item>
-            <ix-css-grid-item itemName="item-c">
-              <ix-card>Item C</ix-card>
-            </ix-css-grid-item>
-            <ix-css-grid-item itemName="item-d">
-              <ix-card>Item D</ix-card>
-            </ix-css-grid-item>
-          </ix-css-grid>
-        </ix-card-list>
         <ix-card-list label="Layout 2 Flex">
           <ix-notification-card
             icon="bulb"
