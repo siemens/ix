@@ -10,14 +10,14 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 import { CardVariant } from '../card/card';
 
-export type NotifiactionCardVariant = CardVariant;
+export type PushCardVariant = CardVariant;
 
 @Component({
   tag: 'ix-notification-card',
   styleUrl: 'notification-card.scss',
   scoped: true,
 })
-export class NotificationCard {
+export class PushCard {
   /**
    * Card icon
    */
@@ -41,7 +41,7 @@ export class NotificationCard {
   /**
    * Card variant
    */
-  @Prop() variant: NotifiactionCardVariant = 'insight';
+  @Prop() variant: PushCardVariant = 'insight';
 
   render() {
     return (

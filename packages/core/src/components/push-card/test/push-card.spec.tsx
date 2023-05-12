@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { NotificationCard } from '../notification-card';
+import { PushCard } from '../push-card';
 
-describe('notification-card', () => {
+describe('push-card', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [NotificationCard],
-      html: `<notification-card></notification-card>`,
+      components: [PushCard],
+      html: `<ix-push-card></ix-push-card>`,
     });
     expect(page.root).toEqualHtml(`
-      <notification-card>
+      <ix-push-card>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </notification-card>
+      </ix-push-card>
     `);
   });
 });
