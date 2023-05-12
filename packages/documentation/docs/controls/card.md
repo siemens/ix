@@ -16,6 +16,10 @@ import ActionCardProps from './../auto-generated/ix-action-card/props.md';
 import ActionCardEvents from './../auto-generated/ix-action-card/events.md';
 
 import WebComponentCardList from './../auto-generated/previews/web-component/card-list.md'
+import ReactCardList from './../auto-generated/previews/react/card-list.md'
+import VueCardList from './../auto-generated/previews/vue/card-list.md'
+import AngularTsCardList from './../auto-generated/previews/angular/card-list.ts.md'
+import AngularHtmlCardList from './../auto-generated/previews/angular/card-list.html.md'
 
 import WebComponentPushCard from './../auto-generated/previews/web-component/push-card.md'
 import ReactPushCard from './../auto-generated/previews/react/push-card.md'
@@ -74,11 +78,11 @@ height="40rem"
 name="card-list"
 frameworks={{
   javascript: WebComponentCardList,
-  react: ReactPushCard,
-  vue: VuePushCard,
+  react: ReactCardList,
+  vue: VueCardList,
   angular: {
-    "push-card.html": AngularHtmlPushCard,
-    "push-card.ts": AngularTsPushCard
+    "card-list.html": AngularHtmlCardList,
+    "card-list.ts": AngularTsCardList
   },
 }}>
 </Playground>

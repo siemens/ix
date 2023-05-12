@@ -22,6 +22,7 @@ import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
 import Checkbox from 'src/preview-examples/checkbox';
@@ -269,6 +270,7 @@ const routes: Routes = [
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
+      { path: 'card-list', component: CardList },
     ],
   },
 ];
