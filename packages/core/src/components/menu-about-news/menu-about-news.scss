@@ -31,7 +31,7 @@
   @include box-shadow(4);
 
   &.expanded {
-    left: calc(#{$left} + 12rem);
+    left: calc(#{$left} + 12.7rem);
   }
 
   &.show {
