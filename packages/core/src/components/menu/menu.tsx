@@ -738,6 +738,7 @@ export class Menu {
                       <ix-menu-item
                         tabIcon={e.tabIcon}
                         active={e.active}
+                        disabled={e.disabled}
                         class="internal-tab appended"
                         onClick={() => {
                           this.resetOverlay();

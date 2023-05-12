@@ -863,8 +863,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
-        "ix-notification-card",
-        "my-component"
+        "ix-notification-card"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -872,9 +871,6 @@
           "ix-card"
         ],
         "ix-notification-card": [
-          "ix-card"
-        ],
-        "my-component": [
           "ix-card"
         ]
       },
@@ -1791,15 +1787,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-css-grid"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "templates",
@@ -1836,15 +1826,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-css-grid-item"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "itemName",
@@ -4500,205 +4484,6 @@
       ]
     },
     {
-      "dirPath": "./src/components/icon",
-      "filePath": "./src/components/icon/icon.tsx",
-      "fileName": "icon.tsx",
-      "readmePath": "./src/components/icon/readme.md",
-      "usagesDir": "./src/components/icon/usage",
-      "tag": "ix-icon",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-action-card",
-        "ix-animated-tabs",
-        "ix-blind",
-        "ix-breadcrumb",
-        "ix-card-accordion",
-        "ix-category-filter",
-        "ix-chip",
-        "ix-date-picker",
-        "ix-dropdown-button",
-        "ix-dropdown-item",
-        "ix-expanding-search",
-        "ix-filter-chip",
-        "ix-group",
-        "ix-group-item",
-        "ix-icon-button",
-        "ix-kpi",
-        "ix-map-navigation-overlay",
-        "ix-menu-about-news",
-        "ix-message-bar",
-        "ix-modal",
-        "ix-notification-card",
-        "ix-pill",
-        "ix-select",
-        "ix-split-button",
-        "ix-toast",
-        "ix-tree-item",
-        "ix-workflow-step",
-        "my-component"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-action-card": [
-          "ix-icon"
-        ],
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "ix-blind": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-icon"
-        ],
-        "ix-card-accordion": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "ix-date-picker": [
-          "ix-icon"
-        ],
-        "ix-dropdown-button": [
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-expanding-search": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-group": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-kpi": [
-          "ix-icon"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon"
-        ],
-        "ix-message-bar": [
-          "ix-icon"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-notification-card": [
-          "ix-icon"
-        ],
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-icon"
-        ],
-        "ix-split-button": [
-          "ix-icon"
-        ],
-        "ix-toast": [
-          "ix-icon"
-        ],
-        "ix-tree-item": [
-          "ix-icon"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ],
-        "my-component": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": true,
-          "docs": "Use one of our defined icon names e.g. `copy`.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "size",
-          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
-          "mutable": false,
-          "attr": "size",
-          "reflectToAttr": false,
-          "docs": "Size of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "12",
-              "type": "string"
-            },
-            {
-              "value": "16",
-              "type": "string"
-            },
-            {
-              "value": "24",
-              "type": "string"
-            },
-            {
-              "value": "32",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/icon-button",
       "filePath": "./src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
@@ -7160,11 +6945,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/notification-card",
-      "filePath": "./src/components/notification-card/notification-card.tsx",
-      "fileName": "notification-card.tsx",
-      "readmePath": "./src/components/notification-card/readme.md",
-      "usagesDir": "./src/components/notification-card/usage",
+      "dirPath": "./src/components/push-card",
+      "filePath": "./src/components/push-card/push-card.tsx",
+      "fileName": "push-card.tsx",
+      "readmePath": "./src/components/push-card/readme.md",
+      "usagesDir": "./src/components/push-card/usage",
       "tag": "ix-notification-card",
       "overview": "",
       "usage": {},
@@ -9097,7 +8882,7 @@
         {
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
-          "mutable": false,
+          "mutable": true,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
@@ -10664,9 +10449,6 @@
       "dependents": [],
       "dependencies": [
         "ix-card-list",
-        "ix-css-grid",
-        "ix-css-grid-item",
-        "ix-card",
         "ix-notification-card",
         "ix-action-card",
         "ix-icon",
@@ -10675,9 +10457,6 @@
       "dependencyGraph": {
         "my-component": [
           "ix-card-list",
-          "ix-css-grid",
-          "ix-css-grid-item",
-          "ix-card",
           "ix-notification-card",
           "ix-action-card",
           "ix-icon",
