@@ -51,7 +51,7 @@ function CardListTitle(props: {
 @Component({
   tag: 'ix-card-list',
   styleUrl: 'card-list.scss',
-  scoped: true,
+  shadow: true,
 })
 export class CardList {
   /**
@@ -120,7 +120,7 @@ export class CardList {
 
   private getListChildren() {
     return Array.from(
-      this.hostElement.querySelectorAll('.CardList__Content > *')
+      this.hostElement.shadowRoot.querySelectorAll('.CardList__Content > *')
     );
   }
 
@@ -141,7 +141,7 @@ export class CardList {
     this.observer = createMutationObserver(() => this.checkOverflow());
 
     this.observer.observe(
-      this.hostElement.querySelector('.CardList__Content'),
+      this.hostElement.shadowRoot.querySelector('.CardList__Content'),
       {
         childList: true,
         subtree: true,

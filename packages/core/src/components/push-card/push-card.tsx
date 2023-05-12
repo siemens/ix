@@ -15,7 +15,7 @@ export type PushCardVariant = CardVariant;
 @Component({
   tag: 'ix-notification-card',
   styleUrl: 'push-card.scss',
-  scoped: true,
+  shadow: true,
 })
 export class PushCard {
   /**
