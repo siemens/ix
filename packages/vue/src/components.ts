@@ -504,15 +504,6 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
 
 
-export const IxNotificationCard = /*@__PURE__*/ defineContainer<JSX.IxNotificationCard>('ix-notification-card', undefined, [
-  'icon',
-  'notification',
-  'heading',
-  'subheading',
-  'variant'
-]);
-
-
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
   'advanced',
   'itemCount',
@@ -534,6 +525,15 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', undef
   'background',
   'color',
   'alignLeft'
+]);
+
+
+export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', undefined, [
+  'icon',
+  'notification',
+  'heading',
+  'subheading',
+  'variant'
 ]);
 
 

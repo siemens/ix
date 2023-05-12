@@ -1477,28 +1477,6 @@ export declare interface IxModalExample extends Components.IxModalExample {}
 
 
 @ProxyCmp({
-  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant']
-})
-@Component({
-  selector: 'ix-notification-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant'],
-})
-export class IxNotificationCard {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxNotificationCard extends Components.IxNotificationCard {}
-
-
-@ProxyCmp({
   inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
 })
 @Component({
@@ -1550,6 +1528,28 @@ export class IxPill {
 
 
 export declare interface IxPill extends Components.IxPill {}
+
+
+@ProxyCmp({
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-push-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant'],
+})
+export class IxPushCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPushCard extends Components.IxPushCard {}
 
 
 @ProxyCmp({

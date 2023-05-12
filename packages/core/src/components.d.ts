@@ -1219,31 +1219,6 @@ export namespace Components {
     interface IxModalExample {
     }
     /**
-     * @since 1.6.0
-     */
-    interface IxNotificationCard {
-        /**
-          * Card heading
-         */
-        "heading": string;
-        /**
-          * Card icon
-         */
-        "icon": string | undefined;
-        /**
-          * Card KPI value
-         */
-        "notification": string;
-        /**
-          * Card subheading
-         */
-        "subheading": string;
-        /**
-          * Card variant
-         */
-        "variant": PushCardVariant;
-    }
-    /**
      * @since 1.5.0
      */
     interface IxPagination {
@@ -1312,6 +1287,31 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxPushCard {
+        /**
+          * Card heading
+         */
+        "heading": string;
+        /**
+          * Card icon
+         */
+        "icon": string | undefined;
+        /**
+          * Card KPI value
+         */
+        "notification": string;
+        /**
+          * Card subheading
+         */
+        "subheading": string;
+        /**
+          * Card variant
+         */
+        "variant": PushCardVariant;
     }
     interface IxSelect {
         /**
@@ -2340,15 +2340,6 @@ declare global {
         new (): HTMLIxModalExampleElement;
     };
     /**
-     * @since 1.6.0
-     */
-    interface HTMLIxNotificationCardElement extends Components.IxNotificationCard, HTMLStencilElement {
-    }
-    var HTMLIxNotificationCardElement: {
-        prototype: HTMLIxNotificationCardElement;
-        new (): HTMLIxNotificationCardElement;
-    };
-    /**
      * @since 1.5.0
      */
     interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
@@ -2362,6 +2353,15 @@ declare global {
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
+    }
+    var HTMLIxPushCardElement: {
+        prototype: HTMLIxPushCardElement;
+        new (): HTMLIxPushCardElement;
     };
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
     }
@@ -2551,9 +2551,9 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
-        "ix-notification-card": HTMLIxNotificationCardElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-push-card": HTMLIxPushCardElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-spinner": HTMLIxSpinnerElement;
@@ -3857,31 +3857,6 @@ declare namespace LocalJSX {
     interface IxModalExample {
     }
     /**
-     * @since 1.6.0
-     */
-    interface IxNotificationCard {
-        /**
-          * Card heading
-         */
-        "heading"?: string;
-        /**
-          * Card icon
-         */
-        "icon"?: string | undefined;
-        /**
-          * Card KPI value
-         */
-        "notification"?: string;
-        /**
-          * Card subheading
-         */
-        "subheading"?: string;
-        /**
-          * Card variant
-         */
-        "variant"?: PushCardVariant;
-    }
-    /**
      * @since 1.5.0
      */
     interface IxPagination {
@@ -3958,6 +3933,31 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxPushCard {
+        /**
+          * Card heading
+         */
+        "heading"?: string;
+        /**
+          * Card icon
+         */
+        "icon"?: string | undefined;
+        /**
+          * Card KPI value
+         */
+        "notification"?: string;
+        /**
+          * Card subheading
+         */
+        "subheading"?: string;
+        /**
+          * Card variant
+         */
+        "variant"?: PushCardVariant;
     }
     interface IxSelect {
         /**
@@ -4560,9 +4560,9 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
-        "ix-notification-card": IxNotificationCard;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
+        "ix-push-card": IxPushCard;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-spinner": IxSpinner;
@@ -4676,14 +4676,14 @@ declare module "@stencil/core" {
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
             /**
-             * @since 1.6.0
-             */
-            "ix-notification-card": LocalJSX.IxNotificationCard & JSXBase.HTMLAttributes<HTMLIxNotificationCardElement>;
-            /**
              * @since 1.5.0
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
