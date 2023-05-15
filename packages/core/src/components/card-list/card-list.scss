@@ -91,7 +91,11 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .CardList__Overflow__Right::after {
-    background: linear-gradient(270deg, #000028 0%, rgba(0, 0, 40, 0) 100%);
+    background: linear-gradient(
+      270deg,
+      var(--theme-color-1) 0%,
+      var(--theme-color-0) 100%
+    );
     width: 5rem;
     height: 100%;
     top: 0px;
@@ -102,7 +106,11 @@ $CardList__Title__Height: 1.5rem;
   }
 
   .CardList__Overflow__Left::before {
-    background: linear-gradient(270deg, #000028 0%, rgba(0, 0, 40, 0) 100%);
+    background: linear-gradient(
+      270deg,
+      var(--theme-color-1) 0%,
+      var(--theme-color-0) 100%
+    );
     transform: matrix(-1, 0, 0, 1, 0, 0);
     width: 5rem;
     height: 100%;
