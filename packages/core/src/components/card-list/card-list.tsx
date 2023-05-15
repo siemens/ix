@@ -197,15 +197,7 @@ export class CardList {
     this.detectOverflow();
   }
 
-  private isScrollMode() {
-    return this.listStyle === 'scroll';
-  }
-
   private isShowMoreCardVisible() {
-    if (!this.isScrollMode()) {
-      return false;
-    }
-
     return (
       this.suppressOverflowHandling === false && this.hasOverflowingElements
     );
