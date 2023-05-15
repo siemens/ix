@@ -15,6 +15,7 @@ import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 import { Placement } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
@@ -37,6 +38,7 @@ export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 export { Placement } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
@@ -577,6 +579,31 @@ export namespace Components {
      * @since 1.4.0
      */
     interface IxDropdownQuickActions {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action": string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon": string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout": EmptyStateLayout;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader": string;
     }
     interface IxEventList {
         /**
@@ -1719,6 +1746,10 @@ export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownItemElement;
 }
+export interface IxEmptyStateCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxEmptyStateElement;
+}
 export interface IxEventListItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxEventListItemElement;
@@ -1966,6 +1997,15 @@ declare global {
     var HTMLIxDropdownQuickActionsElement: {
         prototype: HTMLIxDropdownQuickActionsElement;
         new (): HTMLIxDropdownQuickActionsElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
+    }
+    var HTMLIxEmptyStateElement: {
+        prototype: HTMLIxEmptyStateElement;
+        new (): HTMLIxEmptyStateElement;
     };
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
@@ -2307,6 +2347,7 @@ declare global {
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
+        "ix-empty-state": HTMLIxEmptyStateElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
@@ -2961,6 +3002,35 @@ declare namespace LocalJSX {
      * @since 1.4.0
      */
     interface IxDropdownQuickActions {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action"?: string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon"?: string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout"?: EmptyStateLayout;
+        /**
+          * Empty state action click event
+         */
+        "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader"?: string;
     }
     interface IxEventList {
         /**
@@ -4180,6 +4250,7 @@ declare namespace LocalJSX {
         "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
         "ix-dropdown-quick-actions": IxDropdownQuickActions;
+        "ix-empty-state": IxEmptyState;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
@@ -4268,6 +4339,10 @@ declare module "@stencil/core" {
              * @since 1.4.0
              */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
