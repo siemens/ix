@@ -1206,7 +1206,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
     },
     {
       "dirPath": "./src/components/card-title",
