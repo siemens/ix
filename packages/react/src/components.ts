@@ -35,6 +35,7 @@ export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTML
 export const IxDropdownButton = /*@__PURE__*/createReactComponent<JSX.IxDropdownButton, HTMLIxDropdownButtonElement>('ix-dropdown-button');
 export const IxDropdownItem = /*@__PURE__*/createReactComponent<JSX.IxDropdownItem, HTMLIxDropdownItemElement>('ix-dropdown-item');
 export const IxDropdownQuickActions = /*@__PURE__*/createReactComponent<JSX.IxDropdownQuickActions, HTMLIxDropdownQuickActionsElement>('ix-dropdown-quick-actions');
+export const IxEmptyState = /*@__PURE__*/createReactComponent<JSX.IxEmptyState, HTMLIxEmptyStateElement>('ix-empty-state');
 export const IxEventList = /*@__PURE__*/createReactComponent<JSX.IxEventList, HTMLIxEventListElement>('ix-event-list');
 export const IxEventListItem = /*@__PURE__*/createReactComponent<JSX.IxEventListItem, HTMLIxEventListItemElement>('ix-event-list-item');
 export const IxExpandingSearch = /*@__PURE__*/createReactComponent<JSX.IxExpandingSearch, HTMLIxExpandingSearchElement>('ix-expanding-search');

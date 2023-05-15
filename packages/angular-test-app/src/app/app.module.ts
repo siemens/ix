@@ -42,6 +42,9 @@ import Drawer from 'src/preview-examples/drawer';
 import DrawerFullHeight from 'src/preview-examples/drawer-full-height';
 import Dropdown from 'src/preview-examples/dropdown';
 import DropdownIcon from 'src/preview-examples/dropdown-icon';
+import EmptyState from 'src/preview-examples/empty-state';
+import EmptyStateCompact from 'src/preview-examples/empty-state-compact';
+import EmptyStateCompactBreak from 'src/preview-examples/empty-state-compact-break';
 import EventList from 'src/preview-examples/event-list';
 import EventListCompact from 'src/preview-examples/event-list-compact';
 import EventListCustomItemHeight from 'src/preview-examples/event-list-custom-item-height';
@@ -186,6 +189,9 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     PushCard,
     ActionCard,
     CardList,
+    EmptyState,
+    EmptyStateCompact,
+    EmptyStateCompactBreak,
   ],
   imports: [
     BrowserModule,

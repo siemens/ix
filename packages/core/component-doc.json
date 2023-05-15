@@ -437,7 +437,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -699,6 +699,7 @@
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-dropdown-button",
+        "ix-empty-state",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -715,6 +716,9 @@
           "ix-button"
         ],
         "ix-dropdown-button": [
+          "ix-button"
+        ],
+        "ix-empty-state": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -3519,6 +3523,145 @@
       "props": [],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/empty-state",
+      "filePath": "./src/components/empty-state/empty-state.tsx",
+      "fileName": "empty-state.tsx",
+      "readmePath": "./src/components/empty-state/readme.md",
+      "usagesDir": "./src/components/empty-state/usage",
+      "tag": "ix-empty-state",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "scoped",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-empty-state": [
+          "ix-icon",
+          "ix-typography",
+          "ix-button"
+        ]
+      },
+      "props": [
+        {
+          "name": "action",
+          "type": "string",
+          "mutable": false,
+          "attr": "action",
+          "reflectToAttr": false,
+          "docs": "Optional empty state action",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "mutable": false,
+          "attr": "header",
+          "reflectToAttr": false,
+          "docs": "Empty state header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional empty state icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "\"compact\" | \"compactBreak\" | \"large\"",
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Optional empty state layout - one of 'large', 'compact' or 'compactBreak'",
+          "docsTags": [],
+          "default": "'large'",
+          "values": [
+            {
+              "value": "compact",
+              "type": "string"
+            },
+            {
+              "value": "compactBreak",
+              "type": "string"
+            },
+            {
+              "value": "large",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subHeader",
+          "type": "string",
+          "mutable": false,
+          "attr": "sub-header",
+          "reflectToAttr": false,
+          "docs": "Optional empty state sub header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "actionClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Empty state action click event",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
