@@ -6,19 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type TypographyVariants =
-  | 'x-small'
-  | 'small'
-  | 'caption'
-  | 'caption-single'
-  | 'default'
-  | 'default-single'
-  | 'default-title'
-  | 'default-title-single'
-  | 'large'
-  | 'large-single'
-  | 'h2'
-  | 'display-large';
+import { TypographyVariants } from './typography';
 
 export const VariantsMapping: Record<TypographyVariants, string> = {
   'x-small': 'text-xs',
@@ -29,6 +17,8 @@ export const VariantsMapping: Record<TypographyVariants, string> = {
   'default-single': 'text-default-single',
   large: 'text-l',
   'large-single': 'text-l-single',
+  'large-title': 'text-l-title',
+  'large-title-single': 'text-l-title-single',
   h2: 'text-h2',
   'display-large': 'text-xl',
   'default-title': 'text-default-title',
