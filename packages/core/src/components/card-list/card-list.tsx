@@ -15,9 +15,9 @@ function CardListTitle(props: {
   label: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
-  onShowMoreClick: (e: MouseEvent) => void;
-  showMoreLabel: string;
-  showMoreCounter: number;
+  onShowAllClick: (e: MouseEvent) => void;
+  showAllLabel: string;
+  showAllCounter: number;
 }) {
   if (props.label === '') {
     return null;
@@ -37,13 +37,13 @@ function CardListTitle(props: {
       ></ix-icon-button>
       <ix-typography variant="large-single">{props.label}</ix-typography>
       <ix-button
-        class="CardList__Title__Show__More"
+        class="CardList__Title__Show__All"
         ghost
-        onClick={props.onShowMoreClick}
+        onClick={props.onShowAllClick}
       >
-        <span>{props.showMoreLabel}</span>
+        <span>{props.showAllLabel}</span>
         <span>
-          {!isNaN(props.showMoreCounter) ? ` (${props.showMoreCounter})` : null}
+          {!isNaN(props.showAllCounter) ? ` (${props.showAllCounter})` : null}
         </span>
       </ix-button>
     </div>
@@ -79,12 +79,12 @@ export class CardList {
    *
    * @internal
    */
-  @Prop() maxVisibleCards = 12;
+  @Prop() maxVisibleCards = 5;
 
   /**
-   * Show more counter
+   * Overwrite the default show all count.
    * */
-  @Prop() showMoreCount: number;
+  @Prop() showAllCount: number | undefined;
 
   /**
    * Suppress the overflow handling of child elements
@@ -92,9 +92,9 @@ export class CardList {
   @Prop() suppressOverflowHandling = false;
 
   /**
-   * i18n Show more button
+   * i18n Show all button
    */
-  @Prop() i18nShowMore = 'Show more';
+  @Prop() i18nShowAll = 'Show all';
 
   /**
    * Fire event when the collapse state is changed by the user
@@ -104,7 +104,14 @@ export class CardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() showMoreClick: EventEmitter<{
+  @Event() showAllClick: EventEmitter<{
+    nativeEvent: MouseEvent;
+  }>;
+
+  /**
+   * Fire event when the show more card is clicked.
+   */
+  @Event() showMoreCardClick: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
@@ -112,6 +119,9 @@ export class CardList {
 
   @State() private showOverflowRight = false;
   @State() private showOverflowLeft = false;
+  @State() private hasOverflowingElements = false;
+  @State() private numberOfOverflowingElements = 0;
+  @State() private numberOfAllChildElements = 0;
 
   private observer: MutationObserver;
 
@@ -120,8 +130,8 @@ export class CardList {
     this.collapseChanged.emit(this.collapse);
   }
 
-  private onShowMoreClick(event: MouseEvent) {
-    this.showMoreClick.emit({
+  private onShowAllClick(event: MouseEvent) {
+    this.showAllClick.emit({
       nativeEvent: event,
     });
   }
@@ -144,6 +154,11 @@ export class CardList {
         element.classList.remove('d-none');
       }
     });
+    this.hasOverflowingElements = childElements.length > this.maxVisibleCards;
+    this.numberOfOverflowingElements =
+      childElements.length - this.maxVisibleCards;
+
+    this.numberOfAllChildElements = childElements.length;
     this.detectOverflow();
   }
 
@@ -182,20 +197,27 @@ export class CardList {
     this.detectOverflow();
   }
 
+  private isScrollMode() {
+    return this.listStyle === 'scroll';
+  }
+
+  private isShowMoreCardVisible() {
+    if (!this.isScrollMode()) {
+      return false;
+    }
+
+    return (
+      this.suppressOverflowHandling === false && this.hasOverflowingElements
+    );
+  }
+
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
-    console.log(
-      this.listElement.clientWidth,
-      this.listElement.scrollWidth,
-      this.listElement.scrollLeft
-    );
-
     const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
 
     const isCompleteRightScrolled = scrollWidth - scrollLeft === clientWidth;
     const isScrolling =
       this.listElement.scrollWidth > this.listElement.clientWidth;
-    console.log('is right', isCompleteRightScrolled);
 
     this.showOverflowRight = isScrolling && !isCompleteRightScrolled;
     this.showOverflowLeft = isScrolling && scrollLeft > 0;
@@ -219,10 +241,14 @@ export class CardList {
         <CardListTitle
           isCollapsed={this.collapse}
           label={this.label}
-          showMoreLabel={this.i18nShowMore}
-          showMoreCounter={this.showMoreCount}
+          showAllLabel={this.i18nShowAll}
+          showAllCounter={
+            this.showAllCount === undefined
+              ? this.numberOfAllChildElements
+              : this.showAllCount
+          }
           onClick={() => this.onCardListVisibilityToggle()}
-          onShowMoreClick={(e) => this.onShowMoreClick(e)}
+          onShowAllClick={(e) => this.onShowAllClick(e)}
         ></CardListTitle>
         <div
           class={{
@@ -240,7 +266,33 @@ export class CardList {
             }}
             onScroll={() => this.onCardListScroll()}
           >
-            <slot onSlotchange={console.log}></slot>
+            <slot
+              onSlotchange={() => this.changeVisibilityOfSlotChildren()}
+            ></slot>
+            {this.isShowMoreCardVisible() ? (
+              <ix-card
+                class={{
+                  Show__All__Card: true,
+                }}
+                onClick={(event) =>
+                  this.showMoreCardClick.emit({
+                    nativeEvent: event,
+                  })
+                }
+              >
+                <ix-card-content class="Show__All__Card__Content">
+                  <ix-icon
+                    name="more-menu"
+                    size={'32'}
+                    class={'Show__All__Card__Icon'}
+                  ></ix-icon>
+                  <span class="Show__All__Card__Text">
+                    There are {this.numberOfOverflowingElements} more cards
+                    available
+                  </span>
+                </ix-card-content>
+              </ix-card>
+            ) : null}
           </div>
         </div>
       </Host>

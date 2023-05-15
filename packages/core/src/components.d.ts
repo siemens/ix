@@ -226,9 +226,9 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * i18n Show more button
+          * i18n Show all button
          */
-        "i18nShowMore": string;
+        "i18nShowAll": string;
         /**
           * Name the card list
          */
@@ -242,9 +242,9 @@ export namespace Components {
          */
         "maxVisibleCards": number;
         /**
-          * Show more counter
+          * Overwrite the default show all count.
          */
-        "showMoreCount": number;
+        "showAllCount": number | undefined;
         /**
           * Suppress the overflow handling of child elements
          */
@@ -2802,9 +2802,9 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         /**
-          * i18n Show more button
+          * i18n Show all button
          */
-        "i18nShowMore"?: string;
+        "i18nShowAll"?: string;
         /**
           * Name the card list
          */
@@ -2824,13 +2824,19 @@ declare namespace LocalJSX {
         /**
           * Fire event when the collapse state is changed by the user
          */
-        "onShowMoreClick"?: (event: IxCardListCustomEvent<{
+        "onShowAllClick"?: (event: IxCardListCustomEvent<{
     nativeEvent: MouseEvent;
   }>) => void;
         /**
-          * Show more counter
+          * Fire event when the show more card is clicked.
          */
-        "showMoreCount"?: number;
+        "onShowMoreCardClick"?: (event: IxCardListCustomEvent<{
+    nativeEvent: MouseEvent;
+  }>) => void;
+        /**
+          * Overwrite the default show all count.
+         */
+        "showAllCount"?: number | undefined;
         /**
           * Suppress the overflow handling of child elements
          */

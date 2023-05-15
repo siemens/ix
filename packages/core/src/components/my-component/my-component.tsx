@@ -20,7 +20,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-card-list label="Layout 2 Flex">
+        {/* <ix-card-list label="Layout 2 Flex">
           <ix-push-card
             icon="bulb"
             notification="99"
@@ -153,12 +153,8 @@ export class MyComponent {
             subheading="Subheading"
             variant="success"
           ></ix-push-card>
-        </ix-card-list>
-        <ix-card-list
-          label="Layout 3 Infinite"
-          listStyle="scroll"
-          showMoreCount={12}
-        >
+        </ix-card-list> */}
+        <ix-card-list label="Layout 3 Infinite" listStyle="scroll">
           <ix-push-card
             icon="bulb"
             notification="99"
@@ -223,7 +219,7 @@ export class MyComponent {
             variant="success"
           ></ix-push-card>
         </ix-card-list>
-        <ix-card-list
+        {/* <ix-card-list
           label="Layout 4 Infinite"
           listStyle="stack"
           showMoreCount={3}
@@ -294,7 +290,7 @@ export class MyComponent {
               </ix-typography>
             </div>
           </ix-action-card>
-        </ix-card-list>
+        </ix-card-list> */}
       </Host>
     );
   }
