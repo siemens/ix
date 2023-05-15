@@ -24,7 +24,7 @@ let sequentialInstanceId = 0;
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Blind {
   /**
@@ -72,7 +72,7 @@ export class Blind {
   }
 
   get content() {
-    return this.hostElement.querySelector('.blind-content');
+    return this.hostElement.shadowRoot.querySelector('.blind-content');
   }
 
   @Watch('collapsed')
@@ -132,13 +132,11 @@ export class Blind {
           aria-expanded={a11yBoolean(!this.collapsed)}
           onClick={(e) => this.onHeaderClick(e)}
         >
-          <span
-            class={{
-              glyph: true,
-              'glyph-chevron-right-small': true,
-            }}
+          <ix-icon
+            class={'collapse-icon'}
+            name="chevron-right-small"
             ref={(ref) => (this.chevronRef = ref)}
-          ></span>
+          ></ix-icon>
           <div
             class="blind-header-title"
             id={`ix-blind-header-title-${this.id}`}
@@ -151,7 +149,10 @@ export class Blind {
                   ''
                 )}
                 <span class="blind-header-title-default">{this.label}</span>
-                <span class="header-actions">
+                <span
+                  class="header-actions"
+                  onClick={(e) => e.stopImmediatePropagation()}
+                >
                   <slot name="header-actions"></slot>
                 </span>
               </span>
