@@ -693,7 +693,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-card-list",
         "ix-date-picker",
@@ -4691,7 +4691,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-card-list",
         "ix-category-filter",

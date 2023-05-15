@@ -14,7 +14,7 @@ export type ButtonVariant = 'Primary' | 'Secondary';
 
 @Component({
   tag: 'ix-button',
-  scoped: true,
+  shadow: true,
   styleUrl: './button.scss',
 })
 export class Button {
