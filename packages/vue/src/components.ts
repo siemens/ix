@@ -207,6 +207,16 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
 export const IxDropdownQuickActions = /*@__PURE__*/ defineContainer<JSX.IxDropdownQuickActions>('ix-dropdown-quick-actions', undefined);
 
 
+export const IxEmptyState = /*@__PURE__*/ defineContainer<JSX.IxEmptyState>('ix-empty-state', undefined, [
+  'layout',
+  'icon',
+  'header',
+  'subHeader',
+  'action',
+  'actionClick'
+]);
+
+
 export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-event-list', undefined, [
   'itemHeight',
   'compact',
