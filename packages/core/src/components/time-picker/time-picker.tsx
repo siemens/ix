@@ -80,7 +80,7 @@ export class TimePicker {
   /**
    * Set time reference
    */
-  @Prop() timeReference: 'AM' | 'PM' = DateTime.fromFormat(
+  @Prop({ mutable: true }) timeReference: 'AM' | 'PM' = DateTime.fromFormat(
     this.time,
     this.format
   ).toFormat('a') as 'PM' | 'AM';
@@ -121,33 +121,109 @@ export class TimePicker {
 
   private _time: DateTime = DateTime.now();
 
-  private updateInput(
-    step: 'up' | 'down',
-    { hours = undefined, minutes = undefined, seconds = undefined }
+  private setInputValue(
+    inputElement: HTMLInputElement,
+    value: number,
+    max: number
   ) {
-    if (hours)
-      step === 'up' ? this.hourInputRef.stepUp() : this.hourInputRef.stepDown();
-    if (minutes)
-      step === 'up'
-        ? this.minuteInputRef.stepUp()
-        : this.minuteInputRef.stepDown();
-    if (seconds)
-      step === 'up'
-        ? this.secondInputRef.stepUp()
-        : this.secondInputRef.stepDown();
+    if (value > max) {
+      inputElement.value = max.toString();
+    } else if (value < 0) {
+      inputElement.value = '0';
+    } else {
+      inputElement.value = value.toString();
+    }
 
+    this.updateAndEmitTime();
+  }
+
+  private updateAndEmitTime() {
     this._time = this._time.set({
       hour: Number(this.hourInputRef.value),
       minute: Number(this.minuteInputRef.value),
       second: Number(this.secondInputRef.value),
     });
 
+    this.setHourAccordingToReference();
+
     this.emitTimeChange();
   }
 
+  private toggleInputValue(
+    inputElement: HTMLInputElement,
+    currentValue: number,
+    step: 'up' | 'down',
+    max: number
+  ) {
+    if (step === 'up') {
+      if (currentValue === max) {
+        inputElement.value = '0';
+      } else {
+        inputElement.stepUp();
+      }
+    } else {
+      if (currentValue === 0) {
+        inputElement.value = max.toString();
+      } else {
+        inputElement.stepDown();
+      }
+    }
+  }
+
+  private toggleHourInputWithRef(
+    inputElement: HTMLInputElement,
+    currentValue: number,
+    step: 'up' | 'down'
+  ) {
+    if (step === 'up') {
+      if (currentValue === this.getMaxHour()) {
+        inputElement.value = '0';
+      } else {
+        inputElement.stepUp();
+      }
+    } else {
+      if (
+        (this.showTimeReference &&
+          this.timeReference === 'PM' &&
+          currentValue === 12) ||
+        currentValue === 0
+      ) {
+        inputElement.value = this.getMaxDisplayedHour().toString();
+      } else {
+        inputElement.stepDown();
+      }
+    }
+  }
+
+  private updateInput(
+    step: 'up' | 'down',
+    { hours = undefined, minutes = undefined, seconds = undefined }
+  ) {
+    if (hours) {
+      if (this.showTimeReference) {
+        this.toggleHourInputWithRef(this.hourInputRef, this.hour, step);
+      } else {
+        this.toggleInputValue(this.hourInputRef, this.hour, step, 23);
+      }
+    }
+
+    if (minutes) {
+      this.toggleInputValue(this.minuteInputRef, this.minutes, step, 59);
+    }
+
+    if (seconds) {
+      this.toggleInputValue(this.secondInputRef, this.seconds, step, 59);
+    }
+
+    this.updateAndEmitTime();
+  }
+
   private changeReference() {
-    this.referenceInputRef.value =
-      this.referenceInputRef.value === 'PM' ? 'AM' : 'PM';
+    if (this.timeReference === 'AM') {
+      this.timeReference = 'PM';
+    } else {
+      this.timeReference = 'AM';
+    }
 
     this.setHourAccordingToReference();
 
@@ -155,9 +231,13 @@ export class TimePicker {
   }
 
   private setHourAccordingToReference() {
+    if (!this.showTimeReference) {
+      return;
+    }
+
     let hour = Number(this.hourInputRef.value);
 
-    if (this.referenceInputRef.value === 'PM') hour += 12;
+    if (this.timeReference === 'PM') hour += 12;
 
     this._time = this._time.set({ hour });
   }
@@ -185,6 +265,30 @@ export class TimePicker {
     return this._time.toFormat(this.format);
   }
 
+  private getDisplayedHour() {
+    if (this.showTimeReference && this.timeReference === 'PM') {
+      return this._time.hour - 12;
+    }
+
+    return this._time.hour;
+  }
+
+  private getMaxDisplayedHour() {
+    if (this.showTimeReference) {
+      return 11;
+    }
+
+    return 23;
+  }
+
+  private getMaxHour() {
+    if (this.showTimeReference && this.timeReference === 'AM') {
+      return 11;
+    }
+
+    return 23;
+  }
+
   render() {
     let hideHour = !this.showHour;
     let hideMinutes = !this.showMinutes;
@@ -192,7 +296,7 @@ export class TimePicker {
     const hideTimeReference = !this.showTimeReference;
     const hideIndividual = !this.individual;
 
-    if (!this.showHour && !this.showMinutes && !this.showSeconds) {
+    if (hideHour && hideMinutes && hideSeconds) {
       hideHour = false;
       hideMinutes = false;
       hideSeconds = false;
@@ -219,14 +323,21 @@ export class TimePicker {
                 class="arrows"
               ></ix-icon-button>
               <input
+                class="form-control"
                 name="hours"
                 type="number"
-                placeholder="00"
-                value={this.hour}
+                placeholder="HH"
                 min="0"
-                disabled
-                max={this.showTimeReference === true ? 11 : 23}
+                max={this.getMaxDisplayedHour()}
+                value={this.getDisplayedHour()}
                 ref={(ref) => (this.hourInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.hourInputRef,
+                    Number(this.hourInputRef.value),
+                    this.getMaxDisplayedHour()
+                  )
+                }
               ></input>
               <ix-icon-button
                 size="16"
@@ -254,14 +365,21 @@ export class TimePicker {
                 class="arrows"
               ></ix-icon-button>
               <input
+                class="form-control"
                 name="minutes"
                 type="number"
-                placeholder="00"
-                value={this.minutes}
+                placeholder="MM"
                 min="0"
                 max="59"
-                disabled
+                value={this.minutes}
                 ref={(ref) => (this.minuteInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.minuteInputRef,
+                    Number(this.minuteInputRef.value),
+                    59
+                  )
+                }
               ></input>
               <ix-icon-button
                 size="16"
@@ -289,14 +407,21 @@ export class TimePicker {
                 class="arrows"
               ></ix-icon-button>
               <input
+                class="form-control"
                 name="seconds"
                 type="number"
-                placeholder="00"
-                value={this.seconds}
-                disabled
+                placeholder="SS"
                 min="0"
                 max="59"
+                value={this.seconds}
                 ref={(ref) => (this.secondInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.secondInputRef,
+                    Number(this.secondInputRef.value),
+                    59
+                  )
+                }
               ></input>
               <ix-icon-button
                 size="16"
@@ -323,14 +448,7 @@ export class TimePicker {
                 variant="Primary"
                 class="arrows"
               ></ix-icon-button>
-              <input
-                name="reference"
-                type="text"
-                ref={(ref) => (this.referenceInputRef = ref)}
-                value={this.timeReference}
-                disabled
-                class="text-align"
-              ></input>
+              <div class="time-reference">{this.timeReference}</div>
               <ix-icon-button
                 size="16"
                 onClick={() => this.changeReference()}

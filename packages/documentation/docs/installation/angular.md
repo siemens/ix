@@ -22,12 +22,14 @@ yarn add @siemens/ix-angular @siemens/ix-icons
 
 ### Import styles
 
+Import the iX styling in your global stylesheet (e.g.: `src/styles.scss`):
+
 ```css
 @import '@siemens/ix-icons/dist/css/ix-icons.css';
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
 
-Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) to your application module.
+Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) in your application module.
 
 ```typescript
 import { NgModule } from '@angular/core';
