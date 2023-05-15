@@ -29,6 +29,7 @@ regressionTest.describe('blind', () => {
   regressionTest('header-actions', async ({ page }) => {
     await page.goto('blind/header-actions');
     await page.locator('#context-menu').click();
+    await page.waitForTimeout(800);
     await page.waitForSelector('ix-dropdown.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
