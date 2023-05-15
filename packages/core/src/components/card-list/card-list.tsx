@@ -43,7 +43,7 @@ function CardListTitle(props: {
       >
         <span>{props.showMoreLabel}</span>
         <span>
-          {!isNaN(props.showMoreCounter) ? `(${props.showMoreCounter})` : null}
+          {!isNaN(props.showMoreCounter) ? ` (${props.showMoreCounter})` : null}
         </span>
       </ix-button>
     </div>
