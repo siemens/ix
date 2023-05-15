@@ -5,7 +5,9 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
+  State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
@@ -108,6 +110,9 @@ export class CardList {
 
   @Element() hostElement: HTMLIxCardListElement;
 
+  @State() private showOverflowRight = false;
+  @State() private showOverflowLeft = false;
+
   private observer: MutationObserver;
 
   private onCardListVisibilityToggle() {
@@ -122,12 +127,13 @@ export class CardList {
   }
 
   private getListChildren() {
-    return Array.from(
-      this.hostElement.shadowRoot.querySelectorAll('.CardList__Content > *')
-    );
+    const slot = this.hostElement.shadowRoot.querySelector(
+      '.CardList__Content > slot'
+    ) as HTMLSlotElement;
+    return slot.assignedElements({ flatten: true });
   }
 
-  private checkOverflow() {
+  private changeVisibilityOfSlotChildren() {
     const childElements = this.getListChildren();
     childElements.forEach((element, index) => {
       if (element instanceof HTMLElement) {
@@ -138,10 +144,13 @@ export class CardList {
         element.classList.remove('d-none');
       }
     });
+    this.detectOverflow();
   }
 
   private registerOverflowHandler() {
-    this.observer = createMutationObserver(() => this.checkOverflow());
+    this.observer = createMutationObserver(() => {
+      this.changeVisibilityOfSlotChildren();
+    });
 
     this.observer.observe(
       this.hostElement.shadowRoot.querySelector('.CardList__Content'),
@@ -151,7 +160,9 @@ export class CardList {
       }
     );
 
-    this.checkOverflow();
+    requestAnimationFrame(() => {
+      this.changeVisibilityOfSlotChildren();
+    });
   }
 
   private shouldHandleOverflow() {
@@ -161,6 +172,33 @@ export class CardList {
     if (this.listStyle === 'stack' || this.listStyle === 'scroll') {
       return true;
     }
+  }
+
+  private get listElement() {
+    return this.hostElement.shadowRoot.querySelector('.CardList__Content');
+  }
+
+  private onCardListScroll() {
+    this.detectOverflow();
+  }
+
+  @Listen('resize', { target: 'window' })
+  private detectOverflow() {
+    console.log(
+      this.listElement.clientWidth,
+      this.listElement.scrollWidth,
+      this.listElement.scrollLeft
+    );
+
+    const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
+
+    const isCompleteRightScrolled = scrollWidth - scrollLeft === clientWidth;
+    const isScrolling =
+      this.listElement.scrollWidth > this.listElement.clientWidth;
+    console.log('is right', isCompleteRightScrolled);
+
+    this.showOverflowRight = isScrolling && !isCompleteRightScrolled;
+    this.showOverflowLeft = isScrolling && scrollLeft > 0;
   }
 
   componentDidLoad() {
@@ -188,13 +226,22 @@ export class CardList {
         ></CardListTitle>
         <div
           class={{
-            CardList__Content: true,
-            CardList__Content__Collapsed: this.collapse,
-            CardList__Style__Flexbox__Scroll: this.listStyle === 'stack',
-            CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
+            CardList__Overflow: true,
+            CardList__Overflow__Right: this.showOverflowRight,
+            CardList__Overflow__Left: this.showOverflowLeft,
           }}
         >
-          <slot></slot>
+          <div
+            class={{
+              CardList__Content: true,
+              CardList__Content__Collapsed: this.collapse,
+              CardList__Style__Flexbox__Scroll: this.listStyle === 'stack',
+              CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
+            }}
+            onScroll={() => this.onCardListScroll()}
+          >
+            <slot onSlotchange={console.log}></slot>
+          </div>
         </div>
       </Host>
     );

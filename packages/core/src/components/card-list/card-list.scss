@@ -44,7 +44,7 @@ $CardList__Title__Height: 1.5rem;
     display: flex;
     position: relative;
     height: calc(100% - #{$CardList__Title__Height});
-    min-height: 18.75rem;
+    min-height: 26rem;
     width: 100%;
     gap: 1.5rem;
     transition: var(--theme-default-time) ease-in-out;
@@ -72,5 +72,44 @@ $CardList__Title__Height: 1.5rem;
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .CardList__Overflow {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
+  }
+
+  .CardList__Overflow::after,
+  .CardList__Overflow::before {
+    position: absolute;
+    content: '';
+    transition: var(--theme-default-time) opacity ease-in-out;
+    opacity: 0;
+  }
+
+  .CardList__Overflow__Right::after {
+    background: linear-gradient(270deg, #000028 0%, rgba(0, 0, 40, 0) 100%);
+    width: 5rem;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .CardList__Overflow__Left::before {
+    background: linear-gradient(270deg, #000028 0%, rgba(0, 0, 40, 0) 100%);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    width: 5rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 1;
   }
 }

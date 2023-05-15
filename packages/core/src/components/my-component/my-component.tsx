@@ -87,6 +87,75 @@ export class MyComponent {
         </ix-card-list>
         <ix-card-list
           label="Layout 3 Infinite"
+          listStyle="stack"
+          showMoreCount={12}
+        >
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+        </ix-card-list>
+        <ix-card-list
+          label="Layout 3 Infinite"
           listStyle="scroll"
           showMoreCount={12}
         >
