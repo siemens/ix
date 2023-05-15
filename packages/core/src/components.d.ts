@@ -26,7 +26,7 @@ import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyVariants } from "./components/typography/types";
+import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -49,7 +49,7 @@ export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyVariants } from "./components/typography/types";
+export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -760,20 +760,6 @@ export namespace Components {
           * Group item text
          */
         "text": string;
-    }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color": string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name": string;
-        /**
-          * Size of the icon
-         */
-        "size": '12' | '16' | '24' | '32';
     }
     interface IxIconButton {
         /**
@@ -1602,7 +1588,11 @@ export namespace Components {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color": TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant": TypographyVariants;
     }
@@ -2077,12 +2067,6 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
-    interface HTMLIxIconElement extends Components.IxIcon, HTMLStencilElement {
-    }
-    var HTMLIxIconElement: {
-        prototype: HTMLIxIconElement;
-        new (): HTMLIxIconElement;
-    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -2374,7 +2358,6 @@ declare global {
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
-        "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
@@ -3232,20 +3215,6 @@ declare namespace LocalJSX {
           * Group item text
          */
         "text"?: string;
-    }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color"?: string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name"?: string;
-        /**
-          * Size of the icon
-         */
-        "size"?: '12' | '16' | '24' | '32';
     }
     interface IxIconButton {
         /**
@@ -4138,7 +4107,11 @@ declare namespace LocalJSX {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color"?: TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant"?: TypographyVariants;
     }
@@ -4288,7 +4261,6 @@ declare namespace LocalJSX {
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
-        "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
@@ -4381,7 +4353,6 @@ declare module "@stencil/core" {
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
-            "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
