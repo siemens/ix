@@ -6,7 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+@import 'common-variables';
+@import './components/buttons';
+
 :host {
+  display: inline-block;
+  vertical-align: middle;
+
   &.disabled {
     pointer-events: none;
   }
@@ -14,5 +21,9 @@
   .icon-button {
     padding: 0;
     overflow: hidden;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
   }
 }
