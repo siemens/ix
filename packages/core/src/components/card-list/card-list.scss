@@ -47,7 +47,6 @@ $CardList__Title__Height: 1.5rem;
     width: 100%;
     gap: 1.5rem;
     transition: var(--theme-default-time) ease-in-out;
-    max-height: 40rem;
     overflow: auto;
   }
 
@@ -126,8 +125,6 @@ $CardList__Title__Height: 1.5rem;
     align-self: flex-start;
     justify-self: center;
 
-    margin-top: 2.375rem;
-
     max-width: 11.25rem;
     min-width: 11.25rem;
     width: 11.25rem;
@@ -138,6 +135,14 @@ $CardList__Title__Height: 1.5rem;
 
     --ix-card-border-color: var(--theme-color-primary);
     color: var(--theme-color-primary);
+  }
+
+  .CardList__Style__Infinite__Scroll .Show__All__Card {
+    margin-top: 2.375rem;
+  }
+
+  .CardList__Style__Flexbox__Scroll .Show__All__Card {
+    margin-bottom: 2.375rem;
   }
 
   .Show__All__Card:hover {
