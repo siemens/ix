@@ -211,7 +211,11 @@ export class Breadcrumb {
         <li>
           <button
             ref={(ref) => (this.previousButtonRef = ref)}
-            class="crumb btn"
+            class={{
+              crumb: true,
+              btn: !this.ghost,
+              ghost: this.ghost,
+            }}
             type="button"
             id={previousButtonId}
             aria-label={this.ixAriaPreviousButtonLabel}
@@ -250,6 +254,7 @@ export class Breadcrumb {
     return this.sliceHiddenItems().map((item, index, array) => {
       const last = index === array.length - 1;
       const isLastItem = last && !this.nextItems?.length;
+
       if (last && !isLastItem) {
         const nextButtonId = 'ix-bc' + this.id + '-next-button';
         const nextDropdownId = 'ix-bc' + this.id + '-next-dropdown';
@@ -260,7 +265,11 @@ export class Breadcrumb {
           <li>
             <button
               ref={(ref) => this.handleLastButtonRef(ref, last)}
-              class="crumb btn"
+              class={{
+                crumb: true,
+                ghost: this.ghost,
+                btn: !this.ghost,
+              }}
               type="button"
               id={nextButtonId}
               aria-current="page"
@@ -301,18 +310,18 @@ export class Breadcrumb {
           </li>
         );
       } else {
-        // Return list entry with visible non-dropdown button
         return (
           <li>
             <button
               ref={(ref) => this.handleLastButtonRef(ref, last)}
               class={{
                 crumb: true,
-                ghost: this.ghost && last == isLastItem,
-                btn: !(this.ghost && last == isLastItem),
+                ghost: this.ghost,
+                btn: !this.ghost,
                 last: isLastItem,
                 'remove-hover': isLastItem,
               }}
+              tabIndex={!isLastItem ? 0 : -1}
               aria-current={last ? 'page' : false}
               onClick={() => this.clickItem(item.label, last)}
               data-breadcrumb={index}

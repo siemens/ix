@@ -11,6 +11,8 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
+$focus-bdr-width: 0.0625rem;
+
 @mixin crumb-hover($variant) {
   @include hover {
     background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
@@ -42,7 +44,7 @@
 @mixin breadcrumb($variant) {
   .crumb.#{$variant} {
     background-color: var(--theme-breadcrumb-#{$variant}--background);
-    border: var(--theme-btn--#{$variant}-thickness) solid transparent;
+    border: $focus-bdr-width solid transparent;
     transition: $default-time;
 
     .crumb-text,
@@ -58,36 +60,8 @@
       color: var(--theme-breadcrumb-#{$variant}-last--color);
     }
 
-    &.clickable:not(.remove-hover) {
-      @include hover {
-        background-color: var(
-          --theme-breadcrumb-#{$variant}--background--hover
-        );
-
-        .crumb-text,
-        .glyph {
-          color: var(--theme-breadcrumb-#{$variant}--color--hover);
-        }
-
-        .crumb-text + .glyph-chevron-right-small {
-          color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
-        }
-      }
-
-      @include active {
-        background-color: var(
-          --theme-breadcrumb-#{$variant}--background--active
-        );
-
-        .crumb-text,
-        .glyph {
-          color: var(--theme-breadcrumb-#{$variant}--color--active);
-        }
-
-        .crumb-text + .glyph-chevron-right-small {
-          color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
-        }
-      }
+    &:not(.remove-hover) {
+      @include crumb-hover($variant);
     }
   }
 }
@@ -107,11 +81,11 @@
   nav.breadcrumb ol {
     all: unset;
     list-style: none;
+    display: flex;
   }
 
   nav.breadcrumb li {
     all: unset;
-    vertical-align: left;
     display: inline-block;
   }
 
@@ -126,17 +100,10 @@
     max-height: $default-control-height;
     min-width: 0;
     margin-inline-end: $tiny-space;
-    padding: $small-space 0 $small-space $tiny-space;
+    padding: calc($small-space - $focus-bdr-width) 0
+      calc($small-space - $focus-bdr-width) calc($tiny-space - $focus-bdr-width);
     outline: none;
     cursor: pointer;
-
-    @include crumb-hover('btn');
-
-    @include focus-visible {
-      outline-style: solid;
-      outline-width: 1px;
-      outline-color: var(--theme-color-focus-bdr);
-    }
 
     .crumb-text {
       @include ellipsis;
@@ -146,12 +113,13 @@
 
       ix-icon {
         margin-inline-end: $tiny-space;
+        vertical-align: text-bottom;
       }
     }
 
     .crumb-text + .glyph-chevron-right-small {
       margin-inline-start: $tiny-space;
-      margin-inline-end: 0; // Overwrite global selector: .btn .glyph
+      margin-inline-end: calc($focus-bdr-width * -1);
     }
 
     &.last {
@@ -160,13 +128,13 @@
       padding-inline-end: $tiny-space;
     }
 
-    &.clickable:not(.remove-hover) {
+    &:not(.remove-hover) {
       @include focus-visible {
-        border-color: var(--theme-focus--border-color);
+        border-color: var(--theme-color-focus-bdr);
       }
     }
 
-    &:not(:last-of-type) {
+    &:not(.last) {
       flex-shrink: 0;
       max-width: 14rem;
     }
