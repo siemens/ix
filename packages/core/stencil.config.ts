@@ -153,6 +153,9 @@ export const config: Config = {
     {
       components: ['ix-page-header'],
     },
+    {
+      components: ['ix-empty-state'],
+    },
   ],
   extras: {
     appendChildSlotFix: true,

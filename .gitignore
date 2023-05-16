@@ -167,3 +167,8 @@ packages/documentation/docs/auto-generated/
 packages/documentation/static/auto-generated/
 packages/documentation/static/webcomponent-examples/*
 !packages/documentation/static/versioned_examples/*/webcomponent-examples
+
+###
+# artifact from bundle @siemens/ix-icons
+###
+ix-icons/dist/collection/components/icon/icon.css

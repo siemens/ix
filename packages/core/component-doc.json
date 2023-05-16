@@ -279,7 +279,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -535,11 +535,12 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-dropdown-button",
+        "ix-empty-state",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -553,6 +554,9 @@
           "ix-button"
         ],
         "ix-dropdown-button": [
+          "ix-button"
+        ],
+        "ix-empty-state": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -2917,6 +2921,145 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/empty-state",
+      "filePath": "./src/components/empty-state/empty-state.tsx",
+      "fileName": "empty-state.tsx",
+      "readmePath": "./src/components/empty-state/readme.md",
+      "usagesDir": "./src/components/empty-state/usage",
+      "tag": "ix-empty-state",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "scoped",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-empty-state": [
+          "ix-icon",
+          "ix-typography",
+          "ix-button"
+        ]
+      },
+      "props": [
+        {
+          "name": "action",
+          "type": "string",
+          "mutable": false,
+          "attr": "action",
+          "reflectToAttr": false,
+          "docs": "Optional empty state action",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "mutable": false,
+          "attr": "header",
+          "reflectToAttr": false,
+          "docs": "Empty state header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional empty state icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "\"compact\" | \"compactBreak\" | \"large\"",
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Optional empty state layout - one of 'large', 'compact' or 'compactBreak'",
+          "docsTags": [],
+          "default": "'large'",
+          "values": [
+            {
+              "value": "compact",
+              "type": "string"
+            },
+            {
+              "value": "compactBreak",
+              "type": "string"
+            },
+            {
+              "value": "large",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subHeader",
+          "type": "string",
+          "mutable": false,
+          "attr": "sub-header",
+          "reflectToAttr": false,
+          "docs": "Optional empty state sub header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "actionClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Empty state action click event",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/event-list",
       "filePath": "./src/components/event-list/event-list.tsx",
       "fileName": "event-list.tsx",
@@ -3923,189 +4066,6 @@
       ]
     },
     {
-      "dirPath": "./src/components/icon",
-      "filePath": "./src/components/icon/icon.tsx",
-      "fileName": "icon.tsx",
-      "readmePath": "./src/components/icon/readme.md",
-      "usagesDir": "./src/components/icon/usage",
-      "tag": "ix-icon",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-animated-tabs",
-        "ix-blind",
-        "ix-breadcrumb",
-        "ix-category-filter",
-        "ix-chip",
-        "ix-date-picker",
-        "ix-dropdown-button",
-        "ix-dropdown-item",
-        "ix-expanding-search",
-        "ix-filter-chip",
-        "ix-group",
-        "ix-group-item",
-        "ix-icon-button",
-        "ix-kpi",
-        "ix-map-navigation-overlay",
-        "ix-menu-about-news",
-        "ix-message-bar",
-        "ix-modal",
-        "ix-pill",
-        "ix-select",
-        "ix-split-button",
-        "ix-toast",
-        "ix-tree-item",
-        "ix-workflow-step"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "ix-blind": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "ix-date-picker": [
-          "ix-icon"
-        ],
-        "ix-dropdown-button": [
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-expanding-search": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-group": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-kpi": [
-          "ix-icon"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon"
-        ],
-        "ix-message-bar": [
-          "ix-icon"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-icon"
-        ],
-        "ix-split-button": [
-          "ix-icon"
-        ],
-        "ix-toast": [
-          "ix-icon"
-        ],
-        "ix-tree-item": [
-          "ix-icon"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": true,
-          "docs": "Use one of our defined icon names e.g. `copy`.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "size",
-          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
-          "mutable": false,
-          "attr": "size",
-          "reflectToAttr": false,
-          "docs": "Size of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "12",
-              "type": "string"
-            },
-            {
-              "value": "16",
-              "type": "string"
-            },
-            {
-              "value": "24",
-              "type": "string"
-            },
-            {
-              "value": "32",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/icon-button",
       "filePath": "./src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
@@ -4116,7 +4076,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-category-filter",
         "ix-date-picker",

@@ -15,6 +15,7 @@ import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 import { Placement } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
@@ -38,6 +39,7 @@ export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 export { Placement } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
@@ -580,6 +582,31 @@ export namespace Components {
      */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action": string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon": string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout": EmptyStateLayout;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader": string;
+    }
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
@@ -735,20 +762,6 @@ export namespace Components {
           * Group item text
          */
         "text": string;
-    }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color": string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name": string;
-        /**
-          * Size of the icon
-         */
-        "size": '12' | '16' | '24' | '32';
     }
     interface IxIconButton {
         /**
@@ -1753,6 +1766,10 @@ export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownItemElement;
 }
+export interface IxEmptyStateCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxEmptyStateElement;
+}
 export interface IxEventListItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxEventListItemElement;
@@ -2005,6 +2022,15 @@ declare global {
         prototype: HTMLIxDropdownQuickActionsElement;
         new (): HTMLIxDropdownQuickActionsElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
+    }
+    var HTMLIxEmptyStateElement: {
+        prototype: HTMLIxEmptyStateElement;
+        new (): HTMLIxEmptyStateElement;
+    };
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
     var HTMLIxEventListElement: {
@@ -2064,12 +2090,6 @@ declare global {
     var HTMLIxGroupItemElement: {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
-    };
-    interface HTMLIxIconElement extends Components.IxIcon, HTMLStencilElement {
-    }
-    var HTMLIxIconElement: {
-        prototype: HTMLIxIconElement;
-        new (): HTMLIxIconElement;
     };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
@@ -2357,6 +2377,7 @@ declare global {
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
+        "ix-empty-state": HTMLIxEmptyStateElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
@@ -2367,7 +2388,6 @@ declare global {
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
-        "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
@@ -3014,6 +3034,35 @@ declare namespace LocalJSX {
      */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action"?: string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon"?: string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout"?: EmptyStateLayout;
+        /**
+          * Empty state action click event
+         */
+        "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader"?: string;
+    }
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
@@ -3197,20 +3246,6 @@ declare namespace LocalJSX {
           * Group item text
          */
         "text"?: string;
-    }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color"?: string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name"?: string;
-        /**
-          * Size of the icon
-         */
-        "size"?: '12' | '16' | '24' | '32';
     }
     interface IxIconButton {
         /**
@@ -4268,6 +4303,7 @@ declare namespace LocalJSX {
         "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
         "ix-dropdown-quick-actions": IxDropdownQuickActions;
+        "ix-empty-state": IxEmptyState;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
@@ -4278,7 +4314,6 @@ declare namespace LocalJSX {
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
-        "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
@@ -4358,6 +4393,10 @@ declare module "@stencil/core" {
              * @since 1.4.0
              */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
@@ -4368,7 +4407,6 @@ declare module "@stencil/core" {
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
-            "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;

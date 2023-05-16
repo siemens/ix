@@ -177,6 +177,10 @@ aside {
   text-decoration: auto;
 }
 
+.menu__link--sublist-caret {
+  text-decoration: none !important;
+}
+
 .menu__link--sublist::after {
   display: none !important;
 }
