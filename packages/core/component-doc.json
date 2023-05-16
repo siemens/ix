@@ -543,7 +543,8 @@
         "ix-empty-state",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -566,6 +567,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -6537,17 +6541,24 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
-        "ix-icon-button"
+        "ix-icon-button",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-page-header": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-typography"
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-page-header"
         ]
       },
       "props": [
@@ -6627,7 +6638,7 @@
       "methods": [],
       "events": [
         {
-          "event": "backButtonClicked",
+          "event": "backButtonClick",
           "detail": "void",
           "bubbles": true,
           "cancelable": true,
@@ -9985,8 +9996,23 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-page-header",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-page-header",
+          "ix-button"
+        ],
+        "ix-page-header": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

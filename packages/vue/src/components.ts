@@ -471,7 +471,7 @@ export const IxPageHeader = /*@__PURE__*/ defineContainer<JSX.IxPageHeader>('ix-
   'headerTitle',
   'headerSubtitle',
   'hasBackButton',
-  'backButtonClicked'
+  'backButtonClick'
 ]);
 
 

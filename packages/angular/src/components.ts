@@ -1336,7 +1336,7 @@ export class IxPageHeader {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['backButtonClicked']);
+    proxyOutputs(this, this.el, ['backButtonClick']);
   }
 }
 
@@ -1345,7 +1345,7 @@ export declare interface IxPageHeader extends Components.IxPageHeader {
   /**
    * triggered when back button is clicked
    */
-  backButtonClicked: EventEmitter<CustomEvent<void>>;
+  backButtonClick: EventEmitter<CustomEvent<void>>;
 }
 
 

@@ -14,7 +14,7 @@ export type PageHeaderVariant = 'Primary' | 'Secondary';
 @Component({
   tag: 'ix-page-header',
   styleUrl: 'page-header.scss',
-  scoped: true,
+  shadow: true,
 })
 export class PageHeader {
   /**
@@ -40,7 +40,7 @@ export class PageHeader {
   /**
    * triggered when back button is clicked
    */
-  @Event() backButtonClicked: EventEmitter<void>;
+  @Event() backButtonClick: EventEmitter<void>;
 
   render() {
     return (
@@ -51,7 +51,7 @@ export class PageHeader {
             variant="Primary"
             icon="arrow-left"
             ghost={true}
-            onClick={() => this.backButtonClicked.emit()}
+            onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}
 

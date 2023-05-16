@@ -3655,7 +3655,7 @@ declare namespace LocalJSX {
         /**
           * triggered when back button is clicked
          */
-        "onBackButtonClicked"?: (event: IxPageHeaderCustomEvent<void>) => void;
+        "onBackButtonClick"?: (event: IxPageHeaderCustomEvent<void>) => void;
         /**
           * page header variant
          */
