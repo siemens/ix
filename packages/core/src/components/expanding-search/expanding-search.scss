@@ -17,9 +17,10 @@
   height: $x-large-space;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   &.right-position {
-    width: max-content !important;
+    width: 100% !important;
   }
 
   .input-container {
