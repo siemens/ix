@@ -292,21 +292,21 @@ export declare interface IxCardContent extends Components.IxCardContent {}
 
 
 @ProxyCmp({
-  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCount', 'suppressOverflowHandling']
+  inputs: ['collapse', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling']
 })
 @Component({
   selector: 'ix-card-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapse', 'i18nShowMore', 'label', 'listStyle', 'showMoreCount', 'suppressOverflowHandling'],
+  inputs: ['collapse', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
 })
 export class IxCardList {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['collapseChanged', 'showMoreClick']);
+    proxyOutputs(this, this.el, ['collapseChanged', 'showAllClick', 'showMoreCardClick']);
   }
 }
 
@@ -319,7 +319,11 @@ export declare interface IxCardList extends Components.IxCardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  showMoreClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showAllClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  /**
+   * Fire event when the show more card is clicked.
+   */
+  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
 }
 
 

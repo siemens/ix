@@ -23,9 +23,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-card",
         "ix-card-content",
@@ -38,9 +36,6 @@
           "ix-card-content",
           "ix-icon",
           "ix-typography"
-        ],
-        "my-component": [
-          "ix-action-card"
         ]
       },
       "props": [
@@ -894,11 +889,15 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-card-list",
         "ix-push-card"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-card"
+        ],
+        "ix-card-list": [
           "ix-card"
         ],
         "ix-push-card": [
@@ -1018,11 +1017,15 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-card-list",
         "ix-push-card"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-card-content"
+        ],
+        "ix-card-list": [
           "ix-card-content"
         ],
         "ix-push-card": [
@@ -1058,12 +1061,18 @@
         "my-component"
       ],
       "dependencies": [
+        "ix-card",
+        "ix-card-content",
+        "ix-icon",
         "ix-icon-button",
         "ix-typography",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-card-list": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
           "ix-icon-button",
           "ix-typography",
           "ix-button"
@@ -1094,14 +1103,14 @@
           "required": false
         },
         {
-          "name": "i18nShowMore",
+          "name": "i18nShowAll",
           "type": "string",
           "mutable": false,
-          "attr": "i-1-8n-show-more",
+          "attr": "i-1-8n-show-all",
           "reflectToAttr": false,
-          "docs": "i18n Show more button",
+          "docs": "i18n Show all button",
           "docsTags": [],
-          "default": "'Show more'",
+          "default": "'Show all'",
           "values": [
             {
               "type": "string"
@@ -1149,12 +1158,12 @@
           "required": false
         },
         {
-          "name": "showMoreCount",
+          "name": "showAllCount",
           "type": "number",
           "mutable": false,
-          "attr": "show-more-count",
+          "attr": "show-all-count",
           "reflectToAttr": false,
-          "docs": "Show more counter",
+          "docs": "Overwrite the default show all count.",
           "docsTags": [],
           "values": [
             {
@@ -1194,12 +1203,21 @@
           "docsTags": []
         },
         {
-          "event": "showMoreClick",
+          "event": "showAllClick",
           "detail": "{ nativeEvent: MouseEvent; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
           "docs": "Fire event when the collapse state is changed by the user",
+          "docsTags": []
+        },
+        {
+          "event": "showMoreCardClick",
+          "detail": "{ nativeEvent: MouseEvent; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event when the show more card is clicked.",
           "docsTags": []
         }
       ],
@@ -10651,20 +10669,17 @@
       "dependents": [],
       "dependencies": [
         "ix-card-list",
-        "ix-push-card",
-        "ix-action-card",
-        "ix-icon",
-        "ix-typography"
+        "ix-push-card"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-card-list",
-          "ix-push-card",
-          "ix-action-card",
-          "ix-icon",
-          "ix-typography"
+          "ix-push-card"
         ],
         "ix-card-list": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
           "ix-icon-button",
           "ix-typography",
           "ix-button"
@@ -10682,12 +10697,6 @@
         ],
         "ix-card-accordion": [
           "ix-icon"
-        ],
-        "ix-action-card": [
-          "ix-card",
-          "ix-card-content",
-          "ix-icon",
-          "ix-typography"
         ]
       },
       "props": [],

@@ -79,7 +79,7 @@ export class CardList {
    *
    * @internal
    */
-  @Prop() maxVisibleCards = 5;
+  @Prop() maxVisibleCards = 12;
 
   /**
    * Overwrite the default show all count.

@@ -32,6 +32,7 @@ import ButtonGroup from './preview-examples/button-group';
 import ButtonSelected from './preview-examples/button-selected';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import Buttons from './preview-examples/buttons';
+import CardList from './preview-examples/card-list';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
@@ -233,6 +234,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
       <Route path="/preview/push-card" element={<PushCard />} />
       <Route path="/preview/action-card" element={<ActionCard />} />
+      <Route path="/preview/card-list" element={<CardList />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route

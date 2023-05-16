@@ -95,11 +95,12 @@ export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card
   'collapse',
   'listStyle',
   'maxVisibleCards',
-  'showMoreCount',
+  'showAllCount',
   'suppressOverflowHandling',
-  'i18nShowMore',
+  'i18nShowAll',
   'collapseChanged',
-  'showMoreClick'
+  'showAllClick',
+  'showMoreCardClick'
 ]);
 
 
