@@ -122,6 +122,8 @@ export class CardList {
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
   @State() private numberOfAllChildElements = 0;
+  @State() private leftScrollDistance = 0;
+  @State() private rightScrollDistance = 0;
 
   private observer: MutationObserver;
 
@@ -203,6 +205,22 @@ export class CardList {
     );
   }
 
+  private getOpacityFromScrollDistance(distance: number) {
+    if (!this.listElement) {
+      return 0;
+    }
+
+    if (distance === 0) {
+      return 0;
+    }
+
+    if (distance > 100) {
+      return 1;
+    }
+
+    return distance / 100;
+  }
+
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
     const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
@@ -213,6 +231,9 @@ export class CardList {
 
     this.showOverflowRight = isScrolling && !isCompleteRightScrolled;
     this.showOverflowLeft = isScrolling && scrollLeft > 0;
+
+    this.leftScrollDistance = scrollLeft;
+    this.rightScrollDistance = scrollWidth - scrollLeft - clientWidth;
   }
 
   componentDidLoad() {
@@ -245,10 +266,18 @@ export class CardList {
         <div
           class={{
             CardList__Overflow: true,
-            CardList__Overflow__Right: this.showOverflowRight,
-            CardList__Overflow__Left: this.showOverflowLeft,
           }}
         >
+          <div
+            class={{
+              CardList__Overflow__Left: this.showOverflowLeft,
+            }}
+            style={{
+              opacity: `${this.getOpacityFromScrollDistance(
+                this.leftScrollDistance
+              )}`,
+            }}
+          ></div>
           <div
             class={{
               CardList__Content: true,
@@ -286,6 +315,16 @@ export class CardList {
               </ix-card>
             ) : null}
           </div>
+          <div
+            class={{
+              CardList__Overflow__Right: this.showOverflowRight,
+            }}
+            style={{
+              opacity: `${this.getOpacityFromScrollDistance(
+                this.rightScrollDistance
+              )}`,
+            }}
+          ></div>
         </div>
       </Host>
     );

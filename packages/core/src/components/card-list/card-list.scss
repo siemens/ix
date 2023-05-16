@@ -81,43 +81,42 @@ $CardList__Title__Height: 1.5rem;
     pointer-events: all;
   }
 
-  .CardList__Overflow::after,
-  .CardList__Overflow::before {
+  .CardList__Overflow__Right {
     position: absolute;
-    content: '';
-    transition: var(--theme-default-time) opacity ease-in-out;
-    opacity: 0;
-  }
-
-  .CardList__Overflow__Right::after {
-    background: linear-gradient(
-      270deg,
-      var(--theme-color-1) 0%,
-      var(--theme-color-0) 100%
-    );
-    width: 5rem;
+    display: block;
     height: 100%;
-    top: 0px;
+    width: 5rem;
     right: 0px;
-    z-index: 100;
+    top: 0px;
+    background-color: var(--theme-color-1);
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0px,
+      black 80px,
+      black calc(100vw - 100px),
+      transparent 100%
+    );
+    z-index: 1;
     pointer-events: none;
-    opacity: 1;
   }
 
-  .CardList__Overflow__Left::before {
-    background: linear-gradient(
-      270deg,
-      var(--theme-color-1) 0%,
-      var(--theme-color-0) 100%
-    );
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    width: 5rem;
+  .CardList__Overflow__Left {
+    position: absolute;
+    display: block;
     height: 100%;
-    top: 0px;
+    width: 5rem;
     left: 0px;
-    z-index: 100;
+    top: 0px;
+    background-color: var(--theme-color-1);
+    mask-image: linear-gradient(
+      270deg,
+      transparent 0px,
+      black 80px,
+      black calc(100vw - 100px),
+      transparent 100%
+    );
+    z-index: 1;
     pointer-events: none;
-    opacity: 1;
   }
 
   .Show__All__Card {
