@@ -88,10 +88,6 @@ export class Breadcrumb {
   private nextButtonExpanded = false;
   private nextDropdownRef = null;
 
-  private onItemClick(item: string) {
-    this.itemClick.emit(item);
-  }
-
   componentDidLoad() {
     this.mutationObserver = createMutationObserver(() => {
       const updatedItems = this.getItems();
@@ -151,11 +147,9 @@ export class Breadcrumb {
     });
   }
 
-  private handleLastButtonRef(ref: HTMLElement, last: boolean) {
-    if (last) {
-      this.animationFadeIn(ref);
-    }
-    if (last && this.nextItems?.length) {
+  private handleLastButtonRef(ref: HTMLElement) {
+    this.animationFadeIn(ref);
+    if (this.nextItems?.length) {
       this.nextButtonRef = ref;
     }
   }
@@ -192,12 +186,6 @@ export class Breadcrumb {
     }
 
     return this.items.slice(sliceIndex);
-  }
-
-  private clickItem(item: string, last: boolean) {
-    if (!last) {
-      this.onItemClick(item);
-    }
   }
 
   private renderPreviousButton() {
@@ -239,7 +227,7 @@ export class Breadcrumb {
               .map((item) => (
                 <ix-dropdown-item
                   label={item.label}
-                  onClick={() => this.onItemClick(item.label)}
+                  onClick={() => this.itemClick.emit(item.label)}
                 ></ix-dropdown-item>
               ))}
           </ix-dropdown>
@@ -252,10 +240,64 @@ export class Breadcrumb {
 
   private renderVisibleItems() {
     return this.sliceHiddenItems().map((item, index, array) => {
-      const last = index === array.length - 1;
-      const isLastItem = last && !this.nextItems?.length;
-
-      if (last && !isLastItem) {
+      const isLastVisibleItem = index === array.length - 1;
+      if (!isLastVisibleItem) {
+        return (
+          <li>
+            <button
+              class={{
+                crumb: true,
+                ghost: this.ghost,
+                btn: !this.ghost,
+              }}
+              type="button"
+              onClick={() => this.itemClick.emit(item.label)}
+              data-breadcrumb={index}
+              data-testid="item"
+            >
+              <span class="crumb-text remove-anchor">
+                {item.icon ? (
+                  <ix-icon name={item.icon} size="16"></ix-icon>
+                ) : (
+                  ''
+                )}
+                {item.label}
+              </span>
+              <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+            </button>
+          </li>
+        );
+      } else if (!this.nextItems?.length) {
+        return (
+          <li>
+            <button
+              ref={(ref) => this.handleLastButtonRef(ref)}
+              class={{
+                crumb: true,
+                ghost: this.ghost,
+                btn: !this.ghost,
+                last: true,
+                'remove-hover': true,
+              }}
+              type="button"
+              tabIndex={-1}
+              //disabled={true}
+              aria-current="page"
+              data-breadcrumb={index}
+              data-testid="item"
+            >
+              <span class="crumb-text remove-anchor">
+                {item.icon ? (
+                  <ix-icon name={item.icon} size="16"></ix-icon>
+                ) : (
+                  ''
+                )}
+                {item.label}
+              </span>
+            </button>
+          </li>
+        );
+      } else {
         const nextButtonId = 'ix-bc' + this.id + '-next-button';
         const nextDropdownId = 'ix-bc' + this.id + '-next-dropdown';
         // Return list entry with dropdown button and its dropdown
@@ -264,7 +306,7 @@ export class Breadcrumb {
         return (
           <li>
             <button
-              ref={(ref) => this.handleLastButtonRef(ref, last)}
+              ref={(ref) => this.handleLastButtonRef(ref)}
               class={{
                 crumb: true,
                 ghost: this.ghost,
@@ -275,7 +317,6 @@ export class Breadcrumb {
               aria-current="page"
               aria-controls={nextDropdownId}
               aria-expanded={a11yBoolean(this.nextButtonExpanded)}
-              onClick={() => this.clickItem(item.label, last)}
               data-breadcrumb={index}
               data-testid="item"
             >
@@ -307,38 +348,6 @@ export class Breadcrumb {
                 ></ix-dropdown-item>
               ))}
             </ix-dropdown>
-          </li>
-        );
-      } else {
-        return (
-          <li>
-            <button
-              ref={(ref) => this.handleLastButtonRef(ref, last)}
-              class={{
-                crumb: true,
-                ghost: this.ghost,
-                btn: !this.ghost,
-                last: isLastItem,
-                'remove-hover': isLastItem,
-              }}
-              tabIndex={!isLastItem ? 0 : -1}
-              aria-current={last ? 'page' : false}
-              onClick={() => this.clickItem(item.label, last)}
-              data-breadcrumb={index}
-              data-testid="item"
-            >
-              <span class="crumb-text remove-anchor">
-                {item.icon ? (
-                  <ix-icon name={item.icon} size="16"></ix-icon>
-                ) : (
-                  ''
-                )}
-                {item.label}
-              </span>
-              {!isLastItem ? (
-                <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
-              ) : null}
-            </button>
           </li>
         );
       }
