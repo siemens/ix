@@ -61,7 +61,6 @@ export class Toast {
   @Event() closeToast: EventEmitter;
 
   @State() progress = 0;
-  @State() isRunning = true;
   @State() touched = false;
 
   @Element() host!: HTMLIxToastElement;
@@ -99,43 +98,26 @@ export class Toast {
   }
 
   render() {
-    let progressBarElement: HTMLElement;
     let progressBarStyle: Record<string, string> = {};
 
     const progressBarClass = ['toast-progress-bar'];
 
-    if (!this.touched) {
-      progressBarStyle = {
-        animationDuration: `${this.autoCloseDelay}ms`,
-        animationPlayState: this.isRunning ? 'running' : 'paused',
-      };
-
-      progressBarClass.push('toast-progress-bar--animated');
-    } else {
-      progressBarClass.push('toast-progress-bar--touched');
-    }
-
-    const updateProgress = () => {
-      requestAnimationFrame(() => {
-        if (progressBarElement) {
-          progressBarElement.style.transform = `scaleX(${this.progress})`;
-        }
-      });
+    progressBarStyle = {
+      animationDuration: `${this.autoCloseDelay}ms`,
+      animationPlayState: this.touched ? 'paused' : 'running',
     };
+
+    progressBarClass.push('toast-progress-bar--animated');
 
     return (
       <Host class="animate__animated animate__fadeIn">
         <div
           class="toast-body"
           onPointerLeave={() => {
-            this.progress = 0;
-            updateProgress();
+            this.touched = false;
           }}
           onPointerEnter={() => {
-            this.isRunning = false;
             this.touched = true;
-            this.progress = 1;
-            updateProgress();
           }}
         >
           {this.type || this.icon ? (
@@ -164,7 +146,6 @@ export class Toast {
           <div
             class={progressBarClass.join(' ')}
             style={progressBarStyle}
-            ref={(r) => (progressBarElement = r)}
             onAnimationEnd={() => {
               this.close();
             }}
