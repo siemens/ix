@@ -6,25 +6,25 @@ exports[`ix-breadcrumb renders 1`] = `
   <nav aria-label="Breadrumb" class="breadcrumb">
     <ol>
       <li>
-        <button class="btn crumb" data-breadcrumb="0" data-testid="item" tabindex="0">
+        <button class="btn crumb" data-breadcrumb="0" data-testid="item" type="button">
           <span class="crumb-text remove-anchor"></span>
           <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
         </button>
       </li>
       <li>
-        <button class="btn crumb" data-breadcrumb="1" data-testid="item" tabindex="0">
+        <button class="btn crumb" data-breadcrumb="1" data-testid="item" type="button">
           <span class="crumb-text remove-anchor"></span>
           <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
         </button>
       </li>
       <li>
-        <button class="btn crumb" data-breadcrumb="2" data-testid="item" tabindex="0">
+        <button class="btn crumb" data-breadcrumb="2" data-testid="item" type="button">
           <span class="crumb-text remove-anchor"></span>
           <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
         </button>
       </li>
       <li>
-        <button aria-current="page" class="btn crumb last remove-hover" data-breadcrumb="3" data-testid="item" tabindex="-1">
+        <button aria-current="page" class="btn crumb last remove-hover" data-breadcrumb="3" data-testid="item" tabindex="-1" type="button">
           <span class="crumb-text remove-anchor"></span>
         </button>
       </li>
