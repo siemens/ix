@@ -281,7 +281,6 @@ export class Breadcrumb {
               }}
               type="button"
               tabIndex={-1}
-              //disabled={true}
               aria-current="page"
               data-breadcrumb={index}
               data-testid="item"
