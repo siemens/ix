@@ -26,9 +26,6 @@
 
   .glyph {
     margin-right: $tiny-space;
-  }
-
-  .glyph {
     font-weight: $font-weight-normal;
   }
 
@@ -42,9 +39,7 @@ $button-categories: (primary, secondary);
 
 @mixin btn($name, $enable-border: true) {
   .btn-#{$name} {
-    & {
-      border-radius: var(--theme-btn--border-radius);
-    }
+    border-radius: var(--theme-btn--border-radius);
 
     @if $enable-border == false {
       --bs-btn-border-width: 0px;
@@ -61,6 +56,8 @@ $button-categories: (primary, secondary);
         border-width: var(--theme-btn--border-thickness);
         border-color: var(--theme-btn-#{$name}--border-color);
         border-style: solid;
+      } @else {
+        border-color: transparent;
       }
     }
 
