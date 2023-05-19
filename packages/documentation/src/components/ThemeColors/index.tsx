@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { toast } from '@siemens/ix';
 import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
@@ -84,7 +85,11 @@ function ThemeColors() {
           const colorValue = resolveColorValue(color);
           return (
             <div key={color} className={'Section row'}>
-              <ColorPreview color={colorValue} />
+              <BrowserOnly>
+                {() => {
+                  return <ColorPreview color={colorValue} />;
+                }}
+              </BrowserOnly>
               <div className="col-7 Color__Name">{color}</div>
               <div className="col Color__RGB">{colorValue}</div>
               <IxIconButton
