@@ -42,7 +42,7 @@ function ColorPreview(props: { color: string }) {
   return (
     <div className="col-1">
       <div className="Color__Preview">
-        <img src={`${baseUrl}img/transparency500.png`} />
+        <img src={`${baseUrl}img/chessboard_pattern.png`} />
         <div
           className="Color__Value"
           style={{
