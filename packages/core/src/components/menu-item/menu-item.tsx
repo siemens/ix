@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-menu-item',
@@ -53,6 +54,8 @@ export class MenuItem {
 
   @State() title: string;
 
+  private observer: MutationObserver;
+
   get tabLabel() {
     return this.hostElement.querySelector('.tab-text');
   }
@@ -62,6 +65,28 @@ export class MenuItem {
     const newTitle = spanElement.innerHTML.replace('&amp;', '&');
     if (this.title !== newTitle) {
       this.title = newTitle;
+    }
+  }
+
+  componentDidLoad() {
+    this.observer = createMutationObserver((mutations) => {
+      mutations.forEach(() => {
+        const spanElement = this.tabLabel;
+        const newTitle = spanElement.innerHTML.replace('&amp;', '&');
+        this.title = newTitle;
+      });
+    });
+
+    this.observer.observe(this.tabLabel, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
     }
   }
 
