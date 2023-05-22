@@ -78,44 +78,7 @@ $CardList__Title__Height: 1.5rem;
     height: 100%;
     width: 100%;
     pointer-events: all;
-  }
-
-  .CardList__Overflow__Right {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 5rem;
-    right: 0px;
-    top: 0px;
-    background-color: var(--theme-color-1);
-    mask-image: linear-gradient(
-      90deg,
-      transparent 0px,
-      black 80px,
-      black calc(100vw - 100px),
-      transparent 100%
-    );
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .CardList__Overflow__Left {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 5rem;
-    left: 0px;
-    top: 0px;
-    background-color: var(--theme-color-1);
-    mask-image: linear-gradient(
-      270deg,
-      transparent 0px,
-      black 80px,
-      black calc(100vw - 100px),
-      transparent 100%
-    );
-    z-index: 1;
-    pointer-events: none;
+    mask-image: var(--ix-card-list-overflow, none);
   }
 
   .Show__All__Card {

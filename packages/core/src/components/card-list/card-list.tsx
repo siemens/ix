@@ -117,8 +117,6 @@ export class CardList {
 
   @Element() hostElement: HTMLIxCardListElement;
 
-  @State() private showOverflowRight = false;
-  @State() private showOverflowLeft = false;
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
   @State() private numberOfAllChildElements = 0;
@@ -221,16 +219,35 @@ export class CardList {
     return distance / 100;
   }
 
+  private computeMaskLayer() {
+    console.log(
+      'left',
+      this.getOpacityFromScrollDistance(this.leftScrollDistance)
+    );
+    const maxOverflowWidth = 80;
+    const maskLayer = `linear-gradient(
+      90deg,
+      transparent 0px,
+      black ${
+        maxOverflowWidth *
+        (this.getOpacityFromScrollDistance(this.leftScrollDistance) > 0 ? 1 : 0)
+      }px,
+      black calc(100% - ${
+        maxOverflowWidth *
+        (this.getOpacityFromScrollDistance(this.rightScrollDistance) > 0
+          ? 1
+          : 0)
+      }px),
+      transparent 100%
+    )`;
+    return {
+      '--ix-card-list-overflow': maskLayer,
+    };
+  }
+
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
     const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
-
-    const isCompleteRightScrolled = scrollWidth - scrollLeft === clientWidth;
-    const isScrolling =
-      this.listElement.scrollWidth > this.listElement.clientWidth;
-
-    this.showOverflowRight = isScrolling && !isCompleteRightScrolled;
-    this.showOverflowLeft = isScrolling && scrollLeft > 0;
 
     this.leftScrollDistance = scrollLeft;
     this.rightScrollDistance = scrollWidth - scrollLeft - clientWidth;
@@ -267,17 +284,8 @@ export class CardList {
           class={{
             CardList__Overflow: true,
           }}
+          style={this.computeMaskLayer()}
         >
-          <div
-            class={{
-              CardList__Overflow__Left: this.showOverflowLeft,
-            }}
-            style={{
-              opacity: `${this.getOpacityFromScrollDistance(
-                this.leftScrollDistance
-              )}`,
-            }}
-          ></div>
           <div
             class={{
               CardList__Content: true,
@@ -315,16 +323,6 @@ export class CardList {
               </ix-card>
             ) : null}
           </div>
-          <div
-            class={{
-              CardList__Overflow__Right: this.showOverflowRight,
-            }}
-            style={{
-              opacity: `${this.getOpacityFromScrollDistance(
-                this.rightScrollDistance
-              )}`,
-            }}
-          ></div>
         </div>
       </Host>
     );
