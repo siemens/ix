@@ -16,18 +16,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-page-header
-          has-back-button
-          header-title="Content title"
-          header-subtitle="Subtitle"
-        >
-          <ix-button ghost>Button1</ix-button>
-          <ix-button ghost>Button2</ix-button>
-          <ix-button ghost>Button3</ix-button>
-        </ix-page-header>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
