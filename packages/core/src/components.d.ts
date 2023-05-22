@@ -21,6 +21,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { PageHeaderVariant } from "./components/page-header/page-header";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -44,6 +45,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { PageHeaderVariant } from "./components/page-header/page-header";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -1146,6 +1148,24 @@ export namespace Components {
     }
     interface IxModalExample {
     }
+    interface IxPageHeader {
+        /**
+          * has back button
+         */
+        "hasBackButton": boolean;
+        /**
+          * subtitle
+         */
+        "headerSubtitle": string | undefined;
+        /**
+          * title
+         */
+        "headerTitle": string;
+        /**
+          * page header variant
+         */
+        "variant": PageHeaderVariant;
+    }
     /**
      * @since 1.5.0
      */
@@ -1810,6 +1830,10 @@ export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
 }
+export interface IxPageHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPageHeaderElement;
+}
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
@@ -2181,6 +2205,12 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    interface HTMLIxPageHeaderElement extends Components.IxPageHeader, HTMLStencilElement {
+    }
+    var HTMLIxPageHeaderElement: {
+        prototype: HTMLIxPageHeaderElement;
+        new (): HTMLIxPageHeaderElement;
+    };
     /**
      * @since 1.5.0
      */
@@ -2377,6 +2407,7 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-page-header": HTMLIxPageHeaderElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
@@ -3608,6 +3639,28 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
+    interface IxPageHeader {
+        /**
+          * has back button
+         */
+        "hasBackButton"?: boolean;
+        /**
+          * subtitle
+         */
+        "headerSubtitle"?: string | undefined;
+        /**
+          * title
+         */
+        "headerTitle"?: string;
+        /**
+          * triggered when back button is clicked
+         */
+        "onBackButtonClick"?: (event: IxPageHeaderCustomEvent<void>) => void;
+        /**
+          * page header variant
+         */
+        "variant"?: PageHeaderVariant;
+    }
     /**
      * @since 1.5.0
      */
@@ -4280,6 +4333,7 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
+        "ix-page-header": IxPageHeader;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
@@ -4372,6 +4426,7 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            "ix-page-header": LocalJSX.IxPageHeader & JSXBase.HTMLAttributes<HTMLIxPageHeaderElement>;
             /**
              * @since 1.5.0
              */

@@ -4092,6 +4092,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
+        "ix-page-header",
         "ix-pagination",
         "ix-select",
         "ix-time-picker",
@@ -4144,6 +4145,9 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-page-header": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -6517,6 +6521,123 @@
       "props": [],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/page-header",
+      "filePath": "./src/components/page-header/page-header.tsx",
+      "fileName": "page-header.tsx",
+      "readmePath": "./src/components/page-header/readme.md",
+      "usagesDir": "./src/components/page-header/usage",
+      "tag": "ix-page-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-page-header": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "hasBackButton",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "has-back-button",
+          "reflectToAttr": false,
+          "docs": "has back button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerSubtitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-subtitle",
+          "reflectToAttr": false,
+          "docs": "subtitle",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-title",
+          "reflectToAttr": false,
+          "docs": "title",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "page header variant",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "backButtonClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "triggered when back button is clicked",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
