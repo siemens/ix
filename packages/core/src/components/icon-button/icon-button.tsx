@@ -16,7 +16,7 @@ export type IconButtonVariant = ButtonVariant;
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
-  scoped: true,
+  shadow: true,
 })
 export class IconButton implements Button {
   /**
@@ -81,6 +81,14 @@ export class IconButton implements Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  private getIconSizeClass() {
+    return {
+      'btn-icon-12': this.size === '12',
+      'btn-icon-16': this.size === '16',
+      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
+    };
+  }
+
   private fallbackLabel() {
     if (this.icon != null) {
       let label = this.icon;
@@ -123,15 +131,13 @@ export class IconButton implements Button {
         this.disabled
       ),
       'icon-button': true,
-      'btn-icon-12': this.size === '12',
-      'btn-icon-16': this.size === '16',
-      'btn-icon-32': this.size === '32' || this.size === '24' || !this.size,
+      ...this.getIconSizeClass(),
     };
   }
 
   render() {
     return (
-      <Host class={{ disabled: this.disabled }}>
+      <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
         <button
           class={this.getIconButtonClasses()}
           type={this.type}

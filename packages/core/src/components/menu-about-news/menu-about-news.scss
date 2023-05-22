@@ -13,7 +13,7 @@
 :host {
   --margin: 0.5rem;
 
-  $left: 4rem;
+  $left: 3.4rem;
   display: block;
   position: fixed;
   width: 20rem;
@@ -31,7 +31,7 @@
   @include box-shadow(4);
 
   &.expanded {
-    left: calc(#{$left} + 12rem);
+    left: calc(#{$left} + 12.7rem);
   }
 
   &.show {
