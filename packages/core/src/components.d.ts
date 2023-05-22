@@ -19,6 +19,7 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
+import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -42,6 +43,7 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
+export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -819,6 +821,27 @@ export namespace Components {
         "variant": IndexButtonVariant;
     }
     interface IxInputGroup {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon": string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - one of 'above' or 'left'
+         */
+        "labelPosition": KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value": string;
     }
     interface IxKpi {
         "label": string;
@@ -2085,6 +2108,15 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueElement: {
+        prototype: HTMLIxKeyValueElement;
+        new (): HTMLIxKeyValueElement;
+    };
     interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
     }
     var HTMLIxKpiElement: {
@@ -2361,6 +2393,7 @@ declare global {
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
+        "ix-key-value": HTMLIxKeyValueElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -3274,6 +3307,27 @@ declare namespace LocalJSX {
         "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon"?: string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - one of 'above' or 'left'
+         */
+        "labelPosition"?: KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value"?: string;
     }
     interface IxKpi {
         "label"?: string;
@@ -4264,6 +4318,7 @@ declare namespace LocalJSX {
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
+        "ix-key-value": IxKeyValue;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -4356,6 +4411,10 @@ declare module "@stencil/core" {
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;

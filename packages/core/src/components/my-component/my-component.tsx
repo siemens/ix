@@ -16,6 +16,92 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-key-value label="Label 1" value="Value 1"></ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value
+          label="Label 1"
+          value="Value 1"
+          icon="location"
+        ></ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value label="Label 1">
+          <form class="needs-validation m-2" slot="value-component">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+            />
+          </form>
+        </ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value label="Label 1" icon="location">
+          <input
+            class="form-control"
+            placeholder="Enter text here"
+            type="text"
+            slot="value-component"
+          />
+        </ix-key-value>
+
+        <br />
+        <br />
+
+        <hr />
+
+        <br />
+        <br />
+
+        <ix-key-value
+          label="Label 1"
+          value="Value 1"
+          labelPosition="left"
+        ></ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value
+          label="Label 1"
+          value="Value 1"
+          icon="location"
+          labelPosition="left"
+        ></ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value label="Label 1" labelPosition="left">
+          <input
+            class="form-control"
+            placeholder="Enter text here"
+            type="text"
+            slot="value-component"
+          />
+        </ix-key-value>
+
+        <br />
+        <br />
+
+        <ix-key-value label="Label 1" icon="location" labelPosition="left">
+          <input
+            class="form-control"
+            placeholder="Enter text here"
+            type="text"
+            slot="value-component"
+          />
+        </ix-key-value>
+      </Host>
+    );
   }
 }

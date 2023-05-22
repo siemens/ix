@@ -1,0 +1,73 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { Component, h, Host, Prop } from '@stencil/core';
+
+export type KeyValueLabelPosition = 'above' | 'left';
+
+/**
+ * @slot value-component - Optional value component at key value instead of text value
+ *
+ * @since 1.6.0
+ */
+@Component({
+  tag: 'ix-key-value',
+  styleUrl: 'key-value.scss',
+  shadow: true,
+})
+export class KeyValue {
+  /**
+   * Optional key value icon
+   */
+  @Prop() icon: string;
+
+  /**
+   * Key value label
+   */
+  @Prop() label!: string;
+
+  /**
+   * Optional key value label position - one of 'above' or 'left'
+   */
+  @Prop() labelPosition: KeyValueLabelPosition = 'above';
+
+  /**
+   * Optional key value text value
+   */
+  @Prop() value: string;
+
+  render() {
+    return (
+      <Host
+        class={`keyValue keyValue--${
+          this.labelPosition === 'above' ? 'column' : 'row'
+        }`}
+      >
+        {this.icon && (
+          <ix-icon name={this.icon} size="24" class="keyValue__icon"></ix-icon>
+        )}
+        <div class="keyValue__content">
+          <div class="content__label">{this.label}</div>
+          <div
+            class={{
+              content__value: true,
+              'has-valueComponent': this.value === undefined,
+            }}
+          >
+            {this.value !== undefined ? (
+              this.value
+            ) : (
+              <slot name="value-component"></slot>
+            )}
+          </div>
+        </div>
+      </Host>
+    );
+  }
+}
