@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './page-header.html',
+  templateUrl: './page-header-no-back.html',
 })
-export default class PageHeader {}
+export default class PageHeaderNoBack {}

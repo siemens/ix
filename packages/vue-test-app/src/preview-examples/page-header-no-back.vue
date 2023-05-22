@@ -8,17 +8,21 @@
 -->
 
 <script setup lang="ts">
-import { IxButton, IxPageHeader } from '@siemens/ix-vue';
+import { IxIconButton, IxPageHeader } from '@siemens/ix-vue';
 </script>
 
 <template>
   <IxPageHeader
-    has-back-button
+    variant="Secondary"
     header-title="content title"
     header-subtitle="subtitle content"
   >
-    <IxButton ghost>Button1</IxButton>
-    <IxButton ghost>Button2</IxButton>
-    <IxButton ghost>Button3</IxButton>
+    <IxIconButton icon="pen" ghost variant="Primary"> Button1 </IxIconButton>
+    <IxIconButton icon="trashcan" ghost variant="Primary">
+      Button2
+    </IxIconButton>
+    <IxIconButton icon="context-menu" ghost variant="Primary">
+      Button3
+    </IxIconButton>
   </IxPageHeader>
 </template>

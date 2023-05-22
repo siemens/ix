@@ -65,6 +65,7 @@ import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
 import PageHeader from 'src/preview-examples/page-header';
+import PageHeaderNoBack from 'src/preview-examples/page-header-no-back';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -188,6 +189,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     EmptyState,
     EmptyStateCompact,
     EmptyStateCompactBreak,
+    PageHeaderNoBack,
   ],
   imports: [
     BrowserModule,

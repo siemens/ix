@@ -6,20 +6,26 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxButton, IxPageHeader } from '@siemens/ix-react';
+import { IxIconButton, IxPageHeader } from '@siemens/ix-react';
 
 import React from 'react';
 
 export default () => {
   return (
     <IxPageHeader
-      has-back-button
+      variant="Secondary"
       header-title="content title"
       header-subtitle="subtitle content"
     >
-      <IxButton ghost>Button1</IxButton>
-      <IxButton ghost>Button2</IxButton>
-      <IxButton ghost>Button3</IxButton>
+      <IxIconButton icon="pen" ghost variant="Primary">
+        Button1
+      </IxIconButton>
+      <IxIconButton icon="trashcan" ghost variant="Primary">
+        Button2
+      </IxIconButton>
+      <IxIconButton icon="context-menu" ghost variant="Primary">
+        Button3
+      </IxIconButton>
     </IxPageHeader>
   );
 };
