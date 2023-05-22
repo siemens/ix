@@ -1322,6 +1322,34 @@ export declare interface IxModalExample extends Components.IxModalExample {}
 
 
 @ProxyCmp({
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+})
+@Component({
+  selector: 'ix-page-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+})
+export class IxPageHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
+  }
+}
+
+
+export declare interface IxPageHeader extends Components.IxPageHeader {
+  /**
+   * triggered when back button is clicked
+   */
+  backButtonClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
 })
 @Component({
