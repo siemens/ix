@@ -76,17 +76,6 @@
     &--animated {
       animation: trackProgress linear 1 forwards;
     }
-
-    &--touched {
-      transition: transform 1s;
-    }
-  }
-
-  @include hover {
-    .toast-progress-bar {
-      visibility: hidden;
-      transition: none;
-    }
   }
 
   @keyframes trackProgress {
