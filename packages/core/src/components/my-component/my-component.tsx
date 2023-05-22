@@ -101,6 +101,188 @@ export class MyComponent {
             slot="value-component"
           />
         </ix-key-value>
+
+        <br />
+        <br />
+
+        <hr />
+
+        <br />
+        <br />
+
+        <ix-key-value-list>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            labelPosition="left"
+          ></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+            labelPosition="left"
+          ></ix-key-value>
+
+          <ix-key-value label="Label 1" labelPosition="left">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+        </ix-key-value-list>
+
+        <br />
+        <br />
+
+        <ix-key-value-list>
+          <ix-key-value label="Label 1" value="Value 1"></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+          ></ix-key-value>
+
+          <ix-key-value label="Label 1">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+        </ix-key-value-list>
+
+        <br />
+        <br />
+
+        <ix-key-value-list striped={true}>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            labelPosition="left"
+          ></ix-key-value>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            labelPosition="left"
+          ></ix-key-value>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            labelPosition="left"
+          ></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+            labelPosition="left"
+          ></ix-key-value>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+            labelPosition="left"
+          ></ix-key-value>
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+            labelPosition="left"
+          ></ix-key-value>
+
+          <ix-key-value label="Label 1" labelPosition="left">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+          <ix-key-value label="Label 1" labelPosition="left">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+          <ix-key-value label="Label 1" labelPosition="left">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+        </ix-key-value-list>
+
+        <br />
+        <br />
+
+        <ix-key-value-list striped={true}>
+          <ix-key-value label="Label 1" value="Value 1"></ix-key-value>
+          <ix-key-value label="Label 1" value="Value 1"></ix-key-value>
+          <ix-key-value label="Label 1" value="Value 1"></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+          ></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+          ></ix-key-value>
+
+          <ix-key-value
+            label="Label 1"
+            value="Value 1"
+            icon="location"
+          ></ix-key-value>
+
+          <ix-key-value label="Label 1">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+
+          <ix-key-value label="Label 1">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+
+          <ix-key-value label="Label 1">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+
+          <ix-key-value label="Label 1">
+            <input
+              class="form-control"
+              placeholder="Enter text here"
+              type="text"
+              slot="value-component"
+            />
+          </ix-key-value>
+        </ix-key-value-list>
       </Host>
     );
   }

@@ -843,6 +843,15 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped": boolean;
+    }
     interface IxKpi {
         "label": string;
         "orientation": 'horizontal' | 'vertical';
@@ -2117,6 +2126,15 @@ declare global {
         prototype: HTMLIxKeyValueElement;
         new (): HTMLIxKeyValueElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueListElement extends Components.IxKeyValueList, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueListElement: {
+        prototype: HTMLIxKeyValueListElement;
+        new (): HTMLIxKeyValueListElement;
+    };
     interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
     }
     var HTMLIxKpiElement: {
@@ -2394,6 +2412,7 @@ declare global {
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
+        "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -3328,6 +3347,15 @@ declare namespace LocalJSX {
           * Optional key value text value
          */
         "value"?: string;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped"?: boolean;
     }
     interface IxKpi {
         "label"?: string;
@@ -4319,6 +4347,7 @@ declare namespace LocalJSX {
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
+        "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -4415,6 +4444,10 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
