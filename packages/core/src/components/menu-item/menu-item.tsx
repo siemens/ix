@@ -60,7 +60,7 @@ export class MenuItem {
     this.title = this.hostElement.innerText;
   }
 
-  componentDidLoad() {
+  connectedCallback() {
     this.observer = createMutationObserver(() => {
       this.title = this.hostElement.innerText;
     });
