@@ -466,6 +466,15 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
 
 
+export const IxPageHeader = /*@__PURE__*/ defineContainer<JSX.IxPageHeader>('ix-page-header', undefined, [
+  'variant',
+  'headerTitle',
+  'headerSubtitle',
+  'hasBackButton',
+  'backButtonClick'
+]);
+
+
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
   'advanced',
   'itemCount',
