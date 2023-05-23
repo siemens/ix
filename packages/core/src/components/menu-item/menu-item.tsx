@@ -8,11 +8,12 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuItem {
   /**
@@ -35,7 +36,7 @@ export class MenuItem {
   @Prop() tabIcon = 'document';
 
   /**
-   * Show notification cound on tab
+   * Show notification count on tab
    */
   @Prop() notifications: number;
 
@@ -53,15 +54,27 @@ export class MenuItem {
 
   @State() title: string;
 
-  get tabLabel() {
-    return this.hostElement.querySelector('.tab-text');
+  private observer: MutationObserver;
+
+  componentWillRender() {
+    this.title = this.hostElement.innerText;
   }
 
-  componentDidRender() {
-    const spanElement = this.tabLabel;
-    const newTitle = spanElement.innerHTML.replace('&amp;', '&');
-    if (this.title !== newTitle) {
-      this.title = newTitle;
+  connectedCallback() {
+    this.observer = createMutationObserver(() => {
+      this.title = this.hostElement.innerText;
+    });
+
+    this.observer.observe(this.hostElement, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
     }
   }
 
@@ -76,13 +89,12 @@ export class MenuItem {
         }}
       >
         <li class="tab" title={this.title}>
-          <i class={`glyph glyph-${this.tabIcon}`}>
-            <div class="notification">
-              {this.notifications ? (
-                <div class="pill">{this.notifications}</div>
-              ) : null}
-            </div>
-          </i>
+          <ix-icon name={this.tabIcon}></ix-icon>
+          <div class="notification">
+            {this.notifications ? (
+              <div class="pill">{this.notifications}</div>
+            ) : null}
+          </div>
           <span class="tab-text text-default">
             <slot></slot>
           </span>

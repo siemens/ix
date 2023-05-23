@@ -16,6 +16,10 @@ regressionTest.describe('menu-about', () => {
 
     await page.locator('#aboutAndLegal').click();
     await page.waitForTimeout(500);
+
+    //Click is needed otherwise tab item is still hovered
+    await page.getByText('Content 1').click();
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

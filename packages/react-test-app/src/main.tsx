@@ -59,6 +59,7 @@ import MapNavigation from './preview-examples/map-navigation';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
+import PageHeader from './preview-examples/page-header';
 import Pill from './preview-examples/pill';
 import PopoverNews from './preview-examples/popover-news';
 import RadioButton from './preview-examples/radio-button';
@@ -249,6 +250,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           />
         </Route>
       </Route>
+      <Route path="/preview/page-header" element={<PageHeader />} />
     </Routes>
   </BrowserRouter>
 );
