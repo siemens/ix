@@ -12,6 +12,7 @@ import {
   Event,
   EventEmitter,
   h,
+  Host,
   Method,
   Prop,
   Watch,
@@ -147,7 +148,7 @@ export class Drawer {
 
   render() {
     return (
-      <div
+      <Host
         class={{
           'drawer-container': true,
           toggle: this.show,
@@ -168,6 +169,7 @@ export class Drawer {
             <slot name="header"></slot>
           </div>
           <ix-icon-button
+            class="close-button"
             icon="close"
             size="24"
             ghost
@@ -178,7 +180,7 @@ export class Drawer {
         <div class="content">
           <slot></slot>
         </div>
-      </div>
+      </Host>
     );
   }
 }
