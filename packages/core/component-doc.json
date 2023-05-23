@@ -5203,6 +5203,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-tabs": [
+          "ix-icon"
         ]
       },
       "props": [
@@ -5852,6 +5855,9 @@
           "ix-tabs"
         ],
         "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-tabs": [
           "ix-icon"
         ]
       },
@@ -8034,14 +8040,19 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu-about",
         "ix-menu-settings",
         "my-component"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-tabs": [
+          "ix-icon"
+        ],
         "ix-menu-about": [
           "ix-tabs"
         ],
@@ -10012,6 +10023,9 @@
         "my-component": [
           "ix-tabs",
           "ix-tab-item",
+          "ix-icon"
+        ],
+        "ix-tabs": [
           "ix-icon"
         ]
       },
