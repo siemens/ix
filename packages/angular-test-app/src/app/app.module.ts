@@ -23,7 +23,7 @@ import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-
 import Blind from 'src/preview-examples/blind';
 import Breadcrumb from 'src/preview-examples/breadcrumb';
 import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
-import BreadcrumbTrucate from 'src/preview-examples/breadcrumb-truncate';
+import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
@@ -57,6 +57,14 @@ import Input from 'src/preview-examples/input';
 import InputDisabled from 'src/preview-examples/input-disabled';
 import InputReadonly from 'src/preview-examples/input-readonly';
 import InputWithIcon from 'src/preview-examples/input-with-icon';
+import KeyValue from 'src/preview-examples/key-value';
+import KeyValueList from 'src/preview-examples/key-value-list';
+import KeyValueListStriped from 'src/preview-examples/key-value-list-striped';
+import KeyValueListWithCustomValue from 'src/preview-examples/key-value-list-with-custom-value';
+import KeyValueListWithIcon from 'src/preview-examples/key-value-list-with-icon';
+import KeyValueWithCustomValue from 'src/preview-examples/key-value-with-custom-value';
+import KeyValueWithIcon from 'src/preview-examples/key-value-with-icon';
+import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-left';
 import Kpi from 'src/preview-examples/kpi';
 import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
@@ -116,7 +124,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     BasicNavigationWithOutHeader,
     Blind,
     BreadcrumbNextItems,
-    BreadcrumbTrucate,
+    BreadcrumbTruncate,
     Breadcrumb,
     NavigationTestComponent,
     ButtonSelected,
@@ -186,6 +194,14 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     EmptyState,
     EmptyStateCompact,
     EmptyStateCompactBreak,
+    KeyValue,
+    KeyValueWithCustomValue,
+    KeyValueWithIcon,
+    KeyValueWithLabelLeft,
+    KeyValueList,
+    KeyValueListWithCustomValue,
+    KeyValueListWithIcon,
+    KeyValueListStriped,
   ],
   imports: [
     BrowserModule,
