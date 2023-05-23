@@ -16,6 +16,10 @@
   display: block;
   cursor: pointer;
 
+  height: 3rem;
+  min-height: 3rem;
+  max-height: 3rem;
+
   .tab {
     display: flex;
     position: relative;
@@ -120,7 +124,9 @@
 :host([slot='bottom']) {
   $bottom-height: 2.25rem;
 
+  min-height: $bottom-height;
   height: $bottom-height;
+  max-height: $bottom-height;
 
   .tab {
     height: $bottom-height;
