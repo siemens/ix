@@ -80,7 +80,7 @@ export class Drawer {
    * @param show Overwrite toggle state with boolean
    */
   @Method()
-  async toggleDrawer(show: boolean): Promise<void> {
+  async toggleDrawer(show?: boolean): Promise<void> {
     this.show = show !== undefined ? show : !this.show;
 
     if (show) {

@@ -2200,7 +2200,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "toggleDrawer(show: boolean) => Promise<void>",
+          "signature": "toggleDrawer(show?: boolean) => Promise<void>",
           "parameters": [],
           "docs": "Toggle or define show state of drawer",
           "docsTags": [

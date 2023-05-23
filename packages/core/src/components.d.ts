@@ -452,7 +452,7 @@ export namespace Components {
           * Toggle or define show state of drawer
           * @param show Overwrite toggle state with boolean
          */
-        "toggleDrawer": (show: boolean) => Promise<void>;
+        "toggleDrawer": (show?: boolean) => Promise<void>;
         /**
           * Width interpreted as REM if not set to 'auto'
          */
