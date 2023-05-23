@@ -21,7 +21,7 @@ import anime from 'animejs';
 @Component({
   tag: 'ix-drawer',
   styleUrl: 'drawer.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Drawer {
   /**
