@@ -4818,6 +4818,9 @@
           "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
         ]
       },
       "props": [
@@ -5695,12 +5698,17 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-menu-item": [
+          "ix-icon"
+        ],
         "ix-menu": [
           "ix-menu-item"
         ]
@@ -5784,7 +5792,7 @@
           "mutable": false,
           "attr": "notifications",
           "reflectToAttr": false,
-          "docs": "Show notification cound on tab",
+          "docs": "Show notification count on tab",
           "docsTags": [],
           "values": [
             {

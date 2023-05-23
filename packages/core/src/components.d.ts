@@ -1031,7 +1031,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications": number;
         /**
@@ -3521,7 +3521,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications"?: number;
         /**
