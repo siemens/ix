@@ -892,6 +892,50 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 
 @ProxyCmp({
+  inputs: ['icon', 'label', 'labelPosition', 'value']
+})
+@Component({
+  selector: 'ix-key-value',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['icon', 'label', 'labelPosition', 'value'],
+})
+export class IxKeyValue {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValue extends Components.IxKeyValue {}
+
+
+@ProxyCmp({
+  inputs: ['striped']
+})
+@Component({
+  selector: 'ix-key-value-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['striped'],
+})
+export class IxKeyValueList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValueList extends Components.IxKeyValueList {}
+
+
+@ProxyCmp({
   inputs: ['label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({

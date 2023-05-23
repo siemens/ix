@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 export type KeyValueLabelPosition = 'top' | 'left';
 
 /**
- * @slot value-component - Optional value component at key value instead of text value
+ * @slot custom-value - Optional custom value at key value instead of text value
  *
  * @since 1.6.0
  */
@@ -57,13 +57,13 @@ export class KeyValue {
           <div
             class={{
               content__value: true,
-              'has-valueComponent': this.value === undefined,
+              'has-customValue': this.value === undefined,
             }}
           >
             {this.value !== undefined ? (
               this.value
             ) : (
-              <slot name="value-component"></slot>
+              <slot name="custom-value"></slot>
             )}
           </div>
         </div>

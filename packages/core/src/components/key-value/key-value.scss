@@ -28,7 +28,7 @@
     flex-direction: column;
 
     .content__label,
-    .content__value:not(.has-valueComponent) {
+    .content__value:not(.has-customValue) {
       padding: 2px 0;
     }
   }
@@ -43,7 +43,7 @@
     align-items: center;
 
     .content__label,
-    .content__value:not(.has-valueComponent) {
+    .content__value:not(.has-customValue) {
       padding: 6px 0;
     }
 
