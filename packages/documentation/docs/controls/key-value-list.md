@@ -30,7 +30,7 @@ import SourceVueKeyValueListStriped from './../auto-generated/previews/vue/key-v
 ## Usage
 
 <Playground
-name="key-value-list" height="16rem"
+name="key-value-list" height="12rem"
 frameworks={{
   react: SourceReactKeyValueList,
   angular: SourceAngularKeyValueList,
@@ -42,7 +42,7 @@ frameworks={{
 ### With custom value
 
 <Playground
-name="key-value-list-with-custom-value"
+name="key-value-list-with-custom-value" height="12rem"
 frameworks={{
   react: SourceReactKeyValueListWithCustomValue,
   angular: SourceAngularKeyValueListWithCustomValue,
@@ -54,7 +54,7 @@ frameworks={{
 ### With icon
 
 <Playground
-name="key-value-list-with-icon"
+name="key-value-list-with-icon" height="12rem"
 frameworks={{
   react: SourceReactKeyValueListWithIcon,
   angular: SourceAngularKeyValueListWithIcon,
@@ -66,7 +66,7 @@ frameworks={{
 ### Striped
 
 <Playground
-name="key-value-list-striped"
+name="key-value-list-striped" height="12rem"
 frameworks={{
   react: SourceReactKeyValueListStriped,
   angular: SourceAngularKeyValueListStriped,
