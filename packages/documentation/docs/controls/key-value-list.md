@@ -2,7 +2,6 @@ import Playground from '@site/src/components/Playground';
 
 import Tags from './../auto-generated/ix-key-value-list/tags.md';
 import Props from './../auto-generated/ix-key-value-list/props.md';
-import Slots from './../auto-generated/ix-key-value-list/slots.md';
 
 import SourceKeyValueList from './../auto-generated/previews/web-component/key-value-list.md'
 import SourceReactKeyValueList from './../auto-generated/previews/react/key-value-list.md'
@@ -81,7 +80,3 @@ frameworks={{
 ### Props
 
 <Props />
-
-### Slots
-
-<Slots />
