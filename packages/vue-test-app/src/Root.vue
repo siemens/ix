@@ -55,6 +55,8 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
+import PageHeaderNoBack from './preview-examples/page-header-no-back.vue';
+import PageHeader from './preview-examples/page-header.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
@@ -162,6 +164,8 @@ const routes: any = {
   '/preview/tooltip': Tooltip,
   '/preview/push-card': PushCard,
   '/preview/action-card': ActionCard,
+  '/preview/page-header': PageHeader,
+  '/preview/page-header-no-back': PageHeaderNoBack,
   '/preview/empty-state': EmptyState,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,

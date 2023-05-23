@@ -120,7 +120,7 @@ export class MenuAvatar {
           trigger={this.avatarElementId}
           placement={'right-start'}
           offset={{
-            mainAxis: 12,
+            mainAxis: 6,
           }}
         >
           <slot></slot>

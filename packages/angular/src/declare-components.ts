@@ -59,6 +59,7 @@ export const DIRECTIVES = [
   d.IxModal,
   d.IxModalContainer,
   d.IxModalExample,
+  d.IxPageHeader,
   d.IxPagination,
   d.IxPill,
   d.IxPushCard,

@@ -58,6 +58,8 @@ import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
+import PageHeader from 'src/preview-examples/page-header';
+import PageHeaderNoBack from 'src/preview-examples/page-header-no-back';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
@@ -274,6 +276,8 @@ const routes: Routes = [
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
       { path: 'card-list', component: CardList },
+      { path: 'page-header', component: PageHeader },
+      { path: 'page-header-no-back', component: PageHeaderNoBack },
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
