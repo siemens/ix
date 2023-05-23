@@ -9,7 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
-export type KeyValueLabelPosition = 'above' | 'left';
+export type KeyValueLabelPosition = 'top' | 'left';
 
 /**
  * @slot value-component - Optional value component at key value instead of text value
@@ -33,9 +33,9 @@ export class KeyValue {
   @Prop() label!: string;
 
   /**
-   * Optional key value label position - one of 'above' or 'left'
+   * Optional key value label position - 'top' or 'left'
    */
-  @Prop() labelPosition: KeyValueLabelPosition = 'above';
+  @Prop() labelPosition: KeyValueLabelPosition = 'top';
 
   /**
    * Optional key value text value
@@ -46,7 +46,7 @@ export class KeyValue {
     return (
       <Host
         class={`keyValue keyValue--${
-          this.labelPosition === 'above' ? 'column' : 'row'
+          this.labelPosition === 'top' ? 'column' : 'row'
         }`}
       >
         {this.icon && (

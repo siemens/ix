@@ -835,7 +835,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Optional key value label position - one of 'above' or 'left'
+          * Optional key value label position - 'top' or 'left'
          */
         "labelPosition": KeyValueLabelPosition;
         /**
@@ -3340,7 +3340,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Optional key value label position - one of 'above' or 'left'
+          * Optional key value label position - 'top' or 'left'
          */
         "labelPosition"?: KeyValueLabelPosition;
         /**
