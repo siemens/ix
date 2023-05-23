@@ -16,7 +16,6 @@
   display: inline-block;
   position: relative;
   height: auto;
-  width: 100%;
   border-radius: var(--theme-input--border-radius);
 
   .select {
@@ -42,6 +41,10 @@
       outline: 1px solid #119fff !important;
       outline-offset: var(--theme-input--focus--outline-offset);
     }
+  }
+
+  .select.readonly {
+    box-shadow: none !important;
   }
 
   .hidden {
