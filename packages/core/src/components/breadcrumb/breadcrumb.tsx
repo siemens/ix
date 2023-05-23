@@ -226,6 +226,7 @@ export class Breadcrumb {
               .slice(0, this.items.length - this.visibleItemCount)
               .map((item) => (
                 <ix-dropdown-item
+                  icon={item.icon}
                   label={item.label}
                   onClick={() => this.itemClick.emit(item.label)}
                 ></ix-dropdown-item>
