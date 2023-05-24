@@ -214,7 +214,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
@@ -224,6 +226,9 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -541,6 +546,7 @@
         "ix-datetime-picker",
         "ix-dropdown-button",
         "ix-empty-state",
+        "ix-menu-about-news",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -557,6 +563,9 @@
           "ix-button"
         ],
         "ix-empty-state": [
+          "ix-button"
+        ],
+        "ix-menu-about-news": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -4966,7 +4975,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item",
@@ -4980,6 +4991,9 @@
         ],
         "ix-menu-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -5348,7 +5362,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -5362,6 +5378,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-about"
         ]
       },
       "props": [
@@ -5444,10 +5463,16 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-about-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -5484,19 +5509,28 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
-        "ix-icon-button"
+        "ix-typography",
+        "ix-icon-button",
+        "ix-button"
       ],
       "dependencyGraph": {
         "ix-menu-about-news": [
           "ix-icon",
-          "ix-icon-button"
+          "ix-typography",
+          "ix-icon-button",
+          "ix-button"
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-about-news"
         ]
       },
       "props": [
@@ -5639,7 +5673,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown",
         "ix-menu-avatar-item"
@@ -5654,6 +5690,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-avatar"
         ]
       },
       "props": [
@@ -5779,7 +5818,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -5792,6 +5832,9 @@
           "ix-icon"
         ],
         "ix-menu-avatar": [
+          "ix-menu-avatar-item"
+        ],
+        "my-component": [
           "ix-menu-avatar-item"
         ]
       },
@@ -5859,7 +5902,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu"
+        "ix-menu",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -5869,6 +5913,9 @@
           "ix-icon"
         ],
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -5998,7 +6045,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -6012,6 +6061,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-settings"
         ]
       },
       "props": [
@@ -6094,10 +6146,16 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-settings-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -10154,8 +10212,75 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-avatar",
+        "ix-menu-avatar-item",
+        "ix-menu-item",
+        "ix-menu-about",
+        "ix-menu-about-item",
+        "ix-menu-about-news",
+        "ix-menu-settings",
+        "ix-menu-settings-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-avatar",
+          "ix-menu-avatar-item",
+          "ix-menu-item",
+          "ix-menu-about",
+          "ix-menu-about-item",
+          "ix-menu-about-news",
+          "ix-menu-settings",
+          "ix-menu-settings-item"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item",
+          "ix-dropdown"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-menu-avatar": [
+          "ix-dropdown",
+          "ix-menu-avatar-item"
+        ],
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-menu-about": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-menu-about-news": [
+          "ix-icon",
+          "ix-typography",
+          "ix-icon-button",
+          "ix-button"
+        ],
+        "ix-menu-settings": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

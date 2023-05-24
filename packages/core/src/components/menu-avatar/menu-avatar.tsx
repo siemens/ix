@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 function DefaultAvatar(props: { initials?: string }) {
   const { initials } = props;
@@ -40,24 +41,12 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-} from '@stencil/core';
-
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAvatar {
-  @Element() hostElement: HTMLIxMenuAvatarElement;
-
   /**
    * First line of text
    */

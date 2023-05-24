@@ -10,8 +10,11 @@
 @import 'common-variables';
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: block;
   position: relative;
   margin-bottom: 0.5rem;

@@ -16,6 +16,50 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-basic-navigation>
+          <ix-menu>
+            <ix-menu-avatar>
+              <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
+              <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
+            </ix-menu-avatar>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-about>
+              <ix-menu-about-item label="About 1">
+                About Content 1
+              </ix-menu-about-item>
+
+              <ix-menu-about-item label="About 2">
+                About Content 2
+              </ix-menu-about-item>
+            </ix-menu-about>
+
+            <ix-menu-about-news label="Test" show about-item-label="About 2">
+              Test
+            </ix-menu-about-news>
+
+            <ix-menu-settings>
+              <ix-menu-settings-item label="Settings 1">
+                Settings Content 1
+              </ix-menu-settings-item>
+              <ix-menu-settings-item label="Settings 2">
+                Settings Content 2
+              </ix-menu-settings-item>
+            </ix-menu-settings>
+          </ix-menu>
+        </ix-basic-navigation>
+      </Host>
+    );
   }
 }
