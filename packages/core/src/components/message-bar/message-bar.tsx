@@ -22,7 +22,7 @@ import { NotificationColor } from '../utils/notification-color';
 @Component({
   tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MessageBar {
   /**
