@@ -4446,6 +4446,165 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/key-value",
+      "filePath": "./src/components/key-value/key-value.tsx",
+      "fileName": "key-value.tsx",
+      "readmePath": "./src/components/key-value/readme.md",
+      "usagesDir": "./src/components/key-value/usage",
+      "tag": "ix-key-value",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "custom-value - Optional custom value at key value instead of text value"
+        },
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-key-value": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional key value icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Key value label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        },
+        {
+          "name": "labelPosition",
+          "type": "\"left\" | \"top\"",
+          "mutable": false,
+          "attr": "label-position",
+          "reflectToAttr": false,
+          "docs": "Optional key value label position - 'top' or 'left'",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Optional key value text value",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "custom-value",
+          "docs": "Optional custom value at key value instead of text value"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/key-value-list",
+      "filePath": "./src/components/key-value-list/key-value-list.tsx",
+      "fileName": "key-value-list.tsx",
+      "readmePath": "./src/components/key-value-list/readme.md",
+      "usagesDir": "./src/components/key-value-list/usage",
+      "tag": "ix-key-value-list",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "striped",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "striped",
+          "reflectToAttr": false,
+          "docs": "Optional striped key value list style",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/kpi",
       "filePath": "./src/components/kpi/kpi.tsx",
       "fileName": "kpi.tsx",
