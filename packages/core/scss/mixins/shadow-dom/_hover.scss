@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 @mixin ghost-hover-pressed {
-  :host:not(.disabled):not(:disabled).hover,
-  :host:not(.disabled):not(:disabled):hover {
+  :host(:not(.disabled):not(:disabled).hover),
+  :host(:not(.disabled):not(:disabled):hover) {
     background-color: var(--theme-ghost--background--hover);
   }
 
-  :host:not(.disabled):not(:disabled).active,
-  :host:not(.disabled):not(:disabled):active {
+  :host(:not(.disabled):not(:disabled).active),
+  :host(:not(.disabled):not(:disabled):active) {
     background-color: var(--theme-ghost--background--active);
   }
 }
