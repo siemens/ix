@@ -115,10 +115,12 @@ export namespace Components {
         "ghost": boolean;
         /**
           * Accessibility label for the entire breadcrumb (MANDATORY)
+          * @since 1.6.0
          */
         "ixAriaLabel": string;
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items (MANDATORY where applicable)
+          * @since 1.6.0
          */
         "ixAriaPreviousButtonLabel": string;
         /**
@@ -2561,10 +2563,12 @@ declare namespace LocalJSX {
         "ghost"?: boolean;
         /**
           * Accessibility label for the entire breadcrumb (MANDATORY)
+          * @since 1.6.0
          */
         "ixAriaLabel"?: string;
         /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items (MANDATORY where applicable)
+          * @since 1.6.0
          */
         "ixAriaPreviousButtonLabel"?: string;
         /**

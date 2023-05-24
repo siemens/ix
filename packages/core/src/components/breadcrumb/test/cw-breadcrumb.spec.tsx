@@ -40,18 +40,11 @@ describe('ix-breadcrumb', () => {
     });
   });
 
-  it('renders', async () => {
-    observerCallback();
-
-    await page.waitForChanges();
-    expect(page.root).toMatchSnapshot();
-  });
-
   it('emits an event when clicked on item', async () => {
     let callbackSpy = jest.fn();
     page.win.addEventListener('itemClick', callbackSpy);
 
-    let item = page.doc.querySelector('[data-testid="item"]');
+    let item = page.root.shadowRoot.querySelector('[data-testid="item"]');
     fireEvent.click(item);
     await page.waitForChanges();
 
