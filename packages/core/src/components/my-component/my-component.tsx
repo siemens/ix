@@ -18,6 +18,333 @@ export class MyComponent {
   componentDidLoad() {}
 
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-card-list
+          label="Layout 4 Infinite"
+          listStyle="stack"
+          showAllCount={3}
+        >
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="notification"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="alarm"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="critical"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="warning"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="info"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="neutral"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+          <ix-action-card
+            selected
+            icon="refresh"
+            heading="Scan forn new devices"
+            subheading="Secondary text"
+            variant="success"
+          ></ix-action-card>
+        </ix-card-list>
+        <ix-card-list label="Layout 2 Flex" listStyle={'scroll'}>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+        </ix-card-list>
+        <ix-card-list
+          label="Layout 3 Infinite"
+          listStyle="stack"
+          showAllCount={12}
+        >
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+        </ix-card-list>
+        <ix-card-list label="Layout 3 Infinite" listStyle="scroll">
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="neutral"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="alarm"
+          ></ix-push-card>
+          <ix-push-card
+            icon="bulb"
+            notification="99"
+            heading="Heading content"
+            subheading="Subheading"
+            variant="success"
+          ></ix-push-card>
+        </ix-card-list>
+      </Host>
+    );
   }
 }

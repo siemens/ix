@@ -23,7 +23,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-card",
         "ix-card-content",
@@ -36,6 +38,9 @@
           "ix-card-content",
           "ix-icon",
           "ix-typography"
+        ],
+        "my-component": [
+          "ix-action-card"
         ]
       },
       "props": [
@@ -1057,7 +1062,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-card",
         "ix-card-content",
@@ -1077,6 +1084,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-card-list"
         ]
       },
       "props": [
@@ -7831,7 +7841,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-card",
         "ix-card-title",
@@ -7851,6 +7863,9 @@
         ],
         "ix-card-accordion": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-push-card"
         ]
       },
       "props": [
@@ -10945,8 +10960,46 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-card-list",
+        "ix-action-card",
+        "ix-push-card"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-card-list",
+          "ix-action-card",
+          "ix-push-card"
+        ],
+        "ix-card-list": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-typography",
+          "ix-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-action-card": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
+          "ix-typography"
+        ],
+        "ix-push-card": [
+          "ix-card",
+          "ix-card-title",
+          "ix-icon",
+          "ix-card-content",
+          "ix-typography",
+          "ix-card-accordion"
+        ],
+        "ix-card-accordion": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
