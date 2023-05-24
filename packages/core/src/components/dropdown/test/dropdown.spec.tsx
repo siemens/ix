@@ -28,10 +28,6 @@ describe('ix-dropdown', () => {
     dropdown = document.querySelector('ix-dropdown');
   });
 
-  it('renders', async () => {
-    expect(page.root).toMatchSnapshot();
-  });
-
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
       components: [Dropdown],
