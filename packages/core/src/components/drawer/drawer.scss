@@ -6,11 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+@import 'mixins/shadow-dom/component';
 @import 'mixins/shadows';
 @import 'common-variables';
 
 :host {
+  @include ix-component;
+
   top: 0;
   right: 0;
   @include box-shadow(3);
@@ -33,10 +35,6 @@
   .toggle {
     z-index: 100;
     visibility: visible;
-  }
-
-  .close-button {
-    margin-right: 0.5rem;
   }
 
   .drawer-container.full-height {

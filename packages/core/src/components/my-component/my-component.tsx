@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, State } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -15,7 +15,18 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  @State() toggle = false;
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host style={{ background: 'var(--theme-color-2)' }}>
+        <ix-button onClick={() => (this.toggle = !this.toggle)}>
+          Toggle
+        </ix-button>
+        <ix-drawer show={this.toggle} fullHeight>
+          Content
+        </ix-drawer>
+      </Host>
+    );
   }
 }

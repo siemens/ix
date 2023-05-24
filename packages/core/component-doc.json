@@ -543,7 +543,8 @@
         "ix-empty-state",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -566,6 +567,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2073,7 +2077,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button"
       ],
@@ -2083,6 +2089,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-drawer"
         ]
       },
       "props": [
@@ -10154,8 +10163,22 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-drawer"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-drawer"
+        ],
+        "ix-drawer": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
