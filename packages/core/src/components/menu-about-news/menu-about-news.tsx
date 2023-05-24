@@ -12,7 +12,7 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAboutNews {
   /**
@@ -90,15 +90,15 @@ export class MenuAboutNews {
         <slot></slot>
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
-            <button
-              class="btn btn-primary"
+            <ix-button
+              variant="Primary"
               onClick={(e) => {
                 this.show = false;
                 this.showMore.emit(e);
               }}
             >
               {this.i18nShowMore}
-            </button>
+            </ix-button>
           </div>
         ) : null}
         <div id="arrow"></div>
