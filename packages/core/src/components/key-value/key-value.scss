@@ -1,0 +1,54 @@
+@import 'common-variables';
+
+:host(.keyValue) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $default-space;
+
+  .keyValue__icon {
+    padding: $tiny-space 0;
+  }
+
+  .keyValue__content {
+    display: flex;
+    align-items: flex-start;
+
+    .content__label {
+      color: var(--theme-color-soft-text);
+    }
+  }
+}
+
+:host(.keyValue.keyValue--column) {
+  padding: $small-space 0;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+
+  .keyValue__content {
+    flex-direction: column;
+
+    .content__label,
+    .content__value:not(.has-customValue) {
+      padding: 2px 0;
+    }
+  }
+}
+
+:host(.keyValue.keyValue--row) {
+  padding: $tiny-space 0;
+
+  .keyValue__content {
+    flex-direction: row;
+    gap: $default-space;
+    align-items: center;
+
+    .content__label,
+    .content__value:not(.has-customValue) {
+      padding: 6px 0;
+    }
+
+    .content__label {
+      min-width: 8rem;
+    }
+  }
+}
