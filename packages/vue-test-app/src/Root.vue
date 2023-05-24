@@ -50,6 +50,14 @@ import InputDisabled from './preview-examples/input-disabled.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
 import InputWithIcon from './preview-examples/input-with-icon.vue';
 import Input from './preview-examples/input.vue';
+import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
+import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
+import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon.vue';
+import KeyValueList from './preview-examples/key-value-list.vue';
+import KeyValueWithCustomValue from './preview-examples/key-value-with-custom-value.vue';
+import KeyValueWithIcon from './preview-examples/key-value-with-icon.vue';
+import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left.vue';
+import KeyValue from './preview-examples/key-value.vue';
 import Kpi from './preview-examples/kpi.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
@@ -169,6 +177,14 @@ const routes: any = {
   '/preview/empty-state': EmptyState,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
+  '/preview/key-value': KeyValue,
+  '/preview/key-value-with-custom-value': KeyValueWithCustomValue,
+  '/preview/key-value-with-icon': KeyValueWithIcon,
+  '/preview/key-value-with-label-left': KeyValueWithLabelLeft,
+  '/preview/key-value-list': KeyValueList,
+  '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
+  '/preview/key-value-list-with-icon': KeyValueListWithIcon,
+  '/preview/key-value-list-striped': KeyValueListStriped,
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,

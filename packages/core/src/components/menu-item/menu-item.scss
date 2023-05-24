@@ -15,7 +15,10 @@
   position: relative;
   display: block;
   cursor: pointer;
-  @include ghost-hover-pressed;
+
+  height: 3rem;
+  min-height: 3rem;
+  max-height: 3rem;
 
   .tab {
     display: flex;
@@ -24,6 +27,8 @@
     height: 3rem;
     z-index: 500;
     padding-left: 0.875rem;
+
+    @include ghost-hover-pressed;
   }
 
   i.glyph {
@@ -46,14 +51,14 @@
   .notification {
     display: inline-flex;
     position: absolute;
-    top: -$small-space;
-    right: -50%;
+    top: 0.25rem;
+    left: 1.75rem;
 
     .pill {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      height: 1rem;
+      height: 0.5rem;
       min-width: 1rem;
       position: relative;
       border-radius: 6.25rem;
@@ -74,74 +79,81 @@
     margin: 0 1.25rem;
     user-select: none;
   }
+}
+
+:host(.active),
+:host(.selected) {
+  .tab {
+    background-color: var(--theme-nav-item-primary--background--selected);
+  }
+
+  .tab::before {
+    content: '';
+    background-color: var(--theme-nav-item-primary--border-color--selected);
+    height: 3rem;
+    width: 0.25rem;
+    left: 0;
+    position: absolute;
+  }
+
+  .tab > .glyph {
+    color: var(--theme-nav-item-primary-icon--color--selected);
+  }
+}
+
+:host(.disabled) {
+  color: var(--theme-color-weak-text);
+  pointer-events: none;
+  cursor: default;
+
+  .tab > .glyph {
+    color: var(--theme-color-weak-text);
+  }
+
+  .tab-text {
+    color: var(--theme-color-weak-text);
+  }
+}
+
+:host(.home-tab),
+:host([slot='home']) {
+  margin-bottom: 1.5rem;
+}
+
+:host(.bottom-tab),
+:host([slot='bottom']) {
+  $bottom-height: 2.25rem;
+
+  min-height: $bottom-height;
+  height: $bottom-height;
+  max-height: $bottom-height;
+
+  .tab {
+    height: $bottom-height;
+  }
+
+  .tab::before {
+    height: $bottom-height;
+    background-color: transparent;
+  }
 
   &.active,
   &.selected {
-    .tab {
-      background-color: var(--theme-nav-item-primary--background--selected);
+    &:hover {
+      background-color: var(--theme-nav-item-secondary--background--selected);
     }
 
-    .tab::before {
-      content: '';
-      background-color: var(--theme-nav-item-primary--border-color--selected);
-      height: 3rem;
-      width: 0.25rem;
-      left: 0;
-      position: absolute;
-    }
-
-    .tab > .glyph {
-      color: var(--theme-nav-item-primary-icon--color--selected);
+    &:active {
+      background-color: var(--theme-nav-item-secondary--background--selected);
     }
   }
+}
 
-  &.disabled {
-    color: var(--theme-color-weak-text);
-    pointer-events: none;
-    cursor: default;
-
-    .tab > .glyph {
-      color: var(--theme-color-weak-text);
-    }
-
-    .tab-text {
-      color: var(--theme-color-weak-text);
-    }
-  }
-
-  &.home-tab,
-  &[slot='home'] {
-    margin-bottom: 1.5rem;
-  }
-
-  &.bottom-tab,
-  &[slot='bottom'] {
-    $bottom-height: 2.25rem;
-
-    height: $bottom-height;
-
-    .tab {
-      height: $bottom-height;
-    }
-
-    .tab::before {
-      height: $bottom-height;
-      background-color: transparent;
-    }
-
-    &.active,
-    &.selected {
-      .tab {
-        background-color: var(--theme-nav-item-secondary--background--selected);
-      }
-
-      &:hover {
-        background-color: var(--theme-nav-item-secondary--background--selected);
-      }
-
-      &:active {
-        background-color: var(--theme-nav-item-secondary--background--selected);
-      }
-    }
+:host(.bottom-tab.active),
+:host(.bottom-tab.selected),
+:host(.active[slot='bottom']),
+:host(.selected[slot='bottom']) {
+  .tab {
+    background-color: var(--theme-nav-item-secondary--background--selected);
   }
 }

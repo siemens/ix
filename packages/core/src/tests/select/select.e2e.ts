@@ -15,34 +15,26 @@ regressionTest.describe('select', () => {
     await page.goto('select/basic');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('editable', async ({ page }) => {
     await page.goto('select/editable');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mode-multiple', async ({ page }) => {
     await page.goto('select/mode-multiple');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mode-multiple-overflow', async ({ page }) => {
     await page.goto('select/mode-multiple-overflow');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mode-multiple-overflow scroll down', async ({ page }) => {

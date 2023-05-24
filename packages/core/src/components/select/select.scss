@@ -16,7 +16,7 @@
   display: inline-block;
   position: relative;
   height: auto;
-  width: 100%;
+  border-radius: var(--theme-input--border-radius);
 
   .select {
     position: relative;
@@ -28,6 +28,7 @@
       var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     padding: 0 0 0 $small-space;
+    box-shadow: var(--theme-inset-shadow-1) !important;
 
     @include hover {
       background-color: var(--theme-input--background--hover);
@@ -40,6 +41,10 @@
       outline: 1px solid #119fff !important;
       outline-offset: var(--theme-input--focus--outline-offset);
     }
+  }
+
+  .select.readonly {
+    box-shadow: none !important;
   }
 
   .hidden {
@@ -102,20 +107,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $x-large-space;
-    min-width: $x-large-space;
-    height: 100%;
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+
+    @include hover {
+      color: var(--theme-color-dynamic--hover);
+    }
+
+    @include active {
+      color: var(--theme-color-dynamic--hover);
+    }
   }
 
   .editable {
     .chevron-down-container {
       @include hover {
+        color: var(--theme-color-std-text);
         background-color: var(
           --theme-btn-invisible-secondary--background--hover
         );
       }
 
       @include active {
+        color: var(--theme-color-std-text);
         background-color: var(
           --theme-btn-invisible-secondary--background--active
         );

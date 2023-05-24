@@ -13,8 +13,12 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('menu-settings', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    await page.locator('li[title="Settings"]').click();
+    await page.locator('#settings').click();
     await page.waitForTimeout(500);
+
+    //Click is needed otherwise tab item is still hovered
+    await page.getByText('Content test 1').click();
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

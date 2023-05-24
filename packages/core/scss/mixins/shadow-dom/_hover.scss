@@ -1,0 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@mixin ghost-hover-pressed {
+  :host(:not(.disabled):not(:disabled).hover),
+  :host(:not(.disabled):not(:disabled):hover) {
+    background-color: var(--theme-ghost--background--hover);
+  }
+
+  :host(:not(.disabled):not(:disabled).active),
+  :host(:not(.disabled):not(:disabled):active) {
+    background-color: var(--theme-ghost--background--active);
+  }
+}

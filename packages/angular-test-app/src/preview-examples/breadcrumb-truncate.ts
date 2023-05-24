@@ -21,4 +21,4 @@ import { Component } from '@angular/core';
     </ix-breadcrumb>
   `,
 })
-export default class BreadcrumbTrucate {}
+export default class BreadcrumbTruncate {}
