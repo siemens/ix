@@ -15,13 +15,20 @@
 
 @import 'mixins/fonts';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 @import 'components/dropdown';
 
 :host {
+  @include ix-component;
   min-width: 0px;
+  z-index: var(--theme-z-index-dropdown);
 }
 
 :host(.overflow) {
   max-height: 50vh;
   overflow-y: auto;
+}
+
+:host(:not(.show)) {
+  display: none;
 }

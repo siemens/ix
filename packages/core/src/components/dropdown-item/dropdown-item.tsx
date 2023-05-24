@@ -21,7 +21,7 @@ import {
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DropdownItem {
   @Element() hostElement!: HTMLIxDropdownItemElement;
@@ -89,15 +89,11 @@ export class DropdownItem {
           ) : null}
 
           {this.icon ? (
-            <span
-              class={{
-                glyph: true,
-                [`glyph-${this.icon}`]: true,
-                disabled: this.disabled,
-              }}
-            ></span>
+            <ix-icon
+              name={this.icon}
+              color={`color-${this.disabled ? 'weak' : 'soft'}-text`}
+            ></ix-icon>
           ) : null}
-
           {this.label ? <span class="label">{this.label}</span> : null}
           <slot></slot>
         </button>

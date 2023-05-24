@@ -278,19 +278,24 @@ export class Dropdown {
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
+
       case 'inside':
         if (this.dropdownRef.contains(target) && this.hostElement !== target) {
-          this.close();
+          this.close(event);
         }
         break;
+
       case 'both':
-        if (this.hostElement !== target) this.close();
+        if (this.hostElement !== target) {
+          this.close(event);
+        }
         break;
+
       default:
-        this.close();
+        this.close(event);
     }
   }
 
@@ -340,7 +345,12 @@ export class Dropdown {
 
   private close(event?: Event) {
     if (event?.defaultPrevented) {
-      return;
+      const target = event.target as HTMLElement;
+      if (
+        target.shadowRoot.contains(this.anchorElement) ||
+        target.shadowRoot.contains(this.triggerElement)
+      )
+        return;
     }
 
     this.show = false;
@@ -390,6 +400,7 @@ export class Dropdown {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = null;
     }
+
     this.autoUpdateCleanup = autoUpdate(
       this.anchorElement,
       this.dropdownRef,
@@ -431,6 +442,9 @@ export class Dropdown {
 
   async componentDidRender() {
     await this.applyDropdownPosition();
+    this.anchorElement = await (this.anchor
+      ? this.resolveElement(this.anchor)
+      : this.resolveElement(this.trigger));
   }
 
   disconnectedCallback() {
