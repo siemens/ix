@@ -10,8 +10,10 @@
 @import 'common-variables';
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
   position: relative;
   display: flex;
   align-items: center;
@@ -48,8 +50,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2.75rem;
-    width: 2.75rem;
+    height: 3rem;
+    width: 3rem;
     background-color: var(--theme-animated-tab-indicator--background);
     border-radius: 50%;
     border: 2px solid var(--theme-animated-tab-circle--border-color);

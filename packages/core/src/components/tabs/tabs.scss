@@ -9,8 +9,10 @@
 
 @import 'common-variables';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
   width: auto;
   display: flex;
   align-items: center;

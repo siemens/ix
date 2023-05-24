@@ -8019,8 +8019,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-about",
-        "ix-menu-settings",
-        "my-component"
+        "ix-menu-settings"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -8028,9 +8027,6 @@
           "ix-tab-item"
         ],
         "ix-menu-settings": [
-          "ix-tab-item"
-        ],
-        "my-component": [
           "ix-tab-item"
         ]
       },
@@ -8202,8 +8198,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-about",
-        "ix-menu-settings",
-        "my-component"
+        "ix-menu-settings"
       ],
       "dependencies": [
         "ix-icon"
@@ -8216,9 +8211,6 @@
           "ix-tabs"
         ],
         "ix-menu-settings": [
-          "ix-tabs"
-        ],
-        "my-component": [
           "ix-tabs"
         ]
       },
@@ -10173,21 +10165,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-tabs",
-        "ix-tab-item",
-        "ix-icon"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-tabs",
-          "ix-tab-item",
-          "ix-icon"
-        ],
-        "ix-tabs": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
