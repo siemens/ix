@@ -75,7 +75,7 @@ export class MenuAboutNews {
         </div>
 
         <div class="cui-popover-news-header">
-          <span class="text-l-title">{this.label}</span>
+          <ix-typography variant="large-title">{this.label}</ix-typography>
         </div>
 
         <ix-icon-button
