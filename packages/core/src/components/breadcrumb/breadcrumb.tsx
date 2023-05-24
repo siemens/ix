@@ -26,7 +26,7 @@ let sequentialInstanceId = 0;
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Breadcrumb {
   /**
@@ -104,7 +104,7 @@ export class Breadcrumb {
     });
 
     this.mutationObserver.observe(
-      this.hostElement.querySelector('.breadcrumb'),
+      this.hostElement.shadowRoot.querySelector('.breadcrumb'),
       {
         subtree: true,
         childList: true,
@@ -211,7 +211,11 @@ export class Breadcrumb {
             aria-expanded={a11yBoolean(this.previousButtonExpanded)}
           >
             <span class="crumb-text remove-anchor">…</span>
-            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+            <ix-icon
+              color="breadcrumb-btn--color"
+              name="chevron-right-small"
+              size="12"
+            ></ix-icon>
           </button>
           <ix-dropdown
             ref={(ref) => {
@@ -262,9 +266,15 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  <div>{item.label}</div>
+                </ix-typography>
               </span>
-              <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+              <ix-icon
+                color="breadcrumb-btn--color"
+                name="chevron-right-small"
+                size="12"
+              ></ix-icon>
             </button>
           </li>
         );
@@ -292,7 +302,9 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  {item.label}
+                </ix-typography>
               </span>
             </button>
           </li>
@@ -326,9 +338,15 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  {item.label}
+                </ix-typography>
               </span>
-              <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+              <ix-icon
+                color="breadcrumb-btn--color"
+                name="chevron-right-small"
+                size="12"
+              ></ix-icon>
             </button>
             <ix-dropdown
               ref={(ref) => {

@@ -9,7 +9,10 @@
 
 @import 'common-variables';
 @import 'mixins/hover';
+@import 'mixins/fonts';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'components/dropdown';
 
 $focus-bdr-width: 0.0625rem;
 
@@ -67,6 +70,8 @@ $focus-bdr-width: 0.0625rem;
 }
 
 :host {
+  @include ix-component;
+
   display: flex;
   height: $large-control-height;
   justify-content: flex-start;
@@ -107,7 +112,8 @@ $focus-bdr-width: 0.0625rem;
 
     .crumb-text {
       @include ellipsis;
-      display: block;
+      display: flex;
+      align-items: center;
       min-width: 0;
       font-weight: $font-weight-bold;
 
@@ -115,10 +121,18 @@ $focus-bdr-width: 0.0625rem;
         margin-inline-end: $tiny-space;
         vertical-align: text-bottom;
       }
+
+      ix-typography {
+        min-width: 0;
+
+        div {
+          @include ellipsis;
+        }
+      }
     }
 
-    .crumb-text + .glyph-chevron-right-small {
-      margin-inline-start: $tiny-space;
+    .crumb-text + ix-icon {
+      margin-inline-start: $small-space;
       margin-inline-end: calc($focus-bdr-width * -1);
     }
 
