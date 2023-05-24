@@ -319,6 +319,19 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
 
 
+export const IxKeyValue = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', undefined, [
+  'icon',
+  'label',
+  'labelPosition',
+  'value'
+]);
+
+
+export const IxKeyValueList = /*@__PURE__*/ defineContainer<JSX.IxKeyValueList>('ix-key-value-list', undefined, [
+  'striped'
+]);
+
+
 export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefined, [
   'label',
   'value',

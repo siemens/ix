@@ -35,6 +35,8 @@ export const DIRECTIVES = [
   d.IxIcon,
   d.IxIconButton,
   d.IxInputGroup,
+  d.IxKeyValue,
+  d.IxKeyValueList,
   d.IxKpi,
   d.IxMapNavigation,
   d.IxMapNavigationOverlay,

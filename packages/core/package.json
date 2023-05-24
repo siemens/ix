@@ -37,7 +37,6 @@
     "test:e2e": "playwright test --reporter html",
     "test:e2e:list": "playwright test --reporter list",
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash",
-    "playwright.docker.windows": "docker run --rm --network host -v %cd%/../..:/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
     "generate": "stencil generate",
     "generate:theme": "ts-node -P ./scripts/generate-theme/tsconfig.json ./scripts/generate-theme/generate-theme"
