@@ -373,18 +373,20 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-icon",
         "ix-dropdown",
         "ix-dropdown-item",
-        "ix-icon"
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-breadcrumb": [
+          "ix-icon",
           "ix-dropdown",
           "ix-dropdown-item",
-          "ix-icon"
+          "ix-typography"
         ],
         "ix-dropdown-item": [
           "ix-icon"
@@ -513,7 +515,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -2783,7 +2785,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
         "ix-group-dropdown-item",

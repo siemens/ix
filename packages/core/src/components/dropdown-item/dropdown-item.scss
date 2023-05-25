@@ -8,6 +8,8 @@
  */
 
 @import 'common-variables';
+@import 'fonts';
+@import 'components/dropdown';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
@@ -25,12 +27,12 @@
       padding: $tiny-space $small-space;
 
       @include focus-visible {
-        border-color: #199fff;
+        border-color: var(--color-focus-bdr);
       }
     }
   }
 
-  :focus {
+  @include focus-visible {
     background-color: transparent;
     color: var(--theme-menu-item--color);
   }
@@ -46,10 +48,22 @@
 
   .label {
     @include ellipsis;
+    @include text-default;
+  }
+
+  ix-icon {
+    margin-inline-end: $small-space;
+    transition: color 0;
   }
 
   &.disabled {
     pointer-events: none;
+  }
+}
+
+:host(:hover:not(.disabled)) {
+  ix-icon {
+    color: var(--theme-color-std-text) !important;
   }
 }
 

@@ -26,17 +26,19 @@ let sequentialInstanceId = 0;
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Breadcrumb {
   /**
    * Accessibility label for the entire breadcrumb (MANDATORY)
+   * @since 1.6.0
    */
   @Prop() ixAriaLabel: string = 'Breadrumb';
 
   /**
    * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
    * with conditionally hidden previous items (MANDATORY where applicable)
+   * @since 1.6.0
    */
   @Prop() ixAriaPreviousButtonLabel: string = 'Previous';
 
@@ -104,7 +106,7 @@ export class Breadcrumb {
     });
 
     this.mutationObserver.observe(
-      this.hostElement.querySelector('.breadcrumb'),
+      this.hostElement.shadowRoot.querySelector('.breadcrumb'),
       {
         subtree: true,
         childList: true,
@@ -192,9 +194,6 @@ export class Breadcrumb {
     if (this.items?.length > this.visibleItemCount) {
       const previousButtonId = 'ix-bc' + this.id + '-previous-button';
       const previousDropdownId = 'ix-bc' + this.id + '-previous-dropdown';
-      // Return list entry with dropdown button and its dropdown
-      // for conditionally hidden previous items
-      // (Disclosure Navigation Menu)
       return (
         <li>
           <button
@@ -211,7 +210,11 @@ export class Breadcrumb {
             aria-expanded={a11yBoolean(this.previousButtonExpanded)}
           >
             <span class="crumb-text remove-anchor">…</span>
-            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+            <ix-icon
+              color="breadcrumb-btn--color"
+              name="chevron-right-small"
+              size="12"
+            ></ix-icon>
           </button>
           <ix-dropdown
             ref={(ref) => {
@@ -234,9 +237,9 @@ export class Breadcrumb {
           </ix-dropdown>
         </li>
       );
-    } else {
-      return null;
     }
+
+    return null;
   }
 
   private renderVisibleItems() {
@@ -262,9 +265,15 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  <div>{item.label}</div>
+                </ix-typography>
               </span>
-              <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+              <ix-icon
+                color="breadcrumb-btn--color"
+                name="chevron-right-small"
+                size="12"
+              ></ix-icon>
             </button>
           </li>
         );
@@ -292,7 +301,9 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  {item.label}
+                </ix-typography>
               </span>
             </button>
           </li>
@@ -300,9 +311,7 @@ export class Breadcrumb {
       } else {
         const nextButtonId = 'ix-bc' + this.id + '-next-button';
         const nextDropdownId = 'ix-bc' + this.id + '-next-dropdown';
-        // Return list entry with dropdown button and its dropdown
-        // for conditionally available next items
-        // (Disclosure Navigation Menu)
+
         return (
           <li>
             <button
@@ -326,9 +335,15 @@ export class Breadcrumb {
                 ) : (
                   ''
                 )}
-                {item.label}
+                <ix-typography variant="default-title">
+                  {item.label}
+                </ix-typography>
               </span>
-              <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+              <ix-icon
+                color="breadcrumb-btn--color"
+                name="chevron-right-small"
+                size="12"
+              ></ix-icon>
             </button>
             <ix-dropdown
               ref={(ref) => {
