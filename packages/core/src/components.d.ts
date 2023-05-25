@@ -19,8 +19,10 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
+import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { PageHeaderVariant } from "./components/page-header/page-header";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -42,8 +44,10 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
+export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { PageHeaderVariant } from "./components/page-header/page-header";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -458,7 +462,7 @@ export namespace Components {
           * Toggle or define show state of drawer
           * @param show Overwrite toggle state with boolean
          */
-        "toggleDrawer": (show: boolean) => Promise<void>;
+        "toggleDrawer": (show?: boolean) => Promise<void>;
         /**
           * Width interpreted as REM if not set to 'auto'
          */
@@ -828,6 +832,36 @@ export namespace Components {
     }
     interface IxInputGroup {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon": string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - 'top' or 'left'
+         */
+        "labelPosition": KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value": string;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped": boolean;
+    }
     interface IxKpi {
         "label": string;
         "orientation": 'horizontal' | 'vertical';
@@ -1037,7 +1071,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications": number;
         /**
@@ -1153,6 +1187,24 @@ export namespace Components {
         "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
     interface IxModalExample {
+    }
+    interface IxPageHeader {
+        /**
+          * has back button
+         */
+        "hasBackButton": boolean;
+        /**
+          * subtitle
+         */
+        "headerSubtitle": string | undefined;
+        /**
+          * title
+         */
+        "headerTitle": string;
+        /**
+          * page header variant
+         */
+        "variant": PageHeaderVariant;
     }
     /**
      * @since 1.5.0
@@ -1818,6 +1870,10 @@ export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
 }
+export interface IxPageHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPageHeaderElement;
+}
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
@@ -2093,6 +2149,24 @@ declare global {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueElement: {
+        prototype: HTMLIxKeyValueElement;
+        new (): HTMLIxKeyValueElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueListElement extends Components.IxKeyValueList, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueListElement: {
+        prototype: HTMLIxKeyValueListElement;
+        new (): HTMLIxKeyValueListElement;
+    };
     interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
     }
     var HTMLIxKpiElement: {
@@ -2188,6 +2262,12 @@ declare global {
     var HTMLIxModalExampleElement: {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
+    };
+    interface HTMLIxPageHeaderElement extends Components.IxPageHeader, HTMLStencilElement {
+    }
+    var HTMLIxPageHeaderElement: {
+        prototype: HTMLIxPageHeaderElement;
+        new (): HTMLIxPageHeaderElement;
     };
     /**
      * @since 1.5.0
@@ -2369,6 +2449,8 @@ declare global {
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
+        "ix-key-value": HTMLIxKeyValueElement;
+        "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -2385,6 +2467,7 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-page-header": HTMLIxPageHeaderElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
@@ -3291,6 +3374,36 @@ declare namespace LocalJSX {
     }
     interface IxInputGroup {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon"?: string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - 'top' or 'left'
+         */
+        "labelPosition"?: KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value"?: string;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped"?: boolean;
+    }
     interface IxKpi {
         "label"?: string;
         "orientation"?: 'horizontal' | 'vertical';
@@ -3506,7 +3619,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications"?: number;
         /**
@@ -3623,6 +3736,28 @@ declare namespace LocalJSX {
     interface IxModalContainer {
     }
     interface IxModalExample {
+    }
+    interface IxPageHeader {
+        /**
+          * has back button
+         */
+        "hasBackButton"?: boolean;
+        /**
+          * subtitle
+         */
+        "headerSubtitle"?: string | undefined;
+        /**
+          * title
+         */
+        "headerTitle"?: string;
+        /**
+          * triggered when back button is clicked
+         */
+        "onBackButtonClick"?: (event: IxPageHeaderCustomEvent<void>) => void;
+        /**
+          * page header variant
+         */
+        "variant"?: PageHeaderVariant;
     }
     /**
      * @since 1.5.0
@@ -4280,6 +4415,8 @@ declare namespace LocalJSX {
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
+        "ix-key-value": IxKeyValue;
+        "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -4296,6 +4433,7 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
+        "ix-page-header": IxPageHeader;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
@@ -4372,6 +4510,14 @@ declare module "@stencil/core" {
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
@@ -4388,6 +4534,7 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            "ix-page-header": LocalJSX.IxPageHeader & JSXBase.HTMLAttributes<HTMLIxPageHeaderElement>;
             /**
              * @since 1.5.0
              */

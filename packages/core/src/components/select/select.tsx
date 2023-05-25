@@ -467,6 +467,7 @@ export class Select {
         <ix-dropdown
           ref={(ref) => (this.dropdownRef = ref)}
           show={this.dropdownShow}
+          closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
             'd-none': this.disabled || this.readonly,
           }}

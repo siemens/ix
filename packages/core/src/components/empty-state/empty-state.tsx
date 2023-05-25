@@ -17,7 +17,7 @@ export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';
 @Component({
   tag: 'ix-empty-state',
   styleUrl: 'empty-state.scss',
-  scoped: true,
+  shadow: true,
 })
 export class EmptyState {
   /**

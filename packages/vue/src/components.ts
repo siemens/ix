@@ -321,6 +321,19 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
 
 
+export const IxKeyValue = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', undefined, [
+  'icon',
+  'label',
+  'labelPosition',
+  'value'
+]);
+
+
+export const IxKeyValueList = /*@__PURE__*/ defineContainer<JSX.IxKeyValueList>('ix-key-value-list', undefined, [
+  'striped'
+]);
+
+
 export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefined, [
   'label',
   'value',
@@ -466,6 +479,15 @@ export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContain
 
 
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
+
+
+export const IxPageHeader = /*@__PURE__*/ defineContainer<JSX.IxPageHeader>('ix-page-header', undefined, [
+  'variant',
+  'headerTitle',
+  'headerSubtitle',
+  'hasBackButton',
+  'backButtonClick'
+]);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [

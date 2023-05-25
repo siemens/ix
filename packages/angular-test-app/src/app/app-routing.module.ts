@@ -16,7 +16,7 @@ import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-
 import Blind from 'src/preview-examples/blind';
 import Breadcrumb from 'src/preview-examples/breadcrumb';
 import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
-import BreadcrumbTrucate from 'src/preview-examples/breadcrumb-truncate';
+import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
@@ -50,12 +50,22 @@ import Input from 'src/preview-examples/input';
 import InputDisabled from 'src/preview-examples/input-disabled';
 import InputReadonly from 'src/preview-examples/input-readonly';
 import InputWithIcon from 'src/preview-examples/input-with-icon';
+import KeyValue from 'src/preview-examples/key-value';
+import KeyValueList from 'src/preview-examples/key-value-list';
+import KeyValueListStriped from 'src/preview-examples/key-value-list-striped';
+import KeyValueListWithCustomValue from 'src/preview-examples/key-value-list-with-custom-value';
+import KeyValueListWithIcon from 'src/preview-examples/key-value-list-with-icon';
+import KeyValueWithCustomValue from 'src/preview-examples/key-value-with-custom-value';
+import KeyValueWithIcon from 'src/preview-examples/key-value-with-icon';
+import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-left';
 import Kpi from 'src/preview-examples/kpi';
 import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
+import PageHeader from 'src/preview-examples/page-header';
+import PageHeaderNoBack from 'src/preview-examples/page-header-no-back';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -169,7 +179,7 @@ const routes: Routes = [
         component: Blind,
       },
       { path: 'breadcrumb-next-items', component: BreadcrumbNextItems },
-      { path: 'breadcrumb-truncate', component: BreadcrumbTrucate },
+      { path: 'breadcrumb-truncate', component: BreadcrumbTruncate },
       { path: 'breadcrumb', component: Breadcrumb },
       { path: 'button-selected', component: ButtonSelected },
       { path: 'button-with-icon', component: ButtonWithIcon },
@@ -268,9 +278,25 @@ const routes: Routes = [
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
       { path: 'modal-by-instance', component: ModalByInstance },
+      { path: 'page-header', component: PageHeader },
+      { path: 'page-header-no-back', component: PageHeaderNoBack },
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'key-value', component: KeyValue },
+      {
+        path: 'key-value-with-custom-value',
+        component: KeyValueWithCustomValue,
+      },
+      { path: 'key-value-with-icon', component: KeyValueWithIcon },
+      { path: 'key-value-with-label-left', component: KeyValueWithLabelLeft },
+      { path: 'key-value-list', component: KeyValueList },
+      {
+        path: 'key-value-list-with-custom-value',
+        component: KeyValueListWithCustomValue,
+      },
+      { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
+      { path: 'key-value-list-striped', component: KeyValueListStriped },
     ],
   },
 ];

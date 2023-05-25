@@ -892,6 +892,50 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 
 @ProxyCmp({
+  inputs: ['icon', 'label', 'labelPosition', 'value']
+})
+@Component({
+  selector: 'ix-key-value',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['icon', 'label', 'labelPosition', 'value'],
+})
+export class IxKeyValue {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValue extends Components.IxKeyValue {}
+
+
+@ProxyCmp({
+  inputs: ['striped']
+})
+@Component({
+  selector: 'ix-key-value-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['striped'],
+})
+export class IxKeyValueList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValueList extends Components.IxKeyValueList {}
+
+
+@ProxyCmp({
   inputs: ['label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({
@@ -1319,6 +1363,34 @@ export class IxModalExample {
 
 
 export declare interface IxModalExample extends Components.IxModalExample {}
+
+
+@ProxyCmp({
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+})
+@Component({
+  selector: 'ix-page-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+})
+export class IxPageHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
+  }
+}
+
+
+export declare interface IxPageHeader extends Components.IxPageHeader {
+  /**
+   * triggered when back button is clicked
+   */
+  backButtonClick: EventEmitter<CustomEvent<void>>;
+}
 
 
 @ProxyCmp({

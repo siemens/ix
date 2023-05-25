@@ -11,8 +11,11 @@
 @import 'mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: flex;
   flex-grow: 1;
   height: $large-control-height;
@@ -72,20 +75,6 @@
     }
   }
 
-  &.stacked {
-    height: 3.75rem;
-
-    .kpi-container {
-      justify-content: center;
-      flex-wrap: wrap;
-
-      .kpi-label {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-  }
-
   @include hover {
     background-color: var(--theme-kpi-display--background--hover);
   }
@@ -96,5 +85,19 @@
 
   @include focus-visible {
     outline: 1px solid var(--focus--border-color);
+  }
+}
+
+:host(.stacked) {
+  height: 3.75rem;
+
+  .kpi-container {
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .kpi-label {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }

@@ -9,48 +9,53 @@
 
 @import 'common-variables';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
-.message-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  min-height: 3.375rem;
-  margin: $small-space $small-space 0rem $small-space;
-  padding: calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
-    $medium-space
-    calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
-    $default-space;
-  border-radius: var(--theme-message-bar--border-radius);
-  background-color: var(--theme-messagebar--background);
-}
+:host {
+  @include ix-component;
 
-.danger {
-  border: solid var(--theme-message-bar--border-thickness)
-    var(--theme-color-alarm);
-}
+  .message-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    min-height: 3.375rem;
+    margin: $small-space $small-space 0rem $small-space;
+    padding: calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
+      $medium-space
+      calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
+      $default-space;
+    border-radius: var(--theme-message-bar--border-radius);
+    background-color: var(--theme-messagebar--background);
+  }
 
-.warning {
-  border: solid var(--theme-message-bar--border-thickness)
-    var(--theme-color-warning);
-}
+  .danger {
+    border: solid var(--theme-message-bar--border-thickness)
+      var(--theme-color-alarm);
+  }
 
-.info {
-  border: solid var(--theme-message-bar--border-thickness)
-    var(--theme-color-info);
-}
+  .warning {
+    border: solid var(--theme-message-bar--border-thickness)
+      var(--theme-color-warning);
+  }
 
-.message-content {
-  @include ellipsis;
-  flex-grow: 1;
-  align-self: center;
-  min-height: 1.25rem;
-  padding: 0 $default-space;
-  font-weight: bold;
-  white-space: normal;
-}
+  .info {
+    border: solid var(--theme-message-bar--border-thickness)
+      var(--theme-color-info);
+  }
 
-ix-icon {
-  margin-top: $tiny-space;
+  .message-content {
+    @include ellipsis;
+    flex-grow: 1;
+    align-self: center;
+    min-height: 1.25rem;
+    padding: 0 $default-space;
+    font-weight: bold;
+    white-space: normal;
+  }
+
+  ix-icon {
+    margin-top: $tiny-space;
+  }
 }
