@@ -21,6 +21,7 @@ export type IconButtonVariant = ButtonVariant;
 export class IconButton implements Button {
   /**
    * Accessibility label for the icon button (MANDATORY)
+   * @since 1.6.0
    */
   @Prop() ixAriaLabel: string;
 

@@ -785,6 +785,7 @@ export namespace Components {
         "invisible": boolean;
         /**
           * Accessibility label for the icon button (MANDATORY)
+          * @since 1.6.0
          */
         "ixAriaLabel": string;
         /**
@@ -3244,6 +3245,7 @@ declare namespace LocalJSX {
         "invisible"?: boolean;
         /**
           * Accessibility label for the icon button (MANDATORY)
+          * @since 1.6.0
          */
         "ixAriaLabel"?: string;
         /**

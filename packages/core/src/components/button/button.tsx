@@ -73,6 +73,7 @@ export class Button {
             this.selected,
             this.disabled
           )}
+          disabled={this.disabled}
         >
           <slot></slot>
         </button>

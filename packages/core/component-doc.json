@@ -4254,7 +4254,12 @@
           "attr": "ix-aria-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the icon button (MANDATORY)",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
