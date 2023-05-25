@@ -888,6 +888,12 @@ export namespace Components {
           * @param color
          */
         "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
+        /**
+          * Change the visibility of the sidebar
+          * @param show new visibility state
+          * @since 1.6.0
+         */
+        "toggleSidebar": (show?: boolean) => Promise<void>;
     }
     interface IxMapNavigationOverlay {
         /**

@@ -4829,6 +4829,26 @@
             }
           ],
           "deprecation": "Will be removed in 2.0.0. Use slot based approach"
+        },
+        {
+          "name": "toggleSidebar",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleSidebar(show?: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Change the visibility of the sidebar",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show new visibility state"
+            },
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ]
         }
       ],
       "events": [
