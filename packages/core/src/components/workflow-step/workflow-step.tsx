@@ -24,7 +24,7 @@ import {
 @Component({
   tag: 'ix-workflow-step',
   styleUrl: 'workflow-step.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowStep {
   @Element() hostElement: HTMLIxWorkflowStepElement;
