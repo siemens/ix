@@ -867,6 +867,11 @@ export namespace Components {
          */
         "applicationName": string;
         /**
+          * Change the visibility of the sidebar
+          * @param show new visibility state
+         */
+        "changeSidebarVisibility": (show: boolean) => Promise<void>;
+        /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
          */

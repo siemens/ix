@@ -959,7 +959,7 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 @ProxyCmp({
   inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
-  methods: ['openOverlay', 'closeOverlay']
+  methods: ['changeSidebarVisibility', 'openOverlay', 'closeOverlay']
 })
 @Component({
   selector: 'ix-map-navigation',

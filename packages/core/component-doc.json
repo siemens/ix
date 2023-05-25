@@ -4781,6 +4781,22 @@
       ],
       "methods": [
         {
+          "name": "changeSidebarVisibility",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "changeSidebarVisibility(show: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Change the visibility of the sidebar",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show new visibility state"
+            }
+          ]
+        },
+        {
           "name": "closeOverlay",
           "returns": {
             "type": "Promise<void>",
