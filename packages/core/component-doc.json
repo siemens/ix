@@ -417,7 +417,12 @@
           "attr": "ix-aria-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the entire breadcrumb (MANDATORY)",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
           "default": "'Breadrumb'",
           "values": [
             {
@@ -434,7 +439,12 @@
           "attr": "ix-aria-previous-button-label",
           "reflectToAttr": false,
           "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items (MANDATORY where applicable)",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
           "default": "'Previous'",
           "values": [
             {
