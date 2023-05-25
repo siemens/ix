@@ -2936,7 +2936,7 @@
           "text": "1.6.0"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
