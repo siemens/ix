@@ -21,7 +21,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 @Component({
   tag: 'ix-workflow-steps',
   styleUrl: 'workflow-steps.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowSteps {
   @Element() hostElement!: HTMLIxWorkflowStepsElement;
@@ -57,7 +57,7 @@ export class WorkflowSteps {
   }
 
   get stepsContent() {
-    return this.hostElement.querySelector('.steps');
+    return this.hostElement.shadowRoot.querySelector('.steps');
   }
 
   updateSteps() {
@@ -97,7 +97,7 @@ export class WorkflowSteps {
       }
     );
 
-    const slotDiv = this.hostElement.querySelector('.steps');
+    const slotDiv = this.hostElement.shadowRoot.querySelector('.steps');
 
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
