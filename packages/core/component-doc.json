@@ -2072,7 +2072,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -2200,7 +2200,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "toggleDrawer(show: boolean) => Promise<void>",
+          "signature": "toggleDrawer(show?: boolean) => Promise<void>",
           "parameters": [],
           "docs": "Toggle or define show state of drawer",
           "docsTags": [

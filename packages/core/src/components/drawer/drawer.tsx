@@ -12,6 +12,7 @@ import {
   Event,
   EventEmitter,
   h,
+  Host,
   Method,
   Prop,
   Watch,
@@ -21,7 +22,7 @@ import anime from 'animejs';
 @Component({
   tag: 'ix-drawer',
   styleUrl: 'drawer.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Drawer {
   /**
@@ -79,7 +80,7 @@ export class Drawer {
    * @param show Overwrite toggle state with boolean
    */
   @Method()
-  async toggleDrawer(show: boolean): Promise<void> {
+  async toggleDrawer(show?: boolean): Promise<void> {
     this.show = show !== undefined ? show : !this.show;
 
     if (show) {
@@ -147,7 +148,7 @@ export class Drawer {
 
   render() {
     return (
-      <div
+      <Host
         class={{
           'drawer-container': true,
           toggle: this.show,
@@ -168,6 +169,7 @@ export class Drawer {
             <slot name="header"></slot>
           </div>
           <ix-icon-button
+            class="close-button"
             icon="close"
             size="24"
             ghost
@@ -178,7 +180,7 @@ export class Drawer {
         <div class="content">
           <slot></slot>
         </div>
-      </div>
+      </Host>
     );
   }
 }
