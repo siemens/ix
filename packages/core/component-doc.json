@@ -9256,7 +9256,14 @@
         }
       ],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/tree",

@@ -13,9 +13,17 @@ import {
   ComputePositionReturn,
   flip,
   offset,
-  shift,
+  shift
 } from '@floating-ui/dom';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State
+} from '@stencil/core';
 
 type ArrowPosition = {
   top?: string;
@@ -68,6 +76,8 @@ export class Tooltip {
   private hideTooltipTimeout: NodeJS.Timeout;
   private onMouseEnterBind = this.showTooltip.bind(this);
   private onMouseLeaveBind = this.hideTooltip.bind(this);
+  private onFocusInBind = this.showTooltip.bind(this);
+  private onFocusOutBind = this.hideTooltip.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
 
@@ -184,6 +194,8 @@ export class Tooltip {
     elements.forEach((e) => {
       e.addEventListener('mouseenter', this.onMouseEnterBind);
       e.addEventListener('mouseleave', this.onMouseLeaveBind);
+      e.addEventListener('focusin', this.onFocusInBind);
+      e.addEventListener('focusout', this.onFocusOutBind);
     });
   }
 
@@ -196,6 +208,23 @@ export class Tooltip {
     this.hostElement.addEventListener('mouseleave', () => {
       this.hideTooltip();
     });
+    this.hostElement.addEventListener('focusin', () => {
+      if (this.interactive) {
+        clearTimeout(this.hideTooltipTimeout);
+      }
+    });
+    this.hostElement.addEventListener('focusout', () => {
+      this.hideTooltip();
+    });
+  }
+
+  @Listen('keydown', {
+    target: 'window',
+  })
+  keydown(event: KeyboardEvent) {
+    if (event.code === 'Escape') {
+      this.hideTooltip();
+    }
   }
 
   componentDidLoad() {
@@ -233,6 +262,7 @@ export class Tooltip {
         class={{
           visible: this.visible,
         }}
+        role="tooltip"
       >
         <div class={'tooltip-title'}>
           <slot name="title-icon"></slot>
