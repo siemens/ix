@@ -89,8 +89,7 @@ export class MapNavigation {
       'mapExpandChange',
       (event: CustomEvent<boolean>) => {
         const state = !event.detail;
-        this.toggleSidebar(state);
-        this.menu.toggleMapExpand(state);
+        this.changeSidebarVisibility(state);
       }
     );
     this.menu.enableMapExpand = true;
@@ -136,6 +135,17 @@ export class MapNavigation {
         this.sidebar.classList.remove('d-none');
       },
     });
+  }
+
+  /**
+   * Change the visibility of the sidebar
+   *
+   * @param show new visibility state
+   */
+  @Method()
+  async changeSidebarVisibility(show: boolean) {
+    this.toggleSidebar(show);
+    this.menu.toggleMapExpand(show);
   }
 
   /**
