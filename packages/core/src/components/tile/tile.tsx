@@ -7,18 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ix-tile',
   styleUrl: 'tile.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Tile {
+  @Element() hostElement: HTMLIxTileElement;
+
   /**
    * Size of the tile - one of 'small', 'medium' or 'large'
    */
   @Prop() size: 'small' | 'medium' | 'big' = 'medium';
+
+  hasHeaderSlot: boolean;
+  hasFooterSlot: boolean;
+
+  componentWillLoad() {
+    this.hasHeaderSlot = !!this.hostElement.querySelector('[slot="header"]');
+    this.hasFooterSlot = !!this.hostElement.querySelector('[slot="footer"]');
+  }
 
   render() {
     return (
@@ -29,7 +39,12 @@ export class Tile {
           'tile-big': this.size === 'big',
         }}
       >
-        <div class="tile-header text-l-title">
+        <div
+          class={{
+            'tile-header': true,
+            'has-content': this.hasHeaderSlot,
+          }}
+        >
           <slot name="header"></slot>
         </div>
         <div class="tile-subheader">
@@ -38,7 +53,12 @@ export class Tile {
         <div class="tile-content">
           <slot></slot>
         </div>
-        <div class="tile-footer">
+        <div
+          class={{
+            'tile-footer': true,
+            'has-content': this.hasFooterSlot,
+          }}
+        >
           <slot name="footer"></slot>
         </div>
       </Host>
