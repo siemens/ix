@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
+import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
@@ -37,6 +38,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
+export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
@@ -2869,7 +2871,7 @@ declare namespace LocalJSX {
      * @since 1.6.0
      */
     interface IxCardAccordion {
-        "onCardAccordingExpandChanged"?: (event: IxCardAccordionCustomEvent<boolean>) => void;
+        "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
     }
     /**
      * @since 1.6.0

@@ -13,6 +13,11 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordingControlId++].join('-');
 };
 
+export type CardAccordionExpandChangeEvent = {
+  expand: boolean;
+  nativeEvent: Event;
+};
+
 /**
  * @since 1.6.0
  */
@@ -27,7 +32,7 @@ export class CardAccordion {
   /**
    * @internal
    */
-  @Event() cardAccordingExpandChanged: EventEmitter<boolean>;
+  @Event() accordionExpand: EventEmitter<CardAccordionExpandChangeEvent>;
 
   @State() expandContent = false;
 
@@ -37,8 +42,12 @@ export class CardAccordion {
 
   onExpandActionClick(event: Event) {
     event.preventDefault();
+    event.stopPropagation();
     this.expandContent = !this.expandContent;
-    this.cardAccordingExpandChanged.emit(this.expandContent);
+    this.accordionExpand.emit({
+      expand: this.expandContent,
+      nativeEvent: event,
+    });
 
     if (this.expandContent) {
       this.scrollExpandedContentIntoView();

@@ -83,7 +83,7 @@ export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', undef
 
 
 export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [
-  'cardAccordingExpandChanged'
+  'accordionExpand'
 ]);
 
 

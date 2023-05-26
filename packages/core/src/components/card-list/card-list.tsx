@@ -220,10 +220,6 @@ export class CardList {
   }
 
   private computeMaskLayer() {
-    console.log(
-      'left',
-      this.getOpacityFromScrollDistance(this.leftScrollDistance)
-    );
     const maxOverflowWidth = 80;
     const maskLayer = `linear-gradient(
       90deg,
