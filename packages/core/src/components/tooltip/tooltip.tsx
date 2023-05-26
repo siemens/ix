@@ -33,6 +33,8 @@ type ArrowPosition = {
 
 const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
 
+let sequentialInstanceId = 0;
+
 /**
  * @slot title-icon - Icon of tooltip title
  * @slot title-content - Content of tooltip title
@@ -72,6 +74,7 @@ export class Tooltip {
 
   @Element() hostElement: HTMLIxTooltipElement;
 
+  private id = ++sequentialInstanceId;
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
   private onMouseEnterBind = this.showTooltip.bind(this);
@@ -196,6 +199,7 @@ export class Tooltip {
       e.addEventListener('mouseleave', this.onMouseLeaveBind);
       e.addEventListener('focusin', this.onFocusInBind);
       e.addEventListener('focusout', this.onFocusOutBind);
+      e.setAttribute('aria-describedby', 'ix-tooltip-' + this.id);
     });
   }
 
@@ -262,6 +266,7 @@ export class Tooltip {
         class={{
           visible: this.visible,
         }}
+        id={`ix-tooltip-${this.id}`}
         role="tooltip"
       >
         <div class={'tooltip-title'}>
