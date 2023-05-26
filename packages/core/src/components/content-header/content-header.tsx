@@ -9,36 +9,36 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
-export type PageHeaderVariant = 'Primary' | 'Secondary';
+export type ContentHeaderVariant = 'Primary' | 'Secondary';
 
 @Component({
-  tag: 'ix-page-header',
-  styleUrl: 'page-header.scss',
+  tag: 'ix-content-header',
+  styleUrl: 'content-header.scss',
   shadow: true,
 })
-export class PageHeader {
+export class ContentHeader {
   /**
-   * page header variant
+   * Variant of content header
    */
-  @Prop() variant: PageHeaderVariant = 'Primary';
+  @Prop() variant: ContentHeaderVariant = 'Primary';
 
   /**
-   * title
+   * Title of Header
    */
   @Prop() headerTitle: string;
 
   /**
-   * subtitle
+   * Subtitle of Header
    */
   @Prop() headerSubtitle: string | undefined = undefined;
 
   /**
-   * has back button
+   * Display a back button
    */
   @Prop() hasBackButton: boolean = false;
 
   /**
-   * triggered when back button is clicked
+   * Triggered when back button is clicked
    */
   @Event() backButtonClick: EventEmitter<void>;
 
