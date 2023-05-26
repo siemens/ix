@@ -12,7 +12,7 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxCardList label="Layout Stack" :showAllCount="12" listStyle="stack">
+  <IxCardList label="Stack Layout" :showAllCount="12" listStyle="stack">
     <IxPushCard
       icon="rocket"
       notification="3"
@@ -36,7 +36,7 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
     ></IxPushCard>
   </IxCardList>
 
-  <IxCardList label="Layout Flow" :showAllCount="12" listStyle="scroll">
+  <IxCardList label="Flow Layout" :showAllCount="12" listStyle="scroll">
     <IxPushCard
       icon="rocket"
       notification="3"
