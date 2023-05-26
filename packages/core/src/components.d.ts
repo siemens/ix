@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -22,7 +23,6 @@ import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
-import { PageHeaderVariant } from "./components/page-header/page-header";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -33,6 +33,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
+export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -47,7 +48,6 @@ export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
-export { PageHeaderVariant } from "./components/page-header/page-header";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -260,6 +260,24 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton": boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle": string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle": string;
+        /**
+          * Variant of content header
+         */
+        "variant": ContentHeaderVariant;
     }
     interface IxCounterPill {
         /**
@@ -1186,24 +1204,6 @@ export namespace Components {
     }
     interface IxModalExample {
     }
-    interface IxPageHeader {
-        /**
-          * has back button
-         */
-        "hasBackButton": boolean;
-        /**
-          * subtitle
-         */
-        "headerSubtitle": string | undefined;
-        /**
-          * title
-         */
-        "headerTitle": string;
-        /**
-          * page header variant
-         */
-        "variant": PageHeaderVariant;
-    }
     /**
      * @since 1.5.0
      */
@@ -1784,6 +1784,10 @@ export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
 }
+export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxContentHeaderElement;
+}
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
@@ -1867,10 +1871,6 @@ export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
 export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
-}
-export interface IxPageHeaderCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxPageHeaderElement;
 }
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1990,6 +1990,12 @@ declare global {
     var HTMLIxChipElement: {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
+    };
+    interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
+    }
+    var HTMLIxContentHeaderElement: {
+        prototype: HTMLIxContentHeaderElement;
+        new (): HTMLIxContentHeaderElement;
     };
     interface HTMLIxCounterPillElement extends Components.IxCounterPill, HTMLStencilElement {
     }
@@ -2261,12 +2267,6 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
-    interface HTMLIxPageHeaderElement extends Components.IxPageHeader, HTMLStencilElement {
-    }
-    var HTMLIxPageHeaderElement: {
-        prototype: HTMLIxPageHeaderElement;
-        new (): HTMLIxPageHeaderElement;
-    };
     /**
      * @since 1.5.0
      */
@@ -2423,6 +2423,7 @@ declare global {
         "ix-button": HTMLIxButtonElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-content-header": HTMLIxContentHeaderElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
@@ -2465,7 +2466,6 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
-        "ix-page-header": HTMLIxPageHeaderElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-select": HTMLIxSelectElement;
@@ -2730,6 +2730,28 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton"?: boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle"?: string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle"?: string;
+        /**
+          * Triggered when back button is clicked
+         */
+        "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
+        /**
+          * Variant of content header
+         */
+        "variant"?: ContentHeaderVariant;
     }
     interface IxCounterPill {
         /**
@@ -3727,28 +3749,6 @@ declare namespace LocalJSX {
     }
     interface IxModalExample {
     }
-    interface IxPageHeader {
-        /**
-          * has back button
-         */
-        "hasBackButton"?: boolean;
-        /**
-          * subtitle
-         */
-        "headerSubtitle"?: string | undefined;
-        /**
-          * title
-         */
-        "headerTitle"?: string;
-        /**
-          * triggered when back button is clicked
-         */
-        "onBackButtonClick"?: (event: IxPageHeaderCustomEvent<void>) => void;
-        /**
-          * page header variant
-         */
-        "variant"?: PageHeaderVariant;
-    }
     /**
      * @since 1.5.0
      */
@@ -4381,6 +4381,7 @@ declare namespace LocalJSX {
         "ix-button": IxButton;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
+        "ix-content-header": IxContentHeader;
         "ix-counter-pill": IxCounterPill;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
@@ -4423,7 +4424,6 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
-        "ix-page-header": IxPageHeader;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-select": IxSelect;
@@ -4464,6 +4464,7 @@ declare module "@stencil/core" {
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
@@ -4524,7 +4525,6 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
-            "ix-page-header": LocalJSX.IxPageHeader & JSXBase.HTMLAttributes<HTMLIxPageHeaderElement>;
             /**
              * @since 1.5.0
              */
