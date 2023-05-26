@@ -78,7 +78,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Card selecting",
+          "docs": "Card selection",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1240,6 +1240,10 @@
       "docs": "",
       "docsTags": [
         {
+          "name": "slot",
+          "text": "title-actions - Place additional actions inside title"
+        },
+        {
           "name": "since",
           "text": "1.6.0"
         }
@@ -1258,7 +1262,12 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "title-actions",
+          "docs": "Place additional actions inside title"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -1832,85 +1841,6 @@
             },
             {
               "value": "warning",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/layout/css-grid",
-      "filePath": "./src/components/layout/css-grid/css-grid.tsx",
-      "fileName": "css-grid.tsx",
-      "readmePath": "./src/components/layout/css-grid/readme.md",
-      "usagesDir": "./src/components/layout/css-grid/usage",
-      "tag": "ix-css-grid",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "templates",
-          "type": "{ sm?: string[][]; md?: string[][]; lg?: string[][]; }",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "{ sm?: string[][]; md?: string[][]; lg?: string[][]; }"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/layout/css-grid",
-      "filePath": "./src/components/layout/css-grid/css-grid-item.tsx",
-      "fileName": "css-grid-item.tsx",
-      "readmePath": "./src/components/layout/css-grid/readme.md",
-      "usagesDir": "./src/components/layout/css-grid/usage",
-      "tag": "ix-css-grid-item",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "itemName",
-          "type": "string",
-          "mutable": false,
-          "attr": "item-name",
-          "reflectToAttr": false,
-          "docs": "Test",
-          "docsTags": [],
-          "values": [
-            {
               "type": "string"
             }
           ],

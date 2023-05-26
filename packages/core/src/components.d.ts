@@ -79,7 +79,7 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * Card selecting
+          * Card selection
          */
         "selected": boolean;
         /**
@@ -383,11 +383,14 @@ export namespace Components {
     | 'custom';
     }
     interface IxCssGrid {
+        /**
+          * Define css grid template
+         */
         "templates": Partial<Record<CssGridTemplateType, string[][]>>;
     }
     interface IxCssGridItem {
         /**
-          * Test
+          * Grid item name
          */
         "itemName": string;
     }
@@ -2717,7 +2720,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * Card selecting
+          * Card selection
          */
         "selected"?: boolean;
         /**
@@ -3072,11 +3075,14 @@ declare namespace LocalJSX {
     | 'custom';
     }
     interface IxCssGrid {
+        /**
+          * Define css grid template
+         */
         "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
     }
     interface IxCssGridItem {
         /**
-          * Test
+          * Grid item name
          */
         "itemName"?: string;
     }

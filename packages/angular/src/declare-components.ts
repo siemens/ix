@@ -19,8 +19,6 @@ export const DIRECTIVES = [
   d.IxCategoryFilter,
   d.IxChip,
   d.IxCounterPill,
-  d.IxCssGrid,
-  d.IxCssGridItem,
   d.IxDatePicker,
   d.IxDatetimePicker,
   d.IxDivider,

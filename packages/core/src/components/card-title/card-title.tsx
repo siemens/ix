@@ -1,6 +1,8 @@
 import { Component, h, Host } from '@stencil/core';
 
 /**
+ * @slot title-actions - Place additional actions inside title
+ *
  * @since 1.6.0
  */
 @Component({
@@ -14,7 +16,7 @@ export class CardHeader {
       <Host>
         <slot></slot>
         <div class="title-actions">
-          <slot name="title-action"></slot>
+          <slot name="title-actions"></slot>
         </div>
       </Host>
     );

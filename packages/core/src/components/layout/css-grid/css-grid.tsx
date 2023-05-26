@@ -25,6 +25,9 @@ const mediaQueryCollection: Array<{
   { name: 'lg', query: lgQuery },
 ];
 
+/**
+ * @internal
+ */
 @Component({
   tag: 'ix-css-grid',
   styleUrl: 'css-grid.scss',
@@ -32,7 +35,7 @@ const mediaQueryCollection: Array<{
 })
 export class CssGrid {
   /**
-   *
+   * Define css grid template
    */
   @Prop() templates: Partial<Record<CssGridTemplateType, string[][]>>;
 

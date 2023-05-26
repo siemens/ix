@@ -9,6 +9,9 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @internal
+ */
 @Component({
   tag: 'ix-css-grid-item',
   styleUrl: 'css-grid-item.scss',
@@ -16,7 +19,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class CssGridItem {
   /**
-   * Test
+   * Grid item name
    */
   @Prop() itemName: string;
 

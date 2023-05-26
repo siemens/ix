@@ -42,7 +42,7 @@ export class IxActionCard {
   @Prop() subheading: string;
 
   /**
-   * Card selecting
+   * Card selection
    */
   @Prop() selected = false;
 

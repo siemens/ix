@@ -51,11 +51,9 @@ export class PushCard {
       <Host>
         <ix-card variant={this.variant}>
           <ix-card-title>
-            <ix-icon
-              class={'icon'}
-              name={this.icon ?? 'rocket'}
-              size="32"
-            ></ix-icon>
+            {this.icon ? (
+              <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+            ) : null}
             <span class={'notification'}>{this.notification ?? 0}</span>
             <slot name="title-action"></slot>
           </ix-card-title>

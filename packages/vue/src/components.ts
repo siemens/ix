@@ -147,16 +147,6 @@ export const IxCounterPill = /*@__PURE__*/ defineContainer<JSX.IxCounterPill>('i
 ]);
 
 
-export const IxCssGrid = /*@__PURE__*/ defineContainer<JSX.IxCssGrid>('ix-css-grid', undefined, [
-  'templates'
-]);
-
-
-export const IxCssGridItem = /*@__PURE__*/ defineContainer<JSX.IxCssGridItem>('ix-css-grid-item', undefined, [
-  'itemName'
-]);
-
-
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', undefined, [
   'format',
   'range',

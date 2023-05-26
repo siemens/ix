@@ -8,9 +8,9 @@ import {
   State,
 } from '@stencil/core';
 
-let accordingControlId = 0;
+let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
-  return [prefix, accordingControlId++].join('-');
+  return [prefix, accordionControlId++].join('-');
 };
 
 export type CardAccordionExpandChangeEvent = {

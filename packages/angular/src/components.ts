@@ -438,50 +438,6 @@ export declare interface IxCounterPill extends Components.IxCounterPill {}
 
 
 @ProxyCmp({
-  inputs: ['templates']
-})
-@Component({
-  selector: 'ix-css-grid',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['templates'],
-})
-export class IxCssGrid {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxCssGrid extends Components.IxCssGrid {}
-
-
-@ProxyCmp({
-  inputs: ['itemName']
-})
-@Component({
-  selector: 'ix-css-grid-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['itemName'],
-})
-export class IxCssGridItem {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxCssGridItem extends Components.IxCssGridItem {}
-
-
-@ProxyCmp({
   inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
   methods: ['getCurrentDate']
 })
