@@ -13,7 +13,7 @@ import {
   ComputePositionReturn,
   flip,
   offset,
-  shift
+  shift,
 } from '@floating-ui/dom';
 import {
   Component,
@@ -22,7 +22,7 @@ import {
   Host,
   Listen,
   Prop,
-  State
+  State,
 } from '@stencil/core';
 
 type ArrowPosition = {
