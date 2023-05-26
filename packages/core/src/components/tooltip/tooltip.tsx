@@ -77,10 +77,8 @@ export class Tooltip {
   private id = ++sequentialInstanceId;
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
-  private onMouseEnterBind = this.showTooltip.bind(this);
-  private onMouseLeaveBind = this.hideTooltip.bind(this);
-  private onFocusInBind = this.showTooltip.bind(this);
-  private onFocusOutBind = this.hideTooltip.bind(this);
+  private onEnterElementBind = this.showTooltip.bind(this);
+  private onLeaveElementBind = this.hideTooltip.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
 
@@ -188,6 +186,12 @@ export class Tooltip {
     );
   }
 
+  private clearHideTimeout() {
+    if (this.interactive) {
+      clearTimeout(this.hideTooltipTimeout);
+    }
+  }
+
   private queryAnchorElements() {
     return Array.from(document.querySelectorAll(this.for));
   }
@@ -195,31 +199,20 @@ export class Tooltip {
   private registerTriggerListener() {
     const elements = this.queryAnchorElements();
     elements.forEach((e) => {
-      e.addEventListener('mouseenter', this.onMouseEnterBind);
-      e.addEventListener('mouseleave', this.onMouseLeaveBind);
-      e.addEventListener('focusin', this.onFocusInBind);
-      e.addEventListener('focusout', this.onFocusOutBind);
+      e.addEventListener('mouseenter', this.onEnterElementBind);
+      e.addEventListener('mouseleave', this.onLeaveElementBind);
+      e.addEventListener('focusin', this.onEnterElementBind);
+      e.addEventListener('focusout', this.onLeaveElementBind);
       e.setAttribute('aria-describedby', 'ix-tooltip-' + this.id);
     });
   }
 
   private registerTooltipListener() {
-    this.hostElement.addEventListener('mouseenter', () => {
-      if (this.interactive) {
-        clearTimeout(this.hideTooltipTimeout);
-      }
-    });
-    this.hostElement.addEventListener('mouseleave', () => {
-      this.hideTooltip();
-    });
-    this.hostElement.addEventListener('focusin', () => {
-      if (this.interactive) {
-        clearTimeout(this.hideTooltipTimeout);
-      }
-    });
-    this.hostElement.addEventListener('focusout', () => {
-      this.hideTooltip();
-    });
+    const { hostElement } = this;
+    hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
+    hostElement.addEventListener('focusin', () => this.clearHideTimeout());
+    hostElement.addEventListener('mouseleave', () => this.hideTooltip());
+    hostElement.addEventListener('focusout', () => this.hideTooltip());
   }
 
   @Listen('keydown', {
