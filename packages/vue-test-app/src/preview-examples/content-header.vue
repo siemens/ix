@@ -8,11 +8,11 @@
 -->
 
 <script setup lang="ts">
-import { IxButton, IxPageHeader } from '@siemens/ix-vue';
+import { IxButton, IxContentHeader } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxPageHeader
+  <IxContentHeader
     has-back-button
     header-title="content title"
     header-subtitle="subtitle content"
@@ -20,5 +20,5 @@ import { IxButton, IxPageHeader } from '@siemens/ix-vue';
     <IxButton ghost>Button1</IxButton>
     <IxButton ghost>Button2</IxButton>
     <IxButton ghost>Button3</IxButton>
-  </IxPageHeader>
+  </IxContentHeader>
 </template>
