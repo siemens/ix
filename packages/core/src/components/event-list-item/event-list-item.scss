@@ -9,104 +9,106 @@
 
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
 @import 'common-variables';
 
 $height-single-line: 2.5rem;
 
-.ix-event-list-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-  height: $height-single-line;
-  max-height: $height-single-line;
-  border-radius: $default-border-radius;
-  background-color: var(--theme-event-item--background);
-  overflow: hidden;
-  transition: $default-time;
-  cursor: pointer;
+:host {
+  @include ix-component;
 
-  .indicator {
-    height: 100%;
-    width: $small-space;
-    max-width: $small-space;
-    min-width: $small-space;
-    border-top-left-radius: $default-border-radius;
-    border-bottom-left-radius: $default-border-radius;
-  }
-
-  .indicator-empty {
-    border: var(--theme-weak-bdr-1);
-    border-right: none;
-  }
-
-  .event-list-item-container {
-    @include ellipsis;
-
+  .event-list-item {
     display: flex;
-    flex-grow: 1;
-    width: calc(100% - (#{$default-space} + #{$small-space}));
-    height: 100%;
-    border: 0.062rem solid;
-    border-color: var(--theme-event-item--border);
-    border-top-left-radius: 0;
-    border-top-right-radius: $default-border-radius;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: $default-border-radius;
-    border-left: none;
-    padding-left: $default-space;
-  }
+    align-items: center;
+    position: relative;
+    height: $height-single-line;
+    max-height: $height-single-line;
+    border-radius: $default-border-radius;
+    background-color: var(--theme-event-item--background);
+    overflow: hidden;
+    transition: $default-time;
+    cursor: pointer;
+    margin-bottom: $small-space;
 
-  &:not(.selected) {
-    @include hover {
-      background-color: var(--theme-event-item--background--hover);
+    .indicator {
+      height: 100%;
+      width: $small-space;
+      max-width: $small-space;
+      min-width: $small-space;
+      border-top-left-radius: $default-border-radius;
+      border-bottom-left-radius: $default-border-radius;
     }
 
-    @include active {
-      background-color: var(--theme-event-item--background--active);
+    .indicator-empty {
+      border: var(--theme-weak-bdr-1);
+      border-right: none;
     }
 
     .event-list-item-container {
+      @include ellipsis;
+
+      display: flex;
+      flex-grow: 1;
+      width: calc(100% - (#{$default-space} + #{$small-space}));
+      height: 100%;
+      border: 0.062rem solid;
+      border-color: var(--theme-event-item--border);
+      border-top-left-radius: 0;
+      border-top-right-radius: $default-border-radius;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: $default-border-radius;
+      border-left: none;
+      padding-left: $default-space;
+    }
+
+    .event-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .chevron-icon {
+      margin-left: auto;
+      margin-right: $small-space;
+      opacity: 0.6;
+      align-self: center;
+    }
+
+    &:not(.selected) {
       @include hover {
-        border-color: var(--theme-event-item--border--hover);
+        background-color: var(--theme-event-item--background--hover);
       }
 
       @include active {
-        border-color: var(--theme-event-item--border--active);
+        background-color: var(--theme-event-item--background--active);
+      }
+
+      .event-list-item-container {
+        @include hover {
+          border-color: var(--theme-event-item--border--hover);
+        }
+
+        @include active {
+          border-color: var(--theme-event-item--border--active);
+        }
       }
     }
-  }
 
-  &.selected {
-    .event-list-item-container {
+    &.selected .event-list-item-container {
       background-color: var(--theme-event-item--background--selected);
       border-color: var(--theme-event-item--border--selected);
     }
-  }
 
-  &[disabled],
-  &.disabled {
-    pointer-events: none;
+    &[disabled],
+    &.disabled {
+      pointer-events: none;
 
-    .event-list-item-container {
-      background-color: var(--theme-event-item--background--disabled);
-      border-color: var(--theme-event-item--border--disabled);
+      .event-list-item-container {
+        background-color: var(--theme-event-item--background--disabled);
+        border-color: var(--theme-event-item--border--disabled);
+      }
     }
   }
-
-  .chevron-icon {
-    margin-left: auto;
-    margin-right: $small-space;
-    opacity: 0.6;
-    align-self: center;
-  }
-
-  .event-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  margin-bottom: $small-space;
 }
