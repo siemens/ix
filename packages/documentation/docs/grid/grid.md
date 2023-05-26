@@ -1,8 +1,8 @@
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
-import SourceAggrid from './../../auto-generated/previews/web-component/aggrid.md'
-import ReactSourceAggrid from './../../auto-generated/previews/react/aggrid.md'
-import AngularSourceAggrid from './../../auto-generated/previews/angular/aggrid.ts.md'
+import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
+import ReactSourceAggrid from './../auto-generated/previews/react/aggrid.md'
+import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.md'
 
 # AG Grid
 
