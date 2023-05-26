@@ -6,13 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxButton, IxPageHeader } from '@siemens/ix-react';
+import { IxButton, IxContentHeader } from '@siemens/ix-react';
 
 import React from 'react';
 
 export default () => {
   return (
-    <IxPageHeader
+    <IxContentHeader
       has-back-button
       header-title="content title"
       header-subtitle="subtitle content"
@@ -20,6 +20,6 @@ export default () => {
       <IxButton ghost>Button1</IxButton>
       <IxButton ghost>Button2</IxButton>
       <IxButton ghost>Button3</IxButton>
-    </IxPageHeader>
+    </IxContentHeader>
   );
 };
