@@ -621,6 +621,10 @@ export namespace Components {
     }
     interface IxExpandingSearch {
         /**
+          * Width to 100%
+         */
+        "fullWidth": boolean;
+        /**
           * Search icon
          */
         "icon": string;
@@ -3020,6 +3024,10 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * Width to 100%
+         */
+        "fullWidth"?: boolean;
         /**
           * Search icon
          */

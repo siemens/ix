@@ -38,6 +38,11 @@ export class ExpandingSearch {
    */
   @Prop({ mutable: true }) value = '';
 
+  /**
+   * Width to 100%
+   */
+  @Prop() fullWidth = false;
+
   @State() isFieldChanged = false;
 
   @State() expanded = false;
@@ -98,6 +103,7 @@ export class ExpandingSearch {
         class={{
           expanded: this.expanded,
           'right-position': this.expanded,
+          fullWidth: this.fullWidth,
         }}
       >
         <button
@@ -125,6 +131,7 @@ export class ExpandingSearch {
         <div
           class={{
             expanded: this.expanded,
+            fullWidth: this.fullWidth,
             collapsed: !this.expanded,
             'disable-pointer': !this.expanded,
             'input-container': true,

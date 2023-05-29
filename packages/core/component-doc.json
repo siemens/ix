@@ -3170,6 +3170,23 @@
       },
       "props": [
         {
+          "name": "fullWidth",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "full-width",
+          "reflectToAttr": false,
+          "docs": "Width to 100%",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "icon",
           "type": "string",
           "mutable": false,

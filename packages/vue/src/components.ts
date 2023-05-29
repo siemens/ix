@@ -227,6 +227,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
   'icon',
   'placeholder',
   'value',
+  'fullWidth',
   'valueChange'
 ]);
 

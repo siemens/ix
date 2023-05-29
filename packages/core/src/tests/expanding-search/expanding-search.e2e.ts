@@ -30,4 +30,17 @@ regressionTest.describe('expanding-search', () => {
       maxDiffPixelRatio: 0.05,
     });
   });
+
+  regressionTest('fullWidth', async ({ page }) => {
+    await page.goto('expanding-search/fullWidth');
+
+    await page.locator('ix-expanding-search button').click();
+    await page
+      .locator('ix-expanding-search .input-container.expanded')
+      .waitFor();
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.05,
+    });
+  });
 });

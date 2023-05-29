@@ -11,6 +11,8 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
+$container-width: 11.5625rem;
+
 :host {
   display: inline-flex;
   width: auto;
@@ -20,7 +22,11 @@
   position: relative;
 
   &.right-position {
-    width: 100% !important;
+    width: $container-width !important;
+
+    &.fullWidth {
+      width: 100% !important;
+    }
   }
 
   .input-container {
@@ -37,7 +43,11 @@
   }
 
   .expanded {
-    width: 100%;
+    width: $container-width;
+
+    &.fullWidth {
+      width: 100%;
+    }
   }
 
   .collapsed {
