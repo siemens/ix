@@ -150,11 +150,17 @@ export const config: Config = {
     {
       components: ['ix-workflow-step', 'ix-workflow-steps'],
     },
+    {
+      components: ['ix-content-header'],
+    },
+    {
+      components: ['ix-empty-state'],
+    },
   ],
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
-    experimentalImportInjection: true,
+    enableImportInjection: true,
     scopedSlotTextContentFix: true,
   },
   testing: {

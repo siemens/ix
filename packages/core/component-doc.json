@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "3.1.0",
+    "version": "3.2.2",
     "typescriptVersion": "4.9.5"
   },
   "components": [
@@ -279,7 +279,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -535,11 +535,12 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-dropdown-button",
+        "ix-empty-state",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
@@ -553,6 +554,9 @@
           "ix-button"
         ],
         "ix-dropdown-button": [
+          "ix-button"
+        ],
+        "ix-empty-state": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -1150,6 +1154,123 @@
               "text": "1.5.0"
             }
           ]
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/content-header",
+      "filePath": "./src/components/content-header/content-header.tsx",
+      "fileName": "content-header.tsx",
+      "readmePath": "./src/components/content-header/readme.md",
+      "usagesDir": "./src/components/content-header/usage",
+      "tag": "ix-content-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-content-header": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "hasBackButton",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "has-back-button",
+          "reflectToAttr": false,
+          "docs": "Display a back button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerSubtitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-subtitle",
+          "reflectToAttr": false,
+          "docs": "Subtitle of Header",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-title",
+          "reflectToAttr": false,
+          "docs": "Title of Header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of content header",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "backButtonClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when back button is clicked",
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -2068,7 +2189,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -2196,7 +2317,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "toggleDrawer(show: boolean) => Promise<void>",
+          "signature": "toggleDrawer(show?: boolean) => Promise<void>",
           "parameters": [],
           "docs": "Toggle or define show state of drawer",
           "docsTags": [
@@ -2911,6 +3032,145 @@
       "props": [],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/empty-state",
+      "filePath": "./src/components/empty-state/empty-state.tsx",
+      "fileName": "empty-state.tsx",
+      "readmePath": "./src/components/empty-state/readme.md",
+      "usagesDir": "./src/components/empty-state/usage",
+      "tag": "ix-empty-state",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-empty-state": [
+          "ix-icon",
+          "ix-typography",
+          "ix-button"
+        ]
+      },
+      "props": [
+        {
+          "name": "action",
+          "type": "string",
+          "mutable": false,
+          "attr": "action",
+          "reflectToAttr": false,
+          "docs": "Optional empty state action",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "mutable": false,
+          "attr": "header",
+          "reflectToAttr": false,
+          "docs": "Empty state header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional empty state icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "\"compact\" | \"compactBreak\" | \"large\"",
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Optional empty state layout - one of 'large', 'compact' or 'compactBreak'",
+          "docsTags": [],
+          "default": "'large'",
+          "values": [
+            {
+              "value": "compact",
+              "type": "string"
+            },
+            {
+              "value": "compactBreak",
+              "type": "string"
+            },
+            {
+              "value": "large",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subHeader",
+          "type": "string",
+          "mutable": false,
+          "attr": "sub-header",
+          "reflectToAttr": false,
+          "docs": "Optional empty state sub header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "actionClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Empty state action click event",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -3940,189 +4200,6 @@
       ]
     },
     {
-      "dirPath": "./src/components/icon",
-      "filePath": "./src/components/icon/icon.tsx",
-      "fileName": "icon.tsx",
-      "readmePath": "./src/components/icon/readme.md",
-      "usagesDir": "./src/components/icon/usage",
-      "tag": "ix-icon",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-animated-tabs",
-        "ix-blind",
-        "ix-breadcrumb",
-        "ix-category-filter",
-        "ix-chip",
-        "ix-date-picker",
-        "ix-dropdown-button",
-        "ix-dropdown-item",
-        "ix-expanding-search",
-        "ix-filter-chip",
-        "ix-group",
-        "ix-group-item",
-        "ix-icon-button",
-        "ix-kpi",
-        "ix-map-navigation-overlay",
-        "ix-menu-about-news",
-        "ix-message-bar",
-        "ix-modal",
-        "ix-pill",
-        "ix-select",
-        "ix-split-button",
-        "ix-toast",
-        "ix-tree-item",
-        "ix-workflow-step"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-animated-tabs": [
-          "ix-icon"
-        ],
-        "ix-blind": [
-          "ix-icon"
-        ],
-        "ix-breadcrumb": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon"
-        ],
-        "ix-date-picker": [
-          "ix-icon"
-        ],
-        "ix-dropdown-button": [
-          "ix-icon"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ],
-        "ix-expanding-search": [
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-group": [
-          "ix-icon"
-        ],
-        "ix-group-item": [
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-kpi": [
-          "ix-icon"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon"
-        ],
-        "ix-message-bar": [
-          "ix-icon"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-pill": [
-          "ix-icon"
-        ],
-        "ix-select": [
-          "ix-icon"
-        ],
-        "ix-split-button": [
-          "ix-icon"
-        ],
-        "ix-toast": [
-          "ix-icon"
-        ],
-        "ix-tree-item": [
-          "ix-icon"
-        ],
-        "ix-workflow-step": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": true,
-          "docs": "Use one of our defined icon names e.g. `copy`.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "size",
-          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
-          "mutable": false,
-          "attr": "size",
-          "reflectToAttr": false,
-          "docs": "Size of the icon",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "12",
-              "type": "string"
-            },
-            {
-              "value": "16",
-              "type": "string"
-            },
-            {
-              "value": "24",
-              "type": "string"
-            },
-            {
-              "value": "32",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/icon-button",
       "filePath": "./src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
@@ -4133,9 +4210,10 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-category-filter",
+        "ix-content-header",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -4162,6 +4240,9 @@
           "ix-icon"
         ],
         "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-content-header": [
           "ix-icon-button"
         ],
         "ix-date-picker": [
@@ -4459,6 +4540,165 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/key-value",
+      "filePath": "./src/components/key-value/key-value.tsx",
+      "fileName": "key-value.tsx",
+      "readmePath": "./src/components/key-value/readme.md",
+      "usagesDir": "./src/components/key-value/usage",
+      "tag": "ix-key-value",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "custom-value - Optional custom value at key value instead of text value"
+        },
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-key-value": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Optional key value icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Key value label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        },
+        {
+          "name": "labelPosition",
+          "type": "\"left\" | \"top\"",
+          "mutable": false,
+          "attr": "label-position",
+          "reflectToAttr": false,
+          "docs": "Optional key value label position - 'top' or 'left'",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Optional key value text value",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "custom-value",
+          "docs": "Optional custom value at key value instead of text value"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/key-value-list",
+      "filePath": "./src/components/key-value-list/key-value-list.tsx",
+      "fileName": "key-value-list.tsx",
+      "readmePath": "./src/components/key-value-list/readme.md",
+      "usagesDir": "./src/components/key-value-list/usage",
+      "tag": "ix-key-value-list",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "striped",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "striped",
+          "reflectToAttr": false,
+          "docs": "Optional striped key value list style",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/kpi",
       "filePath": "./src/components/kpi/kpi.tsx",
       "fileName": "kpi.tsx",
@@ -4469,7 +4709,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -4723,6 +4963,26 @@
             }
           ],
           "deprecation": "Will be removed in 2.0.0. Use slot based approach"
+        },
+        {
+          "name": "toggleSidebar",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleSidebar(show?: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Change the visibility of the sidebar",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show new visibility state"
+            },
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ]
         }
       ],
       "events": [
@@ -4871,6 +5131,9 @@
           "ix-burger-menu",
           "ix-menu-item",
           "ix-dropdown"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
         ]
       },
       "props": [
@@ -5748,12 +6011,17 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-menu-item": [
+          "ix-icon"
+        ],
         "ix-menu": [
           "ix-menu-item"
         ]
@@ -5837,7 +6105,7 @@
           "mutable": false,
           "attr": "notifications",
           "reflectToAttr": false,
-          "docs": "Show notification cound on tab",
+          "docs": "Show notification count on tab",
           "docsTags": [],
           "values": [
             {
@@ -6020,7 +6288,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
@@ -7077,6 +7345,28 @@
           "required": false
         },
         {
+          "name": "i18nNoMatches",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-no-matches",
+          "reflectToAttr": false,
+          "docs": "Hint inside of dropdown if no items where found with current filter text",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.5.0"
+            }
+          ],
+          "default": "'No matches'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nPlaceholder",
           "type": "string",
           "mutable": false,
@@ -7172,7 +7462,7 @@
           "mutable": true,
           "attr": "selected-indices",
           "reflectToAttr": false,
-          "docs": "Indices of selected items",
+          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -7342,7 +7632,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-upload"
       ],
@@ -8336,7 +8626,7 @@
         {
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
-          "mutable": false,
+          "mutable": true,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",

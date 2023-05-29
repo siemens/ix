@@ -10,6 +10,7 @@
 import Link from '@docusaurus/Link';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { IxIcon } from '@siemens/ix-react';
 import clsx from 'clsx';
 import React, { CSSProperties } from 'react';
 import styles from './Card.module.css';
@@ -28,20 +29,17 @@ export function Card(
   const { preferredVersion } = useDocsPreferredVersion();
 
   function link() {
+    if (props.link?.startsWith('http')) {
+      return props.link;
+    }
+
     if (!preferredVersion) {
       return useBaseUrl(`/docs/${props.link}`);
     }
 
-    if (props.link?.startsWith('http')) {
-      return props.link;
-    }
     const path = preferredVersion.path;
 
     return useBaseUrl(`${path}/${props.link}`);
-  }
-  function getIcon() {
-    //@ts-ignore
-    return <ix-icon name={props.icon}></ix-icon>;
   }
 
   return (
@@ -74,7 +72,9 @@ export function Card(
         {props.icon ? (
           <>
             <div className={styles.Splitter}></div>
-            <div className={clsx(styles.Icon)}>{getIcon()}</div>
+            <div className={styles.Icon}>
+              <IxIcon name={props.icon} size="32"></IxIcon>
+            </div>
           </>
         ) : null}
       </div>

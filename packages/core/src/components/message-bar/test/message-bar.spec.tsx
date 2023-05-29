@@ -23,7 +23,9 @@ describe('ix-message-bar', () => {
     });
 
     messageBar = document.querySelector('ix-message-bar');
-    closeButton = document.querySelector('[data-testid="close-btn"]');
+    closeButton = messageBar.shadowRoot.querySelector(
+      '[data-testid="close-btn"]'
+    );
   });
 
   it('renders', async () => {

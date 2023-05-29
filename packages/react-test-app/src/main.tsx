@@ -34,6 +34,7 @@ import Buttons from './preview-examples/buttons';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
+import PageHeader from './preview-examples/content-header';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
@@ -249,6 +250,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           />
         </Route>
       </Route>
+      <Route path="/preview/page-header" element={<PageHeader />} />
     </Routes>
   </BrowserRouter>
 );

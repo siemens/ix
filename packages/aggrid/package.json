@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "1.5.0-beta.1",
+  "version": "1.5.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -30,22 +30,20 @@
     "test:e2e": "playwright test --reporter html",
     "host-root": "http-server -a 127.0.0.1"
   },
-  "dependencies": {
-    "@stencil/core": "^3.1.0"
-  },
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "puppeteer": "^19.5.2",
     "ag-grid-community": "29.1.0",
-    "@siemens/ix": "~1.5.0-beta.1",
+    "@siemens/ix": "~1.5.0",
+    "@stencil/core": "^3.2.1",
     "@stencil/sass": "~3.0.0",
     "@playwright/test": "^1.32.1",
     "http-server": "^14.1.1"
   },
   "peerDependencies": {
     "ag-grid-community": "^28 || ^29",
-    "@siemens/ix": "~1.5.0-beta.1"
+    "@siemens/ix": "~1.5.0"
   }
 }

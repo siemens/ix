@@ -26,12 +26,17 @@ import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
+import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
+import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
 import DrawerFullHeight from './preview-examples/drawer-full-height.vue';
 import DropdownIcon from './preview-examples/dropdown-icon.vue';
 import Dropdown from './preview-examples/dropdown.vue';
+import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break.vue';
+import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
+import EmptyState from './preview-examples/empty-state.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomHeight from './preview-examples/event-list-custom-item-height.vue';
 import EventListSelected from './preview-examples/event-list-selected.vue';
@@ -46,6 +51,14 @@ import InputDisabled from './preview-examples/input-disabled.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
 import InputWithIcon from './preview-examples/input-with-icon.vue';
 import Input from './preview-examples/input.vue';
+import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
+import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
+import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon.vue';
+import KeyValueList from './preview-examples/key-value-list.vue';
+import KeyValueWithCustomValue from './preview-examples/key-value-with-custom-value.vue';
+import KeyValueWithIcon from './preview-examples/key-value-with-icon.vue';
+import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left.vue';
+import KeyValue from './preview-examples/key-value.vue';
 import Kpi from './preview-examples/kpi.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
@@ -69,8 +82,8 @@ import Textarea from './preview-examples/textarea.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
-import Toast from './preview-examples/toast.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
+import Toast from './preview-examples/toast.vue';
 import ToggleColor from './preview-examples/toggle-color.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
@@ -155,6 +168,19 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/tooltip': Tooltip,
+  '/preview/page-header': ContentHeader,
+  '/preview/page-header-no-back': ContentHeaderNoBack,
+  '/preview/empty-state': EmptyState,
+  '/preview/empty-state-compact': EmptyStateCompact,
+  '/preview/empty-state-compact-break': EmptyStateCompactBreak,
+  '/preview/key-value': KeyValue,
+  '/preview/key-value-with-custom-value': KeyValueWithCustomValue,
+  '/preview/key-value-with-icon': KeyValueWithIcon,
+  '/preview/key-value-with-label-left': KeyValueWithLabelLeft,
+  '/preview/key-value-list': KeyValueList,
+  '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
+  '/preview/key-value-list-with-icon': KeyValueListWithIcon,
+  '/preview/key-value-list-striped': KeyValueListStriped,
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,

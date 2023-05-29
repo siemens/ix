@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 
 /**
  * @since 1.5.0
@@ -19,6 +27,8 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 })
 export class Pagination {
   private readonly maxCountPages = 7;
+
+  @Element() hostElement!: HTMLIxPaginationElement;
 
   /**
    * Advanced mode
@@ -72,14 +82,22 @@ export class Pagination {
    */
   @Event() itemCountChanged: EventEmitter<number>;
 
+  get pageInput() {
+    return this.hostElement.querySelector(
+      '.advanced-pagination input.form-control'
+    );
+  }
+
   private selectPage(index: number) {
-    if (index < 0 || index >= this.count) {
-      console.warn(`ix-pagination - invalid index ${index}`);
-      return;
+    if (index < 0) {
+      this.selectedPage = 0;
+    } else if (index > this.count - 1) {
+      this.selectedPage = this.count - 1;
+    } else {
+      this.selectedPage = index;
     }
 
-    this.selectedPage = index;
-    this.pageSelected.emit(index);
+    this.pageSelected.emit(this.selectedPage);
   }
 
   private increase() {
@@ -204,10 +222,12 @@ export class Pagination {
             <input
               class="form-control"
               type="number"
-              value={this.selectedPage}
+              min="1"
+              max={this.count}
+              value={this.selectedPage + 1}
               onChange={(e) => {
                 const index = Number.parseInt(e.target['value']);
-                this.selectPage(index);
+                this.selectPage(index - 1);
               }}
             />
             <span class="total-count">
@@ -229,6 +249,7 @@ export class Pagination {
           <span class="item-count">
             {this.i18nItems}
             <ix-select
+              hideListHeader
               i18nPlaceholder=""
               i18nSelectListHeader=""
               selected-indices={this.itemCount}

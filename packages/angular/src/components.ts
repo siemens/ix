@@ -273,6 +273,34 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+})
+@Component({
+  selector: 'ix-content-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+})
+export class IxContentHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
+  }
+}
+
+
+export declare interface IxContentHeader extends Components.IxContentHeader {
+  /**
+   * Triggered when back button is clicked
+   */
+  backButtonClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['alignLeft', 'background', 'color', 'outline', 'variant']
 })
 @Component({
@@ -540,6 +568,34 @@ export class IxDropdownQuickActions {
 
 
 export declare interface IxDropdownQuickActions extends Components.IxDropdownQuickActions {}
+
+
+@ProxyCmp({
+  inputs: ['action', 'header', 'icon', 'layout', 'subHeader']
+})
+@Component({
+  selector: 'ix-empty-state',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['action', 'header', 'icon', 'layout', 'subHeader'],
+})
+export class IxEmptyState {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['actionClick']);
+  }
+}
+
+
+export declare interface IxEmptyState extends Components.IxEmptyState {
+  /**
+   * Empty state action click event
+   */
+  actionClick: EventEmitter<CustomEvent<void>>;
+}
 
 
 @ProxyCmp({
@@ -864,6 +920,50 @@ export declare interface IxInputGroup extends Components.IxInputGroup {}
 
 
 @ProxyCmp({
+  inputs: ['icon', 'label', 'labelPosition', 'value']
+})
+@Component({
+  selector: 'ix-key-value',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['icon', 'label', 'labelPosition', 'value'],
+})
+export class IxKeyValue {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValue extends Components.IxKeyValue {}
+
+
+@ProxyCmp({
+  inputs: ['striped']
+})
+@Component({
+  selector: 'ix-key-value-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['striped'],
+})
+export class IxKeyValueList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxKeyValueList extends Components.IxKeyValueList {}
+
+
+@ProxyCmp({
   inputs: ['label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({
@@ -887,7 +987,7 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 @ProxyCmp({
   inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
-  methods: ['openOverlay', 'closeOverlay']
+  methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
 })
 @Component({
   selector: 'ix-map-navigation',
@@ -1348,14 +1448,14 @@ export declare interface IxPill extends Components.IxPill {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
 })
 @Component({
   selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
 })
 export class IxSelect {
   protected el: HTMLElement;

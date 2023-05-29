@@ -99,6 +99,15 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
 ]);
 
 
+export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader>('ix-content-header', undefined, [
+  'variant',
+  'headerTitle',
+  'headerSubtitle',
+  'hasBackButton',
+  'backButtonClick'
+]);
+
+
 export const IxCounterPill = /*@__PURE__*/ defineContainer<JSX.IxCounterPill>('ix-counter-pill', undefined, [
   'variant',
   'outline',
@@ -205,6 +214,16 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
 export const IxDropdownQuickActions = /*@__PURE__*/ defineContainer<JSX.IxDropdownQuickActions>('ix-dropdown-quick-actions', undefined);
 
 
+export const IxEmptyState = /*@__PURE__*/ defineContainer<JSX.IxEmptyState>('ix-empty-state', undefined, [
+  'layout',
+  'icon',
+  'header',
+  'subHeader',
+  'action',
+  'actionClick'
+]);
+
+
 export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-event-list', undefined, [
   'itemHeight',
   'compact',
@@ -287,7 +306,8 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undefined, [
   'size',
   'color',
-  'name'
+  'name',
+  'src'
 ]);
 
 
@@ -307,6 +327,19 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 
 
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
+
+
+export const IxKeyValue = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', undefined, [
+  'icon',
+  'label',
+  'labelPosition',
+  'value'
+]);
+
+
+export const IxKeyValueList = /*@__PURE__*/ defineContainer<JSX.IxKeyValueList>('ix-key-value-list', undefined, [
+  'striped'
+]);
 
 
 export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefined, [
@@ -490,6 +523,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nPlaceholder',
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
+  'i18nNoMatches',
   'hideListHeader',
   'itemSelectionChange',
   'addItem'

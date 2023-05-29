@@ -64,29 +64,6 @@
   height: 100%;
 }
 
-.Icon {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.Icon ix-icon {
-  width: 100%;
-  height: 100%;
-}
-
-.Icon ix-icon i {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 9rem;
-  color: var(--theme-color-std-text) !important;
-}
-
 .Card__Primary {
   background-color: var(--theme-color-primary);
 }
@@ -95,6 +72,20 @@
   color: var(--theme-color-inv-std-text);
 }
 
-.Card__Primary .Icon ix-icon i {
+.Card__Primary .Icon ix-icon {
   color: var(--theme-color-inv-std-text) !important;
+}
+
+.Icon {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: var(--theme-color-std-text);
+}
+
+.Icon ix-icon {
+  transform: scale(4.5);
 }

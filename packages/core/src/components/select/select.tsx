@@ -31,6 +31,7 @@ export class Select {
 
   /**
    * Indices of selected items
+   * This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
    */
   @Prop({ mutable: true }) selectedIndices: string | string[] = [];
 
@@ -73,6 +74,13 @@ export class Select {
    * Select list header
    */
   @Prop() i18nSelectListHeader = 'Please select an option';
+
+  /**
+   * Hint inside of dropdown if no items where found with current filter text
+   *
+   * @since 1.5.0
+   */
+  @Prop() i18nNoMatches = 'No matches';
 
   /**
    * Hide list header
@@ -128,6 +136,10 @@ export class Select {
     return this.mode === 'multiple';
   }
 
+  get isEveryDropdownItemHidden() {
+    return this.items.every((item) => item.classList.contains('d-none'));
+  }
+
   @Watch('selectedIndices')
   watchSelectedIndices(newId: string | string[]) {
     if (!newId) {
@@ -147,17 +159,6 @@ export class Select {
   onItemClicked(event: CustomEvent<string>) {
     const newId = event.detail;
     this.emitItemClick(newId);
-  }
-
-  @Watch('inputFilterText')
-  watchInputText(newValue: string) {
-    if (!this.editable) {
-      return;
-    }
-
-    if (this.itemExists(newValue)) {
-      return;
-    }
   }
 
   private emitItemClick(newId: string) {
@@ -180,11 +181,11 @@ export class Select {
       return;
     }
 
-    const test = document.createElement('ix-select-item');
-    test.value = value;
-    test.label = value;
+    const newItem = document.createElement('ix-select-item');
+    newItem.value = value;
+    newItem.label = value;
 
-    this.addItemRef.appendChild(test);
+    this.addItemRef.appendChild(newItem);
 
     this.clearInput();
     this.emitItemClick(value);
@@ -239,16 +240,17 @@ export class Select {
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
+    this.hasFocus = event.detail;
 
     if (event.detail) {
       this.inputRef.focus();
       this.inputRef.select();
 
-      this.navigationItem = this.items[0];
-      this.setHoverEffectForNavigatedSelectItem();
       this.removeHiddenFromItems();
+      this.isDropdownEmpty = this.isEveryDropdownItemHidden;
+    } else {
+      this.navigationItem = undefined;
     }
-    this.hasFocus = event.detail;
   }
 
   @Listen('keydown', {
@@ -294,6 +296,11 @@ export class Select {
     event.stopPropagation();
     event.preventDefault();
 
+    const focusItem = this.items.find(
+      (item) => document.activeElement === item.querySelector('button')
+    );
+    this.navigationItem = focusItem;
+
     const selectItems = this.items.filter(
       (i) => !i.classList.contains('d-none')
     );
@@ -310,13 +317,12 @@ export class Select {
   }
 
   private setHoverEffectForNavigatedSelectItem() {
-    this.items.forEach((item: HTMLIxSelectItemElement) => {
-      item.hover = item === this.navigationItem;
-    });
+    this.navigationItem?.querySelector('button').focus();
   }
 
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputRef.value;
+
     if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
@@ -329,9 +335,8 @@ export class Select {
     } else {
       this.removeHiddenFromItems();
     }
-    this.isDropdownEmpty = this.items.every((item) =>
-      item.classList.contains('d-none')
-    );
+
+    this.isDropdownEmpty = this.isEveryDropdownItemHidden;
   }
 
   private removeHiddenFromItems() {
@@ -351,6 +356,22 @@ export class Select {
     this.selectedIndices = [];
     this.itemSelectionChange.emit(null);
     this.dropdownShow = false;
+  }
+
+  private onInputBlur(e) {
+    if (this.editable) {
+      return;
+    }
+
+    if (this.isSingleMode) {
+      if (this.dropdownShow && this.isDropdownEmpty) {
+        this.dropdownShow = false;
+      }
+    }
+
+    if (!this.dropdownShow && this.mode !== 'multiple') {
+      e.target['value'] = this.value;
+    }
   }
 
   private placeholderValue() {
@@ -411,6 +432,7 @@ export class Select {
                   placeholder={this.placeholderValue()}
                   value={this.inputValue}
                   ref={(ref) => (this.inputRef = ref)}
+                  onBlur={(e) => this.onInputBlur(e)}
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
                 {this.allowClear &&
@@ -445,11 +467,9 @@ export class Select {
         <ix-dropdown
           ref={(ref) => (this.dropdownRef = ref)}
           show={this.dropdownShow}
+          closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
-            'd-none':
-              this.disabled ||
-              this.readonly ||
-              (this.isDropdownEmpty && !this.editable),
+            'd-none': this.disabled || this.readonly,
           }}
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
@@ -457,14 +477,14 @@ export class Select {
           placement="auto-start"
           overwriteDropdownStyle={async () => {
             return {
-              width: `${this.hostElement.clientWidth}px`,
+              minWidth: `${this.hostElement.clientWidth}px`,
             };
           }}
         >
           <div
             class={{
               'select-list-header': true,
-              hidden: this.hideListHeader === true,
+              hidden: this.hideListHeader || this.isDropdownEmpty,
             }}
             title={this.i18nSelectListHeader}
           >
@@ -489,6 +509,11 @@ export class Select {
                 this.emitAddItem(this.inputFilterText);
               }}
             ></ix-dropdown-item>
+          )}
+          {this.isDropdownEmpty && !this.editable ? (
+            <div class="select-list-header">{this.i18nNoMatches}</div>
+          ) : (
+            ''
           )}
         </ix-dropdown>
       </Host>

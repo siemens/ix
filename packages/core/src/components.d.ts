@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/button/button";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -15,9 +16,11 @@ import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 import { Placement } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
+import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -25,11 +28,12 @@ import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyVariants } from "./components/typography/types";
+import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ButtonVariant } from "./components/button/button";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
+export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -37,9 +41,11 @@ export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datet
 export { Placement } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
+export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
+export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -47,7 +53,7 @@ export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyVariants } from "./components/typography/types";
+export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     interface IxAnimatedTab {
@@ -255,6 +261,24 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton": boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle": string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle": string;
+        /**
+          * Variant of content header
+         */
+        "variant": ContentHeaderVariant;
+    }
     interface IxCounterPill {
         /**
           * Align pill content left
@@ -448,7 +472,7 @@ export namespace Components {
           * Toggle or define show state of drawer
           * @param show Overwrite toggle state with boolean
          */
-        "toggleDrawer": (show: boolean) => Promise<void>;
+        "toggleDrawer": (show?: boolean) => Promise<void>;
         /**
           * Width interpreted as REM if not set to 'auto'
          */
@@ -577,6 +601,31 @@ export namespace Components {
      * @since 1.4.0
      */
     interface IxDropdownQuickActions {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action": string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon": string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout": EmptyStateLayout;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader": string;
     }
     interface IxEventList {
         /**
@@ -738,20 +787,6 @@ export namespace Components {
          */
         "text": string;
     }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color": string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name": string;
-        /**
-          * Size of the icon
-         */
-        "size": '12' | '16' | '24' | '32';
-    }
     interface IxIconButton {
         /**
           * Color of icon in  button
@@ -811,6 +846,36 @@ export namespace Components {
     }
     interface IxInputGroup {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon": string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - 'top' or 'left'
+         */
+        "labelPosition": KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value": string;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped": boolean;
+    }
     interface IxKpi {
         "label": string;
         "orientation": 'horizontal' | 'vertical';
@@ -845,6 +910,12 @@ export namespace Components {
           * @param color
          */
         "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
+        /**
+          * Change the visibility of the sidebar
+          * @param show new visibility state
+          * @since 1.6.0
+         */
+        "toggleSidebar": (show?: boolean) => Promise<void>;
     }
     interface IxMapNavigationOverlay {
         /**
@@ -1020,7 +1091,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications": number;
         /**
@@ -1227,6 +1298,11 @@ export namespace Components {
          */
         "hideListHeader": boolean;
         /**
+          * Hint inside of dropdown if no items where found with current filter text
+          * @since 1.5.0
+         */
+        "i18nNoMatches": string;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder": string;
@@ -1247,7 +1323,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices": string | string[];
     }
@@ -1574,7 +1650,11 @@ export namespace Components {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color": TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant": TypographyVariants;
     }
@@ -1708,6 +1788,10 @@ export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
 }
+export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxContentHeaderElement;
+}
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
@@ -1727,6 +1811,10 @@ export interface IxDropdownCustomEvent<T> extends CustomEvent<T> {
 export interface IxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDropdownItemElement;
+}
+export interface IxEmptyStateCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxEmptyStateElement;
 }
 export interface IxEventListItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1907,6 +1995,12 @@ declare global {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
     };
+    interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
+    }
+    var HTMLIxContentHeaderElement: {
+        prototype: HTMLIxContentHeaderElement;
+        new (): HTMLIxContentHeaderElement;
+    };
     interface HTMLIxCounterPillElement extends Components.IxCounterPill, HTMLStencilElement {
     }
     var HTMLIxCounterPillElement: {
@@ -1976,6 +2070,15 @@ declare global {
         prototype: HTMLIxDropdownQuickActionsElement;
         new (): HTMLIxDropdownQuickActionsElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
+    }
+    var HTMLIxEmptyStateElement: {
+        prototype: HTMLIxEmptyStateElement;
+        new (): HTMLIxEmptyStateElement;
+    };
     interface HTMLIxEventListElement extends Components.IxEventList, HTMLStencilElement {
     }
     var HTMLIxEventListElement: {
@@ -2036,12 +2139,6 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
-    interface HTMLIxIconElement extends Components.IxIcon, HTMLStencilElement {
-    }
-    var HTMLIxIconElement: {
-        prototype: HTMLIxIconElement;
-        new (): HTMLIxIconElement;
-    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -2059,6 +2156,24 @@ declare global {
     var HTMLIxInputGroupElement: {
         prototype: HTMLIxInputGroupElement;
         new (): HTMLIxInputGroupElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueElement extends Components.IxKeyValue, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueElement: {
+        prototype: HTMLIxKeyValueElement;
+        new (): HTMLIxKeyValueElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxKeyValueListElement extends Components.IxKeyValueList, HTMLStencilElement {
+    }
+    var HTMLIxKeyValueListElement: {
+        prototype: HTMLIxKeyValueListElement;
+        new (): HTMLIxKeyValueListElement;
     };
     interface HTMLIxKpiElement extends Components.IxKpi, HTMLStencilElement {
     }
@@ -2312,6 +2427,7 @@ declare global {
         "ix-button": HTMLIxButtonElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-content-header": HTMLIxContentHeaderElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
@@ -2322,6 +2438,7 @@ declare global {
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
+        "ix-empty-state": HTMLIxEmptyStateElement;
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
@@ -2332,10 +2449,11 @@ declare global {
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
-        "ix-icon": HTMLIxIconElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
+        "ix-key-value": HTMLIxKeyValueElement;
+        "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -2616,6 +2734,28 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton"?: boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle"?: string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle"?: string;
+        /**
+          * Triggered when back button is clicked
+         */
+        "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
+        /**
+          * Variant of content header
+         */
+        "variant"?: ContentHeaderVariant;
     }
     interface IxCounterPill {
         /**
@@ -2978,6 +3118,35 @@ declare namespace LocalJSX {
      */
     interface IxDropdownQuickActions {
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxEmptyState {
+        /**
+          * Optional empty state action
+         */
+        "action"?: string;
+        /**
+          * Empty state header
+         */
+        "header": string;
+        /**
+          * Optional empty state icon
+         */
+        "icon"?: string;
+        /**
+          * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
+         */
+        "layout"?: EmptyStateLayout;
+        /**
+          * Empty state action click event
+         */
+        "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
+        /**
+          * Optional empty state sub header
+         */
+        "subHeader"?: string;
+    }
     interface IxEventList {
         /**
           * Animate state change transitions. Defaults to 'true'.
@@ -3166,20 +3335,6 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
-    interface IxIcon {
-        /**
-          * Color of the icon
-         */
-        "color"?: string;
-        /**
-          * Use one of our defined icon names e.g. `copy`.
-         */
-        "name"?: string;
-        /**
-          * Size of the icon
-         */
-        "size"?: '12' | '16' | '24' | '32';
-    }
     interface IxIconButton {
         /**
           * Color of icon in  button
@@ -3238,6 +3393,36 @@ declare namespace LocalJSX {
         "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValue {
+        /**
+          * Optional key value icon
+         */
+        "icon"?: string;
+        /**
+          * Key value label
+         */
+        "label": string;
+        /**
+          * Optional key value label position - 'top' or 'left'
+         */
+        "labelPosition"?: KeyValueLabelPosition;
+        /**
+          * Optional key value text value
+         */
+        "value"?: string;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxKeyValueList {
+        /**
+          * Optional striped key value list style
+         */
+        "striped"?: boolean;
     }
     interface IxKpi {
         "label"?: string;
@@ -3454,7 +3639,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Show notification cound on tab
+          * Show notification count on tab
          */
         "notifications"?: number;
         /**
@@ -3670,6 +3855,11 @@ declare namespace LocalJSX {
          */
         "hideListHeader"?: boolean;
         /**
+          * Hint inside of dropdown if no items where found with current filter text
+          * @since 1.5.0
+         */
+        "i18nNoMatches"?: string;
+        /**
           * Input field placeholder
          */
         "i18nPlaceholder"?: string;
@@ -3698,7 +3888,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Indices of selected items
+          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
          */
         "selectedIndices"?: string | string[];
     }
@@ -4066,7 +4256,11 @@ declare namespace LocalJSX {
     }
     interface IxTypography {
         /**
-          * Font variant
+          * Text color based on theme variables
+         */
+        "color"?: TypographyColors;
+        /**
+          * Font variant based on theme variables
          */
         "variant"?: TypographyVariants;
     }
@@ -4195,6 +4389,7 @@ declare namespace LocalJSX {
         "ix-button": IxButton;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
+        "ix-content-header": IxContentHeader;
         "ix-counter-pill": IxCounterPill;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
@@ -4205,6 +4400,7 @@ declare namespace LocalJSX {
         "ix-dropdown-button": IxDropdownButton;
         "ix-dropdown-item": IxDropdownItem;
         "ix-dropdown-quick-actions": IxDropdownQuickActions;
+        "ix-empty-state": IxEmptyState;
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
@@ -4215,10 +4411,11 @@ declare namespace LocalJSX {
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
-        "ix-icon": IxIcon;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
+        "ix-key-value": IxKeyValue;
+        "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -4275,6 +4472,7 @@ declare module "@stencil/core" {
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
@@ -4294,6 +4492,10 @@ declare module "@stencil/core" {
              * @since 1.4.0
              */
             "ix-dropdown-quick-actions": LocalJSX.IxDropdownQuickActions & JSXBase.HTMLAttributes<HTMLIxDropdownQuickActionsElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-empty-state": LocalJSX.IxEmptyState & JSXBase.HTMLAttributes<HTMLIxEmptyStateElement>;
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
@@ -4304,10 +4506,17 @@ declare module "@stencil/core" {
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
-            "ix-icon": LocalJSX.IxIcon & JSXBase.HTMLAttributes<HTMLIxIconElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value": LocalJSX.IxKeyValue & JSXBase.HTMLAttributes<HTMLIxKeyValueElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
