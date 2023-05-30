@@ -1737,6 +1737,123 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/content-header",
+      "filePath": "./src/components/content-header/content-header.tsx",
+      "fileName": "content-header.tsx",
+      "readmePath": "./src/components/content-header/readme.md",
+      "usagesDir": "./src/components/content-header/usage",
+      "tag": "ix-content-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-content-header": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "hasBackButton",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "has-back-button",
+          "reflectToAttr": false,
+          "docs": "Display a back button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerSubtitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-subtitle",
+          "reflectToAttr": false,
+          "docs": "Subtitle of Header",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "headerTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "header-title",
+          "reflectToAttr": false,
+          "docs": "Title of Header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of content header",
+          "docsTags": [],
+          "default": "'Primary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "backButtonClick",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when back button is clicked",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/counter-pill",
       "filePath": "./src/components/counter-pill/counter-pill.tsx",
       "fileName": "counter-pill.tsx",
@@ -2647,7 +2764,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -2775,7 +2892,7 @@
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "toggleDrawer(show: boolean) => Promise<void>",
+          "signature": "toggleDrawer(show?: boolean) => Promise<void>",
           "parameters": [],
           "docs": "Toggle or define show state of drawer",
           "docsTags": [
@@ -3511,7 +3628,7 @@
           "text": "1.6.0"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
@@ -3887,6 +4004,28 @@
         ]
       },
       "props": [
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "full-width",
+          "reflectToAttr": false,
+          "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "icon",
           "type": "string",
@@ -4655,6 +4794,7 @@
       "dependents": [
         "ix-card-list",
         "ix-category-filter",
+        "ix-content-header",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -4668,7 +4808,6 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
-        "ix-page-header",
         "ix-pagination",
         "ix-select",
         "ix-time-picker",
@@ -4685,6 +4824,9 @@
           "ix-icon-button"
         ],
         "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-content-header": [
           "ix-icon-button"
         ],
         "ix-date-picker": [
@@ -4724,9 +4866,6 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
-          "ix-icon-button"
-        ],
-        "ix-page-header": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -5154,7 +5293,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -5408,6 +5547,26 @@
             }
           ],
           "deprecation": "Will be removed in 2.0.0. Use slot based approach"
+        },
+        {
+          "name": "toggleSidebar",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "toggleSidebar(show?: boolean) => Promise<void>",
+          "parameters": [],
+          "docs": "Change the visibility of the sidebar",
+          "docsTags": [
+            {
+              "name": "param",
+              "text": "show new visibility state"
+            },
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ]
         }
       ],
       "events": [
@@ -6713,7 +6872,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
@@ -7267,123 +7426,6 @@
       "props": [],
       "methods": [],
       "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/page-header",
-      "filePath": "./src/components/page-header/page-header.tsx",
-      "fileName": "page-header.tsx",
-      "readmePath": "./src/components/page-header/readme.md",
-      "usagesDir": "./src/components/page-header/usage",
-      "tag": "ix-page-header",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "ix-page-header": [
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "hasBackButton",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "has-back-button",
-          "reflectToAttr": false,
-          "docs": "has back button",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "headerSubtitle",
-          "type": "string",
-          "mutable": false,
-          "attr": "header-subtitle",
-          "reflectToAttr": false,
-          "docs": "subtitle",
-          "docsTags": [],
-          "default": "undefined",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "headerTitle",
-          "type": "string",
-          "mutable": false,
-          "attr": "header-title",
-          "reflectToAttr": false,
-          "docs": "title",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
-          "mutable": false,
-          "attr": "variant",
-          "reflectToAttr": false,
-          "docs": "page header variant",
-          "docsTags": [],
-          "default": "'Primary'",
-          "values": [
-            {
-              "value": "Primary",
-              "type": "string"
-            },
-            {
-              "value": "Secondary",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "event": "backButtonClick",
-          "detail": "void",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "triggered when back button is clicked",
-          "docsTags": []
-        }
-      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -8333,7 +8375,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-upload"
       ],

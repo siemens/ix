@@ -35,6 +35,8 @@ import CategoryFilterSuggestions from 'src/preview-examples/category-filter-sugg
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentHeader from 'src/preview-examples/content-header';
+import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
@@ -74,8 +76,6 @@ import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
-import PageHeader from 'src/preview-examples/page-header';
-import PageHeaderNoBack from 'src/preview-examples/page-header-no-back';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
@@ -211,7 +211,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     KeyValueListWithCustomValue,
     KeyValueListWithIcon,
     KeyValueListStriped,
-    PageHeaderNoBack,
+    ContentHeaderNoBack,
   ],
   imports: [
     BrowserModule,

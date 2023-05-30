@@ -10,13 +10,13 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('page-header', () => {
+regressionTest.describe('content-header', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('page-header/basic');
+    await page.goto('content-header/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('secondary', async ({ page }) => {
-    await page.goto('page-header/secondary');
+    await page.goto('content-header/secondary');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

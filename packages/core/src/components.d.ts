@@ -357,6 +357,24 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton": boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle": string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle": string;
+        /**
+          * Variant of content header
+         */
+        "variant": ContentHeaderVariant;
+    }
     interface IxCounterPill {
         /**
           * Align pill content left
@@ -562,7 +580,7 @@ export namespace Components {
           * Toggle or define show state of drawer
           * @param show Overwrite toggle state with boolean
          */
-        "toggleDrawer": (show: boolean) => Promise<void>;
+        "toggleDrawer": (show?: boolean) => Promise<void>;
         /**
           * Width interpreted as REM if not set to 'auto'
          */
@@ -759,6 +777,11 @@ export namespace Components {
         "selected": boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
+         */
+        "fullWidth": boolean;
         /**
           * Search icon
          */
@@ -996,6 +1019,12 @@ export namespace Components {
           * @param color
          */
         "openOverlay": (name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>;
+        /**
+          * Change the visibility of the sidebar
+          * @param show new visibility state
+          * @since 1.6.0
+         */
+        "toggleSidebar": (show?: boolean) => Promise<void>;
     }
     interface IxMapNavigationOverlay {
         /**
@@ -1287,24 +1316,6 @@ export namespace Components {
         "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
     interface IxModalExample {
-    }
-    interface IxPageHeader {
-        /**
-          * has back button
-         */
-        "hasBackButton": boolean;
-        /**
-          * subtitle
-         */
-        "headerSubtitle": string | undefined;
-        /**
-          * title
-         */
-        "headerTitle": string;
-        /**
-          * page header variant
-         */
-        "variant": PageHeaderVariant;
     }
     /**
      * @since 1.5.0
@@ -1919,6 +1930,10 @@ export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
 }
+export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxContentHeaderElement;
+}
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
@@ -2002,10 +2017,6 @@ export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
 export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
-}
-export interface IxPageHeaderCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxPageHeaderElement;
 }
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2179,6 +2190,12 @@ declare global {
     var HTMLIxChipElement: {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
+    };
+    interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
+    }
+    var HTMLIxContentHeaderElement: {
+        prototype: HTMLIxContentHeaderElement;
+        new (): HTMLIxContentHeaderElement;
     };
     interface HTMLIxCounterPillElement extends Components.IxCounterPill, HTMLStencilElement {
     }
@@ -2462,12 +2479,6 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
-    interface HTMLIxPageHeaderElement extends Components.IxPageHeader, HTMLStencilElement {
-    }
-    var HTMLIxPageHeaderElement: {
-        prototype: HTMLIxPageHeaderElement;
-        new (): HTMLIxPageHeaderElement;
-    };
     /**
      * @since 1.5.0
      */
@@ -2639,6 +2650,7 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-content-header": HTMLIxContentHeaderElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
@@ -2683,7 +2695,6 @@ declare global {
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-example": HTMLIxModalExampleElement;
-        "ix-page-header": HTMLIxPageHeaderElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-push-card": HTMLIxPushCardElement;
@@ -3052,6 +3063,28 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxContentHeader {
+        /**
+          * Display a back button
+         */
+        "hasBackButton"?: boolean;
+        /**
+          * Subtitle of Header
+         */
+        "headerSubtitle"?: string | undefined;
+        /**
+          * Title of Header
+         */
+        "headerTitle"?: string;
+        /**
+          * Triggered when back button is clicked
+         */
+        "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
+        /**
+          * Variant of content header
+         */
+        "variant"?: ContentHeaderVariant;
     }
     interface IxCounterPill {
         /**
@@ -3501,6 +3534,11 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
+         */
+        "fullWidth"?: boolean;
         /**
           * Search icon
          */
@@ -4060,28 +4098,6 @@ declare namespace LocalJSX {
     interface IxModalContainer {
     }
     interface IxModalExample {
-    }
-    interface IxPageHeader {
-        /**
-          * has back button
-         */
-        "hasBackButton"?: boolean;
-        /**
-          * subtitle
-         */
-        "headerSubtitle"?: string | undefined;
-        /**
-          * title
-         */
-        "headerTitle"?: string;
-        /**
-          * triggered when back button is clicked
-         */
-        "onBackButtonClick"?: (event: IxPageHeaderCustomEvent<void>) => void;
-        /**
-          * page header variant
-         */
-        "variant"?: PageHeaderVariant;
     }
     /**
      * @since 1.5.0
@@ -4746,6 +4762,7 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
+        "ix-content-header": IxContentHeader;
         "ix-counter-pill": IxCounterPill;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
@@ -4790,7 +4807,6 @@ declare namespace LocalJSX {
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
         "ix-modal-example": IxModalExample;
-        "ix-page-header": IxPageHeader;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-push-card": IxPushCard;
@@ -4856,6 +4872,7 @@ declare module "@stencil/core" {
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
@@ -4918,7 +4935,6 @@ declare module "@stencil/core" {
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
-            "ix-page-header": LocalJSX.IxPageHeader & JSXBase.HTMLAttributes<HTMLIxPageHeaderElement>;
             /**
              * @since 1.5.0
              */

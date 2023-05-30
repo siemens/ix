@@ -27,6 +27,8 @@ import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
+import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
+import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -63,8 +65,6 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
-import PageHeaderNoBack from './preview-examples/page-header-no-back.vue';
-import PageHeader from './preview-examples/page-header.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
