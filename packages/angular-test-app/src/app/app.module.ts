@@ -199,7 +199,6 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     PushCard,
     ActionCard,
     CardList,
-    PageHeader,
     EmptyState,
     EmptyStateCompact,
     EmptyStateCompactBreak,
@@ -211,6 +210,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     KeyValueListWithCustomValue,
     KeyValueListWithIcon,
     KeyValueListStriped,
+    ContentHeader,
     ContentHeaderNoBack,
   ],
   imports: [
