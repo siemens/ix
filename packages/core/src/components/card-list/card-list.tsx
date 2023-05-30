@@ -97,6 +97,11 @@ export class CardList {
   @Prop() i18nShowAll = 'Show all';
 
   /**
+   * i18n More cards available
+   */
+  @Prop() i18nMoreCards = 'There are more cards available';
+
+  /**
    * Fire event when the collapse state is changed by the user
    */
   @Event() collapseChanged: EventEmitter<boolean>;
@@ -312,8 +317,7 @@ export class CardList {
                     class={'Show__All__Card__Icon'}
                   ></ix-icon>
                   <span class="Show__All__Card__Text">
-                    There are {this.numberOfOverflowingElements} more cards
-                    available
+                    {this.i18nMoreCards} ({this.numberOfOverflowingElements})
                   </span>
                 </ix-card-content>
               </ix-card>

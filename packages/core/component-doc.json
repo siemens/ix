@@ -1098,6 +1098,23 @@
           "required": false
         },
         {
+          "name": "i18nMoreCards",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-more-cards",
+          "reflectToAttr": false,
+          "docs": "i18n More cards available",
+          "docsTags": [],
+          "default": "'There are more cards available'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nShowAll",
           "type": "string",
           "mutable": false,
