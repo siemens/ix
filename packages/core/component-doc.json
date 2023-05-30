@@ -3435,8 +3435,13 @@
           "mutable": false,
           "attr": "full-width",
           "reflectToAttr": false,
-          "docs": "Width to 100%",
-          "docsTags": [],
+          "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
           "default": "false",
           "values": [
             {

@@ -670,7 +670,8 @@ export namespace Components {
     }
     interface IxExpandingSearch {
         /**
-          * Width to 100%
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
          */
         "fullWidth": boolean;
         /**
@@ -3194,7 +3195,8 @@ declare namespace LocalJSX {
     }
     interface IxExpandingSearch {
         /**
-          * Width to 100%
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
          */
         "fullWidth"?: boolean;
         /**
