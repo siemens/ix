@@ -3430,6 +3430,28 @@
       },
       "props": [
         {
+          "name": "fullWidth",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "full-width",
+          "reflectToAttr": false,
+          "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "icon",
           "type": "string",
           "mutable": false,

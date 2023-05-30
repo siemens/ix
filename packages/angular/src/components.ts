@@ -649,14 +649,14 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 
 
 @ProxyCmp({
-  inputs: ['icon', 'placeholder', 'value']
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value']
 })
 @Component({
   selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'placeholder', 'value'],
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value'],
 })
 export class IxExpandingSearch {
   protected el: HTMLElement;
