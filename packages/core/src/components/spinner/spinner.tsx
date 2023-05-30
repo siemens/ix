@@ -18,12 +18,12 @@ export class Spinner {
   /**
    * Variant of spinner
    */
-  @Prop() variant: 'primary' | 'sencodary' | 'secondary' = 'secondary';
+  @Prop() variant: 'primary' | 'secondary' = 'secondary';
 
   /**
    * Size of spinner
    */
-  @Prop() size: 'medium' | 'large' = 'medium';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
 
   render() {
     return (
@@ -31,6 +31,7 @@ export class Spinner {
         class={{
           primary: this.variant === 'primary',
           large: this.size === 'large',
+          small: this.size === 'small',
         }}
       >
         <svg

@@ -1346,11 +1346,11 @@ export namespace Components {
         /**
           * Size of spinner
          */
-        "size": 'medium' | 'large';
+        "size": 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant": 'primary' | 'sencodary' | 'secondary';
+        "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -3907,11 +3907,11 @@ declare namespace LocalJSX {
         /**
           * Size of spinner
          */
-        "size"?: 'medium' | 'large';
+        "size"?: 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant"?: 'primary' | 'sencodary' | 'secondary';
+        "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**

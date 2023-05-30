@@ -7628,7 +7628,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"large\" | \"medium\"",
+          "type": "\"large\" | \"medium\" | \"small\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -7643,6 +7643,10 @@
             {
               "value": "medium",
               "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7650,7 +7654,7 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\" | \"sencodary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -7664,10 +7668,6 @@
             },
             {
               "value": "secondary",
-              "type": "string"
-            },
-            {
-              "value": "sencodary",
               "type": "string"
             }
           ],

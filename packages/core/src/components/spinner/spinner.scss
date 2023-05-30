@@ -18,6 +18,7 @@
   width: 2rem;
   justify-content: center;
   align-items: center;
+  opacity: 0.3;
 
   svg {
     height: 2rem;
@@ -25,15 +26,17 @@
   }
 
   #fill {
-    fill: var(--theme-color-weak-text);
+    fill: var(--theme-color-contrast-text);
   }
 
   #stroke {
-    stroke: var(--theme-color-weak-text);
+    stroke: var(--theme-color-contrast-text);
   }
 }
 
 :host(.primary) {
+  opacity: 1;
+
   #fill {
     fill: var(--theme-color-primary);
   }
@@ -50,5 +53,15 @@
   svg {
     height: 5.75rem;
     width: 6rem;
+  }
+}
+
+:host(.small) {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
   }
 }
