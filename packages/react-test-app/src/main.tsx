@@ -20,6 +20,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import AboutAndLegal from './preview-examples/about-and-legal';
+import ActionCard from './preview-examples/action-card';
 import AGGrid from './preview-examples/aggrid';
 import BasicNavigation from './preview-examples/basic-navigation';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
@@ -31,6 +32,7 @@ import ButtonGroup from './preview-examples/button-group';
 import ButtonSelected from './preview-examples/button-selected';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import Buttons from './preview-examples/buttons';
+import CardList from './preview-examples/card-list';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
@@ -62,6 +64,7 @@ import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import Pill from './preview-examples/pill';
 import PopoverNews from './preview-examples/popover-news';
+import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
@@ -230,6 +233,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       />
       <Route path="/preview/tooltip" element={<Tooltip />} />
       <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
+      <Route path="/preview/push-card" element={<PushCard />} />
+      <Route path="/preview/action-card" element={<ActionCard />} />
+      <Route path="/preview/card-list" element={<CardList />} />
       <Route path="/testing">
         <Route path="navigation" element={<NavigationTest />}>
           <Route
