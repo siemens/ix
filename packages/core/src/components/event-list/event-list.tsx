@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 
 @Component({
   tag: 'ix-event-list',
   styleUrl: 'event-list.scss',
-  scoped: true,
+  shadow: true,
 })
 export class EventList {
   private readonly mutationObserver = createMutationObserver(
@@ -49,18 +49,24 @@ export class EventList {
    */
   @Prop() chevron: boolean;
 
+  @Watch('chevron')
+  watchChevron(chevron: boolean | undefined) {
+    this.handleChevron(chevron);
+  }
+
   componentDidLoad() {
     if (this.animated) {
       this.triggerFadeIn();
     }
 
     if (typeof this.itemHeight === 'number') {
-      const height = convertToRemString(this.itemHeight);
-      this.el.querySelectorAll('.ix-event-list-item').forEach((item) => {
-        item.classList.add('d-flex');
+      const height = convertToRemString(this.itemHeight as number);
+      this.el.querySelectorAll('ix-event-list-item').forEach((item) => {
         this.setCustomHeight(item as HTMLElement, height);
       });
     }
+
+    this.handleChevron(this.chevron);
 
     this.mutationObserver.observe(this.el, { childList: true, subtree: true });
   }
@@ -75,23 +81,20 @@ export class EventList {
           .forEach((mutation) =>
             mutation.addedNodes.forEach((item) => {
               const itemHtml = item as HTMLElement;
-              if (!itemHtml.classList?.contains('ix-event-list-item')) {
-                return;
-              }
 
-              itemHtml.classList.add('d-flex');
               this.setCustomHeight(itemHtml, height);
             })
           );
       }
+
+      this.handleChevron(this.chevron);
 
       this.triggerFadeIn();
     });
   }
 
   private setCustomHeight(item: HTMLElement, height: string) {
-    item.style.height = height;
-    item.style.maxHeight = height;
+    item.style.setProperty('--event-list-item-height', height);
   }
 
   private triggerFadeOut(): Promise<any> {
@@ -106,7 +109,7 @@ export class EventList {
       },
       { opacity: 0 },
     ];
-    const listElement = this.el.querySelector('ul');
+    const listElement = this.el.shadowRoot.querySelector('ul');
     return listElement.animate(keyframes, {
       duration: EventList.fadeOutDuration,
     }).finished;
@@ -117,7 +120,7 @@ export class EventList {
       return;
     }
 
-    const listItems = this.el.querySelectorAll('.ix-event-list-item');
+    const listItems = this.el.querySelectorAll('ix-event-list-item');
     listItems.forEach((e, i) => {
       const delay = i * 80;
       const offset = delay / (delay + EventList.fadeInDuration);
@@ -134,6 +137,19 @@ export class EventList {
     });
   }
 
+  private handleChevron(chevron: boolean | undefined): void {
+    const listItems = this.el.querySelectorAll('ix-event-list-item');
+
+    listItems.forEach((e) => {
+      if (chevron) {
+        e.setAttribute('chevron', 'true');
+      } else if (chevron !== undefined) {
+        // remove chevron attribute from list items only if chevron is set to "false" ("undefined" means there is no value provided, so we keep potential directly applied chevron attributes)
+        e.removeAttribute('chevron');
+      }
+    });
+  }
+
   render() {
     return (
       <Host
@@ -141,7 +157,6 @@ export class EventList {
           'item-size-s': this.itemHeight === 'S',
           'item-size-l': this.itemHeight === 'L',
           compact: this.compact,
-          chevron: this.chevron,
         }}
       >
         <ul>

@@ -12,7 +12,7 @@
 @import 'mixins/shadow-dom/component';
 @import 'common-variables';
 
-$height-single-line: 2.5rem;
+$default-event-list-item-height: 2.5rem;
 
 :host {
   @include ix-component;
@@ -21,22 +21,28 @@ $height-single-line: 2.5rem;
     display: flex;
     align-items: center;
     position: relative;
-    height: $height-single-line;
-    max-height: $height-single-line;
-    border-radius: $default-border-radius;
+    height: var(--event-list-item-height, $default-event-list-item-height);
+    max-height: var(--event-list-item-height, $default-event-list-item-height);
+    border-radius: var(--event-list-item-border-radius, $default-border-radius);
     background-color: var(--theme-event-item--background);
     overflow: hidden;
     transition: $default-time;
     cursor: pointer;
-    margin-bottom: $small-space;
+    margin-bottom: var(--event-list-item-margin-bottom, $small-space);
 
     .indicator {
       height: 100%;
       width: $small-space;
       max-width: $small-space;
       min-width: $small-space;
-      border-top-left-radius: $default-border-radius;
-      border-bottom-left-radius: $default-border-radius;
+      border-top-left-radius: var(
+        --event-list-item-border-radius,
+        $default-border-radius
+      );
+      border-bottom-left-radius: var(
+        --event-list-item-border-radius,
+        $default-border-radius
+      );
     }
 
     .indicator-empty {
@@ -54,9 +60,15 @@ $height-single-line: 2.5rem;
       border: 0.062rem solid;
       border-color: var(--theme-event-item--border);
       border-top-left-radius: 0;
-      border-top-right-radius: $default-border-radius;
+      border-top-right-radius: var(
+        --event-list-item-border-radius,
+        $default-border-radius
+      );
       border-bottom-left-radius: 0;
-      border-bottom-right-radius: $default-border-radius;
+      border-bottom-right-radius: var(
+        --event-list-item-border-radius,
+        $default-border-radius
+      );
       border-left: none;
       padding-left: $default-space;
     }
@@ -65,7 +77,9 @@ $height-single-line: 2.5rem;
       display: flex;
       align-items: center;
       width: 100%;
-      height: 100%;
+      height: var(--event-list-item-height, 100%);
+      max-height: var(--event-list-item-height, 100%);
+      white-space: var(--event-list-item-content-white-space, inherit);
       overflow: hidden;
     }
 
