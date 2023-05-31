@@ -26,7 +26,7 @@
     "@siemens/html-test-app": "~1.5.0",
     "@siemens/ix": "~1.5.0",
     "@siemens/ix-echarts": "~1.5.0",
-    "@siemens/ix-icons": "1.1.0-beta.1",
+    "@siemens/ix-icons": "^1.1.0",
     "@siemens/ix-react": "~1.5.0",
     "@stackblitz/sdk": "^1.8.1",
     "@stencil/postcss": "^2.1.0",
