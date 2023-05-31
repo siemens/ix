@@ -18,7 +18,7 @@ export class Spinner {
   /**
    * Variant of spinner
    */
-  @Prop() variant: 'primary' | 'secondary' = 'secondary';
+  @Prop() variant: 'primary' | 'sencodary' | 'secondary' = 'secondary';
 
   /**
    * Size of spinner
