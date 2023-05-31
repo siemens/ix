@@ -19,9 +19,14 @@ $container-width: 11.5625rem;
   height: $x-large-space;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   &.right-position {
     width: $container-width !important;
+
+    &.fullWidth {
+      width: 100% !important;
+    }
   }
 
   .input-container {
@@ -34,10 +39,15 @@ $container-width: 11.5625rem;
 
   input {
     box-shadow: var(--theme-input--box-shadow);
+    cursor: auto !important;
   }
 
   .expanded {
     width: $container-width;
+
+    &.fullWidth {
+      width: 100%;
+    }
   }
 
   .collapsed {

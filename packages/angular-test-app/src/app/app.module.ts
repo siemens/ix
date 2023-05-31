@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
+import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
@@ -28,11 +29,14 @@ import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentHeader from 'src/preview-examples/content-header';
+import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
@@ -72,10 +76,9 @@ import MessageBar from 'src/preview-examples/message-bar';
 import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
-import PageHeader from 'src/preview-examples/page-header';
-import PageHeaderNoBack from 'src/preview-examples/page-header-no-back';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
+import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
@@ -193,7 +196,9 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     TooltipTitle,
     ModalByInstance,
     ModalByInstanceExample,
-    PageHeader,
+    PushCard,
+    ActionCard,
+    CardList,
     EmptyState,
     EmptyStateCompact,
     EmptyStateCompactBreak,
@@ -205,7 +210,8 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     KeyValueListWithCustomValue,
     KeyValueListWithIcon,
     KeyValueListStriped,
-    PageHeaderNoBack,
+    ContentHeader,
+    ContentHeaderNoBack,
   ],
   imports: [
     BrowserModule,

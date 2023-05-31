@@ -2,6 +2,7 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
+  d.IxActionCard,
   d.IxAnimatedTab,
   d.IxAnimatedTabs,
   d.IxApplicationHeader,
@@ -10,8 +11,14 @@ export const DIRECTIVES = [
   d.IxBreadcrumb,
   d.IxBreadcrumbItem,
   d.IxButton,
+  d.IxCard,
+  d.IxCardAccordion,
+  d.IxCardContent,
+  d.IxCardList,
+  d.IxCardTitle,
   d.IxCategoryFilter,
   d.IxChip,
+  d.IxContentHeader,
   d.IxCounterPill,
   d.IxDatePicker,
   d.IxDatetimePicker,
@@ -53,9 +60,9 @@ export const DIRECTIVES = [
   d.IxModal,
   d.IxModalContainer,
   d.IxModalExample,
-  d.IxPageHeader,
   d.IxPagination,
   d.IxPill,
+  d.IxPushCard,
   d.IxSelect,
   d.IxSelectItem,
   d.IxSpinner,
