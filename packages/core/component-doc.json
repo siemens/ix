@@ -8951,15 +8951,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-toggle"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "checked",
@@ -10180,14 +10174,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-toggle"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-toggle"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
