@@ -60,12 +60,16 @@ jobs:
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
+        env:
+          BASE_URL: /version-dev/
         with:
           filter: 'documentation'
 
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
+        env:
+          BASE_URL: /
         with:
           filter: 'documentation'
 
