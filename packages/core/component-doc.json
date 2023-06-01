@@ -367,7 +367,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
@@ -377,6 +379,9 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -5704,7 +5709,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "none",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item",
@@ -5718,6 +5725,9 @@
         ],
         "ix-menu-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -10934,8 +10944,30 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-basic-navigation",
+        "ix-menu"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-basic-navigation",
+          "ix-menu"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item",
+          "ix-dropdown"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
