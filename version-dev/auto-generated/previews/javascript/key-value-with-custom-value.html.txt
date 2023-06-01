@@ -1,0 +1,8 @@
+<ix-key-value label="Label">
+  <input
+    class="form-control"
+    placeholder="Enter text here"
+    type="text"
+    slot="custom-value"
+  />
+</ix-key-value>

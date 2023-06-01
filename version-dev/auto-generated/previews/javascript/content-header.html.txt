@@ -1,0 +1,9 @@
+<ix-content-header
+  has-back-button="true"
+  header-title="Content title"
+  header-subtitle="Subtitle"
+>
+  <ix-button ghost="true">Button1</ix-button>
+  <ix-button ghost="true">Button2</ix-button>
+  <ix-button ghost="true">Button3</ix-button>
+</ix-content-header>
