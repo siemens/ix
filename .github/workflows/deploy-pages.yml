@@ -46,7 +46,7 @@ jobs:
           cd .tmp-brand
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
+          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps --registry https://code.siemens.com/api/v4/projects/249177/packages/npm/
           cd ./node_modules/@siemens/ix-icons
           yarn link
 
