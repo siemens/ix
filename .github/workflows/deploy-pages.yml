@@ -39,10 +39,8 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
 
-      - uses: ./.github/workflows/actions/install
       - name: 'Download and link @siemens/ix-brand-theme'
         run: |
-          rm .yarnrc
           mkdir .tmp-brand
           cd .tmp-brand
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
@@ -50,6 +48,8 @@ jobs:
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
           cd ./node_modules/@siemens/ix-icons
           yarn link
+
+      - uses: ./.github/workflows/actions/install
 
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
