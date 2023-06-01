@@ -16,21 +16,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-basic-navigation>
-          <ix-menu></ix-menu>
-          <div
-            style={{
-              display: 'block',
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'red',
-            }}
-          ></div>
-        </ix-basic-navigation>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
