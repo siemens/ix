@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+:host {
+  display: inline-block;
+  position: relative;
+  height: 2rem;
+}
+:host .dropdown-button {
+  position: relative;
+}
+:host .hide {
+  display: none;
+}
+:host .triangle {
+  position: absolute;
+  -webkit-margin-start: 1.5625rem;
+          margin-inline-start: 1.5625rem;
+  -webkit-margin-before: -0.4375rem;
+          margin-block-start: -0.4375rem;
+  border-right: 0 solid transparent;
+  border-left: 4px solid transparent;
+  border-top: 0 solid transparent;
+  border-bottom: 4px solid;
+  color: var(--theme-btn-primary--color);
+}
+:host .triangle.primary.ghost {
+  color: var(--theme-btn-invisible-primary--color);
+}
+:host .triangle.primary.outline {
+  color: var(--theme-btn-outline-primary--color);
+}
+:host .triangle.primary.ghost.disabled {
+  color: var(--theme-btn-invisible-primary--color--disabled);
+}
+:host .triangle.primary.outline.disabled {
+  color: var(--theme-btn-outline-primary--color--disabled);
+}
+:host .triangle.primary.disabled {
+  color: var(--theme-btn-primary--color--disabled);
+}
+:host .triangle.secondary.ghost {
+  color: var(--theme-btn-invisible-secondary--color);
+}
+:host .triangle.secondary.outline {
+  color: var(--theme-btn-outline-secondary--color);
+}
+:host .triangle.secondary.ghost.disabled {
+  color: var(--theme-btn-invisible-secondary--color--disabled);
+}
+:host .triangle.secondary.outline.disabled {
+  color: var(--theme-btn-outline-secondary--color--disabled);
+}
+:host .triangle.secondary.disabled {
+  color: var(--theme-btn-secondary--color--disabled);
+}
+:host .hide {
+  display: none;
+}
+:host .dropdown {
+  width: auto !important;
+  inset: auto !important;
+  transform: unset !important;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>monitor-trend</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape" fill="#000000" transform="translate(64.000000, 64.000000)">
+            <path d="M42.6666667,1.42108547e-14 L42.4939709,343.395437 L384,341.333333 L384,384 L1.42108547e-14,384 L0.172695782,1.42108547e-14 L42.6666667,1.42108547e-14 Z M384,64 L384,192 L341.333333,192 L341.333055,135.367 L233.893601,232.06349 L181.333333,179.52 L79.0849447,281.751611 L48.9150553,251.581722 L181.333333,119.163444 L235.434667,173.248 L309.438055,106.666 L256,106.666667 L256,64 L384,64 Z"></path>
+        </g>
+    </g>
+</svg>

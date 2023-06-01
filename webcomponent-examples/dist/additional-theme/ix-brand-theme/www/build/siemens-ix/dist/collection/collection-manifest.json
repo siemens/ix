@@ -1,0 +1,268 @@
+{
+  "entries": [
+    "./components/date-time-card/date-time-card.js",
+    "./components/modal-container/modal-container.js",
+    "./components/modal/modal.js",
+    "./components/animated-tab/animated-tab.js",
+    "./components/animated-tabs/animated-tabs.js",
+    "./components/application-header/application-header.js",
+    "./components/basic-navigation/basic-navigation.js",
+    "./components/blind/blind.js",
+    "./components/breadcrumb/breadcrumb.js",
+    "./components/breadcrumb-item/breadcrumb-item.js",
+    "./components/button/button.js",
+    "./components/category-filter/category-filter.js",
+    "./components/chip/chip.js",
+    "./components/counter-pill/counter-pill.js",
+    "./components/date-picker/date-picker.js",
+    "./components/datetime-picker/datetime-picker.js",
+    "./components/drawer/drawer.js",
+    "./components/dropdown/dropdown.js",
+    "./components/dropdown-button/dropdown-button.js",
+    "./components/dropdown-item/dropdown-item.js",
+    "./components/event-list/event-list.js",
+    "./components/event-list-item/event-list-item.js",
+    "./components/expanding-search/expanding-search.js",
+    "./components/filter-chip/filter-chip.js",
+    "./components/flip-tile/flip-tile.js",
+    "./components/flip-tile-content/flip-tile-content.js",
+    "./components/group/group-context-menu.js",
+    "./components/group/group.js",
+    "./components/group-dropdown-item/group-dropdown-item.js",
+    "./components/group-item/group-item.js",
+    "./components/icon/icon.js",
+    "./components/icon-button/icon-button.js",
+    "./components/input-group/input-group.js",
+    "./components/kpi/kpi.js",
+    "./components/map-navigation/map-navigation.js",
+    "./components/map-navigation-overlay/map-navigation-overlay.js",
+    "./components/menu/menu.js",
+    "./components/menu-about/menu-about.js",
+    "./components/menu-about-item/menu-about-item.js",
+    "./components/menu-about-news/menu-about-news.js",
+    "./components/menu-avatar/menu-avatar.js",
+    "./components/menu-avatar-item/menu-avatar-item.js",
+    "./components/menu-item/menu-item.js",
+    "./components/menu-settings/menu-settings.js",
+    "./components/menu-settings-item/menu-settings-item.js",
+    "./components/message-bar/message-bar.js",
+    "./components/my-component/example-modal.js",
+    "./components/my-component/my-component.js",
+    "./components/pill/pill.js",
+    "./components/select/select.js",
+    "./components/select-item/select-item.js",
+    "./components/spinner/spinner.js",
+    "./components/split-button/split-button.js",
+    "./components/split-button-item/split-button-item.js",
+    "./components/tab-item/tab-item.js",
+    "./components/tabs/tabs.js",
+    "./components/tile/tile.js",
+    "./components/time-picker/time-picker.js",
+    "./components/toast/toast-container.js",
+    "./components/toast/toast.js",
+    "./components/toggle/toggle.js",
+    "./components/tooltip/tooltip.js",
+    "./components/tree/tree.js",
+    "./components/tree-item/tree-item.js",
+    "./components/typography/typography.js",
+    "./components/upload/upload.js",
+    "./components/validation-tooltip/validation-tooltip.js",
+    "./components/workflow-step/workflow-step.js",
+    "./components/workflow-steps/workflow-steps.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.19.3",
+    "typescriptVersion": "4.7.4"
+  },
+  "collections": [],
+  "bundles": [
+    {
+      "components": [
+        "ix-application-header"
+      ]
+    },
+    {
+      "components": [
+        "ix-basic-navigation"
+      ]
+    },
+    {
+      "components": [
+        "ix-blind"
+      ]
+    },
+    {
+      "components": [
+        "ix-button"
+      ]
+    },
+    {
+      "components": [
+        "ix-category-filter"
+      ]
+    },
+    {
+      "components": [
+        "ix-chip"
+      ]
+    },
+    {
+      "components": [
+        "ix-counter-pill"
+      ]
+    },
+    {
+      "components": [
+        "ix-drawer"
+      ]
+    },
+    {
+      "components": [
+        "ix-expanding-search"
+      ]
+    },
+    {
+      "components": [
+        "ix-filter-chip"
+      ]
+    },
+    {
+      "components": [
+        "ix-icon"
+      ]
+    },
+    {
+      "components": [
+        "ix-icon-button"
+      ]
+    },
+    {
+      "components": [
+        "ix-input-group"
+      ]
+    },
+    {
+      "components": [
+        "ix-message-bar"
+      ]
+    },
+    {
+      "components": [
+        "ix-pill"
+      ]
+    },
+    {
+      "components": [
+        "ix-spinner"
+      ]
+    },
+    {
+      "components": [
+        "ix-tile"
+      ]
+    },
+    {
+      "components": [
+        "ix-toggle"
+      ]
+    },
+    {
+      "components": [
+        "ix-upload"
+      ]
+    },
+    {
+      "components": [
+        "ix-animated-tab",
+        "ix-animated-tabs"
+      ]
+    },
+    {
+      "components": [
+        "ix-breadcrumb",
+        "ix-breadcrumb-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-dropdown",
+        "ix-dropdown-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-event-list",
+        "ix-event-list-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-flip-tile",
+        "ix-flip-tile-content"
+      ]
+    },
+    {
+      "components": [
+        "ix-map-navigation",
+        "ix-map-navigation-overlay"
+      ]
+    },
+    {
+      "components": [
+        "ix-modal",
+        "ix-modal-container"
+      ]
+    },
+    {
+      "components": [
+        "ix-select",
+        "ix-select-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-split-button",
+        "ix-split-button-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-toast",
+        "ix-toast-container"
+      ]
+    },
+    {
+      "components": [
+        "ix-tree",
+        "ix-tree-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-workflow-step",
+        "ix-workflow-steps"
+      ]
+    },
+    {
+      "components": [
+        "ix-group",
+        "ix-group-dropdown-item",
+        "ix-group-item"
+      ]
+    },
+    {
+      "components": [
+        "ix-menu",
+        "ix-menu-about",
+        "ix-menu-about-item",
+        "ix-menu-about-news",
+        "ix-menu-avatar",
+        "ix-menu-avatar-item",
+        "ix-menu-item",
+        "ix-menu-settings",
+        "ix-menu-settings-item"
+      ]
+    }
+  ]
+}

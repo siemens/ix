@@ -1,0 +1,86 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  cursor: pointer;
+}
+:host:not(.disabled):not(:disabled):not(.selected).hover, :host:not(.disabled):not(:disabled):not(.selected):hover {
+  background-color: var(--theme-tree-item--background--hover);
+}
+:host:not(.disabled):not(:disabled):not(.selected).active, :host:not(.disabled):not(:disabled):not(.selected):active {
+  background-color: var(--theme-tree-item--background--active);
+}
+:host.selected {
+  background-color: var(--theme-tree-item--background--selected);
+}
+:host.selected.hover, :host.selected:hover {
+  background-color: var(--theme-tree-item--background--selected-hover);
+}
+:host.selected.active, :host.selected:active {
+  background-color: var(--theme-tree-item--background--selected-active);
+}
+:host .tree-node-container {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  flex-grow: 1;
+  align-items: center;
+}
+:host .icon-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+:host .icon-toggle-container ix-icon {
+  transition: transform 150ms ease-in-out;
+}
+:host .icon-toggle-container ix-icon.icon-toggle-down {
+  transform: rotate(90deg);
+}

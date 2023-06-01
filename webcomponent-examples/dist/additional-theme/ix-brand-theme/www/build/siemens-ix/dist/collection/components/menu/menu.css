@@ -1,0 +1,131 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ix-menu {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 100%;
+  min-height: 22.75rem;
+  z-index: var(--theme-z-index-sticky);
+  width: auto;
+}
+ix-menu .menu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 4rem;
+  height: 100%;
+  -webkit-padding-after: 1rem;
+          padding-block-end: 1rem;
+  background-color: var(--theme-nav--background);
+  transition: width var(--animate-duration);
+}
+ix-menu .menu.expanded {
+  box-shadow: var(--theme-navigation--box-shadow);
+}
+ix-menu .menu .burger-menu-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-left: 0.75rem;
+  margin-bottom: 1rem;
+  height: 2rem;
+  width: 2.5rem;
+  border-radius: 0.25rem;
+}
+ix-menu .menu .burger-menu-button:not(.disabled):not(:disabled).hover, ix-menu .menu .burger-menu-button:not(.disabled):not(:disabled):hover {
+  background-color: var(--theme-ghost--background--hover);
+}
+ix-menu .menu .burger-menu-button:not(.disabled):not(:disabled).active, ix-menu .menu .burger-menu-button:not(.disabled):not(:disabled):active {
+  background-color: var(--theme-ghost--background--active);
+}
+ix-menu .menu .burger-menu-button svg {
+  display: inline-block;
+  fill: var(--theme-menu-btn--color);
+  position: relative;
+}
+ix-menu .menu .burger-menu-button svg .line {
+  opacity: 1;
+  transform: rotate(0) translateY(0) translateX(0);
+  transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+}
+ix-menu .menu .burger-menu-button.expanded svg .line-1 {
+  transform: translate(0.6875rem, -0.05rem) rotate(45deg);
+}
+ix-menu .menu .burger-menu-button.expanded svg .line-2 {
+  opacity: 0;
+}
+ix-menu .menu .burger-menu-button.expanded svg .line-3 {
+  transform: translate(-0.75625rem, 0.8125rem) rotate(-45deg);
+}
+ix-menu .menu-overlay {
+  display: block;
+  position: absolute;
+  width: calc(100vw - 4rem);
+  height: 100%;
+  left: 4rem;
+  z-index: -1;
+  -webkit-backdrop-filter: blur(1rem);
+          backdrop-filter: blur(1rem);
+  background-color: var(--theme-sidebar-overlay-blur);
+  transition: all 300ms ease-out;
+}
+ix-menu .menu-overlay-invisible {
+  display: none;
+}
+ix-menu .menu.expanded {
+  width: 16rem;
+}
+ix-menu .menu-overlay.expanded {
+  width: calc(100vw - 16rem);
+  left: 16rem;
+}
+ix-menu #avatar-tab-placeholder {
+  max-height: 3rem;
+}
+ix-menu .avatar {
+  margin-bottom: 2rem;
+}
+ix-menu #cui-imprint .cui-imprint-product-name {
+  margin-bottom: 1rem;
+}
+ix-menu #cui-imprint .cui-imprint-product-description {
+  margin-bottom: 2rem;
+}
+ix-menu #cui-imprint .cui-imprint-link-container {
+  display: flex;
+  align-items: center;
+}
+ix-menu .bottom-tab-divider {
+  margin-top: auto;
+}
+
+a[href]:has(> ix-menu-item) {
+  text-decoration: none;
+}

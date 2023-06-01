@@ -1,0 +1,48 @@
+:host {
+  --tooltip-background: var(--theme-tootlip--background);
+  --tooltip-border-radius: 4px;
+}
+
+:host {
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  max-width: 18.25rem;
+  opacity: 0;
+  visibility: collapse;
+  overflow-wrap: break-word;
+  border-radius: var(--tooltip-border-radius);
+  background-color: var(--tooltip-background);
+  padding: 0.375rem 0.75rem 0.375rem 0.875rem;
+  filter: drop-shadow(0px 12px 18px rgba(0, 0, 0, 0.6)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0px 0px 2px #000000);
+}
+:host .tooltip-title {
+  display: flex;
+  align-items: center;
+}
+:host .tooltip-title ix-icon {
+  margin-right: 0.35rem;
+}
+
+:host(.visible) {
+  opacity: 1;
+  visibility: visible;
+}
+
+:host .arrow,
+:host .arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+:host .arrow {
+  visibility: hidden;
+}
+:host .arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+  background-color: var(--theme-tootlip--background);
+}

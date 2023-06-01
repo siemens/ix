@@ -1,0 +1,117 @@
+import { proxyCustomElement, HTMLElement, createEvent, h, Host } from '@stencil/core/internal/client';
+import { d as defineCustomElement$2 } from './icon.js';
+import { d as defineCustomElement$1 } from './icon-button.js';
+
+const toastCss = ".sc-ix-toast-h{display:flex;flex-direction:column;position:relative;min-width:17.5rem;max-width:17.5rem;min-height:3.5rem;pointer-events:all;background-color:var(--theme-toast--background);border:var(--theme-toast--border-thickness) solid var(--theme-toast--border-color);border-radius:var(--theme-toast--border-radius);box-shadow:var(--theme-toast--box-shadow);--animate-duration:300ms}.sc-ix-toast-h .toast-body.sc-ix-toast{display:flex;position:relative;width:100%;flex-grow:1}.sc-ix-toast-h .toast-body.sc-ix-toast .toast-icon.sc-ix-toast{display:flex;align-items:flex-start;margin:1rem}.sc-ix-toast-h .toast-body.sc-ix-toast .toast-content.sc-ix-toast{overflow:hidden;text-overflow:ellipsis;min-width:0;width:100%;max-width:10.25rem;margin-top:calc(\n        1rem + var(--theme-toast--border-thickness)\n      );margin-bottom:0.75rem}.sc-ix-toast-h .toast-body.sc-ix-toast .toast-content.sc-ix-toast .toast-message.sc-ix-toast{min-width:0}.sc-ix-toast-h .toast-close.sc-ix-toast{display:flex;position:relative;margin:0.75rem;pointer-events:all}.sc-ix-toast-h .toast-progress-bar.sc-ix-toast{position:absolute;bottom:0;height:0.25rem;width:100%;background-color:var(--theme-toast-timer-value--background);transform-origin:left}.sc-ix-toast-h .toast-progress-bar--animated.sc-ix-toast{animation:trackProgress linear 1 forwards}.sc-ix-toast-h .toast-progress-bar--touched.sc-ix-toast{transition:transform 1s}.sc-ix-toast-h:not(.disabled):not(:disabled){cursor:pointer}.sc-ix-toast-h:not(.disabled):not(:disabled):hover .toast-progress-bar.sc-ix-toast{visibility:hidden;transition:none}@keyframes trackProgress{0%{transform:scaleX(1)}100%{transform:scaleX(0)}}";
+
+const Toast = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+    this.closeToast = createEvent(this, "closeToast", 7);
+    this.type = 'info';
+    this.toastTitle = undefined;
+    this.autoCloseDelay = 5000;
+    this.autoClose = true;
+    this.icon = undefined;
+    this.iconColor = undefined;
+    this.progress = 0;
+    this.isRunning = true;
+    this.touched = false;
+  }
+  getIcon() {
+    if (this.icon) {
+      return h("ix-icon", { name: this.icon, color: this.iconColor, size: "24" });
+    }
+    switch (this.type) {
+      case 'info':
+        return h("ix-icon", { name: 'info', size: "24", color: "color-std-text" });
+      case 'error':
+        return h("ix-icon", { name: 'error', size: "24", color: "color-alarm" });
+      case 'success':
+        return h("ix-icon", { name: 'success', size: "24", color: "color-success" });
+      case 'warning':
+        return h("ix-icon", { name: 'warning', size: "24", color: "color-warning" });
+      default:
+        return '';
+    }
+  }
+  close() {
+    if (this.host) {
+      this.host.classList.add('animate__fadeOut');
+    }
+    setTimeout(() => {
+      this.closeToast.emit();
+    }, 250);
+  }
+  render() {
+    let progressBarElement;
+    let progressBarStyle = {};
+    const progressBarClass = ['toast-progress-bar'];
+    if (!this.touched) {
+      progressBarStyle = {
+        animationDuration: `${this.autoCloseDelay}ms`,
+        animationPlayState: this.isRunning ? 'running' : 'paused',
+      };
+      progressBarClass.push('toast-progress-bar--animated');
+    }
+    else {
+      progressBarClass.push('toast-progress-bar--touched');
+    }
+    const updateProgress = () => {
+      if (progressBarElement) {
+        progressBarElement.style.transform = `scaleX(${this.progress})`;
+      }
+    };
+    return (h(Host, { class: "animate__animated animate__fadeIn" }, h("div", { class: "toast-body", onPointerLeave: () => {
+        this.progress = 0;
+        updateProgress();
+      }, onPointerEnter: () => {
+        this.isRunning = false;
+        this.touched = true;
+        this.progress = 1;
+        updateProgress();
+      } }, this.type || this.icon ? (h("div", { class: "toast-icon" }, this.getIcon())) : null, h("div", { class: "toast-content" }, this.toastTitle ? (h("div", { class: "toast-title text-default-title-single" }, this.toastTitle)) : null, h("div", { class: "toast-message text-default" }, h("slot", null))), h("div", { class: "toast-close" }, h("ix-icon-button", { icon: "close", size: "24", ghost: true, onClick: () => this.closeToast.emit() }))), this.autoClose ? (h("div", { class: progressBarClass.join(' '), style: progressBarStyle, ref: (r) => (progressBarElement = r), onAnimationEnd: () => this.close(), onTransitionEnd: () => {
+        if (this.progress === 0) {
+          this.close();
+        }
+      } })) : null));
+  }
+  get host() { return this; }
+  static get style() { return toastCss; }
+}, [6, "ix-toast", {
+    "type": [1],
+    "toastTitle": [1, "toast-title"],
+    "autoCloseDelay": [2, "auto-close-delay"],
+    "autoClose": [4, "auto-close"],
+    "icon": [1],
+    "iconColor": [1, "icon-color"],
+    "progress": [32],
+    "isRunning": [32],
+    "touched": [32]
+  }]);
+function defineCustomElement() {
+  if (typeof customElements === "undefined") {
+    return;
+  }
+  const components = ["ix-toast", "ix-icon", "ix-icon-button"];
+  components.forEach(tagName => { switch (tagName) {
+    case "ix-toast":
+      if (!customElements.get(tagName)) {
+        customElements.define(tagName, Toast);
+      }
+      break;
+    case "ix-icon":
+      if (!customElements.get(tagName)) {
+        defineCustomElement$2();
+      }
+      break;
+    case "ix-icon-button":
+      if (!customElements.get(tagName)) {
+        defineCustomElement$1();
+      }
+      break;
+  } });
+}
+
+export { Toast as T, defineCustomElement as d };

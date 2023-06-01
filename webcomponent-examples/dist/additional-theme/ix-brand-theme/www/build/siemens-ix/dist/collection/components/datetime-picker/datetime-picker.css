@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/* Dimensions */
+/* Font sizes */
+/* Line heights */
+/* Animation timings */
+:host {
+  display: block;
+  background-color: var(--theme-menu--background);
+  border-radius: 4px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.done {
+  display: inline-flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: 100%;
+}
+
+.separator {
+  border: 1px solid var(--theme-datepicker-separator--background);
+  width: 100%;
+  margin-top: 72px;
+  height: 1px;
+}

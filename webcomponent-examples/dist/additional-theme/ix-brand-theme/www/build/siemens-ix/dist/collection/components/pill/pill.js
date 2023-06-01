@@ -1,0 +1,155 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { h, Host } from '@stencil/core';
+export class Pill {
+  constructor() {
+    this.variant = 'primary';
+    this.outline = false;
+    this.icon = undefined;
+    this.background = undefined;
+    this.color = undefined;
+    this.alignLeft = false;
+  }
+  render() {
+    return (h(Host, { class: {
+        outline: this.outline,
+        'align-left': this.alignLeft,
+      }, style: this.variant === 'custom'
+        ? {
+          color: this.color,
+          backgroundColor: this.background,
+        }
+        : {}, title: this.el.textContent }, h("ix-icon", { class: {
+        'with-icon': true,
+        hidden: this.icon === undefined || this.icon === '',
+      }, name: this.icon, size: '16' }), h("div", { class: "slot" }, h("slot", null))));
+  }
+  static get is() { return "ix-pill"; }
+  static get encapsulation() { return "scoped"; }
+  static get originalStyleUrls() {
+    return {
+      "$": ["pill.scss"]
+    };
+  }
+  static get styleUrls() {
+    return {
+      "$": ["pill.css"]
+    };
+  }
+  static get properties() {
+    return {
+      "variant": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "| 'primary'\n    | 'alarm'\n    | 'critical'\n    | 'warning'\n    | 'info'\n    | 'neutral'\n    | 'success'\n    | 'custom'",
+          "resolved": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Pill variant"
+        },
+        "attribute": "variant",
+        "reflect": true,
+        "defaultValue": "'primary'"
+      },
+      "outline": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Show pill as outline"
+        },
+        "attribute": "outline",
+        "reflect": false,
+        "defaultValue": "false"
+      },
+      "icon": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string | undefined",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Show icon"
+        },
+        "attribute": "icon",
+        "reflect": false
+      },
+      "background": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string | undefined",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Custom color for pill. Only working for `variant='custom'`"
+        },
+        "attribute": "background",
+        "reflect": false
+      },
+      "color": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string | undefined",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Custom font color for pill. Only working for `variant='custom'`"
+        },
+        "attribute": "color",
+        "reflect": false
+      },
+      "alignLeft": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": false,
+        "docs": {
+          "tags": [],
+          "text": "Align pill content left"
+        },
+        "attribute": "align-left",
+        "reflect": false,
+        "defaultValue": "false"
+      }
+    };
+  }
+  static get elementRef() { return "el"; }
+}

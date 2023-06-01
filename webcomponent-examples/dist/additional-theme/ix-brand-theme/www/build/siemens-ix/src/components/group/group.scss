@@ -1,0 +1,141 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
+
+:host {
+  @include ellipsis;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 19.75rem;
+  border-color: var(--theme-group-item--border-color);
+
+  .group-header {
+    height: 4rem;
+    min-height: 4rem;
+    max-height: 4rem;
+    border-radius: 0.25rem;
+    border: var(--theme-std-bdr-1);
+    display: flex;
+    background-color: var(--theme-group-item--background);
+    border: 1px solid var(--theme-group-item--border-color);
+    color: var(--theme-group-header--color);
+
+    cursor: pointer;
+
+    @include hover {
+      background-color: var(--theme-group-item--background--hover);
+      border-color: var(--theme-group-item--border-color--hover);
+    }
+
+    @include active {
+      background-color: var(--theme-group-item--background--active);
+      border-color: var(--theme-group-item--border-color--active);
+    }
+
+    @include focus-visible {
+      border-color: var(--focus--border-color);
+      border-radius: var(--theme-group--border-radius--focus);
+      outline: none;
+    }
+  }
+
+  .group-header-clickable {
+    @include ellipsis;
+
+    display: flex;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .group-header.expand {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .group-header-selection-indicator {
+    width: $tiny-space;
+  }
+
+  .group-header-content {
+    @include ellipsis;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 0.5rem;
+    padding-left: 0;
+    width: 100%;
+
+    .group-header-props-container {
+      width: 100%;
+    }
+
+    .group-header-title {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: $font-weight-bold;
+      height: 1.5rem;
+
+      & > * {
+        @include ellipsis;
+
+        min-width: 0;
+      }
+    }
+
+    .group-subheader {
+      @include ellipsis();
+
+      height: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--theme-group-subheader--color);
+    }
+  }
+
+  .expand-icon {
+    padding: 0.125rem 0.437rem;
+    color: var(--theme-color-std-text);
+  }
+
+  .btn-expand-header {
+    margin: $small-space;
+    margin-inline-end: $tiny-space;
+  }
+
+  .group-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .group-header {
+    &.selected {
+      border: var(--theme-primary-bdr-2);
+      background-color: var(--theme-group-item--background--selected);
+    }
+  }
+
+  .group-header.selected {
+    .group-header-selection-indicator {
+      background-color: var(--theme-color-input--focus);
+    }
+  }
+
+  .footer {
+    height: auto;
+    min-height: 0;
+  }
+}

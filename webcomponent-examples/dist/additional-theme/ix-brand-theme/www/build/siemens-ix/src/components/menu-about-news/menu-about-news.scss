@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/shadows';
+
+:host {
+  --margin: 0.5rem;
+
+  $left: 4rem;
+  display: block;
+  position: fixed;
+  width: 20rem;
+  height: auto;
+  background-color: var(--theme-color-1);
+  border: var(--theme-weak-bdr-1);
+  border-radius: $default-border-radius;
+  padding: 1rem;
+  left: $left;
+  z-index: 10000;
+  transition: left var(--animate-duration);
+
+  margin-left: var(--margin) !important;
+
+  @include box-shadow(4);
+
+  &.expanded {
+    left: calc(#{$left} + 12rem);
+  }
+
+  &.show {
+    display: none;
+  }
+
+  .banner-container {
+    position: absolute;
+    top: 0.0625rem;
+    left: $default-space;
+
+    svg {
+      position: absolute;
+      height: 3.625rem;
+      width: 3rem;
+
+      polygon {
+        fill: var(--theme-color-primary);
+      }
+    }
+
+    ix-icon {
+      margin: $small-space;
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  .cui-popover-news-header {
+    margin-bottom: 2rem;
+    margin-left: 4rem;
+    margin-top: -$tiny-space;
+  }
+
+  .popover-body {
+    color: var(--theme-color-std-text);
+  }
+
+  .cui-popover-news-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  ix-icon-button {
+    top: $small-space;
+    right: $small-space;
+    position: absolute;
+  }
+
+  #arrow {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--theme-color-1);
+    border-left: var(--theme-weak-bdr-1);
+    border-bottom: var(--theme-weak-bdr-1);
+    transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
+  }
+}

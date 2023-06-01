@@ -1,0 +1,90 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/fonts';
+@import 'mixins/hover';
+@import 'mixins/text-truncation';
+
+:host {
+  display: flex;
+  min-height: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: $small-space $large-space $small-space 2.5rem;
+  position: relative;
+  margin-top: 0.0625rem;
+  border: 1px solid var(--theme-group-item--border-color);
+  outline: none;
+
+  background-color: var(--theme-group-item--background);
+
+  &.last {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  ix-icon {
+    margin-right: $tiny-space;
+    margin-top: -0.125rem;
+  }
+
+  .group-entry-selection-indicator {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: $tiny-space;
+  }
+
+  .group-entry-text {
+    @include ellipsis();
+    flex-grow: 1;
+  }
+
+  .group-entry-text-secondary {
+    &,
+    span {
+      @include ellipsis;
+    }
+
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    white-space: nowrap;
+    color: var(--theme-color-soft-text);
+    font-size: 0.875rem;
+  }
+
+  &:not(.suppress-selection) {
+    @include hover {
+      background-color: var(--theme-group-item--background--hover);
+      border-color: var(--theme-group-item--border-color--hover);
+    }
+
+    @include active {
+      background-color: var(--theme-group-item--background--active);
+      border-color: var(--theme-group-item--border-color--active);
+    }
+  }
+
+  &.selected {
+    border-top-width: 0.062rem !important;
+    border-color: var(--theme-group-item--border-color--selected);
+    background-color: var(--theme-group-item--background--selected);
+
+    .group-entry-selection-indicator {
+      background-color: var(--theme-color-input--focus);
+    }
+  }
+
+  @include focus-visible {
+    border-color: var(--focus--border-color) !important;
+  }
+}

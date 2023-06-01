@@ -1,0 +1,50 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+
+.card {
+  background-color: var(--theme-menu--background);
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  border-radius: unset;
+
+  &.individual {
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1),
+      0 4px 8px 0 rgba(0, 0, 0, 0.1),
+      0 12px 18px 0px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--theme-menu--border-color);
+    border-radius: 4px;
+  }
+
+  &.left {
+    border-radius: 4px 0 0 4px;
+    height: 100%;
+  }
+
+  &.right {
+    border-radius: 0 4px 4px 0;
+    height: 100%;
+  }
+
+  .header {
+    padding: $default-space;
+  }
+
+  .separator {
+    border: 1px solid var(--theme-datepicker-separator--background);
+    width: 100%;
+  }
+
+  .content {
+    height: 100%;
+    padding: 0px $default-space $default-space $default-space;
+  }
+}
