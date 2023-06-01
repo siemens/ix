@@ -49,7 +49,8 @@ jobs:
 
       - name: 'Download and link @siemens/ix-brand-theme'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
         run: |
           mkdir .tmp-brand
           cd .tmp-brand
