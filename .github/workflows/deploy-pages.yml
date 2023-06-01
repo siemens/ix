@@ -39,53 +39,41 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
 
+      - uses: ./.github/workflows/actions/install
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://code.siemens.com/api/v4/projects/249177/packages/npm/'
+          scope: '@siemens'
+          always-auth: 'true'
+
       - name: 'Download and link @siemens/ix-brand-theme'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
         run: |
           mkdir .tmp-brand
           cd .tmp-brand
-          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
-          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
-          cd ./node_modules/@siemens/ix-icons
-          yarn link
 
-      - uses: ./.github/workflows/actions/install
-
-      - name: 'Build documentation for prod instance'
+      - name: 'Build documentation for dev instance'
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
+        env:
+          BASE_URL: /version-dev/
         with:
           filter: 'documentation'
+          args: '--force'
 
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
+        env:
+          BASE_URL: /
         with:
           filter: 'documentation'
-
-      # - name: 'Download @siemens/ix-brand-theme'
-      #   run: |
-      #     rm .yarnrc
-      #     ROOT=$(pwd)
-      #     echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
-      #     echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-      #     npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
-      #     rm .npmrc
-      #     cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
-      #     sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
-      #     rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
-
-      # - name: 'Build documentation for dev instance'
-      #   if: ${{ github.event.inputs.deployment == 'dev' }}
-      #   run: |
-      #     yarn workspace @siemens/html-test-app run build
-      #     BASE_URL=/version-dev/ yarn workspace documentation run build
-
-      # - name: 'Build documentation for prod instance'
-      #   if: ${{ github.event.inputs.deployment == 'prod' }}
-      #   run: |
-      #     yarn workspace @siemens/html-test-app run build
-      #     BASE_URL=/ yarn workspace documentation run build
+          args: '--force'
 
       - name: Deploy production instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4
