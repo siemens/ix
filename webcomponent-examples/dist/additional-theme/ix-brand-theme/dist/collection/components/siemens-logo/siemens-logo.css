@@ -1,6 +1,0 @@
-:host {
-  display: inline-block;
-}
-:host .logo > path {
-  fill: var(--theme-app-header-logo--color);
-}

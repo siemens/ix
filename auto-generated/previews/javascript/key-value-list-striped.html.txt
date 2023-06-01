@@ -1,0 +1,19 @@
+<ix-key-value-list striped="true">
+  <ix-key-value
+    label="Label"
+    label-position="left"
+    value="Value"
+  ></ix-key-value>
+
+  <ix-key-value
+    label="Label"
+    label-position="left"
+    value="Value"
+  ></ix-key-value>
+
+  <ix-key-value
+    label="Label"
+    label-position="left"
+    value="Value"
+  ></ix-key-value>
+</ix-key-value-list>
