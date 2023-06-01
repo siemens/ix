@@ -57,13 +57,14 @@ jobs:
           cd .tmp-brand
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
 
-      - name: 'Build documentation for prod instance'
+      - name: 'Build documentation for dev instance'
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
         env:
           BASE_URL: /version-dev/
         with:
           filter: 'documentation'
+          args: '--force'
 
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
@@ -72,6 +73,7 @@ jobs:
           BASE_URL: /
         with:
           filter: 'documentation'
+          args: '--force'
 
       - name: Deploy production instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4
