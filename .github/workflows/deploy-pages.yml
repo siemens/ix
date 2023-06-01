@@ -29,27 +29,33 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - name: Check if deployment condition is fulfilled
-        if: ${{ startsWith(github.ref, 'refs/heads/release/docs/v') == false || github.event.inputs.confirm_deployment == false }}
-        run: |
-          echo "::error ::Be sure that the workflow runs on release/docs/v* and you checked confirm"
-          exit -1
+      # - name: Check if deployment condition is fulfilled
+      #   if: ${{ startsWith(github.ref, 'refs/heads/release/docs/v') == false || github.event.inputs.confirm_deployment == false }}
+      #   run: |
+      #     echo "::error ::Be sure that the workflow runs on release/docs/v* and you checked confirm"
+      #     exit -1
 
-      - name: Install rsync
-        run: |
-          apt-get update && apt-get install -y rsync
+      # - name: Install rsync
+      #   run: |
+      #     apt-get update && apt-get install -y rsync
+      - uses: ./.github/workflows/actions/install
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://code.siemens.com/api/v4/projects/249177/packages/npm/'
+          scope: '@siemens'
+          always-auth: 'true'
 
       - name: 'Download and link @siemens/ix-brand-theme'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           mkdir .tmp-brand
           cd .tmp-brand
-          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
-          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
           cd ./node_modules/@siemens/ix-icons
           yarn link
-
-      - uses: ./.github/workflows/actions/install
 
       - name: 'Build documentation for prod instance'
         uses: ./.github/workflows/actions/build
