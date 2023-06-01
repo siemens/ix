@@ -40,32 +40,51 @@ jobs:
           apt-get update && apt-get install -y rsync
 
       - uses: ./.github/workflows/actions/install
-      - uses: ./.github/workflows/actions/build
-        with:
-          filter: '\!documentation --filter \!@siemens/html-test-app'
-      - name: 'Download @siemens/ix-brand-theme'
+      - name: 'Download and link @siemens/ix-brand-theme'
         run: |
-          rm .yarnrc
-          ROOT=$(pwd)
+          mkdir .tmp-brand
+          cd .tmp-brand
           echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
           echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
-          rm .npmrc
-          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
-          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
-          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
-
-      - name: 'Build documentation for dev instance'
-        if: ${{ github.event.inputs.deployment == 'dev' }}
-        run: |
-          yarn workspace @siemens/html-test-app run build
-          BASE_URL=/version-dev/ yarn workspace documentation run build
+          cd ./node_modules/@siemens/ix-icons
+          yarn link
 
       - name: 'Build documentation for prod instance'
+        uses: ./.github/workflows/actions/build
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        with:
+          filter: 'documentation'
+
+      - name: 'Build documentation for prod instance'
+        uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
-        run: |
-          yarn workspace @siemens/html-test-app run build
-          BASE_URL=/ yarn workspace documentation run build
+        with:
+          filter: 'documentation'
+
+      # - name: 'Download @siemens/ix-brand-theme'
+      #   run: |
+      #     rm .yarnrc
+      #     ROOT=$(pwd)
+      #     echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
+      #     echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
+      #     npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
+      #     rm .npmrc
+      #     cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+      #     sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
+      #     rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
+
+      # - name: 'Build documentation for dev instance'
+      #   if: ${{ github.event.inputs.deployment == 'dev' }}
+      #   run: |
+      #     yarn workspace @siemens/html-test-app run build
+      #     BASE_URL=/version-dev/ yarn workspace documentation run build
+
+      # - name: 'Build documentation for prod instance'
+      #   if: ${{ github.event.inputs.deployment == 'prod' }}
+      #   run: |
+      #     yarn workspace @siemens/html-test-app run build
+      #     BASE_URL=/ yarn workspace documentation run build
 
       - name: Deploy production instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4
