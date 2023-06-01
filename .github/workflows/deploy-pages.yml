@@ -55,7 +55,7 @@ jobs:
           mkdir .tmp-brand
           cd .tmp-brand
           npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
-          cd ./node_modules/@siemens/ix-icons
+          ls -la
           yarn link
 
       - name: 'Build documentation for prod instance'
