@@ -527,7 +527,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown",
@@ -541,6 +543,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-breadcrumb"
         ]
       },
       "props": [
@@ -633,9 +638,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-breadcrumb-item"
+        ]
+      },
       "props": [
         {
           "name": "icon",
@@ -2948,7 +2959,8 @@
         "ix-menu",
         "ix-menu-avatar",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2974,6 +2986,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -3254,6 +3269,12 @@
           "target": "window",
           "capture": false,
           "passive": false
+        },
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -3275,7 +3296,9 @@
         }
       ],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon",
@@ -3291,6 +3314,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -3435,14 +3461,15 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
         "ix-group-dropdown-item",
         "ix-menu-avatar-item",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3467,6 +3494,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -7975,7 +8005,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-pagination"
+        "ix-pagination",
+        "my-component"
       ],
       "dependencies": [
         "ix-select-item",
@@ -8007,6 +8038,9 @@
           "ix-icon"
         ],
         "ix-pagination": [
+          "ix-select"
+        ],
+        "my-component": [
           "ix-select"
         ]
       },
@@ -8277,7 +8311,8 @@
       "encapsulation": "scoped",
       "dependents": [
         "ix-pagination",
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -8293,6 +8328,9 @@
           "ix-select-item"
         ],
         "ix-select": [
+          "ix-select-item"
+        ],
+        "my-component": [
           "ix-select-item"
         ]
       },
@@ -8454,7 +8492,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-dropdown"
@@ -8463,6 +8503,9 @@
         "ix-split-button": [
           "ix-icon",
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-split-button"
         ]
       },
       "props": [
@@ -8716,7 +8759,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown-item"
       ],
@@ -8726,6 +8771,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-split-button-item"
         ]
       },
       "props": [
@@ -10934,8 +10982,68 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-breadcrumb",
+        "ix-breadcrumb-item",
+        "ix-select",
+        "ix-select-item",
+        "ix-dropdown-button",
+        "ix-split-button",
+        "ix-split-button-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-breadcrumb",
+          "ix-breadcrumb-item",
+          "ix-select",
+          "ix-select-item",
+          "ix-dropdown-button",
+          "ix-split-button",
+          "ix-split-button-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-split-button": [
+          "ix-icon",
+          "ix-dropdown"
+        ],
+        "ix-split-button-item": [
+          "ix-dropdown-item"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
