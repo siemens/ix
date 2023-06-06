@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-spinner',
   styleUrl: 'spinner.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Spinner {
   /**

@@ -19,7 +19,7 @@ export type ButtonVariant = 'Primary' | 'Secondary';
 })
 export class Button {
   /**
-   * Button varaint
+   * Button variant
    */
   @Prop() variant: ButtonVariant = 'Primary';
 

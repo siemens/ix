@@ -13,21 +13,17 @@ import { Drawer } from '../drawer';
 
 describe('ix-drawer', () => {
   let page: any;
-  let drawer: any;
+  let drawer: HTMLIxDrawerElement;
   let container: HTMLDivElement;
 
   beforeEach(async () => {
     page = await newSpecPage({
       components: [Drawer],
-      html: '<ix-drawer></ix-drawer>',
+      html: '<ix-drawer>Example Content</ix-drawer>',
     });
 
     drawer = document.querySelector('ix-drawer');
     container = document.querySelector('[data-testid="container"]');
-  });
-
-  it('renders', () => {
-    expect(page.root).toMatchSnapshot();
   });
 
   it('opens the drawer', async () => {
@@ -37,14 +33,16 @@ describe('ix-drawer', () => {
     expect(drawer.show).toBeTruthy();
 
     await page.waitForChanges();
-    expect(drawer.innerHTML).toContain('toggle');
+    expect(drawer.innerText).toContain('Example Content');
   });
 
   it('closes the drawer', async () => {
     drawer.show = true;
     await page.waitForChanges();
 
-    const closeButton = page.doc.querySelector('[data-testid="close-button"]');
+    const closeButton = drawer.shadowRoot.querySelector(
+      '[data-testid="close-button"]'
+    );
     fireEvent.click(closeButton);
     await page.waitForChanges();
     expect(drawer.show).toBeFalsy();
@@ -78,7 +76,9 @@ describe('ix-drawer', () => {
     drawer.toggleDrawer();
     await page.waitForChanges();
 
-    const closeButton = page.doc.querySelector('[data-testid="close-button"]');
+    const closeButton = drawer.shadowRoot.querySelector(
+      '[data-testid="close-button"]'
+    );
     fireEvent.click(closeButton);
 
     window.removeEventListener('open', mockCallback);

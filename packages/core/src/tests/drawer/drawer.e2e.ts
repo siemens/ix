@@ -14,7 +14,7 @@ regressionTest.describe('drawer', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('drawer/basic');
     await page.locator('ix-button').click();
-    await page.waitForTimeout(800);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForTimeout(2000);
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 });

@@ -8,7 +8,7 @@
  */
 
 import { Component, h, Prop } from '@stencil/core';
-import { VariantsMapping } from './types';
+import { VariantsMapping } from './type-mapping';
 
 export type TypographyVariants =
   | 'x-small'
