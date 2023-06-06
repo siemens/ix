@@ -3900,8 +3900,13 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nAllowed values are all Core UI color names.",
-          "docsTags": [],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample value is `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://ix.siemens.io/docs/theming/colors/"
+            }
+          ],
           "values": [
             {
               "type": "string"

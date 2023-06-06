@@ -25,7 +25,10 @@ import {
 export class EventListItem {
   /**
    * Color of the status indicator.
-   * Allowed values are all Core UI color names.
+   * You can find a list of all available colors in our documentation.
+   * Example value is `--theme-color-alarm` or `color-alarm`
+   *
+   * @see https://ix.siemens.io/docs/theming/colors/
    */
   @Prop() color: string;
 
@@ -63,6 +66,10 @@ export class EventListItem {
   }
 
   render() {
+    const color = this.color?.startsWith('--theme')
+      ? `var(${this.color})`
+      : `var(--theme-${this.color})`;
+
     return (
       <Host>
         <div
@@ -75,9 +82,7 @@ export class EventListItem {
           <div
             class={`indicator ${!this.color ? 'indicator-empty' : ''}`}
             style={{
-              'background-color': this.color
-                ? `var(--theme-${this.color})`
-                : 'inherit',
+              'background-color': this.color ? color : 'inherit',
               opacity: `${this.disabled ? 0.4 : this.opacity}`,
             }}
           ></div>

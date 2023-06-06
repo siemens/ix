@@ -24,7 +24,7 @@ export class EventList {
   private static readonly fadeOutDuration = 50;
   private static readonly fadeInDuration = 150;
 
-  @Element() el!: HTMLIxEventListElement;
+  @Element() hostElement!: HTMLIxEventListElement;
 
   /**
    * Determines the height of list items.
@@ -59,16 +59,21 @@ export class EventList {
       this.triggerFadeIn();
     }
 
-    if (typeof this.itemHeight === 'number') {
+    if (!Number.isNaN(Number(this.itemHeight))) {
       const height = convertToRemString(this.itemHeight as number);
-      this.el.querySelectorAll('ix-event-list-item').forEach((item) => {
-        this.setCustomHeight(item as HTMLElement, height);
-      });
+      this.hostElement
+        .querySelectorAll('ix-event-list-item')
+        .forEach((item) => {
+          this.setCustomHeight(item as HTMLElement, height);
+        });
     }
 
     this.handleChevron(this.chevron);
 
-    this.mutationObserver.observe(this.el, { childList: true, subtree: true });
+    this.mutationObserver.observe(this.hostElement, {
+      childList: true,
+      subtree: true,
+    });
   }
 
   private onMutation(mutationRecords: Array<MutationRecord>) {
@@ -109,7 +114,7 @@ export class EventList {
       },
       { opacity: 0 },
     ];
-    const listElement = this.el.shadowRoot.querySelector('ul');
+    const listElement = this.hostElement.shadowRoot.querySelector('ul');
     return listElement.animate(keyframes, {
       duration: EventList.fadeOutDuration,
     }).finished;
@@ -120,7 +125,7 @@ export class EventList {
       return;
     }
 
-    const listItems = this.el.querySelectorAll('ix-event-list-item');
+    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
     listItems.forEach((e, i) => {
       const delay = i * 80;
       const offset = delay / (delay + EventList.fadeInDuration);
@@ -138,7 +143,7 @@ export class EventList {
   }
 
   private handleChevron(chevron: boolean | undefined): void {
-    const listItems = this.el.querySelectorAll('ix-event-list-item');
+    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
 
     listItems.forEach((e) => {
       if (chevron) {
