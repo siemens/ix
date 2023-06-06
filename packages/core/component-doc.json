@@ -3254,6 +3254,12 @@
           "target": "window",
           "capture": false,
           "passive": false
+        },
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -3435,7 +3441,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
         "ix-group-dropdown-item",
@@ -9111,7 +9117,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -10656,7 +10662,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -10811,13 +10817,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/workflow-steps",
@@ -10830,7 +10830,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -10925,7 +10925,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/my-component",

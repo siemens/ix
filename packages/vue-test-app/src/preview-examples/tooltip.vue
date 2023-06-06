@@ -13,9 +13,14 @@ import { IxButton, IxTooltip } from '@siemens/ix-vue';
 
 <template>
   <div :style="{ padding: '4rem' }">
-    <IxButton data-tooltip="myTooltip">Hover me</IxButton>
-    <IxTooltip for="[data-tooltip='myTooltip']">
-      Some example content
+    <IxButton class="any-class" :style="{ 'margin-right': '4rem' }">
+      Hover me
+    </IxButton>
+    <IxTooltip for=".any-class">Simple selector</IxTooltip>
+
+    <IxButton my-custom-special-selector="any-value">Also hover me</IxButton>
+    <IxTooltip for="[my-custom-special-selector='any-value']">
+      Custom selector
     </IxTooltip>
   </div>
 </template>

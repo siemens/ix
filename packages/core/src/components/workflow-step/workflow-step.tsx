@@ -15,7 +15,6 @@ import {
   Fragment,
   h,
   Host,
-  Listen,
   Prop,
   State,
   Watch,
@@ -24,7 +23,7 @@ import {
 @Component({
   tag: 'ix-workflow-step',
   styleUrl: 'workflow-step.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowStep {
   @Element() hostElement: HTMLIxWorkflowStepElement;
@@ -137,8 +136,7 @@ export class WorkflowStep {
     );
   }
 
-  @Listen('click', { passive: true })
-  clickFunction() {
+  onStepClick() {
     if (!this.disabled && this.clickable) {
       this.selectedChanged.emit(this.hostElement);
     }
@@ -167,7 +165,7 @@ export class WorkflowStep {
     );
 
     return (
-      <Host>
+      <Host onClick={() => this.onStepClick()}>
         <div
           tabIndex={0}
           onClick={() => this.select()}

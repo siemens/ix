@@ -7,21 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import '~bootstrap/scss/functions';
 @import 'common-variables';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/dropdown';
 
 @import 'mixins/fonts';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 @import 'components/dropdown';
 
 :host {
+  @include ix-component;
   min-width: 0px;
+  z-index: var(--theme-z-index-dropdown);
 }
 
 :host(.overflow) {
   max-height: 50vh;
   overflow-y: auto;
+}
+
+:host(:not(.show)) {
+  display: none;
 }
