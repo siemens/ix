@@ -12,6 +12,7 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
+import ActionCard from './preview-examples/action-card.vue';
 import AGGrid from './preview-examples/aggrid.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
@@ -26,6 +27,8 @@ import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
+import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
+import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -62,10 +65,9 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
-import PageHeaderNoBack from './preview-examples/page-header-no-back.vue';
-import PageHeader from './preview-examples/page-header.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
+import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
@@ -168,8 +170,10 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/tooltip': Tooltip,
-  '/preview/page-header': PageHeader,
-  '/preview/page-header-no-back': PageHeaderNoBack,
+  '/preview/push-card': PushCard,
+  '/preview/action-card': ActionCard,
+  '/preview/page-header': ContentHeader,
+  '/preview/page-header-no-back': ContentHeaderNoBack,
   '/preview/empty-state': EmptyState,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,

@@ -38,6 +38,12 @@ export class ExpandingSearch {
    */
   @Prop({ mutable: true }) value = '';
 
+  /**
+   * If true the search field will fill all available horizontal space of it's parent container when expanded.
+   * @since 1.6.0
+   */
+  @Prop() fullWidth = false;
+
   @State() isFieldChanged = false;
 
   @State() expanded = false;
@@ -98,6 +104,7 @@ export class ExpandingSearch {
         class={{
           expanded: this.expanded,
           'right-position': this.expanded,
+          fullWidth: this.fullWidth,
         }}
       >
         <button
@@ -125,6 +132,7 @@ export class ExpandingSearch {
         <div
           class={{
             expanded: this.expanded,
+            fullWidth: this.fullWidth,
             collapsed: !this.expanded,
             'disable-pointer': !this.expanded,
             'input-container': true,

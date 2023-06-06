@@ -1,3 +1,39 @@
+# [1.6.0](https://github.com/siemens/ix/compare/v1.5.0...v1.6.0) (2023-05-31)
+
+
+### Bug Fixes
+
+* **core/expanding-search:** add full-width support ([#491](https://github.com/siemens/ix/issues/491)) ([b0bb9e2](https://github.com/siemens/ix/commit/b0bb9e270dc6d66da5f99f865762bafbaaaefb77))
+* **core/input:** prevent mouse states for read-only and disabled inputs ([#562](https://github.com/siemens/ix/issues/562)) ([b3fdbc1](https://github.com/siemens/ix/commit/b3fdbc104e3e305ec82fa8fb2148388fd7f7970d))
+* **core/menu-item:** update title when slot changes ([#539](https://github.com/siemens/ix/issues/539)) ([a36e82a](https://github.com/siemens/ix/commit/a36e82a1ee21b1b6eee22d996a225faa63b1eb59))
+* **core/menu:** adapt width ([#514](https://github.com/siemens/ix/issues/514)) ([a7163be](https://github.com/siemens/ix/commit/a7163bed8130ec7ab0ad6ee865f0b362dfcf1d45))
+* **core/menu:** show disable menu item also in overflow dropdown disabled ([#527](https://github.com/siemens/ix/issues/527)) ([38feb8e](https://github.com/siemens/ix/commit/38feb8e78aada0e64268a947d9711c90f341ef03))
+* **core/modal:** border-radius value ([#517](https://github.com/siemens/ix/issues/517)) ([3f3d305](https://github.com/siemens/ix/commit/3f3d305ebedffe7bec2d4c01517c8c9403da1c1b))
+* **core/select:** updated style and multimode functionality ([#516](https://github.com/siemens/ix/issues/516)) ([8db6883](https://github.com/siemens/ix/commit/8db6883c9add4b99d80e59b612db6143b525ad32))
+* **core/time-picker:** make inputs editable ([#512](https://github.com/siemens/ix/issues/512)) ([864eb14](https://github.com/siemens/ix/commit/864eb14502b63dc80a892dd1fdcca4e7e92401ff))
+* **core/toast:** use steady speed ([#537](https://github.com/siemens/ix/issues/537)) ([df4f168](https://github.com/siemens/ix/commit/df4f168a3fb88d0f743b803c2e5b8f3bf9911a47))
+
+
+### Features
+
+* **core/bind:** enable shadowDOM ([#533](https://github.com/siemens/ix/issues/533)) ([2f94f3b](https://github.com/siemens/ix/commit/2f94f3b930b1b7d6d9646b22c419f242ea774a0e))
+* **core/button:** enable shadowDOM ([#534](https://github.com/siemens/ix/issues/534)) ([7f47305](https://github.com/siemens/ix/commit/7f47305f56553c479df422320e9b1f090e01b479))
+* **core/cards:** add card related components ([#542](https://github.com/siemens/ix/issues/542)) ([510b131](https://github.com/siemens/ix/commit/510b1313549738e7ca0ad8562ef75280fee15e80))
+* **core/drawer:** enable shadow dom ([#544](https://github.com/siemens/ix/issues/544)) ([eda80e3](https://github.com/siemens/ix/commit/eda80e39fde769e420a879861499eb15571572f0))
+* **core/empty-state:** enable shadow dom ([#543](https://github.com/siemens/ix/issues/543)) ([d5c2f0b](https://github.com/siemens/ix/commit/d5c2f0bac0730b169f95c219bae59df682d6e9f9))
+* **core/empty-state:** implement empty state ([#523](https://github.com/siemens/ix/issues/523)) ([efc3f7c](https://github.com/siemens/ix/commit/efc3f7c54bc23de245d09ff639b90eff9bf44291))
+* **core/key-value:** implement key value ([#545](https://github.com/siemens/ix/issues/545)) ([18a600a](https://github.com/siemens/ix/commit/18a600a69638e3f9922ad49e0e04b02dc3845ca1))
+* **core/kpi:** enable shadow dom ([#546](https://github.com/siemens/ix/issues/546)) ([8f369d4](https://github.com/siemens/ix/commit/8f369d488b76a544add535d32b6a5ad6303b913c))
+* **core/map-navigation:** expose method to change visibility of sidebar ([#550](https://github.com/siemens/ix/issues/550)) ([da52729](https://github.com/siemens/ix/commit/da527293b50c9cb34abef5a445458e8cc9ed533d))
+* **core/message-bar:** enable shadow dom ([#547](https://github.com/siemens/ix/issues/547)) ([4552b2d](https://github.com/siemens/ix/commit/4552b2d9916f8742a251a87b63b61bf8a5df0c33))
+* **core/page-header:** add page-header ([#526](https://github.com/siemens/ix/issues/526)) ([cc6164e](https://github.com/siemens/ix/commit/cc6164e80cd8674563f31479ec38894d89b97b70))
+* **core/spinner:** enable shadow dom ([#548](https://github.com/siemens/ix/issues/548)) ([c088b8e](https://github.com/siemens/ix/commit/c088b8ef2b149e08d2e2a33ed5dcd4ea2a76627e))
+* **core/typography:** add color property ([#530](https://github.com/siemens/ix/issues/530)) ([8eeec5a](https://github.com/siemens/ix/commit/8eeec5aa3b4b82449e59bd798b5d99bd31e12437))
+* **core:** add default component mixin ([dbecd00](https://github.com/siemens/ix/commit/dbecd00b2a64a4aeddc487943fc67f4deec6d2ab))
+* **core:** integrate @siemens/ix-icons web components ([#524](https://github.com/siemens/ix/issues/524)) ([7a545c2](https://github.com/siemens/ix/commit/7a545c227092e461325971a657941d2bd9324e38))
+
+
+
 # [1.5.0](https://github.com/siemens/ix/compare/v1.5.0-beta.4...v1.5.0) (2023-05-02)
 
 
