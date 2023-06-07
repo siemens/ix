@@ -122,53 +122,14 @@ export class MenuAvatar {
             mainAxis: 6,
           }}
         >
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          <ix-dropdown-item label="test"></ix-dropdown-item>
-          {/* <slot></slot>
+          <slot></slot>
           <ix-menu-avatar-item
             label={this.i18nLogout}
             icon="log-out"
             onClick={(e) => {
               this.logoutClick.emit(e);
             }}
-          ></ix-menu-avatar-item> */}
+          ></ix-menu-avatar-item>
         </ix-dropdown>
       </Host>
     );

@@ -83,75 +83,75 @@
   }
 }
 
-.dropdown-item {
-  display: flex;
-  height: 2.5rem;
-  position: relative;
-  align-items: center;
-  cursor: pointer;
-  padding: 0 $x-large-space;
-  border: 1px solid transparent;
-  color: var(--theme-menu-item--color);
-  background-color: transparent;
+// .dropdown-item {
+//   display: flex;
+//   height: 2.5rem;
+//   position: relative;
+//   align-items: center;
+//   cursor: pointer;
+//   padding: 0 $x-large-space;
+//   border: 1px solid transparent;
+//   color: var(--theme-menu-item--color);
+//   background-color: transparent;
 
-  &:focus-visible {
-    background-color: var(--theme-menu-item--background);
-    color: var(--theme-menu-item--color);
-  }
+//   &:focus-visible {
+//     background-color: var(--theme-menu-item--background);
+//     color: var(--theme-menu-item--color);
+//   }
 
-  &:focus-visible {
-    outline: none;
-    background-color: var(--theme-menu-item--background);
-    border-color: #119fff;
-    color: var(--theme-menu-item--color--focus);
-  }
+//   &:focus-visible {
+//     outline: none;
+//     background-color: var(--theme-menu-item--background);
+//     border-color: #119fff;
+//     color: var(--theme-menu-item--color--focus);
+//   }
 
-  @include hover {
-    color: var(--theme-menu-item--color--hover);
-    background-color: var(--theme-menu-item--background--hover);
-  }
+//   @include hover {
+//     color: var(--theme-menu-item--color--hover);
+//     background-color: var(--theme-menu-item--background--hover);
+//   }
 
-  @include active {
-    color: var(--theme-menu-item--color--active);
-    background-color: var(--theme-menu-item--background--active);
-  }
+//   @include active {
+//     color: var(--theme-menu-item--color--active);
+//     background-color: var(--theme-menu-item--background--active);
+//   }
 
-  &.disabled,
-  &:disabled {
-    color: var(--theme-menu-item--color--disabled);
-    background-color: var(--theme-menu-item--background--disabled);
-  }
+//   &.disabled,
+//   &:disabled {
+//     color: var(--theme-menu-item--color--disabled);
+//     background-color: var(--theme-menu-item--background--disabled);
+//   }
 
-  > a,
-  a:hover,
-  a:active {
-    color: var(--theme-color-std-text);
-  }
+//   > a,
+//   a:hover,
+//   a:active {
+//     color: var(--theme-color-std-text);
+//   }
 
-  > .glyph {
-    color: var(--theme-menu-item-icon--color);
+//   > .glyph {
+//     color: var(--theme-menu-item-icon--color);
 
-    &.disabled {
-      color: var(--color-weak-text);
-    }
+//     &.disabled {
+//       color: var(--color-weak-text);
+//     }
 
-    &.glyph-single-check {
-      color: var(--theme-menu-item-icon-check--color);
-    }
+//     &.glyph-single-check {
+//       color: var(--theme-menu-item-icon-check--color);
+//     }
 
-    margin-inline-end: $small-space;
-  }
-}
+//     margin-inline-end: $small-space;
+//   }
+// }
 
-.dropdown-item {
-  > input[type='checkbox'] + label {
-    margin-bottom: 0px;
+// .dropdown-item {
+//   > input[type='checkbox'] + label {
+//     margin-bottom: 0px;
 
-    &::before {
-      margin-right: 1rem;
-    }
-  }
-}
+//     &::before {
+//       margin-right: 1rem;
+//     }
+//   }
+// }
 
 .dropdown-divider {
   border-top: 1px solid var(--theme-menu-separator--background);

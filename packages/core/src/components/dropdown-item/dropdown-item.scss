@@ -11,14 +11,12 @@
 @import 'fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
   display: block;
-
-  @include focus-visible {
-    background-color: transparent;
-    color: var(--theme-menu-item--color);
-  }
+  position: relative;
 
   .checkmark {
     position: absolute;
@@ -36,8 +34,36 @@
   }
 
   .dropdown-item {
-    all: unset;
+    display: flex;
+    height: 2.5rem;
     width: 100%;
+    padding: 0 2rem;
+
+    align-items: center;
+    background-color: var(--theme-color-2);
+    border: 1px solid transparent;
+    cursor: pointer;
+    appearance: button;
+    clear: both;
+    list-style-type: none;
+    position: relative;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .dropdown-item:hover {
+    background-color: var(--theme-color-ghost--hover);
+  }
+
+  .dropdown-item:active {
+    background-color: var(--theme-color-ghost--active);
+  }
+
+  .dropdown-item {
+    @include focus-visible {
+      border-color: var(--theme-color-focus-bdr);
+      outline: none;
+    }
   }
 }
 
@@ -50,10 +76,6 @@
 
   .dropdown-item {
     padding: $tiny-space $small-space;
-
-    @include focus-visible {
-      border-color: var(--color-focus-bdr);
-    }
   }
 }
 
