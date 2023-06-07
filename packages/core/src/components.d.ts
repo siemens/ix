@@ -759,7 +759,7 @@ export namespace Components {
          */
         "chevron": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value is `--theme-color-alarm` or `color-alarm`
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color": string;
@@ -3513,7 +3513,7 @@ declare namespace LocalJSX {
          */
         "chevron"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value is `--theme-color-alarm` or `color-alarm`
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color"?: string;
