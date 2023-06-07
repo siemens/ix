@@ -19,7 +19,7 @@ export class MyComponent {
       <Host>
         <ix-basic-navigation>
           <ix-menu>
-            <ix-menu-avatar>
+            <ix-menu-avatar top="top 123" bottom="bottom 456">
               <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
             </ix-menu-avatar>

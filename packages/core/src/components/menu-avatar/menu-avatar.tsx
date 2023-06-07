@@ -6,7 +6,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
 
 function DefaultAvatar(props: { initials?: string }) {
   const { initials } = props;
@@ -47,6 +55,8 @@ function DefaultAvatar(props: { initials?: string }) {
   shadow: true,
 })
 export class MenuAvatar {
+  @Element() hostElement!: HTMLIxMenuAvatarElement;
+
   /**
    * First line of text
    */
@@ -106,20 +116,59 @@ export class MenuAvatar {
           </div>
         </li>
         <ix-dropdown
-          trigger={this.avatarElementId}
+          trigger={this.hostElement}
           placement={'right-start'}
           offset={{
             mainAxis: 6,
           }}
         >
-          <slot></slot>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          <ix-dropdown-item label="test"></ix-dropdown-item>
+          {/* <slot></slot>
           <ix-menu-avatar-item
             label={this.i18nLogout}
             icon="log-out"
             onClick={(e) => {
               this.logoutClick.emit(e);
             }}
-          ></ix-menu-avatar-item>
+          ></ix-menu-avatar-item> */}
         </ix-dropdown>
       </Host>
     );
