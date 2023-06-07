@@ -1,6 +1,6 @@
 {
   "name": "react-test-app",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@siemens/ix": "~1.6.1",
-    "@siemens/ix-aggrid": "~1.6.1",
+    "@siemens/ix": "~1.6.2",
+    "@siemens/ix-aggrid": "~1.6.2",
     "@siemens/ix-icons": "^1.1.0",
-    "@siemens/ix-react": "~1.6.1",
+    "@siemens/ix-react": "~1.6.2",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",
     "react": "^18.2.0",
