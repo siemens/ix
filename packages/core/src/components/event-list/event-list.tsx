@@ -149,7 +149,6 @@ export class EventList {
       if (chevron) {
         e.setAttribute('chevron', 'true');
       } else if (chevron !== undefined) {
-        // remove chevron attribute from list items only if chevron is set to "false" ("undefined" means there is no value provided, so we keep potential directly applied chevron attributes)
         e.removeAttribute('chevron');
       }
     });
