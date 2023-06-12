@@ -4796,7 +4796,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "shadow",
+      "encapsulation": "scoped",
       "dependents": [
         "ix-card-list",
         "ix-category-filter",

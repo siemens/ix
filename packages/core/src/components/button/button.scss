@@ -9,8 +9,10 @@
 
 @import 'common-variables';
 @import './components/buttons';
-
+@import 'mixins/shadow-dom/component';
 :host {
+  @include ix-component;
+
   display: inline-block;
   width: auto;
   height: 2rem;
