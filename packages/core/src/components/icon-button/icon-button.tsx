@@ -16,7 +16,7 @@ export type IconButtonVariant = ButtonVariant;
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
-  scoped: true,
+  shadow: true,
 })
 export class IconButton implements Button {
   @Element() hostElement: HTMLIxIconButtonElement;
