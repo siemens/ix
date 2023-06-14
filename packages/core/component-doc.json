@@ -4811,6 +4811,70 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/link-button",
+      "filePath": "./src/components/link-button/link-button.tsx",
+      "fileName": "link-button.tsx",
+      "readmePath": "./src/components/link-button/readme.md",
+      "usagesDir": "./src/components/link-button/usage",
+      "tag": "ix-link-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-link-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the link button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "mutable": false,
+          "attr": "url",
+          "reflectToAttr": false,
+          "docs": "Url for the link button",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/map-navigation",
       "filePath": "./src/components/map-navigation/map-navigation.tsx",
       "fileName": "map-navigation.tsx",

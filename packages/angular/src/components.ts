@@ -986,6 +986,28 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 
 @ProxyCmp({
+  inputs: ['disabled', 'url']
+})
+@Component({
+  selector: 'ix-link-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'url'],
+})
+export class IxLinkButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
   inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
   methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
 })
