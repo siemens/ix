@@ -9,6 +9,15 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
 
+export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', undefined, [
+  'variant',
+  'icon',
+  'heading',
+  'subheading',
+  'selected'
+]);
+
+
 export const IxAnimatedTab = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTab>('ix-animated-tab', undefined, [
   'icon',
   'count'
@@ -66,6 +75,37 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'disabled',
   'type'
 ]);
+
+
+export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', undefined, [
+  'variant'
+]);
+
+
+export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [
+  'accordionExpand'
+]);
+
+
+export const IxCardContent = /*@__PURE__*/ defineContainer<JSX.IxCardContent>('ix-card-content', undefined);
+
+
+export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card-list', undefined, [
+  'label',
+  'collapse',
+  'listStyle',
+  'maxVisibleCards',
+  'showAllCount',
+  'suppressOverflowHandling',
+  'i18nShowAll',
+  'i18nMoreCards',
+  'collapseChanged',
+  'showAllClick',
+  'showMoreCardClick'
+]);
+
+
+export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-card-title', undefined);
 
 
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
@@ -246,6 +286,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
   'icon',
   'placeholder',
   'value',
+  'fullWidth',
   'valueChange'
 ]);
 
@@ -515,6 +556,15 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', undef
   'background',
   'color',
   'alignLeft'
+]);
+
+
+export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', undefined, [
+  'icon',
+  'notification',
+  'heading',
+  'subheading',
+  'variant'
 ]);
 
 

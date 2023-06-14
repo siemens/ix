@@ -35,6 +35,10 @@ import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
  */
 export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
+type DisposeDropdown = () => void;
+const dropdownDisposer = new Map<string, DisposeDropdown>();
+let sequenceId = 0;
+
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',
@@ -132,9 +136,17 @@ export class Dropdown {
   private toggleBind: any;
   private openBind: any;
 
+  private localUId = `dropdown-${sequenceId++}-${new Date().valueOf()}`;
+
   constructor() {
     this.toggleBind = this.toggle.bind(this);
     this.openBind = this.open.bind(this);
+
+    if (dropdownDisposer.has(this.localUId)) {
+      console.warn('Dropdown with duplicated id detected');
+    }
+
+    dropdownDisposer.set(this.localUId, this.close.bind(this));
   }
 
   get dropdownItems() {
@@ -244,6 +256,14 @@ export class Dropdown {
         this.applyDropdownPosition();
       }
     }
+
+    if (newShow) {
+      dropdownDisposer.forEach((dispose, id) => {
+        if (id !== this.localUId) {
+          dispose();
+        }
+      });
+    }
   }
 
   @Watch('trigger')
@@ -265,7 +285,6 @@ export class Dropdown {
   })
   clickOutside(event: Event) {
     const target = event.target as HTMLElement;
-
     if (
       this.show === false ||
       this.closeBehavior === false ||
@@ -274,23 +293,33 @@ export class Dropdown {
     ) {
       return;
     }
-
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close();
+          this.close(event);
         }
         break;
       case 'inside':
         if (this.dropdownRef.contains(target) && this.hostElement !== target) {
-          this.close();
+          this.close(event);
         }
         break;
       case 'both':
-        if (this.hostElement !== target) this.close();
+        if (this.hostElement !== target) {
+          this.close(event);
+        }
         break;
       default:
-        this.close();
+        this.close(event);
+    }
+  }
+
+  @Listen('keydown', {
+    target: 'window',
+  })
+  keydown(event: KeyboardEvent) {
+    if (this.show === true && event.code === 'Escape') {
+      this.close();
     }
   }
 
@@ -331,7 +360,14 @@ export class Dropdown {
 
   private close(event?: Event) {
     if (event?.defaultPrevented) {
-      return;
+      const target = event.target as HTMLElement;
+      if (
+        target.contains(this.anchorElement) ||
+        target.contains(this.triggerElement) ||
+        target.shadowRoot.contains(this.anchorElement) ||
+        target.shadowRoot.contains(this.triggerElement)
+      )
+        return;
     }
 
     this.show = false;
@@ -381,6 +417,7 @@ export class Dropdown {
       this.autoUpdateCleanup();
       this.autoUpdateCleanup = null;
     }
+
     this.autoUpdateCleanup = autoUpdate(
       this.anchorElement,
       this.dropdownRef,
@@ -422,11 +459,18 @@ export class Dropdown {
 
   async componentDidRender() {
     await this.applyDropdownPosition();
+    this.anchorElement = await (this.anchor
+      ? this.resolveElement(this.anchor)
+      : this.resolveElement(this.trigger));
   }
 
   disconnectedCallback() {
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
+    }
+
+    if (dropdownDisposer.has(this.localUId)) {
+      dropdownDisposer.delete(this.localUId);
     }
   }
 
@@ -452,6 +496,7 @@ export class Dropdown {
           minWidth: '0px',
           position: this.positioningStrategy,
         }}
+        role="list"
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}

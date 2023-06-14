@@ -7,6 +7,159 @@
   },
   "components": [
     {
+      "dirPath": "./src/components/action-card",
+      "filePath": "./src/components/action-card/action-card.tsx",
+      "fileName": "action-card.tsx",
+      "readmePath": "./src/components/action-card/readme.md",
+      "usagesDir": "./src/components/action-card/usage",
+      "tag": "ix-action-card",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-card",
+        "ix-card-content",
+        "ix-icon",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "heading",
+          "type": "string",
+          "mutable": false,
+          "attr": "heading",
+          "reflectToAttr": false,
+          "docs": "Card heading",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Card icon",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "Card selection",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subheading",
+          "type": "string",
+          "mutable": false,
+          "attr": "subheading",
+          "reflectToAttr": false,
+          "docs": "Card subheading",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Card variant",
+          "docsTags": [],
+          "default": "'insight'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "insight",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/animated-tab",
       "filePath": "./src/components/animated-tab/animated-tab.tsx",
       "fileName": "animated-tab.tsx",
@@ -537,6 +690,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-card-list",
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-dropdown-button",
@@ -547,6 +701,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-card-list": [
+          "ix-button"
+        ],
         "ix-date-picker": [
           "ix-button"
         ],
@@ -689,7 +846,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Button varaint",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'Primary'",
           "values": [
@@ -710,6 +867,424 @@
       "events": [],
       "styles": [],
       "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/card",
+      "filePath": "./src/components/card/card.tsx",
+      "fileName": "card.tsx",
+      "readmePath": "./src/components/card/readme.md",
+      "usagesDir": "./src/components/card/usage",
+      "tag": "ix-card",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-push-card"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-card"
+        ],
+        "ix-card-list": [
+          "ix-card"
+        ],
+        "ix-push-card": [
+          "ix-card"
+        ]
+      },
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Card variant",
+          "docsTags": [],
+          "default": "'insight'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "insight",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/card-accordion",
+      "filePath": "./src/components/card-accordion/card-accordion.tsx",
+      "fileName": "card-accordion.tsx",
+      "readmePath": "./src/components/card-accordion/readme.md",
+      "usagesDir": "./src/components/card-accordion/usage",
+      "tag": "ix-card-accordion",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-push-card"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-card-accordion": [
+          "ix-icon"
+        ],
+        "ix-push-card": [
+          "ix-card-accordion"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/card-content",
+      "filePath": "./src/components/card-content/card-content.tsx",
+      "fileName": "card-content.tsx",
+      "readmePath": "./src/components/card-content/readme.md",
+      "usagesDir": "./src/components/card-content/usage",
+      "tag": "ix-card-content",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-push-card"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-card-content"
+        ],
+        "ix-card-list": [
+          "ix-card-content"
+        ],
+        "ix-push-card": [
+          "ix-card-content"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/card-list",
+      "filePath": "./src/components/card-list/card-list.tsx",
+      "fileName": "card-list.tsx",
+      "readmePath": "./src/components/card-list/readme.md",
+      "usagesDir": "./src/components/card-list/usage",
+      "tag": "ix-card-list",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-card",
+        "ix-card-content",
+        "ix-icon",
+        "ix-icon-button",
+        "ix-typography",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-card-list": [
+          "ix-card",
+          "ix-card-content",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-typography",
+          "ix-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "collapse",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "collapse",
+          "reflectToAttr": false,
+          "docs": "Collapse the list",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nMoreCards",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-more-cards",
+          "reflectToAttr": false,
+          "docs": "i18n More cards available",
+          "docsTags": [],
+          "default": "'There are more cards available'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nShowAll",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-show-all",
+          "reflectToAttr": false,
+          "docs": "i18n Show all button",
+          "docsTags": [],
+          "default": "'Show all'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Name the card list",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "listStyle",
+          "type": "\"scroll\" | \"stack\"",
+          "mutable": false,
+          "attr": "list-style",
+          "reflectToAttr": false,
+          "docs": "List style",
+          "docsTags": [],
+          "default": "'stack'",
+          "values": [
+            {
+              "value": "scroll",
+              "type": "string"
+            },
+            {
+              "value": "stack",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showAllCount",
+          "type": "number",
+          "mutable": false,
+          "attr": "show-all-count",
+          "reflectToAttr": false,
+          "docs": "Overwrite the default show all count.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "suppressOverflowHandling",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "suppress-overflow-handling",
+          "reflectToAttr": false,
+          "docs": "Suppress the overflow handling of child elements",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "collapseChanged",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event when the collapse state is changed by the user",
+          "docsTags": []
+        },
+        {
+          "event": "showAllClick",
+          "detail": "{ nativeEvent: MouseEvent; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event when the collapse state is changed by the user",
+          "docsTags": []
+        },
+        {
+          "event": "showMoreCardClick",
+          "detail": "{ nativeEvent: MouseEvent; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Fire event when the show more card is clicked.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
+    },
+    {
+      "dirPath": "./src/components/card-title",
+      "filePath": "./src/components/card-title/card-title.tsx",
+      "fileName": "card-title.tsx",
+      "readmePath": "./src/components/card-title/readme.md",
+      "usagesDir": "./src/components/card-title/usage",
+      "tag": "ix-card-title",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "title-actions - Place additional actions inside title"
+        },
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-push-card"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-push-card": [
+          "ix-card-title"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "title-actions",
+          "docs": "Place additional actions inside title"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -2679,6 +3254,12 @@
           "target": "window",
           "capture": false,
           "passive": false
+        },
+        {
+          "event": "keydown",
+          "target": "window",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -2860,7 +3441,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
         "ix-group-dropdown-item",
@@ -3429,6 +4010,28 @@
         ]
       },
       "props": [
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "full-width",
+          "reflectToAttr": false,
+          "docs": "If true the search field will fill all available horizontal space of it's parent container when expanded.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.6.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "icon",
           "type": "string",
@@ -4195,6 +4798,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-card-list",
         "ix-category-filter",
         "ix-content-header",
         "ix-date-picker",
@@ -4221,6 +4825,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-card-list": [
+          "ix-icon-button"
         ],
         "ix-category-filter": [
           "ix-icon-button"
@@ -7267,6 +7874,165 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/push-card",
+      "filePath": "./src/components/push-card/push-card.tsx",
+      "fileName": "push-card.tsx",
+      "readmePath": "./src/components/push-card/readme.md",
+      "usagesDir": "./src/components/push-card/usage",
+      "tag": "ix-push-card",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-card",
+        "ix-card-title",
+        "ix-icon",
+        "ix-card-content",
+        "ix-typography",
+        "ix-card-accordion"
+      ],
+      "dependencyGraph": {
+        "ix-push-card": [
+          "ix-card",
+          "ix-card-title",
+          "ix-icon",
+          "ix-card-content",
+          "ix-typography",
+          "ix-card-accordion"
+        ],
+        "ix-card-accordion": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "heading",
+          "type": "string",
+          "mutable": false,
+          "attr": "heading",
+          "reflectToAttr": false,
+          "docs": "Card heading",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Card icon",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "notification",
+          "type": "string",
+          "mutable": false,
+          "attr": "notification",
+          "reflectToAttr": false,
+          "docs": "Card KPI value",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subheading",
+          "type": "string",
+          "mutable": false,
+          "attr": "subheading",
+          "reflectToAttr": false,
+          "docs": "Card subheading",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Card variant",
+          "docsTags": [],
+          "default": "'insight'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "insight",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/select",
       "filePath": "./src/components/select/select.tsx",
       "fileName": "select.tsx",
@@ -8409,7 +9175,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -9954,7 +10720,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -10109,13 +10875,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/workflow-steps",
@@ -10128,7 +10888,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -10223,7 +10983,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/my-component",

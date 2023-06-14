@@ -12,6 +12,7 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
+import ActionCard from './preview-examples/action-card.vue';
 import AGGrid from './preview-examples/aggrid.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
@@ -66,6 +67,7 @@ import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
+import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
@@ -168,6 +170,8 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/tooltip': Tooltip,
+  '/preview/push-card': PushCard,
+  '/preview/action-card': ActionCard,
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,
   '/preview/empty-state': EmptyState,

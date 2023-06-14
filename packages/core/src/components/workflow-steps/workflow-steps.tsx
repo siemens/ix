@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -21,7 +22,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 @Component({
   tag: 'ix-workflow-steps',
   styleUrl: 'workflow-steps.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowSteps {
   @Element() hostElement!: HTMLIxWorkflowStepsElement;
@@ -56,10 +57,6 @@ export class WorkflowSteps {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
   }
 
-  get stepsContent() {
-    return this.hostElement.querySelector('.steps');
-  }
-
   updateSteps() {
     let steps = this.getSteps();
     steps.forEach((element, index) => {
@@ -84,21 +81,17 @@ export class WorkflowSteps {
 
   private observer: MutationObserver;
 
-  componentDidLoad() {
-    this.stepsContent.addEventListener(
-      'selectedChanged',
-      (event: CustomEvent<HTMLIxWorkflowStepElement>) => {
-        const steps = this.getSteps();
-        steps.forEach((element) => {
-          if (element !== event.target) {
-            element.selected = false;
-          }
-        });
+  @Listen('selectedChanged')
+  onStepSelectionChanged(event: CustomEvent<HTMLIxWorkflowStepElement>) {
+    const steps = this.getSteps();
+    steps.forEach((element) => {
+      if (element !== event.target) {
+        element.selected = false;
       }
-    );
+    });
+  }
 
-    const slotDiv = this.hostElement.querySelector('.steps');
-
+  componentDidLoad() {
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
@@ -107,7 +100,7 @@ export class WorkflowSteps {
       }
     });
 
-    this.observer.observe(slotDiv, { childList: true });
+    this.observer.observe(this.hostElement, { childList: true });
   }
 
   disconnectedCallback() {

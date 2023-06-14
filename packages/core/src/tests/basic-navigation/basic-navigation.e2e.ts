@@ -16,6 +16,11 @@ regressionTest.describe('basic navigation', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('content width', async ({ page }) => {
+    await page.goto('basic-navigation/content-width');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('expanded', async ({ page }) => {
     await page.goto('basic-navigation/basic');
     await page.locator('ix-menu ix-burger-menu').click();
