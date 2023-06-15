@@ -71,7 +71,11 @@ export class EventListItem {
       : `var(--theme-${this.color})`;
 
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <div
           class={{
             'event-list-item': true,

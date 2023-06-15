@@ -10,6 +10,7 @@
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
+@import 'mixins/shadow-dom/host-disabled';
 @import 'common-variables';
 
 $default-event-list-item-height: 2.5rem;
@@ -126,3 +127,5 @@ $default-event-list-item-height: 2.5rem;
     }
   }
 }
+
+@include host-disabled;
