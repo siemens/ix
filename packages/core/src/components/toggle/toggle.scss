@@ -69,28 +69,15 @@
     .slider-track {
       background-color: var(
         --theme-switch-#{$state}--background--active#{$suffix}
-      ) !important;
+      );
       border-color: var(
         --theme-switch-#{$state}--border-color--active#{$suffix}
-      ) !important;
+      );
     }
 
     .text {
       color: var(--theme-switch--color--active);
     }
-  }
-}
-
-:focus-visible {
-  outline: none;
-}
-
-:focus-within {
-  .slider-track {
-    outline-color: var(--theme-color-focus-bdr);
-    outline-style: solid;
-    outline-width: 1px;
-    outline-offset: 2px;
   }
 }
 
@@ -175,6 +162,16 @@
 
     .text {
       color: var(--theme-switch--color--hover);
+    }
+  }
+
+  :focus-visible {
+    outline: none;
+    .slider-track {
+      outline-color: var(--theme-color-focus-bdr);
+      outline-style: solid;
+      outline-width: 1px;
+      outline-offset: 2px;
     }
   }
 
