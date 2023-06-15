@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import 'mixins/shadow-dom/component';
+
 :host {
+  @include ix-component;
+
   display: flex;
   position: relative;
   width: 100%;
@@ -27,11 +31,11 @@
     margin-left: 3.25rem;
     overflow: auto;
   }
+}
 
-  &.hide-header {
-    .content {
-      height: 100%;
-    }
+:host(.hide-header) {
+  .content {
+    height: 100%;
   }
 }
 

@@ -3877,7 +3877,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<string>) => void;
         /**
           * Internal
          */
@@ -4001,7 +4001,7 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<string>) => void;
         /**
           * Internal
          */

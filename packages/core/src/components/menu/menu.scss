@@ -9,8 +9,11 @@
 
 @import 'common-variables';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
 
-ix-menu {
+:host {
+  @include ix-component;
+
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -18,6 +21,8 @@ ix-menu {
   min-height: 22.75rem;
   z-index: var(--theme-z-index-sticky);
   width: auto;
+
+  bottom: 0px;
 
   .menu {
     display: flex;
@@ -43,17 +48,13 @@ ix-menu {
   .menu-overlay {
     display: block;
     position: absolute;
-    width: calc(100vw - 3.25rem);
-    height: 100%;
+    width: calc(100vw - 6.25rem);
+    height: calc(100% - 1.75rem);
     left: 3.25rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
     transition: all $medium-time ease-out;
-  }
-
-  .menu-overlay-invisible {
-    display: none;
   }
 
   .menu.expanded {
@@ -93,7 +94,7 @@ ix-menu {
   }
 }
 
-ix-menu.mode-mobile {
+:host(.mode-mobile) {
   .menu:not(.expanded) {
     width: 0;
   }

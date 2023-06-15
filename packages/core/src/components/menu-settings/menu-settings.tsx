@@ -22,7 +22,7 @@ import {
 @Component({
   tag: 'ix-menu-settings',
   styleUrl: 'menu-settings.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAbout {
   /**
@@ -45,7 +45,7 @@ export class MenuAbout {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter<MouseEvent>;
+  @Event() close: EventEmitter<string>;
 
   get settingsItems(): HTMLIxMenuSettingsItemElement[] {
     return Array.from(this.el.querySelectorAll('ix-menu-settings-item'));
@@ -95,6 +95,7 @@ export class MenuAbout {
   render() {
     return (
       <Host
+        slot="ix-menu-settings"
         class={{
           animate__animated: true,
           animate__fadeInLeft: this.show,
@@ -107,7 +108,7 @@ export class MenuAbout {
             ghost
             size="24"
             icon="close"
-            onClick={(e) => this.close.emit(e)}
+            onClick={() => this.close.emit('ix-menu-settings')}
           ></ix-icon-button>
         </div>
         <ix-tabs>{this.getTabItems()}</ix-tabs>

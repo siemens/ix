@@ -29,7 +29,7 @@ import { themeSwitcher } from '../utils/theme-switcher';
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',
-  scoped: false,
+  shadow: true,
 })
 export class Menu {
   @Element() hostElement!: HTMLIxMenuElement;
@@ -138,14 +138,6 @@ export class Menu {
     if (node.matches('.tab')) {
       this.onWindowResize();
     }
-
-    if (node.matches('ix-menu-about') && this.menu.contains(node)) {
-      this.appendAbout();
-    }
-
-    if (node.matches('ix-menu-settings') && this.menu.contains(node)) {
-      this.appendSettings();
-    }
   }
 
   private onDomChange(mutations: MutationRecord[]) {
@@ -164,19 +156,11 @@ export class Menu {
   };
 
   get popoverArea() {
-    return this.hostElement.querySelector('#popover-area');
-  }
-
-  get overlayContainer() {
-    return this.hostElement.querySelector('.menu-overlay');
-  }
-
-  get invisibleContainer() {
-    return this.hostElement.querySelector('.menu-overlay-invisible');
+    return this.hostElement.shadowRoot.querySelector('#popover-area');
   }
 
   get menu() {
-    return this.hostElement.querySelector('.menu');
+    return this.hostElement.shadowRoot.querySelector('.menu');
   }
 
   get menuItems() {
@@ -200,28 +184,33 @@ export class Menu {
   }
 
   get moreItemsDropdown(): HTMLElement {
-    return this.hostElement.querySelector('.internal-tab ix-dropdown');
+    return this.hostElement.shadowRoot.querySelector(
+      '.internal-tab ix-dropdown'
+    );
   }
 
   get isMoreItemsDropdownEmpty(): boolean {
     return (
-      this.hostElement.querySelectorAll('.internal-tab ix-dropdown .appended')
-        .length === 0
+      this.hostElement.shadowRoot.querySelectorAll(
+        '.internal-tab ix-dropdown .appended'
+      ).length === 0
     );
   }
 
   get moreItemsDropdownItems() {
-    return this.hostElement.querySelectorAll(
+    return this.hostElement.shadowRoot.querySelectorAll(
       '.internal-tab ix-dropdown ix-menu-item'
     );
   }
 
   get activeMoreTabContainer() {
-    return this.hostElement.querySelector('.active-more-tab');
+    return this.hostElement.shadowRoot.querySelector('.active-more-tab');
   }
 
   get activeMoreTab() {
-    return this.hostElement.querySelector('.active-more-tab ix-menu-item');
+    return this.hostElement.shadowRoot.querySelector(
+      '.active-more-tab ix-menu-item'
+    );
   }
 
   get aboutPopoverContainer(): HTMLElement {
@@ -229,11 +218,14 @@ export class Menu {
   }
 
   get aboutPopover(): HTMLIxMenuAboutNewsElement {
-    return document.querySelector('ix-menu-about-news');
+    return (
+      document.querySelector('ix-menu-about-news') ??
+      this.hostElement.querySelector('ix-menu-about-news')
+    );
   }
 
   get aboutTab(): HTMLElement {
-    return this.hostElement.querySelector('#aboutAndLegal');
+    return this.hostElement.shadowRoot.querySelector('#aboutAndLegal');
   }
 
   get about(): HTMLIxMenuAboutElement {
@@ -246,17 +238,18 @@ export class Menu {
 
   get isSettingsEmpty(): boolean {
     return (
-      Array.from(this.hostElement.querySelectorAll('ix-menu-settings-item'))
-        .length === 0
+      Array.from(
+        this.hostElement.shadowRoot.querySelectorAll('ix-menu-settings-item')
+      ).length === 0
     );
   }
 
   get avatarItem(): HTMLIxMenuAvatarElement {
-    return this.hostElement.querySelector('ix-menu-avatar');
+    return this.hostElement.shadowRoot.querySelector('ix-menu-avatar');
   }
 
   get tabsContainer(): HTMLDivElement {
-    return this.hostElement.querySelector('#menu-tabs');
+    return this.hostElement.shadowRoot.querySelector('#menu-tabs');
   }
 
   private showTab(index: number) {
@@ -264,32 +257,6 @@ export class Menu {
   }
 
   componentDidLoad() {
-    this.settings?.addEventListener('close', () => {
-      this.showSettings = false;
-      this.settings.show = this.showSettings;
-    });
-
-    this.settings?.addEventListener('animationend', () => {
-      if (!this.showSettings) {
-        this.settings.classList.add('d-none');
-        this.overlayContainer.classList.add('d-none');
-      }
-    });
-
-    this.about?.addEventListener('close', () => {
-      this.showAbout = false;
-      this.about.show = this.showAbout;
-    });
-
-    this.about?.addEventListener('animationend', () => {
-      if (!this.showAbout) {
-        this.about.classList.add('d-none');
-        this.overlayContainer.classList.add('d-none');
-      }
-    });
-
-    this.overlayContainer.classList.add('d-none');
-
     this.onWindowResize();
 
     this.domObserver.observe(this.hostElement, {
@@ -319,8 +286,6 @@ export class Menu {
 
   private appendFragments() {
     this.appendAvatar();
-    this.appendAbout();
-    this.appendSettings();
     this.appendAboutNewsPopover();
 
     // This lead to none infinite-loops and other bugs.
@@ -341,7 +306,9 @@ export class Menu {
     this.activeTab = null;
 
     if (this.homeTab) {
-      this.hostElement.querySelector('.tabs-top').appendChild(this.homeTab);
+      this.hostElement.shadowRoot
+        .querySelector('.tabs-top')
+        .appendChild(this.homeTab);
       this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
     }
 
@@ -400,18 +367,6 @@ export class Menu {
 
       this.aboutPopover.addEventListener('showMore', showMore.bind(this));
       document.body.appendChild(this.aboutPopover);
-    }
-  }
-
-  private appendSettings() {
-    if (this.settings) {
-      this.overlayContainer.appendChild(this.settings);
-    }
-  }
-
-  private appendAbout() {
-    if (this.about) {
-      this.overlayContainer.appendChild(this.about);
     }
   }
 
@@ -583,7 +538,6 @@ export class Menu {
     this.showSettings = show;
     this.settings.show = this.showSettings;
     this.settings.classList.remove('d-none');
-    this.overlayContainer.classList.remove('d-none');
   }
 
   /**
@@ -604,7 +558,6 @@ export class Menu {
     this.showAbout = show;
     this.about.show = this.showAbout;
     this.about.classList.remove('d-none');
-    this.overlayContainer.classList.remove('d-none');
   }
 
   private resetOverlay() {
@@ -659,6 +612,17 @@ export class Menu {
     return menuItems.some((menu) => this.tabsContainer.contains(menu));
   }
 
+  @Listen('close')
+  onOverlayClose(event: CustomEvent<string>) {
+    if (event.detail === 'ix-menu-about') {
+      this.showAbout = false;
+    }
+
+    if (event.detail === 'ix-menu-settings') {
+      this.showSettings = false;
+    }
+  }
+
   render() {
     return (
       <Host
@@ -666,6 +630,7 @@ export class Menu {
           expanded: this.expand,
           [`mode-${this.mode}`]: true,
         }}
+        slot="menu"
       >
         <div
           class={{
@@ -753,7 +718,7 @@ export class Menu {
             </ix-menu-item>
           </div>
           <div class="bottom-tab-divider"></div>
-          {this.enableSettings && !this.isSettingsEmpty ? (
+          {this.settings ? (
             <ix-menu-item
               id="settings"
               class={{
@@ -804,17 +769,17 @@ export class Menu {
             </ix-menu-item>
           ) : null}
         </div>
-        <div
-          class={{
-            'menu-overlay': true,
-            expanded: this.expand,
-            'd-block': this.showAbout || this.showSettings,
-          }}
-          style={{
-            opacity: this.showAbout || this.showSettings ? '1' : '0',
-          }}
-        ></div>
-        <div class="menu-overlay-invisible"></div>
+        {this.showSettings || this.showAbout ? (
+          <div
+            class={{
+              'menu-overlay': true,
+              expanded: this.expand,
+            }}
+          >
+            {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
+            {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          </div>
+        ) : null}
       </Host>
     );
   }

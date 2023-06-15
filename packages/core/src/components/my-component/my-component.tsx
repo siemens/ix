@@ -11,7 +11,7 @@ import { Component, h, Host } from '@stencil/core';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MyComponent {
   render() {
@@ -57,6 +57,14 @@ export class MyComponent {
               </ix-menu-settings-item>
             </ix-menu-settings>
           </ix-menu>
+          <main>
+            <ix-blind>
+              <div slot="custom-header">
+                <strike>My custom header</strike>
+              </div>
+              Test
+            </ix-blind>
+          </main>
         </ix-basic-navigation>
       </Host>
     );

@@ -15,7 +15,7 @@ import { Disposable } from '../utils/typed-event';
 @Component({
   tag: 'ix-basic-navigation',
   styleUrl: 'basic-navigation.scss',
-  scoped: true,
+  shadow: true,
 })
 export class BasicNavigation {
   @Element() hostElement: HTMLIxBasicNavigationElement;
@@ -49,7 +49,6 @@ export class BasicNavigation {
 
   componentDidRender() {
     if (this.menu) {
-      this.appendMenu();
       this.adjustMenuHeight();
       this.menu.applicationName = this.applicationName;
     }
@@ -57,10 +56,6 @@ export class BasicNavigation {
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
-  }
-
-  private appendMenu() {
-    this.hostElement.querySelector('#menu-placeholder').appendChild(this.menu);
   }
 
   private adjustMenuHeight() {
@@ -83,7 +78,7 @@ export class BasicNavigation {
             <slot name="logo"></slot>
           </ix-application-header>
         ) : null}
-        <div id="menu-placeholder"></div>
+        <slot name="menu"></slot>
         <div class="content" onClick={() => this.menu.toggleMenu(false)}>
           <slot></slot>
         </div>
