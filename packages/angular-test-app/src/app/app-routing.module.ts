@@ -90,6 +90,7 @@ import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
+import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
@@ -160,6 +161,10 @@ const routes: Routes = [
       {
         path: 'toast-custom',
         component: ToastCustom,
+      },
+      {
+        path: 'toast-position',
+        component: ToastPosition,
       },
       {
         path: 'tree',
