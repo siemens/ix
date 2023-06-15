@@ -75,7 +75,6 @@ export class Menu {
    */
   @Prop() maxVisibleMenuItems = 9;
 
-
   /**
    * Accessibility i18n label for the burger menu of the sidebar
    */

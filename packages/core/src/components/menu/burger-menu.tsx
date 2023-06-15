@@ -31,7 +31,7 @@ export class BurgerMenu {
   /**
    * Accessibility label for the burger menu button (MANDATORY)
    */
-  @Prop() ixAriaLabel: string = "Expand";
+  @Prop() ixAriaLabel: string = 'Expand';
 
   /**
    * Does burger menu button display the expanded or the not expanded state
