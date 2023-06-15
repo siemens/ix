@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from './base-button';
 
 export type ButtonVariant = 'Primary' | 'Secondary';
@@ -55,6 +55,18 @@ export class Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  @Element() hostElement: HTMLIxButtonElement;
+
+  dispatchFormEvents() {
+    if (this.type === 'submit') {
+      const form = this.hostElement.closest('form');
+
+      if (form) {
+        form.dispatchEvent(new Event('submit'));
+      }
+    }
+  }
+
   render() {
     return (
       <Host
@@ -63,6 +75,7 @@ export class Button {
         }}
       >
         <button
+          onClick={() => this.dispatchFormEvents()}
           type={this.type}
           class={getButtonClasses(
             this.variant,
