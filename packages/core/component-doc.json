@@ -3768,7 +3768,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -3867,10 +3867,16 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-event-list-item": [
+          "ix-icon"
+        ]
+      },
       "props": [
         {
           "name": "chevron",
@@ -3894,8 +3900,13 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nAllowed values are all Core UI color names.",
-          "docsTags": [],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://ix.siemens.io/docs/theming/colors/"
+            }
+          ],
           "values": [
             {
               "type": "string"
