@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
 
@@ -19,6 +19,8 @@ export type IconButtonVariant = ButtonVariant;
   shadow: true,
 })
 export class IconButton implements Button {
+  @Element() hostElement: HTMLIxIconButtonElement;
+
   /**
    * Accessibility label for the icon button (MANDATORY)
    * @since 1.6.0
@@ -81,6 +83,16 @@ export class IconButton implements Button {
    * Type of the button
    */
   @Prop() type: 'button' | 'submit' = 'button';
+
+  dispatchFormEvents() {
+    if (this.type === 'submit') {
+      const form = this.hostElement.closest('form');
+
+      if (form) {
+        form.dispatchEvent(new Event('submit'));
+      }
+    }
+  }
 
   private getIconSizeClass() {
     return {
@@ -146,6 +158,7 @@ export class IconButton implements Button {
             this.ixAriaLabel ? this.ixAriaLabel : this.fallbackLabel()
           }
           disabled={this.disabled}
+          onClick={() => this.dispatchFormEvents()}
         >
           <ix-icon size={this.size} name={this.icon} color={this.color} />
           <div style={{ display: 'none' }}>

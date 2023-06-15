@@ -6,11 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+@import 'mixins/shadow-dom/component';
 @import 'mixins/shadows';
 @import 'common-variables';
 
-.drawer-container {
+:host {
+  @include ix-component;
+
   top: 0;
   right: 0;
   @include box-shadow(3);
@@ -29,39 +31,38 @@
   border-radius: $default-border-radius;
 
   transition: all $medium-time ease-out;
-}
 
-.toggle {
-  z-index: 100;
-  visibility: visible;
-}
-
-.drawer-container.full-height {
-  min-height: 100%;
-}
-
-.header {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: flex-end;
-  height: 3.5rem;
-  padding: $small-space $default-space;
-  width: 100%;
-  order: 1;
-
-  .header-content {
-    flex-grow: 1;
-    margin-right: $default-space;
+  .toggle {
+    z-index: 100;
+    visibility: visible;
   }
-}
 
-.content {
-  position: relative;
-  flex: 1;
-  flex-grow: 1;
-  order: 2;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
+  .drawer-container.full-height {
+    min-height: 100%;
+  }
+
+  .header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    width: 100%;
+    order: 1;
+
+    .header-content {
+      flex-grow: 1;
+      margin-right: $default-space;
+    }
+  }
+
+  .content {
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+    order: 2;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+  }
 }

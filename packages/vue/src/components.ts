@@ -9,6 +9,15 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
 
+export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', undefined, [
+  'variant',
+  'icon',
+  'heading',
+  'subheading',
+  'selected'
+]);
+
+
 export const IxAnimatedTab = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTab>('ix-animated-tab', undefined, [
   'icon',
   'count'
@@ -68,6 +77,37 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
 ]);
 
 
+export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', undefined, [
+  'variant'
+]);
+
+
+export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [
+  'accordionExpand'
+]);
+
+
+export const IxCardContent = /*@__PURE__*/ defineContainer<JSX.IxCardContent>('ix-card-content', undefined);
+
+
+export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card-list', undefined, [
+  'label',
+  'collapse',
+  'listStyle',
+  'maxVisibleCards',
+  'showAllCount',
+  'suppressOverflowHandling',
+  'i18nShowAll',
+  'i18nMoreCards',
+  'collapseChanged',
+  'showAllClick',
+  'showMoreCardClick'
+]);
+
+
+export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-card-title', undefined);
+
+
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
   'initialState',
   'filterState',
@@ -96,6 +136,15 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'outline',
   'close',
   'closeChip'
+]);
+
+
+export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader>('ix-content-header', undefined, [
+  'variant',
+  'headerTitle',
+  'headerSubtitle',
+  'hasBackButton',
+  'backButtonClick'
 ]);
 
 
@@ -237,6 +286,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
   'icon',
   'placeholder',
   'value',
+  'fullWidth',
   'valueChange'
 ]);
 
@@ -318,6 +368,19 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 
 
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
+
+
+export const IxKeyValue = /*@__PURE__*/ defineContainer<JSX.IxKeyValue>('ix-key-value', undefined, [
+  'icon',
+  'label',
+  'labelPosition',
+  'value'
+]);
+
+
+export const IxKeyValueList = /*@__PURE__*/ defineContainer<JSX.IxKeyValueList>('ix-key-value-list', undefined, [
+  'striped'
+]);
 
 
 export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefined, [
@@ -488,6 +551,15 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', undef
   'background',
   'color',
   'alignLeft'
+]);
+
+
+export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', undefined, [
+  'icon',
+  'notification',
+  'heading',
+  'subheading',
+  'variant'
 ]);
 
 

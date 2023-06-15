@@ -10,22 +10,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
+import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
 import Blind from 'src/preview-examples/blind';
 import Breadcrumb from 'src/preview-examples/breadcrumb';
 import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
-import BreadcrumbTrucate from 'src/preview-examples/breadcrumb-truncate';
+import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import PageHeader from 'src/preview-examples/content-header';
+import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
@@ -50,14 +54,23 @@ import Input from 'src/preview-examples/input';
 import InputDisabled from 'src/preview-examples/input-disabled';
 import InputReadonly from 'src/preview-examples/input-readonly';
 import InputWithIcon from 'src/preview-examples/input-with-icon';
+import KeyValue from 'src/preview-examples/key-value';
+import KeyValueList from 'src/preview-examples/key-value-list';
+import KeyValueListStriped from 'src/preview-examples/key-value-list-striped';
+import KeyValueListWithCustomValue from 'src/preview-examples/key-value-list-with-custom-value';
+import KeyValueListWithIcon from 'src/preview-examples/key-value-list-with-icon';
+import KeyValueWithCustomValue from 'src/preview-examples/key-value-with-custom-value';
+import KeyValueWithIcon from 'src/preview-examples/key-value-with-icon';
+import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-left';
 import Kpi from 'src/preview-examples/kpi';
 import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
 import MessageBar from 'src/preview-examples/message-bar';
-import Modal from 'src/preview-examples/modal';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
+import Modal from 'src/preview-examples/modal-by-template';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
+import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
@@ -77,6 +90,7 @@ import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
+import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
@@ -149,6 +163,10 @@ const routes: Routes = [
         component: ToastCustom,
       },
       {
+        path: 'toast-position',
+        component: ToastPosition,
+      },
+      {
         path: 'tree',
         component: Tree,
       },
@@ -169,7 +187,7 @@ const routes: Routes = [
         component: Blind,
       },
       { path: 'breadcrumb-next-items', component: BreadcrumbNextItems },
-      { path: 'breadcrumb-truncate', component: BreadcrumbTrucate },
+      { path: 'breadcrumb-truncate', component: BreadcrumbTruncate },
       { path: 'breadcrumb', component: Breadcrumb },
       { path: 'button-selected', component: ButtonSelected },
       { path: 'button-with-icon', component: ButtonWithIcon },
@@ -268,9 +286,28 @@ const routes: Routes = [
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
       { path: 'modal-by-instance', component: ModalByInstance },
+      { path: 'push-card', component: PushCard },
+      { path: 'action-card', component: ActionCard },
+      { path: 'card-list', component: CardList },
+      { path: 'page-header', component: PageHeader },
+      { path: 'page-header-no-back', component: PageHeaderNoBack },
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'key-value', component: KeyValue },
+      {
+        path: 'key-value-with-custom-value',
+        component: KeyValueWithCustomValue,
+      },
+      { path: 'key-value-with-icon', component: KeyValueWithIcon },
+      { path: 'key-value-with-label-left', component: KeyValueWithLabelLeft },
+      { path: 'key-value-list', component: KeyValueList },
+      {
+        path: 'key-value-list-with-custom-value',
+        component: KeyValueListWithCustomValue,
+      },
+      { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
+      { path: 'key-value-list-striped', component: KeyValueListStriped },
     ],
   },
 ];

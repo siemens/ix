@@ -13,9 +13,12 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('content width', async ({ page }) => {
+    await page.goto('basic-navigation/content-width');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('expanded', async ({ page }) => {
@@ -24,9 +27,7 @@ regressionTest.describe('basic navigation', () => {
     await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
     await page.waitForTimeout(800);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
 
@@ -39,9 +40,7 @@ regressionTest.describe('basic navigation mobile', () => {
     });
 
     await page.waitForTimeout(500);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mobile expanded', async ({ page }) => {
@@ -58,9 +57,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await menuElement.click();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mobile overlay', async ({ page }) => {
@@ -80,9 +77,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await settingsButton.click();
 
     await page.waitForTimeout(500);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mobile expanded overlay', async ({ page }) => {
@@ -104,8 +99,6 @@ regressionTest.describe('basic navigation mobile', () => {
     await menuElement.click();
 
     await page.waitForTimeout(500);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
