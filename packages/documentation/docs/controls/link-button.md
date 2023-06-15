@@ -1,3 +1,5 @@
+import Tags from './../auto-generated/ix-link-button/tags.md';
+
 import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-link-button/props.md';
 
@@ -12,6 +14,8 @@ import SourceAngularLinkButtonDisabled from './../auto-generated/previews/angula
 import SourceVueLinkButtonDisabled from './../auto-generated/previews/vue/link-button-disabled.md'
 
 # Link button
+
+<Tags />
 
 ## Usage
 

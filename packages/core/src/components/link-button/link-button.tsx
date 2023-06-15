@@ -9,6 +9,10 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @since 1.7.0
+ */
+
 @Component({
   tag: 'ix-link-button',
   styleUrl: 'link-button.scss',
@@ -23,7 +27,7 @@ export class LinkButton {
   /**
    * Url for the link button
    */
-  @Prop() url: string = undefined;
+  @Prop() url: string;
 
   render() {
     return (

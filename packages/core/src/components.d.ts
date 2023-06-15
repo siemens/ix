@@ -992,6 +992,9 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
+    /**
+     * @since 1.7.0
+     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -2399,6 +2402,9 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
+    /**
+     * @since 1.7.0
+     */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
     }
     var HTMLIxLinkButtonElement: {
@@ -3790,6 +3796,9 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
+    /**
+     * @since 1.7.0
+     */
     interface IxLinkButton {
         /**
           * Disable the link button
@@ -4948,6 +4957,9 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 1.7.0
+             */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;

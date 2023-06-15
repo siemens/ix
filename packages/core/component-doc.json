@@ -5427,7 +5427,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "1.7.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -5464,7 +5469,6 @@
           "reflectToAttr": false,
           "docs": "Url for the link button",
           "docsTags": [],
-          "default": "undefined",
           "values": [
             {
               "type": "string"

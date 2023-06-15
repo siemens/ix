@@ -12,10 +12,8 @@ import React from 'react';
 
 export default () => {
   return (
-    <>
-      <IxLinkButton url="https://ix.siemens.io/" disabled>
-        Link text
-      </IxLinkButton>
-    </>
+    <IxLinkButton url="https://ix.siemens.io/" disabled>
+      Link text
+    </IxLinkButton>
   );
 };
