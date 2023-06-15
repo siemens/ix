@@ -1,0 +1,35 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Loading button</title>
+</head>
+
+<body class="theme-brand-dark">
+  <!-- Preview code -->
+  <script>
+    function loading() {
+      var btn = document.getElementById('btn');
+      btn.innerHTML =
+        'Loading... <ix-spinner variant="secondary" size="small"></ix-spinner>';
+
+      setTimeout(() => {
+        btn.innerHTML = 'Button';
+      }, 2500);
+    }
+  </script>
+
+  <ix-button id="btn" onClick={loading()} class="m-1" variant="Secondary">
+    Button
+  </ix-button>
+  <!-- Preview code -->
+  <script type="module" src="./init.js"></script>
+</body>
+
+</html>
