@@ -10,8 +10,12 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'mixins/fonts';
 
 :host {
+  @include ix-component;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -52,8 +56,13 @@
       );
       margin-bottom: $medium-space;
 
+      .toast-title {
+        @include text-default-title-single;
+      }
       .toast-message {
         min-width: 0;
+
+        @include text-default;
       }
     }
   }
