@@ -9,37 +9,76 @@
 @import 'common-variables';
 @import 'mixins/hover';
 
+$focus-bdr-width: 0.0625rem;
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 2rem;
   width: 2.5rem;
-  border-radius: var(--theme-btn--border-radius);
+
+  .burger-menu-button {
+    background-color: var(--theme-menu-btn--background);
+    border-width: $focus-bdr-width;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--theme-btn--border-radius);
+    outline: none;
+    cursor: pointer;
+  }
 
   svg {
     display: inline-block;
-    position: relative;
+    vertical-align: middle;
   }
 
   .line {
     fill: var(--theme-menu-btn--color);
     opacity: 1;
     x: 2px;
-    transition: x 0.075s ease-in 0.15s, transform 0.075s ease-in-out 0.075s,
-      y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
+    transition:
+      x 0.075s ease-in 0.15s,
+      transform 0.075s ease-in-out 0.075s,
+      y 0.075s ease-in-out,
+      opacity 0.075s linear 0.075s;
     transform-origin: center;
   }
 }
 
 :host(:hover) {
-  background-color: var(--theme-menu-btn--background--hover);
-  border-radius: var(--theme-btn--border-radius);
+  .burger-menu-button {
+    background-color: var(--theme-menu-btn--background--hover);
+    border-width: $focus-bdr-width;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--theme-btn--border-radius);
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+:host(:focus) {
+  .burger-menu-button {
+    border-width: $focus-bdr-width;
+    border-style: solid;
+    border-color: var(--theme-color-focus-bdr);
+    border-radius: var(--theme-btn--border-radius);
+    outline: none;
+    cursor: pointer;
+  }
 }
 
 :host(:active) {
-  background-color: var(--theme-menu-btn--background--active);
-  border-radius: var(--theme-btn--border-radius);
+  .burger-menu-button {
+    background-color: var(--theme-menu-btn--background--active);
+    border-width: $focus-bdr-width;
+    border-style: solid;
+    border-color: var(--theme-color-focus-bdr);
+    border-radius: var(--theme-btn--border-radius);
+    outline: none;
+    cursor: pointer;
+  }
 }
 
 :host(.expanded) {

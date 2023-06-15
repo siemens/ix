@@ -75,6 +75,12 @@ export class Menu {
    */
   @Prop() maxVisibleMenuItems = 9;
 
+
+  /**
+   * Accessibility i18n label for the burger menu of the sidebar
+   */
+  @Prop() i18nExpandSidebar = 'Expand sidebar';
+
   /**
    */
   @Prop() i18nLegal = 'About & legal information';
@@ -667,7 +673,7 @@ export class Menu {
           [`mode-${this.mode}`]: true,
         }}
       >
-        <div
+        <aside
           class={{
             menu: true,
             expanded: this.expand,
@@ -679,6 +685,7 @@ export class Menu {
           <ix-burger-menu
             onClick={async () => this.toggleMenu()}
             expanded={this.expand}
+            ixAriaLabel={this.i18nExpandSidebar}
             class={{
               'burger-menu': true,
             }}
@@ -803,7 +810,7 @@ export class Menu {
               {this.getCollapseText()}
             </ix-menu-item>
           ) : null}
-        </div>
+        </aside>
         <div
           class={{
             'menu-overlay': true,

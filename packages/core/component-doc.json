@@ -5863,6 +5863,23 @@
           "required": false
         },
         {
+          "name": "i18nExpandSidebar",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-expand-sidebar",
+          "reflectToAttr": false,
+          "docs": "Accessibility i18n label for the burger menu of the sidebar",
+          "docsTags": [],
+          "default": "'Expand sidebar'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nLegal",
           "type": "string",
           "mutable": false,

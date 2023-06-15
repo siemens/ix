@@ -417,6 +417,7 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'applicationName',
   'applicationDescription',
   'maxVisibleMenuItems',
+  'i18nExpandSidebar',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',

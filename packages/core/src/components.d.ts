@@ -169,9 +169,13 @@ export namespace Components {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded": boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel": string;
     }
     interface IxButton {
         /**
@@ -1067,6 +1071,10 @@ export namespace Components {
         "expand": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar": string;
         "i18nLegal": string;
         "i18nMore": string;
         "i18nSettings": string;
@@ -2841,9 +2849,13 @@ declare namespace LocalJSX {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded"?: boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
     }
     interface IxButton {
         /**
@@ -3840,6 +3852,10 @@ declare namespace LocalJSX {
         "expand"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar"?: string;
         "i18nLegal"?: string;
         "i18nMore"?: string;
         "i18nSettings"?: string;
