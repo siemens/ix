@@ -14,10 +14,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-icon-button icon={'rocket'}></ix-icon-button>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

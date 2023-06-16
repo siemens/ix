@@ -4828,8 +4828,7 @@
         "ix-pagination",
         "ix-select",
         "ix-time-picker",
-        "ix-toast",
-        "my-component"
+        "ix-toast"
       ],
       "dependencies": [
         "ix-icon"
@@ -4896,9 +4895,6 @@
           "ix-icon-button"
         ],
         "ix-toast": [
-          "ix-icon-button"
-        ],
-        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -10976,17 +10972,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-icon-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
