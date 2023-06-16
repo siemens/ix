@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Component, h, Host } from '@stencil/core';
-
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
@@ -15,6 +14,10 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-icon-button icon={'rocket'}></ix-icon-button>
+      </Host>
+    );
   }
 }

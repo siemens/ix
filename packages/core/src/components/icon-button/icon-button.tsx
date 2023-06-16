@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
+import { getFallbackLabelFromIconName } from '../utils/a11y';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -22,8 +23,8 @@ export class IconButton implements Button {
   @Element() hostElement: HTMLIxIconButtonElement;
 
   /**
-   * Accessibility label for the icon button (MANDATORY)
-   * @since 1.6.0
+   * Accessibility label for the icon button
+   * @since 1.7.0
    */
   @Prop() ixAriaLabel: string;
 
@@ -102,36 +103,6 @@ export class IconButton implements Button {
     };
   }
 
-  private fallbackLabel() {
-    if (this.icon != null) {
-      let label = this.icon;
-      let wordList = label
-        .replace('-filled', '')
-        .split('-')
-        .filter((item) => item);
-
-      for (let i = 0; i < wordList.length; i++) {
-        wordList[i] = wordList[i].trim();
-        let digitless = wordList[i].replace(/\d+/g, '');
-        if (digitless.length > 0) {
-          wordList[i] = digitless;
-        }
-
-        if (wordList[i].length > 0) {
-          wordList[i] =
-            wordList[i][0].toUpperCase() + wordList[i].slice(1).toLowerCase();
-        }
-      }
-
-      label = wordList.filter((item) => item).join(' ');
-      if (label.length > 0) {
-        return label;
-      }
-    }
-
-    return 'Unknown';
-  }
-
   private getIconButtonClasses() {
     return {
       ...getButtonClasses(
@@ -155,7 +126,9 @@ export class IconButton implements Button {
           class={this.getIconButtonClasses()}
           type={this.type}
           aria-label={
-            this.ixAriaLabel ? this.ixAriaLabel : this.fallbackLabel()
+            this.ixAriaLabel
+              ? this.ixAriaLabel
+              : getFallbackLabelFromIconName(this.icon)
           }
           disabled={this.disabled}
           onClick={() => this.dispatchFormEvents()}

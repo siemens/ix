@@ -4828,7 +4828,8 @@
         "ix-pagination",
         "ix-select",
         "ix-time-picker",
-        "ix-toast"
+        "ix-toast",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -4895,6 +4896,9 @@
           "ix-icon-button"
         ],
         "ix-toast": [
+          "ix-icon-button"
+        ],
+        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -4992,11 +4996,11 @@
           "mutable": false,
           "attr": "ix-aria-label",
           "reflectToAttr": false,
-          "docs": "Accessibility label for the icon button (MANDATORY)",
+          "docs": "Accessibility label for the icon button",
           "docsTags": [
             {
               "name": "since",
-              "text": "1.6.0"
+              "text": "1.7.0"
             }
           ],
           "values": [
@@ -10972,8 +10976,17 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

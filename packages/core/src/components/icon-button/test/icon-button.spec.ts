@@ -20,4 +20,148 @@ describe('icon-button', () => {
     const btn = page.doc.querySelector('ix-icon-button');
     expect(btn.className).toContain('disabled');
   });
+
+  it('should have a fallback icon aria name', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="rocket"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Rocket');
+  });
+
+  it('should have a fallback icon aria name without fill postfix', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="about-filled"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('About');
+  });
+
+  it('should have a fallback icon aria name', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="about-battery-filled"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('About Battery');
+  });
+
+  it('should have a fallback icon aria name without numbers inside name', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="battery100-percentage"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Battery Percentage');
+  });
+
+  it('should have a fallback icon aria name without numbers between', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="battery-100-percentage"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Battery 100 Percentage');
+  });
+
+  it('should have a fallback icon with multiple dashes', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="text-circle-rectangle-filled"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Text Circle Rectangle');
+  });
+
+  it('should have a aria label', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button ix-aria-label="some label"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('some label');
+  });
+
+  it('should have a unknown aria label with a url', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="https://someurl.com/test.svg"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Unknown');
+  });
+
+  it('should have a unknown aria label with an base64 encoded svg', async () => {
+    const page = await newSpecPage({
+      components: [IconButton],
+      html: `<ix-icon-button icon="data:image/svg+xml"></ix-icon-button>`,
+    });
+
+    await page.waitForChanges();
+
+    const button = page.doc
+      .querySelector('ix-icon-button')
+      .shadowRoot.querySelector('button');
+
+    expect(button).toHaveAttribute('aria-label');
+    expect(button.getAttribute('aria-label')).toBe('Unknown');
+  });
 });
