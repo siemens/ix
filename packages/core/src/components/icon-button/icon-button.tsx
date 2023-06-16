@@ -81,10 +81,9 @@ export class IconButton implements Button {
   dispatchFormEvents() {
     if (this.type === 'submit') {
       const form = this.hostElement.closest('form');
-
-      if (form) {
-        form.dispatchEvent(new Event('submit'));
-      }
+      form?.dispatchEvent(
+        new Event('submit', { bubbles: true, cancelable: true })
+      );
     }
   }
 
