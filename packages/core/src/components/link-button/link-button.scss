@@ -9,13 +9,14 @@
 
 @import 'common-variables';
 @import './components/buttons';
+@import 'mixins/hover';
 
 :host {
   display: inline-flex;
   height: $x-large-space;
   font-size: $font-size-default;
   font-weight: $font-weight-normal;
-  min-width: 4.2rem;
+  min-width: $x-large-space;
 
   .link-button {
     display: inline-flex;
@@ -27,31 +28,21 @@
     cursor: pointer;
     text-decoration: none;
 
-    &:hover {
+    @include hover {
       color: var(--theme-color-dynamic--hover);
 
       .underline {
         text-decoration: underline;
         text-underline-offset: 0.2rem;
-
-        &.disabled {
-          color: var(--theme-color-weak-text);
-          text-decoration: none;
-        }
       }
     }
 
-    &:active {
+    @include active {
       color: var(--theme-color-dynamic--active);
 
       .underline {
         text-decoration: underline;
         text-underline-offset: 0.2rem;
-
-        &.disabled {
-          color: var(--theme-color-weak-text);
-          text-decoration: none;
-        }
       }
     }
 
@@ -66,6 +57,6 @@
   }
 
   :focus-visible {
-    outline: 1px solid #199fff;
+    outline: 1px solid var(--theme-color-focus-bdr);
   }
 }
