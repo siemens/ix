@@ -19,6 +19,8 @@
     box-shadow: none;
     border: none;
     border-radius: unset;
+    display: flex;
+    flex-direction: column;
 
     &.individual {
       box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
@@ -39,15 +41,21 @@
 
     .header {
       padding: $default-space;
+      flex: 0 1 auto;
     }
 
     .separator {
       border: 1px solid var(--theme-datepicker-separator--background);
       width: 100%;
+      flex: 0 1 auto;
     }
 
     .content {
       padding: 0px $default-space $default-space $default-space;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }
