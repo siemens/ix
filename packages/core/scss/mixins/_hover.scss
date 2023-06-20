@@ -21,7 +21,8 @@
   &:not(.disabled):not(:disabled) {
     cursor: pointer;
 
-    &:active {
+    &:active,
+    &.active {
       @content;
     }
   }
