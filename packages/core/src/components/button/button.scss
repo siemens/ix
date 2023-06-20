@@ -9,16 +9,15 @@
 
 @import 'common-variables';
 @import './components/buttons';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: inline-block;
   width: auto;
   height: 2rem;
   vertical-align: middle;
-
-  &.disabled {
-    pointer-events: none;
-  }
 
   .btn {
     width: 100%;
@@ -28,4 +27,8 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+}
+
+:host(.disabled) {
+  pointer-events: none;
 }

@@ -32,9 +32,12 @@ describe('event-list', () => {
     });
     expect(page.root).toEqualHtml(`
       <ix-event-list class="item-size-s">
-        <ul>
-          <ix-event-list-item />
-        </ul>
+        <mock:shadow-root>
+          <ul>
+            <slot></slot>
+          </ul>
+        </mock:shadow-root>
+        <ix-event-list-item></ix-event-list-item>
       </ix-event-list>
     `);
   });
@@ -59,9 +62,12 @@ describe('event-list', () => {
 
     expect(page.root).toEqualHtml(`
       <ix-event-list class="compact item-size-s">
-        <ul>
-          <ix-event-list-item />
-        </ul>
+        <mock:shadow-root>
+          <ul>
+            <slot></slot>
+          </ul>
+        </mock:shadow-root>
+        <ix-event-list-item></ix-event-list-item>
       </ix-event-list>
     `);
   });
@@ -74,7 +80,6 @@ describe('event-list', () => {
 
     const eventList = page.doc.createElement('ix-event-list');
     const eventListItem = page.doc.createElement('ix-event-list-item');
-    eventListItem.classList.add('ix-event-list-item');
 
     eventListItem.animate = jest.fn();
 
@@ -86,11 +91,14 @@ describe('event-list', () => {
     expect(eventListItem.animate).toHaveBeenCalled();
 
     expect(page.root).toEqualHtml(`
-    <ix-event-list class="item-size-s">
-      <ul>
-        <ix-event-list-item class="ix-event-list-item"></ix-event-list-item>
-      </ul>
-    </ix-event-list>
+      <ix-event-list class="item-size-s">
+        <mock:shadow-root>
+          <ul>
+            <slot></slot>
+          </ul>
+        </mock:shadow-root>
+        <ix-event-list-item></ix-event-list-item>
+      </ix-event-list>
     `);
   });
 
@@ -104,7 +112,6 @@ describe('event-list', () => {
     eventList.animated = false;
 
     const eventListItem = page.doc.createElement('ix-event-list-item');
-    eventListItem.classList.add('ix-event-list-item');
 
     eventListItem.animate = jest.fn();
 
@@ -116,11 +123,14 @@ describe('event-list', () => {
     expect(eventListItem.animate).not.toHaveBeenCalled();
 
     expect(page.root).toEqualHtml(`
-    <ix-event-list class="item-size-s">
-      <ul>
-        <ix-event-list-item class="ix-event-list-item"></ix-event-list-item>
-      </ul>
-    </ix-event-list>
+      <ix-event-list class="item-size-s">
+        <mock:shadow-root>
+          <ul>
+            <slot></slot>
+          </ul>
+        </mock:shadow-root>
+        <ix-event-list-item></ix-event-list-item>
+      </ix-event-list>
     `);
   });
 });

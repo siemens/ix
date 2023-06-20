@@ -1,3 +1,29 @@
+## [1.6.3](https://github.com/siemens/ix/compare/v1.6.2...v1.6.3) (2023-06-16)
+
+
+### Bug Fixes
+
+* **core/button:** pass through submit related events ([#578](https://github.com/siemens/ix/issues/578)) ([8a0b410](https://github.com/siemens/ix/commit/8a0b410b64bccb949c27f73f0a1d93cce480f42c))
+
+
+
+## [1.6.2](https://github.com/siemens/ix/compare/v1.6.2-beta.0...v1.6.2) (2023-06-07)
+
+
+
+## [1.6.2-beta.0](https://github.com/siemens/ix/compare/v1.6.1...v1.6.2-beta.0) (2023-06-07)
+
+
+
+## [1.6.1](https://github.com/siemens/ix/compare/v1.6.0...v1.6.1) (2023-06-06)
+
+
+### Bug Fixes
+
+* **core/basic-navigation:** increase content width to 100% ([#571](https://github.com/siemens/ix/issues/571)) ([0b4abd9](https://github.com/siemens/ix/commit/0b4abd923ea6a6ce6bae75a8e21f8c01eaa68576))
+
+
+
 # [1.6.0](https://github.com/siemens/ix/compare/v1.5.0...v1.6.0) (2023-05-31)
 
 
