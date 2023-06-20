@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, State } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -14,33 +14,65 @@ import { Component, h, Host } from '@stencil/core';
   shadow: true,
 })
 export class MyComponent {
+  @State() expandCategory = false;
+  @State() activeMap: Record<string, boolean> = {};
+
+  onActive(id: string) {
+    if (!this.activeMap[id]) {
+      this.activeMap[id] = true;
+    }
+
+    Object.keys(this.activeMap).forEach((k) => {
+      this.activeMap[k] = k === id;
+    });
+
+    this.activeMap = {
+      ...this.activeMap,
+    };
+  }
+
   render() {
     return (
       <Host>
         <ix-basic-navigation>
-          <ix-menu expand enableToggleTheme>
+          <ix-menu enableToggleTheme>
             <ix-menu-avatar top="top 123" bottom="bottom 456">
               <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
             </ix-menu-avatar>
             <ix-menu-item>Test</ix-menu-item>
 
-            <ix-menu-item tabIcon="home" home active>
+            <ix-menu-item tabIcon="home" home>
               Home
             </ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item active>Test</ix-menu-item>
+            <ix-menu-item
+              active={this.activeMap['test1']}
+              onClick={() => this.onActive('test1')}
+            >
+              Test
+            </ix-menu-item>
 
             <ix-menu-category label="AI Configuration" icon="rocket">
-              <ix-menu-item>Nested Item 1</ix-menu-item>
-              <ix-menu-item>Nested Item 2</ix-menu-item>
+              <ix-menu-item
+                active={this.activeMap['test2']}
+                onClick={() => this.onActive('test2')}
+              >
+                Nested Item 1
+              </ix-menu-item>
+              <ix-menu-item
+                active={this.activeMap['test3']}
+                onClick={() => this.onActive('test3')}
+              >
+                Nested Item 2
+              </ix-menu-item>
             </ix-menu-category>
 
             <a href="#">
               <ix-menu-item>Test123</ix-menu-item>
             </a>
-            <ix-menu-item icon="rocket">Test XZY</ix-menu-item>
+            <ix-menu-item>Test XZY</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
@@ -82,12 +114,15 @@ export class MyComponent {
             </ix-menu-settings>
           </ix-menu>
           <main>
-            <ix-blind>
-              <div slot="custom-header">
-                <strike>My custom header</strike>
-              </div>
-              Test
-            </ix-blind>
+            <ix-button
+              onClick={() => (this.expandCategory = !this.expandCategory)}
+            >
+              Expand category
+            </ix-button>
+
+            <ix-button onClick={() => this.onActive('test3')}>
+              Set nested active
+            </ix-button>
           </main>
         </ix-basic-navigation>
       </Host>

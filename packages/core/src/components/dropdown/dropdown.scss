@@ -19,6 +19,9 @@
   @include ix-component;
   min-width: 0px;
   z-index: var(--theme-z-index-dropdown);
+  box-shadow: var(--theme-shadow-4);
+
+  padding: 0.25rem 0px;
 }
 
 :host(.overflow) {

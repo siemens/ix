@@ -110,9 +110,10 @@ export class Menu {
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
 
+  @State() pinned = false;
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement;
-  @State() mode: Mode = 'desktop';
+  @State() mode: Mode = 'large';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
 
@@ -221,8 +222,8 @@ export class Menu {
     return this.hostElement.shadowRoot.querySelector('ix-menu-avatar');
   }
 
-  get tabsContainer(): HTMLDivElement {
-    return this.hostElement.shadowRoot.querySelector('#menu-tabs');
+  get tabsContainer() {
+    return this.hostElement;
   }
 
   componentDidLoad() {
@@ -235,8 +236,8 @@ export class Menu {
     menuController.register(this.hostElement);
     const layout = hostContext('ix-basic-navigation', this.hostElement);
     if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
-      screenMode.onChange.on((mode) => (this.mode = mode));
-      this.mode = screenMode.mode;
+      screenMode.onChange.on((mode) => this.onModeChange(mode));
+      this.onModeChange(screenMode.mode);
     }
   }
 
@@ -246,6 +247,21 @@ export class Menu {
 
   componentDidRender() {
     this.appendFragments();
+  }
+
+  private onModeChange(mode: Mode) {
+    this.mode = mode;
+
+    console.log(mode);
+
+    if (this.mode === 'large') {
+      this.pinned = true;
+      this.toggleMenu(true);
+      return;
+    }
+
+    this.pinned = false;
+    this.toggleMenu(false);
   }
 
   private appendFragments() {
@@ -309,6 +325,12 @@ export class Menu {
    */
   @Method()
   async toggleMenu(show?: boolean) {
+    if (this.pinned) {
+      this.expand = true;
+      this.expandChange.emit(this.expand);
+      return;
+    }
+
     if (show !== undefined) {
       this.expand = show;
     } else {
@@ -375,7 +397,7 @@ export class Menu {
         return element.tagName === 'IX-MENU-ITEM';
       });
 
-    return menuItems.some((menu) => this.tabsContainer.contains(menu));
+    return menuItems.some((menu) => this.hostElement.contains(menu));
   }
 
   @Listen('resize', { target: 'window' })

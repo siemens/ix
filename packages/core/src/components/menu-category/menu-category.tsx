@@ -8,8 +8,10 @@
  */
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
+import { createMutationObserver } from '../utils/mutation-observer';
+import { menuContext } from '../utils/screen/context';
 
-const DefaultIxMenuItemHeight = 48;
+const DefaultIxMenuItemHeight = 44;
 const DefaultAnimationTimeout = 150;
 
 @Component({
@@ -30,21 +32,47 @@ export class MenuCategory {
    */
   @Prop() icon: string;
 
+  /**
+   * Show notification count on the category
+   */
+  @Prop() notifications: number;
+
+  /**
+   * Show category as expanded
+   */
+  // @Prop() expand = false;
+  // @Watch('expand')
+  // expandChanged(expand: boolean) {
+  // this.onExpandCategory(expand);
+  // }
+
+  @State() menuExpand = false;
   @State() showItems = false;
+  @State() showDropdown = false;
+  @State() nestedItems: HTMLIxMenuItemElement[] = [];
+
+  private observer: MutationObserver;
+  private menuItemsContainer: HTMLDivElement;
+  private ixMenu: HTMLIxMenuElement;
+
+  private isNestedItemActive() {
+    return this.getNestedItems().some((item) => item.active);
+  }
+
+  private getNestedItems() {
+    return Array.from(
+      this.hostElement.querySelectorAll(':scope > ix-menu-item')
+    ) as HTMLIxMenuItemElement[];
+  }
 
   private getNestedItemHeight() {
-    const items = Array.from(
-      this.hostElement.querySelectorAll(':scope > ix-menu-item')
-    );
+    const items = this.getNestedItems();
 
     return items.length * DefaultIxMenuItemHeight;
   }
 
-  private menuItemsContainer: HTMLDivElement;
-
-  private onCategoryClick() {
-    console.log(this.getNestedItemHeight());
-    if (!this.showItems) {
+  private onExpandCategory(showItems: boolean) {
+    if (showItems) {
       this.animateFadeIn();
     } else {
       this.animateFadeOut();
@@ -53,7 +81,6 @@ export class MenuCategory {
 
   private animateFadeOut() {
     const slotHideThresholdMs = 25;
-
     anime({
       targets: this.menuItemsContainer,
       duration: DefaultAnimationTimeout,
@@ -63,6 +90,7 @@ export class MenuCategory {
       complete: () => {
         setTimeout(() => {
           this.showItems = false;
+          this.showDropdown = false;
         }, DefaultAnimationTimeout + slotHideThresholdMs);
       },
     });
@@ -75,11 +103,71 @@ export class MenuCategory {
       easing: 'cubicBezier(.5, .05, .1, .3)',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemHeight() + DefaultIxMenuItemHeight],
-
       begin: () => {
         this.showItems = true;
+        this.showDropdown = false;
       },
     });
+  }
+
+  private onCategoryClicked(e: Event) {
+    if (this.menuExpand) {
+      e.stopPropagation();
+      this.onExpandCategory(!this.showItems);
+      return;
+    }
+
+    this.showDropdown = !this.showDropdown;
+  }
+
+  private onNestedItemsChanged() {
+    this.nestedItems = this.getNestedItems();
+  }
+
+  componentDidLoad() {
+    this.ixMenu = menuContext(this.hostElement);
+
+    this.observer = createMutationObserver(() => this.onNestedItemsChanged());
+    this.observer.observe(this.hostElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+
+    requestAnimationFrame(() => {
+      this.onNestedItemsChanged();
+    });
+
+    this.ixMenu.addEventListener(
+      'expandChange',
+      ({ detail: menuExpand }: CustomEvent<boolean>) => {
+        this.menuExpand = menuExpand;
+
+        if (this.menuExpand && !this.showItems && this.isNestedItemActive()) {
+          this.showItems = true;
+          this.showDropdown = false;
+          return;
+        }
+
+        if (!this.menuExpand && this.showItems && this.isNestedItemActive()) {
+          this.showItems = false;
+          this.showDropdown = false;
+          return;
+        }
+
+        if (!this.menuExpand && !this.showItems && this.isNestedItemActive()) {
+          this.showItems = false;
+          this.showDropdown = false;
+          return;
+        }
+      }
+    );
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   render() {
@@ -89,7 +177,12 @@ export class MenuCategory {
           expanded: this.showItems,
         }}
       >
-        <ix-menu-item icon={this.icon} onClick={() => this.onCategoryClick()}>
+        <ix-menu-item
+          active={this.isNestedItemActive()}
+          notifications={this.notifications}
+          icon={this.icon}
+          onClick={(e) => this.onCategoryClicked(e)}
+        >
           <div class="category">
             {this.label}{' '}
             <ix-icon
@@ -107,6 +200,26 @@ export class MenuCategory {
         >
           {this.showItems ? <slot></slot> : null}
         </div>
+        <ix-dropdown
+          show={this.showDropdown}
+          onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
+            this.showDropdown = dropdownShown;
+          }}
+          class={'category-dropdown'}
+          anchor={this.hostElement}
+          placement="right-start"
+          offset={{
+            mainAxis: 3,
+          }}
+        >
+          <ix-dropdown-item class={'category-dropdown-header'}>
+            <ix-typography variant="default-title-single" color="std">
+              {this.label}
+            </ix-typography>
+          </ix-dropdown-item>
+          <ix-divider></ix-divider>
+          <slot></slot>
+        </ix-dropdown>
       </Host>
     );
   }

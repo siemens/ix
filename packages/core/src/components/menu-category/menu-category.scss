@@ -42,6 +42,21 @@
   .menu-items--expanded {
     max-height: 999999999px;
   }
+
+  .category-dropdown {
+    ::slotted(ix-menu-item) {
+      --ix-menu-item-height: 2.5rem;
+    }
+  }
+
+  .category-dropdown-header {
+    pointer-events: none;
+    min-width: 256px;
+  }
+
+  ::slotted(ix-menu-item) {
+    --ix-menu-item-height: 2.75rem;
+  }
 }
 
 :host(.expanded) {

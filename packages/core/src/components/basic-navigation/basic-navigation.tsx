@@ -30,7 +30,7 @@ export class BasicNavigation {
    */
   @Prop() hideHeader = false;
 
-  @State() mode: Mode = 'desktop';
+  @State() mode: Mode = 'large';
 
   get menu(): HTMLIxMenuElement {
     return this.hostElement.querySelector('ix-menu');
@@ -49,19 +49,12 @@ export class BasicNavigation {
 
   componentDidRender() {
     if (this.menu) {
-      this.adjustMenuHeight();
       this.menu.applicationName = this.applicationName;
     }
   }
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
-  }
-
-  private adjustMenuHeight() {
-    if (!this.hideHeader) {
-      this.menu.style.height = 'calc(100% - 2.75rem)';
-    }
   }
 
   render() {
@@ -74,13 +67,15 @@ export class BasicNavigation {
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header name={this.applicationName}>
+          <ix-application-header name={this.applicationName} mode={this.mode}>
             <slot name="logo"></slot>
           </ix-application-header>
         ) : null}
-        <slot name="menu"></slot>
-        <div class="content" onClick={() => this.menu.toggleMenu(false)}>
-          <slot></slot>
+        <div class="navigation-content">
+          <slot name="menu"></slot>
+          <div class="content" onClick={() => this.menu.toggleMenu(false)}>
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );

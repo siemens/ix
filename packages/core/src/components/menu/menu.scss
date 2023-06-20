@@ -11,6 +11,8 @@
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
 
+$menu-expanded-width: 16rem;
+
 :host {
   @include ix-component;
 
@@ -105,12 +107,12 @@
   }
 
   .menu.expanded {
-    width: 16rem;
+    width: $menu-expanded-width;
   }
 
   .menu-overlay.expanded {
-    width: calc(100vw - 16rem);
-    left: 16rem;
+    width: calc(100vw - $menu-expanded-width);
+    left: $menu-expanded-width;
   }
 
   .menu-avatar {
@@ -142,7 +144,7 @@
   }
 }
 
-:host(.mode-mobile) {
+:host(.mode-small) {
   .menu:not(.expanded) {
     width: 0;
   }
@@ -158,6 +160,28 @@
   .menu-overlay {
     left: 0px;
     width: calc(100vw);
+  }
+}
+
+:host(.mode-large) {
+  position: relative;
+  margin-right: 0.25rem;
+
+  .menu {
+    padding-top: 2rem;
+  }
+
+  .menu.expanded {
+    box-shadow: none;
+  }
+
+  .menu .burger-menu {
+    display: none;
+  }
+
+  ::slotted(ix-menu-about),
+  ::slotted(ix-menu-settings) {
+    width: calc(100% - 3rem);
   }
 }
 

@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type Mode = 'desktop' | 'mobile';
-const mobileMediaQuery = `only screen and (max-width: 767px)`;
+export type Mode = 'large' | 'medium' | 'small';
+const smallMediaQuery = `only screen and (max-width: 480px)`;
+const mediumMediaQuery = `only screen and (min-width: 480px) and (max-width: 1024px)`;
+const largeMediaQuery = `only screen and (min-width: 1024px)`;
 
 export type MediaQueryListener = {
   matchMedia: MediaQueryList;
@@ -19,10 +21,10 @@ export const createMediaQueryListener = (
   query: string,
   callback: (event: MediaQueryListEvent) => void
 ): MediaQueryListener => {
+  const listener = window.matchMedia(query);
   const fn = (event: MediaQueryListEvent) => {
     callback(event);
   };
-  const listener = window.matchMedia(query);
   listener.addEventListener('change', fn);
 
   return {
@@ -36,18 +38,62 @@ export const createMediaQueryListener = (
 export const createModeListener = (
   modeChangeCallback: (mode: Mode) => void
 ) => {
-  const listener = createMediaQueryListener(mobileMediaQuery, ({ matches }) => {
-    if (matches) {
-      modeChangeCallback('mobile');
-      return;
+  const smallListener = createMediaQueryListener(
+    smallMediaQuery,
+    ({ matches }) => {
+      if (!matches) {
+        return;
+      }
+      console.log('match small');
+      modeChangeCallback('small');
     }
+  );
 
-    modeChangeCallback('desktop');
-  });
+  const mediumListener = createMediaQueryListener(
+    mediumMediaQuery,
+    ({ matches }) => {
+      if (!matches) {
+        return;
+      }
+      console.log('match medium');
 
-  modeChangeCallback(listener.matchMedia.matches ? 'mobile' : 'desktop');
+      modeChangeCallback('medium');
+    }
+  );
+
+  const largeListener = createMediaQueryListener(
+    largeMediaQuery,
+    ({ matches }) => {
+      if (!matches) {
+        return;
+      }
+      console.log('match large');
+
+      modeChangeCallback('large');
+    }
+  );
+
+  const matchSmall = smallListener.matchMedia.matches;
+  const matchMedium = mediumListener.matchMedia.matches;
+
+  if (matchSmall) {
+    modeChangeCallback('small');
+  } else if (matchMedium) {
+    modeChangeCallback('medium');
+  } else {
+    modeChangeCallback('large');
+  }
+
   return {
-    dispose: listener.dispose,
-    matchMedia: listener.matchMedia,
+    dispose: () => {
+      smallListener.dispose();
+      mediumListener.dispose();
+      largeListener.dispose();
+    },
+    matchMedia: [
+      smallListener.matchMedia,
+      mediumListener.matchMedia,
+      largeListener.matchMedia,
+    ],
   };
 };

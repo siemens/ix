@@ -11,7 +11,7 @@ import { createModeListener, Mode } from './mode';
 
 class ScreenMode {
   #modeChangeListener = new TypedEvent<Mode>();
-  #mode: Mode = 'desktop';
+  #mode: Mode = 'large';
 
   constructor() {
     createModeListener((mode) => {

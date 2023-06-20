@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
+import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -36,6 +37,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
+export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -113,6 +115,7 @@ export namespace Components {
         "tabPlacement": 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode": Mode;
         /**
           * Application name
          */
@@ -1190,6 +1193,10 @@ export namespace Components {
           * Display name of the category
          */
         "label": string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications": number;
     }
     interface IxMenuItem {
         /**
@@ -2794,6 +2801,7 @@ declare namespace LocalJSX {
         "tabPlacement"?: 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode"?: Mode;
         /**
           * Application name
          */
@@ -3995,6 +4003,10 @@ declare namespace LocalJSX {
           * Display name of the category
          */
         "label"?: string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications"?: number;
     }
     interface IxMenuItem {
         /**
