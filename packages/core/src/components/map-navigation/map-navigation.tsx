@@ -90,26 +90,33 @@ export class MapNavigation {
       (event: CustomEvent<boolean>) => {
         const state = !event.detail;
         this.toggleSidebar(state);
-        this.menu.toggleMapExpand(state);
       }
     );
     this.menu.enableMapExpand = true;
   }
 
-  private toggleSidebar(show: boolean) {
+  /**
+   * Change the visibility of the sidebar
+   *
+   * @param show new visibility state
+   * @since 1.6.0
+   */
+  @Method()
+  async toggleSidebar(show?: boolean) {
     if (show !== undefined) {
       this.isSidebarOpen = show;
     } else {
       this.isSidebarOpen = !this.isSidebarOpen;
     }
 
-    if (show) {
+    if (this.isSidebarOpen) {
       this.openSidebar();
     } else {
       this.closeSidebar();
     }
 
     this.navigationToggled.emit(this.isSidebarOpen);
+    this.menu.toggleMapExpand(this.isSidebarOpen);
   }
 
   private closeSidebar() {

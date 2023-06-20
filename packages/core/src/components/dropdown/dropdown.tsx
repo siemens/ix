@@ -468,6 +468,10 @@ export class Dropdown {
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
     }
+
+    if (dropdownDisposer.has(this.localUId)) {
+      dropdownDisposer.delete(this.localUId);
+    }
   }
 
   /**

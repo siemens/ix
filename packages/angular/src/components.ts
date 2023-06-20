@@ -8,6 +8,28 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-action-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant'],
+})
+export class IxActionCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxActionCard extends Components.IxActionCard {}
+
+
+@ProxyCmp({
   inputs: ['count', 'icon']
 })
 @Component({
@@ -206,6 +228,127 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
+  inputs: ['variant']
+})
+@Component({
+  selector: 'ix-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['variant'],
+})
+export class IxCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCard extends Components.IxCard {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-accordion',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardAccordion {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardAccordion extends Components.IxCardAccordion {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardContent extends Components.IxCardContent {}
+
+
+@ProxyCmp({
+  inputs: ['collapse', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling']
+})
+@Component({
+  selector: 'ix-card-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapse', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
+})
+export class IxCardList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['collapseChanged', 'showAllClick', 'showMoreCardClick']);
+  }
+}
+
+
+export declare interface IxCardList extends Components.IxCardList {
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  collapseChanged: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  showAllClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  /**
+   * Fire event when the show more card is clicked.
+   */
+  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-title',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardTitle {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardTitle extends Components.IxCardTitle {}
+
+
+@ProxyCmp({
   inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions']
 })
 @Component({
@@ -269,6 +412,34 @@ export declare interface IxChip extends Components.IxChip {
    * Fire event if close button is clicked @since 1.5.0
    */
   closeChip: EventEmitter<CustomEvent<any>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+})
+@Component({
+  selector: 'ix-content-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+})
+export class IxContentHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
+  }
+}
+
+
+export declare interface IxContentHeader extends Components.IxContentHeader {
+  /**
+   * Triggered when back button is clicked
+   */
+  backButtonClick: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -621,14 +792,14 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 
 
 @ProxyCmp({
-  inputs: ['icon', 'placeholder', 'value']
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value']
 })
 @Component({
   selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'placeholder', 'value'],
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value'],
 })
 export class IxExpandingSearch {
   protected el: HTMLElement;
@@ -959,7 +1130,7 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 @ProxyCmp({
   inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
-  methods: ['openOverlay', 'closeOverlay']
+  methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
 })
 @Component({
   selector: 'ix-map-navigation',
@@ -1366,34 +1537,6 @@ export declare interface IxModalExample extends Components.IxModalExample {}
 
 
 @ProxyCmp({
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
-})
-@Component({
-  selector: 'ix-page-header',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
-})
-export class IxPageHeader {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['backButtonClick']);
-  }
-}
-
-
-export declare interface IxPageHeader extends Components.IxPageHeader {
-  /**
-   * triggered when back button is clicked
-   */
-  backButtonClick: EventEmitter<CustomEvent<void>>;
-}
-
-
-@ProxyCmp({
   inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
 })
 @Component({
@@ -1445,6 +1588,28 @@ export class IxPill {
 
 
 export declare interface IxPill extends Components.IxPill {}
+
+
+@ProxyCmp({
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-push-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading', 'icon', 'notification', 'subheading', 'variant'],
+})
+export class IxPushCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPushCard extends Components.IxPushCard {}
 
 
 @ProxyCmp({

@@ -13,20 +13,6 @@ import { Dropdown } from '../dropdown';
 
 describe('ix-dropdown', () => {
   let page: any;
-  let dropdown: any;
-
-  beforeEach(async () => {
-    page = await newSpecPage({
-      components: [Dropdown],
-      html: `
-      <ix-dropdown>
-        <ix-dropdown-item></ix-dropdown-item>
-      </ix-dropdown>
-      `,
-    });
-
-    dropdown = document.querySelector('ix-dropdown');
-  });
 
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
@@ -63,7 +49,15 @@ describe('ix-dropdown', () => {
   });
 
   it('should collapse, when clicked outside', async () => {
+    const page = await newSpecPage({
+      components: [Dropdown],
+      html: `<div></div>`,
+    });
+
+    const dropdown = page.doc.createElement('ix-dropdown');
     dropdown.show = true;
+    page.root.appendChild(dropdown);
+
     await page.waitForChanges();
 
     fireEvent.click(window);
@@ -74,9 +68,15 @@ describe('ix-dropdown', () => {
 
   it('emits an event, when show changed', async () => {
     const mockCallback = jest.fn();
+    const page = await newSpecPage({
+      components: [Dropdown],
+      html: `<div></div>`,
+    });
     page.win.addEventListener('showChanged', mockCallback);
 
+    const dropdown = page.doc.createElement('ix-dropdown');
     dropdown.show = true;
+    page.root.appendChild(dropdown);
     await page.waitForChanges();
 
     fireEvent.click(window);
