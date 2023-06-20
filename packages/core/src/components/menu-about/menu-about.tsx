@@ -112,9 +112,7 @@ export class MenuAbout {
     return (
       <Host
         class={{
-          animate__animated: true,
-          animate__fadeInLeft: this.show,
-          animate__fadeOutLeft: !this.show,
+          show: this.show,
         }}
         slot="ix-menu-about"
       >

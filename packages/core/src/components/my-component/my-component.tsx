@@ -44,9 +44,9 @@ export class MyComponent {
               </ix-menu-about-item>
             </ix-menu-about>
 
-            <ix-menu-about-news label="Test" show about-item-label="About 2">
+            {/* <ix-menu-about-news label="Test" show about-item-label="About 2">
               Test
-            </ix-menu-about-news>
+            </ix-menu-about-news> */}
 
             <ix-menu-settings>
               <ix-menu-settings-item label="Settings 1">

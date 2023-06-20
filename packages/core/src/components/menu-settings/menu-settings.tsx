@@ -97,9 +97,7 @@ export class MenuAbout {
       <Host
         slot="ix-menu-settings"
         class={{
-          animate__animated: true,
-          animate__fadeInLeft: this.show,
-          animate__fadeOutLeft: !this.show,
+          show: this.show,
         }}
       >
         <div class="settings-header">

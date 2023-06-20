@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+//TODO: Animate overlay of settings, about
+
 import {
   Component,
   Element,
@@ -18,6 +20,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
@@ -43,6 +46,10 @@ export class Menu {
    * Is about tab visible
    */
   @Prop({ mutable: true }) showAbout = false;
+  @Watch('showAbout')
+  handleAnimation(showAbout: boolean) {
+    console.log('animate about', showAbout);
+  }
 
   /**
    * Show toggle between light and dark variant. Only if the provided theme have implemented both!
@@ -113,39 +120,9 @@ export class Menu {
    * Map Sidebar expanded
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
-  @State() showMoreItems = false;
-  @State() visibleMenuItems = 0;
-  @State() countMoreNotifications = 0;
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement;
-  @State() isMoreTabEmpty = false;
   @State() mode: Mode = 'desktop';
-
-  private readonly domObserver = new MutationObserver(
-    this.onDomChange.bind(this)
-  );
-
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    this.visibleMenuItems = this.getMaxTabCount();
-  }
-
-  private handleNodeMutation(node: Node) {
-    if (!(node instanceof HTMLElement)) {
-      return;
-    }
-
-    if (node.matches('.tab')) {
-      this.onWindowResize();
-    }
-  }
-
-  private onDomChange(mutations: MutationRecord[]) {
-    mutations.forEach((mutationRecord) => {
-      mutationRecord.addedNodes.forEach(this.handleNodeMutation.bind(this));
-      mutationRecord.removedNodes.forEach(this.handleNodeMutation.bind(this));
-    });
-  }
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -252,19 +229,7 @@ export class Menu {
     return this.hostElement.shadowRoot.querySelector('#menu-tabs');
   }
 
-  private showTab(index: number) {
-    return index + 1 <= this.visibleMenuItems;
-  }
-
-  componentDidLoad() {
-    this.onWindowResize();
-
-    this.domObserver.observe(this.hostElement, {
-      attributes: false,
-      childList: true,
-      subtree: true,
-    });
-  }
+  componentDidLoad() {}
 
   componentWillLoad() {
     menuController.register(this.hostElement);
@@ -280,54 +245,46 @@ export class Menu {
   }
 
   componentDidRender() {
-    this.visibleMenuItems = this.getMaxTabCount();
     this.appendFragments();
   }
 
   private appendFragments() {
     this.appendAvatar();
     this.appendAboutNewsPopover();
-
-    // This lead to none infinite-loops and other bugs.
-    this.isMoreTabEmpty = this.isMoreItemsDropdownEmpty;
-
-    this.countMoreNotifications = this.getMoreNotificationsCount();
   }
 
   private resetActiveTab() {
     this.activeTab = null;
   }
 
-  private isMenuItemActive(item: HTMLIxMenuItemElement) {
-    return item.active || item.classList.contains('active');
-  }
-
   private appendTabs() {
     this.activeTab = null;
 
-    if (this.homeTab) {
-      this.hostElement.shadowRoot
-        .querySelector('.tabs-top')
-        .appendChild(this.homeTab);
-      this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
-    }
+    //TODO: Place home tab on top
+    // if (this.homeTab) {
+    //   this.hostElement.shadowRoot
+    //     .querySelector('.tabs-top')
+    //     .appendChild(this.homeTab);
+    //   this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
+    // }
 
-    this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
-      if (this.showTab(index)) {
-        item.classList.remove('d-none');
-      } else {
-        item.classList.add('d-none');
+    //TODO: Close overlay if menu item is clicked
+    // this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
+    //   if (this.showTab(index)) {
+    //     item.classList.remove('d-none');
+    //   } else {
+    //     item.classList.add('d-none');
 
-        if (this.isMenuItemActive(item)) {
-          this.activeTab = item;
-        }
-      }
+    //     if (this.isMenuItemActive(item)) {
+    //       this.activeTab = item;
+    //     }
+    //   }
 
-      // TODO: Find better solution to handle home tab
-      this.homeTab?.classList.remove('d-none');
+    // TODO: Find better solution to handle home tab
+    //   this.homeTab?.classList.remove('d-none');
 
-      item.addEventListener('click', this.resetOverlay.bind(this));
-    });
+    //   item.addEventListener('click', this.resetOverlay.bind(this));
+    // });
   }
 
   private appendAvatar() {
@@ -370,133 +327,17 @@ export class Menu {
     }
   }
 
-  private getMoreNotificationsCount(): number {
-    const moreTabs = this.moreItemsDropdown?.querySelectorAll('.appended');
-    let count = 0;
-    moreTabs?.forEach((tab) => {
-      if (tab['notifications']) {
-        count += tab['notifications'];
-      }
-    });
-
-    return count;
-  }
-
-  private getAvailableHeight() {
-    const heightBurgerMenu = 60;
-    const heightHome = 72;
-    const heightAvatar = 56;
-    const heightBottomTab = 36;
-
-    let availableHeight = this.hostElement.clientHeight;
-
-    availableHeight -= heightBurgerMenu;
-
-    if (this.avatarItem) {
-      availableHeight -= heightAvatar;
-    }
-
-    if (this.homeTab) {
-      availableHeight -= heightHome;
-    }
-
-    if (this.showAbout) {
-      availableHeight -= heightBottomTab;
-    }
-
-    if (this.showSettings) {
-      availableHeight -= heightBottomTab;
-    }
-
-    if (this.menuBottomItems.length) {
-      availableHeight -= this.menuBottomItems.length * heightBottomTab;
-    }
-
-    if (this.enableMapExpand) {
-      availableHeight -= heightBottomTab;
-    }
-
-    // Subtract height of imprint and theme toggle tabs
-    availableHeight -= 2 * heightBottomTab;
-
-    // Subtract bottom margin of bottom tabs
-    availableHeight -= 16;
-
-    return availableHeight;
-  }
-
-  private getMaxTabCount() {
-    const heightTab = 48;
-    const availableHeight = this.getAvailableHeight();
-    const visibleCount = Math.floor(availableHeight / heightTab);
-    const menuItemCount = this.menuItems.length;
-
-    if (menuItemCount === 1) {
-      return 1;
-    }
-
-    if (menuItemCount < this.maxVisibleMenuItems) {
-      if (visibleCount > menuItemCount) {
-        return menuItemCount;
-      }
-
-      return Math.min(visibleCount - 2, menuItemCount);
-    }
-
-    if (menuItemCount === this.maxVisibleMenuItems) {
-      if (visibleCount < this.maxVisibleMenuItems) {
-        return visibleCount - 2;
-      }
-
-      if (visibleCount === this.maxVisibleMenuItems) {
-        return this.maxVisibleMenuItems - 2;
-      }
-
-      return Math.min(visibleCount, this.maxVisibleMenuItems);
-    }
-
-    if (visibleCount === this.maxVisibleMenuItems) {
-      return this.maxVisibleMenuItems - 2;
-    }
-    if (visibleCount >= this.maxVisibleMenuItems) {
-      return this.maxVisibleMenuItems - 1;
-    }
-
-    return Math.min(visibleCount - 2, this.maxVisibleMenuItems);
-  }
-
   /**
    * Toggle map sidebar expand
    * @param show
    */
   @Method()
   async toggleMapExpand(show?: boolean) {
-    this.skipAllOverlayAnimations();
-
     if (show !== undefined) {
       this.mapExpand = show;
     } else {
       this.mapExpand = !this.mapExpand;
     }
-  }
-
-  private skipAllOverlayAnimations() {
-    if (this.about) {
-      this.skipOverlayAnimationFor(this.about);
-    }
-    if (this.settings) {
-      this.skipOverlayAnimationFor(this.settings);
-    }
-  }
-
-  private skipOverlayAnimationFor(element: HTMLElement) {
-    const animateClass = 'animate__animated';
-
-    element?.classList.remove(animateClass);
-
-    setTimeout(() => {
-      element?.classList.add(animateClass);
-    }, 300);
   }
 
   /**
@@ -505,8 +346,6 @@ export class Menu {
    */
   @Method()
   async toggleMenu(show?: boolean) {
-    this.skipAllOverlayAnimations();
-
     if (show !== undefined) {
       this.expand = show;
     } else {
@@ -526,18 +365,9 @@ export class Menu {
    */
   @Method()
   async toggleSettings(show: boolean) {
-    if (this.showAbout) {
-      this.skipAllOverlayAnimations();
-    } else {
-      this.skipOverlayAnimationFor(this.about);
-    }
-
-    this.about?.classList.add('d-none');
-
     this.resetOverlay();
     this.showSettings = show;
     this.settings.show = this.showSettings;
-    this.settings.classList.remove('d-none');
   }
 
   /**
@@ -546,18 +376,9 @@ export class Menu {
    */
   @Method()
   async toggleAbout(show: boolean) {
-    if (this.showSettings) {
-      this.skipAllOverlayAnimations();
-    } else {
-      this.skipOverlayAnimationFor(this.settings);
-    }
-
-    this.settings?.classList.add('d-none');
-
     this.resetOverlay();
     this.showAbout = show;
     this.about.show = this.showAbout;
-    this.about.classList.remove('d-none');
   }
 
   private resetOverlay() {
@@ -573,24 +394,6 @@ export class Menu {
     }
 
     this.toggleMenu(false);
-  }
-
-  private showMoreButton() {
-    const menuItemCount = this.menuItems.length;
-
-    if (menuItemCount === 1) {
-      return false;
-    }
-
-    if (menuItemCount < this.maxVisibleMenuItems) {
-      return this.visibleMenuItems < menuItemCount;
-    }
-
-    if (menuItemCount > this.maxVisibleMenuItems) {
-      return this.visibleMenuItems < this.maxVisibleMenuItems;
-    }
-
-    return this.visibleMenuItems <= this.maxVisibleMenuItems - 2;
   }
 
   private getCollapseText() {
@@ -673,49 +476,6 @@ export class Menu {
                 </ix-menu-item>
               ) : null}
             </div>
-            <ix-menu-item
-              id="ix-menu-more-tab"
-              tabIcon="more-menu"
-              class={{
-                'internal-tab': true,
-              }}
-              style={{
-                display: this.showMoreButton() ? 'block' : 'none',
-              }}
-              title="Show more"
-              notifications={this.countMoreNotifications}
-            >
-              {this.i18nMore}
-              <ix-dropdown
-                trigger={'ix-menu-more-tab'}
-                positioningStrategy={'fixed'}
-                placement={'right-start'}
-              >
-                {this.menuItems
-                  .filter(
-                    (elm: HTMLIxMenuItemElement, index) =>
-                      !this.showTab(index) &&
-                      !this.isMenuItemActive(elm) &&
-                      this.isVisible(elm)
-                  )
-                  .map((e: HTMLIxMenuItemElement) => {
-                    return (
-                      <ix-menu-item
-                        tabIcon={e.tabIcon}
-                        active={e.active}
-                        disabled={e.disabled}
-                        class="internal-tab appended"
-                        onClick={() => {
-                          this.resetOverlay();
-                          e.dispatchEvent(new CustomEvent('click'));
-                        }}
-                      >
-                        {e.innerText}
-                      </ix-menu-item>
-                    );
-                  })}
-              </ix-dropdown>
-            </ix-menu-item>
           </div>
           <div class="bottom-tab-divider"></div>
           {this.settings ? (
