@@ -7,15 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import './chip-mixin';
 @import 'common-variables';
 @import 'mixins/text-truncation';
 
 $border-radius: 100px;
+$predefined-chips: alarm, critical, warning, info, neutral, success;
 
-:host {
+.container {
   display: inline-flex;
-  width: fit-content;
+  width: inherit;
+  box-sizing: border-box;
+  //width: fit-content;
   position: relative;
   align-items: center;
   border-radius: $border-radius;
@@ -39,7 +41,6 @@ $border-radius: 100px;
 
   .close-button-container {
     display: inline-flex;
-    flex-grow: 1;
     margin-left: $medium-space;
   }
 
@@ -53,9 +54,9 @@ $border-radius: 100px;
     margin-right: 0;
   }
 
-  @include chip();
-
   .slot-container {
+    flex-grow: 1;
+
     @include ellipsis;
   }
 }
@@ -63,3 +64,125 @@ $border-radius: 100px;
 :host(.inactive) {
   pointer-events: none;
 }
+
+// =====
+
+.container.primary {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-chip-primary--color);
+
+  .close-button {
+    color: var(--theme-chip-primary--color);
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background-color: var(--theme-chip-primary--background--hover);
+  }
+
+  &:active {
+    background-color: var(--theme-chip-primary--background--active);
+  }
+
+  &:focus-visible {
+    outline: 1px solid #199fff;
+    outline-offset: var(--theme-btn--focus--outline-offset);
+  }
+}
+
+.container.primary.outline {
+  color: var(--theme-chip-primary-outline--color);
+  background-color: transparent;
+  border: solid 1px var(--theme-chip-primary-outline--border-color);
+
+  .close-button {
+    color: var(--theme-chip-primary-outline--color);
+  }
+
+  &:hover {
+    background-color: var(--theme-chip-primary-outline--background--hover);
+  }
+
+  &:active {
+    background-color: var(--theme-chip-primary-outline--background--active);
+  }
+}
+
+@each $color in $predefined-chips {
+  .container.#{$color} {
+    // :host([variant='#{$color}']) {
+    color: var(--theme-color-#{$color}--contrast);
+
+    &:hover::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.05);
+      left: 0;
+      border-radius: $border-radius;
+      pointer-events: none;
+    }
+
+    &.active::after,
+    &:active::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      left: 0;
+      border-radius: $border-radius;
+      pointer-events: none;
+    }
+
+    &:not(.outline) {
+      background-color: var(--theme-color-#{$color});
+
+      .close-button {
+        color: var(--theme-color-#{$color}--contrast);
+      }
+
+      &:hover::after {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &.active::after,
+      &:active::after {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &.outline {
+      color: var(--theme-chip-outline--color);
+      border: solid 1px var(--theme-color-#{$color});
+
+      &:hover::after {
+        display: none;
+      }
+
+      &:hover {
+        background-color: var(--theme-chip-outline--background--hover);
+      }
+
+      &.active::after,
+      &:active::after {
+        display: none;
+      }
+
+      &.active,
+      &:active {
+        background-color: var(--theme-chip-outline--background--active);
+      }
+    }
+
+    &:focus-visible {
+      outline: 1px solid #199fff;
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+  }
+}
+// =====
