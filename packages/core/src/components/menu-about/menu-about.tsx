@@ -46,7 +46,10 @@ export class MenuAbout {
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<string>;
+  @Event() close: EventEmitter<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>;
 
   @State() labels: string[] = [];
 
@@ -122,7 +125,12 @@ export class MenuAbout {
             ghost
             size="24"
             icon="close"
-            onClick={() => this.close.emit('ix-menu-about')}
+            onClick={(e) =>
+              this.close.emit({
+                name: 'ix-menu-about',
+                nativeEvent: e,
+              })
+            }
           ></ix-icon-button>
         </div>
         <ix-tabs

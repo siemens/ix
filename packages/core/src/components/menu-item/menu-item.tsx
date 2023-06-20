@@ -10,6 +10,9 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
+/**
+ * @slot menu-item-label Custom label
+ */
 @Component({
   tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
@@ -25,15 +28,20 @@ export class MenuItem {
    * Caution: this is no longer working. Please use slot="bottom" instead.
    *
    * Place tab on bottom
-   *
-   * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
    */
   @Prop() bottom = false;
 
   /**
    * Icon name from @siemens/ix-icons
+   *
+   * @deprecated use `icon` property
    */
   @Prop() tabIcon = 'document';
+
+  /**
+   * Icon name from @siemens/ix-icons
+   */
+  @Prop() icon: string;
 
   /**
    * Show notification count on tab
@@ -79,6 +87,18 @@ export class MenuItem {
   }
 
   render() {
+    let extendedAttributes = {};
+    if (this.home) {
+      extendedAttributes = {
+        slot: 'home',
+      };
+    }
+
+    if (this.bottom) {
+      extendedAttributes = {
+        slot: 'bottom',
+      };
+    }
     return (
       <Host
         class={{
@@ -87,9 +107,10 @@ export class MenuItem {
           'bottom-tab': this.bottom,
           active: this.active,
         }}
+        {...extendedAttributes}
       >
         <li class="tab" title={this.title}>
-          <ix-icon name={this.tabIcon}></ix-icon>
+          <ix-icon name={this.icon ?? this.tabIcon}></ix-icon>
           <div class="notification">
             {this.notifications ? (
               <div class="pill">{this.notifications}</div>

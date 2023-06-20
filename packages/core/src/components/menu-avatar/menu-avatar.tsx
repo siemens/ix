@@ -95,7 +95,7 @@ export class MenuAvatar {
 
   render() {
     return (
-      <Host>
+      <Host slot="ix-menu-avatar">
         <li
           class="nav-item top-item avatar no-hover"
           title={this.top}

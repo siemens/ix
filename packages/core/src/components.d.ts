@@ -1182,6 +1182,16 @@ export namespace Components {
          */
         "label": string;
     }
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon": string;
+        /**
+          * Display name of the category
+         */
+        "label": string;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -1189,7 +1199,6 @@ export namespace Components {
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -1201,11 +1210,16 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon": string;
+        /**
           * Show notification count on tab
          */
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated use `icon` property
          */
         "tabIcon": string;
     }
@@ -2438,6 +2452,12 @@ declare global {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
     };
+    interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+    }
+    var HTMLIxMenuCategoryElement: {
+        prototype: HTMLIxMenuCategoryElement;
+        new (): HTMLIxMenuCategoryElement;
+    };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
     var HTMLIxMenuItemElement: {
@@ -2689,6 +2709,7 @@ declare global {
         "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
+        "ix-menu-category": HTMLIxMenuCategoryElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -3879,7 +3900,10 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<string>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -3964,6 +3988,16 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon"?: string;
+        /**
+          * Display name of the category
+         */
+        "label"?: string;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -3971,7 +4005,6 @@ declare namespace LocalJSX {
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**
@@ -3983,11 +4016,16 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon"?: string;
+        /**
           * Show notification count on tab
          */
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated use `icon` property
          */
         "tabIcon"?: string;
     }
@@ -4003,7 +4041,10 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<string>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -4802,6 +4843,7 @@ declare namespace LocalJSX {
         "ix-menu-about-news": IxMenuAboutNews;
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
+        "ix-menu-category": IxMenuCategory;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -4930,6 +4972,7 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;

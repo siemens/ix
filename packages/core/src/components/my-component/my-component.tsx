@@ -24,16 +24,28 @@ export class MyComponent {
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
             </ix-menu-avatar>
             <ix-menu-item>Test</ix-menu-item>
+
+            <ix-menu-item tabIcon="home" home active>
+              Home
+            </ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item active>Test</ix-menu-item>
+
+            <ix-menu-category label="AI Configuration" icon="rocket">
+              <ix-menu-item>Nested Item 1</ix-menu-item>
+              <ix-menu-item>Nested Item 2</ix-menu-item>
+            </ix-menu-category>
+
+            <a href="#">
+              <ix-menu-item>Test123</ix-menu-item>
+            </a>
+            <ix-menu-item icon="rocket">Test XZY</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item bottom active>
+              Test
+            </ix-menu-item>
             <ix-menu-about>
               <ix-menu-about-item label="About 1">
                 About Content 1

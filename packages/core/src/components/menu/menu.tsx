@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-//TODO: Animate overlay of settings, about
-
 import {
   Component,
   Element,
@@ -20,7 +18,6 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
@@ -46,10 +43,6 @@ export class Menu {
    * Is about tab visible
    */
   @Prop({ mutable: true }) showAbout = false;
-  @Watch('showAbout')
-  handleAnimation(showAbout: boolean) {
-    console.log('animate about', showAbout);
-  }
 
   /**
    * Show toggle between light and dark variant. Only if the provided theme have implemented both!
@@ -249,7 +242,6 @@ export class Menu {
   }
 
   private appendFragments() {
-    this.appendAvatar();
     this.appendAboutNewsPopover();
   }
 
@@ -259,14 +251,6 @@ export class Menu {
 
   private appendTabs() {
     this.activeTab = null;
-
-    //TODO: Place home tab on top
-    // if (this.homeTab) {
-    //   this.hostElement.shadowRoot
-    //     .querySelector('.tabs-top')
-    //     .appendChild(this.homeTab);
-    //   this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
-    // }
 
     //TODO: Close overlay if menu item is clicked
     // this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
@@ -279,22 +263,6 @@ export class Menu {
     //       this.activeTab = item;
     //     }
     //   }
-
-    // TODO: Find better solution to handle home tab
-    //   this.homeTab?.classList.remove('d-none');
-
-    //   item.addEventListener('click', this.resetOverlay.bind(this));
-    // });
-  }
-
-  private appendAvatar() {
-    const avatar = this.avatarItem;
-    if (avatar) {
-      avatar.style.marginBottom = '1rem';
-      this.hostElement
-        .querySelector('#avatar-tab-placeholder')
-        ?.appendChild(avatar);
-    }
   }
 
   private getAboutPopoverVerticalPosition() {
@@ -416,12 +384,16 @@ export class Menu {
   }
 
   @Listen('close')
-  onOverlayClose(event: CustomEvent<string>) {
-    if (event.detail === 'ix-menu-about') {
+  onOverlayClose(
+    event: CustomEvent<{ nativeEvent: MouseEvent; name: string }>
+  ) {
+    const { name: targetName } = event.detail;
+
+    if (targetName === 'ix-menu-about') {
       this.showAbout = false;
     }
 
-    if (event.detail === 'ix-menu-settings') {
+    if (targetName === 'ix-menu-settings') {
       this.showSettings = false;
     }
   }
@@ -451,7 +423,10 @@ export class Menu {
               'burger-menu': true,
             }}
           ></ix-burger-menu>
-          <div id="avatar-tab-placeholder"></div>
+          <div class="menu-avatar">
+            <slot name="ix-menu-avatar"></slot>
+          </div>
+
           <div
             id="menu-tabs"
             style={{
@@ -463,7 +438,9 @@ export class Menu {
               }
             }}
           >
-            <div class="tabs-top"></div>
+            <div class="tabs-top">
+              <slot name="home"></slot>
+            </div>
             <slot></slot>
             <div class="active-more-tab">
               {this.activeTab ? (
@@ -486,7 +463,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              tabIcon="cogwheel"
+              icon="cogwheel"
               onClick={async () => this.toggleSettings(!this.showSettings)}
             >
               {this.i18nSettings}
@@ -502,7 +479,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              tabIcon="info"
+              icon="info"
               onClick={async () => this.toggleAbout(!this.showAbout)}
             >
               {this.i18nLegal}

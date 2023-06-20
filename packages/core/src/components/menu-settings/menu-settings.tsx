@@ -45,7 +45,10 @@ export class MenuAbout {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter<string>;
+  @Event() close: EventEmitter<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>;
 
   get settingsItems(): HTMLIxMenuSettingsItemElement[] {
     return Array.from(this.el.querySelectorAll('ix-menu-settings-item'));
@@ -106,7 +109,12 @@ export class MenuAbout {
             ghost
             size="24"
             icon="close"
-            onClick={() => this.close.emit('ix-menu-settings')}
+            onClick={(e) =>
+              this.close.emit({
+                nativeEvent: e,
+                name: 'ix-menu-settings',
+              })
+            }
           ></ix-icon-button>
         </div>
         <ix-tabs>{this.getTabItems()}</ix-tabs>

@@ -66,8 +66,9 @@
     left: 16rem;
   }
 
-  #avatar-tab-placeholder {
+  .menu-avatar {
     max-height: 3rem;
+    margin-bottom: 1rem;
   }
 
   .avatar {
@@ -113,7 +114,8 @@
   }
 }
 
-// Remove text-decoration if a tag is used inside ix-menu
-a[href]:has(> ix-menu-item) {
-  text-decoration: none;
+:host {
+  ::slotted(a[href]) {
+    all: unset;
+  }
 }
