@@ -18,7 +18,7 @@ export class MyComponent {
     return (
       <Host>
         <ix-basic-navigation>
-          <ix-menu>
+          <ix-menu expand enableToggleTheme>
             <ix-menu-avatar top="top 123" bottom="bottom 456">
               <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
@@ -41,6 +41,18 @@ export class MyComponent {
               <ix-menu-item>Test123</ix-menu-item>
             </a>
             <ix-menu-item icon="rocket">Test XZY</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item bottom active>

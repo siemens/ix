@@ -24,6 +24,53 @@
 
   bottom: 0px;
 
+  .tabs {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    pointer-events: all;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tabs-shadow-container {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .tabs--shadow {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+
+    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+    pointer-events: none;
+    z-index: var(--theme-z-index-sticky);
+
+    transition: opacity var(--theme-default-time);
+  }
+  .tabs--shadow-top {
+    top: 0px;
+    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+  }
+
+  .tabs--shadow-bottom {
+    bottom: 0px;
+    background: linear-gradient(transparent, var(--theme-color-shadow-1));
+  }
+
+  .tabs--shadow--show {
+    opacity: 1;
+  }
+
   .menu {
     display: flex;
     flex-direction: column;

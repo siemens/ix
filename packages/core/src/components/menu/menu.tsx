@@ -96,10 +96,6 @@ export class Menu {
   @Prop() i18nCollapse = 'Collapse';
 
   /**
-   */
-  @Prop() i18nMore = 'More…';
-
-  /**
    * Expand menu
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
@@ -113,9 +109,12 @@ export class Menu {
    * Map Sidebar expanded
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
+
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement;
   @State() mode: Mode = 'desktop';
+  @State() itemsScrollShadowTop = false;
+  @State() itemsScrollShadowBottom = false;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -131,6 +130,10 @@ export class Menu {
 
   get menu() {
     return this.hostElement.shadowRoot.querySelector('.menu');
+  }
+
+  get menuItemsContainer(): HTMLDivElement {
+    return this.menu.querySelector('.tabs');
   }
 
   get menuItems() {
@@ -222,7 +225,11 @@ export class Menu {
     return this.hostElement.shadowRoot.querySelector('#menu-tabs');
   }
 
-  componentDidLoad() {}
+  componentDidLoad() {
+    requestAnimationFrame(() => {
+      this.handleOverflowIndicator();
+    });
+  }
 
   componentWillLoad() {
     menuController.register(this.hostElement);
@@ -251,18 +258,6 @@ export class Menu {
 
   private appendTabs() {
     this.activeTab = null;
-
-    //TODO: Close overlay if menu item is clicked
-    // this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
-    //   if (this.showTab(index)) {
-    //     item.classList.remove('d-none');
-    //   } else {
-    //     item.classList.add('d-none');
-
-    //     if (this.isMenuItemActive(item)) {
-    //       this.activeTab = item;
-    //     }
-    //   }
   }
 
   private getAboutPopoverVerticalPosition() {
@@ -383,6 +378,15 @@ export class Menu {
     return menuItems.some((menu) => this.tabsContainer.contains(menu));
   }
 
+  @Listen('resize', { target: 'window' })
+  private handleOverflowIndicator() {
+    const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
+    this.itemsScrollShadowTop = scrollTop > 0;
+    this.itemsScrollShadowBottom =
+      Math.round(scrollTop + clientHeight) <= scrollHeight &&
+      Math.round(scrollTop + clientHeight) !== scrollHeight;
+  }
+
   @Listen('close')
   onOverlayClose(
     event: CustomEvent<{ nativeEvent: MouseEvent; name: string }>
@@ -441,17 +445,24 @@ export class Menu {
             <div class="tabs-top">
               <slot name="home"></slot>
             </div>
-            <slot></slot>
-            <div class="active-more-tab">
-              {this.activeTab ? (
-                <ix-menu-item
-                  class="internal-tab"
-                  active={true}
-                  tabIcon={this.activeTab.tabIcon}
-                >
-                  {this.activeTab.innerText}
-                </ix-menu-item>
-              ) : null}
+            <div class="tabs-shadow-container">
+              <div
+                class={{
+                  'tabs--shadow': true,
+                  'tabs--shadow-top': true,
+                  'tabs--shadow--show': this.itemsScrollShadowTop,
+                }}
+              ></div>
+              <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
+                <slot></slot>
+              </div>
+              <div
+                class={{
+                  'tabs--shadow': true,
+                  'tabs--shadow-bottom': true,
+                  'tabs--shadow--show': this.itemsScrollShadowBottom,
+                }}
+              ></div>
             </div>
           </div>
           <div class="bottom-tab-divider"></div>

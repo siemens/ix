@@ -1069,7 +1069,6 @@ export namespace Components {
         "i18nCollapse": string;
         "i18nExpand": string;
         "i18nLegal": string;
-        "i18nMore": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         /**
@@ -3864,7 +3863,6 @@ declare namespace LocalJSX {
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         "i18nLegal"?: string;
-        "i18nMore"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
         /**
