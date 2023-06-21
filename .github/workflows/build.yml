@@ -102,6 +102,8 @@ jobs:
             node_modules
             packages/**/node_modules
             /github/home/.cache/puppeteer
+      - name: Install puppeteer dependencies
+        run: yarn
       - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/test
 
