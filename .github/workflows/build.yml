@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install, build]
     container:
-      image: node:18.16.1
+      image: node:18
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
