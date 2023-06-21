@@ -1199,10 +1199,6 @@ export namespace Components {
     }
     interface IxMenuCategory {
         /**
-          * Show category as expanded
-         */
-        "expand": boolean;
-        /**
           * Icon of the category
          */
         "icon": string;
@@ -4025,10 +4021,6 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
     interface IxMenuCategory {
-        /**
-          * Show category as expanded
-         */
-        "expand"?: boolean;
         /**
           * Icon of the category
          */

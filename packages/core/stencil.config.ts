@@ -166,6 +166,7 @@ export const config: Config = {
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
+    browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',

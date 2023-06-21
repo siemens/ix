@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { menuContext } from '../utils/screen/context';
@@ -36,13 +36,6 @@ export class MenuCategory {
    * Show notification count on the category
    */
   @Prop() notifications: number;
-
-  /**
-   * Show category as expanded
-   */
-  @Prop() expand = false;
-  @Watch('expand')
-  expandChange(expand: boolean) {}
 
   @State() menuExpand = false;
   @State() showItems = false;
@@ -109,7 +102,7 @@ export class MenuCategory {
   }
 
   private onCategoryClicked(e?: MouseEvent) {
-    if (this.menuExpand) {
+    if (this.ixMenu.expand) {
       e?.stopPropagation();
       this.onExpandCategory(!this.showItems);
       return;
@@ -164,10 +157,6 @@ export class MenuCategory {
         }
       }
     );
-
-    if (this.expand) {
-      this.expandChange(this.expand);
-    }
   }
 
   disconnectedCallback() {
