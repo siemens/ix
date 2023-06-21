@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { TypedEvent } from '../typed-event';
-import { createModeListener, Mode, setSupportedModes } from './mode';
+import {
+  createModeListener,
+  getFallbackMode,
+  Mode,
+  setSupportedModes,
+} from './mode';
 
 class ScreenMode {
   #modeChangeListener = new TypedEvent<Mode>();
@@ -51,8 +56,11 @@ class ScreenMode {
     this.#modeChangeListener.emit(mode);
   }
 
-  public setSupportedMods(mode: Mode[]) {
-    setSupportedModes(mode);
+  public setSupportedMods(modes: Mode[]) {
+    setSupportedModes(modes);
+    const mode = getFallbackMode(modes, this.#mode);
+
+    this.setMode(mode);
   }
 }
 

@@ -477,8 +477,7 @@ export const IxMenuAvatarItem = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatarIt
 export const IxMenuCategory = /*@__PURE__*/ defineContainer<JSX.IxMenuCategory>('ix-menu-category', undefined, [
   'label',
   'icon',
-  'notifications',
-  'expand'
+  'notifications'
 ]);
 
 

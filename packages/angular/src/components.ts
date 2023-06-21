@@ -1361,14 +1361,14 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
 
 
 @ProxyCmp({
-  inputs: ['expand', 'icon', 'label', 'notifications']
+  inputs: ['icon', 'label', 'notifications']
 })
 @Component({
   selector: 'ix-menu-category',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['expand', 'icon', 'label', 'notifications'],
+  inputs: ['icon', 'label', 'notifications'],
 })
 export class IxMenuCategory {
   protected el: HTMLElement;

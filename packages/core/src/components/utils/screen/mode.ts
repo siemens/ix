@@ -57,6 +57,8 @@ export const getFallbackMode = (modes: Mode[], detectedMode: Mode): Mode => {
   return detectedMode;
 };
 
+export type ModeChangeCallback = (mode: Mode) => void;
+
 export const createModeListener = (
   modeChangeCallback: (mode: Mode) => void
 ) => {

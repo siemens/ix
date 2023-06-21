@@ -57,7 +57,7 @@
         },
         {
           "name": "icon",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -67,9 +67,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1199,7 +1196,7 @@
         },
         {
           "name": "showAllCount",
-          "type": "number | undefined",
+          "type": "number",
           "mutable": false,
           "attr": "show-all-count",
           "reflectToAttr": false,
@@ -1208,9 +1205,6 @@
           "values": [
             {
               "type": "number"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1473,16 +1467,13 @@
         },
         {
           "name": "nonSelectableCategories",
-          "type": "undefined | { [id: string]: string; }",
+          "type": "{ [id: string]: string; }",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "In certain use cases some categories may not be available for selection anymore.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\n\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
           "docsTags": [],
           "default": "{}",
           "values": [
-            {
-              "type": "undefined"
-            },
             {
               "type": "{ [id: string]: string; }"
             }
@@ -1606,7 +1597,7 @@
         },
         {
           "name": "background",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -1615,9 +1606,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1642,7 +1630,7 @@
         },
         {
           "name": "color",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -1651,9 +1639,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1661,7 +1646,7 @@
         },
         {
           "name": "icon",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -1670,9 +1655,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1825,7 +1807,7 @@
         },
         {
           "name": "headerSubtitle",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "header-subtitle",
           "reflectToAttr": false,
@@ -1835,9 +1817,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1934,7 +1913,7 @@
         },
         {
           "name": "background",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -1943,9 +1922,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1953,7 +1929,7 @@
         },
         {
           "name": "color",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -1962,9 +1938,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2146,7 +2119,7 @@
         },
         {
           "name": "from",
-          "type": "null | string",
+          "type": "string",
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
@@ -2159,9 +2132,6 @@
           ],
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
-            {
-              "type": "null"
-            },
             {
               "type": "string"
             }
@@ -2275,7 +2245,7 @@
         },
         {
           "name": "to",
-          "type": "null | string",
+          "type": "string",
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
@@ -2288,9 +2258,6 @@
           ],
           "default": "null",
           "values": [
-            {
-              "type": "null"
-            },
             {
               "type": "string"
             }
@@ -2595,8 +2562,9 @@
         },
         {
           "name": "showTimeReference",
-          "type": "undefined",
+          "type": "any",
           "mutable": false,
+          "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input\nTime reference is default aligned with @see {this.timeFormat}",
           "docsTags": [
@@ -2608,7 +2576,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "undefined"
+              "type": "any"
             }
           ],
           "optional": false,
@@ -2702,7 +2670,7 @@
         },
         {
           "name": "to",
-          "type": "null | string",
+          "type": "string",
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
@@ -2715,9 +2683,6 @@
           ],
           "default": "null",
           "values": [
-            {
-              "type": "null"
-            },
             {
               "type": "string"
             }
@@ -3140,7 +3105,7 @@
         },
         {
           "name": "header",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "header",
           "reflectToAttr": false,
@@ -3149,9 +3114,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": true,
@@ -5930,7 +5892,7 @@
         },
         {
           "name": "forceLayout",
-          "type": "\"large\" | \"medium\" | \"small\" | undefined",
+          "type": "\"large\" | \"medium\" | \"small\"",
           "mutable": false,
           "attr": "force-layout",
           "reflectToAttr": false,
@@ -5948,9 +5910,6 @@
             {
               "value": "small",
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -6806,23 +6765,6 @@
         ]
       },
       "props": [
-        {
-          "name": "expand",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "expand",
-          "reflectToAttr": false,
-          "docs": "Show category as expanded",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "icon",
           "type": "string",
@@ -8026,7 +7968,7 @@
         },
         {
           "name": "background",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -8035,9 +7977,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -8045,7 +7984,7 @@
         },
         {
           "name": "color",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -8054,9 +7993,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -8064,7 +8000,7 @@
         },
         {
           "name": "icon",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -8073,9 +8009,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -8210,7 +8143,7 @@
         },
         {
           "name": "icon",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -8220,9 +8153,6 @@
           "values": [
             {
               "type": "string"
-            },
-            {
-              "type": "undefined"
             }
           ],
           "optional": false,
@@ -9654,8 +9584,9 @@
         },
         {
           "name": "showTimeReference",
-          "type": "undefined",
+          "type": "any",
           "mutable": true,
+          "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input",
           "docsTags": [
@@ -9667,7 +9598,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "undefined"
+              "type": "any"
             }
           ],
           "optional": false,

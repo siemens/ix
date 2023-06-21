@@ -35,7 +35,10 @@ export class MyComponent {
     return (
       <Host>
         <ix-basic-navigation>
-          <ix-menu enableToggleTheme>
+          <ix-menu
+            enableToggleTheme
+            supportedModes={['small', 'medium', 'large']}
+          >
             <ix-menu-avatar top="top 123" bottom="bottom 456">
               <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
@@ -56,12 +59,14 @@ export class MyComponent {
 
             <ix-menu-category label="AI Configuration" icon="rocket">
               <ix-menu-item
+                icon={'empty'}
                 active={this.activeMap['test2']}
                 onClick={() => this.onActive('test2')}
               >
                 Nested Item 1
               </ix-menu-item>
               <ix-menu-item
+                icon={'empty'}
                 active={this.activeMap['test3']}
                 onClick={() => this.onActive('test3')}
               >

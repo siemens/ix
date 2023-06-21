@@ -307,7 +307,6 @@ export class Menu {
   }
 
   private onModeChange(mode: Mode) {
-    console.log('menu mode change', mode);
     if (!this.supportedModes.includes(mode)) {
       return;
     }
