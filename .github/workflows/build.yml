@@ -92,8 +92,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/build-cache
-      - name: Validate all commits from PR
-        run: node ./node_modules/puppeteer/install.js
+      - name: Install puppeteer
+        run: yarn global add puppeteer
       - uses: ./.github/workflows/actions/test
 
   lint:
