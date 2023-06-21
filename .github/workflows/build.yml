@@ -91,9 +91,18 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          key: yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
+          path: |
+            .yarn-cache
+            node_modules
+            packages/**/node_modules
+            /github/home/.cache/puppeteer
       - uses: ./.github/workflows/actions/build-cache
-      - name: Install puppeteer
-        run: yarn global add puppeteer
       - uses: ./.github/workflows/actions/test
 
   lint:
