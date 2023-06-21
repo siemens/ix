@@ -86,24 +86,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install, build]
     container:
-      image: node:18
+      image: mcr.microsoft.com/playwright:v1.24.0-focal
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          key: yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
-          path: |
-            .yarn-cache
-            node_modules
-            packages/**/node_modules
-            /github/home/.cache/puppeteer
-      - name: Install puppeteer dependencies
-        run: yarn
       - uses: ./.github/workflows/actions/build-cache
       - uses: ./.github/workflows/actions/test
 
