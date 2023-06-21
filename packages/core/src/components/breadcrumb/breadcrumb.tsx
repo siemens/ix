@@ -311,7 +311,6 @@ export class Breadcrumb {
       } else {
         const nextButtonId = 'ix-bc' + this.id + '-next-button';
         const nextDropdownId = 'ix-bc' + this.id + '-next-dropdown';
-
         return (
           <li>
             <button

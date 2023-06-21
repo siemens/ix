@@ -497,10 +497,10 @@ export class Dropdown {
           position: this.positioningStrategy,
         }}
         role="list"
+        aria-label={this.header ? this.header : null}
       >
         <div style={{ display: 'contents' }}>
           {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
-
           <slot></slot>
         </div>
       </Host>
