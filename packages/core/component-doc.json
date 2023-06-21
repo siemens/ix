@@ -57,7 +57,7 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -67,6 +67,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -323,6 +326,12 @@
         "ix-application-header": [
           "ix-burger-menu"
         ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
@@ -366,7 +375,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
@@ -379,6 +388,12 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "my-component": [
           "ix-basic-navigation"
@@ -703,7 +718,8 @@
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -732,6 +748,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -1180,7 +1199,7 @@
         },
         {
           "name": "showAllCount",
-          "type": "number",
+          "type": "number | undefined",
           "mutable": false,
           "attr": "show-all-count",
           "reflectToAttr": false,
@@ -1189,6 +1208,9 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1451,13 +1473,16 @@
         },
         {
           "name": "nonSelectableCategories",
-          "type": "{ [id: string]: string; }",
+          "type": "undefined | { [id: string]: string; }",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "In certain use cases some categories may not be available for selection anymore.\nTo allow proper display of set filters with these categories this ID to label mapping can be populated.\n\nConfiguration object hash used to supply labels to the filter chips in the input field.\nEach ID maps to a string representing the label to display.",
           "docsTags": [],
           "default": "{}",
           "values": [
+            {
+              "type": "undefined"
+            },
             {
               "type": "{ [id: string]: string; }"
             }
@@ -1581,7 +1606,7 @@
         },
         {
           "name": "background",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -1590,6 +1615,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1614,7 +1642,7 @@
         },
         {
           "name": "color",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -1623,6 +1651,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1630,7 +1661,7 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -1639,6 +1670,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1791,7 +1825,7 @@
         },
         {
           "name": "headerSubtitle",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "header-subtitle",
           "reflectToAttr": false,
@@ -1801,6 +1835,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1897,7 +1934,7 @@
         },
         {
           "name": "background",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -1906,6 +1943,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1913,7 +1953,7 @@
         },
         {
           "name": "color",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -1922,6 +1962,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2103,7 +2146,7 @@
         },
         {
           "name": "from",
-          "type": "string",
+          "type": "null | string",
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
@@ -2116,6 +2159,9 @@
           ],
           "default": "DateTime.now().toFormat(this.format)",
           "values": [
+            {
+              "type": "null"
+            },
             {
               "type": "string"
             }
@@ -2229,7 +2275,7 @@
         },
         {
           "name": "to",
-          "type": "string",
+          "type": "null | string",
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
@@ -2242,6 +2288,9 @@
           ],
           "default": "null",
           "values": [
+            {
+              "type": "null"
+            },
             {
               "type": "string"
             }
@@ -2546,9 +2595,8 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "undefined",
           "mutable": false,
-          "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input\nTime reference is default aligned with @see {this.timeFormat}",
           "docsTags": [
@@ -2560,7 +2608,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "any"
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2654,7 +2702,7 @@
         },
         {
           "name": "to",
-          "type": "string",
+          "type": "null | string",
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
@@ -2667,6 +2715,9 @@
           ],
           "default": "null",
           "values": [
+            {
+              "type": "null"
+            },
             {
               "type": "string"
             }
@@ -2751,9 +2802,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-menu-category"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-menu-category": [
+          "ix-divider"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -2954,8 +3011,8 @@
         "ix-category-filter",
         "ix-date-picker",
         "ix-dropdown-button",
-        "ix-menu",
         "ix-menu-avatar",
+        "ix-menu-category",
         "ix-select",
         "ix-split-button"
       ],
@@ -2973,10 +3030,10 @@
         "ix-dropdown-button": [
           "ix-dropdown"
         ],
-        "ix-menu": [
+        "ix-menu-avatar": [
           "ix-dropdown"
         ],
-        "ix-menu-avatar": [
+        "ix-menu-category": [
           "ix-dropdown"
         ],
         "ix-select": [
@@ -3083,7 +3140,7 @@
         },
         {
           "name": "header",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "header",
           "reflectToAttr": false,
@@ -3092,6 +3149,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -3455,6 +3515,7 @@
         "ix-breadcrumb",
         "ix-group-dropdown-item",
         "ix-menu-avatar-item",
+        "ix-menu-category",
         "ix-select",
         "ix-select-item",
         "ix-split-button-item"
@@ -3473,6 +3534,9 @@
           "ix-dropdown-item"
         ],
         "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-menu-category": [
           "ix-dropdown-item"
         ],
         "ix-select": [
@@ -4818,6 +4882,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
         "ix-content-header",
@@ -4845,6 +4910,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
         ],
         "ix-card-list": [
           "ix-icon-button"
@@ -5470,6 +5538,9 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -5729,20 +5800,24 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
       "dependencies": [
         "ix-burger-menu",
-        "ix-menu-item",
-        "ix-dropdown"
+        "ix-menu-item"
       ],
       "dependencyGraph": {
         "ix-menu": [
           "ix-burger-menu",
-          "ix-menu-item",
-          "ix-dropdown"
+          "ix-menu-item"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "ix-menu-item": [
           "ix-icon"
@@ -5854,6 +5929,34 @@
           "required": false
         },
         {
+          "name": "forceLayout",
+          "type": "\"large\" | \"medium\" | \"small\" | undefined",
+          "mutable": false,
+          "attr": "force-layout",
+          "reflectToAttr": false,
+          "docs": "Change the responsive layout of the menu structure",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "medium",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nCollapse",
           "type": "string",
           "mutable": false,
@@ -5896,23 +5999,6 @@
           "docs": "",
           "docsTags": [],
           "default": "'About & legal information'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "i18nMore",
-          "type": "string",
-          "mutable": false,
-          "attr": "i-1-8n-more",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "default": "'More…'",
           "values": [
             {
               "type": "string"
@@ -5973,6 +6059,23 @@
           "required": false
         },
         {
+          "name": "pinned",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pinned",
+          "reflectToAttr": false,
+          "docs": "Menu keeps pinned on the left side",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "showAbout",
           "type": "boolean",
           "mutable": true,
@@ -6001,6 +6104,22 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "supportedModes",
+          "type": "Mode[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "['small', 'medium', 'large']",
+          "values": [
+            {
+              "type": "Mode[]"
             }
           ],
           "optional": false,
@@ -6102,6 +6221,11 @@
           "target": "window",
           "capture": false,
           "passive": true
+        },
+        {
+          "event": "close",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -6116,7 +6240,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
@@ -6194,7 +6318,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "{ nativeEvent: MouseEvent; name: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -6265,9 +6389,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon",
         "ix-typography",
@@ -6283,9 +6405,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-menu-about-news"
         ]
       },
       "props": [
@@ -6645,6 +6764,122 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/menu-category",
+      "filePath": "./src/components/menu-category/menu-category.tsx",
+      "fileName": "menu-category.tsx",
+      "readmePath": "./src/components/menu-category/readme.md",
+      "usagesDir": "./src/components/menu-category/usage",
+      "tag": "ix-menu-category",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "ix-menu-item",
+        "ix-icon",
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-typography",
+        "ix-divider"
+      ],
+      "dependencyGraph": {
+        "ix-menu-category": [
+          "ix-menu-item",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-typography",
+          "ix-divider"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-category"
+        ]
+      },
+      "props": [
+        {
+          "name": "expand",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "expand",
+          "reflectToAttr": false,
+          "docs": "Show category as expanded",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Display name of the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "notifications",
+          "type": "number",
+          "mutable": false,
+          "attr": "notifications",
+          "reflectToAttr": false,
+          "docs": "Show notification count on the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/menu-item",
       "filePath": "./src/components/menu-item/menu-item.tsx",
       "fileName": "menu-item.tsx",
@@ -6654,10 +6889,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "menu-item-label Custom label"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
+        "ix-menu-category",
         "my-component"
       ],
       "dependencies": [
@@ -6668,6 +6909,9 @@
           "ix-icon"
         ],
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "ix-menu-category": [
           "ix-menu-item"
         ],
         "my-component": [
@@ -6698,14 +6942,8 @@
           "attr": "bottom",
           "reflectToAttr": false,
           "docs": "Caution: this is no longer working. Please use slot=\"bottom\" instead.\n\nPlace tab on bottom",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Replaced by slot based implementation"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
-          "deprecation": "Will be removed in 2.0.0. Replaced by slot based implementation",
           "values": [
             {
               "type": "boolean"
@@ -6748,6 +6986,22 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name from @siemens/ix-icons",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "notifications",
           "type": "number",
           "mutable": false,
@@ -6770,8 +7024,14 @@
           "attr": "tab-icon",
           "reflectToAttr": false,
           "docs": "Icon name from @siemens/ix-icons",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "use `icon` property"
+            }
+          ],
           "default": "'document'",
+          "deprecation": "use `icon` property",
           "values": [
             {
               "type": "string"
@@ -6784,7 +7044,12 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "menu-item-label Custom label",
+          "docs": ""
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -6799,7 +7064,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "my-component"
       ],
@@ -6877,7 +7142,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "{ nativeEvent: MouseEvent; name: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -7761,7 +8026,7 @@
         },
         {
           "name": "background",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
@@ -7770,6 +8035,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -7777,7 +8045,7 @@
         },
         {
           "name": "color",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
@@ -7786,6 +8054,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -7793,7 +8064,7 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -7802,6 +8073,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -7936,7 +8210,7 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
@@ -7946,6 +8220,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -9377,9 +9654,8 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "undefined",
           "mutable": true,
-          "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input",
           "docsTags": [
@@ -9391,7 +9667,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "any"
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -11007,7 +11283,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-basic-navigation",
@@ -11015,11 +11291,12 @@
         "ix-menu-avatar",
         "ix-menu-avatar-item",
         "ix-menu-item",
+        "ix-menu-category",
         "ix-menu-about",
         "ix-menu-about-item",
-        "ix-menu-about-news",
         "ix-menu-settings",
-        "ix-menu-settings-item"
+        "ix-menu-settings-item",
+        "ix-button"
       ],
       "dependencyGraph": {
         "my-component": [
@@ -11028,11 +11305,12 @@
           "ix-menu-avatar",
           "ix-menu-avatar-item",
           "ix-menu-item",
+          "ix-menu-category",
           "ix-menu-about",
           "ix-menu-about-item",
-          "ix-menu-about-news",
           "ix-menu-settings",
-          "ix-menu-settings-item"
+          "ix-menu-settings-item",
+          "ix-button"
         ],
         "ix-basic-navigation": [
           "ix-application-header"
@@ -11040,10 +11318,15 @@
         "ix-application-header": [
           "ix-burger-menu"
         ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
+        ],
         "ix-menu": [
           "ix-burger-menu",
-          "ix-menu-item",
-          "ix-dropdown"
+          "ix-menu-item"
         ],
         "ix-menu-item": [
           "ix-icon"
@@ -11058,19 +11341,18 @@
         "ix-dropdown-item": [
           "ix-icon"
         ],
+        "ix-menu-category": [
+          "ix-menu-item",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-typography",
+          "ix-divider"
+        ],
         "ix-menu-about": [
           "ix-tab-item",
           "ix-icon-button",
           "ix-tabs"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
-        ],
-        "ix-menu-about-news": [
-          "ix-icon",
-          "ix-typography",
-          "ix-icon-button",
-          "ix-button"
         ],
         "ix-menu-settings": [
           "ix-tab-item",

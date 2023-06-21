@@ -111,7 +111,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-overlay.expanded {
-    width: calc(100vw - $menu-expanded-width);
+    width: calc(100vw - $menu-expanded-width - 3rem);
     left: $menu-expanded-width;
   }
 
@@ -159,29 +159,15 @@ $menu-expanded-width: 16rem;
 
   .menu-overlay {
     left: 0px;
-    width: calc(100vw);
+    width: calc(100vw - 3rem);
   }
 }
 
 :host(.mode-large) {
   position: relative;
-  margin-right: 0.25rem;
-
-  .menu {
-    padding-top: 2rem;
-  }
 
   .menu.expanded {
     box-shadow: none;
-  }
-
-  .menu .burger-menu {
-    display: none;
-  }
-
-  ::slotted(ix-menu-about),
-  ::slotted(ix-menu-settings) {
-    width: calc(100% - 3rem);
   }
 }
 

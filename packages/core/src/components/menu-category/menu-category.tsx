@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import anime from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { menuContext } from '../utils/screen/context';
@@ -40,11 +40,9 @@ export class MenuCategory {
   /**
    * Show category as expanded
    */
-  // @Prop() expand = false;
-  // @Watch('expand')
-  // expandChanged(expand: boolean) {
-  // this.onExpandCategory(expand);
-  // }
+  @Prop() expand = false;
+  @Watch('expand')
+  expandChange(expand: boolean) {}
 
   @State() menuExpand = false;
   @State() showItems = false;
@@ -110,9 +108,9 @@ export class MenuCategory {
     });
   }
 
-  private onCategoryClicked(e: Event) {
+  private onCategoryClicked(e?: MouseEvent) {
     if (this.menuExpand) {
-      e.stopPropagation();
+      e?.stopPropagation();
       this.onExpandCategory(!this.showItems);
       return;
     }
@@ -125,7 +123,11 @@ export class MenuCategory {
   }
 
   componentDidLoad() {
-    this.ixMenu = menuContext(this.hostElement);
+    const closestMenu = menuContext(this.hostElement);
+    if (!closestMenu) {
+      throw Error('ix-menu-category can only be used as a child of ix-menu');
+    }
+    this.ixMenu = closestMenu;
 
     this.observer = createMutationObserver(() => this.onNestedItemsChanged());
     this.observer.observe(this.hostElement, {
@@ -162,6 +164,10 @@ export class MenuCategory {
         }
       }
     );
+
+    if (this.expand) {
+      this.expandChange(this.expand);
+    }
   }
 
   disconnectedCallback() {
@@ -195,7 +201,7 @@ export class MenuCategory {
           </div>
         </ix-menu-item>
         <div
-          ref={(ref) => (this.menuItemsContainer = ref)}
+          ref={(ref) => (this.menuItemsContainer = ref!)}
           class={{ 'menu-items': true, 'menu-items--expanded': this.showItems }}
         >
           {this.showItems ? <slot></slot> : null}

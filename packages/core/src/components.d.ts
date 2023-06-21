@@ -175,6 +175,10 @@ export namespace Components {
           * Is menu displayed as expanded
          */
         "expanded": boolean;
+        /**
+          * Display as pinned variant
+         */
+        "pinned": boolean;
     }
     interface IxButton {
         /**
@@ -527,7 +531,7 @@ export namespace Components {
           * Show time reference input Time reference is default aligned with @see {this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -1069,6 +1073,10 @@ export namespace Components {
           * Expand menu
          */
         "expand": boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         "i18nLegal": string;
@@ -1079,6 +1087,10 @@ export namespace Components {
          */
         "maxVisibleMenuItems": number;
         /**
+          * Menu keeps pinned on the left side
+         */
+        "pinned": boolean;
+        /**
           * Is about tab visible
          */
         "showAbout": boolean;
@@ -1086,6 +1098,7 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -1185,6 +1198,10 @@ export namespace Components {
         "label": string;
     }
     interface IxMenuCategory {
+        /**
+          * Show category as expanded
+         */
+        "expand": boolean;
         /**
           * Icon of the category
          */
@@ -1656,7 +1673,7 @@ export namespace Components {
           * Show time reference input
           * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -2873,6 +2890,10 @@ declare namespace LocalJSX {
           * Is menu displayed as expanded
          */
         "expanded"?: boolean;
+        /**
+          * Display as pinned variant
+         */
+        "pinned"?: boolean;
     }
     interface IxButton {
         /**
@@ -3299,7 +3320,7 @@ declare namespace LocalJSX {
           * Show time reference input Time reference is default aligned with @see {this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -3868,6 +3889,10 @@ declare namespace LocalJSX {
           * Expand menu
          */
         "expand"?: boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         "i18nLegal"?: string;
@@ -3886,6 +3911,10 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Menu keeps pinned on the left side
+         */
+        "pinned"?: boolean;
+        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -3893,6 +3922,7 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**
@@ -3995,6 +4025,10 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
     interface IxMenuCategory {
+        /**
+          * Show category as expanded
+         */
+        "expand"?: boolean;
         /**
           * Icon of the category
          */
@@ -4498,7 +4532,7 @@ declare namespace LocalJSX {
           * Show time reference input
           * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0

@@ -8,6 +8,9 @@
  */
 
 export type Mode = 'large' | 'medium' | 'small';
+
+let supportedModes: Mode[] = ['small', 'medium', 'large'];
+
 const smallMediaQuery = `only screen and (max-width: 480px)`;
 const mediumMediaQuery = `only screen and (min-width: 480px) and (max-width: 1024px)`;
 const largeMediaQuery = `only screen and (min-width: 1024px)`;
@@ -16,6 +19,8 @@ export type MediaQueryListener = {
   matchMedia: MediaQueryList;
   dispose: () => void;
 };
+
+export const setSupportedModes = (modes: Mode[]) => (supportedModes = modes);
 
 export const createMediaQueryListener = (
   query: string,
@@ -35,6 +40,23 @@ export const createMediaQueryListener = (
   };
 };
 
+export const getFallbackMode = (modes: Mode[], detectedMode: Mode): Mode => {
+  if (modes.length === 1) {
+    return modes[0];
+  }
+
+  if (detectedMode === 'large' && !modes.includes(detectedMode)) {
+    return getFallbackMode(modes, 'medium');
+  }
+  if (detectedMode === 'medium' && !modes.includes(detectedMode)) {
+    return getFallbackMode(modes, 'large');
+  }
+  if (detectedMode === 'small' && !modes.includes(detectedMode)) {
+    return getFallbackMode(modes, 'medium');
+  }
+  return detectedMode;
+};
+
 export const createModeListener = (
   modeChangeCallback: (mode: Mode) => void
 ) => {
@@ -44,8 +66,7 @@ export const createModeListener = (
       if (!matches) {
         return;
       }
-      console.log('match small');
-      modeChangeCallback('small');
+      modeChangeCallback(getFallbackMode(supportedModes, 'small'));
     }
   );
 
@@ -55,9 +76,7 @@ export const createModeListener = (
       if (!matches) {
         return;
       }
-      console.log('match medium');
-
-      modeChangeCallback('medium');
+      modeChangeCallback(getFallbackMode(supportedModes, 'medium'));
     }
   );
 
@@ -67,9 +86,7 @@ export const createModeListener = (
       if (!matches) {
         return;
       }
-      console.log('match large');
-
-      modeChangeCallback('large');
+      modeChangeCallback(getFallbackMode(supportedModes, 'large'));
     }
   );
 
@@ -77,11 +94,11 @@ export const createModeListener = (
   const matchMedium = mediumListener.matchMedia.matches;
 
   if (matchSmall) {
-    modeChangeCallback('small');
+    modeChangeCallback(getFallbackMode(supportedModes, 'small'));
   } else if (matchMedium) {
-    modeChangeCallback('medium');
+    modeChangeCallback(getFallbackMode(supportedModes, 'medium'));
   } else {
-    modeChangeCallback('large');
+    modeChangeCallback(getFallbackMode(supportedModes, 'large'));
   }
 
   return {

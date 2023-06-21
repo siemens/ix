@@ -33,7 +33,8 @@ export const IxAnimatedTabs = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTabs>(
 
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
-  'name'
+  'name',
+  'mode'
 ]);
 
 
@@ -417,13 +418,15 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'applicationName',
   'applicationDescription',
   'maxVisibleMenuItems',
+  'expand',
+  'pinned',
+  'forceLayout',
+  'supportedModes',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',
   'i18nExpand',
   'i18nCollapse',
-  'i18nMore',
-  'expand',
   'expandChange',
   'mapExpandChange'
 ]);
@@ -471,10 +474,19 @@ export const IxMenuAvatarItem = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatarIt
 ]);
 
 
+export const IxMenuCategory = /*@__PURE__*/ defineContainer<JSX.IxMenuCategory>('ix-menu-category', undefined, [
+  'label',
+  'icon',
+  'notifications',
+  'expand'
+]);
+
+
 export const IxMenuItem = /*@__PURE__*/ defineContainer<JSX.IxMenuItem>('ix-menu-item', undefined, [
   'home',
   'bottom',
   'tabIcon',
+  'icon',
   'notifications',
   'active',
   'disabled'

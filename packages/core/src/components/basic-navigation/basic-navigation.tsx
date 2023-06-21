@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { menuController } from '../utils/menu-service/menu-service';
 import { Mode } from '../utils/screen/mode';
 import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
@@ -32,11 +33,18 @@ export class BasicNavigation {
 
   @State() mode: Mode = 'large';
 
-  get menu(): HTMLIxMenuElement {
+  get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
   }
 
   private modeDisposable: Disposable;
+
+  private onContentClick() {
+    if (menuController.isPinned) {
+      return;
+    }
+    this.menu?.toggleMenu(false);
+  }
 
   componentWillLoad() {
     if (this.hideHeader === false) {
@@ -73,7 +81,7 @@ export class BasicNavigation {
         ) : null}
         <div class="navigation-content">
           <slot name="menu"></slot>
-          <div class="content" onClick={() => this.menu.toggleMenu(false)}>
+          <div class="content" onClick={() => this.onContentClick()}>
             <slot></slot>
           </div>
         </div>

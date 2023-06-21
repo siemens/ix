@@ -18,6 +18,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
@@ -76,6 +77,54 @@ export class Menu {
   @Prop() maxVisibleMenuItems = 9;
 
   /**
+   * Expand menu
+   */
+  @Prop({ mutable: true, reflect: true }) expand = false;
+
+  /**
+   * Menu keeps pinned on the left side
+   */
+  @Prop() pinned = false;
+  @Watch('pinned')
+  pinnedChange(newPinned: boolean) {
+    this.setPinned(this.pinned);
+    if (newPinned) {
+      screenMode.disableModeDetection();
+      screenMode.setMode('large');
+      return;
+    }
+
+    screenMode.enableModeDetection();
+  }
+
+  /**
+   * Change the responsive layout of the menu structure
+   */
+  @Prop() forceLayout: Mode | undefined;
+  forceLayoutChange(newMode: Mode | undefined) {
+    if (this.pinned) {
+      console.warn('You cannot force a layout while pinned property is set!');
+      return;
+    }
+
+    if (!newMode) {
+      screenMode.enableModeDetection();
+      return;
+    }
+
+    screenMode.disableModeDetection();
+    screenMode.setMode(newMode);
+  }
+
+  /**
+   *
+   */
+  @Prop() supportedModes: Mode[] = ['small', 'medium', 'large'];
+  supportedModesChange(modes: Mode[]) {
+    screenMode.setSupportedMods(modes);
+  }
+
+  /**
    */
   @Prop() i18nLegal = 'About & legal information';
 
@@ -96,11 +145,6 @@ export class Menu {
   @Prop() i18nCollapse = 'Collapse';
 
   /**
-   * Expand menu
-   */
-  @Prop({ mutable: true, reflect: true }) expand = false;
-
-  /**
    * Menu expanded
    */
   @Event() expandChange: EventEmitter<boolean>;
@@ -110,9 +154,9 @@ export class Menu {
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
 
-  @State() pinned = false;
+  @State() showPinned = false;
   @State() mapExpand = true;
-  @State() activeTab: HTMLIxMenuItemElement;
+  @State() activeTab: HTMLIxMenuItemElement | null;
   @State() mode: Mode = 'large';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
@@ -126,15 +170,15 @@ export class Menu {
   };
 
   get popoverArea() {
-    return this.hostElement.shadowRoot.querySelector('#popover-area');
+    return this.hostElement.shadowRoot!.querySelector('#popover-area');
   }
 
   get menu() {
-    return this.hostElement.shadowRoot.querySelector('.menu');
+    return this.hostElement.shadowRoot!.querySelector('.menu');
   }
 
   get menuItemsContainer(): HTMLDivElement {
-    return this.menu.querySelector('.tabs');
+    return this.menu!.querySelector('.tabs')!;
   }
 
   get menuItems() {
@@ -158,68 +202,64 @@ export class Menu {
   }
 
   get moreItemsDropdown(): HTMLElement {
-    return this.hostElement.shadowRoot.querySelector(
+    return this.hostElement.shadowRoot!.querySelector(
       '.internal-tab ix-dropdown'
-    );
+    )!;
   }
 
   get isMoreItemsDropdownEmpty(): boolean {
     return (
-      this.hostElement.shadowRoot.querySelectorAll(
+      this.hostElement.shadowRoot!.querySelectorAll(
         '.internal-tab ix-dropdown .appended'
       ).length === 0
     );
   }
 
   get moreItemsDropdownItems() {
-    return this.hostElement.shadowRoot.querySelectorAll(
+    return this.hostElement.shadowRoot!.querySelectorAll(
       '.internal-tab ix-dropdown ix-menu-item'
     );
   }
 
   get activeMoreTabContainer() {
-    return this.hostElement.shadowRoot.querySelector('.active-more-tab');
+    return this.hostElement.shadowRoot!.querySelector('.active-more-tab');
   }
 
   get activeMoreTab() {
-    return this.hostElement.shadowRoot.querySelector(
+    return this.hostElement.shadowRoot!.querySelector(
       '.active-more-tab ix-menu-item'
     );
   }
 
   get aboutPopoverContainer(): HTMLElement {
-    return this.hostElement.querySelector('.about-news');
+    return this.hostElement.querySelector('.about-news')!;
   }
 
   get aboutPopover(): HTMLIxMenuAboutNewsElement {
     return (
       document.querySelector('ix-menu-about-news') ??
-      this.hostElement.querySelector('ix-menu-about-news')
+      this.hostElement.querySelector('ix-menu-about-news')!
     );
   }
 
   get aboutTab(): HTMLElement {
-    return this.hostElement.shadowRoot.querySelector('#aboutAndLegal');
+    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal')!;
   }
 
-  get about(): HTMLIxMenuAboutElement {
+  get about(): HTMLIxMenuAboutElement | null {
     return this.hostElement.querySelector('ix-menu-about');
   }
 
-  get settings(): HTMLIxMenuSettingsElement {
+  get settings(): HTMLIxMenuSettingsElement | null {
     return this.hostElement.querySelector('ix-menu-settings');
   }
 
   get isSettingsEmpty(): boolean {
     return (
       Array.from(
-        this.hostElement.shadowRoot.querySelectorAll('ix-menu-settings-item')
+        this.hostElement.shadowRoot!.querySelectorAll('ix-menu-settings-item')
       ).length === 0
     );
-  }
-
-  get avatarItem(): HTMLIxMenuAvatarElement {
-    return this.hostElement.shadowRoot.querySelector('ix-menu-avatar');
   }
 
   get tabsContainer() {
@@ -230,6 +270,18 @@ export class Menu {
     requestAnimationFrame(() => {
       this.handleOverflowIndicator();
     });
+
+    if (this.pinned) {
+      this.pinnedChange(this.pinned);
+    }
+
+    if (this.forceLayout) {
+      this.forceLayoutChange(this.forceLayout);
+    }
+
+    if (this.supportedModes !== undefined && this.supportedModes.length > 0) {
+      this.supportedModesChange(this.supportedModes);
+    }
   }
 
   componentWillLoad() {
@@ -249,18 +301,25 @@ export class Menu {
     this.appendFragments();
   }
 
+  private setPinned(pinned: boolean) {
+    this.showPinned = pinned;
+    menuController.setIsPinned(pinned);
+  }
+
   private onModeChange(mode: Mode) {
+    console.log('menu mode change', mode);
+    if (!this.supportedModes.includes(mode)) {
+      return;
+    }
     this.mode = mode;
 
-    console.log(mode);
-
     if (this.mode === 'large') {
-      this.pinned = true;
+      this.setPinned(true);
       this.toggleMenu(true);
       return;
     }
 
-    this.pinned = false;
+    this.setPinned(false);
     this.toggleMenu(false);
   }
 
@@ -295,7 +354,7 @@ export class Menu {
 
     if (!this.popoverArea?.contains(this.aboutPopover)) {
       const showMore = () => {
-        if (this.aboutPopover?.aboutItemLabel) {
+        if (this.aboutPopover?.aboutItemLabel && this.about) {
           this.about.activeTabLabel = this.aboutPopover.aboutItemLabel;
           this.toggleAbout(true);
         }
@@ -325,12 +384,6 @@ export class Menu {
    */
   @Method()
   async toggleMenu(show?: boolean) {
-    if (this.pinned) {
-      this.expand = true;
-      this.expandChange.emit(this.expand);
-      return;
-    }
-
     if (show !== undefined) {
       this.expand = show;
     } else {
@@ -350,6 +403,10 @@ export class Menu {
    */
   @Method()
   async toggleSettings(show: boolean) {
+    if (!this.settings) {
+      return;
+    }
+
     this.resetOverlay();
     this.showSettings = show;
     this.settings.show = this.showSettings;
@@ -361,6 +418,9 @@ export class Menu {
    */
   @Method()
   async toggleAbout(show: boolean) {
+    if (!this.about) {
+      return;
+    }
     this.resetOverlay();
     this.showAbout = show;
     this.about.show = this.showAbout;
@@ -378,6 +438,9 @@ export class Menu {
       this.about.show = this.showAbout;
     }
 
+    if (this.showPinned) {
+      return;
+    }
     this.toggleMenu(false);
   }
 
@@ -445,6 +508,7 @@ export class Menu {
           <ix-burger-menu
             onClick={async () => this.toggleMenu()}
             expanded={this.expand}
+            pinned={this.showPinned}
             class={{
               'burger-menu': true,
             }}

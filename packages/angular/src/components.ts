@@ -1190,7 +1190,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nMore', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceLayout', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'supportedModes'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1198,7 +1198,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nMore', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceLayout', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'supportedModes'],
 })
 export class IxMenu {
   protected el: HTMLElement;
@@ -1246,7 +1246,7 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed
    */
-  close: EventEmitter<CustomEvent<MouseEvent>>;
+  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
 }
 
 
@@ -1361,14 +1361,36 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
 
 
 @ProxyCmp({
-  inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon']
+  inputs: ['expand', 'icon', 'label', 'notifications']
+})
+@Component({
+  selector: 'ix-menu-category',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['expand', 'icon', 'label', 'notifications'],
+})
+export class IxMenuCategory {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxMenuCategory extends Components.IxMenuCategory {}
+
+
+@ProxyCmp({
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon'],
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon'],
 })
 export class IxMenuItem {
   protected el: HTMLElement;
@@ -1406,7 +1428,7 @@ export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed
    */
-  close: EventEmitter<CustomEvent<MouseEvent>>;
+  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
 }
 
 
