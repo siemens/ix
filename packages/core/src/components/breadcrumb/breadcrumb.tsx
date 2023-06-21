@@ -213,7 +213,7 @@ export class Breadcrumb {
             <ix-icon
               color="breadcrumb-btn--color"
               name="chevron-right-small"
-              size="12"
+              size="16"
             ></ix-icon>
           </button>
           <ix-dropdown
@@ -272,7 +272,7 @@ export class Breadcrumb {
               <ix-icon
                 color="breadcrumb-btn--color"
                 name="chevron-right-small"
-                size="12"
+                size="16"
               ></ix-icon>
             </button>
           </li>
@@ -342,7 +342,7 @@ export class Breadcrumb {
               <ix-icon
                 color="breadcrumb-btn--color"
                 name="chevron-right-small"
-                size="12"
+                size="16"
               ></ix-icon>
             </button>
             <ix-dropdown
