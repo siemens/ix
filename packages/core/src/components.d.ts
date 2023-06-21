@@ -531,7 +531,7 @@ export namespace Components {
           * Show time reference input Time reference is default aligned with @see {this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": undefined;
+        "showTimeReference": any;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -1673,7 +1673,7 @@ export namespace Components {
           * Show time reference input
           * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference": undefined;
+        "showTimeReference": any;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -3320,7 +3320,7 @@ declare namespace LocalJSX {
           * Show time reference input Time reference is default aligned with @see {this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: undefined;
+        "showTimeReference"?: any;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -4532,7 +4532,7 @@ declare namespace LocalJSX {
           * Show time reference input
           * @since 1.1.0 time reference is default aligned with formt tt
          */
-        "showTimeReference"?: undefined;
+        "showTimeReference"?: any;
         /**
           * Text of date select button
           * @since 1.1.0

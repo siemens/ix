@@ -164,6 +164,7 @@ export const config: Config = {
     scopedSlotTextContentFix: true,
   },
   testing: {
+    testPathIgnorePatterns: ['/node_modules/', '/tests/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
   },
   namespace: 'siemens-ix',

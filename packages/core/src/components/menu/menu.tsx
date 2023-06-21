@@ -243,7 +243,7 @@ export class Menu {
   }
 
   get aboutTab(): HTMLElement {
-    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal')!;
+    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal');
   }
 
   get about(): HTMLIxMenuAboutElement | null {

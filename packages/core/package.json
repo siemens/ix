@@ -31,7 +31,7 @@
     "lint": "eslint src/**/*{.ts,.tsx}",
     "start": "stencil build --dev --watch --serve",
     "dev": "stencil build --watch",
-    "test": "stencil test --spec",
+    "test": "stencil test --spec --e2e",
     "test:watch": "stencil test --spec --watchAll --no-cache",
     "test:coverage": "stencil test --spec --coverage",
     "test:e2e": "playwright test --reporter html",

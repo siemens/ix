@@ -8,8 +8,6 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
-import { fireEvent } from '@testing-library/dom';
-import { MenuAbout } from '../../menu-about/menu-about';
 import { MenuItem } from '../../menu-item/menu-item';
 import { Menu } from '../menu';
 
@@ -24,37 +22,65 @@ const mutationObserverMock = jest.fn(function MutationObserver(callback) {
 (global as any).MutationObserver = mutationObserverMock;
 
 describe('ix-menu', () => {
-  it('should close overlay', async () => {
+  it('should close overlay about', async () => {
     const page = await newSpecPage({
-      components: [Menu, MenuItem, MenuAbout],
+      components: [Menu, MenuItem],
       html: `<ix-menu>
         <ix-menu-item id="test-item">Test</ix-menu-item>
         <ix-menu-about></ix-menu-about>
       </ix-menu>`,
     });
     await page.waitForChanges();
+    const menu = page.doc.querySelector('ix-menu');
 
-    const element = page.doc.querySelector('.menu-overlay');
-    expect(element.className).toContain('d-none');
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-about"]')
+    ).toBeNull();
 
-    fireEvent(
-      page.root.querySelector('#aboutAndLegal'),
-      new MouseEvent('click')
-    );
+    await menu.toggleAbout(true);
     await page.waitForChanges();
 
-    expect(element.className).not.toContain('d-none');
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-about"]')
+    ).not.toBeNull();
 
-    const item = page.root.querySelector('#test-item');
-    fireEvent(
-      item,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    await menu.toggleAbout(false);
     await page.waitForChanges();
 
-    expect(element.className).not.toContain('d-block');
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-about"]')
+    ).toBeNull();
+  });
+});
+
+describe('ix-menu', () => {
+  it('should close overlay settings', async () => {
+    const page = await newSpecPage({
+      components: [Menu, MenuItem],
+      html: `<ix-menu>
+        <ix-menu-item id="test-item">Test</ix-menu-item>
+        <ix-menu-settings></ix-menu-settings>
+      </ix-menu>`,
+    });
+    await page.waitForChanges();
+    const menu = page.doc.querySelector('ix-menu');
+
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-settings"]')
+    ).toBeNull();
+
+    await menu.toggleSettings(true);
+    await page.waitForChanges();
+
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-settings"]')
+    ).not.toBeNull();
+
+    await menu.toggleSettings(false);
+    await page.waitForChanges();
+
+    expect(
+      menu.shadowRoot.querySelector('slot[name="ix-menu-settings"]')
+    ).toBeNull();
   });
 });
