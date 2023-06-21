@@ -84,7 +84,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: []
+    needs: [install]
     container:
       image: node:18.12.1
       env:
