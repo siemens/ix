@@ -10,20 +10,6 @@ import { expect } from '@jest/globals';
 import { IxActiveModal } from './modal-ref';
 import { ModalService } from './modal.service';
 
-jest.mock('@siemens/ix', () => ({
-  modal: jest.fn(() =>
-    Promise.resolve({
-      onClose: {
-        once: jest.fn(),
-      },
-      onDismiss: {
-        once: jest.fn(),
-      },
-      htmlElement: { type: 'html-element' },
-    })
-  ),
-}));
-
 test('should create modal by templateRef', () => {
   const createEmbeddedViewMock = jest.fn((_: { $implicit: any }) => ({
     rootNodes: [{}],
