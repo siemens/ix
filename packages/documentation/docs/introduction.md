@@ -7,26 +7,26 @@ import VueIcon from '@site/static/img/vue.svg';
 import GitHubIcon from '@site/static/img/github.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
 
-# Introduction
+# Welcome to Siemens Industrial Experience
 
 <p className="text-l-title">
-Siemens Industrial Experience is an open-source design system for creating the perfect digital experience in the industrial context. The design system consists of a broad range UI patterns, web-based code implementations, design tools, resources and guidelines. Siemens Industrial Experience accelerates the colloboration between designers and developers and helps to them to build efficient and consistent products.
+Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers within industrial contexts. Siemens Industrial Experience gives you access to a broad range of UI patterns, web-based code implementations, design tools, resources and content guidelines to accelerate collaboration between designers, developers and writers, helping to build efficient and consistent products.
 </p>
 
 ## Guiding principles
 
 <GuidingPrinciples></GuidingPrinciples>
 
-## Resources & Assets
+## Resources & assets
 
-Siemens Industrial Experience provides and maintains a Figma design kit containing all components, design foundations and assets. Multiple code implementations are offered and maintained by the Siemens Industrial Experience team. With guidelines on UX writing, pattern usage and more, Siemens Industrial Experience supports it’s users along the way. The comprehensive icon set contains more than 500 icons and is constantly growing.
+Siemens Industrial Experience provides and maintains a Figma design kit containing all components, design foundations and assets. Multiple code implementations are offered and maintained by the Siemens Industrial Experience team. With guidelines on UX writing, pattern usage and more, Siemens Industrial Experience supports its users along the way. The comprehensive icon set contains more than 500 icons and is constantly growing.
 
 <CardList>
-  <Card link="design-kit">Get UI design kit</Card>
-  <Card link="icon-library/icons">Check out icon set</Card>
+  <Card link="design-kit">Go to design kits</Card>
+  <Card link="icon-library/icons">Go to icon set</Card>
 </CardList>
 
-### Start developing with your framework
+### Choose your framework
 
 <CardList>
   <Card link="installation/angular"><AngularIcon className="Card_Icon" />Angular</Card>
@@ -36,9 +36,9 @@ Siemens Industrial Experience provides and maintains a Figma design kit containi
   <Card link="installation/blazor"><BlazorIcon class="Card_Icon" />Blazor&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
 </CardList>
 
-## Community
+## Contribute
 
-Siemens Industrial Experience strives to improve continuously. The team is open to feedback and welcomes contributions. Pattern are harvested from successful applications to enhance the design system over time.
+We welcome contributions from the community as Siemens Industrial Experience is continuously being improved. Send all your feedback, questions and contributions via GitHub.
 
 <CardList>
   <Card link="https://www.github.com/siemens/ix"><GitHubIcon className="Card_Icon"/>Contribute</Card>
