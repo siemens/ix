@@ -22,6 +22,14 @@
   box-shadow: var(--theme-shadow-4);
 
   padding: 0.25rem 0px;
+
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    height: $large-control-height;
+    color: var(--theme-menu-header--color);
+    padding: 0 $default-space;
+  }
 }
 
 :host(.overflow) {

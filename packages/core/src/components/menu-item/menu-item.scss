@@ -116,11 +116,6 @@
   }
 }
 
-:host(.home-tab),
-:host([slot='home']) {
-  margin-bottom: 1.5rem;
-}
-
 :host(.bottom-tab),
 :host([slot='bottom']) {
   $bottom-height: 2.25rem;

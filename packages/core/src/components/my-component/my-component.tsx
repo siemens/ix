@@ -14,7 +14,7 @@ import { Component, h, Host, State } from '@stencil/core';
   shadow: true,
 })
 export class MyComponent {
-  @State() expandCategory = false;
+  @State() overlay = true;
   @State() activeMap: Record<string, boolean> = {};
 
   onActive(id: string) {
@@ -34,7 +34,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-basic-navigation applicationName="Test">
+        <ix-map-navigation applicationName="Test">
           {/* <div slot="logo">LOGO!!!</div> */}
           <ix-menu
             enableToggleTheme
@@ -119,14 +119,44 @@ export class MyComponent {
               </ix-menu-settings-item>
             </ix-menu-settings>
           </ix-menu>
+          {/* <div slot="content-header">header content</div> */}
+          {this.overlay ? (
+            <div slot="content-header">header content</div>
+          ) : null}
           <main>
+            <ix-button onClick={() => (this.overlay = !this.overlay)}>
+              open
+            </ix-button>
+            {/* {this.overlay ? (
+              <ix-map-navigation-overlay
+                name="Custom overlay title"
+                icon="bulb"
+              >
+                Lorem ipsum
+              </ix-map-navigation-overlay>
+            ) : null} */}
+
             <ix-select>
               <ix-select-item label="Item 1" value={'Item 1'}></ix-select-item>
               <ix-select-item label="Item 2" value={'Item 2'}></ix-select-item>
               <ix-select-item label="Item 3" value={'Item 3'}></ix-select-item>
             </ix-select>
+
+            <ix-category-filter
+              repeatCategories={false}
+              categories={{
+                ID_1: {
+                  label: 'Vendor',
+                  options: ['Apple', 'MS', 'Siemens'],
+                },
+                ID_2: {
+                  label: 'Product',
+                  options: ['iPhone X', 'Windows', 'APS'],
+                },
+              }}
+            ></ix-category-filter>
           </main>
-        </ix-basic-navigation>
+        </ix-map-navigation>
       </Host>
     );
   }

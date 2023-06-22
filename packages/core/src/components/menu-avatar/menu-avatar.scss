@@ -14,10 +14,8 @@
 
 :host {
   @include ix-component;
-
   display: block;
   position: relative;
-  margin-bottom: 0.5rem;
 
   .avatar {
     display: flex;

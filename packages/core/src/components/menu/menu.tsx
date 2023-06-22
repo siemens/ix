@@ -448,7 +448,7 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? 'double-chevron-left' : 'double-chevron-right';
+    return this.mapExpand ? 'navigation-left' : 'navigation-right';
   }
 
   private isMenuItemClicked(event: MouseEvent) {
@@ -596,7 +596,7 @@ export class Menu {
               id="menu-collapse"
               onClick={() => this.mapExpandChange.emit(this.mapExpand)}
               class="internal-tab bottom-tab"
-              tabIcon={`${this.getCollapseIcon()}`}
+              icon={`${this.getCollapseIcon()}`}
             >
               {this.getCollapseText()}
             </ix-menu-item>

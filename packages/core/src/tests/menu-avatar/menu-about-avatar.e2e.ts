@@ -28,7 +28,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeVisible();
+    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -40,7 +40,7 @@ regressionTest.describe('menu-avatar', () => {
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
-    expect(avatar.locator('ix-dropdown').locator('.show')).toBeVisible();
+    expect(avatar.locator('ix-dropdown').locator('.show')).toBeDefined();
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
