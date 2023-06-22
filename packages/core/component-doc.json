@@ -373,9 +373,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-application-header"
       ],
@@ -391,9 +389,6 @@
         ],
         "ix-icon-button": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -1325,7 +1320,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button",
         "ix-icon",
@@ -1344,6 +1341,9 @@
         ],
         "ix-filter-chip": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-category-filter"
         ]
       },
       "props": [
@@ -5478,8 +5478,10 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-map-navigation-overlay",
         "ix-application-header",
@@ -5503,6 +5505,9 @@
         ],
         "ix-burger-menu": [
           "ix-icon-button"
+        ],
+        "my-component": [
+          "ix-map-navigation"
         ]
       },
       "props": [
@@ -8257,7 +8262,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-pagination"
+        "ix-pagination",
+        "my-component"
       ],
       "dependencies": [
         "ix-select-item",
@@ -8289,6 +8295,9 @@
           "ix-icon"
         ],
         "ix-pagination": [
+          "ix-select"
+        ],
+        "my-component": [
           "ix-select"
         ]
       },
@@ -8559,7 +8568,8 @@
       "encapsulation": "scoped",
       "dependents": [
         "ix-pagination",
-        "ix-select"
+        "ix-select",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -8575,6 +8585,9 @@
           "ix-select-item"
         ],
         "ix-select": [
+          "ix-select-item"
+        ],
+        "my-component": [
           "ix-select-item"
         ]
       },
@@ -11217,7 +11230,7 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-basic-navigation",
+        "ix-map-navigation",
         "ix-menu",
         "ix-menu-avatar",
         "ix-menu-avatar-item",
@@ -11227,11 +11240,14 @@
         "ix-menu-about-item",
         "ix-menu-settings",
         "ix-menu-settings-item",
-        "ix-button"
+        "ix-button",
+        "ix-select",
+        "ix-select-item",
+        "ix-category-filter"
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-basic-navigation",
+          "ix-map-navigation",
           "ix-menu",
           "ix-menu-avatar",
           "ix-menu-avatar-item",
@@ -11241,19 +11257,28 @@
           "ix-menu-about-item",
           "ix-menu-settings",
           "ix-menu-settings-item",
-          "ix-button"
+          "ix-button",
+          "ix-select",
+          "ix-select-item",
+          "ix-category-filter"
         ],
-        "ix-basic-navigation": [
-          "ix-application-header"
+        "ix-map-navigation": [
+          "ix-map-navigation-overlay",
+          "ix-application-header",
+          "ix-icon-button"
+        ],
+        "ix-map-navigation-overlay": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "ix-application-header": [
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
           "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
         ],
         "ix-menu": [
           "ix-burger-menu",
@@ -11289,6 +11314,26 @@
           "ix-tab-item",
           "ix-icon-button",
           "ix-tabs"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-filter-chip": [
+          "ix-icon"
+        ],
+        "ix-category-filter": [
+          "ix-icon-button",
+          "ix-icon",
+          "ix-filter-chip",
+          "ix-dropdown"
         ]
       },
       "props": [],
