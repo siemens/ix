@@ -14,6 +14,30 @@ const smallWidth = 479;
 const mediumWidth = 1023;
 const largeWidth = 1025;
 
+regressionTest.describe('basic navigation large', () => {
+  regressionTest('basic', async ({ page }) => {
+    await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: largeWidth,
+    });
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('content width', async ({ page }) => {
+    await page.goto('basic-navigation/content-width');
+    await page.setViewportSize({
+      height: 1200,
+      width: largeWidth,
+    });
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
+
 regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');

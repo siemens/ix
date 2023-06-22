@@ -23,20 +23,24 @@ regressionTest.describe('menu-avatar', () => {
 
   regressionTest('image', async ({ page }) => {
     await page.goto('menu-avatar/image');
-    await page.locator('ix-burger-menu').click();
-    await page.waitForSelector('.expanded');
-    await page.locator('ix-menu-avatar').click();
-    await page.waitForSelector('ix-dropdown.show');
+    const menu = page.locator('ix-menu');
+    await menu.locator('ix-burger-menu').click();
+    expect(menu.locator('.menu.expand')).toBeDefined();
+    const avatar = page.locator('ix-menu-avatar');
+    await avatar.click();
+    expect(avatar.locator('ix-dropdown').locator('.show')).toBeVisible();
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('initials', async ({ page }) => {
     await page.goto('menu-avatar/initials');
-    await page.locator('ix-burger-menu').click();
-    await page.waitForSelector('.expanded');
-    await page.locator('ix-menu-avatar').click();
-    await page.waitForSelector('ix-dropdown.show');
+    const menu = page.locator('ix-menu');
+    await menu.locator('ix-burger-menu').click();
+    expect(menu.locator('.menu.expand')).toBeDefined();
+    const avatar = page.locator('ix-menu-avatar');
+    await avatar.click();
+    expect(avatar.locator('ix-dropdown').locator('.show')).toBeVisible();
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
