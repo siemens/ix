@@ -33,7 +33,7 @@ export class LinkButton {
     return (
       <Host>
         <a
-          title={this.disabled ? undefined : this.url}
+          title={this.url}
           tabindex="0"
           class={{
             'link-button': true,
