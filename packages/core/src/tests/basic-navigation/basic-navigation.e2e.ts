@@ -10,19 +10,41 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+const smallWidth = 479;
+const mediumWidth = 1023;
+const largeWidth = 1025;
+
 regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('content width', async ({ page }) => {
     await page.goto('basic-navigation/content-width');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('expanded', async ({ page }) => {
     await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
     await page.locator('ix-menu ix-burger-menu').click();
     await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
@@ -36,7 +58,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -47,7 +69,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -64,7 +86,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -84,7 +106,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);

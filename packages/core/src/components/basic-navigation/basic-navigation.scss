@@ -23,6 +23,10 @@
     z-index: calc(var(--theme-z-index-sticky) + 1);
   }
 
+  .logo-wrapper {
+    display: contents;
+  }
+
   .content {
     display: flex;
     height: 100%;

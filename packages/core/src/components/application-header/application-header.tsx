@@ -50,11 +50,21 @@ export class ApplicationHeader {
     this.modeDisposable?.dispose();
   }
 
+  private isLogoSlotted() {
+    const slotElement = this.hostElement.shadowRoot.querySelector(
+      'slot[name="logo"]'
+    ) as HTMLSlotElement;
+    const nodes = slotElement.assignedNodes({
+      flatten: true,
+    });
+
+    return nodes.length !== 0;
+  }
+
   private async attachSiemensLogoIfLoaded() {
     await window.customElements.whenDefined('ix-siemens-logo');
     const logoElement = document.createElement('ix-siemens-logo');
-
-    if (!this.hostElement.querySelector('[slot="logo"]')) {
+    if (!this.isLogoSlotted()) {
       this.hostElement.shadowRoot
         .querySelector('.logo')
         .appendChild(logoElement);

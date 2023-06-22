@@ -34,7 +34,8 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-basic-navigation>
+        <ix-basic-navigation applicationName="Test">
+          {/* <div slot="logo">LOGO!!!</div> */}
           <ix-menu
             enableToggleTheme
             supportedModes={['small', 'medium', 'large']}
@@ -119,15 +120,11 @@ export class MyComponent {
             </ix-menu-settings>
           </ix-menu>
           <main>
-            <ix-button
-              onClick={() => (this.expandCategory = !this.expandCategory)}
-            >
-              Expand category
-            </ix-button>
-
-            <ix-button onClick={() => this.onActive('test3')}>
-              Set nested active
-            </ix-button>
+            <ix-select>
+              <ix-select-item label="Item 1" value={'Item 1'}></ix-select-item>
+              <ix-select-item label="Item 2" value={'Item 2'}></ix-select-item>
+              <ix-select-item label="Item 3" value={'Item 3'}></ix-select-item>
+            </ix-select>
           </main>
         </ix-basic-navigation>
       </Host>

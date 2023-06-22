@@ -21,6 +21,7 @@
   .checkmark {
     position: absolute;
     left: $small-space;
+    color: var(--theme-color-std-text);
   }
 
   .label {
@@ -80,7 +81,9 @@
 }
 
 :host(.checked) {
-  background-color: var(--theme-select-list-item--background--selected);
+  .dropdown-item {
+    background-color: var(--theme-select-list-item--background--selected);
+  }
 }
 
 :host(.disabled) {

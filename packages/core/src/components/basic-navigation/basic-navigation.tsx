@@ -76,7 +76,7 @@ export class BasicNavigation {
       >
         {!this.hideHeader ? (
           <ix-application-header name={this.applicationName} mode={this.mode}>
-            <slot name="logo"></slot>
+            <slot name="logo" slot="logo"></slot>
           </ix-application-header>
         ) : null}
         <div class="navigation-content">
