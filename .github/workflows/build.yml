@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.24.0-focal
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     container:
-      image: mcr.microsoft.com/playwright:v1.24.0-focal
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
