@@ -33,7 +33,7 @@ export type DateTimeCorners = DateTimeCardCorners;
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DatePicker {
   private daysInWeek = 7;
