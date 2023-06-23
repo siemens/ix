@@ -11,7 +11,7 @@ import { Component, h, Host, State } from '@stencil/core';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
-  shadow: true,
+  scoped: true,
 })
 export class MyComponent {
   @State() overlay = true;
@@ -34,7 +34,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-map-navigation applicationName="Test">
+        <ix-basic-navigation applicationName="Test">
           {/* <div slot="logo">LOGO!!!</div> */}
           <ix-menu
             enableToggleTheme
@@ -142,6 +142,8 @@ export class MyComponent {
               <ix-select-item label="Item 3" value={'Item 3'}></ix-select-item>
             </ix-select>
 
+            <ix-button style={{ width: '100%' }}>Test</ix-button>
+
             <ix-category-filter
               repeatCategories={false}
               categories={{
@@ -156,7 +158,7 @@ export class MyComponent {
               }}
             ></ix-category-filter>
           </main>
-        </ix-map-navigation>
+        </ix-basic-navigation>
       </Host>
     );
   }
