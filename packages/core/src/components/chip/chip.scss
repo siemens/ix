@@ -13,6 +13,10 @@
 $border-radius: 100px;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 
+:host {
+  margin-left: $tiny-space;
+}
+
 .container {
   display: inline-flex;
   width: inherit;
@@ -21,7 +25,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
   position: relative;
   align-items: center;
   border-radius: $border-radius;
-  padding: $small-space $medium-space;
+  padding: $small-space $small-space $small-space $medium-space;
 
   height: $default-control-height;
   max-height: $default-control-height;
@@ -36,8 +40,6 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
     width: 0px;
     margin-right: 0px;
   }
-
-  margin-left: $tiny-space;
 
   .close-button-container {
     display: inline-flex;
