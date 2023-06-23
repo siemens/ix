@@ -97,8 +97,8 @@ $menu-expanded-width: 16rem;
   .menu-overlay {
     display: block;
     position: absolute;
-    width: calc(100vw - 6.25rem);
-    height: calc(100% - 1.75rem);
+    width: calc(100vw - 3.25rem);
+    height: 100%;
     left: 3.25rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
@@ -111,7 +111,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-overlay.expanded {
-    width: calc(100vw - $menu-expanded-width - 3rem);
+    width: calc(100vw - $menu-expanded-width);
     left: $menu-expanded-width;
   }
 
