@@ -67,13 +67,26 @@ export class Button {
 
   @Element() hostElement: HTMLIxButtonElement;
 
-  dispatchFormEvents() {
-    if (this.type === 'submit') {
-      const form = this.hostElement.closest('form');
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement: HTMLButtonElement;
 
-      if (form) {
-        form.dispatchEvent(new Event('submit'));
-      }
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  dispatchFormEvents() {
+    if (this.type === 'submit' && this.submitButtonElement) {
+      this.submitButtonElement.click();
     }
   }
 

@@ -23,7 +23,7 @@ export type DateTimeDateChangeEvent =
 @Component({
   tag: 'ix-datetime-picker',
   styleUrl: 'datetime-picker.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DateTimePicker {
   /**

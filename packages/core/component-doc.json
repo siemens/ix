@@ -2047,7 +2047,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-datetime-picker"
       ],
@@ -2382,7 +2382,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-date-picker",
@@ -9283,7 +9283,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-datetime-picker"
       ],
