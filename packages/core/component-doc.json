@@ -373,7 +373,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
@@ -389,6 +391,9 @@
         ],
         "ix-icon-button": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "props": [
@@ -5479,9 +5484,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-map-navigation-overlay",
         "ix-application-header",
@@ -5505,9 +5508,6 @@
         ],
         "ix-burger-menu": [
           "ix-icon-button"
-        ],
-        "my-component": [
-          "ix-map-navigation"
         ]
       },
       "props": [
@@ -11227,10 +11227,10 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "shadow",
+      "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-map-navigation",
+        "ix-basic-navigation",
         "ix-menu",
         "ix-menu-avatar",
         "ix-menu-avatar-item",
@@ -11247,7 +11247,7 @@
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-map-navigation",
+          "ix-basic-navigation",
           "ix-menu",
           "ix-menu-avatar",
           "ix-menu-avatar-item",
@@ -11262,23 +11262,17 @@
           "ix-select-item",
           "ix-category-filter"
         ],
-        "ix-map-navigation": [
-          "ix-map-navigation-overlay",
-          "ix-application-header",
-          "ix-icon-button"
-        ],
-        "ix-map-navigation-overlay": [
-          "ix-icon",
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-icon"
+        "ix-basic-navigation": [
+          "ix-application-header"
         ],
         "ix-application-header": [
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
           "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-icon"
         ],
         "ix-menu": [
           "ix-burger-menu",
