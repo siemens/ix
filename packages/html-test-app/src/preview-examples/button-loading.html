@@ -14,20 +14,31 @@ SPDX-License-Identifier: MIT
 <body class="theme-brand-dark">
   <!-- Preview code -->
   <script>
-    function loading() {
-      var btn = document.getElementById('btn');
-      btn.innerHTML =
-        'Loading... <ix-spinner variant="secondary" size="small"></ix-spinner>';
+    function toggle(obj) {
+      obj.loading = true;
 
       setTimeout(() => {
-        btn.innerHTML = 'Button';
+        obj.loading = false;
       }, 2500);
     }
   </script>
 
-  <ix-button id="btn" onClick={loading()} class="m-1" variant="Secondary">
+  <ix-button onclick="toggle(this)" class="m-1" outline variant="Primary">
     Button
   </ix-button>
+
+  <ix-button onclick="toggle(this)" icon='star' class="m-1" outline variant="Primary">
+    Button
+  </ix-button>
+
+  <ix-icon-button onclick="toggle(this)" icon='star' class="m-1" outline variant="Primary">
+  </ix-icon-button>
+
+  <ix-button loading class="m-1" outline variant="Primary">
+    Button
+  </ix-button>
+
+  <ix-icon-button loading icon="star" class="m-1" outline variant="Primary"></ix-icon-button>
   <!-- Preview code -->
   <script type="module" src="./init.js"></script>
 </body>

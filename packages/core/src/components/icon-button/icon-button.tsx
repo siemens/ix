@@ -49,7 +49,7 @@ export class IconButton implements Button {
   @Prop() oval: boolean;
 
   /**
-   * Button icon
+   * Icon name
    */
   @Prop() icon: string;
 
@@ -78,6 +78,11 @@ export class IconButton implements Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Loading button
+   */
+  @Prop() loading = false;
+
   dispatchFormEvents() {
     if (this.type === 'submit') {
       const form = this.hostElement.closest('form');
@@ -105,7 +110,7 @@ export class IconButton implements Button {
         true,
         this.oval,
         this.selected,
-        this.disabled
+        this.disabled || this.loading
       ),
       'icon-button': true,
       ...this.getIconSizeClass(),
@@ -120,7 +125,13 @@ export class IconButton implements Button {
           type={this.type}
           onClick={() => this.dispatchFormEvents()}
         >
-          <ix-icon size={this.size} name={this.icon} color={this.color} />
+          <ix-spinner class={{ hidden: !this.loading }}></ix-spinner>
+          <ix-icon
+            class={{ hidden: this.loading }}
+            size={this.size}
+            name={this.icon}
+            color={this.color}
+          />
           <div style={{ display: 'none' }}>
             <slot></slot>
           </div>

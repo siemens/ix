@@ -8,21 +8,65 @@
 -->
 
 <script setup lang="ts">
-import { IxButton } from '@siemens/ix-vue';
+import { IxButton, IxIconButton } from '@siemens/ix-vue';
+import { ref } from 'vue';
 
-function loading() {
-    var btn = document.getElementById('btn');
-    btn!.innerHTML =
-      'Loading... <ix-spinner variant="secondary" size="small"></ix-spinner>';
+let toggle1 = ref(false);
+let toggle2 = ref(false);
+let toggle3 = ref(false);
 
-    setTimeout(() => {
-      btn!.innerHTML = 'Button';
+function load(value: string) {
+
+  if(value === '1') toggle1.value = true
+  if(value === '2') toggle2.value = true
+  if(value === '3') toggle3.value = true
+
+
+  setTimeout(() => {
+    if(value === '1') toggle1.value = false
+    if(value === '2') toggle2.value = false
+    if(value === '3') toggle3.value = false
     }, 2500);
-  }
+}
 </script>
 
 <template>
-    <IxButton id="btn" @click="loading" class="m-1" variant="Secondary">
-      Button
-    </IxButton>
+  <div>
+    <IxButton
+        :loading="toggle1"
+        @click="load('1')"
+        class="m-1"
+        outline
+        variant="Primary"
+      >
+        Button
+      </IxButton>
+      <IxButton
+      :loading="toggle2"
+        @click="load('2')"
+        class="m-1"
+        outline
+        icon="star"
+        variant="Primary"
+      >
+        Button
+      </IxButton>
+      <IxIconButton
+        :loading="toggle3"
+        @click="load('3')"
+        class="m-1"
+        outline
+        icon="star"
+        variant="Primary"
+      ></IxIconButton>
+      <IxButton loading class="m-1" outline variant="Primary">
+        Button
+      </IxButton>
+      <IxIconButton
+        loading
+        class="m-1"
+        outline
+        variant="Primary"
+      ></IxIconButton>
+  </div>
 </template>

@@ -183,10 +183,18 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * Icon name
+         */
+        "icon": string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
         /**
           * Outline button
          */
@@ -911,7 +919,7 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon": string;
         /**
@@ -919,6 +927,10 @@ export namespace Components {
           * @deprecated Use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
         /**
           * Button outline
          */
@@ -2856,10 +2868,18 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Outline button
          */
@@ -3693,7 +3713,7 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon"?: string;
         /**
@@ -3701,6 +3721,10 @@ declare namespace LocalJSX {
           * @deprecated Use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Button outline
          */

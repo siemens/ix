@@ -7,22 +7,82 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton } from '@siemens/ix-react';
-import React from 'react';
+import { IxButton, IxIconButton } from '@siemens/ix-react';
+import React, { useState } from 'react';
 
 export default () => {
-  function loading() {
-    var btn = document.getElementById('btn');
-    btn!.innerHTML =
-      'Loading... <ix-spinner variant="secondary" size="small"></ix-spinner>';
-
-    setTimeout(() => {
-      btn!.innerHTML = 'Button';
-    }, 2500);
-  }
+  const [toggle, setToggle] = useState(false);
+  const [toggle2, setToggle2] = useState(false);
+  const [toggle3, setToggle3] = useState(false);
   return (
-    <IxButton id="btn" onClick={loading} class="m-1" variant="Secondary">
-      Button
-    </IxButton>
+    <>
+      <IxButton
+        onClick={() => {
+          setToggle(true);
+          setTimeout(() => {
+            setToggle(false);
+          }, 2500);
+        }}
+        loading={toggle}
+        class="m-1"
+        outline
+        variant="Primary"
+      >
+        Button
+      </IxButton>
+
+      <IxButton
+        onClick={() => {
+          setToggle2(true);
+          setTimeout(() => {
+            setToggle2(false);
+          }, 2500);
+        }}
+        loading={toggle2}
+        class="m-1"
+        outline
+        icon="star"
+        variant="Primary"
+      >
+        Button
+      </IxButton>
+
+      <IxButton
+        onClick={() => {
+          setToggle3(true);
+          setTimeout(() => {
+            setToggle3(false);
+          }, 2500);
+        }}
+        loading={toggle3}
+        class="m-1"
+        outline
+        icon="star"
+        variant="Primary"
+      ></IxButton>
+
+      <IxIconButton
+        onClick={() => {
+          setToggle(true);
+          setTimeout(() => {
+            setToggle(false);
+          }, 2500);
+        }}
+        loading={toggle}
+        class="m-1"
+        outline
+        icon="star"
+        variant="Primary"
+      ></IxIconButton>
+      <IxButton loading class="m-1" outline variant="Primary">
+        Button
+      </IxButton>
+      <IxIconButton
+        loading
+        class="m-1"
+        outline
+        variant="Primary"
+      ></IxIconButton>
+    </>
   );
 };

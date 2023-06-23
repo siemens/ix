@@ -699,8 +699,15 @@
         "ix-time-picker",
         "ix-upload"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-card-list": [
           "ix-button"
         ],
@@ -762,6 +769,22 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "invisible",
           "type": "boolean",
           "mutable": false,
@@ -776,6 +799,23 @@
           ],
           "default": "false",
           "deprecation": "use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -1076,6 +1116,11 @@
           "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -1315,6 +1360,7 @@
           "ix-dropdown"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-filter-chip": [
@@ -1759,6 +1805,7 @@
           "ix-typography"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -2020,6 +2067,11 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-datetime-picker": [
@@ -2351,6 +2403,11 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-time-picker": [
@@ -2774,6 +2831,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -3295,7 +3353,12 @@
           "ix-icon-button",
           "ix-dropdown"
         ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -3646,6 +3709,10 @@
           "ix-icon",
           "ix-typography",
           "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -4017,6 +4084,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4199,6 +4267,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4364,6 +4433,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-group-item": [
@@ -4552,6 +4622,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-group": [
@@ -4831,10 +4902,12 @@
         "ix-toast"
       ],
       "dependencies": [
+        "ix-spinner",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-card-list": [
@@ -4954,7 +5027,7 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Button icon",
+          "docs": "Icon name",
           "docsTags": [],
           "values": [
             {
@@ -4978,6 +5051,23 @@
             }
           ],
           "deprecation": "Use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -5457,6 +5547,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-application-header": [
@@ -5636,6 +5727,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-map-navigation": [
@@ -6116,6 +6208,7 @@
           "ix-tabs"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -6251,6 +6344,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -6766,6 +6860,7 @@
           "ix-tabs"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -6901,6 +6996,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -7431,6 +7527,11 @@
           "ix-modal-container"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-modal-container": [
@@ -7480,6 +7581,7 @@
           "ix-select-item"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-select": [
@@ -8021,6 +8123,7 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-pagination": [
@@ -8394,10 +8497,18 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-button",
+        "ix-icon-button",
         "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
         "ix-upload": [
           "ix-spinner"
         ]
@@ -9188,6 +9299,11 @@
           "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-datetime-picker": [
@@ -9469,6 +9585,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-toast-container": [
@@ -9631,6 +9748,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -10299,6 +10417,10 @@
         "ix-upload": [
           "ix-spinner",
           "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [

@@ -12,19 +12,73 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button id="btn" (click)="loading()" class="m-1" variant="Secondary">
+    <ix-button
+      (click)="toggle()"
+      [loading]="loading"
+      class="m-1"
+      outline
+      variant="Primary"
+    >
       Button
     </ix-button>
+
+    <ix-button
+      (click)="toggle2()"
+      [loading]="loading2"
+      icon="star"
+      class="m-1"
+      outline
+      variant="Primary"
+    >
+      Button
+    </ix-button>
+
+    <ix-icon-button
+      (click)="toggle3()"
+      [loading]="loading3"
+      icon="star"
+      class="m-1"
+      outline
+      variant="Primary"
+    >
+    </ix-icon-button>
+
+    <ix-button loading class="m-1" outline variant="Primary">
+      Button
+    </ix-button>
+
+    <ix-icon-button
+      loading
+      icon="star"
+      class="m-1"
+      outline
+      variant="Primary"
+    ></ix-icon-button>
   `,
 })
 export default class ButtonLoading {
-  loading() {
-    var btn = document.getElementById('btn');
-    btn!.innerHTML =
-      'Loading... <ix-spinner variant="secondary" size="small"></ix-spinner>';
+  loading = false;
+  loading2 = false;
+  loading3 = false;
 
+  toggle() {
+    this.loading = true;
     setTimeout(() => {
-      btn!.innerHTML = 'Button';
+      this.loading = false;
+    }, 2500);
+  }
+
+  toggle2() {
+    this.loading2 = true;
+    setTimeout(() => {
+      this.loading2 = false;
+    }, 2500);
+  }
+
+  toggle3() {
+    this.loading3 = true;
+    setTimeout(() => {
+      this.loading3 = false;
     }, 2500);
   }
 }

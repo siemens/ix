@@ -27,6 +27,10 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
 :host(.disabled) {

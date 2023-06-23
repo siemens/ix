@@ -55,6 +55,16 @@ export class Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Loading button
+   */
+  @Prop() loading: boolean = false;
+
+  /**
+   * Icon name
+   */
+  @Prop() icon: string;
+
   @Element() hostElement: HTMLIxButtonElement;
 
   dispatchFormEvents() {
@@ -84,9 +94,14 @@ export class Button {
             false,
             false,
             this.selected,
-            this.disabled
+            this.disabled || this.loading
           )}
         >
+          <ix-spinner class={{ hidden: !this.loading }}></ix-spinner>
+          <ix-icon
+            class={{ hidden: this.loading || this.icon === undefined }}
+            name={this.icon}
+          ></ix-icon>
           <slot></slot>
         </button>
       </Host>

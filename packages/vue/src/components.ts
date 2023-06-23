@@ -73,7 +73,9 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'ghost',
   'selected',
   'disabled',
-  'type'
+  'type',
+  'loading',
+  'icon'
 ]);
 
 
@@ -362,7 +364,8 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'color',
   'selected',
   'disabled',
-  'type'
+  'type',
+  'loading'
 ]);
 
 
