@@ -176,7 +176,7 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Display as pinned variant
+          * Display as pinned
          */
         "pinned": boolean;
     }
@@ -1087,7 +1087,7 @@ export namespace Components {
          */
         "maxVisibleMenuItems": number;
         /**
-          * Menu keeps pinned on the left side
+          * Menu stays pinned to the left
          */
         "pinned": boolean;
         /**
@@ -1238,7 +1238,7 @@ export namespace Components {
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated use `icon` property
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -2887,7 +2887,7 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Display as pinned variant
+          * Display as pinned
          */
         "pinned"?: boolean;
     }
@@ -3907,7 +3907,7 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
-          * Menu keeps pinned on the left side
+          * Menu stays pinned to the left
          */
         "pinned"?: boolean;
         /**
@@ -4061,7 +4061,7 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated use `icon` property
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }

@@ -6028,7 +6028,7 @@
           "mutable": false,
           "attr": "pinned",
           "reflectToAttr": false,
-          "docs": "Menu keeps pinned on the left side",
+          "docs": "Menu stays pinned to the left",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6974,11 +6974,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "use `icon` property"
+              "text": "Use `icon` property. Will be removed in 3.0.0"
             }
           ],
           "default": "'document'",
-          "deprecation": "use `icon` property",
+          "deprecation": "Use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
               "type": "string"
