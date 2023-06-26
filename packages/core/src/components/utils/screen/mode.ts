@@ -11,9 +11,9 @@ export type Mode = 'large' | 'medium' | 'small';
 
 let supportedModes: Mode[] = ['small', 'medium', 'large'];
 
-const smallMediaQuery = `only screen and (max-width: 480px)`;
-const mediumMediaQuery = `only screen and (min-width: 480px) and (max-width: 1024px)`;
-const largeMediaQuery = `only screen and (min-width: 1024px)`;
+const smallMediaQuery = `only screen and (max-width: 40em)`;
+const mediumMediaQuery = `only screen and (min-width: 40.063em) and (max-width: 64em)`;
+const largeMediaQuery = `only screen and (min-width: 64.063em)`;
 
 export type MediaQueryListener = {
   matchMedia: MediaQueryList;

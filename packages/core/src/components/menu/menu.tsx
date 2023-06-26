@@ -467,8 +467,7 @@ export class Menu {
     const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
-      Math.round(scrollTop + clientHeight) <= scrollHeight &&
-      Math.round(scrollTop + clientHeight) !== scrollHeight;
+      Math.round(scrollTop + clientHeight) < scrollHeight;
   }
 
   @Listen('close')

@@ -9,6 +9,11 @@
 
 @import './mixins/hover';
 
+@mixin no-link-decoration {
+  text-decoration: none;
+  color: unset;
+}
+
 a[href] {
   color: var(--theme-color-primary);
 
@@ -34,13 +39,17 @@ a[href]:not(.disabled):not(:disabled) {
   cursor: pointer;
 }
 
-// Workaround for missing :has selector implementation in Firefox
+/**
+* Workaround for missing :has selector implementation in Firefox
+* Separate CSS selectors required, because Firefox will ignore combined selector with
+* unsupported CSS pseudo selector (:has).
+* e.g
+* ix-menu > a[href], a[href]:has(+ ix-menu-item)
+*/
 ix-menu > a[href] {
-  text-decoration: none;
-  color: unset;
+  @include no-link-decoration();
 }
 
 a[href]:has(+ ix-menu-item) {
-  text-decoration: none;
-  color: unset;
+  @include no-link-decoration();
 }

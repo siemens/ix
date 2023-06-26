@@ -11,7 +11,7 @@ import anime from 'animejs';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { menuContext } from '../utils/screen/context';
 
-const DefaultIxMenuItemHeight = 44;
+const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
 
 @Component({

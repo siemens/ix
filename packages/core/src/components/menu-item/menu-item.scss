@@ -10,21 +10,22 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+$menuItemHeight: 3rem;
 
 :host {
   position: relative;
   display: block;
   cursor: pointer;
 
-  height: var(--ix-menu-item-height, 3rem);
-  min-height: var(--ix-menu-item-height, 3rem);
-  max-height: var(--ix-menu-item-height, 3rem);
+  height: var(--ix-menu-item-height, $menuItemHeight);
+  min-height: var(--ix-menu-item-height, $menuItemHeight);
+  max-height: var(--ix-menu-item-height, $menuItemHeight);
 
   .tab {
     display: flex;
     position: relative;
     align-items: center;
-    height: var(--ix-menu-item-height, 3rem);
+    height: var(--ix-menu-item-height, $menuItemHeight);
     z-index: 500;
     padding-left: 0.875rem;
 
@@ -91,7 +92,7 @@
   .tab::before {
     content: '';
     background-color: var(--theme-nav-item-primary--border-color--selected);
-    height: var(--ix-menu-item-height, 3rem);
+    height: var(--ix-menu-item-height, $menuItemHeight);
     width: 0.25rem;
     left: 0;
     position: absolute;
