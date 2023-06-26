@@ -37,11 +37,8 @@ $focus-bdr-width: 0.0625rem;
     fill: var(--theme-menu-btn--color);
     opacity: 1;
     x: 2px;
-    transition:
-      x 0.075s ease-in 0.15s,
-      transform 0.075s ease-in-out 0.075s,
-      y 0.075s ease-in-out,
-      opacity 0.075s linear 0.075s;
+    transition: x 0.075s ease-in 0.15s, transform 0.075s ease-in-out 0.075s,
+      y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
     transform-origin: center;
   }
 }
@@ -49,35 +46,18 @@ $focus-bdr-width: 0.0625rem;
 :host(:hover) {
   .burger-menu-button {
     background-color: var(--theme-menu-btn--background--hover);
-    border-width: $focus-bdr-width;
-    border-style: solid;
-    border-color: transparent;
-    border-radius: var(--theme-btn--border-radius);
-    outline: none;
-    cursor: pointer;
   }
 }
 
-:host(:focus) {
-  .burger-menu-button {
-    border-width: $focus-bdr-width;
-    border-style: solid;
+.burger-menu-button {
+  @include focus-visible {
     border-color: var(--theme-color-focus-bdr);
-    border-radius: var(--theme-btn--border-radius);
-    outline: none;
-    cursor: pointer;
   }
 }
 
 :host(:active) {
   .burger-menu-button {
     background-color: var(--theme-menu-btn--background--active);
-    border-width: $focus-bdr-width;
-    border-style: solid;
-    border-color: var(--theme-color-focus-bdr);
-    border-radius: var(--theme-btn--border-radius);
-    outline: none;
-    cursor: pointer;
   }
 }
 
