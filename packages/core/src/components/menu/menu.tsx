@@ -20,6 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import anime from 'animejs';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
@@ -161,6 +162,8 @@ export class Menu {
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
 
+  private isTransitionDisabled = false;
+
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
     return (
@@ -179,6 +182,12 @@ export class Menu {
 
   get menuItemsContainer(): HTMLDivElement {
     return this.menu!.querySelector('.tabs')!;
+  }
+
+  get overlayContainer() {
+    return this.hostElement.shadowRoot.querySelector(
+      '.menu-overlay'
+    ) as HTMLDivElement;
   }
 
   get menuItems() {
@@ -235,7 +244,7 @@ export class Menu {
     return this.hostElement.querySelector('.about-news')!;
   }
 
-  get aboutPopover(): HTMLIxMenuAboutNewsElement {
+  get aboutsNewsPopover(): HTMLIxMenuAboutNewsElement {
     return (
       document.querySelector('ix-menu-about-news') ??
       this.hostElement.querySelector('ix-menu-about-news')!
@@ -345,22 +354,23 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutPopover) {
+    if (!this.aboutsNewsPopover) {
       return;
     }
 
-    this.aboutPopover.style.bottom = this.getAboutPopoverVerticalPosition();
+    this.aboutsNewsPopover.style.bottom =
+      this.getAboutPopoverVerticalPosition();
 
-    if (!this.popoverArea?.contains(this.aboutPopover)) {
+    if (!this.popoverArea?.contains(this.aboutsNewsPopover)) {
       const showMore = () => {
-        if (this.aboutPopover?.aboutItemLabel && this.about) {
-          this.about.activeTabLabel = this.aboutPopover.aboutItemLabel;
+        if (this.aboutsNewsPopover?.aboutItemLabel && this.about) {
+          this.about.activeTabLabel = this.aboutsNewsPopover.aboutItemLabel;
           this.toggleAbout(true);
         }
       };
 
-      this.aboutPopover.addEventListener('showMore', showMore.bind(this));
-      document.body.appendChild(this.aboutPopover);
+      this.aboutsNewsPopover.addEventListener('showMore', showMore.bind(this));
+      document.body.appendChild(this.aboutsNewsPopover);
     }
   }
 
@@ -389,11 +399,31 @@ export class Menu {
       this.expand = !this.expand;
     }
 
-    if (this.aboutPopover) {
-      this.aboutPopover.expanded = this.expand;
+    if (this.aboutsNewsPopover) {
+      this.aboutsNewsPopover.expanded = this.expand;
     }
 
     this.expandChange.emit(this.expand);
+
+    this.isTransitionDisabled = false;
+    this.checkTransition();
+  }
+
+  /**
+   * Disable transition of overlay while menu animation is running.
+   */
+  private checkTransition() {
+    const container = this.overlayContainer;
+
+    if (!container) {
+      return;
+    }
+
+    if (this.isTransitionDisabled) {
+      container.style.transitionProperty = 'left';
+    } else {
+      container.style.transitionProperty = 'all';
+    }
   }
 
   /**
@@ -406,6 +436,9 @@ export class Menu {
       return;
     }
 
+    if (!this.showAbout) {
+      this.animateOverlayFadeIn();
+    }
     this.resetOverlay();
     this.showSettings = show;
     this.settings.show = this.showSettings;
@@ -420,6 +453,11 @@ export class Menu {
     if (!this.about) {
       return;
     }
+
+    if (!this.showSettings) {
+      this.animateOverlayFadeIn();
+    }
+
     this.resetOverlay();
     this.showAbout = show;
     this.about.show = this.showAbout;
@@ -440,6 +478,7 @@ export class Menu {
     if (this.showPinned) {
       return;
     }
+
     this.toggleMenu(false);
   }
 
@@ -476,13 +515,42 @@ export class Menu {
   ) {
     const { name: targetName } = event.detail;
 
-    if (targetName === 'ix-menu-about') {
-      this.showAbout = false;
-    }
+    this.animateOverlayFadeOut(() => {
+      if (targetName === 'ix-menu-about') {
+        this.showAbout = false;
+      }
 
-    if (targetName === 'ix-menu-settings') {
-      this.showSettings = false;
-    }
+      if (targetName === 'ix-menu-settings') {
+        this.showSettings = false;
+      }
+    });
+  }
+
+  private animateOverlayFadeIn() {
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.overlayContainer,
+        duration: 300,
+        backdropFilter: [0, 'blur(1rem)'],
+        translateX: ['-4rem', 0],
+        opacity: [0, 1],
+        easing: 'easeInSine',
+      });
+    });
+  }
+
+  private animateOverlayFadeOut(onComplete: Function) {
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.overlayContainer,
+        duration: 300,
+        backdropFilter: ['blur(1rem)', 0],
+        translateX: [0, '-4rem'],
+        opacity: [1, 0],
+        easing: 'easeInSine',
+        complete: () => onComplete(),
+      });
+    });
   }
 
   render() {
@@ -606,6 +674,10 @@ export class Menu {
             class={{
               'menu-overlay': true,
               expanded: this.expand,
+            }}
+            onTransitionEnd={() => {
+              this.isTransitionDisabled = true;
+              this.checkTransition();
             }}
           >
             {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}

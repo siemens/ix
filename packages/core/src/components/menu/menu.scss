@@ -10,6 +10,7 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
+@import '~animate.css/animate.min';
 
 $menu-expanded-width: 16rem;
 
@@ -103,6 +104,7 @@ $menu-expanded-width: 16rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
+    transition: left var(--animate-duration) ease-in-out;
   }
 
   .menu.expanded {
@@ -157,7 +159,7 @@ $menu-expanded-width: 16rem;
 
   .menu-overlay {
     left: 0px;
-    width: calc(100vw - 3rem);
+    width: 100vw;
   }
 }
 
