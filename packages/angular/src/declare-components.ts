@@ -6,6 +6,7 @@ export const DIRECTIVES = [
   d.IxAnimatedTab,
   d.IxAnimatedTabs,
   d.IxApplicationHeader,
+  d.IxAvatar,
   d.IxBasicNavigation,
   d.IxBlind,
   d.IxBreadcrumb,
