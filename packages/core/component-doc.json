@@ -11236,10 +11236,10 @@
         "ix-menu-avatar-item",
         "ix-menu-item",
         "ix-menu-category",
-        "ix-menu-about",
-        "ix-menu-about-item",
         "ix-menu-settings",
         "ix-menu-settings-item",
+        "ix-menu-about",
+        "ix-menu-about-item",
         "ix-button",
         "ix-select",
         "ix-select-item",
@@ -11253,10 +11253,10 @@
           "ix-menu-avatar-item",
           "ix-menu-item",
           "ix-menu-category",
-          "ix-menu-about",
-          "ix-menu-about-item",
           "ix-menu-settings",
           "ix-menu-settings-item",
+          "ix-menu-about",
+          "ix-menu-about-item",
           "ix-button",
           "ix-select",
           "ix-select-item",
@@ -11299,12 +11299,12 @@
           "ix-typography",
           "ix-divider"
         ],
-        "ix-menu-about": [
+        "ix-menu-settings": [
           "ix-tab-item",
           "ix-icon-button",
           "ix-tabs"
         ],
-        "ix-menu-settings": [
+        "ix-menu-about": [
           "ix-tab-item",
           "ix-icon-button",
           "ix-tabs"

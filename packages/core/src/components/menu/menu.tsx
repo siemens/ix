@@ -444,9 +444,13 @@ export class Menu {
       this.animateOverlayFadeIn();
     }
 
-    this.resetOverlay();
-    this.showSettings = show;
-    this.settings.show = this.showSettings;
+    if (show) {
+      this.resetOverlay();
+      this.showSettings = show;
+      this.settings.show = this.showSettings;
+    } else {
+      this.onOverlayClose();
+    }
   }
 
   /**
@@ -463,9 +467,13 @@ export class Menu {
       this.animateOverlayFadeIn();
     }
 
-    this.resetOverlay();
-    this.showAbout = show;
-    this.about.show = this.showAbout;
+    if (show) {
+      this.resetOverlay();
+      this.showAbout = show;
+      this.about.show = this.showAbout;
+    } else {
+      this.onOverlayClose();
+    }
   }
 
   private resetOverlay() {
@@ -473,18 +481,12 @@ export class Menu {
     this.showAbout = false;
 
     if (this.settings) {
-      this.settings.show = this.showSettings;
+      this.settings.show = false;
     }
 
     if (this.about) {
-      this.about.show = this.showAbout;
+      this.about.show = false;
     }
-
-    if (this.showPinned) {
-      return;
-    }
-
-    this.toggleMenu(false);
   }
 
   private getCollapseText() {
@@ -515,19 +517,9 @@ export class Menu {
   }
 
   @Listen('close')
-  onOverlayClose(
-    event: CustomEvent<{ nativeEvent: MouseEvent; name: string }>
-  ) {
-    const { name: targetName } = event.detail;
-
+  onOverlayClose() {
     this.animateOverlayFadeOut(() => {
-      if (targetName === 'ix-menu-about') {
-        this.showAbout = false;
-      }
-
-      if (targetName === 'ix-menu-settings') {
-        this.showSettings = false;
-      }
+      this.resetOverlay();
     });
   }
 
@@ -540,6 +532,13 @@ export class Menu {
         translateX: ['-4rem', 0],
         opacity: [0, 1],
         easing: 'easeInSine',
+        begin: () => {
+          if (this.showPinned) {
+            return;
+          }
+
+          this.toggleMenu(false);
+        },
       });
     });
   }
@@ -595,7 +594,7 @@ export class Menu {
             }}
             onClick={(event) => {
               if (this.isMenuItemClicked(event)) {
-                this.resetOverlay();
+                this.onOverlayClose();
               }
             }}
           >
