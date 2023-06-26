@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Locator, Page, expect } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
