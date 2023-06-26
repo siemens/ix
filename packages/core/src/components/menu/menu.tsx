@@ -426,6 +426,10 @@ export class Menu {
     }
   }
 
+  private isOverlayVisible() {
+    return this.showAbout || this.showSettings;
+  }
+
   /**
    * Toggle Settings tabs
    * @param show
@@ -436,9 +440,10 @@ export class Menu {
       return;
     }
 
-    if (!this.showAbout) {
+    if (!this.isOverlayVisible()) {
       this.animateOverlayFadeIn();
     }
+
     this.resetOverlay();
     this.showSettings = show;
     this.settings.show = this.showSettings;
@@ -454,7 +459,7 @@ export class Menu {
       return;
     }
 
-    if (!this.showSettings) {
+    if (!this.isOverlayVisible()) {
       this.animateOverlayFadeIn();
     }
 
@@ -669,21 +674,20 @@ export class Menu {
             </ix-menu-item>
           ) : null}
         </div>
-        {this.showSettings || this.showAbout ? (
-          <div
-            class={{
-              'menu-overlay': true,
-              expanded: this.expand,
-            }}
-            onTransitionEnd={() => {
-              this.isTransitionDisabled = true;
-              this.checkTransition();
-            }}
-          >
-            {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
-            {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
-          </div>
-        ) : null}
+        <div
+          class={{
+            'menu-overlay': true,
+            visible: this.isOverlayVisible(),
+            expanded: this.expand,
+          }}
+          onTransitionEnd={() => {
+            this.isTransitionDisabled = true;
+            this.checkTransition();
+          }}
+        >
+          {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
+          {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+        </div>
       </Host>
     );
   }

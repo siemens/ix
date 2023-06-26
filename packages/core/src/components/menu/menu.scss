@@ -96,7 +96,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-overlay {
-    display: block;
+    display: none;
     position: absolute;
     width: calc(100vw - 3.25rem);
     height: 100%;
@@ -105,6 +105,10 @@ $menu-expanded-width: 16rem;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
     transition: left var(--animate-duration) ease-in-out;
+  }
+
+  .menu-overlay.visible {
+    display: block;
   }
 
   .menu.expanded {
