@@ -34,7 +34,7 @@ a[href]:not(.disabled):not(:disabled) {
   cursor: pointer;
 }
 
-// Workaround for firefox missing :has selector implementation
+// Workaround for missing :has selector implementation in Firefox
 ix-menu > a[href] {
   text-decoration: none;
   color: unset;

@@ -82,7 +82,7 @@ export class Menu {
   @Prop({ mutable: true, reflect: true }) expand = false;
 
   /**
-   * Menu keeps pinned on the left side
+   * Menu stays pinned to the left
    */
   @Prop() pinned = false;
   @Watch('pinned')

@@ -22,7 +22,7 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass('hydrated');
 });
 
-test('should be expand items', async ({ mount, page }) => {
+test('should expand items', async ({ mount, page }) => {
   await mount(`
     <ix-menu>
       <ix-menu-category label="Category label">

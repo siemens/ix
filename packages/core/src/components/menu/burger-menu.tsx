@@ -32,7 +32,7 @@ export class BurgerMenu {
   @Prop({ reflect: true }) expanded = false;
 
   /**
-   * Display as pinned variant
+   * Display as pinned
    */
   @Prop() pinned = false;
 

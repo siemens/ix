@@ -9,7 +9,7 @@ import { getFallbackMode } from './mode';
  * LICENSE file in the root directory of this source tree.
  */
 describe('Mode', () => {
-  it('should has a fallback', () => {
+  it('should have fallback values', () => {
     let mode = getFallbackMode(['small', 'medium', 'large'], 'large');
     expect(mode).toStrictEqual('large');
 

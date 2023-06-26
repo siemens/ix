@@ -56,7 +56,7 @@ export class MenuCategory {
     ) as HTMLIxMenuItemElement[];
   }
 
-  private getNestedItemHeight() {
+  private getNestedItemsHeight() {
     const items = this.getNestedItems();
 
     return items.length * DefaultIxMenuItemHeight;
@@ -77,7 +77,7 @@ export class MenuCategory {
       duration: DefaultAnimationTimeout,
       easing: 'cubicBezier(.5, .05, .1, .3)',
       opacity: [1, 0],
-      maxHeight: [this.getNestedItemHeight() + DefaultIxMenuItemHeight, 0],
+      maxHeight: [this.getNestedItemsHeight() + DefaultIxMenuItemHeight, 0],
       complete: () => {
         setTimeout(() => {
           this.showItems = false;
@@ -93,7 +93,7 @@ export class MenuCategory {
       duration: DefaultAnimationTimeout,
       easing: 'cubicBezier(.5, .05, .1, .3)',
       opacity: [0, 1],
-      maxHeight: [0, this.getNestedItemHeight() + DefaultIxMenuItemHeight],
+      maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
       begin: () => {
         this.showItems = true;
         this.showDropdown = false;
@@ -138,19 +138,17 @@ export class MenuCategory {
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
 
-        if (this.menuExpand && !this.showItems && this.isNestedItemActive()) {
+        if (!this.isNestedItemActive()) {
+          return;
+        }
+
+        if (this.menuExpand && !this.showItems) {
           this.showItems = true;
           this.showDropdown = false;
           return;
         }
 
-        if (!this.menuExpand && this.showItems && this.isNestedItemActive()) {
-          this.showItems = false;
-          this.showDropdown = false;
-          return;
-        }
-
-        if (!this.menuExpand && !this.showItems && this.isNestedItemActive()) {
+        if (!this.menuExpand) {
           this.showItems = false;
           this.showDropdown = false;
           return;
