@@ -77,17 +77,17 @@ jobs:
           filter: 'documentation'
           args: '--force'
 
-      # - name: Deploy production instance 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   if: ${{ github.event.inputs.deployment == 'prod' }}
-      #   with:
-      #     folder: ./packages/documentation/build
-      #     clean-exclude: version-*
+      - name: Deploy production instance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'prod' }}
+        with:
+          folder: ./packages/documentation/build
+          clean-exclude: version-*
 
-      # - name: Deploy dev instance 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   if: ${{ github.event.inputs.deployment == 'dev' }}
-      #   with:
-      #     folder: ./packages/documentation/build
-      #     target-folder: version-dev
-      #     clean-exclude: version-*
+      - name: Deploy dev instance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        with:
+          folder: ./packages/documentation/build
+          target-folder: version-dev
+          clean-exclude: version-*
