@@ -10,9 +10,6 @@
 @import 'common-variables';
 @import 'fonts';
 @import 'mixins/shadow-dom/component';
-@import 'mixins/shadow-dom/animation/menu-overlay';
-
-@include menuOverlayEnterExitAnimation;
 
 :host {
   @include ix-component;

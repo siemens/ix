@@ -87,7 +87,7 @@ $menu-expanded-width: 16rem;
     }
 
     background-color: var(--theme-nav--background);
-    transition: width var(--animate-duration);
+    transition: width var(--animate-duration) ease-in-out;
 
     .burger-menu {
       margin: 0.75rem 0 1rem 0.35rem;
@@ -103,7 +103,6 @@ $menu-expanded-width: 16rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
-    transition: all $medium-time ease-out;
   }
 
   .menu.expanded {

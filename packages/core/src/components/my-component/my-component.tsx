@@ -96,6 +96,14 @@ export class MyComponent {
             <ix-menu-item bottom active>
               Test
             </ix-menu-item>
+            <ix-menu-settings>
+              <ix-menu-settings-item label="Settings 1">
+                Settings Content 1
+              </ix-menu-settings-item>
+              <ix-menu-settings-item label="Settings 2">
+                Settings Content 2
+              </ix-menu-settings-item>
+            </ix-menu-settings>
             <ix-menu-about>
               <ix-menu-about-item label="About 1">
                 About Content 1
@@ -109,15 +117,6 @@ export class MyComponent {
             {/* <ix-menu-about-news label="Test" show about-item-label="About 2">
               Test
             </ix-menu-about-news> */}
-
-            <ix-menu-settings>
-              <ix-menu-settings-item label="Settings 1">
-                Settings Content 1
-              </ix-menu-settings-item>
-              <ix-menu-settings-item label="Settings 2">
-                Settings Content 2
-              </ix-menu-settings-item>
-            </ix-menu-settings>
           </ix-menu>
           {/* <div slot="content-header">header content</div> */}
           {this.overlay ? (

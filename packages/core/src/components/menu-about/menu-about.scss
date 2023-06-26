@@ -9,9 +9,6 @@
 
 @import 'common-variables';
 @import 'fonts';
-@import 'mixins/shadow-dom/animation/menu-overlay';
-
-@include menuOverlayEnterExitAnimation;
 
 :host {
   display: block;

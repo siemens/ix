@@ -75,7 +75,7 @@ export class MenuCategory {
     anime({
       targets: this.menuItemsContainer,
       duration: DefaultAnimationTimeout,
-      easing: 'cubicBezier(.5, .05, .1, .3)',
+      easing: 'easeInSine',
       opacity: [1, 0],
       maxHeight: [this.getNestedItemsHeight() + DefaultIxMenuItemHeight, 0],
       complete: () => {
@@ -91,7 +91,7 @@ export class MenuCategory {
     anime({
       targets: this.menuItemsContainer,
       duration: DefaultAnimationTimeout,
-      easing: 'cubicBezier(.5, .05, .1, .3)',
+      easing: 'easeInSine',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
       begin: () => {
