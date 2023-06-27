@@ -10,9 +10,9 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-const smallWidth = 479;
-const mediumWidth = 1023;
-const largeWidth = 1025;
+const smallWidth = 639;
+const mediumWidth = 642;
+const largeWidth = 1026;
 
 regressionTest.describe('basic navigation large', () => {
   regressionTest('basic', async ({ page }) => {
@@ -122,7 +122,7 @@ regressionTest.describe('basic navigation mobile', () => {
     const settingsButton = await page.waitForSelector('#settings');
     await settingsButton.click();
 
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -142,9 +142,11 @@ regressionTest.describe('basic navigation mobile', () => {
     const settingsButton = await page.waitForSelector('#settings');
 
     await settingsButton.click();
+    await page.waitForTimeout(1000);
+
     await menuElement.click();
 
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
