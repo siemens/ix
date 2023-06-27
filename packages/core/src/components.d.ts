@@ -651,7 +651,8 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active": boolean;
         /**
@@ -3401,7 +3402,8 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active"?: boolean;
         /**
