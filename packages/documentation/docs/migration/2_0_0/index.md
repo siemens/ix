@@ -6,7 +6,8 @@ title: Updating to v2
 
 # Updating to v2.0.0
 
-Welcome to the migration guide for upgrading from v1 to v2! This guide aims to provide a seamless transition and assist you in updating your project. We highly recommend upgrading from version 1.6.3 to take advantage of the new features and improvements in v2. Follow this guide to ensure a smooth and successful migration process.
+Welcome to the migration guide for upgrading from Siemens iX v1 to v2.
+Please follow this guide to ensure a smooth and successful migration process.
 
 # Update your code
 
