@@ -1318,7 +1318,7 @@
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -4129,16 +4129,19 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-category-filter",
         "ix-select"
       ],
       "dependencies": [
-        "ix-icon"
+        "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
           "ix-icon"
         ],
         "ix-category-filter": [
@@ -4822,6 +4825,7 @@
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
+        "ix-filter-chip",
         "ix-flip-tile",
         "ix-group-context-menu",
         "ix-map-navigation",
@@ -4862,6 +4866,9 @@
           "ix-icon-button"
         ],
         "ix-expanding-search": [
+          "ix-icon-button"
+        ],
+        "ix-filter-chip": [
           "ix-icon-button"
         ],
         "ix-flip-tile": [
@@ -7509,7 +7516,7 @@
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -8030,7 +8037,7 @@
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-icon"
