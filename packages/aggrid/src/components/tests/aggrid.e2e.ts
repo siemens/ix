@@ -27,6 +27,15 @@ regressionTest.describe('aggrid', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('editor', async ({ page }) => {
+    await page.goto('basic.html');
+
+    const editorCellHandle = await page.waitForSelector('.ag-cell-not-inline-editing[col-id="price"]');
+    await editorCellHandle.dblclick();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('pagination', async ({ page }) => {
     await page.goto('pagination.html');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
