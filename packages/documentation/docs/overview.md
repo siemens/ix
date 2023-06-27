@@ -1,3 +1,9 @@
+---
+sidebar_position: 0
+sidebar_title: Overview
+title: Overview
+---
+
 import GuidingPrinciples from '@site/src/components/DocsComponents/GuidingPrinciples';
 import {Card, CardList} from '@site/src/components/Card';
 import AngularIcon from '@site/static/img/angular.svg';
