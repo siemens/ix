@@ -34,7 +34,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-basic-navigation applicationName="Test">
+        <ix-basic-navigation applicationName="Showcase">
           {/* <div slot="logo">LOGO!!!</div> */}
           <ix-menu
             enableToggleTheme
@@ -44,13 +44,10 @@ export class MyComponent {
               <ix-menu-avatar-item label="Random 1"></ix-menu-avatar-item>
               <ix-menu-avatar-item label="Random 2"></ix-menu-avatar-item>
             </ix-menu-avatar>
-            <ix-menu-item>Test</ix-menu-item>
 
             <ix-menu-item tabIcon="home" home>
               Home
             </ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item
               active={this.activeMap['test1']}
               onClick={() => this.onActive('test1')}
@@ -75,27 +72,6 @@ export class MyComponent {
               </ix-menu-item>
             </ix-menu-category>
 
-            <a href="#">
-              <ix-menu-item>Test123</ix-menu-item>
-            </a>
-            <ix-menu-item>Test XZY</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item>Test</ix-menu-item>
-            <ix-menu-item bottom active>
-              Test
-            </ix-menu-item>
             <ix-menu-settings>
               <ix-menu-settings-item label="Settings 1">
                 Settings Content 1
@@ -122,40 +98,12 @@ export class MyComponent {
           {this.overlay ? (
             <div slot="content-header">header content</div>
           ) : null}
-          <main>
-            <ix-button onClick={() => (this.overlay = !this.overlay)}>
-              open
-            </ix-button>
-            {/* {this.overlay ? (
-              <ix-map-navigation-overlay
-                name="Custom overlay title"
-                icon="bulb"
-              >
-                Lorem ipsum
-              </ix-map-navigation-overlay>
-            ) : null} */}
-
-            <ix-select>
-              <ix-select-item label="Item 1" value={'Item 1'}></ix-select-item>
-              <ix-select-item label="Item 2" value={'Item 2'}></ix-select-item>
-              <ix-select-item label="Item 3" value={'Item 3'}></ix-select-item>
-            </ix-select>
-
-            <ix-button style={{ width: '100%' }}>Test</ix-button>
-
-            <ix-category-filter
-              repeatCategories={false}
-              categories={{
-                ID_1: {
-                  label: 'Vendor',
-                  options: ['Apple', 'MS', 'Siemens'],
-                },
-                ID_2: {
-                  label: 'Product',
-                  options: ['iPhone X', 'Windows', 'APS'],
-                },
-              }}
-            ></ix-category-filter>
+          <main
+            style={{
+              margin: '2rem',
+            }}
+          >
+            Some content
           </main>
         </ix-basic-navigation>
       </Host>

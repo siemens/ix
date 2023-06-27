@@ -715,8 +715,7 @@
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -745,9 +744,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -1325,9 +1321,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "scoped",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-icon",
@@ -1346,9 +1340,6 @@
         ],
         "ix-filter-chip": [
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-category-filter"
         ]
       },
       "props": [
@@ -8262,8 +8253,7 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-pagination",
-        "my-component"
+        "ix-pagination"
       ],
       "dependencies": [
         "ix-select-item",
@@ -8295,9 +8285,6 @@
           "ix-icon"
         ],
         "ix-pagination": [
-          "ix-select"
-        ],
-        "my-component": [
           "ix-select"
         ]
       },
@@ -8568,8 +8555,7 @@
       "encapsulation": "scoped",
       "dependents": [
         "ix-pagination",
-        "ix-select",
-        "my-component"
+        "ix-select"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -8585,9 +8571,6 @@
           "ix-select-item"
         ],
         "ix-select": [
-          "ix-select-item"
-        ],
-        "my-component": [
           "ix-select-item"
         ]
       },
@@ -11239,11 +11222,7 @@
         "ix-menu-settings",
         "ix-menu-settings-item",
         "ix-menu-about",
-        "ix-menu-about-item",
-        "ix-button",
-        "ix-select",
-        "ix-select-item",
-        "ix-category-filter"
+        "ix-menu-about-item"
       ],
       "dependencyGraph": {
         "my-component": [
@@ -11256,11 +11235,7 @@
           "ix-menu-settings",
           "ix-menu-settings-item",
           "ix-menu-about",
-          "ix-menu-about-item",
-          "ix-button",
-          "ix-select",
-          "ix-select-item",
-          "ix-category-filter"
+          "ix-menu-about-item"
         ],
         "ix-basic-navigation": [
           "ix-application-header"
@@ -11308,26 +11283,6 @@
           "ix-tab-item",
           "ix-icon-button",
           "ix-tabs"
-        ],
-        "ix-select": [
-          "ix-select-item",
-          "ix-filter-chip",
-          "ix-icon-button",
-          "ix-icon",
-          "ix-dropdown",
-          "ix-dropdown-item"
-        ],
-        "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-filter-chip": [
-          "ix-icon"
-        ],
-        "ix-category-filter": [
-          "ix-icon-button",
-          "ix-icon",
-          "ix-filter-chip",
-          "ix-dropdown"
         ]
       },
       "props": [],
