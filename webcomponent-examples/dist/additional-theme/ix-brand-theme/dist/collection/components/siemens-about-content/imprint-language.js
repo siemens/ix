@@ -46,3 +46,4 @@ export const languageRegister = {
 export const resolveLink = (value, type) => {
   return languageRegister[value].legals[type];
 };
+//# sourceMappingURL=imprint-language.js.map

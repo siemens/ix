@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-978423ef.js';
+import { r as registerInstance, h, H as Host } from './index-fa6efa4c.js';
 
 const siemensLogoCss = ":host{display:inline-block}:host .logo>path{fill:var(--theme-app-header-logo--color)}";
 
@@ -13,3 +13,5 @@ const SiemensLogo = class {
 SiemensLogo.style = siemensLogoCss;
 
 export { SiemensLogo as ix_siemens_logo };
+
+//# sourceMappingURL=ix-siemens-logo.entry.js.map

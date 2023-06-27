@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-7b0a0dd9.js');
+const index = require('./index-46224112.js');
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
@@ -78,3 +78,5 @@ const SiemensAboutContent = class {
 SiemensAboutContent.style = siemensAboutContentCss;
 
 exports.ix_siemens_about_content = SiemensAboutContent;
+
+//# sourceMappingURL=ix-siemens-about-content.cjs.entry.js.map

@@ -2,7 +2,7 @@
  * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
  */
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -14,7 +14,7 @@
 /* Line heights */
 /* Animation timings */
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -27,7 +27,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-color-ghost: #ffffff00;
   --theme-color-ghost--hover: #9d9d9626;
   --theme-color-ghost--active: #69696326;
@@ -524,19 +524,19 @@
   --theme-animated-tab-indicator--background--active: var(--theme-color-soft-bdr);
   --theme-animated-tab-indicator--background--selected: var(--theme-color-dynamic);
   --theme-tab--color: var(--theme-color-std-text);
-  --theme-tab--color--hover: var(--theme-color-dynamic);
-  --theme-tab--color--active: var(--theme-color-dynamic);
-  --theme-tab--color--selected: var(--theme-color-dynamic);
+  --theme-tab--color--hover: var(--theme-color-std-text);
+  --theme-tab--color--active: var(--theme-color-std-text);
+  --theme-tab--color--selected: var(--theme-color-std-text);
   --theme-tab--color--disabled: var(--theme-color-weak-text);
   --theme-tab-icon--color: var(--theme-color-std-text);
-  --theme-tab-icon--color--hover: var(--theme-color-dynamic);
-  --theme-tab-icon--color--active: var(--theme-color-dynamic);
-  --theme-tab-icon--color--selected: var(--theme-color-dynamic);
+  --theme-tab-icon--color--hover: var(--theme-color-std-text);
+  --theme-tab-icon--color--active: var(--theme-color-std-text);
+  --theme-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-icon--color: var(--theme-color-std-text);
-  --theme-animated-tab-icon--color--hover: var(--theme-color-dynamic);
-  --theme-animated-tab-icon--color--active: var(--theme-color-dynamic);
-  --theme-animated-tab-icon--color--selected: var(--theme-color-dynamic);
+  --theme-animated-tab-icon--color--hover: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--active: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-animated-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-circle--background: var(--theme-color-component-1);
   --theme-animated-tab-circle--background--hover: var(--theme-color-1--hover);
@@ -887,12 +887,12 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-shadow-1: 0px 2px 2px var(--theme-color-shadow-2), 0px 1px 1px var(--theme-color-shadow-1);
   --theme-shadow-2: -4px 0px 8px var(--theme-color-shadow-2), 4px 0px 8px var(--theme-color-shadow-2), 0px 0px 16px var(--theme-color-shadow-1);
   --theme-shadow-3: 0px 2px 6px var(--theme-color-shadow-2), 0px 0px 8px var(--theme-color-shadow-1);
   --theme-shadow-4: 0px 0px 2px var(--theme-color-shadow-2), 0px 4px 8px var(--theme-color-shadow-1), 0px 12px 18px var(--theme-color-shadow-1);
-  --theme-inset-shadow-1: insert 0px 2px 4px var(--theme-color-shadow-3);
+  --theme-inset-shadow-1: inset 0px 2px 4px var(--theme-color-shadow-3);
   --theme-input--box-shadow: var(--theme-inset-shadow-1);
   --theme-menu--box-shadow: var(--theme-shadow-4);
   --theme-navigation--box-shadow: var(--theme-shadow-2);
@@ -905,14 +905,14 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-siemens-sans: Siemens Sans;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-font-weight-bold: 700;
   --theme-font-weight-normal: 400;
 }
@@ -920,7 +920,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-text-h2: var(--theme-font-weight-bold) var(--theme-font-size-xl)/var(--theme-line-height-h2) var(--theme-siemens-sans);
   --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-siemens-sans);
   --theme-text-l-title: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-siemens-sans);
@@ -942,7 +942,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-default-border-radius: 0.25rem;
   --theme-small-border-radius: 0.125rem;
   --theme-min-border-radius: 0rem;
@@ -965,7 +965,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-default-control-height: 2rem;
   --theme-large-control-height: 2.5rem;
   --theme-medium-control-height: 1.5rem;
@@ -980,7 +980,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-font-size-xs: 0.625rem;
   --theme-font-size-s: 0.75rem;
   --theme-font-size-caption: 0.75rem;
@@ -992,7 +992,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-line-height-xs: 140%;
   --theme-line-height-s: 150%;
   --theme-line-height-s-single: 150%;
@@ -1009,7 +1009,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-x-slow-time: 1s;
   --theme-slow-time: 500ms;
   --theme-medium-time: 300ms;
@@ -1025,7 +1025,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-input-padding-y: 0.5rem;
   --theme-input-padding-x: 0.5rem;
 }
@@ -1033,7 +1033,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-btn--border-thickness: 0.0625rem;
   --theme-app-header--border-width: 0.0625rem;
   --theme-blind--border-thickness: 0.0625rem;
@@ -1050,7 +1050,7 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
-:root .theme-brand-dark {
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-primary-bdr-1: 0.0625rem solid var(--theme-color-primary);
   --theme-primary-bdr-2: 0.125rem solid var(--theme-color-primary);
   --theme-dynamic-bdr-1: 0.0625rem solid var(--theme-color-dynamic);
@@ -1584,19 +1584,19 @@
   --theme-animated-tab-indicator--background--active: var(--theme-color-soft-bdr);
   --theme-animated-tab-indicator--background--selected: var(--theme-color-dynamic);
   --theme-tab--color: var(--theme-color-std-text);
-  --theme-tab--color--hover: var(--theme-color-dynamic);
-  --theme-tab--color--active: var(--theme-color-dynamic);
-  --theme-tab--color--selected: var(--theme-color-dynamic);
+  --theme-tab--color--hover: var(--theme-color-std-text);
+  --theme-tab--color--active: var(--theme-color-std-text);
+  --theme-tab--color--selected: var(--theme-color-std-text);
   --theme-tab--color--disabled: var(--theme-color-weak-text);
   --theme-tab-icon--color: var(--theme-color-std-text);
-  --theme-tab-icon--color--hover: var(--theme-color-dynamic);
-  --theme-tab-icon--color--active: var(--theme-color-dynamic);
-  --theme-tab-icon--color--selected: var(--theme-color-dynamic);
+  --theme-tab-icon--color--hover: var(--theme-color-std-text);
+  --theme-tab-icon--color--active: var(--theme-color-std-text);
+  --theme-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-icon--color: var(--theme-color-std-text);
-  --theme-animated-tab-icon--color--hover: var(--theme-color-dynamic);
-  --theme-animated-tab-icon--color--active: var(--theme-color-dynamic);
-  --theme-animated-tab-icon--color--selected: var(--theme-color-dynamic);
+  --theme-animated-tab-icon--color--hover: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--active: var(--theme-color-std-text);
+  --theme-animated-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-animated-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-circle--background: var(--theme-color-component-1);
   --theme-animated-tab-circle--background--hover: var(--theme-color-1--hover);
@@ -1952,7 +1952,7 @@
   --theme-shadow-2: -4px 0px 8px var(--theme-color-shadow-2), 4px 0px 8px var(--theme-color-shadow-2), 0px 0px 16px var(--theme-color-shadow-1);
   --theme-shadow-3: 0px 2px 6px var(--theme-color-shadow-2), 0px 0px 8px var(--theme-color-shadow-2);
   --theme-shadow-4: 0px 0px 2px var(--theme-color-shadow-1), 0px 4px 8px var(--theme-color-shadow-1), 0px 12px 18px var(--theme-color-shadow-1);
-  --theme-inset-shadow-1: insert 0px 2px 4px var(--theme-color-shadow-3);
+  --theme-inset-shadow-1: inset 0px 2px 4px var(--theme-color-shadow-3);
   --theme-input--box-shadow: var(--theme-inset-shadow-1);
   --theme-menu--box-shadow: var(--theme-shadow-4);
   --theme-navigation--box-shadow: var(--theme-shadow-2);

@@ -1,1 +1,0 @@
-function t(t){return t.includes("-end")?"end":t.includes("-start")?"start":void 0}export{t as g}

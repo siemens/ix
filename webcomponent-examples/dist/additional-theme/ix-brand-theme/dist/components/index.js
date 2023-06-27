@@ -1,3 +1,3 @@
 export { setAssetPath, setNonce, setPlatformOptions } from '@stencil/core/internal/client';
-export { IxSiemensAboutContent, defineCustomElement as defineCustomElementIxSiemensAboutContent } from './ix-siemens-about-content.js';
-export { IxSiemensLogo, defineCustomElement as defineCustomElementIxSiemensLogo } from './ix-siemens-logo.js';
+
+//# sourceMappingURL=index.js.map

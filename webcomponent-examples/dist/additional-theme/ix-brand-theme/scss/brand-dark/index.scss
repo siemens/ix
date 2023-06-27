@@ -1,9 +1,0 @@
-/*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
- */
-@import '~@siemens/ix/scss/theme/define-theme';
-@import './variables';
-@import './sizes';
-
-@include define-theme($name: 'brand-dark', $theme-colors: $brand-dark, $hover-percentage: 5%, $active-percentage: 10%, $theme-sizes: $brand-dark-sizes) {
-}

@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 import { LegalLinkLanguage } from "./components/siemens-about-content/imprint-language";
+export { LegalLinkLanguage } from "./components/siemens-about-content/imprint-language";
 export namespace Components {
     interface IxSiemensAboutContent {
         /**

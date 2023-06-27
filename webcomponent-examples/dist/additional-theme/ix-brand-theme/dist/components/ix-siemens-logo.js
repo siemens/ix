@@ -2,7 +2,7 @@ import { proxyCustomElement, HTMLElement, h, Host } from '@stencil/core/internal
 
 const siemensLogoCss = ":host{display:inline-block}:host .logo>path{fill:var(--theme-app-header-logo--color)}";
 
-const SiemensLogo = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
+const SiemensLogo = /*@__PURE__*/ proxyCustomElement(class SiemensLogo extends HTMLElement {
   constructor() {
     super();
     this.__registerHost();
@@ -31,3 +31,5 @@ const IxSiemensLogo = SiemensLogo;
 const defineCustomElement = defineCustomElement$1;
 
 export { IxSiemensLogo, defineCustomElement };
+
+//# sourceMappingURL=ix-siemens-logo.js.map
