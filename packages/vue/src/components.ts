@@ -38,6 +38,12 @@ export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicati
 ]);
 
 
+export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', undefined, [
+  'image',
+  'initials'
+]);
+
+
 export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNavigation>('ix-basic-navigation', undefined, [
   'applicationName',
   'hideHeader'

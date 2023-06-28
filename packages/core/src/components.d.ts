@@ -121,6 +121,19 @@ export namespace Components {
          */
         "name": string;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image": string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials": string;
+    }
     interface IxBasicNavigation {
         /**
           * Application name
@@ -2154,6 +2167,15 @@ declare global {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
+    }
+    var HTMLIxAvatarElement: {
+        prototype: HTMLIxAvatarElement;
+        new (): HTMLIxAvatarElement;
+    };
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
     var HTMLIxBasicNavigationElement: {
@@ -2702,6 +2724,7 @@ declare global {
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
@@ -2844,6 +2867,19 @@ declare namespace LocalJSX {
           * Application name
          */
         "name"?: string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image"?: string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -4875,6 +4911,7 @@ declare namespace LocalJSX {
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
+        "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
@@ -4971,6 +5008,10 @@ declare module "@stencil/core" {
             "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;

@@ -363,6 +363,73 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/avatar",
+      "filePath": "./src/components/avatar/avatar.tsx",
+      "fileName": "avatar.tsx",
+      "readmePath": "./src/components/avatar/readme.md",
+      "usagesDir": "./src/components/avatar/usage",
+      "tag": "ix-avatar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-menu-avatar"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-menu-avatar": [
+          "ix-avatar"
+        ]
+      },
+      "props": [
+        {
+          "name": "image",
+          "type": "string",
+          "mutable": false,
+          "attr": "image",
+          "reflectToAttr": false,
+          "docs": "Display a avatar image",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "mutable": false,
+          "attr": "initials",
+          "reflectToAttr": false,
+          "docs": "Display the initials of the user. Will be overwritten by image",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/basic-navigation",
       "filePath": "./src/components/basic-navigation/basic-navigation.tsx",
       "fileName": "basic-navigation.tsx",
@@ -6611,11 +6678,13 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-avatar",
         "ix-dropdown",
         "ix-menu-avatar-item"
       ],
       "dependencyGraph": {
         "ix-menu-avatar": [
+          "ix-avatar",
           "ix-dropdown",
           "ix-menu-avatar-item"
         ],

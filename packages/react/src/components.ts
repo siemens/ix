@@ -12,6 +12,7 @@ export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, 
 export const IxAnimatedTab = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTab, HTMLIxAnimatedTabElement>('ix-animated-tab');
 export const IxAnimatedTabs = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTabs, HTMLIxAnimatedTabsElement>('ix-animated-tabs');
 export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxApplicationHeader, HTMLIxApplicationHeaderElement>('ix-application-header');
+export const IxAvatar = /*@__PURE__*/createReactComponent<JSX.IxAvatar, HTMLIxAvatarElement>('ix-avatar');
 export const IxBasicNavigation = /*@__PURE__*/createReactComponent<JSX.IxBasicNavigation, HTMLIxBasicNavigationElement>('ix-basic-navigation');
 export const IxBlind = /*@__PURE__*/createReactComponent<JSX.IxBlind, HTMLIxBlindElement>('ix-blind');
 export const IxBreadcrumb = /*@__PURE__*/createReactComponent<JSX.IxBreadcrumb, HTMLIxBreadcrumbElement>('ix-breadcrumb');

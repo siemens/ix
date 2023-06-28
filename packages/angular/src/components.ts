@@ -102,6 +102,28 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 
 @ProxyCmp({
+  inputs: ['image', 'initials']
+})
+@Component({
+  selector: 'ix-avatar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['image', 'initials'],
+})
+export class IxAvatar {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxAvatar extends Components.IxAvatar {}
+
+
+@ProxyCmp({
   inputs: ['applicationName', 'hideHeader']
 })
 @Component({
