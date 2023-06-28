@@ -1151,14 +1151,14 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'url']
+  inputs: ['disabled', 'target', 'url']
 })
 @Component({
   selector: 'ix-link-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'url'],
+  inputs: ['disabled', 'target', 'url'],
 })
 export class IxLinkButton {
   protected el: HTMLElement;

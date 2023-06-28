@@ -10,9 +10,8 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
- * @since 1.7.0
+ * @since 2.0.0
  */
-
 @Component({
   tag: 'ix-link-button',
   styleUrl: 'link-button.scss',
@@ -29,6 +28,13 @@ export class LinkButton {
    */
   @Prop() url: string;
 
+  /**
+   * Specifies where to open the link
+   *
+   * https://www.w3schools.com/html/html_links.asp
+   */
+  @Prop() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
+
   render() {
     return (
       <Host>
@@ -40,11 +46,12 @@ export class LinkButton {
             disabled: this.disabled,
           }}
           href={this.disabled ? undefined : this.url}
+          target={this.target}
         >
           <ix-icon class="icon" name="chevron-right-small" size="16"></ix-icon>
           <div
             class={{
-              underline: true,
+              link: true,
               disabled: this.disabled,
             }}
           >

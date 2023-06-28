@@ -20,6 +20,8 @@
 
   .link-button {
     display: inline-flex;
+    position: relative;
+    width: 100%;
     padding: 0 $tiny-space 0 0;
     align-items: center;
     justify-content: center;
@@ -28,10 +30,19 @@
     cursor: pointer;
     text-decoration: none;
 
+    .link {
+      display: block;
+      position: relative;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
     @include hover {
       color: var(--theme-color-dynamic--hover);
 
-      .underline {
+      .link {
         text-decoration: underline;
         text-underline-offset: 0.2rem;
       }
@@ -40,7 +51,7 @@
     @include active {
       color: var(--theme-color-dynamic--active);
 
-      .underline {
+      .link {
         text-decoration: underline;
         text-underline-offset: 0.2rem;
       }

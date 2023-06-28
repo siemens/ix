@@ -1029,13 +1029,17 @@ export namespace Components {
         "value": string | number;
     }
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface IxLinkButton {
         /**
           * Disable the link button
          */
         "disabled": boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target": '_self' | '_blank' | '_parent' | '_top';
         /**
           * Url for the link button
          */
@@ -2481,7 +2485,7 @@ declare global {
         new (): HTMLIxKpiElement;
     };
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
     }
@@ -3920,13 +3924,17 @@ declare namespace LocalJSX {
         "value"?: string | number;
     }
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface IxLinkButton {
         /**
           * Disable the link button
          */
         "disabled"?: boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
           * Url for the link button
          */
@@ -5126,7 +5134,7 @@ declare module "@stencil/core" {
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
             /**
-             * @since 1.7.0
+             * @since 2.0.0
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;

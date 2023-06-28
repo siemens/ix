@@ -403,7 +403,8 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefine
 
 export const IxLinkButton = /*@__PURE__*/ defineContainer<JSX.IxLinkButton>('ix-link-button', undefined, [
   'disabled',
-  'url'
+  'url',
+  'target'
 ]);
 
 

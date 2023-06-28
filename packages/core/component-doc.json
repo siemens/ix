@@ -5654,7 +5654,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "1.7.0"
+          "text": "2.0.0"
         }
       ],
       "encapsulation": "shadow",
@@ -5680,6 +5680,36 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\"",
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the link\n\nhttps://www.w3schools.com/html/html_links.asp",
+          "docsTags": [],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
             }
           ],
           "optional": false,

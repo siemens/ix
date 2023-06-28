@@ -19,4 +19,13 @@ regressionTest.describe('link-button', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('truncate', async ({ page }) => {
+    await page.goto('link-button/truncate');
+
+    const selectItem = await page.waitForSelector("[link-button-id='1']");
+    await selectItem.hover();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
