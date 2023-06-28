@@ -1494,6 +1494,7 @@ export namespace Components {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack": boolean;
         /**
           * Size of spinner
          */
@@ -4305,6 +4306,7 @@ declare namespace LocalJSX {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack"?: boolean;
         /**
           * Size of spinner
          */
