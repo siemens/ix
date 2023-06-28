@@ -119,7 +119,7 @@ export class MenuCategory {
   }
 
   private isCategoryItemListVisible() {
-    return (this.showItems || this.isNestedItemActive()) && this.menuExpand;
+    return this.menuExpand && (this.showItems || this.isNestedItemActive());
   }
 
   componentDidLoad() {
