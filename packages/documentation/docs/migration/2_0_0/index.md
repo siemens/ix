@@ -13,9 +13,7 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 ## Deprecation Notice: ix-menu-item `tabIcon` property
 
-Previously, you may have used the `tabIcon` property to specify an icon for your ix-menu-item. However, to enhance clarity and align with established naming conventions in the library, we have deprecated the `tabIcon` property.
-
-To migrate your code and replace the deprecated `tabIcon` property with the `icon` property, please follow these steps:
+Previously, the `tabIcon` property was used to specify an icon for the `ix-menu-item`. However, to enhance clarity and align with established naming conventions in the library, we have deprecated the `tabIcon` property in favor of the more concise property name `icon`.
 
 ```html
 <!-- Previous code -->
@@ -25,31 +23,13 @@ To migrate your code and replace the deprecated `tabIcon` property with the `ico
 <ix-menu-item icon="my-icon"></ix-menu-item>
 ```
 
-You can seamlessly transition from using the deprecated `tabIcon` property to the new `icon` property in ix-menu-item components while maintaining the same functionality.
-
-## Event payload changed for ix-menu-settings and ix-menu-about
-
-Previously, when closing the ix-menu-about and ix-menu-settings components, the close event's detail object provided information as a `CustomEvent<PointerEvent>`. However, to improve clarity and provide more specific information, the detail object has been updated to a `CustomEvent<{ nativeEvent: MouseEvent, name: string }}>` format.
-
-The new detail object includes two properties:
-
-- `nativeEvent`: This property contains the original MouseEvent that triggered the close event.
-- `name`: This property specifies the name of the component (ix-menu-about or ix-menu-settings) for which the close event is being fired.
-
-To handle the close event effectively, ensure that your code is updated to reflect this breaking change.
-
-
 # New design concepts
 
 ## ix-menu
 
-
-In the latest version of ix-menu, we have addressed the issue of menu items overflowing outside the menu container. Previously, when there were too many items, users had to click on a dropdown to see the hidden ones, resulting in a suboptimal experience.
-
-To improve usability, we have made a breaking change. Now, the menu items overflow within the ix-menu itself as a scrollable list. This ensures that all menu items remain contained within the menu, offering a more intuitive and visually consistent experience.
-
-These enhancements significantly improve the usability of ix-menu and enhance the overall user experience of your applications.
-
+In the latest version of `ix-menu`, we have changed how menu items overflowing outside the menu container are being handled. Previously, when there were too many items, users had to click on a dropdown to see the hidden ones, resulting in a suboptimal experience.
+Now the list of menu items will scroll vertically to prevent overflow.
+This ensures that all menu items remain contained within the menu, offering a more intuitive and visually consistent experience.
 
 ### New component `ix-menu-category`
 
@@ -89,22 +69,20 @@ By setting the `supportedModes` property, you can define which layout modes shou
   <!-- Menu items and categories -->
 </ix-menu>
 ```
-## Migration to ShadowDOM Components
+## Shadow DOM
 
-In this update, we are excited to announce that we have migrated all of our components to ShadowDOM components. This migration brings several benefits and enhancements to the functionality and performance of our library.
-
-ShadowDOM is a web standard that encapsulates the DOM subtree of a component, providing better isolation and encapsulation. By utilizing ShadowDOM, our components are now more robust and less prone to style conflicts or interference from external CSS.
+We are excited to announce that we have migrated all of our components to Shadow DOM. This migration brings several benefits and enhancements to the functionality and performance of our library.
 
 Here are the key advantages of migrating to ShadowDOM components:
 
-1. **Encapsulation**: With ShadowDOM, each component's styles and markup are encapsulated within its own DOM subtree. This isolation prevents styles from leaking out or being overridden unintentionally, ensuring more predictable and maintainable styling.
+1. **Interoperable**: ShadowDOM provides encapsulation for components, isolating their styles and markup within a dedicated DOM subtree. This ensures predictable and maintainable styling, while enabling seamless integration of self-contained and reusable components into various projects without conflicts or interference with existing styles and functionality.
 
 2. **Improved Performance**: ShadowDOM components have better performance due to the browser's optimized rendering of the encapsulated DOM subtree. This results in faster initial rendering and improved overall responsiveness of the components.
 
-3. **Component Reusability**: The encapsulation provided by ShadowDOM makes our components more self-contained and reusable. They can be easily integrated into different projects without causing conflicts or interfering with existing styles and functionality.
-
-With the migration to ShadowDOM components, we have taken a significant step towards enhancing the reliability, maintainability, and performance of our library. We believe this update will greatly benefit developers and users alike by providing a more seamless and robust experience.
-
 Please note that as part of this migration, some changes may be required in your codebase if you were relying on direct manipulation or styling of our components. We recommend reviewing our updated documentation and examples to ensure a smooth transition and take full advantage of the benefits offered by ShadowDOM components.
 
-We are excited about this update and look forward to your continued success with our improved and upgraded components.
+# Questions ❓🙋‍♀️
+
+Don't forget to checkout your [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md).
+
+If you have question or facing problems during migration [contact us over our forum](https://community.siemens.com/c/ix/)

@@ -118,9 +118,10 @@ export class Menu {
   }
 
   /**
-   *
+   * Supported layouts
    */
   @Prop() supportedModes: Mode[] = ['small', 'medium', 'large'];
+  @Watch('supportedModes')
   supportedModesChange(modes: Mode[]) {
     screenMode.setSupportedMods(modes);
   }

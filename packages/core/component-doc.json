@@ -6059,7 +6059,7 @@
           "type": "Mode[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Supported layouts",
           "docsTags": [],
           "default": "['small', 'medium', 'large']",
           "values": [
@@ -6698,7 +6698,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [

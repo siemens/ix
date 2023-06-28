@@ -1098,6 +1098,9 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * Supported layouts
+         */
         "supportedModes": Mode[];
         /**
           * Toggle About tabs
@@ -1197,6 +1200,9 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -2471,6 +2477,9 @@ declare global {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
     }
     var HTMLIxMenuCategoryElement: {
@@ -3918,6 +3927,9 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * Supported layouts
+         */
         "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
@@ -4020,6 +4032,9 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxMenuCategory {
         /**
           * Icon of the category
@@ -5008,6 +5023,9 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
