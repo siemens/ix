@@ -85,7 +85,6 @@ export class Chip {
 
   private getCloseButton() {
     return (
-      // class="btn btn-invisible-secondary btn-icon btn-oval close-button"
       <div class="close-button-container">
         {this.variant === 'custom' ? (
           <ix-icon-button
@@ -102,21 +101,6 @@ export class Chip {
             }}
           ></ix-icon-button>
         ) : (
-          // <ix-button
-          //   type="button"
-          //   variant="Secondary"
-          //   ghost
-          //   onClick={(event) => {
-          //     this.close.emit(event);
-          //     this.closeChip.emit(event);
-          //     event.stopPropagation();
-          //   }}
-          // >
-          //   <i
-          //     class="glyph glyph-16 glyph-close-small"
-          //     style={{ color: this.color }}
-          //   />
-          // </ix-button>
           <ix-icon-button
             type="button"
             variant="Secondary"
@@ -154,11 +138,7 @@ export class Chip {
     }
 
     return (
-      <Host
-        tabIndex="-1"
-        title={this.el.textContent}
-        // style={{ ...customStyle }}
-      >
+      <Host tabIndex="-1" title={this.el.textContent}>
         <div
           style={{ ...customStyle }}
           class={{

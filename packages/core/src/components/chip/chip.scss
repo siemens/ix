@@ -67,8 +67,6 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
   pointer-events: none;
 }
 
-// =====
-
 .container.primary {
   background-color: var(--theme-color-primary);
   color: var(--theme-chip-primary--color);
@@ -112,7 +110,6 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
 
 @each $color in $predefined-chips {
   .container.#{$color} {
-    // :host([variant='#{$color}']) {
     color: var(--theme-color-#{$color}--contrast);
 
     &:hover::after {
@@ -187,4 +184,3 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
     }
   }
 }
-// =====
