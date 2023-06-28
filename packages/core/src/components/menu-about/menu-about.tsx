@@ -23,7 +23,7 @@ import {
 @Component({
   tag: 'ix-menu-about',
   styleUrl: 'menu-about.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAbout {
   /**
@@ -46,7 +46,10 @@ export class MenuAbout {
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<MouseEvent>;
+  @Event() close: EventEmitter<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>;
 
   @State() labels: string[] = [];
 
@@ -112,10 +115,9 @@ export class MenuAbout {
     return (
       <Host
         class={{
-          animate__animated: true,
-          animate__fadeInLeft: this.show,
-          animate__fadeOutLeft: !this.show,
+          show: this.show,
         }}
+        slot="ix-menu-about"
       >
         <div class="about-header">
           <h2 class="text-h2">{this.label}</h2>
@@ -123,7 +125,12 @@ export class MenuAbout {
             ghost
             size="24"
             icon="close"
-            onClick={(e) => this.close.emit(e)}
+            onClick={(e) =>
+              this.close.emit({
+                name: 'ix-menu-about',
+                nativeEvent: e,
+              })
+            }
           ></ix-icon-button>
         </div>
         <ix-tabs

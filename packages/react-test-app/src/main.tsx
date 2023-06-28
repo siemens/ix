@@ -60,6 +60,7 @@ import InputWithIcon from './preview-examples/input-with-icon';
 import Kpi from './preview-examples/kpi';
 import MapNavigation from './preview-examples/map-navigation';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
+import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import Pill from './preview-examples/pill';
@@ -257,6 +258,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </Route>
       </Route>
       <Route path="/preview/page-header" element={<PageHeader />} />
+      <Route path="/preview/menu-category" element={<MenuCategory />} />
     </Routes>
   </BrowserRouter>
 );

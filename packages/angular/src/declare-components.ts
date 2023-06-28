@@ -53,6 +53,7 @@ export const DIRECTIVES = [
   d.IxMenuAboutNews,
   d.IxMenuAvatar,
   d.IxMenuAvatarItem,
+  d.IxMenuCategory,
   d.IxMenuItem,
   d.IxMenuSettings,
   d.IxMenuSettingsItem,

@@ -9,8 +9,11 @@
 
 @import 'common-variables';
 @import 'fonts';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: block;
   background-color: var(--theme-nav-overlay--background);
   padding: $medium-space $default-space $default-space $x-large-space;

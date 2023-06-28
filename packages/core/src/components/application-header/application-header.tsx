@@ -9,9 +9,7 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { menuController } from '../utils/menu-service/menu-service';
-import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
 import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -20,14 +18,17 @@ import { Disposable } from '../utils/typed-event';
   shadow: true,
 })
 export class ApplicationHeader {
-  @Element() host!: HTMLIxApplicationHeaderElement;
+  @Element() hostElement!: HTMLIxApplicationHeaderElement;
 
   /**
    * Application name
    */
   @Prop() name: string;
 
-  @State() mode: Mode = 'desktop';
+  /**
+   * @internal
+   */
+  @Prop() mode: Mode = 'large';
 
   @State() menuExpanded = false;
 
@@ -35,17 +36,9 @@ export class ApplicationHeader {
   private modeDisposable?: Disposable;
 
   componentWillLoad() {
-    const layout = hostContext('ix-basic-navigation', this.host);
-    if (isBasicNavigationLayout(layout)) {
-      this.modeDisposable = screenMode.onChange.on(
-        (mode) => (this.mode = mode)
-      );
-      this.mode = screenMode.mode;
-
-      this.menuDisposable = menuController.expandChange.on((show) => {
-        this.menuExpanded = show;
-      });
-    }
+    this.menuDisposable = menuController.expandChange.on((show) => {
+      this.menuExpanded = show;
+    });
   }
 
   componentDidLoad() {
@@ -57,12 +50,24 @@ export class ApplicationHeader {
     this.modeDisposable?.dispose();
   }
 
+  private isLogoSlotted() {
+    const slotElement = this.hostElement.shadowRoot.querySelector(
+      'slot[name="logo"]'
+    ) as HTMLSlotElement;
+    const nodes = slotElement.assignedNodes({
+      flatten: true,
+    });
+
+    return nodes.length !== 0;
+  }
+
   private async attachSiemensLogoIfLoaded() {
     await window.customElements.whenDefined('ix-siemens-logo');
     const logoElement = document.createElement('ix-siemens-logo');
-
-    if (!this.host.querySelector('[slot="logo"]')) {
-      this.host.shadowRoot.querySelector('.logo').appendChild(logoElement);
+    if (!this.isLogoSlotted()) {
+      this.hostElement.shadowRoot
+        .querySelector('.logo')
+        .appendChild(logoElement);
     }
   }
 
@@ -73,7 +78,7 @@ export class ApplicationHeader {
   render() {
     return (
       <Host class={{ [`mode-${this.mode}`]: true }}>
-        {this.mode === 'mobile' ? (
+        {this.mode === 'small' ? (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}

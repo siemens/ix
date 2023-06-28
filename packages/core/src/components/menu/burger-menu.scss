@@ -16,6 +16,7 @@
   height: 2rem;
   width: 2.5rem;
   border-radius: var(--theme-btn--border-radius);
+  pointer-events: all;
 
   svg {
     display: inline-block;
@@ -29,6 +30,11 @@
     transition: x 0.075s ease-in 0.15s, transform 0.075s ease-in-out 0.075s,
       y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
     transform-origin: center;
+  }
+
+  ix-icon-button {
+    transition: transform var(--theme-default-time);
+    pointer-events: none;
   }
 }
 
@@ -58,5 +64,9 @@
     opacity: 1;
     transform: rotate(45deg);
     y: 11px;
+  }
+
+  ix-icon-button {
+    transform: rotate(180deg);
   }
 }

@@ -18,8 +18,8 @@ import {
 
 @Component({
   tag: 'ix-menu-avatar-item',
-  styleUrl: 'menu-avatar-item.css',
-  scoped: true,
+  styleUrl: 'menu-avatar-item.scss',
+  shadow: true,
 })
 export class MenuAvatarItem {
   /**

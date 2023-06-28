@@ -68,7 +68,7 @@ frameworks={{
 
 :::info
 
-Will be used in UX context as **Secondary**
+Will be used as **Secondary** in UX context
 
 :::
 
@@ -86,7 +86,7 @@ frameworks={{
 
 :::info
 
-Will be used in UX context as **Ghost**
+Will be used as **Ghost** in UX context
 
 :::
 
@@ -104,7 +104,7 @@ frameworks={{
 
 :::info
 
-Will be used in UX context as **Grey button**
+Will be used as **Grey button** in UX context
 
 :::
 
@@ -122,7 +122,7 @@ frameworks={{
 
 :::info
 
-Will be used in UX context as **Grey secondary**
+Will be used as **Grey secondary** in UX context
 
 :::
 
@@ -140,7 +140,7 @@ frameworks={{
 
 :::info
 
-Will be used in UX context as **Grey ghost**
+Will be used as **Grey ghost** in UX context
 
 :::
 
