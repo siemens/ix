@@ -43,6 +43,38 @@
   }
 }
 
+@mixin host-hover() {
+  :host(:not(.disabled):not(:disabled)) {
+    cursor: pointer;
+  }
+
+  :host(:hover:not(.disabled):not(:disabled)) {
+      @content;
+  }
+}
+
+@mixin host-active() {
+  :host(:not(.disabled):not(:disabled)) {
+    cursor: pointer;
+  }
+
+  :host(:active:not(.disabled):not(:disabled)) {
+      @content;
+  }
+}
+
+@mixin host-focus() {
+  :host(:focus:not(.disabled):not(:disabled)) {
+    @content;
+  }
+}
+
+@mixin host-focus-visible() {
+  :host(:focus-visible:not(.disabled):not(:disabled)) {
+    @content;
+  }
+}
+
 @mixin ghost-hover-pressed {
   &:not(.disabled):not(:disabled) {
     &.hover,

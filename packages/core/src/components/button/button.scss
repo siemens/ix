@@ -27,6 +27,10 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+
+  ix-spinner {
+    margin-right: 0.25rem;
+  }
 }
 
 :host(.disabled) {

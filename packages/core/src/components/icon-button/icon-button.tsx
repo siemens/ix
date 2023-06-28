@@ -49,7 +49,7 @@ export class IconButton implements Button {
   @Prop() oval: boolean;
 
   /**
-   * Button icon
+   * Icon name
    */
   @Prop() icon: string;
 
@@ -77,6 +77,11 @@ export class IconButton implements Button {
    * Type of the button
    */
   @Prop() type: 'button' | 'submit' = 'button';
+
+  /**
+   * Loading button
+   */
+  @Prop() loading = false;
 
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
@@ -118,7 +123,7 @@ export class IconButton implements Button {
         true,
         this.oval,
         this.selected,
-        this.disabled
+        this.disabled || this.loading
       ),
       'icon-button': true,
       ...this.getIconSizeClass(),
@@ -133,10 +138,16 @@ export class IconButton implements Button {
           type={this.type}
           onClick={() => this.dispatchFormEvents()}
         >
-          <ix-icon size={this.size} name={this.icon} color={this.color} />
-          <div style={{ display: 'none' }}>
-            <slot></slot>
-          </div>
+          {this.loading ? (
+            <ix-spinner size="small" hideTrack></ix-spinner>
+          ) : null}
+          {this.icon && !this.loading ? (
+            <ix-icon
+              size={this.size}
+              name={this.icon}
+              color={this.color}
+            ></ix-icon>
+          ) : null}
         </button>
       </Host>
     );

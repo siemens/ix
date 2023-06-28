@@ -25,7 +25,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
 }
 
 .Open {
@@ -97,6 +96,7 @@
   position: relative;
   justify-content: flex-start;
   align-items: center;
+  color: var(--theme-color-std-text);
 }
 
 .Theme__Color {

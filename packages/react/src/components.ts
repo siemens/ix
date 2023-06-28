@@ -60,6 +60,7 @@ export const IxMenuAboutItem = /*@__PURE__*/createReactComponent<JSX.IxMenuAbout
 export const IxMenuAboutNews = /*@__PURE__*/createReactComponent<JSX.IxMenuAboutNews, HTMLIxMenuAboutNewsElement>('ix-menu-about-news');
 export const IxMenuAvatar = /*@__PURE__*/createReactComponent<JSX.IxMenuAvatar, HTMLIxMenuAvatarElement>('ix-menu-avatar');
 export const IxMenuAvatarItem = /*@__PURE__*/createReactComponent<JSX.IxMenuAvatarItem, HTMLIxMenuAvatarItemElement>('ix-menu-avatar-item');
+export const IxMenuCategory = /*@__PURE__*/createReactComponent<JSX.IxMenuCategory, HTMLIxMenuCategoryElement>('ix-menu-category');
 export const IxMenuItem = /*@__PURE__*/createReactComponent<JSX.IxMenuItem, HTMLIxMenuItemElement>('ix-menu-item');
 export const IxMenuSettings = /*@__PURE__*/createReactComponent<JSX.IxMenuSettings, HTMLIxMenuSettingsElement>('ix-menu-settings');
 export const IxMenuSettingsItem = /*@__PURE__*/createReactComponent<JSX.IxMenuSettingsItem, HTMLIxMenuSettingsItemElement>('ix-menu-settings-item');

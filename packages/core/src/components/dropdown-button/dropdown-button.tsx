@@ -37,7 +37,8 @@ export class DropdownButton {
   @Prop() ghost = false;
 
   /**
-   * Active button
+   * Active button (has no effect)
+   * @deprecated Will be removed in 3.0.0
    */
   @Prop() active = false;
 

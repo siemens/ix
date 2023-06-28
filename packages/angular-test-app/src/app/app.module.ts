@@ -72,6 +72,7 @@ import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-lef
 import Kpi from 'src/preview-examples/kpi';
 import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
+import MenuCategory from 'src/preview-examples/menu-category';
 import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
@@ -214,6 +215,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     KeyValueListStriped,
     ContentHeader,
     ContentHeaderNoBack,
+    MenuCategory,
   ],
   imports: [
     BrowserModule,

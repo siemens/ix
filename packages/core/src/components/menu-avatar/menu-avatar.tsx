@@ -6,7 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import {
   Component,
   Element,
@@ -20,10 +19,10 @@ import {
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAvatar {
-  @Element() hostElement: HTMLIxMenuAvatarElement;
+  @Element() hostElement!: HTMLIxMenuAvatarElement;
 
   /**
    * First line of text
@@ -63,7 +62,7 @@ export class MenuAvatar {
 
   render() {
     return (
-      <Host>
+      <Host slot="ix-menu-avatar">
         <li
           class="nav-item top-item avatar no-hover"
           title={this.top}
@@ -81,7 +80,7 @@ export class MenuAvatar {
           </div>
         </li>
         <ix-dropdown
-          trigger={this.avatarElementId}
+          trigger={this.hostElement}
           placement={'right-start'}
           offset={{
             mainAxis: 6,
