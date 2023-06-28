@@ -371,10 +371,16 @@
           "text": "1.7.0"
         }
       ],
-      "encapsulation": "scoped",
-      "dependents": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-menu-avatar"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-menu-avatar": [
+          "ix-avatar"
+        ]
+      },
       "props": [
         {
           "name": "image",
@@ -6457,11 +6463,13 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
+        "ix-avatar",
         "ix-dropdown",
         "ix-menu-avatar-item"
       ],
       "dependencyGraph": {
         "ix-menu-avatar": [
+          "ix-avatar",
           "ix-dropdown",
           "ix-menu-avatar-item"
         ],

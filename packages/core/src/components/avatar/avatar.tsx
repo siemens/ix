@@ -49,7 +49,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Avatar {
   @Element() hostElement: HTMLIxAvatarElement;
