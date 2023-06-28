@@ -11,24 +11,32 @@ import MenuEvents from './../../auto-generated/ix-menu/events.md';
 import ItemProps from './../../auto-generated/ix-menu-item/props.md';
 import ItemEvents from './../../auto-generated/ix-menu-item/events.md';
 
+import CategoryProps from './../../auto-generated/ix-menu-category/props.md';
+import CategoryTags from './../../auto-generated/ix-menu-category/tags.md';
+
 import AvatarProps from './../../auto-generated/ix-menu-avatar/props.md';
 import AvatarEvents from './../../auto-generated/ix-menu-avatar/events.md';
 import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md';
 import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
 
 import SourceMenu from './../../auto-generated/previews/web-component/vertical-tabs.md'
+import SourceMenuCategory from './../../auto-generated/previews/web-component/menu-category.md'
 import SourceMenuWithAvatar from './../../auto-generated/previews/web-component/vertical-tabs-with-avatar.md'
 import SourceMenuWithBottomTabs from './../../auto-generated/previews/web-component/menu-with-bottom-tabs.md'
 
 import SourceReactMenu from './../../auto-generated/previews/react/vertical-tabs.md'
+import SourceReactMenuCategory from './../../auto-generated/previews/react/menu-category.md'
 import SourceReactMenuWithAvatar from './../../auto-generated/previews/react/vertical-tabs-with-avatar.md'
 import SourceReactMenuWithBottomTabs from './../../auto-generated/previews/react/menu-with-bottom-tabs.md'
 
 import SourceAngularMenu from './../../auto-generated/previews/angular/vertical-tabs.ts.md'
+import SourceAngularMenuCategoryTs from './../../auto-generated/previews/angular/menu-category.ts.md'
+import SourceAngularMenuCategoryHtml from './../../auto-generated/previews/angular/menu-category.html.md'
 import SourceAngularMenuWithAvatar from './../../auto-generated/previews/angular/vertical-tabs-with-avatar.ts.md'
 import SourceAngularMenuWithBottomTabs from './../../auto-generated/previews/angular/menu-with-bottom-tabs.ts.md'
 
 import SourceVueMenu from './../../auto-generated/previews/vue/vertical-tabs.md'
+import SourceVueMenuCategory from './../../auto-generated/previews/vue/menu-category.md'
 import SourceVueMenuWithAvatar from './../../auto-generated/previews/vue/vertical-tabs-with-avatar.md'
 import SourceVueMenuWithBottomTabs from './../../auto-generated/previews/vue/menu-with-bottom-tabs.md'
 
@@ -44,6 +52,22 @@ frameworks={{
   angular: SourceAngularMenu,
   javascript: SourceMenu,
   vue: SourceVueMenu
+}}></Playground>
+
+## Category
+
+<CategoryTags />
+<Playground
+name="menu-category" height="30rem" noMargin
+hideInitalCodePreview
+frameworks={{
+  react: SourceReactMenuCategory,
+  angular: {
+    "menu.html": SourceAngularMenuCategoryHtml,
+    "menu.ts": SourceAngularMenuCategoryTs
+  },
+  javascript: SourceMenuCategory,
+  vue: SourceVueMenuCategory
 }}></Playground>
 
 ## Avatar
@@ -89,6 +113,12 @@ frameworks={{
 ### Props
 
 <ItemProps />
+
+## Properties (ix-menu-category)
+
+### Props
+
+<CategoryProps />
 
 ## Properties (ix-menu-avatar)
 

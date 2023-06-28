@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
+import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -36,6 +37,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
+export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -113,6 +115,7 @@ export namespace Components {
         "tabPlacement": 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode": Mode;
         /**
           * Application name
          */
@@ -172,6 +175,10 @@ export namespace Components {
           * Is menu displayed as expanded
          */
         "expanded": boolean;
+        /**
+          * Display as pinned
+         */
+        "pinned": boolean;
     }
     interface IxButton {
         /**
@@ -1067,16 +1074,23 @@ export namespace Components {
           * Expand menu
          */
         "expand": boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         "i18nLegal": string;
-        "i18nMore": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
          */
         "maxVisibleMenuItems": number;
+        /**
+          * Menu stays pinned to the left
+         */
+        "pinned": boolean;
         /**
           * Is about tab visible
          */
@@ -1085,6 +1099,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -1183,6 +1201,23 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon": string;
+        /**
+          * Display name of the category
+         */
+        "label": string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications": number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -1190,7 +1225,6 @@ export namespace Components {
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -1202,11 +1236,16 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon": string;
+        /**
           * Show notification count on tab
          */
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -2439,6 +2478,15 @@ declare global {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+    }
+    var HTMLIxMenuCategoryElement: {
+        prototype: HTMLIxMenuCategoryElement;
+        new (): HTMLIxMenuCategoryElement;
+    };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
     var HTMLIxMenuItemElement: {
@@ -2690,6 +2738,7 @@ declare global {
         "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
+        "ix-menu-category": HTMLIxMenuCategoryElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -2775,6 +2824,7 @@ declare namespace LocalJSX {
         "tabPlacement"?: 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode"?: Mode;
         /**
           * Application name
          */
@@ -2846,6 +2896,10 @@ declare namespace LocalJSX {
           * Is menu displayed as expanded
          */
         "expanded"?: boolean;
+        /**
+          * Display as pinned
+         */
+        "pinned"?: boolean;
     }
     interface IxButton {
         /**
@@ -3842,10 +3896,13 @@ declare namespace LocalJSX {
           * Expand menu
          */
         "expand"?: boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         "i18nLegal"?: string;
-        "i18nMore"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
         /**
@@ -3861,6 +3918,10 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Menu stays pinned to the left
+         */
+        "pinned"?: boolean;
+        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -3868,6 +3929,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**
@@ -3881,7 +3946,10 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -3966,6 +4034,23 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon"?: string;
+        /**
+          * Display name of the category
+         */
+        "label"?: string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications"?: number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -3973,7 +4058,6 @@ declare namespace LocalJSX {
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**
@@ -3985,11 +4069,16 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon"?: string;
+        /**
           * Show notification count on tab
          */
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -4005,7 +4094,10 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -4804,6 +4896,7 @@ declare namespace LocalJSX {
         "ix-menu-about-news": IxMenuAboutNews;
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
+        "ix-menu-category": IxMenuCategory;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -4932,6 +5025,10 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
