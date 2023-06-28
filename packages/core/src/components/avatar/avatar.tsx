@@ -43,9 +43,8 @@ function DefaultAvatar(props: { initials?: string }) {
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 /**
- * @since 1.7.0
+ * @since 2.0.0
  */
-
 @Component({
   tag: 'ix-avatar',
   styleUrl: 'avatar.scss',
