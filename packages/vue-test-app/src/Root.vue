@@ -26,6 +26,7 @@ import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
+import MenuCategory from './preview-examples/menu-category.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
@@ -188,6 +189,7 @@ const routes: any = {
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
+  '/preview/menu-category': MenuCategory,
 };
 
 const currentPath = ref(window.location.pathname);

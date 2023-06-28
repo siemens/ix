@@ -15,3 +15,7 @@
     width: 100%;
   }
 }
+
+:host(.d-none) {
+  display: none;
+}

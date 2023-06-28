@@ -323,6 +323,13 @@
         "ix-application-header": [
           "ix-burger-menu"
         ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
@@ -356,6 +363,73 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/avatar",
+      "filePath": "./src/components/avatar/avatar.tsx",
+      "fileName": "avatar.tsx",
+      "readmePath": "./src/components/avatar/readme.md",
+      "usagesDir": "./src/components/avatar/usage",
+      "tag": "ix-avatar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-menu-avatar"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-menu-avatar": [
+          "ix-avatar"
+        ]
+      },
+      "props": [
+        {
+          "name": "image",
+          "type": "string",
+          "mutable": false,
+          "attr": "image",
+          "reflectToAttr": false,
+          "docs": "Display a avatar image",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "mutable": false,
+          "attr": "initials",
+          "reflectToAttr": false,
+          "docs": "Display the initials of the user. Will be overwritten by image",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/basic-navigation",
       "filePath": "./src/components/basic-navigation/basic-navigation.tsx",
       "fileName": "basic-navigation.tsx",
@@ -366,7 +440,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-application-header"
@@ -377,6 +451,13 @@
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -695,12 +776,20 @@
         "ix-datetime-picker",
         "ix-dropdown-button",
         "ix-empty-state",
+        "ix-menu-about-news",
         "ix-modal-example",
         "ix-time-picker",
         "ix-upload"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-card-list": [
           "ix-button"
         ],
@@ -714,6 +803,9 @@
           "ix-button"
         ],
         "ix-empty-state": [
+          "ix-button"
+        ],
+        "ix-menu-about-news": [
           "ix-button"
         ],
         "ix-modal-example": [
@@ -762,6 +854,22 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "invisible",
           "type": "boolean",
           "mutable": false,
@@ -776,6 +884,28 @@
           ],
           "default": "false",
           "deprecation": "use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -1076,6 +1206,11 @@
           "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -1315,10 +1450,11 @@
           "ix-dropdown"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -1759,6 +1895,7 @@
           "ix-typography"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -2000,7 +2137,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-datetime-picker"
       ],
@@ -2020,6 +2157,11 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-datetime-picker": [
@@ -2330,7 +2472,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-date-picker",
@@ -2351,6 +2493,11 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-time-picker": [
@@ -2742,9 +2889,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-menu-category"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-menu-category": [
+          "ix-divider"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -2774,6 +2927,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -2945,8 +3099,8 @@
         "ix-category-filter",
         "ix-date-picker",
         "ix-dropdown-button",
-        "ix-menu",
         "ix-menu-avatar",
+        "ix-menu-category",
         "ix-select",
         "ix-split-button"
       ],
@@ -2964,10 +3118,10 @@
         "ix-dropdown-button": [
           "ix-dropdown"
         ],
-        "ix-menu": [
+        "ix-menu-avatar": [
           "ix-dropdown"
         ],
-        "ix-menu-avatar": [
+        "ix-menu-category": [
           "ix-dropdown"
         ],
         "ix-select": [
@@ -3295,7 +3449,12 @@
           "ix-icon-button",
           "ix-dropdown"
         ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -3306,9 +3465,15 @@
           "mutable": false,
           "attr": "active",
           "reflectToAttr": false,
-          "docs": "Active button",
-          "docsTags": [],
+          "docs": "Active button (has no effect)",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 3.0.0"
+            }
+          ],
           "default": "false",
+          "deprecation": "Will be removed in 3.0.0",
           "values": [
             {
               "type": "boolean"
@@ -3446,6 +3611,7 @@
         "ix-breadcrumb",
         "ix-group-dropdown-item",
         "ix-menu-avatar-item",
+        "ix-menu-category",
         "ix-select",
         "ix-select-item",
         "ix-split-button-item"
@@ -3464,6 +3630,9 @@
           "ix-dropdown-item"
         ],
         "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-menu-category": [
           "ix-dropdown-item"
         ],
         "ix-select": [
@@ -3646,6 +3815,10 @@
           "ix-icon",
           "ix-typography",
           "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -3768,7 +3941,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -3867,10 +4040,16 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-event-list-item": [
+          "ix-icon"
+        ]
+      },
       "props": [
         {
           "name": "chevron",
@@ -3894,8 +4073,13 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nAllowed values are all Core UI color names.",
-          "docsTags": [],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://ix.siemens.io/docs/theming/colors/"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -4006,6 +4190,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4112,16 +4297,20 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-category-filter",
         "ix-select"
       ],
       "dependencies": [
-        "ix-icon"
+        "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-category-filter": [
@@ -4188,6 +4377,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4353,6 +4543,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-group-item": [
@@ -4541,6 +4732,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-group": [
@@ -4798,6 +4990,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
         "ix-content-header",
@@ -4805,6 +4998,7 @@
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
+        "ix-filter-chip",
         "ix-flip-tile",
         "ix-group-context-menu",
         "ix-map-navigation",
@@ -4820,11 +5014,16 @@
         "ix-toast"
       ],
       "dependencies": [
+        "ix-spinner",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
         ],
         "ix-card-list": [
           "ix-icon-button"
@@ -4845,6 +5044,9 @@
           "ix-icon-button"
         ],
         "ix-expanding-search": [
+          "ix-icon-button"
+        ],
+        "ix-filter-chip": [
           "ix-icon-button"
         ],
         "ix-flip-tile": [
@@ -4943,7 +5145,7 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Button icon",
+          "docs": "Icon name",
           "docsTags": [],
           "values": [
             {
@@ -4967,6 +5169,28 @@
             }
           ],
           "deprecation": "Use ghost property",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -5496,7 +5720,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-map-navigation-overlay",
@@ -5514,10 +5738,14 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-application-header": [
           "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -5693,6 +5921,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-map-navigation": [
@@ -5777,18 +6006,23 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-burger-menu",
-        "ix-menu-item",
-        "ix-dropdown"
+        "ix-menu-item"
       ],
       "dependencyGraph": {
         "ix-menu": [
           "ix-burger-menu",
-          "ix-menu-item",
-          "ix-dropdown"
+          "ix-menu-item"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-menu-item": [
           "ix-icon"
@@ -5897,6 +6131,31 @@
           "required": false
         },
         {
+          "name": "forceLayout",
+          "type": "\"large\" | \"medium\" | \"small\"",
+          "mutable": false,
+          "attr": "force-layout",
+          "reflectToAttr": false,
+          "docs": "Change the responsive layout of the menu structure",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "medium",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nCollapse",
           "type": "string",
           "mutable": false,
@@ -5939,23 +6198,6 @@
           "docs": "",
           "docsTags": [],
           "default": "'About & legal information'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "i18nMore",
-          "type": "string",
-          "mutable": false,
-          "attr": "i-1-8n-more",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "default": "'More…'",
           "values": [
             {
               "type": "string"
@@ -6016,6 +6258,23 @@
           "required": false
         },
         {
+          "name": "pinned",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pinned",
+          "reflectToAttr": false,
+          "docs": "Menu stays pinned to the left",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "showAbout",
           "type": "boolean",
           "mutable": true,
@@ -6044,6 +6303,22 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "supportedModes",
+          "type": "Mode[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Supported layouts",
+          "docsTags": [],
+          "default": "['small', 'medium', 'large']",
+          "values": [
+            {
+              "type": "Mode[]"
             }
           ],
           "optional": false,
@@ -6145,6 +6420,11 @@
           "target": "window",
           "capture": false,
           "passive": true
+        },
+        {
+          "event": "close",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -6159,7 +6439,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-tab-item",
@@ -6173,6 +6453,10 @@
           "ix-tabs"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-tabs": [
           "ix-icon"
         ]
       },
@@ -6232,7 +6516,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "{ nativeEvent: MouseEvent; name: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -6256,7 +6540,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -6296,18 +6580,27 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
-        "ix-icon-button"
+        "ix-typography",
+        "ix-icon-button",
+        "ix-button"
       ],
       "dependencyGraph": {
         "ix-menu-about-news": [
           "ix-icon",
-          "ix-icon-button"
+          "ix-typography",
+          "ix-icon-button",
+          "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -6450,14 +6743,16 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-avatar",
         "ix-dropdown",
         "ix-menu-avatar-item"
       ],
       "dependencyGraph": {
         "ix-menu-avatar": [
+          "ix-avatar",
           "ix-dropdown",
           "ix-menu-avatar-item"
         ],
@@ -6589,7 +6884,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
       ],
@@ -6659,6 +6954,105 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/menu-category",
+      "filePath": "./src/components/menu-category/menu-category.tsx",
+      "fileName": "menu-category.tsx",
+      "readmePath": "./src/components/menu-category/readme.md",
+      "usagesDir": "./src/components/menu-category/usage",
+      "tag": "ix-menu-category",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-menu-item",
+        "ix-icon",
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-typography",
+        "ix-divider"
+      ],
+      "dependencyGraph": {
+        "ix-menu-category": [
+          "ix-menu-item",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-typography",
+          "ix-divider"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Display name of the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "notifications",
+          "type": "number",
+          "mutable": false,
+          "attr": "notifications",
+          "reflectToAttr": false,
+          "docs": "Show notification count on the category",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/menu-item",
       "filePath": "./src/components/menu-item/menu-item.tsx",
       "fileName": "menu-item.tsx",
@@ -6668,10 +7062,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "menu-item-label Custom label"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu"
+        "ix-menu",
+        "ix-menu-category"
       ],
       "dependencies": [
         "ix-icon"
@@ -6681,6 +7081,9 @@
           "ix-icon"
         ],
         "ix-menu": [
+          "ix-menu-item"
+        ],
+        "ix-menu-category": [
           "ix-menu-item"
         ]
       },
@@ -6708,14 +7111,8 @@
           "attr": "bottom",
           "reflectToAttr": false,
           "docs": "Caution: this is no longer working. Please use slot=\"bottom\" instead.\n\nPlace tab on bottom",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Replaced by slot based implementation"
-            }
-          ],
+          "docsTags": [],
           "default": "false",
-          "deprecation": "Will be removed in 2.0.0. Replaced by slot based implementation",
           "values": [
             {
               "type": "boolean"
@@ -6758,6 +7155,22 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name from @siemens/ix-icons",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "notifications",
           "type": "number",
           "mutable": false,
@@ -6780,8 +7193,14 @@
           "attr": "tab-icon",
           "reflectToAttr": false,
           "docs": "Icon name from @siemens/ix-icons",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `icon` property. Will be removed in 3.0.0"
+            }
+          ],
           "default": "'document'",
+          "deprecation": "Use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
               "type": "string"
@@ -6794,7 +7213,12 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "menu-item-label Custom label",
+          "docs": ""
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -6809,7 +7233,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-tab-item",
@@ -6823,6 +7247,10 @@
           "ix-tabs"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-tabs": [
           "ix-icon"
         ]
       },
@@ -6882,7 +7310,7 @@
       "events": [
         {
           "event": "close",
-          "detail": "MouseEvent",
+          "detail": "{ nativeEvent: MouseEvent; name: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -6906,7 +7334,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -6958,6 +7386,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -7488,6 +7917,11 @@
           "ix-modal-container"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-modal-container": [
@@ -7537,6 +7971,7 @@
           "ix-select-item"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-select": [
@@ -7554,7 +7989,7 @@
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ]
       },
       "props": [
@@ -8075,9 +8510,10 @@
           "ix-icon"
         ],
         "ix-filter-chip": [
-          "ix-icon"
+          "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-pagination": [
@@ -8451,10 +8887,18 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-button",
+        "ix-icon-button",
         "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
         "ix-upload": [
           "ix-spinner"
         ]
@@ -8462,7 +8906,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"large\" | \"medium\"",
+          "type": "\"large\" | \"medium\" | \"small\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -8477,6 +8921,10 @@
             {
               "value": "medium",
               "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -8484,7 +8932,7 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\" | \"sencodary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -8498,10 +8946,6 @@
             },
             {
               "value": "secondary",
-              "type": "string"
-            },
-            {
-              "value": "sencodary",
               "type": "string"
             }
           ],
@@ -8864,7 +9308,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu-about",
         "ix-menu-settings"
@@ -9043,13 +9487,18 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "none",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-menu-about",
         "ix-menu-settings"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
+        "ix-tabs": [
+          "ix-icon"
+        ],
         "ix-menu-about": [
           "ix-tabs"
         ],
@@ -9229,7 +9678,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-datetime-picker"
       ],
@@ -9245,6 +9694,11 @@
           "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-datetime-picker": [
@@ -9512,7 +9966,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-toast-container"
       ],
@@ -9526,6 +9980,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-toast-container": [
@@ -9674,7 +10129,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-toast"
@@ -9688,6 +10143,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -10356,6 +10812,10 @@
         "ix-upload": [
           "ix-spinner",
           "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [

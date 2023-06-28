@@ -16,6 +16,17 @@ SPDX-License-Identifier: MIT
 
 iX is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
+<h2 align="center">
+  <a href="https://ix.siemens.io/docs/installation/">Quickstart</a>
+  <span>-</span>
+  <a href="https://ix.siemens.io/docs/introduction">
+    Documentation
+  </a>
+  <span>-</span>
+  <a href="https://community.siemens.com/c/ix/">Community</a>
+</h2>
+
+
 ## Installation
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)

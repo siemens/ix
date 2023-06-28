@@ -7,25 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Method,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
 
 @Component({
   tag: 'ix-toast-container',
-  scoped: true,
+  shadow: true,
 })
 export class ToastContainer {
-  @Element() host!: HTMLIxToastContainerElement;
-
   /**
    */
   @Prop() containerId = 'toast-container';

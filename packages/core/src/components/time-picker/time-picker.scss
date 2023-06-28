@@ -8,85 +8,90 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+:host {
+  @include ix-component;
 
-.title {
-  display: flex;
-  align-items: center;
-  font: var(--theme-text-default-title);
-  min-height: $large-control-height;
-  color: var(--theme-datepicker-time-header--color);
-}
+  @import 'components/forms';
 
-.clock {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 0;
-}
-
-input,
-.time-reference {
-  width: 2.625rem;
-  height: $large-space;
-  text-align: center;
-  margin-top: $small-space;
-  margin-bottom: $small-space;
-
-  /* Chrome, Safari, Edge, Opera */
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0 0.3125rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Firefox */
-  &[type='number'] {
-    -moz-appearance: textfield;
+  .title {
+    display: flex;
+    align-items: center;
+    font: var(--theme-text-default-title);
+    min-height: $large-control-height;
+    color: var(--theme-datepicker-time-header--color);
   }
 
-}
+  .clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+  }
 
-.form-control[type=number] {
-  text-align: center;
-}
+  input,
+  .time-reference {
+    width: 2.625rem;
+    height: $large-space;
+    text-align: center;
+    margin-top: $small-space;
+    margin-bottom: $small-space;
 
-.columns {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0 0.3125rem;
+    }
 
-.column-seperator {
-  display: flex;
-  align-items: center;
-  margin: 0 $tiny-space;
-}
+    /* Firefox */
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
 
-.button {
-  display: flex;
-  justify-content: flex-end;
-}
+  .form-control[type='number'] {
+    text-align: center;
+  }
 
-.default-space {
-  margin-left: $default-space;
-}
+  .columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-.text-align {
-  text-align: center;
-}
+  .column-seperator {
+    display: flex;
+    align-items: center;
+    margin: 0 $tiny-space;
+  }
 
-.hidden {
-  display: none;
-}
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-.time-reference {
-  margin: $medium-space 0;
+  .default-space {
+    margin-left: $default-space;
+  }
+
+  .text-align {
+    text-align: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .time-reference {
+    margin: $medium-space 0;
+  }
 }

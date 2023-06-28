@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 
@@ -17,11 +17,9 @@ export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 @Component({
   tag: 'ix-date-time-card',
   styleUrl: 'date-time-card.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DateTimeCard {
-  @Element() hostElement: HTMLIxDateTimeCardElement;
-
   /**
    * set styles
    */

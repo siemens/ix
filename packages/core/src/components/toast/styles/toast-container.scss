@@ -8,6 +8,11 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
+
+:host {
+  @include ix-component;
+}
 
 #toast-container {
   > :not(:last-child) {
