@@ -200,6 +200,7 @@ export namespace Components {
         "invisible": boolean;
         /**
           * Loading button
+          * @since 2.0.0
          */
         "loading": boolean;
         /**
@@ -937,6 +938,7 @@ export namespace Components {
         "invisible": boolean;
         /**
           * Loading button
+          * @since 2.0.0
          */
         "loading": boolean;
         /**
@@ -2934,6 +2936,7 @@ declare namespace LocalJSX {
         "invisible"?: boolean;
         /**
           * Loading button
+          * @since 2.0.0
          */
         "loading"?: boolean;
         /**
@@ -3780,6 +3783,7 @@ declare namespace LocalJSX {
         "invisible"?: boolean;
         /**
           * Loading button
+          * @since 2.0.0
          */
         "loading"?: boolean;
         /**

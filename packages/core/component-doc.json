@@ -832,7 +832,12 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -5112,7 +5117,12 @@
           "attr": "loading",
           "reflectToAttr": false,
           "docs": "Loading button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {

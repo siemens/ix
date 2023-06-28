@@ -57,6 +57,8 @@ export class Button {
 
   /**
    * Loading button
+   *
+   * @since 2.0.0
    */
   @Prop() loading: boolean = false;
 
