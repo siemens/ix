@@ -11,6 +11,11 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('button: basic', () => {
+  regressionTest('should show loading spinner', async ({ page }) => {
+    await page.goto('button/loading');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
+  });
+
   regressionTest('should not have visual regressions', async ({ page }) => {
     await page.goto('button/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

@@ -12,6 +12,7 @@ import WebComponentButtonTextIcon from './../auto-generated/previews/web-compone
 import WebComponentButtonGroup from './../auto-generated/previews/web-component/button-group.md'
 import WebComponentButtonIcon from './../auto-generated/previews/web-component/button-with-icon.md'
 import WebComponentButtonSelected from './../auto-generated/previews/web-component/button-selected.md'
+import WebComponentButtonLoading from './../auto-generated/previews/web-component/button-loading.md'
 
 import ReactButtons from './../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../auto-generated/previews/react/button-group.md'
@@ -23,6 +24,7 @@ import ReactButtonGrey from './../auto-generated/previews/react/button-grey.md'
 import ReactButtonGreySecondary from './../auto-generated/previews/react/button-grey-secondary.md'
 import ReactButtonGreyGhost from './../auto-generated/previews/react/button-grey-ghost.md'
 import ReactButtonTextIcon from './../auto-generated/previews/react/button-text-icon.md'
+import ReactButtonLoading from './../auto-generated/previews/react/button-loading.md'
 
 import AngularButtons from './../auto-generated/previews/angular/buttons.ts.md'
 import AngularButtonGroup from './../auto-generated/previews/angular/button-group.ts.md'
@@ -34,6 +36,7 @@ import AngularButtonGrey from './../auto-generated/previews/angular/button-grey.
 import AngularButtonGreySecondary from './../auto-generated/previews/angular/button-grey-secondary.ts.md'
 import AngularButtonGreyGhost from './../auto-generated/previews/angular/button-grey-ghost.ts.md'
 import AngularButtonTextIcon from './../auto-generated/previews/angular/button-text-icon.ts.md'
+import AngularButtonLoading from './../auto-generated/previews/angular/button-loading.ts.md'
 
 import VueButtons from './../auto-generated/previews/vue/buttons.md'
 import VueButtonGroup from './../auto-generated/previews/vue/button-group.md'
@@ -45,6 +48,7 @@ import VueButtonGrey from './../auto-generated/previews/vue/button-grey.md'
 import VueButtonGreySecondary from './../auto-generated/previews/vue/button-grey-secondary.md'
 import VueButtonGreyGhost from './../auto-generated/previews/vue/button-grey-ghost.md'
 import VueButtonTextIcon from './../auto-generated/previews/vue/button-text-icon.md'
+import VueButtonLoading from './../auto-generated/previews/vue/button-loading.md'
 
 ## Usage
 
@@ -202,6 +206,18 @@ frameworks={{
   angular: AngularButtonIcon,
   javascript: WebComponentButtonIcon,
   vue: VueButtonIcon
+}}></Playground>
+
+### Loading button
+
+<Playground
+name="button-loading"
+hideInitalCodePreview
+frameworks={{
+  react: ReactButtonLoading,
+  angular: AngularButtonLoading,
+  javascript: WebComponentButtonLoading,
+  vue: VueButtonLoading
 }}></Playground>
 
 ## Properties (ix-button)
