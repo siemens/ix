@@ -1542,7 +1542,7 @@ export namespace Components {
         /**
           * Variant of spinner
          */
-        "variant": 'primary' | 'sencodary' | 'secondary';
+        "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -4408,7 +4408,7 @@ declare namespace LocalJSX {
         /**
           * Variant of spinner
          */
-        "variant"?: 'primary' | 'sencodary' | 'secondary';
+        "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ix-spinner',
@@ -15,10 +15,12 @@ import { Component, h, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class Spinner {
+  @Element() hostElement!: HTMLIxSpinnerElement;
+
   /**
    * Variant of spinner
    */
-  @Prop() variant: 'primary' | 'sencodary' | 'secondary' = 'secondary';
+  @Prop() variant: 'primary' | 'secondary' = 'secondary';
 
   /**
    * Size of spinner
@@ -29,6 +31,10 @@ export class Spinner {
    * @internal
    */
   @Prop() hideTrack = false;
+
+  componentDidRender() {
+    console.log(this.hostElement.clientWidth);
+  }
 
   render() {
     return (

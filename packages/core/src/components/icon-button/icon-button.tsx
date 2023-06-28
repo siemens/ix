@@ -148,9 +148,6 @@ export class IconButton implements Button {
               color={this.color}
             ></ix-icon>
           ) : null}
-          <div style={{ display: 'none' }}>
-            <slot></slot>
-          </div>
         </button>
       </Host>
     );

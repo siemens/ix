@@ -8785,7 +8785,7 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\" | \"sencodary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -8799,10 +8799,6 @@
             },
             {
               "value": "secondary",
-              "type": "string"
-            },
-            {
-              "value": "sencodary",
               "type": "string"
             }
           ],
