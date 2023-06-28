@@ -1,3 +1,8 @@
+---
+sidebar_position: 0
+title: Basic navigation
+---
+
 import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 

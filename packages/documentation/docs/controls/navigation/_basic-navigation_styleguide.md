@@ -1,7 +1,3 @@
----
-sidebar_position: 0
-title: Basic navigation
----
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Demo';
 

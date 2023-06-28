@@ -1,7 +1,3 @@
----
-sidebar_position: 0
-title: Basic navigation
----
 import Playground from '@site/src/components/Playground';
 import Props from './../../auto-generated/ix-basic-navigation/props.md';
 
