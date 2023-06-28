@@ -122,7 +122,7 @@ export namespace Components {
         "name": string;
     }
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface IxAvatar {
         /**
@@ -2166,7 +2166,7 @@ declare global {
         new (): HTMLIxApplicationHeaderElement;
     };
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
     }
@@ -2867,7 +2867,7 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     /**
-     * @since 1.7.0
+     * @since 2.0.0
      */
     interface IxAvatar {
         /**
@@ -5005,7 +5005,7 @@ declare module "@stencil/core" {
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             /**
-             * @since 1.7.0
+             * @since 2.0.0
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
