@@ -34,3 +34,8 @@ ___Now___
   name: string;
 }>;
 ```
+
+### `ix-spinner`
+
+Remove typo `sencodary` from `variant` property
+

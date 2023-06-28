@@ -69,6 +69,13 @@ By setting the `supportedModes` property, you can define which layout modes shou
   <!-- Menu items and categories -->
 </ix-menu>
 ```
+
+## Spinner animation
+
+We replaced the previous animation with a cleaner and more refined alternative.
+
+![Spinner](spinner.gif)
+
 ## Shadow DOM
 
 We are excited to announce that we have migrated all of our components to Shadow DOM. This migration brings several benefits and enhancements to the functionality and performance of our library.
