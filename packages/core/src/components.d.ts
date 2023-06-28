@@ -1497,7 +1497,7 @@ export namespace Components {
         /**
           * Size of spinner
          */
-        "size": 'medium' | 'large';
+        "size": 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
@@ -4308,7 +4308,7 @@ declare namespace LocalJSX {
         /**
           * Size of spinner
          */
-        "size"?: 'medium' | 'large';
+        "size"?: 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */

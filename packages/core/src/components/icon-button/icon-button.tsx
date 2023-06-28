@@ -138,13 +138,14 @@ export class IconButton implements Button {
           type={this.type}
           onClick={() => this.dispatchFormEvents()}
         >
-          <ix-spinner class={{ hidden: !this.loading }}></ix-spinner>
-          <ix-icon
-            class={{ hidden: this.loading }}
-            size={this.size}
-            name={this.icon}
-            color={this.color}
-          />
+          {this.loading ? <ix-spinner size="small"></ix-spinner> : null}
+          {this.icon && !this.loading ? (
+            <ix-icon
+              size={this.size}
+              name={this.icon}
+              color={this.color}
+            ></ix-icon>
+          ) : null}
           <div style={{ display: 'none' }}>
             <slot></slot>
           </div>

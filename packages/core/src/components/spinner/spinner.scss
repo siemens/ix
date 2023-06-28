@@ -43,6 +43,16 @@
   }
 }
 
+:host(.small) {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  svg {
+    height: 1.25rem;
+    width: 1.5rem;
+  }
+}
+
 :host(.large) {
   height: 6rem;
   width: 6rem;

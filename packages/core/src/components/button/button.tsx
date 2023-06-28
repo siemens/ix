@@ -110,11 +110,10 @@ export class Button {
             this.disabled || this.loading
           )}
         >
-          <ix-spinner class={{ hidden: !this.loading }}></ix-spinner>
-          <ix-icon
-            class={{ hidden: this.loading || this.icon === undefined }}
-            name={this.icon}
-          ></ix-icon>
+          {this.loading ? <ix-spinner size="small"></ix-spinner> : null}
+          {this.icon && !this.loading ? (
+            <ix-icon name={this.icon}></ix-icon>
+          ) : null}
           <slot></slot>
         </button>
       </Host>

@@ -23,13 +23,14 @@ export class Spinner {
   /**
    * Size of spinner
    */
-  @Prop() size: 'medium' | 'large' = 'medium';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
 
   render() {
     return (
       <Host
         class={{
           primary: this.variant === 'primary',
+          small: this.size === 'small',
           large: this.size === 'large',
         }}
       >
