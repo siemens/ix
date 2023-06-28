@@ -604,7 +604,8 @@ export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-
 
 export const IxSpinner = /*@__PURE__*/ defineContainer<JSX.IxSpinner>('ix-spinner', undefined, [
   'variant',
-  'size'
+  'size',
+  'hideTrack'
 ]);
 
 

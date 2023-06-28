@@ -327,6 +327,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-basic-navigation": [
@@ -388,6 +389,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4236,6 +4238,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-category-filter": [
@@ -5873,6 +5876,7 @@
           "ix-icon-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ],
         "ix-menu-item": [
@@ -6447,6 +6451,10 @@
           "ix-button"
         ],
         "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
           "ix-spinner",
           "ix-icon"
         ]
@@ -8751,7 +8759,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"large\" | \"medium\"",
+          "type": "\"large\" | \"medium\" | \"small\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -8765,6 +8773,10 @@
             },
             {
               "value": "medium",
+              "type": "string"
+            },
+            {
+              "value": "small",
               "type": "string"
             }
           ],
