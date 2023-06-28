@@ -118,6 +118,10 @@ export class MenuCategory {
     this.nestedItems = this.getNestedItems();
   }
 
+  private isCategoryItemListVisible() {
+    return (this.showItems || this.isNestedItemActive()) && this.menuExpand;
+  }
+
   componentDidLoad() {
     const closestMenu = menuContext(this.hostElement);
     if (!closestMenu) {
@@ -141,21 +145,7 @@ export class MenuCategory {
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
 
-        if (!this.isNestedItemActive()) {
-          return;
-        }
-
-        if (this.menuExpand && !this.showItems) {
-          this.showItems = true;
-          this.showDropdown = false;
-          return;
-        }
-
-        if (!this.menuExpand) {
-          this.showItems = false;
-          this.showDropdown = false;
-          return;
-        }
+        this.showItems = this.isCategoryItemListVisible();
       }
     );
   }
@@ -174,6 +164,7 @@ export class MenuCategory {
         }}
       >
         <ix-menu-item
+          class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
           icon={this.icon}
@@ -192,11 +183,15 @@ export class MenuCategory {
         </ix-menu-item>
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}
-          class={{ 'menu-items': true, 'menu-items--expanded': this.showItems }}
+          class={{
+            'menu-items': true,
+            'menu-items--expanded': this.showItems,
+          }}
         >
           {this.showItems ? <slot></slot> : null}
         </div>
         <ix-dropdown
+          closeBehavior={'both'}
           show={this.showDropdown}
           onShowChanged={({ detail: dropdownShown }: CustomEvent<boolean>) => {
             this.showDropdown = dropdownShown;
@@ -206,6 +201,13 @@ export class MenuCategory {
           placement="right-start"
           offset={{
             mainAxis: 3,
+          }}
+          onClick={(e) => {
+            if (e.target instanceof HTMLElement) {
+              if (e.target.tagName === 'IX-MENU-ITEM') {
+                this.showDropdown = false;
+              }
+            }
           }}
         >
           <ix-dropdown-item class={'category-dropdown-header'}>

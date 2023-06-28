@@ -498,15 +498,12 @@ export class Menu {
     return this.mapExpand ? 'navigation-left' : 'navigation-right';
   }
 
-  private isMenuItemClicked(event: MouseEvent) {
-    const path = event.composedPath();
-    const menuItems = (path as HTMLElement[])
-      .filter((element) => element.id !== 'ix-menu-more-tab')
-      .filter((element) => {
-        return element.tagName === 'IX-MENU-ITEM';
-      });
+  private isMenuItemClicked(event: Event) {
+    if (event.target instanceof HTMLElement) {
+      return event.target.tagName === 'IX-MENU-ITEM';
+    }
 
-    return menuItems.some((menu) => this.hostElement.contains(menu));
+    return false;
   }
 
   @Listen('resize', { target: 'window' })
@@ -558,6 +555,15 @@ export class Menu {
     });
   }
 
+  private onMenuItemsClick(event: Event) {
+    if (this.isMenuItemClicked(event)) {
+      if (!this.showPinned) {
+        this.toggleMenu(false);
+      }
+      this.onOverlayClose();
+    }
+  }
+
   render() {
     return (
       <Host
@@ -593,11 +599,7 @@ export class Menu {
             style={{
               display: 'contents',
             }}
-            onClick={(event) => {
-              if (this.isMenuItemClicked(event)) {
-                this.onOverlayClose();
-              }
-            }}
+            onClick={(e) => this.onMenuItemsClick(e)}
           >
             <div class="tabs-top">
               <slot name="home"></slot>

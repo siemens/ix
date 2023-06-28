@@ -22,6 +22,51 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass('mode-large hydrated');
 });
 
+test('should stay close after menu click when NOT pinned', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-basic-navigation>
+        <ix-menu>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-basic-navigation>
+    `);
+  const menu = page.locator('ix-menu');
+  await menu.evaluate((menu: HTMLIxMenuElement) => {
+    menu.supportedModes = ['medium'];
+  });
+  const menuButton = menu.locator('ix-burger-menu');
+  await menuButton.click();
+
+  await expect(menu).toHaveClass(/expanded/);
+  await page.getByRole('listitem').click();
+  await expect(menu).not.toHaveClass(/expanded/);
+});
+
+test('should stay open after menu click when pinned', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-basic-navigation>
+        <ix-menu pinned>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-basic-navigation>
+    `);
+  const menu = page.locator('ix-menu');
+  const menuButton = menu.locator('ix-burger-menu');
+  await menuButton.click();
+
+  await expect(menu).not.toHaveClass(/expanded/);
+
+  await page.getByRole('listitem').click();
+
+  await expect(menu).not.toHaveClass(/expanded/);
+});
+
 test('should open and close settings', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
