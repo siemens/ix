@@ -195,8 +195,10 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../react/src/components.ts',
-      includeDefineCustomElements: true,
-      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item'],
+      includeImportCustomElements: true,
+      includePolyfills: false,
+      includeDefineCustomElements: false,
+      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
       type: 'dist',
@@ -204,6 +206,15 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      dir: 'components',
+      copy: [
+        {
+          src: '../scripts/custom-elements',
+          dest: 'components',
+          warn: true,
+        },
+      ],
+      includeGlobalScripts: false,
     },
     {
       type: 'docs-custom',

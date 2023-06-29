@@ -147,6 +147,7 @@ yarn-error.log*
 ###
 # Build output
 ##
+packages/core/components/
 packages/*/dist/
 packages/*/www/
 packages/*/loader/
