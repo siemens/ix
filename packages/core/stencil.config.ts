@@ -183,8 +183,10 @@ export const config: Config = {
     vueOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../vue/src/components.ts',
-      excludeComponents: ['my-component'],
-      includeDefineCustomElements: true,
+      includeImportCustomElements: true,
+      includePolyfills: false,
+      includeDefineCustomElements: false,
+      excludeComponents: ['my-component', 'ix-icon'],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
