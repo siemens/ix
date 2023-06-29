@@ -401,6 +401,13 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefine
 ]);
 
 
+export const IxLinkButton = /*@__PURE__*/ defineContainer<JSX.IxLinkButton>('ix-link-button', undefined, [
+  'disabled',
+  'url',
+  'target'
+]);
+
+
 export const IxMapNavigation = /*@__PURE__*/ defineContainer<JSX.IxMapNavigation>('ix-map-navigation', undefined, [
   'applicationName',
   'navigationTitle',

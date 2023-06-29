@@ -52,6 +52,7 @@ export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, 
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value');
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list');
 export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi');
+export const IxLinkButton = /*@__PURE__*/createReactComponent<JSX.IxLinkButton, HTMLIxLinkButtonElement>('ix-link-button');
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation');
 export const IxMapNavigationOverlay = /*@__PURE__*/createReactComponent<JSX.IxMapNavigationOverlay, HTMLIxMapNavigationOverlayElement>('ix-map-navigation-overlay');
 export const IxMenu = /*@__PURE__*/createReactComponent<JSX.IxMenu, HTMLIxMenuElement>('ix-menu');

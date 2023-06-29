@@ -1,0 +1,73 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import './components/buttons';
+@import 'mixins/hover';
+
+:host {
+  display: inline-flex;
+  height: $x-large-space;
+  font-size: $font-size-default;
+  font-weight: $font-weight-normal;
+  min-width: $x-large-space;
+
+  .link-button {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    padding: 0 $tiny-space 0 0;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--theme-color-primary);
+    cursor: pointer;
+    text-decoration: none;
+
+    .link {
+      display: block;
+      position: relative;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    @include hover {
+      color: var(--theme-color-dynamic--hover);
+
+      .link {
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+      }
+    }
+
+    @include active {
+      color: var(--theme-color-dynamic--active);
+
+      .link {
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+      }
+    }
+
+    &.disabled {
+      cursor: default;
+      color: var(--theme-color-weak-text);
+    }
+
+    a {
+      all: unset;
+    }
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--theme-color-focus-bdr);
+  }
+}
