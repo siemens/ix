@@ -9,7 +9,6 @@
 
 import {
   Component,
-  Element,
   Event,
   EventEmitter,
   h,
@@ -26,11 +25,9 @@ export type TimePickerCorners = DateTimeCardCorners;
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
-  scoped: true,
+  shadow: true,
 })
 export class TimePicker {
-  @Element() hostElement!: HTMLIxTimePickerElement;
-
   /**
    * Format of time string
    *

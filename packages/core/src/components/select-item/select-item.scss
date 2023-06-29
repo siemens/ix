@@ -9,4 +9,13 @@
 
 :host {
   display: block;
+  position: relative;
+
+  > ix-dropdown-item {
+    width: 100%;
+  }
+}
+
+:host(.d-none) {
+  display: none;
 }

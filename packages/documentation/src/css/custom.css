@@ -278,6 +278,7 @@ a.menu__link {
 .siemens-brand-section a:hover,
 .siemens-brand-section a:active {
   color: var(--theme-color-primary--contrast) !important;
+  text-decoration: underline !important;
 }
 
 .markdown table {

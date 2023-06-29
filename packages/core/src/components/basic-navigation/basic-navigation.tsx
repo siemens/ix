@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { menuController } from '../utils/menu-service/menu-service';
 import { Mode } from '../utils/screen/mode';
 import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
@@ -15,7 +16,7 @@ import { Disposable } from '../utils/typed-event';
 @Component({
   tag: 'ix-basic-navigation',
   styleUrl: 'basic-navigation.scss',
-  scoped: true,
+  shadow: true,
 })
 export class BasicNavigation {
   @Element() hostElement: HTMLIxBasicNavigationElement;
@@ -30,13 +31,20 @@ export class BasicNavigation {
    */
   @Prop() hideHeader = false;
 
-  @State() mode: Mode = 'desktop';
+  @State() mode: Mode = 'large';
 
-  get menu(): HTMLIxMenuElement {
+  get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
   }
 
   private modeDisposable: Disposable;
+
+  private onContentClick() {
+    if (menuController.isPinned) {
+      return;
+    }
+    this.menu?.toggleMenu(false);
+  }
 
   componentWillLoad() {
     if (this.hideHeader === false) {
@@ -49,24 +57,12 @@ export class BasicNavigation {
 
   componentDidRender() {
     if (this.menu) {
-      this.appendMenu();
-      this.adjustMenuHeight();
       this.menu.applicationName = this.applicationName;
     }
   }
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
-  }
-
-  private appendMenu() {
-    this.hostElement.querySelector('#menu-placeholder').appendChild(this.menu);
-  }
-
-  private adjustMenuHeight() {
-    if (!this.hideHeader) {
-      this.menu.style.height = 'calc(100% - 2.75rem)';
-    }
   }
 
   render() {
@@ -79,13 +75,15 @@ export class BasicNavigation {
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header name={this.applicationName}>
-            <slot name="logo"></slot>
+          <ix-application-header name={this.applicationName} mode={this.mode}>
+            <slot name="logo" slot="logo"></slot>
           </ix-application-header>
         ) : null}
-        <div id="menu-placeholder"></div>
-        <div class="content" onClick={() => this.menu.toggleMenu(false)}>
-          <slot></slot>
+        <div class="navigation-content">
+          <slot name="menu"></slot>
+          <div class="content" onClick={() => this.onContentClick()}>
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );

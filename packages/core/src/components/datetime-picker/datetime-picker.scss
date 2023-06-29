@@ -8,29 +8,32 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: block;
   background-color: var(--theme-menu--background);
   border-radius: 4px;
   position: relative;
   width: 32.6875rem;
-}
 
-.flex {
-  display: flex;
-  justify-content: center;
-}
+  .flex {
+    display: flex;
+    justify-content: center;
+  }
 
-.btn-select-date{
-  position: absolute;
-  bottom: $default-space;
-  right: $default-space;
-}
+  .btn-select-date {
+    position: absolute;
+    bottom: $default-space;
+    right: $default-space;
+  }
 
-.separator {
-  border: 1px solid var(--theme-datepicker-separator--background);
-  width: 100%;
-  margin-top: 72px;
-  height: 1px;
+  .separator {
+    border: 1px solid var(--theme-datepicker-separator--background);
+    width: 100%;
+    margin-top: 72px;
+    height: 1px;
+  }
 }

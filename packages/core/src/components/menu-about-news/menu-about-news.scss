@@ -9,11 +9,14 @@
 
 @import 'common-variables';
 @import 'mixins/shadows';
+@import 'mixins/shadow-dom/component';
+$left: 3.4rem;
 
 :host {
+  @include ix-component;
+
   --margin: 0.5rem;
 
-  $left: 3.4rem;
   display: block;
   position: fixed;
   width: 20rem;
@@ -29,14 +32,6 @@
   margin-left: var(--margin) !important;
 
   @include box-shadow(4);
-
-  &.expanded {
-    left: calc(#{$left} + 12.7rem);
-  }
-
-  &.show {
-    display: none;
-  }
 
   .banner-container {
     position: absolute;
@@ -61,7 +56,7 @@
   }
 
   .cui-popover-news-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     margin-left: 4rem;
     margin-top: -$tiny-space;
   }
@@ -91,4 +86,12 @@
     border-bottom: var(--theme-weak-bdr-1);
     transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
   }
+}
+
+:host(.expanded) {
+  left: calc(#{$left} + 12.7rem);
+}
+
+:host(.show) {
+  display: none;
 }

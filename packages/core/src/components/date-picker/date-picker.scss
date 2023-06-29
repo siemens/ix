@@ -8,11 +8,10 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
 
 :host {
-  ix-date-time-card {
-    display: inline-block;
-  }
+  @include ix-component;
 
   .header {
     display: flex;

@@ -22,7 +22,7 @@ let windowStartSize = window.innerWidth;
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
-  scoped: false,
+  shadow: true,
 })
 export class Tabs {
   @Element() hostElement!: HTMLIxTabsElement;
@@ -86,7 +86,7 @@ export class Tabs {
   }
 
   private getTabsWrapper() {
-    return this.hostElement.getElementsByClassName('items-content')[0];
+    return this.hostElement.shadowRoot.querySelector('.items-content');
   }
 
   private showArrows() {
@@ -227,8 +227,10 @@ export class Tabs {
 
   componentWillRender() {
     requestAnimationFrame(() => {
-      this.styleNextArrow = this.getArrowStyle(this.showNextArrow());
-      this.stylePreviousArrow = this.getArrowStyle(this.showPreviousArrow());
+      const showNextArrow = this.showNextArrow();
+      const previousArrow = this.showPreviousArrow();
+      this.styleNextArrow = this.getArrowStyle(showNextArrow);
+      this.stylePreviousArrow = this.getArrowStyle(previousArrow);
     });
   }
 
@@ -248,26 +250,32 @@ export class Tabs {
   render() {
     return (
       <Host>
-        <div class="overflow-shadow" style={this.stylePreviousArrow}></div>
         <div
           class="arrow"
           style={this.stylePreviousArrow}
           onClick={() => this.move(this.scrollAmount, true)}
         >
-          <span class="glyph glyph-chevron-left-small"></span>
+          <ix-icon name="chevron-left-small"></ix-icon>
         </div>
-        <div class="tab-items">
+        <div
+          class={{
+            'tab-items': true,
+            'overflow-shadow': true,
+            'shadow-left': this.showPreviousArrow(),
+            'shadow-right': this.showNextArrow(),
+            'shadow-both': this.showNextArrow() && this.showPreviousArrow(),
+          }}
+        >
           <div class="items-content">
             <slot></slot>
           </div>
         </div>
-        <div class="overflow-shadow right" style={this.styleNextArrow}></div>
         <div
           class="arrow right"
           style={this.styleNextArrow}
           onClick={() => this.move(-this.scrollAmount, true)}
         >
-          <span class="glyph glyph-chevron-right-small"></span>
+          <ix-icon name="chevron-right-small"></ix-icon>
         </div>
       </Host>
     );

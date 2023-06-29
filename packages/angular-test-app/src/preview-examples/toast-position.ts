@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
@@ -23,10 +23,7 @@ import { ToastService } from '@siemens/ix-angular';
     <ix-button (click)="showToastMessage()">Show Toast</ix-button>
   `,
 })
-export default class Toast {
-  @ViewChild('customToast', { read: TemplateRef })
-  customModalRef!: TemplateRef<any>;
-
+export default class ToastPosition {
   constructor(private readonly toastService: ToastService) {}
 
   async showToastMessage() {

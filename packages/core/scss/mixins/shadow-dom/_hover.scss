@@ -6,6 +6,32 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@mixin hover() {
+  :host(:not(.disabled):not(:disabled).hover)
+    :host(:not(.disabled):not(:disabled):hover) {
+    @content;
+  }
+}
+
+@mixin active() {
+  :host(:not(.disabled):not(:disabled).active)
+    :host(:not(.disabled):not(:disabled):active) {
+    @content;
+  }
+}
+
+@mixin focus() {
+  :host(:not(.disabled):not(:disabled):focus-visible) {
+    @content;
+  }
+}
+
+@mixin focus-visible() {
+  :host(:not(.disabled):not(:disabled):focus-visible) {
+    @content;
+  }
+}
+
 @mixin ghost-hover-pressed {
   :host(:not(.disabled):not(:disabled).hover),
   :host(:not(.disabled):not(:disabled):hover) {

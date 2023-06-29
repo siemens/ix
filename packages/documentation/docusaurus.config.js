@@ -113,6 +113,14 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/siemens/ix',
               },
+              {
+                label: 'iX Community',
+                href: 'https://community.siemens.com/c/ix',
+              },
+              {
+                label: 'Siemens Developer Portal',
+                href: 'https://developer.siemens.com',
+              },
             ],
           },
           {

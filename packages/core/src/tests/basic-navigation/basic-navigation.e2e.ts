@@ -10,14 +10,65 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+const smallWidth = 639;
+const mediumWidth = 642;
+const largeWidth = 1026;
+
+regressionTest.describe('basic navigation large', () => {
+  regressionTest('basic', async ({ page }) => {
+    await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: largeWidth,
+    });
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('content width', async ({ page }) => {
+    await page.goto('basic-navigation/content-width');
+    await page.setViewportSize({
+      height: 1200,
+      width: largeWidth,
+    });
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
+
 regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('content width', async ({ page }) => {
+    await page.goto('basic-navigation/content-width');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('expanded', async ({ page }) => {
     await page.goto('basic-navigation/basic');
+    await page.setViewportSize({
+      height: 1200,
+      width: mediumWidth,
+    });
+    await page.waitForTimeout(500);
+
     await page.locator('ix-menu ix-burger-menu').click();
     await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
@@ -31,7 +82,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -42,7 +93,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -59,7 +110,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -71,7 +122,7 @@ regressionTest.describe('basic navigation mobile', () => {
     const settingsButton = await page.waitForSelector('#settings');
     await settingsButton.click();
 
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -79,7 +130,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize({
       height: 1200,
-      width: 500,
+      width: smallWidth,
     });
 
     await page.waitForTimeout(500);
@@ -91,9 +142,11 @@ regressionTest.describe('basic navigation mobile', () => {
     const settingsButton = await page.waitForSelector('#settings');
 
     await settingsButton.click();
+    await page.waitForTimeout(1000);
+
     await menuElement.click();
 
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

@@ -52,6 +52,8 @@ $button-categories: (primary, secondary);
       background-color: var(--theme-btn-#{$name}--background);
       color: var(--theme-btn-#{$name}--color);
 
+      --ix-button-color: var(--theme-btn-#{$name}--color);
+
       @if $enable-border {
         border-width: var(--theme-btn--border-thickness);
         border-color: var(--theme-btn-#{$name}--border-color);
@@ -126,6 +128,8 @@ $button-categories: (primary, secondary);
       background-color: var(--theme-btn-#{$name}--background--disabled);
       color: var(--theme-btn-#{$name}--color--disabled);
       opacity: 1;
+
+      --ix-button-color: var(--theme-btn-#{$name}--color--disabled);
     }
   }
 }
