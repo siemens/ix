@@ -778,6 +778,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-split-button",
         "ix-time-picker",
         "ix-upload"
       ],
@@ -809,6 +810,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-split-button": [
           "ix-button"
         ],
         "ix-time-picker": [
@@ -5010,6 +5014,7 @@
         "ix-modal-example",
         "ix-pagination",
         "ix-select",
+        "ix-split-button",
         "ix-time-picker",
         "ix-toast"
       ],
@@ -5080,6 +5085,9 @@
           "ix-icon-button"
         ],
         "ix-select": [
+          "ix-icon-button"
+        ],
+        "ix-split-button": [
           "ix-icon-button"
         ],
         "ix-time-picker": [
@@ -8903,16 +8911,26 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
+        "ix-button",
+        "ix-icon-button",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-split-button": [
-          "ix-icon",
+          "ix-button",
+          "ix-icon-button",
           "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -8962,29 +8980,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use ghost property"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed in 2.0.0. Use ghost property",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -9103,7 +9098,7 @@
           "mutable": false,
           "attr": "split-icon",
           "reflectToAttr": false,
-          "docs": "Splitbutton icon",
+          "docs": "Icon of the button on the right",
           "docsTags": [],
           "default": "'context-menu'",
           "values": [
@@ -9165,7 +9160,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-dropdown-item"
