@@ -1694,6 +1694,7 @@
           "ix-icon"
         ],
         "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
