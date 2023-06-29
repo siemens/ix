@@ -1573,11 +1573,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Button label
          */
         "label": string;
@@ -1590,7 +1585,7 @@ export namespace Components {
          */
         "placement": Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon": string;
         /**
@@ -4464,11 +4459,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible"?: boolean;
-        /**
           * Button label
          */
         "label"?: string;
@@ -4485,7 +4475,7 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon"?: string;
         /**
