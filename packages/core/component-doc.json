@@ -6157,7 +6157,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "Expand menu",
+          "docs": "",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6211,14 +6211,14 @@
           "required": false
         },
         {
-          "name": "i18nExpandSidebar",
+          "name": "i18nExpand",
           "type": "string",
           "mutable": false,
-          "attr": "i-1-8n-expand-sidebar",
+          "attr": "i-1-8n-expand",
           "reflectToAttr": false,
-          "docs": "Accessibility i18n label for the burger menu of the sidebar",
+          "docs": "",
           "docsTags": [],
-          "default": "'Expand sidebar'",
+          "default": "' Expand'",
           "values": [
             {
               "type": "string"
@@ -6228,14 +6228,14 @@
           "required": false
         },
         {
-          "name": "i18nLegal",
+          "name": "i18nExpandSidebar",
           "type": "string",
           "mutable": false,
-          "attr": "i-1-8n-expand",
+          "attr": "i-1-8n-expand-sidebar",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Accessibility i18n label for the burger menu of the sidebar",
           "docsTags": [],
-          "default": "' Expand'",
+          "default": "'Expand sidebar'",
           "values": [
             {
               "type": "string"
