@@ -9,10 +9,10 @@
 
 import {
   Component,
-  Element,
   Event,
   EventEmitter,
   h,
+  Host,
   Listen,
   Prop,
 } from '@stencil/core';
@@ -20,14 +20,15 @@ import {
 @Component({
   tag: 'ix-event-list-item',
   styleUrl: 'event-list-item.scss',
-  scoped: false,
+  shadow: true,
 })
 export class EventListItem {
-  @Element() el!: HTMLIxEventListItemElement;
-
   /**
    * Color of the status indicator.
-   * Allowed values are all Core UI color names.
+   * You can find a list of all available colors in our documentation.
+   * Example values are `--theme-color-alarm` or `color-alarm`
+   *
+   * @see https://ix.siemens.io/docs/theming/colors/
    */
   @Prop() color: string;
 
@@ -65,35 +66,45 @@ export class EventListItem {
   }
 
   render() {
+    const color = this.color?.startsWith('--theme')
+      ? `var(${this.color})`
+      : `var(--theme-${this.color})`;
+
     return (
-      <div
+      <Host
         class={{
-          'ix-event-list-item': true,
-          selected: this.selected,
           disabled: this.disabled,
         }}
       >
         <div
-          class={`indicator ${!this.color ? 'indicator-empty' : ''}`}
-          style={{
-            'background-color': this.color
-              ? `var(--theme-${this.color})`
-              : 'inherit',
-            opacity: `${this.disabled ? 0.4 : this.opacity}`,
+          class={{
+            'event-list-item': true,
+            selected: this.selected,
+            disabled: this.disabled,
           }}
-        ></div>
+        >
+          <div
+            class={`indicator ${!this.color ? 'indicator-empty' : ''}`}
+            style={{
+              'background-color': this.color ? color : 'inherit',
+              opacity: `${this.disabled ? 0.4 : this.opacity}`,
+            }}
+          ></div>
 
-        <div class="event-list-item-container">
-          <div class="event-content">
-            <slot></slot>
+          <div class="event-list-item-container">
+            <div class="event-content">
+              <slot></slot>
+            </div>
+            {this.chevron && (
+              <ix-icon
+                name="chevron-right"
+                size="16"
+                class="chevron-icon"
+              ></ix-icon>
+            )}
           </div>
-          {this.chevron ? (
-            <i class="glyph glyph-16 glyph-chevron-right chevron-icon"></i>
-          ) : (
-            ''
-          )}
         </div>
-      </div>
+      </Host>
     );
   }
 }

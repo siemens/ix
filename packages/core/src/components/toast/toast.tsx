@@ -22,7 +22,7 @@ import { ToastType } from './toast-utils';
 @Component({
   tag: 'ix-toast',
   styleUrl: 'toast.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Toast {
   /**
@@ -63,7 +63,7 @@ export class Toast {
   @State() progress = 0;
   @State() touched = false;
 
-  @Element() host!: HTMLIxToastElement;
+  @Element() hostElement!: HTMLIxToastElement;
 
   private getIcon() {
     if (this.icon) {
@@ -89,8 +89,8 @@ export class Toast {
   }
 
   private close() {
-    if (this.host) {
-      this.host.classList.add('animate__fadeOut');
+    if (this.hostElement) {
+      this.hostElement.classList.add('animate__fadeOut');
     }
     setTimeout(() => {
       this.closeToast.emit();
@@ -125,11 +125,9 @@ export class Toast {
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
-              <div class="toast-title text-default-title-single">
-                {this.toastTitle}
-              </div>
+              <div class="toast-title">{this.toastTitle}</div>
             ) : null}
-            <div class="toast-message text-default">
+            <div class="toast-message">
               <slot></slot>
             </div>
           </div>

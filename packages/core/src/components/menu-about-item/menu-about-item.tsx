@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-menu-about-item',
   styleUrl: 'menu-about-item.css',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAboutItem {
   /**

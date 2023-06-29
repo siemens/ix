@@ -4,6 +4,15 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
+## [1.6.3](https://github.com/siemens/ix/compare/v1.6.2...v1.6.3) (2023-06-16)
+
+
+### Bug Fixes
+
+* **core/button:** pass through submit related events ([#578](https://github.com/siemens/ix/issues/578)) ([8a0b410](https://github.com/siemens/ix/commit/8a0b410b64bccb949c27f73f0a1d93cce480f42c))
+
+
+
 ## [1.6.2](https://github.com/siemens/ix/compare/v1.6.2-beta.0...v1.6.2) (2023-06-07)
 
 

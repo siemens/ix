@@ -9,8 +9,14 @@
 
 @import 'common-variables';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
+@import '~animate.css/animate.min';
 
-ix-menu {
+$menu-expanded-width: 16rem;
+
+:host {
+  @include ix-component;
+
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -18,6 +24,55 @@ ix-menu {
   min-height: 22.75rem;
   z-index: var(--theme-z-index-sticky);
   width: auto;
+
+  bottom: 0px;
+
+  .tabs {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    pointer-events: all;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tabs-shadow-container {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .tabs--shadow {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 0.625rem;
+
+    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+    pointer-events: none;
+    z-index: var(--theme-z-index-sticky);
+
+    transition: opacity var(--theme-default-time);
+  }
+  .tabs--shadow-top {
+    top: 0px;
+    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+  }
+
+  .tabs--shadow-bottom {
+    bottom: 0px;
+    background: linear-gradient(transparent, var(--theme-color-shadow-1));
+  }
+
+  .tabs--shadow--show {
+    opacity: 1;
+  }
 
   .menu {
     display: flex;
@@ -33,7 +88,7 @@ ix-menu {
     }
 
     background-color: var(--theme-nav--background);
-    transition: width var(--animate-duration);
+    transition: width var(--animate-duration) ease-in-out;
 
     .burger-menu {
       margin: 0.75rem 0 1rem 0.35rem;
@@ -41,7 +96,7 @@ ix-menu {
   }
 
   .menu-overlay {
-    display: block;
+    display: none;
     position: absolute;
     width: calc(100vw - 3.25rem);
     height: 100%;
@@ -49,23 +104,23 @@ ix-menu {
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
-    transition: all $medium-time ease-out;
+    transition: left var(--animate-duration) ease-in-out;
   }
 
-  .menu-overlay-invisible {
-    display: none;
+  .menu-overlay.visible {
+    display: block;
   }
 
   .menu.expanded {
-    width: 16rem;
+    width: $menu-expanded-width;
   }
 
   .menu-overlay.expanded {
-    width: calc(100vw - 16rem);
-    left: 16rem;
+    width: calc(100vw - $menu-expanded-width);
+    left: $menu-expanded-width;
   }
 
-  #avatar-tab-placeholder {
+  .menu-avatar {
     max-height: 3rem;
   }
 
@@ -93,7 +148,7 @@ ix-menu {
   }
 }
 
-ix-menu.mode-mobile {
+:host(.mode-small) {
   .menu:not(.expanded) {
     width: 0;
   }
@@ -108,11 +163,20 @@ ix-menu.mode-mobile {
 
   .menu-overlay {
     left: 0px;
-    width: calc(100vw);
+    width: 100vw;
   }
 }
 
-// Remove text-decoration if a tag is used inside ix-menu
-a[href]:has(> ix-menu-item) {
-  text-decoration: none;
+:host(.mode-large) {
+  position: relative;
+
+  .menu.expanded {
+    box-shadow: none;
+  }
+}
+
+:host {
+  ::slotted(a[href]) {
+    all: unset;
+  }
 }

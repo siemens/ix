@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-tab-item',
   styleUrl: 'tab-item.scss',
-  scoped: false,
+  shadow: true,
 })
 export class TabItem {
   /**

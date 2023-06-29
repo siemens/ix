@@ -23,7 +23,7 @@ import anime from 'animejs';
 @Component({
   tag: 'ix-map-navigation',
   styleUrl: 'map-navigation.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MapNavigation {
   private static readonly defaultTime = 150;
@@ -46,8 +46,6 @@ export class MapNavigation {
    */
   @Prop() hideContextMenu = true;
 
-  @State() isSidebarOpen = true;
-
   /**
    * Navigation toggled
    */
@@ -58,6 +56,9 @@ export class MapNavigation {
    */
   @Event() contextMenuClick: EventEmitter<void>;
 
+  @State() isSidebarOpen = true;
+  @State() hasContentHeader = false;
+
   get menu() {
     return this.hostElement.querySelector('ix-menu');
   }
@@ -67,15 +68,15 @@ export class MapNavigation {
   }
 
   get mapNavMenu() {
-    return this.hostElement.querySelector('.map-nav-menu');
+    return this.hostElement.shadowRoot.querySelector('.map-nav-menu');
   }
 
   get sidebar() {
-    return this.hostElement.querySelector('.map-nav-sidebar');
+    return this.hostElement.shadowRoot.querySelector('.map-nav-sidebar');
   }
 
   get overlay() {
-    return this.hostElement.querySelector('#overlay');
+    return this.hostElement.shadowRoot.querySelector('#overlay');
   }
 
   componentDidRender() {
@@ -84,7 +85,6 @@ export class MapNavigation {
   }
 
   private appendMenu() {
-    this.hostElement.querySelector('#menu-placeholder').appendChild(this.menu);
     this.menu.addEventListener(
       'mapExpandChange',
       (event: CustomEvent<boolean>) => {
@@ -206,10 +206,18 @@ export class MapNavigation {
     });
   }
 
+  private checkHasContentHeader(e: Event) {
+    const nodes = (e.currentTarget as HTMLSlotElement).assignedNodes({
+      flatten: true,
+    });
+
+    this.hasContentHeader = nodes?.length !== 0;
+  }
+
   render() {
     return (
       <Host>
-        <div id="menu-placeholder"></div>
+        <slot name="menu"></slot>
         <div class="map-nav">
           <div class="map-nav-sidebar">
             <div class="map-nav-header">
@@ -217,7 +225,7 @@ export class MapNavigation {
                 name={this.applicationName}
                 class="map-nav-header-brand"
               >
-                <slot name="logo"></slot>
+                <slot slot="logo" name="logo"></slot>
               </ix-application-header>
             </div>
             <div class="map-nav-sidebar-content">
@@ -241,8 +249,17 @@ export class MapNavigation {
             </div>
           </div>
           <div class="content">
-            <div class="map-nav-header-content bg-2">
-              <slot name="content-header"></slot>
+            <div
+              class={{
+                'map-nav-header-content': true,
+                'bg-2': true,
+                empty: !this.hasContentHeader,
+              }}
+            >
+              <slot
+                name="content-header"
+                onSlotchange={(e) => this.checkHasContentHeader(e)}
+              ></slot>
             </div>
             <main>
               <slot></slot>
