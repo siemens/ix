@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { eye } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { FlipTileState } from './flip-tile-state';
 
@@ -116,7 +117,7 @@ export class FlipTile {
               <slot name="header"></slot>
             </div>
             <ix-icon-button
-              icon="eye"
+              icon={eye}
               variant="Primary"
               ghost
               onClick={() => this.toggleIndex()}

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { contextMenu } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 
 @Component({
@@ -46,7 +47,7 @@ export class GroupContextMenu {
           }
           size="24"
           ghost={true}
-          icon="context-menu"
+          icon={contextMenu}
         ></ix-icon-button>
         <slot></slot>
       </Host>

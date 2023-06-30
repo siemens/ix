@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { singleCheck } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -85,7 +86,7 @@ export class DropdownItem {
           onClick={() => this.emitItemClick()}
         >
           {this.checked ? (
-            <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
+            <ix-icon class="checkmark" name={singleCheck} size="16"></ix-icon>
           ) : null}
 
           {this.icon ? (

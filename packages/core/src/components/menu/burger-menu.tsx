@@ -15,6 +15,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { doubleChevronRight } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
@@ -44,7 +45,7 @@ export class BurgerMenu {
         }}
       >
         {this.pinned ? (
-          <ix-icon-button icon="double-chevron-right" ghost></ix-icon-button>
+          <ix-icon-button icon={doubleChevronRight} ghost></ix-icon-button>
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"

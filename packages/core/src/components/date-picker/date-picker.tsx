@@ -8,6 +8,11 @@
  */
 
 import {
+  chevronLeft,
+  chevronRight,
+  singleCheck,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Event,
   EventEmitter,
@@ -469,7 +474,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
               ghost
-              icon="chevron-left"
+              icon={chevronLeft}
               variant="Primary"
               class="arrows"
             ></ix-icon-button>
@@ -502,7 +507,7 @@ export class DatePicker {
                             hidden: this.tempYear !== year,
                             arrowPosition: true,
                           }}
-                          name="chevron-right"
+                          name={chevronRight}
                           size="12"
                         ></ix-icon>
                         <div
@@ -528,7 +533,7 @@ export class DatePicker {
                             hidden: this.tempMonth - 1 !== index,
                             checkPosition: true,
                           }}
-                          name="single-check"
+                          name={singleCheck}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -546,7 +551,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(1)}
               ghost
-              icon="chevron-right"
+              icon={chevronRight}
               variant="Primary"
               class="arrows"
             ></ix-icon-button>

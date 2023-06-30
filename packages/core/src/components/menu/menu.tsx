@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { bulb, cogwheel, info } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -633,7 +634,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              icon="cogwheel"
+              icon={cogwheel}
               onClick={async () => this.toggleSettings(!this.showSettings)}
             >
               {this.i18nSettings}
@@ -649,7 +650,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              icon="info"
+              icon={info}
               onClick={async () => this.toggleAbout(!this.showAbout)}
             >
               {this.i18nLegal}
@@ -660,7 +661,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              tabIcon="bulb"
+              icon={bulb}
             >
               {this.i18nToggleTheme}
             </ix-menu-item>

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { chevronRight } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -97,7 +98,7 @@ export class EventListItem {
             </div>
             {this.chevron && (
               <ix-icon
-                name="chevron-right"
+                name={chevronRight}
                 size="16"
                 class="chevron-icon"
               ></ix-icon>

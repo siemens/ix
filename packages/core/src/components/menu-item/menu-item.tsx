@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { document } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
@@ -36,7 +37,7 @@ export class MenuItem {
    *
    * @deprecated Use `icon` property. Will be removed in 3.0.0
    */
-  @Prop() tabIcon = 'document';
+  @Prop() tabIcon = document;
 
   /**
    * Icon name from @siemens/ix-icons

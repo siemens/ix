@@ -1,3 +1,4 @@
+import { chevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -83,7 +84,7 @@ export class CardAccordion {
           aria-controls={getAriaControlsId()}
         >
           <ix-icon
-            name="chevron-right-small"
+            name={chevronRightSmall}
             class={{
               'expand-icon': true,
               show: this.expandContent,

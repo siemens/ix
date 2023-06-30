@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { close } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -92,7 +93,7 @@ export class MessageBar {
           </div>
           {this.dismissible ? (
             <ix-icon-button
-              icon="close"
+              icon={close}
               size="24"
               ghost={true}
               onClick={() => {

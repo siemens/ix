@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { chevronLeftSmall, chevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -255,7 +256,7 @@ export class Tabs {
           style={this.stylePreviousArrow}
           onClick={() => this.move(this.scrollAmount, true)}
         >
-          <ix-icon name="chevron-left-small"></ix-icon>
+          <ix-icon name={chevronLeftSmall}></ix-icon>
         </div>
         <div
           class={{
@@ -275,7 +276,7 @@ export class Tabs {
           style={this.styleNextArrow}
           onClick={() => this.move(-this.scrollAmount, true)}
         >
-          <ix-icon name="chevron-right-small"></ix-icon>
+          <ix-icon name={chevronRightSmall}></ix-icon>
         </div>
       </Host>
     );
