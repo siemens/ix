@@ -32,10 +32,6 @@ export class Spinner {
    */
   @Prop() hideTrack = false;
 
-  componentDidRender() {
-    console.log(this.hostElement.clientWidth);
-  }
-
   render() {
     return (
       <Host

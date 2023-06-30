@@ -778,6 +778,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-split-button",
         "ix-time-picker",
         "ix-upload"
       ],
@@ -809,6 +810,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-split-button": [
           "ix-button"
         ],
         "ix-time-picker": [
@@ -5010,6 +5014,7 @@
         "ix-modal-example",
         "ix-pagination",
         "ix-select",
+        "ix-split-button",
         "ix-time-picker",
         "ix-toast"
       ],
@@ -5080,6 +5085,9 @@
           "ix-icon-button"
         ],
         "ix-select": [
+          "ix-icon-button"
+        ],
+        "ix-split-button": [
           "ix-icon-button"
         ],
         "ix-time-picker": [
@@ -5626,6 +5634,104 @@
             {
               "type": "number"
             },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/link-button",
+      "filePath": "./src/components/link-button/link-button.tsx",
+      "fileName": "link-button.tsx",
+      "readmePath": "./src/components/link-button/readme.md",
+      "usagesDir": "./src/components/link-button/usage",
+      "tag": "ix-link-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-link-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the link button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "target",
+          "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\"",
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "Specifies where to open the link\n\nhttps://www.w3schools.com/html/html_links.asp",
+          "docsTags": [],
+          "default": "'_self'",
+          "values": [
+            {
+              "value": "_blank",
+              "type": "string"
+            },
+            {
+              "value": "_parent",
+              "type": "string"
+            },
+            {
+              "value": "_self",
+              "type": "string"
+            },
+            {
+              "value": "_top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "mutable": false,
+          "attr": "url",
+          "reflectToAttr": false,
+          "docs": "Url for the link button",
+          "docsTags": [],
+          "values": [
             {
               "type": "string"
             }
@@ -8903,16 +9009,26 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
+        "ix-button",
+        "ix-icon-button",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-split-button": [
-          "ix-icon",
+          "ix-button",
+          "ix-icon-button",
           "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -8962,29 +9078,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use ghost property"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed in 2.0.0. Use ghost property",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -9103,7 +9196,7 @@
           "mutable": false,
           "attr": "split-icon",
           "reflectToAttr": false,
-          "docs": "Splitbutton icon",
+          "docs": "Icon of the button on the right",
           "docsTags": [],
           "default": "'context-menu'",
           "values": [
@@ -9165,7 +9258,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-dropdown-item"

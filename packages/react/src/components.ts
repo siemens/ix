@@ -48,6 +48,7 @@ import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/component
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
+import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
 import { defineCustomElement as defineIxMapNavigationOverlay } from '@siemens/ix/components/ix-map-navigation-overlay.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
@@ -128,6 +129,7 @@ export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, 
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value', undefined, undefined, defineIxKeyValue);
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list', undefined, undefined, defineIxKeyValueList);
 export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi', undefined, undefined, defineIxKpi);
+export const IxLinkButton = /*@__PURE__*/createReactComponent<JSX.IxLinkButton, HTMLIxLinkButtonElement>('ix-link-button', undefined, undefined, defineIxLinkButton);
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation', undefined, undefined, defineIxMapNavigation);
 export const IxMapNavigationOverlay = /*@__PURE__*/createReactComponent<JSX.IxMapNavigationOverlay, HTMLIxMapNavigationOverlayElement>('ix-map-navigation-overlay', undefined, undefined, defineIxMapNavigationOverlay);
 export const IxMenu = /*@__PURE__*/createReactComponent<JSX.IxMenu, HTMLIxMenuElement>('ix-menu', undefined, undefined, defineIxMenu);

@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: contents;
-}
+import { IxLinkButton } from '@siemens/ix-react';
+import React from 'react';
+
+export default () => {
+  return <IxLinkButton url="https://ix.siemens.io/">Link text</IxLinkButton>;
+};

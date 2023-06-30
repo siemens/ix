@@ -1028,6 +1028,23 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled": boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target": '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url": string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -1573,11 +1590,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Button label
          */
         "label": string;
@@ -1590,7 +1602,7 @@ export namespace Components {
          */
         "placement": Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon": string;
         /**
@@ -2467,6 +2479,15 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
+    }
+    var HTMLIxLinkButtonElement: {
+        prototype: HTMLIxLinkButtonElement;
+        new (): HTMLIxLinkButtonElement;
+    };
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
     var HTMLIxMapNavigationElement: {
@@ -2768,6 +2789,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
@@ -3896,6 +3918,23 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled"?: boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target"?: '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url"?: string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -4464,11 +4503,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible"?: boolean;
-        /**
           * Button label
          */
         "label"?: string;
@@ -4485,7 +4519,7 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon"?: string;
         /**
@@ -4955,6 +4989,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
@@ -5088,6 +5123,10 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;

@@ -39,3 +39,18 @@ ___Now___
 
 Remove typo `sencodary` from `variant` property
 
+### `ix-split-button`
+
+Remove deprecated `invisible`-property
+
+___Before___
+```tsx
+<ix-split-button invisible></ix-split-button>
+```
+
+___Now___
+```tsx
+<ix-split-button ghost></ix-split-button>
+
+```
+
