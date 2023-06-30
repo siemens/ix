@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @import 'common-variables';
+@import 'components/buttons';
 @import 'mixins/hover';
 
 $focus-bdr-width: 0.0625rem;
@@ -33,11 +34,6 @@ $focus-bdr-width: 0.0625rem;
       y 0.075s ease-in-out, opacity 0.075s linear 0.075s;
     transform-origin: center;
   }
-
-  ix-icon-button {
-    transition: transform var(--theme-default-time);
-    pointer-events: none;
-  }
 }
 
 :host(:hover) {
@@ -47,9 +43,8 @@ $focus-bdr-width: 0.0625rem;
 }
 
 .burger-menu-button {
-  @include focus-visible {
-    border-color: var(--theme-color-focus-bdr);
-  }
+  width: 40px;
+  padding: 0;
 }
 
 :host(:active) {

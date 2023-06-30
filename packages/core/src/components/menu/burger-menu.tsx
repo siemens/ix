@@ -17,6 +17,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+import { getButtonClasses } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -54,7 +55,18 @@ export class BurgerMenu {
           <ix-icon-button icon="double-chevron-right" ghost></ix-icon-button>
         ) : (
           <button
-            class="burger-menu-button"
+            class={{
+              ...getButtonClasses(
+                'Secondary',
+                false,
+                true,
+                true,
+                false,
+                false,
+                false
+              ),
+              'burger-menu-button': true,
+            }}
             type="button"
             aria-label={this.ixAriaLabel ? this.ixAriaLabel : null}
             aria-pressed={a11yBoolean(this.expanded)}
