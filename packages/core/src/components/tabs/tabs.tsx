@@ -18,8 +18,6 @@ import {
   State,
 } from '@stencil/core';
 
-let windowStartSize = window.innerWidth;
-
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
@@ -60,6 +58,9 @@ export class Tabs {
   @State() stylePreviousArrow = {};
 
   @State() scrollActionAmount = 0;
+
+  private windowStartSize = window.innerWidth;
+
   private clickAction: {
     timeout: NodeJS.Timeout;
     isClick: boolean;
@@ -73,9 +74,10 @@ export class Tabs {
     this.totalItems = 0;
     this.totalItems = this.getTabs().length;
 
-    if (windowStartSize === 0) return (windowStartSize = window.innerWidth);
-    this.move(windowStartSize - window.innerWidth);
-    windowStartSize = window.innerWidth;
+    if (this.windowStartSize === 0)
+      return (this.windowStartSize = window.innerWidth);
+    this.move(this.windowStartSize - window.innerWidth);
+    this.windowStartSize = window.innerWidth;
   }
 
   private getTabs() {
