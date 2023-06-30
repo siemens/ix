@@ -1,0 +1,62 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic navigation example</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .control {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 2rem;
+        margin: 1rem;
+      }
+
+      .content {
+        height: calc(100% - 2rem);
+      }
+    </style>
+    <script type="module" crossorigin src="../assets/menu-layouts.1e0b5a38.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/index.fceb1a46.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.a4cf9fe3.js">
+    <link rel="stylesheet" href="../assets/index.e684e1d0.css">
+    <link rel="stylesheet" href="../assets/init.619a7964.css">
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <div class="control">
+      <input id="small" type="radio" name="layout" value="small" />
+      <label for="small">Small</label>
+
+      <input id="medium" type="radio" name="layout" value="medium" checked />
+      <label for="medium">Medium</label>
+
+      <input id="large" type="radio" name="layout" value="large" />
+      <label for="large">Large</label>
+    </div>
+    <div class="content">
+      <ix-basic-navigation application-name="Application name">
+        <placeholder-logo slot="logo"></placeholder-logo>
+        <ix-menu>
+          <ix-menu-item>Item 1</ix-menu-item>
+          <ix-menu-item>Item 2</ix-menu-item>
+        </ix-menu>
+        <main>Some example content</main>
+      </ix-basic-navigation>
+    </div>
+    <!-- Preview code -->
+    
+    
+  </body>
+</html>

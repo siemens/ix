@@ -1,4 +1,11 @@
-<ix-button id="toggleModeButton" class="mb-2">Toggle mode</ix-button>
+<style>
+  body {
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<ix-button id="toggleModeButton" class="me-2">Toggle mode</ix-button>
 <ix-select id="selectTheme">
   <ix-select-item
     label="Classic light"

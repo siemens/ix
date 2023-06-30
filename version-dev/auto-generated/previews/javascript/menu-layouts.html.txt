@@ -1,0 +1,20 @@
+<div class="control">
+  <input id="small" type="radio" name="layout" value="small" />
+  <label for="small">Small</label>
+
+  <input id="medium" type="radio" name="layout" value="medium" checked />
+  <label for="medium">Medium</label>
+
+  <input id="large" type="radio" name="layout" value="large" />
+  <label for="large">Large</label>
+</div>
+<div class="content">
+  <ix-basic-navigation application-name="Application name">
+    <placeholder-logo slot="logo"></placeholder-logo>
+    <ix-menu>
+      <ix-menu-item>Item 1</ix-menu-item>
+      <ix-menu-item>Item 2</ix-menu-item>
+    </ix-menu>
+    <main>Some example content</main>
+  </ix-basic-navigation>
+</div>

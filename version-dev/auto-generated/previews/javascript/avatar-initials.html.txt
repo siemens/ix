@@ -1,0 +1,1 @@
+  <ix-avatar initials="JD"></ix-avatar>
