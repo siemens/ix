@@ -7237,7 +7237,7 @@
               "text": "Use `icon` property. Will be removed in 3.0.0"
             }
           ],
-          "default": "'document'",
+          "default": "document",
           "deprecation": "Use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
@@ -9198,7 +9198,7 @@
           "reflectToAttr": false,
           "docs": "Icon of the button on the right",
           "docsTags": [],
-          "default": "'context-menu'",
+          "default": "contextMenu",
           "values": [
             {
               "type": "string"
