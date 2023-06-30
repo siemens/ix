@@ -17,7 +17,12 @@ import path from 'path';
  */
 // require('dotenv').config();
 
-let THEMES = ['theme-classic-light', 'theme-classic-dark'];
+let THEMES = [
+  'theme-classic-light',
+  'theme-classic-dark',
+  'theme-classic-new-light',
+  'theme-classic-new-dark',
+];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {

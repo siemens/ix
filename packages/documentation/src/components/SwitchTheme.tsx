@@ -63,6 +63,16 @@ export function SwitchTheme(props: { icon: string; label: string }) {
       label: 'Classic Light',
       color: '#6a7f98',
     },
+    {
+      id: 'theme-classic-new-dark',
+      label: 'Classic New Dark',
+      color: '#000',
+    },
+    {
+      id: 'theme-classic-new-light',
+      label: 'Classic New Light',
+      color: '#6a7f98',
+    },
   ]);
 
   useEffect(() => {
