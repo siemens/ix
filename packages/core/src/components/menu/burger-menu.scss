@@ -9,10 +9,13 @@
 @import 'common-variables';
 @import 'components/buttons';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
 
 $focus-bdr-width: 0.0625rem;
 
 :host {
+  @include ix-component;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +39,7 @@ $focus-bdr-width: 0.0625rem;
   }
 }
 
-:host(:hover) {
+@include host-hover {
   .burger-menu-button {
     background-color: var(--theme-menu-btn--background--hover);
   }
@@ -47,7 +50,7 @@ $focus-bdr-width: 0.0625rem;
   padding: 0;
 }
 
-:host(:active) {
+@include host-active {
   .burger-menu-button {
     background-color: var(--theme-menu-btn--background--active);
   }
