@@ -185,9 +185,13 @@ export namespace Components {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded": boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel": string;
         /**
           * Display as pinned
          */
@@ -1114,9 +1118,6 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
-        /**
-          * Expand menu
-         */
         "expand": boolean;
         /**
           * Change the responsive layout of the menu structure
@@ -1124,6 +1125,10 @@ export namespace Components {
         "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
@@ -2966,9 +2971,13 @@ declare namespace LocalJSX {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded"?: boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
         /**
           * Display as pinned
          */
@@ -3996,9 +4005,6 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
-        /**
-          * Expand menu
-         */
         "expand"?: boolean;
         /**
           * Change the responsive layout of the menu structure
@@ -4006,6 +4012,10 @@ declare namespace LocalJSX {
         "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar"?: string;
         "i18nLegal"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
