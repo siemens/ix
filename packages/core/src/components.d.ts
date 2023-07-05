@@ -4450,7 +4450,7 @@ declare namespace LocalJSX {
           * Event dispatched whenever the text input changes.
           * @since 1.7.0
          */
-        "onInputChanged"?: (event: IxSelectCustomEvent<string>) => void;
+        "onInputChange"?: (event: IxSelectCustomEvent<string>) => void;
         /**
           * Item selection changed
          */

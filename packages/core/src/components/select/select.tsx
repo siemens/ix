@@ -100,7 +100,7 @@ export class Select {
    *
    * @since 1.7.0
    */
-  @Event() inputChanged: EventEmitter<string>;
+  @Event() inputChange: EventEmitter<string>;
 
   /**
    * Item added to selection
@@ -216,7 +216,7 @@ export class Select {
 
   componentDidLoad() {
     this.inputRef.addEventListener('input', () => {
-      this.inputChanged.emit(this.inputRef.value);
+      this.inputChange.emit(this.inputRef.value);
     });
   }
 

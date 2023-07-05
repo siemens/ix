@@ -1693,7 +1693,7 @@ export class IxSelect {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemSelectionChange', 'inputChanged', 'addItem']);
+    proxyOutputs(this, this.el, ['itemSelectionChange', 'inputChange', 'addItem']);
   }
 }
 
@@ -1706,7 +1706,7 @@ export declare interface IxSelect extends Components.IxSelect {
   /**
    * Event dispatched whenever the text input changes. @since 1.7.0
    */
-  inputChanged: EventEmitter<CustomEvent<string>>;
+  inputChange: EventEmitter<CustomEvent<string>>;
   /**
    * Item added to selection
    */
