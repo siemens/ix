@@ -23,10 +23,12 @@
 
   .group-start {
     left: 0px;
+    height: 2rem;
   }
 
   .group-end {
     right: 0px;
+    height: 2rem;
   }
 
   ::slotted(*) {
