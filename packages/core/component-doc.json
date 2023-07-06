@@ -5266,11 +5266,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Size 32 will be removed in 2.0.0"
+              "text": "Only size 32 will be removed in 3.0.0"
             }
           ],
           "default": "'24'",
-          "deprecation": "Size 32 will be removed in 2.0.0",
+          "deprecation": "Only size 32 will be removed in 3.0.0",
           "values": [
             {
               "value": "12",

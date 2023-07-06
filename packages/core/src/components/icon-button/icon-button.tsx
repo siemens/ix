@@ -56,7 +56,7 @@ export class IconButton implements Button {
   /**
    * Size of icon in button
    *
-   * @deprecated Size 32 will be removed in 2.0.0
+   * @deprecated Only size 32 will be removed in 3.0.0
    */
   @Prop() size: '32' | '24' | '16' | '12' = '24';
 
