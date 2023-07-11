@@ -434,6 +434,9 @@ export class DatePicker {
   }
 
   componentWillLoad() {
+    if (this.from === DateTime.now().toFormat(this.format) && this.range) {
+      this.from = null;
+    }
     if (this.from === null) {
       this.start = null;
     }
