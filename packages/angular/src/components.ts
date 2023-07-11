@@ -1064,6 +1064,34 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 
 @ProxyCmp({
+  inputs: ['disabled', 'icon', 'pressed', 'size']
+})
+@Component({
+  selector: 'ix-icon-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'icon', 'pressed', 'size'],
+})
+export class IxIconToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle']);
+  }
+}
+
+
+export declare interface IxIconToggleButton extends Components.IxIconToggleButton {
+  /**
+   * Pressed change event
+   */
+  toggle: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
 })
 @Component({
   selector: 'ix-input-group',
@@ -1991,6 +2019,34 @@ export declare interface IxToggle extends Components.IxToggle {
    * An event will be dispatched each time the slide-toggle changes its value.
    */
   checkedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'icon', 'pressed']
+})
+@Component({
+  selector: 'ix-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'icon', 'pressed'],
+})
+export class IxToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle']);
+  }
+}
+
+
+export declare interface IxToggleButton extends Components.IxToggleButton {
+  /**
+   * Pressed change event
+   */
+  toggle: EventEmitter<CustomEvent<boolean>>;
 }
 
 

@@ -376,6 +376,15 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 ]);
 
 
+export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggleButton>('ix-icon-toggle-button', undefined, [
+  'icon',
+  'pressed',
+  'size',
+  'disabled',
+  'toggle'
+]);
+
+
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
 
 
@@ -713,6 +722,14 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'textIndeterminate',
   'hideText',
   'checkedChange'
+]);
+
+
+export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', undefined, [
+  'icon',
+  'pressed',
+  'disabled',
+  'toggle'
 ]);
 
 

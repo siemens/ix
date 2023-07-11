@@ -50,6 +50,7 @@ import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
 import GroupCustomEntry from 'src/preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from 'src/preview-examples/group-header-suppressed';
+import IconToggleButton from 'src/preview-examples/icon-toggle-button';
 import Input from 'src/preview-examples/input';
 import InputDisabled from 'src/preview-examples/input-disabled';
 import InputReadonly from 'src/preview-examples/input-readonly';
@@ -93,6 +94,7 @@ import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
 import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
+import ToggleButton from 'src/preview-examples/toggle-button';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
 import Tooltip from 'src/preview-examples/tooltip';
@@ -248,6 +250,7 @@ const routes: Routes = [
       { path: 'group-custom-entry', component: GroupCustomEntry },
       { path: 'group-header-suppressed', component: GroupHeaderSuppressed },
       { path: 'group', component: Group },
+      { path: 'icon-toggle-button', component: IconToggleButton },
       { path: 'input-disabled', component: InputDisabled },
       { path: 'input-readonly', component: InputReadonly },
       { path: 'input-with-icon', component: InputWithIcon },
@@ -273,6 +276,7 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
+      { path: 'toggle-button', component: ToggleButton },
       { path: 'toggle-disabled', component: ToggleCustomDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
       { path: 'toggle', component: Toggle },

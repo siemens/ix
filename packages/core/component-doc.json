@@ -942,8 +942,14 @@
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Show button as selected. Should be used with outline or ghost",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Use ix-toggle-button instead. Will get removed with 3.0.0"
+            }
+          ],
           "default": "false",
+          "deprecation": "- Use ix-toggle-button instead. Will get removed with 3.0.0",
           "values": [
             {
               "type": "boolean"
@@ -5333,6 +5339,127 @@
       ],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/icon-toggle-button",
+      "filePath": "./src/components/icon-toggle-button/icon-toggle-button.tsx",
+      "fileName": "icon-toggle-button.tsx",
+      "readmePath": "./src/components/icon-toggle-button/readme.md",
+      "usagesDir": "./src/components/icon-toggle-button/usage",
+      "tag": "ix-icon-toggle-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-icon-toggle-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pressed",
+          "reflectToAttr": false,
+          "docs": "Show button as pressed",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"12\" | \"16\" | \"24\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of icon in button",
+          "docsTags": [],
+          "default": "'24'",
+          "values": [
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "toggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Pressed change event",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -10453,6 +10580,101 @@
           "passive": false
         }
       ]
+    },
+    {
+      "dirPath": "./src/components/toggle-button",
+      "filePath": "./src/components/toggle-button/toggle-button.tsx",
+      "fileName": "toggle-button.tsx",
+      "readmePath": "./src/components/toggle-button/readme.md",
+      "usagesDir": "./src/components/toggle-button/usage",
+      "tag": "ix-toggle-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-toggle-button": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pressed",
+          "reflectToAttr": false,
+          "docs": "Show button as pressed",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "toggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Pressed change event",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "./src/components/tooltip",

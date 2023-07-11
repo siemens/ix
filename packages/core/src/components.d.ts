@@ -226,6 +226,7 @@ export namespace Components {
         "outline": boolean;
         /**
           * Show button as selected. Should be used with outline or ghost
+          * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
          */
         "selected": boolean;
         /**
@@ -982,6 +983,27 @@ export namespace Components {
           * Variant of button
          */
         "variant": IconButtonVariant;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxIconToggleButton {
+        /**
+          * Disable the button
+         */
+        "disabled": boolean;
+        /**
+          * Icon name
+         */
+        "icon": string;
+        /**
+          * Show button as pressed
+         */
+        "pressed": boolean;
+        /**
+          * Size of icon in button
+         */
+        "size": '24' | '16' | '12';
     }
     interface IxIndexButton {
         /**
@@ -1809,6 +1831,23 @@ export namespace Components {
         "textOn": string;
     }
     /**
+     * @since 2.0.0
+     */
+    interface IxToggleButton {
+        /**
+          * Disable the button
+         */
+        "disabled": boolean;
+        /**
+          * Icon name
+         */
+        "icon": string;
+        /**
+          * Show button as pressed
+         */
+        "pressed": boolean;
+    }
+    /**
      * @since 1.4.0
      */
     interface IxTooltip {
@@ -2064,6 +2103,10 @@ export interface IxGroupItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxGroupItemElement;
 }
+export interface IxIconToggleButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxIconToggleButtonElement;
+}
 export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMapNavigationElement;
@@ -2135,6 +2178,10 @@ export interface IxToastCustomEvent<T> extends CustomEvent<T> {
 export interface IxToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxToggleElement;
+}
+export interface IxToggleButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxToggleButtonElement;
 }
 export interface IxTreeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2448,6 +2495,15 @@ declare global {
         prototype: HTMLIxIconButtonElement;
         new (): HTMLIxIconButtonElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxIconToggleButtonElement extends Components.IxIconToggleButton, HTMLStencilElement {
+    }
+    var HTMLIxIconToggleButtonElement: {
+        prototype: HTMLIxIconToggleButtonElement;
+        new (): HTMLIxIconToggleButtonElement;
+    };
     interface HTMLIxIndexButtonElement extends Components.IxIndexButton, HTMLStencilElement {
     }
     var HTMLIxIndexButtonElement: {
@@ -2689,6 +2745,15 @@ declare global {
         new (): HTMLIxToggleElement;
     };
     /**
+     * @since 2.0.0
+     */
+    interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
+    }
+    var HTMLIxToggleButtonElement: {
+        prototype: HTMLIxToggleButtonElement;
+        new (): HTMLIxToggleButtonElement;
+    };
+    /**
      * @since 1.4.0
      */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
@@ -2789,6 +2854,7 @@ declare global {
         "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
+        "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
@@ -2826,6 +2892,7 @@ declare global {
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
+        "ix-toggle-button": HTMLIxToggleButtonElement;
         "ix-tooltip": HTMLIxTooltipElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
@@ -3012,6 +3079,7 @@ declare namespace LocalJSX {
         "outline"?: boolean;
         /**
           * Show button as selected. Should be used with outline or ghost
+          * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
          */
         "selected"?: boolean;
         /**
@@ -3878,6 +3946,31 @@ declare namespace LocalJSX {
          */
         "variant"?: IconButtonVariant;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxIconToggleButton {
+        /**
+          * Disable the button
+         */
+        "disabled"?: boolean;
+        /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
+          * Pressed change event
+         */
+        "onToggle"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
+        /**
+          * Show button as pressed
+         */
+        "pressed"?: boolean;
+        /**
+          * Size of icon in button
+         */
+        "size"?: '24' | '16' | '12';
+    }
     interface IxIndexButton {
         /**
           * Selection state
@@ -4742,6 +4835,27 @@ declare namespace LocalJSX {
         "textOn"?: string;
     }
     /**
+     * @since 2.0.0
+     */
+    interface IxToggleButton {
+        /**
+          * Disable the button
+         */
+        "disabled"?: boolean;
+        /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
+          * Pressed change event
+         */
+        "onToggle"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
+        /**
+          * Show button as pressed
+         */
+        "pressed"?: boolean;
+    }
+    /**
      * @since 1.4.0
      */
     interface IxTooltip {
@@ -4994,6 +5108,7 @@ declare namespace LocalJSX {
         "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
+        "ix-icon-toggle-button": IxIconToggleButton;
         "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
@@ -5031,6 +5146,7 @@ declare namespace LocalJSX {
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
+        "ix-toggle-button": IxToggleButton;
         "ix-tooltip": IxTooltip;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
@@ -5122,6 +5238,10 @@ declare module "@stencil/core" {
             "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
@@ -5177,6 +5297,10 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
             /**
              * @since 1.4.0
              */

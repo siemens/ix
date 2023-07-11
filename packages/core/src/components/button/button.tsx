@@ -42,6 +42,7 @@ export class Button {
 
   /**
    * Show button as selected. Should be used with outline or ghost
+   * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
    */
   @Prop() selected = false;
 
