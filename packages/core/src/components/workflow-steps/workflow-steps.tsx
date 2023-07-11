@@ -84,9 +84,12 @@ export class WorkflowSteps {
   @Listen('selectedChanged')
   onStepSelectionChanged(event: CustomEvent<HTMLIxWorkflowStepElement>) {
     const steps = this.getSteps();
-    steps.forEach((element) => {
+    steps.forEach((element, index) => {
       if (element !== event.target) {
         element.selected = false;
+      }
+      if (element.selected === true) {
+        this.stepSelected.emit(index);
       }
     });
   }
