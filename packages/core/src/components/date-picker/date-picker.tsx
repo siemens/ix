@@ -578,7 +578,7 @@ export class DatePicker {
             })}
           </div>
 
-          <div class={{ button: true, hidden: !this.individual }}>
+          <div class={{ button: true, hidden: !this.range }}>
             <ix-button onClick={() => this.onDone()}>
               {this.textSelectDate}
             </ix-button>
