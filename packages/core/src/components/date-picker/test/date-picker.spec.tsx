@@ -61,9 +61,7 @@ describe('date-picker WITH range', () => {
     const datePicker = page.doc.querySelector('ix-date-picker');
     const currentDate = await datePicker.getCurrentDate();
 
-    expect(currentDate.start).toEqual(
-      DateTime.now().toFormat(datePicker.format)
-    );
+    expect(currentDate.start).toEqual(undefined);
     expect(currentDate.end).toEqual(undefined);
   });
 
