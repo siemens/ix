@@ -15,4 +15,9 @@ regressionTest.describe('map-navigation', () => {
     await page.goto('map-navigation/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('content-width', async ({ page }) => {
+    await page.goto('map-navigation/content-width');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

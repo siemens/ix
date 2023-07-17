@@ -302,7 +302,7 @@ function CallToActions() {
           style="grey"
         />
         <Button
-          link={'https://github.com/siemens/ix/discussions'}
+          link={'https://community.siemens.com/c/ix/'}
           icon="user-management-filled"
           label="iX Community"
           style="grey"
@@ -624,7 +624,7 @@ function InformationCards() {
     [
       'Delivered as framework agnostic',
       'Intuitive User Experience and timeless Visual Design',
-      'Build by Siemens UX/UI experts',
+      'Built by Siemens UX/UI experts',
     ],
   ];
 

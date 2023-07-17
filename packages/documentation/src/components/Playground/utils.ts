@@ -134,17 +134,19 @@ async function openAngularStackBlitz(
     }
   });
   const declare_component_ts = `
-    ${declareComponents.map(
-      (filename, index) =>
-        `import COMPONENT_${index} from './${filename.substring(
-          0,
-          filename.lastIndexOf('.')
-        )}'`
-    )}
+    ${declareComponents
+      .map(
+        (filename, index) =>
+          `import COMPONENT_${index} from './${filename.substring(
+            0,
+            filename.lastIndexOf('.')
+          )}'`
+      )
+      .join(';')}
 
     export const DECLARE = [
       //@__DELCARE__COMPONENTS
-      ${declareComponents.map((_, index) => `COMPONENT_${index},`)}
+      ${declareComponents.map((_, index) => `COMPONENT_${index}`)}
     ];
   `;
 

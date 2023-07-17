@@ -5,10 +5,15 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ActionCardVariant } from "./components/action-card/action-card";
+import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
+import { CardVariant } from "./components/card/card";
+import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
+import { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -23,6 +28,7 @@ import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+import { PushCardVariant } from "./components/push-card/push-card";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -30,10 +36,15 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
+export { ActionCardVariant } from "./components/action-card/action-card";
+export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
+export { CardVariant } from "./components/card/card";
+export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
+export { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -48,6 +59,7 @@ export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
+export { PushCardVariant } from "./components/push-card/push-card";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
@@ -56,6 +68,31 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    /**
+     * @since 1.6.0
+     */
+    interface IxActionCard {
+        /**
+          * Card heading
+         */
+        "heading": string;
+        /**
+          * Card icon
+         */
+        "icon": string | undefined;
+        /**
+          * Card selection
+         */
+        "selected": boolean;
+        /**
+          * Card subheading
+         */
+        "subheading": string;
+        /**
+          * Card variant
+         */
+        "variant": ActionCardVariant;
+    }
     interface IxAnimatedTab {
         /**
           * Show notification number
@@ -78,10 +115,24 @@ export namespace Components {
         "tabPlacement": 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode": Mode;
         /**
           * Application name
          */
         "name": string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image": string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials": string;
     }
     interface IxBasicNavigation {
         /**
@@ -134,9 +185,17 @@ export namespace Components {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded": boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel": string;
+        /**
+          * Display as pinned
+         */
+        "pinned": boolean;
     }
     interface IxButton {
         /**
@@ -148,10 +207,19 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * Icon name
+         */
+        "icon": string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading": boolean;
         /**
           * Outline button
          */
@@ -165,9 +233,70 @@ export namespace Components {
          */
         "type": 'button' | 'submit';
         /**
-          * Button varaint
+          * Button variant
          */
         "variant": ButtonVariant;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCard {
+        /**
+          * Card variant
+         */
+        "variant": CardVariant;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardAccordion {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardContent {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardList {
+        /**
+          * Collapse the list
+         */
+        "collapse": boolean;
+        /**
+          * i18n More cards available
+         */
+        "i18nMoreCards": string;
+        /**
+          * i18n Show all button
+         */
+        "i18nShowAll": string;
+        /**
+          * Name the card list
+         */
+        "label": string;
+        /**
+          * List style
+         */
+        "listStyle": 'stack' | 'scroll';
+        /**
+          * Maximal visible cards
+         */
+        "maxVisibleCards": number;
+        /**
+          * Overwrite the default show all count.
+         */
+        "showAllCount": number | undefined;
+        /**
+          * Suppress the overflow handling of child elements
+         */
+        "suppressOverflowHandling": boolean;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardTitle {
     }
     interface IxCategoryFilter {
         /**
@@ -307,6 +436,18 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        /**
+          * Define css grid template
+         */
+        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Grid item name
+         */
+        "itemName": string;
     }
     interface IxDatePicker {
         /**
@@ -543,7 +684,8 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active": boolean;
         /**
@@ -651,7 +793,8 @@ export namespace Components {
          */
         "chevron": boolean;
         /**
-          * Color of the status indicator. Allowed values are all Core UI color names.
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color": string;
         /**
@@ -669,6 +812,11 @@ export namespace Components {
         "selected": boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
+         */
+        "fullWidth": boolean;
         /**
           * Search icon
          */
@@ -797,7 +945,7 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon": string;
         /**
@@ -805,6 +953,11 @@ export namespace Components {
           * @deprecated Use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading": boolean;
         /**
           * Button outline
          */
@@ -879,6 +1032,23 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled": boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target": '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url": string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -948,20 +1118,28 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
-        /**
-          * Expand menu
-         */
         "expand": boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar": string;
         "i18nLegal": string;
-        "i18nMore": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
          */
         "maxVisibleMenuItems": number;
+        /**
+          * Menu stays pinned to the left
+         */
+        "pinned": boolean;
         /**
           * Is about tab visible
          */
@@ -970,6 +1148,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -1068,6 +1250,23 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon": string;
+        /**
+          * Display name of the category
+         */
+        "label": string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications": number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -1075,7 +1274,6 @@ export namespace Components {
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -1087,11 +1285,16 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon": string;
+        /**
           * Show notification count on tab
          */
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -1274,6 +1477,31 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxPushCard {
+        /**
+          * Card heading
+         */
+        "heading": string;
+        /**
+          * Card icon
+         */
+        "icon": string | undefined;
+        /**
+          * Card KPI value
+         */
+        "notification": string;
+        /**
+          * Card subheading
+         */
+        "subheading": string;
+        /**
+          * Card variant
+         */
+        "variant": PushCardVariant;
+    }
     interface IxSelect {
         /**
           * Show clear button
@@ -1343,14 +1571,15 @@ export namespace Components {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack": boolean;
         /**
           * Size of spinner
          */
-        "size": 'medium' | 'large';
+        "size": 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant": 'primary' | 'sencodary' | 'secondary';
+        "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -1366,11 +1595,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Button label
          */
         "label": string;
@@ -1383,7 +1607,7 @@ export namespace Components {
          */
         "placement": Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon": string;
         /**
@@ -1776,6 +2000,14 @@ export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBreadcrumbElement;
 }
+export interface IxCardAccordionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCardAccordionElement;
+}
+export interface IxCardListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCardListElement;
+}
 export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
@@ -1925,6 +2157,15 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxActionCardElement extends Components.IxActionCard, HTMLStencilElement {
+    }
+    var HTMLIxActionCardElement: {
+        prototype: HTMLIxActionCardElement;
+        new (): HTMLIxActionCardElement;
+    };
     interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
     }
     var HTMLIxAnimatedTabElement: {
@@ -1942,6 +2183,15 @@ declare global {
     var HTMLIxApplicationHeaderElement: {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
+    }
+    var HTMLIxAvatarElement: {
+        prototype: HTMLIxAvatarElement;
+        new (): HTMLIxAvatarElement;
     };
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
@@ -1979,6 +2229,51 @@ declare global {
         prototype: HTMLIxButtonElement;
         new (): HTMLIxButtonElement;
     };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
+    }
+    var HTMLIxCardElement: {
+        prototype: HTMLIxCardElement;
+        new (): HTMLIxCardElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
+    }
+    var HTMLIxCardAccordionElement: {
+        prototype: HTMLIxCardAccordionElement;
+        new (): HTMLIxCardAccordionElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxCardContentElement extends Components.IxCardContent, HTMLStencilElement {
+    }
+    var HTMLIxCardContentElement: {
+        prototype: HTMLIxCardContentElement;
+        new (): HTMLIxCardContentElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
+    }
+    var HTMLIxCardListElement: {
+        prototype: HTMLIxCardListElement;
+        new (): HTMLIxCardListElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxCardTitleElement extends Components.IxCardTitle, HTMLStencilElement {
+    }
+    var HTMLIxCardTitleElement: {
+        prototype: HTMLIxCardTitleElement;
+        new (): HTMLIxCardTitleElement;
+    };
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
     }
     var HTMLIxCategoryFilterElement: {
@@ -2002,6 +2297,18 @@ declare global {
     var HTMLIxCounterPillElement: {
         prototype: HTMLIxCounterPillElement;
         new (): HTMLIxCounterPillElement;
+    };
+    interface HTMLIxCssGridElement extends Components.IxCssGrid, HTMLStencilElement {
+    }
+    var HTMLIxCssGridElement: {
+        prototype: HTMLIxCssGridElement;
+        new (): HTMLIxCssGridElement;
+    };
+    interface HTMLIxCssGridItemElement extends Components.IxCssGridItem, HTMLStencilElement {
+    }
+    var HTMLIxCssGridItemElement: {
+        prototype: HTMLIxCssGridItemElement;
+        new (): HTMLIxCssGridItemElement;
     };
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
@@ -2177,6 +2484,15 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
+    }
+    var HTMLIxLinkButtonElement: {
+        prototype: HTMLIxLinkButtonElement;
+        new (): HTMLIxLinkButtonElement;
+    };
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
     var HTMLIxMapNavigationElement: {
@@ -2224,6 +2540,15 @@ declare global {
     var HTMLIxMenuAvatarItemElement: {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+    }
+    var HTMLIxMenuCategoryElement: {
+        prototype: HTMLIxMenuCategoryElement;
+        new (): HTMLIxMenuCategoryElement;
     };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
@@ -2281,6 +2606,15 @@ declare global {
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
+    };
+    /**
+     * @since 1.6.0
+     */
+    interface HTMLIxPushCardElement extends Components.IxPushCard, HTMLStencilElement {
+    }
+    var HTMLIxPushCardElement: {
+        prototype: HTMLIxPushCardElement;
+        new (): HTMLIxPushCardElement;
     };
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
     }
@@ -2412,19 +2746,28 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ix-action-card": HTMLIxActionCardElement;
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
         "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
+        "ix-card": HTMLIxCardElement;
+        "ix-card-accordion": HTMLIxCardAccordionElement;
+        "ix-card-content": HTMLIxCardContentElement;
+        "ix-card-list": HTMLIxCardListElement;
+        "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-counter-pill": HTMLIxCounterPillElement;
+        "ix-css-grid": HTMLIxCssGridElement;
+        "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -2451,6 +2794,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
@@ -2459,6 +2803,7 @@ declare global {
         "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
+        "ix-menu-category": HTMLIxMenuCategoryElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -2468,6 +2813,7 @@ declare global {
         "ix-modal-example": HTMLIxModalExampleElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-push-card": HTMLIxPushCardElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-spinner": HTMLIxSpinnerElement;
@@ -2492,6 +2838,31 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * @since 1.6.0
+     */
+    interface IxActionCard {
+        /**
+          * Card heading
+         */
+        "heading"?: string;
+        /**
+          * Card icon
+         */
+        "icon"?: string | undefined;
+        /**
+          * Card selection
+         */
+        "selected"?: boolean;
+        /**
+          * Card subheading
+         */
+        "subheading"?: string;
+        /**
+          * Card variant
+         */
+        "variant"?: ActionCardVariant;
+    }
     interface IxAnimatedTab {
         /**
           * Show notification number
@@ -2518,10 +2889,24 @@ declare namespace LocalJSX {
         "tabPlacement"?: 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode"?: Mode;
         /**
           * Application name
          */
         "name"?: string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image"?: string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -2586,9 +2971,17 @@ declare namespace LocalJSX {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded"?: boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
+        /**
+          * Display as pinned
+         */
+        "pinned"?: boolean;
     }
     interface IxButton {
         /**
@@ -2600,10 +2993,19 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading"?: boolean;
         /**
           * Outline button
          */
@@ -2617,9 +3019,87 @@ declare namespace LocalJSX {
          */
         "type"?: 'button' | 'submit';
         /**
-          * Button varaint
+          * Button variant
          */
         "variant"?: ButtonVariant;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCard {
+        /**
+          * Card variant
+         */
+        "variant"?: CardVariant;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardAccordion {
+        "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardContent {
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardList {
+        /**
+          * Collapse the list
+         */
+        "collapse"?: boolean;
+        /**
+          * i18n More cards available
+         */
+        "i18nMoreCards"?: string;
+        /**
+          * i18n Show all button
+         */
+        "i18nShowAll"?: string;
+        /**
+          * Name the card list
+         */
+        "label"?: string;
+        /**
+          * List style
+         */
+        "listStyle"?: 'stack' | 'scroll';
+        /**
+          * Maximal visible cards
+         */
+        "maxVisibleCards"?: number;
+        /**
+          * Fire event when the collapse state is changed by the user
+         */
+        "onCollapseChanged"?: (event: IxCardListCustomEvent<boolean>) => void;
+        /**
+          * Fire event when the collapse state is changed by the user
+         */
+        "onShowAllClick"?: (event: IxCardListCustomEvent<{
+    nativeEvent: MouseEvent;
+  }>) => void;
+        /**
+          * Fire event when the show more card is clicked.
+         */
+        "onShowMoreCardClick"?: (event: IxCardListCustomEvent<{
+    nativeEvent: MouseEvent;
+  }>) => void;
+        /**
+          * Overwrite the default show all count.
+         */
+        "showAllCount"?: number | undefined;
+        /**
+          * Suppress the overflow handling of child elements
+         */
+        "suppressOverflowHandling"?: boolean;
+    }
+    /**
+     * @since 1.6.0
+     */
+    interface IxCardTitle {
     }
     interface IxCategoryFilter {
         /**
@@ -2781,6 +3261,18 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxCssGrid {
+        /**
+          * Define css grid template
+         */
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
+    }
+    interface IxCssGridItem {
+        /**
+          * Grid item name
+         */
+        "itemName"?: string;
     }
     interface IxDatePicker {
         /**
@@ -3055,7 +3547,8 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active"?: boolean;
         /**
@@ -3167,7 +3660,8 @@ declare namespace LocalJSX {
          */
         "chevron"?: boolean;
         /**
-          * Color of the status indicator. Allowed values are all Core UI color names.
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color"?: string;
         /**
@@ -3189,6 +3683,11 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * If true the search field will fill all available horizontal space of it's parent container when expanded.
+          * @since 1.6.0
+         */
+        "fullWidth"?: boolean;
         /**
           * Search icon
          */
@@ -3341,7 +3840,7 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon"?: string;
         /**
@@ -3349,6 +3848,11 @@ declare namespace LocalJSX {
           * @deprecated Use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading"?: boolean;
         /**
           * Button outline
          */
@@ -3423,6 +3927,23 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled"?: boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target"?: '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url"?: string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -3484,14 +4005,18 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
-        /**
-          * Expand menu
-         */
         "expand"?: boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar"?: string;
         "i18nLegal"?: string;
-        "i18nMore"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
         /**
@@ -3507,6 +4032,10 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Menu stays pinned to the left
+         */
+        "pinned"?: boolean;
+        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -3514,6 +4043,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**
@@ -3527,7 +4060,10 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -3612,6 +4148,23 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon"?: string;
+        /**
+          * Display name of the category
+         */
+        "label"?: string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications"?: number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -3619,7 +4172,6 @@ declare namespace LocalJSX {
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**
@@ -3631,11 +4183,16 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon"?: string;
+        /**
           * Show notification count on tab
          */
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -3651,7 +4208,10 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -3827,6 +4387,31 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    /**
+     * @since 1.6.0
+     */
+    interface IxPushCard {
+        /**
+          * Card heading
+         */
+        "heading"?: string;
+        /**
+          * Card icon
+         */
+        "icon"?: string | undefined;
+        /**
+          * Card KPI value
+         */
+        "notification"?: string;
+        /**
+          * Card subheading
+         */
+        "subheading"?: string;
+        /**
+          * Card variant
+         */
+        "variant"?: PushCardVariant;
+    }
     interface IxSelect {
         /**
           * Show clear button
@@ -3904,14 +4489,15 @@ declare namespace LocalJSX {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack"?: boolean;
         /**
           * Size of spinner
          */
-        "size"?: 'medium' | 'large';
+        "size"?: 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant"?: 'primary' | 'sencodary' | 'secondary';
+        "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -3926,11 +4512,6 @@ declare namespace LocalJSX {
           * Button icon
          */
         "icon"?: string;
-        /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible"?: boolean;
         /**
           * Button label
          */
@@ -3948,7 +4529,7 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon"?: string;
         /**
@@ -4370,19 +4951,28 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
+        "ix-action-card": IxActionCard;
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
+        "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
         "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
+        "ix-card": IxCard;
+        "ix-card-accordion": IxCardAccordion;
+        "ix-card-content": IxCardContent;
+        "ix-card-list": IxCardList;
+        "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-content-header": IxContentHeader;
         "ix-counter-pill": IxCounterPill;
+        "ix-css-grid": IxCssGrid;
+        "ix-css-grid-item": IxCssGridItem;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -4409,6 +4999,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
@@ -4417,6 +5008,7 @@ declare namespace LocalJSX {
         "ix-menu-about-news": IxMenuAboutNews;
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
+        "ix-menu-category": IxMenuCategory;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -4426,6 +5018,7 @@ declare namespace LocalJSX {
         "ix-modal-example": IxModalExample;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
+        "ix-push-card": IxPushCard;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-spinner": IxSpinner;
@@ -4453,19 +5046,49 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @since 1.6.0
+             */
+            "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-card": LocalJSX.IxCard & JSXBase.HTMLAttributes<HTMLIxCardElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-card-accordion": LocalJSX.IxCardAccordion & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-card-content": LocalJSX.IxCardContent & JSXBase.HTMLAttributes<HTMLIxCardContentElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-card-list": LocalJSX.IxCardList & JSXBase.HTMLAttributes<HTMLIxCardListElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
+            "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
+            "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
@@ -4510,6 +5133,10 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
@@ -4518,6 +5145,10 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
@@ -4530,6 +5161,10 @@ declare module "@stencil/core" {
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            /**
+             * @since 1.6.0
+             */
+            "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;

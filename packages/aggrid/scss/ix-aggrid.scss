@@ -85,6 +85,10 @@
     }
   }
 
+  .ag-cell-inline-editing {
+    box-shadow: none;
+  }
+
   .ag-header-cell-resize::after {
     transition: background-color 250ms linear;
   }

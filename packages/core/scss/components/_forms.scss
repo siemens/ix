@@ -10,6 +10,7 @@
 @import 'common-variables';
 @import './mixins/hover';
 @import './mixins/text-truncation';
+@import './mixins/fonts';
 
 @mixin from-control-invalid {
   color: $form-feedback-invalid-color;
@@ -34,18 +35,20 @@
     color: var(--theme-input-hint--color);
   }
 
-  @include hover {
-    background-color: var(--theme-input--background--hover);
-    border-color: var(--theme-input--border-color--hover);
-    cursor: auto;
-  }
+  &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
+    @include hover {
+      background-color: var(--theme-input--background--hover);
+      border-color: var(--theme-input--border-color--hover);
+      cursor: auto;
+    }
 
-  @include focus-visible {
-    background-color: var(--theme-input--background--focus);
-    border-color: var(--theme-input--border-color--focus);
-    outline-offset: var(--theme-input--focus--outline-offset);
-    box-shadow: var(--theme-input--box-shadow);
-    outline: 1px solid var(--theme-color-focus-bdr);
+    @include focus-visible {
+      background-color: var(--theme-input--background--focus);
+      border-color: var(--theme-input--border-color--focus);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      box-shadow: var(--theme-input--box-shadow);
+      outline: 1px solid var(--theme-color-focus-bdr);
+    }
   }
 }
 
@@ -96,6 +99,10 @@
   color: var(--theme-color-weak-text);
 
   border-color: var(--theme-input--border-color-bottom--disabled);
+
+  &::placeholder {
+    color: transparent;
+  }
 }
 
 .form-control-plaintext {

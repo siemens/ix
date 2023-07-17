@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from './base-button';
 
 export type ButtonVariant = 'Primary' | 'Secondary';
@@ -19,7 +19,7 @@ export type ButtonVariant = 'Primary' | 'Secondary';
 })
 export class Button {
   /**
-   * Button varaint
+   * Button variant
    */
   @Prop() variant: ButtonVariant = 'Primary';
 
@@ -55,6 +55,43 @@ export class Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Loading button
+   *
+   * @since 2.0.0
+   */
+  @Prop() loading: boolean = false;
+
+  /**
+   * Icon name
+   */
+  @Prop() icon: string;
+
+  @Element() hostElement: HTMLIxButtonElement;
+
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement: HTMLButtonElement;
+
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  dispatchFormEvents() {
+    if (this.type === 'submit' && this.submitButtonElement) {
+      this.submitButtonElement.click();
+    }
+  }
+
   render() {
     return (
       <Host
@@ -63,6 +100,7 @@ export class Button {
         }}
       >
         <button
+          onClick={() => this.dispatchFormEvents()}
           type={this.type}
           class={getButtonClasses(
             this.variant,
@@ -71,9 +109,15 @@ export class Button {
             false,
             false,
             this.selected,
-            this.disabled
+            this.disabled || this.loading
           )}
         >
+          {this.loading ? (
+            <ix-spinner size="small" hideTrack></ix-spinner>
+          ) : null}
+          {this.icon && !this.loading ? (
+            <ix-icon name={this.icon}></ix-icon>
+          ) : null}
           <slot></slot>
         </button>
       </Host>

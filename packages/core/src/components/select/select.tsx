@@ -386,6 +386,14 @@ export class Select {
     return this.i18nPlaceholder;
   }
 
+  private isAddItemVisible() {
+    return (
+      !this.itemExists(this.inputFilterText) &&
+      this.editable &&
+      this.inputFilterText
+    );
+  }
+
   render() {
     return (
       <Host>
@@ -492,15 +500,12 @@ export class Select {
           </div>
           <slot></slot>
           <div ref={(ref) => (this.addItemRef = ref)} class="d-contents"></div>
-          {this.itemExists(this.inputFilterText) ? (
-            ''
-          ) : (
+          {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
               icon="plus"
               class={{
                 'add-item': true,
-                'd-none': !(this.editable && this.inputFilterText),
               }}
               label={this.inputFilterText}
               onItemClick={(e) => {
@@ -509,7 +514,7 @@ export class Select {
                 this.emitAddItem(this.inputFilterText);
               }}
             ></ix-dropdown-item>
-          )}
+          ) : null}
           {this.isDropdownEmpty && !this.editable ? (
             <div class="select-list-header">{this.i18nNoMatches}</div>
           ) : (

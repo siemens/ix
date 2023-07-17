@@ -18,6 +18,10 @@
   height: auto;
   border-radius: var(--theme-input--border-radius);
 
+  .d-none {
+    display: none;
+  }
+
   .select {
     position: relative;
     display: flex;

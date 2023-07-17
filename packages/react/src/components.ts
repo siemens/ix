@@ -8,14 +8,21 @@ import type { JSX } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
+export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card');
 export const IxAnimatedTab = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTab, HTMLIxAnimatedTabElement>('ix-animated-tab');
 export const IxAnimatedTabs = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTabs, HTMLIxAnimatedTabsElement>('ix-animated-tabs');
 export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxApplicationHeader, HTMLIxApplicationHeaderElement>('ix-application-header');
+export const IxAvatar = /*@__PURE__*/createReactComponent<JSX.IxAvatar, HTMLIxAvatarElement>('ix-avatar');
 export const IxBasicNavigation = /*@__PURE__*/createReactComponent<JSX.IxBasicNavigation, HTMLIxBasicNavigationElement>('ix-basic-navigation');
 export const IxBlind = /*@__PURE__*/createReactComponent<JSX.IxBlind, HTMLIxBlindElement>('ix-blind');
 export const IxBreadcrumb = /*@__PURE__*/createReactComponent<JSX.IxBreadcrumb, HTMLIxBreadcrumbElement>('ix-breadcrumb');
 export const IxBreadcrumbItem = /*@__PURE__*/createReactComponent<JSX.IxBreadcrumbItem, HTMLIxBreadcrumbItemElement>('ix-breadcrumb-item');
 export const IxButton = /*@__PURE__*/createReactComponent<JSX.IxButton, HTMLIxButtonElement>('ix-button');
+export const IxCard = /*@__PURE__*/createReactComponent<JSX.IxCard, HTMLIxCardElement>('ix-card');
+export const IxCardAccordion = /*@__PURE__*/createReactComponent<JSX.IxCardAccordion, HTMLIxCardAccordionElement>('ix-card-accordion');
+export const IxCardContent = /*@__PURE__*/createReactComponent<JSX.IxCardContent, HTMLIxCardContentElement>('ix-card-content');
+export const IxCardList = /*@__PURE__*/createReactComponent<JSX.IxCardList, HTMLIxCardListElement>('ix-card-list');
+export const IxCardTitle = /*@__PURE__*/createReactComponent<JSX.IxCardTitle, HTMLIxCardTitleElement>('ix-card-title');
 export const IxCategoryFilter = /*@__PURE__*/createReactComponent<JSX.IxCategoryFilter, HTMLIxCategoryFilterElement>('ix-category-filter');
 export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipElement>('ix-chip');
 export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHeader, HTMLIxContentHeaderElement>('ix-content-header');
@@ -45,6 +52,7 @@ export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, 
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value');
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list');
 export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi');
+export const IxLinkButton = /*@__PURE__*/createReactComponent<JSX.IxLinkButton, HTMLIxLinkButtonElement>('ix-link-button');
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation');
 export const IxMapNavigationOverlay = /*@__PURE__*/createReactComponent<JSX.IxMapNavigationOverlay, HTMLIxMapNavigationOverlayElement>('ix-map-navigation-overlay');
 export const IxMenu = /*@__PURE__*/createReactComponent<JSX.IxMenu, HTMLIxMenuElement>('ix-menu');
@@ -53,6 +61,7 @@ export const IxMenuAboutItem = /*@__PURE__*/createReactComponent<JSX.IxMenuAbout
 export const IxMenuAboutNews = /*@__PURE__*/createReactComponent<JSX.IxMenuAboutNews, HTMLIxMenuAboutNewsElement>('ix-menu-about-news');
 export const IxMenuAvatar = /*@__PURE__*/createReactComponent<JSX.IxMenuAvatar, HTMLIxMenuAvatarElement>('ix-menu-avatar');
 export const IxMenuAvatarItem = /*@__PURE__*/createReactComponent<JSX.IxMenuAvatarItem, HTMLIxMenuAvatarItemElement>('ix-menu-avatar-item');
+export const IxMenuCategory = /*@__PURE__*/createReactComponent<JSX.IxMenuCategory, HTMLIxMenuCategoryElement>('ix-menu-category');
 export const IxMenuItem = /*@__PURE__*/createReactComponent<JSX.IxMenuItem, HTMLIxMenuItemElement>('ix-menu-item');
 export const IxMenuSettings = /*@__PURE__*/createReactComponent<JSX.IxMenuSettings, HTMLIxMenuSettingsElement>('ix-menu-settings');
 export const IxMenuSettingsItem = /*@__PURE__*/createReactComponent<JSX.IxMenuSettingsItem, HTMLIxMenuSettingsItemElement>('ix-menu-settings-item');
@@ -62,6 +71,7 @@ export const IxModalContainer = /*@__PURE__*/createReactComponent<JSX.IxModalCon
 export const IxModalExample = /*@__PURE__*/createReactComponent<JSX.IxModalExample, HTMLIxModalExampleElement>('ix-modal-example');
 export const IxPagination = /*@__PURE__*/createReactComponent<JSX.IxPagination, HTMLIxPaginationElement>('ix-pagination');
 export const IxPill = /*@__PURE__*/createReactComponent<JSX.IxPill, HTMLIxPillElement>('ix-pill');
+export const IxPushCard = /*@__PURE__*/createReactComponent<JSX.IxPushCard, HTMLIxPushCardElement>('ix-push-card');
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select');
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item');
 export const IxSpinner = /*@__PURE__*/createReactComponent<JSX.IxSpinner, HTMLIxSpinnerElement>('ix-spinner');

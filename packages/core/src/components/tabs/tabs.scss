@@ -9,8 +9,10 @@
 
 @import 'common-variables';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
-ix-tabs {
+:host {
+  @include ix-component;
   width: auto;
   display: flex;
   align-items: center;
@@ -60,18 +62,32 @@ ix-tabs {
   }
 
   .overflow-shadow {
-    width: 50px;
-    height: 40px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(90deg, var(--theme-color-1) 50%, transparent);
-    z-index: 1;
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
 
-    &.right {
-      left: auto;
-      right: 0;
-      background: linear-gradient(90deg, transparent, var(--theme-color-1) 50%);
+    &.shadow-left {
+      mask-image: linear-gradient(90deg, transparent 0px, black 45px);
+    }
+
+    &.shadow-right {
+      mask-image: linear-gradient(
+        90deg,
+        black calc(100% - 45px),
+        transparent 100%
+      );
+    }
+
+    &.shadow-both {
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0px,
+        black 45px,
+        black calc(100% - 45px),
+        transparent 100%
+      );
     }
   }
 }

@@ -20,7 +20,7 @@ import {
 @Component({
   tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',
-  scoped: true,
+  shadow: true,
 })
 export class FilterChip {
   @Element() el: HTMLIxFilterChipElement;
@@ -47,13 +47,16 @@ export class FilterChip {
         <div class="slot-container">
           <slot></slot>
         </div>
-        <button
+        <ix-icon-button
+          ghost
+          oval
+          icon="close-small"
+          size="16"
+          tabindex={this.disabled ? -1 : 0}
+          variant="Primary"
           disabled={this.disabled}
-          class="btn btn-invisible-primary btn-oval"
           onClick={(e) => this.onCloseClick(e)}
-        >
-          <ix-icon name="close-small" size="16"></ix-icon>
-        </button>
+        ></ix-icon-button>
       </Host>
     );
   }

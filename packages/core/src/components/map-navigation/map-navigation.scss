@@ -10,8 +10,11 @@
 @import 'common-variables';
 @import 'mixins/fonts';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   $appHeaderHeight: 3.5rem;
   $appHeaderGradientHeight: 4rem;
   $navHeaderHeight: 11.5rem;
@@ -96,7 +99,7 @@
     overflow: hidden;
     padding: 0 $default-space;
 
-    &:empty {
+    &.empty {
       height: 0;
     }
   }
@@ -116,5 +119,9 @@
     height: 100%;
     overflow: hidden;
     z-index: calc(var(--theme-z-index-sticky) - 1);
+  }
+
+  ::slotted(ix-menu) {
+    position: absolute;
   }
 }

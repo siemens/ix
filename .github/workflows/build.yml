@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.24.0-focal
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
@@ -86,12 +86,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     container:
-      image: node:18.12.1
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/build-cache
+      - uses: ./.github/workflows/actions/install
       - uses: ./.github/workflows/actions/test
 
   lint:

@@ -15,4 +15,9 @@ regressionTest.describe('icon-button', () => {
     await page.goto('icon-button/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('should show loading spinner', async ({ page }) => {
+    await page.goto('icon-button/loading');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
+  });
 });

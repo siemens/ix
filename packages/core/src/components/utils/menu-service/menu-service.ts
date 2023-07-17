@@ -12,6 +12,7 @@ import { TypedEvent } from '../typed-event';
 class MenuService {
   menuElement: HTMLIxMenuElement | null = null;
   menuExpandChange = new TypedEvent<boolean>();
+  #isPinned = false;
 
   register(menuElement: HTMLIxMenuElement) {
     if (this.menuElement) {
@@ -25,6 +26,10 @@ class MenuService {
         this.menuExpandChange.emit(event.detail);
       }
     );
+  }
+
+  public setIsPinned(pinned: boolean) {
+    this.#isPinned = pinned;
   }
 
   public async open() {
@@ -60,6 +65,10 @@ class MenuService {
 
   get expandChange() {
     return this.menuExpandChange;
+  }
+
+  get isPinned() {
+    return this.#isPinned;
   }
 }
 
