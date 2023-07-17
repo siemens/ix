@@ -1,0 +1,127 @@
+:host {
+  display: block;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.bar-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+}
+
+.icon-container {
+  overflow: hidden;
+  display: flex;
+  margin-top: 4px;
+}
+
+.icon-and-text {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.distance {
+  margin-right: 4px;
+}
+
+.unassigned {
+  background-color: var(--theme-color-neutral);
+}
+
+.unassigned-icon {
+  color: var(--theme-color-neutral);
+  margin-right: 4px;
+}
+
+.unassigned-bar {
+  height: 8px;
+  background: repeating-linear-gradient(
+      -60deg,
+      var(--theme-color-neutral),
+      var(--theme-color-neutral) 2px,
+      var(--theme-color-inv-weak-text) 2px,
+      var(--theme-color-inv-weak-text) 4px
+  );
+}
+
+.alarm {
+  background-color: var(--theme-color-alarm);
+}
+
+.alarm-icon {
+  color: var(--theme-color-alarm);
+  margin-right: 4px;
+}
+
+.alarm-bar {
+  height: 8px;
+  background: repeating-linear-gradient(
+      -60deg,
+      var(--theme-color-alarm),
+      var(--theme-color-alarm) 2px,
+      var(--theme-color-inv-weak-text) 2px,
+      var(--theme-color-inv-weak-text) 4px
+  );
+}
+
+.critical {
+  background-color: var(--theme-color-critical);
+}
+
+.critical-icon {
+  color: var(--theme-color-critical);
+  margin-right: 4px;
+}
+
+.critical-bar {
+  height: 8px;
+  background: repeating-linear-gradient(
+      -60deg,
+      var(--theme-color-critical),
+      var(--theme-color-critical) 2px,
+      var(--theme-color-inv-weak-text) 2px,
+      var(--theme-color-inv-weak-text) 4px
+  );
+}
+
+.warning {
+  background-color: var(--theme-color-warning);
+}
+
+.warning-icon {
+  color: var(--theme-color-warning);
+  margin-right: 4px;
+}
+
+.warning-bar {
+  height: 8px;
+  background: repeating-linear-gradient(
+      -60deg,
+      var(--theme-color-warning),
+      var(--theme-color-warning) 2px,
+      var(--theme-color-inv-weak-text) 2px,
+      var(--theme-color-inv-weak-text) 4px
+  );
+}
+
+.info {
+  background-color: var(--theme-color-info);
+}
+
+.info-icon {
+  color: var(--theme-color-info);
+  margin-right: 4px;
+}
+
+.info-bar {
+  height: 8px;
+  background: repeating-linear-gradient(
+      -60deg,
+      var(--theme-color-info),
+      var(--theme-color-info) 2px,
+      var(--theme-color-inv-weak-text) 2px,
+      var(--theme-color-inv-weak-text) 4px
+  );
+}

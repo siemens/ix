@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { BarNumbers } from "./components/information-bar/information-bar";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
@@ -36,6 +37,7 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
+export { BarNumbers } from "./components/information-bar/information-bar";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
@@ -68,6 +70,9 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    interface InformationBar {
+        "bar": BarNumbers[];
+    }
     /**
      * @since 1.6.0
      */
@@ -2158,6 +2163,12 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    interface HTMLInformationBarElement extends Components.InformationBar, HTMLStencilElement {
+    }
+    var HTMLInformationBarElement: {
+        prototype: HTMLInformationBarElement;
+        new (): HTMLInformationBarElement;
+    };
     /**
      * @since 1.6.0
      */
@@ -2747,6 +2758,7 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "information-bar": HTMLInformationBarElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
@@ -2839,6 +2851,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface InformationBar {
+        "bar"?: BarNumbers[];
+    }
     /**
      * @since 1.6.0
      */
@@ -4958,6 +4973,7 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
+        "information-bar": InformationBar;
         "ix-action-card": IxActionCard;
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
@@ -5053,6 +5069,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "information-bar": LocalJSX.InformationBar & JSXBase.HTMLAttributes<HTMLInformationBarElement>;
             /**
              * @since 1.6.0
              */
