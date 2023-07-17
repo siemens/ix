@@ -98,7 +98,7 @@ export class Select {
   /**
    * Event dispatched whenever the text input changes.
    *
-   * @since 1.7.0
+   * @since 2.0.0
    */
   @Event() inputChange: EventEmitter<string>;
 
