@@ -5451,7 +5451,7 @@
       "methods": [],
       "events": [
         {
-          "event": "toggle",
+          "event": "pressedChange",
           "detail": "boolean",
           "bubbles": true,
           "cancelable": true,
@@ -10662,7 +10662,7 @@
       "methods": [],
       "events": [
         {
-          "event": "toggle",
+          "event": "pressedChange",
           "detail": "boolean",
           "bubbles": true,
           "cancelable": true,

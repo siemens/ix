@@ -1078,7 +1078,7 @@ export class IxIconToggleButton {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['toggle']);
+    proxyOutputs(this, this.el, ['pressedChange']);
   }
 }
 
@@ -1087,7 +1087,7 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
   /**
    * Pressed change event
    */
-  toggle: EventEmitter<CustomEvent<boolean>>;
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -2037,7 +2037,7 @@ export class IxToggleButton {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['toggle']);
+    proxyOutputs(this, this.el, ['pressedChange']);
   }
 }
 
@@ -2046,7 +2046,7 @@ export declare interface IxToggleButton extends Components.IxToggleButton {
   /**
    * Pressed change event
    */
-  toggle: EventEmitter<CustomEvent<boolean>>;
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 

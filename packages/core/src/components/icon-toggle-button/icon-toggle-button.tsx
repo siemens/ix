@@ -19,8 +19,6 @@ import {
 import { getButtonClasses } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
 
-export type ToggleButtonVariant = 'Primary' | 'Secondary';
-
 /**
  * @since 2.0.0
  */
@@ -53,7 +51,7 @@ export class IconToggleButton {
   /**
    * Pressed change event
    */
-  @Event() toggle: EventEmitter<boolean>;
+  @Event() pressedChange: EventEmitter<boolean>;
 
   @Element() hostElement: HTMLIxIconToggleButtonElement;
 
@@ -85,7 +83,7 @@ export class IconToggleButton {
             [this.getIconButtonClass()]: true,
           }}
           type="button"
-          onClick={() => this.toggle.emit(!this.pressed)}
+          onClick={() => this.pressedChange.emit(!this.pressed)}
         >
           {this.icon ? (
             <ix-icon name={this.icon} size={this.size}></ix-icon>

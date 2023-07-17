@@ -3961,7 +3961,7 @@ declare namespace LocalJSX {
         /**
           * Pressed change event
          */
-        "onToggle"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
+        "onPressedChange"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
         /**
           * Show button as pressed
          */
@@ -4849,7 +4849,7 @@ declare namespace LocalJSX {
         /**
           * Pressed change event
          */
-        "onToggle"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
+        "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
           * Show button as pressed
          */
