@@ -18,18 +18,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon"
       ],
       "dependencyGraph": {
         "information-bar": [
           "ix-icon"
-        ],
-        "my-component": [
-          "information-bar"
         ]
       },
       "props": [
@@ -831,8 +826,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner",
@@ -871,9 +865,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -11585,23 +11576,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "information-bar",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "information-bar",
-          "ix-button"
-        ],
-        "information-bar": [
-          "ix-icon"
-        ],
-        "ix-button": [
-          "ix-spinner",
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
