@@ -8,6 +8,7 @@ import type { JSX } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
+export const InformationBar = /*@__PURE__*/createReactComponent<JSX.InformationBar, HTMLInformationBarElement>('information-bar');
 export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card');
 export const IxAnimatedTab = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTab, HTMLIxAnimatedTabElement>('ix-animated-tab');
 export const IxAnimatedTabs = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTabs, HTMLIxAnimatedTabsElement>('ix-animated-tabs');

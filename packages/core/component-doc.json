@@ -7,6 +7,57 @@
   },
   "components": [
     {
+      "dirPath": "./src/components/information-bar",
+      "filePath": "./src/components/information-bar/information-bar.tsx",
+      "fileName": "information-bar.tsx",
+      "readmePath": "./src/components/information-bar/readme.md",
+      "usagesDir": "./src/components/information-bar/usage",
+      "tag": "information-bar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "information-bar": [
+          "ix-icon"
+        ],
+        "my-component": [
+          "information-bar"
+        ]
+      },
+      "props": [
+        {
+          "name": "bar",
+          "type": "BarNumbers[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "BarNumbers[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/action-card",
       "filePath": "./src/components/action-card/action-card.tsx",
       "fileName": "action-card.tsx",
@@ -780,7 +831,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -819,6 +871,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -11530,8 +11585,23 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "information-bar",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "information-bar",
+          "ix-button"
+        ],
+        "information-bar": [
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

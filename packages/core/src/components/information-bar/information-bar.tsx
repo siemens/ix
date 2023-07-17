@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, Element, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 
 export type BarNumbers = {
   count: number;

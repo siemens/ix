@@ -5,14 +5,15 @@ describe('information-bar', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [InformationBar],
-      html: `<test-component></test-component>`,
+      html: `<information-bar></information-bar>`,
     });
     expect(page.root).toEqualHtml(`
-      <test-component>
+      <information-bar>
         <mock:shadow-root>
-          <slot></slot>
+          <div class="bar-container"></div>
+          <div class="icon-container"></div>
         </mock:shadow-root>
-      </test-component>
+      </information-bar>
     `);
   });
 });
