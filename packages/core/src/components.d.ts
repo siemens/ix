@@ -972,6 +972,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Size of icon in button
+          * @deprecated Only size 32 will be removed in 3.0.0
          */
         "size": '32' | '24' | '16' | '12';
         /**
@@ -3867,6 +3868,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Size of icon in button
+          * @deprecated Only size 32 will be removed in 3.0.0
          */
         "size"?: '32' | '24' | '16' | '12';
         /**

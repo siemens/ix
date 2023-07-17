@@ -5263,8 +5263,14 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Only size 32 will be removed in 3.0.0"
+            }
+          ],
           "default": "'24'",
+          "deprecation": "Only size 32 will be removed in 3.0.0",
           "values": [
             {
               "value": "12",
