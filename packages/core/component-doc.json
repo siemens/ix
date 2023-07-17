@@ -8803,6 +8803,20 @@
           "docsTags": []
         },
         {
+          "event": "inputChange",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the text input changes.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
+        },
+        {
           "event": "itemSelectionChange",
           "detail": "string | string[]",
           "bubbles": true,
