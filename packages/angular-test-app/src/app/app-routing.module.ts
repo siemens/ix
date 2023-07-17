@@ -65,6 +65,7 @@ import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-lef
 import Kpi from 'src/preview-examples/kpi';
 import MapNavigation from 'src/preview-examples/map-navigation';
 import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
+import MenuCategory from 'src/preview-examples/menu-category';
 import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Modal from 'src/preview-examples/modal-by-template';
@@ -90,6 +91,7 @@ import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
+import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
@@ -160,6 +162,10 @@ const routes: Routes = [
       {
         path: 'toast-custom',
         component: ToastCustom,
+      },
+      {
+        path: 'toast-position',
+        component: ToastPosition,
       },
       {
         path: 'tree',
@@ -303,6 +309,7 @@ const routes: Routes = [
       },
       { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
       { path: 'key-value-list-striped', component: KeyValueListStriped },
+      { path: 'menu-category', component: MenuCategory },
     ],
   },
 ];

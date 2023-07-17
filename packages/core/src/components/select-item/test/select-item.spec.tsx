@@ -46,9 +46,9 @@ describe('select-item', () => {
       .addEventListener('itemClick', eventSpy);
 
     const dropdownItem = page.doc.querySelector(
-      'ix-dropdown-item button'
+      'ix-dropdown-item'
     ) as HTMLElement;
-    dropdownItem.click();
+    dropdownItem.shadowRoot.querySelector('button').click();
 
     expect(eventSpy).toHaveBeenCalled();
   });

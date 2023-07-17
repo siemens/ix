@@ -7,6 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  display: block;
-}
+import { IxAvatar } from '@siemens/ix-react';
+import React from 'react';
+
+export default () => {
+  return (
+    <IxAvatar image="https://ui-avatars.com/api/?name=John+Doe"></IxAvatar>
+  );
+};

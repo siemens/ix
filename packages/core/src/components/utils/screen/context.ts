@@ -38,3 +38,8 @@ export const getHostApplicationLayout = (element: HTMLElement) => {
     return mapNavigation;
   }
 };
+
+export const menuContext = (element: Element) => {
+  const menuElement = element.closest('ix-menu');
+  return menuElement;
+};

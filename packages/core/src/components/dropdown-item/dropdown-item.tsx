@@ -21,7 +21,7 @@ import {
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DropdownItem {
   @Element() hostElement!: HTMLIxDropdownItemElement;
@@ -73,6 +73,7 @@ export class DropdownItem {
           'icon-only': this.label === undefined && this.icon !== undefined,
           disabled: this.disabled,
         }}
+        role="listitem"
       >
         <button
           type="button"
@@ -82,22 +83,17 @@ export class DropdownItem {
             disabled: this.disabled,
           }}
           onClick={() => this.emitItemClick()}
-          tabindex={0}
         >
           {this.checked ? (
             <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
           ) : null}
 
           {this.icon ? (
-            <span
-              class={{
-                glyph: true,
-                [`glyph-${this.icon}`]: true,
-                disabled: this.disabled,
-              }}
-            ></span>
+            <ix-icon
+              name={this.icon}
+              color={`color-${this.disabled ? 'weak' : 'soft'}-text`}
+            ></ix-icon>
           ) : null}
-
           {this.label ? <span class="label">{this.label}</span> : null}
           <slot></slot>
         </button>

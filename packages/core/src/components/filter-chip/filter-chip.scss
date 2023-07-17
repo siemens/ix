@@ -10,8 +10,11 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,23 +24,6 @@
   border-radius: $x-large-space;
   background-color: var(--theme-color-ghost);
   color: var(--theme-chip-primary-outline--color);
-
-  @include hover {
-    background-color: var(--theme-color-ghost-primary--hover);
-    border-color: var(--theme-chip-primary-outline--border-color--hover);
-    color: var(--theme-chip-primary-outline--color--hover);
-  }
-
-  @include active {
-    background-color: var(--theme-color-ghost-primary--active);
-    border-color: var(--theme-chip-primary-outline--border-color--active);
-    color: var(--theme-chip-primary-outline--color--active);
-  }
-
-  @include focus-visible {
-    outline: var(--theme-color-focus-bdr) solid var(--theme-focus--border-thickness);
-    outline-offset: -0.125rem;
-  }
 
   .slot-container {
     @include ellipsis;
@@ -49,17 +35,29 @@
     }
   }
 
-  .btn-oval {
+  ix-icon-button {
     height: $large-space;
-    width: $large-space;
-    min-width: $large-space;
     margin-left: $tiny-space;
-    padding: 0;
-    vertical-align: top;
 
     @include focus-visible {
       outline: none;
-      border-color: #199fff;
     }
   }
 }
+
+@include host-hover {
+    background-color: var(--theme-color-ghost-primary--hover);
+    border-color: var(--theme-chip-primary-outline--border-color--hover);
+    color: var(--theme-chip-primary-outline--color--hover);
+  }
+
+  @include host-active {
+    background-color: var(--theme-color-ghost-primary--active);
+    border-color: var(--theme-chip-primary-outline--border-color--active);
+    color: var(--theme-chip-primary-outline--color--active);
+  }
+
+  @include host-focus-visible {
+    outline: var(--theme-color-focus-bdr) solid var(--theme-focus--border-thickness);
+    outline-offset: -0.125rem;
+  }

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
 
@@ -19,6 +19,8 @@ export type IconButtonVariant = ButtonVariant;
   shadow: true,
 })
 export class IconButton implements Button {
+  @Element() hostElement: HTMLIxIconButtonElement;
+
   /**
    * Variant of button
    */
@@ -47,7 +49,7 @@ export class IconButton implements Button {
   @Prop() oval: boolean;
 
   /**
-   * Button icon
+   * Icon name
    */
   @Prop() icon: string;
 
@@ -76,6 +78,36 @@ export class IconButton implements Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Loading button
+   *
+   * @since 2.0.0
+   */
+  @Prop() loading = false;
+
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement: HTMLButtonElement;
+
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  dispatchFormEvents() {
+    if (this.type === 'submit' && this.submitButtonElement) {
+      this.submitButtonElement.click();
+    }
+  }
+
   private getIconSizeClass() {
     return {
       'btn-icon-12': this.size === '12',
@@ -93,7 +125,7 @@ export class IconButton implements Button {
         true,
         this.oval,
         this.selected,
-        this.disabled
+        this.disabled || this.loading
       ),
       'icon-button': true,
       ...this.getIconSizeClass(),
@@ -103,11 +135,21 @@ export class IconButton implements Button {
   render() {
     return (
       <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
-        <button class={this.getIconButtonClasses()} type={this.type}>
-          <ix-icon size={this.size} name={this.icon} color={this.color} />
-          <div style={{ display: 'none' }}>
-            <slot></slot>
-          </div>
+        <button
+          class={this.getIconButtonClasses()}
+          type={this.type}
+          onClick={() => this.dispatchFormEvents()}
+        >
+          {this.loading ? (
+            <ix-spinner size="small" hideTrack></ix-spinner>
+          ) : null}
+          {this.icon && !this.loading ? (
+            <ix-icon
+              size={this.size}
+              name={this.icon}
+              color={this.color}
+            ></ix-icon>
+          ) : null}
         </button>
       </Host>
     );

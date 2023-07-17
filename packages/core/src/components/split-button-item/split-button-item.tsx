@@ -19,7 +19,7 @@ import {
 @Component({
   tag: 'ix-split-button-item',
   styleUrl: 'split-button-item.css',
-  scoped: true,
+  shadow: true,
 })
 export class SplitButtonItem {
   /**

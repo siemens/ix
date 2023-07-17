@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
+import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -36,6 +37,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
+export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -113,10 +115,24 @@ export namespace Components {
         "tabPlacement": 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode": Mode;
         /**
           * Application name
          */
         "name": string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image": string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials": string;
     }
     interface IxBasicNavigation {
         /**
@@ -172,6 +188,10 @@ export namespace Components {
           * Is menu displayed as expanded
          */
         "expanded": boolean;
+        /**
+          * Display as pinned
+         */
+        "pinned": boolean;
     }
     interface IxButton {
         /**
@@ -183,10 +203,19 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * Icon name
+         */
+        "icon": string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading": boolean;
         /**
           * Outline button
          */
@@ -651,7 +680,8 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active": boolean;
         /**
@@ -759,7 +789,8 @@ export namespace Components {
          */
         "chevron": boolean;
         /**
-          * Color of the status indicator. Allowed values are all Core UI color names.
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color": string;
         /**
@@ -910,7 +941,7 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon": string;
         /**
@@ -918,6 +949,11 @@ export namespace Components {
           * @deprecated Use ghost property
          */
         "invisible": boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading": boolean;
         /**
           * Button outline
          */
@@ -992,6 +1028,23 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled": boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target": '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url": string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -1065,16 +1118,23 @@ export namespace Components {
           * Expand menu
          */
         "expand": boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         "i18nLegal": string;
-        "i18nMore": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
          */
         "maxVisibleMenuItems": number;
+        /**
+          * Menu stays pinned to the left
+         */
+        "pinned": boolean;
         /**
           * Is about tab visible
          */
@@ -1083,6 +1143,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -1181,6 +1245,23 @@ export namespace Components {
          */
         "label": string;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon": string;
+        /**
+          * Display name of the category
+         */
+        "label": string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications": number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -1188,7 +1269,6 @@ export namespace Components {
         "active": boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom": boolean;
         /**
@@ -1200,11 +1280,16 @@ export namespace Components {
          */
         "home": boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon": string;
+        /**
           * Show notification count on tab
          */
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -1481,14 +1566,15 @@ export namespace Components {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack": boolean;
         /**
           * Size of spinner
          */
-        "size": 'medium' | 'large';
+        "size": 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant": 'primary' | 'sencodary' | 'secondary';
+        "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -1504,11 +1590,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Button label
          */
         "label": string;
@@ -1521,7 +1602,7 @@ export namespace Components {
          */
         "placement": Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon": string;
         /**
@@ -2098,6 +2179,15 @@ declare global {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxAvatarElement extends Components.IxAvatar, HTMLStencilElement {
+    }
+    var HTMLIxAvatarElement: {
+        prototype: HTMLIxAvatarElement;
+        new (): HTMLIxAvatarElement;
+    };
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
     var HTMLIxBasicNavigationElement: {
@@ -2389,6 +2479,15 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
+    }
+    var HTMLIxLinkButtonElement: {
+        prototype: HTMLIxLinkButtonElement;
+        new (): HTMLIxLinkButtonElement;
+    };
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
     }
     var HTMLIxMapNavigationElement: {
@@ -2436,6 +2535,15 @@ declare global {
     var HTMLIxMenuAvatarItemElement: {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+    }
+    var HTMLIxMenuCategoryElement: {
+        prototype: HTMLIxMenuCategoryElement;
+        new (): HTMLIxMenuCategoryElement;
     };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
@@ -2637,6 +2745,7 @@ declare global {
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
@@ -2680,6 +2789,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
         "ix-menu": HTMLIxMenuElement;
@@ -2688,6 +2798,7 @@ declare global {
         "ix-menu-about-news": HTMLIxMenuAboutNewsElement;
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
+        "ix-menu-category": HTMLIxMenuCategoryElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -2773,10 +2884,24 @@ declare namespace LocalJSX {
         "tabPlacement"?: 'top' | 'bottom';
     }
     interface IxApplicationHeader {
+        "mode"?: Mode;
         /**
           * Application name
          */
         "name"?: string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxAvatar {
+        /**
+          * Display a avatar image
+         */
+        "image"?: string;
+        /**
+          * Display the initials of the user. Will be overwritten by image
+         */
+        "initials"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -2844,6 +2969,10 @@ declare namespace LocalJSX {
           * Is menu displayed as expanded
          */
         "expanded"?: boolean;
+        /**
+          * Display as pinned
+         */
+        "pinned"?: boolean;
     }
     interface IxButton {
         /**
@@ -2855,10 +2984,19 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
+          * Icon name
+         */
+        "icon"?: string;
+        /**
           * Invisible button
           * @deprecated use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading"?: boolean;
         /**
           * Outline button
          */
@@ -3400,7 +3538,8 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button
+          * Active button (has no effect)
+          * @deprecated Will be removed in 3.0.0
          */
         "active"?: boolean;
         /**
@@ -3512,7 +3651,8 @@ declare namespace LocalJSX {
          */
         "chevron"?: boolean;
         /**
-          * Color of the status indicator. Allowed values are all Core UI color names.
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
          */
         "color"?: string;
         /**
@@ -3691,7 +3831,7 @@ declare namespace LocalJSX {
          */
         "ghost"?: boolean;
         /**
-          * Button icon
+          * Icon name
          */
         "icon"?: string;
         /**
@@ -3699,6 +3839,11 @@ declare namespace LocalJSX {
           * @deprecated Use ghost property
          */
         "invisible"?: boolean;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading"?: boolean;
         /**
           * Button outline
          */
@@ -3773,6 +3918,23 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLinkButton {
+        /**
+          * Disable the link button
+         */
+        "disabled"?: boolean;
+        /**
+          * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
+         */
+        "target"?: '_self' | '_blank' | '_parent' | '_top';
+        /**
+          * Url for the link button
+         */
+        "url"?: string;
+    }
     interface IxMapNavigation {
         /**
           * Application name
@@ -3838,10 +4000,13 @@ declare namespace LocalJSX {
           * Expand menu
          */
         "expand"?: boolean;
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         "i18nLegal"?: string;
-        "i18nMore"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
         /**
@@ -3857,6 +4022,10 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Menu stays pinned to the left
+         */
+        "pinned"?: boolean;
+        /**
           * Is about tab visible
          */
         "showAbout"?: boolean;
@@ -3864,6 +4033,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * Supported layouts
+         */
+        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**
@@ -3877,7 +4050,10 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -3962,6 +4138,23 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxMenuAvatarItemCustomEvent<MouseEvent>) => void;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxMenuCategory {
+        /**
+          * Icon of the category
+         */
+        "icon"?: string;
+        /**
+          * Display name of the category
+         */
+        "label"?: string;
+        /**
+          * Show notification count on the category
+         */
+        "notifications"?: number;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -3969,7 +4162,6 @@ declare namespace LocalJSX {
         "active"?: boolean;
         /**
           * Caution: this is no longer working. Please use slot="bottom" instead.  Place tab on bottom
-          * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
          */
         "bottom"?: boolean;
         /**
@@ -3981,11 +4173,16 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
+          * Icon name from @siemens/ix-icons
+         */
+        "icon"?: string;
+        /**
           * Show notification count on tab
          */
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
+          * @deprecated Use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -4001,7 +4198,10 @@ declare namespace LocalJSX {
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<MouseEvent>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<{
+    nativeEvent: MouseEvent;
+    name: string;
+  }>) => void;
         /**
           * Internal
          */
@@ -4279,14 +4479,15 @@ declare namespace LocalJSX {
         "value": any;
     }
     interface IxSpinner {
+        "hideTrack"?: boolean;
         /**
           * Size of spinner
          */
-        "size"?: 'medium' | 'large';
+        "size"?: 'small' | 'medium' | 'large';
         /**
           * Variant of spinner
          */
-        "variant"?: 'primary' | 'sencodary' | 'secondary';
+        "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
         /**
@@ -4301,11 +4502,6 @@ declare namespace LocalJSX {
           * Button icon
          */
         "icon"?: string;
-        /**
-          * Button invisible
-          * @deprecated Will be removed in 2.0.0. Use ghost property
-         */
-        "invisible"?: boolean;
         /**
           * Button label
          */
@@ -4323,7 +4519,7 @@ declare namespace LocalJSX {
          */
         "placement"?: Placement;
         /**
-          * Splitbutton icon
+          * Icon of the button on the right
          */
         "splitIcon"?: string;
         /**
@@ -4749,6 +4945,7 @@ declare namespace LocalJSX {
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
+        "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
@@ -4792,6 +4989,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
         "ix-menu": IxMenu;
@@ -4800,6 +4998,7 @@ declare namespace LocalJSX {
         "ix-menu-about-news": IxMenuAboutNews;
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
+        "ix-menu-category": IxMenuCategory;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -4844,6 +5043,10 @@ declare module "@stencil/core" {
             "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
             "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
@@ -4920,6 +5123,10 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
@@ -4928,6 +5135,10 @@ declare module "@stencil/core" {
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
