@@ -4182,15 +4182,13 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-expanding-search": [
-          "ix-icon",
           "ix-icon-button"
         ],
         "ix-icon-button": [
