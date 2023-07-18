@@ -7,95 +7,78 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'fonts';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
+@import 'mixins/shadow-dom/hover';
+
+$itemPadding: 0.5rem;
+$focusBorder: 0.0625rem;
 
 :host {
   @include ix-component;
   display: block;
   position: relative;
-
-  .checkmark {
-    position: absolute;
-    left: $small-space;
-    color: var(--theme-color-std-text);
-  }
-
-  .label {
-    @include ellipsis;
-    @include text-default;
-  }
-
-  ix-icon {
-    margin-inline-end: $small-space;
-    transition: color 0;
-  }
+  height: 2.5rem;
+  width: auto;
+  overflow: hidden;
 
   .dropdown-item {
+    all: unset;
     display: flex;
-    height: 2.5rem;
-    width: 100%;
-    padding: 0 2rem;
-
+    flex-direction: row;
     align-items: center;
-    background-color: var(--theme-color-2);
-    border: 1px solid transparent;
-    cursor: pointer;
-    appearance: button;
-    clear: both;
-    list-style-type: none;
     position: relative;
-    text-align: left;
-    text-transform: none;
+    width: calc(100% - #{2 * $itemPadding} - #{2 * $focusBorder});
+    height: calc(100% - 2px);
+    padding: 0 $itemPadding;
+    border: $focusBorder solid transparent;
   }
 
-  .dropdown-item:hover {
-    background-color: var(--theme-color-ghost--hover);
+  .dropdown-item:focus-visible {
+    border-color: var(--theme-color-focus-bdr);
   }
 
-  .dropdown-item:active {
-    background-color: var(--theme-color-ghost--active);
+  .dropdown-item-checked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    width: 1rem;
+    min-width: 1rem;
+
+    margin-right: 0.5rem;
   }
 
-  .dropdown-item {
-    @include focus-visible {
-      border-color: var(--theme-color-focus-bdr);
-      outline: none;
-    }
+  .dropdown-item-icon {
+    margin-right: 0.5rem;
+  }
+
+  .dropdown-item-text {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dropdown-item:focus-visible {
+    outline: 1px solid yellow;
   }
 }
 
 :host(.icon-only) {
-  min-width: 0;
-
-  .dropdown-item > ix-icon {
-    margin-inline-end: 0;
+  .dropdown-item-icon {
+    margin-right: 0px;
   }
 
-  .dropdown-item {
-    padding: $tiny-space $small-space;
+  .dropdown-item-checked {
+    display: none;
   }
 }
 
-:host(.checked) {
-  .dropdown-item {
-    background-color: var(--theme-select-list-item--background--selected);
-  }
-}
+@include ghost-hover-pressed;
 
 :host(.disabled) {
   pointer-events: none;
-}
-
-:host(:hover:not(.disabled)) {
-  ix-icon {
-    color: var(--theme-color-std-text) !important;
-  }
-}
-
-::slotted(ix-icon) {
-  margin-inline-start: auto;
+  color: var(--theme-color-weak-text) !important;
 }

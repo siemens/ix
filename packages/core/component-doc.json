@@ -3438,7 +3438,7 @@
           "text": "1.3.0"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-button",

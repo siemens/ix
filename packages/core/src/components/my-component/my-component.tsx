@@ -15,6 +15,31 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-dropdown-button label="Test">
+          <ix-dropdown-item label="Test"></ix-dropdown-item>
+          <ix-dropdown-item>Test</ix-dropdown-item>
+          <ix-dropdown-item
+            icon="bulb"
+            label="Test"
+            disabled
+          ></ix-dropdown-item>
+          <ix-dropdown-item checked icon="bulb">
+            Test
+          </ix-dropdown-item>
+          <ix-dropdown-item>
+            Test Test Test Test Test TestTest Test Test TestTest Test Test
+            TestTest Test Test Test
+          </ix-dropdown-item>
+        </ix-dropdown-button>
+
+        <ix-dropdown-button label="Test">
+          <ix-dropdown-item icon="bulb"></ix-dropdown-item>
+          <ix-dropdown-item icon="bulb" disabled></ix-dropdown-item>
+          <ix-dropdown-item icon="bulb"></ix-dropdown-item>
+        </ix-dropdown-button>
+      </Host>
+    );
   }
 }
