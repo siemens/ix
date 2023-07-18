@@ -223,14 +223,13 @@ export const IxDrawer = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer',
 
 
 export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-dropdown', undefined, [
+  'suppressAutomaticPlacement',
   'show',
   'trigger',
   'anchor',
   'closeBehavior',
   'placement',
   'positioningStrategy',
-  'adjustDropdownWidthToReferenceWith',
-  'adjustDropdownWidthToReferenceWidth',
   'header',
   'offset',
   'triggerEvent',
@@ -247,6 +246,11 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'disabled',
   'label',
   'icon'
+]);
+
+
+export const IxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IxDropdownHeader>('ix-dropdown-header', undefined, [
+  'label'
 ]);
 
 

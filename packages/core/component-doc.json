@@ -780,7 +780,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -819,6 +820,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2894,11 +2898,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-category"
+        "ix-menu-category",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu-category": [
+          "ix-divider"
+        ],
+        "my-component": [
           "ix-divider"
         ]
       },
@@ -3106,7 +3114,8 @@
         "ix-menu-avatar",
         "ix-menu-category",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3133,55 +3142,12 @@
         ],
         "ix-split-button": [
           "ix-dropdown"
+        ],
+        "my-component": [
+          "ix-dropdown"
         ]
       },
       "props": [
-        {
-          "name": "adjustDropdownWidthToReferenceWidth",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "adjust-dropdown-width-to-reference-width",
-          "reflectToAttr": false,
-          "docs": "Adjust dropdown width to the parent width",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed. Not used anymore"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed. Not used anymore",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "adjustDropdownWidthToReferenceWith",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "adjust-dropdown-width-to-reference-with",
-          "reflectToAttr": false,
-          "docs": "Adjust dropdown width to the parent width",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead."
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "anchor",
           "type": "HTMLElement | string",
@@ -3248,7 +3214,7 @@
         },
         {
           "name": "placement",
-          "type": "\"auto\" | \"auto-end\" | \"auto-start\" | \"bottom\" | \"bottom-end\" | \"bottom-start\" | \"left\" | \"left-end\" | \"left-start\" | \"right\" | \"right-end\" | \"right-start\" | \"top\" | \"top-end\" | \"top-start\"",
+          "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
           "mutable": false,
           "attr": "placement",
           "reflectToAttr": false,
@@ -3257,31 +3223,11 @@
           "default": "'bottom-start'",
           "values": [
             {
-              "value": "auto",
-              "type": "string"
-            },
-            {
-              "value": "auto-end",
-              "type": "string"
-            },
-            {
-              "value": "auto-start",
-              "type": "string"
-            },
-            {
-              "value": "bottom",
-              "type": "string"
-            },
-            {
               "value": "bottom-end",
               "type": "string"
             },
             {
               "value": "bottom-start",
-              "type": "string"
-            },
-            {
-              "value": "left",
               "type": "string"
             },
             {
@@ -3293,19 +3239,11 @@
               "type": "string"
             },
             {
-              "value": "right",
-              "type": "string"
-            },
-            {
               "value": "right-end",
               "type": "string"
             },
             {
               "value": "right-start",
-              "type": "string"
-            },
-            {
-              "value": "top",
               "type": "string"
             },
             {
@@ -3350,6 +3288,28 @@
           "reflectToAttr": true,
           "docs": "Show dropdown",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "suppressAutomaticPlacement",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "suppress-automatic-placement",
+          "reflectToAttr": false,
+          "docs": "Suppress the automatic placement of the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -3439,7 +3399,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon",
@@ -3460,6 +3422,9 @@
         "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -3600,6 +3565,62 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/dropdown-header",
+      "filePath": "./src/components/dropdown-header/dropdown-header.tsx",
+      "fileName": "dropdown-header.tsx",
+      "readmePath": "./src/components/dropdown-header/readme.md",
+      "usagesDir": "./src/components/dropdown-header/usage",
+      "tag": "ix-dropdown-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "my-component": [
+          "ix-dropdown-header"
+        ]
+      },
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Display name of the header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/dropdown-item",
       "filePath": "./src/components/dropdown-item/dropdown-item.tsx",
       "fileName": "dropdown-item.tsx",
@@ -3618,7 +3639,8 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3646,6 +3668,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -8776,7 +8801,7 @@
           "mutable": true,
           "attr": "selected-indices",
           "reflectToAttr": false,
-          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.",
+          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -9155,7 +9180,7 @@
         },
         {
           "name": "placement",
-          "type": "\"auto\" | \"auto-end\" | \"auto-start\" | \"bottom\" | \"bottom-end\" | \"bottom-start\" | \"left\" | \"left-end\" | \"left-start\" | \"right\" | \"right-end\" | \"right-start\" | \"top\" | \"top-end\" | \"top-start\"",
+          "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
           "mutable": false,
           "attr": "placement",
           "reflectToAttr": false,
@@ -9164,31 +9189,11 @@
           "default": "'bottom-start'",
           "values": [
             {
-              "value": "auto",
-              "type": "string"
-            },
-            {
-              "value": "auto-end",
-              "type": "string"
-            },
-            {
-              "value": "auto-start",
-              "type": "string"
-            },
-            {
-              "value": "bottom",
-              "type": "string"
-            },
-            {
               "value": "bottom-end",
               "type": "string"
             },
             {
               "value": "bottom-start",
-              "type": "string"
-            },
-            {
-              "value": "left",
               "type": "string"
             },
             {
@@ -9200,19 +9205,11 @@
               "type": "string"
             },
             {
-              "value": "right",
-              "type": "string"
-            },
-            {
               "value": "right-end",
               "type": "string"
             },
             {
               "value": "right-start",
-              "type": "string"
-            },
-            {
-              "value": "top",
               "type": "string"
             },
             {
@@ -11150,7 +11147,7 @@
         },
         {
           "name": "placement",
-          "type": "\"auto\" | \"auto-end\" | \"auto-start\" | \"bottom\" | \"bottom-end\" | \"bottom-start\" | \"left\" | \"left-end\" | \"left-start\" | \"right\" | \"right-end\" | \"right-start\" | \"top\" | \"top-end\" | \"top-start\"",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
           "mutable": false,
           "attr": "placement",
           "reflectToAttr": false,
@@ -11159,27 +11156,7 @@
           "default": "'top'",
           "values": [
             {
-              "value": "auto",
-              "type": "string"
-            },
-            {
-              "value": "auto-end",
-              "type": "string"
-            },
-            {
-              "value": "auto-start",
-              "type": "string"
-            },
-            {
               "value": "bottom",
-              "type": "string"
-            },
-            {
-              "value": "bottom-end",
-              "type": "string"
-            },
-            {
-              "value": "bottom-start",
               "type": "string"
             },
             {
@@ -11187,35 +11164,11 @@
               "type": "string"
             },
             {
-              "value": "left-end",
-              "type": "string"
-            },
-            {
-              "value": "left-start",
-              "type": "string"
-            },
-            {
               "value": "right",
               "type": "string"
             },
             {
-              "value": "right-end",
-              "type": "string"
-            },
-            {
-              "value": "right-start",
-              "type": "string"
-            },
-            {
               "value": "top",
-              "type": "string"
-            },
-            {
-              "value": "top-end",
-              "type": "string"
-            },
-            {
-              "value": "top-start",
               "type": "string"
             }
           ],
@@ -11530,8 +11483,44 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-dropdown-button",
+        "ix-dropdown-header",
+        "ix-dropdown-item",
+        "ix-divider",
+        "ix-button",
+        "ix-dropdown"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-dropdown-button",
+          "ix-dropdown-header",
+          "ix-dropdown-item",
+          "ix-divider",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

@@ -14,12 +14,16 @@ $itemPadding: 0.5rem;
 $focusBorder: 0.0625rem;
 
 :host {
+  --ix-dropdown-item-checked-color: var(--theme-color-primary);
   @include ix-component;
-  display: block;
+  display: flex;
+  flex-direction: row;
+
   position: relative;
   height: 2.5rem;
   width: auto;
   overflow: hidden;
+  cursor: pointer;
 
   .dropdown-item {
     all: unset;
@@ -31,6 +35,7 @@ $focusBorder: 0.0625rem;
     height: calc(100% - 2px);
     padding: 0 $itemPadding;
     border: $focusBorder solid transparent;
+    white-space: nowrap;
   }
 
   .dropdown-item:focus-visible {
@@ -45,8 +50,9 @@ $focusBorder: 0.0625rem;
     height: 100%;
     width: 1rem;
     min-width: 1rem;
-
     margin-right: 0.5rem;
+
+    color: var(--ix-dropdown-item-checked-color);
   }
 
   .dropdown-item-icon {

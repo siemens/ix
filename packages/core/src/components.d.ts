@@ -18,7 +18,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-import { Placement } from "./components/dropdown/placement";
+import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
@@ -49,7 +49,7 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-export { Placement } from "./components/dropdown/placement";
+export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
@@ -621,16 +621,6 @@ export namespace Components {
     }
     interface IxDropdown {
         /**
-          * Adjust dropdown width to the parent width
-          * @deprecated Will be removed. Not used anymore
-         */
-        "adjustDropdownWidthToReferenceWidth": boolean;
-        /**
-          * Adjust dropdown width to the parent width
-          * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
-         */
-        "adjustDropdownWidthToReferenceWith": boolean;
-        /**
           * Define an anchor element
          */
         "anchor": string | HTMLElement;
@@ -657,7 +647,7 @@ export namespace Components {
         /**
           * Placement of the dropdown
          */
-        "placement": Placement;
+        "placement": AlignedPlacement;
         /**
           * Position strategy
          */
@@ -666,6 +656,11 @@ export namespace Components {
           * Show dropdown
          */
         "show": boolean;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @since 2.0.0
+         */
+        "suppressAutomaticPlacement": boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -713,6 +708,15 @@ export namespace Components {
          */
         "variant": DropdownButtonVariant;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxDropdownHeader {
+        /**
+          * Display name of the header
+         */
+        "label": string;
+    }
     interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
@@ -734,6 +738,7 @@ export namespace Components {
           * Icon of dropdown item
          */
         "icon": string;
+        "isSubMenu": boolean;
         /**
           * Label of dropdown item
          */
@@ -1606,7 +1611,7 @@ export namespace Components {
         /**
           * Placement of the dropdown
          */
-        "placement": Placement;
+        "placement": AlignedPlacement;
         /**
           * Icon of the button on the right
          */
@@ -1938,7 +1943,12 @@ export namespace Components {
         /**
           * Placement of the tooltip
          */
-        "placement": Placement;
+        "placement": Side;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @since 2.0.0
+         */
+        "suppressAutomaticPlacement": boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -2359,6 +2369,15 @@ declare global {
         prototype: HTMLIxDropdownButtonElement;
         new (): HTMLIxDropdownButtonElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxDropdownHeaderElement extends Components.IxDropdownHeader, HTMLStencilElement {
+    }
+    var HTMLIxDropdownHeaderElement: {
+        prototype: HTMLIxDropdownHeaderElement;
+        new (): HTMLIxDropdownHeaderElement;
+    };
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
     }
     var HTMLIxDropdownItemElement: {
@@ -2776,6 +2795,7 @@ declare global {
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
         "ix-dropdown-button": HTMLIxDropdownButtonElement;
+        "ix-dropdown-header": HTMLIxDropdownHeaderElement;
         "ix-dropdown-item": HTMLIxDropdownItemElement;
         "ix-dropdown-quick-actions": HTMLIxDropdownQuickActionsElement;
         "ix-empty-state": HTMLIxEmptyStateElement;
@@ -3485,16 +3505,6 @@ declare namespace LocalJSX {
     }
     interface IxDropdown {
         /**
-          * Adjust dropdown width to the parent width
-          * @deprecated Will be removed. Not used anymore
-         */
-        "adjustDropdownWidthToReferenceWidth"?: boolean;
-        /**
-          * Adjust dropdown width to the parent width
-          * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
-         */
-        "adjustDropdownWidthToReferenceWith"?: boolean;
-        /**
           * Define an anchor element
          */
         "anchor"?: string | HTMLElement;
@@ -3525,7 +3535,7 @@ declare namespace LocalJSX {
         /**
           * Placement of the dropdown
          */
-        "placement"?: Placement;
+        "placement"?: AlignedPlacement;
         /**
           * Position strategy
          */
@@ -3534,6 +3544,11 @@ declare namespace LocalJSX {
           * Show dropdown
          */
         "show"?: boolean;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @since 2.0.0
+         */
+        "suppressAutomaticPlacement"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -3577,6 +3592,15 @@ declare namespace LocalJSX {
          */
         "variant"?: DropdownButtonVariant;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxDropdownHeader {
+        /**
+          * Display name of the header
+         */
+        "label"?: string;
+    }
     interface IxDropdownItem {
         /**
           * Whether the item is checked or not. If true a checkmark will mark the item as checked.
@@ -3594,6 +3618,7 @@ declare namespace LocalJSX {
           * Icon of dropdown item
          */
         "icon"?: string;
+        "isSubMenu"?: boolean;
         /**
           * Label of dropdown item
          */
@@ -4534,7 +4559,7 @@ declare namespace LocalJSX {
         /**
           * Placement of the dropdown
          */
-        "placement"?: Placement;
+        "placement"?: AlignedPlacement;
         /**
           * Icon of the button on the right
          */
@@ -4902,7 +4927,12 @@ declare namespace LocalJSX {
         /**
           * Placement of the tooltip
          */
-        "placement"?: Placement;
+        "placement"?: Side;
+        /**
+          * Suppress the automatic placement of the dropdown.
+          * @since 2.0.0
+         */
+        "suppressAutomaticPlacement"?: boolean;
     }
     interface IxWorkflowStep {
         /**
@@ -4987,6 +5017,7 @@ declare namespace LocalJSX {
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
         "ix-dropdown-button": IxDropdownButton;
+        "ix-dropdown-header": IxDropdownHeader;
         "ix-dropdown-item": IxDropdownItem;
         "ix-dropdown-quick-actions": IxDropdownQuickActions;
         "ix-empty-state": IxEmptyState;
@@ -5109,6 +5140,10 @@ declare module "@stencil/core" {
              * @since 1.3.0
              */
             "ix-dropdown-button": LocalJSX.IxDropdownButton & JSXBase.HTMLAttributes<HTMLIxDropdownButtonElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-dropdown-header": LocalJSX.IxDropdownHeader & JSXBase.HTMLAttributes<HTMLIxDropdownHeaderElement>;
             "ix-dropdown-item": LocalJSX.IxDropdownItem & JSXBase.HTMLAttributes<HTMLIxDropdownItemElement>;
             /**
              * @since 1.4.0

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { chevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -50,6 +50,11 @@ export class DropdownItem {
    * Whether the item is checked or not. If true a checkmark will mark the item as checked.
    */
   @Prop() checked = false;
+
+  /**
+   * @internal
+   */
+  @Prop() isSubMenu = false;
 
   /**
    * Click on item
@@ -96,56 +101,17 @@ export class DropdownItem {
                 class="checkmark"
                 name="single-check"
                 size="16"
-                color="color-primary"
               ></ix-icon>
             ) : null}
           </div>
           {this.icon ? (
-            <ix-icon
-              class="dropdown-item-icon"
-              name={this.icon}
-              color={`color-${this.disabled ? 'weak' : 'soft'}-text`}
-            ></ix-icon>
+            <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
           ) : null}
-          <div class="dropdown-item-text">
-            {this.label}
-            <slot></slot>
-          </div>
+          <div class="dropdown-item-text">{this.label}</div>
+          <slot></slot>
+          {this.isSubMenu ? <ix-icon name={chevronRightSmall}></ix-icon> : null}
         </button>
       </Host>
-      // <Host
-      //   class={{
-      //     checked: this.checked,
-      //     'icon-text': this.label !== undefined && this.icon !== undefined,
-      //     'icon-only': this.label === undefined && this.icon !== undefined,
-      //     disabled: this.disabled,
-      //   }}
-      //   role="listitem"
-      // >
-      //   <button
-      //     type="button"
-      //     class={{
-      //       'dropdown-item': true,
-      //       'dropdown-item--with-icon': !!this.icon,
-      //       hover: this.hover,
-      //       disabled: this.disabled,
-      //     }}
-      //     onClick={() => this.emitItemClick()}
-      //   >
-      //     {this.checked ? (
-      //       <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
-      //     ) : null}
-
-      //     {this.icon ? (
-      //       <ix-icon
-      //         name={this.icon}
-      //         color={`color-${this.disabled ? 'weak' : 'soft'}-text`}
-      //       ></ix-icon>
-      //     ) : null}
-      //     {this.label ? <span class="label">{this.label}</span> : null}
-      //     <slot></slot>
-      //   </button>
-      // </Host>
     );
   }
 }

@@ -495,7 +495,7 @@ export class Select {
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
-          placement="auto-start"
+          placement="bottom-start"
           overwriteDropdownStyle={async () => {
             return {
               minWidth: `${this.hostElement.clientWidth}px`,
