@@ -780,7 +780,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -819,6 +820,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -976,20 +980,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -1956,20 +1960,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of content header",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -2894,11 +2898,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-category"
+        "ix-menu-category",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-menu-category": [
+          "ix-divider"
+        ],
+        "my-component": [
           "ix-divider"
         ]
       },
@@ -3106,7 +3114,8 @@
         "ix-menu-avatar",
         "ix-menu-category",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3132,6 +3141,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -3439,7 +3451,9 @@
         }
       ],
       "encapsulation": "scoped",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon",
@@ -3460,6 +3474,9 @@
         "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -3571,20 +3588,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -3618,7 +3635,8 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon"
@@ -3646,6 +3664,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -5316,20 +5337,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
           "docsTags": [],
-          "default": "'Secondary'",
+          "default": "'secondary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -9246,20 +9267,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Color variant of button",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -11530,8 +11551,39 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-dropdown-button",
+        "ix-dropdown-item",
+        "ix-divider",
+        "ix-button",
+        "ix-dropdown"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-dropdown-button",
+          "ix-dropdown-item",
+          "ix-divider",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
