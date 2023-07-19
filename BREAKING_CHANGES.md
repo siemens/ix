@@ -5,6 +5,17 @@
 ### `ix-flip-tile`
 
 Change flip-state from
+```ts
+export enum FlipTileState {
+  None = 'None',
+  Info = 'Info',
+  Warning = 'Warning',
+  Alarm = 'Alarm',
+  Primary = 'Primary',
+}
+```
+
+to
 
 ```ts
 export enum FlipTileState {
@@ -13,17 +24,6 @@ export enum FlipTileState {
   Warning = 'warning',
   Alarm = 'alarm',
   Primary = 'primary',
-}
-```
-to
-
-```ts
-export enum FlipTileState {
-  None = 'None',
-  Info = 'Info',
-  Warning = 'Warning',
-  Alarm = 'Alarm',
-  Primary = 'Primary',
 }
 ```
 
