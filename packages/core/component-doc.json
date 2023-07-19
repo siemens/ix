@@ -7,52 +7,6 @@
   },
   "components": [
     {
-      "dirPath": "./src/components/information-bar",
-      "filePath": "./src/components/information-bar/information-bar.tsx",
-      "fileName": "information-bar.tsx",
-      "readmePath": "./src/components/information-bar/readme.md",
-      "usagesDir": "./src/components/information-bar/usage",
-      "tag": "information-bar",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-icon"
-      ],
-      "dependencyGraph": {
-        "information-bar": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "bar",
-          "type": "BarNumbers[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "default": "[]",
-          "values": [
-            {
-              "type": "BarNumbers[]"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/action-card",
       "filePath": "./src/components/action-card/action-card.tsx",
       "fileName": "action-card.tsx",
@@ -5377,6 +5331,52 @@
             {
               "value": "Secondary",
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/information-bar",
+      "filePath": "./src/components/information-bar/information-bar.tsx",
+      "fileName": "information-bar.tsx",
+      "readmePath": "./src/components/information-bar/readme.md",
+      "usagesDir": "./src/components/information-bar/usage",
+      "tag": "ix-information-bar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-information-bar": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "bar",
+          "type": "BarNumbers[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Configuration of the bar",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "BarNumbers[]"
             }
           ],
           "optional": false,

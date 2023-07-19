@@ -8,7 +8,6 @@ import type { JSX } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
-export const InformationBar = /*@__PURE__*/createReactComponent<JSX.InformationBar, HTMLInformationBarElement>('information-bar');
 export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card');
 export const IxAnimatedTab = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTab, HTMLIxAnimatedTabElement>('ix-animated-tab');
 export const IxAnimatedTabs = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTabs, HTMLIxAnimatedTabsElement>('ix-animated-tabs');
@@ -49,6 +48,7 @@ export const IxGroupDropdownItem = /*@__PURE__*/createReactComponent<JSX.IxGroup
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item');
 export const IxIcon = /*@__PURE__*/createReactComponent<JSX.IxIcon, HTMLIxIconElement>('ix-icon');
 export const IxIconButton = /*@__PURE__*/createReactComponent<JSX.IxIconButton, HTMLIxIconButtonElement>('ix-icon-button');
+export const IxInformationBar = /*@__PURE__*/createReactComponent<JSX.IxInformationBar, HTMLIxInformationBarElement>('ix-information-bar');
 export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, HTMLIxInputGroupElement>('ix-input-group');
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value');
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list');

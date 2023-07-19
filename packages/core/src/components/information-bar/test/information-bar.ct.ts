@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
@@ -10,9 +19,9 @@ const barNumbers = [
 ];
 
 test('should render', async ({ mount, page }) => {
-  await mount(`<information-bar></information-bar>`);
-  const element = page.locator('information-bar');
-  await element.evaluate((element: HTMLInformationBarElement) => {
+  await mount(`<ix-information-bar></ix-information-bar>`);
+  const element = page.locator('ix-information-bar');
+  await element.evaluate((element: HTMLIxInformationBarElement) => {
     element.bar = [
       { count: 50, stripped: 2, icon: 'alarm', color: 'alarm' },
       { count: 50, stripped: 2, icon: 'warning-rhomb', color: 'critical' },
@@ -25,10 +34,9 @@ test('should render', async ({ mount, page }) => {
 });
 
 test('should have right width', async ({ mount, page }) => {
-  await mount(`<information-bar></information-bar>`);
-
-  const element = page.locator('information-bar');
-  await element.evaluate((element: HTMLInformationBarElement) => {
+  await mount(`<ix-information-bar></ix-information-bar>`);
+  const element = page.locator('ix-information-bar');
+  await element.evaluate((element: HTMLIxInformationBarElement) => {
     element.bar = [
       { count: 50, stripped: 2, icon: 'alarm', color: 'alarm' },
       { count: 50, stripped: 2, icon: 'warning-rhomb', color: 'critical' },
@@ -52,10 +60,9 @@ test('should have right width', async ({ mount, page }) => {
 });
 
 test('should have right icons', async ({ mount, page }) => {
-  await mount(`<information-bar></information-bar>`);
-
-  const element = page.locator('information-bar');
-  await element.evaluate((element: HTMLInformationBarElement) => {
+  await mount(`<ix-information-bar></ix-information-bar>`);
+  const element = page.locator('ix-information-bar');
+  await element.evaluate((element: HTMLIxInformationBarElement) => {
     element.bar = [
       { count: 50, stripped: 2, icon: 'alarm', color: 'alarm' },
       { count: 50, stripped: 2, icon: 'warning-rhomb', color: 'critical' },

@@ -14,8 +14,8 @@ regressionTest.describe('information-bar', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('information-bar/basic');
 
-    const element = page.locator('information-bar');
-    await element.evaluate((element: HTMLInformationBarElement) => {
+    const element = page.locator('ix-information-bar');
+    await element.evaluate((element: HTMLIxInformationBarElement) => {
       element.bar = [
         { count: 50, stripped: 2, icon: 'alarm', color: 'alarm' },
         {

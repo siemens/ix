@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 
 export type BarNumbers = {
@@ -8,13 +17,16 @@ export type BarNumbers = {
 };
 
 @Component({
-  tag: 'information-bar',
+  tag: 'ix-information-bar',
   styleUrl: 'information-bar.scss',
   shadow: true,
 })
 export class InformationBar {
-  @Element() el: HTMLInformationBarElement;
+  @Element() el: HTMLIxInformationBarElement;
 
+  /**
+   * Configuration of the bar
+   */
   @Prop() bar: BarNumbers[] = [];
 
   @Watch('bar')

@@ -9,11 +9,6 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
 
-export const InformationBar = /*@__PURE__*/ defineContainer<JSX.InformationBar>('information-bar', undefined, [
-  'bar'
-]);
-
-
 export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', undefined, [
   'variant',
   'icon',
@@ -378,6 +373,11 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'disabled',
   'type',
   'loading'
+]);
+
+
+export const IxInformationBar = /*@__PURE__*/ defineContainer<JSX.IxInformationBar>('ix-information-bar', undefined, [
+  'bar'
 ]);
 
 

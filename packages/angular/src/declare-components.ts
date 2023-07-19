@@ -2,7 +2,6 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
-  d.InformationBar,
   d.IxActionCard,
   d.IxAnimatedTab,
   d.IxAnimatedTabs,
@@ -43,6 +42,7 @@ export const DIRECTIVES = [
   d.IxGroupItem,
   d.IxIcon,
   d.IxIconButton,
+  d.IxInformationBar,
   d.IxInputGroup,
   d.IxKeyValue,
   d.IxKeyValueList,

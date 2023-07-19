@@ -5,7 +5,6 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { BarNumbers } from "./components/information-bar/information-bar";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { Mode } from "./components/utils/screen/mode";
 import { ButtonVariant } from "./components/button/button";
@@ -26,6 +25,7 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
+import { BarNumbers } from "./components/information-bar/information-bar";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
 import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -37,7 +37,6 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TypographyColors, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { BarNumbers } from "./components/information-bar/information-bar";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { Mode } from "./components/utils/screen/mode";
 export { ButtonVariant } from "./components/button/button";
@@ -58,6 +57,7 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
+export { BarNumbers } from "./components/information-bar/information-bar";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
 export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
@@ -70,9 +70,6 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TypographyColors, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface InformationBar {
-        "bar": BarNumbers[];
-    }
     /**
      * @since 1.6.0
      */
@@ -998,6 +995,12 @@ export namespace Components {
           * Button variant
          */
         "variant": IndexButtonVariant;
+    }
+    interface IxInformationBar {
+        /**
+          * Configuration of the bar
+         */
+        "bar": BarNumbers[];
     }
     interface IxInputGroup {
     }
@@ -2163,12 +2166,6 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    interface HTMLInformationBarElement extends Components.InformationBar, HTMLStencilElement {
-    }
-    var HTMLInformationBarElement: {
-        prototype: HTMLInformationBarElement;
-        new (): HTMLInformationBarElement;
-    };
     /**
      * @since 1.6.0
      */
@@ -2466,6 +2463,12 @@ declare global {
         prototype: HTMLIxIndexButtonElement;
         new (): HTMLIxIndexButtonElement;
     };
+    interface HTMLIxInformationBarElement extends Components.IxInformationBar, HTMLStencilElement {
+    }
+    var HTMLIxInformationBarElement: {
+        prototype: HTMLIxInformationBarElement;
+        new (): HTMLIxInformationBarElement;
+    };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -2758,7 +2761,6 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "information-bar": HTMLInformationBarElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-animated-tab": HTMLIxAnimatedTabElement;
         "ix-animated-tabs": HTMLIxAnimatedTabsElement;
@@ -2803,6 +2805,7 @@ declare global {
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
+        "ix-information-bar": HTMLIxInformationBarElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -2851,9 +2854,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface InformationBar {
-        "bar"?: BarNumbers[];
-    }
     /**
      * @since 1.6.0
      */
@@ -3904,6 +3904,12 @@ declare namespace LocalJSX {
           * Button variant
          */
         "variant"?: IndexButtonVariant;
+    }
+    interface IxInformationBar {
+        /**
+          * Configuration of the bar
+         */
+        "bar"?: BarNumbers[];
     }
     interface IxInputGroup {
     }
@@ -4973,7 +4979,6 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
-        "information-bar": InformationBar;
         "ix-action-card": IxActionCard;
         "ix-animated-tab": IxAnimatedTab;
         "ix-animated-tabs": IxAnimatedTabs;
@@ -5018,6 +5023,7 @@ declare namespace LocalJSX {
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
+        "ix-information-bar": IxInformationBar;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
@@ -5069,7 +5075,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "information-bar": LocalJSX.InformationBar & JSXBase.HTMLAttributes<HTMLInformationBarElement>;
             /**
              * @since 1.6.0
              */
@@ -5147,6 +5152,7 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
+            "ix-information-bar": LocalJSX.IxInformationBar & JSXBase.HTMLAttributes<HTMLIxInformationBarElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0
