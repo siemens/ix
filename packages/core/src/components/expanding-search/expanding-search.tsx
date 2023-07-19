@@ -109,7 +109,7 @@ export class ExpandingSearch {
           size={this.expanded ? '16' : '24'}
           icon={this.icon}
           ghost
-          variant="Primary"
+          variant="primary"
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
