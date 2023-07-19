@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages (DEV Version)
 
 on:
   schedule:
-    - cron: '0 0 6 ? * MON,TUE,WED,THU *'
+    - cron: '0 6 * * 1-4'
+
 permissions:
   contents: write
 
