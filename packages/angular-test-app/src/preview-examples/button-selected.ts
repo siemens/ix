@@ -12,8 +12,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button class="m-1" variant="Secondary" ghost>Not selected</ix-button>
-    <ix-button class="m-1" variant="Secondary" ghost selected
+    <ix-button class="m-1" variant="secondary" ghost>Not selected</ix-button>
+    <ix-button class="m-1" variant="secondary" ghost selected
       >Selected</ix-button
     >
   `,
