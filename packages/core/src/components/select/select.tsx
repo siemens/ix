@@ -96,6 +96,13 @@ export class Select {
   @Event() itemSelectionChange: EventEmitter<string | string[]>;
 
   /**
+   * Event dispatched whenever the text input changes.
+   *
+   * @since 2.0.0
+   */
+  @Event() inputChange: EventEmitter<string>;
+
+  /**
    * Item added to selection
    */
   @Event() addItem: EventEmitter<string>;
@@ -205,6 +212,12 @@ export class Select {
     }
 
     this.inputValue = null;
+  }
+
+  componentDidLoad() {
+    this.inputRef.addEventListener('input', () => {
+      this.inputChange.emit(this.inputRef.value);
+    });
   }
 
   componentWillLoad() {

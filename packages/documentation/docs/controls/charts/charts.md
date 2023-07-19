@@ -5,20 +5,20 @@ import SourceEcharts from './../../auto-generated/previews/web-component/echarts
 
 # ECharts
 
-`@siemens/ix` does not provide a own chart implementation, but we can give you a
-nice recommendation [`echarts`](https://echarts.apache.org/handbook/en/get-started/)
+Siemens Industrial Experience provides a theme for the populer chart library [ECharts](https://echarts.apache.org/handbook/en/get-started).
+This lets you harness the power of ECharts with seemless intergration into the Siemens Industrial Experience styleguide.
 
-## Theme
+<div className="siemens-brand-section">
 
-`echarts` provides the possiblity to implement own color designs for a chart instance. We from `@siemens/ix` provide you two color sets `classic-dark` and `classic-light`
+ECharts is a third party library distributed under [Apache License 2.0](https://www.apache.org/licenses).
 
-To keep the `@siemens/ix` library as lightweight as possible you have to install a separate package called `@siemens/ix-echarts`
+</div>
+
+### Installation
 
 ```sh
 npm install --save @siemens/ix-echarts
 ```
-
-### Installation
 
 Import the module once in your application.
 

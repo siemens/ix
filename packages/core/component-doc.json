@@ -5273,8 +5273,14 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Only size 32 will be removed in 3.0.0"
+            }
+          ],
           "default": "'24'",
+          "deprecation": "Only size 32 will be removed in 3.0.0",
           "values": [
             {
               "value": "12",
@@ -6167,7 +6173,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "Expand menu",
+          "docs": "",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6229,6 +6235,23 @@
           "docs": "",
           "docsTags": [],
           "default": "' Expand'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nExpandSidebar",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-expand-sidebar",
+          "reflectToAttr": false,
+          "docs": "Accessibility i18n label for the burger menu of the sidebar",
+          "docsTags": [],
+          "default": "'Expand sidebar'",
           "values": [
             {
               "type": "string"
@@ -8788,6 +8811,20 @@
           "composed": true,
           "docs": "Item added to selection",
           "docsTags": []
+        },
+        {
+          "event": "inputChange",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the text input changes.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
         },
         {
           "event": "itemSelectionChange",

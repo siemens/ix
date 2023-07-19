@@ -434,6 +434,7 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'applicationName',
   'applicationDescription',
   'maxVisibleMenuItems',
+  'i18nExpandSidebar',
   'expand',
   'pinned',
   'forceLayout',
@@ -602,6 +603,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nNoMatches',
   'hideListHeader',
   'itemSelectionChange',
+  'inputChange',
   'addItem'
 ]);
 
