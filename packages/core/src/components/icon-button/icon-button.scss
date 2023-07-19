@@ -16,12 +16,15 @@
 
   .icon-button {
     padding: 0;
-    color: inherit;
     overflow: hidden;
   }
 
   button:not(:disabled) {
     cursor: pointer;
+  }
+
+  ix-icon {
+    color: var(--ix-icon-button-color);
   }
 }
 

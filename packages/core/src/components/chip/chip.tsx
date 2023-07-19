@@ -91,6 +91,7 @@ export class Chip {
             type="button"
             variant="Secondary"
             icon="close-small"
+            class="close-button"
             oval
             size="16"
             style={this.variant === 'custom' ? { color: this.color } : {}}
@@ -111,22 +112,25 @@ export class Chip {
 
     let customStyle = {};
 
-    if (this.variant === 'custom' && this.outline === false) {
+    if (this.variant === 'custom') {
       customStyle = {
         color: this.color,
-        backgroundColor: this.background,
-      };
-    }
-
-    if (this.variant === 'custom' && this.outline === true) {
-      customStyle = {
-        color: this.color,
-        borderColor: this.background,
+        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
 
     return (
-      <Host tabIndex="-1" title={this.el.textContent}>
+      <Host
+        tabIndex="-1"
+        title={this.el.textContent}
+        style={
+          this.variant === 'custom'
+            ? {
+                '--ix-icon-button-color': this.color,
+              }
+            : {}
+        }
+      >
         <div
           style={{ ...customStyle }}
           class={{
@@ -140,6 +144,8 @@ export class Chip {
             primary: this.variant === 'primary',
             success: this.variant === 'success',
             warning: this.variant === 'warning',
+            closable: this.closable,
+            icon: !!this.icon,
           }}
         >
           <ix-icon

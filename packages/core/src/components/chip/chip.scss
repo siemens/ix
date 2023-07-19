@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+@import 'mixins/shadow-dom/component';
 @import 'common-variables';
 @import 'mixins/text-truncation';
 
@@ -14,7 +14,16 @@ $border-radius: 100px;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 
 :host {
+  @include ix-component;
+  display: inline-block;
+  position: relative;
+  height: 2rem;
+  max-height: 2rem;
   margin-left: $tiny-space;
+}
+
+:host(.inactive) {
+  pointer-events: none;
 }
 
 .container {
@@ -24,7 +33,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
   position: relative;
   align-items: center;
   border-radius: $border-radius;
-  padding: $small-space $small-space $small-space $medium-space;
+  padding: 0.5rem;
 
   height: $default-control-height;
   max-height: $default-control-height;
@@ -45,16 +54,6 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
     margin-left: $medium-space;
   }
 
-  .close-button {
-    position: relative;
-    width: $default-space;
-    height: $default-space;
-    min-width: unset;
-    min-height: unset;
-    margin-left: auto;
-    margin-right: 0;
-  }
-
   .slot-container {
     flex-grow: 1;
 
@@ -62,8 +61,13 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
   }
 }
 
-:host(.inactive) {
-  pointer-events: none;
+.container.icon {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.container.closable {
+  padding-right: 0.25rem;
 }
 
 .container.primary {
@@ -72,6 +76,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
 
   .close-button {
     color: var(--theme-chip-primary--color);
+    --ix-icon-button-color: var(--theme-chip-primary--color);
     pointer-events: auto;
   }
 
@@ -96,6 +101,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
 
   .close-button {
     color: var(--theme-chip-primary-outline--color);
+    --ix-icon-button-color: var(--theme-chip-primary-outline--color);
   }
 
   &:hover {
@@ -141,6 +147,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
 
       .close-button {
         color: var(--theme-color-#{$color}--contrast);
+        --ix-icon-button-color: var(--theme-color-#{$color}--contrast);
       }
 
       &:hover::after {
