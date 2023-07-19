@@ -26,7 +26,7 @@ export class DropdownButton {
   /**
    * Button variant
    */
-  @Prop() variant: DropdownButtonVariant = 'Primary';
+  @Prop() variant: DropdownButtonVariant = 'primary';
 
   /**
    * Outline button
@@ -67,8 +67,8 @@ export class DropdownButton {
         class={{
           triangle: true,
           hide: this.label !== '',
-          primary: this.variant === 'Primary',
-          secondary: this.variant === 'Secondary',
+          primary: this.variant === 'primary',
+          secondary: this.variant === 'secondary',
           ghost: this.ghost,
           outline: this.outline,
           disabled: this.disabled,

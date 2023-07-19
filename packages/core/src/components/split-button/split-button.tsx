@@ -33,7 +33,7 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: SplitButtonVariant = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'primary';
 
   /**
    * Button outline variant

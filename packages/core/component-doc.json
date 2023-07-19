@@ -976,20 +976,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -1682,13 +1682,19 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-icon-button",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-chip": [
+          "ix-icon-button",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -1956,20 +1962,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of content header",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -3519,20 +3525,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -4996,6 +5002,7 @@
         "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
+        "ix-chip",
         "ix-content-header",
         "ix-date-picker",
         "ix-drawer",
@@ -5033,6 +5040,9 @@
           "ix-icon-button"
         ],
         "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-chip": [
           "ix-icon-button"
         ],
         "ix-content-header": [
@@ -5315,20 +5325,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
           "docsTags": [],
-          "default": "'Secondary'",
+          "default": "'secondary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -9217,20 +9227,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Color variant of button",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],

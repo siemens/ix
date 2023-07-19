@@ -22,6 +22,10 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+
+  ix-icon {
+    color: var(--ix-icon-button-color);
+  }
 }
 
 :host(.btn-icon-12) {

@@ -13,13 +13,13 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxDropdownButton label="Dropdown" variant="Primary" icon="checkboxes">
+      <IxDropdownButton label="Dropdown" variant="primary" icon="checkboxes">
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
-        variant="Primary"
+        variant="primary"
         outline
         icon="checkboxes"
       >
@@ -28,7 +28,7 @@ export default () => {
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
-        variant="Primary"
+        variant="primary"
         ghost
         icon="checkboxes"
       >
@@ -37,7 +37,7 @@ export default () => {
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
-        variant="Primary"
+        variant="primary"
         disabled
         icon="checkboxes"
       ></IxDropdownButton>

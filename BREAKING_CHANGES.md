@@ -33,6 +33,61 @@ export declare type AutoPlacement = 'auto' | 'auto-start' | 'auto-end';
 
 Placement will be automatically chosen depending on remaining space. If you want to suppress the automatic behavior you can set the property `suppress-automatic-placement`.
 
+### `ix-flip-tile`
+
+Change flip-state from
+```ts
+export enum FlipTileState {
+  None = 'None',
+  Info = 'Info',
+  Warning = 'Warning',
+  Alarm = 'Alarm',
+  Primary = 'Primary',
+}
+```
+
+to
+
+```ts
+export enum FlipTileState {
+  None = 'none',
+  Info = 'info',
+  Warning = 'warning',
+  Alarm = 'alarm',
+  Primary = 'primary',
+}
+```
+
+e.g for alarm state
+
+___Before___
+
+```tsx
+<ix-flip-tile state="Alarm"></ix-flip-tile>
+```
+
+___Now___
+
+```tsx
+<ix-flip-tile state="alarm"></ix-flip-tile>
+```
+
+### Button variants changed
+
+Affected components:
+
+- `ix-button`
+- `ix-icon-button`
+- `ix-index-button`
+- `ix-dropdown-button`
+- `ix-split-button`
+
+Change `Primary` and `Secondary` to lower case `primary` and `secondary`
+
+### 'ix-content-header' variant typo
+
+Change `Primary` and `Secondary` to lower case `primary` and `secondary`
+
 ### `ix-menu-item`
 
 #### `tabIcon` is deprecated and gets replaced with `icon` property
