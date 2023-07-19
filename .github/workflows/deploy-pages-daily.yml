@@ -44,7 +44,6 @@ jobs:
 
       - name: 'Build documentation for dev instance'
         uses: ./.github/workflows/actions/build
-        if: ${{ github.event.inputs.deployment == 'dev' }}
         env:
           BASE_URL: /version-dev/
         with:
@@ -53,7 +52,6 @@ jobs:
 
       - name: Deploy dev instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ github.event.inputs.deployment == 'dev' }}
         with:
           folder: ./packages/documentation/build
           target-folder: version-dev
