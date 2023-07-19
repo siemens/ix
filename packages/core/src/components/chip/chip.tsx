@@ -89,7 +89,7 @@ export class Chip {
         {
           <ix-icon-button
             type="button"
-            variant="Secondary"
+            variant="secondary"
             icon="close-small"
             class="close-button"
             oval
