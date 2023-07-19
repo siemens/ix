@@ -24,7 +24,7 @@ export class IxIndexButton {
   /**
    * Button variant
    */
-  @Prop() variant: IndexButtonVariant = 'Primary';
+  @Prop() variant: IndexButtonVariant = 'primary';
 
   /**
    * Selection state
@@ -37,8 +37,8 @@ export class IxIndexButton {
         <button
           class={{
             btn: true,
-            'btn-invisible-primary': this.variant === 'Primary',
-            'btn-invisible-secondary': this.variant === 'Secondary',
+            'btn-invisible-primary': this.variant === 'primary',
+            'btn-invisible-secondary': this.variant === 'secondary',
             selected: this.selected,
           }}
         >

@@ -470,7 +470,7 @@ export class DatePicker {
               onClick={() => this.changeMonth(-1)}
               ghost
               icon="chevron-left"
-              variant="Primary"
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
 
@@ -547,7 +547,7 @@ export class DatePicker {
               onClick={() => this.changeMonth(1)}
               ghost
               icon="chevron-right"
-              variant="Primary"
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
           </div>

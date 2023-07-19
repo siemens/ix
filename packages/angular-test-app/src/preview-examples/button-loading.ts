@@ -17,7 +17,7 @@ import { Component } from '@angular/core';
       [loading]="loading"
       class="m-1"
       outline
-      variant="Primary"
+      variant="primary"
     >
       Button
     </ix-button>
@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
       icon="star"
       class="m-1"
       outline
-      variant="Primary"
+      variant="primary"
     >
       Button
     </ix-button>
@@ -39,11 +39,11 @@ import { Component } from '@angular/core';
       icon="star"
       class="m-1"
       outline
-      variant="Primary"
+      variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline variant="Primary">
+    <ix-button loading class="m-1" outline variant="primary">
       Button
     </ix-button>
 
@@ -52,7 +52,7 @@ import { Component } from '@angular/core';
       icon="star"
       class="m-1"
       outline
-      variant="Primary"
+      variant="primary"
     ></ix-icon-button>
   `,
 })

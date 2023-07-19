@@ -976,20 +976,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -1962,20 +1962,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of content header",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -3577,20 +3577,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -5326,20 +5326,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
           "docsTags": [],
-          "default": "'Secondary'",
+          "default": "'secondary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -9256,20 +9256,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Color variant of button",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],

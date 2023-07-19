@@ -24,7 +24,7 @@ export class IconButton implements Button {
   /**
    * Variant of button
    */
-  @Prop() variant: IconButtonVariant = 'Secondary';
+  @Prop() variant: IconButtonVariant = 'secondary';
 
   /**
    * Button outline

@@ -13,17 +13,17 @@ import React from 'react';
 export default () => {
   return (
     <IxContentHeader
-      variant="Secondary"
+      variant="secondary"
       header-title="content title"
       header-subtitle="subtitle content"
     >
-      <IxIconButton icon="pen" ghost variant="Primary">
+      <IxIconButton icon="pen" ghost variant="primary">
         Button1
       </IxIconButton>
-      <IxIconButton icon="trashcan" ghost variant="Primary">
+      <IxIconButton icon="trashcan" ghost variant="primary">
         Button2
       </IxIconButton>
-      <IxIconButton icon="context-menu" ghost variant="Primary">
+      <IxIconButton icon="context-menu" ghost variant="primary">
         Button3
       </IxIconButton>
     </IxContentHeader>
