@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages (DEV Version)
+
+on:
+  schedule:
+    - cron: '0 0 6 ? * MON,TUE,WED,THU *'
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages (DEV only)
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install rsync
+        run: |
+          apt-get update && apt-get install -y rsync
+
+      - uses: ./.github/workflows/actions/install
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://code.siemens.com/api/v4/projects/249177/packages/npm/'
+          scope: '@siemens'
+          always-auth: 'true'
+
+      - name: 'Download and link @siemens/ix-brand-theme'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+        run: |
+          mkdir .tmp-brand
+          cd .tmp-brand
+          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
+          cd ..
+          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+
+      - name: 'Build documentation for dev instance'
+        uses: ./.github/workflows/actions/build
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        env:
+          BASE_URL: /version-dev/
+        with:
+          filter: 'documentation'
+          args: '--force'
+
+      - name: Deploy dev instance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'dev' }}
+        with:
+          folder: ./packages/documentation/build
+          target-folder: version-dev
+          clean-exclude: version-*
