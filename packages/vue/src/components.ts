@@ -260,6 +260,7 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
   'hover',
   'disabled',
   'checked',
+  'isSubMenu',
   'itemClick'
 ]);
 
@@ -768,7 +769,8 @@ export const IxUpload = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload',
 
 export const IxValidationTooltip = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', undefined, [
   'message',
-  'placement'
+  'placement',
+  'suppressAutomaticPlacement'
 ]);
 
 
