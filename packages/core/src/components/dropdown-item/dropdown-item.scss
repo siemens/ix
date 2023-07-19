@@ -10,8 +10,16 @@
 @import 'mixins/shadow-dom/component';
 @import 'mixins/shadow-dom/hover';
 
-$itemPadding: 0.5rem;
+$itemPadding: 0.25rem;
+$itemPaddingRight: 1.5rem;
 $focusBorder: 0.0625rem;
+
+@mixin applyItemWidth($padding, $paddingRight) {
+  width: calc(100% - #{$padding} - #{$paddingRight} - #{2 * $focusBorder});
+
+  padding: 0 $padding;
+  padding-right: $paddingRight;
+}
 
 :host {
   --ix-dropdown-item-checked-color: var(--theme-color-primary);
@@ -31,11 +39,14 @@ $focusBorder: 0.0625rem;
     flex-direction: row;
     align-items: center;
     position: relative;
-    width: calc(100% - #{2 * $itemPadding} - #{2 * $focusBorder});
     height: calc(100% - 2px);
-    padding: 0 $itemPadding;
+    @include applyItemWidth($itemPadding, $itemPaddingRight);
     border: $focusBorder solid transparent;
     white-space: nowrap;
+  }
+
+  .dropdown-item.no-checked-field {
+    @include applyItemWidth(1rem, $itemPaddingRight);
   }
 
   .dropdown-item:focus-visible {
@@ -50,13 +61,14 @@ $focusBorder: 0.0625rem;
     height: 100%;
     width: 1rem;
     min-width: 1rem;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
 
     color: var(--ix-dropdown-item-checked-color);
   }
 
   .dropdown-item-icon {
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
+    color: var(--theme-color-soft-text);
   }
 
   .dropdown-item-text {
@@ -70,6 +82,10 @@ $focusBorder: 0.0625rem;
   .dropdown-item:focus-visible {
     outline: 1px solid yellow;
   }
+
+  .submenu-icon {
+    margin-left: auto;
+  }
 }
 
 :host(.icon-only) {
@@ -80,6 +96,16 @@ $focusBorder: 0.0625rem;
   .dropdown-item-checked {
     display: none;
   }
+
+  .dropdown-item {
+    @include applyItemWidth(0.5rem, 0.5rem);
+  }
+}
+
+:host(.submenu) {
+  .dropdown-item {
+    @include applyItemWidth($itemPadding, 0.5rem);
+  }
 }
 
 @include ghost-hover-pressed;
@@ -87,4 +113,8 @@ $focusBorder: 0.0625rem;
 :host(.disabled) {
   pointer-events: none;
   color: var(--theme-color-weak-text) !important;
+
+  .dropdown-item-icon {
+    color: var(--theme-color-weak-text) !important;
+  }
 }

@@ -57,6 +57,11 @@ export class DropdownItem {
   @Prop() isSubMenu = false;
 
   /**
+   * @internal
+   */
+  @Prop() suppressChecked = false;
+
+  /**
    * Click on item
    */
   @Event() itemClick: EventEmitter<HTMLIxDropdownItemElement>;
@@ -84,6 +89,7 @@ export class DropdownItem {
           hover: this.hover,
           'icon-only': this.isIconOnly(),
           disabled: this.disabled,
+          submenu: this.isSubMenu,
         }}
         role="listitem"
       >
@@ -92,24 +98,31 @@ export class DropdownItem {
           tabIndex={0}
           class={{
             'dropdown-item': true,
+            'no-checked-field': this.suppressChecked,
           }}
           onClick={() => this.emitItemClick()}
         >
-          <div class="dropdown-item-checked">
-            {this.checked ? (
-              <ix-icon
-                class="checkmark"
-                name="single-check"
-                size="16"
-              ></ix-icon>
-            ) : null}
-          </div>
+          {!this.suppressChecked ? (
+            <div class="dropdown-item-checked">
+              {this.checked ? (
+                <ix-icon
+                  class="checkmark"
+                  name="single-check"
+                  size="16"
+                ></ix-icon>
+              ) : null}
+            </div>
+          ) : null}
           {this.icon ? (
             <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
           ) : null}
-          <div class="dropdown-item-text">{this.label}</div>
-          <slot></slot>
-          {this.isSubMenu ? <ix-icon name={chevronRightSmall}></ix-icon> : null}
+          <div class="dropdown-item-text">
+            {this.label}
+            <slot></slot>
+          </div>
+          {this.isSubMenu ? (
+            <ix-icon name={chevronRightSmall} class={'submenu-icon'}></ix-icon>
+          ) : null}
         </button>
       </Host>
     );

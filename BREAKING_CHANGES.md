@@ -9,7 +9,7 @@
 
 ### `ix-dropdown` submenu
 
-Submenu append chevron icon automatically to the trigger element, if the trigger element is an ix-dropdown-item.
+The submenu now appends a chevron icon automatically to the trigger element, if the trigger element is an ix-dropdown-item.
 
 ___Before___
 

@@ -743,6 +743,7 @@ export namespace Components {
           * Label of dropdown item
          */
         "label": string;
+        "suppressChecked": boolean;
     }
     /**
      * @since 1.4.0
@@ -3627,6 +3628,7 @@ declare namespace LocalJSX {
           * Click on item
          */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
+        "suppressChecked"?: boolean;
     }
     /**
      * @since 1.4.0

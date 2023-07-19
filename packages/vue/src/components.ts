@@ -261,6 +261,7 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
   'disabled',
   'checked',
   'isSubMenu',
+  'suppressChecked',
   'itemClick'
 ]);
 

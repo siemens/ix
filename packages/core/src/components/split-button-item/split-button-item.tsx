@@ -42,6 +42,7 @@ export class SplitButtonItem {
   render() {
     return (
       <ix-dropdown-item
+        suppressChecked
         icon={this.icon}
         label={this.label}
         onClick={(e) => this.itemClick.emit(e)}
