@@ -1682,13 +1682,19 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-icon-button",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-chip": [
+          "ix-icon-button",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -4997,6 +5003,7 @@
         "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
+        "ix-chip",
         "ix-content-header",
         "ix-date-picker",
         "ix-drawer",
@@ -5034,6 +5041,9 @@
           "ix-icon-button"
         ],
         "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-chip": [
           "ix-icon-button"
         ],
         "ix-content-header": [
