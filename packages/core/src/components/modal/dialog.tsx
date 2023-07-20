@@ -34,7 +34,7 @@ export class Dialog {
   /**
    * Modal size
    */
-  @Prop() size: IxModalSize = 'full-width';
+  @Prop() size: IxModalSize = '480';
 
   /**
    * Should the modal be animated
