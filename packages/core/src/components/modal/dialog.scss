@@ -34,6 +34,10 @@
     background: var(--theme-modal--background);
     box-shadow: var(--theme-shadow-4);
     color: var(--theme-color-std-text);
+
+    max-height: 80vh;
+    overflow: hidden;
+    pointer-events: all;
   }
 
   .modal-size-360 {
@@ -67,6 +71,8 @@
     height: 100vh;
     top: 0px;
     left: 0px;
+
+    pointer-events: none;
   }
 }
 

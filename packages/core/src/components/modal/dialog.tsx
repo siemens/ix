@@ -202,7 +202,6 @@ export class Dialog {
                 event.clientY <= rect.top + rect.height &&
                 rect.left <= event.clientX &&
                 event.clientX <= rect.left + rect.width;
-              console.log(rect.left, event.clientX, isClickOutside);
               if (!isClickOutside && this.closeOnBackdropClick) {
                 this.dismissModal();
               }

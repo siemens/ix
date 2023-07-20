@@ -11,6 +11,21 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 # Update your code
 
+## Replace Bootstrap Modal parts with iX Modal components
+
+//TODO: Enhance migration guide regarding new modal system
+
+```tsx
+<ix-dialog>
+  <ix-modal-header show-close>My Header</ix-modal-header>
+  <ix-modal-content>My Content</ix-modal-content>
+  <ix-modal-footer>
+    <ix-button>Save</ix-button>
+    <ix-button>Cancel</ix-button>
+  </ix-modal-footer>
+</ix-dialog>
+```
+
 ## Deprecation Notice: ix-menu-item `tabIcon` property
 
 Previously, the `tabIcon` property was used to specify an icon for the `ix-menu-item`. However, to enhance clarity and align with established naming conventions in the library, we have deprecated the `tabIcon` property in favor of the more concise property name `icon`.

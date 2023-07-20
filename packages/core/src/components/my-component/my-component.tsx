@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Component, h, Host } from '@stencil/core';
-import { modal, showModal } from '../modal/modal-utils';
+import { modal, showMessage, showModal } from '../modal/modal-utils';
 
 @Component({
   tag: 'my-component',
@@ -56,13 +56,43 @@ export class MyComponent {
         <ix-button
           onClick={() => {
             const DIALOG = document.createElement('ix-dialog');
-            DIALOG.innerHTML = 'Test';
+            DIALOG.innerHTML = `
+              <ix-modal-header show-close>My Header</ix-modal-header>
+              <ix-modal-content>
+                My Content My Content My Content My Content My Content
+                My Content My Content My Content My Content My Content
+              </ix-modal-content>
+              <ix-modal-footer>
+                <ix-button>Save</ix-button>
+                <ix-button>Cancel</ix-button>
+              </ix-modal-footer>
+            `;
+
             showModal({
               content: DIALOG,
             });
           }}
         >
           Open modal (dialog - ix-dialog)
+        </ix-button>
+
+        <ix-button
+          onClick={() => {
+            showMessage({
+              icon: 'rocket',
+              actions: [
+                {
+                  text: 'Save',
+                  type: 'okay',
+                  payload: '...',
+                },
+              ],
+              message: 'Hello World!',
+              messageTitle: 'Iam a title',
+            });
+          }}
+        >
+          Open Message
         </ix-button>
       </Host>
     );

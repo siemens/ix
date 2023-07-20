@@ -1450,7 +1450,24 @@ export namespace Components {
          */
         "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
     }
+    interface IxModalContent {
+    }
     interface IxModalExample {
+    }
+    interface IxModalFooter {
+    }
+    interface IxModalHeader {
+        "showClose": boolean;
+    }
+    interface IxModalMessage {
+        "actions": {
+    type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
+    text: string;
+    payload?: any;
+  }[];
+        "icon": string;
+        "message": string;
+        "messageTitle": string;
     }
     /**
      * @since 1.5.0
@@ -2153,6 +2170,10 @@ export interface IxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalElement;
 }
+export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxModalHeaderElement;
+}
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
@@ -2641,11 +2662,35 @@ declare global {
         prototype: HTMLIxModalContainerElement;
         new (): HTMLIxModalContainerElement;
     };
+    interface HTMLIxModalContentElement extends Components.IxModalContent, HTMLStencilElement {
+    }
+    var HTMLIxModalContentElement: {
+        prototype: HTMLIxModalContentElement;
+        new (): HTMLIxModalContentElement;
+    };
     interface HTMLIxModalExampleElement extends Components.IxModalExample, HTMLStencilElement {
     }
     var HTMLIxModalExampleElement: {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
+    };
+    interface HTMLIxModalFooterElement extends Components.IxModalFooter, HTMLStencilElement {
+    }
+    var HTMLIxModalFooterElement: {
+        prototype: HTMLIxModalFooterElement;
+        new (): HTMLIxModalFooterElement;
+    };
+    interface HTMLIxModalHeaderElement extends Components.IxModalHeader, HTMLStencilElement {
+    }
+    var HTMLIxModalHeaderElement: {
+        prototype: HTMLIxModalHeaderElement;
+        new (): HTMLIxModalHeaderElement;
+    };
+    interface HTMLIxModalMessageElement extends Components.IxModalMessage, HTMLStencilElement {
+    }
+    var HTMLIxModalMessageElement: {
+        prototype: HTMLIxModalMessageElement;
+        new (): HTMLIxModalMessageElement;
     };
     /**
      * @since 1.5.0
@@ -2866,7 +2911,11 @@ declare global {
         "ix-message-bar": HTMLIxMessageBarElement;
         "ix-modal": HTMLIxModalElement;
         "ix-modal-container": HTMLIxModalContainerElement;
+        "ix-modal-content": HTMLIxModalContentElement;
         "ix-modal-example": HTMLIxModalExampleElement;
+        "ix-modal-footer": HTMLIxModalFooterElement;
+        "ix-modal-header": HTMLIxModalHeaderElement;
+        "ix-modal-message": HTMLIxModalMessageElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-push-card": HTMLIxPushCardElement;
@@ -4396,7 +4445,25 @@ declare namespace LocalJSX {
     }
     interface IxModalContainer {
     }
+    interface IxModalContent {
+    }
     interface IxModalExample {
+    }
+    interface IxModalFooter {
+    }
+    interface IxModalHeader {
+        "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
+        "showClose"?: boolean;
+    }
+    interface IxModalMessage {
+        "actions"?: {
+    type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
+    text: string;
+    payload?: any;
+  }[];
+        "icon"?: string;
+        "message"?: string;
+        "messageTitle"?: string;
     }
     /**
      * @since 1.5.0
@@ -5110,7 +5177,11 @@ declare namespace LocalJSX {
         "ix-message-bar": IxMessageBar;
         "ix-modal": IxModal;
         "ix-modal-container": IxModalContainer;
+        "ix-modal-content": IxModalContent;
         "ix-modal-example": IxModalExample;
+        "ix-modal-footer": IxModalFooter;
+        "ix-modal-header": IxModalHeader;
+        "ix-modal-message": IxModalMessage;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-push-card": IxPushCard;
@@ -5251,7 +5322,11 @@ declare module "@stencil/core" {
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
+            "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
+            "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
+            "ix-modal-message": LocalJSX.IxModalMessage & JSXBase.HTMLAttributes<HTMLIxModalMessageElement>;
             /**
              * @since 1.5.0
              */

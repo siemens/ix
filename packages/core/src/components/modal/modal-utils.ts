@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { MessageContent } from '../modal-message/modal-message';
 import { getCoreDelegate, resolveDelegate } from '../utils/delegate';
 import { NotificationColor } from '../utils/notification-color';
 import { TypedEvent } from '../utils/typed-event';
 import { IxModalSize } from './dialog';
 
-export interface ModalConfig<TReason = any> {
+export interface ModalConfig<TReason = any, C = any> {
   animation?: boolean;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
@@ -21,7 +22,7 @@ export interface ModalConfig<TReason = any> {
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
-  content: any;
+  content: C;
   keyboard?: boolean;
   modalDialogClass?: string;
   scrollable?: boolean;
@@ -88,6 +89,27 @@ export function dismissModal(element: Element, dismissResult?: any) {
     return;
   }
   getIxModal(element).dismiss(dismissResult);
+}
+
+export async function showMessage<T>(config: MessageContent) {
+  const onMessageAction = new TypedEvent<T>();
+  const message = document.createElement('ix-modal-message');
+  Object.assign(message, config);
+
+  const dialog = document.createElement('ix-dialog');
+  dialog.appendChild(message);
+  const dialogRef = await getCoreDelegate().attachView(dialog);
+
+  dialogRef.addEventListener('dialogClose', (event: CustomEvent<T>) => {
+    onMessageAction.emit(event.detail);
+    dialogRef.remove();
+  });
+
+  dialogRef.addEventListener('dialogDismiss', () => {
+    dialogRef.remove();
+  });
+
+  return onMessageAction;
 }
 
 export async function showModal<T>(
