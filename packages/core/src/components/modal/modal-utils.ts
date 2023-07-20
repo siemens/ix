@@ -7,31 +7,33 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { getCoreDelegate, resolveDelegate } from '../utils/delegate';
 import { NotificationColor } from '../utils/notification-color';
 import { TypedEvent } from '../utils/typed-event';
+import { IxModalSize } from './dialog';
 
 export interface ModalConfig<TReason = any> {
   animation?: boolean;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
-  backdrop?: boolean | 'static';
-  backdropClass?: string;
+  backdrop?: boolean;
+  closeOnBackdropClick?: boolean;
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
-  content: string | HTMLElement;
+  content: any;
   keyboard?: boolean;
   modalDialogClass?: string;
   scrollable?: boolean;
-  size?: 'sm' | 'lg' | 'xl';
-  title: string;
+  size?: IxModalSize;
+  title?: string;
   windowClass?: string;
   icon?: string;
   iconColor?: NotificationColor;
 }
 
 export interface ModalInstance<TReason = any> {
-  htmlElement: HTMLIxModalElement;
+  htmlElement: HTMLIxModalElement | HTMLIxDialogElement;
   onClose: TypedEvent<TReason>;
   onDismiss: TypedEvent<TReason>;
 }
@@ -73,9 +75,63 @@ export function closeModal<TClose = any>(
   element: Element,
   closeResult: TClose
 ) {
+  if (element.tagName === 'IX-DIALOG') {
+    (element as HTMLIxDialogElement).closeModal(closeResult);
+    return;
+  }
   getIxModal(element).close(closeResult);
 }
 
 export function dismissModal(element: Element, dismissResult?: any) {
+  if (element.tagName === 'IX-DIALOG') {
+    (element as HTMLIxDialogElement).dismissModal(dismissResult);
+    return;
+  }
   getIxModal(element).dismiss(dismissResult);
+}
+
+export async function showModal<T>(
+  config: ModalConfig<T>
+): Promise<ModalInstance<T>> {
+  const delegate = resolveDelegate();
+  let dialogRef: HTMLIxDialogElement;
+  const onClose = new TypedEvent<T>();
+  const onDismiss = new TypedEvent<T>();
+
+  if (typeof config.content === 'string') {
+    const dialog = document.createElement('ix-dialog');
+    dialog.innerText = config.content;
+    dialogRef = await getCoreDelegate().attachView(dialog);
+  }
+
+  if (
+    config.content instanceof HTMLElement &&
+    config.content.tagName !== 'IX-DIALOG'
+  ) {
+    const dialog = document.createElement('ix-dialog');
+    dialog.appendChild(config.content);
+    dialogRef = await getCoreDelegate().attachView(dialog);
+  }
+
+  if (!dialogRef) {
+    dialogRef = await delegate.attachView<HTMLIxDialogElement>(config.content);
+  }
+
+  Object.assign(dialogRef, config);
+  dialogRef.showModal();
+  dialogRef.addEventListener('dialogClose', ({ detail }: CustomEvent) => {
+    onClose.emit(detail);
+    dialogRef.remove();
+  });
+
+  dialogRef.addEventListener('dialogDismiss', ({ detail }: CustomEvent) => {
+    onDismiss.emit(detail);
+    dialogRef.remove();
+  });
+
+  return {
+    htmlElement: dialogRef,
+    onClose,
+    onDismiss,
+  };
 }

@@ -23,6 +23,7 @@ export const DIRECTIVES = [
   d.IxCounterPill,
   d.IxDatePicker,
   d.IxDatetimePicker,
+  d.IxDialog,
   d.IxDivider,
   d.IxDrawer,
   d.IxDropdown,

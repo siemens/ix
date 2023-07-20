@@ -21,6 +21,7 @@ export * from './components/toast/toast-utils';
 export * from './components/tree-item/default-tree-item';
 export * from './components/tree/tree-model';
 export * from './components/upload/upload-file-state';
+export * from './components/utils/delegate';
 export { NotificationColor } from './components/utils/notification-color';
 export {
   convertToAbbreviationString,

@@ -2,6 +2,50 @@
 
 ## v2.0.0
 
+### Modal
+
+#### Property `size` changed
+
+Previously:
+```ts
+export type IxModalSize = 'sm' | 'lg' | 'xl';
+```
+
+Now:
+
+```ts
+export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
+export type IxModalDynamicSize = 'full-width';
+export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
+```
+
+#### Property `backdrop = 'static'` removed
+
+Will be replaced with new property `closeOnBackdropClick`.
+
+___Before___
+
+```tsx
+const config: ModalConfig = {
+  // Other properties
+  backdrop: 'static'
+}
+```
+
+___Now___
+
+```tsx
+const config: ModalConfig = {
+  // Other properties
+  backdrop: true // `true` is default
+  closeOnBackdropClick: true
+}
+```
+
+#### Property `backdropClass` removed
+
+To get a consistent ui design be decided to remove custom backdrops.
+
 ### `ix-flip-tile`
 
 Change flip-state from

@@ -7,12 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { modal, ModalConfig as IxModalConfig } from '@siemens/ix';
+import {
+  modal,
+  ModalConfig as IxModalConfig,
+  showModal as _showModal,
+} from '@siemens/ix';
 import ReactDOMClient from 'react-dom/client';
 export * from './modal';
+export * from './modal2';
 
 export type ModalConfig = {
-  content: React.ReactNode;
+  content: React.ReactNode | string;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,4 +47,14 @@ export async function showModal<TReason = any>(
   });
 
   return modalInstance;
+}
+
+export type ModalConfig2 = {
+  content: React.ReactNode | string;
+};
+
+export async function showModal2(
+  config: Omit<IxModalConfig, 'content'> & ModalConfig2
+) {
+  return _showModal(config);
 }

@@ -18,6 +18,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { IxModalSize } from "./components/modal/dialog";
 import { Placement } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -49,6 +50,7 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { IxModalSize } from "./components/modal/dialog";
 export { Placement } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -582,6 +584,48 @@ export namespace Components {
           * @since 1.1.0
          */
         "to": string | null;
+    }
+    interface IxDialog {
+        /**
+          * Should the modal be animated
+         */
+        "animation": boolean;
+        /**
+          * Show a backdrop behind the modal dialog
+         */
+        "backdrop": boolean;
+        /**
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to about in dismissing the modal
+         */
+        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        /**
+          * Centered modal
+         */
+        "centered": boolean;
+        /**
+          * Close the dialog
+         */
+        "closeModal": <T = any>(reason: T) => Promise<void>;
+        /**
+          * Dismiss modal on backdrop click
+         */
+        "closeOnBackdropClick": boolean;
+        /**
+          * Dismiss the dialog
+         */
+        "dismissModal": <T = any>(reason?: T) => Promise<void>;
+        /**
+          * Use ESC to dismiss the modal
+         */
+        "keyboard": boolean;
+        /**
+          * Show the dialog
+         */
+        "showModal": () => Promise<void>;
+        /**
+          * Modal size
+         */
+        "size": IxModalSize;
     }
     /**
      * @since 1.4.0
@@ -2029,6 +2073,10 @@ export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
 }
+export interface IxDialogCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDialogElement;
+}
 export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDrawerElement;
@@ -2328,6 +2376,12 @@ declare global {
     var HTMLIxDatetimePickerElement: {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
+    };
+    interface HTMLIxDialogElement extends Components.IxDialog, HTMLStencilElement {
+    }
+    var HTMLIxDialogElement: {
+        prototype: HTMLIxDialogElement;
+        new (): HTMLIxDialogElement;
     };
     /**
      * @since 1.4.0
@@ -2772,6 +2826,7 @@ declare global {
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
+        "ix-dialog": HTMLIxDialogElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
@@ -3443,6 +3498,38 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "to"?: string | null;
+    }
+    interface IxDialog {
+        /**
+          * Should the modal be animated
+         */
+        "animation"?: boolean;
+        /**
+          * Show a backdrop behind the modal dialog
+         */
+        "backdrop"?: boolean;
+        /**
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to about in dismissing the modal
+         */
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
+        /**
+          * Centered modal
+         */
+        "centered"?: boolean;
+        /**
+          * Dismiss modal on backdrop click
+         */
+        "closeOnBackdropClick"?: boolean;
+        /**
+          * Use ESC to dismiss the modal
+         */
+        "keyboard"?: boolean;
+        "onDialogClose"?: (event: IxDialogCustomEvent<any>) => void;
+        "onDialogDismiss"?: (event: IxDialogCustomEvent<any>) => void;
+        /**
+          * Modal size
+         */
+        "size"?: IxModalSize;
     }
     /**
      * @since 1.4.0
@@ -4983,6 +5070,7 @@ declare namespace LocalJSX {
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
+        "ix-dialog": IxDialog;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
@@ -5099,6 +5187,7 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-dialog": LocalJSX.IxDialog & JSXBase.HTMLAttributes<HTMLIxDialogElement>;
             /**
              * @since 1.4.0
              */

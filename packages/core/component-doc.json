@@ -780,7 +780,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -819,6 +820,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2875,6 +2879,110 @@
               "text": "1.1.0"
             }
           ]
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal",
+      "filePath": "./src/components/modal/dialog.tsx",
+      "fileName": "dialog.tsx",
+      "readmePath": "./src/components/modal/readme.md",
+      "usagesDir": "./src/components/modal/usage",
+      "tag": "ix-dialog",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-example",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-modal-example": [
+          "ix-dialog"
+        ],
+        "my-component": [
+          "ix-dialog"
+        ]
+      },
+      "props": [
+        {
+          "name": "animation",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "animation",
+          "reflectToAttr": false,
+          "docs": "Should the modal be animated",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "closeModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
+          "parameters": [],
+          "docs": "Close the dialog",
+          "docsTags": []
+        },
+        {
+          "name": "dismissModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
+          "parameters": [],
+          "docs": "Dismiss the dialog",
+          "docsTags": []
+        },
+        {
+          "name": "showModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "showModal() => Promise<void>",
+          "parameters": [],
+          "docs": "Show the dialog",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "dialogClose",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        },
+        {
+          "event": "dialogDismiss",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -7920,7 +8028,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [
-        "ix-modal-example"
+        "ix-modal-example",
+        "my-component"
       ],
       "dependencies": [
         "ix-modal"
@@ -7933,6 +8042,9 @@
           "ix-icon"
         ],
         "ix-modal-example": [
+          "ix-modal-container"
+        ],
+        "my-component": [
           "ix-modal-container"
         ]
       },
@@ -7977,13 +8089,15 @@
       "dependencies": [
         "ix-icon-button",
         "ix-button",
-        "ix-modal-container"
+        "ix-modal-container",
+        "ix-dialog"
       ],
       "dependencyGraph": {
         "ix-modal-example": [
           "ix-icon-button",
           "ix-button",
-          "ix-modal-container"
+          "ix-modal-container",
+          "ix-dialog"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -11538,8 +11652,28 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-dialog",
+        "ix-modal-container"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-dialog",
+          "ix-modal-container"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-modal-container": [
+          "ix-modal"
+        ],
+        "ix-modal": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

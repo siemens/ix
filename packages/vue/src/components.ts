@@ -207,6 +207,13 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
 ]);
 
 
+export const IxDialog = /*@__PURE__*/ defineContainer<JSX.IxDialog>('ix-dialog', undefined, [
+  'animation',
+  'dialogClose',
+  'dialogDismiss'
+]);
+
+
 export const IxDivider = /*@__PURE__*/ defineContainer<JSX.IxDivider>('ix-divider', undefined);
 
 

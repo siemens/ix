@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export * from './app';
 export * from './components';
 export * from './modal';
+export { useModal } from './modal/hook';
 export * from './toast';
 export * from './tree';

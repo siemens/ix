@@ -29,6 +29,7 @@ export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHe
 export const IxCounterPill = /*@__PURE__*/createReactComponent<JSX.IxCounterPill, HTMLIxCounterPillElement>('ix-counter-pill');
 export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker');
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker');
+export const IxDialog = /*@__PURE__*/createReactComponent<JSX.IxDialog, HTMLIxDialogElement>('ix-dialog');
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider');
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer');
 export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTMLIxDropdownElement>('ix-dropdown');

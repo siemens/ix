@@ -1,0 +1,86 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+::backdrop {
+  --ix-dialog-backdrop: var(--theme-color-lightbox, #0000008c);
+}
+
+:focus-visible {
+  outline: none !important;
+}
+
+:host {
+  dialog {
+    margin: 0;
+    left: 50%;
+  }
+
+  dialog::backdrop {
+    backdrop-filter: blur(2.7182817459106445px);
+  }
+
+  .modal {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border: none;
+    border-radius: var(--theme-default-border-radius);
+    background: var(--theme-modal--background);
+    box-shadow: var(--theme-shadow-4);
+    color: var(--theme-color-std-text);
+  }
+
+  .modal-size-360 {
+    width: 22.5rem;
+  }
+
+  .modal-size-480 {
+    width: 30rem;
+  }
+
+  .modal-size-600 {
+    width: 37.5rem;
+  }
+
+  .modal-size-720 {
+    width: 45rem;
+  }
+
+  .modal-size-840 {
+    width: 52.5rem;
+  }
+
+  .modal-size-full-width {
+    width: 95%;
+  }
+
+  .dialog-backdrop {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+  }
+}
+
+:host(.align-center) {
+  dialog {
+    margin: 0;
+    left: 50%;
+    top: 50%;
+  }
+}
+
+:host(.no-backdrop) {
+  dialog::backdrop {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+  }
+}
