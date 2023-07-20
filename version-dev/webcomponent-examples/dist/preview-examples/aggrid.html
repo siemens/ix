@@ -17,8 +17,8 @@ SPDX-License-Identifier: MIT
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"
     />
-    <script type="module" crossorigin src="../assets/index.fceb1a46.js"></script>
-    <script type="module" crossorigin src="../assets/init.a4cf9fe3.js"></script>
+    <script type="module" crossorigin src="../assets/index.eca5b8a3.js"></script>
+    <script type="module" crossorigin src="../assets/init.647ab6c1.js"></script>
     <link rel="stylesheet" href="../assets/index.e684e1d0.css">
     <link rel="stylesheet" href="../assets/init.619a7964.css">
   </head>
@@ -35,14 +35,40 @@ SPDX-License-Identifier: MIT
 
         const gridOptions = {
           columnDefs: [
-            { field: 'make', resizable: true, checkboxSelection: true },
-            { field: 'model', resizable: true, sortable: true, filter: true },
-            { field: 'price', resizable: true },
+            {
+              field: 'type',
+              headerName: 'Type',
+              resizable: true,
+              checkboxSelection: true,
+            },
+            {
+              field: 'status',
+              headerName: 'Status',
+              resizable: true,
+              sortable: true,
+              filter: true,
+            },
+            { field: 'hwVersion', headerName: 'HW version', resizable: true },
           ],
           rowData: [
-            { make: 'Toyota', model: 'Celica', price: 35000, checked: false },
-            { make: 'Ford', model: 'Mondeo', price: 32000, checked: true },
-            { make: 'Porsche', model: 'Boxster', price: 72000, checked: false },
+            {
+              type: 'Equipment',
+              status: 'Normal',
+              hwVersion: '2.0',
+              checked: false,
+            },
+            {
+              type: 'Positioner',
+              status: 'Maintenance',
+              hwVersion: '1.0',
+              checked: true,
+            },
+            {
+              type: 'Pressure sensor',
+              status: 'Unknown',
+              hwVersion: 'N/A',
+              checked: false,
+            },
           ],
           rowSelection: 'multiple',
           suppressCellFocus: true,
