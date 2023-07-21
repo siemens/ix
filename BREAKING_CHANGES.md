@@ -41,9 +41,13 @@ export type IxModalDynamicSize = 'full-width';
 export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 ```
 
-#### Property `backdrop = 'static'` removed
+#### Property ModalConfig changed/adapted
 
-Will be replaced with new property `closeOnBackdropClick`.
+- `scrollable` is removed, no successor
+- `modalDialogClass` is removed, no successor
+- `windowClass` is removed, no successor
+- `content` is now generic
+- `backdrop = 'static'` removed, successor will be `closeOnBackdropClick`.
 
 ___Before___
 
@@ -63,6 +67,8 @@ const config: ModalConfig = {
   closeOnBackdropClick: true
 }
 ```
+
+- `icon` and `iconColor` is removed, successor is `ix-modal-header` component.
 
 #### Property `backdropClass` removed
 

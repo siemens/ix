@@ -10,10 +10,9 @@
 import { MessageContent } from '../modal-message/modal-message';
 import { IxModalSize } from '../modal/modal';
 import { getCoreDelegate, resolveDelegate } from './delegate';
-import { NotificationColor } from './notification-color';
 import { TypedEvent } from './typed-event';
 
-export interface ModalConfig<TReason = any, C = any> {
+export interface ModalConfig<TReason = any, CONTENT_TYPE = any> {
   animation?: boolean;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
@@ -22,15 +21,10 @@ export interface ModalConfig<TReason = any, C = any> {
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
-  content: C;
+  content: CONTENT_TYPE;
   keyboard?: boolean;
-  modalDialogClass?: string;
-  scrollable?: boolean;
   size?: IxModalSize;
   title?: string;
-  windowClass?: string;
-  icon?: string;
-  iconColor?: NotificationColor;
 }
 
 export interface ModalInstance<TReason = any> {
