@@ -7,10 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { MessageContent } from '../modal-message/modal-message';
-import { IxModalSize } from '../modal/modal';
-import { getCoreDelegate, resolveDelegate } from './delegate';
-import { TypedEvent } from './typed-event';
+import { IxModalSize } from '../../modal/modal';
+import { getCoreDelegate, resolveDelegate } from '../delegate';
+import { TypedEvent } from '../typed-event';
 
 export interface ModalConfig<TReason = any, CONTENT_TYPE = any> {
   animation?: boolean;
@@ -54,27 +53,6 @@ export function dismissModal(element: Element, dismissResult?: any) {
     dialog.dismissModal(dismissResult);
     return;
   }
-}
-
-export async function showMessage<T>(config: MessageContent) {
-  const onMessageAction = new TypedEvent<T>();
-  const message = document.createElement('ix-modal-message');
-  Object.assign(message, config);
-
-  const dialog = document.createElement('ix-modal');
-  dialog.appendChild(message);
-  const dialogRef = await getCoreDelegate().attachView(dialog);
-
-  dialogRef.addEventListener('dialogClose', (event: CustomEvent<T>) => {
-    onMessageAction.emit(event.detail);
-    dialogRef.remove();
-  });
-
-  dialogRef.addEventListener('dialogDismiss', () => {
-    dialogRef.remove();
-  });
-
-  return onMessageAction;
 }
 
 export async function showModal<T>(

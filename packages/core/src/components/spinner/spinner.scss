@@ -17,6 +17,10 @@
 
     width: $size;
     height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
     border-radius: 100%;
     position: relative;
     animation: rotate 2s linear infinite;

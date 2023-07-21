@@ -45,6 +45,11 @@ export class ModalHeader {
   }
 
   /**
+   * Icon color
+   */
+  @Prop() iconColor: string;
+
+  /**
    *
    */
   @Event() closeClick: EventEmitter<MouseEvent>;
@@ -69,7 +74,11 @@ export class ModalHeader {
     return (
       <Host>
         {this.icon ? (
-          <ix-icon class={'modal-icon'} name={this.icon}></ix-icon>
+          <ix-icon
+            class={'modal-icon'}
+            name={this.icon}
+            color={this.iconColor}
+          ></ix-icon>
         ) : null}
         <ix-typography variant={'default-title'}>
           <slot></slot>
