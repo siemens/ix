@@ -7670,7 +7670,7 @@
           "reflectToAttr": false,
           "docs": "Modal size",
           "docsTags": [],
-          "default": "'480'",
+          "default": "'360'",
           "values": [
             {
               "value": "360",

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { VariantsMapping } from './type-mapping';
 
 export type TypographyVariants =
@@ -67,14 +67,14 @@ export class IxTypography {
         : 'inherit';
 
     return (
-      <div
+      <Host
         class={typographyClass}
         style={{
           color: fontColor,
         }}
       >
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

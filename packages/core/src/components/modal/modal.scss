@@ -40,6 +40,8 @@
     pointer-events: all;
   }
 
+  // Modal sizes
+
   .modal-size-360 {
     width: 22.5rem;
   }
@@ -64,6 +66,15 @@
     width: 95%;
   }
 
+  // Modal types
+
+  .modal-type-message {
+    ::slotted(ix-modal-footer),
+    ::slotted(ix-modal-content) {
+      margin-left: 42px;
+    }
+  }
+
   .dialog-backdrop {
     display: block;
     position: fixed;
@@ -74,6 +85,8 @@
 
     pointer-events: none;
   }
+
+  // 42
 }
 
 :host(.align-center) {

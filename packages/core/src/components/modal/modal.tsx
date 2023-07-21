@@ -32,9 +32,14 @@ export class Modal {
   @Element() hostElement!: HTMLIxModalElement;
 
   /**
+   *
+   */
+  @Prop() modalType: 'dialog' | 'message' = 'dialog';
+
+  /**
    * Modal size
    */
-  @Prop() size: IxModalSize = '480';
+  @Prop() size: IxModalSize = '360';
 
   /**
    * Should the modal be animated
@@ -86,7 +91,7 @@ export class Modal {
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
-    let transformY = this.centered ? '-50' : 20;
+    let transformY = this.centered ? '-50' : 40;
 
     anime({
       targets: this.dialog,
@@ -101,11 +106,13 @@ export class Modal {
   private slideOutModal(completeCallback: Function) {
     const duration = this.animation ? Animation.mediumTime : 0;
 
+    let transformY = this.centered ? '-50' : 40;
+
     anime({
       targets: this.dialog,
       duration,
       opacity: [1, 0],
-      translateY: [0, '-100%'],
+      translateY: [transformY, 0],
       translateX: ['-50%', '-50%'],
       easing: 'easeInSine',
       complete: () => {
@@ -189,7 +196,7 @@ export class Modal {
       >
         <div class="dialog-backdrop">
           <dialog
-            class={`modal modal-size-${this.size}`}
+            class={`modal modal-size-${this.size} modal-type-${this.modalType}`}
             onKeyDown={(e) => {
               if (e.key === 'Escape' && this.keyboard === false) {
                 e.preventDefault();

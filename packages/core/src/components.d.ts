@@ -1360,6 +1360,7 @@ export namespace Components {
           * Use ESC to dismiss the modal
          */
         "keyboard": boolean;
+        "modalType": 'dialog' | 'message';
         /**
           * Show the dialog
          */
@@ -4269,6 +4270,7 @@ declare namespace LocalJSX {
           * Use ESC to dismiss the modal
          */
         "keyboard"?: boolean;
+        "modalType"?: 'dialog' | 'message';
         "onDialogClose"?: (event: IxModalCustomEvent<any>) => void;
         "onDialogDismiss"?: (event: IxModalCustomEvent<any>) => void;
         /**

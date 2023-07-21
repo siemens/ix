@@ -53,7 +53,9 @@ export class ModalHeader {
   render() {
     return (
       <Host>
-        <slot></slot>
+        <ix-typography variant={'default-title'}>
+          <slot></slot>
+        </ix-typography>
         {!this.hideClose ? (
           <ix-icon-button
             onClick={(event) => this.onCloseClick(event)}
