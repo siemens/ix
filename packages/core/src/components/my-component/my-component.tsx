@@ -57,7 +57,7 @@ export class MyComponent {
           onClick={() => {
             const DIALOG = document.createElement('ix-modal');
             DIALOG.innerHTML = `
-              <ix-modal-header>Dialog title Dialog titleDialog titleDialog titleDialog titleDialog titleDialog title</ix-modal-header>
+              <ix-modal-header icon="rocket">Dialog title Dialog titleDialog titleDialog titleDialog titleDialog titleDialog title</ix-modal-header>
               <ix-modal-content>
                 My Content My Content My Content My Content My Content
                 My Content My Content My Content My Content My Content

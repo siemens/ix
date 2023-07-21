@@ -32,11 +32,6 @@ export class Modal {
   @Element() hostElement!: HTMLIxModalElement;
 
   /**
-   *
-   */
-  @Prop() modalType: 'dialog' | 'message' = 'dialog';
-
-  /**
    * Modal size
    */
   @Prop() size: IxModalSize = '360';
@@ -196,7 +191,7 @@ export class Modal {
       >
         <div class="dialog-backdrop">
           <dialog
-            class={`modal modal-size-${this.size} modal-type-${this.modalType}`}
+            class={`modal modal-size-${this.size}`}
             onKeyDown={(e) => {
               if (e.key === 'Escape' && this.keyboard === false) {
                 e.preventDefault();

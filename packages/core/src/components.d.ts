@@ -1360,7 +1360,6 @@ export namespace Components {
           * Use ESC to dismiss the modal
          */
         "keyboard": boolean;
-        "modalType": 'dialog' | 'message';
         /**
           * Show the dialog
          */
@@ -1377,7 +1376,14 @@ export namespace Components {
     interface IxModalFooter {
     }
     interface IxModalHeader {
+        /**
+          * Hide the close button
+         */
         "hideClose": boolean;
+        /**
+          * Icon of the Header
+         */
+        "icon": string;
     }
     interface IxModalMessage {
         "actions": {
@@ -4270,7 +4276,6 @@ declare namespace LocalJSX {
           * Use ESC to dismiss the modal
          */
         "keyboard"?: boolean;
-        "modalType"?: 'dialog' | 'message';
         "onDialogClose"?: (event: IxModalCustomEvent<any>) => void;
         "onDialogDismiss"?: (event: IxModalCustomEvent<any>) => void;
         /**
@@ -4285,7 +4290,14 @@ declare namespace LocalJSX {
     interface IxModalFooter {
     }
     interface IxModalHeader {
+        /**
+          * Hide the close button
+         */
         "hideClose"?: boolean;
+        /**
+          * Icon of the Header
+         */
+        "icon"?: string;
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
     interface IxModalMessage {

@@ -20,4 +20,14 @@ regressionTest.describe('modal', () => {
     await expect(dialog).toBeVisible();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('icon', async ({ page }) => {
+    await page.goto('modal/icon');
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+
+    await expect(dialog).toBeVisible();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

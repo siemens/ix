@@ -15,6 +15,7 @@ import {
   h,
   Host,
   Prop,
+  Watch,
 } from '@stencil/core';
 
 @Component({
@@ -26,9 +27,22 @@ export class ModalHeader {
   @Element() hostElement!: HTMLIxModalHeaderElement;
 
   /**
-   *
+   * Hide the close button
    */
   @Prop() hideClose = false;
+
+  /**
+   * Icon of the Header
+   */
+  @Prop() icon: string;
+  @Watch('icon')
+  onIconChange(icon: string) {
+    if (icon) {
+      this.parentDialog.classList.add('with-icon');
+    } else {
+      this.parentDialog.classList.remove('with-icon');
+    }
+  }
 
   /**
    *
@@ -39,6 +53,7 @@ export class ModalHeader {
 
   componentDidLoad() {
     this.parentDialog = this.hostElement.closest('ix-modal');
+    this.onIconChange(this.icon);
   }
 
   private onCloseClick(event: MouseEvent) {
@@ -53,6 +68,9 @@ export class ModalHeader {
   render() {
     return (
       <Host>
+        {this.icon ? (
+          <ix-icon class={'modal-icon'} name={this.icon}></ix-icon>
+        ) : null}
         <ix-typography variant={'default-title'}>
           <slot></slot>
         </ix-typography>

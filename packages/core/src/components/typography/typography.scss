@@ -16,10 +16,6 @@
 
   display: block;
   position: relative;
-
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 :host(.text-xs) {
