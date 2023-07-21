@@ -11599,14 +11599,14 @@
       "dependents": [],
       "dependencies": [
         "ix-button",
-        "ix-modal-message",
-        "ix-modal"
+        "ix-modal",
+        "ix-modal-message"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
-          "ix-modal-message",
-          "ix-modal"
+          "ix-modal",
+          "ix-modal-message"
         ],
         "ix-button": [
           "ix-spinner",

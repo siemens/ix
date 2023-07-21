@@ -55,7 +55,7 @@ export class MyComponent {
 
         <ix-button
           onClick={() => {
-            const DIALOG = document.createElement('ix-dialog');
+            const DIALOG = document.createElement('ix-modal');
             DIALOG.innerHTML = `
               <ix-modal-header>My Header</ix-modal-header>
               <ix-modal-content>
@@ -73,7 +73,7 @@ export class MyComponent {
             });
           }}
         >
-          Open modal (dialog - ix-dialog)
+          Open modal (dialog - ix-modal)
         </ix-button>
 
         <ix-button

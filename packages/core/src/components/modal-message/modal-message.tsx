@@ -52,7 +52,7 @@ export class ModalMessage {
   private dialog: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.dialog = this.hostElement.closest('ix-dialog');
+    this.dialog = this.hostElement.closest('ix-modal');
   }
 
   render() {

@@ -38,7 +38,7 @@ export class ModalHeader {
   private parentDialog: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.parentDialog = this.hostElement.closest('ix-dialog');
+    this.parentDialog = this.hostElement.closest('ix-modal');
   }
 
   private onCloseClick(event: MouseEvent) {

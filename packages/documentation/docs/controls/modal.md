@@ -10,8 +10,8 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal-by-te
 import SourceAngularModalByInstance from './../auto-generated/previews/angular/modal-by-instance.ts.md'
 import SourceAngularModalByInstanceContent from './../auto-generated/previews/angular/modal-by-instance-content.ts.md'
 
-import PropsJavaScript from './../auto-generated/ix-dialog/props.md'
-import EventsJavaScript from './../auto-generated/ix-dialog/events.md'
+import PropsJavaScript from './../auto-generated/ix-modal/props.md'
+import EventsJavaScript from './../auto-generated/ix-modal/events.md'
 
 import ApiModalConfigAngular from './\_modal/angular/modal-config.md'
 import ApiModalServiceAngular from './\_modal/angular/modal-service.html.md'
