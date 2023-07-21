@@ -51,7 +51,6 @@ function CustomModal() {
 export default () => {
   async function show() {
     await showModal({
-      title: 'test',
       content: <CustomModal />,
     });
   }

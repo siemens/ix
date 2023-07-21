@@ -46,7 +46,6 @@ export default class Modal {
   async openModal() {
     const instance = await this.modalService.open({
       content: this.customModalRef,
-      title: '',
       data: 'Some data',
     });
 

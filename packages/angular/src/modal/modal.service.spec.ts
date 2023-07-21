@@ -34,7 +34,6 @@ test('should create modal by templateRef', () => {
     content: {
       createEmbeddedView: createEmbeddedViewMock,
     } as any,
-    title: '',
     data: {
       sample: 'test',
     },
@@ -78,7 +77,6 @@ test('should create modal by component typ', async () => {
 
   await modalService.open({
     content: TestComponent,
-    title: '',
     data: {
       foo: 'bar',
     },
