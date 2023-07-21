@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React, { PropsWithChildren } from 'react';
-import { IxContext } from '../context';
 import { ReactFrameworkDelegate, reactFrameworkDelegate } from '../delegate';
 import { IxOverlay, PORTAL_ID } from '../modal/portal';
+import { IxContext } from './context';
 
-type Props = PropsWithChildren;
+export type IxApplicationContextProps = PropsWithChildren;
 
-export class IxApplicationContext extends React.Component<Props> {
+export class IxApplicationContext extends React.Component<IxApplicationContextProps> {
   private delegate: ReactFrameworkDelegate = reactFrameworkDelegate;
 
-  constructor(props: Props) {
+  constructor(props: IxApplicationContextProps) {
     super(props);
   }
 

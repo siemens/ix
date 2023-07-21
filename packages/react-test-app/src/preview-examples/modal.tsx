@@ -10,9 +10,9 @@
 import {
   IxButton,
   IxIconButton,
-  Modal2,
+  Modal,
   ModalRef,
-  showModal2,
+  showModal,
 } from '@siemens/ix-react';
 import React, { useRef } from 'react';
 
@@ -27,7 +27,7 @@ function CustomModal() {
   };
 
   return (
-    <Modal2 ref={modalRef}>
+    <Modal ref={modalRef}>
       <div className="modal-header">
         Message headline
         <IxIconButton
@@ -44,13 +44,13 @@ function CustomModal() {
         </IxButton>
         <IxButton onClick={() => close()}>OK</IxButton>
       </div>
-    </Modal2>
+    </Modal>
   );
 }
 
 export default () => {
   async function show() {
-    const modal = await showModal2({
+    await showModal({
       title: 'test',
       content: <CustomModal />,
     });
