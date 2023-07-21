@@ -778,6 +778,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-modal-message",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload",
@@ -811,6 +812,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-modal-message": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -2924,6 +2928,130 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "backdrop",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "backdrop",
+          "reflectToAttr": false,
+          "docs": "Show a backdrop behind the modal dialog",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "beforeDismiss",
+          "type": "(reason?: any) => boolean | Promise<boolean>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Is called before the modal is dismissed.\n\n- Return `true` to proceed in dismissing the modal\n- Return `false` to about in dismissing the modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(reason?: any) => boolean"
+            },
+            {
+              "type": "Promise<boolean>"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "centered",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "centered",
+          "reflectToAttr": false,
+          "docs": "Centered modal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "closeOnBackdropClick",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "close-on-backdrop-click",
+          "reflectToAttr": false,
+          "docs": "Dismiss modal on backdrop click",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "keyboard",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "keyboard",
+          "reflectToAttr": false,
+          "docs": "Use ESC to dismiss the modal",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Modal size",
+          "docsTags": [],
+          "default": "'480'",
+          "values": [
+            {
+              "value": "360",
+              "type": "string"
+            },
+            {
+              "value": "480",
+              "type": "string"
+            },
+            {
+              "value": "600",
+              "type": "string"
+            },
+            {
+              "value": "720",
+              "type": "string"
+            },
+            {
+              "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-width",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -5125,6 +5253,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
+        "ix-modal-header",
         "ix-pagination",
         "ix-select",
         "ix-split-button",
@@ -5195,6 +5324,9 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-modal-header": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -8074,6 +8206,35 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/modal-content",
+      "filePath": "./src/components/modal-content/modal-content.tsx",
+      "fileName": "modal-content.tsx",
+      "readmePath": "./src/components/modal-content/readme.md",
+      "usagesDir": "./src/components/modal-content/usage",
+      "tag": "ix-modal-content",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-message"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-modal-message": [
+          "ix-modal-content"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/my-component",
       "filePath": "./src/components/my-component/example-modal.tsx",
       "fileName": "example-modal.tsx",
@@ -8090,6 +8251,7 @@
         "ix-icon-button",
         "ix-button",
         "ix-modal-container",
+        "ix-modal-message",
         "ix-dialog"
       ],
       "dependencyGraph": {
@@ -8097,6 +8259,7 @@
           "ix-icon-button",
           "ix-button",
           "ix-modal-container",
+          "ix-modal-message",
           "ix-dialog"
         ],
         "ix-icon-button": [
@@ -8112,9 +8275,243 @@
         ],
         "ix-modal": [
           "ix-icon"
+        ],
+        "ix-modal-message": [
+          "ix-modal-header",
+          "ix-modal-content",
+          "ix-modal-footer",
+          "ix-button"
+        ],
+        "ix-modal-header": [
+          "ix-icon-button"
         ]
       },
       "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal-footer",
+      "filePath": "./src/components/modal-footer/modal-footer.tsx",
+      "fileName": "modal-footer.tsx",
+      "readmePath": "./src/components/modal-footer/readme.md",
+      "usagesDir": "./src/components/modal-footer/usage",
+      "tag": "ix-modal-footer",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-message"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-modal-message": [
+          "ix-modal-footer"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal-header",
+      "filePath": "./src/components/modal-header/modal-header.tsx",
+      "fileName": "modal-header.tsx",
+      "readmePath": "./src/components/modal-header/readme.md",
+      "usagesDir": "./src/components/modal-header/usage",
+      "tag": "ix-modal-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-message"
+      ],
+      "dependencies": [
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-modal-message": [
+          "ix-modal-header"
+        ]
+      },
+      "props": [
+        {
+          "name": "showClose",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-close",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closeClick",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal-message",
+      "filePath": "./src/components/modal-message/modal-message.tsx",
+      "fileName": "modal-message.tsx",
+      "readmePath": "./src/components/modal-message/readme.md",
+      "usagesDir": "./src/components/modal-message/usage",
+      "tag": "ix-modal-message",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-example",
+        "my-component"
+      ],
+      "dependencies": [
+        "ix-modal-header",
+        "ix-modal-content",
+        "ix-modal-footer",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-modal-message": [
+          "ix-modal-header",
+          "ix-modal-content",
+          "ix-modal-footer",
+          "ix-button"
+        ],
+        "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-modal-example": [
+          "ix-modal-message"
+        ],
+        "my-component": [
+          "ix-modal-message"
+        ]
+      },
+      "props": [
+        {
+          "name": "actions",
+          "type": "{ type: \"button-primary\" | \"button-secondary\" | \"okay\" | \"cancel\"; text: string; payload?: any; }[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ type: \"button-primary\""
+            },
+            {
+              "value": "button-secondary",
+              "type": "string"
+            },
+            {
+              "value": "okay",
+              "type": "string"
+            },
+            {
+              "type": "\"cancel\"; text: string; payload?: any; }[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "mutable": false,
+          "attr": "message",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "messageTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "message-title",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -11655,13 +12052,15 @@
       "dependencies": [
         "ix-button",
         "ix-dialog",
-        "ix-modal-container"
+        "ix-modal-container",
+        "ix-modal-message"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
           "ix-dialog",
-          "ix-modal-container"
+          "ix-modal-container",
+          "ix-modal-message"
         ],
         "ix-button": [
           "ix-spinner",
@@ -11671,6 +12070,19 @@
           "ix-modal"
         ],
         "ix-modal": [
+          "ix-icon"
+        ],
+        "ix-modal-message": [
+          "ix-modal-header",
+          "ix-modal-content",
+          "ix-modal-footer",
+          "ix-button"
+        ],
+        "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },

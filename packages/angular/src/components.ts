@@ -581,7 +581,7 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
 
 
 @ProxyCmp({
-  inputs: ['animation'],
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
   methods: ['showModal', 'dismissModal', 'closeModal']
 })
 @Component({
@@ -589,7 +589,7 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['animation'],
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
 })
 export class IxDialog {
   protected el: HTMLElement;
@@ -1613,6 +1613,27 @@ export declare interface IxModalContainer extends Components.IxModalContainer {}
 @ProxyCmp({
 })
 @Component({
+  selector: 'ix-modal-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxModalContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxModalContent extends Components.IxModalContent {}
+
+
+@ProxyCmp({
+})
+@Component({
   selector: 'ix-modal-example',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
@@ -1629,6 +1650,75 @@ export class IxModalExample {
 
 
 export declare interface IxModalExample extends Components.IxModalExample {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-modal-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxModalFooter {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxModalFooter extends Components.IxModalFooter {}
+
+
+@ProxyCmp({
+  inputs: ['showClose']
+})
+@Component({
+  selector: 'ix-modal-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['showClose'],
+})
+export class IxModalHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeClick']);
+  }
+}
+
+
+export declare interface IxModalHeader extends Components.IxModalHeader {
+
+  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['actions', 'icon', 'message', 'messageTitle']
+})
+@Component({
+  selector: 'ix-modal-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actions', 'icon', 'message', 'messageTitle'],
+})
+export class IxModalMessage {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxModalMessage extends Components.IxModalMessage {}
 
 
 @ProxyCmp({

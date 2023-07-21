@@ -208,7 +208,13 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
 
 
 export const IxDialog = /*@__PURE__*/ defineContainer<JSX.IxDialog>('ix-dialog', undefined, [
+  'size',
   'animation',
+  'backdrop',
+  'closeOnBackdropClick',
+  'beforeDismiss',
+  'centered',
+  'keyboard',
   'dialogClose',
   'dialogDismiss'
 ]);
@@ -561,7 +567,27 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', un
 export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContainer>('ix-modal-container', undefined);
 
 
+export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', undefined);
+
+
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
+
+
+export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('ix-modal-footer', undefined);
+
+
+export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
+  'showClose',
+  'closeClick'
+]);
+
+
+export const IxModalMessage = /*@__PURE__*/ defineContainer<JSX.IxModalMessage>('ix-modal-message', undefined, [
+  'icon',
+  'messageTitle',
+  'message',
+  'actions'
+]);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [

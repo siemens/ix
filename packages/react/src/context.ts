@@ -12,6 +12,4 @@ import { ReactFrameworkDelegate } from './delegate';
 
 export const IxContext = React.createContext<{
   delegate: ReactFrameworkDelegate;
-  addOverlay: (id: string, view: any) => void;
-  removeOverlay: (id: string) => void;
 } | null>(null);

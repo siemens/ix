@@ -141,15 +141,18 @@ export async function showModal<T>(
 
   Object.assign(dialogRef, config);
   dialogRef.showModal();
-  dialogRef.addEventListener('dialogClose', ({ detail }: CustomEvent) => {
+  dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {
     onClose.emit(detail);
-    dialogRef.remove();
+    await delegate.removeView(dialogRef);
   });
 
-  dialogRef.addEventListener('dialogDismiss', ({ detail }: CustomEvent) => {
-    onDismiss.emit(detail);
-    dialogRef.remove();
-  });
+  dialogRef.addEventListener(
+    'dialogDismiss',
+    async ({ detail }: CustomEvent) => {
+      onDismiss.emit(detail);
+      await delegate.removeView(dialogRef);
+    }
+  );
 
   return {
     htmlElement: dialogRef,

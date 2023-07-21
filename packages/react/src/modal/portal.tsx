@@ -30,6 +30,13 @@ export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
       viewRefs.current = _views;
     };
 
+    const removeOverlay = (id: string) => {
+      const _views = { ...viewRefs.current };
+      delete _views[id];
+      setViews(_views);
+      viewRefs.current = _views;
+    };
+
     props.delegate.attachViewToPortal = async (id, view) => {
       addOverlay(id, view);
       return new Promise<Element>((resolve) => {
@@ -37,6 +44,11 @@ export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
         r[id] = resolve;
         resolveElementRef.current = r;
       });
+    };
+
+    props.delegate.removeViewFromPortal = async (id: string) => {
+      console.log(id);
+      removeOverlay(id);
     };
   }, []);
 

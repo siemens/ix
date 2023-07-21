@@ -13,6 +13,7 @@ export type DelegateConfig = {
 
 export interface FrameworkDelegate {
   attachView<R = HTMLElement>(view: any, config?: DelegateConfig): Promise<R>;
+  removeView(view: any): Promise<void>;
 }
 
 class DefaultFrameworkDelegate implements FrameworkDelegate {
@@ -20,6 +21,10 @@ class DefaultFrameworkDelegate implements FrameworkDelegate {
     const attachToElement = config?.parentElement ?? document.body;
     attachToElement.appendChild(view);
     return view;
+  }
+
+  async removeView(view: any) {
+    view.remove();
   }
 }
 

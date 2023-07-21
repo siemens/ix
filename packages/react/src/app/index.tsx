@@ -21,17 +21,11 @@ export class IxApplicationContext extends React.Component<Props> {
     super(props);
   }
 
-  addOverlay?: (id: string, view: any) => void;
-  removeOverlay?: (id: string) => void;
-
   render() {
     return (
       <IxContext.Provider
         value={{
           delegate: this.delegate,
-          addOverlay: (id, view) =>
-            this.addOverlay && this.addOverlay(id, view),
-          removeOverlay: (id) => this.removeOverlay && this.removeOverlay(id),
         }}
       >
         {this.props.children}
