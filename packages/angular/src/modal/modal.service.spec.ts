@@ -11,7 +11,7 @@ import { IxActiveModal } from './modal-ref';
 import { ModalService } from './modal.service';
 
 jest.mock('@siemens/ix', () => ({
-  modal: jest.fn(() =>
+  showModal: jest.fn(() =>
     Promise.resolve({
       onClose: {
         once: jest.fn(),
