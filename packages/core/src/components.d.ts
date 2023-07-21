@@ -27,8 +27,6 @@ import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
-import { NotificationColor } from "./components/utils/notification-color";
-import { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -59,8 +57,6 @@ export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
-export { NotificationColor } from "./components/utils/notification-color";
-export { ModalConfig, ModalInstance } from "./components/modal/modal-utils";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -1373,83 +1369,6 @@ export namespace Components {
          */
         "type": 'danger' | 'warning' | 'info';
     }
-    interface IxModal {
-        /**
-          * Should the modal be animtated
-         */
-        "animation": boolean;
-        "ariaDescribedBy": string;
-        "ariaLabelledBy": string;
-        /**
-          * Adds a dimming layer to the modal. This should only be used when it it necessary to focus the user's attention to the dialog content (e.g. errors, warnings, complex tasks).
-         */
-        "backdrop": boolean | 'static';
-        /**
-          * Backdrop class
-         */
-        "backdropClass": string;
-        /**
-          * BeforeDismiss callback
-         */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
-        /**
-          * Centered modal
-         */
-        "centered": boolean;
-        /**
-          * Close modal
-          * @param result
-         */
-        "close": <T = any>(result: T) => Promise<void>;
-        /**
-          * Content of modal
-         */
-        "content": HTMLElement | string;
-        /**
-          * Dismiss modal instance
-          * @param reason
-         */
-        "dismiss": <T = any>(reason?: T) => Promise<void>;
-        /**
-          * Header title
-         */
-        "headerTitle": string;
-        /**
-          * Optional icon displayed next to the title
-         */
-        "icon": string;
-        /**
-          * Color of the header {@see ix-icon}
-         */
-        "iconColor": NotificationColor;
-        /**
-          * ESC close modal dialog
-         */
-        "keyboard": boolean;
-        /**
-          * Modal dialog class
-         */
-        "modalDialogClass": string;
-        /**
-          * Modal scollable
-         */
-        "scrollable": boolean;
-        /**
-          * Modal size
-         */
-        "size": 'sm' | 'lg' | 'xl';
-        /**
-          * Window class
-         */
-        "windowClass": string;
-    }
-    interface IxModalContainer {
-        /**
-          * Display modal dialog
-          * @param config
-         */
-        "showModal": <T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>;
-    }
     interface IxModalContent {
     }
     interface IxModalExample {
@@ -1457,7 +1376,7 @@ export namespace Components {
     interface IxModalFooter {
     }
     interface IxModalHeader {
-        "showClose": boolean;
+        "hideClose": boolean;
     }
     interface IxModalMessage {
         "actions": {
@@ -2166,10 +2085,6 @@ export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMessageBarElement;
 }
-export interface IxModalCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxModalElement;
-}
 export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalHeaderElement;
@@ -2650,18 +2565,6 @@ declare global {
         prototype: HTMLIxMessageBarElement;
         new (): HTMLIxMessageBarElement;
     };
-    interface HTMLIxModalElement extends Components.IxModal, HTMLStencilElement {
-    }
-    var HTMLIxModalElement: {
-        prototype: HTMLIxModalElement;
-        new (): HTMLIxModalElement;
-    };
-    interface HTMLIxModalContainerElement extends Components.IxModalContainer, HTMLStencilElement {
-    }
-    var HTMLIxModalContainerElement: {
-        prototype: HTMLIxModalContainerElement;
-        new (): HTMLIxModalContainerElement;
-    };
     interface HTMLIxModalContentElement extends Components.IxModalContent, HTMLStencilElement {
     }
     var HTMLIxModalContentElement: {
@@ -2909,8 +2812,6 @@ declare global {
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
         "ix-message-bar": HTMLIxMessageBarElement;
-        "ix-modal": HTMLIxModalElement;
-        "ix-modal-container": HTMLIxModalContainerElement;
         "ix-modal-content": HTMLIxModalContentElement;
         "ix-modal-example": HTMLIxModalExampleElement;
         "ix-modal-footer": HTMLIxModalFooterElement;
@@ -4375,76 +4276,6 @@ declare namespace LocalJSX {
          */
         "type"?: 'danger' | 'warning' | 'info';
     }
-    interface IxModal {
-        /**
-          * Should the modal be animtated
-         */
-        "animation"?: boolean;
-        "ariaDescribedBy"?: string;
-        "ariaLabelledBy"?: string;
-        /**
-          * Adds a dimming layer to the modal. This should only be used when it it necessary to focus the user's attention to the dialog content (e.g. errors, warnings, complex tasks).
-         */
-        "backdrop"?: boolean | 'static';
-        /**
-          * Backdrop class
-         */
-        "backdropClass"?: string;
-        /**
-          * BeforeDismiss callback
-         */
-        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
-        /**
-          * Centered modal
-         */
-        "centered"?: boolean;
-        /**
-          * Content of modal
-         */
-        "content"?: HTMLElement | string;
-        /**
-          * Header title
-         */
-        "headerTitle"?: string;
-        /**
-          * Optional icon displayed next to the title
-         */
-        "icon"?: string;
-        /**
-          * Color of the header {@see ix-icon}
-         */
-        "iconColor"?: NotificationColor;
-        /**
-          * ESC close modal dialog
-         */
-        "keyboard"?: boolean;
-        /**
-          * Modal dialog class
-         */
-        "modalDialogClass"?: string;
-        /**
-          * Modal closed
-         */
-        "onClosed"?: (event: IxModalCustomEvent<any>) => void;
-        /**
-          * Modal dismissed
-         */
-        "onDismissed"?: (event: IxModalCustomEvent<any>) => void;
-        /**
-          * Modal scollable
-         */
-        "scrollable"?: boolean;
-        /**
-          * Modal size
-         */
-        "size"?: 'sm' | 'lg' | 'xl';
-        /**
-          * Window class
-         */
-        "windowClass"?: string;
-    }
-    interface IxModalContainer {
-    }
     interface IxModalContent {
     }
     interface IxModalExample {
@@ -4452,8 +4283,8 @@ declare namespace LocalJSX {
     interface IxModalFooter {
     }
     interface IxModalHeader {
+        "hideClose"?: boolean;
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
-        "showClose"?: boolean;
     }
     interface IxModalMessage {
         "actions"?: {
@@ -5175,8 +5006,6 @@ declare namespace LocalJSX {
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
         "ix-message-bar": IxMessageBar;
-        "ix-modal": IxModal;
-        "ix-modal-container": IxModalContainer;
         "ix-modal-content": IxModalContent;
         "ix-modal-example": IxModalExample;
         "ix-modal-footer": IxModalFooter;
@@ -5320,8 +5149,6 @@ declare module "@stencil/core" {
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
-            "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
-            "ix-modal-container": LocalJSX.IxModalContainer & JSXBase.HTMLAttributes<HTMLIxModalContainerElement>;
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
             "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;

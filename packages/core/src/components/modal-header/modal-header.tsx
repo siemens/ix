@@ -28,7 +28,7 @@ export class ModalHeader {
   /**
    *
    */
-  @Prop() showClose = false;
+  @Prop() hideClose = false;
 
   /**
    *
@@ -54,7 +54,7 @@ export class ModalHeader {
     return (
       <Host>
         <slot></slot>
-        {this.showClose ? (
+        {!this.hideClose ? (
           <ix-icon-button
             onClick={(event) => this.onCloseClick(event)}
             ghost

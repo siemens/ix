@@ -17,7 +17,7 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 ```tsx
 <ix-dialog>
-  <ix-modal-header show-close>My Header</ix-modal-header>
+  <ix-modal-header>My Header</ix-modal-header>
   <ix-modal-content>My Content</ix-modal-content>
   <ix-modal-footer>
     <ix-button>Save</ix-button>

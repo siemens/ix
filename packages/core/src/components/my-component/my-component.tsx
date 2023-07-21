@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Component, h, Host } from '@stencil/core';
-import { modal, showMessage, showModal } from '../modal/modal-utils';
+import { showMessage, showModal } from '../utils/modal';
 
 @Component({
   tag: 'my-component',
@@ -22,7 +22,7 @@ export class MyComponent {
       <Host>
         <ix-button
           onClick={() => {
-            modal({
+            showModal({
               title: 'test12',
               content: 'test',
             });
@@ -57,7 +57,7 @@ export class MyComponent {
           onClick={() => {
             const DIALOG = document.createElement('ix-dialog');
             DIALOG.innerHTML = `
-              <ix-modal-header show-close>My Header</ix-modal-header>
+              <ix-modal-header>My Header</ix-modal-header>
               <ix-modal-content>
                 My Content My Content My Content My Content My Content
                 My Content My Content My Content My Content My Content

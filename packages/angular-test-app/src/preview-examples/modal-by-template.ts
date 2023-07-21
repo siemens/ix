@@ -17,18 +17,11 @@ import { ModalService } from '@siemens/ix-angular';
 
     <ng-template #customModal let-modal>
       <div>
-        <div class="modal-header">
-          Message headline
-          <ix-icon-button
-            data-button-close
-            ghost
-            icon="close"
-            class="dismiss-modal"
-            (click)="modal.dismiss('dismiss')"
-          ></ix-icon-button>
-        </div>
-        <div class="modal-body">Message text lorem ipsum: {{ modal.data }}</div>
-        <div class="modal-footer">
+        <ix-modal-header> Message headline </ix-modal-header>
+        <ix-modal-content
+          >Message text lorem ipsum: {{ modal.data }}</ix-modal-content
+        >
+        <ix-modal-footer>
           <ix-button
             outline
             class="dismiss-modal"
@@ -39,7 +32,7 @@ import { ModalService } from '@siemens/ix-angular';
           <ix-button class="close-modal" (click)="modal.close('okay')">
             OK
           </ix-button>
-        </div>
+        </ix-modal-footer>
       </div>
     </ng-template>
   `,

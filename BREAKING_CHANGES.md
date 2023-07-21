@@ -4,14 +4,36 @@
 
 ### Modal
 
+#### Function to display modal renamed
+
+This breaking change only affects the function `modal` which are exported from `@siemens/ix` (not `@siemens/ix-angular` etc).
+
+___Before___
+
+```ts
+export async function modal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
+```
+
+___Now___
+```ts
+export async function showModal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
+```
+
+
+#### Container component `ix-modal-container` removed 
+
+Container is not needed anymore because model system of iX is using `HTMLDialog` as
+basic system to open modal dialogs
+
 #### Property `size` changed
 
-Previously:
+___Before___
+
 ```ts
 export type IxModalSize = 'sm' | 'lg' | 'xl';
 ```
 
-Now:
+___Now___
 
 ```ts
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';

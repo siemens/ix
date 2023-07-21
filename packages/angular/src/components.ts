@@ -1556,61 +1556,6 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
 
 
 @ProxyCmp({
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
-  methods: ['dismiss', 'close']
-})
-@Component({
-  selector: 'ix-modal',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
-})
-export class IxModal {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['closed', 'dismissed']);
-  }
-}
-
-
-export declare interface IxModal extends Components.IxModal {
-  /**
-   * Modal closed
-   */
-  closed: EventEmitter<CustomEvent<any>>;
-  /**
-   * Modal dismissed
-   */
-  dismissed: EventEmitter<CustomEvent<any>>;
-}
-
-
-@ProxyCmp({
-  methods: ['showModal']
-})
-@Component({
-  selector: 'ix-modal-container',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxModalContainer {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxModalContainer extends Components.IxModalContainer {}
-
-
-@ProxyCmp({
 })
 @Component({
   selector: 'ix-modal-content',
@@ -1674,14 +1619,14 @@ export declare interface IxModalFooter extends Components.IxModalFooter {}
 
 
 @ProxyCmp({
-  inputs: ['showClose']
+  inputs: ['hideClose']
 })
 @Component({
   selector: 'ix-modal-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['showClose'],
+  inputs: ['hideClose'],
 })
 export class IxModalHeader {
   protected el: HTMLElement;

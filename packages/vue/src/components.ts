@@ -542,31 +542,6 @@ export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-
 ]);
 
 
-export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', undefined, [
-  'animation',
-  'ariaDescribedBy',
-  'ariaLabelledBy',
-  'backdrop',
-  'backdropClass',
-  'beforeDismiss',
-  'centered',
-  'content',
-  'keyboard',
-  'icon',
-  'iconColor',
-  'modalDialogClass',
-  'scrollable',
-  'size',
-  'headerTitle',
-  'windowClass',
-  'closed',
-  'dismissed'
-]);
-
-
-export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContainer>('ix-modal-container', undefined);
-
-
 export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', undefined);
 
 
@@ -577,7 +552,7 @@ export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('i
 
 
 export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
-  'showClose',
+  'hideClose',
   'closeClick'
 ]);
 

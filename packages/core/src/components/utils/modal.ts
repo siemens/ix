@@ -8,10 +8,10 @@
  */
 
 import { MessageContent } from '../modal-message/modal-message';
-import { getCoreDelegate, resolveDelegate } from '../utils/delegate';
-import { NotificationColor } from '../utils/notification-color';
-import { TypedEvent } from '../utils/typed-event';
-import { IxModalSize } from './dialog';
+import { IxModalSize } from '../modal/dialog';
+import { getCoreDelegate, resolveDelegate } from './delegate';
+import { NotificationColor } from './notification-color';
+import { TypedEvent } from './typed-event';
 
 export interface ModalConfig<TReason = any, C = any> {
   animation?: boolean;
@@ -34,61 +34,32 @@ export interface ModalConfig<TReason = any, C = any> {
 }
 
 export interface ModalInstance<TReason = any> {
-  htmlElement: HTMLIxModalElement | HTMLIxDialogElement;
+  htmlElement: HTMLIxDialogElement;
   onClose: TypedEvent<TReason>;
   onDismiss: TypedEvent<TReason>;
 }
 
-function getModalContainer() {
-  const containerList = Array.from(
-    document.querySelectorAll('ix-modal-container')
-  );
-  const [container] = containerList;
-  if (containerList.length > 1) {
-    console.warn(
-      'Multiple modal containers were found. The one instatiated first will be used.'
-    );
-    return container;
-  }
-  if (!container) {
-    const modalContainer = document.createElement('ix-modal-container');
-    document.body.appendChild(modalContainer);
-
-    return modalContainer;
-  }
-  return container;
-}
-
-export async function modal<T = any>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>> {
-  const modalContainer = getModalContainer();
-  const modalInstance = await modalContainer.showModal<T>(config);
-
-  return modalInstance;
-}
-
 function getIxModal(element: Element) {
-  return element.closest('ix-modal');
+  return element.closest('ix-dialog');
 }
 
 export function closeModal<TClose = any>(
   element: Element,
   closeResult: TClose
 ) {
-  if (element.tagName === 'IX-DIALOG') {
-    (element as HTMLIxDialogElement).closeModal(closeResult);
+  const dialog = getIxModal(element);
+  if (dialog) {
+    dialog.closeModal(closeResult);
     return;
   }
-  getIxModal(element).close(closeResult);
 }
 
 export function dismissModal(element: Element, dismissResult?: any) {
-  if (element.tagName === 'IX-DIALOG') {
-    (element as HTMLIxDialogElement).dismissModal(dismissResult);
+  const dialog = getIxModal(element);
+  if (dialog) {
+    dialog.dismissModal(dismissResult);
     return;
   }
-  getIxModal(element).dismiss(dismissResult);
 }
 
 export async function showMessage<T>(config: MessageContent) {

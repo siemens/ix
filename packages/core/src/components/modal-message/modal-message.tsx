@@ -59,7 +59,6 @@ export class ModalMessage {
     return (
       <Host>
         <ix-modal-header
-          showClose
           onCloseClick={(event) => {
             event.preventDefault();
             this.dialog.dismissModal();

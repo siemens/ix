@@ -118,7 +118,7 @@ export const config: Config = {
       components: ['ix-message-bar'],
     },
     {
-      components: ['ix-modal', 'ix-modal-container'],
+      components: ['ix-dialog'],
     },
     {
       components: ['ix-pill'],
