@@ -581,35 +581,6 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
 
 
 @ProxyCmp({
-  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
-  methods: ['showModal', 'dismissModal', 'closeModal']
-})
-@Component({
-  selector: 'ix-dialog',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
-})
-export class IxDialog {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dialogClose', 'dialogDismiss']);
-  }
-}
-
-
-export declare interface IxDialog extends Components.IxDialog {
-
-  dialogClose: EventEmitter<CustomEvent<any>>;
-
-  dialogDismiss: EventEmitter<CustomEvent<any>>;
-}
-
-
-@ProxyCmp({
 })
 @Component({
   selector: 'ix-divider',
@@ -1552,6 +1523,35 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
    * An event emitted when the close button is clicked
    */
   closedChange: EventEmitter<CustomEvent<any>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
+  methods: ['showModal', 'dismissModal', 'closeModal']
+})
+@Component({
+  selector: 'ix-modal',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'keyboard', 'size'],
+})
+export class IxModal {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dialogClose', 'dialogDismiss']);
+  }
+}
+
+
+export declare interface IxModal extends Components.IxModal {
+
+  dialogClose: EventEmitter<CustomEvent<any>>;
+
+  dialogDismiss: EventEmitter<CustomEvent<any>>;
 }
 
 

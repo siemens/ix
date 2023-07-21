@@ -11,14 +11,14 @@
 import {
   HTMLRefElement,
   IxButton,
-  IxDialog,
+  IxModal,
   IxModalHeader,
   IxModalContent,
   IxModalFooter,
 } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
-const modalRef = ref<HTMLRefElement<HTMLIxDialogElement>>();
+const modalRef = ref<HTMLRefElement<HTMLIxModalElement>>();
 const close = () => {
   modalRef.value?.$el.closeModal('close payload!');
   show.value = false;

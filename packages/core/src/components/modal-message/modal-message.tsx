@@ -49,7 +49,7 @@ export class ModalMessage {
     payload?: any;
   }[];
 
-  private dialog: HTMLIxDialogElement;
+  private dialog: HTMLIxModalElement;
 
   componentDidLoad() {
     this.dialog = this.hostElement.closest('ix-dialog');

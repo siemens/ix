@@ -24,12 +24,12 @@ export type IxModalDynamicSize = 'full-width';
 export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 
 @Component({
-  tag: 'ix-dialog',
-  styleUrl: 'dialog.scss',
+  tag: 'ix-modal',
+  styleUrl: 'modal.scss',
   shadow: true,
 })
-export class Dialog {
-  @Element() hostElement!: HTMLIxDialogElement;
+export class Modal {
+  @Element() hostElement!: HTMLIxModalElement;
 
   /**
    * Modal size

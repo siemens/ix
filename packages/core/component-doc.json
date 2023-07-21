@@ -2891,234 +2891,6 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal",
-      "filePath": "./src/components/modal/dialog.tsx",
-      "fileName": "dialog.tsx",
-      "readmePath": "./src/components/modal/readme.md",
-      "usagesDir": "./src/components/modal/usage",
-      "tag": "ix-dialog",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-modal-example",
-        "my-component"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "ix-modal-example": [
-          "ix-dialog"
-        ],
-        "my-component": [
-          "ix-dialog"
-        ]
-      },
-      "props": [
-        {
-          "name": "animation",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "animation",
-          "reflectToAttr": false,
-          "docs": "Should the modal be animated",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "backdrop",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "backdrop",
-          "reflectToAttr": false,
-          "docs": "Show a backdrop behind the modal dialog",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "beforeDismiss",
-          "type": "(reason?: any) => boolean | Promise<boolean>",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "Is called before the modal is dismissed.\n\n- Return `true` to proceed in dismissing the modal\n- Return `false` to about in dismissing the modal",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "(reason?: any) => boolean"
-            },
-            {
-              "type": "Promise<boolean>"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "centered",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "centered",
-          "reflectToAttr": false,
-          "docs": "Centered modal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "closeOnBackdropClick",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "close-on-backdrop-click",
-          "reflectToAttr": false,
-          "docs": "Dismiss modal on backdrop click",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "keyboard",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "keyboard",
-          "reflectToAttr": false,
-          "docs": "Use ESC to dismiss the modal",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "size",
-          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
-          "mutable": false,
-          "attr": "size",
-          "reflectToAttr": false,
-          "docs": "Modal size",
-          "docsTags": [],
-          "default": "'480'",
-          "values": [
-            {
-              "value": "360",
-              "type": "string"
-            },
-            {
-              "value": "480",
-              "type": "string"
-            },
-            {
-              "value": "600",
-              "type": "string"
-            },
-            {
-              "value": "720",
-              "type": "string"
-            },
-            {
-              "value": "840",
-              "type": "string"
-            },
-            {
-              "value": "full-width",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [
-        {
-          "name": "closeModal",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
-          "parameters": [],
-          "docs": "Close the dialog",
-          "docsTags": []
-        },
-        {
-          "name": "dismissModal",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
-          "parameters": [],
-          "docs": "Dismiss the dialog",
-          "docsTags": []
-        },
-        {
-          "name": "showModal",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "showModal() => Promise<void>",
-          "parameters": [],
-          "docs": "Show the dialog",
-          "docsTags": []
-        }
-      ],
-      "events": [
-        {
-          "event": "dialogClose",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "",
-          "docsTags": []
-        },
-        {
-          "event": "dialogDismiss",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/divider",
       "filePath": "./src/components/divider/divider.tsx",
       "fileName": "divider.tsx",
@@ -7762,6 +7534,234 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/modal",
+      "filePath": "./src/components/modal/modal.tsx",
+      "fileName": "modal.tsx",
+      "readmePath": "./src/components/modal/readme.md",
+      "usagesDir": "./src/components/modal/usage",
+      "tag": "ix-modal",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-modal-example",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-modal-example": [
+          "ix-modal"
+        ],
+        "my-component": [
+          "ix-modal"
+        ]
+      },
+      "props": [
+        {
+          "name": "animation",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "animation",
+          "reflectToAttr": false,
+          "docs": "Should the modal be animated",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "backdrop",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "backdrop",
+          "reflectToAttr": false,
+          "docs": "Show a backdrop behind the modal dialog",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "beforeDismiss",
+          "type": "(reason?: any) => boolean | Promise<boolean>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Is called before the modal is dismissed.\n\n- Return `true` to proceed in dismissing the modal\n- Return `false` to about in dismissing the modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(reason?: any) => boolean"
+            },
+            {
+              "type": "Promise<boolean>"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "centered",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "centered",
+          "reflectToAttr": false,
+          "docs": "Centered modal",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "closeOnBackdropClick",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "close-on-backdrop-click",
+          "reflectToAttr": false,
+          "docs": "Dismiss modal on backdrop click",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "keyboard",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "keyboard",
+          "reflectToAttr": false,
+          "docs": "Use ESC to dismiss the modal",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Modal size",
+          "docsTags": [],
+          "default": "'480'",
+          "values": [
+            {
+              "value": "360",
+              "type": "string"
+            },
+            {
+              "value": "480",
+              "type": "string"
+            },
+            {
+              "value": "600",
+              "type": "string"
+            },
+            {
+              "value": "720",
+              "type": "string"
+            },
+            {
+              "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-width",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "closeModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
+          "parameters": [],
+          "docs": "Close the dialog",
+          "docsTags": []
+        },
+        {
+          "name": "dismissModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
+          "parameters": [],
+          "docs": "Dismiss the dialog",
+          "docsTags": []
+        },
+        {
+          "name": "showModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "showModal() => Promise<void>",
+          "parameters": [],
+          "docs": "Show the dialog",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "dialogClose",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        },
+        {
+          "event": "dialogDismiss",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/modal-content",
       "filePath": "./src/components/modal-content/modal-content.tsx",
       "fileName": "modal-content.tsx",
@@ -7807,14 +7807,14 @@
         "ix-icon-button",
         "ix-button",
         "ix-modal-message",
-        "ix-dialog"
+        "ix-modal"
       ],
       "dependencyGraph": {
         "ix-modal-example": [
           "ix-icon-button",
           "ix-button",
           "ix-modal-message",
-          "ix-dialog"
+          "ix-modal"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -11599,14 +11599,14 @@
       "dependents": [],
       "dependencies": [
         "ix-button",
-        "ix-dialog",
-        "ix-modal-message"
+        "ix-modal-message",
+        "ix-modal"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
-          "ix-dialog",
-          "ix-modal-message"
+          "ix-modal-message",
+          "ix-modal"
         ],
         "ix-button": [
           "ix-spinner",

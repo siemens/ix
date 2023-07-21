@@ -207,19 +207,6 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
 ]);
 
 
-export const IxDialog = /*@__PURE__*/ defineContainer<JSX.IxDialog>('ix-dialog', undefined, [
-  'size',
-  'animation',
-  'backdrop',
-  'closeOnBackdropClick',
-  'beforeDismiss',
-  'centered',
-  'keyboard',
-  'dialogClose',
-  'dialogDismiss'
-]);
-
-
 export const IxDivider = /*@__PURE__*/ defineContainer<JSX.IxDivider>('ix-divider', undefined);
 
 
@@ -539,6 +526,19 @@ export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-
   'type',
   'dismissible',
   'closedChange'
+]);
+
+
+export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', undefined, [
+  'size',
+  'animation',
+  'backdrop',
+  'closeOnBackdropClick',
+  'beforeDismiss',
+  'centered',
+  'keyboard',
+  'dialogClose',
+  'dialogDismiss'
 ]);
 
 

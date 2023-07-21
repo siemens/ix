@@ -8,7 +8,7 @@
  */
 
 import { MessageContent } from '../modal-message/modal-message';
-import { IxModalSize } from '../modal/dialog';
+import { IxModalSize } from '../modal/modal';
 import { getCoreDelegate, resolveDelegate } from './delegate';
 import { NotificationColor } from './notification-color';
 import { TypedEvent } from './typed-event';
@@ -34,13 +34,13 @@ export interface ModalConfig<TReason = any, C = any> {
 }
 
 export interface ModalInstance<TReason = any> {
-  htmlElement: HTMLIxDialogElement;
+  htmlElement: HTMLIxModalElement;
   onClose: TypedEvent<TReason>;
   onDismiss: TypedEvent<TReason>;
 }
 
 function getIxModal(element: Element) {
-  return element.closest('ix-dialog');
+  return element.closest('ix-modal');
 }
 
 export function closeModal<TClose = any>(
@@ -67,7 +67,7 @@ export async function showMessage<T>(config: MessageContent) {
   const message = document.createElement('ix-modal-message');
   Object.assign(message, config);
 
-  const dialog = document.createElement('ix-dialog');
+  const dialog = document.createElement('ix-modal');
   dialog.appendChild(message);
   const dialogRef = await getCoreDelegate().attachView(dialog);
 
@@ -87,27 +87,27 @@ export async function showModal<T>(
   config: ModalConfig<T>
 ): Promise<ModalInstance<T>> {
   const delegate = resolveDelegate();
-  let dialogRef: HTMLIxDialogElement;
+  let dialogRef: HTMLIxModalElement;
   const onClose = new TypedEvent<T>();
   const onDismiss = new TypedEvent<T>();
 
   if (typeof config.content === 'string') {
-    const dialog = document.createElement('ix-dialog');
+    const dialog = document.createElement('ix-modal');
     dialog.innerText = config.content;
     dialogRef = await getCoreDelegate().attachView(dialog);
   }
 
   if (
     config.content instanceof HTMLElement &&
-    config.content.tagName !== 'IX-DIALOG'
+    config.content.tagName !== 'IX-MODAL'
   ) {
-    const dialog = document.createElement('ix-dialog');
+    const dialog = document.createElement('ix-modal');
     dialog.appendChild(config.content);
     dialogRef = await getCoreDelegate().attachView(dialog);
   }
 
   if (!dialogRef) {
-    dialogRef = await delegate.attachView<HTMLIxDialogElement>(config.content);
+    dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
   }
 
   Object.assign(dialogRef, config);
