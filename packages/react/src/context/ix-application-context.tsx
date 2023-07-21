@@ -9,12 +9,11 @@
 import React, { PropsWithChildren } from 'react';
 import { IxContext } from '../context';
 import { ReactFrameworkDelegate, reactFrameworkDelegate } from '../delegate';
-import { IxOverlay } from '../modal/portal';
+import { IxOverlay, PORTAL_ID } from '../modal/portal';
 
 type Props = PropsWithChildren;
 
 export class IxApplicationContext extends React.Component<Props> {
-  static PORTAL_ID = 'ix-portal';
   private delegate: ReactFrameworkDelegate = reactFrameworkDelegate;
 
   constructor(props: Props) {
@@ -30,7 +29,7 @@ export class IxApplicationContext extends React.Component<Props> {
       >
         {this.props.children}
         <IxOverlay delegate={this.delegate}></IxOverlay>
-        <div id={IxApplicationContext.PORTAL_ID}></div>
+        <div id={PORTAL_ID}></div>
       </IxContext.Provider>
     );
   }

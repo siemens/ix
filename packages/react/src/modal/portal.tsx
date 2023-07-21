@@ -10,7 +10,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ReactFrameworkDelegate } from 'src/delegate';
-import { IxApplicationContext } from '../app';
+
+export const PORTAL_ID = 'ix-portal';
 
 export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
   const [portalRef, setPortalRef] = useState<Element | null>(null);
@@ -53,9 +54,7 @@ export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
   }, []);
 
   useLayoutEffect(() => {
-    const portalRef = document.querySelector(
-      `#${IxApplicationContext.PORTAL_ID}`
-    );
+    const portalRef = document.querySelector(`#${PORTAL_ID}`);
     if (portalRef) {
       setPortalRef(portalRef);
     }
