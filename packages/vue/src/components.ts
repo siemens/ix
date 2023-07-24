@@ -553,16 +553,13 @@ export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('i
 
 export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
   'hideClose',
+  'icon',
+  'iconColor',
   'closeClick'
 ]);
 
 
-export const IxModalMessage = /*@__PURE__*/ defineContainer<JSX.IxModalMessage>('ix-modal-message', undefined, [
-  'icon',
-  'messageTitle',
-  'message',
-  'actions'
-]);
+export const IxModalLoading = /*@__PURE__*/ defineContainer<JSX.IxModalLoading>('ix-modal-loading', undefined);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [

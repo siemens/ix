@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ApiTableEntry } from '@site/src/components/ApiTable';
+import { ensureDir } from 'fs-extra';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 import {
@@ -14,23 +15,28 @@ import {
   IntrinsicType,
   ReferenceType,
   TSConfigReader,
+  UnionType,
 } from 'typedoc';
 
-type XYZ = {
+type TypeDocTarget = {
   name: string;
-  properties: XYZProperty[];
+  properties: TypeDocProperty[];
   type: 'Function' | 'Type';
+  source: string;
 };
 
-type XYZProperty = {
+type TypeDocProperty = {
   name: string;
   defaultValue?: string;
   type: string;
+  comment: string;
 };
 
-export async function writeTypeScriptFiles(
-  targetPath: string,
-  generateMarkdown: any
+const entryPoints = ['./../core/src/components/utils/modal/modal.ts'];
+
+async function generateDocsForEntrypoint(
+  entrypoint: string,
+  targetPath: string
 ) {
   const app = new Application();
 
@@ -47,60 +53,109 @@ export async function writeTypeScriptFiles(
   app.bootstrap({
     tsconfig: tsconfig,
     skipErrorChecking: true,
-    entryPoints: ['./../core/src/components/utils/modal/modal.ts'],
+    entryPoints: [entrypoint],
   });
 
   const project = app.convert();
-  const types: XYZ[] = [];
+  const types: TypeDocTarget[] = [];
 
   if (project) {
-    project.children.forEach((c) => {
-      const properties: XYZProperty[] = [];
+    project.children.forEach((child) => {
+      const source = path.relative(
+        path.join(__dirname, '..', '..', '..'),
+        child.sources[0].fullFileName
+      );
+      const properties: TypeDocProperty[] = [];
       types.push({
-        name: c.name,
+        name: child.name,
         properties: properties,
         type: 'Type',
+        source,
       });
 
-      c?.children?.forEach((property) => {
+      child?.children?.forEach((property) => {
         let type = 'unknown';
-
         if (property.type instanceof IntrinsicType) {
           type = property.type.name;
         } else if (property.type instanceof ReferenceType) {
           type = property.type.qualifiedName;
+        } else if (property.type instanceof UnionType) {
+          type = property.type.types
+            .filter((t) => 'name' in t)
+            .map((t: any) => t.name)
+            .join(' | ');
+        } else {
+          console.log(`=== Type ${property.name} is unknown`);
         }
 
         properties.push({
           name: property.name,
           defaultValue: property.defaultValue,
           type,
+          comment: property?.comment?.summary
+            .filter((summary) => summary.kind === 'text')
+            .map((summary) => summary.text)
+            .join(''),
         });
       });
     });
   }
 
-  const promises = types.map(async (t) => {
+  const promises = types.map(async (typedoc) => {
     const attributes: ApiTableEntry[] = [];
 
-    attributes.push({
-      name: t.name,
-      description: '',
-      tags: [],
-      definition: t.properties.map((x) => ({
-        name: x.name,
-        value: x.defaultValue,
-      })),
+    typedoc.properties.forEach((prop) => {
+      attributes.push({
+        name: prop.name,
+        description: prop.comment,
+        tags: [],
+        definition: [
+          {
+            name: 'Attribute',
+            value: prop.name,
+          },
+          {
+            name: 'Type',
+            value: prop.type,
+          },
+          {
+            name: 'Default',
+            value: prop.defaultValue,
+          },
+        ],
+      });
     });
 
-    const staticCode = `import ApiTable from '@site/src/components/ApiTable';
+    const staticCode = [
+      `import ApiTable from '@site/src/components/ApiTable';`,
+    ];
+    staticCode.push('\n\n');
+    staticCode.push(`<ApiTable attributes={${JSON.stringify(attributes)}} />`);
 
-    <ApiTable attributes={${JSON.stringify(attributes)}} />`;
+    let utilsPath = path.join(targetPath, 'utils');
 
-    const content = generateMarkdown(targetPath, 'typescript', staticCode);
+    if (typedoc.source.startsWith('packages/core')) {
+      utilsPath = path.join(utilsPath, 'core');
+    } else if (typedoc.source.startsWith('packages/react')) {
+      utilsPath = path.join(utilsPath, 'react');
+    } else if (typedoc.source.startsWith('packages/angular')) {
+      utilsPath = path.join(utilsPath, 'angular');
+    } else if (typedoc.source.startsWith('packages/vue')) {
+      utilsPath = path.join(utilsPath, 'vue');
+    }
 
-    return writeFile(path.join(targetPath, `${t.name}.md`), content);
+    await ensureDir(utilsPath);
+    return writeFile(
+      path.join(utilsPath, `${typedoc.name}.md`),
+      staticCode.join('\n')
+    );
   });
 
   return Promise.all(promises);
+}
+
+export async function writeTypeScriptFiles(targetPath: string) {
+  return Promise.all(
+    entryPoints.map((e) => generateDocsForEntrypoint(e, targetPath))
+  );
 }

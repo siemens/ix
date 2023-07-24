@@ -11,7 +11,7 @@ import { IxModalSize } from '../../modal/modal';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
-export interface ModalConfig<TReason = any, CONTENT_TYPE = any> {
+export interface ModalConfig<TReason = any, CONTENT = any> {
   animation?: boolean;
   ariaDescribedBy?: string;
   ariaLabelledBy?: string;
@@ -20,11 +20,8 @@ export interface ModalConfig<TReason = any, CONTENT_TYPE = any> {
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
   centered?: boolean;
   container?: string | HTMLElement;
-  content: CONTENT_TYPE;
+  content: CONTENT | string;
   keyboard?: boolean;
-  /**
-   * Bla bla
-   */
   size?: IxModalSize;
   title?: string;
 }

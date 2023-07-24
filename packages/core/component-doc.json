@@ -778,7 +778,6 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
-        "ix-modal-message",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload",
@@ -812,9 +811,6 @@
           "ix-button"
         ],
         "ix-modal-example": [
-          "ix-button"
-        ],
-        "ix-modal-message": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -7546,14 +7542,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-modal-example",
         "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-modal-example": [
-          "ix-modal"
-        ],
         "my-component": [
           "ix-modal"
         ]
@@ -7773,15 +7765,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-modal-message"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-modal-message": [
-          "ix-modal-content"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
@@ -7805,16 +7791,12 @@
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
-        "ix-button",
-        "ix-modal-message",
-        "ix-modal"
+        "ix-button"
       ],
       "dependencyGraph": {
         "ix-modal-example": [
           "ix-icon-button",
-          "ix-button",
-          "ix-modal-message",
-          "ix-modal"
+          "ix-button"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -7823,15 +7805,6 @@
         "ix-button": [
           "ix-spinner",
           "ix-icon"
-        ],
-        "ix-modal-message": [
-          "ix-modal-header",
-          "ix-modal-content",
-          "ix-modal-footer",
-          "ix-button"
-        ],
-        "ix-modal-header": [
-          "ix-icon-button"
         ]
       },
       "props": [],
@@ -7854,15 +7827,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-modal-message"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-modal-message": [
-          "ix-modal-footer"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
@@ -7883,22 +7850,21 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-modal-message"
-      ],
+      "dependents": [],
       "dependencies": [
+        "ix-icon",
+        "ix-typography",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-modal-header": [
+          "ix-icon",
+          "ix-typography",
           "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
-        ],
-        "ix-modal-message": [
-          "ix-modal-header"
         ]
       },
       "props": [
@@ -7908,12 +7874,44 @@
           "mutable": false,
           "attr": "hide-close",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Hide the close button",
           "docsTags": [],
           "default": "false",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of the Header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Icon color",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7938,128 +7936,27 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal-message",
-      "filePath": "./src/components/modal-message/modal-message.tsx",
-      "fileName": "modal-message.tsx",
-      "readmePath": "./src/components/modal-message/readme.md",
-      "usagesDir": "./src/components/modal-message/usage",
-      "tag": "ix-modal-message",
+      "dirPath": "./src/components/modal-loading",
+      "filePath": "./src/components/modal-loading/modal-loading.tsx",
+      "fileName": "modal-loading.tsx",
+      "readmePath": "./src/components/modal-loading/readme.md",
+      "usagesDir": "./src/components/modal-loading/usage",
+      "tag": "ix-modal-loading",
       "overview": "",
       "usage": {},
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-modal-example",
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
-        "ix-modal-header",
-        "ix-modal-content",
-        "ix-modal-footer",
-        "ix-button"
+        "ix-spinner"
       ],
       "dependencyGraph": {
-        "ix-modal-message": [
-          "ix-modal-header",
-          "ix-modal-content",
-          "ix-modal-footer",
-          "ix-button"
-        ],
-        "ix-modal-header": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-modal-example": [
-          "ix-modal-message"
-        ],
-        "my-component": [
-          "ix-modal-message"
+        "ix-modal-loading": [
+          "ix-spinner"
         ]
       },
-      "props": [
-        {
-          "name": "actions",
-          "type": "{ type: \"button-primary\" | \"button-secondary\" | \"okay\" | \"cancel\"; text: string; payload?: any; }[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "{ type: \"button-primary\""
-            },
-            {
-              "value": "button-secondary",
-              "type": "string"
-            },
-            {
-              "value": "okay",
-              "type": "string"
-            },
-            {
-              "type": "\"cancel\"; text: string; payload?: any; }[]"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "icon",
-          "type": "string",
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "message",
-          "type": "string",
-          "mutable": false,
-          "attr": "message",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "messageTitle",
-          "type": "string",
-          "mutable": false,
-          "attr": "message-title",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
+      "props": [],
       "methods": [],
       "events": [],
       "styles": [],
@@ -9031,6 +8928,7 @@
       "dependents": [
         "ix-button",
         "ix-icon-button",
+        "ix-modal-loading",
         "ix-upload"
       ],
       "dependencies": [],
@@ -9039,6 +8937,9 @@
           "ix-spinner"
         ],
         "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-modal-loading": [
           "ix-spinner"
         ],
         "ix-upload": [
@@ -11599,29 +11500,14 @@
       "dependents": [],
       "dependencies": [
         "ix-button",
-        "ix-modal",
-        "ix-modal-message"
+        "ix-modal"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
-          "ix-modal",
-          "ix-modal-message"
+          "ix-modal"
         ],
         "ix-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-modal-message": [
-          "ix-modal-header",
-          "ix-modal-content",
-          "ix-modal-footer",
-          "ix-button"
-        ],
-        "ix-modal-header": [
-          "ix-icon-button"
-        ],
-        "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
         ]

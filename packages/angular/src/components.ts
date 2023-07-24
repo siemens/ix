@@ -1619,14 +1619,14 @@ export declare interface IxModalFooter extends Components.IxModalFooter {}
 
 
 @ProxyCmp({
-  inputs: ['hideClose']
+  inputs: ['hideClose', 'icon', 'iconColor']
 })
 @Component({
   selector: 'ix-modal-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hideClose'],
+  inputs: ['hideClose', 'icon', 'iconColor'],
 })
 export class IxModalHeader {
   protected el: HTMLElement;
@@ -1645,16 +1645,15 @@ export declare interface IxModalHeader extends Components.IxModalHeader {
 
 
 @ProxyCmp({
-  inputs: ['actions', 'icon', 'message', 'messageTitle']
 })
 @Component({
-  selector: 'ix-modal-message',
+  selector: 'ix-modal-loading',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actions', 'icon', 'message', 'messageTitle'],
+  inputs: [],
 })
-export class IxModalMessage {
+export class IxModalLoading {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1663,7 +1662,7 @@ export class IxModalMessage {
 }
 
 
-export declare interface IxModalMessage extends Components.IxModalMessage {}
+export declare interface IxModalLoading extends Components.IxModalLoading {}
 
 
 @ProxyCmp({

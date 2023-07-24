@@ -219,9 +219,5 @@ SPDX-License-Identifier: MIT
   );
   await writeVuePreviews();
 
-  const r = await writeTypeScriptFiles(
-    path.join(__dirname, 'docs', 'auto-generated'),
-    generateMarkdown
-  );
-  console.log(r);
+  await writeTypeScriptFiles(path.join(__dirname, 'docs', 'auto-generated'));
 })();

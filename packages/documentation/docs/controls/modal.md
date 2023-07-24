@@ -20,51 +20,132 @@ import ApiModalInstanceAngular from './\_modal/angular/modal-instance.html.md'
 import ApiModalConfigReact from './\_modal/react/modal-config.md'
 import ApiModalRefReact from './\_modal/react/modal-ref.html.md'
 
+import ModalConfig from './../auto-generated/utils/core/ModalConfig.md'
+import ModalInstance from './../auto-generated/utils/core/ModalInstance.md'
+
+import SourceReactLoading from './../auto-generated/previews/react/loading.md'
+import SourceReactMessage from './../auto-generated/previews/react/message.md'
+
+
 # Modal
 
-How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
-Select the appropriate tab below for the respective usage information.
+## Custom modal
 
-## Usage
+How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
+Select the appropriate section below for the respective usage information.
+
+### Angular
 
 <Playground
 name="modal" height="18rem"
 frameworks={{
-  react: SourceReactModal,
   angular: {
     'modal-by-template.ts': SourceAngularModal,
     "modal-by-instance.ts": SourceAngularModalByInstance,
     "modal-by-instance-content.ts": SourceAngularModalByInstanceContent,
     },
-  javascript: SourceModal,
+}}>
+</Playground>
+
+`@siemens/ix-angular` provides an injectable service that allows to open modal dialogs based on a `ng-template` reference or by component type.
+If you want to pass arbitrary data to the modal use the `data`-property. In order to access that data inside the modal template use `let-modal` as seen in the angular example above.
+
+**ModalService**
+
+```ts
+open(config: ModalConfig<TData: any, TReason: any>): Promise<ModalInstance<TData>>
+```
+
+### React
+
+`@siemens/ix-react` provides an function that allows to open modal dialogs based on a `JSXElement`.
+
+<Playground
+name="modal" height="18rem"
+frameworks={{
+  react: SourceReactModal,
+}}>
+</Playground>
+
+
+
+:::info Use context
+
+It is highly recommanded to provide the `IxApplicationContext` as part of you application.
+
+:::
+
+```tsx
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <IxApplicationContext>
+    {/*
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    */}
+  </IxApplicationContext>
+);
+
+```
+
+### Vue
+
+<Playground
+name="modal" height="18rem"
+frameworks={{
   vue: SourceVueModal,
 }}>
 </Playground>
 
-## API
+### Javascript
 
-<Tabs>
-  <TabItem value="Angular">
-    <code>@siemens/ix-angular</code> provides an injectable service that allows to open modal dialogs based on a <code>ng-template</code> reference or by component type.
-If you want to pass arbitrary data to the modal use the <code>data</code>-property. In order to access that data inside the modal template use <code>let-modal</code> as seen in the angular example above.<br /><br />
-    <h3>ModalService</h3>
-    <ApiModalServiceAngular />
-    <h3>ModalConfig</h3>
-    <ApiModalConfigAngular />
-    <h3>ModalInstance</h3>
-    <ApiModalInstanceAngular />
+<Playground
+name="modal" height="18rem"
+frameworks={{
+  javascript: SourceModal,
+}}>
+</Playground>
 
-  </TabItem>
-  <TabItem value="React">
-    <h3>ModalConfig</h3>
-    <ApiModalConfigReact />
-    <h3>ModalRef</h3>
-    <ApiModalRefReact />
-  </TabItem>
-  <TabItem value="JavaScript">
-    <h3>Properties</h3>
-    <PropsJavaScript />
-    <h3>Events</h3>
-    <EventsJavaScript />
-  </TabItem>
-</Tabs>
+### API
+
+#### Modal Config
+<ModalConfig />
+
+#### Modal Instance
+<ModalInstance />
+
+## Loading
+
+How to open a loading is independent from a framework in use. Note that you hve to import the `showLoadingModal` from the core package `@siemens/ix`
+
+<Playground name="loading" frameworks={{
+  react: SourceReactLoading,
+}}/>
+
+## Message
+
+How to open a message is independent from a framework in use. Note that you hve to import the `showMessage` from the core package `@siemens/ix`.
+
+`showMessage` provides multiple pre-configured messages:
+
+- info
+- waring
+- error
+- success
+- question
+
+<Playground name="message" height="15rem" frameworks={{
+  react: SourceReactMessage,
+}}/>
+
+The `showMessage`-method returns a Listener with the following signature:
+
+```ts
+TypedEvent<{
+  actionId: string;
+  payload: T;
+}>
+```
+
+`actionId` represents the configured action button.
+
