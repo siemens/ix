@@ -19,7 +19,6 @@ import Breadcrumb from 'src/preview-examples/breadcrumb';
 import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
-import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
 import CardList from 'src/preview-examples/card-list';
@@ -192,7 +191,6 @@ const routes: Routes = [
       { path: 'breadcrumb-next-items', component: BreadcrumbNextItems },
       { path: 'breadcrumb-truncate', component: BreadcrumbTruncate },
       { path: 'breadcrumb', component: Breadcrumb },
-      { path: 'button-selected', component: ButtonSelected },
       { path: 'button-with-icon', component: ButtonWithIcon },
       {
         path: 'category-filter-suggestions',

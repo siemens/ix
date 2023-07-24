@@ -19,15 +19,60 @@ SPDX-License-Identifier: MIT
     </style>
   </head>
   <body>
-    <ix-toggle-button>Normal</ix-toggle-button>
-    <ix-toggle-button icon="rocket">Normal</ix-toggle-button>
+    <div>
+      <ix-toggle-button class="m-1">Normal</ix-toggle-button>
+      <ix-toggle-button class="m-1" pressed>Pressed</ix-toggle-button>
+      <ix-toggle-button class="m-1" disabled>Disabled</ix-toggle-button>
+      <ix-toggle-button ghost outline="false" class="m-1">
+        Normal
+      </ix-toggle-button>
+      <ix-toggle-button ghost outline="false" class="m-1" pressed>
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button ghost outline="false" class="m-1" disabled>
+        Disabled
+      </ix-toggle-button>
+      <ix-toggle-button outline="false" class="m-1"> Normal </ix-toggle-button>
+      <ix-toggle-button outline="false" class="m-1" pressed>
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button outline="false" class="m-1" disabled>
+        Disabled
+      </ix-toggle-button>
+    </div>
 
-    <ix-toggle-button disabled>Normal</ix-toggle-button>
-    <ix-toggle-button icon="rocket" disabled>Normal</ix-toggle-button>
-
-    <ix-toggle-button pressed>Normal</ix-toggle-button>
-    <ix-toggle-button icon="rocket" pressed>Normal
-
+    <div>
+      <ix-toggle-button variant="Primary" class="m-1">
+        Normal
+      </ix-toggle-button>
+      <ix-toggle-button variant="Primary" outline class="m-1" pressed>
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button variant="Primary" outline class="m-1" disabled>
+        Disabled
+      </ix-toggle-button>
+      <ix-toggle-button variant="Primary" ghost outline="false" class="m-1">
+        Normal
+      </ix-toggle-button>
+      <ix-toggle-button
+        variant="Primary"
+        ghost
+        outline="false"
+        class="m-1"
+        pressed
+      >
+        Pressed
+      </ix-toggle-button>
+      <ix-toggle-button
+        variant="Primary"
+        outline="false"
+        ghost
+        class="m-1"
+        disabled
+      >
+        Disabled
+      </ix-toggle-button>
+    </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>

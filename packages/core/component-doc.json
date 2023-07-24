@@ -874,29 +874,6 @@
           "required": false
         },
         {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Invisible button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "use ghost property"
-            }
-          ],
-          "default": "false",
-          "deprecation": "use ghost property",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "loading",
           "type": "boolean",
           "mutable": false,
@@ -927,29 +904,6 @@
           "docs": "Outline button",
           "docsTags": [],
           "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "selected",
-          "reflectToAttr": false,
-          "docs": "Show button as selected. Should be used with outline or ghost",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "- Use ix-toggle-button instead. Will get removed with 3.0.0"
-            }
-          ],
-          "default": "false",
-          "deprecation": "- Use ix-toggle-button instead. Will get removed with 3.0.0",
           "values": [
             {
               "type": "boolean"
@@ -5170,28 +5124,6 @@
           "required": false
         },
         {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use ghost property"
-            }
-          ],
-          "deprecation": "Use ghost property",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "loading",
           "type": "boolean",
           "mutable": false,
@@ -5237,23 +5169,6 @@
           "reflectToAttr": false,
           "docs": "Button in oval shape",
           "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "selected",
-          "reflectToAttr": false,
-          "docs": "Selected state only working with outline or invisible",
-          "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -5363,10 +5278,12 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-spinner",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-icon-toggle-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -5389,6 +5306,23 @@
           "required": false
         },
         {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "icon",
           "type": "string",
           "mutable": false,
@@ -5399,6 +5333,40 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -5441,6 +5409,50 @@
             },
             {
               "value": "24",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"button\" | \"submit\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "Type of the button",
+          "docsTags": [],
+          "default": "'button'",
+          "values": [
+            {
+              "value": "button",
+              "type": "string"
+            },
+            {
+              "value": "submit",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button variant.\nImportant: Variant 'Primary' can only be combined with either outline or ghost.",
+          "docsTags": [],
+          "default": "'Secondary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
               "type": "string"
             }
           ],
@@ -9071,6 +9083,8 @@
       "dependents": [
         "ix-button",
         "ix-icon-button",
+        "ix-icon-toggle-button",
+        "ix-toggle-button",
         "ix-upload"
       ],
       "dependencies": [],
@@ -9079,6 +9093,12 @@
           "ix-spinner"
         ],
         "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-icon-toggle-button": [
+          "ix-spinner"
+        ],
+        "ix-toggle-button": [
           "ix-spinner"
         ],
         "ix-upload": [
@@ -10600,10 +10620,12 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-spinner",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-toggle-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -10615,6 +10637,23 @@
           "attr": "disabled",
           "reflectToAttr": true,
           "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -10642,6 +10681,40 @@
           "required": false
         },
         {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "pressed",
           "type": "boolean",
           "mutable": false,
@@ -10653,6 +10726,50 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"button\" | \"submit\"",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "Type of the button",
+          "docsTags": [],
+          "default": "'button'",
+          "values": [
+            {
+              "value": "button",
+              "type": "string"
+            },
+            {
+              "value": "submit",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"Primary\" | \"Secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button variant.\nImportant: Variant 'Primary' can only be combined with either outline or ghost.",
+          "docsTags": [],
+          "default": "'Secondary'",
+          "values": [
+            {
+              "value": "Primary",
+              "type": "string"
+            },
+            {
+              "value": "Secondary",
+              "type": "string"
             }
           ],
           "optional": false,

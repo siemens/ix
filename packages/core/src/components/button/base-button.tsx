@@ -34,7 +34,7 @@ export const getButtonClasses = (
     'btn-invisible-secondary': isSecondary(variant) && !outline && ghost,
     'btn-icon': iconOnly,
     'btn-oval': iconOval,
-    selected: isSecondary(variant) && (outline || ghost) && selected,
+    selected: selected,
     disabled: disabled,
   };
 };

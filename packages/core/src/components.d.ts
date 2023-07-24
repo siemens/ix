@@ -24,6 +24,7 @@ import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-but
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
+import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { NotificationColor } from "./components/utils/notification-color";
@@ -55,6 +56,7 @@ export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-but
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
+export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { NotificationColor } from "./components/utils/notification-color";
@@ -211,11 +213,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Invisible button
-          * @deprecated use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Loading button
           * @since 2.0.0
          */
@@ -224,11 +221,6 @@ export namespace Components {
           * Outline button
          */
         "outline": boolean;
-        /**
-          * Show button as selected. Should be used with outline or ghost
-          * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
-         */
-        "selected": boolean;
         /**
           * Type of the button
          */
@@ -950,11 +942,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Button invisible
-          * @deprecated Use ghost property
-         */
-        "invisible": boolean;
-        /**
           * Loading button
           * @since 2.0.0
          */
@@ -967,10 +954,6 @@ export namespace Components {
           * Button in oval shape
          */
         "oval": boolean;
-        /**
-          * Selected state only working with outline or invisible
-         */
-        "selected": boolean;
         /**
           * Size of icon in button
          */
@@ -993,9 +976,21 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Icon name
          */
         "icon": string;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
         /**
           * Show button as pressed
          */
@@ -1004,6 +999,14 @@ export namespace Components {
           * Size of icon in button
          */
         "size": '24' | '16' | '12';
+        /**
+          * Type of the button
+         */
+        "type": 'button' | 'submit';
+        /**
+          * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
+         */
+        "variant": ButtonVariant1;
     }
     interface IxIndexButton {
         /**
@@ -1839,13 +1842,33 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Icon name
          */
         "icon": string;
         /**
+          * Loading button
+         */
+        "loading": boolean;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
           * Show button as pressed
          */
         "pressed": boolean;
+        /**
+          * Type of the button
+         */
+        "type": 'button' | 'submit';
+        /**
+          * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
+         */
+        "variant": ButtonVariant1;
     }
     /**
      * @since 1.4.0
@@ -3064,11 +3087,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Invisible button
-          * @deprecated use ghost property
-         */
-        "invisible"?: boolean;
-        /**
           * Loading button
           * @since 2.0.0
          */
@@ -3077,11 +3095,6 @@ declare namespace LocalJSX {
           * Outline button
          */
         "outline"?: boolean;
-        /**
-          * Show button as selected. Should be used with outline or ghost
-          * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
-         */
-        "selected"?: boolean;
         /**
           * Type of the button
          */
@@ -3912,11 +3925,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Button invisible
-          * @deprecated Use ghost property
-         */
-        "invisible"?: boolean;
-        /**
           * Loading button
           * @since 2.0.0
          */
@@ -3929,10 +3937,6 @@ declare namespace LocalJSX {
           * Button in oval shape
          */
         "oval"?: boolean;
-        /**
-          * Selected state only working with outline or invisible
-         */
-        "selected"?: boolean;
         /**
           * Size of icon in button
          */
@@ -3955,13 +3959,25 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Icon name
          */
         "icon"?: string;
         /**
+          * Loading button
+         */
+        "loading"?: boolean;
+        /**
           * Pressed change event
          */
         "onPressedChange"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
+        /**
+          * Outline button
+         */
+        "outline"?: boolean;
         /**
           * Show button as pressed
          */
@@ -3970,6 +3986,14 @@ declare namespace LocalJSX {
           * Size of icon in button
          */
         "size"?: '24' | '16' | '12';
+        /**
+          * Type of the button
+         */
+        "type"?: 'button' | 'submit';
+        /**
+          * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
+         */
+        "variant"?: ButtonVariant1;
     }
     interface IxIndexButton {
         /**
@@ -4843,17 +4867,37 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Pressed change event
          */
         "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * Show button as pressed
          */
         "pressed"?: boolean;
+        /**
+          * Type of the button
+         */
+        "type"?: 'button' | 'submit';
+        /**
+          * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
+         */
+        "variant"?: ButtonVariant1;
     }
     /**
      * @since 1.4.0

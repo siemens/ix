@@ -26,7 +26,6 @@ import Breadcrumb from 'src/preview-examples/breadcrumb';
 import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
-import ButtonSelected from 'src/preview-examples/button-selected';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
 import CardList from 'src/preview-examples/card-list';
@@ -137,7 +136,6 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     BreadcrumbTruncate,
     Breadcrumb,
     NavigationTestComponent,
-    ButtonSelected,
     ButtonWithIcon,
     CategoryFilterSuggestions,
     CategoryFilter,

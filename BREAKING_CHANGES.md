@@ -2,6 +2,12 @@
 
 ## v2.0.0
 
+### `ix-button` & `ix-icon-button`
+
+#### `invisible` was removed. Use `ghost` instead.
+
+#### `selected` was removed. Use `ix-toggle-button`/`ix-icon-toggle-button` with property `pressed="true"` instead.
+
 ### `ix-menu-item`
 
 #### `tabIcon` is deprecated and gets replaced with `icon` property
@@ -51,6 +57,4 @@ ___Before___
 ___Now___
 ```tsx
 <ix-split-button ghost></ix-split-button>
-
 ```
-

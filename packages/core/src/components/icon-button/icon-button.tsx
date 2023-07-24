@@ -33,13 +33,6 @@ export class IconButton implements Button {
 
   /**
    * Button invisible
-   *
-   * @deprecated Use ghost property
-   */
-  @Prop() invisible: boolean;
-
-  /**
-   * Button invisible
    */
   @Prop() ghost: boolean;
 
@@ -62,11 +55,6 @@ export class IconButton implements Button {
    * Color of icon in  button
    */
   @Prop() color: string;
-
-  /**
-   * Selected state only working with outline or invisible
-   */
-  @Prop() selected = false;
 
   /**
    * Disabled
@@ -121,10 +109,10 @@ export class IconButton implements Button {
       ...getButtonClasses(
         this.variant,
         this.outline,
-        this.ghost || this.invisible,
+        this.ghost,
         true,
         this.oval,
-        this.selected,
+        false,
         this.disabled || this.loading
       ),
       'icon-button': true,

@@ -29,22 +29,9 @@ export class Button {
   @Prop() outline = false;
 
   /**
-   * Invisible button
-   *
-   * @deprecated use ghost property
-   */
-  @Prop() invisible = false;
-
-  /**
    * Button with no background or outline
    */
   @Prop() ghost = false;
-
-  /**
-   * Show button as selected. Should be used with outline or ghost
-   * @deprecated - Use ix-toggle-button instead. Will get removed with 3.0.0
-   */
-  @Prop() selected = false;
 
   /**
    * Disable the button
@@ -106,10 +93,10 @@ export class Button {
           class={getButtonClasses(
             this.variant,
             this.outline,
-            this.ghost || this.invisible,
+            this.ghost,
             false,
             false,
-            this.selected,
+            false,
             this.disabled || this.loading
           )}
         >

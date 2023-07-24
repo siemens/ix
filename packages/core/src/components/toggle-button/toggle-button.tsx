@@ -9,14 +9,15 @@
 
 import {
   Component,
-  Element,
   Event,
   EventEmitter,
   h,
   Host,
   Prop,
+  Watch,
 } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
+import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -29,6 +30,37 @@ import { a11yBoolean } from '../utils/a11y';
 })
 export class ToggleButton {
   /**
+   * Button variant.
+   * Important: Variant 'Primary' can only be combined with either outline or ghost.
+   */
+  @Prop() variant: ButtonVariant = 'Secondary';
+
+  /**
+   * Outline button
+   */
+  @Prop() outline = true;
+
+  /**
+   * Button with no background or outline
+   */
+  @Prop() ghost = false;
+
+  /**
+   * Disable the button
+   */
+  @Prop({ reflect: true }) disabled = false;
+
+  /**
+   * Type of the button
+   */
+  @Prop() type: 'button' | 'submit' = 'button';
+
+  /**
+   * Loading button
+   */
+  @Prop() loading: boolean = false;
+
+  /**
    * Icon name
    */
   @Prop() icon: string;
@@ -39,16 +71,40 @@ export class ToggleButton {
   @Prop() pressed = false;
 
   /**
-   * Disable the button
-   */
-  @Prop({ reflect: true }) disabled = false;
-
-  /**
    * Pressed change event
    */
   @Event() pressedChange: EventEmitter<boolean>;
 
-  @Element() hostElement: HTMLIxToggleButtonElement;
+  private isIllegalToggleButtonConfig() {
+    return this.variant === 'Primary' && (this.outline || this.ghost);
+  }
+
+  private logIllegalConfig() {
+    console.warn(
+      'iX toggle button with illegal configuration detected. Variant "Primary" can only be combined with "outline" or "ghost".'
+    );
+  }
+
+  @Watch('variant')
+  onVariantChange() {
+    if (this.isIllegalToggleButtonConfig()) {
+      this.logIllegalConfig();
+    }
+  }
+
+  @Watch('ghost')
+  onGhostChange() {
+    this.onVariantChange();
+  }
+
+  @Watch('outline')
+  onOutlineChange() {
+    this.onVariantChange();
+  }
+
+  componentDidLoad() {
+    this.onVariantChange();
+  }
 
   render() {
     return (
@@ -60,18 +116,23 @@ export class ToggleButton {
         <button
           aria-pressed={a11yBoolean(this.pressed)}
           class={getButtonClasses(
-            'Secondary',
-            false,
-            true,
+            this.variant,
+            this.outline,
+            this.ghost,
             false,
             false,
             this.pressed,
-            this.disabled
+            this.disabled || this.loading
           )}
-          type="button"
+          tabindex={this.disabled ? -1 : 0}
+          type={this.type}
           onClick={() => this.pressedChange.emit(!this.pressed)}
         >
-          {this.icon ? <ix-icon name={this.icon}></ix-icon> : null}
+          {this.loading ? (
+            <ix-spinner size="small" hideTrack></ix-spinner>
+          ) : this.icon ? (
+            <ix-icon name={this.icon}></ix-icon>
+          ) : null}
           <slot></slot>
         </button>
       </Host>
