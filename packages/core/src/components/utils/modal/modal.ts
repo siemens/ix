@@ -22,6 +22,9 @@ export interface ModalConfig<TReason = any, CONTENT_TYPE = any> {
   container?: string | HTMLElement;
   content: CONTENT_TYPE;
   keyboard?: boolean;
+  /**
+   * Bla bla
+   */
   size?: IxModalSize;
   title?: string;
 }

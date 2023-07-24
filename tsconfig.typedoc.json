@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "include": ["./packages/core/src/components/utils/**/*.ts"]
+}
