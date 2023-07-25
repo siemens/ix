@@ -1350,6 +1350,7 @@ export namespace Components {
         "closeModal": <T = any>(reason: T) => Promise<void>;
         /**
           * Dismiss modal on backdrop click
+          * @since 2.0.0
          */
         "closeOnBackdropClick": boolean;
         /**
@@ -1366,15 +1367,25 @@ export namespace Components {
         "showModal": () => Promise<void>;
         /**
           * Modal size
+          * @since 2.0.0
          */
         "size": IxModalSize;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalContent {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalFooter {
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalHeader {
         /**
           * Hide the close button
@@ -2568,6 +2579,9 @@ declare global {
         prototype: HTMLIxModalElement;
         new (): HTMLIxModalElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxModalContentElement extends Components.IxModalContent, HTMLStencilElement {
     }
     var HTMLIxModalContentElement: {
@@ -2580,12 +2594,18 @@ declare global {
         prototype: HTMLIxModalExampleElement;
         new (): HTMLIxModalExampleElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxModalFooterElement extends Components.IxModalFooter, HTMLStencilElement {
     }
     var HTMLIxModalFooterElement: {
         prototype: HTMLIxModalFooterElement;
         new (): HTMLIxModalFooterElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxModalHeaderElement extends Components.IxModalHeader, HTMLStencilElement {
     }
     var HTMLIxModalHeaderElement: {
@@ -4266,25 +4286,42 @@ declare namespace LocalJSX {
         "centered"?: boolean;
         /**
           * Dismiss modal on backdrop click
+          * @since 2.0.0
          */
         "closeOnBackdropClick"?: boolean;
         /**
           * Use ESC to dismiss the modal
          */
         "keyboard"?: boolean;
+        /**
+          * Dialog close
+         */
         "onDialogClose"?: (event: IxModalCustomEvent<any>) => void;
+        /**
+          * Dialog cancel
+         */
         "onDialogDismiss"?: (event: IxModalCustomEvent<any>) => void;
         /**
           * Modal size
+          * @since 2.0.0
          */
         "size"?: IxModalSize;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalContent {
     }
     interface IxModalExample {
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalFooter {
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxModalHeader {
         /**
           * Hide the close button
@@ -4298,6 +4335,9 @@ declare namespace LocalJSX {
           * Icon color
          */
         "iconColor"?: string;
+        /**
+          * Close icon is clicked
+         */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
     interface IxModalLoading {
@@ -5155,9 +5195,18 @@ declare module "@stencil/core" {
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;
             "ix-message-bar": LocalJSX.IxMessageBar & JSXBase.HTMLAttributes<HTMLIxMessageBarElement>;
             "ix-modal": LocalJSX.IxModal & JSXBase.HTMLAttributes<HTMLIxModalElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
             "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-modal-footer": LocalJSX.IxModalFooter & JSXBase.HTMLAttributes<HTMLIxModalFooterElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
             /**

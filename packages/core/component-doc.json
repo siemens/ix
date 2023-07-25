@@ -7627,7 +7627,12 @@
           "attr": "close-on-backdrop-click",
           "reflectToAttr": false,
           "docs": "Dismiss modal on backdrop click",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -7661,7 +7666,12 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Modal size",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "'360'",
           "values": [
             {
@@ -7735,7 +7745,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Dialog close",
           "docsTags": []
         },
         {
@@ -7744,7 +7754,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Dialog cancel",
           "docsTags": []
         }
       ],
@@ -7763,7 +7773,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -7825,7 +7840,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -7848,7 +7868,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7926,39 +7951,10 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Close icon is clicked",
           "docsTags": []
         }
       ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/modal-loading",
-      "filePath": "./src/components/modal-loading/modal-loading.tsx",
-      "fileName": "modal-loading.tsx",
-      "readmePath": "./src/components/modal-loading/readme.md",
-      "usagesDir": "./src/components/modal-loading/usage",
-      "tag": "ix-modal-loading",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-spinner"
-      ],
-      "dependencyGraph": {
-        "ix-modal-loading": [
-          "ix-spinner"
-        ]
-      },
-      "props": [],
-      "methods": [],
-      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],

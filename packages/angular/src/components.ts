@@ -1548,9 +1548,13 @@ export class IxModal {
 
 
 export declare interface IxModal extends Components.IxModal {
-
+  /**
+   * Dialog close
+   */
   dialogClose: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Dialog cancel
+   */
   dialogDismiss: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1639,30 +1643,11 @@ export class IxModalHeader {
 
 
 export declare interface IxModalHeader extends Components.IxModalHeader {
-
+  /**
+   * Close icon is clicked
+   */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
-
-
-@ProxyCmp({
-})
-@Component({
-  selector: 'ix-modal-loading',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxModalLoading {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxModalLoading extends Components.IxModalLoading {}
 
 
 @ProxyCmp({

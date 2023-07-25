@@ -18,6 +18,9 @@ import {
   Watch,
 } from '@stencil/core';
 
+/**
+ * @since 2.0.0
+ */
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',
@@ -50,7 +53,7 @@ export class ModalHeader {
   @Prop() iconColor: string;
 
   /**
-   *
+   * Close icon is clicked
    */
   @Event() closeClick: EventEmitter<MouseEvent>;
 

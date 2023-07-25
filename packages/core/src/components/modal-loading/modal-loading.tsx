@@ -9,6 +9,9 @@
 
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @internal
+ */
 @Component({
   tag: 'ix-modal-loading',
   styleUrl: 'modal-loading.scss',

@@ -559,9 +559,6 @@ export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('i
 ]);
 
 
-export const IxModalLoading = /*@__PURE__*/ defineContainer<JSX.IxModalLoading>('ix-modal-loading', undefined);
-
-
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
   'advanced',
   'itemCount',
