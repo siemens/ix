@@ -28,7 +28,7 @@ export class Drawer {
   /**
    * Show or hide the drawer
    */
-  @Prop() show = false;
+  @Prop({ mutable: true }) show = false;
 
   /**
    * Fired in case of an outside click during drawer showed state
