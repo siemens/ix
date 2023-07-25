@@ -28,7 +28,7 @@ export class Drawer {
   /**
    * Show or hide the drawer
    */
-  @Prop({ mutable: true }) show = false;
+  @Prop() show = false;
 
   /**
    * Fired in case of an outside click during drawer showed state
@@ -144,6 +144,10 @@ export class Drawer {
         el.classList.remove('d-none');
       },
     });
+  }
+
+  componentDidRender() {
+    this.toggleDrawer(this.show);
   }
 
   render() {
