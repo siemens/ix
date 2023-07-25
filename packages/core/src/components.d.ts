@@ -1000,10 +1000,6 @@ export namespace Components {
          */
         "size": '24' | '16' | '12';
         /**
-          * Type of the button
-         */
-        "type": 'button' | 'submit';
-        /**
           * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
          */
         "variant": ButtonVariant1;
@@ -1861,10 +1857,6 @@ export namespace Components {
           * Show button as pressed
          */
         "pressed": boolean;
-        /**
-          * Type of the button
-         */
-        "type": 'button' | 'submit';
         /**
           * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
          */
@@ -3987,10 +3979,6 @@ declare namespace LocalJSX {
          */
         "size"?: '24' | '16' | '12';
         /**
-          * Type of the button
-         */
-        "type"?: 'button' | 'submit';
-        /**
           * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
          */
         "variant"?: ButtonVariant1;
@@ -4890,10 +4878,6 @@ declare namespace LocalJSX {
           * Show button as pressed
          */
         "pressed"?: boolean;
-        /**
-          * Type of the button
-         */
-        "type"?: 'button' | 'submit';
         /**
           * Button variant. Important: Variant 'Primary' can only be combined with either outline or ghost.
          */

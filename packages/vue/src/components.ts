@@ -381,7 +381,6 @@ export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggle
   'size',
   'disabled',
   'loading',
-  'type',
   'pressedChange'
 ]);
 
@@ -731,7 +730,6 @@ export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>(
   'outline',
   'ghost',
   'disabled',
-  'type',
   'loading',
   'icon',
   'pressed',

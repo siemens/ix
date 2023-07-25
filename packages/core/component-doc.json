@@ -5416,28 +5416,6 @@
           "required": false
         },
         {
-          "name": "type",
-          "type": "\"button\" | \"submit\"",
-          "mutable": false,
-          "attr": "type",
-          "reflectToAttr": false,
-          "docs": "Type of the button",
-          "docsTags": [],
-          "default": "'button'",
-          "values": [
-            {
-              "value": "button",
-              "type": "string"
-            },
-            {
-              "value": "submit",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "variant",
           "type": "\"Primary\" | \"Secondary\"",
           "mutable": false,
@@ -10726,28 +10704,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "type",
-          "type": "\"button\" | \"submit\"",
-          "mutable": false,
-          "attr": "type",
-          "reflectToAttr": false,
-          "docs": "Type of the button",
-          "docsTags": [],
-          "default": "'button'",
-          "values": [
-            {
-              "value": "button",
-              "type": "string"
-            },
-            {
-              "value": "submit",
-              "type": "string"
             }
           ],
           "optional": false,

@@ -51,11 +51,6 @@ export class ToggleButton {
   @Prop({ reflect: true }) disabled = false;
 
   /**
-   * Type of the button
-   */
-  @Prop() type: 'button' | 'submit' = 'button';
-
-  /**
    * Loading button
    */
   @Prop() loading: boolean = false;
@@ -125,7 +120,7 @@ export class ToggleButton {
             this.disabled || this.loading
           )}
           tabindex={this.disabled ? -1 : 0}
-          type={this.type}
+          type="button"
           onClick={() => this.pressedChange.emit(!this.pressed)}
         >
           {this.loading ? (

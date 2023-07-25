@@ -72,11 +72,6 @@ export class IconToggleButton {
   @Prop() loading: boolean = false;
 
   /**
-   * Type of the button
-   */
-  @Prop() type: 'button' | 'submit' = 'button';
-
-  /**
    * Pressed change event
    */
   @Event() pressedChange: EventEmitter<boolean>;
@@ -142,7 +137,7 @@ export class IconToggleButton {
             [this.getIconButtonClass()]: true,
           }}
           tabindex={this.disabled ? -1 : 0}
-          type={this.type}
+          type="button"
           onClick={() => this.pressedChange.emit(!this.pressed)}
         >
           {this.loading ? (
