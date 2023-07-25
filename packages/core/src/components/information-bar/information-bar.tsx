@@ -80,6 +80,9 @@ export class InformationBar {
         }
       }
     }
+
+    const iconContainer = this.el.shadowRoot.querySelector('#icon-container');
+    iconContainer?.setAttribute('style', `visibility: visible`);
   }
 
   sum() {
@@ -99,7 +102,7 @@ export class InformationBar {
             );
           })}
         </div>
-        <div class="icon-container">
+        <div id='icon-container' class="icon-container" style={{visibility: 'hidden'}}>
           {this.bar?.map((bar, index) => {
             return (
               <div class="icon-and-text" id={'icon-' + index.toString()}>
