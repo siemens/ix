@@ -106,6 +106,7 @@ import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avat
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import InformationBar from "../preview-examples/information-bar";
 
 const routes: Routes = [
   {
@@ -243,6 +244,7 @@ const routes: Routes = [
       { path: 'event-list-selected', component: EventListSelected },
       { path: 'event-list', component: EventList },
       { path: 'expanding-search', component: ExpandingSearch },
+      { path: 'information-bar', component: InformationBar },
       { path: 'flip-tile', component: FlipTile },
       { path: 'group-context-menu', component: GroupContextMenu },
       { path: 'group-custom-entry', component: GroupCustomEntry },
