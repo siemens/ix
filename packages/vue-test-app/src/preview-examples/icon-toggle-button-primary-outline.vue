@@ -13,24 +13,24 @@ import { IxToggleButton } from '@siemens/ix-vue';
 
 <template>
   <IxToggleButton
-    variant="Primary"
+    variant="primary"
     :outline="false"
     className="m-1"
   ></IxToggleButton>
   <IxToggleButton
-    variant="Primary"
+    variant="primary"
     :outline="false"
     className="m-1"
     pressed
   ></IxToggleButton>
   <IxToggleButton
-    variant="Primary"
+    variant="primary"
     :outline="false"
     className="m-1"
     disabled
   ></IxToggleButton>
   <IxToggleButton
-    variant="Primary"
+    variant="primary"
     :outline="false"
     className="m-1"
     disabled

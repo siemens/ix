@@ -32,9 +32,9 @@ import { a11yBoolean } from '../utils/a11y';
 export class IconToggleButton {
   /**
    * Button variant.
-   * Important: Variant 'Primary' can only be combined with either outline or ghost.
+   * Important: Variant 'primary' can only be combined with either outline or ghost.
    */
-  @Prop() variant: ButtonVariant = 'Secondary';
+  @Prop() variant: ButtonVariant = 'secondary';
 
   /**
    * Outline button
@@ -83,12 +83,12 @@ export class IconToggleButton {
   }
 
   private isIllegalToggleButtonConfig() {
-    return this.variant === 'Primary' && (this.outline || this.ghost);
+    return this.variant === 'primary' && (this.outline || this.ghost);
   }
 
   private logIllegalConfig() {
     console.warn(
-      'iX toggle button with illegal configuration detected. Variant "Primary" can only be combined with "outline" or "ghost".'
+      'iX toggle button with illegal configuration detected. Variant "primary" can only be combined with "outline" or "ghost".'
     );
   }
 
