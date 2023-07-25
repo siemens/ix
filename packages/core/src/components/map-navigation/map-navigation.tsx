@@ -238,7 +238,7 @@ export class MapNavigation {
                     icon="context-menu"
                     ghost
                     size="24"
-                    variant="Secondary"
+                    variant="secondary"
                     onClick={(_) => this.contextMenuClick.emit()}
                   ></ix-icon-button>
                 )}

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { ButtonVariant } from './button';
+
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
 };
@@ -16,7 +18,7 @@ const isSecondary = (variant: string) => {
 };
 
 export const getButtonClasses = (
-  variant: 'Primary' | 'Secondary',
+  variant: ButtonVariant,
   outline: boolean,
   ghost: boolean,
   iconOnly = false,

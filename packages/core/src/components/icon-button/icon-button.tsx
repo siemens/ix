@@ -24,7 +24,7 @@ export class IconButton implements Button {
   /**
    * Variant of button
    */
-  @Prop() variant: IconButtonVariant = 'Secondary';
+  @Prop() variant: IconButtonVariant = 'secondary';
 
   /**
    * Button outline
@@ -48,6 +48,8 @@ export class IconButton implements Button {
 
   /**
    * Size of icon in button
+   *
+   * @deprecated Only size 32 will be removed in 3.0.0
    */
   @Prop() size: '32' | '24' | '16' | '12' = '24';
 

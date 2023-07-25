@@ -53,7 +53,7 @@ export class FilterChip {
           icon="close-small"
           size="16"
           tabindex={this.disabled ? -1 : 0}
-          variant="Primary"
+          variant="primary"
           disabled={this.disabled}
           onClick={(e) => this.onCloseClick(e)}
         ></ix-icon-button>

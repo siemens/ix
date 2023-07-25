@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { chevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -52,6 +52,16 @@ export class DropdownItem {
   @Prop() checked = false;
 
   /**
+   * @internal
+   */
+  @Prop() isSubMenu = false;
+
+  /**
+   * @internal
+   */
+  @Prop() suppressChecked = false;
+
+  /**
    * Click on item
    */
   @Event() itemClick: EventEmitter<HTMLIxDropdownItemElement>;
@@ -64,38 +74,55 @@ export class DropdownItem {
     this.itemClick.emit(this.hostElement);
   }
 
+  private isIconOnly() {
+    return (
+      this.label === undefined &&
+      this.hostElement.innerText === '' &&
+      this.icon !== undefined
+    );
+  }
+
   render() {
     return (
       <Host
         class={{
-          checked: this.checked,
-          'icon-text': this.label !== undefined && this.icon !== undefined,
-          'icon-only': this.label === undefined && this.icon !== undefined,
+          hover: this.hover,
+          'icon-only': this.isIconOnly(),
           disabled: this.disabled,
+          submenu: this.isSubMenu,
         }}
         role="listitem"
       >
         <button
           type="button"
+          tabIndex={0}
           class={{
             'dropdown-item': true,
-            hover: this.hover,
-            disabled: this.disabled,
+            'no-checked-field': this.suppressChecked,
           }}
           onClick={() => this.emitItemClick()}
         >
-          {this.checked ? (
-            <ix-icon class="checkmark" name="single-check" size="16"></ix-icon>
+          {!this.suppressChecked ? (
+            <div class="dropdown-item-checked">
+              {this.checked ? (
+                <ix-icon
+                  class="checkmark"
+                  name="single-check"
+                  size="16"
+                ></ix-icon>
+              ) : null}
+            </div>
           ) : null}
-
           {this.icon ? (
-            <ix-icon
-              name={this.icon}
-              color={`color-${this.disabled ? 'weak' : 'soft'}-text`}
-            ></ix-icon>
+            <ix-icon class="dropdown-item-icon" name={this.icon}></ix-icon>
           ) : null}
-          {this.label ? <span class="label">{this.label}</span> : null}
-          <slot></slot>
+          <div class="dropdown-item-text">
+            {this.label}
+            <slot></slot>
+          </div>
+          {this.isSubMenu ? (
+            <ix-icon name={chevronRightSmall} class={'submenu-icon'}></ix-icon>
+          ) : null}
         </button>
       </Host>
     );

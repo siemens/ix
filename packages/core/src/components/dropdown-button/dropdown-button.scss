@@ -7,16 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: inline-block;
   position: relative;
   height: $x-large-space;
   width: auto;
-
-  &.disabled {
-    pointer-events: none;
-  }
 
   .hide {
     display: none;
@@ -98,4 +97,8 @@
     inset: auto !important;
     transform: unset !important;
   }
+}
+
+:host(.disabled) {
+  pointer-events: none;
 }

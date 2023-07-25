@@ -14,17 +14,44 @@ import React from 'react';
 
 const gridOptions = {
   columnDefs: [
-    { field: 'make', resizable: true, checkboxSelection: true },
-    { field: 'model', resizable: true, sortable: true, filter: true },
-    { field: 'price', resizable: true },
+    {
+      field: 'type',
+      headerName: 'Type',
+      resizable: true,
+      checkboxSelection: true,
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
+      resizable: true,
+      sortable: true,
+      filter: true,
+    },
+    { field: 'hwVersion', headerName: 'HW version', resizable: true },
   ],
   rowData: [
-    { make: 'Toyota', model: 'Celica', price: 35000, checked: false },
-    { make: 'Ford', model: 'Mondeo', price: 32000, checked: true },
-    { make: 'Porsche', model: 'Boxster', price: 72000, checked: false },
+    {
+      type: 'Equipment',
+      status: 'Normal',
+      hwVersion: '2.0',
+      checked: false,
+    },
+    {
+      type: 'Positioner',
+      status: 'Maintenance',
+      hwVersion: '1.0',
+      checked: true,
+    },
+    {
+      type: 'Pressure sensor',
+      status: 'Unknown',
+      hwVersion: 'N/A',
+      checked: false,
+    },
   ],
   rowSelection: 'multiple',
   suppressCellFocus: true,
+  checkboxSelection: true,
 } as GridOptions;
 
 export default () => {

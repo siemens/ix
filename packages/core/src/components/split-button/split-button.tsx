@@ -18,7 +18,7 @@ import {
   State,
 } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
-import { Placement } from '../dropdown/placement';
+import { AlignedPlacement } from '../dropdown/placement';
 
 export type SplitButtonVariant = ButtonVariant;
 
@@ -33,7 +33,7 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: SplitButtonVariant = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'primary';
 
   /**
    * Button outline variant
@@ -68,7 +68,7 @@ export class SplitButton {
   /**
    * Placement of the dropdown
    */
-  @Prop() placement: Placement = 'bottom-start';
+  @Prop() placement: AlignedPlacement = 'bottom-start';
 
   @State() toggle = false;
 

@@ -57,7 +57,7 @@ export class BurgerMenu {
           <button
             class={{
               ...getButtonClasses(
-                'Secondary',
+                'secondary',
                 false,
                 true,
                 true,

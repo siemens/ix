@@ -635,7 +635,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
 
 
 @ProxyCmp({
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -643,7 +643,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
 })
 export class IxDropdown {
   protected el: HTMLElement;
@@ -683,6 +683,28 @@ export class IxDropdownButton {
 
 
 export declare interface IxDropdownButton extends Components.IxDropdownButton {}
+
+
+@ProxyCmp({
+  inputs: ['label']
+})
+@Component({
+  selector: 'ix-dropdown-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class IxDropdownHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxDropdownHeader extends Components.IxDropdownHeader {}
 
 
 @ProxyCmp({
@@ -1721,7 +1743,7 @@ export class IxSelect {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemSelectionChange', 'addItem']);
+    proxyOutputs(this, this.el, ['itemSelectionChange', 'inputChange', 'addItem']);
   }
 }
 
@@ -1731,6 +1753,10 @@ export declare interface IxSelect extends Components.IxSelect {
    * Item selection changed
    */
   itemSelectionChange: EventEmitter<CustomEvent<string | string[]>>;
+  /**
+   * Event dispatched whenever the text input changes. @since 2.0.0
+   */
+  inputChange: EventEmitter<CustomEvent<string>>;
   /**
    * Item added to selection
    */
@@ -2134,14 +2160,14 @@ export declare interface IxUpload extends Components.IxUpload {
 
 
 @ProxyCmp({
-  inputs: ['message', 'placement']
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement']
 })
 @Component({
   selector: 'ix-validation-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['message', 'placement'],
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement'],
 })
 export class IxValidationTooltip {
   protected el: HTMLElement;
