@@ -148,7 +148,7 @@ export class IconToggleButton {
           {this.loading ? (
             <ix-spinner size="small" hideTrack></ix-spinner>
           ) : this.icon ? (
-            <ix-icon name={this.icon}></ix-icon>
+            <ix-icon name={this.icon} size={this.size}></ix-icon>
           ) : null}
         </button>
       </Host>
