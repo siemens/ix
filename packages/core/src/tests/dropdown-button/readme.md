@@ -15,7 +15,7 @@
 | `icon`     | `icon`     | Button icon                          | `string`                   | `undefined` |
 | `label`    | `label`    | Set label                            | `string`                   | `''`        |
 | `outline`  | `outline`  | Outline button                       | `boolean`                  | `false`     |
-| `variant`  | `variant`  | Button varaint                       | `"Primary" \| "Secondary"` | `'Primary'` |
+| `variant`  | `variant`  | Button varaint                       | `"primary" \| "secondary"` | `'Primary'` |
 
 
 ----------------------------------------------

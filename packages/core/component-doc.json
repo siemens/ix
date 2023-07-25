@@ -976,20 +976,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -1682,13 +1682,19 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-icon-button",
         "ix-icon"
       ],
       "dependencyGraph": {
         "ix-chip": [
+          "ix-icon-button",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
           "ix-icon"
         ]
       },
@@ -1956,20 +1962,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of content header",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -3571,20 +3577,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -4182,15 +4188,13 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
         "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-expanding-search": [
-          "ix-icon",
           "ix-icon-button"
         ],
         "ix-icon-button": [
@@ -4997,6 +5001,7 @@
         "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
+        "ix-chip",
         "ix-content-header",
         "ix-date-picker",
         "ix-drawer",
@@ -5034,6 +5039,9 @@
           "ix-icon-button"
         ],
         "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-chip": [
           "ix-icon-button"
         ],
         "ix-content-header": [
@@ -5263,8 +5271,14 @@
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Only size 32 will be removed in 3.0.0"
+            }
+          ],
           "default": "'24'",
+          "deprecation": "Only size 32 will be removed in 3.0.0",
           "values": [
             {
               "value": "12",
@@ -5310,20 +5324,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
           "docsTags": [],
-          "default": "'Secondary'",
+          "default": "'secondary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -6157,7 +6171,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "Expand menu",
+          "docs": "",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6219,6 +6233,23 @@
           "docs": "",
           "docsTags": [],
           "default": "' Expand'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nExpandSidebar",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-expand-sidebar",
+          "reflectToAttr": false,
+          "docs": "Accessibility i18n label for the burger menu of the sidebar",
+          "docsTags": [],
+          "default": "'Expand sidebar'",
           "values": [
             {
               "type": "string"
@@ -8780,6 +8811,20 @@
           "docsTags": []
         },
         {
+          "event": "inputChange",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the text input changes.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
+        },
+        {
           "event": "itemSelectionChange",
           "detail": "string | string[]",
           "bubbles": true,
@@ -9209,20 +9254,20 @@
         },
         {
           "name": "variant",
-          "type": "\"Primary\" | \"Secondary\"",
+          "type": "\"primary\" | \"secondary\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Color variant of button",
           "docsTags": [],
-          "default": "'Primary'",
+          "default": "'primary'",
           "values": [
             {
-              "value": "Primary",
+              "value": "primary",
               "type": "string"
             },
             {
-              "value": "Secondary",
+              "value": "secondary",
               "type": "string"
             }
           ],
