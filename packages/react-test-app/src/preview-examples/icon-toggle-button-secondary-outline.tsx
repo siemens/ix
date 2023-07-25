@@ -16,15 +16,15 @@ export default () => {
       <IxIconToggleButton className="m-1"></IxIconToggleButton>
       <IxIconToggleButton className="m-1" pressed></IxIconToggleButton>
       <IxIconToggleButton className="m-1" disabled></IxIconToggleButton>
+      <IxIconToggleButton className="m-1" disabled loading></IxIconToggleButton>
 
       <IxIconToggleButton className="m-1" size="16"></IxIconToggleButton>
       <IxIconToggleButton className="m-1" size="16" pressed></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="16" disabled></IxIconToggleButton>
+      <IxIconToggleButton className="m-1" size="16" disabled loading></IxIconToggleButton>
 
       <IxIconToggleButton className="m-1" size="12"></IxIconToggleButton>
       <IxIconToggleButton className="m-1" size="12" pressed></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="12" disabled></IxIconToggleButton>
-
+      <IxIconToggleButton className="m-1" size="12" disabled loading></IxIconToggleButton>
     </>
   );
 };

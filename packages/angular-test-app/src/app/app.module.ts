@@ -56,7 +56,11 @@ import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
 import GroupCustomEntry from 'src/preview-examples/group-custom-entry';
 import GroupHeaderSuppressed from 'src/preview-examples/group-header-suppressed';
-import IconToggleButton from 'src/preview-examples/icon-toggle-button';
+import IconToggleButtonPrimaryGhost from 'src/preview-examples/icon-toggle-button-primary-ghost';
+import IconToggleButtonPrimaryOutline from 'src/preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonSecondary from 'src/preview-examples/icon-toggle-button-secondary';
+import IconToggleButtonSecondaryGhost from 'src/preview-examples/icon-toggle-button-secondary-ghost';
+import IconToggleButtonSecondaryOutline from 'src/preview-examples/icon-toggle-button-secondary-outline';
 import Input from 'src/preview-examples/input';
 import InputDisabled from 'src/preview-examples/input-disabled';
 import InputReadonly from 'src/preview-examples/input-readonly';
@@ -101,7 +105,11 @@ import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
 import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
-import ToggleButton from 'src/preview-examples/toggle-button';
+import ToggleButtonPrimaryGhost from 'src/preview-examples/toggle-button-primary-ghost';
+import ToggleButtonPrimaryOutline from 'src/preview-examples/toggle-button-primary-outline';
+import ToggleButtonSecondary from 'src/preview-examples/toggle-button-secondary';
+import ToggleButtonSecondaryGhost from 'src/preview-examples/toggle-button-secondary-ghost';
+import ToggleButtonSecondaryOutline from 'src/preview-examples/toggle-button-secondary-outline';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
 import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
 import Tooltip from 'src/preview-examples/tooltip';
@@ -158,7 +166,11 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     GroupCustomEntry,
     GroupHeaderSuppressed,
     Group,
-    IconToggleButton,
+    IconToggleButtonPrimaryGhost,
+    IconToggleButtonPrimaryOutline,
+    IconToggleButtonSecondary,
+    IconToggleButtonSecondaryGhost,
+    IconToggleButtonSecondaryOutline,
     InputDisabled,
     InputReadonly,
     InputWithIcon,
@@ -183,7 +195,11 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     ThemeSwitcherService,
     Tile,
     Timepicker,
-    ToggleButton,
+    ToggleButtonPrimaryGhost,
+    ToggleButtonPrimaryOutline,
+    ToggleButtonSecondary,
+    ToggleButtonSecondaryGhost,
+    ToggleButtonSecondaryOutline,
     ToggleCustomDisabled,
     ToggleCustomLabel,
     Toggle,

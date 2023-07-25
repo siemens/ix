@@ -15,10 +15,13 @@ import { IxToggleButton } from '@siemens/ix-vue';
   <IxToggleButton className="m-1"></IxToggleButton>
   <IxToggleButton className="m-1" pressed></IxToggleButton>
   <IxToggleButton className="m-1" disabled></IxToggleButton>
+  <IxToggleButton className="m-1" disabled loading></IxToggleButton>
+
   <IxToggleButton className="m-1" size="16"></IxToggleButton>
   <IxToggleButton className="m-1" size="16" pressed></IxToggleButton>
-  <IxToggleButton className="m-1" size="16" disabled></IxToggleButton>
+  <IxToggleButton className="m-1" size="16" disabled loading></IxToggleButton>
+
   <IxToggleButton className="m-1" size="12"></IxToggleButton>
   <IxToggleButton className="m-1" size="12" pressed></IxToggleButton>
-  <IxToggleButton className="m-1" size="12" disabled></IxToggleButton>
+  <IxToggleButton className="m-1" size="12" disabled loading></IxToggleButton>
 </template>
