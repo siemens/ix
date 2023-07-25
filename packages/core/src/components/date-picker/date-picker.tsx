@@ -483,7 +483,7 @@ export class DatePicker {
               <ix-dropdown
                 class="dropdown"
                 trigger={this.dropdownButtonRef}
-                placement="bottom"
+                placement="bottom-start"
               >
                 <div class="wrapper">
                   <div
