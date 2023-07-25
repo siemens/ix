@@ -624,7 +624,7 @@ function InformationCards() {
     [
       'Delivered as framework agnostic',
       'Intuitive User Experience and timeless Visual Design',
-      'Build by Siemens UX/UI experts',
+      'Built by Siemens UX/UI experts',
     ],
   ];
 

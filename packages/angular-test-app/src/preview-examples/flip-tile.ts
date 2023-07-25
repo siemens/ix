@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
       <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
     </ix-flip-tile>
 
-    <ix-flip-tile state="Primary">
+    <ix-flip-tile state="primary">
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>

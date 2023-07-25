@@ -223,14 +223,13 @@ export const IxDrawer = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer',
 
 
 export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-dropdown', undefined, [
+  'suppressAutomaticPlacement',
   'show',
   'trigger',
   'anchor',
   'closeBehavior',
   'placement',
   'positioningStrategy',
-  'adjustDropdownWidthToReferenceWith',
-  'adjustDropdownWidthToReferenceWidth',
   'header',
   'offset',
   'triggerEvent',
@@ -250,12 +249,19 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
 ]);
 
 
+export const IxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IxDropdownHeader>('ix-dropdown-header', undefined, [
+  'label'
+]);
+
+
 export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>('ix-dropdown-item', undefined, [
   'label',
   'icon',
   'hover',
   'disabled',
   'checked',
+  'isSubMenu',
+  'suppressChecked',
   'itemClick'
 ]);
 
@@ -603,6 +609,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nNoMatches',
   'hideListHeader',
   'itemSelectionChange',
+  'inputChange',
   'addItem'
 ]);
 
@@ -763,7 +770,8 @@ export const IxUpload = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload',
 
 export const IxValidationTooltip = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', undefined, [
   'message',
-  'placement'
+  'placement',
+  'suppressAutomaticPlacement'
 ]);
 
 

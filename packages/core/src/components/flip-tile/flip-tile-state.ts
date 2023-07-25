@@ -8,9 +8,9 @@
  */
 
 export enum FlipTileState {
-  None = 'None',
-  Info = 'Info',
-  Warning = 'Warning',
-  Alarm = 'Alarm',
-  Primary = 'Primary',
+  None = 'none',
+  Info = 'info',
+  Warning = 'warning',
+  Alarm = 'alarm',
+  Primary = 'primary',
 }

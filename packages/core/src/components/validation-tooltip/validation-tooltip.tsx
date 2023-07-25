@@ -8,21 +8,16 @@
  */
 import {
   arrow,
-  autoPlacement,
   autoUpdate,
   computePosition,
   ComputePositionConfig,
+  flip,
   inline,
   offset,
   shift,
 } from '@floating-ui/dom';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { getAlignment } from '../dropdown/alignment';
-import {
-  BasePlacement,
-  Placement,
-  PlacementWithAlignment,
-} from '../dropdown/placement';
+import { Side } from '../dropdown/placement';
 
 type Position = { x: number; y: number };
 
@@ -45,7 +40,14 @@ export class ValidationTooltip {
   /**
    * Placement of the tooltip
    */
-  @Prop() placement: Placement = 'top';
+  @Prop() placement: Side = 'top';
+
+  /**
+   * Suppress the automatic placement of the dropdown.
+   *
+   * @since 2.0.0
+   */
+  @Prop() suppressAutomaticPlacement = false;
 
   @State() isInputValid = true;
   @State() tooltipPosition: Position;
@@ -94,17 +96,12 @@ export class ValidationTooltip {
       ],
     };
 
-    if (this.placement.includes('auto')) {
+    if (!this.suppressAutomaticPlacement) {
       positionConfig.middleware.push(
-        autoPlacement({
-          alignment: getAlignment(this.placement),
-        })
+        flip({ fallbackStrategy: 'initialPlacement' })
       );
-    } else {
-      positionConfig.placement = this.placement as
-        | BasePlacement
-        | PlacementWithAlignment;
     }
+    positionConfig.placement = this.placement;
 
     this.autoUpdateCleanup = autoUpdate(
       this.inputElement,

@@ -33,6 +33,7 @@ export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIx
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer');
 export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTMLIxDropdownElement>('ix-dropdown');
 export const IxDropdownButton = /*@__PURE__*/createReactComponent<JSX.IxDropdownButton, HTMLIxDropdownButtonElement>('ix-dropdown-button');
+export const IxDropdownHeader = /*@__PURE__*/createReactComponent<JSX.IxDropdownHeader, HTMLIxDropdownHeaderElement>('ix-dropdown-header');
 export const IxDropdownItem = /*@__PURE__*/createReactComponent<JSX.IxDropdownItem, HTMLIxDropdownItemElement>('ix-dropdown-item');
 export const IxDropdownQuickActions = /*@__PURE__*/createReactComponent<JSX.IxDropdownQuickActions, HTMLIxDropdownQuickActionsElement>('ix-dropdown-quick-actions');
 export const IxEmptyState = /*@__PURE__*/createReactComponent<JSX.IxEmptyState, HTMLIxEmptyStateElement>('ix-empty-state');
