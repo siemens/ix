@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
 
 export type IconButtonVariant = ButtonVariant;
@@ -118,41 +118,25 @@ export class IconButton implements Button {
     };
   }
 
-  private getIconButtonClasses() {
-    return {
-      ...getButtonClasses(
-        this.variant,
-        this.outline,
-        this.ghost || this.invisible,
-        true,
-        this.oval,
-        this.selected,
-        this.disabled || this.loading
-      ),
-      'icon-button': true,
-      ...this.getIconSizeClass(),
-    };
-  }
-
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: true,
+      iconOval: this.oval,
+      selected: this.selected,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      iconSize: this.size,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+      extraClasses: this.getIconSizeClass(),
+    };
     return (
       <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
-        <button
-          class={this.getIconButtonClasses()}
-          type={this.type}
-          onClick={() => this.dispatchFormEvents()}
-        >
-          {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
-          ) : null}
-          {this.icon && !this.loading ? (
-            <ix-icon
-              size={this.size}
-              name={this.icon}
-              color={this.color}
-            ></ix-icon>
-          ) : null}
-        </button>
+        <BaseButton {...baseButtonProps}></BaseButton>
       </Host>
     );
   }

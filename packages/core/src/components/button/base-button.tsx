@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { h } from '@stencil/core';
 import { ButtonVariant } from './button';
 
 const isPrimary = (variant: string) => {
@@ -40,3 +40,47 @@ export const getButtonClasses = (
     disabled: disabled,
   };
 };
+
+export type BaseButtonProps = {
+  type: string;
+  variant: ButtonVariant;
+  outline: boolean;
+  ghost: boolean;
+  iconOnly: boolean;
+  iconOval: boolean;
+  selected: boolean;
+  disabled: boolean;
+  loading: boolean;
+  icon: string;
+  onClick: Function;
+  extraClasses?: { [key: string]: boolean };
+  iconSize?: string;
+};
+
+export function BaseButton(props: BaseButtonProps, children) {
+  const extraClasses = props.extraClasses ?? {};
+  return (
+    <button
+      onClick={() => props.onClick()}
+      type={props.type}
+      class={{
+        ...getButtonClasses(
+          props.variant,
+          props.outline,
+          props.ghost,
+          props.iconOnly,
+          props.iconOval,
+          props.selected,
+          props.disabled || props.loading
+        ),
+        ...extraClasses,
+      }}
+    >
+      {props.loading ? <ix-spinner size="small" hideTrack></ix-spinner> : null}
+      {props.icon && !props.loading ? (
+        <ix-icon name={props.icon} size={props.iconSize as any}></ix-icon>
+      ) : null}
+      <div class={'content'}>{children}</div>
+    </button>
+  );
+}

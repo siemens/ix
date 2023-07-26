@@ -9,22 +9,70 @@
 
 @import 'common-variables';
 @import './components/buttons';
+@import '../button/button-mixin.scss';
+
+@include btn;
+$button-categories: (primary, secondary);
+@each $category in $button-categories {
+  @include btn-variant($category);
+  @include btn-variant('outline-#{$category}');
+  @include btn-variant('invisible-#{$category}', false);
+}
 
 :host {
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-  .icon-button {
+  button {
     padding: 0;
-    overflow: hidden;
   }
 
-  button:not(:disabled) {
-    cursor: pointer;
+  button.btn-oval,
+  button.btn-icon {
+    min-width: $x-large-space;
+    width: $x-large-space;
+
+    .glyph {
+      margin-right: 0;
+    }
+  }
+
+  button.btn-oval {
+    border-radius: 6.25rem;
+    width: $default-control-height;
+  }
+
+  button.btn-icon-xs,
+  button.btn-icon-12 {
+    height: $default-space;
+    width: $default-space;
+    min-width: $default-space;
+    min-height: $default-space;
+  }
+
+  button.btn-icon-s,
+  button.btn-icon-16 {
+    height: $large-space;
+    width: $large-space;
+    min-width: $large-space;
+    min-height: $large-space;
+  }
+
+  button.btn-icon-32 {
+    height: $x-large-space;
+    width: $x-large-space;
+    min-width: $x-large-space;
+    min-height: $x-large-space;
   }
 
   ix-icon {
     color: var(--ix-icon-button-color);
+    margin: 0;
+  }
+
+  ix-spinner {
+    margin: 0;
   }
 }
 
@@ -47,8 +95,4 @@
     height: 24px;
     width: 24px;
   }
-}
-
-:host(.disabled) {
-  pointer-events: none;
 }

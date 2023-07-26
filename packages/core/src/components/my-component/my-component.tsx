@@ -15,6 +15,43 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-button>Test</ix-button>
+        <ix-button variant="secondary" icon="rocket" loading>
+          Test Test Test Test Test Test Test Test Test
+        </ix-button>
+
+        <ix-button disabled ghost>
+          Test
+        </ix-button>
+        <ix-button variant="secondary" ghost>
+          Test
+        </ix-button>
+
+        <ix-button outline>Test</ix-button>
+        <ix-button variant="secondary" outline>
+          Test
+        </ix-button>
+
+        <ix-icon-button
+          icon="rocket"
+          variant="primary"
+          size="12"
+        ></ix-icon-button>
+        <ix-icon-button
+          icon="rocket"
+          variant="primary"
+          size="16"
+        ></ix-icon-button>
+        <ix-icon-button
+          icon="rocket"
+          variant="primary"
+          size="24"
+        ></ix-icon-button>
+
+        <ix-chip closable>Test</ix-chip>
+      </Host>
+    );
   }
 }
