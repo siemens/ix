@@ -214,7 +214,11 @@ export class Upload {
             disabled: this.disabled,
             multiline: this.multiline,
           }}
-          onDrop={(e) => this.fileDropped(e)}
+          onDrop={(e) => {
+            if (this.state !== UploadFileState.LOADING) {
+              this.fileDropped(e);
+            }
+          }}
           onDragOver={(e) => this.fileOver(e)}
           onDragLeave={() => this.fileLeave()}
           draggable={!this.disabled}
