@@ -8945,7 +8945,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"large\" | \"medium\" | \"small\"",
+          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -8963,6 +8963,14 @@
             },
             {
               "value": "small",
+              "type": "string"
+            },
+            {
+              "value": "x-small",
+              "type": "string"
+            },
+            {
+              "value": "xx-small",
               "type": "string"
             }
           ],

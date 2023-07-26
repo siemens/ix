@@ -18,6 +18,9 @@ regressionTest.describe('modal', () => {
     const dialog = modal.locator('dialog');
 
     await expect(dialog).toBeVisible();
+    await dialog.click({
+      force: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -28,6 +31,9 @@ regressionTest.describe('modal', () => {
     const dialog = modal.locator('dialog');
 
     await expect(dialog).toBeVisible();
+    await dialog.click({
+      force: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
