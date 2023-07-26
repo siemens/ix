@@ -13,10 +13,10 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton className="m-1" outline={false}></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" pressed outline={false}></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" disabled outline={false}></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" disabled loading outline={false}></IxIconToggleButton>
+      <IxIconToggleButton className="m-1"></IxIconToggleButton>
+      <IxIconToggleButton className="m-1" pressed></IxIconToggleButton>
+      <IxIconToggleButton className="m-1" disabled></IxIconToggleButton>
+      <IxIconToggleButton className="m-1" disabled loading></IxIconToggleButton>
     </>
   );
 };

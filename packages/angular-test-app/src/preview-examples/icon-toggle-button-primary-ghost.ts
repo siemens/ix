@@ -15,27 +15,23 @@ import { Component } from '@angular/core';
     <ix-icon-toggle-button
       variant="Primary"
       ghost
-      outline="false"
       class="m-1"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="Primary"
       ghost
-      outline="false"
       class="m-1"
       pressed
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="Primary"
       ghost
-      outline="false"
       class="m-1"
       disabled
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="Primary"
       ghost
-      outline="false"
       class="m-1"
       disabled
       loading

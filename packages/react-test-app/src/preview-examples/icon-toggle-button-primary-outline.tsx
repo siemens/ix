@@ -16,26 +16,26 @@ export default () => {
       <IxIconToggleButton
         className="m-1"
         variant="primary"
-        outline={false}
+        outline
       ></IxIconToggleButton>
       <IxIconToggleButton
         className="m-1"
         variant="primary"
         pressed
-        outline={false}
+        outline
       ></IxIconToggleButton>
       <IxIconToggleButton
         className="m-1"
         variant="primary"
         disabled
-        outline={false}
+        outline
       ></IxIconToggleButton>
       <IxIconToggleButton
         className="m-1"
         variant="primary"
         disabled
         loading
-        outline={false}
+        outline
       ></IxIconToggleButton>
     </>
   );

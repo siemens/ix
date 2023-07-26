@@ -38,7 +38,7 @@ export class ToggleButton {
   /**
    * Outline button
    */
-  @Prop() outline = true;
+  @Prop() outline = false;
 
   /**
    * Button with no background or outline

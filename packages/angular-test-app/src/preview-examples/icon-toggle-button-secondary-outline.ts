@@ -12,41 +12,60 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button class="m-1"></ix-icon-toggle-button>
-    <ix-icon-toggle-button class="m-1" pressed></ix-icon-toggle-button>
-    <ix-icon-toggle-button class="m-1" disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button class="m-1" disabled loading></ix-icon-toggle-button>
-
-    <ix-icon-toggle-button class="m-1" size="16"></ix-icon-toggle-button>
+    <ix-icon-toggle-button outline class="m-1"></ix-icon-toggle-button>
+    <ix-icon-toggle-button outline class="m-1" pressed></ix-icon-toggle-button>
+    <ix-icon-toggle-button outline class="m-1" disabled></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
+      class="m-1"
+      disabled
+      loading
+    ></ix-icon-toggle-button>
+
+    <ix-icon-toggle-button
+      outline
+      class="m-1"
+      size="16"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
       class="m-1"
       size="16"
       pressed
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
       class="m-1"
       size="16"
       disabled
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
       class="m-1"
       size="16"
       disabled
       loading
     ></ix-icon-toggle-button>
 
-    <ix-icon-toggle-button class="m-1" size="24"></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
+      class="m-1"
+      size="24"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
       class="m-1"
       size="24"
       pressed
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
       class="m-1"
       size="24"
       disabled
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
+      outline
       class="m-1"
       size="24"
       disabled

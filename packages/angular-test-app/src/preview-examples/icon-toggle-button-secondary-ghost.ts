@@ -12,26 +12,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
+    <ix-icon-toggle-button ghost class="m-1"></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost class="m-1" pressed></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost class="m-1" disabled></ix-icon-toggle-button>
     <ix-icon-toggle-button
       ghost
-      outline="false"
-      class="m-1"
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      ghost
-      outline="false"
-      class="m-1"
-      pressed
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      ghost
-      outline="false"
-      class="m-1"
-      disabled
-    ></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      ghost
-      outline="false"
       class="m-1"
       disabled
       loading
