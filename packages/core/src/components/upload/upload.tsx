@@ -111,8 +111,10 @@ export class Upload {
   }
 
   private fileOver(event: DragEvent) {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
+    if (this.state !== UploadFileState.LOADING) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    }
 
     if (!this.multiple && event.dataTransfer.items.length > 1) {
       event.preventDefault();
@@ -206,7 +208,8 @@ export class Upload {
         <div
           class={{
             'file-upload-area': true,
-            'file-over': this.isFileOver,
+            'file-over':
+              this.state !== UploadFileState.LOADING && this.isFileOver,
             checking: this.state === UploadFileState.LOADING,
             disabled: this.disabled,
             multiline: this.multiline,
