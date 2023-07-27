@@ -14,8 +14,6 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
-  componentDidLoad() {}
-
   render() {
     return <Host></Host>;
   }

@@ -17,6 +17,7 @@ import {
   Prop,
 } from '@stencil/core';
 import anime from 'animejs';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
@@ -29,6 +30,8 @@ export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
   shadow: true,
 })
 export class Modal {
+  private ariaAttributes: A11yAttributes = {};
+
   @Element() hostElement!: HTMLIxModalElement;
 
   /**
@@ -197,6 +200,10 @@ export class Modal {
     this.slideInModal();
   }
 
+  componentWillLoad() {
+    this.ariaAttributes = a11yHostAttributes(this.hostElement);
+  }
+
   render() {
     return (
       <Host
@@ -207,6 +214,9 @@ export class Modal {
       >
         <div class="dialog-backdrop">
           <dialog
+            aria-modal={a11yBoolean(true)}
+            aria-describedby={this.ariaAttributes['aria-describedby']}
+            aria-labelledby={this.ariaAttributes['aria-labelledby']}
             class={`modal modal-size-${this.size}`}
             onKeyDown={(e) => {
               if (e.key === 'Escape' && this.keyboard === false) {

@@ -10,6 +10,22 @@
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
+function setA11yAttributes(element: HTMLElement, config: MessageContent) {
+  const ariaDescribedby = config.ariaDescribedby;
+  const ariaLabelledby = config.ariaLabelledby;
+
+  delete config['ariaDescribedby'];
+  delete config['ariaLabelledby'];
+
+  if (ariaDescribedby) {
+    element.setAttribute('aria-describedby', ariaDescribedby);
+  }
+
+  if (ariaLabelledby) {
+    element.setAttribute('aria-labelledby', ariaLabelledby);
+  }
+}
+
 function createConfirmButtons(
   textOkay: string,
   textCancel?: string,
@@ -50,6 +66,8 @@ export type MessageContent = {
     text: string;
     payload?: any;
   }[];
+  ariaLabelledby?: string;
+  ariaDescribedby?: string;
 };
 
 export async function showMessage<T>(config: MessageContent) {
@@ -61,6 +79,8 @@ export async function showMessage<T>(config: MessageContent) {
   const header = document.createElement('ix-modal-header');
   const content = document.createElement('ix-modal-content');
   const footer = document.createElement('ix-modal-footer');
+
+  setA11yAttributes(dialog, config);
 
   Object.assign(header, config);
   Object.assign(content, config);
@@ -101,7 +121,9 @@ export async function showMessage<T>(config: MessageContent) {
   dialog.appendChild(content);
   dialog.appendChild(footer);
 
-  const dialogRef = await getCoreDelegate().attachView(dialog);
+  const dialogRef = await getCoreDelegate().attachView<HTMLIxModalElement>(
+    dialog
+  );
 
   dialogRef.addEventListener(
     'dialogClose',
@@ -129,6 +151,7 @@ export async function showMessage<T>(config: MessageContent) {
     }
   );
 
+  dialogRef.showModal();
   return onMessageAction;
 }
 

@@ -11,10 +11,26 @@ import { IxModalSize } from '../../modal/modal';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
+export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
+  const ariaDescribedby = config.ariaDescribedby;
+  const ariaLabelledby = config.ariaLabelledby;
+
+  delete config['ariaDescribedby'];
+  delete config['ariaLabelledby'];
+
+  if (ariaDescribedby) {
+    element.setAttribute('aria-describedby', ariaDescribedby);
+  }
+
+  if (ariaLabelledby) {
+    element.setAttribute('aria-labelledby', ariaLabelledby);
+  }
+}
+
 export interface ModalConfig<TReason = any, CONTENT = any> {
   animation?: boolean;
-  ariaDescribedBy?: string;
-  ariaLabelledBy?: string;
+  ariaDescribedby?: string;
+  ariaLabelledby?: string;
   backdrop?: boolean;
   closeOnBackdropClick?: boolean;
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
@@ -82,7 +98,11 @@ export async function showModal<T>(
     dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
   }
 
+  setA11yAttributes(dialogRef, config);
   Object.assign(dialogRef, config);
+
+  dialogRef.setAttribute('ariaDescribedby', 'Test');
+
   dialogRef.showModal();
   dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {
     onClose.emit(detail);

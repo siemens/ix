@@ -17,7 +17,10 @@ export interface FrameworkDelegate {
 }
 
 class DefaultFrameworkDelegate implements FrameworkDelegate {
-  async attachView(view: any, config?: DelegateConfig) {
+  async attachView<R = HTMLElement>(
+    view: any,
+    config?: DelegateConfig
+  ): Promise<R> {
     const attachToElement = config?.parentElement ?? document.body;
     attachToElement.appendChild(view);
     return view;
