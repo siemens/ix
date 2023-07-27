@@ -39,7 +39,6 @@ export const DIRECTIVES = [
   d.IxFlipTileContent,
   d.IxGroup,
   d.IxGroupContextMenu,
-  d.IxGroupDropdownItem,
   d.IxGroupItem,
   d.IxIcon,
   d.IxIconButton,

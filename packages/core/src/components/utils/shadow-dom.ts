@@ -12,3 +12,11 @@ export function closestElement(selector: string, el: any) {
     closestElement(selector, (el.getRootNode() as any).host)
   );
 }
+
+export function getSlottedElements(slot: any) {
+  return slot.assignedElements({ flatten: true });
+}
+
+export function hasSlottedElements(slot: any) {
+  return slot.assignedElements({ flatten: true }).length !== 0;
+}

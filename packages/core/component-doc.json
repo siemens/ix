@@ -3618,7 +3618,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
-        "ix-group-dropdown-item",
         "ix-menu-avatar-item",
         "ix-menu-category",
         "ix-select",
@@ -3633,9 +3632,6 @@
           "ix-icon"
         ],
         "ix-breadcrumb": [
-          "ix-dropdown-item"
-        ],
-        "ix-group-dropdown-item": [
           "ix-dropdown-item"
         ],
         "ix-menu-avatar-item": [
@@ -4533,7 +4529,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon",
@@ -4707,14 +4703,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/group",
@@ -4727,7 +4716,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-group"
       ],
@@ -4755,71 +4744,6 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/group-dropdown-item",
-      "filePath": "./src/components/group-dropdown-item/group-dropdown-item.tsx",
-      "fileName": "group-dropdown-item.tsx",
-      "readmePath": "./src/components/group-dropdown-item/readme.md",
-      "usagesDir": "./src/components/group-dropdown-item/usage",
-      "tag": "ix-group-dropdown-item",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
-      "dependencyGraph": {
-        "ix-group-dropdown-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-dropdown-item": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "icon",
-          "type": "string",
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Group dropdown icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "mutable": false,
-          "attr": "label",
-          "reflectToAttr": false,
-          "docs": "Group dropdown label",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/group-item",
       "filePath": "./src/components/group-item/group-item.tsx",
       "fileName": "group-item.tsx",
@@ -4830,7 +4754,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-group"
       ],
