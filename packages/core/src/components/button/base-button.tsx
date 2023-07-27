@@ -55,6 +55,7 @@ export type BaseButtonProps = {
   onClick: Function;
   extraClasses?: { [key: string]: boolean };
   iconSize?: string;
+  iconColor?: string;
 };
 
 export function BaseButton(props: BaseButtonProps, children) {
@@ -78,7 +79,11 @@ export function BaseButton(props: BaseButtonProps, children) {
     >
       {props.loading ? <ix-spinner size="small" hideTrack></ix-spinner> : null}
       {props.icon && !props.loading ? (
-        <ix-icon name={props.icon} size={props.iconSize as any}></ix-icon>
+        <ix-icon
+          name={props.icon}
+          size={props.iconSize as any}
+          color={props.iconColor}
+        ></ix-icon>
       ) : null}
       <div class={'content'}>{children}</div>
     </button>

@@ -9746,7 +9746,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -9768,6 +9769,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-time-picker"
+        ],
+        "my-component": [
           "ix-time-picker"
         ]
       },
@@ -11515,13 +11519,15 @@
       "dependencies": [
         "ix-button",
         "ix-icon-button",
-        "ix-chip"
+        "ix-chip",
+        "ix-time-picker"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-button",
           "ix-icon-button",
-          "ix-chip"
+          "ix-chip",
+          "ix-time-picker"
         ],
         "ix-button": [
           "ix-spinner",
@@ -11534,6 +11540,11 @@
         "ix-chip": [
           "ix-icon-button",
           "ix-icon"
+        ],
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button"
         ]
       },
       "props": [],

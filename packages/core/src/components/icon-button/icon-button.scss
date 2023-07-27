@@ -8,7 +8,6 @@
  */
 
 @import 'common-variables';
-@import './components/buttons';
 @import '../button/button-mixin.scss';
 
 @include btn;
@@ -25,45 +24,14 @@ $button-categories: (primary, secondary);
   align-items: center;
 
   button {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     padding: 0;
-  }
-
-  button.btn-oval,
-  button.btn-icon {
-    min-width: $x-large-space;
-    width: $x-large-space;
-
-    .glyph {
-      margin-right: 0;
-    }
   }
 
   button.btn-oval {
     border-radius: 6.25rem;
-    width: $default-control-height;
-  }
-
-  button.btn-icon-xs,
-  button.btn-icon-12 {
-    height: $default-space;
-    width: $default-space;
-    min-width: $default-space;
-    min-height: $default-space;
-  }
-
-  button.btn-icon-s,
-  button.btn-icon-16 {
-    height: $large-space;
-    width: $large-space;
-    min-width: $large-space;
-    min-height: $large-space;
-  }
-
-  button.btn-icon-32 {
-    height: $x-large-space;
-    width: $x-large-space;
-    min-width: $x-large-space;
-    min-height: $x-large-space;
   }
 
   ix-icon {
@@ -75,6 +43,21 @@ $button-categories: (primary, secondary);
     margin: 0;
   }
 }
+
+@mixin icon-button-size($sizeName, $size) {
+  :host(.btn-icon-#{$sizeName}) {
+    height: $size;
+    width: $size;
+    min-width: $size;
+    min-height: $size;
+
+    @content;
+  }
+}
+
+@include icon-button-size('12', 1rem);
+@include icon-button-size('16', 1.5rem);
+@include icon-button-size('32', 2rem);
 
 :host(.btn-icon-12) {
   ix-spinner {

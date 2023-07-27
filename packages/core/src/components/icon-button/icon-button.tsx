@@ -128,6 +128,7 @@ export class IconButton implements Button {
       selected: this.selected,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconColor: this.color,
       iconSize: this.size,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),

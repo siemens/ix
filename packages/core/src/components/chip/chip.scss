@@ -51,7 +51,7 @@ $predefined-chips: alarm, critical, warning, info, neutral, success;
 
   .close-button-container {
     display: inline-flex;
-    margin-left: $medium-space;
+    margin-left: 0.5rem;
   }
 
   .slot-container {

@@ -50,7 +50,32 @@ export class MyComponent {
           size="24"
         ></ix-icon-button>
 
-        <ix-chip closable>Test</ix-chip>
+        <ix-chip closable outline>
+          Test custom custom cusomt custom
+        </ix-chip>
+        <ix-time-picker></ix-time-picker>
+
+        <ix-dropdown-button
+          style={{ width: '10rem' }}
+          label="Dropdown 123 123 12312312312312312 132"
+          variant="primary"
+          icon="checkboxes"
+        >
+          <ix-dropdown-item label="Test"></ix-dropdown-item>
+          <ix-dropdown-item label="Test"></ix-dropdown-item>
+          <ix-dropdown-item label="Test"></ix-dropdown-item>
+        </ix-dropdown-button>
+
+        <ix-card-list></ix-card-list>
+
+        <ix-filter-chip>Test</ix-filter-chip>
+
+        <ix-expanding-search></ix-expanding-search>
+
+        <ix-icon-button icon="rocket" oval size="12"></ix-icon-button>
+        <ix-icon-button icon="rocket" oval size="16"></ix-icon-button>
+        <ix-icon-button icon="rocket" oval size="24"></ix-icon-button>
+        <ix-icon-button icon="rocket" oval size="32"></ix-icon-button>
       </Host>
     );
   }
