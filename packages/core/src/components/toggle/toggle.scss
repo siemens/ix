@@ -86,6 +86,7 @@
   display: flex;
   align-items: center;
   outline: none;
+  width: fit-content;
 
   .switch {
     position: relative;
@@ -93,12 +94,6 @@
     align-items: center;
     min-width: $slide-toggle-width;
     height: $default-control-height;
-
-    @include focus-visible {
-      outline-color: var(--focus--border-color);
-      outline-style: solid;
-      outline-width: 1px;
-    }
   }
 
   .switch input {
@@ -122,30 +117,27 @@
       background-color: var(--theme-switch-off--background);
       border-radius: 2.125rem;
       border: 1px solid var(--theme-switch-off--border-color);
-      width: 2.5rem;
-      height: $default-space;
+      width: 3rem;
+      height: 1.5rem;
     }
   }
 
   .slider:before {
     position: absolute;
     content: '';
-    height: 1.5rem;
-    width: 1.5rem;
-    left: 0.125rem;
+    height: 1.125rem;
+    width: 1.125rem;
+    left: 0.188rem;
     background-color: var(--theme-switch-thumb-off--background);
     -webkit-transition: transform $default-time;
     transition: transform $default-time;
     border-radius: 50%;
-    border: 1px solid var(--theme-switch-thumb-off--border-color);
-    box-shadow: var(--theme-switch-thumb--box-shadow);
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(1.125rem);
-    -ms-transform: translateX(1.125rem);
-    transform: translateX(1.125rem);
-    left: $tiny-space;
+    -webkit-transform: translateX(1.5rem);
+    -ms-transform: translateX(1.5rem);
+    transform: translateX(1.5rem);
   }
 
   .text {
@@ -173,6 +165,16 @@
     }
   }
 
+  :focus-visible {
+    outline: none;
+    .slider-track {
+      outline-color: var(--theme-color-focus-bdr);
+      outline-style: solid;
+      outline-width: 1px;
+      outline-offset: 2px;
+    }
+  }
+
   @include active {
     .slider:before {
       background-color: var(--theme-switch-thumb-off--background--active);
@@ -197,7 +199,7 @@
     @include toggle('mixed');
 
     .slider:before {
-      transform: translateX(0.625rem);
+      transform: translateX(0.75rem);
     }
   }
 
