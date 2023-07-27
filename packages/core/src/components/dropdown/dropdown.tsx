@@ -28,7 +28,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { BasePlacement, Placement, PlacementWithAlignment } from './placement';
+import { AlignedPlacement } from './placement';
 
 /**
  * @internal
@@ -46,6 +46,13 @@ let sequenceId = 0;
 })
 export class Dropdown {
   @Element() hostElement!: HTMLIxDropdownElement;
+
+  /**
+   * Suppress the automatic placement of the dropdown.
+   *
+   * @since 2.0.0
+   */
+  @Prop() suppressAutomaticPlacement = false;
 
   /**
    * Show dropdown
@@ -71,25 +78,12 @@ export class Dropdown {
   /**
    * Placement of the dropdown
    */
-  @Prop() placement: Placement = 'bottom-start';
+  @Prop() placement: AlignedPlacement = 'bottom-start';
 
   /**
    * Position strategy
    */
   @Prop() positioningStrategy: 'absolute' | 'fixed' = 'fixed';
-
-  /**
-   * Adjust dropdown width to the parent width
-   * @deprecated Will be removed in 2.0.0. Property has a typo use `adjustDropdownWidthToReferenceWidth` instead.
-   */
-  @Prop() adjustDropdownWidthToReferenceWith = false;
-
-  /**
-   * Adjust dropdown width to the parent width
-   *
-   * @deprecated Will be removed. Not used anymore
-   */
-  @Prop() adjustDropdownWidthToReferenceWidth = false;
 
   /**
    * An optional header shown at the top of the dropdown
@@ -259,7 +253,7 @@ export class Dropdown {
 
     if (newShow) {
       dropdownDisposer.forEach((dispose, id) => {
-        if (id !== this.localUId) {
+        if (id !== this.localUId && !this.isAnchorSubmenu()) {
           dispose();
         }
       });
@@ -388,20 +382,13 @@ export class Dropdown {
       middleware: [],
     };
 
-    if (isSubmenu) {
-      positionConfig.placement = 'right-start';
-    }
-
-    if (this.placement.includes('auto') || isSubmenu) {
+    if (!this.suppressAutomaticPlacement) {
       positionConfig.middleware.push(
         flip({ fallbackStrategy: 'initialPlacement' })
       );
-      positionConfig.placement = 'bottom-start';
-    } else {
-      positionConfig.placement = this.placement as
-        | BasePlacement
-        | PlacementWithAlignment;
     }
+
+    positionConfig.placement = isSubmenu ? 'right-start' : this.placement;
 
     positionConfig.middleware = [
       ...positionConfig.middleware,
@@ -453,7 +440,7 @@ export class Dropdown {
 
   async componentDidLoad() {
     if (this.trigger) {
-      this.registerListener(this.trigger);
+      this.changedTrigger(this.trigger, null);
     }
   }
 
@@ -462,6 +449,13 @@ export class Dropdown {
     this.anchorElement = await (this.anchor
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
+
+    if (
+      this.isAnchorSubmenu() &&
+      this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM'
+    ) {
+      (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
+    }
   }
 
   disconnectedCallback() {
