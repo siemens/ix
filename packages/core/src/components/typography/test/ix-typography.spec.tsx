@@ -8,11 +8,9 @@ describe('ix-typography', () => {
       html: `<ix-typography>Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography>
+      <ix-typography class="text-default" style="color: inherit;">
         <mock:shadow-root>
-        <div class="text-default" style="color: inherit;">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>
@@ -25,11 +23,9 @@ describe('ix-typography', () => {
       html: `<ix-typography color="soft">Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography color="soft">
+      <ix-typography color="soft" class="text-default" style="color: var(--theme-color-soft-text);">
         <mock:shadow-root>
-        <div class="text-default" style="color: var(--theme-color-soft-text);">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>
@@ -42,11 +38,9 @@ describe('ix-typography', () => {
       html: `<ix-typography variant="h2">Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography variant="h2">
+      <ix-typography variant="h2" class="text-h2" style="color: inherit;">
         <mock:shadow-root>
-        <div class="text-h2" style="color: inherit;">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>

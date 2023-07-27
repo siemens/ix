@@ -131,7 +131,16 @@ export class IconButton implements Button {
           onClick={() => this.dispatchFormEvents()}
         >
           {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
+            <ix-spinner
+              size={
+                this.size === '12'
+                  ? 'xx-small'
+                  : this.size === '16'
+                  ? 'x-small'
+                  : 'small'
+              }
+              hideTrack
+            ></ix-spinner>
           ) : null}
           {this.icon && !this.loading ? (
             <ix-icon
