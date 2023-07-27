@@ -1337,7 +1337,7 @@ export namespace Components {
          */
         "backdrop": boolean;
         /**
-          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to about in dismissing the modal
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
         /**
@@ -4277,7 +4277,7 @@ declare namespace LocalJSX {
          */
         "backdrop"?: boolean;
         /**
-          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to about in dismissing the modal
+          * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
         "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**

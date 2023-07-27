@@ -6,7 +6,7 @@
 
 #### Function to display modal renamed
 
-This breaking change only affects the function `modal` which are exported from `@siemens/ix` (not `@siemens/ix-angular` etc).
+This breaking change only affects the function `modal` which is exported from `@siemens/ix` (not `@siemens/ix-angular` etc).
 
 ___Before___
 
@@ -22,7 +22,7 @@ export async function showModal<T = any>( config: ModalConfig<T>): Promise<Modal
 
 #### Container component `ix-modal-container` removed 
 
-Container is not needed anymore because model system of iX is using `HTMLDialog` as
+Container is not needed anymore because the iX modal system is using `HTMLDialog` now as
 basic system to open modal dialogs
 
 #### Property `size` changed
@@ -68,11 +68,11 @@ const config: ModalConfig = {
 }
 ```
 
-- `icon` and `iconColor` is removed, successor is `ix-modal-header` component.
+- `icon` and `iconColor` were removed, successor is the `ix-modal-header` component.
 
 #### Property `backdropClass` removed
 
-To get a consistent ui design be decided to remove custom backdrops.
+To get a consistent UI design we decided to remove custom backdrops.
 
 ### `ix-flip-tile`
 

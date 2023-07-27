@@ -71,7 +71,7 @@ frameworks={{
 
 :::info Use context
 
-It is highly recommanded to provide the `IxApplicationContext` as part of you application.
+It is highly recommended to provide the `IxApplicationContext` as part of your application.
 
 :::
 
@@ -116,7 +116,7 @@ frameworks={{
 
 ## Loading
 
-How to open a loading is independent from a framework in use. Note that you hve to import the `showLoadingModal` from the core package `@siemens/ix`
+How to open a loading modal is independent from the framework in use. Note that you have to import `showLoadingModal` from the core package `@siemens/ix`.
 
 <Playground name="loading" frameworks={{
   react: SourceReactLoading,
@@ -124,7 +124,7 @@ How to open a loading is independent from a framework in use. Note that you hve 
 
 ## Message
 
-How to open a message is independent from a framework in use. Note that you hve to import the `showMessage` from the core package `@siemens/ix`.
+How to open a message modal is independent from the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
 
 `showMessage` provides multiple pre-configured messages:
 
@@ -138,7 +138,7 @@ How to open a message is independent from a framework in use. Note that you hve 
   react: SourceReactMessage,
 }}/>
 
-The `showMessage`-method returns a Listener with the following signature:
+The `showMessage` method returns a Listener with the following signature:
 
 ```ts
 TypedEvent<{

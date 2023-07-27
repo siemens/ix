@@ -59,7 +59,7 @@ export class Modal {
    * Is called before the modal is dismissed.
    *
    * - Return `true` to proceed in dismissing the modal
-   * - Return `false` to about in dismissing the modal
+   * - Return `false` to abort in dismissing the modal
    */
   @Prop() beforeDismiss: (reason?: any) => boolean | Promise<boolean>;
 
@@ -120,6 +120,18 @@ export class Modal {
         }
       },
     });
+  }
+
+  private onModalClick(event: MouseEvent) {
+    const rect = this.dialog.getBoundingClientRect();
+    const isClickOutside =
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width;
+    if (!isClickOutside && this.closeOnBackdropClick) {
+      this.dismissModal();
+    }
   }
 
   /**
@@ -201,17 +213,7 @@ export class Modal {
                 e.preventDefault();
               }
             }}
-            onClick={(event) => {
-              const rect = this.dialog.getBoundingClientRect();
-              const isClickOutside =
-                rect.top <= event.clientY &&
-                event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX &&
-                event.clientX <= rect.left + rect.width;
-              if (!isClickOutside && this.closeOnBackdropClick) {
-                this.dismissModal();
-              }
-            }}
+            onClick={(event) => this.onModalClick(event)}
             onCancel={(e) => {
               e.preventDefault();
               this.dismissModal();
