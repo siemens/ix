@@ -146,8 +146,8 @@ export class Drawer {
     });
   }
 
-  componentDidRender() {
-    this.toggleDrawer(this.show);
+  componentDidLoad() {
+    this.onShowChanged(this.show);
   }
 
   render() {
