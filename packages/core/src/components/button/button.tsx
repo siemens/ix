@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from './base-button';
+import { BaseButton, BaseButtonProps } from './base-button';
 
 export type ButtonVariant = 'primary' | 'secondary';
 
@@ -81,33 +81,29 @@ export class Button {
   }
 
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: false,
+      iconOval: false,
+      selected: this.selected,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+    };
+
     return (
       <Host
         class={{
           disabled: this.disabled,
         }}
       >
-        <button
-          onClick={() => this.dispatchFormEvents()}
-          type={this.type}
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost,
-            false,
-            false,
-            false,
-            this.disabled || this.loading
-          )}
-        >
-          {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
-          ) : null}
-          {this.icon && !this.loading ? (
-            <ix-icon name={this.icon}></ix-icon>
-          ) : null}
+        <BaseButton {...baseButtonProps}>
           <slot></slot>
-        </button>
+        </BaseButton>
       </Host>
     );
   }

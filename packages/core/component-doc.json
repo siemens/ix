@@ -324,7 +324,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -453,7 +455,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -5917,7 +5921,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -6190,7 +6196,9 @@
           "ix-menu-item"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -9028,6 +9036,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-burger-menu",
         "ix-button",
         "ix-icon-button",
         "ix-icon-toggle-button",
@@ -9037,6 +9046,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-burger-menu": [
+          "ix-spinner"
+        ],
         "ix-button": [
           "ix-spinner"
         ],
