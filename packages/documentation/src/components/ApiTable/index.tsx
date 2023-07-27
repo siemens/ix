@@ -59,16 +59,18 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
             {props?.attribute?.description}
           </span>
           <div className="container-fluid">
-            {props?.attribute?.definition?.map((attribute) => (
-              <div className="row Attribute" key={attribute.name}>
-                <div className="col-auto Attribute__Name">
-                  {attribute.name}:
+            {props?.attribute?.definition
+              ?.filter((attribute) => attribute.value !== undefined)
+              .map((attribute) => (
+                <div className="row Attribute" key={attribute.name}>
+                  <div className="col-auto Attribute__Name">
+                    {attribute.name}:
+                  </div>
+                  <code className="col-auto Attribute__Value">
+                    {attribute.value}
+                  </code>
                 </div>
-                <code className="col-auto Attribute__Value">
-                  {attribute.value}
-                </code>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

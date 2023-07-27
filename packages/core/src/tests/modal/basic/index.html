@@ -14,17 +14,26 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <ix-modal-container></ix-modal-container>
+    <ix-modal>
+      <ix-modal-header
+        >Dialog title Dialog titleDialog titleDialog titleDialog titleDialog
+        titleDialog title</ix-modal-header
+      >
+      <ix-modal-content>
+        My Content My Content My Content My Content My Content My Content My
+        Content My Content My Content My Content
+      </ix-modal-content>
+      <ix-modal-footer>
+        <ix-button outline>Cancel</ix-button>
+        <ix-button>Save</ix-button>
+      </ix-modal-footer>
+    </ix-modal>
     <script>
       (async () => {
-        await window.customElements.whenDefined('ix-modal-container');
-        const modalContainer = document.querySelector('ix-modal-container');
-        const div = document.createElement('ix-modal-example');
+        await window.customElements.whenDefined('ix-modal');
+        const modal = document.querySelector('ix-modal');
 
-        modalContainer.showModal({
-          content: div,
-          title: 'title',
-        });
+        modal.showModal();
       })();
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>

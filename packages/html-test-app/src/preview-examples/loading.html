@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Link Button</title>
+  </head>
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-button>Start loading</ix-button>
+    <script type="module">
+      import { showModalLoading } from '@siemens/ix';
+
+      const btn = document.querySelector('ix-button');
+      btn.addEventListener('click', () => {
+        let count = 0;
+        const progress = showModalLoading('Loading 0/2');
+        const interval = setInterval(() => {
+          count++;
+          progress.update(`Loading ${count}/2`);
+
+          if (count === 2) {
+            progress.finish('Done');
+            clearInterval(interval);
+          }
+        }, 1000);
+      });
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

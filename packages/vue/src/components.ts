@@ -536,31 +536,33 @@ export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-
 
 
 export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', undefined, [
+  'size',
   'animation',
-  'ariaDescribedBy',
-  'ariaLabelledBy',
   'backdrop',
-  'backdropClass',
+  'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'content',
   'keyboard',
-  'icon',
-  'iconColor',
-  'modalDialogClass',
-  'scrollable',
-  'size',
-  'headerTitle',
-  'windowClass',
-  'closed',
-  'dismissed'
+  'dialogClose',
+  'dialogDismiss'
 ]);
 
 
-export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContainer>('ix-modal-container', undefined);
+export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', undefined);
 
 
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
+
+
+export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('ix-modal-footer', undefined);
+
+
+export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
+  'hideClose',
+  'icon',
+  'iconColor',
+  'closeClick'
+]);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [

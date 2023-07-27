@@ -5016,6 +5016,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
+        "ix-modal-header",
         "ix-pagination",
         "ix-select",
         "ix-split-button",
@@ -5086,6 +5087,9 @@
           "ix-icon-button"
         ],
         "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-modal-header": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -7531,21 +7535,10 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-modal-container"
-      ],
-      "dependencies": [
-        "ix-icon"
-      ],
-      "dependencyGraph": {
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-modal-container": [
-          "ix-modal"
-        ]
-      },
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [
         {
           "name": "animation",
@@ -7553,45 +7546,12 @@
           "mutable": false,
           "attr": "animation",
           "reflectToAttr": false,
-          "docs": "Should the modal be animtated",
+          "docs": "Should the modal be animated",
           "docsTags": [],
           "default": "true",
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "ariaDescribedBy",
-          "type": "string",
-          "mutable": false,
-          "attr": "aria-described-by",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "ariaLabelledBy",
-          "type": "string",
-          "mutable": false,
-          "attr": "aria-labelled-by",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "default": "'modal-title'",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -7599,36 +7559,16 @@
         },
         {
           "name": "backdrop",
-          "type": "\"static\" | boolean",
+          "type": "boolean",
           "mutable": false,
           "attr": "backdrop",
           "reflectToAttr": false,
-          "docs": "Adds a dimming layer to the modal.\nThis should only be used when it it necessary to focus the user's attention to the dialog content (e.g. errors, warnings, complex tasks).",
+          "docs": "Show a backdrop behind the modal dialog",
           "docsTags": [],
           "default": "true",
           "values": [
             {
-              "value": "static",
-              "type": "string"
-            },
-            {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "backdropClass",
-          "type": "string",
-          "mutable": false,
-          "attr": "backdrop-class",
-          "reflectToAttr": false,
-          "docs": "Backdrop class",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -7639,7 +7579,7 @@
           "type": "(reason?: any) => boolean | Promise<boolean>",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "BeforeDismiss callback",
+          "docs": "Is called before the modal is dismissed.\n\n- Return `true` to proceed in dismissing the modal\n- Return `false` to abort in dismissing the modal",
           "docsTags": [],
           "values": [
             {
@@ -7670,85 +7610,22 @@
           "required": false
         },
         {
-          "name": "content",
-          "type": "HTMLElement | string",
+          "name": "closeOnBackdropClick",
+          "type": "boolean",
           "mutable": false,
-          "attr": "content",
+          "attr": "close-on-backdrop-click",
           "reflectToAttr": false,
-          "docs": "Content of modal",
-          "docsTags": [],
-          "values": [
+          "docs": "Dismiss modal on backdrop click",
+          "docsTags": [
             {
-              "type": "HTMLElement"
-            },
-            {
-              "type": "string"
+              "name": "since",
+              "text": "2.0.0"
             }
           ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "headerTitle",
-          "type": "string",
-          "mutable": false,
-          "attr": "header-title",
-          "reflectToAttr": false,
-          "docs": "Header title",
-          "docsTags": [],
+          "default": "false",
           "values": [
             {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "icon",
-          "type": "string",
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Optional icon displayed next to the title",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "iconColor",
-          "type": "\"color-alarm\" | \"color-info\" | \"color-std-text\" | \"color-success\" | \"color-warning\"",
-          "mutable": false,
-          "attr": "icon-color",
-          "reflectToAttr": false,
-          "docs": "Color of the header {@see ix-icon}",
-          "docsTags": [],
-          "default": "'color-std-text'",
-          "values": [
-            {
-              "value": "color-alarm",
-              "type": "string"
-            },
-            {
-              "value": "color-info",
-              "type": "string"
-            },
-            {
-              "value": "color-std-text",
-              "type": "string"
-            },
-            {
-              "value": "color-success",
-              "type": "string"
-            },
-            {
-              "value": "color-warning",
-              "type": "string"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -7760,40 +7637,7 @@
           "mutable": false,
           "attr": "keyboard",
           "reflectToAttr": false,
-          "docs": "ESC close modal dialog",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "modalDialogClass",
-          "type": "string",
-          "mutable": false,
-          "attr": "modal-dialog-class",
-          "reflectToAttr": false,
-          "docs": "Modal dialog class",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "scrollable",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "scrollable",
-          "reflectToAttr": false,
-          "docs": "Modal scollable",
+          "docs": "Use ESC to dismiss the modal",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -7806,40 +7650,41 @@
         },
         {
           "name": "size",
-          "type": "\"lg\" | \"sm\" | \"xl\"",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Modal size",
-          "docsTags": [],
-          "default": "'sm'",
-          "values": [
+          "docsTags": [
             {
-              "value": "lg",
-              "type": "string"
-            },
-            {
-              "value": "sm",
-              "type": "string"
-            },
-            {
-              "value": "xl",
-              "type": "string"
+              "name": "since",
+              "text": "2.0.0"
             }
           ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "windowClass",
-          "type": "string",
-          "mutable": false,
-          "attr": "window-class",
-          "reflectToAttr": false,
-          "docs": "Window class",
-          "docsTags": [],
+          "default": "'360'",
           "values": [
             {
+              "value": "360",
+              "type": "string"
+            },
+            {
+              "value": "480",
+              "type": "string"
+            },
+            {
+              "value": "600",
+              "type": "string"
+            },
+            {
+              "value": "720",
+              "type": "string"
+            },
+            {
+              "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-width",
               "type": "string"
             }
           ],
@@ -7849,55 +7694,56 @@
       ],
       "methods": [
         {
-          "name": "close",
+          "name": "closeModal",
           "returns": {
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "close<T = any>(result: T) => Promise<void>",
+          "signature": "closeModal<T = any>(reason: T) => Promise<void>",
           "parameters": [],
-          "docs": "Close modal",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "result"
-            }
-          ]
+          "docs": "Close the dialog",
+          "docsTags": []
         },
         {
-          "name": "dismiss",
+          "name": "dismissModal",
           "returns": {
             "type": "Promise<void>",
             "docs": ""
           },
-          "signature": "dismiss<T = any>(reason?: T) => Promise<void>",
+          "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
           "parameters": [],
-          "docs": "Dismiss modal instance",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "reason"
-            }
-          ]
+          "docs": "Dismiss the dialog",
+          "docsTags": []
+        },
+        {
+          "name": "showModal",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "showModal() => Promise<void>",
+          "parameters": [],
+          "docs": "Show the dialog",
+          "docsTags": []
         }
       ],
       "events": [
         {
-          "event": "closed",
+          "event": "dialogClose",
           "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Modal closed",
+          "docs": "Dialog close",
           "docsTags": []
         },
         {
-          "event": "dismissed",
+          "event": "dialogDismiss",
           "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Modal dismissed",
+          "docs": "Dialog cancel",
           "docsTags": []
         }
       ],
@@ -7907,53 +7753,27 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal-container",
-      "filePath": "./src/components/modal-container/modal-container.tsx",
-      "fileName": "modal-container.tsx",
-      "readmePath": "./src/components/modal-container/readme.md",
-      "usagesDir": "./src/components/modal-container/usage",
-      "tag": "ix-modal-container",
+      "dirPath": "./src/components/modal-content",
+      "filePath": "./src/components/modal-content/modal-content.tsx",
+      "fileName": "modal-content.tsx",
+      "readmePath": "./src/components/modal-content/readme.md",
+      "usagesDir": "./src/components/modal-content/usage",
+      "tag": "ix-modal-content",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [
-        "ix-modal-example"
-      ],
-      "dependencies": [
-        "ix-modal"
-      ],
-      "dependencyGraph": {
-        "ix-modal-container": [
-          "ix-modal"
-        ],
-        "ix-modal": [
-          "ix-icon"
-        ],
-        "ix-modal-example": [
-          "ix-modal-container"
-        ]
-      },
-      "props": [],
-      "methods": [
+      "docsTags": [
         {
-          "name": "showModal",
-          "returns": {
-            "type": "Promise<ModalInstance<T>>",
-            "docs": ""
-          },
-          "signature": "showModal<T = any>(config: ModalConfig<T>) => Promise<ModalInstance<T>>",
-          "parameters": [],
-          "docs": "Display modal dialog",
-          "docsTags": [
-            {
-              "name": "param",
-              "text": "config"
-            }
-          ]
+          "name": "since",
+          "text": "2.0.0"
         }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
       "events": [],
       "styles": [],
       "slots": [],
@@ -7975,14 +7795,12 @@
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
-        "ix-button",
-        "ix-modal-container"
+        "ix-button"
       ],
       "dependencyGraph": {
         "ix-modal-example": [
           "ix-icon-button",
-          "ix-button",
-          "ix-modal-container"
+          "ix-button"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -7991,17 +7809,141 @@
         "ix-button": [
           "ix-spinner",
           "ix-icon"
-        ],
-        "ix-modal-container": [
-          "ix-modal"
-        ],
-        "ix-modal": [
-          "ix-icon"
         ]
       },
       "props": [],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal-footer",
+      "filePath": "./src/components/modal-footer/modal-footer.tsx",
+      "fileName": "modal-footer.tsx",
+      "readmePath": "./src/components/modal-footer/readme.md",
+      "usagesDir": "./src/components/modal-footer/usage",
+      "tag": "ix-modal-footer",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/modal-header",
+      "filePath": "./src/components/modal-header/modal-header.tsx",
+      "fileName": "modal-header.tsx",
+      "readmePath": "./src/components/modal-header/readme.md",
+      "usagesDir": "./src/components/modal-header/usage",
+      "tag": "ix-modal-header",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-modal-header": [
+          "ix-icon",
+          "ix-typography",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "hideClose",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-close",
+          "reflectToAttr": false,
+          "docs": "Hide the close button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon of the Header",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Icon color",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "closeClick",
+          "detail": "MouseEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Close icon is clicked",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -8971,6 +8913,7 @@
       "dependents": [
         "ix-button",
         "ix-icon-button",
+        "ix-modal-loading",
         "ix-upload"
       ],
       "dependencies": [],
@@ -8981,6 +8924,9 @@
         "ix-icon-button": [
           "ix-spinner"
         ],
+        "ix-modal-loading": [
+          "ix-spinner"
+        ],
         "ix-upload": [
           "ix-spinner"
         ]
@@ -8988,7 +8934,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"large\" | \"medium\" | \"small\"",
+          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -9006,6 +8952,14 @@
             },
             {
               "value": "small",
+              "type": "string"
+            },
+            {
+              "value": "x-small",
+              "type": "string"
+            },
+            {
+              "value": "xx-small",
               "type": "string"
             }
           ],

@@ -33,6 +33,78 @@ export declare type AutoPlacement = 'auto' | 'auto-start' | 'auto-end';
 
 Placement will be automatically chosen depending on remaining space. If you want to suppress the automatic behavior you can set the property `suppress-automatic-placement`.
 
+### Modal
+
+#### Function to display modal renamed
+
+This breaking change only affects the function `modal` which is exported from `@siemens/ix` (not `@siemens/ix-angular` etc).
+
+___Before___
+
+```ts
+export async function modal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
+```
+
+___Now___
+```ts
+export async function showModal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
+```
+
+
+#### Container component `ix-modal-container` removed 
+
+Container is not needed anymore because the iX modal system is using `HTMLDialog` now as
+basic system to open modal dialogs
+
+#### Property `size` changed
+
+___Before___
+
+```ts
+export type IxModalSize = 'sm' | 'lg' | 'xl';
+```
+
+___Now___
+
+```ts
+export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
+export type IxModalDynamicSize = 'full-width';
+export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
+```
+
+#### Property ModalConfig changed/adapted
+
+- `scrollable` is removed, no successor
+- `modalDialogClass` is removed, no successor
+- `windowClass` is removed, no successor
+- `content` is now generic
+- `backdrop = 'static'` removed, successor will be `closeOnBackdropClick`.
+
+___Before___
+
+```tsx
+const config: ModalConfig = {
+  // Other properties
+  backdrop: 'static'
+}
+```
+
+___Now___
+
+```tsx
+const config: ModalConfig = {
+  // Other properties
+  backdrop: true // `true` is default
+  closeOnBackdropClick: true
+}
+```
+
+- `icon` and `iconColor` were removed, successor is the `ix-modal-header` component.
+
+#### Property `backdropClass` removed
+
+To get a consistent UI design we decided to remove custom backdrops.
+
 ### `ix-flip-tile`
 
 Change flip-state from

@@ -13,8 +13,27 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('modal', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('modal/basic');
-    await page.waitForSelector('ix-modal-example');
-    await page.waitForTimeout(500);
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+
+    await expect(dialog).toBeVisible();
+    await dialog.click({
+      force: true,
+    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('icon', async ({ page }) => {
+    await page.goto('modal/icon');
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+
+    await expect(dialog).toBeVisible();
+    await dialog.click({
+      force: true,
+    });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
