@@ -784,8 +784,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner",
@@ -824,9 +823,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -1691,9 +1687,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-icon"
@@ -1706,9 +1700,6 @@
         "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
-        ],
-        "my-component": [
-          "ix-chip"
         ]
       },
       "props": [
@@ -5033,8 +5024,7 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
-        "ix-toast",
-        "my-component"
+        "ix-toast"
       ],
       "dependencies": [
         "ix-spinner",
@@ -5115,9 +5105,6 @@
           "ix-icon-button"
         ],
         "ix-toast": [
-          "ix-icon-button"
-        ],
-        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -9746,8 +9733,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-datetime-picker",
-        "my-component"
+        "ix-datetime-picker"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -9769,9 +9755,6 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
-          "ix-time-picker"
-        ],
-        "my-component": [
           "ix-time-picker"
         ]
       },
@@ -11516,37 +11499,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-button",
-        "ix-icon-button",
-        "ix-chip",
-        "ix-time-picker"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-chip",
-          "ix-time-picker"
-        ],
-        "ix-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-chip": [
-          "ix-icon-button",
-          "ix-icon"
-        ],
-        "ix-time-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
