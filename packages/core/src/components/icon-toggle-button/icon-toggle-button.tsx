@@ -141,7 +141,16 @@ export class IconToggleButton {
           onClick={() => this.pressedChange.emit(!this.pressed)}
         >
           {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
+            <ix-spinner
+              size={
+                this.size === '12'
+                  ? 'xx-small'
+                  : this.size === '16'
+                  ? 'x-small'
+                  : 'small'
+              }
+              hideTrack
+            ></ix-spinner>
           ) : this.icon ? (
             <ix-icon name={this.icon} size={this.size}></ix-icon>
           ) : null}
