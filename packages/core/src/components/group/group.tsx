@@ -12,20 +12,23 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
-  Listen,
   Prop,
   State,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { hasSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-group',
   styleUrl: 'group.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Group {
+  @Element() hostElement!: HTMLIxGroupElement;
+
   /**
    * Prevent header from being selectable
    */
@@ -77,9 +80,12 @@ export class Group {
    */
   @Event() collapsedChanged: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLIxGroupElement;
-
   @State() itemSelected = false;
+  @State() dropdownTriggerRef: HTMLElement;
+  @State() slotSize = this.groupItems.length;
+  @State() footerVisible = false;
+
+  private observer: MutationObserver;
 
   get dropdownItems() {
     return Array.from(
@@ -94,41 +100,7 @@ export class Group {
   }
 
   get groupContent() {
-    return this.hostElement.querySelector('.group-content');
-  }
-
-  get footer() {
-    return this.hostElement.querySelector('.footer');
-  }
-
-  @State() dropdownTriggerRef: HTMLElement;
-
-  @State() slotSize = this.groupItems.length;
-
-  constructor() {}
-
-  @Listen('keydown', {
-    target: 'window',
-  })
-  async onKeyDown(event: KeyboardEvent) {
-    const targetElement = event.target as HTMLElement;
-
-    if (!this.hostElement.contains(targetElement)) {
-      return;
-    }
-
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      if (targetElement.classList.contains('group-header')) {
-        if (this.suppressHeaderSelection) {
-          this.collapsed = !this.collapsed;
-        } else {
-          this.selected = !this.selected;
-        }
-      } else if (targetElement.matches('ix-group-item')) {
-        const groupItem = targetElement as HTMLIxGroupItemElement;
-        groupItem.selected = !groupItem.selected;
-      }
-    }
+    return this.hostElement.shadowRoot.querySelector('.group-content');
   }
 
   private onExpandClick(event: Event) {
@@ -169,6 +141,16 @@ export class Group {
     }
   }
 
+  private onSlotChange() {
+    const slot = this.hostElement.shadowRoot.querySelector(
+      'slot[name="footer"]'
+    );
+
+    if (slot) {
+      this.footerVisible = hasSlottedElements(slot);
+    }
+  }
+
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
       if (this.selected === true) {
@@ -179,18 +161,8 @@ export class Group {
       }
       item.selected = index === this.index;
       item.index = index;
-      item.classList.remove('last');
-      if (!this.footer?.children.length && index === this.slotSize - 1) {
-        item.classList.add('last');
-      }
     });
-
-    if (this.footer?.childElementCount > 1) {
-      this.groupContent.appendChild(this.footer);
-    }
   }
-
-  private observer: MutationObserver;
 
   componentDidLoad() {
     this.observer = createMutationObserver(() => {
@@ -268,19 +240,26 @@ export class Group {
         <div
           class={{
             'group-content': true,
-            'd-none': this.collapsed,
           }}
         >
-          <slot></slot>
-        </div>
-        <div class="d-none">
-          <ix-group-item
-            class="footer last"
-            suppressSelection={true}
-            focusable={false}
-          >
-            <slot name="footer"></slot>
-          </ix-group-item>
+          {!this.collapsed ? (
+            <Fragment>
+              <slot></slot>
+              <ix-group-item
+                suppressSelection={true}
+                focusable={false}
+                class={{
+                  footer: true,
+                  'footer-visible': this.footerVisible,
+                }}
+              >
+                <slot
+                  name="footer"
+                  onSlotchange={() => this.onSlotChange()}
+                ></slot>
+              </ix-group-item>
+            </Fragment>
+          ) : null}
         </div>
       </Host>
     );

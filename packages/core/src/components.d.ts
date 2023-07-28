@@ -895,16 +895,6 @@ export namespace Components {
     }
     interface IxGroupContextMenu {
     }
-    interface IxGroupDropdownItem {
-        /**
-          * Group dropdown icon
-         */
-        "icon": string;
-        /**
-          * Group dropdown label
-         */
-        "label": string;
-    }
     interface IxGroupItem {
         /**
           * The elements tabindex attribute will get set accordingly. If true tabindex will be 0, -1 otherwise.
@@ -2449,12 +2439,6 @@ declare global {
         prototype: HTMLIxGroupContextMenuElement;
         new (): HTMLIxGroupContextMenuElement;
     };
-    interface HTMLIxGroupDropdownItemElement extends Components.IxGroupDropdownItem, HTMLStencilElement {
-    }
-    var HTMLIxGroupDropdownItemElement: {
-        prototype: HTMLIxGroupDropdownItemElement;
-        new (): HTMLIxGroupDropdownItemElement;
-    };
     interface HTMLIxGroupItemElement extends Components.IxGroupItem, HTMLStencilElement {
     }
     var HTMLIxGroupItemElement: {
@@ -2833,7 +2817,6 @@ declare global {
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
-        "ix-group-dropdown-item": HTMLIxGroupDropdownItemElement;
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
@@ -3837,16 +3820,6 @@ declare namespace LocalJSX {
         "suppressHeaderSelection"?: boolean;
     }
     interface IxGroupContextMenu {
-    }
-    interface IxGroupDropdownItem {
-        /**
-          * Group dropdown icon
-         */
-        "icon"?: string;
-        /**
-          * Group dropdown label
-         */
-        "label"?: string;
     }
     interface IxGroupItem {
         /**
@@ -5062,7 +5035,6 @@ declare namespace LocalJSX {
         "ix-flip-tile-content": IxFlipTileContent;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
-        "ix-group-dropdown-item": IxGroupDropdownItem;
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
@@ -5197,7 +5169,6 @@ declare module "@stencil/core" {
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
-            "ix-group-dropdown-item": LocalJSX.IxGroupDropdownItem & JSXBase.HTMLAttributes<HTMLIxGroupDropdownItemElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;

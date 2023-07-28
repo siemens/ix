@@ -992,28 +992,6 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
 
 
 @ProxyCmp({
-  inputs: ['icon', 'label']
-})
-@Component({
-  selector: 'ix-group-dropdown-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label'],
-})
-export class IxGroupDropdownItem {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxGroupDropdownItem extends Components.IxGroupDropdownItem {}
-
-
-@ProxyCmp({
   inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({

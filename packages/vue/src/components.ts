@@ -340,12 +340,6 @@ export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', un
 export const IxGroupContextMenu = /*@__PURE__*/ defineContainer<JSX.IxGroupContextMenu>('ix-group-context-menu', undefined);
 
 
-export const IxGroupDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxGroupDropdownItem>('ix-group-dropdown-item', undefined, [
-  'label',
-  'icon'
-]);
-
-
 export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-group-item', undefined, [
   'icon',
   'text',
