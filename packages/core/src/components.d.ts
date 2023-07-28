@@ -1770,11 +1770,6 @@ export namespace Components {
          */
         "checked": boolean;
         /**
-          * Basic and status colors from color palette
-          * @deprecated Will be removed in 2.0.0
-         */
-        "color": string;
-        /**
           * Whether the slide-toggle element is disabled or not.
          */
         "disabled": boolean;
@@ -4745,11 +4740,6 @@ declare namespace LocalJSX {
           * Whether the slide-toggle element is checked or not.
          */
         "checked"?: boolean;
-        /**
-          * Basic and status colors from color palette
-          * @deprecated Will be removed in 2.0.0
-         */
-        "color"?: string;
         /**
           * Whether the slide-toggle element is disabled or not.
          */

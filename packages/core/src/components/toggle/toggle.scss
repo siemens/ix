@@ -7,93 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
 @import 'mixins/hover';
-@import 'mixins/text-truncation';
-
-@mixin toggle($state, $suffix: '') {
-  .slider {
-    &:before {
-      background-color: var(
-        --theme-switch-thumb-#{$state}--background#{$suffix}
-      );
-      border-color: var(--theme-switch-thumb-#{$state}--border-color#{$suffix});
-    }
-
-    .slider-track {
-      background-color: var(--theme-switch-#{$state}--background#{$suffix});
-      border-color: var(--theme-switch-#{$state}--border-color#{$suffix});
-    }
-  }
-
-  .text {
-    color: var(--theme-switch--color);
-  }
-
-  @include hover {
-    .slider {
-      &:before {
-        background-color: var(
-          --theme-switch-thumb-#{$state}--background--hover#{$suffix}
-        );
-        border-color: var(
-          --theme-switch-thumb-#{$state}--border-color--hover#{$suffix}
-        );
-      }
-
-      .slider-track {
-        background-color: var(
-          --theme-switch-#{$state}--background--hover#{$suffix}
-        );
-        border-color: var(
-          --theme-switch-#{$state}--border-color--hover#{$suffix}
-        );
-      }
-    }
-
-    .text {
-      color: var(--theme-switch--color--hover);
-    }
-  }
-
-  @include active {
-    .slider:before {
-      background-color: var(
-        --theme-switch-thumb-#{$state}--background--active#{$suffix}
-      );
-      border-color: var(
-        --theme-switch-thumb-#{$state}--border-color--active#{$suffix}
-      );
-    }
-
-    .slider-track {
-      background-color: var(
-        --theme-switch-#{$state}--background--active#{$suffix}
-      );
-      border-color: var(
-        --theme-switch-#{$state}--border-color--active#{$suffix}
-      );
-    }
-
-    .text {
-      color: var(--theme-switch--color--active);
-    }
-  }
-}
+@import 'mixins/shadow-dom/component';
 
 :host {
-  $slide-toggle-width: 3rem;
-  display: flex;
+  @include ix-component;
+  display: inline-flex;
+  position: relative;
+  height: 2rem;
+  justify-content: flex-start;
   align-items: center;
-  outline: none;
-  width: fit-content;
+  margin-right: 0.25rem;
+
+  cursor: pointer;
 
   .switch {
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    min-width: $slide-toggle-width;
-    height: $default-control-height;
+    display: inline-block;
+    width: 3rem;
+    min-width: 3rem;
+    max-width: 3rem;
+    height: 1.5rem;
+    margin-right: 0.25rem;
   }
 
   .switch input {
@@ -103,125 +38,123 @@
   }
 
   .slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-
-    .slider-track {
-      background-color: var(--theme-switch-off--background);
-      border-radius: 2.125rem;
-      border: 1px solid var(--theme-switch-off--border-color);
-      width: 3rem;
-      height: 1.5rem;
-    }
+    background-color: var(--theme-switch-off--background);
+    transition: 150ms;
+    border-radius: 1.5rem;
   }
 
   .slider:before {
     position: absolute;
     content: '';
-    height: 1.125rem;
-    width: 1.125rem;
-    left: 0.188rem;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
     background-color: var(--theme-switch-thumb-off--background);
-    -webkit-transition: transform $default-time;
-    transition: transform $default-time;
+    transition: 150ms;
     border-radius: 50%;
   }
 
-  input:checked + .slider:before {
-    -webkit-transform: translateX(1.5rem);
-    -ms-transform: translateX(1.5rem);
-    transform: translateX(1.5rem);
+  input {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
   }
 
-  .text {
-    @include ellipsis;
-
-    color: var(--theme-switch--color);
-    padding: 0 $small-space;
-    position: relative;
-    user-select: none;
+  input:focus-visible + .switch > .slider {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: 1px;
   }
 
-  @include hover {
-    .slider:before {
-      background-color: var(--theme-switch-thumb-off--background--hover);
-      border-color: var(--theme-switch-thumb-off--border-color--hover);
-    }
-
-    .slider-track {
-      background-color: var(--theme-switch-off--background--hover);
-      border-color: var(--theme-switch-off--border-color--hover);
-    }
-
-    .text {
-      color: var(--theme-switch--color--hover);
-    }
+  input:checked + .switch > .slider {
+    background-color: var(--theme-switch-on--background);
   }
 
-  :focus-visible {
-    outline: none;
-    .slider-track {
-      outline-color: var(--theme-color-focus-bdr);
-      outline-style: solid;
-      outline-width: 1px;
-      outline-offset: 2px;
-    }
+  input:checked + .switch > .slider::before {
+    background-color: var(--theme-switch-thumb-on--background);
+    transform: translateX(1.35rem);
   }
 
-  @include active {
-    .slider:before {
-      background-color: var(--theme-switch-thumb-off--background--active);
-      border-color: var(--theme-switch-thumb-off--border-color--active);
-    }
-
-    .slider-track {
-      background-color: var(--theme-switch-off--background--active);
-      border-color: var(--theme-switch-off--border-color--active);
-    }
-
-    .text {
-      color: var(--theme-switch--color--active);
-    }
+  // Toggle NOT checked
+  input + .switch:hover > .slider {
+    background-color: var(--theme-switch-off--background--hover);
   }
 
-  &.checked {
-    @include toggle('on');
+  input + .switch:hover > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--hover);
   }
 
-  &.indeterminate {
-    @include toggle('mixed');
-
-    .slider:before {
-      transform: translateX(0.75rem);
-    }
+  input + .switch:active > .slider {
+    background-color: var(--theme-switch-off--background--active);
   }
 
-  &.disabled {
-    pointer-events: none;
-    .slider {
-      cursor: initial;
-      opacity: 0.5;
+  input + .switch:active > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--active);
+  }
 
-      &:before {
-        background-color: var(--theme-switch-thumb-off--background--disabled);
-        border-color: var(--theme-switch-thumb-off--border-color--disabled);
-      }
+  // Toggle checked
+  input:checked + .switch:hover > .slider {
+    background-color: var(--theme-switch-on--background--hover);
+  }
 
-      .slider-track {
-        background-color: var(--theme-switch-off--background--disabled);
-        border-color: var(--theme-switch-off--border-color--disabled);
-      }
-    }
+  input:checked + .switch:hover > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--hover);
+  }
 
-    .text {
-      color: var(--theme-switch--color--disabled);
-    }
+  input:checked + .switch:active > .slider {
+    background-color: var(--theme-switch-on--background--active);
+  }
+
+  input:checked + .switch:active > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--active);
+  }
+
+  input:indeterminate + .switch > .slider::before {
+    transform: translateX(0.7rem);
+  }
+
+  .toggle-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+:host(.disabled) {
+  pointer-events: none;
+
+  input + .switch {
+    opacity: 0.5;
+  }
+
+  input + .switch > .slider {
+    background-color: var(--theme-switch-off--background--disabled);
+  }
+
+  input + .switch > .slider:before {
+    background-color: var(--theme-switch-thumb-off--background--disabled);
+  }
+
+  input:checked + .switch > .slider {
+    background-color: var(--theme-switch-on--background--disabled);
+  }
+
+  input:checked + .switch > .slider:before {
+    background-color: var(--theme-switch-thumb-on--background--disabled);
+  }
+
+  .toggle-text {
+    color: var(--theme-color-weak-text);
   }
 }
