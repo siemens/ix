@@ -8093,17 +8093,19 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-index-button",
         "ix-icon-button",
         "ix-select",
-        "ix-select-item"
+        "ix-select-item",
+        "ix-spinner",
+        "ix-icon"
       ],
       "dependencyGraph": {
         "ix-pagination": [
-          "ix-index-button",
           "ix-icon-button",
           "ix-select",
-          "ix-select-item"
+          "ix-select-item",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -9041,6 +9043,7 @@
         "ix-icon-button",
         "ix-icon-toggle-button",
         "ix-modal-loading",
+        "ix-pagination",
         "ix-toggle-button",
         "ix-upload"
       ],
@@ -9059,6 +9062,9 @@
           "ix-spinner"
         ],
         "ix-modal-loading": [
+          "ix-spinner"
+        ],
+        "ix-pagination": [
           "ix-spinner"
         ],
         "ix-toggle-button": [

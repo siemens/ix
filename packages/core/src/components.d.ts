@@ -25,7 +25,6 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
-import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
@@ -56,7 +55,6 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
-export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
@@ -1008,16 +1006,6 @@ export namespace Components {
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
          */
         "variant": ButtonVariant1;
-    }
-    interface IxIndexButton {
-        /**
-          * Selection state
-         */
-        "selected": boolean;
-        /**
-          * Button variant
-         */
-        "variant": IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -2538,12 +2526,6 @@ declare global {
         prototype: HTMLIxIconToggleButtonElement;
         new (): HTMLIxIconToggleButtonElement;
     };
-    interface HTMLIxIndexButtonElement extends Components.IxIndexButton, HTMLStencilElement {
-    }
-    var HTMLIxIndexButtonElement: {
-        prototype: HTMLIxIndexButtonElement;
-        new (): HTMLIxIndexButtonElement;
-    };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -2917,7 +2899,6 @@ declare global {
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
-        "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -4039,16 +4020,6 @@ declare namespace LocalJSX {
           * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
          */
         "variant"?: ButtonVariant1;
-    }
-    interface IxIndexButton {
-        /**
-          * Selection state
-         */
-        "selected"?: boolean;
-        /**
-          * Button variant
-         */
-        "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -5208,7 +5179,6 @@ declare namespace LocalJSX {
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
-        "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
@@ -5348,7 +5318,6 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
-            "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0

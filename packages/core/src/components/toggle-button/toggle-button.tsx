@@ -16,7 +16,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
@@ -101,35 +101,37 @@ export class ToggleButton {
     this.onVariantChange();
   }
 
+  private dispatchPressedChange() {
+    this.pressedChange.emit(!this.pressed);
+  }
+
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: false,
+      iconOval: false,
+      selected: this.pressed,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      loading: this.loading,
+      onClick: () => this.dispatchPressedChange(),
+      type: 'button',
+      ariaAttributes: {
+        'aria-pressed': a11yBoolean(this.pressed),
+      },
+    };
+
     return (
       <Host
         class={{
           disabled: this.disabled,
         }}
       >
-        <button
-          aria-pressed={a11yBoolean(this.pressed)}
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost,
-            false,
-            false,
-            this.pressed,
-            this.disabled || this.loading
-          )}
-          tabindex={this.disabled ? -1 : 0}
-          type="button"
-          onClick={() => this.pressedChange.emit(!this.pressed)}
-        >
-          {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
-          ) : this.icon ? (
-            <ix-icon name={this.icon}></ix-icon>
-          ) : null}
+        <BaseButton {...baseButtonProps}>
           <slot></slot>
-        </button>
+        </BaseButton>
       </Host>
     );
   }

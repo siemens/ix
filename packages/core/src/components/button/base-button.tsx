@@ -43,7 +43,7 @@ export const getButtonClasses = (
 };
 
 export type BaseButtonProps = {
-  type: 'reset' | 'submit' | 'button';
+  type: string;
   variant: ButtonVariant;
   outline: boolean;
   ghost: boolean;
