@@ -16,14 +16,14 @@
  */
 
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { CuiToggle } from '../toggle';
+import { Toggle } from '../toggle';
 
 describe('ix-toggle', () => {
   let page: SpecPage;
 
   it('should toggle', async () => {
     page = await newSpecPage({
-      components: [CuiToggle],
+      components: [Toggle],
       html: '<ix-toggle></ix-toggle>',
     });
 
@@ -40,7 +40,7 @@ describe('ix-toggle', () => {
 
   it('should be disabled', async () => {
     page = await newSpecPage({
-      components: [CuiToggle],
+      components: [Toggle],
       html: '<ix-toggle disabled></ix-toggle>',
     });
 

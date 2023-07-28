@@ -10235,7 +10235,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -10252,29 +10252,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Basic and status colors from color palette",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
-            }
-          ],
-          "default": "'accent'",
-          "deprecation": "Will be removed in 2.0.0",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -10317,9 +10294,9 @@
         {
           "name": "indeterminate",
           "type": "boolean",
-          "mutable": false,
+          "mutable": true,
           "attr": "indeterminate",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "If true the control is in indeterminate state",
           "docsTags": [],
           "default": "false",
@@ -10398,14 +10375,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/tooltip",

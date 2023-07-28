@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### `ix-toggle` changed host styling
+
+`ix-toggle` is now `display: inline-flex` instead of `display: flex`
+
 ### `ix-dropdown` removed deprecated properties
 
 - adjustDropdownWidthToReferenceWith
