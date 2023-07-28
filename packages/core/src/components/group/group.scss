@@ -142,11 +142,18 @@
   .group-content {
     display: flex;
     flex-direction: column;
+    gap: 1px;
+    margin-top: 1px;
   }
 
   .footer {
+    visibility: collapse;
     height: auto;
     min-height: 0;
+  }
+
+  .footer-visible {
+    visibility: visible;
   }
 
   .hidden {
