@@ -1,14 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 0
 ---
-
-import Playground from '@site/src/components/Playground';
-
-import SourceWebComponent from './../auto-generated/previews/web-component/theme-switcher.md'
-import ReactComponent from './../auto-generated/previews/react/theme-switcher.md'
-import AngularComponent from './../auto-generated/previews/angular/theme-switcher.ts.md'
-
-import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 
 # Themes
 
@@ -35,6 +27,30 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 </html>
 ```
 
+## Applying only one theme to reduce build size
+
+The `siemens-ix-core.css` provides the possibility to import only core related functionalities, without any theme preloaded.
+
+You can load a specified theme by importing the corresponding `css` file.
+
+***Import CSS***
+
+```tsx
+// Load only the core parts
+import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
+
+// Load `classic-new-dark`-theme
+import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
+```
+
+***Set theme***
+
+```html
+<body class="theme-classic-new-dark">
+  ...
+</body>
+```
+
 ## Siemens AG Corporate Brand Theme
 
 <div className="siemens-brand-section">
@@ -44,15 +60,3 @@ The Siemens AG Corporate Brand Theme is exclusively available to official Siemen
 Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
 
 </div>
-
-## Working with themes during runtime
-
-<ApiTableSinceTag message="1.3.0" />
-
-<Playground
-name="theme-switcher" height="15rem"
-frameworks={{
-  react: ReactComponent,
-  angular: AngularComponent,
-  javascript: SourceWebComponent
-}}></Playground>
