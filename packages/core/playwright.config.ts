@@ -16,6 +16,8 @@ import path from 'path';
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
+// eslint-disable-next-line turbo/no-undeclared-env-vars
+const themeBeginsWith = process.env.ONLYTHEME;
 
 let THEMES = [
   'theme-classic-light',
@@ -23,6 +25,11 @@ let THEMES = [
   'theme-classic-new-light',
   'theme-classic-new-dark',
 ];
+
+if (themeBeginsWith) {
+  console.log('use theme filter', themeBeginsWith);
+  THEMES = THEMES.filter((t) => t.startsWith(themeBeginsWith));
+}
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
@@ -58,8 +65,10 @@ const config: PlaywrightTestConfig = {
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
+  // eslint-disable-next-line turbo/no-undeclared-env-vars
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
+  // eslint-disable-next-line turbo/no-undeclared-env-vars
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: 10,
