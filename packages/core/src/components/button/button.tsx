@@ -87,7 +87,7 @@ export class Button {
       ghost: this.ghost,
       iconOnly: false,
       iconOval: false,
-      selected: this.selected,
+      selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
       loading: this.loading,

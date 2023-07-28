@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h } from '@stencil/core';
+import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
 
 const isPrimary = (variant: string) => {
@@ -42,7 +43,7 @@ export const getButtonClasses = (
 };
 
 export type BaseButtonProps = {
-  type: string;
+  type: 'reset' | 'submit' | 'button';
   variant: ButtonVariant;
   outline: boolean;
   ghost: boolean;
@@ -53,6 +54,7 @@ export type BaseButtonProps = {
   loading: boolean;
   icon: string;
   onClick: Function;
+  ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
   iconSize?: string;
   iconColor?: string;
@@ -60,8 +62,10 @@ export type BaseButtonProps = {
 
 export function BaseButton(props: BaseButtonProps, children) {
   const extraClasses = props.extraClasses ?? {};
+
   return (
     <button
+      {...props.ariaAttributes}
       onClick={() => props.onClick()}
       type={props.type}
       class={{
