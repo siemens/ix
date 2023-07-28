@@ -7,9 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import '@siemens/ix-icons/dist/css/ix-icons.css';
-import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
-import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
-// import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 
 (async () => {
