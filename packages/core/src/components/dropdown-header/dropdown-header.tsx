@@ -9,28 +9,26 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @since 2.0.0
+ */
 @Component({
-  tag: 'ix-group-dropdown-item',
-  styleUrl: 'group-dropdown-item.scss',
-  scoped: true,
+  tag: 'ix-dropdown-header',
+  styleUrl: 'dropdown-header.scss',
+  shadow: true,
 })
-export class GroupDropdownItem {
+export class DropdownHeader {
   /**
-   * Group dropdown label
+   * Display name of the header
    */
   @Prop() label: string;
-
-  /**
-   * Group dropdown icon
-   */
-  @Prop() icon: string;
 
   render() {
     return (
       <Host>
-        <ix-dropdown-item label={this.label} icon={this.icon}>
-          <slot></slot>
-        </ix-dropdown-item>
+        <ix-typography class={'category-text'} variant={'default-title'}>
+          {this.label}
+        </ix-typography>
       </Host>
     );
   }

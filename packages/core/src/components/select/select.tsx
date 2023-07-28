@@ -31,7 +31,7 @@ export class Select {
 
   /**
    * Indices of selected items
-   * This corresponds to the value property of ix-select-items and therefor not neccessarily the indices of the items in the list.
+   * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
    */
   @Prop({ mutable: true }) selectedIndices: string | string[] = [];
 
@@ -94,6 +94,13 @@ export class Select {
    * Item selection changed
    */
   @Event() itemSelectionChange: EventEmitter<string | string[]>;
+
+  /**
+   * Event dispatched whenever the text input changes.
+   *
+   * @since 2.0.0
+   */
+  @Event() inputChange: EventEmitter<string>;
 
   /**
    * Item added to selection
@@ -205,6 +212,12 @@ export class Select {
     }
 
     this.inputValue = null;
+  }
+
+  componentDidLoad() {
+    this.inputRef.addEventListener('input', () => {
+      this.inputChange.emit(this.inputRef.value);
+    });
   }
 
   componentWillLoad() {
@@ -482,7 +495,7 @@ export class Select {
           anchor={this.dropdownAnchor}
           trigger={this.dropdownWrapperRef}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
-          placement="auto-start"
+          placement="bottom-start"
           overwriteDropdownStyle={async () => {
             return {
               minWidth: `${this.hostElement.clientWidth}px`,

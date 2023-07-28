@@ -26,7 +26,7 @@ export default () => {
         loading={toggle}
         class="m-1"
         outline
-        variant="Primary"
+        variant="primary"
       >
         Button
       </IxButton>
@@ -42,7 +42,7 @@ export default () => {
         class="m-1"
         outline
         icon="star"
-        variant="Primary"
+        variant="primary"
       >
         Button
       </IxButton>
@@ -58,7 +58,7 @@ export default () => {
         class="m-1"
         outline
         icon="star"
-        variant="Primary"
+        variant="primary"
       ></IxButton>
 
       <IxIconButton
@@ -72,16 +72,16 @@ export default () => {
         class="m-1"
         outline
         icon="star"
-        variant="Primary"
+        variant="primary"
       ></IxIconButton>
-      <IxButton loading class="m-1" outline variant="Primary">
+      <IxButton loading class="m-1" outline variant="primary">
         Button
       </IxButton>
       <IxIconButton
         loading
         class="m-1"
         outline
-        variant="Primary"
+        variant="primary"
       ></IxIconButton>
     </>
   );

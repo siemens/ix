@@ -14,6 +14,7 @@ import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
+import { IxApplicationContext } from '@siemens/ix-react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -98,169 +99,180 @@ import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/preview/checkbox" element={<Checkbox />} />
-      <Route
-        path="/preview/checkbox-indeterminate"
-        element={<CheckboxIndeterminate />}
-      />
-      <Route path="/preview/checkbox" element={<Checkbox />} />
-      <Route
-        path="/preview/checkbox-indeterminate"
-        element={<CheckboxIndeterminate />}
-      />
-      <Route path="/preview/buttons" element={<Buttons />} />
-      <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
-      <Route path="/preview/button-selected" element={<ButtonSelected />} />
-      <Route path="/preview/button-group" element={<ButtonGroup />} />
+  <IxApplicationContext>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/preview/checkbox" element={<Checkbox />} />
+        <Route
+          path="/preview/checkbox-indeterminate"
+          element={<CheckboxIndeterminate />}
+        />
+        <Route path="/preview/checkbox" element={<Checkbox />} />
+        <Route
+          path="/preview/checkbox-indeterminate"
+          element={<CheckboxIndeterminate />}
+        />
+        <Route path="/preview/buttons" element={<Buttons />} />
+        <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
+        <Route path="/preview/button-selected" element={<ButtonSelected />} />
+        <Route path="/preview/button-group" element={<ButtonGroup />} />
 
-      <Route path="/preview/blind" element={<Blind />} />
-      <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
-      <Route
-        path="/preview/breadcrumb-next-items"
-        element={<BreadcrumbNextItems />}
-      />
-      <Route
-        path="/preview/breadcrumb-truncate"
-        element={<BreadcrumbTruncate />}
-      />
-      <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
-      <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
-      <Route path="/preview/button-selected" element={<ButtonSelected />} />
-      <Route path="/preview/button-group" element={<ButtonGroup />} />
+        <Route path="/preview/blind" element={<Blind />} />
+        <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
+        <Route
+          path="/preview/breadcrumb-next-items"
+          element={<BreadcrumbNextItems />}
+        />
+        <Route
+          path="/preview/breadcrumb-truncate"
+          element={<BreadcrumbTruncate />}
+        />
+        <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
+        <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
+        <Route path="/preview/button-selected" element={<ButtonSelected />} />
+        <Route path="/preview/button-group" element={<ButtonGroup />} />
 
-      <Route path="/preview/blind" element={<Blind />} />
-      <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
-      <Route
-        path="/preview/breadcrumb-next-items"
-        element={<BreadcrumbNextItems />}
-      />
-      <Route
-        path="/preview/breadcrumb-truncate"
-        element={<BreadcrumbTruncate />}
-      />
-      <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
-      <Route path="/preview/aggrid" element={<AGGrid />} />
-      <Route path="/preview/chip" element={<Chip />} />
-      <Route path="/preview/datepicker" element={<Datepicker />} />
-      <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
-      <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
-      <Route
-        path="/preview/drawer-full-height"
-        element={<DrawerFullHeight />}
-      />
-      <Route path="/preview/dropdown" element={<Dropdown />} />
-      <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
-      <Route path="/preview/event-list" element={<EventList />} />
-      <Route
-        path="/preview/event-list-compact"
-        element={<EventListCompact />}
-      />
-      <Route
-        path="/preview/event-list-custom-item-height"
-        element={<EventListCustomHeight />}
-      />
-      <Route
-        path="/preview/event-list-selected"
-        element={<EventListSelected />}
-      />
-      <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
-      <Route path="/preview/flip-tile" element={<FlipTile />} />
-      <Route path="/preview/group" element={<Group />} />
-      <Route
-        path="/preview/group-context-menu"
-        element={<GroupContextMenu />}
-      />
-      <Route
-        path="/preview/group-custom-entry"
-        element={<GroupCustomEntry />}
-      />
-      <Route
-        path="/preview/group-header-suppressed"
-        element={<GroupHeaderSuppressed />}
-      />
-      <Route path="/preview/input" element={<Input />} />
-      <Route path="/preview/input-disabled" element={<InputDisabled />} />
-      <Route path="/preview/input-readonly" element={<InputReadonly />} />
-      <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
-      <Route path="/preview/message-bar" element={<MessageBar />} />
-      <Route path="/preview/pill" element={<Pill />} />
-      <Route path="/preview/radio-button" element={<RadioButton />} />
-      <Route path="/preview/select" element={<Select />} />
-      <Route path="/preview/select-editable" element={<SelectEditable />} />
-      <Route path="/preview/select-multiple" element={<SelectMultiple />} />
-      <Route path="/preview/spinner" element={<Spinner />} />
-      <Route path="/preview/spinner-large" element={<SpinnerLarge />} />
-      <Route path="/preview/split-button" element={<Splitbutton />} />
-      <Route
-        path="/preview/split-button-icons"
-        element={<SplitbuttonIcons />}
-      />
-      <Route path="/preview/tabs" element={<Tabs />} />
-      <Route path="/preview/textarea" element={<Textarea />} />
-      <Route path="/preview/textarea-disabled" element={<TextareaDisabled />} />
-      <Route path="/preview/textarea-readonly" element={<TextareaReadonly />} />
-      <Route path="/preview/tile" element={<Tile />} />
-      <Route path="/preview/timepicker" element={<Timepicker />} />
-      <Route path="/preview/toast" element={<Toast />} />
-      <Route path="/preview/toast-custom" element={<ToastCustom />} />
-      <Route path="/preview/toggle" element={<Toggle />} />
-      <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
-      <Route
-        path="/preview/toggle-custom-toggle"
-        element={<ToggleCustomLabel />}
-      />
-      <Route path="/preview/tree" element={<Tree />} />
-      <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
-      <Route path="/preview/tree-custom" element={<TreeCustom />} />
-      <Route path="/preview/popover-news" element={<PopoverNews />} />
-      <Route path="/preview/settings" element={<Settings />} />
-      <Route path="/preview/kpi" element={<Kpi />} />
-      <Route path="/preview/modal" element={<ModalExample />} />
-      <Route path="/preview/validation" element={<Validation />} />
-      <Route path="/preview/workflow" element={<Workflow />} />
-      <Route path="/preview/workflow-vertical" element={<WorkflowVertical />} />
-      <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
-      <Route
-        path="/preview/basic-navigation-without-header"
-        element={<BasicNavigationWithoutHeader />}
-      />
-      <Route path="/preview/map-navigation" element={<MapNavigation />} />
-      <Route
-        path="/preview/map-navigation-overlay"
-        element={<MapNavigationOverlay />}
-      />
-      <Route path="/preview/tooltip" element={<Tooltip />} />
-      <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
-      <Route path="/preview/push-card" element={<PushCard />} />
-      <Route path="/preview/action-card" element={<ActionCard />} />
-      <Route path="/preview/card-list" element={<CardList />} />
-      <Route path="/testing">
-        <Route path="navigation" element={<NavigationTest />}>
-          <Route
-            path="link1"
-            element={
-              <div>
-                <Buttons />
-              </div>
-            }
-          />
-          <Route
-            path="link2"
-            element={
-              <div>
-                <ButtonGroup />
-              </div>
-            }
-          />
+        <Route path="/preview/blind" element={<Blind />} />
+        <Route path="/preview/breadcrumb" element={<Breadcrumb />} />
+        <Route
+          path="/preview/breadcrumb-next-items"
+          element={<BreadcrumbNextItems />}
+        />
+        <Route
+          path="/preview/breadcrumb-truncate"
+          element={<BreadcrumbTruncate />}
+        />
+        <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
+        <Route path="/preview/aggrid" element={<AGGrid />} />
+        <Route path="/preview/chip" element={<Chip />} />
+        <Route path="/preview/datepicker" element={<Datepicker />} />
+        <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
+        <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
+        <Route
+          path="/preview/drawer-full-height"
+          element={<DrawerFullHeight />}
+        />
+        <Route path="/preview/dropdown" element={<Dropdown />} />
+        <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
+        <Route path="/preview/event-list" element={<EventList />} />
+        <Route
+          path="/preview/event-list-compact"
+          element={<EventListCompact />}
+        />
+        <Route
+          path="/preview/event-list-custom-item-height"
+          element={<EventListCustomHeight />}
+        />
+        <Route
+          path="/preview/event-list-selected"
+          element={<EventListSelected />}
+        />
+        <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
+        <Route path="/preview/flip-tile" element={<FlipTile />} />
+        <Route path="/preview/group" element={<Group />} />
+        <Route
+          path="/preview/group-context-menu"
+          element={<GroupContextMenu />}
+        />
+        <Route
+          path="/preview/group-custom-entry"
+          element={<GroupCustomEntry />}
+        />
+        <Route
+          path="/preview/group-header-suppressed"
+          element={<GroupHeaderSuppressed />}
+        />
+        <Route path="/preview/input" element={<Input />} />
+        <Route path="/preview/input-disabled" element={<InputDisabled />} />
+        <Route path="/preview/input-readonly" element={<InputReadonly />} />
+        <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
+        <Route path="/preview/message-bar" element={<MessageBar />} />
+        <Route path="/preview/pill" element={<Pill />} />
+        <Route path="/preview/radio-button" element={<RadioButton />} />
+        <Route path="/preview/select" element={<Select />} />
+        <Route path="/preview/select-editable" element={<SelectEditable />} />
+        <Route path="/preview/select-multiple" element={<SelectMultiple />} />
+        <Route path="/preview/spinner" element={<Spinner />} />
+        <Route path="/preview/spinner-large" element={<SpinnerLarge />} />
+        <Route path="/preview/split-button" element={<Splitbutton />} />
+        <Route
+          path="/preview/split-button-icons"
+          element={<SplitbuttonIcons />}
+        />
+        <Route path="/preview/tabs" element={<Tabs />} />
+        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route
+          path="/preview/textarea-disabled"
+          element={<TextareaDisabled />}
+        />
+        <Route
+          path="/preview/textarea-readonly"
+          element={<TextareaReadonly />}
+        />
+        <Route path="/preview/tile" element={<Tile />} />
+        <Route path="/preview/timepicker" element={<Timepicker />} />
+        <Route path="/preview/toast" element={<Toast />} />
+        <Route path="/preview/toast-custom" element={<ToastCustom />} />
+        <Route path="/preview/toggle" element={<Toggle />} />
+        <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
+        <Route
+          path="/preview/toggle-custom-toggle"
+          element={<ToggleCustomLabel />}
+        />
+        <Route path="/preview/tree" element={<Tree />} />
+        <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
+        <Route path="/preview/tree-custom" element={<TreeCustom />} />
+        <Route path="/preview/popover-news" element={<PopoverNews />} />
+        <Route path="/preview/settings" element={<Settings />} />
+        <Route path="/preview/kpi" element={<Kpi />} />
+        <Route path="/preview/modal" element={<ModalExample />} />
+        <Route path="/preview/validation" element={<Validation />} />
+        <Route path="/preview/workflow" element={<Workflow />} />
+        <Route
+          path="/preview/workflow-vertical"
+          element={<WorkflowVertical />}
+        />
+        <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
+        <Route
+          path="/preview/basic-navigation-without-header"
+          element={<BasicNavigationWithoutHeader />}
+        />
+        <Route path="/preview/map-navigation" element={<MapNavigation />} />
+        <Route
+          path="/preview/map-navigation-overlay"
+          element={<MapNavigationOverlay />}
+        />
+        <Route path="/preview/tooltip" element={<Tooltip />} />
+        <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
+        <Route path="/preview/push-card" element={<PushCard />} />
+        <Route path="/preview/action-card" element={<ActionCard />} />
+        <Route path="/preview/card-list" element={<CardList />} />
+        <Route path="/testing">
+          <Route path="navigation" element={<NavigationTest />}>
+            <Route
+              path="link1"
+              element={
+                <div>
+                  <Buttons />
+                </div>
+              }
+            />
+            <Route
+              path="link2"
+              element={
+                <div>
+                  <ButtonGroup />
+                </div>
+              }
+            />
+          </Route>
         </Route>
-      </Route>
-      <Route path="/preview/page-header" element={<PageHeader />} />
-      <Route path="/preview/menu-category" element={<MenuCategory />} />
-    </Routes>
-  </BrowserRouter>
+        <Route path="/preview/page-header" element={<PageHeader />} />
+        <Route path="/preview/menu-category" element={<MenuCategory />} />
+      </Routes>
+    </BrowserRouter>
+  </IxApplicationContext>
 );
 
 // If you want to start measuring performance in your app, pass a function

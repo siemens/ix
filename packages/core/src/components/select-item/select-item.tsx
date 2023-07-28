@@ -85,6 +85,9 @@ export class SelectItem {
     return (
       <Host>
         <ix-dropdown-item
+          class={{
+            'select-item-checked': this.selected,
+          }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}

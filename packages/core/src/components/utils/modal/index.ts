@@ -7,9 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:host {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-}
+export { showModalLoading } from './loading';
+export { showMessage } from './message';
+export {
+  closeModal,
+  dismissModal,
+  ModalConfig,
+  ModalInstance,
+  showModal,
+} from './modal';

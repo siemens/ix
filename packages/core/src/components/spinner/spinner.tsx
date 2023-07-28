@@ -25,7 +25,8 @@ export class Spinner {
   /**
    * Size of spinner
    */
-  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
+  @Prop() size: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large' =
+    'medium';
 
   /**
    * @internal
@@ -37,6 +38,8 @@ export class Spinner {
       <Host
         class={{
           primary: this.variant === 'primary',
+          'xx-small': this.size === 'xx-small',
+          'x-small': this.size === 'x-small',
           small: this.size === 'small',
           medium: this.size === 'medium',
           large: this.size === 'large',

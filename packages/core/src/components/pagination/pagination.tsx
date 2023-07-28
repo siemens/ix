@@ -119,7 +119,7 @@ export class Pagination {
   private getPageButton(index: number) {
     return (
       <ix-index-button
-        variant="Primary"
+        variant="primary"
         onClick={() => {
           this.selectPage(index);
         }}
@@ -147,7 +147,7 @@ export class Pagination {
       pageButtons.push(this.getPageButton(0));
       pageButtons.push(
         <ix-index-button
-          variant="Secondary"
+          variant="secondary"
           onClick={() => {
             if (hasOverflowEnd) {
               this.selectPage(
@@ -186,7 +186,7 @@ export class Pagination {
     if (hasOverflowEnd) {
       pageButtons.push(
         <ix-index-button
-          variant="Secondary"
+          variant="secondary"
           onClick={() => {
             if (hasOverflowStart) {
               this.selectPage(

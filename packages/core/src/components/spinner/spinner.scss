@@ -17,6 +17,10 @@
 
     width: $size;
     height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
     border-radius: 100%;
     position: relative;
     animation: rotate 2s linear infinite;
@@ -79,7 +83,7 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--ix-button-color, var(--theme-color-std-text));
+      var(--ix-button-color, var(--theme-color-soft-text));
     animation: clipMask 3s linear infinite;
   }
 
@@ -101,6 +105,8 @@
   }
 }
 
+@include ix-spinner($host-class: 'xx-small', $size: 0.75rem, $track-size: 1px);
+@include ix-spinner($host-class: 'x-small', $size: 1.25rem, $track-size: 2px);
 @include ix-spinner($host-class: 'small', $size: 1.5rem, $track-size: 2px);
 @include ix-spinner($host-class: 'medium', $size: 2rem, $track-size: 2px);
 @include ix-spinner($host-class: 'large', $size: 6rem, $track-size: 4px);

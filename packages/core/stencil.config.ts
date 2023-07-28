@@ -87,7 +87,7 @@ export const config: Config = {
       components: ['ix-flip-tile', 'ix-flip-tile-content'],
     },
     {
-      components: ['ix-group', 'ix-group-dropdown-item', 'ix-group-item'],
+      components: ['ix-group', 'ix-group-item'],
     },
     {
       components: ['ix-icon'],
@@ -118,7 +118,7 @@ export const config: Config = {
       components: ['ix-message-bar'],
     },
     {
-      components: ['ix-modal', 'ix-modal-container'],
+      components: ['ix-modal'],
     },
     {
       components: ['ix-pill'],

@@ -50,13 +50,8 @@ function CustomModal() {
 
 export default () => {
   async function show() {
-    const modal = await showModal({
-      title: 'test',
+    await showModal({
       content: <CustomModal />,
-    });
-
-    modal.htmlElement.addEventListener('keypress', (keyboardEvent) => {
-      console.log(keyboardEvent.key);
     });
   }
 

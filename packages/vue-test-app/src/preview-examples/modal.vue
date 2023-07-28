@@ -11,18 +11,20 @@
 import {
   HTMLRefElement,
   IxButton,
-  IxIconButton,
   IxModal,
+  IxModalHeader,
+  IxModalContent,
+  IxModalFooter,
 } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const modalRef = ref<HTMLRefElement<HTMLIxModalElement>>();
 const close = () => {
-  modalRef.value?.$el.close('close payload!');
+  modalRef.value?.$el.closeModal('close payload!');
   show.value = false;
 };
 const dismiss = () => {
-  modalRef.value?.$el.dismiss('dismiss payload');
+  modalRef.value?.$el.dismissModal('dismiss payload');
   show.value = false;
 };
 
@@ -31,20 +33,12 @@ const show = ref(false);
 
 <template>
   <IxButton @click="show = true">Show modal</IxButton>
-  <IxModal ref="modalRef" v-if="show">
-    <div className="modal-header">
-      Message headline
-      <IxIconButton
-        data-button-close
-        ghost
-        icon="close"
-        @click="dismiss()"
-      ></IxIconButton>
-    </div>
-    <div className="modal-body">Message text lorem ipsum</div>
-    <div className="modal-footer">
+  <IxDialog ref="modalRef" v-if="show">
+    <IxModalHeader>Message headline</IxModalHeader>
+    <IxModalContent>Message text lorem ipsum</IxModalContent>
+    <IxModalFooter>
       <IxButton outline @click="dismiss()"> Cancel </IxButton>
       <IxButton @click="close()">OK</IxButton>
-    </div>
-  </IxModal>
+    </IxModalFooter>
+  </IxDialog>
 </template>
