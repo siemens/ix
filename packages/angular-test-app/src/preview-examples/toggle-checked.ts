@@ -6,18 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-:host {
-  display: block;
-  position: relative;
 
-  height: 2rem;
-  width: 2rem;
+import { Component } from '@angular/core';
 
-  margin-block-start: 0.3125rem;
-  margin-inline-end: 0.3125rem;
-  margin-inline-start: auto;
-
-  .hide {
-    visibility: collapse;
-  }
-}
+@Component({
+  selector: 'app-example',
+  template: ` <ix-toggle checked></ix-toggle> `,
+})
+export default class ToggleChecked {}

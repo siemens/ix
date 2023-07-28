@@ -9,24 +9,35 @@
 
 @import 'common-variables';
 @import 'mixins/fonts';
-@import 'mixins/hover';
+@import 'mixins/shadow-dom/hover';
+@import 'mixins/shadow-dom/component';
 @import 'mixins/text-truncation';
 
+$focusBorderWidth: 1px;
+
 :host {
+  @include ix-component;
   display: flex;
   min-height: 2.25rem;
   height: 2.25rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: $small-space $large-space $small-space 2.5rem;
-  position: relative;
-  margin-top: 0.0625rem;
-  outline: none;
-  background-color: var(--theme-group-item--background);
 
-  &.last {
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+  > button {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    outline: none;
+    background-color: var(--theme-group-item--background);
+    border: 1px solid transparent;
+    color: var(--theme-color-std-text);
+
+    padding-left: 2.5rem;
+
+    &:focus-visible {
+      border: $focusBorderWidth solid var(--theme-color-focus-bdr);
+    }
   }
 
   ix-icon {
@@ -36,19 +47,20 @@
 
   .group-entry-selection-indicator {
     position: absolute;
-    left: 0;
-    height: 100%;
+    left: -#{$focusBorderWidth};
+    height: calc(100% + #{$focusBorderWidth * 2});
     width: $tiny-space;
   }
 
   .group-entry-text {
+    @include text-default;
     @include ellipsis();
-    flex-grow: 1;
   }
 
   .group-entry-text-secondary {
     &,
     span {
+      @include text-default;
       @include ellipsis;
     }
 
@@ -57,39 +69,32 @@
     flex-grow: 1;
     white-space: nowrap;
     color: var(--theme-color-soft-text);
-    font-size: 0.875rem;
   }
+}
 
-  &:not(.suppress-selection) {
-    @include hover {
-      background-color: var(--theme-group-item--background--hover);
-      border-color: var(--theme-group-item--border-color--hover);
+:host(.selected) {
+  border-top-width: 0.062rem !important;
+  background-color: var(--theme-color-ghost--selected);
 
-      &.selected {
-        background-color: var(--theme-group-item--background--selected);
-      }
-    }
-
-    @include active {
-      background-color: var(--theme-group-item--background--active);
-      border-color: var(--theme-group-item--border-color--active);
-
-      &.selected {
-        background-color: var(--theme-group-item--background--selected);
-      }
-    }
+  .group-entry-selection-indicator {
+    background-color: var(--theme-group-item-indicator--background--selected);
   }
+}
 
-  &.selected {
-    border-top-width: 0.062rem !important;
-    background-color: var(--theme-group-item--background--selected);
+:host(:not(.suppress-selection):hover) {
+  background-color: var(--theme-color-ghost--selected-hover);
+  border-color: var(--theme-group-item--border-color--hover);
+}
 
-    .group-entry-selection-indicator {
-      background-color: var(--theme-group-item-indicator--background--selected);
-    }
-  }
+:host(:not(.suppress-selection).selected:hover) {
+  background-color: var(--theme-color-ghost--selected-hover);
+}
 
-  @include focus-visible {
-    border: 1px solid var(--theme-color-focus-bdr) !important;
-  }
+:host(:not(.suppress-selection):active) {
+  background-color: var(--theme-color-ghost--selected-active);
+  border-color: var(--theme-group-item--border-color--active);
+}
+
+:host(:not(.suppress-selection).selected:active) {
+  background-color: var(--theme-color-ghost--selected-active);
 }

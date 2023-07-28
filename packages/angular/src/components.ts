@@ -992,28 +992,6 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
 
 
 @ProxyCmp({
-  inputs: ['icon', 'label']
-})
-@Component({
-  selector: 'ix-group-dropdown-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label'],
-})
-export class IxGroupDropdownItem {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxGroupDropdownItem extends Components.IxGroupDropdownItem {}
-
-
-@ProxyCmp({
   inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({
@@ -2069,14 +2047,14 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
 @Component({
   selector: 'ix-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn'],
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn'],
 })
 export class IxToggle {
   protected el: HTMLElement;
