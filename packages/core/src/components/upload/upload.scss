@@ -53,7 +53,7 @@
       }
     }
 
-    &.file-over {
+    &:not(.disabled).file-over {
       border-color: var(--theme-upload--border-color--dragover);
       border-style: solid;
     }
@@ -73,10 +73,14 @@
     }
 
     .upload-browser {
-      opacity: 0;
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
       overflow: hidden;
+      padding: 0;
       position: absolute;
-      z-index: -1;
+      width: 1px;
     }
 
     .loader {
