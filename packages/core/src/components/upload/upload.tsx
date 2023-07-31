@@ -23,7 +23,7 @@ import { UploadFileState } from './upload-file-state';
 @Component({
   tag: 'ix-upload',
   styleUrl: 'upload.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Upload {
   /**
@@ -90,7 +90,7 @@ export class Upload {
   @Element() hostElement!: HTMLIxUploadElement;
 
   get inputElement(): HTMLInputElement {
-    return this.hostElement.querySelector('#upload-browser');
+    return this.hostElement.shadowRoot.querySelector('#upload-browser');
   }
 
   @State() isFileOver = false;
@@ -101,12 +101,14 @@ export class Upload {
 
   private fileDropped(evt: DragEvent) {
     evt.preventDefault();
+    if (this.disabled) {
+      return;
+    }
 
     const file: File | FileList = evt.dataTransfer.files;
     this.isFileOver = false;
 
     this.filesToUpload = this.convertToFileArray(file);
-
     this.filesChanged.emit(this.filesToUpload);
   }
 
@@ -131,6 +133,9 @@ export class Upload {
   }
 
   private fileChangeEvent(event: any) {
+    if (this.disabled) {
+      return;
+    }
     this.filesToUpload = this.convertToFileArray(event.target.files);
 
     this.filesChanged.emit(this.filesToUpload);
