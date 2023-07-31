@@ -174,6 +174,7 @@ export class WorkflowStep {
             selected: this.selected,
             vertical: this.vertical,
             disabled: this.disabled,
+            clickable: this.clickable && !this.disabled,
           }}
         >
           <div class="wrapper">
