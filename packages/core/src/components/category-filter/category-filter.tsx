@@ -598,7 +598,7 @@ export class CategoryFilter {
           'reset-button': true,
           'hide-reset-button': !this.filterTokens.length && !this.category,
         }}
-        variant="Primary"
+        variant="primary"
         ghost
         oval
         icon="clear"

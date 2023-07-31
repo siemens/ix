@@ -185,9 +185,13 @@ export namespace Components {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded": boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel": string;
         /**
           * Display as pinned
          */
@@ -968,6 +972,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Size of icon in button
+          * @deprecated Only size 32 will be removed in 3.0.0
          */
         "size": '32' | '24' | '16' | '12';
         /**
@@ -1114,9 +1119,6 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
-        /**
-          * Expand menu
-         */
         "expand": boolean;
         /**
           * Change the responsive layout of the menu structure
@@ -1124,6 +1126,10 @@ export namespace Components {
         "forceLayout": Mode | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar": string;
         "i18nLegal": string;
         "i18nSettings": string;
         "i18nToggleTheme": string;
@@ -2966,9 +2972,13 @@ declare namespace LocalJSX {
     }
     interface IxBurgerMenu {
         /**
-          * Is menu displayed as expanded
+          * Does burger menu button display the expanded or the not expanded state
          */
         "expanded"?: boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
         /**
           * Display as pinned
          */
@@ -3858,6 +3868,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Size of icon in button
+          * @deprecated Only size 32 will be removed in 3.0.0
          */
         "size"?: '32' | '24' | '16' | '12';
         /**
@@ -3996,9 +4007,6 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
-        /**
-          * Expand menu
-         */
         "expand"?: boolean;
         /**
           * Change the responsive layout of the menu structure
@@ -4006,6 +4014,10 @@ declare namespace LocalJSX {
         "forceLayout"?: Mode | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
+        /**
+          * Accessibility i18n label for the burger menu of the sidebar
+         */
+        "i18nExpandSidebar"?: string;
         "i18nLegal"?: string;
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
@@ -4446,6 +4458,11 @@ declare namespace LocalJSX {
           * Item added to selection
          */
         "onAddItem"?: (event: IxSelectCustomEvent<string>) => void;
+        /**
+          * Event dispatched whenever the text input changes.
+          * @since 2.0.0
+         */
+        "onInputChange"?: (event: IxSelectCustomEvent<string>) => void;
         /**
           * Item selection changed
          */

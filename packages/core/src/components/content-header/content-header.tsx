@@ -9,7 +9,7 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
-export type ContentHeaderVariant = 'Primary' | 'Secondary';
+export type ContentHeaderVariant = 'primary' | 'secondary';
 
 @Component({
   tag: 'ix-content-header',
@@ -20,7 +20,7 @@ export class ContentHeader {
   /**
    * Variant of content header
    */
-  @Prop() variant: ContentHeaderVariant = 'Primary';
+  @Prop() variant: ContentHeaderVariant = 'primary';
 
   /**
    * Title of Header
@@ -48,7 +48,7 @@ export class ContentHeader {
         {this.hasBackButton ? (
           <ix-icon-button
             class={'backButton'}
-            variant="Primary"
+            variant="primary"
             icon="arrow-left"
             ghost={true}
             onClick={() => this.backButtonClick.emit()}
@@ -57,7 +57,7 @@ export class ContentHeader {
 
         <div class="titleGroup">
           <ix-typography
-            variant={this.variant === 'Secondary' ? 'large-single' : 'h2'}
+            variant={this.variant === 'secondary' ? 'large-single' : 'h2'}
           >
             {this.headerTitle}
           </ix-typography>

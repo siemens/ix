@@ -6,6 +6,20 @@ import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.
 
 # AG Grid
 
+Siemens Industrial Experience provides a theme for the populer data grid library [AG Grid](https://www.ag-grid.com).
+This lets you harness the power of AG Grid with seemless intergration into the Siemens Industrial Experience styleguide.
+
+<div className="siemens-brand-section">
+AG Grid is a third party library that provides a feature rich data grid implementation.
+
+Its basic functionality is free and open source (distributed under the [MIT license](https://www.ag-grid.com/eula/AG-Grid-Community-License.html)).
+
+Please note that more advanced features like e.g. Row Grouping are only available with AG Grid Enterprise wich is a commercial product.
+
+More information can be found on the [AG Grid licences page](https://www.ag-grid.com/license-pricing).
+
+</div>
+
 ## Installation
 
 ### React
