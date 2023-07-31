@@ -1,0 +1,18 @@
+<ix-button>Show 'success' message</ix-button>
+<script type="module">
+  import { showMessage } from '@siemens/ix';
+
+  const btn = document.querySelector('ix-button');
+  btn.addEventListener('click', async () => {
+    (
+      await showMessage.success(
+        'Example title',
+        'message',
+        'Save',
+        'Cancel',
+        'payload:save',
+        'payload:cancel'
+      )
+    ).once(console.log);
+  });
+</script>
