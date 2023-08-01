@@ -114,6 +114,7 @@ import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avat
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import InformationBar from "../preview-examples/information-bar";
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     EventListSelected,
     EventList,
     ExpandingSearch,
+    InformationBar,
     FlipTile,
     GroupContextMenu,
     GroupCustomEntry,

@@ -5280,6 +5280,52 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/information-bar",
+      "filePath": "./src/components/information-bar/information-bar.tsx",
+      "fileName": "information-bar.tsx",
+      "readmePath": "./src/components/information-bar/readme.md",
+      "usagesDir": "./src/components/information-bar/usage",
+      "tag": "ix-information-bar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-information-bar": [
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "bar",
+          "type": "BarNumbers[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Configuration of the bar",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "BarNumbers[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/input-group",
       "filePath": "./src/components/input-group/input-group.tsx",
       "fileName": "input-group.tsx",

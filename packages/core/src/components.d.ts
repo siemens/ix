@@ -25,6 +25,7 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { IndexButtonVariant } from "./components/index-button/index-button";
+import { BarNumbers } from "./components/information-bar/information-bar";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
@@ -55,6 +56,7 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { IndexButtonVariant } from "./components/index-button/index-button";
+export { BarNumbers } from "./components/information-bar/information-bar";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
@@ -987,6 +989,12 @@ export namespace Components {
           * Button variant
          */
         "variant": IndexButtonVariant;
+    }
+    interface IxInformationBar {
+        /**
+          * Configuration of the bar
+         */
+        "bar": BarNumbers[];
     }
     interface IxInputGroup {
     }
@@ -2452,6 +2460,12 @@ declare global {
         prototype: HTMLIxIndexButtonElement;
         new (): HTMLIxIndexButtonElement;
     };
+    interface HTMLIxInformationBarElement extends Components.IxInformationBar, HTMLStencilElement {
+    }
+    var HTMLIxInformationBarElement: {
+        prototype: HTMLIxInformationBarElement;
+        new (): HTMLIxInformationBarElement;
+    };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -2815,6 +2829,7 @@ declare global {
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-index-button": HTMLIxIndexButtonElement;
+        "ix-information-bar": HTMLIxInformationBarElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -3912,6 +3927,12 @@ declare namespace LocalJSX {
           * Button variant
          */
         "variant"?: IndexButtonVariant;
+    }
+    interface IxInformationBar {
+        /**
+          * Configuration of the bar
+         */
+        "bar"?: BarNumbers[];
     }
     interface IxInputGroup {
     }
@@ -5028,6 +5049,7 @@ declare namespace LocalJSX {
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
         "ix-index-button": IxIndexButton;
+        "ix-information-bar": IxInformationBar;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
@@ -5162,6 +5184,7 @@ declare module "@stencil/core" {
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
+            "ix-information-bar": LocalJSX.IxInformationBar & JSXBase.HTMLAttributes<HTMLIxInformationBarElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0

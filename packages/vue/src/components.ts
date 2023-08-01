@@ -376,6 +376,11 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
 ]);
 
 
+export const IxInformationBar = /*@__PURE__*/ defineContainer<JSX.IxInformationBar>('ix-information-bar', undefined, [
+  'bar'
+]);
+
+
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
 
 

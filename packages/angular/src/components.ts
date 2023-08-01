@@ -1064,6 +1064,28 @@ export declare interface IxIconButton extends Components.IxIconButton {}
 
 
 @ProxyCmp({
+  inputs: ['bar']
+})
+@Component({
+  selector: 'ix-information-bar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['bar'],
+})
+export class IxInformationBar {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxInformationBar extends Components.IxInformationBar {}
+
+
+@ProxyCmp({
 })
 @Component({
   selector: 'ix-input-group',
