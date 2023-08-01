@@ -2,7 +2,7 @@
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root {
-  .theme-classic-new-light {
+  .theme-legacy-classic-light {
       --theme-default-control-height: 2rem;
       --theme-large-control-height: 2.5rem;
       --theme-medium-control-height: 1.5rem;
@@ -11,6 +11,6 @@
       --theme-small-icon-size: 1rem;
       --theme-focus--border-thickness: 0.0625rem;
       --theme-input-min-width: 2rem;
-      --theme-tab-indicator--height: 0.125rem;
+      --theme-tab-indicator--height: 0.25rem;
   }
 }
