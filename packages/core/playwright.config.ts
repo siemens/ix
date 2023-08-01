@@ -17,19 +17,8 @@ import path from 'path';
  */
 // require('dotenv').config();
 // eslint-disable-next-line turbo/no-undeclared-env-vars
-const themeBeginsWith = process.env.ONLYTHEME;
 
-let THEMES = [
-  'theme-classic-light',
-  'theme-classic-dark',
-  'theme-classic-new-light',
-  'theme-classic-new-dark',
-];
-
-if (themeBeginsWith) {
-  console.log('use theme filter', themeBeginsWith);
-  THEMES = THEMES.filter((t) => t.startsWith(themeBeginsWith));
-}
+const THEMES = ['theme-classic-light', 'theme-classic-dark'];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
