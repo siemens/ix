@@ -17,7 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { a11yBoolean } from '../utils/a11y';
 
@@ -78,10 +78,6 @@ export class IconToggleButton {
 
   @Element() hostElement: HTMLIxIconToggleButtonElement;
 
-  private getIconButtonClass() {
-    return `btn-icon-${this.size}`;
-  }
-
   private isIllegalToggleButtonConfig() {
     return this.variant === 'primary' && (this.outline || this.ghost);
   }
@@ -113,48 +109,51 @@ export class IconToggleButton {
     this.onVariantChange();
   }
 
+  private dispatchPressedChange() {
+    this.pressedChange.emit(!this.pressed);
+  }
+
+  private getIconSizeClass() {
+    return {
+      'btn-icon-12': this.size === '12',
+      'btn-icon-16': this.size === '16',
+      'btn-icon-24': this.size === '24',
+    };
+  }
+
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: true,
+      iconOval: false,
+      selected: this.pressed,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      iconSize: this.size,
+      loading: this.loading,
+      onClick: () => this.dispatchPressedChange(),
+      type: 'button',
+      ariaAttributes: {
+        'aria-pressed': a11yBoolean(this.pressed),
+      },
+      extraClasses: {
+        'icon-button': true,
+        ...this.getIconSizeClass(),
+      },
+    };
+    console.log(baseButtonProps, this.disabled, this.loading);
+
     return (
       <Host
         class={{
           disabled: this.disabled,
         }}
       >
-        <button
-          aria-pressed={a11yBoolean(this.pressed)}
-          class={{
-            ...getButtonClasses(
-              this.variant,
-              this.outline,
-              this.ghost,
-              false,
-              false,
-              this.pressed,
-              this.disabled || this.loading
-            ),
-            'icon-button': true,
-            'btn-icon': true,
-            [this.getIconButtonClass()]: true,
-          }}
-          tabindex={this.disabled ? -1 : 0}
-          type="button"
-          onClick={() => this.pressedChange.emit(!this.pressed)}
-        >
-          {this.loading ? (
-            <ix-spinner
-              size={
-                this.size === '12'
-                  ? 'xx-small'
-                  : this.size === '16'
-                  ? 'x-small'
-                  : 'small'
-              }
-              hideTrack
-            ></ix-spinner>
-          ) : this.icon ? (
-            <ix-icon name={this.icon} size={this.size}></ix-icon>
-          ) : null}
-        </button>
+        <BaseButton {...baseButtonProps}>
+          <slot></slot>
+        </BaseButton>
       </Host>
     );
   }

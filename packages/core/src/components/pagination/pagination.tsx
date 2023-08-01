@@ -28,7 +28,7 @@ import { a11yBoolean } from '../utils/a11y';
   scoped: true,
 })
 export class Pagination {
-  private readonly baseButtonConfig: Omit<BaseButtonProps, 'onClick'> = {
+  private readonly baseButtonConfig: BaseButtonProps = {
     variant: 'secondary',
     outline: false,
     ghost: true,
