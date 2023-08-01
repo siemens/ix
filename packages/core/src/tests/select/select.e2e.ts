@@ -16,7 +16,6 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -25,7 +24,6 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -34,14 +32,12 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mode-multiple-overflow', async ({ page }) => {
     await page.goto('select/mode-multiple-overflow');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -72,7 +68,6 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -80,8 +75,6 @@ regressionTest.describe('select', () => {
     await page.goto('select/autoplacement');
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
-
-    await page.waitForTimeout(100);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -92,7 +85,6 @@ regressionTest.describe('select', () => {
     await page.waitForSelector('.dropdown-menu.show');
     await page.locator('text=Item 2').first().click();
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -101,14 +93,12 @@ regressionTest.describe('select', () => {
     await page.locator('.chevron-down-container').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('readonly', async ({ page }) => {
     await page.goto('select/readonly');
 
-    await page.waitForTimeout(100);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
