@@ -10,10 +10,23 @@ Everyone can use the two embedded themes that already ship with Siemens Industri
 
 - Classic light (theme-classic-light)
 - Classic dark (theme-classic-dark)
+- **deprecated** Legacy Classic light (theme-legacy-classic-light)
+- **deprecated** Legacy Classic dark (theme-legacy-classic-dark)
 
 You can also create your own themes in order to customize the design system to your own brand.
 
 Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
+
+## Siemens AG Corporate Brand Theme
+
+<div className="siemens-brand-section">
+
+The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
+
+Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
+
+</div>
+
 
 ## How to set a theme
 
@@ -39,7 +52,8 @@ You can load a specified theme by importing the corresponding `css` file.
 // Load only the core parts
 import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
 
-// Load `classic-new-dark`-theme
+// Load theme
+import '@siemens/ix/dist/siemens-ix/theme/classic-new-light.css';
 import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
 ```
 
@@ -51,12 +65,3 @@ import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
 </body>
 ```
 
-## Siemens AG Corporate Brand Theme
-
-<div className="siemens-brand-section">
-
-The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
-
-Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
-
-</div>
