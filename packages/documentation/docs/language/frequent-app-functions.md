@@ -34,8 +34,6 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Anomaly detection
 
-- Analyzexy
-
 <div class="d-flex flex-wrap">
 
 <span class="m-2">
