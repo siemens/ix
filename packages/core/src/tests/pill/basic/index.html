@@ -22,27 +22,19 @@ SPDX-License-Identifier: MIT
         margin-top: 2rem;
       "
     >
-      <ix-pill closable outline> Primary </ix-pill>
+      <ix-pill outline> Primary </ix-pill>
       <ix-pill icon="print">Primary with icon</ix-pill>
-      <ix-pill
-        icon="print"
-        style="width: 10rem"
-        closable
-        onClose="{console.log}"
-        onClick="{console.log}"
-      >
+      <ix-pill icon="print" style="width: 10rem" onClose="{console.log}">
         Primary
       </ix-pill>
 
-      <ix-pill variant="critical" closable outline> Alarm </ix-pill>
+      <ix-pill variant="critical" outline> Alarm </ix-pill>
       <ix-pill variant="alarm" icon="print"> Alarm with icon </ix-pill>
       <ix-pill
         variant="alarm"
         icon="print"
         style="width: 10rem"
-        closable
         onClose="{console.log}"
-        onClick="{console.log}"
       >
         Alarm
       </ix-pill>
@@ -50,9 +42,7 @@ SPDX-License-Identifier: MIT
         variant="warning"
         icon="print"
         style="width: 10rem"
-        closable
         onClose="{console.log}"
-        onClick="{console.log}"
       >
         Alarm
       </ix-pill>
@@ -62,9 +52,61 @@ SPDX-License-Identifier: MIT
         variant="custom"
         icon="print"
         style="width: 10rem"
-        closable
         onClose="{console.log}"
-        onClick="{console.log}"
+      >
+        Custom
+      </ix-pill>
+    </div>
+
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-top: 2rem;
+      "
+    >
+      <ix-pill align-left outline> Primary </ix-pill>
+      <ix-pill align-left icon="print">Primary with icon</ix-pill>
+      <ix-pill
+        align-left
+        icon="print"
+        style="width: 10rem"
+        onClose="{console.log}"
+      >
+        Primary
+      </ix-pill>
+
+      <ix-pill align-left variant="critical" outline> Alarm </ix-pill>
+      <ix-pill align-left variant="alarm" icon="print">
+        Alarm with icon
+      </ix-pill>
+      <ix-pill
+        align-left
+        variant="alarm"
+        icon="print"
+        style="width: 10rem"
+        onClose="{console.log}"
+      >
+        Alarm
+      </ix-pill>
+      <ix-pill
+        align-left
+        variant="warning"
+        icon="print"
+        style="width: 10rem"
+        onClose="{console.log}"
+      >
+        Alarm
+      </ix-pill>
+      <ix-pill
+        align-left
+        background="purple"
+        color="green"
+        variant="custom"
+        icon="print"
+        style="width: 10rem"
+        onClose="{console.log}"
       >
         Custom
       </ix-pill>

@@ -10,9 +10,103 @@
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 
-@mixin chip-variant($interaction) {
+@mixin chip-container($interaction: true) {
+  .container {
+    display: inline-flex;
+    width: inherit;
+    box-sizing: border-box;
+    position: relative;
+    align-items: center;
+    border-radius: $border-radius;
+    padding: 0.5rem;
+
+    height: $default-control-height;
+    max-height: $default-control-height;
+
+    @if $interaction {
+      cursor: pointer;
+    } @else {
+      cursor: default;
+    }
+
+    .with-icon {
+      margin-right: $tiny-space;
+    }
+
+    .hidden {
+      width: 0px;
+      margin-right: 0px;
+    }
+
+    .close-button-container {
+      display: inline-flex;
+      margin-left: auto;
+      padding-left: 0.5rem;
+    }
+
+    .slot-container {
+      @include ellipsis;
+    }
+  }
+
+  .container.icon {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .container.closable {
+    padding-right: 0.25rem;
+  }
+
+  .container.primary {
+    background-color: var(--theme-color-primary);
+    color: var(--theme-chip-primary--color);
+
+    .close-button {
+      color: var(--theme-chip-primary--color);
+      --ix-icon-button-color: var(--theme-chip-primary--color);
+      pointer-events: auto;
+    }
+
+    @if $interaction {
+      &:hover {
+        background-color: var(--theme-chip-primary--background--hover);
+      }
+
+      &:active {
+        background-color: var(--theme-chip-primary--background--active);
+      }
+
+      &:focus-visible {
+        outline: 1px solid #199fff;
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+    }
+  }
+
+  .container.primary.outline {
+    color: var(--theme-chip-primary-outline--color);
+    background-color: transparent;
+    border: solid 1px var(--theme-chip-primary-outline--border-color);
+
+    .close-button {
+      color: var(--theme-chip-primary-outline--color);
+      --ix-icon-button-color: var(--theme-chip-primary-outline--color);
+    }
+
+    @if $interaction {
+      &:hover {
+        background-color: var(--theme-chip-primary-outline--background--hover);
+      }
+
+      &:active {
+        background-color: var(--theme-chip-primary-outline--background--active);
+      }
+    }
+  }
+
   @each $color in $predefined-chips {
-    &[variant='#{$color}'] {
+    .container.#{$color} {
       color: var(--theme-color-#{$color}--contrast);
 
       @if $interaction {
@@ -47,16 +141,19 @@ $border-radius: 100px;
 
         .close-button {
           color: var(--theme-color-#{$color}--contrast);
+          --ix-icon-button-color: var(--theme-color-#{$color}--contrast);
         }
 
-        &:hover::after {
-          content: '';
-          background-color: rgba(0, 0, 0, 0.05);
-        }
+        @if $interaction {
+          &:hover::after {
+            content: '';
+            background-color: rgba(0, 0, 0, 0.05);
+          }
 
-        &.active::after,
-        &:active::after {
-          background-color: rgba(0, 0, 0, 0.1);
+          &.active::after,
+          &:active::after {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
         }
       }
 
@@ -64,22 +161,24 @@ $border-radius: 100px;
         color: var(--theme-chip-outline--color);
         border: solid 1px var(--theme-color-#{$color});
 
-        &:hover::after {
-          display: none;
-        }
+        @if $interaction {
+          &:hover::after {
+            display: none;
+          }
 
-        &:hover {
-          background-color: var(--theme-chip-outline--background--hover);
-        }
+          &:hover {
+            background-color: var(--theme-chip-outline--background--hover);
+          }
 
-        &.active::after,
-        &:active::after {
-          display: none;
-        }
+          &.active::after,
+          &:active::after {
+            display: none;
+          }
 
-        &.active,
-        &:active {
-          background-color: var(--theme-chip-outline--background--active);
+          &.active,
+          &:active {
+            background-color: var(--theme-chip-outline--background--active);
+          }
         }
       }
 
@@ -91,53 +190,4 @@ $border-radius: 100px;
       }
     }
   }
-}
-
-@mixin chip($interaction: true) {
-  &[variant='primary'] {
-    background-color: var(--theme-color-primary);
-    color: var(--theme-chip-primary--color);
-
-    .close-button {
-      color: var(--theme-chip-primary--color);
-      pointer-events: auto;
-    }
-
-    @if $interaction {
-      &:hover {
-        background-color: var(--theme-chip-primary--background--hover);
-      }
-
-      &:active {
-        background-color: var(--theme-chip-primary--background--active);
-      }
-
-      &:focus-visible {
-        outline: 1px solid #199fff;
-        outline-offset: var(--theme-btn--focus--outline-offset);
-      }
-    }
-  }
-
-  &[variant='primary'].outline {
-    color: var(--theme-chip-primary-outline--color);
-    background-color: transparent;
-    border: solid 1px var(--theme-chip-primary-outline--border-color);
-
-    .close-button {
-      color: var(--theme-chip-primary-outline--color);
-    }
-
-    @if $interaction {
-      &:hover {
-        background-color: var(--theme-chip-primary-outline--background--hover);
-      }
-
-      &:active {
-        background-color: var(--theme-chip-primary-outline--background--active);
-      }
-    }
-  }
-
-  @include chip-variant($interaction: $interaction);
 }
