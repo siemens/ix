@@ -12,16 +12,16 @@ import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxToggleButton outline className="m-1"></IxToggleButton>
-  <IxToggleButton outline className="m-1" pressed></IxToggleButton>
-  <IxToggleButton outline className="m-1" disabled></IxToggleButton>
-  <IxToggleButton outline className="m-1" disabled loading></IxToggleButton>
+  <IxToggleButton outline></IxToggleButton>
+  <IxToggleButton outline></IxToggleButton>
+  <IxToggleButton outline disabled></IxToggleButton>
+  <IxToggleButton outline disabled loading></IxToggleButton>
 
-  <IxToggleButton outline className="m-1" size="16"></IxToggleButton>
-  <IxToggleButton outline className="m-1" size="16" pressed></IxToggleButton>
-  <IxToggleButton outline className="m-1" size="16" disabled loading></IxToggleButton>
+  <IxToggleButton outline size="16"></IxToggleButton>
+  <IxToggleButton outline size="16" pressed></IxToggleButton>
+  <IxToggleButton outline size="16" disabled loading></IxToggleButton>
 
-  <IxToggleButton outline className="m-1" size="12"></IxToggleButton>
-  <IxToggleButton outline className="m-1" size="12" pressed></IxToggleButton>
-  <IxToggleButton outline className="m-1" size="12" disabled loading></IxToggleButton>
+  <IxToggleButton outline size="12"></IxToggleButton>
+  <IxToggleButton outline size="12" pressed></IxToggleButton>
+  <IxToggleButton outline size="12" disabled loading></IxToggleButton>
 </template>

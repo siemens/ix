@@ -13,25 +13,10 @@ import React from 'react';
 export default () => {
   return (
     <>
+      <IxIconToggleButton variant="primary" ghost></IxIconToggleButton>
+      <IxIconToggleButton variant="primary" pressed ghost></IxIconToggleButton>
+      <IxIconToggleButton variant="primary" disabled ghost></IxIconToggleButton>
       <IxIconToggleButton
-        className="m-1"
-        variant="primary"
-        ghost
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        className="m-1"
-        variant="primary"
-        pressed
-        ghost
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        className="m-1"
-        variant="primary"
-        disabled
-        ghost
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        className="m-1"
         variant="primary"
         disabled
         loading

@@ -13,25 +13,18 @@ import React from 'react';
 export default () => {
   return (
     <>
+      <IxIconToggleButton variant="primary" outline></IxIconToggleButton>
       <IxIconToggleButton
-        className="m-1"
-        variant="primary"
-        outline
-      ></IxIconToggleButton>
-      <IxIconToggleButton
-        className="m-1"
         variant="primary"
         pressed
         outline
       ></IxIconToggleButton>
       <IxIconToggleButton
-        className="m-1"
         variant="primary"
         disabled
         outline
       ></IxIconToggleButton>
       <IxIconToggleButton
-        className="m-1"
         variant="primary"
         disabled
         loading

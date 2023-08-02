@@ -13,18 +13,18 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton className="m-1" outline></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" outline pressed></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" outline disabled></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" outline disabled loading></IxIconToggleButton>
+      <IxIconToggleButton outline></IxIconToggleButton>
+      <IxIconToggleButton outline pressed></IxIconToggleButton>
+      <IxIconToggleButton outline disabled></IxIconToggleButton>
+      <IxIconToggleButton outline disabled loading></IxIconToggleButton>
 
-      <IxIconToggleButton className="m-1" size="16" outline></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="16" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="16" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton size="16" outline></IxIconToggleButton>
+      <IxIconToggleButton size="16" pressed outline></IxIconToggleButton>
+      <IxIconToggleButton size="16" disabled loading outline></IxIconToggleButton>
 
-      <IxIconToggleButton className="m-1" size="12" outline></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="12" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton className="m-1" size="12" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton size="12" outline></IxIconToggleButton>
+      <IxIconToggleButton size="12" pressed outline></IxIconToggleButton>
+      <IxIconToggleButton size="12" disabled loading outline></IxIconToggleButton>
     </>
   );
 };

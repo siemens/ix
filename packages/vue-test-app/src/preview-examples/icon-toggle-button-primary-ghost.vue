@@ -12,28 +12,8 @@ import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxToggleButton
-    variant="primary"
-    ghost
-    className="m-1"
-  ></IxToggleButton>
-  <IxToggleButton
-    variant="primary"
-    ghost
-    className="m-1"
-    pressed
-  ></IxToggleButton>
-  <IxToggleButton
-    variant="primary"
-    ghost
-    className="m-1"
-    disabled
-  ></IxToggleButton>
-  <IxToggleButton
-    variant="primary"
-    ghost
-    className="m-1"
-    disabled
-    loading
-  ></IxToggleButton>
+  <IxToggleButton variant="primary" ghost></IxToggleButton>
+  <IxToggleButton variant="primary" ghost pressed></IxToggleButton>
+  <IxToggleButton variant="primary" ghost disabled></IxToggleButton>
+  <IxToggleButton variant="primary" ghost disabled loading></IxToggleButton>
 </template>

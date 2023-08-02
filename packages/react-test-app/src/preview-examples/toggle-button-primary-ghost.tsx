@@ -13,16 +13,16 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxToggleButton variant="primary" ghost outline={false} className="m-1">
+      <IxToggleButton variant="primary" ghost outline={false}>
         Normal
       </IxToggleButton>
-      <IxToggleButton variant="primary" ghost outline={false} pressed className="m-1">
+      <IxToggleButton variant="primary" ghost outline={false} pressed>
         Pressed
       </IxToggleButton>
-      <IxToggleButton variant="primary" ghost outline={false} className="m-1" disabled>
+      <IxToggleButton variant="primary" ghost outline={false} disabled>
         Disabled
       </IxToggleButton>
-      <IxToggleButton variant="primary" ghost outline={false} className="m-1" disabled loading>
+      <IxToggleButton variant="primary" ghost outline={false} disabled loading>
         Loading
       </IxToggleButton>
     </>
