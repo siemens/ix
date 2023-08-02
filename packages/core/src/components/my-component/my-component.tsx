@@ -15,14 +15,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-chip>Test 123</ix-chip>
-        <ix-pill style={{ width: '10rem' }}>Test 123</ix-pill>
-        <ix-pill style={{ width: '10rem' }} icon="rocket" alignLeft>
-          Test 123
-        </ix-pill>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

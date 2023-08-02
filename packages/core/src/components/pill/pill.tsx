@@ -12,7 +12,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Pill {
   @Element() el: HTMLIxPillElement;
@@ -103,9 +103,9 @@ export class Pill {
             name={this.icon}
             size={'16'}
           />
-          <div class="slot">
+          <span class="slot-container">
             <slot></slot>
-          </div>
+          </span>
         </div>
       </Host>
     );

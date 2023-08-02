@@ -157,15 +157,6 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 ]);
 
 
-export const IxCounterPill = /*@__PURE__*/ defineContainer<JSX.IxCounterPill>('ix-counter-pill', undefined, [
-  'variant',
-  'outline',
-  'background',
-  'color',
-  'alignLeft'
-]);
-
-
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', undefined, [
   'format',
   'range',

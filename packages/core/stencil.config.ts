@@ -66,9 +66,6 @@ export const config: Config = {
       components: ['ix-chip'],
     },
     {
-      components: ['ix-counter-pill'],
-    },
-    {
       components: ['ix-drawer'],
     },
     {
