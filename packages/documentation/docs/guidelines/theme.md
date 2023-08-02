@@ -44,7 +44,7 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 
 The `siemens-ix-core.css` provides the possibility to import only core related functionalities, without any theme preloaded.
 
-You can load a specified theme by importing the corresponding `css` file.
+You can load a specific theme by importing the corresponding CSS file.
 
 ***Import CSS***
 
