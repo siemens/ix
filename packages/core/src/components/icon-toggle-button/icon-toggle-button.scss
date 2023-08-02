@@ -7,25 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import './components/buttons';
-@import 'mixins/shadow-dom/component';
+@import '../icon-button/icon-button-mixin.scss';
 
-:host {
-  @include ix-component;
-  display: inline-block;
-  width: auto;
-  vertical-align: middle;
-
-  .icon-button {
-    padding: 0;
-  }
-
-  button:not(:disabled) {
-    cursor: pointer;
-  }
-}
-
-:host(.disabled) {
-  pointer-events: none;
-}
+@include base-icon-button;

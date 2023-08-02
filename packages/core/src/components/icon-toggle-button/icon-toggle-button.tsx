@@ -17,8 +17,9 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
+import { BaseIconButton } from '../icon-button/base-icon-button';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -117,7 +118,7 @@ export class IconToggleButton {
     return {
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-24': this.size === '24',
+      'btn-icon-32': this.size === '24',
     };
   }
 
@@ -148,12 +149,11 @@ export class IconToggleButton {
     return (
       <Host
         class={{
+          ...this.getIconSizeClass(),
           disabled: this.disabled,
         }}
       >
-        <BaseButton {...baseButtonProps}>
-          <slot></slot>
-        </BaseButton>
+        <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
     );
   }

@@ -8,8 +8,9 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { BaseButtonProps } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
+import { BaseIconButton } from '../icon-button/base-icon-button';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -125,7 +126,7 @@ export class IconButton implements Button {
     };
     return (
       <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
-        <BaseButton {...baseButtonProps}></BaseButton>
+        <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
     );
   }
