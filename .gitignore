@@ -154,6 +154,12 @@ packages/*/dist-transpiled/
 packages/*/build/
 
 ###
+# @siemens/ix
+###
+
+packages/core/dist-css
+
+###
 # @siemens/html-test-app
 ###
 

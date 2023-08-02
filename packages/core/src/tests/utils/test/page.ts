@@ -9,12 +9,14 @@
 import {
   ElementHandle,
   Page,
+  PageScreenshotOptions,
   test as testBase,
   TestInfo,
 } from '@playwright/test';
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
+  const originalSceenshot = page.screenshot.bind(page);
   const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
   testInfo.annotations.push({
     type: theme,
@@ -27,6 +29,11 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
 
     await page.waitForTimeout(1000);
     return response;
+  };
+
+  page.screenshot = async (options?: PageScreenshotOptions) => {
+    await page.waitForTimeout(150);
+    return originalSceenshot(options);
   };
 
   return page;
