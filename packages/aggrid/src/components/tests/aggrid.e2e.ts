@@ -12,6 +12,8 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('aggrid', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic.html');
+
+    await page.getByRole('columnheader').nth(0).hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
