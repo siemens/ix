@@ -2,6 +2,31 @@
 
 ## v2.0.0
 
+### `ix-workflow-steps`
+
+### Remove `linear` prop
+
+Progression of the workflow steps has to be handled by the business logic now. This change is due to various user feedback.
+
+You can now control the "navigation" of the steps by preventing the `stepSelected` event e.g:
+
+```tsx
+<ix-workflow-steps
+  clickable
+  onStepSelected={(event) => {
+    event.preventDefault(); // This prevents the `ix-workflow-steps` to select the clicked step
+  }}
+>
+  <ix-workflow-step>Test 1</ix-workflow-step>
+  <ix-workflow-step>Test 2</ix-workflow-step>
+  <ix-workflow-step>Test 3</ix-workflow-step>
+</ix-workflow-steps>
+```
+
+### Change `position` prop to `@internal`
+
+`position` was a internal property
+
 ### `ix-counter-pill` removed
 
 Replaced with `ix-pill`

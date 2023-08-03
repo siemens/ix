@@ -774,7 +774,6 @@ export const IxWorkflowStep = /*@__PURE__*/ defineContainer<JSX.IxWorkflowStep>(
 
 export const IxWorkflowSteps = /*@__PURE__*/ defineContainer<JSX.IxWorkflowSteps>('ix-workflow-steps', undefined, [
   'vertical',
-  'linear',
   'clickable',
   'selectedIndex',
   'stepSelected'

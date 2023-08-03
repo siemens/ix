@@ -1912,7 +1912,6 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Activate navigation click
-          * @deprecated Will be changed to '@internal' in 2.0.0
          */
         "position": 'first' | 'last' | 'single' | 'undefined';
         /**
@@ -1933,11 +1932,6 @@ export namespace Components {
           * Activate navigation click
          */
         "clickable": boolean;
-        /**
-          * Select linear mode
-          * @deprecated Has no effect on component. Will get removed in 2.0.0
-         */
-        "linear": boolean;
         /**
           * Activate navigation click
          */
@@ -4877,7 +4871,6 @@ declare namespace LocalJSX {
         "onSelectedChanged"?: (event: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElement>) => void;
         /**
           * Activate navigation click
-          * @deprecated Will be changed to '@internal' in 2.0.0
          */
         "position"?: 'first' | 'last' | 'single' | 'undefined';
         /**
@@ -4898,11 +4891,6 @@ declare namespace LocalJSX {
           * Activate navigation click
          */
         "clickable"?: boolean;
-        /**
-          * Select linear mode
-          * @deprecated Has no effect on component. Will get removed in 2.0.0
-         */
-        "linear"?: boolean;
         /**
           * On step selected event
          */
