@@ -21,7 +21,6 @@ import styles from './SwitchTheme.module.css';
 function ThemeEntry(props: {
   label: string;
   color: string;
-  active: boolean;
   id: string;
   onClick?: (event: React.MouseEvent, id: string) => void;
 }) {
@@ -30,19 +29,11 @@ function ThemeEntry(props: {
       className={styles.Dropdown__Item}
       onClick={(e) => props.onClick(e, props.id)}
     >
-      <div className={styles.Dropdown__Check}>
-        {props.active ? (
-          <i
-            className="glyph glyph-single-check"
-            style={{ color: 'var(--theme-color-primary)' }}
-          />
-        ) : null}
-      </div>
-      <div className={styles.Dropdown__Label}>{props.label}</div>
       <div
         className={styles.Theme__Color}
         style={{ backgroundColor: props.color }}
       ></div>
+      <div className={styles.Dropdown__Label}>{props.label}</div>
     </div>
   );
 }
@@ -61,6 +52,16 @@ export function SwitchTheme(props: { icon: string; label: string }) {
     {
       id: 'theme-classic-light',
       label: 'Classic Light',
+      color: '#6a7f98',
+    },
+    {
+      id: 'theme-legacy-classic-dark',
+      label: 'Legacy Classic Dark',
+      color: '#000',
+    },
+    {
+      id: 'theme-legacy-classic-light',
+      label: 'Legacy Classic Light',
       color: '#6a7f98',
     },
   ]);
@@ -120,11 +121,11 @@ export function SwitchTheme(props: { icon: string; label: string }) {
       <IxDropdown trigger={'switch-theme-button'}>
         {registeredThemes.map(({ id, label, color }) => {
           return (
-            <IxDropdownItem key={id}>
+            <IxDropdownItem key={id} checked={id === theme}>
               <ThemeEntry
+                key={id}
                 id={id}
                 label={label}
-                active={id === theme}
                 color={color}
                 onClick={(_, id) => onThemeChange(id)}
               />

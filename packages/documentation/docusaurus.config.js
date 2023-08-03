@@ -14,6 +14,8 @@ let withBrandTheme = false;
 
 const libCss = [
   require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
   require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
 ];
 

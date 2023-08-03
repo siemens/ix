@@ -1965,142 +1965,6 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/counter-pill",
-      "filePath": "./src/components/counter-pill/counter-pill.tsx",
-      "fileName": "counter-pill.tsx",
-      "readmePath": "./src/components/counter-pill/readme.md",
-      "usagesDir": "./src/components/counter-pill/usage",
-      "tag": "ix-counter-pill",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "alignLeft",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "align-left",
-          "reflectToAttr": false,
-          "docs": "Align pill content left",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "background",
-          "type": "string",
-          "mutable": false,
-          "attr": "background",
-          "reflectToAttr": false,
-          "docs": "Custom color for pill. Only working for `variant='custom'`",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "outline",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "outline",
-          "reflectToAttr": false,
-          "docs": "Show pill as outline",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
-          "mutable": false,
-          "attr": "variant",
-          "reflectToAttr": true,
-          "docs": "Pill variant",
-          "docsTags": [],
-          "default": "'primary'",
-          "values": [
-            {
-              "value": "alarm",
-              "type": "string"
-            },
-            {
-              "value": "critical",
-              "type": "string"
-            },
-            {
-              "value": "custom",
-              "type": "string"
-            },
-            {
-              "value": "info",
-              "type": "string"
-            },
-            {
-              "value": "neutral",
-              "type": "string"
-            },
-            {
-              "value": "primary",
-              "type": "string"
-            },
-            {
-              "value": "success",
-              "type": "string"
-            },
-            {
-              "value": "warning",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/date-picker",
       "filePath": "./src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -8226,7 +8090,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon"
@@ -11004,7 +10868,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-spinner",

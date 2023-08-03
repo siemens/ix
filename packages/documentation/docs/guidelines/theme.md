@@ -1,14 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 0
 ---
-
-import Playground from '@site/src/components/Playground';
-
-import SourceWebComponent from './../auto-generated/previews/web-component/theme-switcher.md'
-import ReactComponent from './../auto-generated/previews/react/theme-switcher.md'
-import AngularComponent from './../auto-generated/previews/angular/theme-switcher.ts.md'
-
-import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 
 # Themes
 
@@ -18,10 +10,23 @@ Everyone can use the two embedded themes that already ship with Siemens Industri
 
 - Classic light (theme-classic-light)
 - Classic dark (theme-classic-dark)
+- **deprecated** Legacy Classic light (theme-legacy-classic-light)
+- **deprecated** Legacy Classic dark (theme-legacy-classic-dark)
 
 You can also create your own themes in order to customize the design system to your own brand.
 
 Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
+
+## Siemens AG Corporate Brand Theme
+
+<div className="siemens-brand-section">
+
+The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
+
+Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
+
+</div>
+
 
 ## How to set a theme
 
@@ -35,24 +40,28 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 </html>
 ```
 
-## Siemens AG Corporate Brand Theme
+## Applying only one theme to reduce build size
 
-<div className="siemens-brand-section">
+Importing `siemens-ix-core.css` will load core related functionalities only, without any preloading any theme.
 
-The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
+You can load a specific theme by importing the corresponding CSS file.
 
-Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
+***Import CSS***
 
-</div>
+```tsx
+// Load only the core parts
+import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
 
-## Working with themes during runtime
+// Load theme
+import '@siemens/ix/dist/siemens-ix/theme/classic-new-light.css';
+import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
+```
 
-<ApiTableSinceTag message="1.3.0" />
+***Set theme***
 
-<Playground
-name="theme-switcher" height="15rem"
-frameworks={{
-  react: ReactComponent,
-  angular: AngularComponent,
-  javascript: SourceWebComponent
-}}></Playground>
+```html
+<body class="theme-classic-new-dark">
+  ...
+</body>
+```
+

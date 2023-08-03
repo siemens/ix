@@ -1,4 +1,4 @@
-# Breaking Changes
+Breaking Changes
 
 ## v2.0.0
 
@@ -33,6 +33,10 @@
 <ix-toggle-button pressed>OK</button>
 <ix-icon-toggle-button icon="checkboxes" pressed></ix-icon-toggle-button>
 ```
+
+### `ix-counter-pill` removed
+
+Replaced with `ix-pill`
 
 ### `ix-toggle` changed host styling
 

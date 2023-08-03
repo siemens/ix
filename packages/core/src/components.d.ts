@@ -397,35 +397,6 @@ export namespace Components {
          */
         "variant": ContentHeaderVariant;
     }
-    interface IxCounterPill {
-        /**
-          * Align pill content left
-         */
-        "alignLeft": boolean;
-        /**
-          * Custom color for pill. Only working for `variant='custom'`
-         */
-        "background": string | undefined;
-        /**
-          * Custom font color for pill. Only working for `variant='custom'`
-         */
-        "color": string | undefined;
-        /**
-          * Show pill as outline
-         */
-        "outline": boolean;
-        /**
-          * Pill variant
-         */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
-    }
     interface IxCssGrid {
         /**
           * Define css grid template
@@ -2337,12 +2308,6 @@ declare global {
         prototype: HTMLIxContentHeaderElement;
         new (): HTMLIxContentHeaderElement;
     };
-    interface HTMLIxCounterPillElement extends Components.IxCounterPill, HTMLStencilElement {
-    }
-    var HTMLIxCounterPillElement: {
-        prototype: HTMLIxCounterPillElement;
-        new (): HTMLIxCounterPillElement;
-    };
     interface HTMLIxCssGridElement extends Components.IxCssGrid, HTMLStencilElement {
     }
     var HTMLIxCssGridElement: {
@@ -2852,7 +2817,6 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-content-header": HTMLIxContentHeaderElement;
-        "ix-counter-pill": HTMLIxCounterPillElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-picker": HTMLIxDatePickerElement;
@@ -3314,35 +3278,6 @@ declare namespace LocalJSX {
           * Variant of content header
          */
         "variant"?: ContentHeaderVariant;
-    }
-    interface IxCounterPill {
-        /**
-          * Align pill content left
-         */
-        "alignLeft"?: boolean;
-        /**
-          * Custom color for pill. Only working for `variant='custom'`
-         */
-        "background"?: string | undefined;
-        /**
-          * Custom font color for pill. Only working for `variant='custom'`
-         */
-        "color"?: string | undefined;
-        /**
-          * Show pill as outline
-         */
-        "outline"?: boolean;
-        /**
-          * Pill variant
-         */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
     }
     interface IxCssGrid {
         /**
@@ -5116,7 +5051,6 @@ declare namespace LocalJSX {
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-content-header": IxContentHeader;
-        "ix-counter-pill": IxCounterPill;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
         "ix-date-picker": IxDatePicker;
@@ -5236,7 +5170,6 @@ declare module "@stencil/core" {
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
-            "ix-counter-pill": LocalJSX.IxCounterPill & JSXBase.HTMLAttributes<HTMLIxCounterPillElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
