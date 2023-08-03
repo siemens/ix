@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+
+export type TabClickDetail = {
+  nativeEvent: MouseEvent;
+};
 
 @Component({
   tag: 'ix-tab-item',
@@ -55,6 +59,11 @@ export class TabItem {
    */
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
+  /**
+   *
+   */
+  @Event() tabClick: EventEmitter<TabClickDetail>;
+
   private tabItemClasses(props: {
     selected: boolean;
     disabled: boolean;
@@ -89,6 +98,15 @@ export class TabItem {
           circle: this.rounded,
         })}
         tabIndex={0}
+        onClick={(event: MouseEvent) => {
+          const clientEvent = this.tabClick.emit({
+            nativeEvent: event,
+          });
+
+          if (clientEvent.defaultPrevented) {
+            event.stopPropagation();
+          }
+        }}
       >
         <div
           class={{

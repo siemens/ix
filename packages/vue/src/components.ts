@@ -645,7 +645,8 @@ export const IxTabItem = /*@__PURE__*/ defineContainer<JSX.IxTabItem>('ix-tab-it
   'rounded',
   'counter',
   'layout',
-  'placement'
+  'placement',
+  'tabClick'
 ]);
 
 
@@ -654,7 +655,8 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', undef
   'rounded',
   'selected',
   'layout',
-  'placement'
+  'placement',
+  'selectedChange'
 ]);
 
 

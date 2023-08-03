@@ -9253,7 +9253,17 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "tabClick",
+          "detail": "{ nativeEvent: MouseEvent; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -9387,7 +9397,17 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "selectedChange",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "`selected` property changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -9397,6 +9417,11 @@
           "target": "window",
           "capture": false,
           "passive": true
+        },
+        {
+          "event": "tabClick",
+          "capture": false,
+          "passive": false
         }
       ]
     },

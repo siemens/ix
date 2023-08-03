@@ -29,6 +29,7 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SplitButtonVariant } from "./components/split-button/split-button";
+import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
@@ -59,6 +60,7 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SplitButtonVariant } from "./components/split-button/split-button";
+export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
@@ -2089,6 +2091,14 @@ export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
 export interface IxSplitButtonItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSplitButtonItemElement;
+}
+export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTabItemElement;
+}
+export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTabsElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4536,6 +4546,7 @@ declare namespace LocalJSX {
           * Set layout width style
          */
         "layout"?: 'auto' | 'stretched';
+        "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
         /**
           * Set selected placement
          */
@@ -4558,6 +4569,10 @@ declare namespace LocalJSX {
           * Set layout width style
          */
         "layout"?: 'auto' | 'stretched';
+        /**
+          * `selected` property changed
+         */
+        "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
           * Set placement style
          */
