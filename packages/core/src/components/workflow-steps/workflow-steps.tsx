@@ -33,12 +33,6 @@ export class WorkflowSteps {
   @Prop() vertical: boolean = false;
 
   /**
-   * Select linear mode
-   * @deprecated Has no effect on component. Will get removed in 2.0.0
-   */
-  @Prop() linear: boolean = false;
-
-  /**
    * Activate navigation click
    */
   @Prop() clickable: boolean = false;
@@ -83,14 +77,18 @@ export class WorkflowSteps {
 
   @Listen('selectedChanged')
   onStepSelectionChanged(event: CustomEvent<HTMLIxWorkflowStepElement>) {
+    const eventTarget = event.detail;
+
     const steps = this.getSteps();
-    steps.forEach((element, index) => {
-      if (element !== event.target) {
-        element.selected = false;
-      }
-      if (element.selected === true) {
-        this.stepSelected.emit(index);
-      }
+    const clickIndex = steps.findIndex((step) => step === eventTarget);
+    const clientEvent = this.stepSelected.emit(clickIndex);
+
+    if (clientEvent.defaultPrevented) {
+      return;
+    }
+
+    steps.forEach((step, index) => {
+      step.selected = index === clickIndex;
     });
   }
 

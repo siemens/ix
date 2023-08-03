@@ -10961,45 +10961,9 @@
           "required": false
         },
         {
-          "name": "position",
-          "type": "\"first\" | \"last\" | \"single\" | \"undefined\"",
-          "mutable": false,
-          "attr": "position",
-          "reflectToAttr": false,
-          "docs": "Activate navigation click",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be changed to '@internal' in 2.0.0"
-            }
-          ],
-          "default": "'undefined'",
-          "deprecation": "Will be changed to '@internal' in 2.0.0",
-          "values": [
-            {
-              "value": "first",
-              "type": "string"
-            },
-            {
-              "value": "last",
-              "type": "string"
-            },
-            {
-              "value": "single",
-              "type": "string"
-            },
-            {
-              "value": "undefined",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "selected",
           "type": "boolean",
-          "mutable": true,
+          "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
           "docs": "Set selected",
@@ -11097,29 +11061,6 @@
           "docs": "Activate navigation click",
           "docsTags": [],
           "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "linear",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "linear",
-          "reflectToAttr": false,
-          "docs": "Select linear mode",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Has no effect on component. Will get removed in 2.0.0"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Has no effect on component. Will get removed in 2.0.0",
           "values": [
             {
               "type": "boolean"

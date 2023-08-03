@@ -2130,14 +2130,14 @@ export declare interface IxValidationTooltip extends Components.IxValidationTool
 
 
 @ProxyCmp({
-  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical']
+  inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical']
 })
 @Component({
   selector: 'ix-workflow-step',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical'],
+  inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical'],
 })
 export class IxWorkflowStep {
   protected el: HTMLElement;
@@ -2152,14 +2152,14 @@ export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
 
 
 @ProxyCmp({
-  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical']
+  inputs: ['clickable', 'selectedIndex', 'vertical']
 })
 @Component({
   selector: 'ix-workflow-steps',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical'],
+  inputs: ['clickable', 'selectedIndex', 'vertical'],
 })
 export class IxWorkflowSteps {
   protected el: HTMLElement;
