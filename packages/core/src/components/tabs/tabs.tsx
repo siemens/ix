@@ -56,6 +56,8 @@ export class Tabs {
 
   /**
    * `selected` property changed
+   *
+   * @since 2.0.0
    */
   @Event() selectedChange: EventEmitter<number>;
 

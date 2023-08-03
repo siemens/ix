@@ -60,7 +60,9 @@ export class TabItem {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
+   * On tab click
    *
+   * @since 2.0.0
    */
   @Event() tabClick: EventEmitter<TabClickDetail>;
 
