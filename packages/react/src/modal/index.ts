@@ -7,39 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { modal, ModalConfig as IxModalConfig } from '@siemens/ix';
-import ReactDOMClient from 'react-dom/client';
+import {
+  ModalConfig as IxModalConfig,
+  showModal as _showModal,
+} from '@siemens/ix';
 export * from './modal';
 
 export type ModalConfig = {
-  content: React.ReactNode;
+  content: React.ReactNode | string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function showModal<TReason = any>(
+export async function showModal(
   config: Omit<IxModalConfig, 'content'> & ModalConfig
 ) {
-  if (typeof config.content === 'string') {
-    return modal<TReason>(config as IxModalConfig);
-  }
-
-  const container = document.createElement('DIV');
-  container.style.display = 'contents';
-  const root = ReactDOMClient.createRoot(container);
-  root.render(config.content);
-
-  const modalInstance = await modal<TReason>({
-    ...config,
-    content: container,
-  });
-
-  modalInstance.onClose.once(() => {
-    root.unmount();
-  });
-
-  modalInstance.onDismiss.once(() => {
-    root.unmount();
-  });
-
-  return modalInstance;
+  return _showModal(config);
 }

@@ -13,6 +13,7 @@ import path from 'path';
 import rimraf from 'rimraf';
 import copyLib, { examplePathPath } from './copy-webcomponents';
 import { writeApi } from './renderer/api-renderer';
+import { writeTypeScriptFiles } from './typescript-files';
 import { writeAngularPreviews } from './write-angular-preview';
 
 (async function () {
@@ -217,4 +218,6 @@ SPDX-License-Identifier: MIT
     generateMarkdown
   );
   await writeVuePreviews();
+
+  await writeTypeScriptFiles(path.join(__dirname, 'docs', 'auto-generated'));
 })();

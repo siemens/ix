@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 
 export type DropdownButtonVariant = ButtonVariant;
@@ -18,9 +18,11 @@ export type DropdownButtonVariant = ButtonVariant;
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DropdownButton {
+  @Element() hostElement!: HTMLIxDropdownButtonElement;
+
   /**
    * Button variant
    */
@@ -120,9 +122,7 @@ export class DropdownButton {
         <ix-dropdown
           class="dropdown"
           trigger={this.dropdownAnchor}
-          placement="bottom"
           positioningStrategy={'fixed'}
-          adjustDropdownWidthToReferenceWidth={true}
         >
           <slot></slot>
         </ix-dropdown>

@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Link Button</title>
+  </head>
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-button>Show 'success' message</ix-button>
+    <script type="module">
+      import { showMessage } from '@siemens/ix';
+
+      const btn = document.querySelector('ix-button');
+      btn.addEventListener('click', async () => {
+        (
+          await showMessage.success(
+            'Example title',
+            'message',
+            'Save',
+            'Cancel',
+            'payload:save',
+            'payload:cancel'
+          )
+        ).once(console.log);
+      });
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

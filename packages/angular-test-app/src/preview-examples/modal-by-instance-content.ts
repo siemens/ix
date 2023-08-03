@@ -11,20 +11,12 @@ import { Component } from '@angular/core';
 import { IxActiveModal } from '@siemens/ix-angular';
 
 @Component({
-  template: `<div class="modal-header">
-      Message headline
-      <ix-icon-button
-        data-button-close
-        ghost
-        icon="close"
-        class="dismiss-modal"
-        (click)="activeModal.dismiss('dismiss')"
-      ></ix-icon-button>
-    </div>
-    <div class="modal-body">
+  template: `
+    <ix-modal-header> Message headline </ix-modal-header>
+    <ix-modal-content>
       Message text lorem ipsum: {{ activeModal.data }}
-    </div>
-    <div class="modal-footer">
+    </ix-modal-content>
+    <ix-modal-footer>
       <ix-button
         outline
         class="dismiss-modal"
@@ -35,7 +27,8 @@ import { IxActiveModal } from '@siemens/ix-angular';
       <ix-button class="close-modal" (click)="activeModal.close('okay')">
         OK
       </ix-button>
-    </div>`,
+    </ix-modal-footer>
+  `,
 })
 export default class ModalByInstanceContent {
   constructor(readonly activeModal: IxActiveModal) {}

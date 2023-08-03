@@ -21,7 +21,6 @@ export default class ModalByInstance {
   async openModal() {
     await this.modalService.open({
       content: ModalByInstanceExample,
-      title: '',
       data: 'Some data',
     });
   }

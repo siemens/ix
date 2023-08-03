@@ -157,15 +157,6 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 ]);
 
 
-export const IxCounterPill = /*@__PURE__*/ defineContainer<JSX.IxCounterPill>('ix-counter-pill', undefined, [
-  'variant',
-  'outline',
-  'background',
-  'color',
-  'alignLeft'
-]);
-
-
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', undefined, [
   'format',
   'range',
@@ -223,14 +214,13 @@ export const IxDrawer = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer',
 
 
 export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-dropdown', undefined, [
+  'suppressAutomaticPlacement',
   'show',
   'trigger',
   'anchor',
   'closeBehavior',
   'placement',
   'positioningStrategy',
-  'adjustDropdownWidthToReferenceWith',
-  'adjustDropdownWidthToReferenceWidth',
   'header',
   'offset',
   'triggerEvent',
@@ -250,12 +240,19 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
 ]);
 
 
+export const IxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IxDropdownHeader>('ix-dropdown-header', undefined, [
+  'label'
+]);
+
+
 export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>('ix-dropdown-item', undefined, [
   'label',
   'icon',
   'hover',
   'disabled',
   'checked',
+  'isSubMenu',
+  'suppressChecked',
   'itemClick'
 ]);
 
@@ -332,12 +329,6 @@ export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', un
 
 
 export const IxGroupContextMenu = /*@__PURE__*/ defineContainer<JSX.IxGroupContextMenu>('ix-group-context-menu', undefined);
-
-
-export const IxGroupDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxGroupDropdownItem>('ix-group-dropdown-item', undefined, [
-  'label',
-  'icon'
-]);
 
 
 export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-group-item', undefined, [
@@ -530,31 +521,33 @@ export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-
 
 
 export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', undefined, [
+  'size',
   'animation',
-  'ariaDescribedBy',
-  'ariaLabelledBy',
   'backdrop',
-  'backdropClass',
+  'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'content',
   'keyboard',
-  'icon',
-  'iconColor',
-  'modalDialogClass',
-  'scrollable',
-  'size',
-  'headerTitle',
-  'windowClass',
-  'closed',
-  'dismissed'
+  'dialogClose',
+  'dialogDismiss'
 ]);
 
 
-export const IxModalContainer = /*@__PURE__*/ defineContainer<JSX.IxModalContainer>('ix-modal-container', undefined);
+export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', undefined);
 
 
 export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', undefined);
+
+
+export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('ix-modal-footer', undefined);
+
+
+export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
+  'hideClose',
+  'icon',
+  'iconColor',
+  'closeClick'
+]);
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', undefined, [
@@ -708,7 +701,6 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'checked',
   'disabled',
   'indeterminate',
-  'color',
   'textOn',
   'textOff',
   'textIndeterminate',
@@ -764,7 +756,8 @@ export const IxUpload = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload',
 
 export const IxValidationTooltip = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', undefined, [
   'message',
-  'placement'
+  'placement',
+  'suppressAutomaticPlacement'
 ]);
 
 

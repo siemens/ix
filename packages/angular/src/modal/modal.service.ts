@@ -15,7 +15,7 @@ import {
   Injector,
   Type,
 } from '@angular/core';
-import { closeModal, dismissModal, modal } from '@siemens/ix';
+import { closeModal, dismissModal, showModal } from '@siemens/ix';
 import { InternalIxActiveModal, IxActiveModal } from './modal-ref';
 import { ModalConfig } from './modal.config';
 
@@ -128,9 +128,8 @@ export class ModalService {
 
     embeddedView.detectChanges();
 
-    const modalInstance = await modal<TReason>({
+    const modalInstance = await showModal<TReason>({
       ...config,
-      title: '',
       content: node,
     });
 
