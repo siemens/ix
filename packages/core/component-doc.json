@@ -9260,8 +9260,13 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
-          "docsTags": []
+          "docs": "On tab click",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -9405,7 +9410,12 @@
           "cancelable": true,
           "composed": true,
           "docs": "`selected` property changed",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
         }
       ],
       "styles": [],

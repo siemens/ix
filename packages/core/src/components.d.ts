@@ -4546,6 +4546,10 @@ declare namespace LocalJSX {
           * Set layout width style
          */
         "layout"?: 'auto' | 'stretched';
+        /**
+          * On tab click
+          * @since 2.0.0
+         */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
         /**
           * Set selected placement
@@ -4571,6 +4575,7 @@ declare namespace LocalJSX {
         "layout"?: 'auto' | 'stretched';
         /**
           * `selected` property changed
+          * @since 2.0.0
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**

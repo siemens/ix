@@ -1869,7 +1869,9 @@ export class IxTabItem {
 import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
-
+  /**
+   * On tab click @since 2.0.0
+   */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
 
@@ -1896,7 +1898,7 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed
+   * `selected` property changed @since 2.0.0
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }
