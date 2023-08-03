@@ -6,8 +6,7 @@
 
 ### Remove `linear` prop
 
-Progression of the workflow steps have to be handled by the business logic. We decided this 
-on the base of different user feedbacks.
+Progression of the workflow steps has to be handled by the business logic now. This change is due to various user feedback.
 
 You can now control the "navigation" of the steps by preventing the `stepSelected` event e.g:
 
