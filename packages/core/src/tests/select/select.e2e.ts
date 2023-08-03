@@ -101,4 +101,29 @@ regressionTest.describe('select', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('readonly select Index', async ({ page }) => {
+    await page.goto('select/readonly');
+
+    const element = page.locator('ix-select');
+
+    await element.evaluate(
+      (el: HTMLIxSelectElement) => (el.selectedIndices = ['1'])
+    );
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('readonly select multiple index', async ({ page }) => {
+    await page.goto('select/readonly');
+
+    const element = page.locator('ix-select');
+
+    await element.evaluate((el: HTMLIxSelectElement) => {
+      el.mode = 'multiple';
+      el.selectedIndices = ['1', '2'];
+    });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

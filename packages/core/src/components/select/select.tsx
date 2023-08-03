@@ -24,7 +24,7 @@ import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Select {
   @Element() hostElement!: HTMLIxSelectElement;
@@ -412,7 +412,6 @@ export class Select {
       <Host>
         <div
           class={{
-            'form-control': true,
             select: true,
             focus: this.hasFocus,
             editable: this.editable,

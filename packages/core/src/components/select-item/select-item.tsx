@@ -23,7 +23,7 @@ import { IxSelectItemLabelChangeEvent } from './events';
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class SelectItem {
   @Element() hostElement: HTMLIxSelectItemElement;
