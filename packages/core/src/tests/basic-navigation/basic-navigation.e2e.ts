@@ -180,9 +180,6 @@ regressionTest.describe('basic navigation mobile', () => {
     });
 
     await page.waitForTimeout(500);
-    // const menuElement = await page.waitForSelector(
-    //   'ix-application-header ix-burger-menu'
-    // );
     const header = page.locator('ix-application-header');
     const menuElement = header.locator('ix-burger-menu');
 
