@@ -2340,6 +2340,7 @@
         ],
         "ix-time-picker": [
           "ix-date-time-card",
+          "ix-typography",
           "ix-icon-button",
           "ix-button"
         ]
@@ -9610,12 +9611,14 @@
       ],
       "dependencies": [
         "ix-date-time-card",
+        "ix-typography",
         "ix-icon-button",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-time-picker": [
           "ix-date-time-card",
+          "ix-typography",
           "ix-icon-button",
           "ix-button"
         ],
