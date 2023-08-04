@@ -21,6 +21,7 @@ import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items.vue';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate.vue';
 import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
+import ButtonSelected from './preview-examples/button-selected.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
@@ -104,6 +105,7 @@ const routes: any = {
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/buttons': Buttons,
   '/preview/button-with-icon': ButtonWithIcon,
+  '/preview/button-selected': ButtonSelected,
   '/preview/button-group': ButtonGroup,
   '/preview/blind': Blind,
   '/preview/breadcrumb': Breadcrumb,

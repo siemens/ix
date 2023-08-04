@@ -16,8 +16,6 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
-import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @since 1.5.0
@@ -28,22 +26,6 @@ import { a11yBoolean } from '../utils/a11y';
   scoped: true,
 })
 export class Pagination {
-  private readonly baseButtonConfig: BaseButtonProps = {
-    variant: 'secondary',
-    outline: false,
-    ghost: true,
-    iconOnly: true,
-    iconOval: false,
-    disabled: false,
-    icon: '',
-    loading: false,
-    selected: false,
-    type: 'button',
-    extraClasses: {
-      ['w-auto']: true,
-    },
-  };
-
   private readonly maxCountPages = 7;
 
   @Element() hostElement!: HTMLIxPaginationElement;
@@ -135,16 +117,17 @@ export class Pagination {
   }
 
   private getPageButton(index: number) {
-    const baseButtonProps: BaseButtonProps = {
-      ...this.baseButtonConfig,
-      onClick: () => this.selectPage(index),
-      selected: this.selectedPage === index,
-      ariaAttributes: {
-        'aria-pressed': a11yBoolean(this.selectedPage === index),
-      },
-    };
-
-    return <BaseButton {...baseButtonProps}>{index + 1}</BaseButton>;
+    return (
+      <ix-index-button
+        variant="primary"
+        onClick={() => {
+          this.selectPage(index);
+        }}
+        selected={this.selectedPage === index}
+      >
+        {index + 1}
+      </ix-index-button>
+    );
   }
 
   private renderPageButtons() {
@@ -161,18 +144,23 @@ export class Pagination {
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
 
     if (hasOverflowStart) {
-      const baseButtonProps = {
-        ...this.baseButtonConfig,
-        onClick: () => {
-          if (hasOverflowEnd) {
-            this.selectPage(this.selectedPage - Math.max(0, 2 * pageCount + 1));
-          } else {
-            this.selectPage(this.count - this.maxCountPages);
-          }
-        },
-      };
       pageButtons.push(this.getPageButton(0));
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <ix-index-button
+          variant="secondary"
+          onClick={() => {
+            if (hasOverflowEnd) {
+              this.selectPage(
+                this.selectedPage - Math.max(0, 2 * pageCount + 1)
+              );
+            } else {
+              this.selectPage(this.count - this.maxCountPages);
+            }
+          }}
+        >
+          ...
+        </ix-index-button>
+      );
 
       if (hasOverflowEnd) {
         start = this.count - this.maxCountPages + 2;
@@ -196,17 +184,22 @@ export class Pagination {
     }
 
     if (hasOverflowEnd) {
-      const baseButtonProps = {
-        ...this.baseButtonConfig,
-        onClick: () => {
-          if (hasOverflowStart) {
-            this.selectPage(this.selectedPage + Math.max(0, 2 * pageCount + 1));
-          } else {
-            this.selectPage(this.maxCountPages - 1);
-          }
-        },
-      };
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <ix-index-button
+          variant="secondary"
+          onClick={() => {
+            if (hasOverflowStart) {
+              this.selectPage(
+                this.selectedPage + Math.max(0, 2 * pageCount + 1)
+              );
+            } else {
+              this.selectPage(this.maxCountPages - 1);
+            }
+          }}
+        >
+          ...
+        </ix-index-button>
+      );
       pageButtons.push(this.getPageButton(this.count - 1));
     }
 

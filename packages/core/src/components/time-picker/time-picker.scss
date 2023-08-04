@@ -19,14 +19,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: $large-control-height;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    font: var(--theme-text-default-title);
+    min-height: $large-control-height;
+    color: var(--theme-datepicker-time-header--color);
   }
 
   .clock {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4.25rem 0;
+    padding: 5rem 0;
   }
 
   input,
@@ -34,8 +41,8 @@
     width: 2.625rem;
     height: $large-space;
     text-align: center;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: $small-space;
+    margin-bottom: $small-space;
 
     /* Chrome, Safari, Edge, Opera */
     &::-webkit-outer-spin-button,
@@ -85,7 +92,6 @@
   }
 
   .time-reference {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin: $medium-space 0;
   }
 }

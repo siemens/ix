@@ -24,7 +24,7 @@ import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-but
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
-import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
+import { IndexButtonVariant } from "./components/index-button/index-button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
@@ -54,7 +54,7 @@ export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-but
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
-export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
+export { IndexButtonVariant } from "./components/index-button/index-button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
@@ -209,6 +209,11 @@ export namespace Components {
          */
         "icon": string;
         /**
+          * Invisible button
+          * @deprecated use ghost property
+         */
+        "invisible": boolean;
+        /**
           * Loading button
           * @since 2.0.0
          */
@@ -217,6 +222,10 @@ export namespace Components {
           * Outline button
          */
         "outline": boolean;
+        /**
+          * Show button as selected. Should be used with outline or ghost
+         */
+        "selected": boolean;
         /**
           * Type of the button
          */
@@ -905,6 +914,11 @@ export namespace Components {
          */
         "icon": string;
         /**
+          * Button invisible
+          * @deprecated Use ghost property
+         */
+        "invisible": boolean;
+        /**
           * Loading button
           * @since 2.0.0
          */
@@ -917,6 +931,10 @@ export namespace Components {
           * Button in oval shape
          */
         "oval": boolean;
+        /**
+          * Selected state only working with outline or invisible
+         */
+        "selected": boolean;
         /**
           * Size of icon in button
           * @deprecated Only size 32 will be removed in 3.0.0
@@ -931,42 +949,15 @@ export namespace Components {
          */
         "variant": IconButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
-    interface IxIconToggleButton {
+    interface IxIndexButton {
         /**
-          * Disable the button
+          * Selection state
          */
-        "disabled": boolean;
+        "selected": boolean;
         /**
-          * Button with no background or outline
+          * Button variant
          */
-        "ghost": boolean;
-        /**
-          * Icon name
-         */
-        "icon": string;
-        /**
-          * Loading button
-         */
-        "loading": boolean;
-        /**
-          * Outline button
-         */
-        "outline": boolean;
-        /**
-          * Show button as pressed
-         */
-        "pressed": boolean;
-        /**
-          * Size of icon in button
-         */
-        "size": '24' | '16' | '12';
-        /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-         */
-        "variant": ButtonVariant1;
+        "variant": IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -1775,39 +1766,6 @@ export namespace Components {
         "textOn": string;
     }
     /**
-     * @since 2.0.0
-     */
-    interface IxToggleButton {
-        /**
-          * Disable the button
-         */
-        "disabled": boolean;
-        /**
-          * Button with no background or outline
-         */
-        "ghost": boolean;
-        /**
-          * Icon name
-         */
-        "icon": string;
-        /**
-          * Loading button
-         */
-        "loading": boolean;
-        /**
-          * Outline button
-         */
-        "outline": boolean;
-        /**
-          * Show button as pressed
-         */
-        "pressed": boolean;
-        /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-         */
-        "variant": ButtonVariant1;
-    }
-    /**
      * @since 1.4.0
      */
     interface IxTooltip {
@@ -2062,10 +2020,6 @@ export interface IxGroupItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxGroupItemElement;
 }
-export interface IxIconToggleButtonCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxIconToggleButtonElement;
-}
 export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMapNavigationElement;
@@ -2141,10 +2095,6 @@ export interface IxToastCustomEvent<T> extends CustomEvent<T> {
 export interface IxToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxToggleElement;
-}
-export interface IxToggleButtonCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxToggleButtonElement;
 }
 export interface IxTreeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2455,14 +2405,11 @@ declare global {
         prototype: HTMLIxIconButtonElement;
         new (): HTMLIxIconButtonElement;
     };
-    /**
-     * @since 2.0.0
-     */
-    interface HTMLIxIconToggleButtonElement extends Components.IxIconToggleButton, HTMLStencilElement {
+    interface HTMLIxIndexButtonElement extends Components.IxIndexButton, HTMLStencilElement {
     }
-    var HTMLIxIconToggleButtonElement: {
-        prototype: HTMLIxIconToggleButtonElement;
-        new (): HTMLIxIconToggleButtonElement;
+    var HTMLIxIndexButtonElement: {
+        prototype: HTMLIxIndexButtonElement;
+        new (): HTMLIxIndexButtonElement;
     };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
@@ -2726,15 +2673,6 @@ declare global {
         new (): HTMLIxToggleElement;
     };
     /**
-     * @since 2.0.0
-     */
-    interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
-    }
-    var HTMLIxToggleButtonElement: {
-        prototype: HTMLIxToggleButtonElement;
-        new (): HTMLIxToggleButtonElement;
-    };
-    /**
      * @since 1.4.0
      */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
@@ -2834,7 +2772,7 @@ declare global {
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
         "ix-icon-button": HTMLIxIconButtonElement;
-        "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
+        "ix-index-button": HTMLIxIndexButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -2874,7 +2812,6 @@ declare global {
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
-        "ix-toggle-button": HTMLIxToggleButtonElement;
         "ix-tooltip": HTMLIxTooltipElement;
         "ix-tree": HTMLIxTreeElement;
         "ix-tree-item": HTMLIxTreeItemElement;
@@ -3046,6 +2983,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Invisible button
+          * @deprecated use ghost property
+         */
+        "invisible"?: boolean;
+        /**
           * Loading button
           * @since 2.0.0
          */
@@ -3054,6 +2996,10 @@ declare namespace LocalJSX {
           * Outline button
          */
         "outline"?: boolean;
+        /**
+          * Show button as selected. Should be used with outline or ghost
+         */
+        "selected"?: boolean;
         /**
           * Type of the button
          */
@@ -3851,6 +3797,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Button invisible
+          * @deprecated Use ghost property
+         */
+        "invisible"?: boolean;
+        /**
           * Loading button
           * @since 2.0.0
          */
@@ -3863,6 +3814,10 @@ declare namespace LocalJSX {
           * Button in oval shape
          */
         "oval"?: boolean;
+        /**
+          * Selected state only working with outline or invisible
+         */
+        "selected"?: boolean;
         /**
           * Size of icon in button
           * @deprecated Only size 32 will be removed in 3.0.0
@@ -3877,46 +3832,15 @@ declare namespace LocalJSX {
          */
         "variant"?: IconButtonVariant;
     }
-    /**
-     * @since 2.0.0
-     */
-    interface IxIconToggleButton {
+    interface IxIndexButton {
         /**
-          * Disable the button
+          * Selection state
          */
-        "disabled"?: boolean;
+        "selected"?: boolean;
         /**
-          * Button with no background or outline
+          * Button variant
          */
-        "ghost"?: boolean;
-        /**
-          * Icon name
-         */
-        "icon"?: string;
-        /**
-          * Loading button
-         */
-        "loading"?: boolean;
-        /**
-          * Pressed change event
-         */
-        "onPressedChange"?: (event: IxIconToggleButtonCustomEvent<boolean>) => void;
-        /**
-          * Outline button
-         */
-        "outline"?: boolean;
-        /**
-          * Show button as pressed
-         */
-        "pressed"?: boolean;
-        /**
-          * Size of icon in button
-         */
-        "size"?: '24' | '16' | '12';
-        /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-         */
-        "variant"?: ButtonVariant1;
+        "variant"?: IndexButtonVariant;
     }
     interface IxInputGroup {
     }
@@ -4775,43 +4699,6 @@ declare namespace LocalJSX {
         "textOn"?: string;
     }
     /**
-     * @since 2.0.0
-     */
-    interface IxToggleButton {
-        /**
-          * Disable the button
-         */
-        "disabled"?: boolean;
-        /**
-          * Button with no background or outline
-         */
-        "ghost"?: boolean;
-        /**
-          * Icon name
-         */
-        "icon"?: string;
-        /**
-          * Loading button
-         */
-        "loading"?: boolean;
-        /**
-          * Pressed change event
-         */
-        "onPressedChange"?: (event: IxToggleButtonCustomEvent<boolean>) => void;
-        /**
-          * Outline button
-         */
-        "outline"?: boolean;
-        /**
-          * Show button as pressed
-         */
-        "pressed"?: boolean;
-        /**
-          * Button variant. Important: Variant 'primary' can only be combined with either outline or ghost.
-         */
-        "variant"?: ButtonVariant1;
-    }
-    /**
      * @since 1.4.0
      */
     interface IxTooltip {
@@ -5062,7 +4949,7 @@ declare namespace LocalJSX {
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
         "ix-icon-button": IxIconButton;
-        "ix-icon-toggle-button": IxIconToggleButton;
+        "ix-index-button": IxIndexButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
@@ -5102,7 +4989,6 @@ declare namespace LocalJSX {
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
-        "ix-toggle-button": IxToggleButton;
         "ix-tooltip": IxTooltip;
         "ix-tree": IxTree;
         "ix-tree-item": IxTreeItem;
@@ -5196,10 +5082,7 @@ declare module "@stencil/core" {
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
-            /**
-             * @since 2.0.0
-             */
-            "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            "ix-index-button": LocalJSX.IxIndexButton & JSXBase.HTMLAttributes<HTMLIxIndexButtonElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0
@@ -5266,10 +5149,6 @@ declare module "@stencil/core" {
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
-            /**
-             * @since 2.0.0
-             */
-            "ix-toggle-button": LocalJSX.IxToggleButton & JSXBase.HTMLAttributes<HTMLIxToggleButtonElement>;
             /**
              * @since 1.4.0
              */
