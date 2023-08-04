@@ -73,6 +73,7 @@ import MenuCategory from 'src/preview-examples/menu-category';
 import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Modal from 'src/preview-examples/modal-by-template';
+import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
@@ -282,6 +283,7 @@ const routes: Routes = [
       { path: 'input', component: Input },
       { path: 'kpi', component: Kpi },
       { path: 'message-bar', component: MessageBar },
+      { path: 'pagination', component: Pagination },
       { path: 'pill', component: Pill },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },

@@ -25,7 +25,9 @@
 @mixin base-icon-button {
   @include btn;
   @include ix-component;
+
   $button-categories: (primary, secondary);
+
   @each $category in $button-categories {
     @include btn-variant($category);
     @include btn-variant('outline-#{$category}');
