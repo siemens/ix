@@ -3,8 +3,6 @@ import * as d from './components';
 
 export const DIRECTIVES = [
   d.IxActionCard,
-  d.IxAnimatedTab,
-  d.IxAnimatedTabs,
   d.IxApplicationHeader,
   d.IxAvatar,
   d.IxBasicNavigation,

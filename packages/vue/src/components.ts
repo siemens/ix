@@ -18,20 +18,6 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 ]);
 
 
-export const IxAnimatedTab = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTab>('ix-animated-tab', undefined, [
-  'icon',
-  'count'
-]);
-
-
-export const IxAnimatedTabs = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTabs>('ix-animated-tabs', undefined, [
-  'disableAnimations',
-  'selectedIndex',
-  'tabPlacement',
-  'tabClick'
-]);
-
-
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
   'name',
   'mode'

@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### Remove `ix-animated-tab` and `ix-animated-tabs`
+
+Replaced by `ix-tabs` implementation.
+
 ### `ix-workflow-steps`
 
 ### Remove `linear` prop

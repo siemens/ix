@@ -91,27 +91,6 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
-    interface IxAnimatedTab {
-        /**
-          * Show notification number
-         */
-        "count": number;
-        /**
-          * Icon of the tab
-         */
-        "icon": string;
-    }
-    interface IxAnimatedTabs {
-        "disableAnimations": boolean;
-        /**
-          * Current selected tab index
-         */
-        "selectedIndex": number;
-        /**
-          * Placement of the tabs
-         */
-        "tabPlacement": 'top' | 'bottom';
-    }
     interface IxApplicationHeader {
         "mode": Mode;
         /**
@@ -1944,10 +1923,6 @@ export namespace Components {
     interface MyComponent {
     }
 }
-export interface IxAnimatedTabsCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxAnimatedTabsElement;
-}
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBlindElement;
@@ -2125,18 +2100,6 @@ declare global {
     var HTMLIxActionCardElement: {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
-    };
-    interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
-    }
-    var HTMLIxAnimatedTabElement: {
-        prototype: HTMLIxAnimatedTabElement;
-        new (): HTMLIxAnimatedTabElement;
-    };
-    interface HTMLIxAnimatedTabsElement extends Components.IxAnimatedTabs, HTMLStencilElement {
-    }
-    var HTMLIxAnimatedTabsElement: {
-        prototype: HTMLIxAnimatedTabsElement;
-        new (): HTMLIxAnimatedTabsElement;
     };
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
     }
@@ -2731,8 +2694,6 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
-        "ix-animated-tab": HTMLIxAnimatedTabElement;
-        "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
@@ -2848,31 +2809,6 @@ declare namespace LocalJSX {
           * Card variant
          */
         "variant"?: ActionCardVariant;
-    }
-    interface IxAnimatedTab {
-        /**
-          * Show notification number
-         */
-        "count"?: number;
-        /**
-          * Icon of the tab
-         */
-        "icon"?: string;
-    }
-    interface IxAnimatedTabs {
-        "disableAnimations"?: boolean;
-        /**
-          * Tab navigated
-         */
-        "onTabClick"?: (event: IxAnimatedTabsCustomEvent<any>) => void;
-        /**
-          * Current selected tab index
-         */
-        "selectedIndex"?: number;
-        /**
-          * Placement of the tabs
-         */
-        "tabPlacement"?: 'top' | 'bottom';
     }
     interface IxApplicationHeader {
         "mode"?: Mode;
@@ -4908,8 +4844,6 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
-        "ix-animated-tab": IxAnimatedTab;
-        "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
@@ -5008,8 +4942,6 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
-            "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
-            "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             /**
              * @since 2.0.0
