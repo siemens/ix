@@ -133,12 +133,14 @@
       }
     }
 
-    &:hover {
-      background-color: var(--theme-workflow-step--background--hover);
-    }
+    &.clickable {
+      &:hover {
+        background-color: var(--theme-workflow-step--background--hover);
+      }
 
-    &:active {
-      background-color: var(--theme-workflow-step--background--active);
+      &:active {
+        background-color: var(--theme-workflow-step--background--active);
+      }
     }
 
     &:focus-visible {
