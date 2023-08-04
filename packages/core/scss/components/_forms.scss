@@ -159,4 +159,9 @@ input {
   &:disabled {
     color: var(--theme-input--color--disabled);
   }
+
+  &:read-only,
+  &.readonly {
+    cursor: default;
+  }
 }

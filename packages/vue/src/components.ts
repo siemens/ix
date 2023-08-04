@@ -116,7 +116,8 @@ export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-ca
 
 
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
-  'initialState',
+  'disabled',
+  'readonly',
   'filterState',
   'placeholder',
   'categories',
@@ -128,6 +129,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'tmpDisableScrollIntoView',
   'labelCategories',
   'i18nPlainText',
+  'categoryChanged',
   'inputChanged',
   'filterChanged'
 ]);

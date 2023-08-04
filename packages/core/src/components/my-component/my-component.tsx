@@ -14,7 +14,35 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  suggestions = ['abc', 'def'];
+  categories = {
+    ID_1: {
+      label: 'A',
+      options: ['a', 'b', 'c'],
+    },
+    ID_2: {
+      label: 'B',
+      options: ['d', 'e', 'f'],
+    },
+  };
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-category-filter
+          suggestions={this.suggestions}
+          categories={this.categories}
+          placeholder="Insert text here"
+        ></ix-category-filter>
+        <ix-category-filter
+          disabled
+          placeholder="Insert text here"
+        ></ix-category-filter>
+        <ix-category-filter
+          readonly
+          placeholder="Insert text here"
+        ></ix-category-filter>
+      </Host>
+    );
   }
 }
