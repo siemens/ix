@@ -27,7 +27,7 @@ type Position = { x: number; y: number };
 @Component({
   tag: 'ix-validation-tooltip',
   styleUrl: 'validation-tooltip.scss',
-  scoped: true,
+  shadow: true,
 })
 export class ValidationTooltip {
   @Element() hostElement: HTMLIxValidationTooltipElement;
@@ -59,7 +59,7 @@ export class ValidationTooltip {
   private observer: MutationObserver;
 
   get arrow() {
-    return this.hostElement.querySelector('#arrow') as HTMLElement;
+    return this.hostElement.shadowRoot.querySelector('#arrow') as HTMLElement;
   }
 
   get inputElement() {
@@ -71,10 +71,10 @@ export class ValidationTooltip {
   }
 
   get tooltipElement(): HTMLElement {
-    return this.hostElement.querySelector('.validation-tooltip');
+    return this.hostElement.shadowRoot.querySelector('.validation-tooltip');
   }
 
-  private destoryAutoUpdate() {
+  private destroyAutoUpdate() {
     this.tooltipElement.style.display = 'none';
 
     if (this.autoUpdateCleanup) {
@@ -185,7 +185,7 @@ export class ValidationTooltip {
 
   disconnectedCallback() {
     this.observer?.disconnect();
-    this.destoryAutoUpdate();
+    this.destroyAutoUpdate();
 
     this.formElement.removeEventListener('submit', this.onSubmitBind);
     this.inputElement.removeEventListener('focus', this.onInputFocusBind);
@@ -196,7 +196,7 @@ export class ValidationTooltip {
     if (!this.isInputValid) {
       this.applyTooltipPosition();
     } else {
-      this.destoryAutoUpdate();
+      this.destroyAutoUpdate();
     }
   }
 
