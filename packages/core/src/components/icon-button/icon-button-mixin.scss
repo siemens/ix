@@ -10,17 +10,17 @@
 @import 'common-variables';
 @import '../button/button-mixin.scss';
 @import 'mixins/shadow-dom/component';
+
 @mixin icon-button-size($sizeName, $size) {
-    :host(.btn-icon-#{$sizeName}) {
-      height: $size;
-      width: $size;
-      min-width: $size;
-      min-height: $size;
+  :host(.btn-icon-#{$sizeName}) {
+    height: $size;
+    width: $size;
+    min-width: $size;
+    min-height: $size;
 
-      @content;
-    }
+    @content;
   }
-
+}
 
 @mixin base-icon-button {
   @include btn;
@@ -58,7 +58,7 @@
     }
   }
 
-    @include icon-button-size('12', 1rem);
+  @include icon-button-size('12', 1rem);
   @include icon-button-size('16', 1.5rem);
   @include icon-button-size('32', 2rem);
 

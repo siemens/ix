@@ -150,7 +150,7 @@ export class IconToggleButton {
       <Host
         class={{
           ...this.getIconSizeClass(),
-          disabled: this.disabled,
+          disabled: this.disabled || this.loading,
         }}
       >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>

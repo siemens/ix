@@ -126,7 +126,7 @@ export class ToggleButton {
     return (
       <Host
         class={{
-          disabled: this.disabled,
+          disabled: this.disabled || this.loading,
         }}
       >
         <BaseButton {...baseButtonProps}>

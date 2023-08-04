@@ -124,8 +124,14 @@ export class IconButton implements Button {
       type: this.type,
       extraClasses: this.getIconSizeClass(),
     };
+
     return (
-      <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
+      <Host
+        class={{
+          ...this.getIconSizeClass(),
+          disabled: this.disabled || this.loading,
+        }}
+      >
         <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
     );

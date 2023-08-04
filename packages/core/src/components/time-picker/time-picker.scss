@@ -19,14 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .title {
-    display: flex;
-    align-items: center;
-    font: var(--theme-text-default-title);
-    min-height: $large-control-height;
-    color: var(--theme-datepicker-time-header--color);
+    height: $large-control-height;
   }
 
   .clock {

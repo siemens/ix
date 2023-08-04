@@ -51,4 +51,9 @@ regressionTest.describe('toggle-button: basic', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('should show loading spinner', async ({ page }) => {
+    await page.goto('toggle-button/loading');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
+  });
 });
