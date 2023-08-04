@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from './base-button';
+import { BaseButton, BaseButtonProps } from './base-button';
 
 export type ButtonVariant = 'primary' | 'secondary';
 
@@ -29,21 +29,9 @@ export class Button {
   @Prop() outline = false;
 
   /**
-   * Invisible button
-   *
-   * @deprecated use ghost property
-   */
-  @Prop() invisible = false;
-
-  /**
    * Button with no background or outline
    */
   @Prop() ghost = false;
-
-  /**
-   * Show button as selected. Should be used with outline or ghost
-   */
-  @Prop() selected = false;
 
   /**
    * Disable the button
@@ -93,33 +81,29 @@ export class Button {
   }
 
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: false,
+      iconOval: false,
+      selected: false,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+    };
+
     return (
       <Host
         class={{
-          disabled: this.disabled,
+          disabled: this.disabled || this.loading,
         }}
       >
-        <button
-          onClick={() => this.dispatchFormEvents()}
-          type={this.type}
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost || this.invisible,
-            false,
-            false,
-            this.selected,
-            this.disabled || this.loading
-          )}
-        >
-          {this.loading ? (
-            <ix-spinner size="small" hideTrack></ix-spinner>
-          ) : null}
-          {this.icon && !this.loading ? (
-            <ix-icon name={this.icon}></ix-icon>
-          ) : null}
+        <BaseButton {...baseButtonProps}>
           <slot></slot>
-        </button>
+        </BaseButton>
       </Host>
     );
   }

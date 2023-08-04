@@ -76,9 +76,7 @@ export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbIt
 export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button', undefined, [
   'variant',
   'outline',
-  'invisible',
   'ghost',
-  'selected',
   'disabled',
   'type',
   'loading',
@@ -354,16 +352,27 @@ export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undef
 export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', undefined, [
   'variant',
   'outline',
-  'invisible',
   'ghost',
   'oval',
   'icon',
   'size',
   'color',
-  'selected',
   'disabled',
   'type',
   'loading'
+]);
+
+
+export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggleButton>('ix-icon-toggle-button', undefined, [
+  'variant',
+  'outline',
+  'ghost',
+  'icon',
+  'pressed',
+  'size',
+  'disabled',
+  'loading',
+  'pressedChange'
 ]);
 
 
@@ -706,6 +715,18 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'textIndeterminate',
   'hideText',
   'checkedChange'
+]);
+
+
+export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', undefined, [
+  'variant',
+  'outline',
+  'ghost',
+  'disabled',
+  'loading',
+  'icon',
+  'pressed',
+  'pressedChange'
 ]);
 
 
