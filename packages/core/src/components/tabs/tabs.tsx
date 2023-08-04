@@ -260,7 +260,7 @@ export class Tabs {
   }
 
   @Listen('tabClick')
-  test(event: CustomEvent) {
+  onTabClick(event: CustomEvent) {
     if (event.defaultPrevented) {
       return;
     }
