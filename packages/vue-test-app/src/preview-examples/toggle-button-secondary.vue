@@ -8,10 +8,12 @@
 -->
 
 <script setup lang="ts">
-import { IxButton } from '@siemens/ix-vue';
+import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxButton class="m-1" variant="secondary" ghost> Not selected </IxButton>
-  <IxButton class="m-1" variant="secondary" ghost selected> Selected </IxButton>
+  <IxToggleButton>Normal</IxToggleButton>
+  <IxToggleButton pressed>Pressed</IxToggleButton>
+  <IxToggleButton disabled>Disabled</IxToggleButton>
+  <IxToggleButton disabled loading>Loading</IxToggleButton>
 </template>

@@ -30,7 +30,6 @@ import Breadcrumb from './preview-examples/breadcrumb';
 import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
 import ButtonGroup from './preview-examples/button-group';
-import ButtonSelected from './preview-examples/button-selected';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import Buttons from './preview-examples/buttons';
 import CardList from './preview-examples/card-list';
@@ -115,7 +114,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
-        <Route path="/preview/button-selected" element={<ButtonSelected />} />
         <Route path="/preview/button-group" element={<ButtonGroup />} />
 
         <Route path="/preview/blind" element={<Blind />} />
@@ -130,7 +128,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
-        <Route path="/preview/button-selected" element={<ButtonSelected />} />
         <Route path="/preview/button-group" element={<ButtonGroup />} />
 
         <Route path="/preview/blind" element={<Blind />} />

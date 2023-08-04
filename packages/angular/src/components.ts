@@ -228,14 +228,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'ghost', 'icon', 'invisible', 'loading', 'outline', 'selected', 'type', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'invisible', 'loading', 'outline', 'selected', 'type', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
 })
 export class IxButton {
   protected el: HTMLElement;
@@ -1020,14 +1020,14 @@ export declare interface IxIcon extends Components.IxIcon {}
 
 
 @ProxyCmp({
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'loading', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'loading', 'outline', 'oval', 'selected', 'size', 'type', 'variant'],
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLElement;
@@ -1039,6 +1039,34 @@ export class IxIconButton {
 
 
 export declare interface IxIconButton extends Components.IxIconButton {}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'size', 'variant']
+})
+@Component({
+  selector: 'ix-icon-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'size', 'variant'],
+})
+export class IxIconToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
+  }
+}
+
+
+export declare interface IxIconToggleButton extends Components.IxIconToggleButton {
+  /**
+   * Pressed change event
+   */
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
@@ -2021,6 +2049,34 @@ export declare interface IxToggle extends Components.IxToggle {
    * An event will be dispatched each time the slide-toggle changes its value.
    */
   checkedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant']
+})
+@Component({
+  selector: 'ix-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant'],
+})
+export class IxToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
+  }
+}
+
+
+export declare interface IxToggleButton extends Components.IxToggleButton {
+  /**
+   * Pressed change event
+   */
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 

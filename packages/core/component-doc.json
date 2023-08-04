@@ -324,7 +324,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -453,7 +455,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -874,29 +878,6 @@
           "required": false
         },
         {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Invisible button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "use ghost property"
-            }
-          ],
-          "default": "false",
-          "deprecation": "use ghost property",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "loading",
           "type": "boolean",
           "mutable": false,
@@ -925,23 +906,6 @@
           "attr": "outline",
           "reflectToAttr": false,
           "docs": "Outline button",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "selected",
-          "reflectToAttr": false,
-          "docs": "Show button as selected. Should be used with outline or ghost",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4963,28 +4927,6 @@
           "required": false
         },
         {
-          "name": "invisible",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "invisible",
-          "reflectToAttr": false,
-          "docs": "Button invisible",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use ghost property"
-            }
-          ],
-          "deprecation": "Use ghost property",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "loading",
           "type": "boolean",
           "mutable": false,
@@ -5030,23 +4972,6 @@
           "reflectToAttr": false,
           "docs": "Button in oval shape",
           "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "selected",
-          "reflectToAttr": false,
-          "docs": "Selected state only working with outline or invisible",
-          "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -5138,6 +5063,202 @@
       ],
       "methods": [],
       "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/icon-toggle-button",
+      "filePath": "./src/components/icon-toggle-button/icon-toggle-button.tsx",
+      "fileName": "icon-toggle-button.tsx",
+      "readmePath": "./src/components/icon-toggle-button/readme.md",
+      "usagesDir": "./src/components/icon-toggle-button/usage",
+      "tag": "ix-icon-toggle-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-icon-toggle-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pressed",
+          "reflectToAttr": false,
+          "docs": "Show button as pressed",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"12\" | \"16\" | \"24\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of icon in button",
+          "docsTags": [],
+          "default": "'24'",
+          "values": [
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docsTags": [],
+          "default": "'secondary'",
+          "values": [
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "pressedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Pressed change event",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -5588,7 +5709,9 @@
           "ix-burger-menu"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ]
       },
       "props": [
@@ -5861,7 +5984,9 @@
           "ix-menu-item"
         ],
         "ix-burger-menu": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -7756,17 +7881,19 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
-        "ix-index-button",
         "ix-icon-button",
         "ix-select",
-        "ix-select-item"
+        "ix-select-item",
+        "ix-spinner",
+        "ix-icon"
       ],
       "dependencyGraph": {
         "ix-pagination": [
-          "ix-index-button",
           "ix-icon-button",
           "ix-select",
-          "ix-select-item"
+          "ix-select-item",
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -8699,20 +8826,36 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-burger-menu",
         "ix-button",
         "ix-icon-button",
+        "ix-icon-toggle-button",
         "ix-modal-loading",
+        "ix-pagination",
+        "ix-toggle-button",
         "ix-upload"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-burger-menu": [
+          "ix-spinner"
+        ],
         "ix-button": [
           "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner"
         ],
+        "ix-icon-toggle-button": [
+          "ix-spinner"
+        ],
         "ix-modal-loading": [
+          "ix-spinner"
+        ],
+        "ix-pagination": [
+          "ix-spinner"
+        ],
+        "ix-toggle-button": [
           "ix-spinner"
         ],
         "ix-upload": [
@@ -10157,6 +10300,176 @@
           "cancelable": true,
           "composed": true,
           "docs": "An event will be dispatched each time the slide-toggle changes its value.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/toggle-button",
+      "filePath": "./src/components/toggle-button/toggle-button.tsx",
+      "fileName": "toggle-button.tsx",
+      "readmePath": "./src/components/toggle-button/readme.md",
+      "usagesDir": "./src/components/toggle-button/usage",
+      "tag": "ix-toggle-button",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "ix-toggle-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "pressed",
+          "reflectToAttr": false,
+          "docs": "Show button as pressed",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button variant.\nImportant: Variant 'primary' can only be combined with either outline or ghost.",
+          "docsTags": [],
+          "default": "'secondary'",
+          "values": [
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "pressedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Pressed change event",
           "docsTags": []
         }
       ],
