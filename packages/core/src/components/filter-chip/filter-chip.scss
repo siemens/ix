@@ -15,13 +15,12 @@
 :host {
   @include ix-component;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   height: $large-space;
   padding-left: $small-space;
-  border: var(--theme-focus--border-thickness) solid
-    var(--theme-chip-primary-outline--border-color);
+  border: var(--theme-focus--border-thickness) solid var(--theme-chip-primary-outline--border-color);
   border-radius: $x-large-space;
   background-color: var(--theme-color-ghost);
   color: var(--theme-chip-primary-outline--color);
@@ -38,7 +37,7 @@
 
   ix-icon-button {
     height: $large-space;
-    margin-left: 0.25rem;
+    margin-left: $tiny-space;
 
     @include focus-visible {
       outline: none;
@@ -47,19 +46,18 @@
 }
 
 @include host-hover {
-  background-color: var(--theme-color-ghost-primary--hover);
-  border-color: var(--theme-chip-primary-outline--border-color--hover);
-  color: var(--theme-chip-primary-outline--color--hover);
-}
+    background-color: var(--theme-color-ghost-primary--hover);
+    border-color: var(--theme-chip-primary-outline--border-color--hover);
+    color: var(--theme-chip-primary-outline--color--hover);
+  }
 
-@include host-active {
-  background-color: var(--theme-color-ghost-primary--active);
-  border-color: var(--theme-chip-primary-outline--border-color--active);
-  color: var(--theme-chip-primary-outline--color--active);
-}
+  @include host-active {
+    background-color: var(--theme-color-ghost-primary--active);
+    border-color: var(--theme-chip-primary-outline--border-color--active);
+    color: var(--theme-chip-primary-outline--color--active);
+  }
 
-@include host-focus-visible {
-  outline: var(--theme-color-focus-bdr) solid
-    var(--theme-focus--border-thickness);
-  outline-offset: -0.125rem;
-}
+  @include host-focus-visible {
+    outline: var(--theme-color-focus-bdr) solid var(--theme-focus--border-thickness);
+    outline-offset: -0.125rem;
+  }

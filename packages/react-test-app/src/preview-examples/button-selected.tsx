@@ -7,16 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxIconToggleButton } from '@siemens/ix-react';
+import { IxButton } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
     <>
-      <IxIconToggleButton></IxIconToggleButton>
-      <IxIconToggleButton pressed></IxIconToggleButton>
-      <IxIconToggleButton disabled></IxIconToggleButton>
-      <IxIconToggleButton disabled loading></IxIconToggleButton>
+      <IxButton class="m-1" variant="secondary" ghost>
+        Not selected
+      </IxButton>
+      <IxButton class="m-1" variant="secondary" ghost selected>
+        Selected
+      </IxButton>
     </>
   );
 };

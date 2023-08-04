@@ -306,7 +306,7 @@ export class TimePicker {
       <Host>
         <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
-            <ix-typography variant="default-title">Time</ix-typography>
+            <div class="title">Time</div>
           </div>
 
           <div class="clock">

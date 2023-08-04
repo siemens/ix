@@ -69,25 +69,24 @@ $button-categories: (primary, secondary);
     }
 
     &.selected {
-      background-color: var(--theme-color-ghost--selected);
-      color: var(--theme-color-dynamic);
+      background-color: var(--theme-btn-#{$name}--background--selected);
     }
 
     &.hover,
     &:hover {
       @if $enable-border {
-        border-color: var(--theme-btn-#{$name}--border-color--hover);
+        border-color: var(--theme-btn-#{$name}--border-color--hover) !important;
       }
 
-      background-color: var(--theme-btn-#{$name}--background--hover);
-      color: var(--theme-btn-#{$name}--color--hover);
+      background-color: var(--theme-btn-#{$name}--background--hover) !important;
+      color: var(--theme-btn-#{$name}--color--hover) !important;
     }
 
     &.selected {
       &.hover,
       &:hover {
-        background-color: var(--theme-color-ghost--selected-hover);
-        color: var(--theme-color-dynamic);
+        background-color: var(--theme-btn-#{$name}--background--selected-hover);
+        color: var(--theme-btn-#{$name}--color--selected-hover);
       }
     }
 
@@ -97,13 +96,13 @@ $button-categories: (primary, secondary);
       @if $enable-border {
         border-color: var(
           --theme-btn-#{$name}--border-color--active
-        );
+        ) !important;
       }
 
-     background-color: var(
+      background-color: var(
         --theme-btn-#{$name}--background--active
-      );
-      color: var(--theme-btn-#{$name}--color--active);
+      ) !important;
+      color: var(--theme-btn-#{$name}--color--active) !important;
     }
 
     &.selected {
@@ -111,10 +110,9 @@ $button-categories: (primary, secondary);
       &:not(:disabled):not(.disabled).active,
       .show > &.dropdown-toggle {
         background-color: var(
-          --theme-color-ghost--selected-active
+          --theme-btn-#{$name}--background--selected-active
         );
-
-        color: var(--theme-color-dynamic);
+        color: var(--theme-btn-#{$name}--color--selected-active);
       }
     }
 

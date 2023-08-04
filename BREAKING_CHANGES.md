@@ -1,38 +1,6 @@
-Breaking Changes
+# Breaking Changes
 
 ## v2.0.0
-
-### `ix-button` & `ix-icon-button`
-
-#### `invisible` was removed. Use `ghost` instead.
-
-**_Before_**
-
-```tsx
-<ix-button invisible>OK</button>
-<ix-icon-button icon="context-menu" invisisble></ix-icon-button>
-```
-
-**_Now_**
-
-```tsx
-<ix-button ghost>OK</button>
-<ix-icon-button icon="context-menu" ghost></ix-icon-button>
-```
-
-#### `selected` was removed. Use `ix-toggle-button`/`ix-icon-toggle-button` with property `pressed="true"` instead.
-
-```tsx
-<ix-button selected>OK</button>
-<ix-icon-button icon="checkboxes" selected></ix-icon-button>
-```
-
-**_Now_**
-
-```tsx
-<ix-toggle-button pressed>OK</button>
-<ix-icon-toggle-button icon="checkboxes" pressed></ix-icon-toggle-button>
-```
 
 ### `ix-workflow-steps`
 
@@ -71,8 +39,7 @@ Replaced with `ix-pill`
 
 Replaced with standard `ix-dropdown-item`
 
-**_Now_**
-
+___Now___
 ```tsx
 <ix-group header="Header text" sub-header="Subheader text">
   <ix-dropdown slot="dropdown">
@@ -94,7 +61,7 @@ Replaced with standard `ix-dropdown-item`
 
 The submenu now appends a chevron icon automatically to the trigger element, if the trigger element is an ix-dropdown-item.
 
-**_Before_**
+___Before___
 
 ```tsx
 <ix-dropdown-item id="submenuTrigger" label="Submenu">
@@ -102,8 +69,7 @@ The submenu now appends a chevron icon automatically to the trigger element, if 
 </ix-dropdown-item>
 ```
 
-**_Now_**
-
+___Now___
 ```tsx
 <ix-dropdown-item id="submenuTrigger" label="Submenu"></ix-dropdown-item>
 ```
@@ -111,7 +77,6 @@ The submenu now appends a chevron icon automatically to the trigger element, if 
 ### `ix-dropdown` `ix-validation-tooltip` auto placement type removed
 
 All automatic placement types are removed from placement type:
-
 ```
 export declare type AutoPlacement = 'auto' | 'auto-start' | 'auto-end';
 ```
@@ -124,36 +89,32 @@ Placement will be automatically chosen depending on remaining space. If you want
 
 This breaking change only affects the function `modal` which is exported from `@siemens/ix` (not `@siemens/ix-angular` etc).
 
-**_Before_**
+___Before___
 
 ```ts
-export async function modal<T = any>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>>;
+export async function modal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
 ```
 
-**_Now_**
-
+___Now___
 ```ts
-export async function showModal<T = any>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>>;
+export async function showModal<T = any>( config: ModalConfig<T>): Promise<ModalInstance<T>>
 ```
 
-#### Container component `ix-modal-container` removed
+
+#### Container component `ix-modal-container` removed 
 
 Container is not needed anymore because the iX modal system is using `HTMLDialog` now as
 basic system to open modal dialogs
 
 #### Property `size` changed
 
-**_Before_**
+___Before___
 
 ```ts
 export type IxModalSize = 'sm' | 'lg' | 'xl';
 ```
 
-**_Now_**
+___Now___
 
 ```ts
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
@@ -169,16 +130,16 @@ export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 - `content` is now generic
 - `backdrop = 'static'` removed, successor will be `closeOnBackdropClick`.
 
-**_Before_**
+___Before___
 
 ```tsx
 const config: ModalConfig = {
   // Other properties
-  backdrop: 'static',
-};
+  backdrop: 'static'
+}
 ```
 
-**_Now_**
+___Now___
 
 ```tsx
 const config: ModalConfig = {
@@ -197,7 +158,6 @@ To get a consistent UI design we decided to remove custom backdrops.
 ### `ix-flip-tile`
 
 Change flip-state from
-
 ```ts
 export enum FlipTileState {
   None = 'None',
@@ -222,13 +182,13 @@ export enum FlipTileState {
 
 e.g for alarm state
 
-**_Before_**
+___Before___
 
 ```tsx
 <ix-flip-tile state="Alarm"></ix-flip-tile>
 ```
 
-**_Now_**
+___Now___
 
 ```tsx
 <ix-flip-tile state="alarm"></ix-flip-tile>
@@ -254,13 +214,13 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 
 #### `tabIcon` is deprecated and gets replaced with `icon` property
 
-**_Before_**
+___Before___
 
 ```tsx
 <ix-menu-item tabIcon="rocket"></ix-menu-item>
 ```
 
-**_Now_**
+___Now___
 
 ```tsx
 <ix-menu-item icon="rocket"></ix-menu-item>
@@ -270,14 +230,12 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 
 ### `close` event
 
-**_Before_**
-
+___Before___
 ```typescript
 @Event() close: EventEmitter<string>;
 ```
 
-**_Now_**
-
+___Now___
 ```typescript
 @Event() close: EventEmitter<{
   nativeEvent: MouseEvent;
@@ -293,14 +251,14 @@ Remove typo `sencodary` from `variant` property
 
 Remove deprecated `invisible`-property
 
-**_Before_**
-
+___Before___
 ```tsx
 <ix-split-button invisible></ix-split-button>
 ```
 
-**_Now_**
-
+___Now___
 ```tsx
 <ix-split-button ghost></ix-split-button>
+
 ```
+
