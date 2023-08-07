@@ -90,13 +90,10 @@ export class Breadcrumb {
       }
     });
 
-    this.mutationObserver.observe(
-      this.hostElement.shadowRoot.querySelector('.crumb-items'),
-      {
-        subtree: true,
-        childList: true,
-      }
-    );
+    this.mutationObserver.observe(this.hostElement, {
+      subtree: true,
+      childList: true,
+    });
   }
 
   componentWillLoad() {
