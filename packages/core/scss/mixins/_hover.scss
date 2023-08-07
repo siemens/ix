@@ -11,6 +11,7 @@
   &:not(.disabled):not(:disabled) {
     cursor: pointer;
 
+    &:hover,
     &:hover {
       @content;
     }
@@ -21,7 +22,8 @@
   &:not(.disabled):not(:disabled) {
     cursor: pointer;
 
-    &:active {
+    &:active,
+    &.active {
       @content;
     }
   }

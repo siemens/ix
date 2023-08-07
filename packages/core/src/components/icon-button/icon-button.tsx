@@ -8,8 +8,9 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
+import { BaseButtonProps } from '../button/base-button';
 import { Button, ButtonVariant } from '../button/button';
+import { BaseIconButton } from '../icon-button/base-icon-button';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -30,13 +31,6 @@ export class IconButton implements Button {
    * Button outline
    */
   @Prop() outline: boolean;
-
-  /**
-   * Button invisible
-   *
-   * @deprecated Use ghost property
-   */
-  @Prop() invisible: boolean;
 
   /**
    * Button invisible
@@ -64,11 +58,6 @@ export class IconButton implements Button {
    * Color of icon in  button
    */
   @Prop() color: string;
-
-  /**
-   * Selected state only working with outline or invisible
-   */
-  @Prop() selected = false;
 
   /**
    * Disabled
@@ -118,50 +107,32 @@ export class IconButton implements Button {
     };
   }
 
-  private getIconButtonClasses() {
-    return {
-      ...getButtonClasses(
-        this.variant,
-        this.outline,
-        this.ghost || this.invisible,
-        true,
-        this.oval,
-        this.selected,
-        this.disabled || this.loading
-      ),
-      'icon-button': true,
-      ...this.getIconSizeClass(),
-    };
-  }
-
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: true,
+      iconOval: this.oval,
+      selected: false,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      iconColor: this.color,
+      iconSize: this.size,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+      extraClasses: this.getIconSizeClass(),
+    };
+
     return (
-      <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
-        <button
-          class={this.getIconButtonClasses()}
-          type={this.type}
-          onClick={() => this.dispatchFormEvents()}
-        >
-          {this.loading ? (
-            <ix-spinner
-              size={
-                this.size === '12'
-                  ? 'xx-small'
-                  : this.size === '16'
-                  ? 'x-small'
-                  : 'small'
-              }
-              hideTrack
-            ></ix-spinner>
-          ) : null}
-          {this.icon && !this.loading ? (
-            <ix-icon
-              size={this.size}
-              name={this.icon}
-              color={this.color}
-            ></ix-icon>
-          ) : null}
-        </button>
+      <Host
+        class={{
+          ...this.getIconSizeClass(),
+          disabled: this.disabled || this.loading,
+        }}
+      >
+        <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
     );
   }

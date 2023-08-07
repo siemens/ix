@@ -97,13 +97,17 @@ export class DropdownButton {
               ghost={this.ghost}
               disabled={this.disabled}
             >
-              <ix-icon
-                name={this.icon}
-                size="24"
-                class={{ hide: this.icon === '' || this.icon === undefined }}
-              ></ix-icon>
-              <div class={'button-label'}>{this.label}</div>
-              <ix-icon name="chevron-down-small" size="24"></ix-icon>
+              <div class={'content'}>
+                {this.icon !== '' || this.icon !== undefined ? (
+                  <ix-icon
+                    name={this.icon}
+                    size="24"
+                    class={'dropdown-icon'}
+                  ></ix-icon>
+                ) : null}
+                <div class={'button-label'}>{this.label}</div>
+                <ix-icon name="chevron-down-small" size="24"></ix-icon>
+              </div>
             </ix-button>
           ) : (
             <div>

@@ -35,6 +35,14 @@
 
   .dropdown-button .button-label {
     margin-right: auto;
+    min-width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .dropdown-button .dropdown-icon {
+    margin-right: 0.25rem;
   }
 
   .triangle {
@@ -96,6 +104,11 @@
     width: auto !important;
     inset: auto !important;
     transform: unset !important;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
   }
 }
 

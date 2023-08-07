@@ -47,16 +47,18 @@ export class FilterChip {
         <div class="slot-container">
           <slot></slot>
         </div>
-        <ix-icon-button
-          ghost
-          oval
-          icon="close-small"
-          size="16"
-          tabindex={this.disabled ? -1 : 0}
-          variant="primary"
-          disabled={this.disabled}
-          onClick={(e) => this.onCloseClick(e)}
-        ></ix-icon-button>
+        {!this.disabled ? (
+          <ix-icon-button
+            ghost
+            oval
+            icon="close-small"
+            size="16"
+            tabindex={this.disabled ? -1 : 0}
+            variant="primary"
+            disabled={this.disabled}
+            onClick={(e) => this.onCloseClick(e)}
+          ></ix-icon-button>
+        ) : null}
       </Host>
     );
   }

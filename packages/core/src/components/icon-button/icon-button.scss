@@ -7,48 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import './components/buttons';
+@import './icon-button-mixin.scss';
 
-:host {
-  display: inline-block;
-  vertical-align: middle;
-
-  .icon-button {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  button:not(:disabled) {
-    cursor: pointer;
-  }
-
-  ix-icon {
-    color: var(--ix-icon-button-color);
-  }
-}
-
-:host(.btn-icon-12) {
-  ix-spinner {
-    height: 12px;
-    width: 12px;
-  }
-}
-
-:host(.btn-icon-16) {
-  ix-spinner {
-    height: 16px;
-    width: 16px;
-  }
-}
-
-:host(.btn-icon-32) {
-  ix-spinner {
-    height: 24px;
-    width: 24px;
-  }
-}
-
-:host(.disabled) {
-  pointer-events: none;
-}
+@include base-icon-button;

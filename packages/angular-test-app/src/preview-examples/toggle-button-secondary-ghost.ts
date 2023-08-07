@@ -12,10 +12,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button class="m-1" variant="secondary" ghost>Not selected</ix-button>
-    <ix-button class="m-1" variant="secondary" ghost selected
-      >Selected</ix-button
-    >
+    <ix-toggle-button ghost> Normal </ix-toggle-button>
+    <ix-toggle-button pressed ghost> Pressed </ix-toggle-button>
+    <ix-toggle-button disabled ghost> Disabled </ix-toggle-button>
+    <ix-toggle-button disabled loading ghost> Loading </ix-toggle-button>
   `,
 })
-export default class ButtonSelected {}
+export default class Buttons {}

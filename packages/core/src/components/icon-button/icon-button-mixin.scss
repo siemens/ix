@@ -1,0 +1,85 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import '../button/button-mixin.scss';
+@import 'mixins/shadow-dom/component';
+
+@mixin icon-button-size($sizeName, $size) {
+  :host(.btn-icon-#{$sizeName}) {
+    height: $size;
+    width: $size;
+    min-width: $size;
+    min-height: $size;
+
+    @content;
+  }
+}
+
+@mixin base-icon-button {
+  @include btn;
+  @include ix-component;
+  $button-categories: (primary, secondary);
+  @each $category in $button-categories {
+    @include btn-variant($category);
+    @include btn-variant('outline-#{$category}');
+    @include btn-variant('invisible-#{$category}', false);
+  }
+
+  :host {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    button.btn-oval {
+      border-radius: 6.25rem;
+    }
+
+    ix-icon {
+      color: var(--ix-icon-button-color);
+      margin: 0;
+    }
+
+    ix-spinner {
+      margin: 0;
+    }
+  }
+
+  @include icon-button-size('12', 1rem);
+  @include icon-button-size('16', 1.5rem);
+  @include icon-button-size('32', 2rem);
+
+  :host(.btn-icon-12) {
+    ix-spinner {
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  :host(.btn-icon-16) {
+    ix-spinner {
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  :host(.btn-icon-32) {
+    ix-spinner {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
