@@ -12,25 +12,27 @@ import { Component, Element, h, Host } from '@stencil/core';
 @Component({
   tag: 'ix-input-group',
   styleUrl: 'input-group.scss',
-  scoped: true,
+  shadow: true,
 })
 export class InputGroup {
-  @Element() host!: HTMLIxInputGroupElement;
+  @Element() hostElement!: HTMLIxInputGroupElement;
 
   componentDidRender() {
     let paddingRight = 15;
     let paddingLeft = 15;
-    this.host.querySelectorAll('[slot="input-end"]').forEach((item) => {
+    this.hostElement.querySelectorAll('[slot="input-end"]').forEach((item) => {
       item.classList.add('input-group-label');
       paddingRight += item.getBoundingClientRect().width;
     });
 
-    this.host.querySelectorAll('[slot="input-start"]').forEach((item) => {
-      item.classList.add('input-group-label');
-      paddingLeft += item.getBoundingClientRect().width;
-    });
+    this.hostElement
+      .querySelectorAll('[slot="input-start"]')
+      .forEach((item) => {
+        item.classList.add('input-group-label');
+        paddingLeft += item.getBoundingClientRect().width;
+      });
 
-    const inputElement = this.host.querySelector(
+    const inputElement = this.hostElement.querySelector(
       'input.form-control'
     ) as HTMLInputElement;
 
