@@ -1,4 +1,4 @@
-Breaking Changes
+# Breaking Changes
 
 ## v2.0.0
 

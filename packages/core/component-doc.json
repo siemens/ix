@@ -7738,10 +7738,11 @@
           "text": "1.5.0"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
+        "ix-typography",
         "ix-select",
         "ix-select-item",
         "ix-spinner",
@@ -7750,6 +7751,7 @@
       "dependencyGraph": {
         "ix-pagination": [
           "ix-icon-button",
+          "ix-typography",
           "ix-select",
           "ix-select-item",
           "ix-spinner",
