@@ -289,13 +289,14 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', undefined, [
   'state',
-  'footer',
   'height',
   'width'
 ]);
 
 
-export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined);
+export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined, [
+  'contentVisible'
+]);
 
 
 export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', undefined, [

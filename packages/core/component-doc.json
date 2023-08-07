@@ -4058,7 +4058,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -4073,28 +4073,6 @@
         ]
       },
       "props": [
-        {
-          "name": "footer",
-          "type": "string",
-          "mutable": false,
-          "attr": "footer",
-          "reflectToAttr": false,
-          "docs": "Tmp property name",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Setting this property has no effect"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Setting this property has no effect",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "height",
           "type": "\"auto\" | number",

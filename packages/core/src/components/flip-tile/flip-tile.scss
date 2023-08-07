@@ -10,6 +10,8 @@
 @import 'common-variables';
 @import 'mixins/animations';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'fonts';
 
 @include keyframes(flip-animation) {
   0% {
@@ -27,6 +29,7 @@
 }
 
 :host {
+  @include ix-component;
   display: flex;
   flex-direction: column;
   perspective: 1000px;
