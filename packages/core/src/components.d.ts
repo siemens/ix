@@ -785,11 +785,6 @@ export namespace Components {
     }
     interface IxFlipTile {
         /**
-          * Tmp property name
-          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
-         */
-        "footer": string;
-        /**
           * Height interpreted as REM
           * @since 1.5.0
          */
@@ -805,6 +800,10 @@ export namespace Components {
         "width": number | 'auto';
     }
     interface IxFlipTileContent {
+        /**
+          * Controls the visibility of the content
+         */
+        "contentVisible": boolean;
     }
     interface IxGroup {
         /**
@@ -3680,11 +3679,6 @@ declare namespace LocalJSX {
     }
     interface IxFlipTile {
         /**
-          * Tmp property name
-          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
-         */
-        "footer"?: string;
-        /**
           * Height interpreted as REM
           * @since 1.5.0
          */
@@ -3700,6 +3694,10 @@ declare namespace LocalJSX {
         "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
+        /**
+          * Controls the visibility of the content
+         */
+        "contentVisible"?: boolean;
     }
     interface IxGroup {
         /**
