@@ -1,0 +1,12 @@
+<div>
+  <ix-toggle-button variant="Primary" outline>Normal</ix-toggle-button>
+  <ix-toggle-button variant="Primary" outline pressed>
+    Pressed
+  </ix-toggle-button>
+  <ix-toggle-button variant="Primary" outline disabled>
+    Disabled
+  </ix-toggle-button>
+  <ix-toggle-button variant="Primary" outline disabled loading>
+    Loading
+  </ix-toggle-button>
+</div>

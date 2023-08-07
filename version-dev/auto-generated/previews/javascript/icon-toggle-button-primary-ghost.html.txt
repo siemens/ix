@@ -1,0 +1,26 @@
+<div>
+  <ix-icon-toggle-button
+    variant="Primary"
+    ghost
+    icon="checkboxes"
+  ></ix-icon-toggle-button>
+  <ix-icon-toggle-button
+    variant="Primary"
+    ghost
+    icon="checkboxes"
+    pressed
+  ></ix-icon-toggle-button>
+  <ix-icon-toggle-button
+    variant="Primary"
+    ghost
+    icon="checkboxes"
+    disabled
+  ></ix-icon-toggle-button>
+  <ix-icon-toggle-button
+    variant="Primary"
+    ghost
+    icon="checkboxes"
+    disabled
+    loading
+  ></ix-icon-toggle-button>
+</div>
