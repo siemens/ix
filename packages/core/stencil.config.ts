@@ -42,9 +42,6 @@ try {
 export const config: Config = {
   bundles: [
     {
-      components: ['ix-animated-tabs', 'ix-animated-tab'],
-    },
-    {
       components: ['ix-application-header'],
     },
     {

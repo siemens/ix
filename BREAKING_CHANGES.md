@@ -2,6 +2,10 @@ Breaking Changes
 
 ## v2.0.0
 
+### Remove `ix-animated-tab` and `ix-animated-tabs`
+
+Replaced by `ix-tabs` implementation.
+
 ### `ix-button` & `ix-icon-button`
 
 #### `invisible` was removed. Use `ghost` instead.

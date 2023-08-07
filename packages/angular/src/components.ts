@@ -30,56 +30,6 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
-  inputs: ['count', 'icon']
-})
-@Component({
-  selector: 'ix-animated-tab',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['count', 'icon'],
-})
-export class IxAnimatedTab {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxAnimatedTab extends Components.IxAnimatedTab {}
-
-
-@ProxyCmp({
-  inputs: ['selectedIndex', 'tabPlacement']
-})
-@Component({
-  selector: 'ix-animated-tabs',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['selectedIndex', 'tabPlacement'],
-})
-export class IxAnimatedTabs {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['tabClick']);
-  }
-}
-
-
-export declare interface IxAnimatedTabs extends Components.IxAnimatedTabs {
-  /**
-   * Tab navigated
-   */
-  tabClick: EventEmitter<CustomEvent<any>>;
-}
-
-
-@ProxyCmp({
   inputs: ['name']
 })
 @Component({
