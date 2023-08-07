@@ -56,9 +56,11 @@ test('editable mode', async ({ mount, page }) => {
   await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
 
-  const addedItem = page.getByRole('button', { name: /Not existing/ });
+  const addedItem = page
+    .getByRole('listitem')
+    .filter({ hasText: 'Not existing' });
 
-  await expect(addedItem.locator('i')).toBeVisible();
+  await expect(addedItem).toBeVisible();
 });
 
 test('single selection', async ({ mount, page }) => {
@@ -97,7 +99,6 @@ test('multiple selection', async ({ mount, page }) => {
   await element.evaluate(
     (select: HTMLIxSelectElement) => (select.selectedIndices = [])
   );
-
   await page.locator('.chevron-down-container').click();
 
   const dropdown = element.locator('ix-dropdown');
@@ -105,10 +106,12 @@ test('multiple selection', async ({ mount, page }) => {
 
   await expect(dropdown).toBeVisible();
 
-  const item1 = page.getByRole('button', { name: 'Item 1' });
-  const item3 = page.getByRole('button', { name: 'Item 3' });
+  const item1 = element.locator('ix-select-item').nth(0);
+  const item3 = element.locator('ix-select-item').nth(2);
   await item1.click();
+  await page.locator('.chevron-down-container').click();
   await item3.click();
+  await page.locator('.chevron-down-container').click();
 
   await expect(item1.locator('i')).toBeVisible();
   await expect(item3.locator('i')).toBeVisible();

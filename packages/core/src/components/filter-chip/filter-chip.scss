@@ -46,6 +46,15 @@
   }
 }
 
+:host(.disabled) {
+  border: var(--theme-focus--border-thickness) solid
+    var(--theme-color-component-4);
+  color: var(--theme-color-weak-text);
+  padding-right: $small-space;
+
+  cursor: default;
+}
+
 @include host-hover {
   background-color: var(--theme-color-ghost-primary--hover);
   border-color: var(--theme-chip-primary-outline--border-color--hover);

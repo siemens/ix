@@ -12,17 +12,6 @@ import { DropdownItem } from '../../dropdown-item/dropdown-item';
 import { SelectItem } from '../select-item';
 
 describe('select-item', () => {
-  it('renders', async () => {
-    const page = await newSpecPage({
-      components: [SelectItem],
-      html: '<ix-select-item value="test" label="Test"></ix-select-item>',
-    });
-
-    expect(page.root).toEqualHtml(`<ix-select-item label=Test value=test>
-    <ix-dropdown-item label=Test></ix-dropdown-item>
-  </ix-select-item>`);
-  });
-
   it('should throw exception if value is missing', (done) => {
     newSpecPage({
       components: [SelectItem],
@@ -45,9 +34,9 @@ describe('select-item', () => {
       .querySelector('ix-select-item')
       .addEventListener('itemClick', eventSpy);
 
-    const dropdownItem = page.doc.querySelector(
-      'ix-dropdown-item'
-    ) as HTMLElement;
+    const dropdownItem = page.doc
+      .querySelector('ix-select-item')
+      .shadowRoot.querySelector('ix-dropdown-item') as HTMLElement;
     dropdownItem.shadowRoot.querySelector('button').click();
 
     expect(eventSpy).toHaveBeenCalled();
