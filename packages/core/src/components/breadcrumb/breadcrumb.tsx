@@ -23,7 +23,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Breadcrumb {
   /**
@@ -62,7 +62,9 @@ export class Breadcrumb {
   }
 
   get crumbItems() {
-    return Array.from(this.hostElement.querySelectorAll('.crumb-items .crumb'));
+    return Array.from(
+      this.hostElement.shadowRoot.querySelectorAll('.crumb-items .crumb')
+    );
   }
 
   @State() items: { label: string; icon?: string }[] = [];
@@ -89,7 +91,7 @@ export class Breadcrumb {
     });
 
     this.mutationObserver.observe(
-      this.hostElement.querySelector('.crumb-items'),
+      this.hostElement.shadowRoot.querySelector('.crumb-items'),
       {
         subtree: true,
         childList: true,
@@ -190,7 +192,7 @@ export class Breadcrumb {
             </span>
           </span>
           {!isLastItem ? (
-            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
+            <ix-icon name="chevron-right-small" size="24"></ix-icon>
           ) : null}
         </div>
       );
@@ -223,7 +225,7 @@ export class Breadcrumb {
           >
             <span class="remove-anchor more-text">
               <span class="more-text-ellipsis">...</span>
-              <span class="glyph glyph-16 glyph-chevron-right"></span>
+              <ix-icon name="chevron-right" size="16"></ix-icon>
             </span>
           </div>
         ) : null}

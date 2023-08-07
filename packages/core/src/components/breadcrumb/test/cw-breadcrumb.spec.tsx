@@ -51,7 +51,9 @@ describe('ix-breadcrumb', () => {
     let callbackSpy = jest.fn();
     page.win.addEventListener('itemClick', callbackSpy);
 
-    let item = page.doc.querySelector('[data-testid="item"]');
+    let item = page.doc
+      .querySelector('ix-breadcrumb')
+      .shadowRoot.querySelector('[data-testid="item"]');
     fireEvent.click(item);
     await page.waitForChanges();
 

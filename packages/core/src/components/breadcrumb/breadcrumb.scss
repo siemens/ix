@@ -10,17 +10,18 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 @mixin crumb-hover($variant) {
   @include hover {
     background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
 
     .crumb-text,
-    .glyph {
+    ix-icon {
       color: var(--theme-breadcrumb-#{$variant}--color--hover);
     }
 
-    .crumb-text + .glyph-chevron-right-small {
+    .crumb-text + ix-icon {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
     }
   }
@@ -29,11 +30,11 @@
     background-color: var(--theme-breadcrumb-#{$variant}--background--active);
 
     .crumb-text,
-    .glyph {
+    ix-icon {
       color: var(--theme-breadcrumb-#{$variant}--color--active);
     }
 
-    .crumb-text + .glyph-chevron-right-small {
+    .crumb-text + ix-icon {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
     }
   }
@@ -46,11 +47,11 @@
     transition: $default-time;
 
     .crumb-text,
-    .glyph {
+    ix-icon {
       color: var(--theme-breadcrumb-#{$variant}--color);
     }
 
-    .crumb-text + .glyph-chevron-right-small {
+    .crumb-text + ix-icon {
       color: var(--theme-breadcrumb-#{$variant}-arrow--color);
     }
 
@@ -65,11 +66,11 @@
         );
 
         .crumb-text,
-        .glyph {
+        ix-icon {
           color: var(--theme-breadcrumb-#{$variant}--color--hover);
         }
 
-        .crumb-text + .glyph-chevron-right-small {
+        .crumb-text + ix-icon {
           color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
         }
       }
@@ -80,11 +81,11 @@
         );
 
         .crumb-text,
-        .glyph {
+        ix-icon {
           color: var(--theme-breadcrumb-#{$variant}--color--active);
         }
 
-        .crumb-text + .glyph-chevron-right-small {
+        .crumb-text + ix-icon {
           color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
         }
       }
@@ -93,6 +94,8 @@
 }
 
 :host {
+  @include ix-component;
+
   display: flex;
   height: $large-control-height;
   justify-content: flex-start;
@@ -129,9 +132,8 @@
       }
     }
 
-    .crumb-text + .glyph-chevron-right-small {
+    .crumb-text + ix-icon {
       margin-inline-start: $tiny-space;
-      margin-inline-end: 0; // Overwrite global selector: .btn .glyph
     }
 
     &.last {
@@ -154,10 +156,6 @@
 
   .crumb-dropdown {
     overflow: visible;
-
-    .glyph::after {
-      display: none;
-    }
   }
 
   .remove-anchor::after {
@@ -173,8 +171,10 @@
       font-weight: $font-weight-bold;
     }
 
-    .glyph {
-      line-height: unset;
+    ix-icon {
+      // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
+      // using padding-top to achieve same position as before
+      padding-top: 2px;
     }
   }
 
