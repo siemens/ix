@@ -1889,11 +1889,19 @@ export class IxTabItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabClick']);
   }
 }
 
 
-export declare interface IxTabItem extends Components.IxTabItem {}
+import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
+
+export declare interface IxTabItem extends Components.IxTabItem {
+  /**
+   * On tab click @since 2.0.0
+   */
+  tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
+}
 
 
 @ProxyCmp({
@@ -1911,11 +1919,17 @@ export class IxTabs {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectedChange']);
   }
 }
 
 
-export declare interface IxTabs extends Components.IxTabs {}
+export declare interface IxTabs extends Components.IxTabs {
+  /**
+   * `selected` property changed @since 2.0.0
+   */
+  selectedChange: EventEmitter<CustomEvent<number>>;
+}
 
 
 @ProxyCmp({
