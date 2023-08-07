@@ -11134,7 +11134,7 @@
           "text": "tooltip-message - Custom tooltip message with html support"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
