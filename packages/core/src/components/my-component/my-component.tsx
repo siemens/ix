@@ -15,6 +15,23 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <ix-input-group>
+            <label slot="input-start" htmlFor="input">
+              Test Start
+            </label>
+            <input type="text" placeholder="" required id="input" />
+            <label slot="input-end">cm</label>
+            <div class={'invalid-feedback'}>Error 123</div>
+          </ix-input-group>
+        </form>
+      </Host>
+    );
   }
 }

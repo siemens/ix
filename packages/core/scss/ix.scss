@@ -9,7 +9,6 @@
 
 /* Include 3rd party libraries */
 
-@import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.css';
 
 /* Import global stylings for Web Components */
@@ -27,18 +26,20 @@
 /* Mixins */
 @import './mixins/fonts';
 
+/* Bootstrap Legacy */
+@import './components/bootstrap/forms';
+@import './components/bootstrap/modal';
+
 /* Components */
 @import './components/links';
-@import './components/modal';
 @import './components/buttons';
 @import './components/button-group';
 @import './components/dropdown';
 @import './components/checkboxes';
 @import './components/radiobuttons';
 @import './components/shadows';
-@import './components/forms';
-@import './components/input-group';
 @import './components/table';
+@import './components/form/input';
 
 :root {
   --animate-duration: #{$default-time};
@@ -54,6 +55,7 @@ body:not([class*='theme-']) {
 body {
   @include text-default();
   background-color: var(--theme-color-1);
+  margin: 0;
 }
 
 body:not(.disable-scrollbar) {
