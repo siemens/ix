@@ -38,10 +38,29 @@ export class Blind {
   @Prop() label: string;
 
   /**
+   * Sub Label of blind
+   */
+  @Prop() subLabel: string;
+
+  /**
    * Optional icon to be displayed next to the header label
    * @since 1.5.0
    */
   @Prop() icon: string;
+
+  /**
+   * Blind variant
+   */
+  @Prop() variant:
+    | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'outline'
+    | 'filled' = 'primary';
 
   /**
    * Collapsed state changed
@@ -78,6 +97,7 @@ export class Blind {
   @Watch('collapsed')
   animation(isCollapsed: boolean) {
     this.animateCollapse(isCollapsed);
+    console.log(this.collapsed);
   }
 
   private animateCollapse(isCollapsed: boolean) {
@@ -124,7 +144,18 @@ export class Blind {
         <button
           class={{
             'blind-header': true,
+            container: true,
             closed: this.collapsed,
+            filled: this.variant === 'filled',
+            outline: this.variant === 'outline',
+            alarm: this.variant === 'alarm',
+            critical: this.variant === 'critical',
+            info: this.variant === 'info',
+            neutral: this.variant === 'neutral',
+            success: this.variant === 'success',
+            warning: this.variant === 'warning',
+            primary: this.variant === 'primary',
+            open: !this.collapsed,
           }}
           type="button"
           aria-labelledby={`ix-blind-header-title-${this.id}`}
@@ -148,7 +179,10 @@ export class Blind {
                 ) : (
                   ''
                 )}
-                <span class="blind-header-title-default">{this.label}</span>
+                <div class="middle-text-box">
+                  <span class="label">{this.label}</span>
+                  <span class="sub-label">{this.subLabel}</span>
+                </div>
                 <span
                   class="header-actions"
                   onClick={(e) => e.stopImmediatePropagation()}
@@ -168,6 +202,7 @@ export class Blind {
           <div
             class={{
               'blind-content': true,
+              'open-section': this.variant === 'outline',
               hide: this.collapsed,
             }}
           >

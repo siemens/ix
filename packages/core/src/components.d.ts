@@ -137,6 +137,22 @@ export namespace Components {
           * Label of blind
          */
         "label": string;
+        /**
+          * Sub Label of blind
+         */
+        "subLabel": string;
+        /**
+          * Blind variant
+         */
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'outline'
+    | 'filled';
     }
     interface IxBreadcrumb {
         /**
@@ -2930,6 +2946,22 @@ declare namespace LocalJSX {
           * Collapsed state changed
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
+        /**
+          * Sub Label of blind
+         */
+        "subLabel"?: string;
+        /**
+          * Blind variant
+         */
+        "variant"?: | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success'
+    | 'outline'
+    | 'filled';
     }
     interface IxBreadcrumb {
         /**

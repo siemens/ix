@@ -33,4 +33,9 @@ regressionTest.describe('blind', () => {
     await page.waitForSelector('ix-dropdown.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('variants', async ({ page }) => {
+    await page.goto('blind/variants');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

@@ -12,33 +12,29 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
+$blind-variant: alarm, critical, warning, info, neutral, success;
+
 :host {
   display: flex;
   flex-direction: column;
   background-color: var(--theme-blind-base--background);
-  border: solid var(--theme-blind--border-thickness)
-    var(--theme-blind-base--border-color);
-  border-radius: var(--theme-blind--border-radius);
   overflow: hidden;
+  border-radius: var(--theme-blind--border-radius);
 
   .blind-header {
     all: unset;
     @include ellipsis;
-
+    border: 1px solid transparent;
     display: flex;
     align-items: center;
     min-height: 3rem;
     height: 3rem;
-    border: solid var(--theme-blind--border-thickness) transparent;
-    border-radius: var(--theme-blind--border-radius)
-      var(--theme-blind--border-radius) 0 0;
+
     padding-right: $small-space;
     transition: border-radius $default-time;
     cursor: pointer;
 
     z-index: 1;
-
-    color: var(--theme-blind-header-closed--color);
     background-color: var(--theme-blind-header-closed--background);
 
     .collapse-icon {
@@ -53,13 +49,6 @@
       align-items: center;
       flex-grow: 1;
       height: 100%;
-
-      .blind-header-title-default {
-        @include ellipsis;
-        @include text-l-title;
-        margin-inline-end: $small-space;
-        flex-grow: 1;
-      }
     }
 
     .blind-header-title-basic ix-icon {
@@ -89,22 +78,6 @@
 
     &.closed {
       border-radius: var(--theme-blind--border-radius);
-
-      @include hover {
-        background-color: var(--theme-blind-header-open--background--hover);
-
-        .collapse-icon {
-          color: var(--theme-blind-header-icon-closed--color--hover);
-        }
-      }
-
-      @include active {
-        background-color: var(--theme-blind-header-open--background--active);
-
-        .collapse-icon {
-          color: var(--theme-blind-header-icon-closed--color--active);
-        }
-      }
     }
   }
 
@@ -115,10 +88,119 @@
     transition-duration: $default-time;
     transition-timing-function: ease-in;
 
+    &.open-section {
+      border: 1px solid;
+      background-color: transparent;
+      border-color: var(--theme-color-soft-bdr);
+      border-top-color: transparent;
+      border-radius: 0 0 var(--theme-blind--border-radius)
+        var(--theme-blind--border-radius);
+    }
+
     &.hide {
       max-height: 0;
       padding-top: 0px;
       padding-bottom: 0px;
+    }
+  }
+
+  .middle-text-box {
+    display: flex;
+    width: 100%;
+  }
+
+  .label {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 16px;
+    color: var(--theme-color-critical-contrast) !important;
+    @include ellipsis;
+    @include text-l-title;
+    margin-inline-end: $small-space;
+    flex-grow: 1;
+  }
+
+  .sub-label {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 16px;
+    color: var(--theme-color-soft-text);
+  }
+
+  .filled {
+    background-color: var(--theme-color-component-1);
+  }
+
+  .outline {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: var(--theme-color-soft-bdr);
+    border-radius: var(--theme-blind--border-radius);
+  }
+
+  .open {
+    border-bottom-color: transparent;
+    border-radius: var(--theme-blind--border-radius)
+      var(--theme-blind--border-radius) 0 0;
+  }
+
+  .primary {
+    background-color: var(--theme-color-primary);
+    color: var(--theme-color-primary--contrast);
+
+    .collapse-icon {
+      color: var(--theme-color-primary--contrast);
+      padding: $tiny-space $small-space;
+    }
+
+    .sub-label {
+      color: var(--theme-color-primary--contrast) !important;
+    }
+
+    @include hover {
+      background-color: var(--theme-color-primary--hover) !important;
+
+      .collapse-icon {
+        color: var(--theme-color-primary--contrast);
+      }
+    }
+
+    @include active {
+      background-color: var(--theme-color-primary--active) !important;
+
+      .collapse-icon {
+        color: var(--theme-color-primary--contrast);
+      }
+    }
+  }
+
+  @each $color in $blind-variant {
+    .container.#{$color} {
+      color: var(--theme-color-#{$color}--contrast);
+
+      @include hover {
+        background-color: var(--theme-color-#{$color}--hover);
+      }
+
+      @include active {
+        background-color: var(--theme-color-#{$color}--active);
+      }
+
+      .collapse-icon {
+        color: var(--theme-color-#{$color}--contrast) !important;
+        padding: $tiny-space $small-space;
+      }
+
+      .sub-label {
+        color: var(--theme-color-#{$color}--contrast) !important;
+      }
+      &:not(.outline .filled) {
+        background-color: var(--theme-color-#{$color});
+      }
     }
   }
 }
