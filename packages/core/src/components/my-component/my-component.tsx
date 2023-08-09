@@ -17,20 +17,11 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <ix-form-field label="Test">
           <ix-input-group>
-            <label slot="input-start" htmlFor="input">
-              Test Start
-            </label>
-            <input type="text" placeholder="" required id="input" />
-            <label slot="input-end">cm</label>
-            <div class={'invalid-feedback'}>Error 123</div>
+            <input type="text" id="blabla" />
           </ix-input-group>
-        </form>
+        </ix-form-field>
       </Host>
     );
   }

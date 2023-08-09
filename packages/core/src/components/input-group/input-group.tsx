@@ -37,7 +37,7 @@ export class InputGroup {
       this.startSlotChanged();
     });
 
-    this.inputElement.form.addEventListener('submit', () => {
+    this.inputElement.form?.addEventListener('submit', () => {
       this.startSlotChanged();
     });
 
@@ -90,11 +90,9 @@ export class InputGroup {
       return;
     }
 
-    const form = this.inputElement.form;
-    const { classList, noValidate } = form;
-
     if (
-      (classList.contains('was-validated') || noValidate === false) &&
+      (this.inputElement.form?.classList.contains('was-validated') ||
+        this.inputElement.form?.noValidate === false) &&
       !this.inputElement.validity.valid
     ) {
       this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
