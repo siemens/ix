@@ -9,7 +9,7 @@
 @import 'common-variables';
 @import 'mixins/fonts';
 
-@mixin element-input() {
+@mixin element-input($feature-read-only: true) {
   &,
   &:-webkit-autofill {
     @include text-default;
@@ -36,24 +36,30 @@
     color: var(--theme-input-hint--color);
   }
 
+  &.focus,
   &:hover {
     border-color: var(--theme-input--border-color--hover);
     background-color: var(--theme-input--background--hover);
   }
 
+  &.focus,
   &:focus {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-input--focus--outline-offset);
     border-color: var(--theme-input--border-color--focus);
   }
 
-  &:read-only {
-    box-shadow: none;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    border-bottom: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color-bottom--readonly);
+  @if $feature-read-only == true {
+    &.read-only,
+    &:read-only {
+      box-shadow: none;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      border-bottom: var(--theme-input--border-thickness, 1px)
+        solid
+        var(--theme-input--border-color-bottom--readonly);
+    }
   }
 
   &:disabled {

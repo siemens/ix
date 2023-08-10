@@ -15,14 +15,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-form-field label="Test">
-          <ix-input-group>
-            <input type="text" id="blabla" />
-          </ix-input-group>
-        </ix-form-field>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

@@ -49,12 +49,10 @@ export class InputGroup {
   }
 
   private onValidInput() {
-    console.log('valid');
     this.startSlotChanged();
   }
 
   private onInValidInput() {
-    console.log('invalid');
     this.startSlotChanged();
   }
 
@@ -84,7 +82,11 @@ export class InputGroup {
     const slot = this.hostElement.shadowRoot.querySelector(
       'slot[name="input-start"]'
     );
-    this.inputPaddingLeft = 15 + this.getChildrenWidth(slot);
+    const startPadding = this.getChildrenWidth(slot);
+
+    if (startPadding !== 0) {
+      this.inputPaddingLeft = 15 + startPadding;
+    }
 
     if (!this.inputElement) {
       return;

@@ -8,6 +8,7 @@
  */
 
 @import 'common-variables';
+@import 'components/form/input';
 
 :host {
   display: block;
@@ -15,4 +16,8 @@
   width: 100vw;
   height: 100vh;
   padding: 0rem 0rem 0rem 0rem;
+}
+
+.test {
+  @include element-input($feature-read-only: false);
 }

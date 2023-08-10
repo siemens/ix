@@ -298,6 +298,11 @@ export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip
 export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined);
 
 
+export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', undefined, [
+  'label'
+]);
+
+
 export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', undefined, [
   'suppressHeaderSelection',
   'header',
