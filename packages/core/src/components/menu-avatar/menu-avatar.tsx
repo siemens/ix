@@ -63,10 +63,11 @@ export class MenuAvatar {
   render() {
     return (
       <Host slot="ix-menu-avatar">
-        <li
+        <button
           class="nav-item top-item avatar no-hover"
           title={this.top}
           id={this.avatarElementId}
+          tabIndex={0}
         >
           <ix-avatar image={this.image} initials={this.initials}></ix-avatar>
 
@@ -78,7 +79,7 @@ export class MenuAvatar {
               {this.bottom}
             </span>
           </div>
-        </li>
+        </button>
         <ix-dropdown
           trigger={this.hostElement}
           placement={'right-start'}

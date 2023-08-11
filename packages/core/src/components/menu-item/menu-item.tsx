@@ -109,7 +109,7 @@ export class MenuItem {
         }}
         {...extendedAttributes}
       >
-        <li class="tab" title={this.title}>
+        <button class="tab" title={this.title} tabIndex={0}>
           <ix-icon name={this.icon ?? this.tabIcon}></ix-icon>
           <div class="notification">
             {this.notifications ? (
@@ -119,7 +119,7 @@ export class MenuItem {
           <span class="tab-text text-default">
             <slot></slot>
           </span>
-        </li>
+        </button>
       </Host>
     );
   }
