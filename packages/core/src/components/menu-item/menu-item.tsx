@@ -109,7 +109,7 @@ export class MenuItem {
         }}
         {...extendedAttributes}
       >
-        <button class="tab" title={this.title} tabIndex={0}>
+        <button class="tab" title={this.title} tabIndex={0} role="listitem">
           <ix-icon name={this.icon ?? this.tabIcon}></ix-icon>
           <div class="notification">
             {this.notifications ? (
