@@ -93,7 +93,7 @@ export class Select {
   /**
    * Item selection changed
    */
-  @Event() itemSelectionChange: EventEmitter<string | string[]>;
+  @Event() itemSelectionChange: EventEmitter<string[]>;
 
   /**
    * Event dispatched whenever the text input changes.

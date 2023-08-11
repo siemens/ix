@@ -8522,7 +8522,7 @@
         },
         {
           "event": "itemSelectionChange",
-          "detail": "string | string[]",
+          "detail": "string[]",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

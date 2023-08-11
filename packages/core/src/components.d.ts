@@ -4441,7 +4441,7 @@ declare namespace LocalJSX {
         /**
           * Item selection changed
          */
-        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
+        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
         /**
           * If true the select will be in readonly mode
          */
