@@ -59,6 +59,7 @@ export type BaseButtonProps = {
   iconSize?: string;
   iconColor?: string;
   tabIndex?: number;
+  afterContent?: any;
 };
 
 export function BaseButton(props: BaseButtonProps, children) {
@@ -92,6 +93,7 @@ export function BaseButton(props: BaseButtonProps, children) {
         ></ix-icon>
       ) : null}
       <div class={'content'}>{children}</div>
+      {props.afterContent ? props.afterContent : null}
     </button>
   );
 }

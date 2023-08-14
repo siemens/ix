@@ -22,6 +22,7 @@
   align-items: center;
   margin-right: 0.25rem;
   max-width: 15rem;
+  min-width: 0;
 
   li {
     display: contents;
@@ -30,13 +31,14 @@
   .btn {
     pointer-events: all;
     width: fit-content;
+    padding-right: 0;
+    padding-left: 0.25rem;
   }
 
   .chevron {
-    display: block;
-    position: absolute;
-    right: 0px;
     pointer-events: none;
+    margin-left: 0.5rem;
+    margin-right: 0rem;
     --theme-color-std-text: var(--theme-color-soft-text);
   }
 
@@ -55,9 +57,9 @@
   }
 }
 
-:host(:not(.hide-chevron)) {
+:host(.hide-chevron) {
   .btn {
-    padding-right: 1.5rem;
+    padding-right: 0.5rem;
   }
 }
 

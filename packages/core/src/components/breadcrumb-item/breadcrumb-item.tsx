@@ -13,6 +13,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
   Prop,
@@ -112,17 +113,23 @@ export class BreadcrumbItem {
         onClick={() => this.itemClick.emit(this.label)}
       >
         <li>
-          <BaseButton {...props}>
+          <BaseButton
+            {...props}
+            afterContent={
+              <Fragment>
+                {this.showChevron ? (
+                  <ix-icon
+                    name={chevronRightSmall}
+                    size="16"
+                    class={'chevron'}
+                  ></ix-icon>
+                ) : null}
+              </Fragment>
+            }
+          >
             {this.label}
             <slot></slot>
           </BaseButton>
-          {this.showChevron ? (
-            <ix-icon
-              name={chevronRightSmall}
-              size="16"
-              class={'chevron'}
-            ></ix-icon>
-          ) : null}
         </li>
       </Host>
     );

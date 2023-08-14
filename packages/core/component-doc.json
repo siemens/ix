@@ -471,7 +471,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-dropdown",
         "ix-dropdown-item",
@@ -489,6 +491,9 @@
         "ix-breadcrumb-item": [
           "ix-icon",
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-breadcrumb"
         ]
       },
       "props": [
@@ -604,7 +609,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-breadcrumb"
+        "ix-breadcrumb",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon",
@@ -616,6 +622,9 @@
           "ix-spinner"
         ],
         "ix-breadcrumb": [
+          "ix-breadcrumb-item"
+        ],
+        "my-component": [
           "ix-breadcrumb-item"
         ]
       },
@@ -682,7 +691,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -721,6 +731,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -11373,8 +11386,34 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-breadcrumb",
+        "ix-breadcrumb-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-breadcrumb",
+          "ix-breadcrumb-item"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-breadcrumb": [
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-breadcrumb-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

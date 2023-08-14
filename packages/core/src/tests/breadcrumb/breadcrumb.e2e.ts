@@ -13,6 +13,8 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('breadcrumb', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('breadcrumb/basic');
+
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
@@ -20,6 +22,7 @@ regressionTest.describe('breadcrumb', () => {
     await page.goto('breadcrumb/lazyLoaded');
     await page.locator('text=Item3').click();
 
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
