@@ -46,29 +46,22 @@ export class BreadcrumbItem {
    */
   @Prop() icon: string;
 
-  /**
-   * @internal
-   */
+  /**@internal */
   @Prop() ghost: boolean = true;
 
-  /**
-   * @internal
-   */
+  /**@internal */
   @Prop() visible = true;
 
-  /**
-   * @internal
-   */
+  /**@internal */
   @Prop() showChevron = true;
 
-  /**
-   * @internal
-   */
+  /** @internal */
   @Prop() isDropdownTrigger = false;
 
-  /**
-   * @internal
-   */
+  /** @internal */
+  @Prop() ariaExpanded: string;
+
+  /**@internal */
   @Event() itemClick: EventEmitter<string>;
 
   componentDidLoad() {

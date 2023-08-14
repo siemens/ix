@@ -16,12 +16,13 @@ import {
   Host,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
-import { a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 let sequenceId = 0;
-const createId = (prefix: string = '') => {
+const createId = (prefix: string = 'breadcrumb-') => {
   return `${prefix}-${sequenceId++}`;
 };
 
@@ -42,6 +43,10 @@ export class Breadcrumb {
    * Items will be accessible through a dropdown
    */
   @Prop() nextItems: string[] = [];
+  @Watch('nextItems')
+  onNextItemsChange() {
+    this.onChildMutation();
+  }
 
   /**
    * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
@@ -69,8 +74,12 @@ export class Breadcrumb {
   @State() previousButtonRef: HTMLElement;
   @State() nextButtonRef: HTMLElement;
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
+  @State() isPreviousDropdownExpanded = false;
 
   private mutationObserver: MutationObserver;
+
+  private previousButtonId = createId();
+  private previousDropdownId = createId();
 
   private onItemClick(item: string) {
     this.itemClick.emit(item);
@@ -129,10 +138,15 @@ export class Breadcrumb {
     return (
       <Host>
         <ix-dropdown
+          id={this.previousDropdownId}
+          aria-label={this.ariaLabelPreviousButton}
           trigger={
             this.items?.length > this.visibleItemCount
               ? this.previousButtonRef
               : null
+          }
+          onShowChanged={({ detail }) =>
+            (this.isPreviousDropdownExpanded = detail)
           }
         >
           {this.items
@@ -153,11 +167,14 @@ export class Breadcrumb {
         </ix-dropdown>
         {this.items?.length > this.visibleItemCount ? (
           <ix-breadcrumb-item
+            id={this.previousButtonId}
             ref={(ref) => (this.previousButtonRef = ref)}
             label="..."
             tabIndex={1}
             onItemClick={(event) => event.stopPropagation()}
-            aria-label={this.ariaLabelPreviousButton}
+            aria-describedby={this.previousDropdownId}
+            aria-controls={this.previousDropdownId}
+            aria-expanded={a11yBoolean(this.isPreviousDropdownExpanded)}
             class={'previous-button'}
           ></ix-breadcrumb-item>
         ) : null}
