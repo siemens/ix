@@ -61,7 +61,6 @@ export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbIt
   'visible',
   'showChevron',
   'isDropdownTrigger',
-  'ariaExpanded',
   'itemClick'
 ]);
 

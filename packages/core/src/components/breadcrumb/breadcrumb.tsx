@@ -12,6 +12,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  forceUpdate,
   h,
   Host,
   Prop,
@@ -145,9 +146,14 @@ export class Breadcrumb {
               ? this.previousButtonRef
               : null
           }
-          onShowChanged={({ detail }) =>
-            (this.isPreviousDropdownExpanded = detail)
-          }
+          onShowChanged={({ detail }) => {
+            this.isPreviousDropdownExpanded = detail;
+
+            // Need to force update previous button to change `aria-expanded`
+            forceUpdate(
+              this.hostElement.shadowRoot.getElementById(this.previousButtonId)
+            );
+          }}
         >
           {this.items
             .slice(0, this.items.length - this.visibleItemCount)

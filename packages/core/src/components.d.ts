@@ -158,7 +158,6 @@ export namespace Components {
         "visibleItemCount": number;
     }
     interface IxBreadcrumbItem {
-        "ariaExpanded": string;
         "ghost": boolean;
         /**
           * Icon to be displayed next ot the label
@@ -2974,7 +2973,6 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     interface IxBreadcrumbItem {
-        "ariaExpanded"?: string;
         "ghost"?: boolean;
         /**
           * Icon to be displayed next ot the label

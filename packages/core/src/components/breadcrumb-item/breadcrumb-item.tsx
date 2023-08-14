@@ -59,9 +59,6 @@ export class BreadcrumbItem {
   /** @internal */
   @Prop() isDropdownTrigger = false;
 
-  /** @internal */
-  @Prop() ariaExpanded: string;
-
   /**@internal */
   @Event() itemClick: EventEmitter<string>;
 
