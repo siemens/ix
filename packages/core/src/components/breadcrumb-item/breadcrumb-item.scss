@@ -8,9 +8,63 @@
  */
 
 @import 'mixins/shadow-dom/component';
+@import '../button/button-mixin';
+@import '../button/button';
+
+@include all-btn-variants;
 
 :host {
   @include ix-component;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: 0.25rem;
+  max-width: 15rem;
 
-  display: block;
+  li {
+    display: contents;
+  }
+
+  .btn {
+    pointer-events: all;
+    width: fit-content;
+  }
+
+  .chevron {
+    display: block;
+    position: absolute;
+    right: 0px;
+    pointer-events: none;
+    --theme-color-std-text: var(--theme-color-soft-text);
+  }
+
+  ::slotted(a[href]) {
+    text-decoration: none !important;
+  }
+
+  ::slotted(a[href]:active) {
+    text-decoration: none !important;
+  }
+}
+
+:host(:last-child) {
+  .btn:not(.dropdown-trigger) {
+    color: var(--theme-color-soft-text);
+  }
+}
+
+:host(:not(.hide-chevron)) {
+  .btn {
+    padding-right: 1.5rem;
+  }
+}
+
+:host(.invisible) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  outline: none;
 }

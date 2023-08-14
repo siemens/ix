@@ -143,3 +143,14 @@
     cursor: default;
   }
 }
+
+@mixin all-btn-variants {
+  @include btn;
+  $button-categories: (primary, secondary);
+
+  @each $category in $button-categories {
+    @include btn-variant($category);
+    @include btn-variant('outline-#{$category}');
+    @include btn-variant('invisible-#{$category}', false);
+  }
+}

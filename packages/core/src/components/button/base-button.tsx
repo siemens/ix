@@ -58,6 +58,7 @@ export type BaseButtonProps = {
   extraClasses?: { [key: string]: boolean };
   iconSize?: string;
   iconColor?: string;
+  tabIndex?: number;
 };
 
 export function BaseButton(props: BaseButtonProps, children) {
@@ -66,8 +67,8 @@ export function BaseButton(props: BaseButtonProps, children) {
   return (
     <button
       {...props.ariaAttributes}
-      onClick={() => props.onClick()}
-      tabindex={props.disabled ? -1 : 0}
+      onClick={() => (props.onClick ? props.onClick() : undefined)}
+      tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}
       class={{
         ...getButtonClasses(
