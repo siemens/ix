@@ -10,7 +10,9 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+
 $menuItemHeight: 3rem;
+$menuItemPadding: 0.875rem;
 
 :host {
   position: relative;
@@ -22,12 +24,15 @@ $menuItemHeight: 3rem;
   max-height: var(--ix-menu-item-height, $menuItemHeight);
 
   .tab {
+    all: unset;
+    box-sizing: border-box;
     display: flex;
     position: relative;
     align-items: center;
     height: var(--ix-menu-item-height, $menuItemHeight);
+    width: calc(100%);
     z-index: 500;
-    padding-left: 0.875rem;
+    padding-left: $menuItemPadding;
 
     @include ghost-hover-pressed;
   }
@@ -38,11 +43,8 @@ $menuItemHeight: 3rem;
   }
 
   .tab:focus-visible {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: none;
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: -1px;
   }
 
   .tab:not(:last-child) {
