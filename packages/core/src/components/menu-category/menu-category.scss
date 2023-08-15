@@ -62,3 +62,10 @@
 :host(.expanded) {
   background-color: var(--theme-color-ghost--active);
 }
+
+:host {
+  ::slotted(a[href]) {
+    text-decoration: none !important;
+    height: 2.5rem;
+  }
+}
