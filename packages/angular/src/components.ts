@@ -1706,7 +1706,7 @@ export declare interface IxSelect extends Components.IxSelect {
   /**
    * Item selection changed
    */
-  itemSelectionChange: EventEmitter<CustomEvent<string | string[]>>;
+  itemSelectionChange: EventEmitter<CustomEvent<string[]>>;
   /**
    * Event dispatched whenever the text input changes. @since 2.0.0
    */
