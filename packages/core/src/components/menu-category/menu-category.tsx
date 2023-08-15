@@ -55,7 +55,7 @@ export class MenuCategory {
 
   private getNestedItems() {
     return Array.from(
-      this.hostElement.querySelectorAll(':scope > ix-menu-item')
+      this.hostElement.querySelectorAll(':scope ix-menu-item')
     ) as HTMLIxMenuItemElement[];
   }
 

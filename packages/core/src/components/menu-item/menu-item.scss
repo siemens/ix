@@ -37,7 +37,7 @@ $menuItemPadding: 0.875rem;
     @include ghost-hover-pressed;
   }
 
-  i.glyph {
+  .tab-icon {
     color: var(--theme-nav-item-primary-icon--color);
     position: relative;
   }
