@@ -55,6 +55,9 @@ export class Button {
    */
   @Prop() icon: string;
 
+  /** @internal */
+  @Prop() alignment: 'center' | 'start' = 'center';
+
   @Element() hostElement: HTMLIxButtonElement;
 
   /**
@@ -93,6 +96,7 @@ export class Button {
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
+      alignment: this.alignment,
     };
 
     return (

@@ -177,6 +177,7 @@ export namespace Components {
         "pinned": boolean;
     }
     interface IxButton {
+        "alignment": 'center' | 'start';
         /**
           * Disable the button
          */
@@ -2978,6 +2979,7 @@ declare namespace LocalJSX {
         "pinned"?: boolean;
     }
     interface IxButton {
+        "alignment"?: 'center' | 'start';
         /**
           * Disable the button
          */

@@ -10,6 +10,8 @@ import { h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
 
+export type ButtonAlignment = 'center' | 'start';
+
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
 };
@@ -58,6 +60,7 @@ export type BaseButtonProps = {
   extraClasses?: { [key: string]: boolean };
   iconSize?: string;
   iconColor?: string;
+  alignment?: ButtonAlignment;
 };
 
 export function BaseButton(props: BaseButtonProps, children) {
@@ -90,7 +93,14 @@ export function BaseButton(props: BaseButtonProps, children) {
           color={props.iconColor}
         ></ix-icon>
       ) : null}
-      <div class={'content'}>{children}</div>
+      <div
+        class={{
+          content: true,
+          [`content-${props.alignment}`]: !!props.alignment,
+        }}
+      >
+        {children}
+      </div>
     </button>
   );
 }

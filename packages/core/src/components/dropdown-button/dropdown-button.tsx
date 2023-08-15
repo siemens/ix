@@ -96,9 +96,10 @@ export class DropdownButton {
               outline={this.outline}
               ghost={this.ghost}
               disabled={this.disabled}
+              alignment="start"
             >
               <div class={'content'}>
-                {this.icon !== '' || this.icon !== undefined ? (
+                {this.icon ? (
                   <ix-icon
                     name={this.icon}
                     size="24"

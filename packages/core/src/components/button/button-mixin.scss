@@ -137,6 +137,10 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
+    .content-start {
+      width: 100%;
+    }
   }
 
   :host(.disabled) {
