@@ -592,14 +592,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant']
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant'],
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
 })
 export class IxDropdownButton {
   protected el: HTMLElement;

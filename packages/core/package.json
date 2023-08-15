@@ -43,22 +43,22 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.1.0",
+    "@floating-ui/dom": "^1.5.1",
     "@stencil/core": "^3.2.1",
+    "@types/luxon": "^3.3.0",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
-    "luxon": "^3.3.0",
-    "@types/luxon": "^3.3.0"
+    "luxon": "^3.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
     "@siemens/ix-icons": "^1.1.0",
-    "@stencil/vue-output-target": "^0.7.0",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil-community/postcss": "^2.1.0",
     "@stencil/angular-output-target": "^0.5.0",
     "@stencil/react-output-target": "^0.4.0",
     "@stencil/sass": "~3.0.0",
+    "@stencil/vue-output-target": "^0.7.0",
     "@testing-library/dom": "^8.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/animejs": "^3.1.4",

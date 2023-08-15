@@ -3212,6 +3212,56 @@
           "required": false
         },
         {
+          "name": "placement",
+          "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the dropdown",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "value": "bottom-end",
+              "type": "string"
+            },
+            {
+              "value": "bottom-start",
+              "type": "string"
+            },
+            {
+              "value": "left-end",
+              "type": "string"
+            },
+            {
+              "value": "left-start",
+              "type": "string"
+            },
+            {
+              "value": "right-end",
+              "type": "string"
+            },
+            {
+              "value": "right-start",
+              "type": "string"
+            },
+            {
+              "value": "top-end",
+              "type": "string"
+            },
+            {
+              "value": "top-start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"primary\" | \"secondary\"",
           "mutable": false,

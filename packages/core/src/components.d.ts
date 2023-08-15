@@ -645,6 +645,11 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Placement of the dropdown
+          * @since 2.0.0
+         */
+        "placement": AlignedPlacement;
+        /**
           * Button variant
          */
         "variant": DropdownButtonVariant;
@@ -3522,6 +3527,11 @@ declare namespace LocalJSX {
           * Outline button
          */
         "outline"?: boolean;
+        /**
+          * Placement of the dropdown
+          * @since 2.0.0
+         */
+        "placement"?: AlignedPlacement;
         /**
           * Button variant
          */

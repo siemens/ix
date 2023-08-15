@@ -12,7 +12,6 @@ import {
   computePosition,
   ComputePositionConfig,
   flip,
-  inline,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -389,12 +388,7 @@ export class Dropdown {
     }
 
     positionConfig.placement = isSubmenu ? 'right-start' : this.placement;
-
-    positionConfig.middleware = [
-      ...positionConfig.middleware,
-      inline(),
-      shift(),
-    ];
+    positionConfig.middleware = [flip(), shift()];
 
     if (this.offset) {
       positionConfig.middleware.push(offset(this.offset));
@@ -414,6 +408,8 @@ export class Dropdown {
           this.dropdownRef,
           positionConfig
         );
+
+        console.log(computeResponse);
         Object.assign(this.dropdownRef.style, {
           top: '0',
           left: '0',
