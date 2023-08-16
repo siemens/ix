@@ -30,12 +30,10 @@ export class MyComponent {
           tempor. Hendrerit at cursus suspendisse neque adipiscing at at eu.
         </span>
         <ix-typography
-          format="label-xs"
           style={{
             display: 'block',
             width: '15rem',
           }}
-          textDecoration="underline"
         >
           Lorem ipsum dolor sit amet consectetur. Et pulvinar arcu placerat
           tristique. Velit ipsum donec pulvinar erat donec turpis ultrices.

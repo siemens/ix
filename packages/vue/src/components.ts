@@ -748,6 +748,14 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
 ]);
 
 
+export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', undefined, [
+  'variant',
+  'format',
+  'color',
+  'textDecoration'
+]);
+
+
 export const IxUpload = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload', undefined, [
   'accept',
   'multiple',

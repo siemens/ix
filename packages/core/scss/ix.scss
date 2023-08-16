@@ -9,7 +9,6 @@
 
 /* Include 3rd party libraries */
 @import '~bootstrap/scss/bootstrap';
-@import '~animate.css/animate.css';
 
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
@@ -26,15 +25,15 @@
 @import 'z-index';
 
 /* Components */
+@import 'legacy/components/modal';
+@import 'legacy/components/buttons';
+@import 'legacy/components/button-group';
+@import 'legacy/components/dropdown';
+@import 'legacy/components/forms';
 @import './components/links';
-@import './components/modal';
-@import './components/buttons';
-@import './components/button-group';
-@import './components/dropdown';
 @import './components/checkboxes';
 @import './components/radiobuttons';
 @import './components/shadows';
-@import './components/forms';
 @import './components/input-group';
 @import './components/table';
 @import './components/fonts';

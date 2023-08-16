@@ -66,14 +66,16 @@ export type TextDecoration = 'none' | 'underline' | 'line-through';
 export class IxTypography {
   /**
    * Font variant based on theme variables
+   *
+   * @deprecated Use `format` property
    * @internal
    */
-  @Prop() variant: TypographyVariants = 'default';
+  @Prop() variant: TypographyVariants;
 
   /**
    * Text format
    */
-  @Prop() format: TypographyFormat = 'label';
+  @Prop() format: TypographyFormat;
 
   /**
    * Text color based on theme variables
@@ -87,10 +89,10 @@ export class IxTypography {
 
   render() {
     let typographyClass = {};
-    if (this.format) {
-      typographyClass[`typography-format-${this.format}`] = true;
+    if (this.variant) {
+      typographyClass[VariantsMapping[this.variant ?? 'default']] = true;
     } else {
-      typographyClass[VariantsMapping[this.variant]] = true;
+      typographyClass[`typography-${this.format ?? 'body'}`] = true;
     }
 
     if (this.textDecoration !== 'none') {

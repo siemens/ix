@@ -2099,6 +2099,28 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 
 @ProxyCmp({
+  inputs: ['color', 'format', 'textDecoration']
+})
+@Component({
+  selector: 'ix-typography',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color', 'format', 'textDecoration'],
+})
+export class IxTypography {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxTypography extends Components.IxTypography {}
+
+
+@ProxyCmp({
   inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
   methods: ['setFilesToUpload']
 })

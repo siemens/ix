@@ -10735,6 +10735,258 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/typography",
+      "filePath": "./src/components/typography/typography.tsx",
+      "fileName": "typography.tsx",
+      "readmePath": "./src/components/typography/readme.md",
+      "usagesDir": "./src/components/typography/usage",
+      "tag": "ix-typography",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-content-header",
+        "ix-dropdown-header",
+        "ix-empty-state",
+        "ix-menu-about-news",
+        "ix-menu-category",
+        "ix-modal-header",
+        "ix-pagination",
+        "ix-push-card",
+        "ix-time-picker",
+        "ix-tooltip",
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-card-list": [
+          "ix-typography"
+        ],
+        "ix-content-header": [
+          "ix-typography"
+        ],
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-menu-about-news": [
+          "ix-typography"
+        ],
+        "ix-menu-category": [
+          "ix-typography"
+        ],
+        "ix-modal-header": [
+          "ix-typography"
+        ],
+        "ix-pagination": [
+          "ix-typography"
+        ],
+        "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "my-component": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "color",
+          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Text color based on theme variables",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-soft",
+              "type": "string"
+            },
+            {
+              "value": "inv-std",
+              "type": "string"
+            },
+            {
+              "value": "inv-weak",
+              "type": "string"
+            },
+            {
+              "value": "soft",
+              "type": "string"
+            },
+            {
+              "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "weak",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\"",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Text format",
+          "docsTags": [],
+          "default": "'label'",
+          "values": [
+            {
+              "value": "body",
+              "type": "string"
+            },
+            {
+              "value": "body-lg",
+              "type": "string"
+            },
+            {
+              "value": "body-sm",
+              "type": "string"
+            },
+            {
+              "value": "body-xs",
+              "type": "string"
+            },
+            {
+              "value": "display",
+              "type": "string"
+            },
+            {
+              "value": "display-lg",
+              "type": "string"
+            },
+            {
+              "value": "display-sm",
+              "type": "string"
+            },
+            {
+              "value": "display-xl",
+              "type": "string"
+            },
+            {
+              "value": "display-xs",
+              "type": "string"
+            },
+            {
+              "value": "display-xxl",
+              "type": "string"
+            },
+            {
+              "value": "h1",
+              "type": "string"
+            },
+            {
+              "value": "h2",
+              "type": "string"
+            },
+            {
+              "value": "h3",
+              "type": "string"
+            },
+            {
+              "value": "h4",
+              "type": "string"
+            },
+            {
+              "value": "h5",
+              "type": "string"
+            },
+            {
+              "value": "h6",
+              "type": "string"
+            },
+            {
+              "value": "label",
+              "type": "string"
+            },
+            {
+              "value": "label-lg",
+              "type": "string"
+            },
+            {
+              "value": "label-sm",
+              "type": "string"
+            },
+            {
+              "value": "label-xs",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textDecoration",
+          "type": "\"line-through\" | \"none\" | \"underline\"",
+          "mutable": false,
+          "attr": "text-decoration",
+          "reflectToAttr": false,
+          "docs": "Text decoration",
+          "docsTags": [],
+          "default": "'none'",
+          "values": [
+            {
+              "value": "line-through",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "underline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/upload",
       "filePath": "./src/components/upload/upload.tsx",
       "fileName": "upload.tsx",
@@ -11330,8 +11582,14 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-typography"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
