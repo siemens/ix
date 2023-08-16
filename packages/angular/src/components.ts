@@ -124,14 +124,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ghost', 'nextItems', 'visibleItemCount']
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ghost', 'nextItems', 'visibleItemCount'],
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount'],
 })
 export class IxBreadcrumb {
   protected el: HTMLElement;
