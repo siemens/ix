@@ -10763,8 +10763,7 @@
         "ix-pagination",
         "ix-push-card",
         "ix-time-picker",
-        "ix-tooltip",
-        "my-component"
+        "ix-tooltip"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10802,9 +10801,6 @@
           "ix-typography"
         ],
         "ix-tooltip": [
-          "ix-typography"
-        ],
-        "my-component": [
           "ix-typography"
         ]
       },
@@ -10860,93 +10856,27 @@
         },
         {
           "name": "format",
-          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\"",
+          "type": "TypographyFormatLabel | TypographyFormatBody | TypographyFormatDisplay | TypographyFormatHeading | TypographyFormatCode",
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
           "docs": "Text format",
           "docsTags": [],
-          "default": "'label'",
           "values": [
             {
-              "value": "body",
-              "type": "string"
+              "type": "TypographyFormatLabel"
             },
             {
-              "value": "body-lg",
-              "type": "string"
+              "type": "TypographyFormatBody"
             },
             {
-              "value": "body-sm",
-              "type": "string"
+              "type": "TypographyFormatDisplay"
             },
             {
-              "value": "body-xs",
-              "type": "string"
+              "type": "TypographyFormatHeading"
             },
             {
-              "value": "display",
-              "type": "string"
-            },
-            {
-              "value": "display-lg",
-              "type": "string"
-            },
-            {
-              "value": "display-sm",
-              "type": "string"
-            },
-            {
-              "value": "display-xl",
-              "type": "string"
-            },
-            {
-              "value": "display-xs",
-              "type": "string"
-            },
-            {
-              "value": "display-xxl",
-              "type": "string"
-            },
-            {
-              "value": "h1",
-              "type": "string"
-            },
-            {
-              "value": "h2",
-              "type": "string"
-            },
-            {
-              "value": "h3",
-              "type": "string"
-            },
-            {
-              "value": "h4",
-              "type": "string"
-            },
-            {
-              "value": "h5",
-              "type": "string"
-            },
-            {
-              "value": "h6",
-              "type": "string"
-            },
-            {
-              "value": "label",
-              "type": "string"
-            },
-            {
-              "value": "label-lg",
-              "type": "string"
-            },
-            {
-              "value": "label-sm",
-              "type": "string"
-            },
-            {
-              "value": "label-xs",
-              "type": "string"
+              "type": "TypographyFormatCode"
             }
           ],
           "optional": false,
@@ -11582,14 +11512,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-typography"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

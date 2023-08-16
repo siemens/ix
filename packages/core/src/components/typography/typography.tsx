@@ -47,11 +47,14 @@ type TypographyFormatDisplay =
   | 'display-xl'
   | 'display-xxl';
 type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
+type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
+
 export type TypographyFormat =
   | TypographyFormatLabel
   | TypographyFormatBody
   | TypographyFormatDisplay
-  | TypographyFormatHeading;
+  | TypographyFormatHeading
+  | TypographyFormatCode;
 
 export type TextDecoration = 'none' | 'underline' | 'line-through';
 

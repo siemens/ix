@@ -1865,6 +1865,7 @@ export namespace Components {
         "textDecoration": TextDecoration;
         /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant": TypographyVariants;
     }
@@ -4883,6 +4884,7 @@ declare namespace LocalJSX {
         "textDecoration"?: TextDecoration;
         /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant"?: TypographyVariants;
     }
