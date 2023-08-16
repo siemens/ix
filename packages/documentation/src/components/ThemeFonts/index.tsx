@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  IxEmptyState,
   IxIcon,
   IxInputGroup,
   IxTabItem,
@@ -62,6 +63,8 @@ const ThemeFonts: React.FunctionComponent = () => {
     [fonts, filter]
   );
 
+  const items = fonts.filter(onFilter);
+
   return (
     <div className="Theme__Fonts">
       <IxTabs layout={'stretched'}>
@@ -86,7 +89,7 @@ const ThemeFonts: React.FunctionComponent = () => {
             Code
           </IxTypography>
         </div>
-        {fonts.filter(onFilter).map((font) => {
+        {items.map((font) => {
           return (
             <div key={font} className={'Section row'}>
               <div className="col-sm-2 Fonts__Name">{font}</div>
@@ -101,6 +104,13 @@ const ThemeFonts: React.FunctionComponent = () => {
             </div>
           );
         })}
+        {items.length === 0 ? (
+          <IxEmptyState
+            className="Empty"
+            header={`No font found with name "${filter}"`}
+            icon="search"
+          ></IxEmptyState>
+        ) : null}
       </div>
     </div>
   );

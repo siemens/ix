@@ -21,6 +21,10 @@
   margin: 1.5rem 0;
 }
 
+.Theme__Fonts .Empty {
+  padding: 4rem;
+}
+
 .Theme__Fonts .Copy__Icon {
   opacity: 0;
   padding: 0;
