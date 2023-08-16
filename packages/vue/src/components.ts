@@ -228,7 +228,8 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'active',
   'disabled',
   'label',
-  'icon'
+  'icon',
+  'placement'
 ]);
 
 
