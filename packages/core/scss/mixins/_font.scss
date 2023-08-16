@@ -93,7 +93,7 @@
 }
 
 @mixin typography-body {
-  @include define-typography();
+  @include define-typography($line-height: var(--theme-line-height-md));
 }
 
 @mixin typography-body-xs {
