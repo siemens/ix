@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
+import { AlignedPlacement } from '../dropdown/placement';
 
 export type DropdownButtonVariant = ButtonVariant;
 
@@ -59,6 +60,13 @@ export class DropdownButton {
    */
   @Prop() icon: string;
 
+  /**
+   * Placement of the dropdown
+   *
+   * @since 2.0.0
+   */
+  @Prop() placement: AlignedPlacement;
+
   @State() dropdownAnchor!: HTMLElement;
 
   private getTriangle() {
@@ -96,9 +104,10 @@ export class DropdownButton {
               outline={this.outline}
               ghost={this.ghost}
               disabled={this.disabled}
+              alignment="start"
             >
               <div class={'content'}>
-                {this.icon !== '' || this.icon !== undefined ? (
+                {this.icon ? (
                   <ix-icon
                     name={this.icon}
                     size="24"
@@ -126,7 +135,7 @@ export class DropdownButton {
         <ix-dropdown
           class="dropdown"
           trigger={this.dropdownAnchor}
-          positioningStrategy={'fixed'}
+          placement={this.placement}
         >
           <slot></slot>
         </ix-dropdown>

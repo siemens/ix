@@ -6,12 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  IxButton,
-  IxDropdown,
-  IxDropdownItem,
-  IxIcon,
-} from '@siemens/ix-react';
+import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React, { useEffect, useState } from 'react';
@@ -52,16 +47,6 @@ export function SwitchTheme(props: { icon: string; label: string }) {
     {
       id: 'theme-classic-light',
       label: 'Classic Light',
-      color: '#6a7f98',
-    },
-    {
-      id: 'theme-legacy-classic-dark',
-      label: 'Legacy Classic Dark',
-      color: '#000',
-    },
-    {
-      id: 'theme-legacy-classic-light',
-      label: 'Legacy Classic Light',
       color: '#6a7f98',
     },
   ]);
@@ -112,27 +97,20 @@ export function SwitchTheme(props: { icon: string; label: string }) {
   }
 
   return (
-    <>
-      <IxButton id="switch-theme-button" outline>
-        <IxIcon name={props.icon} className="me-2" />
-        {getLabel(theme)}
-        <IxIcon name="chevron-down-small" />
-      </IxButton>
-      <IxDropdown trigger={'switch-theme-button'}>
-        {registeredThemes.map(({ id, label, color }) => {
-          return (
-            <IxDropdownItem key={id} checked={id === theme}>
-              <ThemeEntry
-                key={id}
-                id={id}
-                label={label}
-                color={color}
-                onClick={(_, id) => onThemeChange(id)}
-              />
-            </IxDropdownItem>
-          );
-        })}
-      </IxDropdown>
-    </>
+    <IxDropdownButton outline icon={props.icon} label={getLabel(theme)}>
+      {registeredThemes.map(({ id, label, color }) => {
+        return (
+          <IxDropdownItem key={id} checked={id === theme}>
+            <ThemeEntry
+              key={id}
+              id={id}
+              label={label}
+              color={color}
+              onClick={(_, id) => onThemeChange(id)}
+            />
+          </IxDropdownItem>
+        );
+      })}
+    </IxDropdownButton>
   );
 }
