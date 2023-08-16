@@ -11,7 +11,7 @@
 @import 'mixins/animations';
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
-@import 'fonts';
+@import 'legacy/fonts';
 
 @include keyframes(flip-animation) {
   0% {

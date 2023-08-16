@@ -15,6 +15,34 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <span
+          class={'typography-format-label-xs'}
+          style={{
+            display: 'block',
+            width: '15rem',
+          }}
+        >
+          Lorem ipsum dolor sit amet consectetur. Et pulvinar arcu placerat
+          tristique. Velit ipsum donec pulvinar erat donec turpis ultrices.
+          Scelerisque pharetra sed sapien diam lorem. Risus quis in faucibus
+          tempor. Hendrerit at cursus suspendisse neque adipiscing at at eu.
+        </span>
+        <ix-typography
+          format="label-xs"
+          style={{
+            display: 'block',
+            width: '15rem',
+          }}
+          textDecoration="underline"
+        >
+          Lorem ipsum dolor sit amet consectetur. Et pulvinar arcu placerat
+          tristique. Velit ipsum donec pulvinar erat donec turpis ultrices.
+          Scelerisque pharetra sed sapien diam lorem. Risus quis in faucibus
+          tempor. Hendrerit at cursus suspendisse neque adipiscing at at eu.
+        </ix-typography>
+      </Host>
+    );
   }
 }

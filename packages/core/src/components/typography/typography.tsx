@@ -37,8 +37,26 @@ export type TypographyColors =
   | 'inv-weak'
   | 'alarm';
 
+type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
+type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
+type TypographyFormatDisplay =
+  | 'display'
+  | 'display-xs'
+  | 'display-sm'
+  | 'display-lg'
+  | 'display-xl'
+  | 'display-xxl';
+type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
+export type TypographyFormat =
+  | TypographyFormatLabel
+  | TypographyFormatBody
+  | TypographyFormatDisplay
+  | TypographyFormatHeading;
+
+export type TextDecoration = 'none' | 'underline' | 'line-through';
+
 /**
- * @internal
+ * @since 2.0.0
  */
 @Component({
   tag: 'ix-typography',
@@ -48,18 +66,36 @@ export type TypographyColors =
 export class IxTypography {
   /**
    * Font variant based on theme variables
+   * @internal
    */
   @Prop() variant: TypographyVariants = 'default';
+
+  /**
+   * Text format
+   */
+  @Prop() format: TypographyFormat = 'label';
 
   /**
    * Text color based on theme variables
    */
   @Prop() color: TypographyColors;
 
+  /**
+   * Text decoration
+   */
+  @Prop() textDecoration: TextDecoration = 'none';
+
   render() {
-    const typographyClass = {
-      [VariantsMapping[this.variant]]: true,
-    };
+    let typographyClass = {};
+    if (this.format) {
+      typographyClass[`typography-format-${this.format}`] = true;
+    } else {
+      typographyClass[VariantsMapping[this.variant]] = true;
+    }
+
+    if (this.textDecoration !== 'none') {
+      typographyClass[`text-decoration-${this.textDecoration}`] = true;
+    }
 
     const fontColor =
       this.color !== undefined

@@ -8,7 +8,6 @@
  */
 
 /* Include 3rd party libraries */
-
 @import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.css';
 
@@ -19,13 +18,12 @@
 @import './theme/classic-dark';
 @import './theme/classic-light';
 
+/* Legacy Global styles */
+@import './legacy/fonts';
+
 /* Common */
 @import './common-variables';
-@import 'fonts';
 @import 'z-index';
-
-/* Mixins */
-@import './mixins/fonts';
 
 /* Components */
 @import './components/links';
@@ -39,6 +37,7 @@
 @import './components/forms';
 @import './components/input-group';
 @import './components/table';
+@import './components/fonts';
 
 :root {
   --animate-duration: #{$default-time};
@@ -52,7 +51,7 @@ body:not([class*='theme-']) {
 }
 
 body {
-  @include text-default();
+  @include typography-body();
   background-color: var(--theme-color-1);
 }
 

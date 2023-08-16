@@ -8,8 +8,9 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+// @import 'legacy/mixins/fonts';
 @import 'mixins/shadow-dom/component';
+@import 'components/fonts';
 
 :host {
   @include ix-component;
@@ -18,58 +19,58 @@
   position: relative;
 }
 
-:host(.text-xs) {
-  @include text-xs;
-}
+// :host(.text-xs) {
+//   @include text-xs;
+// }
 
-:host(.text-s) {
-  @include text-s;
-}
+// :host(.text-s) {
+//   @include text-s;
+// }
 
-:host(.text-caption) {
-  @include text-caption;
-}
+// :host(.text-caption) {
+//   @include text-caption;
+// }
 
-:host(.text-caption-single) {
-  @include text-caption-single;
-}
+// :host(.text-caption-single) {
+//   @include text-caption-single;
+// }
 
-:host(.text-default) {
-  @include text-default;
-}
+// :host(.text-default) {
+//   @include text-default;
+// }
 
-:host(.text-default-single) {
-  @include text-default-single;
-}
+// :host(.text-default-single) {
+//   @include text-default-single;
+// }
 
-:host(.text-default-title) {
-  @include text-default-title;
-}
+// :host(.text-default-title) {
+//   @include text-default-title;
+// }
 
-:host(.text-default-title-single) {
-  @include text-default-title-single;
-}
+// :host(.text-default-title-single) {
+//   @include text-default-title-single;
+// }
 
-:host(.text-l) {
-  @include text-l;
-}
+// :host(.text-l) {
+//   @include text-l;
+// }
 
-:host(.text-l-single) {
-  @include text-l-single;
-}
+// :host(.text-l-single) {
+//   @include text-l-single;
+// }
 
-:host(.text-l-title) {
-  @include text-l-title;
-}
+// :host(.text-l-title) {
+//   @include text-l-title;
+// }
 
-:host(.text-l-title-single) {
-  @include text-l-title-single;
-}
+// :host(.text-l-title-single) {
+//   @include text-l-title-single;
+// }
 
-:host(.text-h2) {
-  @include text-h2;
-}
+// :host(.text-h2) {
+//   @include text-h2;
+// }
 
-:host(.text-xl) {
-  @include text-xl;
-}
+// :host(.text-xl) {
+//   @include text-xl;
+// }
