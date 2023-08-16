@@ -140,6 +140,11 @@ export namespace Components {
     }
     interface IxBreadcrumb {
         /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
+          * @since 2.0.0
+         */
+        "ariaLabelPreviousButton": string;
+        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost": boolean;
@@ -153,14 +158,18 @@ export namespace Components {
         "visibleItemCount": number;
     }
     interface IxBreadcrumbItem {
+        "ghost": boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon": string;
+        "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
         "label": string;
+        "showChevron": boolean;
+        "visible": boolean;
     }
     interface IxBurgerMenu {
         /**
@@ -189,6 +198,7 @@ export namespace Components {
           * Icon name
          */
         "icon": string;
+        "iconSize": '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0
@@ -1974,6 +1984,10 @@ export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBreadcrumbElement;
 }
+export interface IxBreadcrumbItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxBreadcrumbItemElement;
+}
 export interface IxCardAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCardAccordionElement;
@@ -2933,6 +2947,11 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumb {
         /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
+          * @since 2.0.0
+         */
+        "ariaLabelPreviousButton"?: string;
+        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost"?: boolean;
@@ -2954,14 +2973,19 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     interface IxBreadcrumbItem {
+        "ghost"?: boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
+        "isDropdownTrigger"?: boolean;
         /**
           * Breadcrumb label
          */
         "label"?: string;
+        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
+        "showChevron"?: boolean;
+        "visible"?: boolean;
     }
     interface IxBurgerMenu {
         /**
@@ -2990,6 +3014,7 @@ declare namespace LocalJSX {
           * Icon name
          */
         "icon"?: string;
+        "iconSize"?: '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0

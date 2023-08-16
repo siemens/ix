@@ -48,6 +48,7 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
   'visibleItemCount',
   'nextItems',
   'ghost',
+  'ariaLabelPreviousButton',
   'itemClick',
   'nextClick'
 ]);
@@ -55,7 +56,12 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
 
 export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbItem>('ix-breadcrumb-item', undefined, [
   'label',
-  'icon'
+  'icon',
+  'ghost',
+  'visible',
+  'showChevron',
+  'isDropdownTrigger',
+  'itemClick'
 ]);
 
 
@@ -66,7 +72,8 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'disabled',
   'type',
   'loading',
-  'icon'
+  'icon',
+  'iconSize'
 ]);
 
 

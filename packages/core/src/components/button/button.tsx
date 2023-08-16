@@ -55,6 +55,11 @@ export class Button {
    */
   @Prop() icon: string;
 
+  /**
+   * @internal
+   */
+  @Prop() iconSize: '12' | '16' | '24' = '24';
+
   @Element() hostElement: HTMLIxButtonElement;
 
   /**
@@ -90,6 +95,7 @@ export class Button {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
+      iconSize: this.iconSize,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,

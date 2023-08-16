@@ -12,146 +12,19 @@
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
 
-@mixin crumb-hover($variant) {
-  @include hover {
-    background-color: var(--theme-breadcrumb-#{$variant}--background--hover);
-
-    .crumb-text,
-    ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}--color--hover);
-    }
-
-    .crumb-text + ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
-    }
-  }
-
-  @include active {
-    background-color: var(--theme-breadcrumb-#{$variant}--background--active);
-
-    .crumb-text,
-    ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}--color--active);
-    }
-
-    .crumb-text + ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
-    }
-  }
-}
-
-@mixin breadcrumb($variant) {
-  .crumb.#{$variant} {
-    background-color: var(--theme-breadcrumb-#{$variant}--background);
-    border: var(--theme-btn--#{$variant}-thickness) solid transparent;
-    transition: $default-time;
-
-    .crumb-text,
-    ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}--color);
-    }
-
-    .crumb-text + ix-icon {
-      color: var(--theme-breadcrumb-#{$variant}-arrow--color);
-    }
-
-    &.last .crumb-text {
-      color: var(--theme-breadcrumb-#{$variant}-last--color);
-    }
-
-    &.clickable:not(.remove-hover) {
-      @include hover {
-        background-color: var(
-          --theme-breadcrumb-#{$variant}--background--hover
-        );
-
-        .crumb-text,
-        ix-icon {
-          color: var(--theme-breadcrumb-#{$variant}--color--hover);
-        }
-
-        .crumb-text + ix-icon {
-          color: var(--theme-breadcrumb-#{$variant}-arrow--color--hover);
-        }
-      }
-
-      @include active {
-        background-color: var(
-          --theme-breadcrumb-#{$variant}--background--active
-        );
-
-        .crumb-text,
-        ix-icon {
-          color: var(--theme-breadcrumb-#{$variant}--color--active);
-        }
-
-        .crumb-text + ix-icon {
-          color: var(--theme-breadcrumb-#{$variant}-arrow--color--active);
-        }
-      }
-    }
-  }
-}
-
 :host {
   @include ix-component;
 
   display: flex;
-  height: $large-control-height;
   justify-content: flex-start;
+  height: 2.5rem;
   align-items: center;
   background-color: transparent;
   overflow: hidden;
 
-  .crumb {
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    white-space: nowrap;
-    border-radius: var(--theme-breadcrumb--border-radius);
-    height: $default-control-height;
-    max-height: $default-control-height;
-    min-width: 0;
-    margin-inline-end: $tiny-space;
-    padding: $small-space 0 $small-space $tiny-space;
-    outline: none;
-    cursor: pointer;
-
-    @include crumb-hover('btn');
-
-    .crumb-text {
-      @include ellipsis;
-      display: flex;
-      align-items: center;
-      min-width: 0;
-      font-weight: $font-weight-bold;
-
-      ix-icon {
-        margin-inline-end: $tiny-space;
-      }
-    }
-
-    .crumb-text + ix-icon {
-      margin-inline-start: $tiny-space;
-    }
-
-    &.last {
-      background-color: transparent !important;
-      cursor: default;
-      padding-inline-end: $tiny-space;
-    }
-
-    &.clickable:not(.remove-hover) {
-      @include focus-visible {
-        border-color: var(--theme-focus--border-color);
-      }
-    }
-
-    &:not(:last-of-type) {
-      flex-shrink: 0;
-      max-width: 14rem;
-    }
+  .previous-button {
+    width: 3rem;
+    min-width: 0px;
   }
 
   .crumb-dropdown {
@@ -178,10 +51,9 @@
     }
   }
 
+  nav,
+  ol,
   .crumb-items {
     display: contents;
   }
-
-  @include breadcrumb('btn');
-  @include breadcrumb('ghost');
 }
