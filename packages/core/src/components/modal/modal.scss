@@ -26,17 +26,16 @@
   }
 
   .modal {
-    display: grid;
-    position: relative;
+    display: flex;
     flex-direction: column;
+    position: relative;
     border: none;
     border-radius: var(--theme-default-border-radius);
     background: var(--theme-modal--background);
     box-shadow: var(--theme-shadow-4);
     color: var(--theme-color-std-text);
-
+    overflow: visible;
     max-height: 80vh;
-    overflow: hidden;
     pointer-events: all;
   }
 

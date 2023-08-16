@@ -73,6 +73,7 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'type',
   'loading',
   'icon',
+  'alignment',
   'iconSize'
 ]);
 
