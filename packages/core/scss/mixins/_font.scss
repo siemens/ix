@@ -54,7 +54,8 @@
 ) {
   color: var(--theme-color-std-text);
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: $font-family, Arial, Helvetica, sans-serif;
+  font-family: $font-family, system-ui, -apple-system, Arial, Helvetica,
+    sans-serif;
   font-style: normal;
   font-size: #{$size};
   line-height: #{$line-height};
@@ -211,21 +212,33 @@
 
 @mixin typography-code {
   @include define-typography(
-    $font-family: 'JetBrainsMono, Courier New, monospace',
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
     $letter-spacing: var(--theme-letter-spacing-md)
   );
 }
 
 @mixin typography-code-sm {
   @include define-typography(
-    $font-family: 'JetBrainsMono, Courier New, monospace',
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
     $size: var(--theme-ms--1)
   );
 }
 
 @mixin typography-code-lg {
   @include define-typography(
-    $font-family: 'JetBrainsMono, Courier New, monospace',
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
     $size: var(--theme-ms-1),
     $letter-spacing: var(--theme-letter-spacing-md)
   );

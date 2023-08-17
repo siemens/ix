@@ -1868,6 +1868,10 @@ export namespace Components {
      */
     interface IxTypography {
         /**
+          * Display text bold
+         */
+        "bold": boolean;
+        /**
           * Text color based on theme variables
          */
         "color": TypographyColors;
@@ -4907,6 +4911,10 @@ declare namespace LocalJSX {
      * @since 2.0.0
      */
     interface IxTypography {
+        /**
+          * Display text bold
+         */
+        "bold"?: boolean;
         /**
           * Text color based on theme variables
          */

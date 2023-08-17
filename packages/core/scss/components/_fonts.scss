@@ -95,16 +95,32 @@
     @include typography-h1;
   }
 
-  .text-decoration-none {
+  .typography-code {
+    @include typography-code;
+  }
+
+  .typography-code-lg {
+    @include typography-code-lg;
+  }
+
+  .typography-code-sm {
+    @include typography-code-sm;
+  }
+
+  .typography-decoration-none {
     text-decoration: none !important;
   }
 
-  .text-decoration-underline {
+  .typography-decoration-underline {
     text-decoration: underline !important;
   }
 
-  .text-decoration-line-through {
+  .typography-decoration-line-through {
     text-decoration: line-through !important;
+  }
+
+  .typography-weight-bold {
+    font-weight: 700 !important;
   }
 
   a {

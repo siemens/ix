@@ -86,6 +86,11 @@ export class IxTypography {
   @Prop() color: TypographyColors;
 
   /**
+   * Display text bold
+   */
+  @Prop() bold = false;
+
+  /**
    * Text decoration
    */
   @Prop() textDecoration: TextDecoration = 'none';
@@ -99,21 +104,21 @@ export class IxTypography {
     }
 
     if (this.textDecoration !== 'none') {
-      typographyClass[`text-decoration-${this.textDecoration}`] = true;
+      typographyClass[`typography-decoration-${this.textDecoration}`] = true;
     }
 
-    const fontColor =
-      this.color !== undefined
-        ? `var(--theme-color-${this.color}-text)`
-        : 'inherit';
+    typographyClass['typography-weight-bold'] = this.bold;
+
+    let style = {};
+
+    if (this.color) {
+      style = {
+        color: `var(--theme-color-${this.color}-text)`,
+      };
+    }
 
     return (
-      <Host
-        class={typographyClass}
-        style={{
-          color: fontColor,
-        }}
-      >
+      <Host class={typographyClass} style={style}>
         <slot></slot>
       </Host>
     );
