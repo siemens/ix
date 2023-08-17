@@ -5800,7 +5800,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
       ],
@@ -5900,7 +5900,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item"
@@ -5921,6 +5923,9 @@
         ],
         "ix-menu-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -6352,7 +6357,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -6370,6 +6377,9 @@
         ],
         "ix-tabs": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-about"
         ]
       },
       "props": [
@@ -7146,7 +7156,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -7164,6 +7176,9 @@
         ],
         "ix-tabs": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-settings"
         ]
       },
       "props": [
@@ -11423,8 +11438,47 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-menu",
+        "ix-menu-about",
+        "ix-menu-settings"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu",
+          "ix-menu-about",
+          "ix-menu-settings"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-menu-about": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-tabs": [
+          "ix-icon"
+        ],
+        "ix-menu-settings": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
