@@ -8,7 +8,7 @@
  */
 import { newSpecPage } from '@stencil/core/testing';
 import { MenuItem } from '../menu-item';
-
+//@ts-ignore
 import { createMutationObserver } from '../../utils/mutation-observer';
 jest.mock('../../utils/mutation-observer');
 

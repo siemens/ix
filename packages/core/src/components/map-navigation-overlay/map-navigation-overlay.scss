@@ -6,11 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@import 'mixins/shadow-dom/component';
 @import 'common-variables';
 @import 'fonts';
 @import 'mixins/text-truncation';
 
 :host {
+  @include ix-component;
+
   position: absolute;
   width: 100%;
   height: 100%;
@@ -60,4 +63,12 @@
     margin-inline-start: auto;
     margin-inline-end: $default-space;
   }
+
+  .d-none {
+    display: none;
+  }
+}
+
+:host(.d-none) {
+  display: none;
 }
