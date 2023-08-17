@@ -8,6 +8,7 @@
  */
 
 import { newSpecPage } from '@stencil/core/testing';
+//@ts-ignore
 import { createMutationObserver } from '../../utils/mutation-observer';
 import { EventList } from '../event-list';
 

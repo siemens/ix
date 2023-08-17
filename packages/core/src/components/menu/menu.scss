@@ -120,6 +120,10 @@ $menu-expanded-width: 16rem;
     left: $menu-expanded-width;
   }
 
+  .menu-overlay-container {
+    display: contents;
+  }
+
   .menu-avatar {
     max-height: 3rem;
   }
