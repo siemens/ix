@@ -10899,6 +10899,23 @@
       },
       "props": [
         {
+          "name": "bold",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "bold",
+          "reflectToAttr": false,
+          "docs": "Display text bold",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "color",
           "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
           "mutable": false,

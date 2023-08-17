@@ -2099,14 +2099,14 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 
 @ProxyCmp({
-  inputs: ['color', 'format', 'textDecoration']
+  inputs: ['bold', 'color', 'format', 'textDecoration']
 })
 @Component({
   selector: 'ix-typography',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'format', 'textDecoration'],
+  inputs: ['bold', 'color', 'format', 'textDecoration'],
 })
 export class IxTypography {
   protected el: HTMLElement;

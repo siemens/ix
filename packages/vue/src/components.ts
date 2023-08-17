@@ -761,6 +761,7 @@ export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-
   'variant',
   'format',
   'color',
+  'bold',
   'textDecoration'
 ]);
 
