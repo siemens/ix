@@ -3,7 +3,6 @@
  */
 :root {
   .theme-classic-dark {
-      --theme-line-height-xs: 140%;
       --theme-line-height-s: 150%;
       --theme-line-height-s-single: 150%;
       --theme-line-height-caption: 150%;
@@ -14,5 +13,9 @@
       --theme-line-height-l-single: 125%;
       --theme-line-height-h2: 145.5%;
       --theme-line-height-xl: 109.1%;
+      --theme-line-height-xs: 100%;
+      --theme-line-height-sm: 120%;
+      --theme-line-height-md: 140%;
+      --theme-line-height-lg: 150%;
   }
 }

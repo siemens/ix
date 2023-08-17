@@ -6,39 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-:root {
-  --theme-ms--2: clamp(0.61rem, calc(0.71rem + -0.08vw), 0.69rem);
-  --theme-ms--1: clamp(0.73rem, calc(0.79rem + -0.05vw), 0.78rem);
-  --theme-ms-0: clamp(0.88rem, calc(0.88rem + 0vw), 0.88rem);
-  --theme-ms-1: clamp(0.98rem, calc(0.97rem + 0.07vw), 1.05rem);
-  --theme-ms-2: clamp(1.11rem, calc(1.08rem + 0.15vw), 1.26rem);
-  --theme-ms-3: clamp(1.25rem, calc(1.19rem + 0.27vw), 1.51rem);
-  --theme-ms-4: clamp(1.4rem, calc(1.32rem + 0.41vw), 1.81rem);
-  --theme-ms-5: clamp(1.58rem, calc(1.46rem + 0.6vw), 2.18rem);
-  --theme-ms-6: clamp(1.77rem, calc(1.61rem + 0.84vw), 2.61rem);
-  --theme-ms-7: clamp(2rem, calc(1.77rem + 1.14vw), 3.14rem);
-  --theme-ms-8: clamp(2.25rem, calc(1.94rem + 1.52vw), 3.76rem);
-
-  /**
-  * TODO: Must be part of theme
-  **/
-  --theme-line-height-xs: 1em;
-  --theme-line-height-sm: 1.2em;
-  --theme-line-height-md: 1.4em;
-  --theme-line-height-lg: 1.5em;
-
-  --theme-font-weight-normal: 400;
-  --theme-font-weight-bold: 700;
-  --theme-font-weight-black: 900;
-
-  --theme-letter-spacing-xs: -0.012em;
-  --theme-letter-spacing-sm: -0.006em;
-  --theme-letter-spacing-md: -00em;
-  --theme-letter-spacing-lg: 0.006em;
-  --theme-letter-spacing-xl: 0.012em;
-  --theme-letter-spacing-xxl: 0.02em;
-}
-
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smooting: grayscale;
