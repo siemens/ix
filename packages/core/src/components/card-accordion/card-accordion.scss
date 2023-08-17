@@ -108,6 +108,10 @@ $expand-content-height: 15rem;
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
   }
+
+  ::slotted(*) {
+    color: var(--theme-color-std-text);
+  }
 }
 
 :host(.show) {

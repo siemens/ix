@@ -48,6 +48,7 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
   'visibleItemCount',
   'nextItems',
   'ghost',
+  'ariaLabelPreviousButton',
   'itemClick',
   'nextClick'
 ]);
@@ -55,7 +56,12 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
 
 export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbItem>('ix-breadcrumb-item', undefined, [
   'label',
-  'icon'
+  'icon',
+  'ghost',
+  'visible',
+  'showChevron',
+  'isDropdownTrigger',
+  'itemClick'
 ]);
 
 
@@ -66,7 +72,9 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'disabled',
   'type',
   'loading',
-  'icon'
+  'icon',
+  'alignment',
+  'iconSize'
 ]);
 
 
@@ -220,7 +228,8 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'active',
   'disabled',
   'label',
-  'icon'
+  'icon',
+  'placement'
 ]);
 
 
@@ -289,13 +298,14 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', undefined, [
   'state',
-  'footer',
   'height',
   'width'
 ]);
 
 
-export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined);
+export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined, [
+  'contentVisible'
+]);
 
 
 export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', undefined, [

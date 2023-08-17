@@ -9,7 +9,9 @@
 
 import {
   IxButton,
-  IxIconButton,
+  IxModalContent,
+  IxModalFooter,
+  IxModalHeader,
   Modal,
   ModalRef,
   showModal,
@@ -28,22 +30,16 @@ function CustomModal() {
 
   return (
     <Modal ref={modalRef}>
-      <div className="modal-header">
+      <IxModalHeader onCloseClick={() => dismiss()}>
         Message headline
-        <IxIconButton
-          data-button-close
-          ghost
-          icon="close"
-          onClick={() => dismiss()}
-        ></IxIconButton>
-      </div>
-      <div className="modal-body">Message text lorem ipsum</div>
-      <div className="modal-footer">
+      </IxModalHeader>
+      <IxModalContent>Message text lorem ipsum</IxModalContent>
+      <IxModalFooter>
         <IxButton outline onClick={() => dismiss()}>
           Cancel
         </IxButton>
         <IxButton onClick={() => close()}>OK</IxButton>
-      </div>
+      </IxModalFooter>
     </Modal>
   );
 }

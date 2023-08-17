@@ -473,21 +473,47 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
         "ix-dropdown",
-        "ix-dropdown-item"
+        "ix-dropdown-item",
+        "ix-breadcrumb-item"
       ],
       "dependencyGraph": {
         "ix-breadcrumb": [
-          "ix-icon",
           "ix-dropdown",
-          "ix-dropdown-item"
+          "ix-dropdown-item",
+          "ix-breadcrumb-item"
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelPreviousButton",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-label-previous-button",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "'previous'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "ghost",
           "type": "boolean",
@@ -496,7 +522,7 @@
           "reflectToAttr": false,
           "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -577,9 +603,22 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependents": [
+        "ix-breadcrumb"
+      ],
+      "dependencies": [
+        "ix-icon",
+        "ix-spinner"
+      ],
+      "dependencyGraph": {
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
+        ],
+        "ix-breadcrumb": [
+          "ix-breadcrumb-item"
+        ]
+      },
       "props": [
         {
           "name": "icon",
@@ -3212,6 +3251,56 @@
           "required": false
         },
         {
+          "name": "placement",
+          "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the dropdown",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "value": "bottom-end",
+              "type": "string"
+            },
+            {
+              "value": "bottom-start",
+              "type": "string"
+            },
+            {
+              "value": "left-end",
+              "type": "string"
+            },
+            {
+              "value": "left-start",
+              "type": "string"
+            },
+            {
+              "value": "right-end",
+              "type": "string"
+            },
+            {
+              "value": "right-start",
+              "type": "string"
+            },
+            {
+              "value": "top-end",
+              "type": "string"
+            },
+            {
+              "value": "top-start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"primary\" | \"secondary\"",
           "mutable": false,
@@ -4058,7 +4147,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -4073,28 +4162,6 @@
         ]
       },
       "props": [
-        {
-          "name": "footer",
-          "type": "string",
-          "mutable": false,
-          "attr": "footer",
-          "reflectToAttr": false,
-          "docs": "Tmp property name",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Setting this property has no effect"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Setting this property has no effect",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "height",
           "type": "\"auto\" | number",
@@ -8584,7 +8651,7 @@
         },
         {
           "event": "itemSelectionChange",
-          "detail": "string | string[]",
+          "detail": "string[]",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -8728,6 +8795,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
         "ix-icon-button",
@@ -8739,6 +8807,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-breadcrumb-item": [
+          "ix-spinner"
+        ],
         "ix-burger-menu": [
           "ix-spinner"
         ],

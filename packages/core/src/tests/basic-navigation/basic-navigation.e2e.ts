@@ -23,7 +23,11 @@ regressionTest.describe('basic navigation large', () => {
     });
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('content width', async ({ page }) => {
@@ -34,7 +38,13 @@ regressionTest.describe('basic navigation large', () => {
     });
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page.getByText('Example content')).toBeVisible();
+
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 });
 
@@ -47,7 +57,11 @@ regressionTest.describe('basic navigation', () => {
     });
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('content width', async ({ page }) => {
@@ -57,8 +71,13 @@ regressionTest.describe('basic navigation', () => {
       width: mediumWidth,
     });
     await page.waitForTimeout(500);
+    await expect(page.getByText('Example content')).toBeVisible();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('expanded', async ({ page }) => {
@@ -72,8 +91,15 @@ regressionTest.describe('basic navigation', () => {
     await page.locator('ix-menu ix-burger-menu').click();
     await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
-    await page.waitForTimeout(800);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(
+      page.locator('ix-menu').locator('.menu.expanded')
+    ).toBeVisible();
+
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 });
 
@@ -86,7 +112,12 @@ regressionTest.describe('basic navigation mobile', () => {
     });
 
     await page.waitForTimeout(500);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('mobile expanded', async ({ page }) => {
@@ -101,9 +132,16 @@ regressionTest.describe('basic navigation mobile', () => {
       'ix-application-header ix-burger-menu'
     );
     await menuElement.click();
-    await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(
+      page.locator('ix-menu').locator('.menu.expanded')
+    ).toBeVisible();
+
+    await page.waitForTimeout(1000);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('mobile overlay', async ({ page }) => {
@@ -118,12 +156,24 @@ regressionTest.describe('basic navigation mobile', () => {
       'ix-application-header ix-burger-menu'
     );
     await menuElement.click();
-    await page.waitForTimeout(500);
+    await expect(
+      page.locator('ix-menu').locator('.menu.expanded')
+    ).toBeVisible();
+
     const settingsButton = await page.waitForSelector('#settings');
     await settingsButton.click();
 
+    const settings = page.locator('ix-menu-settings');
+    const settingsTitle = settings.locator('h2');
+
+    await expect(settings).toBeVisible();
+    await expect(settingsTitle).toBeVisible();
+
     await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('mobile expanded overlay', async ({ page }) => {
@@ -134,19 +184,34 @@ regressionTest.describe('basic navigation mobile', () => {
     });
 
     await page.waitForTimeout(500);
-    const menuElement = await page.waitForSelector(
-      'ix-application-header ix-burger-menu'
-    );
+    const header = page.locator('ix-application-header');
+    const menuElement = header.locator('ix-burger-menu');
+
+    await expect(menuElement).toBeVisible();
+
     await menuElement.click();
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-menu')).toHaveClass(/mode-small/);
+    await expect(page.locator('ix-menu')).toHaveClass(/expanded/);
+
     const settingsButton = await page.waitForSelector('#settings');
-
     await settingsButton.click();
-    await page.waitForTimeout(1000);
+    await expect(page.locator('ix-menu-settings')).toBeVisible();
 
     await menuElement.click();
 
+    const menu = page.locator('ix-menu');
+    const item = menu.locator('ix-menu-item').nth(0);
+
+    await expect(
+      page.locator('ix-menu').locator('.menu.expanded')
+    ).toBeVisible();
+
+    await expect(item).toBeVisible();
+
     await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 });

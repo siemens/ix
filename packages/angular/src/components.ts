@@ -124,14 +124,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ghost', 'nextItems', 'visibleItemCount']
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ghost', 'nextItems', 'visibleItemCount'],
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount'],
 })
 export class IxBreadcrumb {
   protected el: HTMLElement;
@@ -592,14 +592,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant']
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant'],
+  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
 })
 export class IxDropdownButton {
   protected el: HTMLElement;
@@ -820,14 +820,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['footer', 'height', 'state', 'width']
+  inputs: ['height', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['footer', 'height', 'state', 'width'],
+  inputs: ['height', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
@@ -1728,7 +1728,7 @@ export declare interface IxSelect extends Components.IxSelect {
   /**
    * Item selection changed
    */
-  itemSelectionChange: EventEmitter<CustomEvent<string | string[]>>;
+  itemSelectionChange: EventEmitter<CustomEvent<string[]>>;
   /**
    * Event dispatched whenever the text input changes. @since 2.0.0
    */

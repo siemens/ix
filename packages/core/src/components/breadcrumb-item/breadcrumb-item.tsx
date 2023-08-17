@@ -7,7 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { chevronRightSmall } from '@siemens/ix-icons/icons';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Prop,
+} from '@stencil/core';
+import animejs from 'animejs';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { a11yHostAttributes } from '../utils/a11y';
+
+export type BreadcrumbItemLinkTarget =
+  | '_self'
+  | '_blank'
+  | '_parent'
+  | '_top'
+  | string;
 
 @Component({
   tag: 'ix-breadcrumb-item',
@@ -15,6 +35,8 @@ import { Component, h, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class BreadcrumbItem {
+  @Element() hostElement!: HTMLIxBreadcrumbItemElement;
+
   /**
    * Breadcrumb label
    */
@@ -25,10 +47,87 @@ export class BreadcrumbItem {
    */
   @Prop() icon: string;
 
+  /**@internal */
+  @Prop() ghost: boolean = true;
+
+  /**@internal */
+  @Prop() visible = true;
+
+  /**@internal */
+  @Prop() showChevron = true;
+
+  /** @internal */
+  @Prop() isDropdownTrigger = false;
+
+  /**@internal */
+  @Event() itemClick: EventEmitter<string>;
+
+  componentDidLoad() {
+    this.animationFadeIn();
+  }
+
+  animationFadeIn() {
+    animejs({
+      targets: this.hostElement,
+      duration: 150,
+      opacity: [0, 1],
+      translateX: ['-100%', '0%'],
+      easing: 'linear',
+    });
+  }
+
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
+    const props: BaseButtonProps = {
+      variant: this.ghost ? 'primary' : 'secondary',
+      outline: false,
+      ghost: this.ghost,
+      iconOnly: false,
+      iconOval: false,
+      disabled: false,
+      icon: this.icon,
+      iconSize: '16',
+      loading: false,
+      selected: false,
+      type: 'button',
+      tabIndex:
+        this.hostElement.tabIndex !== -1 ? this.hostElement.tabIndex : 0,
+      extraClasses: {
+        'dropdown-trigger': this.isDropdownTrigger,
+      },
+      ariaAttributes: a11y,
+    };
+
+    if (!this.visible) {
+      return <Host class={'invisible'}></Host>;
+    }
+
     return (
-      <Host>
-        <slot></slot>
+      <Host
+        class={{
+          'hide-chevron': !this.showChevron,
+        }}
+        onClick={() => this.itemClick.emit(this.label)}
+      >
+        <li>
+          <BaseButton
+            {...props}
+            afterContent={
+              <Fragment>
+                {this.showChevron ? (
+                  <ix-icon
+                    name={chevronRightSmall}
+                    size="16"
+                    class={'chevron'}
+                  ></ix-icon>
+                ) : null}
+              </Fragment>
+            }
+          >
+            {this.label}
+            <slot></slot>
+          </BaseButton>
+        </li>
       </Host>
     );
   }

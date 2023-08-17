@@ -2,6 +2,14 @@
 
 ## v2.0.0
 
+### Change `itemSelectionChange` event from `ix-select`
+
+Change type of CustomEvent to:
+
+```typescript
+@Event() itemSelectionChange: EventEmitter<string[]>
+```
+
 ### Remove `ix-animated-tab` and `ix-animated-tabs`
 
 Replaced by `ix-tabs` implementation.
