@@ -23,9 +23,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-card",
         "ix-card-content",
@@ -38,9 +36,6 @@
           "ix-card-content",
           "ix-icon",
           "ix-typography"
-        ],
-        "my-component": [
-          "ix-action-card"
         ]
       },
       "props": [
@@ -10861,8 +10856,7 @@
         "ix-pagination",
         "ix-push-card",
         "ix-time-picker",
-        "ix-tooltip",
-        "my-component"
+        "ix-tooltip"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10900,9 +10894,6 @@
           "ix-typography"
         ],
         "ix-tooltip": [
-          "ix-typography"
-        ],
-        "my-component": [
           "ix-typography"
         ]
       },
@@ -11631,22 +11622,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-action-card",
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-action-card",
-          "ix-typography"
-        ],
-        "ix-action-card": [
-          "ix-card",
-          "ix-card-content",
-          "ix-icon",
-          "ix-typography"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

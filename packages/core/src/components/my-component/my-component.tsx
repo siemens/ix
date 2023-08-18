@@ -15,15 +15,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return (
-      <Host>
-        <ix-push-card
-          icon="refresh"
-          heading="Scan forn new devices"
-          subheading="Secondary text"
-        ></ix-push-card>
-        <ix-typography>Test</ix-typography>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
