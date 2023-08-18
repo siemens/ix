@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { rocket } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 import { VariantsMapping } from './type-mapping';
 
@@ -97,6 +98,7 @@ export class IxTypography {
 
   render() {
     let typographyClass = {};
+
     if (this.variant) {
       typographyClass[VariantsMapping[this.variant ?? 'default']] = true;
     } else {
@@ -119,6 +121,7 @@ export class IxTypography {
 
     return (
       <Host class={typographyClass} style={style}>
+        <ix-icon name={rocket}></ix-icon>
         <slot></slot>
       </Host>
     );

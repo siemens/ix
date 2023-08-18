@@ -18,6 +18,7 @@
 @import './theme/classic-light';
 
 /* Legacy Global styles */
+@import './legacy/mixins/fonts';
 @import './legacy/fonts';
 
 /* Common */
@@ -51,6 +52,7 @@ body:not([class*='theme-']) {
 
 body {
   @include typography-body();
+  color: var(--theme-color-std-text);
   background-color: var(--theme-color-1);
 }
 
