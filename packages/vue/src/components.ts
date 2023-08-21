@@ -39,7 +39,8 @@ export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNaviga
 export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', undefined, [
   'collapsed',
   'label',
-  'icon',
+  'icon'
+], [
   'collapsedChange'
 ]);
 
@@ -48,7 +49,8 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
   'visibleItemCount',
   'nextItems',
   'ghost',
-  'ariaLabelPreviousButton',
+  'ariaLabelPreviousButton'
+], [
   'itemClick',
   'nextClick'
 ]);
@@ -60,8 +62,9 @@ export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbIt
   'ghost',
   'visible',
   'showChevron',
-  'isDropdownTrigger',
-  'itemClick'
+  'isDropdownTrigger'
+], [
+  'nextClick'
 ]);
 
 
@@ -83,7 +86,7 @@ export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', undef
 ]);
 
 
-export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [
+export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', undefined, [], [
   'accordionExpand'
 ]);
 
@@ -99,7 +102,8 @@ export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card
   'showAllCount',
   'suppressOverflowHandling',
   'i18nShowAll',
-  'i18nMoreCards',
+  'i18nMoreCards'
+], [
   'collapseChanged',
   'showAllClick',
   'showMoreCardClick'
@@ -121,7 +125,8 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'repeatCategories',
   'tmpDisableScrollIntoView',
   'labelCategories',
-  'i18nPlainText',
+  'i18nPlainText'
+], [
   'inputChanged',
   'filterChanged'
 ]);
@@ -134,7 +139,8 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'icon',
   'background',
   'color',
-  'outline',
+  'outline'
+], [
   'close',
   'closeChip'
 ]);
@@ -144,7 +150,8 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
   'variant',
   'headerTitle',
   'headerSubtitle',
-  'hasBackButton',
+  'hasBackButton'
+], [
   'backButtonClick'
 ]);
 
@@ -159,12 +166,13 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'minDate',
   'maxDate',
   'eventDelimiter',
-  'textSelectDate',
+  'textSelectDate'
+], [
   'dateChange',
   'dateRangeChange',
   'done',
   'dateSelect'
-]);
+], 'modelValue', 'dateSelect', 'update:modelValue');
 
 
 export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePicker>('ix-datetime-picker', undefined, [
@@ -183,7 +191,8 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'eventDelimiter',
   'timeReference',
   'textSelectDate',
-  'done',
+  'done'
+], [
   'timeChange',
   'dateChange',
   'dateSelect'
@@ -199,7 +208,8 @@ export const IxDrawer = /*@__PURE__*/ defineContainer<JSX.IxDrawer>('ix-drawer',
   'fullHeight',
   'minWidth',
   'maxWidth',
-  'width',
+  'width'
+], [
   'open',
   'drawerClose'
 ]);
@@ -216,7 +226,8 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'header',
   'offset',
   'triggerEvent',
-  'overwriteDropdownStyle',
+  'overwriteDropdownStyle'
+],[
   'showChanged'
 ]);
 
@@ -244,7 +255,8 @@ export const IxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IxDropdownItem>(
   'hover',
   'disabled',
   'checked',
-  'isSubMenu',
+  'isSubMenu'
+], [
   'suppressChecked',
   'itemClick'
 ]);
@@ -257,7 +269,8 @@ export const IxEmptyState = /*@__PURE__*/ defineContainer<JSX.IxEmptyState>('ix-
   'layout',
   'icon',
   'header',
-  'subHeader',
+  'subHeader'
+], [
   'action',
   'actionClick'
 ]);
@@ -276,7 +289,8 @@ export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem
   'selected',
   'disabled',
   'chevron',
-  'opacity',
+  'opacity'
+], [
   'itemClick'
 ]);
 
@@ -284,14 +298,15 @@ export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem
 export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSearch>('ix-expanding-search', undefined, [
   'icon',
   'placeholder',
-  'value',
-  'fullWidth',
+  'value'
+], [
   'valueChange'
 ]);
 
 
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', undefined, [
-  'disabled',
+  'disabled'
+], [
   'closeClick'
 ]);
 
@@ -314,7 +329,8 @@ export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', un
   'subHeader',
   'collapsed',
   'selected',
-  'index',
+  'index'
+], [
   'expandOnHeaderClick',
   'selectGroup',
   'selectItem',
@@ -332,7 +348,8 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
   'suppressSelection',
   'selected',
   'focusable',
-  'index',
+  'index'
+], [
   'selectedChanged'
 ]);
 
@@ -367,9 +384,10 @@ export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggle
   'pressed',
   'size',
   'disabled',
-  'loading',
+  'loading'
+], [
   'pressedChange'
-]);
+], 'pressed', 'pressedChange', 'update:pressed');
 
 
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', undefined);
@@ -407,7 +425,8 @@ export const IxLinkButton = /*@__PURE__*/ defineContainer<JSX.IxLinkButton>('ix-
 export const IxMapNavigation = /*@__PURE__*/ defineContainer<JSX.IxMapNavigation>('ix-map-navigation', undefined, [
   'applicationName',
   'navigationTitle',
-  'hideContextMenu',
+  'hideContextMenu'
+], [
   'navigationToggled',
   'contextMenuClick'
 ]);
@@ -416,7 +435,8 @@ export const IxMapNavigation = /*@__PURE__*/ defineContainer<JSX.IxMapNavigation
 export const IxMapNavigationOverlay = /*@__PURE__*/ defineContainer<JSX.IxMapNavigationOverlay>('ix-map-navigation-overlay', undefined, [
   'name',
   'icon',
-  'color',
+  'color'
+], [
   'closeClick'
 ]);
 
@@ -439,7 +459,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nSettings',
   'i18nToggleTheme',
   'i18nExpand',
-  'i18nCollapse',
+  'i18nCollapse'
+], [
   'expandChange',
   'mapExpandChange'
 ]);
@@ -448,7 +469,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
 export const IxMenuAbout = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-menu-about', undefined, [
   'activeTabLabel',
   'label',
-  'show',
+  'show'
+], [
   'close'
 ]);
 
@@ -464,7 +486,8 @@ export const IxMenuAboutNews = /*@__PURE__*/ defineContainer<JSX.IxMenuAboutNews
   'i18nShowMore',
   'aboutItemLabel',
   'offsetBottom',
-  'expanded',
+  'expanded'
+], [
   'showMore',
   'closePopover'
 ]);
@@ -475,14 +498,16 @@ export const IxMenuAvatar = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-
   'bottom',
   'image',
   'initials',
-  'i18nLogout',
+  'i18nLogout'
+], [
   'logoutClick'
 ]);
 
 
 export const IxMenuAvatarItem = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatarItem>('ix-menu-avatar-item', undefined, [
   'icon',
-  'label',
+  'label'
+], [
   'itemClick'
 ]);
 
@@ -508,7 +533,8 @@ export const IxMenuItem = /*@__PURE__*/ defineContainer<JSX.IxMenuItem>('ix-menu
 export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>('ix-menu-settings', undefined, [
   'activeTabLabel',
   'label',
-  'show',
+  'show'
+], [
   'close'
 ]);
 
@@ -532,7 +558,8 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', un
   'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'keyboard',
+  'keyboard'
+], [
   'dialogClose',
   'dialogDismiss'
 ]);
@@ -550,7 +577,8 @@ export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('i
 export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('ix-modal-header', undefined, [
   'hideClose',
   'icon',
-  'iconColor',
+  'iconColor'
+], [
   'closeClick'
 ]);
 
@@ -563,7 +591,8 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
   'selectedPage',
   'i18nPage',
   'i18nOf',
-  'i18nItems',
+  'i18nItems'
+], [
   'pageSelected',
   'itemCountChanged'
 ]);
@@ -599,18 +628,20 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nPlaceholderEditable',
   'i18nSelectListHeader',
   'i18nNoMatches',
-  'hideListHeader',
+  'hideListHeader'
+], [
   'itemSelectionChange',
   'inputChange',
   'addItem'
-]);
+], 'selectedIndices', 'inputChange', 'update:selectedIndices');
 
 
 export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', undefined, [
   'label',
   'value',
   'selected',
-  'hover',
+  'hover'
+], [
   'itemClick'
 ]);
 
@@ -630,14 +661,16 @@ export const IxSplitButton = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('i
   'icon',
   'splitIcon',
   'disabled',
-  'placement',
+  'placement'
+], [
   'buttonClick'
 ]);
 
 
 export const IxSplitButtonItem = /*@__PURE__*/ defineContainer<JSX.IxSplitButtonItem>('ix-split-button-item', undefined, [
   'icon',
-  'label',
+  'label'
+], [
   'itemClick'
 ]);
 
@@ -650,7 +683,8 @@ export const IxTabItem = /*@__PURE__*/ defineContainer<JSX.IxTabItem>('ix-tab-it
   'rounded',
   'counter',
   'layout',
-  'placement',
+  'placement'
+], [
   'tabClick'
 ]);
 
@@ -660,7 +694,8 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', undef
   'rounded',
   'selected',
   'layout',
-  'placement',
+  'placement'
+], [
   'selectedChange'
 ]);
 
@@ -681,7 +716,8 @@ export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-
   'showTimeReference',
   'timeReference',
   'textSelectTime',
-  'done',
+  'done'
+], [
   'timeChange'
 ]);
 
@@ -711,10 +747,11 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'textOn',
   'textOff',
   'textIndeterminate',
-  'hideText',
+  'hideText'
+], [
   'checkedChange'
-]);
-
+], 'checked', 'checkedChange', 'update:checked');
+ 
 
 export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', undefined, [
   'variant',
@@ -723,9 +760,10 @@ export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>(
   'disabled',
   'loading',
   'icon',
-  'pressed',
+  'pressed'
+], [
   'pressedChange'
-]);
+], 'pressed', 'pressedChange', 'update:pressed');
 
 
 export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-tooltip', undefined, [
@@ -740,7 +778,8 @@ export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', undef
   'root',
   'model',
   'renderItem',
-  'context',
+  'context'
+], [
   'contextChange',
   'nodeToggled',
   'nodeClicked',
@@ -751,7 +790,8 @@ export const IxTree = /*@__PURE__*/ defineContainer<JSX.IxTree>('ix-tree', undef
 export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree-item', undefined, [
   'text',
   'hasChildren',
-  'context',
+  'context'
+], [
   'toggle',
   'itemClick'
 ]);
@@ -769,8 +809,9 @@ export const IxUpload = /*@__PURE__*/ defineContainer<JSX.IxUpload>('ix-upload',
   'uploadSuccessText',
   'i18nUploadFile',
   'i18nUploadDisabled',
+], [
   'filesChanged'
-]);
+], 'modelValue', 'filesChanged', 'update:modelValue');
 
 
 export const IxValidationTooltip = /*@__PURE__*/ defineContainer<JSX.IxValidationTooltip>('ix-validation-tooltip', undefined, [
@@ -786,7 +827,8 @@ export const IxWorkflowStep = /*@__PURE__*/ defineContainer<JSX.IxWorkflowStep>(
   'status',
   'clickable',
   'selected',
-  'position',
+  'position'
+], [
   'selectedChanged'
 ]);
 
@@ -794,7 +836,8 @@ export const IxWorkflowStep = /*@__PURE__*/ defineContainer<JSX.IxWorkflowStep>(
 export const IxWorkflowSteps = /*@__PURE__*/ defineContainer<JSX.IxWorkflowSteps>('ix-workflow-steps', undefined, [
   'vertical',
   'clickable',
-  'selectedIndex',
+  'selectedIndex'
+], [
   'stepSelected'
 ]);
 

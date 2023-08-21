@@ -47,6 +47,9 @@ const getElementClasses = (
  * @prop componentProps - An array of properties on the
  * component. These usually match up with the @Prop definitions
  * in each component's TSX file.
+ * @prop emitProps - An array of for event listener on the Component.
+ * these usually match up with the @Event definitions
+ * in each compont's TSX file.
  * @prop customElement - An option custom element instance to pass
  * to customElements.define. Only set if `includeImportCustomElements: true` in your config.
  * @prop modelProp - The prop that v-model binds to (i.e. value)
@@ -58,8 +61,9 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
   name: string,
   defineCustomElement: any,
   componentProps: string[] = [],
+  emitProps: string[] = [],
   modelProp?: string,
-  modelUpdateEvent?: string,
+  modelUpdateEvent?: string | string[],
   externalModelUpdateEvent?: string
 ) => {
   /**
@@ -76,26 +80,39 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
     let modelPropValue = props[modelProp];
     const containerRef = ref<HTMLElement>();
     const classes = new Set(getComponentClasses(attrs.class));
+    const addBeforeMount = !!modelUpdateEvent || !!emitProps.length;
     const onVnodeBeforeMount = (vnode: VNode) => {
       // Add a listener to tell Vue to update the v-model
       if (vnode.el) {
-        const eventsNames = Array.isArray(modelUpdateEvent) ? modelUpdateEvent : [modelUpdateEvent];
-        eventsNames.forEach((eventName: string) => {
-          vnode.el!.addEventListener(eventName.toLowerCase(), (e: Event) => {
-            modelPropValue = (e?.target as any)[modelProp];
-            emit(UPDATE_VALUE_EVENT, modelPropValue);
+        if (modelUpdateEvent) {
+          const eventsNames = Array.isArray(modelUpdateEvent) ? modelUpdateEvent : [modelUpdateEvent];
+          eventsNames.forEach((eventName: string) => {
+            vnode.el!.addEventListener(eventName, (e: any) => {
+              modelPropValue = e.detail !== undefined ? e.detail : (e?.target as any)[modelProp];
+              emit(UPDATE_VALUE_EVENT, modelPropValue);
 
-            /**
-             * We need to emit the change event here
-             * rather than on the web component to ensure
-             * that any v-model bindings have been updated.
-             * Otherwise, the developer will listen on the
-             * native web component, but the v-model will
-             * not have been updated yet.
-             */
-            if (externalModelUpdateEvent) {
-              emit(externalModelUpdateEvent, e);
-            }
+              /**
+               * We need to emit the change event here
+               * rather than on the web component to ensure
+               * that any v-model bindings have been updated.
+               * Otherwise, the developer will listen on the
+               * native web component, but the v-model will
+               * not have been updated yet.
+               */
+              if (externalModelUpdateEvent) {
+                emit(externalModelUpdateEvent, e);
+              }
+            });
+          });
+        }
+
+        /**
+         * we register the event emmiter for @Event definitions 
+         * so we can use @event 
+         */
+        emitProps.forEach((eventName: string) => {
+          vnode.el!.addEventListener(eventName, (e: Event) => {
+            emit(eventName, e);
           });
         });
       }
@@ -144,7 +161,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
         ref: containerRef,
         class: getElementClasses(containerRef, classes),
         onClick: handleClick,
-        onVnodeBeforeMount: modelUpdateEvent ? onVnodeBeforeMount : undefined,
+        onVnodeBeforeMount: addBeforeMount ? onVnodeBeforeMount : undefined
       };
 
       /**
@@ -194,9 +211,27 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
     Container.props[componentProp] = DEFAULT_EMPTY_PROP;
   });
 
+  /**
+   * Add emit props to the component.
+   * This is necessary for Vue to know
+   * which events to listen to.
+   * @see https://v3.vuejs.org/guide/component-custom-events.html#event-names
+   */
+  emitProps.forEach((emitProp) => {
+    if(Array.isArray(Container.emits)) {
+      Container.emits.push(emitProp);
+    } else {
+      Container.emits = [emitProp];
+    }
+  });
+
   if (modelProp) {
     Container.props[MODEL_VALUE] = DEFAULT_EMPTY_PROP;
-    Container.emits = [UPDATE_VALUE_EVENT, externalModelUpdateEvent];
+    if(Array.isArray(Container.emits)) {
+      Container.emits.push(UPDATE_VALUE_EVENT, externalModelUpdateEvent);
+    } else {
+      Container.emits = [UPDATE_VALUE_EVENT, externalModelUpdateEvent];
+    }
   }
 
   return Container;
