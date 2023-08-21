@@ -31,7 +31,7 @@ export class InputGroup {
       this.onValidInput();
     });
     this.inputElement.addEventListener('invalid', () => {
-      this.onInValidInput();
+      this.onInvalidInput();
     });
     this.inputElement.addEventListener('input', () => {
       this.startSlotChanged();
@@ -41,7 +41,7 @@ export class InputGroup {
       this.startSlotChanged();
     });
 
-    valid ? this.onValidInput() : this.onInValidInput();
+    valid ? this.onValidInput() : this.onInvalidInput();
   }
 
   componentDidRender() {
@@ -52,7 +52,7 @@ export class InputGroup {
     this.startSlotChanged();
   }
 
-  private onInValidInput() {
+  private onInvalidInput() {
     this.startSlotChanged();
   }
 
@@ -73,7 +73,7 @@ export class InputGroup {
       }
     } else {
       console.warn(
-        'You used the ix-input-group without an input-tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
       );
     }
   }

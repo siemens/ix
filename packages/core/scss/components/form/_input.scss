@@ -35,7 +35,7 @@
     color: var(--theme-input-hint--color);
   }
 
-  &.focus,
+  &.hover,
   &:hover {
     border-color: var(--theme-input--border-color--hover);
     background-color: var(--theme-input--background--hover);
