@@ -105,19 +105,23 @@ export class SplitButton {
       class: {
         'left-button-border': !this.outline,
       },
-      onClick: (e) => this.buttonClick.emit(e),
     };
     return (
       <Host>
         <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
           {this.label ? (
-            <ix-button {...buttonAttributes} icon={this.icon}>
+            <ix-button
+              {...buttonAttributes}
+              icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
+            >
               {this.label}
             </ix-button>
           ) : (
             <ix-icon-button
               {...buttonAttributes}
               icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
             ></ix-icon-button>
           )}
           <ix-icon-button
