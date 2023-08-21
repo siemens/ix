@@ -25,11 +25,18 @@ jest.mock('@siemens/ix', () => ({
 }));
 
 test('should create modal by templateRef', () => {
+  const appRefMock = {
+    attachView: jest.fn(),
+  };
   const createEmbeddedViewMock = jest.fn((_: { $implicit: any }) => ({
     rootNodes: [{}],
     detectChanges: jest.fn(),
   }));
-  const modalService = new ModalService({} as any, {} as any, {} as any);
+  const modalService = new ModalService(
+    appRefMock as any,
+    {} as any,
+    {} as any
+  );
   modalService.open({
     content: {
       createEmbeddedView: createEmbeddedViewMock,
@@ -46,6 +53,7 @@ test('should create modal by templateRef', () => {
       dismiss: expect.any(Function),
     },
   });
+  expect(appRefMock.attachView).toHaveBeenCalled();
 });
 
 test('should create modal by component typ', async () => {
@@ -57,6 +65,11 @@ test('should create modal by component typ', async () => {
       hostView: {
         rootNodes: [jest.fn()],
         detectChanges: jest.fn(),
+      },
+      injector: {
+        get: jest.fn(() => ({
+          nativeElement: {}
+        })),
       },
     })),
   };
