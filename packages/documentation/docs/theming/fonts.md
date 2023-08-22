@@ -16,7 +16,7 @@ Theme changes will apply to texts automatically (e.g. change color).
 
 ### Mixins
 
-iX provides additional scss mixins which can used to create typography valid custom
+IX provides additional SCSS mixins which can be used to create valid custom typography
 classes.
 
 ```scss
