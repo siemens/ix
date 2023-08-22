@@ -72,7 +72,7 @@ const ThemeFonts: React.FunctionComponent = () => {
           React / Vue
         </IxTabItem>
         <IxTabItem onTabClick={() => setFramework('angular')}>
-          Angular / Web Component
+          Angular / Web Components
         </IxTabItem>
         <IxTabItem onTabClick={() => setFramework('class')}>CSS</IxTabItem>
       </IxTabs>
