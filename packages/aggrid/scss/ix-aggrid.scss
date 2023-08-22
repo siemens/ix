@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@import '~@siemens/ix/scss/mixins/font';
 
 [class*='ag-theme-ix'] {
   --ag-background-color: transparent;
@@ -51,15 +52,9 @@
   }
 
   .ag-select-list {
+    @include typography-body;
     color: var(--theme-color-std-text);
     background-color: var(--ag-control-panel-background-color);
-    font-family: Siemens Sans;
-    font-size: 0.875rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
   }
 
   .ag-header-cell .ag-header-cell-resize::after {
@@ -114,24 +109,15 @@
   }
 
   .ag-header-cell {
-    font-family: Siemens Sans;
-    font-size: 0.875rem;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
+    @include typography-body;
+    font-weight: 700;
     color: var(--theme-table-header-cell--color);
   }
 
   .ag-cell {
-    font-family: Siemens Sans;
-    font-size: 0.875rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
+    @include typography-body;
     color: var(--theme-table-data-cell--color);
+    line-height: min(var(--ag-internal-calculated-line-height), var(--ag-internal-padded-row-height));
   }
 
   .ag-filter-wrapper {

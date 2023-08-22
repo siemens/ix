@@ -57,25 +57,21 @@ export class IxActionCard {
           <ix-card-content>
             {this.icon ? (
               <ix-icon class={'icon'} name={this.icon} size="24"></ix-icon>
-            ) : (
-              ''
-            )}
-            {this.heading ? (
-              <ix-typography variant="large-title">
-                {this.heading}
-              </ix-typography>
-            ) : (
-              ''
-            )}
-            {this.subheading ? (
-              <ix-typography
-                variant="default-title-single"
-                color={this.variant === 'insight' ? 'soft' : undefined}
-              >
-                {this.subheading}
-              </ix-typography>
             ) : null}
-            <slot></slot>
+            <div>
+              {this.heading ? (
+                <ix-typography format="h4">{this.heading}</ix-typography>
+              ) : null}
+              {this.subheading ? (
+                <ix-typography
+                  format="h5"
+                  color={this.variant === 'insight' ? 'soft' : undefined}
+                >
+                  {this.subheading}
+                </ix-typography>
+              ) : null}
+              <slot></slot>
+            </div>
           </ix-card-content>
         </ix-card>
       </Host>

@@ -87,6 +87,7 @@ export const IxToastContainer = /*@__PURE__*/createReactComponent<JSX.IxToastCon
 export const IxToggle = /*@__PURE__*/createReactComponent<JSX.IxToggle, HTMLIxToggleElement>('ix-toggle');
 export const IxToggleButton = /*@__PURE__*/createReactComponent<JSX.IxToggleButton, HTMLIxToggleButtonElement>('ix-toggle-button');
 export const IxTooltip = /*@__PURE__*/createReactComponent<JSX.IxTooltip, HTMLIxTooltipElement>('ix-tooltip');
+export const IxTypography = /*@__PURE__*/createReactComponent<JSX.IxTypography, HTMLIxTypographyElement>('ix-typography');
 export const IxUpload = /*@__PURE__*/createReactComponent<JSX.IxUpload, HTMLIxUploadElement>('ix-upload');
 export const IxValidationTooltip = /*@__PURE__*/createReactComponent<JSX.IxValidationTooltip, HTMLIxValidationTooltipElement>('ix-validation-tooltip');
 export const IxWorkflowStep = /*@__PURE__*/createReactComponent<JSX.IxWorkflowStep, HTMLIxWorkflowStepElement>('ix-workflow-step');

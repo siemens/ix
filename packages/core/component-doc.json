@@ -10868,6 +10868,205 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/typography",
+      "filePath": "./src/components/typography/typography.tsx",
+      "fileName": "typography.tsx",
+      "readmePath": "./src/components/typography/readme.md",
+      "usagesDir": "./src/components/typography/usage",
+      "tag": "ix-typography",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-content-header",
+        "ix-dropdown-header",
+        "ix-empty-state",
+        "ix-menu-about-news",
+        "ix-menu-category",
+        "ix-modal-header",
+        "ix-pagination",
+        "ix-push-card",
+        "ix-time-picker",
+        "ix-tooltip"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-card-list": [
+          "ix-typography"
+        ],
+        "ix-content-header": [
+          "ix-typography"
+        ],
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-menu-about-news": [
+          "ix-typography"
+        ],
+        "ix-menu-category": [
+          "ix-typography"
+        ],
+        "ix-modal-header": [
+          "ix-typography"
+        ],
+        "ix-pagination": [
+          "ix-typography"
+        ],
+        "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "bold",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "bold",
+          "reflectToAttr": false,
+          "docs": "Display text bold",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Text color based on theme variables",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-soft",
+              "type": "string"
+            },
+            {
+              "value": "inv-std",
+              "type": "string"
+            },
+            {
+              "value": "inv-weak",
+              "type": "string"
+            },
+            {
+              "value": "soft",
+              "type": "string"
+            },
+            {
+              "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "weak",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "TypographyFormatLabel | TypographyFormatBody | TypographyFormatDisplay | TypographyFormatHeading | TypographyFormatCode",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Text format",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "TypographyFormatLabel"
+            },
+            {
+              "type": "TypographyFormatBody"
+            },
+            {
+              "type": "TypographyFormatDisplay"
+            },
+            {
+              "type": "TypographyFormatHeading"
+            },
+            {
+              "type": "TypographyFormatCode"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textDecoration",
+          "type": "\"line-through\" | \"none\" | \"underline\"",
+          "mutable": false,
+          "attr": "text-decoration",
+          "reflectToAttr": false,
+          "docs": "Text decoration",
+          "docsTags": [],
+          "default": "'none'",
+          "values": [
+            {
+              "value": "line-through",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "underline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/upload",
       "filePath": "./src/components/upload/upload.tsx",
       "fileName": "upload.tsx",

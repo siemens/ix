@@ -82,6 +82,7 @@ export const DIRECTIVES = [
   d.IxToggleButton,
   d.IxTooltip,
   d.IxTreeItem,
+  d.IxTypography,
   d.IxUpload,
   d.IxValidationTooltip,
   d.IxWorkflowStep,

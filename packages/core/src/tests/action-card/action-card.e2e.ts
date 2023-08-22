@@ -13,11 +13,14 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('action card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
     await page.goto('action-card/basic');
+    await page.waitForTimeout(1000);
+
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('should have selected state', async ({ page }) => {
     await page.goto('action-card/selected');
+    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

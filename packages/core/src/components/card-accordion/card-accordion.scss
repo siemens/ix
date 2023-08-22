@@ -88,6 +88,8 @@ $expand-content-height: 15rem;
   .expand-content.show .expand-content-body {
     display: none;
     overflow: hidden;
+
+    color: var(--theme-color-std-text);
   }
 
   .expand-content.show .expand-content-body {
@@ -107,10 +109,6 @@ $expand-content-height: 15rem;
     background-color: var(--theme-color-component-1);
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
-  }
-
-  ::slotted(*) {
-    color: var(--theme-color-std-text);
   }
 }
 
