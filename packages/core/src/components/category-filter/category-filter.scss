@@ -12,7 +12,7 @@
 @import 'mixins/hover';
 @import 'mixins/shadows';
 @import 'mixins/text-truncation';
-@import 'components/bootstrap/forms';
+@import 'legacy/components/forms';
 
 :host {
   display: block;
