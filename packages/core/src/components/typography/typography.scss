@@ -11,7 +11,7 @@
 @import 'mixins/shadow-dom/component';
 @import 'legacy/mixins/fonts';
 @import 'components/fonts';
-@import 'mixins/font';
+@import 'mixins/fonts';
 
 :host {
   @include ix-component;
