@@ -10,13 +10,16 @@
 .Theme__Colors .Section {
   display: flex;
   flex-direction: row;
-  height: 2.5rem;
+  min-height: 4.5rem;
+  height: auto;
+  padding: 0.25rem 0;
   border-bottom: var(--theme-x-weak-bdr-1);
   align-items: center;
 }
 
 .Theme__Colors .Copy__Icon {
   opacity: 0;
+  padding: 0;
 }
 
 .Theme__Colors .Section:hover .Copy__Icon {

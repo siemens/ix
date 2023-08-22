@@ -34,7 +34,7 @@ import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyColors, TypographyVariants } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { Mode } from "./components/utils/screen/mode";
@@ -65,7 +65,7 @@ export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyColors, TypographyVariants } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
@@ -1863,13 +1863,29 @@ export namespace Components {
          */
         "text": string;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxTypography {
+        /**
+          * Display text bold
+         */
+        "bold": boolean;
         /**
           * Text color based on theme variables
          */
         "color": TypographyColors;
         /**
+          * Text format
+         */
+        "format": TypographyFormat;
+        /**
+          * Text decoration
+         */
+        "textDecoration": TextDecoration;
+        /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant": TypographyVariants;
     }
@@ -2747,6 +2763,9 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
     }
     var HTMLIxTypographyElement: {
@@ -4888,13 +4907,29 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxTypography {
+        /**
+          * Display text bold
+         */
+        "bold"?: boolean;
         /**
           * Text color based on theme variables
          */
         "color"?: TypographyColors;
         /**
+          * Text format
+         */
+        "format"?: TypographyFormat;
+        /**
+          * Text decoration
+         */
+        "textDecoration"?: TextDecoration;
+        /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant"?: TypographyVariants;
     }
@@ -5263,6 +5298,9 @@ declare module "@stencil/core" {
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;

@@ -13,7 +13,7 @@
 :host {
   @include ix-component;
 
-  @import 'components/forms';
+  @import 'legacy/components/forms';
 
   .header {
     display: flex;

@@ -8,8 +8,10 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
 @import 'mixins/shadow-dom/component';
+@import 'legacy/mixins/fonts';
+@import 'components/fonts';
+@import 'mixins/font';
 
 :host {
   @include ix-component;
@@ -72,4 +74,25 @@
 
 :host(.text-xl) {
   @include text-xl;
+}
+
+$typography-formats: label, label-xs, label-sm, label-lg, body, body-xs, body-sm,
+  body-lg, display, display-xs, display-sm, display-lg, display-xl, display-xxl,
+  h6, h5, h4, h3, h2, h1, code, code-sm, code-lg;
+
+@each $format in $typography-formats {
+  :host(.typography-#{$format}) {
+    @extend .typography-#{$format};
+  }
+}
+
+$typography-decoration: none, underline, line-through;
+@each $decoration in $typography-decoration {
+  :host(.typography-decoration-#{$decoration}) {
+    @extend .typography-decoration-#{$decoration};
+  }
+}
+
+:host(.typography-weight-bold) {
+  @extend .typography-weight-bold;
 }
