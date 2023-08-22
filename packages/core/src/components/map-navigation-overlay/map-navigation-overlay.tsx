@@ -21,7 +21,7 @@ import anime from 'animejs';
 @Component({
   tag: 'ix-map-navigation-overlay',
   styleUrl: 'map-navigation-overlay.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MapNavigationOverlay {
   private static readonly slowTime = 500;

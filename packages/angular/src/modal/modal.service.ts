@@ -10,10 +10,12 @@
 import {
   ApplicationRef,
   ComponentFactoryResolver,
-  EmbeddedViewRef,
+  ElementRef,
   Injectable,
   Injector,
+  TemplateRef,
   Type,
+  ViewRef,
 } from '@angular/core';
 import { closeModal, dismissModal, showModal } from '@siemens/ix';
 import { InternalIxActiveModal, IxActiveModal } from './modal-ref';
@@ -43,10 +45,15 @@ export class ModalService {
     };
 
     if (config.content instanceof Type) {
-      return this.createContentByComponentType<TData, TReason>(config, context);
+      return this.createContentByComponentType<TData, TReason>(
+        config.content,
+        config,
+        context
+      );
     }
 
     const modalInstance = await this.createContentByTemplateRef<TData, TReason>(
+      config.content,
       config,
       context
     );
@@ -55,14 +62,14 @@ export class ModalService {
   }
 
   private async createContentByComponentType<TData = any, TReason = any>(
+    componentType: Type<unknown>,
     config: ModalConfig<TData>,
     context: ModalContext<TData>
   ) {
     const activeModal = new InternalIxActiveModal<TData>(context.data);
 
-    const modalFactory = this.componentFactoryResolver.resolveComponentFactory(
-      config.content
-    );
+    const modalFactory =
+      this.componentFactoryResolver.resolveComponentFactory(componentType);
 
     const modalInjector = Injector.create({
       providers: [
@@ -77,10 +84,12 @@ export class ModalService {
     const instance = modalFactory.create(modalInjector);
     this.appRef.attachView(instance.hostView);
 
-    const embeddedView = instance.hostView as EmbeddedViewRef<any>;
+    const element = instance.injector.get(ElementRef);
+
     const modalInstance = await this.createModalInstance<TData, TReason>(
       context,
-      embeddedView,
+      element.nativeElement,
+      instance.hostView,
       config
     );
 
@@ -90,55 +99,51 @@ export class ModalService {
   }
 
   private async createContentByTemplateRef<TData = any, TReason = any>(
+    templateRef: TemplateRef<unknown>,
     config: ModalConfig<TData>,
-    context: {
-      close: ((result: any) => void) | null;
-      dismiss: ((result?: any) => void) | null;
-      data?: TData | undefined;
-    }
+    context: ModalContext<TData>
   ) {
-    const embeddedView = config.content.createEmbeddedView({
+    const embeddedView = templateRef.createEmbeddedView({
       $implicit: context,
     });
+
+    this.appRef.attachView(embeddedView);
+
     return await this.createModalInstance<TData, TReason>(
       context,
+      embeddedView.rootNodes[0],
       embeddedView,
       config
     );
   }
 
   private async createModalInstance<TData = any, TReason = any>(
-    context: {
-      close: ((result: any) => void) | null;
-      dismiss: ((result?: any) => void) | null;
-      data?: TData | undefined;
-    },
-    embeddedView: EmbeddedViewRef<any>,
+    context: ModalContext<TData>,
+    htmlElement: HTMLElement,
+    viewRef: ViewRef,
     config: ModalConfig<TData>
   ) {
-    const node = embeddedView.rootNodes[0];
-
     context.close = (result: any) => {
-      closeModal(node, result);
+      closeModal(htmlElement, result);
     };
 
     context.dismiss = (result?: any) => {
-      dismissModal(node, result);
+      dismissModal(htmlElement, result);
     };
 
-    embeddedView.detectChanges();
+    viewRef.detectChanges();
 
     const modalInstance = await showModal<TReason>({
       ...config,
-      content: node,
+      content: htmlElement,
     });
 
     modalInstance.onClose.once(() => {
-      embeddedView.destroy();
+      viewRef.destroy();
     });
 
     modalInstance.onDismiss.once(() => {
-      embeddedView.destroy();
+      viewRef.destroy();
     });
     return modalInstance;
   }

@@ -12,8 +12,6 @@ import { fireEvent } from '@testing-library/dom';
 import { Dropdown } from '../dropdown';
 
 describe('ix-dropdown', () => {
-  let page: any;
-
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
       components: [Dropdown],
