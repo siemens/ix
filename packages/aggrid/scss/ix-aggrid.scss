@@ -132,6 +132,7 @@
     font-style: normal;
     letter-spacing: normal;
     color: var(--theme-table-data-cell--color);
+    line-height: min(var(--ag-internal-calculated-line-height), var(--ag-internal-padded-row-height));
   }
 
   .ag-filter-wrapper {
