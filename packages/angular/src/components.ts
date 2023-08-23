@@ -388,6 +388,28 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm']
+})
+@Component({
+  selector: 'ix-col',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm'],
+})
+export class IxCol {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCol extends Components.IxCol {}
+
+
+@ProxyCmp({
   inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
 })
 @Component({
@@ -860,6 +882,28 @@ export class IxFlipTileContent {
 
 
 export declare interface IxFlipTileContent extends Components.IxFlipTileContent {}
+
+
+@ProxyCmp({
+  inputs: ['columns', 'fixed', 'fluid']
+})
+@Component({
+  selector: 'ix-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['columns', 'fixed', 'fluid'],
+})
+export class IxGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxGrid extends Components.IxGrid {}
 
 
 @ProxyCmp({
@@ -1680,6 +1724,27 @@ export class IxPushCard {
 
 
 export declare interface IxPushCard extends Components.IxPushCard {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-row',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxRow {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({

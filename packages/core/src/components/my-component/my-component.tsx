@@ -15,6 +15,60 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-button>Test</ix-button>
+        <ix-grid columns={6}>
+          <ix-row>
+            <ix-col>1</ix-col>
+            <ix-col>2</ix-col>
+            <ix-col size="2">
+              <ix-button style={{ width: '100%' }}>Test</ix-button>
+            </ix-col>
+            <ix-col>4</ix-col>
+            <ix-col>5</ix-col>
+          </ix-row>
+        </ix-grid>
+
+        <ix-grid fluid>
+          <ix-row>
+            <ix-col size="2">1</ix-col>
+            <ix-col size="2">2</ix-col>
+            <ix-col>
+              <ix-button style={{ width: '100%' }}>Test</ix-button>
+            </ix-col>
+            <ix-col size="2">4</ix-col>
+            <ix-col size="2">5</ix-col>
+          </ix-row>
+        </ix-grid>
+
+        <ix-grid fixed>
+          <ix-row>
+            <ix-col size="2">1</ix-col>
+            <ix-col size="2">2</ix-col>
+            <ix-col>
+              <ix-button style={{ width: '100%' }}>Test</ix-button>
+            </ix-col>
+            <ix-col size="2">4</ix-col>
+            <ix-col size="2">5</ix-col>
+          </ix-row>
+        </ix-grid>
+
+        <ix-grid fixed={'fixed-sm'}>
+          <ix-row>
+            <ix-col size="2">1</ix-col>
+            <ix-col size="2">2</ix-col>
+            <ix-col>
+              <ix-button style={{ width: '100%' }}>Test</ix-button>
+            </ix-col>
+            <ix-col size="2">4</ix-col>
+            <ix-col size="2">5</ix-col>
+          </ix-row>
+        </ix-grid>
+        <div class={'container'}>Container</div>
+        <div class={'container-md'}>Container fluid/Md</div>
+        <div class={'container-fluid'}>Container fluid</div>
+      </Host>
+    );
   }
 }

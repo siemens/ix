@@ -7,14 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-
 :host {
-}
-
-ix-col {
-  background-color: #135d54;
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -140,6 +140,14 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
 ]);
 
 
+export const IxCol = /*@__PURE__*/ defineContainer<JSX.IxCol>('ix-col', undefined, [
+  'size',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg'
+]);
+
+
 export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader>('ix-content-header', undefined, [
   'variant',
   'headerTitle',
@@ -305,6 +313,13 @@ export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip
 
 export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined, [
   'contentVisible'
+]);
+
+
+export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
+  'fixed',
+  'fluid',
+  'columns'
 ]);
 
 
@@ -586,6 +601,9 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'subheading',
   'variant'
 ]);
+
+
+export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', undefined);
 
 
 export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', undefined, [

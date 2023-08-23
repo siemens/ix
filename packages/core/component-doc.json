@@ -682,7 +682,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -721,6 +722,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -1743,6 +1747,308 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "./src/components/col",
+      "filePath": "./src/components/col/col.tsx",
+      "fileName": "col.tsx",
+      "readmePath": "./src/components/col/readme.md",
+      "usagesDir": "./src/components/col/usage",
+      "tag": "ix-col",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-col"
+        ]
+      },
+      "props": [
+        {
+          "name": "size",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the column",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeLg",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-lg",
+          "reflectToAttr": false,
+          "docs": "Size of the column for lg screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeMd",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-md",
+          "reflectToAttr": false,
+          "docs": "Size of the column for md screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeSm",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-sm",
+          "reflectToAttr": false,
+          "docs": "Size of the column for sm screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
     },
     {
       "dirPath": "./src/components/content-header",
@@ -4266,6 +4572,108 @@
       "dependencies": [],
       "dependencyGraph": {},
       "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid",
+      "filePath": "./src/components/grid/grid.tsx",
+      "fileName": "grid.tsx",
+      "readmePath": "./src/components/grid/readme.md",
+      "usagesDir": "./src/components/grid/usage",
+      "tag": "ix-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-grid"
+        ]
+      },
+      "props": [
+        {
+          "name": "columns",
+          "type": "number",
+          "mutable": false,
+          "attr": "columns",
+          "reflectToAttr": false,
+          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
+          "docsTags": [],
+          "default": "12",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fixed",
+          "type": "\"fixed\" | \"fixed-lg\" | \"fixed-md\" | \"fixed-sm\" | boolean",
+          "mutable": false,
+          "attr": "fixed",
+          "reflectToAttr": false,
+          "docs": "Grid will be displayed without any padding",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "value": "fixed",
+              "type": "string"
+            },
+            {
+              "value": "fixed-lg",
+              "type": "string"
+            },
+            {
+              "value": "fixed-md",
+              "type": "string"
+            },
+            {
+              "value": "fixed-sm",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fluid",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fluid",
+          "reflectToAttr": false,
+          "docs": "Integrates the grid fluid into the page without padding to left and right",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -8326,6 +8734,40 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/row",
+      "filePath": "./src/components/row/row.tsx",
+      "fileName": "row.tsx",
+      "readmePath": "./src/components/row/readme.md",
+      "usagesDir": "./src/components/row/usage",
+      "tag": "ix-row",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-row"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/select",
       "filePath": "./src/components/select/select.tsx",
       "fileName": "select.tsx",
@@ -11622,8 +12064,24 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-grid",
+        "ix-row",
+        "ix-col"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-grid",
+          "ix-row",
+          "ix-col"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
