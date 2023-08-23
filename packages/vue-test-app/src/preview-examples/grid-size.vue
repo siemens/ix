@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { IxCol, IxGrid, IxRow } from '@siemens/ix-react';
+import { IxCol, IxGrid, IxRow } from '@siemens/ix-vue';
 // Example styling for documentation
 import './grid.css';
 </script>

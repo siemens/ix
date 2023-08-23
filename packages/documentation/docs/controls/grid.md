@@ -5,12 +5,6 @@ import Events from './../auto-generated/ix-grid/events.md';
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
-
-import SourceGrid from './../auto-generated/previews/web-component/grid.md'
-import SourceGridSize from './../auto-generated/previews/web-component/grid-size.md'
-import SourceGridFluid from './../auto-generated/previews/web-component/grid-fluid.md'
-import SourceGridFixed from './../auto-generated/previews/web-component/grid-fixed.md'
-
 # Grid
 
 ## Usage
@@ -18,9 +12,7 @@ import SourceGridFixed from './../auto-generated/previews/web-component/grid-fix
 <Playground
   height="15rem"
   name="grid"
-  frameworks={{
-    javascript: SourceGrid,
-  }}>
+  examplesByName>
 </Playground>
 
 ### Size
@@ -28,9 +20,7 @@ import SourceGridFixed from './../auto-generated/previews/web-component/grid-fix
 <Playground
   height="15rem"
   name="grid-size"
-  frameworks={{
-    javascript: SourceGridSize,
-  }}>
+  examplesByName>
 </Playground>
 
 ### Fixed
@@ -38,9 +28,7 @@ import SourceGridFixed from './../auto-generated/previews/web-component/grid-fix
 <Playground
   height="18rem"
   name="grid-fixed"
-  frameworks={{
-    javascript: SourceGridFixed,
-  }}>
+  examplesByName>
 </Playground>
 
 ### Fluid
@@ -48,9 +36,7 @@ import SourceGridFixed from './../auto-generated/previews/web-component/grid-fix
 <Playground
   name="grid-fluid"
   height="14rem"
-  frameworks={{
-    javascript: SourceGridFluid,
-  }}>
+  examplesByName>
 </Playground>
 
 ## Properties (ix-grid)
