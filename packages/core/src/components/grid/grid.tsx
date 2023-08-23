@@ -42,7 +42,10 @@ export class Grid {
 
   render() {
     const classRecord = {};
-    if (this.fixed && typeof this.fixed === 'boolean') {
+    if (
+      (this.fixed as string) === '' ||
+      (typeof this.fixed === 'boolean' && this.fixed)
+    ) {
       classRecord['fixed'] = true;
     }
 
