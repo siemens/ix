@@ -81,6 +81,7 @@ import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
 import Modal from 'src/preview-examples/modal-by-template';
+import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
@@ -177,6 +178,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Input,
     Kpi,
     MessageBar,
+    Pagination,
     Pill,
     PopoverNews,
     Radiobutton,

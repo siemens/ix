@@ -3,8 +3,6 @@ import * as d from './components';
 
 export const DIRECTIVES = [
   d.IxActionCard,
-  d.IxAnimatedTab,
-  d.IxAnimatedTabs,
   d.IxApplicationHeader,
   d.IxAvatar,
   d.IxBasicNavigation,
@@ -36,6 +34,7 @@ export const DIRECTIVES = [
   d.IxFilterChip,
   d.IxFlipTile,
   d.IxFlipTileContent,
+  d.IxFormField,
   d.IxGroup,
   d.IxGroupContextMenu,
   d.IxGroupItem,
@@ -83,6 +82,7 @@ export const DIRECTIVES = [
   d.IxToggleButton,
   d.IxTooltip,
   d.IxTreeItem,
+  d.IxTypography,
   d.IxUpload,
   d.IxValidationTooltip,
   d.IxWorkflowStep,

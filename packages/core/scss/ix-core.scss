@@ -13,26 +13,26 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
+/* Legacy Global styles */
+@import './legacy/fonts';
+
 /* Common */
 @import './common-variables';
-@import 'fonts';
 @import 'z-index';
 
-/* Mixins */
-@import './mixins/fonts';
-
 /* Components */
+@import 'legacy/components/modal';
+@import 'legacy/components/buttons';
+@import 'legacy/components/button-group';
+@import 'legacy/components/dropdown';
+@import 'legacy/components/forms';
 @import './components/links';
-@import './components/modal';
-@import './components/buttons';
-@import './components/button-group';
-@import './components/dropdown';
 @import './components/checkboxes';
 @import './components/radiobuttons';
 @import './components/shadows';
-@import './components/forms';
 @import './components/input-group';
 @import './components/table';
+@import './components/fonts';
 
 :root {
   --animate-duration: #{$default-time};
@@ -42,8 +42,9 @@
 }
 
 body {
-  @include text-default();
+  @include typography-body();
   background-color: var(--theme-color-1);
+  margin: 0;
 }
 
 body:not(.disable-scrollbar) {
@@ -81,4 +82,10 @@ body:not(.disable-scrollbar) {
   ::-webkit-scrollbar-corner {
     display: none;
   }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }

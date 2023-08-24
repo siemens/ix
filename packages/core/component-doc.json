@@ -160,147 +160,6 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/animated-tab",
-      "filePath": "./src/components/animated-tab/animated-tab.tsx",
-      "fileName": "animated-tab.tsx",
-      "readmePath": "./src/components/animated-tab/readme.md",
-      "usagesDir": "./src/components/animated-tab/usage",
-      "tag": "ix-animated-tab",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "count",
-          "type": "number",
-          "mutable": false,
-          "attr": "count",
-          "reflectToAttr": true,
-          "docs": "Show notification number",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "icon",
-          "type": "string",
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Icon of the tab",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/animated-tabs",
-      "filePath": "./src/components/animated-tabs/animated-tabs.tsx",
-      "fileName": "animated-tabs.tsx",
-      "readmePath": "./src/components/animated-tabs/readme.md",
-      "usagesDir": "./src/components/animated-tabs/usage",
-      "tag": "ix-animated-tabs",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [
-        "ix-icon"
-      ],
-      "dependencyGraph": {
-        "ix-animated-tabs": [
-          "ix-icon"
-        ]
-      },
-      "props": [
-        {
-          "name": "selectedIndex",
-          "type": "number",
-          "mutable": false,
-          "attr": "selected-index",
-          "reflectToAttr": false,
-          "docs": "Current selected tab index",
-          "docsTags": [],
-          "default": "0",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "tabPlacement",
-          "type": "\"bottom\" | \"top\"",
-          "mutable": false,
-          "attr": "tab-placement",
-          "reflectToAttr": false,
-          "docs": "Placement of the tabs",
-          "docsTags": [],
-          "default": "'top'",
-          "values": [
-            {
-              "value": "bottom",
-              "type": "string"
-            },
-            {
-              "value": "top",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "event": "tabClick",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Tab navigated",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": [
-        {
-          "event": "mouseup",
-          "capture": false,
-          "passive": true
-        }
-      ]
-    },
-    {
       "dirPath": "./src/components/application-header",
       "filePath": "./src/components/application-header/application-header.tsx",
       "fileName": "application-header.tsx",
@@ -611,24 +470,50 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon",
         "ix-dropdown",
-        "ix-dropdown-item"
+        "ix-dropdown-item",
+        "ix-breadcrumb-item"
       ],
       "dependencyGraph": {
         "ix-breadcrumb": [
-          "ix-icon",
           "ix-dropdown",
-          "ix-dropdown-item"
+          "ix-dropdown-item",
+          "ix-breadcrumb-item"
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
         ]
       },
       "props": [
+        {
+          "name": "ariaLabelPreviousButton",
+          "type": "string",
+          "mutable": false,
+          "attr": "aria-label-previous-button",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list\nwith conditionally hidden previous items",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "'previous'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "ghost",
           "type": "boolean",
@@ -637,7 +522,7 @@
           "reflectToAttr": false,
           "docs": "Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -717,10 +602,23 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-breadcrumb"
+      ],
+      "dependencies": [
+        "ix-icon",
+        "ix-spinner"
+      ],
+      "dependencyGraph": {
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
+        ],
+        "ix-breadcrumb": [
+          "ix-breadcrumb-item"
+        ]
+      },
       "props": [
         {
           "name": "icon",
@@ -3382,6 +3280,56 @@
           "required": false
         },
         {
+          "name": "placement",
+          "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
+          "mutable": false,
+          "attr": "placement",
+          "reflectToAttr": false,
+          "docs": "Placement of the dropdown",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "value": "bottom-end",
+              "type": "string"
+            },
+            {
+              "value": "bottom-start",
+              "type": "string"
+            },
+            {
+              "value": "left-end",
+              "type": "string"
+            },
+            {
+              "value": "left-start",
+              "type": "string"
+            },
+            {
+              "value": "right-end",
+              "type": "string"
+            },
+            {
+              "value": "right-start",
+              "type": "string"
+            },
+            {
+              "value": "top-end",
+              "type": "string"
+            },
+            {
+              "value": "top-start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"primary\" | \"secondary\"",
           "mutable": false,
@@ -4228,7 +4176,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button"
@@ -4243,28 +4191,6 @@
         ]
       },
       "props": [
-        {
-          "name": "footer",
-          "type": "string",
-          "mutable": false,
-          "attr": "footer",
-          "reflectToAttr": false,
-          "docs": "Tmp property name",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Setting this property has no effect"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Setting this property has no effect",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "height",
           "type": "\"auto\" | number",
@@ -4369,6 +4295,46 @@
       "dependencies": [],
       "dependencyGraph": {},
       "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/form-field",
+      "filePath": "./src/components/form-field/form-field.tsx",
+      "fileName": "form-field.tsx",
+      "readmePath": "./src/components/form-field/readme.md",
+      "usagesDir": "./src/components/form-field/usage",
+      "tag": "ix-form-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -5309,7 +5275,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
@@ -5907,7 +5873,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
       ],
@@ -7912,10 +7878,11 @@
           "text": "1.5.0"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
+        "ix-typography",
         "ix-select",
         "ix-select-item",
         "ix-spinner",
@@ -7924,6 +7891,7 @@
       "dependencyGraph": {
         "ix-pagination": [
           "ix-icon-button",
+          "ix-typography",
           "ix-select",
           "ix-select-item",
           "ix-spinner",
@@ -8441,7 +8409,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-pagination"
       ],
@@ -8716,7 +8684,7 @@
         },
         {
           "event": "itemSelectionChange",
-          "detail": "string | string[]",
+          "detail": "string[]",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -8757,7 +8725,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-pagination",
         "ix-select"
@@ -8860,6 +8828,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
         "ix-category-filter",
@@ -8872,6 +8841,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-breadcrumb-item": [
+          "ix-spinner"
+        ],
         "ix-burger-menu": [
           "ix-spinner"
         ],
@@ -9434,7 +9406,22 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "tabClick",
+          "detail": "{ nativeEvent: MouseEvent; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "On tab click",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -9568,7 +9555,22 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "selectedChange",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "`selected` property changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -9578,6 +9580,11 @@
           "target": "window",
           "capture": false,
           "passive": true
+        },
+        {
+          "event": "tabClick",
+          "capture": false,
+          "passive": false
         }
       ]
     },
@@ -10665,7 +10672,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-tree-item"
@@ -10807,7 +10814,7 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [
         "ix-tree"
       ],
@@ -10892,6 +10899,205 @@
           "docsTags": []
         }
       ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/typography",
+      "filePath": "./src/components/typography/typography.tsx",
+      "fileName": "typography.tsx",
+      "readmePath": "./src/components/typography/readme.md",
+      "usagesDir": "./src/components/typography/usage",
+      "tag": "ix-typography",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-content-header",
+        "ix-dropdown-header",
+        "ix-empty-state",
+        "ix-menu-about-news",
+        "ix-menu-category",
+        "ix-modal-header",
+        "ix-pagination",
+        "ix-push-card",
+        "ix-time-picker",
+        "ix-tooltip"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-card-list": [
+          "ix-typography"
+        ],
+        "ix-content-header": [
+          "ix-typography"
+        ],
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-menu-about-news": [
+          "ix-typography"
+        ],
+        "ix-menu-category": [
+          "ix-typography"
+        ],
+        "ix-modal-header": [
+          "ix-typography"
+        ],
+        "ix-pagination": [
+          "ix-typography"
+        ],
+        "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "bold",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "bold",
+          "reflectToAttr": false,
+          "docs": "Display text bold",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "Text color based on theme variables",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-soft",
+              "type": "string"
+            },
+            {
+              "value": "inv-std",
+              "type": "string"
+            },
+            {
+              "value": "inv-weak",
+              "type": "string"
+            },
+            {
+              "value": "soft",
+              "type": "string"
+            },
+            {
+              "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "weak",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "TypographyFormatLabel | TypographyFormatBody | TypographyFormatDisplay | TypographyFormatHeading | TypographyFormatCode",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Text format",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "TypographyFormatLabel"
+            },
+            {
+              "type": "TypographyFormatBody"
+            },
+            {
+              "type": "TypographyFormatDisplay"
+            },
+            {
+              "type": "TypographyFormatHeading"
+            },
+            {
+              "type": "TypographyFormatCode"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textDecoration",
+          "type": "\"line-through\" | \"none\" | \"underline\"",
+          "mutable": false,
+          "attr": "text-decoration",
+          "reflectToAttr": false,
+          "docs": "Text decoration",
+          "docsTags": [],
+          "default": "'none'",
+          "values": [
+            {
+              "value": "line-through",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "underline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -11171,7 +11377,7 @@
           "text": "tooltip-message - Custom tooltip message with html support"
         }
       ],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},

@@ -88,6 +88,8 @@ $expand-content-height: 15rem;
   .expand-content.show .expand-content-body {
     display: none;
     overflow: hidden;
+
+    color: var(--theme-color-std-text);
   }
 
   .expand-content.show .expand-content-body {

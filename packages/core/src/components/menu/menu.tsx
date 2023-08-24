@@ -692,8 +692,12 @@ export class Menu {
             this.checkTransition();
           }}
         >
-          {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
-          {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          <div class={'menu-overlay-container'}>
+            {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
+          </div>
+          <div class={'menu-overlay-container'}>
+            {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          </div>
         </div>
       </Host>
     );

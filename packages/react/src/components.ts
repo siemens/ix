@@ -9,8 +9,6 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 defineCustomElements();
 export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card');
-export const IxAnimatedTab = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTab, HTMLIxAnimatedTabElement>('ix-animated-tab');
-export const IxAnimatedTabs = /*@__PURE__*/createReactComponent<JSX.IxAnimatedTabs, HTMLIxAnimatedTabsElement>('ix-animated-tabs');
 export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxApplicationHeader, HTMLIxApplicationHeaderElement>('ix-application-header');
 export const IxAvatar = /*@__PURE__*/createReactComponent<JSX.IxAvatar, HTMLIxAvatarElement>('ix-avatar');
 export const IxBasicNavigation = /*@__PURE__*/createReactComponent<JSX.IxBasicNavigation, HTMLIxBasicNavigationElement>('ix-basic-navigation');
@@ -42,6 +40,7 @@ export const IxExpandingSearch = /*@__PURE__*/createReactComponent<JSX.IxExpandi
 export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, HTMLIxFilterChipElement>('ix-filter-chip');
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile');
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content');
+export const IxFormField = /*@__PURE__*/createReactComponent<JSX.IxFormField, HTMLIxFormFieldElement>('ix-form-field');
 export const IxGroup = /*@__PURE__*/createReactComponent<JSX.IxGroup, HTMLIxGroupElement>('ix-group');
 export const IxGroupContextMenu = /*@__PURE__*/createReactComponent<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement>('ix-group-context-menu');
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item');
@@ -88,6 +87,7 @@ export const IxToastContainer = /*@__PURE__*/createReactComponent<JSX.IxToastCon
 export const IxToggle = /*@__PURE__*/createReactComponent<JSX.IxToggle, HTMLIxToggleElement>('ix-toggle');
 export const IxToggleButton = /*@__PURE__*/createReactComponent<JSX.IxToggleButton, HTMLIxToggleButtonElement>('ix-toggle-button');
 export const IxTooltip = /*@__PURE__*/createReactComponent<JSX.IxTooltip, HTMLIxTooltipElement>('ix-tooltip');
+export const IxTypography = /*@__PURE__*/createReactComponent<JSX.IxTypography, HTMLIxTypographyElement>('ix-typography');
 export const IxUpload = /*@__PURE__*/createReactComponent<JSX.IxUpload, HTMLIxUploadElement>('ix-upload');
 export const IxValidationTooltip = /*@__PURE__*/createReactComponent<JSX.IxValidationTooltip, HTMLIxValidationTooltipElement>('ix-validation-tooltip');
 export const IxWorkflowStep = /*@__PURE__*/createReactComponent<JSX.IxWorkflowStep, HTMLIxWorkflowStepElement>('ix-workflow-step');

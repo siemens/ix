@@ -414,6 +414,7 @@ export class Dropdown {
           this.dropdownRef,
           positionConfig
         );
+
         Object.assign(this.dropdownRef.style, {
           top: '0',
           left: '0',

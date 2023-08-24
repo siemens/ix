@@ -25,7 +25,7 @@ import { a11yBoolean } from '../utils/a11y';
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Pagination {
   private readonly baseButtonConfig: BaseButtonProps = {
@@ -99,12 +99,6 @@ export class Pagination {
    * Item count change event
    */
   @Event() itemCountChanged: EventEmitter<number>;
-
-  get pageInput() {
-    return this.hostElement.querySelector(
-      '.advanced-pagination input.form-control'
-    );
-  }
 
   private selectPage(index: number) {
     if (index < 0) {
@@ -225,9 +219,9 @@ export class Pagination {
 
         {this.advanced ? (
           <div class="advanced-pagination">
-            {this.i18nPage}
+            <ix-typography variant="default">{this.i18nPage}</ix-typography>
             <input
-              class="form-control"
+              class="form-control page-selection"
               type="number"
               min="1"
               max={this.count}
@@ -238,7 +232,9 @@ export class Pagination {
               }}
             />
             <span class="total-count">
-              {this.i18nOf} {this.count}
+              <ix-typography variant="default">
+                {this.i18nOf} {this.count}
+              </ix-typography>
             </span>
           </div>
         ) : (
@@ -254,7 +250,7 @@ export class Pagination {
 
         {this.advanced && this.showItemCount ? (
           <span class="item-count">
-            {this.i18nItems}
+            <ix-typography variant="default">{this.i18nItems}</ix-typography>
             <ix-select
               hideListHeader
               i18nPlaceholder=""

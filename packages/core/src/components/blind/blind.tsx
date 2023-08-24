@@ -171,7 +171,7 @@ export class Blind {
               hide: this.collapsed,
             }}
           >
-            <slot></slot>
+            {!this.collapsed ? <slot></slot> : null}
           </div>
         </section>
       </Host>

@@ -18,20 +18,6 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 ]);
 
 
-export const IxAnimatedTab = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTab>('ix-animated-tab', undefined, [
-  'icon',
-  'count'
-]);
-
-
-export const IxAnimatedTabs = /*@__PURE__*/ defineContainer<JSX.IxAnimatedTabs>('ix-animated-tabs', undefined, [
-  'disableAnimations',
-  'selectedIndex',
-  'tabPlacement',
-  'tabClick'
-]);
-
-
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
   'name',
   'mode'
@@ -62,6 +48,7 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
   'visibleItemCount',
   'nextItems',
   'ghost',
+  'ariaLabelPreviousButton',
   'itemClick',
   'nextClick'
 ]);
@@ -69,7 +56,12 @@ export const IxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumb>('ix-
 
 export const IxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IxBreadcrumbItem>('ix-breadcrumb-item', undefined, [
   'label',
-  'icon'
+  'icon',
+  'ghost',
+  'visible',
+  'showChevron',
+  'isDropdownTrigger',
+  'itemClick'
 ]);
 
 
@@ -80,7 +72,9 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
   'disabled',
   'type',
   'loading',
-  'icon'
+  'icon',
+  'alignment',
+  'iconSize'
 ]);
 
 
@@ -236,7 +230,8 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'active',
   'disabled',
   'label',
-  'icon'
+  'icon',
+  'placement'
 ]);
 
 
@@ -305,13 +300,19 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', undefined, [
   'state',
-  'footer',
   'height',
   'width'
 ]);
 
 
-export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined);
+export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined, [
+  'contentVisible'
+]);
+
+
+export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', undefined, [
+  'label'
+]);
 
 
 export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', undefined, [
@@ -656,7 +657,8 @@ export const IxTabItem = /*@__PURE__*/ defineContainer<JSX.IxTabItem>('ix-tab-it
   'rounded',
   'counter',
   'layout',
-  'placement'
+  'placement',
+  'tabClick'
 ]);
 
 
@@ -665,7 +667,8 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', undef
   'rounded',
   'selected',
   'layout',
-  'placement'
+  'placement',
+  'selectedChange'
 ]);
 
 
@@ -758,6 +761,15 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
   'context',
   'toggle',
   'itemClick'
+]);
+
+
+export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', undefined, [
+  'variant',
+  'format',
+  'color',
+  'bold',
+  'textDecoration'
 ]);
 
 

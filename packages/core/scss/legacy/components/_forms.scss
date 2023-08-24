@@ -10,7 +10,7 @@
 @import 'common-variables';
 @import './mixins/hover';
 @import './mixins/text-truncation';
-@import './mixins/fonts';
+@import 'legacy/mixins/fonts';
 
 @mixin from-control-invalid {
   color: $form-feedback-invalid-color;

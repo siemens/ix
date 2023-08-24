@@ -10,7 +10,7 @@
 @import 'common-variables';
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 
 @mixin set-height($height) {
   height: $height;

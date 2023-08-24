@@ -40,7 +40,7 @@ function Search(props: { onChange: (value: string) => void }) {
 function ColorPreview(props: { color: string }) {
   const baseUrl = useBaseUrl('/');
   return (
-    <div className="col-1">
+    <div className="col-sm-1">
       <div className="Color__Preview">
         <img src={`${baseUrl}img/chessboard_pattern.png`} />
         <div
@@ -90,13 +90,13 @@ function ThemeColors() {
                   return <ColorPreview color={colorValue} />;
                 }}
               </BrowserOnly>
-              <div className="col-7 Color__Name">{color}</div>
-              <div className="col Color__RGB">{colorValue}</div>
+              <div className="col-sm-7 Color__Name">{color}</div>
+              <div className="col-sm-3 Color__RGB">{colorValue}</div>
               <IxIconButton
                 icon="copy"
                 ghost
                 style={{ marginRight: '1rem' }}
-                className="col-1 Copy__Icon"
+                className="col-sm-1 Copy__Icon"
                 oval
                 onClick={() => copyToClipboard(color)}
               />

@@ -1,0 +1,166 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smooting: grayscale;
+}
+
+@mixin text-format(
+  $font-size,
+  $line-height,
+  $font-weight: $font-weight-normal,
+  $color-inverted: false
+) {
+  @include font-smoothing();
+  font-family: Siemens Sans, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+
+  @if $color-inverted {
+    color: var(--theme-color-inv-std-text);
+  } @else {
+    color: var(--theme-color-std-text);
+  }
+}
+
+@mixin text-default($color-inverted: false) {
+  @include text-format(
+    $font-size-default,
+    $line-height-default,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-default-single($color-inverted: false) {
+  @include text-format(
+    $font-size-default,
+    $line-height-default-single,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-default-title($color-inverted: false) {
+  @include text-format(
+    $font-size-default,
+    $line-height-default,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-default-title-single($color-inverted: false) {
+  @include text-format(
+    $font-size-default,
+    $line-height-default-single,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-xs($color-inverted: false) {
+  @include text-format(
+    $font-size-xs,
+    $line-height-xs,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-s($color-inverted: false) {
+  @include text-format(
+    $font-size-s,
+    $line-height-s,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-caption($color-inverted: false) {
+  @include text-format(
+    $font-size-caption,
+    $line-height-caption,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-caption-single($color-inverted: false) {
+  @include text-format(
+    $font-size-caption,
+    $line-height-caption-single,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-l($color-inverted: false) {
+  @include text-format(
+    $font-size-l,
+    $line-height-l,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-l-single($color-inverted: false) {
+  @include text-format(
+    $font-size-l,
+    $line-height-l-single,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@mixin text-l-title($color-inverted: false) {
+  @include text-format(
+    $font-size-l,
+    $line-height-l,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-l-title-single($color-inverted: false) {
+  @include text-format(
+    $font-size-l,
+    $line-height-l-single,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-h2($color-inverted: false) {
+  @include text-format(
+    $font-size-xl,
+    $line-height-h2,
+    $font-weight-bold,
+    $color-inverted
+  );
+}
+
+@mixin text-xl($color-inverted: false) {
+  @include text-format(
+    $font-size-xl,
+    $line-height-xl,
+    $font-weight-normal,
+    $color-inverted
+  );
+}
+
+@function automatic-text-color($color, $theshold: 50) {
+  @if (lightness($color) > $theshold) {
+    @return rgba(0, 0, 0, 0.99);
+  } @else {
+    @return rgba(255, 255, 255, 0.99);
+  }
+}

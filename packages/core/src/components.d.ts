@@ -29,11 +29,12 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SplitButtonVariant } from "./components/split-button/split-button";
+import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TypographyColors, TypographyVariants } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { Mode } from "./components/utils/screen/mode";
@@ -59,11 +60,12 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SplitButtonVariant } from "./components/split-button/split-button";
+export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TypographyColors, TypographyVariants } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
@@ -90,27 +92,6 @@ export namespace Components {
           * Card variant
          */
         "variant": ActionCardVariant;
-    }
-    interface IxAnimatedTab {
-        /**
-          * Show notification number
-         */
-        "count": number;
-        /**
-          * Icon of the tab
-         */
-        "icon": string;
-    }
-    interface IxAnimatedTabs {
-        "disableAnimations": boolean;
-        /**
-          * Current selected tab index
-         */
-        "selectedIndex": number;
-        /**
-          * Placement of the tabs
-         */
-        "tabPlacement": 'top' | 'bottom';
     }
     interface IxApplicationHeader {
         "mode": Mode;
@@ -159,6 +140,11 @@ export namespace Components {
     }
     interface IxBreadcrumb {
         /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
+          * @since 2.0.0
+         */
+        "ariaLabelPreviousButton": string;
+        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost": boolean;
@@ -172,14 +158,18 @@ export namespace Components {
         "visibleItemCount": number;
     }
     interface IxBreadcrumbItem {
+        "ghost": boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon": string;
+        "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
         "label": string;
+        "showChevron": boolean;
+        "visible": boolean;
     }
     interface IxBurgerMenu {
         /**
@@ -196,6 +186,7 @@ export namespace Components {
         "pinned": boolean;
     }
     interface IxButton {
+        "alignment": 'center' | 'start';
         /**
           * Disable the button
          */
@@ -208,6 +199,7 @@ export namespace Components {
           * Icon name
          */
         "icon": string;
+        "iconSize": '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0
@@ -667,6 +659,11 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Placement of the dropdown
+          * @since 2.0.0
+         */
+        "placement": AlignedPlacement;
+        /**
           * Button variant
          */
         "variant": DropdownButtonVariant;
@@ -807,11 +804,6 @@ export namespace Components {
     }
     interface IxFlipTile {
         /**
-          * Tmp property name
-          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
-         */
-        "footer": string;
-        /**
           * Height interpreted as REM
           * @since 1.5.0
          */
@@ -827,6 +819,16 @@ export namespace Components {
         "width": number | 'auto';
     }
     interface IxFlipTileContent {
+        /**
+          * Controls the visibility of the content
+         */
+        "contentVisible": boolean;
+    }
+    interface IxFormField {
+        /**
+          * Label
+         */
+        "label": string;
     }
     interface IxGroup {
         /**
@@ -1870,13 +1872,29 @@ export namespace Components {
          */
         "text": string;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxTypography {
+        /**
+          * Display text bold
+         */
+        "bold": boolean;
         /**
           * Text color based on theme variables
          */
         "color": TypographyColors;
         /**
+          * Text format
+         */
+        "format": TypographyFormat;
+        /**
+          * Text decoration
+         */
+        "textDecoration": TextDecoration;
+        /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant": TypographyVariants;
     }
@@ -1989,10 +2007,6 @@ export namespace Components {
     interface MyComponent {
     }
 }
-export interface IxAnimatedTabsCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxAnimatedTabsElement;
-}
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBlindElement;
@@ -2000,6 +2014,10 @@ export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
 export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBreadcrumbElement;
+}
+export interface IxBreadcrumbItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxBreadcrumbItemElement;
 }
 export interface IxCardAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2133,6 +2151,14 @@ export interface IxSplitButtonItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSplitButtonItemElement;
 }
+export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTabItemElement;
+}
+export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTabsElement;
+}
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTimePickerElement;
@@ -2178,18 +2204,6 @@ declare global {
     var HTMLIxActionCardElement: {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
-    };
-    interface HTMLIxAnimatedTabElement extends Components.IxAnimatedTab, HTMLStencilElement {
-    }
-    var HTMLIxAnimatedTabElement: {
-        prototype: HTMLIxAnimatedTabElement;
-        new (): HTMLIxAnimatedTabElement;
-    };
-    interface HTMLIxAnimatedTabsElement extends Components.IxAnimatedTabs, HTMLStencilElement {
-    }
-    var HTMLIxAnimatedTabsElement: {
-        prototype: HTMLIxAnimatedTabsElement;
-        new (): HTMLIxAnimatedTabsElement;
     };
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
     }
@@ -2433,6 +2447,12 @@ declare global {
     var HTMLIxFlipTileContentElement: {
         prototype: HTMLIxFlipTileContentElement;
         new (): HTMLIxFlipTileContentElement;
+    };
+    interface HTMLIxFormFieldElement extends Components.IxFormField, HTMLStencilElement {
+    }
+    var HTMLIxFormFieldElement: {
+        prototype: HTMLIxFormFieldElement;
+        new (): HTMLIxFormFieldElement;
     };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
@@ -2758,6 +2778,9 @@ declare global {
         prototype: HTMLIxTreeItemElement;
         new (): HTMLIxTreeItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxTypographyElement extends Components.IxTypography, HTMLStencilElement {
     }
     var HTMLIxTypographyElement: {
@@ -2796,8 +2819,6 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
-        "ix-animated-tab": HTMLIxAnimatedTabElement;
-        "ix-animated-tabs": HTMLIxAnimatedTabsElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
@@ -2833,6 +2854,7 @@ declare global {
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
+        "ix-form-field": HTMLIxFormFieldElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
@@ -2915,31 +2937,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
-    interface IxAnimatedTab {
-        /**
-          * Show notification number
-         */
-        "count"?: number;
-        /**
-          * Icon of the tab
-         */
-        "icon"?: string;
-    }
-    interface IxAnimatedTabs {
-        "disableAnimations"?: boolean;
-        /**
-          * Tab navigated
-         */
-        "onTabClick"?: (event: IxAnimatedTabsCustomEvent<any>) => void;
-        /**
-          * Current selected tab index
-         */
-        "selectedIndex"?: number;
-        /**
-          * Placement of the tabs
-         */
-        "tabPlacement"?: 'top' | 'bottom';
-    }
     interface IxApplicationHeader {
         "mode"?: Mode;
         /**
@@ -2991,6 +2988,11 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumb {
         /**
+          * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
+          * @since 2.0.0
+         */
+        "ariaLabelPreviousButton"?: string;
+        /**
           * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
          */
         "ghost"?: boolean;
@@ -3012,14 +3014,19 @@ declare namespace LocalJSX {
         "visibleItemCount"?: number;
     }
     interface IxBreadcrumbItem {
+        "ghost"?: boolean;
         /**
           * Icon to be displayed next ot the label
          */
         "icon"?: string;
+        "isDropdownTrigger"?: boolean;
         /**
           * Breadcrumb label
          */
         "label"?: string;
+        "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
+        "showChevron"?: boolean;
+        "visible"?: boolean;
     }
     interface IxBurgerMenu {
         /**
@@ -3036,6 +3043,7 @@ declare namespace LocalJSX {
         "pinned"?: boolean;
     }
     interface IxButton {
+        "alignment"?: 'center' | 'start';
         /**
           * Disable the button
          */
@@ -3048,6 +3056,7 @@ declare namespace LocalJSX {
           * Icon name
          */
         "icon"?: string;
+        "iconSize"?: '12' | '16' | '24';
         /**
           * Loading button
           * @since 2.0.0
@@ -3588,6 +3597,11 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
+          * Placement of the dropdown
+          * @since 2.0.0
+         */
+        "placement"?: AlignedPlacement;
+        /**
           * Button variant
          */
         "variant"?: DropdownButtonVariant;
@@ -3744,11 +3758,6 @@ declare namespace LocalJSX {
     }
     interface IxFlipTile {
         /**
-          * Tmp property name
-          * @deprecated Will be removed in 2.0.0. Setting this property has no effect
-         */
-        "footer"?: string;
-        /**
           * Height interpreted as REM
           * @since 1.5.0
          */
@@ -3764,6 +3773,16 @@ declare namespace LocalJSX {
         "width"?: number | 'auto';
     }
     interface IxFlipTileContent {
+        /**
+          * Controls the visibility of the content
+         */
+        "contentVisible"?: boolean;
+    }
+    interface IxFormField {
+        /**
+          * Label
+         */
+        "label"?: string;
     }
     interface IxGroup {
         /**
@@ -4507,7 +4526,7 @@ declare namespace LocalJSX {
         /**
           * Item selection changed
          */
-        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
+        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
         /**
           * If true the select will be in readonly mode
          */
@@ -4617,6 +4636,11 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
+          * On tab click
+          * @since 2.0.0
+         */
+        "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
+        /**
           * Set selected placement
          */
         "placement"?: 'bottom' | 'top';
@@ -4638,6 +4662,11 @@ declare namespace LocalJSX {
           * Set layout width style
          */
         "layout"?: 'auto' | 'stretched';
+        /**
+          * `selected` property changed
+          * @since 2.0.0
+         */
+        "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;
         /**
           * Set placement style
          */
@@ -4907,13 +4936,29 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxTypography {
+        /**
+          * Display text bold
+         */
+        "bold"?: boolean;
         /**
           * Text color based on theme variables
          */
         "color"?: TypographyColors;
         /**
+          * Text format
+         */
+        "format"?: TypographyFormat;
+        /**
+          * Text decoration
+         */
+        "textDecoration"?: TextDecoration;
+        /**
           * Font variant based on theme variables
+          * @deprecated Use `format` property
          */
         "variant"?: TypographyVariants;
     }
@@ -5031,8 +5076,6 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
-        "ix-animated-tab": IxAnimatedTab;
-        "ix-animated-tabs": IxAnimatedTabs;
         "ix-application-header": IxApplicationHeader;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
@@ -5068,6 +5111,7 @@ declare namespace LocalJSX {
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
+        "ix-form-field": IxFormField;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
@@ -5132,8 +5176,6 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
-            "ix-animated-tab": LocalJSX.IxAnimatedTab & JSXBase.HTMLAttributes<HTMLIxAnimatedTabElement>;
-            "ix-animated-tabs": LocalJSX.IxAnimatedTabs & JSXBase.HTMLAttributes<HTMLIxAnimatedTabsElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             /**
              * @since 2.0.0
@@ -5202,6 +5244,7 @@ declare module "@stencil/core" {
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            "ix-form-field": LocalJSX.IxFormField & JSXBase.HTMLAttributes<HTMLIxFormFieldElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
@@ -5286,6 +5329,9 @@ declare module "@stencil/core" {
             "ix-tooltip": LocalJSX.IxTooltip & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             "ix-tree": LocalJSX.IxTree & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             "ix-tree-item": LocalJSX.IxTreeItem & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-typography": LocalJSX.IxTypography & JSXBase.HTMLAttributes<HTMLIxTypographyElement>;
             "ix-upload": LocalJSX.IxUpload & JSXBase.HTMLAttributes<HTMLIxUploadElement>;
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;

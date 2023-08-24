@@ -11,7 +11,7 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 
 :host {
   @include ix-component;

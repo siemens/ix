@@ -10,6 +10,8 @@ import { h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
 
+export type ButtonAlignment = 'center' | 'start';
+
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
 };
@@ -58,6 +60,9 @@ export type BaseButtonProps = {
   extraClasses?: { [key: string]: boolean };
   iconSize?: string;
   iconColor?: string;
+  alignment?: ButtonAlignment;
+  tabIndex?: number;
+  afterContent?: any;
 };
 
 export function BaseButton(props: BaseButtonProps, children) {
@@ -66,8 +71,8 @@ export function BaseButton(props: BaseButtonProps, children) {
   return (
     <button
       {...props.ariaAttributes}
-      onClick={() => props.onClick()}
-      tabindex={props.disabled ? -1 : 0}
+      onClick={() => (props.onClick ? props.onClick() : undefined)}
+      tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}
       class={{
         ...getButtonClasses(
@@ -90,7 +95,15 @@ export function BaseButton(props: BaseButtonProps, children) {
           color={props.iconColor}
         ></ix-icon>
       ) : null}
-      <div class={'content'}>{children}</div>
+      <div
+        class={{
+          content: true,
+          [`content-${props.alignment}`]: !!props.alignment,
+        }}
+      >
+        {children}
+      </div>
+      {props.afterContent ? props.afterContent : null}
     </button>
   );
 }

@@ -23,6 +23,10 @@ const copyAssets = [
     src: './../../../node_modules/@siemens/ix-icons/dist',
     dest: 'build/ix-icons',
   },
+  {
+    src: './../../../node_modules/bootstrap',
+    dest: 'build/bootstrap',
+  },
 ];
 
 try {
@@ -41,9 +45,6 @@ try {
 
 export const config: Config = {
   bundles: [
-    {
-      components: ['ix-animated-tabs', 'ix-animated-tab'],
-    },
     {
       components: ['ix-application-header'],
     },

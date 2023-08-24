@@ -8,7 +8,7 @@
  */
 
 @import 'common-variables';
-@import './components/buttons';
+@import 'legacy/components/buttons';
 @import 'mixins/hover';
 
 :host {

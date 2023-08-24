@@ -8,13 +8,14 @@
  */
 
 @import 'common-variables';
-@import 'components/forms';
-@import 'components/dropdown';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/shadows';
 @import 'mixins/shadow-dom/component';
 @import 'mixins/text-truncation';
 @import '../button/button';
+@import 'legacy/components/dropdown';
+@import 'legacy/components/forms';
 
 :host {
   @include ix-component;

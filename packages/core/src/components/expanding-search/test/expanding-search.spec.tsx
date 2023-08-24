@@ -14,9 +14,7 @@ import { ExpandingSearch } from '../expanding-search';
 describe('ix-expanding-search', () => {
   let page: any;
   let expandingSearch: HTMLIxExpandingSearchElement;
-  let button: any;
   let input: any;
-  let inputWrapper: HTMLDivElement;
 
   beforeEach(async () => {
     page = await newSpecPage({
@@ -24,11 +22,9 @@ describe('ix-expanding-search', () => {
       html: '<ix-expanding-search></ix-expanding-search>',
     });
     expandingSearch = page.doc.querySelector('ix-expanding-search');
-    button = expandingSearch.shadowRoot.querySelector('[data-testid="button"]');
+    expandingSearch.shadowRoot.querySelector('[data-testid="button"]');
     input = expandingSearch.shadowRoot.querySelector('[data-testid="input"]');
-    inputWrapper = expandingSearch.shadowRoot.querySelector(
-      '[data-testid="input-wrapper"]'
-    );
+    expandingSearch.shadowRoot.querySelector('[data-testid="input-wrapper"]');
     expandingSearch.shadowRoot.querySelector('input').focus = jest.fn();
   });
 

@@ -41,7 +41,7 @@ test('should stay close after menu click when NOT pinned', async ({
   await menuButton.click();
 
   await expect(menu).toHaveClass(/expanded/);
-  await page.getByRole('listitem').click();
+  await page.locator('ix-menu-item').click();
   await expect(menu).not.toHaveClass(/expanded/);
 });
 
@@ -62,7 +62,7 @@ test('should stay open after menu click when pinned', async ({
 
   await expect(menu).not.toHaveClass(/expanded/);
 
-  await page.getByRole('listitem').click();
+  await page.locator('ix-menu-item').click();
 
   await expect(menu).not.toHaveClass(/expanded/);
 });
@@ -172,10 +172,7 @@ test('should close about by item click', async ({ mount, page }) => {
   await clickAboutButton(element, page);
   let about = page.locator('ix-menu-about');
   let settings = page.locator('ix-menu-settings');
-  const menuItem = page
-    .locator('ix-menu-item')
-    .filter({ hasText: 'Random' })
-    .getByRole('listitem');
+  const menuItem = page.locator('ix-menu-item').filter({ hasText: 'Random' });
 
   await menuItem.click();
   await expect(about).not.toBeVisible();
