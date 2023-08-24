@@ -1,0 +1,237 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/shadow-dom/component';
+
+@mixin track {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']::-webkit-slider-runnable-track {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']::-moz-range-track {
+    @content;
+  }
+}
+
+@mixin clear-browser-thumb {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range' i]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -6px;
+  }
+
+  // Firefox
+  input[type='range' i]::-moz-range-thumb {
+    border: none;
+    border-radius: 0;
+  }
+}
+
+@mixin thumb {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-hover {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:hover::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:hover::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-active {
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:active::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:active::-moz-range-thumb {
+    @content;
+  }
+}
+
+@mixin thumb-focus {
+  input[type='range']:focus {
+    outline: none;
+  }
+
+  // Chrome, Safari, Opera, and Edge Chromium
+  input[type='range']:focus-visible::-webkit-slider-thumb {
+    @content;
+  }
+
+  // Firefox
+  input[type='range']:focus-visible::-moz-range-thumb {
+    @content;
+  }
+}
+
+:host {
+  @include ix-component;
+  display: block;
+
+  height: 2rem;
+
+  --thumb-size: 1rem;
+  --value: 0;
+  --trace-start: 0;
+  --trace-end: 0;
+  --trace-reference: 0;
+
+  input[type='range'] {
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    position: relative;
+  }
+
+  input[type='range']::before {
+    content: '';
+    position: absolute;
+    display: block;
+
+    width: calc(
+      calc(7px + calc(100% * var(--trace-end)) - calc(16px * var(--trace-end))) -
+        calc(
+          7px + calc(100% * var(--trace-start)) -
+            calc(16px * var(--trace-start))
+        )
+    );
+
+    left: calc(
+      7px + calc(100% * var(--trace-start)) - calc(16px * var(--trace-start))
+    );
+
+    height: 4px;
+    background-color: var(--theme-color-dynamic);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // Trace reference
+  input[type='range'].trace::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 16px;
+    background-color: var(--theme-color-8);
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(
+      7px + calc(100% * var(--trace-reference)) -
+        calc(16px * var(--trace-reference))
+    );
+  }
+
+  @include track() {
+    background: var(--theme-color-component-1);
+    height: 0.25rem;
+  }
+
+  @include clear-browser-thumb();
+
+  @include thumb() {
+    border-radius: 100px;
+    background-color: var(--theme-color-dynamic);
+    height: var(--thumb-size);
+    width: var(--thumb-size);
+    transition: all var(--theme-default-time) ease-in-out;
+    z-index: 10;
+  }
+
+  @include thumb-hover() {
+    background-color: var(--theme-color-dynamic);
+  }
+
+  @include thumb-active() {
+    background-color: var(--theme-color-dynamic);
+  }
+
+  @include thumb-focus() {
+    outline: 1px solid var(--theme-color-focus-bdr);
+
+    outline-offset: 0.125rem;
+  }
+
+  /* style datalist */
+  input[type='range'] + datalist {
+    display: flex;
+  }
+  input[type='range'] + datalist option {
+    display: inline-block;
+    position: relative;
+    width: calc((100% - 12px) / (var(--list-length, 5) - 1));
+    text-align: center;
+  }
+  input[type='range'] + datalist option:first-child {
+    width: calc((100% - 12px) / ((var(--list-length, 5) - 1) * 2) + 8px);
+    text-align: left;
+  }
+  input[type='range'] + datalist option:last-child {
+    width: calc((100% - 12px) / ((var(--list-length, 5) - 1) * 2) + 8px);
+    text-align: right;
+  }
+
+  input[type='range'] + datalist option::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--theme-color-5);
+    border-radius: 100px;
+    pointer-events: none;
+    top: -1.25rem;
+  }
+
+  input[type='range'] + datalist option.marker-active::before {
+    background-color: var(--theme-color-dynamic);
+  }
+
+  input[type='range']
+    + datalist
+    option:not(:first-child):not(:last-child)::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  input[type='range'] + datalist option:first-child::before {
+    left: 4px;
+  }
+
+  input[type='range'] + datalist option:last-child::before {
+    right: 4px;
+  }
+}
+
+:host(.disabled) {
+  pointer-events: none;
+
+  @include thumb() {
+    background-color: var(--theme-color-7);
+  }
+}

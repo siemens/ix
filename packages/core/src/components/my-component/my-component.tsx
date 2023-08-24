@@ -15,6 +15,82 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host style={{ marginLeft: '10rem', marginTop: '20rem' }}>
+        <ix-slider
+          style={{ width: '20rem', transform: 'scale(1)' }}
+          value={1}
+          step={1}
+          trace
+          traceReference={0}
+          // marker={{
+          //   0: '0',
+          //   25: '25',
+          //   50: '50',
+          //   75: '75',
+          //   100: '100',
+          // }}
+        ></ix-slider>
+        {/*
+        <ix-slider
+          style={{ width: '20rem', transform: 'scale(1)' }}
+          value={100}
+          step={25}
+          trace
+          traceReference={100}
+          marker={{
+            0: '0',
+            25: '25',
+            50: '50',
+            75: '75',
+            100: '100',
+          }}
+        ></ix-slider> */}
+        {/*
+        <ix-slider
+          style={{ width: '20rem', transform: 'scale(1)' }}
+          value={100}
+          step={25}
+          trace
+          traceReference={25}
+          marker={{
+            0: '0',
+            25: '25',
+            50: '50',
+            75: '75',
+            100: '100',
+          }}
+        ></ix-slider>
+
+        <ix-slider
+          style={{ width: '20rem', transform: 'scale(1)' }}
+          value={100}
+          step={25}
+          trace
+          traceReference={50}
+          // marker={{
+          //   0: '0',
+          //   25: '25',
+          //   50: '50',
+          //   75: '75',
+          //   100: '100',
+          // }}
+        ></ix-slider>
+
+        <ix-slider
+          style={{ width: '20rem', transform: 'scale(1)' }}
+          value={100}
+          trace
+          traceReference={75}
+          // marker={{
+          //   0: '0',
+          //   25: '25',
+          //   50: '50',
+          //   75: '75',
+          //   100: '100',
+          // }}
+        ></ix-slider> */}
+      </Host>
+    );
   }
 }

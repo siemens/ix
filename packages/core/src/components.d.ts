@@ -28,6 +28,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
+import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -59,6 +60,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
+export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -1537,6 +1539,19 @@ export namespace Components {
          */
         "value": any;
     }
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled": boolean;
+        "marker": SliderMarker;
+        "max": number;
+        "min": number;
+        "step": number;
+        "trace": boolean;
+        "traceReference": number;
+        "value": number;
+    }
     interface IxSpinner {
         "hideTrack": boolean;
         /**
@@ -2673,6 +2688,12 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
+    }
+    var HTMLIxSliderElement: {
+        prototype: HTMLIxSliderElement;
+        new (): HTMLIxSliderElement;
+    };
     interface HTMLIxSpinnerElement extends Components.IxSpinner, HTMLStencilElement {
     }
     var HTMLIxSpinnerElement: {
@@ -2873,6 +2894,7 @@ declare global {
         "ix-push-card": HTMLIxPushCardElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
+        "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
@@ -4526,6 +4548,19 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled"?: boolean;
+        "marker"?: SliderMarker;
+        "max"?: number;
+        "min"?: number;
+        "step"?: number;
+        "trace"?: boolean;
+        "traceReference"?: number;
+        "value"?: number;
+    }
     interface IxSpinner {
         "hideTrack"?: boolean;
         /**
@@ -5116,6 +5151,7 @@ declare namespace LocalJSX {
         "ix-push-card": IxPushCard;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
+        "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
         "ix-split-button-item": IxSplitButtonItem;
@@ -5278,6 +5314,7 @@ declare module "@stencil/core" {
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
