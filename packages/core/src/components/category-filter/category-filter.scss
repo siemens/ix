@@ -16,12 +16,14 @@
 @import '../button/button';
 @import 'legacy/components/dropdown';
 @import 'legacy/components/forms';
+@import 'components/form/input';
 
 :host {
   @include ix-component;
 
   display: block;
   position: relative;
+  height: auto;
 
   @include host-focus-visible {
     border-color: var(--theme-color-primary);
@@ -39,23 +41,24 @@
   }
 
   .input-container {
+    &:not(.readonly):not(.disabled) {
+      @include element-input('false');
+    }
+
+    &.disabled {
+      color: var(--theme-input--color--disabled);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid
+        var(--theme-input--border-color-bottom--disabled);
+    }
+
+    &.readonly {
+      @include element-input;
+    }
+
     display: flex;
-    height: 100%;
+    height: auto;
     max-height: 3.75rem;
-    padding: 1px $large-space 1px $x-large-space;
-
-    @include hover {
-      border-color: var(--theme-color-dynamic--hover);
-      background-color: var(--theme-color-component-8--hover);
-      &:not(:read-only) {
-        background-color: rebeccapurple;
-      }
-    }
-
-    &:not(:read-only) {
-      border-color: var(--theme-color-dynamic);
-      background-color: var(--theme-color-component-8);
-    }
+    padding: 1px $large-space 1px $x-large-space !important;
 
     &.no-icon {
       padding-left: $tiny-space;
@@ -70,9 +73,12 @@
   .text-input {
     @include ellipsis;
     @include text-default;
+    width: auto;
+    height: 1.75rem;
+    min-height: $large-space;
     background: transparent;
     flex-grow: 1;
-    height: 1.75rem;
+    box-shadow: none;
 
     &,
     &:hover,
@@ -136,21 +142,26 @@
       .dropdown-item {
         @include text-default-single;
         @include ellipsis;
+        @include focus-visible {
+          border-color: var(--theme-color-focus-bdr);
+        }
+
         height: $large-control-height;
         margin: $tiny-space $small-space;
         padding-inline: $small-space;
+        border: 1px solid transparent;
         border-radius: 100rem;
         width: auto;
+        justify-content: flex-start;
+        flex-grow: 1;
       }
 
       .category-item {
-        justify-content: flex-start;
         border-end-end-radius: 0;
         border-start-end-radius: 0;
       }
 
       .category-item-value {
-        justify-content: flex-start;
         border-start-start-radius: 0;
         border-end-start-radius: 0;
       }

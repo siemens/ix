@@ -294,6 +294,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', undefined, [
   'disabled',
+  'readonly',
   'closeClick'
 ]);
 

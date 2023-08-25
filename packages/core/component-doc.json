@@ -1301,9 +1301,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-icon",
@@ -1325,9 +1323,6 @@
         ],
         "ix-filter-chip": [
           "ix-icon-button"
-        ],
-        "my-component": [
-          "ix-category-filter"
         ]
       },
       "props": [
@@ -1352,7 +1347,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "If true the fitler will be in disabled state",
+          "docs": "If true the filter will be in disabled state",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -1483,7 +1478,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "If true the fitler will be in readonly mode",
+          "docs": "If true the filter will be in readonly mode",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4146,6 +4141,28 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the filter chip will be in readonly mode",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],
@@ -4769,8 +4786,7 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
-        "ix-toast",
-        "my-component"
+        "ix-toast"
       ],
       "dependencies": [
         "ix-spinner",
@@ -4854,9 +4870,6 @@
           "ix-icon-button"
         ],
         "ix-toast": [
-          "ix-icon-button"
-        ],
-        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -11699,30 +11712,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-category-filter",
-        "ix-icon-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-category-filter",
-          "ix-icon-button"
-        ],
-        "ix-category-filter": [
-          "ix-icon-button",
-          "ix-icon",
-          "ix-filter-chip",
-          "ix-dropdown",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
-        ],
-        "ix-filter-chip": [
-          "ix-icon-button"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

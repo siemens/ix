@@ -48,12 +48,12 @@ export class CategoryFilter {
   }> = [];
 
   /**
-   * If true the fitler will be in disabled state
+   * If true the filter will be in disabled state
    */
   @Prop() disabled = false;
 
   /**
-   * If true the fitler will be in readonly mode
+   * If true the filter will be in readonly mode
    */
   @Prop() readonly = false;
 
@@ -203,6 +203,10 @@ export class CategoryFilter {
   }
 
   private closeDropdown() {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
     this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
@@ -217,7 +221,7 @@ export class CategoryFilter {
         const token = document.activeElement.getAttribute('data-id');
 
         if (this.hasCategorySelection()) {
-          if (this.category) {
+          if (this.category !== undefined) {
             this.addToken(token, this.category);
           } else if (
             document.activeElement.classList.contains('category-item-id')
@@ -264,7 +268,9 @@ export class CategoryFilter {
   private handleInputElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case 'ArrowDown':
-        const selector = `.category-item-${this.category ? 'value' : 'id'}`;
+        const selector = `.category-item-${
+          this.category !== undefined ? 'value' : 'id'
+        }`;
         let item = this.hostElement.shadowRoot.querySelector(selector);
 
         if (item instanceof HTMLElement) {
@@ -284,7 +290,7 @@ export class CategoryFilter {
           return;
         }
 
-        if (this.category) {
+        if (this.category !== undefined) {
           this.category = undefined;
           return;
         }
@@ -344,7 +350,7 @@ export class CategoryFilter {
     this.inputValue = '';
     this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
 
-    if (this.category) {
+    if (this.category !== undefined) {
       this.category = undefined;
     }
 
@@ -409,7 +415,7 @@ export class CategoryFilter {
         return false;
       }
 
-      if (this.category) {
+      if (this.category !== undefined) {
         return this.category === filterToken.id;
       }
 
@@ -478,20 +484,6 @@ export class CategoryFilter {
     return this.categories !== undefined;
   }
 
-  /*
-  private displayDropdown() {
-    if (this.hasCategorySelection()) {
-      return true;
-    }
-
-    if (this.suggestions !== undefined) {
-      return this.getFilteredSuggestions().length > 0;
-    }
-
-    return false;
-  }
-  */
-
   private renderPlainSuggestions() {
     return (
       <div class="dropdown-item-container">
@@ -523,7 +515,6 @@ export class CategoryFilter {
       loading: false,
       icon: '',
       onClick: (e: Event) => {
-        // TODO
         e.stopPropagation();
         this.toggleCategoryOperator();
       },
@@ -573,7 +564,7 @@ export class CategoryFilter {
 
   private renderDropdownContent() {
     if (this.hasCategorySelection()) {
-      if (this.category) {
+      if (this.category !== undefined) {
         return this.renderCategoryValues();
       } else {
         return this.renderCategorySelection();
@@ -607,8 +598,8 @@ export class CategoryFilter {
   }
 
   private getDropdownHeader() {
-    if (this.categories) {
-      if (this.category) {
+    if (this.categories !== undefined) {
+      if (this.category !== undefined) {
         return null;
       } else {
         return this.labelCategories;
@@ -633,7 +624,8 @@ export class CategoryFilter {
         onClick={() => this.resetFilter()}
         class={{
           'reset-button': true,
-          'hide-reset-button': !this.filterTokens.length && !this.category,
+          'hide-reset-button':
+            !this.filterTokens.length && this.category === undefined,
         }}
         ghost
         oval
@@ -652,12 +644,6 @@ export class CategoryFilter {
       return 'color-std-txt';
     }
 
-    /**
-    if (this.hostElement.matches(':hover')) {
-      return 'color-dynamic';
-    }
-    */
-
     return 'color-primary';
   }
 
@@ -666,8 +652,8 @@ export class CategoryFilter {
       <Host>
         <form ref={(el) => (this.formElement = el)}>
           <div
+            read-only={this.readonly}
             class={{
-              'form-control': true,
               'input-container': true,
               disabled: this.disabled,
               focus: this.hasFocus,
@@ -692,6 +678,8 @@ export class CategoryFilter {
                     }}
                   >
                     <ix-filter-chip
+                      disabled={this.disabled}
+                      readonly={this.readonly}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
@@ -704,7 +692,7 @@ export class CategoryFilter {
                   <li
                     class={{
                       'category-preview': true,
-                      'd-none': !this.category,
+                      'd-none': this.category === undefined,
                     }}
                   >
                     {this.categories[this.category]?.label}
@@ -713,7 +701,10 @@ export class CategoryFilter {
                 <input
                   class={{
                     'text-input': true,
-                    'hide-placeholder': this.category !== undefined,
+                    'hide-placeholder':
+                      this.readonly ||
+                      this.disabled ||
+                      this.category !== undefined,
                   }}
                   disabled={this.disabled}
                   readonly={this.readonly}
@@ -732,6 +723,7 @@ export class CategoryFilter {
         ) : (
           <ix-dropdown
             closeBehavior="outside"
+            offset={{ mainAxis: 2 }}
             trigger={this.textInput}
             triggerEvent={['click', 'focus']}
             header={this.getDropdownHeader()}

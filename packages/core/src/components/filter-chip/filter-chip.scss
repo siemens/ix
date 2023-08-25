@@ -55,6 +55,10 @@
   cursor: default;
 }
 
+:host(.readonly) {
+  padding-right: $small-space;
+}
+
 @include host-hover {
   background-color: var(--theme-color-ghost-primary--hover);
   border-color: var(--theme-chip-primary-outline--border-color--hover);

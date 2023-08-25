@@ -290,7 +290,7 @@ export namespace Components {
     };
   };
         /**
-          * If true the fitler will be in disabled state
+          * If true the filter will be in disabled state
          */
         "disabled": boolean;
         /**
@@ -324,7 +324,7 @@ export namespace Components {
          */
         "placeholder": string;
         /**
-          * If true the fitler will be in readonly mode
+          * If true the filter will be in readonly mode
          */
         "readonly": boolean;
         /**
@@ -801,6 +801,11 @@ export namespace Components {
           * If true the filter chip will be in disabled state
          */
         "disabled": boolean;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly": boolean;
     }
     interface IxFlipTile {
         /**
@@ -3164,7 +3169,7 @@ declare namespace LocalJSX {
     };
   };
         /**
-          * If true the fitler will be in disabled state
+          * If true the filter will be in disabled state
          */
         "disabled"?: boolean;
         /**
@@ -3210,7 +3215,7 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
-          * If true the fitler will be in readonly mode
+          * If true the filter will be in readonly mode
          */
         "readonly"?: boolean;
         /**
@@ -3755,6 +3760,11 @@ declare namespace LocalJSX {
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly"?: boolean;
     }
     interface IxFlipTile {
         /**
