@@ -82,6 +82,10 @@ import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import Settings from 'src/preview-examples/settings';
+import Slider from 'src/preview-examples/slider';
+import SliderError from 'src/preview-examples/slider-error';
+import SliderMarker from 'src/preview-examples/slider-marker';
+import SliderTrace from 'src/preview-examples/slider-trace';
 import Spinner from 'src/preview-examples/spinner';
 import SpinnerLarge from 'src/preview-examples/spinner-large';
 import SplitButton from 'src/preview-examples/split-button';
@@ -357,6 +361,10 @@ const routes: Routes = [
       { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
       { path: 'key-value-list-striped', component: KeyValueListStriped },
       { path: 'menu-category', component: MenuCategory },
+      { path: 'slider', component: Slider },
+      { path: 'slider-trace', component: SliderTrace },
+      { path: 'slider-marker', component: SliderMarker },
+      { path: 'slider-error', component: SliderError },
     ],
   },
 ];

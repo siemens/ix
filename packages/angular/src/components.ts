@@ -1747,28 +1747,28 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'marker', 'max', 'min', 'name', 'step', 'trace', 'traceReference', 'value']
+  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value']
 })
 @Component({
   selector: 'ix-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'marker', 'max', 'min', 'name', 'step', 'trace', 'traceReference', 'value'],
+  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value'],
 })
 export class IxSlider {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['sliderChange']);
+    proxyOutputs(this, this.el, ['valueChange']);
   }
 }
 
 
 export declare interface IxSlider extends Components.IxSlider {
 
-  sliderChange: EventEmitter<CustomEvent<number>>;
+  valueChange: EventEmitter<CustomEvent<number>>;
 }
 
 

@@ -616,7 +616,6 @@ export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-
 
 
 export const IxSlider = /*@__PURE__*/ defineContainer<JSX.IxSlider>('ix-slider', undefined, [
-  'name',
   'step',
   'min',
   'max',
@@ -625,7 +624,8 @@ export const IxSlider = /*@__PURE__*/ defineContainer<JSX.IxSlider>('ix-slider',
   'trace',
   'traceReference',
   'disabled',
-  'sliderChange'
+  'error',
+  'valueChange'
 ]);
 
 

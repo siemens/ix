@@ -71,6 +71,10 @@ import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
 import Settings from './preview-examples/settings';
+import Slider from './preview-examples/slider';
+import SliderError from './preview-examples/slider-error';
+import SliderMarker from './preview-examples/slider-marker';
+import SliderTrace from './preview-examples/slider-trace';
 import Spinner from './preview-examples/spinner';
 import SpinnerLarge from './preview-examples/spinner-large';
 import Splitbutton from './preview-examples/split-button';
@@ -267,6 +271,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </Route>
         <Route path="/preview/page-header" element={<PageHeader />} />
         <Route path="/preview/menu-category" element={<MenuCategory />} />
+        <Route path="/preview/slider" element={<Slider />} />
+        <Route path="/preview/slider-trace" element={<SliderTrace />} />
+        <Route path="/preview/slider-marker" element={<SliderMarker />} />
+        <Route path="/preview/slider-error" element={<SliderError />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

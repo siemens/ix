@@ -682,8 +682,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner",
@@ -722,9 +721,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -8758,21 +8754,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
-        "ix-tooltip"
+        "ix-tooltip",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-slider": [
-          "ix-tooltip"
+          "ix-tooltip",
+          "ix-typography"
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "my-component": [
-          "ix-slider"
         ]
       },
       "props": [
@@ -8788,6 +8781,25 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "error",
+          "type": "boolean | string",
+          "mutable": false,
+          "attr": "error",
+          "reflectToAttr": false,
+          "docs": "Show error state and message",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -8837,22 +8849,6 @@
           "values": [
             {
               "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -8929,7 +8925,7 @@
       "methods": [],
       "events": [
         {
-          "event": "sliderChange",
+          "event": "valueChange",
           "detail": "number",
           "bubbles": true,
           "cancelable": true,
@@ -11068,6 +11064,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-push-card",
+        "ix-slider",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -11101,6 +11098,9 @@
           "ix-typography"
         ],
         "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-slider": [
           "ix-typography"
         ],
         "ix-time-picker": [
@@ -11835,26 +11835,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-slider",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-slider",
-          "ix-button"
-        ],
-        "ix-slider": [
-          "ix-tooltip"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-button": [
-          "ix-spinner",
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

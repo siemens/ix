@@ -27,6 +27,10 @@ import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue
 import Checkbox from './preview-examples/checkbox.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import Chip from './preview-examples/chip.vue';
+import Slider from './preview-examples/slider.vue';
+import SliderTrace from './preview-examples/slider-trace.vue';
+import SliderMarker from './preview-examples/slider-marker.vue';
+import SliderError from './preview-examples/slider-error.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
@@ -188,6 +192,10 @@ const routes: any = {
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
   '/preview/menu-category': MenuCategory,
+  '/preview/slider': Slider,
+  '/preview/slider-trace': SliderTrace,
+  '/preview/slider-marker': SliderMarker,
+  '/preview/slider-error': SliderError,
 };
 
 const currentPath = ref(window.location.pathname);
