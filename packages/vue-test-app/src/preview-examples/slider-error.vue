@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <IxSlider trace trace-reference="50" :marker="[0, 25, 50, 75, 100]" :error="true">
+  <IxSlider trace :trace-reference="50" :marker="[0, 25, 50, 75, 100]" :error="true">
     <span slot="label-start">0</span>
     <span slot="label-end">100</span>
   </IxSlider>
@@ -22,7 +22,7 @@
     :max="50"
     :step="10"
     trace
-    trace-reference="10"
+    :trace-reference="10"
     :marker="[0, 10, 20, 30, 40, 50]"
     error="Error message"
   >

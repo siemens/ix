@@ -8,11 +8,11 @@
 -->
 
 <script setup lang="ts">
-  import { IxSlider } from '@siemens/ix-vue';
+import { IxSlider } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxSlider trace trace-reference="50" :marker="[0, 25, 50, 75, 100]" :value="25">
+  <IxSlider trace :trace-reference="50" :marker="[0, 25, 50, 75, 100]" :value="25">
     <span slot="label-start">0</span>
     <span slot="label-end">100</span>
   </IxSlider>
@@ -23,7 +23,7 @@
     :value="20"
     :step="10"
     :trace="true"
-    trace-reference="10"
+    :trace-reference="10"
     :marker="[0, 10, 20, 30, 40, 50]"
   >
     <span slot="label-start">0</span>
