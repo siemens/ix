@@ -1544,12 +1544,37 @@ export namespace Components {
           * Show control as disabled
          */
         "disabled": boolean;
+        /**
+          * Show error state and message
+         */
+        "error": boolean | string;
+        /**
+          * Define tick marker on the slider. Marker need to be inside min/max
+         */
         "marker": SliderMarker;
+        /**
+          * Maximum slider value
+         */
         "max": number;
+        /**
+          * Minimum slider value
+         */
         "min": number;
+        /**
+          * Slider steps
+         */
         "step": number;
+        /**
+          * Show a trace line
+         */
         "trace": boolean;
+        /**
+          * Define the start point of the trace line
+         */
         "traceReference": number;
+        /**
+          * Current value of the slider
+         */
         "value": number;
     }
     interface IxSpinner {
@@ -1826,6 +1851,7 @@ export namespace Components {
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for": string;
+        "hideTooltip": () => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -1835,6 +1861,7 @@ export namespace Components {
           * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showTooltip": (anchorElement: any) => Promise<void>;
         /**
           * Title of the tooltip
          */
@@ -2148,6 +2175,10 @@ export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
 export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
+}
+export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSliderElement;
 }
 export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4553,12 +4584,38 @@ declare namespace LocalJSX {
           * Show control as disabled
          */
         "disabled"?: boolean;
+        /**
+          * Show error state and message
+         */
+        "error"?: boolean | string;
+        /**
+          * Define tick marker on the slider. Marker need to be inside min/max
+         */
         "marker"?: SliderMarker;
+        /**
+          * Maximum slider value
+         */
         "max"?: number;
+        /**
+          * Minimum slider value
+         */
         "min"?: number;
+        "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
+        /**
+          * Slider steps
+         */
         "step"?: number;
+        /**
+          * Show a trace line
+         */
         "trace"?: boolean;
+        /**
+          * Define the start point of the trace line
+         */
         "traceReference"?: number;
+        /**
+          * Current value of the slider
+         */
         "value"?: number;
     }
     interface IxSpinner {

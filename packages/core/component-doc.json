@@ -682,7 +682,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -721,6 +722,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -8743,6 +8747,210 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/slider",
+      "filePath": "./src/components/slider/slider.tsx",
+      "fileName": "slider.tsx",
+      "readmePath": "./src/components/slider/readme.md",
+      "usagesDir": "./src/components/slider/usage",
+      "tag": "ix-slider",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [
+        "ix-tooltip"
+      ],
+      "dependencyGraph": {
+        "ix-slider": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "my-component": [
+          "ix-slider"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Show control as disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "marker",
+          "type": "number[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Define tick marker on the slider. Marker need to be inside min/max",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "Maximum slider value",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "Minimum slider value",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "mutable": false,
+          "attr": "step",
+          "reflectToAttr": false,
+          "docs": "Slider steps",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "trace",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "trace",
+          "reflectToAttr": false,
+          "docs": "Show a trace line",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "traceReference",
+          "type": "number",
+          "mutable": false,
+          "attr": "trace-reference",
+          "reflectToAttr": false,
+          "docs": "Define the start point of the trace line",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Current value of the slider",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "sliderChange",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "pointerup",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
+    },
+    {
       "dirPath": "./src/components/spinner",
       "filePath": "./src/components/spinner/spinner.tsx",
       "fileName": "spinner.tsx",
@@ -10473,13 +10681,18 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-slider"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-slider": [
+          "ix-tooltip"
         ]
       },
       "props": [
@@ -11622,8 +11835,26 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-slider",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-slider",
+          "ix-button"
+        ],
+        "ix-slider": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

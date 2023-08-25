@@ -7,9 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 
-export type SliderMarker = Record<number, string>;
+export type SliderMarker = Array<number>;
+
+function between(min: number, value: number, max: number) {
+  if (value < min) {
+    return min;
+  } else if (value > max) {
+    return max;
+  } else {
+    return value;
+  }
+}
 
 @Component({
   tag: 'ix-slider',
@@ -19,18 +40,39 @@ export type SliderMarker = Record<number, string>;
 export class IxSlider {
   @Element() hostElement!: HTMLIxSliderElement;
 
+  /**
+   * Slider steps
+   */
   @Prop() step: number;
-  @Prop() min: number = 0;
-  @Prop() max: number = 100;
-  @Prop() value: number;
-  @Watch('value')
-  onValueChange() {
-    this.rangeInput = this.value;
-  }
+
+  /**
+   * Minimum slider value
+   */
+  @Prop() min = 0;
+
+  /**
+   * Maximum slider value
+   */
+  @Prop() max = 100;
+
+  /**
+   * Current value of the slider
+   */
+  @Prop() value = 0;
+
+  /**
+   * Define tick marker on the slider. Marker need to be inside min/max
+   */
   @Prop() marker: SliderMarker;
 
+  /**
+   * Show a trace line
+   */
   @Prop() trace = false;
 
+  /**
+   * Define the start point of the trace line
+   */
   @Prop() traceReference = 0;
 
   /**
@@ -38,10 +80,61 @@ export class IxSlider {
    */
   @Prop() disabled = false;
 
-  @State() rangeInput: number;
+  /**
+   * Show error state and message
+   */
+  @Prop() error: boolean | string;
+
+  /**
+   *
+   */
+  @Event() valueChange: EventEmitter<number>;
+
+  @State() rangeInput = 0;
+  @State() rangeMin = 0;
+  @State() rangeMax = 100;
+  @State() rangeTraceReference = 0;
+  @State() showTooltip = false;
+
+  @Watch('showTooltip')
+  onShowTooltipChange() {
+    if (this.showTooltip) {
+      this.tooltip.showTooltip(this.pseudoThumb);
+      return;
+    }
+
+    this.tooltip.hideTooltip();
+  }
 
   componentWillLoad() {
-    this.rangeInput = this.value;
+    this.updateRangeVariables();
+  }
+
+  @Watch('value')
+  @Watch('max')
+  @Watch('min')
+  @Watch('traceReference')
+  private updateRangeVariables() {
+    if (this.value < this.min) {
+      this.rangeInput = this.min;
+    } else if (this.value > this.max) {
+      this.rangeInput = this.max;
+    } else {
+      this.rangeInput = this.value;
+    }
+
+    this.rangeInput = between(this.min, this.value, this.max);
+    this.rangeTraceReference = between(this.min, this.traceReference, this.max);
+    this.rangeMin = Math.min(this.min, this.max);
+    this.rangeMax = Math.max(this.min, this.max);
+  }
+
+  get tooltip() {
+    return this.hostElement.shadowRoot.querySelector('ix-tooltip');
+  }
+
+  get pseudoThumb() {
+    return this.hostElement.shadowRoot.querySelector('.thumb') as HTMLElement;
   }
 
   get slider() {
@@ -50,18 +143,45 @@ export class IxSlider {
     ) as HTMLInputElement;
   }
 
-  private onInput() {
+  private onInput(event: InputEvent) {
+    event.stopPropagation();
     const value = parseInt(this.slider.value);
 
     if (!isNaN(value)) {
       this.rangeInput = value;
+      this.emitInputEvent();
     }
   }
 
+  private emitInputEvent() {
+    this.valueChange.emit(this.rangeInput);
+  }
+
+  private isMarkerActive(markerValue: number) {
+    const start = Math.min(this.traceReference, this.rangeInput);
+    const end = Math.max(this.traceReference, this.rangeInput);
+    const value = markerValue;
+
+    return value >= start && value <= end;
+  }
+
+  // Listen global on windows because sometimes the event listener
+  // of the dom element input itself is not called if the release
+  // click is not inside the element anymore
+  @Listen('pointerup', {
+    target: 'window',
+  })
+  onPointerUp() {
+    this.showTooltip = false;
+  }
+
   render() {
-    const traceReferenceInPercentage =
-      this.traceReference / (this.max - this.min);
-    const valueInPercentage = this.rangeInput / (this.max - this.min);
+    const range = this.rangeMax - this.rangeMin;
+
+    let traceReferenceInPercentage =
+      (this.rangeTraceReference - this.rangeMin) / range;
+
+    let valueInPercentage = (this.rangeInput - this.rangeMin) / range;
 
     const distance = valueInPercentage - traceReferenceInPercentage;
 
@@ -73,60 +193,90 @@ export class IxSlider {
       traceEnd = traceReferenceInPercentage;
     }
 
-    let listLength = 0;
-
-    if (this.marker) {
-      listLength = Object.keys(this.marker).length;
-    }
-
-    const absDistance = Math.abs(distance);
-
     return (
       <Host
         class={{
           disabled: this.disabled,
+          error: !!this.error,
         }}
-        style={{
-          '--list-length': `${listLength}`,
-        }}
+        onPointerDown={() => setTimeout(() => (this.showTooltip = true))}
       >
-        <input
-          id="slider"
-          type="range"
-          list={this.marker ? 'markers' : undefined}
-          step={this.step}
-          min={this.min}
-          max={this.max}
-          value={this.rangeInput}
-          tabindex={this.disabled ? -1 : 0}
-          onInput={() => this.onInput()}
-          style={{
-            '--value': `${valueInPercentage}`,
-            '--trace-reference': `${traceReferenceInPercentage}`,
-            '--trace-start': `${traceStart}`,
-            '--trace-end': `${traceEnd}`,
-          }}
-          class={{
-            trace: this.trace,
-          }}
-        />
+        <div class="slider">
+          <div class="track">
+            <div
+              class="thumb"
+              style={{
+                left: `calc(${valueInPercentage} * 100% - 8px)`,
+              }}
+            ></div>
+            <div class="ticks">
+              {this.marker
+                ? this.marker.map((markerValue) => {
+                    if (markerValue > this.max || markerValue < this.min) {
+                      return;
+                    }
 
-        {this.marker ? (
-          <datalist id="markers">
-            {Object.keys(this.marker).map((markerValue) => (
-              <option
-                value={markerValue}
-                class={{
-                  'marker-active': parseInt(markerValue) <= this.rangeInput,
-                }}
-                style={{
-                  '--marker-pos': `${
-                    parseInt(markerValue) / (this.max - this.min)
-                  }`,
-                }}
-              ></option>
-            ))}
-          </datalist>
+                    let left = (markerValue - this.rangeMin) / range;
+
+                    return (
+                      <div
+                        class={{
+                          tick: true,
+                          'tick-active':
+                            this.isMarkerActive(markerValue) && this.trace,
+                        }}
+                        style={{
+                          '--tick-value': `${left}`,
+                        }}
+                      ></div>
+                    );
+                  })
+                : null}
+            </div>
+          </div>
+
+          <input
+            id="slider"
+            type="range"
+            list={this.marker ? 'markers' : undefined}
+            step={this.step}
+            min={this.min}
+            max={this.max}
+            value={this.rangeInput}
+            tabindex={this.disabled ? -1 : 0}
+            onInput={(event) => this.onInput(event)}
+            style={{
+              '--value': `${valueInPercentage}`,
+              '--trace-reference': `${traceReferenceInPercentage}`,
+              '--trace-start': `${traceStart}`,
+              '--trace-end': `${traceEnd}`,
+            }}
+            class={{
+              trace:
+                this.trace && traceReferenceInPercentage !== valueInPercentage,
+            }}
+          />
+
+          <ix-tooltip
+            class={{
+              'hide-tooltip': !this.showTooltip,
+            }}
+          >
+            {this.rangeInput}
+          </ix-tooltip>
+        </div>
+        <div class="label">
+          <div class="label-start">
+            <slot name="label-start"></slot>
+          </div>
+          <div class="label-end">
+            <slot name="label-end"></slot>
+          </div>
+        </div>
+        {this.error ? (
+          <ix-typography class={'label-error'} color="alarm">
+            {this.error}
+          </ix-typography>
         ) : null}
       </Host>
     );

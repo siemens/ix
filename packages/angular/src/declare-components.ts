@@ -68,6 +68,7 @@ export const DIRECTIVES = [
   d.IxPushCard,
   d.IxSelect,
   d.IxSelectItem,
+  d.IxSlider,
   d.IxSpinner,
   d.IxSplitButton,
   d.IxSplitButtonItem,
