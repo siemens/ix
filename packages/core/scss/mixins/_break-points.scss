@@ -7,16 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// const smallMediaQuery = `only screen and (max-width: 40em)`;
-// const mediumMediaQuery = `only screen and (min-width: 40.063em) and (max-width: 64em)`;
-// const largeMediaQuery = `only screen and (min-width: 64.063em)`;
-
 $screen-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
+  sm: 36em,
+  md: 48em,
+  lg: 62em,
 );
 
 @mixin media-breakpoint-up($name, $breakpoints: $screen-breakpoints) {
