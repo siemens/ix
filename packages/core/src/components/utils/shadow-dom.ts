@@ -13,7 +13,7 @@ export function closestElement(selector: string, el: any) {
   );
 }
 
-export function getSlottedElements(slot: any) {
+export function getSlottedElements<R = any>(slot: any): R[] {
   return slot.assignedElements({ flatten: true });
 }
 
