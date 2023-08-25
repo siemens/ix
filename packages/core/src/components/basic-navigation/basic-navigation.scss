@@ -53,13 +53,13 @@
   }
 }
 
-:host(.mode-large) {
+:host(.breakpoint-lg) {
   .content {
     margin-left: 0rem;
   }
 }
 
-:host(.mode-small) {
+:host(.breakpoint-sm) {
   .content {
     margin-left: 0px;
     width: 100%;

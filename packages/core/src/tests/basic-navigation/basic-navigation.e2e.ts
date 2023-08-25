@@ -10,8 +10,8 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-const smallWidth = 639;
-const mediumWidth = 642;
+const smallWidth = 700;
+const mediumWidth = 780;
 const largeWidth = 1026;
 
 regressionTest.describe('basic navigation large', () => {
@@ -53,7 +53,7 @@ regressionTest.describe('basic navigation', () => {
     await page.goto('basic-navigation/basic');
     await page.setViewportSize({
       height: 1200,
-      width: mediumWidth,
+      width: 780,
     });
     await page.waitForTimeout(500);
 
@@ -190,7 +190,7 @@ regressionTest.describe('basic navigation mobile', () => {
     await expect(menuElement).toBeVisible();
 
     await menuElement.click();
-    await expect(page.locator('ix-menu')).toHaveClass(/mode-small/);
+    await expect(page.locator('ix-menu')).toHaveClass(/breakpoint-sm/);
     await expect(page.locator('ix-menu')).toHaveClass(/expanded/);
 
     const settingsButton = await page.waitForSelector('#settings');

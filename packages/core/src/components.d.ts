@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
-import { Mode } from "./components/utils/screen/mode";
+import { Breakpoint } from "./components/utils/breakpoints";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -39,7 +39,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
-export { Mode } from "./components/utils/screen/mode";
+export { Breakpoint } from "./components/utils/breakpoints";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -98,7 +98,7 @@ export namespace Components {
         "variant": ActionCardVariant;
     }
     interface IxApplicationHeader {
-        "mode": Mode;
+        "breakpoint": Breakpoint;
         /**
           * Application name
          */
@@ -1120,6 +1120,10 @@ export namespace Components {
          */
         "applicationName": string;
         /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
           * Internal
          */
         "enableMapExpand": boolean;
@@ -1135,7 +1139,7 @@ export namespace Components {
         /**
           * Change the responsive layout of the menu structure
          */
-        "forceLayout": Mode | undefined;
+        "forceBreakpoint": Breakpoint | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         /**
@@ -1161,10 +1165,6 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
-        /**
-          * Supported layouts
-         */
-        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -2999,7 +2999,7 @@ declare namespace LocalJSX {
         "variant"?: ActionCardVariant;
     }
     interface IxApplicationHeader {
-        "mode"?: Mode;
+        "breakpoint"?: Breakpoint;
         /**
           * Application name
          */
@@ -4139,6 +4139,10 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
           * Internal
          */
         "enableMapExpand"?: boolean;
@@ -4154,7 +4158,7 @@ declare namespace LocalJSX {
         /**
           * Change the responsive layout of the menu structure
          */
-        "forceLayout"?: Mode | undefined;
+        "forceBreakpoint"?: Breakpoint | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         /**
@@ -4188,10 +4192,6 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
-        /**
-          * Supported layouts
-         */
-        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**

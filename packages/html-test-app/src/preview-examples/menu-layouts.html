@@ -55,12 +55,12 @@ SPDX-License-Identifier: MIT
       (async () => {
         await window.customElements.whenDefined('ix-menu');
         const menu = document.querySelector('ix-menu');
-        menu.supportedModes = ['medium'];
+        menu.breakpoints = ['medium'];
 
         const radioButtons = document.querySelectorAll('input[type="radio"]');
         radioButtons.forEach((rb) =>
           rb.addEventListener('change', (event) => {
-            menu.supportedModes = [event.target.value];
+            menu.breakpoints = [event.target.value];
           })
         );
       })();

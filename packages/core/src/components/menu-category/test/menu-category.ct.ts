@@ -37,9 +37,7 @@ test('should collapse by click', async ({ mount, page }) => {
   const menu = page.locator('ix-menu');
   const expandMenuButton = page.locator('ix-menu').locator('.burger-menu');
 
-  await menu.evaluate(
-    (menu: HTMLIxMenuElement) => (menu.supportedModes = ['medium'])
-  );
+  await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
 
   await categoryItem.click();
 

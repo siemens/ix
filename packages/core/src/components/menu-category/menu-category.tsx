@@ -8,8 +8,8 @@
  */
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
+import { menuContext } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { menuContext } from '../utils/screen/context';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;

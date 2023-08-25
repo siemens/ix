@@ -8,23 +8,9 @@
  */
 
 import { Component, forceUpdate, h, Host, Listen, Prop } from '@stencil/core';
+import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
 
-const screenSizes = {
-  sm: '(min-width: 576px)',
-  md: '(min-width: 768px)',
-  lg: '(min-width: 992px)',
-} as const;
-
-type ScreenSize = keyof typeof screenSizes;
-type GridBreakpoint = ScreenSize | '';
-
-const matchBreakpoint = (breakpoint: ScreenSize) => {
-  if ((window as any).matchMedia) {
-    const mediaQuery = screenSizes[breakpoint];
-    return window.matchMedia(mediaQuery).matches;
-  }
-  return false;
-};
+type GridBreakpoint = Breakpoint | '';
 
 export type ColumnSize =
   | '1'

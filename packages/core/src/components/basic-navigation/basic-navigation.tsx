@@ -8,9 +8,9 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { applicationLayoutService } from '../utils/application-layout/service';
+import { Breakpoint } from '../utils/breakpoints';
 import { menuController } from '../utils/menu-service/menu-service';
-import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -31,7 +31,7 @@ export class BasicNavigation {
    */
   @Prop() hideHeader = false;
 
-  @State() mode: Mode = 'large';
+  @State() breakpoint: Breakpoint = 'lg';
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
@@ -48,10 +48,10 @@ export class BasicNavigation {
 
   componentWillLoad() {
     if (this.hideHeader === false) {
-      this.modeDisposable = screenMode.onChange.on(
-        (mode) => (this.mode = mode)
+      this.modeDisposable = applicationLayoutService.onChange.on(
+        (mode) => (this.breakpoint = mode)
       );
-      this.mode = screenMode.mode;
+      this.breakpoint = applicationLayoutService.breakpoint;
     }
   }
 
@@ -71,11 +71,14 @@ export class BasicNavigation {
         data-role=""
         class={{
           'hide-header': this.hideHeader,
-          [`mode-${this.mode}`]: true,
+          [`breakpoint-${this.breakpoint}`]: true,
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header name={this.applicationName} mode={this.mode}>
+          <ix-application-header
+            name={this.applicationName}
+            breakpoint={this.breakpoint}
+          >
             <slot name="logo" slot="logo"></slot>
           </ix-application-header>
         ) : null}

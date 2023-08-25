@@ -20,7 +20,7 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
   'name',
-  'mode'
+  'breakpoint'
 ]);
 
 
@@ -448,8 +448,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nExpandSidebar',
   'expand',
   'pinned',
-  'forceLayout',
-  'supportedModes',
+  'forceBreakpoint',
+  'breakpoints',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',

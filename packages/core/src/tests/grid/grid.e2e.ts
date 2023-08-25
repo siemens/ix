@@ -9,10 +9,14 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
+const smallWidth = 700;
+const mediumWidth = 780;
+const largeWidth = 1026;
+
 test('should not have regression', async ({ mount, page }) => {
   await page.setViewportSize({
     height: 720,
-    width: 1280,
+    width: largeWidth,
   });
   await mount(htmlSource);
   const grid = page.locator('ix-grid').nth(0);
@@ -20,6 +24,67 @@ test('should not have regression', async ({ mount, page }) => {
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
+
+test('should not have regression large', async ({ mount, page }) => {
+  await page.setViewportSize({
+    height: 720,
+    width: largeWidth,
+  });
+  await mount(htmlSimple);
+  const grid = page.locator('ix-grid').nth(0);
+  await expect(grid).toHaveClass(/hydrated/);
+
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});
+
+test('should not have regression medium', async ({ mount, page }) => {
+  await page.setViewportSize({
+    height: 720,
+    width: mediumWidth,
+  });
+  await mount(htmlSimple);
+  const grid = page.locator('ix-grid').nth(0);
+  await expect(grid).toHaveClass(/hydrated/);
+
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});
+
+test('should not have regression small', async ({ mount, page }) => {
+  await page.setViewportSize({
+    height: 720,
+    width: smallWidth,
+  });
+  await mount(htmlSimple);
+  const grid = page.locator('ix-grid').nth(0);
+  await expect(grid).toHaveClass(/hydrated/);
+
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});
+
+const htmlSimple = `
+  <ix-grid>
+    <ix-row>
+      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
+        1
+      </ix-col>
+      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
+        2
+      </ix-col>
+      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
+        3
+      </ix-col>
+    </ix-row>
+  </ix-grid>
+
+  <style>
+    ix-col {
+      background-color: var(--theme-color-success-40);
+      border: solid 1px #fff;
+      color: #fff;
+      text-align: center;
+    }
+  </style>
+`;
 
 const htmlSource = `
 <h4>Column = 4</h4>
