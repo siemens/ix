@@ -28,7 +28,6 @@
           required
         />
       </ix-validation-tooltip>
-      <div class="valid-feedback">Looks good!</div>
     </div>
   </div>
   <div class="row">

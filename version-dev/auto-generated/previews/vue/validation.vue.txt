@@ -53,7 +53,6 @@ const onSubmit = async (data: any) => {
           v-model="lastName.value"
         />
       </IxValidationTooltip>
-      <div class="valid-feedback">Looks good!</div>
     </div>
     <div class="col-md-4">
       <label htmlFor="validationCustomUsername" class="form-label">
