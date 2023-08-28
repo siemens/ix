@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-input-group',
@@ -17,44 +18,131 @@ import { Component, Element, h, Host } from '@stencil/core';
 export class InputGroup {
   @Element() hostElement!: HTMLIxInputGroupElement;
 
-  componentDidRender() {
-    let paddingRight = 15;
-    let paddingLeft = 15;
-    this.hostElement.querySelectorAll('[slot="input-end"]').forEach((item) => {
-      item.classList.add('input-group-label');
-      paddingRight += item.getBoundingClientRect().width;
+  @State() inputPaddingLeft = 0;
+  @State() inputPaddingRight = 0;
+
+  private get inputElement() {
+    return this.hostElement.querySelector('input') as HTMLInputElement;
+  }
+
+  componentWillLoad() {
+    const { valid } = this.inputElement.validity;
+    this.inputElement.addEventListener('valid', () => {
+      this.onValidInput();
+    });
+    this.inputElement.addEventListener('invalid', () => {
+      this.onInvalidInput();
+    });
+    this.inputElement.addEventListener('input', () => {
+      this.startSlotChanged();
     });
 
-    this.hostElement
-      .querySelectorAll('[slot="input-start"]')
-      .forEach((item) => {
-        item.classList.add('input-group-label');
-        paddingLeft += item.getBoundingClientRect().width;
-      });
+    this.inputElement.form?.addEventListener('submit', () => {
+      this.startSlotChanged();
+    });
 
-    const inputElement = this.hostElement.querySelector(
-      'input.form-control'
-    ) as HTMLInputElement;
+    valid ? this.onValidInput() : this.onInvalidInput();
+  }
 
-    if (inputElement) {
-      inputElement.style.paddingRight = paddingRight + 'px';
-      inputElement.style.paddingLeft = paddingLeft + 'px';
+  componentDidRender() {
+    this.prepareInputElement();
+  }
+
+  private onValidInput() {
+    this.startSlotChanged();
+  }
+
+  private onInvalidInput() {
+    this.startSlotChanged();
+  }
+
+  private prepareInputElement() {
+    if (this.inputElement) {
+      this.inputElement.style.width = '100%';
+
+      if (this.inputPaddingRight !== 0) {
+        this.inputElement.style.paddingRight = this.inputPaddingRight + 'px';
+      } else {
+        this.inputElement.style.paddingRight = 'none';
+      }
+
+      if (this.inputPaddingLeft !== 0) {
+        this.inputElement.style.paddingLeft = this.inputPaddingLeft + 'px';
+      } else {
+        this.inputElement.style.paddingLeft = 'none';
+      }
     } else {
       console.warn(
-        'You used the ix-input-group without an input-tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
       );
     }
+  }
+
+  private startSlotChanged() {
+    const slot = this.hostElement.shadowRoot.querySelector(
+      'slot[name="input-start"]'
+    );
+    const startPadding = this.getChildrenWidth(slot);
+
+    if (startPadding !== 0) {
+      this.inputPaddingLeft = 15 + startPadding;
+    }
+
+    if (!this.inputElement) {
+      return;
+    }
+
+    if (
+      (this.inputElement.form?.classList.contains('was-validated') ||
+        this.inputElement.form?.noValidate === false) &&
+      !this.inputElement.validity.valid
+    ) {
+      this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
+      this.inputPaddingLeft += 32;
+    }
+  }
+
+  private endSlotChanged() {
+    const slot = this.hostElement.shadowRoot.querySelector(
+      'slot[name="input-end"]'
+    );
+    this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
+  }
+
+  private getChildrenWidth(slotElement: Element) {
+    if (!slotElement) {
+      return 0;
+    }
+
+    const endElements = getSlottedElements<HTMLElement>(slotElement);
+    if (endElements.length === 0) {
+      return 0;
+    }
+
+    let width = 0;
+
+    endElements.forEach((element) => {
+      width += element.getBoundingClientRect().width;
+    });
+
+    return width;
   }
 
   render() {
     return (
       <Host>
         <div class="group group-start">
-          <slot name="input-start"></slot>
+          <slot
+            name="input-start"
+            onSlotchange={() => this.startSlotChanged()}
+          ></slot>
         </div>
         <slot></slot>
         <div class="group group-end">
-          <slot name="input-end"></slot>
+          <slot
+            name="input-end"
+            onSlotchange={() => this.endSlotChanged()}
+          ></slot>
         </div>
       </Host>
     );

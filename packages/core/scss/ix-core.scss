@@ -44,6 +44,7 @@
 body {
   @include typography-body();
   background-color: var(--theme-color-1);
+  margin: 0;
 }
 
 body:not(.disable-scrollbar) {

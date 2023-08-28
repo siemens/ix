@@ -4570,6 +4570,46 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/form-field",
+      "filePath": "./src/components/form-field/form-field.tsx",
+      "fileName": "form-field.tsx",
+      "readmePath": "./src/components/form-field/readme.md",
+      "usagesDir": "./src/components/form-field/usage",
+      "tag": "ix-form-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/grid",
       "filePath": "./src/components/grid/grid.tsx",
       "fileName": "grid.tsx",

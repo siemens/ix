@@ -316,6 +316,11 @@ export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileCon
 ]);
 
 
+export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', undefined, [
+  'label'
+]);
+
+
 export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
   'fixed',
   'fluid',

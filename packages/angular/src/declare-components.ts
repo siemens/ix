@@ -35,6 +35,7 @@ export const DIRECTIVES = [
   d.IxFilterChip,
   d.IxFlipTile,
   d.IxFlipTileContent,
+  d.IxFormField,
   d.IxGrid,
   d.IxGroup,
   d.IxGroupContextMenu,

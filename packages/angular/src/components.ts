@@ -885,6 +885,28 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
 
 
 @ProxyCmp({
+  inputs: ['label']
+})
+@Component({
+  selector: 'ix-form-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class IxFormField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxFormField extends Components.IxFormField {}
+
+
+@ProxyCmp({
   inputs: ['columns', 'fixed', 'fluid']
 })
 @Component({
