@@ -13,6 +13,7 @@ const axios = require('axios');
  */
 module.exports = async function (node) {
   console.log('Token', process.env.FIGMA_TOKEN);
+  console.log('Run for', process.env.NODE_ENV);
 
   if (node.url.startsWith('https://www.figma.com/file/')) {
     const url = new URL(node.url);
@@ -33,6 +34,12 @@ module.exports = async function (node) {
     console.log('images', res.data.images);
     const images = res.data.images;
     const [imageKey] = Object.keys(images);
-    node.url = images[imageKey];
+
+    if (process.env.NODE_ENV === 'production') {
+      // Download image to static asset folder
+      // Change url to static asset folder path
+    } else {
+      node.url = images[imageKey];
+    }
   }
 };
