@@ -21,12 +21,10 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
-import {
-  hostContext,
-  isBasicNavigationLayout,
-} from '../utils/application-layout/context';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
@@ -171,7 +169,9 @@ export class Menu {
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-
+  @State() applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
   private isTransitionDisabled = false;
 
   // FBC IAM workaround #488
@@ -304,12 +304,24 @@ export class Menu {
   }
 
   componentWillLoad() {
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        if (this.applicationLayoutContext.hideHeader === true) {
+          this.onModeChange('md');
+          return;
+        }
+
+        this.onModeChange(applicationLayoutService.breakpoint);
+      },
+      true
+    );
+
     menuController.register(this.hostElement);
-    const layout = hostContext('ix-basic-navigation', this.hostElement);
-    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
-      applicationLayoutService.onChange.on((mode) => this.onModeChange(mode));
-      this.onModeChange(applicationLayoutService.breakpoint);
-    }
+    applicationLayoutService.onChange.on((mode) => this.onModeChange(mode));
+    this.onModeChange(applicationLayoutService.breakpoint);
   }
 
   componentWillRender() {
@@ -326,6 +338,9 @@ export class Menu {
   }
 
   private onModeChange(mode: Breakpoint) {
+    if (this.applicationLayoutContext?.hideHeader) {
+      return;
+    }
     if (!this.breakpoints.includes(mode)) {
       return;
     }

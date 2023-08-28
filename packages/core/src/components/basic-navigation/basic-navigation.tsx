@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
+import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
@@ -30,6 +32,14 @@ export class BasicNavigation {
    * Hide application header. Will disable responsive feature of basic navigation.
    */
   @Prop() hideHeader = false;
+  @Watch('hideHeader')
+  onHideHeaderChange() {
+    this.contextProvider?.emit({
+      hideHeader: this.hideHeader,
+    });
+
+    this.breakpoint = applicationLayoutService.breakpoint;
+  }
 
   @State() breakpoint: Breakpoint = 'lg';
 
@@ -38,6 +48,7 @@ export class BasicNavigation {
   }
 
   private modeDisposable: Disposable;
+  private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
 
   private onContentClick() {
     if (menuController.isPinned) {
@@ -47,6 +58,14 @@ export class BasicNavigation {
   }
 
   componentWillLoad() {
+    this.contextProvider = useContextProvider(
+      this.hostElement,
+      ApplicationLayoutContext,
+      {
+        hideHeader: this.hideHeader,
+      }
+    );
+
     if (this.hideHeader === false) {
       this.modeDisposable = applicationLayoutService.onChange.on(
         (mode) => (this.breakpoint = mode)

@@ -7,39 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export function isBasicNavigationLayout(
-  element: HTMLElement
-): element is HTMLIxBasicNavigationElement {
-  return element && element.tagName === 'IX-BASIC-NAVIGATION';
-}
+import { createContext } from '../context';
 
-export const hostContext = (
-  selector: string,
-  element: HTMLElement
-): HTMLIxBasicNavigationElement | HTMLIxMapNavigationElement => {
-  return element.closest(selector);
-};
-
-export const isHostedBy = (selector: string, element: HTMLElement) => {
-  return hostContext(selector, element) !== null;
-};
-
-export const getHostApplicationLayout = (element: HTMLElement) => {
-  const [basicNavigation, mapNavigation] = [
-    'ix-basic-navigation',
-    'ix-map-navigation',
-  ].map((selector) => hostContext(selector, element));
-
-  if (basicNavigation) {
-    return basicNavigation;
-  }
-
-  if (mapNavigation) {
-    return mapNavigation;
-  }
-};
-
-export const menuContext = (element: Element) => {
+export const closestIxMenu = (element: Element) => {
   const menuElement = element.closest('ix-menu');
   return menuElement;
 };
+
+export const ApplicationLayoutContext = createContext(
+  'application-layout-context',
+  {
+    hideHeader: false,
+  }
+);
