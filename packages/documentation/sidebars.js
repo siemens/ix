@@ -25,6 +25,10 @@ const sidebars = {
   mySidebar: [
     {
       type: 'doc',
+      id: 'demo',
+    },
+    {
+      type: 'doc',
       id: 'introduction',
     },
     {

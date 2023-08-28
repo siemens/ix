@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.4.0",
+    "@siemens/figma-plugin": "*",
     "@types/fs-extra": "^9.0.13",
     "@types/rimraf": "^3.0.2",
     "rimraf": "^3.0.2",

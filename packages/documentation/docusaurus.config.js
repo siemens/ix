@@ -63,6 +63,7 @@ const config = {
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
+          remarkPlugins: [require('@siemens/figma-plugin')],
         },
         theme: {
           customCss,
