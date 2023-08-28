@@ -36,6 +36,7 @@ export class BasicNavigation {
   onHideHeaderChange() {
     this.contextProvider?.emit({
       hideHeader: this.hideHeader,
+      host: 'basic-navigation',
     });
 
     this.breakpoint = applicationLayoutService.breakpoint;
@@ -63,13 +64,15 @@ export class BasicNavigation {
       ApplicationLayoutContext,
       {
         hideHeader: this.hideHeader,
+        host: 'basic-navigation',
       }
     );
 
     if (this.hideHeader === false) {
-      this.modeDisposable = applicationLayoutService.onChange.on(
-        (mode) => (this.breakpoint = mode)
-      );
+      this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
+        console.log(mode);
+        this.breakpoint = mode;
+      });
       this.breakpoint = applicationLayoutService.breakpoint;
     }
   }

@@ -14,9 +14,10 @@ export const closestIxMenu = (element: Element) => {
   return menuElement;
 };
 
-export const ApplicationLayoutContext = createContext(
-  'application-layout-context',
-  {
-    hideHeader: false,
-  }
-);
+export const ApplicationLayoutContext = createContext<{
+  hideHeader: boolean;
+  host: 'basic-navigation' | 'map-navigation' | null;
+}>('application-layout-context', {
+  hideHeader: false,
+  host: null,
+});

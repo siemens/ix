@@ -61,15 +61,19 @@ test('should collapse by click', async ({ mount, page }) => {
 
 test('should expand items', async ({ mount, page }) => {
   await mount(`
+  <ix-basic-navigation>
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test Item 1</ix-menu-item>
         <ix-menu-item>Test Item 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
+  </ix-basic-navigation>
   `);
 
   const menu = page.locator('ix-menu');
+  await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
   const menuCategory = page.locator('ix-menu-category');
@@ -84,15 +88,20 @@ test('should expand items', async ({ mount, page }) => {
 
 test('should show items as dropdown', async ({ mount, page }) => {
   await mount(`
+  <ix-basic-navigation>
     <ix-menu>
       <ix-menu-category label="Category label">
         <ix-menu-item>Test Item 1</ix-menu-item>
         <ix-menu-item>Test Item 2</ix-menu-item>
       </ix-menu-category>
     </ix-menu>
+  </ix-basic-navigation>
   `);
 
   await page.waitForSelector('ix-menu');
+  const menu = page.locator('ix-menu');
+  await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+
   const menuCategory = page.locator('ix-menu-category');
   await menuCategory.click();
 
@@ -125,6 +134,7 @@ test('should collapse category after collapse menu', async ({
 
   await page.waitForSelector('ix-menu');
   const menu = page.locator('ix-menu');
+  await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
 

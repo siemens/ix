@@ -40,6 +40,9 @@ class ApplicationLayoutService {
     if (!this.#isDetectionEnabled) {
       return;
     }
+    if (!this.#supportedBreakpoints) {
+      return;
+    }
     const matchBreakpoints: [Breakpoint, boolean][] = [];
     this.#supportedBreakpoints.forEach((breakpoint) => {
       const match = matchBreakpoint(breakpoint);
@@ -69,13 +72,13 @@ class ApplicationLayoutService {
     this.#isDetectionEnabled = true;
   }
 
-  public setBreakpoint(mode: Breakpoint) {
-    this.#breakpoint = mode;
-    this.#breakpointChangeListener.emit(mode);
+  public setBreakpoint(breakpoint: Breakpoint) {
+    this.#breakpoint = breakpoint;
+    this.#breakpointChangeListener.emit(breakpoint);
   }
 
-  public setBreakpoints(modes: Breakpoint[]) {
-    this.#supportedBreakpoints = modes;
+  public setBreakpoints(breakpoints: Breakpoint[]) {
+    this.#supportedBreakpoints = breakpoints;
     this.onResize();
   }
 }

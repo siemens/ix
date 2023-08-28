@@ -93,6 +93,10 @@ export class Menu {
   @Prop() pinned = false;
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      console.warn('ix-map-navigation does not support pinned feature');
+      return;
+    }
     this.setPinned(this.pinned);
     if (newPinned) {
       applicationLayoutService.disableBreakpointDetection();
@@ -309,19 +313,22 @@ export class Menu {
       ApplicationLayoutContext,
       (ctx) => {
         this.applicationLayoutContext = ctx;
-        if (this.applicationLayoutContext.hideHeader === true) {
-          this.onModeChange('md');
+        if (ctx.hideHeader === true) {
+          this.onBreakpointChange('md');
           return;
         }
 
-        this.onModeChange(applicationLayoutService.breakpoint);
+        this.onBreakpointChange(applicationLayoutService.breakpoint);
       },
       true
     );
 
     menuController.register(this.hostElement);
-    applicationLayoutService.onChange.on((mode) => this.onModeChange(mode));
-    this.onModeChange(applicationLayoutService.breakpoint);
+    applicationLayoutService.setBreakpoints(this.breakpoints);
+    applicationLayoutService.onChange.on((breakpoint) =>
+      this.onBreakpointChange(breakpoint)
+    );
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   componentWillRender() {
@@ -337,7 +344,14 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onModeChange(mode: Breakpoint) {
+  private onBreakpointChange(mode: Breakpoint) {
+    if (!this.applicationLayoutContext && mode === 'sm') {
+      return;
+    }
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      this.breakpoint = 'md';
+      return;
+    }
     if (this.applicationLayoutContext?.hideHeader) {
       return;
     }

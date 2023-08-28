@@ -19,7 +19,8 @@ test('renders', async ({ mount, page }) => {
       </ix-menu>
     `);
   const element = page.locator('ix-menu');
-  await expect(element).toHaveClass('breakpoint-lg hydrated');
+  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
 test('should stay close after menu click when NOT pinned', async ({
