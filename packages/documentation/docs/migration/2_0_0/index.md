@@ -67,11 +67,11 @@ With the updated version of ix-menu, you have the flexibility to choose which la
 
 The following breakpoints are now available in ix-menu:
 
-- **Small**: `only screen and (min-width: 36em)`
+- **sm**: `only screen and (min-width: 36em)`
   - Menu not visible.
-- **Medium**: `only screen and (min-width: 48em)`
+- **md**: `only screen and (min-width: 48em)`
   - Menu visible but requires expansion to see the complete menu.
-- **Large**: `only screen and (min-width: 62em)`
+- **lg**: `only screen and (min-width: 62em)`
   - Shows the menu as pinned in full width.
   - The overlaying content is moved to the left.
 

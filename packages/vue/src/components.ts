@@ -19,8 +19,7 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
-  'name',
-  'breakpoint'
+  'name'
 ]);
 
 
@@ -32,7 +31,9 @@ export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar',
 
 export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNavigation>('ix-basic-navigation', undefined, [
   'applicationName',
-  'hideHeader'
+  'hideHeader',
+  'forceBreakpoint',
+  'breakpoints'
 ]);
 
 
@@ -453,8 +454,6 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nExpandSidebar',
   'expand',
   'pinned',
-  'forceBreakpoint',
-  'breakpoints',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',
