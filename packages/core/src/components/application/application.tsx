@@ -16,6 +16,7 @@ import { menuController } from '../utils/menu-service/menu-service';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/** @internal */
 @Component({
   tag: 'ix-application',
   styleUrl: 'application.scss',

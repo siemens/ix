@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, State } from '@stencil/core';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
+/** @internal */
 @Component({
   tag: 'ix-content',
   styleUrl: 'content.scss',

@@ -26,7 +26,6 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
-  /** @internal */
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
 
