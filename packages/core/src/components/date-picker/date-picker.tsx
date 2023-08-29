@@ -17,15 +17,17 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
-import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
-import dayjs, { WeekdayNames } from 'dayjs';
+import dayjs, { Dayjs, WeekdayNames } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
 dayjs.extend(localeData);
 dayjs.extend(weekday);
+dayjs.extend(weekOfYear);
 
 export type DateChangeEvent = {
   from: string;
@@ -42,9 +44,9 @@ export type DateTimeCorners = DateTimeCardCorners;
   shadow: true,
 })
 export class DatePicker {
-  private daysInWeek = 7;
+  private readonly DAYS_IN_WEEK = 7;
   private dayNames: WeekdayNames;
-  private monthNames = Info.months();
+  private monthNames = dayjs.months();
 
   /**
    * Date format string.
@@ -56,11 +58,6 @@ export class DatePicker {
    * If true a range of dates can be selected.
    */
   @Prop() range: boolean = true;
-
-  /**
-   * @deprecated Will be removed in 2.0.0
-   */
-  @Prop() individual: boolean = true;
 
   /**
    * Corner style
@@ -75,7 +72,13 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() from: string | null = DateTime.now().toFormat(this.format);
+  @Prop() from: string | undefined;
+  @Watch('from')
+  watchFromPropHandler(newValue: string) {
+    if (newValue !== undefined) {
+      this.startDate = dayjs(newValue, this.format);
+    }
+  }
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -85,7 +88,13 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() to: string | null = null;
+  @Prop() to: string | undefined;
+  @Watch('to')
+  watchToPropHandler(newValue: string) {
+    if (newValue !== undefined) {
+      this.endDate = dayjs(newValue, this.format);
+    }
+  }
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -104,14 +113,6 @@ export class DatePicker {
   @Prop() maxDate: string;
 
   /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   */
-  @Prop() eventDelimiter = ' - ';
-
-  /**
    * Text of date select button
    *
    * @since 1.1.0
@@ -122,26 +123,18 @@ export class DatePicker {
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
    */
-  @Prop() weekStartIndex = 2;
+  @Prop() weekStartIndex = 1;
 
   @State() selectedYear = this.year;
-  @State() today = DateTime.now();
-  @State() selectedMonth: number = this.month;
-  @State() calendar: [number, number[]][] = [];
-  @State() calendar1: Map<number, number[]>;
+  @State() today = dayjs();
+  @State() selectedMonth: number;
+  @State() calendar: [number, number[]][];
 
   @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
   @State() tempYear: number = this.selectedYear;
-  @State() tempMonth: number = this.selectedMonth;
-  @State() start: DateTime = DateTime.fromObject({
-    year: this.year,
-    month: this.month,
-    day: this.day,
-  });
-
-  @State() end: DateTime = this.to
-    ? DateTime.fromFormat(this.to, this.format)
-    : null;
+  @State() tempMonth: number;
+  @State() startDate: Dayjs;
+  @State() endDate: Dayjs;
 
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
@@ -188,135 +181,70 @@ export class DatePicker {
     // return DateTime.now().year;
   }
 
-  get day() {
-    if (this.from !== null) {
-      return dayjs(this.from, this.format).day();
-      // return DateTime.fromFormat(this.from, this.format).day;
-    }
-
-    return null;
-  }
-
   get month() {
     if (this.from !== null) {
-      return DateTime.fromFormat(this.from, this.format).month;
+      // return DateTime.fromFormat(this.from, this.format).month;
+      // let test = dayjs('2023/01/02', this.format).weekday();
+      // console.log(test);
+      let test = dayjs().month(0).year(2023).startOf('month').weekday();
+      console.log(test);
+      return test;
     }
 
-    return DateTime.now().month;
+    return dayjs().month();
   }
 
   private onDone() {
-    this.done.emit(this.getOutputFormat());
+    // this.done.emit(this.getOutputFormat());
 
-    this.dateSelect.emit({
-      from: this.start?.toFormat(this.format),
-      to: this.end?.toFormat(this.format),
-    });
+    // this.dateSelect.emit({
+    //   from: this.start?.toFormat(this.format),
+    //   to: this.end?.toFormat(this.format),
+    // });
   }
 
   private onDateChange() {
-    const from = this.start?.toFormat(this.format);
-    const to = this.end?.toFormat(this.format);
+    // const from = this.start?.toFormat(this.format);
+    // const to = this.end?.toFormat(this.format);
 
-    this.from = from;
-    this.to = to;
+    // this.from = from;
+    // this.to = to;
 
-    if (this.eventDelimiter) {
-      this.dateChange.emit(this.getOutputFormat());
-    } else {
-      this.dateChange.emit({
-        from,
-        to,
-      });
-    }
-
-    if (this.range) {
-      this.dateRangeChange.emit({
-        from,
-        to,
-      });
-    }
-  }
-
-  private getStartOfMonth(
-    year = DateTime.local().get('year'),
-    month = DateTime.local().get('month')
-  ) {
-    return DateTime.local(year, month).startOf('month');
-  }
-
-  private getEndOfMonth(
-    year = DateTime.local().get('year'),
-    month = DateTime.local().get('month')
-  ) {
-    return DateTime.local(year, month).endOf('month');
-  }
-
-  private getDaysInMonth(
-    start = this.getStartOfMonth(),
-    end = this.getEndOfMonth()
-  ) {
-    return Math.ceil(end.diff(start, 'days').days);
-  }
-
-  private calculateCalendar1() {
-    const calendar = new Map<number, number[]>();
-    const monthStart = dayjs()
-      .month(this.selectedMonth)
-      .year(this.selectedYear)
-      .startOf('month');
-    const monthEnd = dayjs()
-      .month(this.selectedMonth)
-      .year(this.selectedYear)
-      .endOf('month');
-
-    const test = dayjs('2023/08/26', this.format).day();
+    // if (this.range) {
+    //   this.dateRangeChange.emit({
+    //     from,
+    //     to,
+    //   });
+    // }
   }
 
   private calculateCalendar() {
-    const start = this.getStartOfMonth(this.selectedYear, this.selectedMonth);
-    const end = this.getEndOfMonth(this.selectedYear, this.selectedMonth);
-    const totalDays = this.getDaysInMonth(start, end);
-    const totalWeeks = 6;
-    const totalDaysInWeeks = totalWeeks * this.daysInWeek;
-    const startWeekDay = start.weekday;
-    const prependDays = startWeekDay - 1;
-    const appendDays = totalDaysInWeeks - totalDays - prependDays;
-    let weekdays: number[][] = [];
     const calendar: [number, number[]][] = [];
+    const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
+    const monthStart = month.startOf('month');
+    const monthEnd = month.endOf('month');
+    const startWeek = monthStart.week();
+    const endWeek = monthEnd.week();
+    const monthStartWeekDay = monthStart.weekday() - this.weekStartIndex;
+    const monthEndWeekDay = monthEnd.weekday() - this.weekStartIndex;
 
-    // create list of days
-    let days = [...new Array(totalDaysInWeeks).keys()].map((day) => day + 1);
+    let currDayNumber = 1;
+    for (let i = startWeek; i <= endWeek; i++) {
+      const daysArr: number[] = [];
 
-    // add start empty days
-    days.unshift(...new Array(prependDays));
+      for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
+        if (
+          (i === startWeek && j < monthStartWeekDay) ||
+          (i === endWeek && j > monthEndWeekDay)
+        ) {
+          daysArr.push(undefined);
+        } else {
+          daysArr.push(currDayNumber);
+          currDayNumber++;
+        }
+      }
 
-    // remove & add end days
-    days = days.slice(0, days.length - prependDays - appendDays);
-    days.push(...new Array(appendDays));
-
-    // make weeks
-    weekdays = days.reduce((result, item, index) => {
-      const weekIndex = Math.floor(index / this.daysInWeek);
-
-      if (!result[weekIndex]) result[weekIndex] = [];
-
-      result[weekIndex].push(item);
-
-      return result;
-    }, []);
-
-    for (let index = 1; index <= totalWeeks; index++) {
-      const week = weekdays[index - 1];
-      const firstWeekDay = week.find((day) => day !== undefined);
-      const weekNumber = firstWeekDay
-        ? DateTime.local(
-            this.selectedYear,
-            this.selectedMonth,
-            weekdays[index - 1][0]
-          ).weekNumber
-        : undefined;
-      calendar.push([weekNumber, week]);
+      calendar.push([i, daysArr]);
     }
 
     this.calendar = calendar;
@@ -334,7 +262,7 @@ export class DatePicker {
     }
   }
 
-  private selectMonth(month: MonthNumbers) {
+  private selectMonth(month: number) {
     this.selectedMonth = month;
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
@@ -377,94 +305,79 @@ export class DatePicker {
     this.tempYear = year;
   }
 
-  private getDayClasses(day: number) {
-    if (!day) {
-      return;
-    }
+  // private getDayClasses(day: number) {
+  //   if (!day) {
+  //     return;
+  //   }
 
-    const todayLocal = DateTime.local();
-    const dayLocal = DateTime.local(this.selectedYear, this.selectedMonth, day);
-    const dayIso = dayLocal.toISO();
-    const startIso = this.start?.toISO();
-    const endIso = this.end?.toISO();
-    const isToday = Math.ceil(dayLocal.diff(todayLocal, 'days').days) === 0;
+  //   const todayLocal = DateTime.local();
+  //   const dayLocal = DateTime.local(this.selectedYear, this.selectedMonth, day);
+  //   const dayIso = dayLocal.toISO();
+  //   const startIso = this.start?.toISO();
+  //   const endIso = this.end?.toISO();
+  //   const isToday = Math.ceil(dayLocal.diff(todayLocal, 'days').days) === 0;
 
-    return {
-      'calendar-item': true,
-      'empty-day': day === undefined,
-      today: isToday,
-      selected:
-        (this.start && dayIso === startIso) || (this.end && dayIso === endIso),
-      range: this.start && this.end && dayIso > startIso && dayIso < endIso,
-      disabled: !this.isWithinMinMax(dayLocal),
-    };
-  }
+  //   return {
+  //     'calendar-item': true,
+  //     'empty-day': day === undefined,
+  //     today: isToday,
+  //     selected:
+  //       (this.start && dayIso === startIso) || (this.end && dayIso === endIso),
+  //     range: this.start && this.end && dayIso > startIso && dayIso < endIso,
+  //     disabled: !this.isWithinMinMax(dayLocal),
+  //   };
+  // }
 
-  private selectDay(day: number) {
-    const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
-    const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
-    const isSameDay =
-      this.start && !this.end && this.start.toISO() === date.toISO();
+  // private selectDay(day: number) {
+  //   const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
+  //   const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
+  //   const isSameDay =
+  //     this.start && !this.end && this.start.toISO() === date.toISO();
 
-    if (day === undefined) return;
+  //   if (day === undefined) return;
 
-    if (isSameDay) {
-      this.start = null;
-      this.onDateChange();
-      return;
-    }
+  //   if (isSameDay) {
+  //     this.start = null;
+  //     this.onDateChange();
+  //     return;
+  //   }
 
-    if (this.range) {
-      if (this.start === null) {
-        this.start = date;
-      } else if (this.end === null) {
-        if (isStartBeforeEnd) {
-          this.end = date;
-        } else {
-          this.end = this.start;
-          this.start = date;
-        }
-      } else {
-        this.start = date;
-        this.end = null;
-      }
-    } else {
-      this.start = date;
-    }
+  //   if (this.range) {
+  //     if (this.start === null) {
+  //       this.start = date;
+  //     } else if (this.end === null) {
+  //       if (isStartBeforeEnd) {
+  //         this.end = date;
+  //       } else {
+  //         this.end = this.start;
+  //         this.start = date;
+  //       }
+  //     } else {
+  //       this.start = date;
+  //       this.end = null;
+  //     }
+  //   } else {
+  //     this.start = date;
+  //   }
 
-    this.onDateChange();
-  }
+  //   this.onDateChange();
+  // }
 
-  private getOutputFormat() {
-    if (!this.start) {
-      return null;
-    }
+  // private isWithinMinMax(date: DateTime) {
+  //   const dateIso = date.toISO();
+  //   const _minDate = this.minDate
+  //     ? DateTime.fromFormat(this.minDate, this.format)
+  //     : null;
+  //   const _maxDate = this.maxDate
+  //     ? DateTime.fromFormat(this.maxDate, this.format)
+  //     : null;
+  //   return (
+  //     (!_minDate || _minDate.toISO() <= dateIso) &&
+  //     (!_maxDate || _maxDate.toISO() >= dateIso)
+  //   );
+  // }
 
-    if (!this.end) {
-      return this.start.toFormat(this.format);
-    }
-
-    return [
-      this.start.toFormat(this.format),
-      this.end.toFormat(this.format),
-    ].join(this.eventDelimiter);
-  }
-
-  private isWithinMinMax(date: DateTime) {
-    const dateIso = date.toISO();
-    const _minDate = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
-      : null;
-    const _maxDate = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
-      : null;
-    return (
-      (!_minDate || _minDate.toISO() <= dateIso) &&
-      (!_maxDate || _maxDate.toISO() >= dateIso)
-    );
-  }
-
-  // Rotate the weekdaynames array, based on the weekStartIndex
+  // Rotate the WeekdayNames array, based on a starting index
   private rotateWeekDayNames(
     weekdays: WeekdayNames,
     index: number
@@ -483,16 +396,17 @@ export class DatePicker {
   }
 
   componentWillLoad() {
-    if (this.from === null) {
-      this.start = null;
-    }
+    this.startDate =
+      this.from !== undefined ? dayjs(this.from, this.format) : dayjs();
 
-    if (this.year !== null) {
-      this.selectedYear = this.year;
-    }
-    if (this.month) {
-      this.selectedMonth = this.month;
-    }
+    this.endDate =
+      this.to !== undefined ? dayjs(this.to, this.format) : undefined;
+
+    this.selectedMonth = this.startDate.month();
+    this.selectedYear = this.startDate.year();
+
+    this.tempMonth = this.selectedMonth;
+    this.tempYear = this.selectedYear;
   }
 
   componentWillRender() {
@@ -502,7 +416,6 @@ export class DatePicker {
     );
 
     this.calculateCalendar();
-    this.calculateCalendar1();
   }
 
   /**
@@ -511,15 +424,15 @@ export class DatePicker {
   @Method()
   async getCurrentDate() {
     return {
-      start: this.start?.toFormat(this.format),
-      end: this.end?.toFormat(this.format),
+      start: this.startDate.format(this.format),
+      end: this.endDate.format(this.format),
     };
   }
 
   render() {
     return (
       <Host>
-        <ix-date-time-card individual={this.individual} corners={this.corners}>
+        <ix-date-time-card corners={this.corners}>
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
@@ -532,7 +445,7 @@ export class DatePicker {
             <div class="selector">
               <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
                 <span class="fontSize capitalize">
-                  {this.monthNames[this.selectedMonth - 1]} {this.selectedYear}
+                  {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
               <ix-dropdown
@@ -574,9 +487,7 @@ export class DatePicker {
                           arrowYear: true,
                           selected: this.tempMonth - 1 === index,
                         }}
-                        onClick={() =>
-                          this.selectMonth((index + 1) as MonthNumbers)
-                        }
+                        onClick={() => this.selectMonth(index)}
                       >
                         <ix-icon
                           class={{
@@ -622,8 +533,8 @@ export class DatePicker {
                   {week[1].map((day) => (
                     <div
                       key={day}
-                      class={this.getDayClasses(day)}
-                      onClick={() => this.selectDay(day)}
+                      // class={this.getDayClasses(day)}
+                      // onClick={() => this.selectDay(day)}
                     >
                       {day}
                     </div>
@@ -631,11 +542,17 @@ export class DatePicker {
                 </Fragment>
               );
             })}
+            {/* {this.calendar.forEach((days: number[], week: number) => {
+              <Fragment>
+                <div class="calendar-item week-number">{week}</div>
+                {days.map((day) => {
+                  <div key={day}>{day}</div>;
+                })}
+              </Fragment>;
+            })} */}
           </div>
 
-          <div
-            class={{ button: true, hidden: !this.individual || !this.range }}
-          >
+          <div class={{ button: true, hidden: !this.range }}>
             <ix-button onClick={() => this.onDone()}>
               {this.textSelectDate}
             </ix-button>

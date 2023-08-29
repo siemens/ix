@@ -186,8 +186,8 @@ export class DateTimePicker {
     this.dateChange.emit(date);
 
     const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.start;
-    this._to = currentDateTime.end;
+    // this._from = currentDateTime.start;
+    // this._to = currentDateTime.end;
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
@@ -214,7 +214,7 @@ export class DateTimePicker {
           <ix-date-picker
             ref={(ref) => (this.datePickerElement = ref)}
             corners="left"
-            individual={false}
+            // individual={false}
             range={this.range}
             onDateChange={(event) => this.onDateChange(event)}
             from={this.from}
@@ -222,7 +222,7 @@ export class DateTimePicker {
             format={this.dateFormat}
             minDate={this.minDate}
             maxDate={this.maxDate}
-            eventDelimiter={this.eventDelimiter}
+            // eventDelimiter={this.eventDelimiter}
           ></ix-date-picker>
 
           <ix-time-picker

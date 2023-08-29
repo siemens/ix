@@ -407,11 +407,6 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter": string;
-        /**
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format": string;
@@ -419,15 +414,11 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string | null;
+        "from": string | undefined;
         /**
           * Get the current DateTime
          */
         "getCurrentDate": () => Promise<{ start: string; end: string; }>;
-        /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual": boolean;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -451,7 +442,7 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to": string | null;
+        "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
          */
@@ -3291,11 +3282,6 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter"?: string;
-        /**
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format"?: string;
@@ -3303,11 +3289,7 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string | null;
-        /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual"?: boolean;
+        "from"?: string | undefined;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3351,7 +3333,7 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to"?: string | null;
+        "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
          */
