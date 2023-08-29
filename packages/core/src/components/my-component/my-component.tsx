@@ -18,7 +18,6 @@ export class MyComponent {
     return (
       <Host>
         <ix-basic-navigation>
-          <ix-application-header name="Demo App"></ix-application-header>
           <ix-menu>
             <ix-menu-item>Test</ix-menu-item>
             <ix-menu-item>Test 2</ix-menu-item>

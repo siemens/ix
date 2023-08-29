@@ -11,12 +11,14 @@ import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
   await mount(`
+    <ix-application>
       <ix-menu>
         <ix-menu-category label="Category label">
           <ix-menu-item>Test</ix-menu-item>
           <ix-menu-item>Test</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
+    </ix-application>
     `);
   const element = page.locator('ix-menu-category');
   await expect(element).toHaveClass('hydrated');
@@ -34,10 +36,12 @@ test('should collapse by click', async ({ mount, page }) => {
   </ix-basic-navigation>
   `);
   const categoryItem = page.locator('ix-menu-category');
-  const menu = page.locator('ix-menu');
+  const app = page.locator('ix-basic-navigation');
   const expandMenuButton = page.locator('ix-menu').locator('.burger-menu');
 
-  // await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+  await app.evaluate(
+    (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+  );
 
   await categoryItem.click();
 
@@ -72,7 +76,11 @@ test('should expand items', async ({ mount, page }) => {
   `);
 
   const menu = page.locator('ix-menu');
-  // await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
 
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
@@ -99,8 +107,11 @@ test('should show items as dropdown', async ({ mount, page }) => {
   `);
 
   await page.waitForSelector('ix-menu');
-  const menu = page.locator('ix-menu');
-  // await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
 
   const menuCategory = page.locator('ix-menu-category');
   await menuCategory.click();
@@ -124,17 +135,24 @@ test('should collapse category after collapse menu', async ({
   page,
 }) => {
   await mount(`
-    <ix-menu>
-      <ix-menu-category label="Category label">
-        <ix-menu-item>Test Item 1</ix-menu-item>
-        <ix-menu-item>Test Item 2</ix-menu-item>
-      </ix-menu-category>
-    </ix-menu>
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test Item 1</ix-menu-item>
+          <ix-menu-item>Test Item 2</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-basic-navigation>
   `);
 
   await page.waitForSelector('ix-menu');
   const menu = page.locator('ix-menu');
-  // await menu.evaluate((menu: HTMLIxMenuElement) => (menu.breakpoints = ['md']));
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
+
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
 

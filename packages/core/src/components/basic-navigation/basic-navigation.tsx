@@ -93,12 +93,10 @@ export class BasicNavigation {
       }
     );
 
-    if (this.hideHeader === false) {
-      this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
-        this.breakpoint = mode;
-      });
-      this.breakpoint = applicationLayoutService.breakpoint;
-    }
+    this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
+      this.breakpoint = mode;
+    });
+    this.breakpoint = applicationLayoutService.breakpoint;
 
     if (this.forceBreakpoint) {
       this.forceLayoutChange(this.forceBreakpoint);

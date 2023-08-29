@@ -45,16 +45,7 @@ class ApplicationLayoutService {
     }
     const matchBreakpoints: [Breakpoint, boolean][] = [];
 
-    const applicationHeader = document.querySelector('ix-application-header');
-    const breakpoints = this.#supportedBreakpoints.filter((breakpoint) => {
-      // Remove breakpoint layout 'sm' if no application-header is provided.
-      // Otherwise no navigation is possible anymore
-
-      if (applicationHeader) {
-        return true;
-      }
-      return breakpoint !== 'sm';
-    });
+    const breakpoints = this.#supportedBreakpoints;
 
     breakpoints.forEach((breakpoint) => {
       const match = matchBreakpoint(breakpoint);

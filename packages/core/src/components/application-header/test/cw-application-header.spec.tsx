@@ -20,6 +20,6 @@ describe('ix-application-header', () => {
     });
 
     const header = page.doc.querySelector('ix-application-header');
-    expect(header.className).toContain('breakpoint-lg');
+    expect(header.className).toContain('breakpoint-md');
   });
 });

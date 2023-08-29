@@ -228,7 +228,7 @@ export class Menu {
     return this.hostElement.querySelector('.about-news')!;
   }
 
-  get aboutsNewsPopover(): HTMLIxMenuAboutNewsElement {
+  get aboutNewsPopover(): HTMLIxMenuAboutNewsElement {
     return (
       document.querySelector('ix-menu-about-news') ??
       this.hostElement.querySelector('ix-menu-about-news')!
@@ -267,14 +267,6 @@ export class Menu {
     if (this.pinned) {
       this.pinnedChange(this.pinned);
     }
-
-    // if (this.forceBreakpoint) {
-    //   this.forceLayoutChange(this.forceBreakpoint);
-    // }
-
-    // if (this.breakpoints !== undefined && this.breakpoints.length > 0) {
-    //   this.onBreakpointsChange(this.breakpoints);
-    // }
   }
 
   componentWillLoad() {
@@ -321,9 +313,14 @@ export class Menu {
       this.breakpoint = 'md';
       return;
     }
-    if (this.applicationLayoutContext?.hideHeader) {
+    if (!this.applicationLayoutContext) {
       return;
     }
+
+    if (this.applicationLayoutContext.hideHeader && mode === 'sm') {
+      return;
+    }
+
     this.breakpoint = mode;
 
     if (this.breakpoint === 'lg') {
@@ -359,23 +356,22 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutsNewsPopover) {
+    if (!this.aboutNewsPopover) {
       return;
     }
 
-    this.aboutsNewsPopover.style.bottom =
-      this.getAboutPopoverVerticalPosition();
+    this.aboutNewsPopover.style.bottom = this.getAboutPopoverVerticalPosition();
 
-    if (!this.popoverArea?.contains(this.aboutsNewsPopover)) {
+    if (!this.popoverArea?.contains(this.aboutNewsPopover)) {
       const showMore = () => {
-        if (this.aboutsNewsPopover?.aboutItemLabel && this.about) {
-          this.about.activeTabLabel = this.aboutsNewsPopover.aboutItemLabel;
+        if (this.aboutNewsPopover?.aboutItemLabel && this.about) {
+          this.about.activeTabLabel = this.aboutNewsPopover.aboutItemLabel;
           this.toggleAbout(true);
         }
       };
 
-      this.aboutsNewsPopover.addEventListener('showMore', showMore.bind(this));
-      document.body.appendChild(this.aboutsNewsPopover);
+      this.aboutNewsPopover.addEventListener('showMore', showMore.bind(this));
+      document.body.appendChild(this.aboutNewsPopover);
     }
   }
 
@@ -404,8 +400,8 @@ export class Menu {
       this.expand = !this.expand;
     }
 
-    if (this.aboutsNewsPopover) {
-      this.aboutsNewsPopover.expanded = this.expand;
+    if (this.aboutNewsPopover) {
+      this.aboutNewsPopover.expanded = this.expand;
     }
 
     this.expandChange.emit(this.expand);
@@ -568,6 +564,10 @@ export class Menu {
     }
   }
 
+  private isHiddenFromViewport() {
+    return this.breakpoint === 'sm' && this.expand === false;
+  }
+
   render() {
     return (
       <Host
@@ -618,7 +618,9 @@ export class Menu {
                 }}
               ></div>
               <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
-                <slot></slot>
+                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                  <slot></slot>
+                ) : null}
               </div>
               <div
                 class={{
@@ -632,6 +634,7 @@ export class Menu {
           <div class="bottom-tab-divider"></div>
           {this.settings ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="settings"
               class={{
                 'internal-tab': true,
@@ -648,6 +651,7 @@ export class Menu {
           <div id="popover-area"></div>
           {this.about ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="aboutAndLegal"
               class={{
                 'internal-tab': true,
@@ -662,6 +666,7 @@ export class Menu {
           ) : null}
           {this.enableToggleTheme ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
@@ -672,6 +677,7 @@ export class Menu {
           ) : null}
           {this.enableMapExpand ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="menu-collapse"
               onClick={() => this.mapExpandChange.emit(this.mapExpand)}
               class="internal-tab bottom-tab"
