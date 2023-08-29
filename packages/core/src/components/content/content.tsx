@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { hasSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-content',
@@ -15,12 +16,37 @@ import { Component, h, Host } from '@stencil/core';
   shadow: true,
 })
 export class Content {
+  @Element() hostElement!: HTMLIxContentElement;
+
+  @State() isContentHeaderSlotted = false;
+
+  get contentHeaderSlot() {
+    return this.hostElement.shadowRoot.querySelector(
+      '.content-header slot'
+    ) as HTMLSlotElement;
+  }
+
   render() {
     return (
       <Host>
-        <main>
+        <div
+          class={{
+            'content-header': true,
+            slotted: this.isContentHeaderSlotted,
+          }}
+        >
+          <slot
+            name="content-header"
+            onSlotchange={() => {
+              this.isContentHeaderSlotted = hasSlottedElements(
+                this.contentHeaderSlot
+              );
+            }}
+          ></slot>
+        </div>
+        <div class="content">
           <slot></slot>
-        </main>
+        </div>
       </Host>
     );
   }

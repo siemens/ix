@@ -142,6 +142,14 @@ export namespace Components {
          */
         "applicationName": string;
         /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint": Breakpoint | undefined;
+        /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */
         "hideHeader": boolean;
@@ -3080,6 +3088,14 @@ declare namespace LocalJSX {
           * Application name
          */
         "applicationName"?: string;
+        /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint"?: Breakpoint | undefined;
         /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */

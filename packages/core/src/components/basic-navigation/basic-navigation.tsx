@@ -42,6 +42,29 @@ export class BasicNavigation {
     this.breakpoint = applicationLayoutService.breakpoint;
   }
 
+  /**
+   * Change the responsive layout of the menu structure
+   */
+  @Prop() forceBreakpoint: Breakpoint | undefined;
+  forceLayoutChange(newMode: Breakpoint | undefined) {
+    if (!newMode) {
+      applicationLayoutService.enableBreakpointDetection();
+      return;
+    }
+
+    applicationLayoutService.disableBreakpointDetection();
+    applicationLayoutService.setBreakpoint(newMode);
+  }
+
+  /**
+   * Supported layouts
+   */
+  @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+  @Watch('breakpoints')
+  onBreakpointsChange(breakpoints: Breakpoint[]) {
+    applicationLayoutService.setBreakpoints(breakpoints);
+  }
+
   @State() breakpoint: Breakpoint = 'lg';
 
   get menu(): HTMLIxMenuElement | null {
@@ -59,6 +82,8 @@ export class BasicNavigation {
   }
 
   componentWillLoad() {
+    applicationLayoutService.setBreakpoints(this.breakpoints);
+
     this.contextProvider = useContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
@@ -70,10 +95,13 @@ export class BasicNavigation {
 
     if (this.hideHeader === false) {
       this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
-        console.log(mode);
         this.breakpoint = mode;
       });
       this.breakpoint = applicationLayoutService.breakpoint;
+    }
+
+    if (this.forceBreakpoint) {
+      this.forceLayoutChange(this.forceBreakpoint);
     }
   }
 

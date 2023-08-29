@@ -44,7 +44,7 @@ export class ContentHeader {
 
   render() {
     return (
-      <Host>
+      <Host slot="content-header">
         {this.hasBackButton ? (
           <ix-icon-button
             class={'backButton'}

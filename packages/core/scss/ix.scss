@@ -39,6 +39,8 @@
 @import './components/table';
 @import './components/fonts';
 
+@import 'mixins/scrollbar';
+
 :root {
   --animate-duration: #{$default-time};
   --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
@@ -58,40 +60,7 @@ body {
 }
 
 body:not(.disable-scrollbar) {
-  ::-webkit-scrollbar-button {
-    display: none;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
-  }
-
-  ::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
-  }
-
-  ::-webkit-scrollbar-corner {
-    display: none;
-  }
+  @include scrollbar();
 }
 
 *,

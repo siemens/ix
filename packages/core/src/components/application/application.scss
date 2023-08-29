@@ -27,30 +27,22 @@
     display: contents;
   }
 
-  .content {
+  .application {
     display: flex;
+    position: relative;
+    flex-direction: row;
     height: 100%;
     width: 100%;
+    overflow: hidden;
+  }
+
+  .content {
+    display: block;
     position: relative;
     margin-left: 3.25rem;
-    overflow: auto;
-  }
-
-  .navigation-content {
-    display: flex;
-    position: relative;
-
-    flex-direction: row;
-
-    height: calc(100% - 2.75rem);
-    width: 100%;
-  }
-}
-
-:host(.hide-header) {
-  .navigation-content,
-  .content {
     height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 }
 

@@ -53,8 +53,8 @@ export class Application {
    */
   @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
   @Watch('breakpoints')
-  onBreakpointsChange(modes: Breakpoint[]) {
-    applicationLayoutService.setBreakpoints(modes);
+  onBreakpointsChange(breakpoints: Breakpoint[]) {
+    applicationLayoutService.setBreakpoints(breakpoints);
   }
 
   @State() breakpoint: Breakpoint = 'lg';
@@ -128,11 +128,11 @@ export class Application {
         }}
       >
         <slot name="application-header"></slot>
-        <div class="navigation-content">
+        <div class="application">
           <slot name="menu"></slot>
-          <div class="content" onClick={() => this.onContentClick()}>
+          <main class="content" onClick={() => this.onContentClick()}>
             <slot></slot>
-          </div>
+          </main>
         </div>
       </Host>
     );

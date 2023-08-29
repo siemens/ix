@@ -15,3 +15,9 @@
 @import "./borderWidth";
 @import "./border";
 @import "./letterSpacing";
+
+:root {
+  .theme-legacy-classic-dark {
+    --ix-theme-name: legacy-classic-dark;
+  }
+}

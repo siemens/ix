@@ -80,8 +80,13 @@ class ThemeSwitcher {
   }
 
   public getCurrentTheme() {
-    return Array.from(document.body.classList).find((className) =>
-      this.isThemeClass(className)
+    return (
+      Array.from(document.body.classList).find((className) =>
+        this.isThemeClass(className)
+      ) ??
+      `theme-${window
+        .getComputedStyle(document.body)
+        .getPropertyValue('--ix-theme-name')}`
     );
   }
 
