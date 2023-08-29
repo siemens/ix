@@ -36,7 +36,7 @@ test('should stay close after menu click when NOT pinned', async ({
     `);
   const menu = page.locator('ix-menu');
   await menu.evaluate((menu: HTMLIxMenuElement) => {
-    menu.breakpoints = ['md'];
+    // menu.breakpoints = ['md'];
   });
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();

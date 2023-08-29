@@ -97,10 +97,7 @@ export class BasicNavigation {
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header
-            name={this.applicationName}
-            breakpoint={this.breakpoint}
-          >
+          <ix-application-header name={this.applicationName}>
             <slot name="logo" slot="logo"></slot>
           </ix-application-header>
         ) : null}

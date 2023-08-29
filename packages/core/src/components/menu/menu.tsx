@@ -108,36 +108,6 @@ export class Menu {
   }
 
   /**
-   * Change the responsive layout of the menu structure
-   */
-  @Prop() forceBreakpoint: Breakpoint | undefined;
-  forceLayoutChange(newMode: Breakpoint | undefined) {
-    if (this.pinned) {
-      console.warn(
-        'You cannot force a breakpoint while pinned property is set!'
-      );
-      return;
-    }
-
-    if (!newMode) {
-      applicationLayoutService.enableBreakpointDetection();
-      return;
-    }
-
-    applicationLayoutService.disableBreakpointDetection();
-    applicationLayoutService.setBreakpoint(newMode);
-  }
-
-  /**
-   * Supported layouts
-   */
-  @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
-  @Watch('breakpoints')
-  onBreakpointsChange(modes: Breakpoint[]) {
-    applicationLayoutService.setBreakpoints(modes);
-  }
-
-  /**
    */
   @Prop() i18nLegal = 'About & legal information';
 
@@ -298,13 +268,13 @@ export class Menu {
       this.pinnedChange(this.pinned);
     }
 
-    if (this.forceBreakpoint) {
-      this.forceLayoutChange(this.forceBreakpoint);
-    }
+    // if (this.forceBreakpoint) {
+    //   this.forceLayoutChange(this.forceBreakpoint);
+    // }
 
-    if (this.breakpoints !== undefined && this.breakpoints.length > 0) {
-      this.onBreakpointsChange(this.breakpoints);
-    }
+    // if (this.breakpoints !== undefined && this.breakpoints.length > 0) {
+    //   this.onBreakpointsChange(this.breakpoints);
+    // }
   }
 
   componentWillLoad() {
@@ -324,7 +294,6 @@ export class Menu {
     );
 
     menuController.register(this.hostElement);
-    applicationLayoutService.setBreakpoints(this.breakpoints);
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
@@ -353,9 +322,6 @@ export class Menu {
       return;
     }
     if (this.applicationLayoutContext?.hideHeader) {
-      return;
-    }
-    if (!this.breakpoints.includes(mode)) {
       return;
     }
     this.breakpoint = mode;

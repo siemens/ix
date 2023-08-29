@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { applicationLayoutService } from '../utils/application-layout';
 import { Breakpoint } from '../utils/breakpoints';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
@@ -25,11 +26,8 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
-  /**
-   * @internal
-   */
-  @Prop() breakpoint: Breakpoint = 'lg';
-
+  /** @internal */
+  @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
 
   private menuDisposable?: Disposable;
@@ -39,6 +37,11 @@ export class ApplicationHeader {
     this.menuDisposable = menuController.expandChange.on((show) => {
       this.menuExpanded = show;
     });
+
+    this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
+      this.breakpoint = mode;
+    });
+    this.breakpoint = applicationLayoutService.breakpoint;
   }
 
   componentDidLoad() {
@@ -77,7 +80,10 @@ export class ApplicationHeader {
 
   render() {
     return (
-      <Host class={{ [`breakpoint-${this.breakpoint}`]: true }}>
+      <Host
+        class={{ [`breakpoint-${this.breakpoint}`]: true }}
+        slot="application-header"
+      >
         {this.breakpoint === 'sm' ? (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}

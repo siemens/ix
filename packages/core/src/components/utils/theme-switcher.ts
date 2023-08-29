@@ -1,6 +1,8 @@
 import { TypedEvent } from './typed-event';
 
-export class ThemeSwitcher {
+export type ThemeVariant = 'light' | 'dark';
+
+class ThemeSwitcher {
   readonly prefixTheme = 'theme-';
   readonly suffixLight = '-light';
   readonly suffixDark = '-dark';
@@ -13,7 +15,7 @@ export class ThemeSwitcher {
     return this._themeChanged;
   }
 
-  private hasVariantSuffix(className: string) {
+  public hasVariantSuffix(className: string) {
     return (
       className.endsWith(this.suffixDark) ||
       className.endsWith(this.suffixLight)
@@ -26,15 +28,25 @@ export class ThemeSwitcher {
     );
   }
 
-  public setTheme(themeName: string) {
-    if (!this.isThemeClass(themeName)) {
+  public setTheme(themeName: string, systemAppearance = false) {
+    if (!this.isThemeClass(themeName) && systemAppearance === false) {
       throw Error(
         `Provided theme name ${themeName} does not match our naming conventions. (theme-<name>-(dark,light))`
       );
     }
 
-    const oldThemes: string[] = [];
+    if (systemAppearance) {
+      const currentSystemAppearance = getCurrentSystemAppearance();
+      this.replaceBodyThemeClass(themeName);
+      this.setVariant(currentSystemAppearance);
+      return;
+    }
 
+    this.replaceBodyThemeClass(themeName);
+  }
+
+  private replaceBodyThemeClass(themeName: string) {
+    const oldThemes: string[] = [];
     document.body.classList.forEach((className) => {
       if (this.isThemeClass(className)) {
         oldThemes.push(className);
@@ -65,6 +77,29 @@ export class ThemeSwitcher {
         this.getOppositeMode(themeName)
       );
     });
+  }
+
+  public getCurrentTheme() {
+    return Array.from(document.body.classList).find((className) =>
+      this.isThemeClass(className)
+    );
+  }
+
+  public setVariant(variant: ThemeVariant = getCurrentSystemAppearance()) {
+    const currentTheme = this.getCurrentTheme();
+    document.body.classList.remove(currentTheme);
+
+    if (currentTheme.endsWith(this.suffixDark)) {
+      document.body.classList.add(
+        currentTheme.replace(/-dark$/g, `-${variant}`)
+      );
+    }
+
+    if (currentTheme.endsWith(this.suffixLight)) {
+      document.body.classList.add(
+        currentTheme.replace(/-light$/g, `-${variant}`)
+      );
+    }
   }
 
   private getOppositeMode(themeName: string) {
@@ -117,5 +152,21 @@ export class ThemeSwitcher {
     this.registerMutationObserver();
   }
 }
+
+export type IxTheme =
+  | 'classic'
+  | 'classic-dark'
+  | 'classic-light'
+  | (string & {});
+
+export const getCurrentSystemAppearance = (): ThemeVariant => {
+  const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+
+  if (matchMedia.matches) {
+    return 'dark';
+  }
+
+  return 'light';
+};
 
 export const themeSwitcher = new ThemeSwitcher();

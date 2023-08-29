@@ -21,6 +21,8 @@
   border-bottom: var(--theme-app-header--border-width) solid
     var(--theme-app-header--border-color);
 
+  z-index: var(--theme-z-index-fixed);
+
   .name {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
