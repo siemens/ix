@@ -21,6 +21,12 @@ import {
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
+import dayjs from 'dayjs';
+import toObject from 'dayjs/plugin/toObject';
+import weekday from 'dayjs/plugin/weekday';
+dayjs.extend(toObject);
+dayjs.extend(weekday);
+
 export type DateChangeEvent = {
   from: string;
   to: string;
@@ -112,14 +118,15 @@ export class DatePicker {
    */
   @Prop() textSelectDate = 'Done';
 
-  @State() yearValue = this.year;
+  @State() selectedYear = this.year;
   @State() today = DateTime.now();
-  @State() monthValue: number = this.month;
+  @State() selectedMonth: number = this.month;
   @State() calendar: [number, number[]][] = [];
+  @State() calendar1: Map<number, number[]>;
 
   @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
-  @State() tempYear: number = this.yearValue;
-  @State() tempMonth: number = this.monthValue;
+  @State() tempYear: number = this.selectedYear;
+  @State() tempMonth: number = this.selectedMonth;
   @State() start: DateTime = DateTime.fromObject({
     year: this.year,
     month: this.month,
@@ -167,15 +174,18 @@ export class DatePicker {
 
   get year() {
     if (this.from !== null) {
-      return DateTime.fromFormat(this.from, this.format).year;
+      return dayjs(this.from, this.format).year();
+      // return DateTime.fromFormat(this.from, this.format).year;
     }
 
-    return DateTime.now().year;
+    return dayjs().year();
+    // return DateTime.now().year;
   }
 
   get day() {
     if (this.from !== null) {
-      return DateTime.fromFormat(this.from, this.format).day;
+      return dayjs(this.from, this.format).day();
+      // return DateTime.fromFormat(this.from, this.format).day;
     }
 
     return null;
@@ -243,9 +253,22 @@ export class DatePicker {
     return Math.ceil(end.diff(start, 'days').days);
   }
 
+  private calculateCalendar1() {
+    const calendar = new Map<number, number[]>();
+    const monthStart = dayjs()
+      .month(this.selectedMonth)
+      .year(this.selectedYear)
+      .startOf('month')
+      .day();
+    const monthEnd = dayjs()
+      .month(this.selectedMonth)
+      .year(this.selectedYear)
+      .endOf('month');
+  }
+
   private calculateCalendar() {
-    const start = this.getStartOfMonth(this.yearValue, this.monthValue);
-    const end = this.getEndOfMonth(this.yearValue, this.monthValue);
+    const start = this.getStartOfMonth(this.selectedYear, this.selectedMonth);
+    const end = this.getEndOfMonth(this.selectedYear, this.selectedMonth);
     const totalDays = this.getDaysInMonth(start, end);
     const totalWeeks = 6;
     const totalDaysInWeeks = totalWeeks * this.daysInWeek;
@@ -281,8 +304,8 @@ export class DatePicker {
       const firstWeekDay = week.find((day) => day !== undefined);
       const weekNumber = firstWeekDay
         ? DateTime.local(
-            this.yearValue,
-            this.monthValue,
+            this.selectedYear,
+            this.selectedMonth,
             weekdays[index - 1][0]
           ).weekNumber
         : undefined;
@@ -293,21 +316,20 @@ export class DatePicker {
   }
 
   private changeMonth(number) {
-    if (this.monthValue + number < 1) {
-      this.yearValue--;
-      this.monthValue = 12;
-    } else if (this.monthValue + number > 12) {
-      this.yearValue++;
-      this.monthValue = 1;
+    if (this.selectedMonth + number < 1) {
+      this.selectedYear--;
+      this.selectedMonth = 12;
+    } else if (this.selectedMonth + number > 12) {
+      this.selectedYear++;
+      this.selectedMonth = 1;
     } else {
-      this.monthValue += number;
+      this.selectedMonth += number;
     }
-    this.calculateCalendar();
   }
 
   private selectMonth(month: MonthNumbers) {
-    this.monthValue = month;
-    this.yearValue = this.tempYear;
+    this.selectedMonth = month;
+    this.selectedYear = this.tempYear;
     this.tempMonth = month;
   }
 
@@ -323,21 +345,23 @@ export class DatePicker {
     if (this.years.length > limit) return;
 
     if (atTop) {
+      const first = this.yearContainerRef.firstElementChild as HTMLElement;
       this.years = [
         ...[...Array(5).keys()].map((year) => year + this.years[0] - 5),
         ...this.years,
       ];
-      this.yearContainerRef.scroll({ behavior: 'smooth', top: scroll + 100 });
+      this.yearContainerRef.scrollTo(0, first.offsetTop);
     }
 
     if (atBottom) {
+      const last = this.yearContainerRef.lastElementChild as HTMLElement;
       this.years = [
         ...this.years,
         ...[...Array(5).keys()].map(
           (year) => year + this.years[this.years.length - 1]
         ),
       ];
-      this.yearContainerRef.scroll({ behavior: 'smooth', top: scroll - 50 });
+      this.yearContainerRef.scrollTo(0, last.offsetTop);
     }
   }
 
@@ -352,7 +376,7 @@ export class DatePicker {
     }
 
     const todayLocal = DateTime.local();
-    const dayLocal = DateTime.local(this.yearValue, this.monthValue, day);
+    const dayLocal = DateTime.local(this.selectedYear, this.selectedMonth, day);
     const dayIso = dayLocal.toISO();
     const startIso = this.start?.toISO();
     const endIso = this.end?.toISO();
@@ -370,7 +394,7 @@ export class DatePicker {
   }
 
   private selectDay(day: number) {
-    const date = DateTime.local(this.yearValue, this.monthValue, day);
+    const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
     const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
     const isSameDay =
       this.start && !this.end && this.start.toISO() === date.toISO();
@@ -439,15 +463,16 @@ export class DatePicker {
     }
 
     if (this.year !== null) {
-      this.yearValue = this.year;
+      this.selectedYear = this.year;
     }
     if (this.month) {
-      this.monthValue = this.month;
+      this.selectedMonth = this.month;
     }
   }
 
   componentWillRender() {
     this.calculateCalendar();
+    this.calculateCalendar1();
   }
 
   /**
@@ -477,7 +502,7 @@ export class DatePicker {
             <div class="selector">
               <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
                 <span class="fontSize capitalize">
-                  {this.monthNames[this.monthValue - 1]} {this.yearValue}
+                  {this.monthNames[this.selectedMonth - 1]} {this.selectedYear}
                 </span>
               </ix-button>
               <ix-dropdown
