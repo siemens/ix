@@ -8,8 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
-
+import { regressionTest, test } from '@utils/test';
 const smallWidth = 639;
 const mediumWidth = 642;
 const largeWidth = 1026;
@@ -176,39 +175,61 @@ regressionTest.describe('basic navigation mobile', () => {
     ).toMatchSnapshot();
   });
 
-  regressionTest('mobile expanded overlay', async ({ page }) => {
-    await page.goto('basic-navigation/mobile');
+  test('mobile expanded overlay', async ({ page, mount }) => {
+    // await page.goto('basic-navigation/mobile');
+    await mount(
+      `
+      <ix-basic-navigation application-name="Test">
+        <div slot="logo">LOGO</div>
+        <ix-menu>
+          <ix-menu-item>Test 1</ix-menu-item>
+          <ix-menu-item>Test 1</ix-menu-item>
+          <ix-menu-item>Test 1</ix-menu-item>
+          <ix-menu-settings>
+            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+            <ix-menu-settings-item>Item 1</ix-menu-settings-item>
+          </ix-menu-settings>
+        </ix-menu>
+        <div class="debug-element"></div>
+      </ix-basic-navigation>
+      `
+    );
+
     await page.setViewportSize({
       height: 1200,
       width: smallWidth,
     });
 
+    // Animation
     await page.waitForTimeout(500);
-    const header = page.locator('ix-application-header');
-    const menuElement = header.locator('ix-burger-menu');
 
-    await expect(menuElement).toBeVisible();
-
-    await menuElement.click();
-    await expect(page.locator('ix-menu')).toHaveClass(/mode-small/);
-    await expect(page.locator('ix-menu')).toHaveClass(/expanded/);
-
-    const settingsButton = await page.waitForSelector('#settings');
-    await settingsButton.click();
-    await expect(page.locator('ix-menu-settings')).toBeVisible();
-
-    await menuElement.click();
+    const toggleMenuButton = page.locator('ix-burger-menu').nth(0);
+    await expect(toggleMenuButton).toBeVisible();
+    await toggleMenuButton.click();
 
     const menu = page.locator('ix-menu');
-    const item = menu.locator('ix-menu-item').nth(0);
+    await expect(menu).toHaveClass(/expanded/);
 
-    await expect(
-      page.locator('ix-menu').locator('.menu.expanded')
-    ).toBeVisible();
+    // Animation
+    await page.waitForTimeout(500);
 
-    await expect(item).toBeVisible();
+    const settings = page.locator('#settings');
+    await settings.click({
+      force: true,
+    });
+    // Animation
+    await page.waitForTimeout(500);
+    await expect(menu).not.toHaveClass(/expanded/);
 
-    await page.waitForTimeout(1000);
+    const settingsOverlay = page.locator('ix-menu-settings');
+    await expect(settingsOverlay).toBeVisible();
+
+    await toggleMenuButton.click();
+    await expect(menu).toHaveClass(/expanded/);
+
+    // Animation
+    await page.waitForTimeout(500);
 
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })

@@ -50,7 +50,6 @@ import { Component } from '@angular/core';
             required
           />
         </ix-validation-tooltip>
-        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="col-md-4">
         <label htmlFor="validationCustomUsername" class="form-label">

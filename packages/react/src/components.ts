@@ -40,6 +40,7 @@ export const IxExpandingSearch = /*@__PURE__*/createReactComponent<JSX.IxExpandi
 export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, HTMLIxFilterChipElement>('ix-filter-chip');
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile');
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content');
+export const IxFormField = /*@__PURE__*/createReactComponent<JSX.IxFormField, HTMLIxFormFieldElement>('ix-form-field');
 export const IxGroup = /*@__PURE__*/createReactComponent<JSX.IxGroup, HTMLIxGroupElement>('ix-group');
 export const IxGroupContextMenu = /*@__PURE__*/createReactComponent<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement>('ix-group-context-menu');
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item');

@@ -823,6 +823,12 @@ export namespace Components {
          */
         "contentVisible": boolean;
     }
+    interface IxFormField {
+        /**
+          * Label
+         */
+        "label": string;
+    }
     interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
@@ -2485,6 +2491,12 @@ declare global {
         prototype: HTMLIxFlipTileContentElement;
         new (): HTMLIxFlipTileContentElement;
     };
+    interface HTMLIxFormFieldElement extends Components.IxFormField, HTMLStencilElement {
+    }
+    var HTMLIxFormFieldElement: {
+        prototype: HTMLIxFormFieldElement;
+        new (): HTMLIxFormFieldElement;
+    };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
     var HTMLIxGroupElement: {
@@ -2891,6 +2903,7 @@ declare global {
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
+        "ix-form-field": HTMLIxFormFieldElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
@@ -3807,6 +3820,12 @@ declare namespace LocalJSX {
           * Controls the visibility of the content
          */
         "contentVisible"?: boolean;
+    }
+    interface IxFormField {
+        /**
+          * Label
+         */
+        "label"?: string;
     }
     interface IxGroup {
         /**
@@ -5174,6 +5193,7 @@ declare namespace LocalJSX {
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
+        "ix-form-field": IxFormField;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
@@ -5307,6 +5327,7 @@ declare module "@stencil/core" {
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
+            "ix-form-field": LocalJSX.IxFormField & JSXBase.HTMLAttributes<HTMLIxFormFieldElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
