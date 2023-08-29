@@ -21,10 +21,10 @@ import {
 import { DateTime, Info, MonthNumbers } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
-import dayjs from 'dayjs';
-import toObject from 'dayjs/plugin/toObject';
+import dayjs, { WeekdayNames } from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
-dayjs.extend(toObject);
+dayjs.extend(localeData);
 dayjs.extend(weekday);
 
 export type DateChangeEvent = {
@@ -43,7 +43,7 @@ export type DateTimeCorners = DateTimeCardCorners;
 })
 export class DatePicker {
   private daysInWeek = 7;
-  private dayNames = Info.weekdays();
+  private dayNames: WeekdayNames;
   private monthNames = Info.months();
 
   /**
@@ -117,6 +117,12 @@ export class DatePicker {
    * @since 1.1.0
    */
   @Prop() textSelectDate = 'Done';
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+   */
+  @Prop() weekStartIndex = 2;
 
   @State() selectedYear = this.year;
   @State() today = DateTime.now();
@@ -258,12 +264,13 @@ export class DatePicker {
     const monthStart = dayjs()
       .month(this.selectedMonth)
       .year(this.selectedYear)
-      .startOf('month')
-      .day();
+      .startOf('month');
     const monthEnd = dayjs()
       .month(this.selectedMonth)
       .year(this.selectedYear)
       .endOf('month');
+
+    const test = dayjs('2023/08/26', this.format).day();
   }
 
   private calculateCalendar() {
@@ -457,6 +464,24 @@ export class DatePicker {
     );
   }
 
+  // Rotate the weekdaynames array, based on the weekStartIndex
+  private rotateWeekDayNames(
+    weekdays: WeekdayNames,
+    index: number
+  ): dayjs.WeekdayNames {
+    const clone = [...weekdays] as WeekdayNames;
+
+    if (index === 0) {
+      return clone;
+    }
+
+    index = -index;
+    const len = weekdays.length;
+
+    clone.push(...clone.splice(0, ((-index % len) + len) % len));
+    return clone;
+  }
+
   componentWillLoad() {
     if (this.from === null) {
       this.start = null;
@@ -471,6 +496,11 @@ export class DatePicker {
   }
 
   componentWillRender() {
+    this.dayNames = this.rotateWeekDayNames(
+      dayjs.weekdays(),
+      this.weekStartIndex
+    );
+
     this.calculateCalendar();
     this.calculateCalendar1();
   }

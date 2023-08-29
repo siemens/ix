@@ -452,6 +452,10 @@ export namespace Components {
           * @since 1.1.0
          */
         "to": string | null;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+         */
+        "weekStartIndex": number;
     }
     interface IxDateTimeCard {
         /**
@@ -3348,6 +3352,10 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "to"?: string | null;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDateTimeCard {
         /**
