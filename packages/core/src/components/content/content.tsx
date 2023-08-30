@@ -37,7 +37,7 @@ export class Content {
           }}
         >
           <slot
-            name="content-header"
+            name="header"
             onSlotchange={() => {
               this.isContentHeaderSlotted = hasSlottedElements(
                 this.contentHeaderSlot

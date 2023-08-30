@@ -23,7 +23,15 @@ export class MyComponent {
             <ix-menu-item>Test 2</ix-menu-item>
             <ix-menu-settings></ix-menu-settings>
           </ix-menu>
-          <ix-content></ix-content>
+
+          <ix-content>
+            test
+            <ix-content-header
+              headerTitle="Test"
+              slot="header"
+            ></ix-content-header>
+            test
+          </ix-content>
         </ix-application>
       </Host>
     );
