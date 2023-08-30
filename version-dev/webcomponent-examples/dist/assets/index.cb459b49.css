@@ -12444,7 +12444,7 @@ textarea.form-control-lg {
 :root .theme-classic-dark, :root body:not([class*=theme-]) {
   --theme-shadow-1: 0px 1px 1px #00000099, 0px 2px 2px #000000;
   --theme-shadow-2: 0px 0px 16px #00000099, 4px 0px 8px #000000, -4px 0px 8px #000000;
-  --theme-shadow-3: 0 0 8 #00000099, 0 2 6 #000000;
+  --theme-shadow-3: 0px 0px 8px #00000099, 0px 2px 6px #000000;
   --theme-shadow-4: 0px 12px 18px #00000099, 0px 4px 8px #00000099, 0px 0px 2px #000000;
   --theme-inset-shadow-1: inset 0px 2px 4px #00000099;
   --theme-input--box-shadow: var(--theme-inset-shadow-1);
@@ -12583,7 +12583,7 @@ textarea.form-control-lg {
   --theme-ms-0: 0.875rem;
   --theme-ms-1: 1rem;
   --theme-ms-2: 1.25rem;
-  --theme-ms-3: .15rem;
+  --theme-ms-3: 1.5rem;
   --theme-ms-4: 1.8125rem;
   --theme-ms-5: 2.1875rem;
   --theme-ms-6: 2.625rem;
@@ -12695,6 +12695,18 @@ textarea.form-control-lg {
   --theme-info-bdr-2: 0.125rem solid var(--theme-color-info);
   --theme-neutral-bdr-1: 0.0625rem solid var(--theme-color-neutral);
   --theme-neutral-bdr-2: 0.125rem solid var(--theme-color-neutral);
+}
+
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
+ */
+:root .theme-classic-dark, :root body:not([class*=theme-]) {
+  --theme-letter-spacing-xs: -1.2%;
+  --theme-letter-spacing-sm: -0.6%;
+  --theme-letter-spacing-md: 0%;
+  --theme-letter-spacing-lg: 0.6%;
+  --theme-letter-spacing-xl: 1.2%;
+  --theme-letter-spacing-xxl: 2%;
 }
 
 /*
@@ -13571,7 +13583,7 @@ textarea.form-control-lg {
   --theme-shadow-1: 0px 1px 1px #00000033, 0px 2px 2px #0000001a;
   --theme-shadow-2: 0px 0px 16px #0000001a, 4px 0px 8px #00000033, -4px 0px 8px #00000033;
   --theme-shadow-3: 0px 0px 8px #00000033, 0px 2px 6px #00000033;
-  --theme-shadow-4: 0 12 18 #0000001a, 0 4 8 #0000001a, 0 0 2 #0000001a;
+  --theme-shadow-4: 0px 12px 18px #0000001a, 0px 4px 8px #0000001a, 0px 0px 2px #0000001a;
   --theme-inset-shadow-1: inset 0px 2px 4px #0000001f;
   --theme-input--box-shadow: var(--theme-inset-shadow-1);
   --theme-menu--box-shadow: var(--theme-shadow-4);
@@ -13709,7 +13721,7 @@ textarea.form-control-lg {
   --theme-ms-0: 0.875rem;
   --theme-ms-1: 1rem;
   --theme-ms-2: 1.25rem;
-  --theme-ms-3: .15rem;
+  --theme-ms-3: 1.5rem;
   --theme-ms-4: 1.8125rem;
   --theme-ms-5: 2.1875rem;
   --theme-ms-6: 2.625rem;
@@ -13821,6 +13833,18 @@ textarea.form-control-lg {
   --theme-info-bdr-2: 0.125rem solid var(--theme-color-info);
   --theme-neutral-bdr-1: 0.0625rem solid var(--theme-color-neutral);
   --theme-neutral-bdr-2: 0.125rem solid var(--theme-color-neutral);
+}
+
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
+ */
+:root .theme-classic-light {
+  --theme-letter-spacing-xs: -1.2%;
+  --theme-letter-spacing-sm: -0.6%;
+  --theme-letter-spacing-md: 0%;
+  --theme-letter-spacing-lg: 0.6%;
+  --theme-letter-spacing-xl: 1.2%;
+  --theme-letter-spacing-xxl: 2%;
 }
 
 /* Legacy Global styles */
