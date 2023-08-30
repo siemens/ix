@@ -122,36 +122,29 @@ export class DatePicker {
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+   *
+   * @since 2.0.0
    */
   @Prop() weekStartIndex = 1;
 
-  @State() selectedYear = this.year;
   @State() today = dayjs();
-  @State() selectedMonth: number;
-  @State() calendar: [number, number[]][];
-
-  @State() years = [...Array(10).keys()].map((year) => year + this.year - 5);
-  @State() tempYear: number = this.selectedYear;
-  @State() tempMonth: number;
   @State() startDate: Dayjs;
   @State() endDate: Dayjs;
+  @State() calendar: [number, number[]][];
+
+  @State() selectedYear = this.year;
+  @State() tempYear: number = this.selectedYear;
+  @State() minYear: number;
+  @State() maxYear: number;
+  @State() selectedMonth: number;
+  @State() tempMonth: number;
 
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
   /**
-   * Date change event
-   *
-   * If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-   * `2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.
-   *
-   * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
-   */
-  @Event() dateChange: EventEmitter<LegacyDateChangeEvent>;
-
-  /**
    * Date range change.
-   * Only triggered if datepicker is in range mode
+   * Only triggered if date-picker is in range mode
    *
    * @since 1.1.0
    */
@@ -237,6 +230,7 @@ export class DatePicker {
           (i === startWeek && j < monthStartWeekDay) ||
           (i === endWeek && j > monthEndWeekDay)
         ) {
+          // empty cell
           daysArr.push(undefined);
         } else {
           daysArr.push(currDayNumber);
@@ -277,25 +271,17 @@ export class DatePicker {
       maxScroll;
     const limit = 200;
 
-    if (this.years.length > limit) return;
+    if (this.maxYear - this.minYear > limit) return;
 
     if (atTop) {
       const first = this.yearContainerRef.firstElementChild as HTMLElement;
-      this.years = [
-        ...[...Array(5).keys()].map((year) => year + this.years[0] - 5),
-        ...this.years,
-      ];
+      this.minYear -= 5;
       this.yearContainerRef.scrollTo(0, first.offsetTop);
     }
 
     if (atBottom) {
       const last = this.yearContainerRef.lastElementChild as HTMLElement;
-      this.years = [
-        ...this.years,
-        ...[...Array(5).keys()].map(
-          (year) => year + this.years[this.years.length - 1]
-        ),
-      ];
+      this.maxYear += 5;
       this.yearContainerRef.scrollTo(0, last.offsetTop);
     }
   }
@@ -409,6 +395,9 @@ export class DatePicker {
 
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
+
+    this.minYear = this.startDate.year() - 5;
+    this.maxYear = this.startDate.year() + 5;
   }
 
   componentWillRender() {
@@ -429,6 +418,32 @@ export class DatePicker {
       start: this.startDate.format(this.format),
       end: this.endDate.format(this.format),
     };
+  }
+
+  private renderYears(): any[] {
+    const rows = [];
+
+    for (let year = this.minYear; year <= this.maxYear; year++) {
+      rows.push(
+        <div
+          key={year}
+          class={{ arrowYear: true }}
+          onClick={(event) => this.selectTempYear(event, year)}
+        >
+          <ix-icon
+            class={{
+              hidden: this.tempYear !== year,
+              arrowPosition: true,
+            }}
+            name="chevron-right"
+            size="12"
+          ></ix-icon>
+          <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
+        </div>
+      );
+    }
+
+    return rows;
   }
 
   render() {
@@ -461,25 +476,7 @@ export class DatePicker {
                     onScroll={() => this.infiniteScrollYears()}
                     ref={(ref) => (this.yearContainerRef = ref)}
                   >
-                    {this.years.map((year) => (
-                      <div
-                        key={year}
-                        class={{ arrowYear: true }}
-                        onClick={(event) => this.selectTempYear(event, year)}
-                      >
-                        <ix-icon
-                          class={{
-                            hidden: this.tempYear !== year,
-                            arrowPosition: true,
-                          }}
-                          name="chevron-right"
-                          size="12"
-                        ></ix-icon>
-                        <div
-                          style={{ 'min-width': 'max-content' }}
-                        >{`${year}`}</div>
-                      </div>
-                    ))}
+                    {this.renderYears()}
                   </div>
                   <div class="overflow">
                     {this.monthNames.map((month, index) => (

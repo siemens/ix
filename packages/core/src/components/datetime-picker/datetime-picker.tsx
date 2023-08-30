@@ -216,7 +216,7 @@ export class DateTimePicker {
             corners="left"
             // individual={false}
             range={this.range}
-            onDateChange={(event) => this.onDateChange(event)}
+            // onDateChange={(event) => this.onDateChange(event)}
             from={this.from}
             to={this.to}
             format={this.dateFormat}
