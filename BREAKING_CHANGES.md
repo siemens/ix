@@ -2,6 +2,8 @@
 
 ## v2.0.0
 
+### Remove deprecated properties from `ix-date-picker`
+
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:
