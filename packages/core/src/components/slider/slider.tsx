@@ -255,6 +255,12 @@ export class IxSlider {
               trace:
                 this.trace && traceReferenceInPercentage !== valueInPercentage,
             }}
+            onFocus={() => {
+              this.showTooltip = true;
+            }}
+            onBlur={() => {
+              this.showTooltip = false;
+            }}
           />
 
           <ix-tooltip

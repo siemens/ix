@@ -15,3 +15,28 @@ test('renders', async ({ page, mount }) => {
   const slider = page.locator('ix-slider');
   await expect(slider).toHaveClass(/hydrated/);
 });
+
+test('should show tooltip by focus', async ({ page, mount }) => {
+  await mount(`<ix-slider value="20"></ix-slider>`);
+
+  const slider = page.locator('ix-slider');
+  await expect(slider).toHaveClass(/hydrated/);
+
+  const input = slider.locator('input');
+
+  const tooltip = slider.locator('ix-tooltip');
+  await input.focus();
+  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveCSS('left', /239/);
+
+  await input.press('ArrowRight');
+  await input.press('ArrowRight');
+
+  await page.waitForTimeout(500);
+  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveCSS('left', /265/);
+
+  await input.blur();
+  await page.waitForTimeout(500);
+  await expect(tooltip).not.toBeVisible();
+});

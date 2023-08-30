@@ -184,7 +184,6 @@
 
   @include thumb-focus() {
     outline: 1px solid var(--theme-color-focus-bdr);
-
     outline-offset: 0.125rem;
   }
 
