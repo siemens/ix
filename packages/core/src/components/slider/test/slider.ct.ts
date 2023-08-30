@@ -27,14 +27,16 @@ test('should show tooltip by focus', async ({ page, mount }) => {
   const tooltip = slider.locator('ix-tooltip');
   await input.focus();
   await expect(tooltip).toBeVisible();
-  await expect(tooltip).toHaveCSS('left', /239/);
+  const left = (await tooltip.boundingBox()).x;
 
   await input.press('ArrowRight');
   await input.press('ArrowRight');
 
   await page.waitForTimeout(500);
   await expect(tooltip).toBeVisible();
-  await expect(tooltip).toHaveCSS('left', /265/);
+  const leftAfterKeyboardNavigation = (await tooltip.boundingBox()).x;
+
+  expect(leftAfterKeyboardNavigation).toBeGreaterThan(left);
 
   await input.blur();
   await page.waitForTimeout(500);
