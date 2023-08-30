@@ -32,6 +32,10 @@ function between(min: number, value: number, max: number) {
   }
 }
 
+/**
+ * @slot label-start - Display a element on slider start area
+ * @slot label-end - Display a element on slider end area
+ */
 @Component({
   tag: 'ix-slider',
   styleUrl: 'slider.scss',
