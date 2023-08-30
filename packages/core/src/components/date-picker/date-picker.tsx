@@ -305,28 +305,28 @@ export class DatePicker {
     this.tempYear = year;
   }
 
-  // private getDayClasses(day: number) {
-  //   if (!day) {
-  //     return;
-  //   }
+  private getDayClasses(day: number): any {
+    if (!day) {
+      return;
+    }
 
-  //   const todayLocal = DateTime.local();
-  //   const dayLocal = DateTime.local(this.selectedYear, this.selectedMonth, day);
-  //   const dayIso = dayLocal.toISO();
-  //   const startIso = this.start?.toISO();
-  //   const endIso = this.end?.toISO();
-  //   const isToday = Math.ceil(dayLocal.diff(todayLocal, 'days').days) === 0;
+    const todayObj = dayjs();
+    const dayObj = dayjs(new Date(this.selectedYear, this.selectedMonth, day));
+    const isToday = todayObj.isSame(dayObj, 'day');
 
-  //   return {
-  //     'calendar-item': true,
-  //     'empty-day': day === undefined,
-  //     today: isToday,
-  //     selected:
-  //       (this.start && dayIso === startIso) || (this.end && dayIso === endIso),
-  //     range: this.start && this.end && dayIso > startIso && dayIso < endIso,
-  //     disabled: !this.isWithinMinMax(dayLocal),
-  //   };
-  // }
+    return {
+      'calendar-item': true,
+      'empty-day': day === undefined,
+      today: isToday,
+      selected:
+        this.startDate.isSame(dayObj, 'day') ||
+        this.endDate?.isSame(this.endDate, 'day'),
+      range:
+        dayObj.isAfter(this.startDate, 'day') &&
+        dayObj.isBefore(this.endDate, 'day'),
+      // disabled: !this.isWithinMinMax(dayObj),
+    };
+  }
 
   // private selectDay(day: number) {
   //   const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
@@ -377,7 +377,10 @@ export class DatePicker {
   //   );
   // }
 
-  // Rotate the WeekdayNames array, based on a starting index
+  /**
+   * Rotate the WeekdayNames array.
+   * Based on position that should be the new 0-index.
+   */
   private rotateWeekDayNames(
     weekdays: WeekdayNames,
     index: number
@@ -533,7 +536,7 @@ export class DatePicker {
                   {week[1].map((day) => (
                     <div
                       key={day}
-                      // class={this.getDayClasses(day)}
+                      class={this.getDayClasses(day)}
                       // onClick={() => this.selectDay(day)}
                     >
                       {day}
