@@ -324,7 +324,7 @@ export class DatePicker {
       range:
         dayObj.isAfter(this.startDate, 'day') &&
         dayObj.isBefore(this.endDate, 'day'),
-      // disabled: !this.isWithinMinMax(dayObj),
+      disabled: !this.isWithinMinMax(dayObj),
     };
   }
 
@@ -363,19 +363,18 @@ export class DatePicker {
   //   this.onDateChange();
   // }
 
-  // private isWithinMinMax(date: DateTime) {
-  //   const dateIso = date.toISO();
-  //   const _minDate = this.minDate
-  //     ? DateTime.fromFormat(this.minDate, this.format)
-  //     : null;
-  //   const _maxDate = this.maxDate
-  //     ? DateTime.fromFormat(this.maxDate, this.format)
-  //     : null;
-  //   return (
-  //     (!_minDate || _minDate.toISO() <= dateIso) &&
-  //     (!_maxDate || _maxDate.toISO() >= dateIso)
-  //   );
-  // }
+  private isWithinMinMax(date: Dayjs): boolean {
+    const _minDate = this.minDate
+      ? dayjs(this.minDate, this.format)
+      : undefined;
+    const _maxDate = this.maxDate
+      ? dayjs(this.maxDate, this.format)
+      : undefined;
+    const isBefore = _minDate ? date.isBefore(_minDate, 'day') : false;
+    const isAfter = _maxDate ? date.isAfter(_maxDate, 'day') : false;
+
+    return !isBefore && !isAfter;
+  }
 
   /**
    * Rotate the WeekdayNames array.
