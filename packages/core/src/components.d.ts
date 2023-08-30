@@ -418,7 +418,7 @@ export namespace Components {
         /**
           * Get the current DateTime
          */
-        "getCurrentDate": () => Promise<{ start: string; end: string; }>;
+        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3311,11 +3311,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
-        /**
-          * Date selection confirmed via button action
-          * @deprecated Will be removed in 2.0.0. Use `dateSelect`
-         */
-        "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
         /**
           * If true a range of dates can be selected.
          */

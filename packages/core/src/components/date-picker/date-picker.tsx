@@ -76,7 +76,7 @@ export class DatePicker {
   @Watch('from')
   watchFromPropHandler(newValue: string) {
     if (newValue !== undefined) {
-      this.startDate = dayjs(newValue, this.format);
+      this.currFromDate = dayjs(newValue, this.format);
     }
   }
 
@@ -92,7 +92,7 @@ export class DatePicker {
   @Watch('to')
   watchToPropHandler(newValue: string) {
     if (newValue !== undefined) {
-      this.endDate = dayjs(newValue, this.format);
+      this.currToDate = dayjs(newValue, this.format);
     }
   }
 
@@ -128,8 +128,8 @@ export class DatePicker {
   @Prop() weekStartIndex = 1;
 
   @State() today = dayjs();
-  @State() startDate: Dayjs;
-  @State() endDate: Dayjs;
+  @State() currFromDate: Dayjs;
+  @State() currToDate: Dayjs;
   @State() calendar: [number, number[]][];
 
   @State() selectedYear = this.year;
@@ -153,16 +153,20 @@ export class DatePicker {
   /**
    * Date selection confirmed via button action
    *
-   * @deprecated Will be removed in 2.0.0. Use `dateSelect`
-   */
-  @Event() done: EventEmitter<string>;
-
-  /**
-   * Date selection confirmed via button action
-   *
    * @since 1.1.0
    */
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
+
+  /**
+   * Get the current DateTime
+   */
+  @Method()
+  async getCurrentDate() {
+    return {
+      from: this.currFromDate.format(this.format),
+      to: this.currToDate?.format(this.format) ?? '',
+    };
+  }
 
   get year() {
     if (this.from !== null) {
@@ -188,27 +192,35 @@ export class DatePicker {
   }
 
   private onDone() {
-    // this.done.emit(this.getOutputFormat());
-
-    // this.dateSelect.emit({
-    //   from: this.start?.toFormat(this.format),
-    //   to: this.end?.toFormat(this.format),
-    // });
+    this.dateSelect.emit({
+      from: this.currFromDate.format(this.format),
+      to: this.currToDate?.format(this.format) ?? '',
+    });
   }
 
-  private onDateChange() {
-    // const from = this.start?.toFormat(this.format);
-    // const to = this.end?.toFormat(this.format);
+  private addWeek(
+    daysArr: number[],
+    currDayNumber: number,
+    currWeek: number,
+    startWeek: number,
+    endWeek: number,
+    monthStartWeekDay: number,
+    monthEndWeekDay: number
+  ): number {
+    for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
+      if (
+        (currWeek === startWeek && j < monthStartWeekDay) ||
+        (currWeek === endWeek && j > monthEndWeekDay)
+      ) {
+        // empty cell
+        daysArr.push(undefined);
+      } else {
+        daysArr.push(currDayNumber);
+        currDayNumber++;
+      }
+    }
 
-    // this.from = from;
-    // this.to = to;
-
-    // if (this.range) {
-    //   this.dateRangeChange.emit({
-    //     from,
-    //     to,
-    //   });
-    // }
+    return currDayNumber;
   }
 
   private calculateCalendar() {
@@ -216,27 +228,27 @@ export class DatePicker {
     const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
-    const startWeek = monthStart.week();
-    const endWeek = monthEnd.week();
-    const monthStartWeekDay = monthStart.weekday() - this.weekStartIndex;
-    const monthEndWeekDay = monthEnd.weekday() - this.weekStartIndex;
+    let startWeek = monthStart.week();
+    let endWeek = monthEnd.week();
+    let monthStartWeekDay = monthStart.weekday() - this.weekStartIndex;
+    let monthEndWeekDay = monthEnd.weekday() - this.weekStartIndex;
+    monthStartWeekDay = monthStartWeekDay === -1 ? 6 : monthStartWeekDay;
+    monthEndWeekDay = monthEndWeekDay === -1 ? 6 : monthEndWeekDay;
 
     let currDayNumber = 1;
+
     for (let i = startWeek; i <= endWeek; i++) {
       const daysArr: number[] = [];
 
-      for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
-        if (
-          (i === startWeek && j < monthStartWeekDay) ||
-          (i === endWeek && j > monthEndWeekDay)
-        ) {
-          // empty cell
-          daysArr.push(undefined);
-        } else {
-          daysArr.push(currDayNumber);
-          currDayNumber++;
-        }
-      }
+      currDayNumber = this.addWeek(
+        daysArr,
+        currDayNumber,
+        i,
+        startWeek,
+        endWeek,
+        monthStartWeekDay,
+        monthEndWeekDay
+      );
 
       calendar.push([i, daysArr]);
     }
@@ -244,13 +256,13 @@ export class DatePicker {
     this.calendar = calendar;
   }
 
-  private changeMonth(number) {
-    if (this.selectedMonth + number < 1) {
+  private changeToAdjacentMonth(number: -1 | 1) {
+    if (this.selectedMonth + number < 0) {
       this.selectedYear--;
-      this.selectedMonth = 12;
-    } else if (this.selectedMonth + number > 12) {
+      this.selectedMonth = 11;
+    } else if (this.selectedMonth + number > 11) {
       this.selectedYear++;
-      this.selectedMonth = 1;
+      this.selectedMonth = 0;
     } else {
       this.selectedMonth += number;
     }
@@ -277,6 +289,8 @@ export class DatePicker {
       const first = this.yearContainerRef.firstElementChild as HTMLElement;
       this.minYear -= 5;
       this.yearContainerRef.scrollTo(0, first.offsetTop);
+
+      return;
     }
 
     if (atBottom) {
@@ -305,49 +319,63 @@ export class DatePicker {
       'empty-day': day === undefined,
       today: isToday,
       selected:
-        this.startDate.isSame(dayObj, 'day') ||
-        this.endDate?.isSame(this.endDate, 'day'),
+        this.currFromDate.isSame(dayObj, 'day') ||
+        this.currToDate?.isSame(this.currToDate, 'day'),
       range:
-        dayObj.isAfter(this.startDate, 'day') &&
-        dayObj.isBefore(this.endDate, 'day'),
+        dayObj.isAfter(this.currFromDate, 'day') &&
+        dayObj.isBefore(this.currToDate, 'day'),
       disabled: !this.isWithinMinMax(dayObj),
     };
   }
 
-  // private selectDay(day: number) {
-  //   const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
-  //   const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
-  //   const isSameDay =
-  //     this.start && !this.end && this.start.toISO() === date.toISO();
+  private onDateChange() {
+    this.from = this.currFromDate.format(this.format);
+    this.to = this.currToDate?.format(this.format);
 
-  //   if (day === undefined) return;
+    if (this.range) {
+      this.dateRangeChange.emit({
+        from: this.from,
+        to: this.to,
+      });
+    }
+  }
 
-  //   if (isSameDay) {
-  //     this.start = null;
-  //     this.onDateChange();
-  //     return;
-  //   }
+  private selectDay(day: number) {
+    const date = dayjs(new Date(this.selectedYear, this.selectedMonth, day));
 
-  //   if (this.range) {
-  //     if (this.start === null) {
-  //       this.start = date;
-  //     } else if (this.end === null) {
-  //       if (isStartBeforeEnd) {
-  //         this.end = date;
-  //       } else {
-  //         this.end = this.start;
-  //         this.start = date;
-  //       }
-  //     } else {
-  //       this.start = date;
-  //       this.end = null;
-  //     }
-  //   } else {
-  //     this.start = date;
-  //   }
+    // const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
+    // const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
+    // const isSameDay =
+    //   this.start && !this.end && this.start.toISO() === date.toISO();
 
-  //   this.onDateChange();
-  // }
+    // if (day === undefined) return;
+
+    // if (isSameDay) {
+    //   this.start = null;
+    //   this.onDateChange();
+    //   return;
+    // }
+
+    // if (this.range) {
+    //   if (this.start === null) {
+    //     this.start = date;
+    //   } else if (this.end === null) {
+    //     if (isStartBeforeEnd) {
+    //       this.end = date;
+    //     } else {
+    //       this.end = this.start;
+    //       this.start = date;
+    //     }
+    //   } else {
+    //     this.start = date;
+    //     this.end = null;
+    //   }
+    // } else {
+    //   this.start = date;
+    // }
+
+    // this.onDateChange();
+  }
 
   private isWithinMinMax(date: Dayjs): boolean {
     const _minDate = this.minDate
@@ -384,20 +412,20 @@ export class DatePicker {
   }
 
   componentWillLoad() {
-    this.startDate =
+    this.currFromDate =
       this.from !== undefined ? dayjs(this.from, this.format) : dayjs();
 
-    this.endDate =
+    this.currToDate =
       this.to !== undefined ? dayjs(this.to, this.format) : undefined;
 
-    this.selectedMonth = this.startDate.month();
-    this.selectedYear = this.startDate.year();
+    this.selectedMonth = this.currFromDate.month();
+    this.selectedYear = this.currFromDate.year();
 
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
 
-    this.minYear = this.startDate.year() - 5;
-    this.maxYear = this.startDate.year() + 5;
+    this.minYear = this.currFromDate.year() - 5;
+    this.maxYear = this.currFromDate.year() + 5;
   }
 
   componentWillRender() {
@@ -407,17 +435,6 @@ export class DatePicker {
     );
 
     this.calculateCalendar();
-  }
-
-  /**
-   * Get the current DateTime
-   */
-  @Method()
-  async getCurrentDate() {
-    return {
-      start: this.startDate.format(this.format),
-      end: this.endDate.format(this.format),
-    };
   }
 
   private renderYears(): any[] {
@@ -452,7 +469,7 @@ export class DatePicker {
         <ix-date-time-card corners={this.corners}>
           <div class="header" slot="header">
             <ix-icon-button
-              onClick={() => this.changeMonth(-1)}
+              onClick={() => this.changeToAdjacentMonth(-1)}
               ghost
               icon="chevron-left"
               variant="primary"
@@ -509,7 +526,7 @@ export class DatePicker {
             </div>
 
             <ix-icon-button
-              onClick={() => this.changeMonth(1)}
+              onClick={() => this.changeToAdjacentMonth(1)}
               ghost
               icon="chevron-right"
               variant="primary"
@@ -541,14 +558,6 @@ export class DatePicker {
                 </Fragment>
               );
             })}
-            {/* {this.calendar.forEach((days: number[], week: number) => {
-              <Fragment>
-                <div class="calendar-item week-number">{week}</div>
-                {days.map((day) => {
-                  <div key={day}>{day}</div>;
-                })}
-              </Fragment>;
-            })} */}
           </div>
 
           <div class={{ button: true, hidden: !this.range }}>
