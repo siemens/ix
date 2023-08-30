@@ -8792,7 +8792,16 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "label-start - Display a element on slider start area"
+        },
+        {
+          "name": "slot",
+          "text": "label-end - Display a element on slider end area"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8975,7 +8984,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "label-end",
+          "docs": "Display a element on slider end area"
+        },
+        {
+          "name": "label-start",
+          "docs": "Display a element on slider start area"
+        }
+      ],
       "parts": [],
       "listeners": [
         {
