@@ -21,7 +21,7 @@ import {
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
-import dayjs, { Dayjs, WeekdayNames } from 'dayjs';
+import dayjs, { Dayjs, MonthNames, WeekdayNames } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
@@ -49,10 +49,6 @@ interface CalendarWeek {
   shadow: true,
 })
 export class DatePicker {
-  private readonly DAYS_IN_WEEK = 7;
-  private dayNames: WeekdayNames;
-  private monthNames = dayjs.months();
-
   /**
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
@@ -132,21 +128,6 @@ export class DatePicker {
    */
   @Prop() weekStartIndex = 0;
 
-  @State() today = dayjs();
-  @State() currFromDate: Dayjs;
-  @State() currToDate: Dayjs;
-  @State() calendar: CalendarWeek[];
-
-  @State() selectedYear: number;
-  @State() tempYear: number;
-  @State() minYear: number;
-  @State() maxYear: number;
-  @State() selectedMonth: number;
-  @State() tempMonth: number;
-
-  @State() dropdownButtonRef: HTMLElement;
-  @State() yearContainerRef: HTMLElement;
-
   /**
    * Date range change.
    * Only triggered if date-picker is in range mode
@@ -182,6 +163,25 @@ export class DatePicker {
       to: undefined,
     };
   }
+
+  @State() today = dayjs();
+  @State() currFromDate: Dayjs;
+  @State() currToDate: Dayjs;
+  @State() calendar: CalendarWeek[];
+
+  @State() selectedYear: number;
+  @State() tempYear: number;
+  @State() minYear: number;
+  @State() maxYear: number;
+  @State() selectedMonth: number;
+  @State() tempMonth: number;
+
+  @State() dropdownButtonRef: HTMLElement;
+  @State() yearContainerRef: HTMLElement;
+
+  private readonly DAYS_IN_WEEK = 7;
+  private dayNames: WeekdayNames;
+  private monthNames: MonthNames = dayjs.months();
 
   private onDone() {
     if (this.range && this.currToDate === undefined) {
@@ -373,7 +373,7 @@ export class DatePicker {
 
   /**
    * Rotate the WeekdayNames array.
-   * Based on position that should be the new 0-index.
+   * Based on the position that should be the new 0-index.
    */
   private rotateWeekDayNames(
     weekdays: WeekdayNames,
@@ -409,14 +409,14 @@ export class DatePicker {
     this.tempYear = this.selectedYear;
     this.minYear = this.currFromDate.year() - 5;
     this.maxYear = this.currFromDate.year() + 5;
-  }
 
-  componentWillRender() {
     this.dayNames = this.rotateWeekDayNames(
       dayjs.weekdays(),
       this.weekStartIndex
     );
+  }
 
+  componentWillRender() {
     this.calculateCalendar();
   }
 
