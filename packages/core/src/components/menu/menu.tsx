@@ -21,6 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
@@ -568,6 +569,14 @@ export class Menu {
     return this.breakpoint === 'sm' && this.expand === false;
   }
 
+  private sidebarToggle() {
+    this.mapExpandChange.emit(this.mapExpand);
+
+    this.hostElement.dispatchEvent(
+      new ApplicationSidebarToggleEvent(this.mapExpand)
+    );
+  }
+
   render() {
     return (
       <Host
@@ -675,11 +684,11 @@ export class Menu {
               {this.i18nToggleTheme}
             </ix-menu-item>
           ) : null}
-          {this.enableMapExpand ? (
+          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
             <ix-menu-item
               disabled={this.isHiddenFromViewport()}
               id="menu-collapse"
-              onClick={() => this.mapExpandChange.emit(this.mapExpand)}
+              onClick={() => this.sidebarToggle()}
               class="internal-tab bottom-tab"
               icon={`${this.getCollapseIcon()}`}
             >

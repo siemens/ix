@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/shadow-dom/component';
+
+:host {
+  @include ix-component;
+
+  display: block;
+  position: relative;
+
+  width: 22rem;
+  height: 100%;
+
+  border-right: 2px solid var(--theme-color-soft-bdr);
+}

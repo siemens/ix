@@ -36,25 +36,35 @@
     overflow: hidden;
   }
 
-  .content {
+  main {
     display: block;
     position: relative;
-    margin-left: 3.25rem;
     height: 100%;
     width: 100%;
     overflow: hidden;
   }
 }
 
-:host(.breakpoint-lg) {
-  .content {
-    margin-left: 0rem;
+:host(.breakpoint-md) {
+  --ix-application-menu-margin-left: 3.25rem;
+
+  aside.slotted {
+    margin-left: var(--ix-application-menu-margin-left);
+  }
+
+  aside.slotted + main {
+    margin-left: 0;
+  }
+
+  aside:not(.slotted) + main {
+    margin-left: var(--ix-application-menu-margin-left);
   }
 }
 
+:host(.breakpoint-lg) {
+  --ix-application-menu-margin-left: 0;
+}
+
 :host(.breakpoint-sm) {
-  .content {
-    margin-left: 0px;
-    width: 100%;
-  }
+  --ix-application-menu-margin-left: 0;
 }

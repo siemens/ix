@@ -11,8 +11,9 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
-import { useContextProvider } from '../utils/context';
+import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
+import { hasSlottedElements } from '../utils/shadow-dom';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
@@ -59,9 +60,19 @@ export class Application {
   }
 
   @State() breakpoint: Breakpoint = 'lg';
+  @State() applicationSidebarSlotted = false;
+  @State() applicationSidebarExpand: boolean;
+
+  private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
+  }
+
+  get applicationSidebarSlot() {
+    return this.hostElement.shadowRoot.querySelector(
+      '.application-sidebar slot'
+    ) as HTMLSlotElement;
   }
 
   private modeDisposable: Disposable;
@@ -76,10 +87,15 @@ export class Application {
   componentWillLoad() {
     applicationLayoutService.setBreakpoints(this.breakpoints);
 
-    useContextProvider(this.hostElement, ApplicationLayoutContext, {
-      hideHeader: false,
-      host: 'basic-navigation',
-    });
+    this.contextProvider = useContextProvider(
+      this.hostElement,
+      ApplicationLayoutContext,
+      {
+        hideHeader: false,
+        host: 'basic-navigation',
+        sidebar: this.applicationSidebarSlotted,
+      }
+    );
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
       this.breakpoint = mode;
@@ -120,6 +136,15 @@ export class Application {
     );
   }
 
+  @Watch('applicationSidebarSlotted')
+  onApplicationSidebarChange() {
+    this.contextProvider.emit({
+      hideHeader: false,
+      host: 'basic-navigation',
+      sidebar: this.applicationSidebarSlotted,
+    });
+  }
+
   render() {
     return (
       <Host
@@ -131,6 +156,22 @@ export class Application {
         <slot name="application-header"></slot>
         <div class="application">
           <slot name="menu"></slot>
+          <aside
+            class={{
+              'application-sidebar': true,
+              slotted: this.applicationSidebarSlotted,
+            }}
+            onClick={() => this.onContentClick()}
+          >
+            <slot
+              name="application-sidebar"
+              onSlotchange={() =>
+                (this.applicationSidebarSlotted = hasSlottedElements(
+                  this.applicationSidebarSlot
+                ))
+              }
+            ></slot>
+          </aside>
           <main class="content" onClick={() => this.onContentClick()}>
             <slot></slot>
           </main>

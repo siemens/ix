@@ -123,6 +123,8 @@ export namespace Components {
          */
         "name": string;
     }
+    interface IxApplicationSidebar {
+    }
     /**
      * @since 2.0.0
      */
@@ -2282,6 +2284,12 @@ declare global {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
     };
+    interface HTMLIxApplicationSidebarElement extends Components.IxApplicationSidebar, HTMLStencilElement {
+    }
+    var HTMLIxApplicationSidebarElement: {
+        prototype: HTMLIxApplicationSidebarElement;
+        new (): HTMLIxApplicationSidebarElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -2925,6 +2933,7 @@ declare global {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
@@ -3069,6 +3078,8 @@ declare namespace LocalJSX {
           * Application name
          */
         "name"?: string;
+    }
+    interface IxApplicationSidebar {
     }
     /**
      * @since 2.0.0
@@ -5242,6 +5253,7 @@ declare namespace LocalJSX {
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
+        "ix-application-sidebar": IxApplicationSidebar;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
@@ -5347,6 +5359,7 @@ declare module "@stencil/core" {
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             /**
              * @since 2.0.0
              */

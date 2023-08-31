@@ -123,7 +123,11 @@ export function useContextProvider<
   X extends {},
   C extends Context<X>,
   T extends HTMLElement = HTMLElement
->(hostElement: T, context: C, contextPayload?: ContextType<C>) {
+>(
+  hostElement: T,
+  context: C,
+  contextPayload?: ContextType<C>
+): ContextProvider<C> {
   const requestContext = new TypedEvent<ContextEvent<C>>();
   const updateContext = new TypedEvent<ContextType<C>>();
 
