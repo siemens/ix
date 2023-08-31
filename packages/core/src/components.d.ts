@@ -416,7 +416,7 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the current DateTime
+          * Get the currently selected date-range
          */
         "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**

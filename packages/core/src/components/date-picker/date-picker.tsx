@@ -38,6 +38,11 @@ export type LegacyDateChangeEvent = DateChangeEvent | string;
 
 export type DateTimeCorners = DateTimeCardCorners;
 
+interface CalendarWeek {
+  weekNumber: number;
+  dayNumbers: number[];
+}
+
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
@@ -125,15 +130,15 @@ export class DatePicker {
    *
    * @since 2.0.0
    */
-  @Prop() weekStartIndex = 1;
+  @Prop() weekStartIndex = 0;
 
   @State() today = dayjs();
   @State() currFromDate: Dayjs;
   @State() currToDate: Dayjs;
-  @State() calendar: [number, number[]][];
+  @State() calendar: CalendarWeek[];
 
-  @State() selectedYear = this.year;
-  @State() tempYear: number = this.selectedYear;
+  @State() selectedYear: number;
+  @State() tempYear: number;
   @State() minYear: number;
   @State() maxYear: number;
   @State() selectedMonth: number;
@@ -158,7 +163,7 @@ export class DatePicker {
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the current DateTime
+   * Get the currently selected date-range
    */
   @Method()
   async getCurrentDate() {
@@ -168,29 +173,6 @@ export class DatePicker {
     };
   }
 
-  get year() {
-    if (this.from !== null) {
-      return dayjs(this.from, this.format).year();
-      // return DateTime.fromFormat(this.from, this.format).year;
-    }
-
-    return dayjs().year();
-    // return DateTime.now().year;
-  }
-
-  get month() {
-    if (this.from !== null) {
-      // return DateTime.fromFormat(this.from, this.format).month;
-      // let test = dayjs('2023/01/02', this.format).weekday();
-      // console.log(test);
-      let test = dayjs().month(0).year(2023).startOf('month').weekday();
-      console.log(test);
-      return test;
-    }
-
-    return dayjs().month();
-  }
-
   private onDone() {
     this.dateSelect.emit({
       from: this.currFromDate.format(this.format),
@@ -198,33 +180,8 @@ export class DatePicker {
     });
   }
 
-  private addWeek(
-    daysArr: number[],
-    currDayNumber: number,
-    currWeek: number,
-    startWeek: number,
-    endWeek: number,
-    monthStartWeekDay: number,
-    monthEndWeekDay: number
-  ): number {
-    for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
-      if (
-        (currWeek === startWeek && j < monthStartWeekDay) ||
-        (currWeek === endWeek && j > monthEndWeekDay)
-      ) {
-        // empty cell
-        daysArr.push(undefined);
-      } else {
-        daysArr.push(currDayNumber);
-        currDayNumber++;
-      }
-    }
-
-    return currDayNumber;
-  }
-
   private calculateCalendar() {
-    const calendar: [number, number[]][] = [];
+    const calendar: CalendarWeek[] = [];
     const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
@@ -240,17 +197,23 @@ export class DatePicker {
     for (let i = startWeek; i <= endWeek; i++) {
       const daysArr: number[] = [];
 
-      currDayNumber = this.addWeek(
-        daysArr,
-        currDayNumber,
-        i,
-        startWeek,
-        endWeek,
-        monthStartWeekDay,
-        monthEndWeekDay
-      );
+      for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
+        if (
+          (i === startWeek && j < monthStartWeekDay) ||
+          (i === endWeek && j > monthEndWeekDay)
+        ) {
+          // empty cell
+          daysArr.push(undefined);
+        } else {
+          daysArr.push(currDayNumber);
+          currDayNumber++;
+        }
+      }
 
-      calendar.push([i, daysArr]);
+      calendar.push({
+        weekNumber: i,
+        dayNumbers: daysArr,
+      });
     }
 
     this.calendar = calendar;
@@ -424,6 +387,8 @@ export class DatePicker {
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
 
+    this.selectedYear = this.currFromDate.year();
+    this.tempYear = this.selectedYear;
     this.minYear = this.currFromDate.year() - 5;
     this.maxYear = this.currFromDate.year() + 5;
   }
@@ -545,8 +510,8 @@ export class DatePicker {
             {this.calendar.map((week) => {
               return (
                 <Fragment>
-                  <div class="calendar-item week-number">{week[0]}</div>
-                  {week[1].map((day) => (
+                  <div class="calendar-item week-number">{week.weekNumber}</div>
+                  {week.dayNumbers.map((day) => (
                     <div
                       key={day}
                       class={this.getDayClasses(day)}
