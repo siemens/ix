@@ -78,12 +78,12 @@ export class DatePicker {
    * @since 1.1.0
    */
   @Prop() from: string | undefined;
-  @Watch('from')
-  watchFromPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currFromDate = dayjs(newValue, this.format);
-    }
-  }
+  // @Watch('from')
+  // watchFromPropHandler(newValue: string, oldValue: string) {
+  //   if (newValue !== undefined) {
+  //     this.currFromDate = dayjs(newValue, this.format);
+  //   }
+  // }
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -94,12 +94,12 @@ export class DatePicker {
    * @since 1.1.0
    */
   @Prop() to: string | undefined;
-  @Watch('to')
-  watchToPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currToDate = dayjs(newValue, this.format);
-    }
-  }
+  // @Watch('to')
+  // watchToPropHandler(newValue: string, oldValue: string) {
+  //   if (newValue !== undefined) {
+  //     this.currToDate = dayjs(newValue, this.format);
+  //   }
+  // }
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -174,6 +174,10 @@ export class DatePicker {
   }
 
   private onDone() {
+    if (this.range && this.currToDate === undefined) {
+      this.currToDate = this.currFromDate;
+    }
+
     this.dateSelect.emit({
       from: this.currFromDate.format(this.format),
       to: this.currToDate?.format(this.format) ?? '',
@@ -268,26 +272,28 @@ export class DatePicker {
     this.tempYear = year;
   }
 
-  private getDayClasses(day: number): any {
-    if (!day) {
+  private getDayClasses(selectedDay: number): any {
+    if (!selectedDay) {
       return;
     }
 
     const todayObj = dayjs();
-    const dayObj = dayjs(new Date(this.selectedYear, this.selectedMonth, day));
-    const isToday = todayObj.isSame(dayObj, 'day');
+    const selectedDayObj = dayjs(
+      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+    );
 
     return {
       'calendar-item': true,
-      'empty-day': day === undefined,
-      today: isToday,
+      'empty-day': selectedDay === undefined,
+      today: todayObj.isSame(selectedDayObj, 'day'),
       selected:
-        this.currFromDate.isSame(dayObj, 'day') ||
-        this.currToDate?.isSame(this.currToDate, 'day'),
+        this.currFromDate.isSame(selectedDayObj, 'day') ||
+        this.currToDate?.isSame(selectedDayObj, 'day'),
       range:
-        dayObj.isAfter(this.currFromDate, 'day') &&
-        dayObj.isBefore(this.currToDate, 'day'),
-      disabled: !this.isWithinMinMax(dayObj),
+        selectedDayObj.isAfter(this.currFromDate, 'day') &&
+        this.currToDate !== undefined &&
+        selectedDayObj.isBefore(this.currToDate, 'day'),
+      disabled: !this.isWithinMinMax(selectedDayObj),
     };
   }
 
@@ -306,38 +312,40 @@ export class DatePicker {
   private selectDay(day: number) {
     const date = dayjs(new Date(this.selectedYear, this.selectedMonth, day));
 
-    // const date = DateTime.local(this.selectedYear, this.selectedMonth, day);
-    // const isStartBeforeEnd = this.start && this.start.toISO() < date.toISO();
-    // const isSameDay =
-    //   this.start && !this.end && this.start.toISO() === date.toISO();
+    if (!this.range) {
+      this.currFromDate = date;
+      this.onDateChange();
 
-    // if (day === undefined) return;
+      return;
+    }
 
-    // if (isSameDay) {
-    //   this.start = null;
-    //   this.onDateChange();
-    //   return;
-    // }
+    // Reset the range selection
+    if (this.currFromDate !== undefined && this.currToDate !== undefined) {
+      this.currFromDate = date;
+      this.currToDate = undefined;
+      this.onDateChange();
 
-    // if (this.range) {
-    //   if (this.start === null) {
-    //     this.start = date;
-    //   } else if (this.end === null) {
-    //     if (isStartBeforeEnd) {
-    //       this.end = date;
-    //     } else {
-    //       this.end = this.start;
-    //       this.start = date;
-    //     }
-    //   } else {
-    //     this.start = date;
-    //     this.end = null;
-    //   }
-    // } else {
-    //   this.start = date;
-    // }
+      return;
+    }
 
-    // this.onDateChange();
+    // Don't do anything if the range doesn't differ by at least one day
+    // Otherwise the user would have to do one extra click if they choose to change the range again
+    if (date.isSame(this.currFromDate, 'day')) {
+      return;
+    }
+
+    // Swap from/to if the second date is before the current date
+    if (date.isBefore(this.currFromDate)) {
+      this.currToDate = this.currFromDate;
+      this.currFromDate = date;
+      this.onDateChange();
+
+      return;
+    }
+
+    // Set the range normally
+    this.currToDate = date;
+    this.onDateChange();
   }
 
   private isWithinMinMax(date: Dayjs): boolean {
@@ -515,7 +523,7 @@ export class DatePicker {
                     <div
                       key={day}
                       class={this.getDayClasses(day)}
-                      // onClick={() => this.selectDay(day)}
+                      onClick={() => this.selectDay(day)}
                     >
                       {day}
                     </div>
