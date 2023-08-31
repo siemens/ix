@@ -78,12 +78,12 @@ export class DatePicker {
    * @since 1.1.0
    */
   @Prop() from: string | undefined;
-  // @Watch('from')
-  // watchFromPropHandler(newValue: string, oldValue: string) {
-  //   if (newValue !== undefined) {
-  //     this.currFromDate = dayjs(newValue, this.format);
-  //   }
-  // }
+  @Watch('from')
+  watchFromPropHandler(newValue: string) {
+    if (newValue !== undefined) {
+      this.currFromDate = dayjs(newValue, this.format);
+    }
+  }
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -94,12 +94,12 @@ export class DatePicker {
    * @since 1.1.0
    */
   @Prop() to: string | undefined;
-  // @Watch('to')
-  // watchToPropHandler(newValue: string, oldValue: string) {
-  //   if (newValue !== undefined) {
-  //     this.currToDate = dayjs(newValue, this.format);
-  //   }
-  // }
+  @Watch('to')
+  watchToPropHandler(newValue: string) {
+    if (newValue !== undefined) {
+      this.currToDate = dayjs(newValue, this.format);
+    }
+  }
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -167,9 +167,19 @@ export class DatePicker {
    */
   @Method()
   async getCurrentDate() {
+    const _from = this.currFromDate.format(this.format);
+    const _to = this.currToDate?.format(this.format);
+
+    if (this.range) {
+      return {
+        from: _from,
+        to: _to ?? _from,
+      };
+    }
+
     return {
-      from: this.currFromDate.format(this.format),
-      to: this.currToDate?.format(this.format) ?? '',
+      from: _from,
+      to: undefined,
     };
   }
 
@@ -298,13 +308,13 @@ export class DatePicker {
   }
 
   private onDateChange() {
-    this.from = this.currFromDate.format(this.format);
-    this.to = this.currToDate?.format(this.format);
+    const _from = this.currFromDate.format(this.format);
+    const _to = this.currToDate?.format(this.format);
 
     if (this.range) {
       this.dateRangeChange.emit({
-        from: this.from,
-        to: this.to,
+        from: _from,
+        to: _to ?? _from,
       });
     }
   }
