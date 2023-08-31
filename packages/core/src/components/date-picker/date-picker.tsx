@@ -233,22 +233,9 @@ export class DatePicker {
     this.calendar = calendar;
   }
 
-  private changeToAdjacentMonth(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
-    }
-  }
-
-  private selectMonth(month: number) {
-    this.selectedMonth = month;
-    this.selectedYear = this.tempYear;
-    this.tempMonth = month;
+  private selectTempYear(event: MouseEvent, year: number) {
+    event.stopPropagation();
+    this.tempYear = year;
   }
 
   private infiniteScrollYears() {
@@ -277,45 +264,21 @@ export class DatePicker {
     }
   }
 
-  private selectTempYear(event: MouseEvent, year: number) {
-    event.stopPropagation();
-    this.tempYear = year;
+  private selectMonth(month: number) {
+    this.selectedMonth = month;
+    this.selectedYear = this.tempYear;
+    this.tempMonth = month;
   }
 
-  private getDayClasses(selectedDay: number): any {
-    if (!selectedDay) {
-      return;
-    }
-
-    const todayObj = dayjs();
-    const selectedDayObj = dayjs(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
-    );
-
-    return {
-      'calendar-item': true,
-      'empty-day': selectedDay === undefined,
-      today: todayObj.isSame(selectedDayObj, 'day'),
-      selected:
-        this.currFromDate.isSame(selectedDayObj, 'day') ||
-        this.currToDate?.isSame(selectedDayObj, 'day'),
-      range:
-        selectedDayObj.isAfter(this.currFromDate, 'day') &&
-        this.currToDate !== undefined &&
-        selectedDayObj.isBefore(this.currToDate, 'day'),
-      disabled: !this.isWithinMinMax(selectedDayObj),
-    };
-  }
-
-  private onDateChange() {
-    const _from = this.currFromDate.format(this.format);
-    const _to = this.currToDate?.format(this.format);
-
-    if (this.range) {
-      this.dateRangeChange.emit({
-        from: _from,
-        to: _to ?? _from,
-      });
+  private changeToAdjacentMonth(number: -1 | 1) {
+    if (this.selectedMonth + number < 0) {
+      this.selectedYear--;
+      this.selectedMonth = 11;
+    } else if (this.selectedMonth + number > 11) {
+      this.selectedYear++;
+      this.selectedMonth = 0;
+    } else {
+      this.selectedMonth += number;
     }
   }
 
@@ -356,6 +319,43 @@ export class DatePicker {
     // Set the range normally
     this.currToDate = date;
     this.onDateChange();
+  }
+
+  private onDateChange() {
+    const _from = this.currFromDate.format(this.format);
+    const _to = this.currToDate?.format(this.format);
+
+    if (this.range) {
+      this.dateRangeChange.emit({
+        from: _from,
+        to: _to ?? _from,
+      });
+    }
+  }
+
+  private getDayClasses(selectedDay: number): any {
+    if (!selectedDay) {
+      return;
+    }
+
+    const todayObj = dayjs();
+    const selectedDayObj = dayjs(
+      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+    );
+
+    return {
+      'calendar-item': true,
+      'empty-day': selectedDay === undefined,
+      today: todayObj.isSame(selectedDayObj, 'day'),
+      selected:
+        this.currFromDate.isSame(selectedDayObj, 'day') ||
+        this.currToDate?.isSame(selectedDayObj, 'day'),
+      range:
+        selectedDayObj.isAfter(this.currFromDate, 'day') &&
+        this.currToDate !== undefined &&
+        selectedDayObj.isBefore(this.currToDate, 'day'),
+      disabled: !this.isWithinMinMax(selectedDayObj),
+    };
   }
 
   private isWithinMinMax(date: Dayjs): boolean {
