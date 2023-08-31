@@ -128,7 +128,12 @@ export class IxSlider {
   }
 
   componentWillLoad() {
-    this.a11yAttributes = a11yHostAttributes(this.hostElement);
+    this.a11yAttributes = a11yHostAttributes(this.hostElement, [
+      'role',
+      'aria-valuemin',
+      'aria-valuemax',
+      'aria-valuenow',
+    ]);
     this.updateRangeVariables();
   }
 
@@ -269,7 +274,7 @@ export class IxSlider {
             onBlur={() => {
               this.showTooltip = false;
             }}
-            aria-role="slider"
+            role="slider"
             aria-valuenow={this.rangeInput}
             aria-valuemin={this.min}
             aria-valuemax={this.max}
