@@ -103,7 +103,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate: string = '2015/03/01';
 
   /**
    * The latest date that can be selected by the date picker.
@@ -171,8 +171,8 @@ export class DatePicker {
 
   @State() selectedYear: number;
   @State() tempYear: number;
-  @State() minYear: number;
-  @State() maxYear: number;
+  @State() startYear: number;
+  @State() endYear: number;
   @State() selectedMonth: number;
   @State() tempMonth: number;
 
@@ -182,6 +182,34 @@ export class DatePicker {
   private readonly DAYS_IN_WEEK = 7;
   private dayNames: WeekdayNames;
   private monthNames: MonthNames = dayjs.months();
+
+  componentWillLoad() {
+    this.currFromDate =
+      this.from !== undefined ? dayjs(this.from, this.format) : dayjs();
+
+    this.currToDate =
+      this.to !== undefined ? dayjs(this.to, this.format) : undefined;
+
+    this.selectedMonth = this.currFromDate.month();
+    this.selectedYear = this.currFromDate.year();
+
+    this.tempMonth = this.selectedMonth;
+    this.tempYear = this.selectedYear;
+
+    this.selectedYear = this.currFromDate.year();
+    this.tempYear = this.selectedYear;
+    this.startYear = this.currFromDate.year() - 5;
+    this.endYear = this.currFromDate.year() + 5;
+
+    this.dayNames = this.rotateWeekDayNames(
+      dayjs.weekdays(),
+      this.weekStartIndex
+    );
+  }
+
+  componentWillRender() {
+    this.calculateCalendar();
+  }
 
   private onDone() {
     if (this.range && this.currToDate === undefined) {
@@ -199,15 +227,14 @@ export class DatePicker {
     const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
-    let startWeek = monthStart.week();
-    let endWeek = monthEnd.week();
+    const startWeek = monthStart.week();
+    const endWeek = monthEnd.week();
     let monthStartWeekDay = monthStart.weekday() - this.weekStartIndex;
     let monthEndWeekDay = monthEnd.weekday() - this.weekStartIndex;
     monthStartWeekDay = monthStartWeekDay === -1 ? 6 : monthStartWeekDay;
     monthEndWeekDay = monthEndWeekDay === -1 ? 6 : monthEndWeekDay;
 
     let currDayNumber = 1;
-
     for (let i = startWeek; i <= endWeek; i++) {
       const daysArr: number[] = [];
 
@@ -247,11 +274,11 @@ export class DatePicker {
       maxScroll;
     const limit = 200;
 
-    if (this.maxYear - this.minYear > limit) return;
+    if (this.endYear - this.startYear > limit) return;
 
     if (atTop) {
       const first = this.yearContainerRef.firstElementChild as HTMLElement;
-      this.minYear -= 5;
+      this.startYear -= 5;
       this.yearContainerRef.scrollTo(0, first.offsetTop);
 
       return;
@@ -259,7 +286,7 @@ export class DatePicker {
 
     if (atBottom) {
       const last = this.yearContainerRef.lastElementChild as HTMLElement;
-      this.maxYear += 5;
+      this.endYear += 5;
       this.yearContainerRef.scrollTo(0, last.offsetTop);
     }
   }
@@ -282,8 +309,10 @@ export class DatePicker {
     }
   }
 
-  private selectDay(day: number) {
-    const date = dayjs(new Date(this.selectedYear, this.selectedMonth, day));
+  private selectDay(selectedDay: number) {
+    const date = dayjs(
+      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+    );
 
     if (!this.range) {
       this.currFromDate = date;
@@ -333,19 +362,19 @@ export class DatePicker {
     }
   }
 
-  private getDayClasses(selectedDay: number): any {
-    if (!selectedDay) {
+  private getDayClasses(day: number): any {
+    if (!day) {
       return;
     }
 
     const todayObj = dayjs();
     const selectedDayObj = dayjs(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+      new Date(this.selectedYear, this.selectedMonth, day)
     );
 
     return {
       'calendar-item': true,
-      'empty-day': selectedDay === undefined,
+      'empty-day': day === undefined,
       today: todayObj.isSame(selectedDayObj, 'day'),
       selected:
         this.currFromDate.isSame(selectedDayObj, 'day') ||
@@ -356,6 +385,13 @@ export class DatePicker {
         selectedDayObj.isBefore(this.currToDate, 'day'),
       disabled: !this.isWithinMinMax(selectedDayObj),
     };
+  }
+
+  isWithinMinMaxYear(year: number): boolean {
+    const yearDateObj = dayjs(new Date(year + 1, 0, 1));
+
+    const newLocal = this.isWithinMinMax(yearDateObj);
+    return newLocal;
   }
 
   private isWithinMinMax(date: Dayjs): boolean {
@@ -392,42 +428,17 @@ export class DatePicker {
     return clone;
   }
 
-  componentWillLoad() {
-    this.currFromDate =
-      this.from !== undefined ? dayjs(this.from, this.format) : dayjs();
-
-    this.currToDate =
-      this.to !== undefined ? dayjs(this.to, this.format) : undefined;
-
-    this.selectedMonth = this.currFromDate.month();
-    this.selectedYear = this.currFromDate.year();
-
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
-
-    this.selectedYear = this.currFromDate.year();
-    this.tempYear = this.selectedYear;
-    this.minYear = this.currFromDate.year() - 5;
-    this.maxYear = this.currFromDate.year() + 5;
-
-    this.dayNames = this.rotateWeekDayNames(
-      dayjs.weekdays(),
-      this.weekStartIndex
-    );
-  }
-
-  componentWillRender() {
-    this.calculateCalendar();
-  }
-
   private renderYears(): any[] {
     const rows = [];
 
-    for (let year = this.minYear; year <= this.maxYear; year++) {
+    for (let year = this.startYear; year <= this.endYear; year++) {
       rows.push(
         <div
           key={year}
-          class={{ arrowYear: true }}
+          class={{
+            arrowYear: true,
+            'disabled-year': !this.isWithinMinMaxYear(year),
+          }}
           onClick={(event) => this.selectTempYear(event, year)}
         >
           <ix-icon

@@ -71,6 +71,13 @@
         margin-left: 10px;
       }
     }
+
+    .disabled-year {
+      pointer-events: none;
+      background-color: var(--theme-datepicker-day--background--disabled);
+      color: var(--theme-datepicker-day--color--disabled);
+      cursor: default;
+    }
   }
 
   .wrapper {
@@ -176,7 +183,6 @@
           background-color: var(--theme-datepicker-day--background--disabled);
           color: var(--theme-datepicker-day--color--disabled);
           cursor: default;
-          pointer-events: none;
         }
       }
 
