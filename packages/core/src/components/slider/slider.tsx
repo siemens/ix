@@ -19,6 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 export type SliderMarker = Array<number>;
 
@@ -100,6 +101,22 @@ export class IxSlider {
   @State() rangeTraceReference = 0;
   @State() showTooltip = false;
 
+  private a11yAttributes: A11yAttributes;
+
+  get tooltip() {
+    return this.hostElement.shadowRoot.querySelector('ix-tooltip');
+  }
+
+  get pseudoThumb() {
+    return this.hostElement.shadowRoot.querySelector('.thumb') as HTMLElement;
+  }
+
+  get slider() {
+    return this.hostElement.shadowRoot.getElementById(
+      'slider'
+    ) as HTMLInputElement;
+  }
+
   @Watch('showTooltip')
   onShowTooltipChange() {
     if (this.showTooltip) {
@@ -111,6 +128,7 @@ export class IxSlider {
   }
 
   componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
     this.updateRangeVariables();
   }
 
@@ -131,20 +149,6 @@ export class IxSlider {
     this.rangeTraceReference = between(this.min, this.traceReference, this.max);
     this.rangeMin = Math.min(this.min, this.max);
     this.rangeMax = Math.max(this.min, this.max);
-  }
-
-  get tooltip() {
-    return this.hostElement.shadowRoot.querySelector('ix-tooltip');
-  }
-
-  get pseudoThumb() {
-    return this.hostElement.shadowRoot.querySelector('.thumb') as HTMLElement;
-  }
-
-  get slider() {
-    return this.hostElement.shadowRoot.getElementById(
-      'slider'
-    ) as HTMLInputElement;
   }
 
   private onInput(event: InputEvent) {
@@ -265,6 +269,11 @@ export class IxSlider {
             onBlur={() => {
               this.showTooltip = false;
             }}
+            aria-role="slider"
+            aria-valuenow={this.rangeInput}
+            aria-valuemin={this.min}
+            aria-valuemax={this.max}
+            {...this.a11yAttributes}
           />
 
           <ix-tooltip
