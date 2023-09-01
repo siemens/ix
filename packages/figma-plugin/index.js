@@ -10,6 +10,7 @@ const figma = require('./figma');
 const visit = require('unist-util-visit');
 const { rimrafSync } = require('rimraf');
 const fs = require('fs');
+
 /**
  *
  * @param {Object} config Configuration

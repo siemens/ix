@@ -10,13 +10,29 @@ const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 
+async function getImageResource(fileName, nodeId, figmaToken) {
+  const res = await axios.get(`https://api.figma.com/v1/images/${fileName}`, {
+    params: {
+      ids: nodeId,
+    },
+    headers: {
+      'X-FIGMA-TOKEN': figmaToken,
+    },
+  });
+
+  const images = res.data.images;
+  const [imageKey] = Object.keys(images);
+
+  return images[imageKey];
+}
+
 /**
  * @param {{ url: string }} node
  * @param {Object} config Configuration
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
  * @param {string | undefined} config.error_image Folder to images at build time
- * @param {boolean | undefined} config.rimraf Folder to images at build time
+ * @param {boolean} [config.rimraf=false] Folder to images at build time
  * @returns {*}
  */
 module.exports = async function (node, config) {
@@ -37,36 +53,36 @@ module.exports = async function (node, config) {
 
     const nodeId = url.searchParams.get('node-id');
 
-    const res = await axios.get(`https://api.figma.com/v1/images/${fileName}`, {
-      params: {
-        ids: nodeId,
-      },
-      headers: {
-        'X-FIGMA-TOKEN': config.apiToken,
-      },
-    });
-    console.log('images', res.data.images);
-    const images = res.data.images;
-    const [imageKey] = Object.keys(images);
+    const imageUUID = `${fileName}_${nodeId}`;
+    const imageUrl = await getImageResource(fileName, nodeId, config.apiToken);
 
     if (process.env.NODE_ENV === 'production') {
-      const imageResponse = await axios.get(images[imageKey], {
-        responseType: 'stream',
-      });
-      const imageFileName = `${fileName}_${nodeId}.png`;
-      const imagePath = path.join(config.figmaFolder, imageFileName);
-      const imageStream = fs.createWriteStream(imagePath);
+      const imageFileName = `${imageUUID}.png`;
 
-      imageResponse.data.pipe(imageStream);
+      if (!fs.existsSync(path.join(config.figmaFolder, imageFileName))) {
+        const imageResponse = await axios.get(imageUrl, {
+          responseType: 'stream',
+        });
 
-      await new Promise((resolve, reject) => {
-        imageStream.on('finish', resolve);
-        imageStream.on('error', reject);
-      });
+        const imagePath = path.join(config.figmaFolder, imageFileName);
+        const imageStream = fs.createWriteStream(imagePath);
+
+        imageResponse.data.pipe(imageStream);
+
+        await new Promise((resolve, reject) => {
+          imageStream.on('finish', resolve);
+          imageStream.on('error', reject);
+        });
+      } else {
+        console.log(
+          'Skip download use existing image:',
+          `/figma/${imageFileName}`
+        );
+      }
 
       node.url = `/figma/${imageFileName}`;
     } else {
-      node.url = images[imageKey];
+      node.url = imageUrl;
     }
   }
 };
