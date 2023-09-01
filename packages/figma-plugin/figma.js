@@ -29,7 +29,11 @@ module.exports = async function (node, config) {
     const url = new URL(node.url);
     const urlPath = url.pathname;
     const urlPaths = urlPath.split('/');
-    const [_, __, fileName] = urlPaths;
+    const fileIndex = urlPaths.findIndex((segment) => segment === 'file');
+    const branchIndex = urlPaths.findIndex((segment) => segment === 'branch');
+
+    const fileName =
+      branchIndex !== -1 ? urlPaths[branchIndex + 1] : urlPaths[fileIndex + 1];
 
     const nodeId = url.searchParams.get('node-id');
 
