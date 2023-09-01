@@ -9,16 +9,30 @@
 const figma = require('./figma');
 const visit = require('unist-util-visit');
 
-const plugin = (options) => {
-  const transformer = async (ast) => {
-    const promises = [];
-    visit(ast, 'image', (node) => {
-      promises.push(figma(node));
-    });
+/**
+ *
+ * @param {Object} config Configuration
+ * @param {string} config.figmaFolder Folder to images at build time
+ * @param {string | undefined} config.apiToken Folder to images at build time
+ * @returns {*}
+ */
+const plugin = (config) => {
+  console.log('Config', config);
+  if (config.apiToken === undefined || config.apiToken === '') {
+    throw Error('No figma token provided');
+  }
 
-    await Promise.all(promises);
+  return () => {
+    const transformer = async (ast) => {
+      const promises = [];
+      visit(ast, 'image', (node) => {
+        promises.push(figma(node, config));
+      });
+
+      await Promise.all(promises);
+    };
+    return transformer;
   };
-  return transformer;
 };
 
 module.exports = plugin;

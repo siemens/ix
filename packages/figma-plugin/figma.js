@@ -7,19 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 const axios = require('axios');
-/**
- *
- * @param {{ url: string }} node
- */
-module.exports = async function (node) {
-  console.log('Token', process.env.FIGMA_TOKEN);
-  console.log('Run for', process.env.NODE_ENV);
+const path = require('path');
+const fs = require('fs');
 
+/**
+ * @param {{ url: string }} node
+ * @param {Object} config Configuration
+ * @param {string} config.figmaFolder Folder to images at build time
+ * @param {string | undefined} config.apiToken Folder to images at build time
+ * @returns {*}
+ */
+module.exports = async function (node, config) {
   if (node.url.startsWith('https://www.figma.com/file/')) {
     const url = new URL(node.url);
-    const path = url.pathname;
-    const paths = path.split('/');
-    const [_, __, fileName] = paths;
+    const urlPath = url.pathname;
+    const urlPaths = urlPath.split('/');
+    const [_, __, fileName] = urlPaths;
 
     const nodeId = url.searchParams.get('node-id');
 
@@ -28,7 +31,7 @@ module.exports = async function (node) {
         ids: nodeId,
       },
       headers: {
-        'X-FIGMA-TOKEN': process.env.FIGMA_TOKEN,
+        'X-FIGMA-TOKEN': config.apiToken,
       },
     });
     console.log('images', res.data.images);
@@ -36,8 +39,21 @@ module.exports = async function (node) {
     const [imageKey] = Object.keys(images);
 
     if (process.env.NODE_ENV === 'production') {
-      // Download image to static asset folder
-      // Change url to static asset folder path
+      const imageResponse = await axios.get(images[imageKey], {
+        responseType: 'stream',
+      });
+      const imageFileName = `${fileName}_${nodeId}.png`;
+      const imagePath = path.join(config.figmaFolder, imageFileName);
+      const imageStream = fs.createWriteStream(imagePath);
+
+      imageResponse.data.pipe(imageStream);
+
+      await new Promise((resolve, reject) => {
+        imageStream.on('finish', resolve);
+        imageStream.on('error', reject);
+      });
+
+      node.url = `/figma/${imageFileName}`;
     } else {
       node.url = images[imageKey];
     }
