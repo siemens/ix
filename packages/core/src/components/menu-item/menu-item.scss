@@ -156,3 +156,9 @@ $menuItemPadding: 0.875rem;
     background-color: var(--theme-nav-item-secondary--background--selected);
   }
 }
+
+:host(.inline) {
+  .tab::before {
+    display: none;
+  }
+}

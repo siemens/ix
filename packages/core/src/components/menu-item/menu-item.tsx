@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { closestElement } from '../utils/shadow-dom';
 
 /**
  * @slot menu-item-label Custom label
@@ -63,6 +64,14 @@ export class MenuItem {
   @State() title: string;
 
   private observer: MutationObserver;
+  private isHostedInsideCategory = false;
+
+  componentWillLoad() {
+    this.isHostedInsideCategory = !!closestElement(
+      'ix-menu-category',
+      this.hostElement
+    );
+  }
 
   componentWillRender() {
     this.title = this.hostElement.innerText;
@@ -106,6 +115,7 @@ export class MenuItem {
           'home-tab': this.home,
           'bottom-tab': this.bottom,
           active: this.active,
+          inline: this.isHostedInsideCategory,
         }}
         {...extendedAttributes}
       >

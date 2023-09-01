@@ -18,8 +18,6 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
-import { useContextProvider } from '../utils/context';
-import { TestContext } from './events';
 
 @Component({
   tag: 'ix-application-sidebar',
@@ -30,10 +28,6 @@ export class ApplicationSidebar {
   @Element() hostElement!: HTMLIxApplicationSidebarElement;
 
   @State() visible = true;
-
-  componentWillLoad() {
-    useContextProvider(this.hostElement, TestContext);
-  }
 
   @Listen('application-sidebar-toggle', {
     target: 'window',
@@ -66,7 +60,12 @@ export class ApplicationSidebar {
 
   render() {
     return (
-      <Host slot="application-sidebar">
+      <Host
+        slot="application-sidebar"
+        class={{
+          visible: this.visible,
+        }}
+      >
         {this.visible ? <slot></slot> : null}
       </Host>
     );

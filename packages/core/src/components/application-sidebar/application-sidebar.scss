@@ -17,5 +17,10 @@
   width: 22rem;
   height: 100%;
 
+  padding: 0;
+}
+
+:host(.visible) {
   border-right: 2px solid var(--theme-color-soft-bdr);
+  padding: 1.5rem 0.5rem 0;
 }

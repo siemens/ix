@@ -61,7 +61,6 @@ export class Application {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
-  @State() applicationSidebarExpand: boolean;
 
   private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
 
