@@ -290,6 +290,10 @@ export namespace Components {
     };
   };
         /**
+          * If true the filter will be in disabled state
+         */
+        "disabled": boolean;
+        /**
           * A set of search criteria to populate the component with.
          */
         "filterState": FilterState;
@@ -306,11 +310,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
-         */
-        "initialState": FilterState;
-        /**
           * i18n
          */
         "labelCategories": string;
@@ -324,6 +323,10 @@ export namespace Components {
           * Placeholder text to be displayed in an empty input field.
          */
         "placeholder": string;
+        /**
+          * If true the filter will be in readonly mode
+         */
+        "readonly": boolean;
         /**
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
@@ -798,6 +801,11 @@ export namespace Components {
           * If true the filter chip will be in disabled state
          */
         "disabled": boolean;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly": boolean;
     }
     interface IxFlipTile {
         /**
@@ -3161,6 +3169,10 @@ declare namespace LocalJSX {
     };
   };
         /**
+          * If true the filter will be in disabled state
+         */
+        "disabled"?: boolean;
+        /**
           * A set of search criteria to populate the component with.
          */
         "filterState"?: FilterState;
@@ -3177,11 +3189,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
-         */
-        "initialState"?: FilterState;
-        /**
           * i18n
          */
         "labelCategories"?: string;
@@ -3191,6 +3198,10 @@ declare namespace LocalJSX {
         "nonSelectableCategories"?: {
     [id: string]: string;
   };
+        /**
+          * Event dispatched whenever the a category gets selected in the dropdown
+         */
+        "onCategoryChanged"?: (event: IxCategoryFilterCustomEvent<string>) => void;
         /**
           * Event dispatched whenever the filter state changes.
          */
@@ -3203,6 +3214,10 @@ declare namespace LocalJSX {
           * Placeholder text to be displayed in an empty input field.
          */
         "placeholder"?: string;
+        /**
+          * If true the filter will be in readonly mode
+         */
+        "readonly"?: boolean;
         /**
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
@@ -3745,6 +3760,11 @@ declare namespace LocalJSX {
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly"?: boolean;
     }
     interface IxFlipTile {
         /**

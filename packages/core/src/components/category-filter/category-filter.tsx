@@ -18,6 +18,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
@@ -25,7 +26,7 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 @Component({
   tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
-  scoped: true,
+  shadow: true,
 })
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
@@ -47,11 +48,14 @@ export class CategoryFilter {
   }> = [];
 
   /**
-   * When set this will initially populate the component with the provided search criteria.
-   * This will trigger all input events accordingly.
-   * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
+   * If true the filter will be in disabled state
    */
-  @Prop() initialState: FilterState;
+  @Prop() disabled = false;
+
+  /**
+   * If true the filter will be in readonly mode
+   */
+  @Prop() readonly = false;
 
   /**
    * A set of search criteria to populate the component with.
@@ -126,6 +130,11 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
+   * Event dispatched whenever the a category gets selected in the dropdown
+   */
+  @Event() categoryChanged: EventEmitter<string>;
+
+  /**
    * Event dispatched whenever the text input changes.
    */
   @Event() inputChanged: EventEmitter<InputState>;
@@ -141,9 +150,7 @@ export class CategoryFilter {
   }
 
   componentDidLoad() {
-    if (this.initialState !== undefined) {
-      this.setFilterState(this.initialState);
-    } else if (this.filterState !== undefined) {
+    if (this.filterState !== undefined) {
       setTimeout(() => this.setFilterState(this.filterState));
     }
 
@@ -196,7 +203,11 @@ export class CategoryFilter {
   }
 
   private closeDropdown() {
-    this.hostElement.querySelector('ix-dropdown').show = false;
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   private handleFormElementKeyDown(e: KeyboardEvent) {
@@ -210,7 +221,7 @@ export class CategoryFilter {
         const token = document.activeElement.getAttribute('data-id');
 
         if (this.hasCategorySelection()) {
-          if (this.category) {
+          if (this.category !== undefined) {
             this.addToken(token, this.category);
           } else if (
             document.activeElement.classList.contains('category-item-id')
@@ -257,14 +268,16 @@ export class CategoryFilter {
   private handleInputElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case 'ArrowDown':
-        const selector = `.category-item-${this.category ? 'value' : 'id'}`;
-        let item = this.hostElement.querySelector(selector);
+        const selector = `.category-item-${
+          this.category !== undefined ? 'value' : 'id'
+        }`;
+        let item = this.hostElement.shadowRoot.querySelector(selector);
 
         if (item instanceof HTMLElement) {
           item.focus();
           e.stopPropagation();
         } else if (this.suggestions?.length) {
-          item = this.hostElement.querySelector('.category-item');
+          item = this.hostElement.shadowRoot.querySelector('.category-item');
           if (item instanceof HTMLElement) {
             item.focus();
             e.stopPropagation();
@@ -277,7 +290,7 @@ export class CategoryFilter {
           return;
         }
 
-        if (this.category) {
+        if (this.category !== undefined) {
           this.category = undefined;
           return;
         }
@@ -337,7 +350,7 @@ export class CategoryFilter {
     this.inputValue = '';
     this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
 
-    if (this.category) {
+    if (this.category !== undefined) {
       this.category = undefined;
     }
 
@@ -373,6 +386,7 @@ export class CategoryFilter {
     this.textInput.value = '';
     this.inputValue = '';
     this.textInput.focus();
+    this.categoryChanged.emit(category);
   }
 
   private resetFilter() {
@@ -401,7 +415,7 @@ export class CategoryFilter {
         return false;
       }
 
-      if (this.category) {
+      if (this.category !== undefined) {
         return this.category === filterToken.id;
       }
 
@@ -470,18 +484,6 @@ export class CategoryFilter {
     return this.categories !== undefined;
   }
 
-  private displayDropdown() {
-    if (this.hasCategorySelection()) {
-      return true;
-    }
-
-    if (this.suggestions !== undefined) {
-      return this.getFilteredSuggestions().length > 0;
-    }
-
-    return false;
-  }
-
   private renderPlainSuggestions() {
     return (
       <div class="dropdown-item-container">
@@ -500,18 +502,41 @@ export class CategoryFilter {
     );
   }
 
+  private renderOperatorButton() {
+    const params: BaseButtonProps = {
+      type: 'button',
+      variant: 'secondary',
+      outline: false,
+      ghost: true,
+      iconOnly: true,
+      iconOval: false,
+      selected: false,
+      disabled: this.disabled,
+      loading: false,
+      icon: '',
+      onClick: (e: Event) => {
+        e.stopPropagation();
+        this.toggleCategoryOperator();
+      },
+      extraClasses: {
+        'btn-icon-32': true,
+        'btn-toggle-operator': true,
+      },
+    };
+
+    return (
+      <BaseButton {...params}>
+        {this.categoryLogicalOperator === LogicalFilterOperator.NOT_EQUAL
+          ? '='
+          : '!='}
+      </BaseButton>
+    );
+  }
+
   private renderCategoryValues() {
     return (
       <div class="dropdown-item-container">
-        <button
-          class="btn btn-invisible-secondary btn-icon btn-toggle-operator"
-          onClick={() => this.toggleCategoryOperator()}
-          tabindex="-1"
-        >
-          {this.categoryLogicalOperator === LogicalFilterOperator.NOT_EQUAL
-            ? '='
-            : '!='}
-        </button>
+        {this.renderOperatorButton()}
         <div class="dropdown-header">
           {this.categories[this.category]?.label}
         </div>
@@ -539,7 +564,7 @@ export class CategoryFilter {
 
   private renderDropdownContent() {
     if (this.hasCategorySelection()) {
-      if (this.category) {
+      if (this.category !== undefined) {
         return this.renderCategoryValues();
       } else {
         return this.renderCategorySelection();
@@ -559,7 +584,10 @@ export class CategoryFilter {
               data-id={id}
               title={this.categories[id].label}
               key={id}
-              onClick={() => this.selectCategory(id)}
+              onClick={(e) => {
+                e.preventDefault();
+                this.selectCategory(id);
+              }}
               tabindex="0"
             >
               {this.categories[id]?.label}
@@ -570,8 +598,8 @@ export class CategoryFilter {
   }
 
   private getDropdownHeader() {
-    if (this.categories) {
-      if (this.category) {
+    if (this.categories !== undefined) {
+      if (this.category !== undefined) {
         return null;
       } else {
         return this.labelCategories;
@@ -596,16 +624,27 @@ export class CategoryFilter {
         onClick={() => this.resetFilter()}
         class={{
           'reset-button': true,
-          'hide-reset-button': !this.filterTokens.length && !this.category,
+          'hide-reset-button':
+            !this.filterTokens.length && this.category === undefined,
         }}
-        variant="primary"
         ghost
         oval
         icon="clear"
         size="16"
-        tabindex="1"
       ></ix-icon-button>
     );
+  }
+
+  private getIconColor() {
+    if (this.disabled) {
+      return 'color-componentn-1';
+    }
+
+    if (this.readonly) {
+      return 'color-std-txt';
+    }
+
+    return 'color-primary';
   }
 
   render() {
@@ -613,14 +652,17 @@ export class CategoryFilter {
       <Host>
         <form ref={(el) => (this.formElement = el)}>
           <div
+            read-only={this.readonly}
             class={{
-              'form-control': true,
               'input-container': true,
+              disabled: this.disabled,
               focus: this.hasFocus,
+              readonly: this.readonly,
               'no-icon': this.hideIcon,
             }}
           >
             <ix-icon
+              color={this.getIconColor()}
               class={{ 'd-none': this.hideIcon }}
               name={this.icon}
               size="16"
@@ -636,6 +678,8 @@ export class CategoryFilter {
                     }}
                   >
                     <ix-filter-chip
+                      disabled={this.disabled}
+                      readonly={this.readonly}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
@@ -648,7 +692,7 @@ export class CategoryFilter {
                   <li
                     class={{
                       'category-preview': true,
-                      'd-none': !this.category,
+                      'd-none': this.category === undefined,
                     }}
                   >
                     {this.categories[this.category]?.label}
@@ -657,8 +701,13 @@ export class CategoryFilter {
                 <input
                   class={{
                     'text-input': true,
-                    'hide-placeholder': this.category !== undefined,
+                    'hide-placeholder':
+                      this.readonly ||
+                      this.disabled ||
+                      this.category !== undefined,
                   }}
+                  disabled={this.disabled}
+                  readonly={this.readonly}
                   ref={(el) => (this.textInput = el)}
                   type="text"
                   placeholder={this.placeholder}
@@ -669,15 +718,19 @@ export class CategoryFilter {
           </div>
         </form>
 
-        <ix-dropdown
-          closeBehavior="outside"
-          trigger={this.textInput}
-          triggerEvent={['click', 'focus']}
-          header={this.getDropdownHeader()}
-          class={{ 'd-none': !this.displayDropdown() }}
-        >
-          {this.renderDropdownContent()}
-        </ix-dropdown>
+        {this.disabled || this.readonly ? (
+          ''
+        ) : (
+          <ix-dropdown
+            closeBehavior="outside"
+            offset={{ mainAxis: 2 }}
+            trigger={this.textInput}
+            triggerEvent={['click', 'focus']}
+            header={this.getDropdownHeader()}
+          >
+            {this.renderDropdownContent()}
+          </ix-dropdown>
+        )}
       </Host>
     );
   }

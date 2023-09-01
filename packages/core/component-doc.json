@@ -1300,20 +1300,22 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-icon",
         "ix-filter-chip",
-        "ix-dropdown"
+        "ix-dropdown",
+        "ix-spinner"
       ],
       "dependencyGraph": {
         "ix-category-filter": [
           "ix-icon-button",
           "ix-icon",
           "ix-filter-chip",
-          "ix-dropdown"
+          "ix-dropdown",
+          "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -1334,6 +1336,23 @@
           "values": [
             {
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If true the filter will be in disabled state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -1405,27 +1424,6 @@
           "required": false
         },
         {
-          "name": "initialState",
-          "type": "FilterState",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "When set this will initially populate the component with the provided search criteria.\nThis will trigger all input events accordingly.",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed with 2.0.0. Use the member filterState instead."
-            }
-          ],
-          "deprecation": "Will be removed with 2.0.0. Use the member filterState instead.",
-          "values": [
-            {
-              "type": "FilterState"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "labelCategories",
           "type": "string",
           "mutable": false,
@@ -1475,6 +1473,23 @@
           "required": false
         },
         {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the filter will be in readonly mode",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "repeatCategories",
           "type": "boolean",
           "mutable": false,
@@ -1509,6 +1524,15 @@
       ],
       "methods": [],
       "events": [
+        {
+          "event": "categoryChanged",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the a category gets selected in the dropdown",
+          "docsTags": []
+        },
         {
           "event": "filterChanged",
           "detail": "FilterState",
@@ -4109,6 +4133,28 @@
           "reflectToAttr": false,
           "docs": "If true the filter chip will be in disabled state",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the filter chip will be in readonly mode",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -8798,6 +8844,7 @@
         "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
+        "ix-category-filter",
         "ix-icon-button",
         "ix-icon-toggle-button",
         "ix-modal-loading",
@@ -8814,6 +8861,9 @@
           "ix-spinner"
         ],
         "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-category-filter": [
           "ix-spinner"
         ],
         "ix-icon-button": [
