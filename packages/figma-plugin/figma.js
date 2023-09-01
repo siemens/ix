@@ -16,6 +16,7 @@ const fs = require('fs');
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
  * @param {string | undefined} config.error_image Folder to images at build time
+ * @param {boolean | undefined} config.rimraf Folder to images at build time
  * @returns {*}
  */
 module.exports = async function (node, config) {

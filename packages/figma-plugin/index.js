@@ -8,16 +8,22 @@
  */
 const figma = require('./figma');
 const visit = require('unist-util-visit');
-
+const { rimrafSync } = require('rimraf');
+const fs = require('fs');
 /**
  *
  * @param {Object} config Configuration
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
  * @param {string | undefined} config.error_image Folder to images at build time
+ * @param {boolean} [config.rimraf=false] Folder to images at build time
  * @returns {*}
  */
 const plugin = (config) => {
+  if (config.rimraf === true) {
+    rimrafSync(config.figmaFolder);
+    fs.mkdirSync(config.figmaFolder);
+  }
   return () => {
     const transformer = async (ast) => {
       const promises = [];

@@ -70,6 +70,7 @@ const config = {
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
               error_image: '/img/figma_error.png',
               apiToken: process.env.FIGMA_API_TOKEN,
+              rimraf: true,
             }),
           ],
         },
