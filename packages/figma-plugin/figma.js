@@ -36,53 +36,68 @@ async function getImageResource(fileName, nodeId, figmaToken) {
  * @returns {*}
  */
 module.exports = async function (node, config) {
-  if (node.url.startsWith('https://www.figma.com/file/')) {
-    if (config.apiToken === undefined || config.apiToken === '') {
-      node.url = config.error_image;
-      return;
-    }
-
-    const url = new URL(node.url);
-    const urlPath = url.pathname;
-    const urlPaths = urlPath.split('/');
-    const fileIndex = urlPaths.findIndex((segment) => segment === 'file');
-    const branchIndex = urlPaths.findIndex((segment) => segment === 'branch');
-
-    const fileName =
-      branchIndex !== -1 ? urlPaths[branchIndex + 1] : urlPaths[fileIndex + 1];
-
-    const nodeId = url.searchParams.get('node-id');
-
-    const imageUUID = `${fileName}_${nodeId}`;
-    const imageUrl = await getImageResource(fileName, nodeId, config.apiToken);
-
-    if (process.env.NODE_ENV === 'production') {
-      const imageFileName = `${imageUUID}.png`;
-
-      if (!fs.existsSync(path.join(config.figmaFolder, imageFileName))) {
-        const imageResponse = await axios.get(imageUrl, {
-          responseType: 'stream',
-        });
-
-        const imagePath = path.join(config.figmaFolder, imageFileName);
-        const imageStream = fs.createWriteStream(imagePath);
-
-        imageResponse.data.pipe(imageStream);
-
-        await new Promise((resolve, reject) => {
-          imageStream.on('finish', resolve);
-          imageStream.on('error', reject);
-        });
-      } else {
-        console.log(
-          'Skip download use existing image:',
-          `/figma/${imageFileName}`
-        );
+  try {
+    if (node.url.startsWith('https://www.figma.com/file/')) {
+      if (config.apiToken === undefined || config.apiToken === '') {
+        node.url = config.error_image;
+        return;
       }
 
-      node.url = `/figma/${imageFileName}`;
-    } else {
-      node.url = imageUrl;
+      const url = new URL(node.url);
+      const urlPath = url.pathname;
+      const urlPaths = urlPath.split('/');
+      const fileIndex = urlPaths.findIndex((segment) => segment === 'file');
+      const branchIndex = urlPaths.findIndex((segment) => segment === 'branch');
+
+      const fileName =
+        branchIndex !== -1
+          ? urlPaths[branchIndex + 1]
+          : urlPaths[fileIndex + 1];
+
+      const nodeId = url.searchParams.get('node-id');
+
+      const imageUUID = `${fileName}_${nodeId}`;
+      const imageUrl = await getImageResource(
+        fileName,
+        nodeId,
+        config.apiToken
+      );
+
+      if (process.env.NODE_ENV === 'production') {
+        const imageFileName = `${imageUUID}.png`;
+
+        if (!fs.existsSync(path.join(config.figmaFolder, imageFileName))) {
+          const imageResponse = await axios.get(imageUrl, {
+            responseType: 'stream',
+          });
+
+          const imagePath = path.join(config.figmaFolder, imageFileName);
+          const imageStream = fs.createWriteStream(imagePath);
+
+          imageResponse.data.pipe(imageStream);
+
+          await new Promise((resolve, reject) => {
+            imageStream.on('finish', resolve);
+            imageStream.on('error', reject);
+          });
+        } else {
+          console.log(
+            'Skip download use existing image:',
+            `/figma/${imageFileName}`
+          );
+        }
+
+        node.url = `/figma/${imageFileName}`;
+      } else {
+        node.url = imageUrl;
+      }
     }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data);
+    } else {
+      console.error(error);
+    }
+    node.url = config.error_image;
   }
 };
