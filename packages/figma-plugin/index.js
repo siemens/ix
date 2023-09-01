@@ -14,14 +14,10 @@ const visit = require('unist-util-visit');
  * @param {Object} config Configuration
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
+ * @param {string | undefined} config.error_image Folder to images at build time
  * @returns {*}
  */
 const plugin = (config) => {
-  console.log('Config', config);
-  if (config.apiToken === undefined || config.apiToken === '') {
-    throw Error('No figma token provided');
-  }
-
   return () => {
     const transformer = async (ast) => {
       const promises = [];

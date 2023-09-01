@@ -68,6 +68,7 @@ const config = {
           remarkPlugins: [
             require('@siemens/figma-plugin')({
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
+              error_image: '/img/figma_error.png',
               apiToken: process.env.FIGMA_API_TOKEN,
             }),
           ],

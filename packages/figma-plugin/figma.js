@@ -15,10 +15,16 @@ const fs = require('fs');
  * @param {Object} config Configuration
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
+ * @param {string | undefined} config.error_image Folder to images at build time
  * @returns {*}
  */
 module.exports = async function (node, config) {
   if (node.url.startsWith('https://www.figma.com/file/')) {
+    if (config.apiToken === undefined || config.apiToken === '') {
+      node.url = config.error_image;
+      return;
+    }
+
     const url = new URL(node.url);
     const urlPath = url.pathname;
     const urlPaths = urlPath.split('/');
