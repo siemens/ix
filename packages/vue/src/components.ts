@@ -23,6 +23,9 @@ export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicati
 ]);
 
 
+export const IxApplicationSidebar = /*@__PURE__*/ defineContainer<JSX.IxApplicationSidebar>('ix-application-sidebar', undefined);
+
+
 export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', undefined, [
   'image',
   'initials'
@@ -111,7 +114,8 @@ export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-ca
 
 
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
-  'initialState',
+  'disabled',
+  'readonly',
   'filterState',
   'placeholder',
   'categories',
@@ -123,6 +127,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'tmpDisableScrollIntoView',
   'labelCategories',
   'i18nPlainText',
+  'categoryChanged',
   'inputChanged',
   'filterChanged'
 ]);
@@ -301,6 +306,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', undefined, [
   'disabled',
+  'readonly',
   'closeClick'
 ]);
 

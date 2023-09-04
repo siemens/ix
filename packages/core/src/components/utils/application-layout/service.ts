@@ -14,6 +14,7 @@ class ApplicationLayoutService {
   #supportedBreakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
   #breakpointChangeListener = new TypedEvent<Breakpoint>();
   #breakpoint: Breakpoint = 'lg';
+
   #isDetectionEnabled = true;
 
   constructor() {

@@ -4,6 +4,7 @@ import * as d from './components';
 export const DIRECTIVES = [
   d.IxActionCard,
   d.IxApplicationHeader,
+  d.IxApplicationSidebar,
   d.IxAvatar,
   d.IxBasicNavigation,
   d.IxBlind,

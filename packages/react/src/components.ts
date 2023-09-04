@@ -10,6 +10,7 @@ import { defineCustomElements } from '@siemens/ix/loader';
 defineCustomElements();
 export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card');
 export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxApplicationHeader, HTMLIxApplicationHeaderElement>('ix-application-header');
+export const IxApplicationSidebar = /*@__PURE__*/createReactComponent<JSX.IxApplicationSidebar, HTMLIxApplicationSidebarElement>('ix-application-sidebar');
 export const IxAvatar = /*@__PURE__*/createReactComponent<JSX.IxAvatar, HTMLIxAvatarElement>('ix-avatar');
 export const IxBasicNavigation = /*@__PURE__*/createReactComponent<JSX.IxBasicNavigation, HTMLIxBasicNavigationElement>('ix-basic-navigation');
 export const IxBlind = /*@__PURE__*/createReactComponent<JSX.IxBlind, HTMLIxBlindElement>('ix-blind');

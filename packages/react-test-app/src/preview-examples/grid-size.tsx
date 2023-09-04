@@ -15,7 +15,7 @@ import './grid.css';
 export default () => {
   return (
     <>
-      <h4>Column 6 takes all space until reached column 12</h4>
+      <h4>Column 6 takes up more space to a max of 12 columns total</h4>
       <IxGrid>
         <IxRow>
           <IxCol>1</IxCol>
@@ -27,7 +27,7 @@ export default () => {
         </IxRow>
       </IxGrid>
 
-      <h4>Stack on smaller screens as md</h4>
+      <h4>Stack columns on smaller screens</h4>
       <IxGrid>
         <IxRow>
           <IxCol size="12" size-md="3">

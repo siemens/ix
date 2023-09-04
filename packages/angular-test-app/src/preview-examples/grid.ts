@@ -24,12 +24,6 @@ import { Component } from '@angular/core';
         text-align: center;
         color: var(--theme-color-inv-contrast-text);
       }
-
-      .example-parent {
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
-        background-color: var(--theme-color-info-40);
-      }
     `,
   ],
 })

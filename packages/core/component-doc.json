@@ -173,7 +173,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "my-component"
       ],
       "dependencies": [
         "ix-burger-menu"
@@ -195,6 +196,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "my-component": [
           "ix-application-header"
         ]
       },
@@ -222,6 +226,36 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "./src/components/application-sidebar",
+      "filePath": "./src/components/application-sidebar/application-sidebar.tsx",
+      "fileName": "application-sidebar.tsx",
+      "readmePath": "./src/components/application-sidebar/readme.md",
+      "usagesDir": "./src/components/application-sidebar/usage",
+      "tag": "ix-application-sidebar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "application-sidebar-toggle",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "./src/components/avatar",
@@ -1348,20 +1382,22 @@
       "usage": {},
       "docs": "",
       "docsTags": [],
-      "encapsulation": "scoped",
+      "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-icon",
         "ix-filter-chip",
-        "ix-dropdown"
+        "ix-dropdown",
+        "ix-spinner"
       ],
       "dependencyGraph": {
         "ix-category-filter": [
           "ix-icon-button",
           "ix-icon",
           "ix-filter-chip",
-          "ix-dropdown"
+          "ix-dropdown",
+          "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -1382,6 +1418,23 @@
           "values": [
             {
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If true the filter will be in disabled state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -1453,27 +1506,6 @@
           "required": false
         },
         {
-          "name": "initialState",
-          "type": "FilterState",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "When set this will initially populate the component with the provided search criteria.\nThis will trigger all input events accordingly.",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed with 2.0.0. Use the member filterState instead."
-            }
-          ],
-          "deprecation": "Will be removed with 2.0.0. Use the member filterState instead.",
-          "values": [
-            {
-              "type": "FilterState"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "labelCategories",
           "type": "string",
           "mutable": false,
@@ -1523,6 +1555,23 @@
           "required": false
         },
         {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the filter will be in readonly mode",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "repeatCategories",
           "type": "boolean",
           "mutable": false,
@@ -1557,6 +1606,15 @@
       ],
       "methods": [],
       "events": [
+        {
+          "event": "categoryChanged",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the a category gets selected in the dropdown",
+          "docsTags": []
+        },
         {
           "event": "filterChanged",
           "detail": "FilterState",
@@ -2100,7 +2158,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button",
         "ix-typography"
@@ -2113,6 +2173,9 @@
         "ix-icon-button": [
           "ix-spinner",
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-content-header"
         ]
       },
       "props": [
@@ -4461,6 +4524,28 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "If true the filter chip will be in readonly mode",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],
@@ -4701,7 +4786,7 @@
           "mutable": false,
           "attr": "fixed",
           "reflectToAttr": false,
-          "docs": "Grid will be displayed without any padding",
+          "docs": "The grid will have a fixed width",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4734,7 +4819,7 @@
           "mutable": false,
           "attr": "fluid",
           "reflectToAttr": false,
-          "docs": "Integrates the grid fluid into the page without padding to left and right",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6796,7 +6881,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-tab-item",
         "ix-icon-button",
@@ -6814,6 +6901,9 @@
         ],
         "ix-tabs": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-about"
         ]
       },
       "props": [
@@ -6897,9 +6987,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-about-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -7326,7 +7422,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-icon",
@@ -7349,6 +7447,9 @@
         ],
         "ix-dropdown-item": [
           "ix-icon"
+        ],
+        "my-component": [
+          "ix-menu-category"
         ]
       },
       "props": [
@@ -7700,9 +7801,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu-settings-item"
+        ]
+      },
       "props": [
         {
           "name": "label",
@@ -9239,6 +9346,7 @@
         "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
+        "ix-category-filter",
         "ix-icon-button",
         "ix-icon-toggle-button",
         "ix-modal-loading",
@@ -9255,6 +9363,9 @@
           "ix-spinner"
         ],
         "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-category-filter": [
           "ix-spinner"
         ],
         "ix-icon-button": [
@@ -12105,22 +12216,33 @@
       "dependents": [],
       "dependencies": [
         "ix-application",
+        "ix-application-header",
         "ix-menu",
         "ix-menu-item",
+        "ix-menu-category",
         "ix-menu-settings",
-        "ix-content"
+        "ix-menu-settings-item",
+        "ix-menu-about",
+        "ix-menu-about-item",
+        "ix-content",
+        "ix-content-header"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-application",
+          "ix-application-header",
           "ix-menu",
           "ix-menu-item",
+          "ix-menu-category",
           "ix-menu-settings",
-          "ix-content"
+          "ix-menu-settings-item",
+          "ix-menu-about",
+          "ix-menu-about-item",
+          "ix-content",
+          "ix-content-header"
         ],
-        "ix-menu": [
-          "ix-burger-menu",
-          "ix-menu-item"
+        "ix-application-header": [
+          "ix-burger-menu"
         ],
         "ix-burger-menu": [
           "ix-icon-button",
@@ -12131,7 +12253,22 @@
           "ix-spinner",
           "ix-icon"
         ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item"
+        ],
         "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-menu-category": [
+          "ix-menu-item",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-typography",
+          "ix-divider"
+        ],
+        "ix-dropdown-item": [
           "ix-icon"
         ],
         "ix-menu-settings": [
@@ -12141,6 +12278,15 @@
         ],
         "ix-tabs": [
           "ix-icon"
+        ],
+        "ix-menu-about": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-content-header": [
+          "ix-icon-button",
+          "ix-typography"
         ]
       },
       "props": [],
