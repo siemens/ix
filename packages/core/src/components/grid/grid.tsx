@@ -26,7 +26,7 @@ export type GridSizingBehavior =
 })
 export class Grid {
   /**
-   * Grid will displayed with a fixed width
+   * The grid will have a fixed width
    */
   @Prop() fixed: GridSizingBehavior = false;
 
