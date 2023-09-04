@@ -46,6 +46,7 @@ jobs:
         uses: ./.github/workflows/actions/build
         env:
           BASE_URL: /version-dev/
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
         with:
           filter: 'documentation'
           args: '--force'

@@ -24,7 +24,7 @@ Do not use buttons for navigation. To foward a user to a new page, use a hyperli
 
 Buttons are available as primary, secondary and tertiary variants. Through the selective use of fill and outline color, different emphasis is given by each variant. Buttons can contain an icon and text, only text or only an icon. All buttons have a respective grey variant to be used within sections with less importance.
 
-![Button overview](/img/pattern_illustrations/button_overview.png)
+![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=143-9694&mode=design&t=oeSCpzdXLLAiSHv2-0)
 
 ### Emphasis
 
@@ -73,7 +73,7 @@ The selected state is only available for tertiary (ghost) grey buttons to visual
 
 A button group, also known as segmented buttons or toggle buttons, is an element consisting of two or more adjacent buttons. Selection/activation of the buttons can either be mutually exclusive (single-select) or not (multi-select). Buttons within a button group should be of the same content variant, i.e. not mixing icon only, text only and icon and text buttons in one group. All buttons within a button group are secondary (outline) buttons and switch to primary when selected/active. Button groups should be used for closely related actions, e.g. switching between different views.
 
-![Button group](/img/pattern_illustrations/button_group.png)
+![Button group](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=145-10524&mode=design&t=oeSCpzdXLLAiSHv2-0)
 
 ## Behavior in context
 
@@ -93,7 +93,7 @@ Buttons can be left-justified or right-justified or fully span a container's wid
 
 Button states are equal for text-only, icon-only and text and icon buttons.
 
-![Button states](/img/pattern_illustrations/button_states.png)
+![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=oeSCpzdXLLAiSHv2-0)
 
 | State           | Description                                                                                                                    |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
