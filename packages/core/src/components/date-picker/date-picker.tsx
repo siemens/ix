@@ -103,7 +103,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate: string = '2023/09/02';
 
   /**
    * The latest date that can be selected by the date picker.
@@ -111,7 +111,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate: string = '2023/09/20';
 
   /**
    * Text of date select button
@@ -387,18 +387,17 @@ export class DatePicker {
     };
   }
 
-  isWithinMinMaxYear(year: number): boolean {
+  private isWithinMinMaxYear(year: number): boolean {
     const minDateYear = this.minDate
       ? dayjs(this.minDate, this.format).year()
       : undefined;
     const maxDateYear = this.maxDate
       ? dayjs(this.maxDate, this.format).year()
       : undefined;
+    const isBefore = minDateYear ? year < minDateYear : false;
+    const isAfter = maxDateYear ? year > maxDateYear : false;
 
-    return (
-      !(minDateYear !== undefined && year < minDateYear) &&
-      !(maxDateYear !== undefined && year > maxDateYear)
-    );
+    return !isBefore && !isAfter;
   }
 
   private isWithinMinMax(date: Dayjs): boolean {
