@@ -103,7 +103,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string = '2015/03/01';
+  @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
@@ -388,10 +388,17 @@ export class DatePicker {
   }
 
   isWithinMinMaxYear(year: number): boolean {
-    const yearDateObj = dayjs(new Date(year + 1, 0, 1));
+    const minDateYear = this.minDate
+      ? dayjs(this.minDate, this.format).year()
+      : undefined;
+    const maxDateYear = this.maxDate
+      ? dayjs(this.maxDate, this.format).year()
+      : undefined;
 
-    const newLocal = this.isWithinMinMax(yearDateObj);
-    return newLocal;
+    return (
+      !(minDateYear !== undefined && year < minDateYear) &&
+      !(maxDateYear !== undefined && year > maxDateYear)
+    );
   }
 
   private isWithinMinMax(date: Dayjs): boolean {
