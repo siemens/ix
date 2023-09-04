@@ -861,11 +861,11 @@ export namespace Components {
          */
         "columns": number;
         /**
-          * Grid will be displayed without any padding
+          * Grid will displayed with a fixed width
          */
         "fixed": GridSizingBehavior;
         /**
-          * Integrates the grid fluid into the page without padding to left and right
+          * The grid will not have any horizontal padding
          */
         "fluid": boolean;
     }
@@ -3881,11 +3881,11 @@ declare namespace LocalJSX {
          */
         "columns"?: number;
         /**
-          * Grid will be displayed without any padding
+          * Grid will displayed with a fixed width
          */
         "fixed"?: GridSizingBehavior;
         /**
-          * Integrates the grid fluid into the page without padding to left and right
+          * The grid will not have any horizontal padding
          */
         "fluid"?: boolean;
     }

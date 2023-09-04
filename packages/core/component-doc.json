@@ -4653,7 +4653,7 @@
           "mutable": false,
           "attr": "fixed",
           "reflectToAttr": false,
-          "docs": "Grid will be displayed without any padding",
+          "docs": "Grid will displayed with a fixed width",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -4686,7 +4686,7 @@
           "mutable": false,
           "attr": "fluid",
           "reflectToAttr": false,
-          "docs": "Integrates the grid fluid into the page without padding to left and right",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [

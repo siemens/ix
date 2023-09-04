@@ -26,12 +26,12 @@ export type GridSizingBehavior =
 })
 export class Grid {
   /**
-   * Grid will be displayed without any padding
+   * Grid will displayed with a fixed width
    */
   @Prop() fixed: GridSizingBehavior = false;
 
   /**
-   * Integrates the grid fluid into the page without padding to left and right
+   * The grid will not have any horizontal padding
    */
   @Prop() fluid = false;
 

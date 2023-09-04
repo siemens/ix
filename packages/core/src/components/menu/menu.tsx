@@ -94,7 +94,7 @@ export class Menu {
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
     if (this.applicationLayoutContext?.host === 'map-navigation') {
-      console.warn('ix-map-navigation does not support pinned feature');
+      console.warn('ix-map-navigation does not support pinning of the menu');
       return;
     }
     this.setPinned(this.pinned);
@@ -113,9 +113,7 @@ export class Menu {
   @Prop() forceBreakpoint: Breakpoint | undefined;
   forceLayoutChange(newMode: Breakpoint | undefined) {
     if (this.pinned) {
-      console.warn(
-        'You cannot force a breakpoint while pinned property is set!'
-      );
+      console.warn('You cannot force a breakpoint while the menu is pinned!');
       return;
     }
 

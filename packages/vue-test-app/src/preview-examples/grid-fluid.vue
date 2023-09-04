@@ -15,7 +15,7 @@ import './grid.css';
 
 <template>
   <div class="example-parent">
-    <h4>None fluid (default)</h4>
+    <h4>Non fluid (default)</h4>
     <IxGrid>
       <IxRow>
         <IxCol>1</IxCol>

@@ -70,7 +70,6 @@ export class BasicNavigation {
 
     if (this.hideHeader === false) {
       this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
-        console.log(mode);
         this.breakpoint = mode;
       });
       this.breakpoint = applicationLayoutService.breakpoint;
