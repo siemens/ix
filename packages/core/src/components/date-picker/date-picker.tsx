@@ -22,9 +22,13 @@ import {
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import dayjs, { Dayjs, MonthNames, WeekdayNames } from 'dayjs';
+import isLeapYear from 'dayjs/plugin/isLeapYear';
+import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+dayjs.extend(isLeapYear);
+dayjs.extend(isoWeeksInYear);
 dayjs.extend(localeData);
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
@@ -247,8 +251,8 @@ export class DatePicker {
     const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
-    const startWeek = monthStart.week();
-    const endWeek = monthEnd.week();
+    let startWeek = monthStart.week();
+    let endWeek = monthEnd.week();
     let monthStartWeekDayIndex = monthStart.weekday();
     let monthEndWeekDayIndex = monthEnd.weekday();
 
@@ -256,6 +260,7 @@ export class DatePicker {
       // Find the positions where to start/stop counting the day-numbers based on which day the week starts
       const weekdays = dayjs.weekdays();
       const monthStartWeekDayName = weekdays[monthStart.weekday()];
+
       monthStartWeekDayIndex = this.dayNames.findIndex(
         (d) => d === monthStartWeekDayName
       );
@@ -263,6 +268,13 @@ export class DatePicker {
       monthEndWeekDayIndex = this.dayNames.findIndex(
         (d) => d === monthEndWeekDayName
       );
+    }
+
+    // If the last week has week-number 1
+    let correctLastWeek = false;
+    if (startWeek > endWeek) {
+      endWeek = monthEnd.isoWeeksInYear() + 1;
+      correctLastWeek = true;
     }
 
     let currDayNumber = 1;
@@ -286,6 +298,10 @@ export class DatePicker {
         weekNumber: i,
         dayNumbers: daysArr,
       });
+    }
+
+    if (correctLastWeek) {
+      calendar[calendar.length - 1].weekNumber = 1;
     }
 
     this.calendar = calendar;
@@ -350,7 +366,6 @@ export class DatePicker {
 
       return;
     }
-
     // Reset the range selection
     if (this.currFromDate !== undefined && this.currToDate !== undefined) {
       this.currFromDate = date;
@@ -359,13 +374,11 @@ export class DatePicker {
 
       return;
     }
-
     // Don't do anything if the range doesn't differ by at least one day
     // Otherwise the user would have to do one extra click if they choose to change the range again
     if (date.isSame(this.currFromDate, 'day')) {
       return;
     }
-
     // Swap from/to if the second date is before the current date
     if (date.isBefore(this.currFromDate)) {
       this.currToDate = this.currFromDate;
@@ -374,7 +387,6 @@ export class DatePicker {
 
       return;
     }
-
     // Set the range normally
     this.currToDate = date;
     this.onDateChange();
