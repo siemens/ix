@@ -8,8 +8,8 @@
  */
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
+import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { menuContext } from '../utils/screen/context';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
@@ -123,7 +123,7 @@ export class MenuCategory {
   }
 
   componentDidLoad() {
-    const closestMenu = menuContext(this.hostElement);
+    const closestMenu = closestIxMenu(this.hostElement);
     if (!closestMenu) {
       throw Error('ix-menu-category can only be used as a child of ix-menu');
     }

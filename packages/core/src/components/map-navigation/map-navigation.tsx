@@ -19,6 +19,8 @@ import {
   State,
 } from '@stencil/core';
 import anime from 'animejs';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import { useContextProvider } from '../utils/context';
 
 @Component({
   tag: 'ix-map-navigation',
@@ -82,6 +84,13 @@ export class MapNavigation {
   componentDidRender() {
     this.appendMenu();
     this.closeOverlay();
+  }
+
+  componentWillLoad() {
+    useContextProvider(this.hostElement, ApplicationLayoutContext, {
+      hideHeader: false,
+      host: 'map-navigation',
+    });
   }
 
   private appendMenu() {

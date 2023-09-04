@@ -20,7 +20,7 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
   'name',
-  'mode'
+  'breakpoint'
 ]);
 
 
@@ -110,7 +110,8 @@ export const IxCardTitle = /*@__PURE__*/ defineContainer<JSX.IxCardTitle>('ix-ca
 
 
 export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilter>('ix-category-filter', undefined, [
-  'initialState',
+  'disabled',
+  'readonly',
   'filterState',
   'placeholder',
   'categories',
@@ -122,6 +123,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'tmpDisableScrollIntoView',
   'labelCategories',
   'i18nPlainText',
+  'categoryChanged',
   'inputChanged',
   'filterChanged'
 ]);
@@ -137,6 +139,14 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'outline',
   'close',
   'closeChip'
+]);
+
+
+export const IxCol = /*@__PURE__*/ defineContainer<JSX.IxCol>('ix-col', undefined, [
+  'size',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg'
 ]);
 
 
@@ -292,6 +302,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', undefined, [
   'disabled',
+  'readonly',
   'closeClick'
 ]);
 
@@ -305,6 +316,18 @@ export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip
 
 export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', undefined, [
   'contentVisible'
+]);
+
+
+export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', undefined, [
+  'label'
+]);
+
+
+export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
+  'fixed',
+  'fluid',
+  'columns'
 ]);
 
 
@@ -433,8 +456,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nExpandSidebar',
   'expand',
   'pinned',
-  'forceLayout',
-  'supportedModes',
+  'forceBreakpoint',
+  'breakpoints',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',
@@ -586,6 +609,9 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'subheading',
   'variant'
 ]);
+
+
+export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', undefined);
 
 
 export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', undefined, [
