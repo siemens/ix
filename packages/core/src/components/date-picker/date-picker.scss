@@ -19,6 +19,13 @@
     justify-content: space-between;
   }
 
+  .disabled-item {
+    pointer-events: none;
+    background-color: var(--theme-datepicker-day--background--disabled);
+    color: var(--theme-datepicker-day--color--disabled);
+    cursor: default;
+  }
+
   .selector {
     flex-basis: 100%;
     display: flex;
@@ -70,13 +77,6 @@
       .monthMargin {
         margin-left: 10px;
       }
-    }
-
-    .disabled-year {
-      pointer-events: none;
-      background-color: var(--theme-datepicker-day--background--disabled);
-      color: var(--theme-datepicker-day--color--disabled);
-      cursor: default;
     }
   }
 

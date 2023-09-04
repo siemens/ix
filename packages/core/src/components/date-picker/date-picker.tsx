@@ -111,7 +111,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string = '2023/09/20';
+  @Prop() maxDate: string = '2024/09/20';
 
   /**
    * Text of date select button
@@ -399,6 +399,25 @@ export class DatePicker {
     return !isBefore && !isAfter;
   }
 
+  private isWithinMinMaxMonth(month: number): boolean {
+    const minDateObj = this.minDate
+      ? dayjs(this.minDate, this.format)
+      : undefined;
+    const maxDateObj = this.maxDate
+      ? dayjs(this.maxDate, this.format)
+      : undefined;
+    const minDateMonth = minDateObj?.month();
+    const maxDateMonth = maxDateObj?.month();
+    const isBefore = minDateMonth
+      ? this.tempYear === minDateObj.year() && month < minDateMonth
+      : false;
+    const isAfter = maxDateMonth
+      ? this.tempYear === maxDateObj.year() && month > maxDateMonth
+      : false;
+
+    return !isBefore && !isAfter;
+  }
+
   private isWithinMinMax(date: Dayjs): boolean {
     const _minDate = this.minDate
       ? dayjs(this.minDate, this.format)
@@ -442,7 +461,7 @@ export class DatePicker {
           key={year}
           class={{
             arrowYear: true,
-            'disabled-year': !this.isWithinMinMaxYear(year),
+            'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={(event) => this.selectTempYear(event, year)}
         >
@@ -500,13 +519,18 @@ export class DatePicker {
                         key={month}
                         class={{
                           arrowYear: true,
-                          selected: this.tempMonth - 1 === index,
+                          selected:
+                            this.tempYear === this.selectedYear &&
+                            this.tempMonth === index,
+                          'disabled-item': !this.isWithinMinMaxMonth(index),
                         }}
                         onClick={() => this.selectMonth(index)}
                       >
                         <ix-icon
                           class={{
-                            hidden: this.tempMonth - 1 !== index,
+                            hidden:
+                              this.tempYear !== this.selectedYear ||
+                              this.tempMonth !== index,
                             checkPosition: true,
                           }}
                           name="single-check"
