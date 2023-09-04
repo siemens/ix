@@ -59,11 +59,9 @@
 
 :host(.hide-chevron) {
   cursor: default;
-  .btn {
-    padding-right: 0.5rem;
-  }
 
   .btn {
+    padding-right: 0.5rem;
     pointer-events: none;
   }
 }
