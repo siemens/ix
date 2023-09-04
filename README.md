@@ -85,7 +85,7 @@ docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwrig
 
 ### Documentation
 
-If you want to see all image references. It is necessary create a personal access token (https://www.figma.com/developers/api#access-tokens).
+To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
 
 Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside root.
 
