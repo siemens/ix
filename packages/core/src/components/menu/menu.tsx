@@ -21,11 +21,12 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import { applicationLayoutService } from '../utils/application-layout/service';
+import { Breakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
-import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
-import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
@@ -92,42 +93,46 @@ export class Menu {
   @Prop() pinned = false;
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      console.warn('ix-map-navigation does not support pinning of the menu');
+      return;
+    }
     this.setPinned(this.pinned);
     if (newPinned) {
-      screenMode.disableModeDetection();
-      screenMode.setMode('large');
+      applicationLayoutService.disableBreakpointDetection();
+      applicationLayoutService.setBreakpoint('lg');
       return;
     }
 
-    screenMode.enableModeDetection();
+    applicationLayoutService.enableBreakpointDetection();
   }
 
   /**
    * Change the responsive layout of the menu structure
    */
-  @Prop() forceLayout: Mode | undefined;
-  forceLayoutChange(newMode: Mode | undefined) {
+  @Prop() forceBreakpoint: Breakpoint | undefined;
+  forceLayoutChange(newMode: Breakpoint | undefined) {
     if (this.pinned) {
-      console.warn('You cannot force a layout while pinned property is set!');
+      console.warn('You cannot force a breakpoint while the menu is pinned!');
       return;
     }
 
     if (!newMode) {
-      screenMode.enableModeDetection();
+      applicationLayoutService.enableBreakpointDetection();
       return;
     }
 
-    screenMode.disableModeDetection();
-    screenMode.setMode(newMode);
+    applicationLayoutService.disableBreakpointDetection();
+    applicationLayoutService.setBreakpoint(newMode);
   }
 
   /**
    * Supported layouts
    */
-  @Prop() supportedModes: Mode[] = ['small', 'medium', 'large'];
-  @Watch('supportedModes')
-  supportedModesChange(modes: Mode[]) {
-    screenMode.setSupportedMods(modes);
+  @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
+  @Watch('breakpoints')
+  onBreakpointsChange(modes: Breakpoint[]) {
+    applicationLayoutService.setBreakpoints(modes);
   }
 
   /**
@@ -163,10 +168,12 @@ export class Menu {
   @State() showPinned = false;
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement | null;
-  @State() mode: Mode = 'large';
+  @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-
+  @State() applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
   private isTransitionDisabled = false;
 
   // FBC IAM workaround #488
@@ -289,22 +296,37 @@ export class Menu {
       this.pinnedChange(this.pinned);
     }
 
-    if (this.forceLayout) {
-      this.forceLayoutChange(this.forceLayout);
+    if (this.forceBreakpoint) {
+      this.forceLayoutChange(this.forceBreakpoint);
     }
 
-    if (this.supportedModes !== undefined && this.supportedModes.length > 0) {
-      this.supportedModesChange(this.supportedModes);
+    if (this.breakpoints !== undefined && this.breakpoints.length > 0) {
+      this.onBreakpointsChange(this.breakpoints);
     }
   }
 
   componentWillLoad() {
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        if (ctx.hideHeader === true) {
+          this.onBreakpointChange('md');
+          return;
+        }
+
+        this.onBreakpointChange(applicationLayoutService.breakpoint);
+      },
+      true
+    );
+
     menuController.register(this.hostElement);
-    const layout = hostContext('ix-basic-navigation', this.hostElement);
-    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
-      screenMode.onChange.on((mode) => this.onModeChange(mode));
-      this.onModeChange(screenMode.mode);
-    }
+    applicationLayoutService.setBreakpoints(this.breakpoints);
+    applicationLayoutService.onChange.on((breakpoint) =>
+      this.onBreakpointChange(breakpoint)
+    );
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   componentWillRender() {
@@ -320,13 +342,23 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onModeChange(mode: Mode) {
-    if (!this.supportedModes.includes(mode)) {
+  private onBreakpointChange(mode: Breakpoint) {
+    if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
-    this.mode = mode;
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      this.breakpoint = 'md';
+      return;
+    }
+    if (this.applicationLayoutContext?.hideHeader) {
+      return;
+    }
+    if (!this.breakpoints.includes(mode)) {
+      return;
+    }
+    this.breakpoint = mode;
 
-    if (this.mode === 'large') {
+    if (this.breakpoint === 'lg') {
       this.setPinned(true);
       this.toggleMenu(true);
       return;
@@ -573,7 +605,7 @@ export class Menu {
       <Host
         class={{
           expanded: this.expand,
-          [`mode-${this.mode}`]: true,
+          [`breakpoint-${this.breakpoint}`]: true,
         }}
         slot="menu"
       >

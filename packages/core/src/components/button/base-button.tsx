@@ -71,7 +71,7 @@ export function BaseButton(props: BaseButtonProps, children) {
   return (
     <button
       {...props.ariaAttributes}
-      onClick={() => (props.onClick ? props.onClick() : undefined)}
+      onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
       tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}
       class={{

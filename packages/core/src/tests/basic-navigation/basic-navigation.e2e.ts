@@ -9,8 +9,8 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest, test } from '@utils/test';
-const smallWidth = 639;
-const mediumWidth = 642;
+const smallWidth = 700;
+const mediumWidth = 780;
 const largeWidth = 1026;
 
 regressionTest.describe('basic navigation large', () => {
