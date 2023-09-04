@@ -103,7 +103,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string = '2023/09/02';
+  @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
@@ -111,7 +111,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string = '2024/09/20';
+  @Prop() maxDate: string;
 
   /**
    * Text of date select button
