@@ -8,8 +8,8 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Breakpoint } from '../utils/breakpoints';
 import { menuController } from '../utils/menu-service/menu-service';
-import { Mode } from '../utils/screen/mode';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -28,7 +28,7 @@ export class ApplicationHeader {
   /**
    * @internal
    */
-  @Prop() mode: Mode = 'large';
+  @Prop() breakpoint: Breakpoint = 'lg';
 
   @State() menuExpanded = false;
 
@@ -77,8 +77,8 @@ export class ApplicationHeader {
 
   render() {
     return (
-      <Host class={{ [`mode-${this.mode}`]: true }}>
-        {this.mode === 'small' ? (
+      <Host class={{ [`breakpoint-${this.breakpoint}`]: true }}>
+        {this.breakpoint === 'sm' ? (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}

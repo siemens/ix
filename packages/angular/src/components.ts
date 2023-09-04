@@ -392,6 +392,28 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm']
+})
+@Component({
+  selector: 'ix-col',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm'],
+})
+export class IxCol {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCol extends Components.IxCol {}
+
+
+@ProxyCmp({
   inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
 })
 @Component({
@@ -889,6 +911,28 @@ export declare interface IxFormField extends Components.IxFormField {}
 
 
 @ProxyCmp({
+  inputs: ['columns', 'fixed', 'fluid']
+})
+@Component({
+  selector: 'ix-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['columns', 'fixed', 'fluid'],
+})
+export class IxGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxGrid extends Components.IxGrid {}
+
+
+@ProxyCmp({
   inputs: ['collapsed', 'expandOnHeaderClick', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
@@ -1216,7 +1260,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceLayout', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'supportedModes'],
+  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1224,7 +1268,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceLayout', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'supportedModes'],
+  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
 })
 export class IxMenu {
   protected el: HTMLElement;
@@ -1706,6 +1750,27 @@ export class IxPushCard {
 
 
 export declare interface IxPushCard extends Components.IxPushCard {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-row',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxRow {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({

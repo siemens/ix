@@ -1769,6 +1769,302 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/col",
+      "filePath": "./src/components/col/col.tsx",
+      "fileName": "col.tsx",
+      "readmePath": "./src/components/col/readme.md",
+      "usagesDir": "./src/components/col/usage",
+      "tag": "ix-col",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "size",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the column",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeLg",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-lg",
+          "reflectToAttr": false,
+          "docs": "Size of the column for lg screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeMd",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-md",
+          "reflectToAttr": false,
+          "docs": "Size of the column for md screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "sizeSm",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "mutable": false,
+          "attr": "size-sm",
+          "reflectToAttr": false,
+          "docs": "Size of the column for sm screens",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "1",
+              "type": "string"
+            },
+            {
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "value": "11",
+              "type": "string"
+            },
+            {
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "2",
+              "type": "string"
+            },
+            {
+              "value": "3",
+              "type": "string"
+            },
+            {
+              "value": "4",
+              "type": "string"
+            },
+            {
+              "value": "5",
+              "type": "string"
+            },
+            {
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "value": "7",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "value": "auto",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "resize",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
+    },
+    {
       "dirPath": "./src/components/content-header",
       "filePath": "./src/components/content-header/content-header.tsx",
       "fileName": "content-header.tsx",
@@ -4360,6 +4656,102 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/grid",
+      "filePath": "./src/components/grid/grid.tsx",
+      "fileName": "grid.tsx",
+      "readmePath": "./src/components/grid/readme.md",
+      "usagesDir": "./src/components/grid/usage",
+      "tag": "ix-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "columns",
+          "type": "number",
+          "mutable": false,
+          "attr": "columns",
+          "reflectToAttr": false,
+          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
+          "docsTags": [],
+          "default": "12",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fixed",
+          "type": "\"fixed\" | \"fixed-lg\" | \"fixed-md\" | \"fixed-sm\" | boolean",
+          "mutable": false,
+          "attr": "fixed",
+          "reflectToAttr": false,
+          "docs": "The grid will have a fixed width",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "value": "fixed",
+              "type": "string"
+            },
+            {
+              "value": "fixed-lg",
+              "type": "string"
+            },
+            {
+              "value": "fixed-md",
+              "type": "string"
+            },
+            {
+              "value": "fixed-sm",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fluid",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fluid",
+          "reflectToAttr": false,
+          "docs": "The grid will not have any horizontal padding",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/group",
       "filePath": "./src/components/group/group.tsx",
       "fileName": "group.tsx",
@@ -6044,6 +6436,29 @@
           "required": false
         },
         {
+          "name": "breakpoints",
+          "type": "(\"sm\" | \"md\" | \"lg\")[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Supported layouts",
+          "docsTags": [],
+          "default": "['sm', 'md', 'lg']",
+          "values": [
+            {
+              "type": "(\"sm\""
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "type": "\"lg\")[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "enableMapExpand",
           "type": "boolean",
           "mutable": false,
@@ -6112,24 +6527,24 @@
           "required": false
         },
         {
-          "name": "forceLayout",
-          "type": "\"large\" | \"medium\" | \"small\"",
+          "name": "forceBreakpoint",
+          "type": "\"lg\" | \"md\" | \"sm\"",
           "mutable": false,
-          "attr": "force-layout",
+          "attr": "force-breakpoint",
           "reflectToAttr": false,
           "docs": "Change the responsive layout of the menu structure",
           "docsTags": [],
           "values": [
             {
-              "value": "large",
+              "value": "lg",
               "type": "string"
             },
             {
-              "value": "medium",
+              "value": "md",
               "type": "string"
             },
             {
-              "value": "small",
+              "value": "sm",
               "type": "string"
             }
           ],
@@ -6301,22 +6716,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "supportedModes",
-          "type": "Mode[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "Supported layouts",
-          "docsTags": [],
-          "default": "['small', 'medium', 'large']",
-          "values": [
-            {
-              "type": "Mode[]"
             }
           ],
           "optional": false,
@@ -8404,6 +8803,34 @@
           "required": false
         }
       ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/row",
+      "filePath": "./src/components/row/row.tsx",
+      "fileName": "row.tsx",
+      "readmePath": "./src/components/row/readme.md",
+      "usagesDir": "./src/components/row/usage",
+      "tag": "ix-row",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
       "methods": [],
       "events": [],
       "styles": [],

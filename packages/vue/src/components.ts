@@ -20,7 +20,7 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
   'name',
-  'mode'
+  'breakpoint'
 ]);
 
 
@@ -139,6 +139,14 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'outline',
   'close',
   'closeChip'
+]);
+
+
+export const IxCol = /*@__PURE__*/ defineContainer<JSX.IxCol>('ix-col', undefined, [
+  'size',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg'
 ]);
 
 
@@ -316,6 +324,13 @@ export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-fo
 ]);
 
 
+export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
+  'fixed',
+  'fluid',
+  'columns'
+]);
+
+
 export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', undefined, [
   'suppressHeaderSelection',
   'header',
@@ -441,8 +456,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nExpandSidebar',
   'expand',
   'pinned',
-  'forceLayout',
-  'supportedModes',
+  'forceBreakpoint',
+  'breakpoints',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',
@@ -594,6 +609,9 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'subheading',
   'variant'
 ]);
+
+
+export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', undefined);
 
 
 export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', undefined, [
