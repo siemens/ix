@@ -34,8 +34,8 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
- * @slot label-start - Display a element on slider start area
- * @slot label-end - Display a element on slider end area
+ * @slot label-start - Element will be displayed at the start of the slider
+ * @slot label-end - Element will be displayed at the end of the slider
  */
 @Component({
   tag: 'ix-slider',
@@ -46,7 +46,9 @@ export class IxSlider {
   @Element() hostElement!: HTMLIxSliderElement;
 
   /**
-   * Slider steps
+   * Legal number intervals
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
    */
   @Prop() step: number;
 
@@ -66,7 +68,7 @@ export class IxSlider {
   @Prop() value = 0;
 
   /**
-   * Define tick marker on the slider. Marker need to be inside min/max
+   * Define tick marker on the slider. Marker has to be within slider min/max
    */
   @Prop() marker: SliderMarker;
 
@@ -142,14 +144,6 @@ export class IxSlider {
   @Watch('min')
   @Watch('traceReference')
   private updateRangeVariables() {
-    if (this.value < this.min) {
-      this.rangeInput = this.min;
-    } else if (this.value > this.max) {
-      this.rangeInput = this.max;
-    } else {
-      this.rangeInput = this.value;
-    }
-
     this.rangeInput = between(this.min, this.value, this.max);
     this.rangeTraceReference = between(this.min, this.traceReference, this.max);
     this.rangeMin = Math.min(this.min, this.max);
@@ -178,8 +172,8 @@ export class IxSlider {
     return value >= start && value <= end;
   }
 
-  // Listen global on windows because sometimes the event listener
-  // of the dom element input itself is not called if the release
+  // Listen globally on window because sometimes the event listener
+  // of the DOM element input itself is not called if the release
   // click is not inside the element anymore
   @Listen('pointerup', {
     target: 'window',
