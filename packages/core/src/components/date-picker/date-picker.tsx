@@ -270,8 +270,7 @@ export class DatePicker {
     const maxScroll = this.yearContainerRef.scrollHeight;
     const atTop = scroll === 0;
     const atBottom =
-      scroll + this.yearContainerRef.getBoundingClientRect().height ===
-      maxScroll;
+      Math.round(scroll + this.yearContainerRef.offsetHeight) >= maxScroll;
     const limit = 200;
 
     if (this.endYear - this.startYear > limit) return;
