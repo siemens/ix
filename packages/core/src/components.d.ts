@@ -1555,7 +1555,7 @@ export namespace Components {
          */
         "error": boolean | string;
         /**
-          * Define tick marker on the slider. Marker need to be inside min/max
+          * Define tick marker on the slider. Marker has to be within slider min/max
          */
         "marker": SliderMarker;
         /**
@@ -1567,7 +1567,8 @@ export namespace Components {
          */
         "min": number;
         /**
-          * Slider steps
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step": number;
         /**
@@ -4608,7 +4609,7 @@ declare namespace LocalJSX {
          */
         "error"?: boolean | string;
         /**
-          * Define tick marker on the slider. Marker need to be inside min/max
+          * Define tick marker on the slider. Marker has to be within slider min/max
          */
         "marker"?: SliderMarker;
         /**
@@ -4621,7 +4622,8 @@ declare namespace LocalJSX {
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
-          * Slider steps
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step"?: number;
         /**

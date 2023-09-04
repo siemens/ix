@@ -8795,11 +8795,11 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "label-start - Display a element on slider start area"
+          "text": "label-start - Element will be displayed at the start of the slider"
         },
         {
           "name": "slot",
-          "text": "label-end - Display a element on slider end area"
+          "text": "label-end - Element will be displayed at the end of the slider"
         }
       ],
       "encapsulation": "shadow",
@@ -8859,7 +8859,7 @@
           "type": "number[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Define tick marker on the slider. Marker need to be inside min/max",
+          "docs": "Define tick marker on the slider. Marker has to be within slider min/max",
           "docsTags": [],
           "values": [
             {
@@ -8909,8 +8909,13 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Slider steps",
-          "docsTags": [],
+          "docs": "Legal number intervals",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
+            }
+          ],
           "values": [
             {
               "type": "number"
@@ -8987,11 +8992,11 @@
       "slots": [
         {
           "name": "label-end",
-          "docs": "Display a element on slider end area"
+          "docs": "Element will be displayed at the end of the slider"
         },
         {
           "name": "label-start",
-          "docs": "Display a element on slider start area"
+          "docs": "Element will be displayed at the start of the slider"
         }
       ],
       "parts": [],
