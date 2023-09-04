@@ -164,7 +164,6 @@ export class DatePicker {
     };
   }
 
-  @State() today = dayjs();
   @State() currFromDate: Dayjs;
   @State() currToDate: Dayjs;
   @State() calendar: CalendarWeek[];
@@ -211,6 +210,27 @@ export class DatePicker {
     this.calculateCalendar();
   }
 
+  /**
+   * Rotate the WeekdayNames array.
+   * Based on the position that should be the new 0-index.
+   */
+  private rotateWeekDayNames(
+    weekdays: WeekdayNames,
+    index: number
+  ): WeekdayNames {
+    const clone = [...weekdays] as WeekdayNames;
+
+    if (index === 0) {
+      return clone;
+    }
+
+    index = -index;
+    const len = weekdays.length;
+
+    clone.push(...clone.splice(0, ((-index % len) + len) % len));
+    return clone;
+  }
+
   private onDone() {
     if (this.range && this.currToDate === undefined) {
       this.currToDate = this.currFromDate;
@@ -229,21 +249,32 @@ export class DatePicker {
     const monthEnd = month.endOf('month');
     const startWeek = monthStart.week();
     const endWeek = monthEnd.week();
-    let monthStartWeekDay = monthStart.weekday() - this.weekStartIndex;
-    let monthEndWeekDay = monthEnd.weekday() - this.weekStartIndex;
-    monthStartWeekDay = monthStartWeekDay === -1 ? 6 : monthStartWeekDay;
-    monthEndWeekDay = monthEndWeekDay === -1 ? 6 : monthEndWeekDay;
+    let monthStartWeekDayIndex = monthStart.weekday();
+    let monthEndWeekDayIndex = monthEnd.weekday();
+
+    if (this.weekStartIndex !== 0) {
+      // Find the positions where to start/stop counting the day-numbers based on which day the week starts
+      const weekdays = dayjs.weekdays();
+      const monthStartWeekDayName = weekdays[monthStart.weekday()];
+      monthStartWeekDayIndex = this.dayNames.findIndex(
+        (d) => d === monthStartWeekDayName
+      );
+      const monthEndWeekDayName = weekdays[monthEnd.weekday()];
+      monthEndWeekDayIndex = this.dayNames.findIndex(
+        (d) => d === monthEndWeekDayName
+      );
+    }
 
     let currDayNumber = 1;
     for (let i = startWeek; i <= endWeek; i++) {
       const daysArr: number[] = [];
 
       for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
+        // Display empty cells until the calender starts/has ended
         if (
-          (i === startWeek && j < monthStartWeekDay) ||
-          (i === endWeek && j > monthEndWeekDay)
+          (i === startWeek && j < monthStartWeekDayIndex) ||
+          (i === endWeek && j > monthEndWeekDayIndex)
         ) {
-          // empty cell
           daysArr.push(undefined);
         } else {
           daysArr.push(currDayNumber);
@@ -429,27 +460,6 @@ export class DatePicker {
     const isAfter = _maxDate ? date.isAfter(_maxDate, 'day') : false;
 
     return !isBefore && !isAfter;
-  }
-
-  /**
-   * Rotate the WeekdayNames array.
-   * Based on the position that should be the new 0-index.
-   */
-  private rotateWeekDayNames(
-    weekdays: WeekdayNames,
-    index: number
-  ): dayjs.WeekdayNames {
-    const clone = [...weekdays] as WeekdayNames;
-
-    if (index === 0) {
-      return clone;
-    }
-
-    index = -index;
-    const len = weekdays.length;
-
-    clone.push(...clone.splice(0, ((-index % len) + len) % len));
-    return clone;
   }
 
   private renderYears(): any[] {
