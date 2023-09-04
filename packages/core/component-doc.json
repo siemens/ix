@@ -4653,7 +4653,7 @@
           "mutable": false,
           "attr": "fixed",
           "reflectToAttr": false,
-          "docs": "Grid will displayed with a fixed width",
+          "docs": "The grid will have a fixed width",
           "docsTags": [],
           "default": "false",
           "values": [

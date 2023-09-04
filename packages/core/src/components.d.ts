@@ -861,7 +861,7 @@ export namespace Components {
          */
         "columns": number;
         /**
-          * Grid will displayed with a fixed width
+          * The grid will have a fixed width
          */
         "fixed": GridSizingBehavior;
         /**
@@ -3881,7 +3881,7 @@ declare namespace LocalJSX {
          */
         "columns"?: number;
         /**
-          * Grid will displayed with a fixed width
+          * The grid will have a fixed width
          */
         "fixed"?: GridSizingBehavior;
         /**
