@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <script type="module" crossorigin src="../assets/index.f1cc59d7.js"></script>
+  <script type="module" crossorigin src="../assets/init.ec18ea20.js"></script>
+  <link rel="stylesheet" href="../assets/index.536f1d79.css">
+  <link rel="stylesheet" href="../assets/init.4da593cd.css">
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <h4>Column 6 takes all space until reached column 12</h4>
+    <ix-grid>
+      <ix-row>
+        <ix-col>1</ix-col>
+        <ix-col>2</ix-col>
+        <ix-col>3</ix-col>
+        <ix-col>4</ix-col>
+        <ix-col>5</ix-col>
+        <ix-col size="6">6</ix-col>
+      </ix-row>
+    </ix-grid>
+
+    <h4>Stack on smaller screens as md</h4>
+    <ix-grid>
+      <ix-row>
+        <ix-col size="12" size-md="3">1</ix-col>
+        <ix-col size="12" size-md="3">2</ix-col>
+        <ix-col size="12" size-md="3">3</ix-col>
+        <ix-col size="12" size-md="3">4</ix-col>
+      </ix-row>
+    </ix-grid>
+    <!-- Preview code -->
+    <style>
+      ix-grid {
+        margin-bottom: 1rem;
+      }
+
+      ix-col {
+        background-color: var(--theme-color-primary);
+        border: var(--theme-std-bdr-2);
+        text-align: center;
+        color: var(--theme-color-inv-contrast-text);
+      }
+    </style>
+    
+  </body>
+</html>

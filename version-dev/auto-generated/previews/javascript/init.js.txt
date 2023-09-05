@@ -85,4 +85,46 @@ function setBodySizes() {
   setBodySizes();
   addMarginToDemo();
   loadAdditionalTheme();
+
+  const header = document.head;
+  const scrollbarStyle = document.createElement('style');
+  scrollbarStyle.innerHTML = scrollbarOverwrite;
+  header.appendChild(scrollbarStyle);
 })();
+
+const scrollbarOverwrite = `
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: $small-space;
+    height: $small-space;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-track--background);
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: var(--theme-scrollbar-track--background--hover);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-thumb--background);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-scrollbar-thumb--background--hover);
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+`;

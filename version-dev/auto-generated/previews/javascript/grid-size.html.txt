@@ -1,0 +1,21 @@
+<h4>Column 6 takes all space until reached column 12</h4>
+<ix-grid>
+  <ix-row>
+    <ix-col>1</ix-col>
+    <ix-col>2</ix-col>
+    <ix-col>3</ix-col>
+    <ix-col>4</ix-col>
+    <ix-col>5</ix-col>
+    <ix-col size="6">6</ix-col>
+  </ix-row>
+</ix-grid>
+
+<h4>Stack on smaller screens as md</h4>
+<ix-grid>
+  <ix-row>
+    <ix-col size="12" size-md="3">1</ix-col>
+    <ix-col size="12" size-md="3">2</ix-col>
+    <ix-col size="12" size-md="3">3</ix-col>
+    <ix-col size="12" size-md="3">4</ix-col>
+  </ix-row>
+</ix-grid>
