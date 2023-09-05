@@ -6,14 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
-import { Mode } from "./components/utils/screen/mode";
+import { Breakpoint } from "./components/utils/breakpoints";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
 import { InputState } from "./components/category-filter/input-state";
+import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
-import { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
+import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -23,6 +24,7 @@ import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
+import { GridSizingBehavior } from "./components/grid/grid";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
@@ -38,14 +40,15 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
-export { Mode } from "./components/utils/screen/mode";
+export { Breakpoint } from "./components/utils/breakpoints";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
 export { InputState } from "./components/category-filter/input-state";
+export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
-export { CssGridTemplateType } from "./components/layout/css-grid/css-grid";
+export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -55,6 +58,7 @@ export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
+export { GridSizingBehavior } from "./components/grid/grid";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
@@ -96,7 +100,7 @@ export namespace Components {
         "variant": ActionCardVariant;
     }
     interface IxApplicationHeader {
-        "mode": Mode;
+        "breakpoint": Breakpoint;
         /**
           * Application name
          */
@@ -292,6 +296,10 @@ export namespace Components {
     };
   };
         /**
+          * If true the filter will be in disabled state
+         */
+        "disabled": boolean;
+        /**
           * A set of search criteria to populate the component with.
          */
         "filterState": FilterState;
@@ -308,11 +316,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
-         */
-        "initialState": FilterState;
-        /**
           * i18n
          */
         "labelCategories": string;
@@ -326,6 +329,10 @@ export namespace Components {
           * Placeholder text to be displayed in an empty input field.
          */
         "placeholder": string;
+        /**
+          * If true the filter will be in readonly mode
+         */
+        "readonly": boolean;
         /**
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
@@ -372,6 +379,27 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxCol {
+        /**
+          * Size of the column
+         */
+        "size"?: ColumnSize;
+        /**
+          * Size of the column for lg screens
+         */
+        "sizeLg"?: ColumnSize;
+        /**
+          * Size of the column for md screens
+         */
+        "sizeMd"?: ColumnSize;
+        /**
+          * Size of the column for sm screens
+         */
+        "sizeSm"?: ColumnSize;
     }
     interface IxContentHeader {
         /**
@@ -800,6 +828,11 @@ export namespace Components {
           * If true the filter chip will be in disabled state
          */
         "disabled": boolean;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly": boolean;
     }
     interface IxFlipTile {
         /**
@@ -828,6 +861,23 @@ export namespace Components {
           * Label
          */
         "label": string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns": number;
+        /**
+          * The grid will have a fixed width
+         */
+        "fixed": GridSizingBehavior;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "fluid": boolean;
     }
     interface IxGroup {
         /**
@@ -1086,6 +1136,10 @@ export namespace Components {
          */
         "applicationName": string;
         /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
           * Internal
          */
         "enableMapExpand": boolean;
@@ -1101,7 +1155,7 @@ export namespace Components {
         /**
           * Change the responsive layout of the menu structure
          */
-        "forceLayout": Mode | undefined;
+        "forceBreakpoint": Breakpoint | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         /**
@@ -1127,10 +1181,6 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
-        /**
-          * Supported layouts
-         */
-        "supportedModes": Mode[];
         /**
           * Toggle About tabs
           * @param show
@@ -1476,6 +1526,11 @@ export namespace Components {
           * Card variant
          */
         "variant": PushCardVariant;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxRow {
     }
     interface IxSelect {
         /**
@@ -2357,6 +2412,15 @@ declare global {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxColElement extends Components.IxCol, HTMLStencilElement {
+    }
+    var HTMLIxColElement: {
+        prototype: HTMLIxColElement;
+        new (): HTMLIxColElement;
+    };
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
     }
     var HTMLIxContentHeaderElement: {
@@ -2497,6 +2561,15 @@ declare global {
     var HTMLIxFormFieldElement: {
         prototype: HTMLIxFormFieldElement;
         new (): HTMLIxFormFieldElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxGridElement extends Components.IxGrid, HTMLStencilElement {
+    }
+    var HTMLIxGridElement: {
+        prototype: HTMLIxGridElement;
+        new (): HTMLIxGridElement;
     };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
@@ -2720,6 +2793,15 @@ declare global {
         prototype: HTMLIxPushCardElement;
         new (): HTMLIxPushCardElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxRowElement extends Components.IxRow, HTMLStencilElement {
+    }
+    var HTMLIxRowElement: {
+        prototype: HTMLIxRowElement;
+        new (): HTMLIxRowElement;
+    };
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
     }
     var HTMLIxSelectElement: {
@@ -2884,6 +2966,7 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-col": HTMLIxColElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
@@ -2905,6 +2988,7 @@ declare global {
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
         "ix-form-field": HTMLIxFormFieldElement;
+        "ix-grid": HTMLIxGridElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
@@ -2937,6 +3021,7 @@ declare global {
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
         "ix-push-card": HTMLIxPushCardElement;
+        "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-slider": HTMLIxSliderElement;
@@ -2989,7 +3074,7 @@ declare namespace LocalJSX {
         "variant"?: ActionCardVariant;
     }
     interface IxApplicationHeader {
-        "mode"?: Mode;
+        "breakpoint"?: Breakpoint;
         /**
           * Application name
          */
@@ -3215,6 +3300,10 @@ declare namespace LocalJSX {
     };
   };
         /**
+          * If true the filter will be in disabled state
+         */
+        "disabled"?: boolean;
+        /**
           * A set of search criteria to populate the component with.
          */
         "filterState"?: FilterState;
@@ -3231,11 +3320,6 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * When set this will initially populate the component with the provided search criteria. This will trigger all input events accordingly.
-          * @deprecated Will be removed with 2.0.0. Use the member filterState instead.
-         */
-        "initialState"?: FilterState;
-        /**
           * i18n
          */
         "labelCategories"?: string;
@@ -3245,6 +3329,10 @@ declare namespace LocalJSX {
         "nonSelectableCategories"?: {
     [id: string]: string;
   };
+        /**
+          * Event dispatched whenever the a category gets selected in the dropdown
+         */
+        "onCategoryChanged"?: (event: IxCategoryFilterCustomEvent<string>) => void;
         /**
           * Event dispatched whenever the filter state changes.
          */
@@ -3257,6 +3345,10 @@ declare namespace LocalJSX {
           * Placeholder text to be displayed in an empty input field.
          */
         "placeholder"?: string;
+        /**
+          * If true the filter will be in readonly mode
+         */
+        "readonly"?: boolean;
         /**
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
@@ -3313,6 +3405,27 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxCol {
+        /**
+          * Size of the column
+         */
+        "size"?: ColumnSize;
+        /**
+          * Size of the column for lg screens
+         */
+        "sizeLg"?: ColumnSize;
+        /**
+          * Size of the column for md screens
+         */
+        "sizeMd"?: ColumnSize;
+        /**
+          * Size of the column for sm screens
+         */
+        "sizeSm"?: ColumnSize;
     }
     interface IxContentHeader {
         /**
@@ -3799,6 +3912,11 @@ declare namespace LocalJSX {
           * Close clicked
          */
         "onCloseClick"?: (event: IxFilterChipCustomEvent<void>) => void;
+        /**
+          * If true the filter chip will be in readonly mode
+          * @since 2.0.0
+         */
+        "readonly"?: boolean;
     }
     interface IxFlipTile {
         /**
@@ -3827,6 +3945,23 @@ declare namespace LocalJSX {
           * Label
          */
         "label"?: string;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns"?: number;
+        /**
+          * The grid will have a fixed width
+         */
+        "fixed"?: GridSizingBehavior;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "fluid"?: boolean;
     }
     interface IxGroup {
         /**
@@ -4097,6 +4232,10 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
           * Internal
          */
         "enableMapExpand"?: boolean;
@@ -4112,7 +4251,7 @@ declare namespace LocalJSX {
         /**
           * Change the responsive layout of the menu structure
          */
-        "forceLayout"?: Mode | undefined;
+        "forceBreakpoint"?: Breakpoint | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         /**
@@ -4146,10 +4285,6 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
-        /**
-          * Supported layouts
-         */
-        "supportedModes"?: Mode[];
     }
     interface IxMenuAbout {
         /**
@@ -4517,6 +4652,11 @@ declare namespace LocalJSX {
           * Card variant
          */
         "variant"?: PushCardVariant;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxRow {
     }
     interface IxSelect {
         /**
@@ -5175,6 +5315,7 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
+        "ix-col": IxCol;
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
@@ -5196,6 +5337,7 @@ declare namespace LocalJSX {
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
         "ix-form-field": IxFormField;
+        "ix-grid": IxGrid;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
@@ -5228,6 +5370,7 @@ declare namespace LocalJSX {
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
         "ix-push-card": IxPushCard;
+        "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-slider": IxSlider;
@@ -5294,6 +5437,10 @@ declare module "@stencil/core" {
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
@@ -5330,6 +5477,10 @@ declare module "@stencil/core" {
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
             "ix-form-field": LocalJSX.IxFormField & JSXBase.HTMLAttributes<HTMLIxFormFieldElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-grid": LocalJSX.IxGrid & JSXBase.HTMLAttributes<HTMLIxGridElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
@@ -5392,6 +5543,10 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;

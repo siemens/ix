@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+$screen-breakpoints: (
+  sm: 36em,
+  md: 48em,
+  lg: 62em,
+);
+
+@mixin media-breakpoint-up($name, $breakpoints: $screen-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

@@ -49,6 +49,10 @@ import EventListCustomHeight from './preview-examples/event-list-custom-item-hei
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
+import Grid from './preview-examples/grid';
+import GridFixed from './preview-examples/grid-fixed';
+import GridFluid from './preview-examples/grid-fluid';
+import GridSize from './preview-examples/grid-size';
 import Group from './preview-examples/group';
 import GroupContextMenu from './preview-examples/group-context-menu';
 import GroupCustomEntry from './preview-examples/group-custom-entry';
@@ -275,6 +279,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/slider-trace" element={<SliderTrace />} />
         <Route path="/preview/slider-marker" element={<SliderMarker />} />
         <Route path="/preview/slider-error" element={<SliderError />} />
+        <Route path="/preview/grid" element={<Grid />} />
+        <Route path="/preview/grid-size" element={<GridSize />} />
+        <Route path="/preview/grid-fluid" element={<GridFluid />} />
+        <Route path="/preview/grid-fixed" element={<GridFixed />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

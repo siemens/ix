@@ -7,10 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import { applicationLayoutService } from '../utils/application-layout/service';
+import { Breakpoint } from '../utils/breakpoints';
+import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
-import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { Disposable } from '../utils/typed-event';
 
 @Component({
@@ -30,14 +32,24 @@ export class BasicNavigation {
    * Hide application header. Will disable responsive feature of basic navigation.
    */
   @Prop() hideHeader = false;
+  @Watch('hideHeader')
+  onHideHeaderChange() {
+    this.contextProvider?.emit({
+      hideHeader: this.hideHeader,
+      host: 'basic-navigation',
+    });
 
-  @State() mode: Mode = 'large';
+    this.breakpoint = applicationLayoutService.breakpoint;
+  }
+
+  @State() breakpoint: Breakpoint = 'lg';
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
   }
 
   private modeDisposable: Disposable;
+  private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
 
   private onContentClick() {
     if (menuController.isPinned) {
@@ -47,11 +59,20 @@ export class BasicNavigation {
   }
 
   componentWillLoad() {
+    this.contextProvider = useContextProvider(
+      this.hostElement,
+      ApplicationLayoutContext,
+      {
+        hideHeader: this.hideHeader,
+        host: 'basic-navigation',
+      }
+    );
+
     if (this.hideHeader === false) {
-      this.modeDisposable = screenMode.onChange.on(
-        (mode) => (this.mode = mode)
-      );
-      this.mode = screenMode.mode;
+      this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
+        this.breakpoint = mode;
+      });
+      this.breakpoint = applicationLayoutService.breakpoint;
     }
   }
 
@@ -71,11 +92,14 @@ export class BasicNavigation {
         data-role=""
         class={{
           'hide-header': this.hideHeader,
-          [`mode-${this.mode}`]: true,
+          [`breakpoint-${this.breakpoint}`]: true,
         }}
       >
         {!this.hideHeader ? (
-          <ix-application-header name={this.applicationName} mode={this.mode}>
+          <ix-application-header
+            name={this.applicationName}
+            breakpoint={this.breakpoint}
+          >
             <slot name="logo" slot="logo"></slot>
           </ix-application-header>
         ) : null}

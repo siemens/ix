@@ -63,24 +63,24 @@ The `ix-menu` introduces new layout breakpoints that affect the display and beha
 
 ![Menu Layout](capture_layout_feature.gif)
 
-With the updated version of ix-menu, you have the flexibility to choose which layout breakpoints are supported. You can specify the supported modes using the `supportedModes` property. This allows you to customize the menu's behavior and appearance according to your specific requirements.
+With the updated version of ix-menu, you have the flexibility to choose which layout breakpoints are supported. You can specify the supported modes using the `breakpoints` property. This allows you to customize the menu's behavior and appearance according to your specific requirements.
 
 The following breakpoints are now available in ix-menu:
 
-- **Small**: `only screen and (max-width: 40em)`
+- **Small**: `only screen and (min-width: 36em)`
   - Menu not visible.
-- **Medium**: `only screen and (min-width: 40.063em) and (max-width: 64em)`
+- **Medium**: `only screen and (min-width: 48em)`
   - Menu visible but requires expansion to see the complete menu.
-- **Large**: `only screen and (min-width: 64.063em)`
+- **Large**: `only screen and (min-width: 62em)`
   - Shows the menu as pinned in full width.
   - The overlaying content is moved to the left.
 
 These breakpoints enable the menu to adapt its layout and behavior according to the available screen space, ensuring optimal visibility and usability for different screen sizes.
 
-By setting the `supportedModes` property, you can define which layout modes should be enabled for your menu. For example, if you want to support only the small and medium breakpoints, you can set the `supportedModes` property as follows:
+By setting the `breakpoints` property, you can define which layout modes should be enabled for your menu. For example, if you want to support only the small and medium breakpoints, you can set the `breakpoints` property as follows:
 
 ```tsx
-<ix-menu supportedModes={['small', 'medium']}>
+<ix-menu breakpoints={['sm', 'lg']}>
   <!-- Menu items and categories -->
 </ix-menu>
 ```

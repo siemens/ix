@@ -63,6 +63,7 @@ jobs:
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
         env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           BASE_URL: /version-dev/
         with:
           filter: 'documentation'
@@ -72,6 +73,7 @@ jobs:
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
         env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           BASE_URL: /
         with:
           filter: 'documentation'

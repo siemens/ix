@@ -10,6 +10,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require('path');
+
 let withBrandTheme = false;
 
 const libCss = [
@@ -63,6 +65,14 @@ const config = {
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
+          remarkPlugins: [
+            require('@siemens/figma-plugin')({
+              figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
+              error_image: '/img/figma_error.png',
+              apiToken: process.env.FIGMA_API_TOKEN,
+              rimraf: true,
+            }),
+          ],
         },
         theme: {
           customCss,

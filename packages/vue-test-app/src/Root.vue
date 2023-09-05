@@ -101,6 +101,10 @@ import Validation from './preview-examples/validation.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
+import Grid from './preview-examples/grid.vue';
+import GridSize from './preview-examples/grid-size.vue';
+import GridFluid from './preview-examples/grid-fluid.vue';
+import GridFixed from './preview-examples/grid-fixed.vue';
 
 const routes: any = {
   '/': App,
@@ -196,6 +200,10 @@ const routes: any = {
   '/preview/slider-trace': SliderTrace,
   '/preview/slider-marker': SliderMarker,
   '/preview/slider-error': SliderError,
+  '/preview/grid': Grid,
+  '/preview/grid-size': GridSize,
+  '/preview/grid-fluid': GridFluid,
+  '/preview/grid-fixed': GridFixed
 };
 
 const currentPath = ref(window.location.pathname);

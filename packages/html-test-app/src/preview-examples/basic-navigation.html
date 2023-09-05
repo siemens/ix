@@ -23,7 +23,7 @@ SPDX-License-Identifier: MIT
       (async () => {
         await window.customElements.whenDefined('ix-menu');
         const menu = document.querySelector('ix-menu');
-        menu.supportedModes = ['medium'];
+        menu.breakpoints = ['medium'];
       })();
     </script>
     <script type="module" src="./init.js"></script>

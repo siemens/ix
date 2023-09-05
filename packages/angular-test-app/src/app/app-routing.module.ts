@@ -45,6 +45,10 @@ import EventListCustomItemHeight from 'src/preview-examples/event-list-custom-it
 import EventListSelected from 'src/preview-examples/event-list-selected';
 import ExpandingSearch from 'src/preview-examples/expanding-search';
 import FlipTile from 'src/preview-examples/flip-tile';
+import Grid from 'src/preview-examples/grid';
+import GridFixed from 'src/preview-examples/grid-fixed';
+import GridFluid from 'src/preview-examples/grid-fluid';
+import GridSize from 'src/preview-examples/grid-size';
 import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
 import GroupCustomEntry from 'src/preview-examples/group-custom-entry';
@@ -365,6 +369,10 @@ const routes: Routes = [
       { path: 'slider-trace', component: SliderTrace },
       { path: 'slider-marker', component: SliderMarker },
       { path: 'slider-error', component: SliderError },
+      { path: 'grid', component: Grid },
+      { path: 'grid-size', component: GridSize },
+      { path: 'grid-fluid', component: GridFluid },
+      { path: 'grid-fixed', component: GridFixed },
     ],
   },
 ];
