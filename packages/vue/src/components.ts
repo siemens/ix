@@ -23,9 +23,6 @@ export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicati
 ]);
 
 
-export const IxApplicationSidebar = /*@__PURE__*/ defineContainer<JSX.IxApplicationSidebar>('ix-application-sidebar', undefined);
-
-
 export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', undefined, [
   'image',
   'initials'

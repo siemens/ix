@@ -19,6 +19,7 @@ import {
 import anime from 'animejs';
 import Animation from '../utils/animation';
 
+/** @internal */
 @Component({
   tag: 'ix-application-sidebar',
   styleUrl: 'application-sidebar.scss',

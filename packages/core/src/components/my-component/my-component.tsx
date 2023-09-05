@@ -18,7 +18,11 @@ export class MyComponent {
     return (
       <Host>
         <ix-application>
-          <ix-application-header name="Test 1"></ix-application-header>
+          <ix-application-header name="My App XYZ">
+            {/* Content in HEADER!!! */}
+            <ix-avatar initials="DL"></ix-avatar>
+            <ix-button>Test</ix-button>
+          </ix-application-header>
           <ix-menu>
             <ix-menu-item>Test 1</ix-menu-item>
             <ix-menu-item>Test 2</ix-menu-item>
@@ -57,10 +61,11 @@ export class MyComponent {
               }}
             ></div>
           </ix-content>
-          {/* <ix-application-sidebar>
+
+          <ix-application-sidebar>
+            <ix-application-header name="Test 1"></ix-application-header>
             <ix-button>xxx</ix-button>
-          </ix-application-sidebar> */}
-          {/* <ix-content-header headerTitle="Test"></ix-content-header> */}
+          </ix-application-sidebar>
         </ix-application>
       </Host>
     );
