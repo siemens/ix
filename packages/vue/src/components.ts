@@ -616,6 +616,7 @@ export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', undefine
 
 export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', undefined, [
   'selectedIndices',
+  'value',
   'allowClear',
   'mode',
   'editable',
@@ -626,6 +627,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nSelectListHeader',
   'i18nNoMatches',
   'hideListHeader',
+  'valueChange',
   'itemSelectionChange',
   'inputChange',
   'addItem'
