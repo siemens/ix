@@ -194,6 +194,7 @@ export class Tooltip {
         ancestorResize: true,
         ancestorScroll: true,
         elementResize: true,
+        animationFrame: true,
       }
     );
   }
