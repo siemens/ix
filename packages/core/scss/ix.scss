@@ -10,92 +10,14 @@
 /* Include 3rd party libraries */
 @import '~bootstrap/scss/bootstrap';
 
-/* Import global stylings for Web Components */
-@import './../src/components/toast/styles/toast-container';
-
 /* Default Theme */
 @import './theme/classic-dark';
 @import './theme/classic-light';
 
-/* Legacy Global styles */
-@import './legacy/mixins/fonts';
-@import './legacy/fonts';
+/* Core Style */
+@import './core';
 
-/* Common */
-@import './common-variables';
-@import 'z-index';
-
-/* Components */
-@import 'legacy/components/modal';
-@import 'legacy/components/buttons';
-@import 'legacy/components/button-group';
-@import 'legacy/components/dropdown';
-@import 'legacy/components/forms';
-@import './components/links';
-@import './components/checkboxes';
-@import './components/radiobuttons';
-@import './components/shadows';
-@import './components/input-group';
-@import './components/table';
-@import './components/fonts';
-
-:root {
-  --animate-duration: #{$default-time};
-  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
-    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-
+/* Load embedded theme */
 body:not([class*='theme-']) {
   @extend .theme-classic-dark;
-}
-
-body {
-  @include typography-body();
-  color: var(--theme-color-std-text);
-  background-color: var(--theme-color-1);
-  margin: 0;
-}
-
-body:not(.disable-scrollbar) {
-  ::-webkit-scrollbar-button {
-    display: none;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
-  }
-
-  ::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
-  }
-
-  ::-webkit-scrollbar-corner {
-    display: none;
-  }
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
 }
