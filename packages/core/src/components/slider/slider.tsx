@@ -281,6 +281,7 @@ export class IxSlider {
             class={{
               'hide-tooltip': !this.showTooltip,
             }}
+            animationFrame={true}
           >
             {this.rangeInput}
           </ix-tooltip>

@@ -68,6 +68,9 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
+  /** @internal */
+  @Prop() animationFrame = false;
+
   @State() visible = false;
 
   @Element() hostElement: HTMLIxTooltipElement;
@@ -194,7 +197,7 @@ export class Tooltip {
         ancestorResize: true,
         ancestorScroll: true,
         elementResize: true,
-        animationFrame: true,
+        animationFrame: this.animationFrame,
       }
     );
   }

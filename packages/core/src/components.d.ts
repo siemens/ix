@@ -1912,6 +1912,7 @@ export namespace Components {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame": boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
@@ -5087,6 +5088,7 @@ declare namespace LocalJSX {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame"?: boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
