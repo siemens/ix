@@ -278,10 +278,10 @@ export class DatePicker {
     }
 
     let currDayNumber = 1;
-    for (let i = startWeek; i <= endWeek; i++) {
+    for (let i = startWeek; i <= endWeek && currDayNumber <= 31; i++) {
       const daysArr: number[] = [];
 
-      for (let j = 0; j < this.DAYS_IN_WEEK; j++) {
+      for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
         // Display empty cells until the calender starts/has ended
         if (
           (i === startWeek && j < monthStartWeekDayIndex) ||
