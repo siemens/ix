@@ -1600,6 +1600,9 @@ export namespace Components {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -2814,6 +2817,9 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
     }
     var HTMLIxSliderElement: {
@@ -4739,6 +4745,9 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
     interface IxSlider {
         /**
           * Show control as disabled
@@ -5549,6 +5558,9 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            /**
+             * @since 2.0.0
+             */
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;

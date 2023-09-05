@@ -192,7 +192,7 @@ export function _Playground({
       loadExamples(name).then((codeSnippets) => setFrameworks(codeSnippets));
       return;
     }
-  }, [frameworkCode, frameworks, setFrameworks]);
+  }, [frameworkCode, setFrameworks]);
 
   useEffect(() => {
     const snippets: Record<

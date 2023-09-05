@@ -34,6 +34,8 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
+ * @since 2.0.0
+ *
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider
  */

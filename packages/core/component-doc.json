@@ -9267,6 +9267,10 @@
       "docs": "",
       "docsTags": [
         {
+          "name": "since",
+          "text": "2.0.0"
+        },
+        {
           "name": "slot",
           "text": "label-start - Element will be displayed at the start of the slider"
         },
