@@ -20,19 +20,19 @@ export class MyComponent {
         <ix-application>
           <ix-application-header name="Test 1"></ix-application-header>
           <ix-menu>
-            <ix-menu-item>Test</ix-menu-item>
+            <ix-menu-item>Test 1</ix-menu-item>
             <ix-menu-item>Test 2</ix-menu-item>
             <ix-menu-category label="cat 1">
               <ix-menu-item>Test 3</ix-menu-item>
               <ix-menu-item active>Test 4</ix-menu-item>
-              <ix-menu-item>Test 4</ix-menu-item>
+              <ix-menu-item>Test 5</ix-menu-item>
             </ix-menu-category>
             <ix-menu-settings>
-              <ix-menu-settings-item label="Test 1">
-                Test 1
+              <ix-menu-settings-item label="Test Set 1">
+                Test Set
               </ix-menu-settings-item>
-              <ix-menu-settings-item label="Test 2">
-                Test 2
+              <ix-menu-settings-item label="Test Set 2">
+                Test Set
               </ix-menu-settings-item>
             </ix-menu-settings>
             <ix-menu-about>

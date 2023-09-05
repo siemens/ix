@@ -157,7 +157,7 @@ $menuItemPadding: 0.875rem;
   }
 }
 
-:host(.inline) {
+:host(.tab-nested) {
   .tab::before {
     display: none;
   }
