@@ -133,10 +133,19 @@ export class DatePicker {
   @Prop() weekStartIndex = 0;
 
   /**
+   * Date change.
+   * Triggers if the date changes.
+   *
+   * @since 2.0.0
+   */
+  @Event() dateChange: EventEmitter<DateChangeEvent>;
+
+  /**
    * Date range change.
    * Only triggered if date-picker is in range mode
    *
    * @since 1.1.0
+   * @deprecated Use date change (triggers on both modes)
    */
   @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
 
@@ -393,15 +402,10 @@ export class DatePicker {
   }
 
   private onDateChange() {
-    const _from = this.currFromDate.format(this.format);
-    const _to = this.currToDate?.format(this.format);
-
-    if (this.range) {
-      this.dateRangeChange.emit({
-        from: _from,
-        to: _to ?? _from,
-      });
-    }
+    this.getCurrentDate().then((date) => {
+      this.dateChange.emit(date);
+      this.dateRangeChange.emit(date);
+    });
   }
 
   private getDayClasses(day: number): any {

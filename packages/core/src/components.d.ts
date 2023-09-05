@@ -3428,8 +3428,14 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
+          * Date change. Triggers if the date changes.
+          * @since 2.0.0
+         */
+        "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        /**
           * Date range change. Only triggered if date-picker is in range mode
           * @since 1.1.0
+          * @deprecated Use date change (triggers on both modes)
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
