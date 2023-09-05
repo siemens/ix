@@ -31,13 +31,13 @@ SPDX-License-Identifier: MIT
   <body class="theme-classic-dark">
     <!-- Preview code -->
     <div class="control">
-      <input id="small" type="radio" name="layout" value="small" />
+      <input id="small" type="radio" name="layout" value="sm" />
       <label for="small">Small</label>
 
-      <input id="medium" type="radio" name="layout" value="medium" checked />
+      <input id="medium" type="radio" name="layout" value="md" checked />
       <label for="medium">Medium</label>
 
-      <input id="large" type="radio" name="layout" value="large" />
+      <input id="large" type="radio" name="layout" value="lg" />
       <label for="large">Large</label>
     </div>
     <div class="content">
@@ -53,14 +53,14 @@ SPDX-License-Identifier: MIT
     <!-- Preview code -->
     <script type="module">
       (async () => {
-        await window.customElements.whenDefined('ix-menu');
-        const menu = document.querySelector('ix-menu');
-        menu.breakpoints = ['medium'];
+        await window.customElements.whenDefined('ix-basic-navigation');
+        const nav = document.querySelector('ix-basic-navigation');
+        nav.breakpoints = ['md'];
 
         const radioButtons = document.querySelectorAll('input[type="radio"]');
         radioButtons.forEach((rb) =>
           rb.addEventListener('change', (event) => {
-            menu.breakpoints = [event.target.value];
+            nav.breakpoints = [event.target.value];
           })
         );
       })();
