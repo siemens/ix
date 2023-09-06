@@ -242,13 +242,8 @@ export class DatePicker {
   }
 
   private onDone() {
-    if (this.range && this.currToDate === undefined) {
-      this.currToDate = this.currFromDate;
-    }
-
-    this.dateSelect.emit({
-      from: this.currFromDate.format(this.format),
-      to: this.currToDate?.format(this.format) ?? '',
+    this.getCurrentDate().then((date) => {
+      this.dateSelect.emit(date);
     });
   }
 
