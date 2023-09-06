@@ -16,7 +16,7 @@ export default () => {
   return (
     <>
       <h4>Column 6 takes up more space to a max of 12 columns total</h4>
-      <IxGrid>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -28,7 +28,7 @@ export default () => {
       </IxGrid>
 
       <h4>Stack columns on smaller screens</h4>
-      <IxGrid>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol size="12" size-md="3">
             1

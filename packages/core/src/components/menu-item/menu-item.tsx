@@ -63,6 +63,12 @@ export class MenuItem {
   @State() title: string;
 
   private observer: MutationObserver;
+  private isHostedInsideCategory = false;
+
+  componentWillLoad() {
+    this.isHostedInsideCategory =
+      !!this.hostElement.closest('ix-menu-category');
+  }
 
   componentWillRender() {
     this.title = this.hostElement.innerText;
@@ -106,10 +112,16 @@ export class MenuItem {
           'home-tab': this.home,
           'bottom-tab': this.bottom,
           active: this.active,
+          'tab-nested': this.isHostedInsideCategory,
         }}
         {...extendedAttributes}
       >
-        <button class="tab" title={this.title} tabIndex={0} role="listitem">
+        <button
+          class="tab"
+          title={this.title}
+          tabIndex={this.disabled ? -1 : 0}
+          role="listitem"
+        >
           <ix-icon
             class={'tab-icon'}
             name={this.icon ?? this.tabIcon}

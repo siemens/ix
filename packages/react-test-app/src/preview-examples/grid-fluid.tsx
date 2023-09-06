@@ -16,7 +16,7 @@ export default () => {
   return (
     <div className="example-parent">
       <h4>Non fluid (default)</h4>
-      <IxGrid>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -34,7 +34,7 @@ export default () => {
       </IxGrid>
 
       <h4>fluid</h4>
-      <IxGrid fluid>
+      <IxGrid fluid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>

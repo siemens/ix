@@ -44,14 +44,17 @@ class ApplicationLayoutService {
       return;
     }
     const matchBreakpoints: [Breakpoint, boolean][] = [];
-    this.#supportedBreakpoints.forEach((breakpoint) => {
+
+    const breakpoints = this.#supportedBreakpoints;
+
+    breakpoints.forEach((breakpoint) => {
       const match = matchBreakpoint(breakpoint);
       matchBreakpoints.push([breakpoint, match]);
     });
 
     if (matchBreakpoints.every(([_, match]) => match === false)) {
-      this.#breakpointChangeListener.emit(this.#supportedBreakpoints[0]);
-      this.#breakpoint = this.#supportedBreakpoints[0];
+      this.#breakpointChangeListener.emit(breakpoints[0]);
+      this.#breakpoint = breakpoints[0];
       return;
     }
 

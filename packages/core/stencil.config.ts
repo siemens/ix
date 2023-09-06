@@ -189,6 +189,15 @@ export const config: Config = {
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents: ['my-component', 'ix-tree'],
+      valueAccessorConfigs: [
+        {
+          elementSelectors:
+            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
+          event: 'valueChange',
+          targetAttr: 'value',
+          type: 'select',
+        },
+      ],
     }),
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',

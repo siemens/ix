@@ -18,11 +18,17 @@ import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
 import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { ModalService } from './modal';
+import { SelectValueAccessor } from './select-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
 
-const DECLARATIONS = [...DIRECTIVES, tree.IxTree, IxDropdownTriggerDirective];
+const DECLARATIONS = [
+  ...DIRECTIVES,
+  tree.IxTree,
+  IxDropdownTriggerDirective,
+  SelectValueAccessor,
+];
 
 @NgModule({
   declarations: DECLARATIONS,

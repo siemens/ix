@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 export function closestElement(selector: string, el: any) {
+  if (!el) {
+    return null;
+  }
   return (
     el.closest(selector) ||
     closestElement(selector, (el.getRootNode() as any).host)
@@ -18,5 +21,8 @@ export function getSlottedElements<R = any>(slot: any): R[] {
 }
 
 export function hasSlottedElements(slot: any) {
+  if (!slot) {
+    return false;
+  }
   return slot.assignedElements({ flatten: true }).length !== 0;
 }
