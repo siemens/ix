@@ -7,15 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  State,
-  Watch,
-} from '@stencil/core';
+import { Component, Element, h, Host, Listen, State } from '@stencil/core';
 import anime from 'animejs';
 import Animation from '../utils/animation';
 
@@ -55,9 +47,6 @@ export class ApplicationSidebar {
 
     anime(animation);
   }
-
-  @Watch('visible')
-  onVisibilityChange() {}
 
   render() {
     return (

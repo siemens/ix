@@ -115,12 +115,11 @@ export class Application {
   @Watch('theme')
   @Watch('themeSystemAppearance')
   private changeTheme() {
-    if (!this.theme && this.themeSystemAppearance) {
-      themeSwitcher.setVariant();
-      return;
-    }
-
     if (!this.theme) {
+      if (this.themeSystemAppearance) {
+        themeSwitcher.setVariant();
+      }
+
       return;
     }
 

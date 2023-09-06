@@ -120,7 +120,6 @@ export class BasicNavigation {
         class={{
           'hide-header': this.hideHeader,
           [`breakpoint-${this.breakpoint}`]: true,
-          [`breakpoint-${this.breakpoint}`]: true,
         }}
       >
         {!this.hideHeader ? (
