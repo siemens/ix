@@ -48,7 +48,7 @@ function compileThemes() {
     const { css } = sass.compile(filePath, {
       sourceMap: false,
     });
-    // fse.writeFileSync(path.join(DIST_THEME, `${themeName}.css`), css);
+
     return {
       path: path.join(DIST_THEME, `${themeName}.css`),
       css,
@@ -67,7 +67,6 @@ function compileCore() {
       path.join(ROOT, '..', '..', 'node_modules'),
     ],
   });
-  // fse.writeFileSync(path.join(DIST_CSS, 'siemens-ix-core.css'), css);
 
   return [
     {
