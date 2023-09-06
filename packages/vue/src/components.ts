@@ -40,6 +40,7 @@ export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNaviga
 export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', undefined, [
   'collapsed',
   'label',
+  'sublabel',
   'icon',
   'collapsedChange'
 ]);

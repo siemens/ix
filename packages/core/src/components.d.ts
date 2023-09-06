@@ -170,6 +170,11 @@ export namespace Components {
           * Label of blind
          */
         "label": string;
+        /**
+          * Secondary label inside blind header
+          * @since 2.0.0
+         */
+        "sublabel": string;
     }
     interface IxBreadcrumb {
         /**
@@ -3144,6 +3149,11 @@ declare namespace LocalJSX {
           * Collapsed state changed
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
+        /**
+          * Secondary label inside blind header
+          * @since 2.0.0
+         */
+        "sublabel"?: string;
     }
     interface IxBreadcrumb {
         /**

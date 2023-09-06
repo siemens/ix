@@ -12,7 +12,7 @@ import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxBlind label="Example">
+  <IxBlind label="Example" sublabel="Sublabel">
     <IxIconButton
       slot="header-actions"
       id="context-menu"
