@@ -16,7 +16,7 @@ export default () => {
   return (
     <>
       <h5>fixed: sm</h5>
-      <IxGrid fixed="fixed-sm">
+      <IxGrid fixed="fixed-sm" className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -28,7 +28,7 @@ export default () => {
       </IxGrid>
 
       <h5>fixed</h5>
-      <IxGrid fixed>
+      <IxGrid fixed className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -40,7 +40,7 @@ export default () => {
       </IxGrid>
 
       <h5>fixed: md</h5>
-      <IxGrid fixed="fixed-md">
+      <IxGrid fixed="fixed-md" className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -52,7 +52,7 @@ export default () => {
       </IxGrid>
 
       <h5>fixed: lg</h5>
-      <IxGrid fixed="fixed-lg">
+      <IxGrid fixed="fixed-lg" className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>

@@ -6,36 +6,44 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import { Component } from '@angular/core';
-import { ThemeService } from '@siemens/ix-angular';
+import { themeSwitcher } from '@siemens/ix';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-button class="mb-2" (click)="themeService.toggleMode()">
-      Toggle mode
-    </ix-button>
-    <ix-select
-      (itemSelectionChange)="onItemSelectionChange($event)"
-      placeholder="Select a theme"
-    >
-      <ix-select-item
-        label="Classic light"
-        value="theme-classic-light"
-      ></ix-select-item>
-      <ix-select-item
-        label="Classic dark"
-        value="theme-classic-dark"
-      ></ix-select-item>
-    </ix-select>
-  `,
+  templateUrl: './theme-switcher.html',
+  styles: [
+    `
+      ix-col {
+        align-items: center;
+        height: 2.5rem;
+      }
+    `,
+  ],
 })
-export default class ThemeSwitcherService {
-  constructor(readonly themeService: ThemeService) {}
+export default class ThemeSwitcherExample {
+  themes = ['theme-classic-light', 'theme-classic-dark'];
+  selectedTheme = this.themes[1];
+
+  constructor() {}
 
   onItemSelectionChange(event: Event) {
     const customEvent = event as CustomEvent<string | string[]>;
-    this.themeService.setTheme(customEvent.detail[0]);
+    const newTheme = customEvent.detail[0];
+    themeSwitcher.setTheme(newTheme);
+    this.selectedTheme = newTheme;
+  }
+
+  toggleMode() {
+    themeSwitcher.toggleMode();
+  }
+
+  onSystemMode({ target }: Event) {
+    if ((target as HTMLInputElement).checked) {
+      themeSwitcher.setVariant();
+      return;
+    }
+
+    themeSwitcher.setTheme(this.selectedTheme);
   }
 }
