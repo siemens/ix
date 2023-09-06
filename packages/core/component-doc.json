@@ -427,11 +427,13 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon"
+        "ix-icon",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-blind": [
-          "ix-icon"
+          "ix-icon",
+          "ix-typography"
         ]
       },
       "props": [
@@ -481,6 +483,27 @@
           "reflectToAttr": false,
           "docs": "Label of blind",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "sublabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "sublabel",
+          "reflectToAttr": false,
+          "docs": "Secondary label inside blind header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -11412,6 +11435,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-blind",
         "ix-card-list",
         "ix-content-header",
         "ix-dropdown-header",
@@ -11427,6 +11451,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-blind": [
           "ix-typography"
         ],
         "ix-card-list": [
