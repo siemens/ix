@@ -161,7 +161,7 @@ export class DatePicker {
    */
   @Method()
   async getCurrentDate() {
-    const _from = this.currFromDate.format(this.format);
+    const _from = this.currFromDate?.format(this.format);
     const _to = this.currToDate?.format(this.format);
 
     if (this.range) {
@@ -197,21 +197,18 @@ export class DatePicker {
 
   componentWillLoad() {
     this.currFromDate =
-      this.from !== undefined ? dayjs(this.from, this.format) : dayjs();
-
+      this.from !== undefined ? dayjs(this.from, this.format) : undefined;
     this.currToDate =
       this.to !== undefined ? dayjs(this.to, this.format) : undefined;
 
-    this.selectedMonth = this.currFromDate.month();
-    this.selectedYear = this.currFromDate.year();
+    const year = this.currFromDate?.year() ?? dayjs().year();
+    this.startYear = year - 5;
+    this.endYear = year + 5;
 
+    this.selectedMonth = this.currFromDate?.month() ?? dayjs().month();
+    this.selectedYear = year;
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
-
-    this.selectedYear = this.currFromDate.year();
-    this.tempYear = this.selectedYear;
-    this.startYear = this.currFromDate.year() - 5;
-    this.endYear = this.currFromDate.year() + 5;
 
     this.dayNames = this.rotateWeekDayNames(
       dayjs.weekdays(),
@@ -423,7 +420,7 @@ export class DatePicker {
       'empty-day': day === undefined,
       today: todayObj.isSame(selectedDayObj, 'day'),
       selected:
-        this.currFromDate.isSame(selectedDayObj, 'day') ||
+        this.currFromDate?.isSame(selectedDayObj, 'day') ||
         this.currToDate?.isSame(selectedDayObj, 'day'),
       range:
         selectedDayObj.isAfter(this.currFromDate, 'day') &&
