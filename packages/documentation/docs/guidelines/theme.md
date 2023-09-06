@@ -42,7 +42,7 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 
 ## Applying only one theme to reduce build size
 
-Importing `siemens-ix-core.css` will load core related functionalities only, without any preloading any theme.
+Importing `siemens-ix-core.css` will load core related functionalities only, without preloading any theme or bootstrap.
 
 You can load a specific theme by importing the corresponding CSS file.
 
@@ -53,14 +53,14 @@ You can load a specific theme by importing the corresponding CSS file.
 import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
 
 // Load theme
-import '@siemens/ix/dist/siemens-ix/theme/classic-new-light.css';
-import '@siemens/ix/dist/siemens-ix/theme/classic-new-dark.css';
+import '@siemens/ix/dist/siemens-ix/theme/classic-light.css';
+import '@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
 ```
 
 ***Set theme***
 
 ```html
-<body class="theme-classic-new-dark">
+<body class="theme-classic-dark">
   ...
 </body>
 ```
