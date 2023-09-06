@@ -25,7 +25,6 @@ import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
-import { GridSizingBehavior } from "./components/grid/grid";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
@@ -59,7 +58,6 @@ export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
-export { GridSizingBehavior } from "./components/grid/grid";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
@@ -900,13 +898,13 @@ export namespace Components {
          */
         "columns": number;
         /**
-          * The grid will have a fixed width
-         */
-        "fixed": GridSizingBehavior;
-        /**
           * The grid will not have any horizontal padding
          */
-        "fluid": boolean;
+        "noPadding": boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap": boolean;
     }
     interface IxGroup {
         /**
@@ -3980,13 +3978,13 @@ declare namespace LocalJSX {
          */
         "columns"?: number;
         /**
-          * The grid will have a fixed width
-         */
-        "fixed"?: GridSizingBehavior;
-        /**
           * The grid will not have any horizontal padding
          */
-        "fluid"?: boolean;
+        "noPadding"?: boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap"?: boolean;
     }
     interface IxGroup {
         /**

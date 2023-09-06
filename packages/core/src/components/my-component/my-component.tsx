@@ -15,6 +15,26 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-grid>
+          <ix-row>
+            <ix-col size="4">Row 1 Col 1</ix-col>
+            <ix-col size="4">Row 1 Col 2</ix-col>
+            <ix-col size="4">Row 1 Col 3</ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col size="4">Row 2 Col 1</ix-col>
+            <ix-col size="4">Row 2 Col 2</ix-col>
+            <ix-col size="4">Row 2 Col 3</ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col size="4">Row 3 Col 1</ix-col>
+            <ix-col size="4">Row 3 Col 2</ix-col>
+            <ix-col size="4">Row 3 Col 3</ix-col>
+          </ix-row>
+        </ix-grid>
+      </Host>
+    );
   }
 }

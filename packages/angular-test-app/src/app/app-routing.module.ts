@@ -46,8 +46,7 @@ import EventListSelected from 'src/preview-examples/event-list-selected';
 import ExpandingSearch from 'src/preview-examples/expanding-search';
 import FlipTile from 'src/preview-examples/flip-tile';
 import Grid from 'src/preview-examples/grid';
-import GridFixed from 'src/preview-examples/grid-fixed';
-import GridFluid from 'src/preview-examples/grid-fluid';
+import GridPadding from 'src/preview-examples/grid-padding';
 import GridSize from 'src/preview-examples/grid-size';
 import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
@@ -365,8 +364,7 @@ const routes: Routes = [
       { path: 'menu-category', component: MenuCategory },
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
-      { path: 'grid-fluid', component: GridFluid },
-      { path: 'grid-fixed', component: GridFixed },
+      { path: 'grid-padding', component: GridPadding },
     ],
   },
 ];

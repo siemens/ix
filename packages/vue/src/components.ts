@@ -326,8 +326,8 @@ export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-fo
 
 
 export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
-  'fixed',
-  'fluid',
+  'noPadding',
+  'noRowGap',
   'columns'
 ]);
 
