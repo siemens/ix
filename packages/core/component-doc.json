@@ -1833,15 +1833,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-col"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "size",
@@ -4726,15 +4720,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-grid"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "columns",
@@ -8823,15 +8811,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-row"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
@@ -12190,18 +12172,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-grid",
-        "ix-row",
-        "ix-col"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-grid",
-          "ix-row",
-          "ix-col"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
