@@ -30,10 +30,18 @@ export class Select {
   @Element() hostElement!: HTMLIxSelectElement;
 
   /**
-   * Indices of selected items
+   * Indices of selected items.
    * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
+   * @deprecated since 2.0.0. Use the `value` property instead.
    */
-  @Prop({ mutable: true }) selectedIndices: string | string[] = [];
+  @Prop({ mutable: true }) selectedIndices?: string | string[];
+
+  /**
+   * Current selected value.
+   * This corresponds to the value property of ix-select-items
+   * @since 2.0.0
+   */
+  @Prop({ mutable: true }) value?: string | string[];
 
   /**
    * Show clear button
@@ -91,7 +99,14 @@ export class Select {
   @Prop() hideListHeader = false;
 
   /**
+   * Value changed
+   * @since 2.0.0
+   */
+  @Event() valueChange: EventEmitter<string | string[]>;
+
+  /**
    * Item selection changed
+   * @deprecated since 2.0.0. Use `valueChange` instead.
    */
   @Event() itemSelectionChange: EventEmitter<string[]>;
 
@@ -108,7 +123,7 @@ export class Select {
   @Event() addItem: EventEmitter<string>;
 
   @State() dropdownShow = false;
-  @State() value: string[];
+  @State() selectedLabels: string[];
   @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
   @State() isDropdownEmpty = false;
@@ -148,39 +163,27 @@ export class Select {
   }
 
   @Watch('selectedIndices')
-  watchSelectedIndices(newId: string | string[]) {
-    if (!newId) {
-      this.selectValue([]);
-      return;
-    }
+  watchSelectedIndices(value: string | string[]) {
+    this.value = value;
+    this.updateSelection();
+  }
 
-    if (Array.isArray(newId)) {
-      this.selectValue([...newId]);
-      return;
-    }
-
-    this.selectValue([newId]);
+  @Watch('value')
+  watchValue(value: string | string[]) {
+    this.selectedIndices = value;
+    this.updateSelection();
   }
 
   @Listen('itemClick')
   onItemClicked(event: CustomEvent<string>) {
     const newId = event.detail;
-    this.emitItemClick(newId);
+    this.itemClick(newId);
   }
 
-  private emitItemClick(newId: string) {
-    if (this.isMultipleMode && Array.isArray(this.selectedIndices)) {
-      if (this.selectedIndices.includes(newId)) {
-        this.selectedIndices = this.selectedIndices.filter((i) => i !== newId);
-      } else {
-        this.selectedIndices = [...this.selectedIndices, newId];
-      }
-    } else {
-      this.selectedIndices = [newId];
-    }
-
-    this.selectValue(this.selectedIndices);
-    this.itemSelectionChange.emit(this.selectedIndices);
+  private itemClick(newId: string) {
+    this.value = this.toggleValue(newId);
+    this.updateSelection();
+    this.emitValueChange();
   }
 
   private emitAddItem(value: string) {
@@ -195,23 +198,65 @@ export class Select {
     this.addItemRef.appendChild(newItem);
 
     this.clearInput();
-    this.emitItemClick(value);
+    this.itemClick(value);
     this.addItem.emit(value);
   }
 
-  private selectValue(ids: string[]) {
+  private toggleValue(itemValue: string) {
+    if (!this.isMultipleMode) {
+      return itemValue;
+    }
+
+    if (!this.value) {
+      return [itemValue];
+    }
+
+    let value = this.value;
+
+    if (!Array.isArray(value)) {
+      value = [value];
+    }
+
+    if (value.includes(itemValue)) {
+      return value.filter((value) => value !== itemValue);
+    } else {
+      return [...value, itemValue];
+    }
+  }
+
+  private updateSelection() {
+    let ids = [];
+
+    if (this.value) {
+      ids = Array.isArray(this.value) ? [...this.value] : [this.value];
+    }
+
     this.items.forEach((item) => {
       item.selected = ids.some((i) => i === item.value);
     });
 
-    this.value = this.selectedItems.map((item) => item.label);
+    this.selectedLabels = this.selectedItems.map((item) => item.label);
 
     if (this.isSingleMode) {
-      this.inputValue = this.value?.length ? this.value[0] : null;
+      this.inputValue = this.selectedLabels?.length
+        ? this.selectedLabels[0]
+        : null;
       return;
     }
 
     this.inputValue = null;
+  }
+
+  private emitValueChange() {
+    this.valueChange.emit(this.value);
+
+    if (!this.value) {
+      this.itemSelectionChange.emit(null);
+    } else {
+      this.itemSelectionChange.emit(
+        Array.isArray(this.value) ? this.value : [this.value]
+      );
+    }
   }
 
   componentDidLoad() {
@@ -221,24 +266,18 @@ export class Select {
   }
 
   componentWillLoad() {
-    if (this.selectedIndices) {
-      this.selectValue(
-        Array.isArray(this.selectedIndices)
-          ? this.selectedIndices
-          : [this.selectedIndices]
-      );
+    if (this.selectedIndices && !this.value) {
+      this.value = this.selectedIndices;
     }
+
+    this.updateSelection();
   }
 
   @Listen('ix-select-item:labelChange')
   onLabelChange(event: IxSelectItemLabelChangeEvent) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    this.selectValue(
-      Array.isArray(this.selectedIndices)
-        ? this.selectedIndices
-        : [this.selectedIndices]
-    );
+    this.updateSelection();
   }
 
   disconnectedCallback() {
@@ -365,9 +404,9 @@ export class Select {
 
   private clear() {
     this.clearInput();
+    this.selectedLabels = [];
     this.value = [];
-    this.selectedIndices = [];
-    this.itemSelectionChange.emit(null);
+    this.valueChange.emit(null);
     this.dropdownShow = false;
   }
 
@@ -383,7 +422,7 @@ export class Select {
     }
 
     if (!this.dropdownShow && this.mode !== 'multiple') {
-      e.target['value'] = this.value;
+      e.target['value'] = this.selectedLabels;
     }
   }
 
@@ -433,7 +472,7 @@ export class Select {
                       onCloseClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        this.emitItemClick(item.value);
+                        this.itemClick(item.value);
                       }}
                     >
                       {item.label}
@@ -447,7 +486,8 @@ export class Select {
                   readOnly={this.readonly}
                   type="text"
                   class={{
-                    'allow-clear': this.allowClear && !!this.value?.length,
+                    'allow-clear':
+                      this.allowClear && !!this.selectedLabels?.length,
                   }}
                   placeholder={this.placeholderValue()}
                   value={this.inputValue}
@@ -456,7 +496,7 @@ export class Select {
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
                 {this.allowClear &&
-                (this.value?.length || this.inputFilterText) ? (
+                (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
                     icon="clear"

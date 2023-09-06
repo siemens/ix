@@ -93,6 +93,7 @@ import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
+import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
 import Spinner from 'src/preview-examples/spinner';
 import SpinnerLarge from 'src/preview-examples/spinner-large';
@@ -188,6 +189,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Radiobutton,
     SelectEditable,
     SelectMultiple,
+    SelectNgModel,
     Select,
     Settings,
     Spinner,

@@ -9082,9 +9082,14 @@
           "mutable": true,
           "attr": "selected-indices",
           "reflectToAttr": false,
-          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
-          "docsTags": [],
-          "default": "[]",
+          "docs": "Indices of selected items.\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.0.0. Use the `value` property instead."
+            }
+          ],
+          "deprecation": "since 2.0.0. Use the `value` property instead.",
           "values": [
             {
               "type": "string"
@@ -9093,7 +9098,31 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Current selected value.\nThis corresponds to the value property of ix-select-items",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": true,
           "required": false
         }
       ],
@@ -9129,7 +9158,27 @@
           "cancelable": true,
           "composed": true,
           "docs": "Item selection changed",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.0.0. Use `valueChange` instead."
+            }
+          ],
+          "deprecation": "since 2.0.0. Use `valueChange` instead."
+        },
+        {
+          "event": "valueChange",
+          "detail": "string | string[]",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Value changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
         }
       ],
       "styles": [],

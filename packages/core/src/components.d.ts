@@ -1575,9 +1575,15 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
+          * Indices of selected items. This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
+          * @deprecated since 2.0.0. Use the `value` property instead.
          */
-        "selectedIndices": string | string[];
+        "selectedIndices"?: string | string[];
+        /**
+          * Current selected value. This corresponds to the value property of ix-select-items
+          * @since 2.0.0
+         */
+        "value"?: string | string[];
     }
     interface IxSelectItem {
         "hover": boolean;
@@ -4655,16 +4661,28 @@ declare namespace LocalJSX {
         "onInputChange"?: (event: IxSelectCustomEvent<string>) => void;
         /**
           * Item selection changed
+          * @deprecated since 2.0.0. Use `valueChange` instead.
          */
         "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
+        /**
+          * Value changed
+          * @since 2.0.0
+         */
+        "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
         /**
           * If true the select will be in readonly mode
          */
         "readonly"?: boolean;
         /**
-          * Indices of selected items This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
+          * Indices of selected items. This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
+          * @deprecated since 2.0.0. Use the `value` property instead.
          */
         "selectedIndices"?: string | string[];
+        /**
+          * Current selected value. This corresponds to the value property of ix-select-items
+          * @since 2.0.0
+         */
+        "value"?: string | string[];
     }
     interface IxSelectItem {
         "hover"?: boolean;
