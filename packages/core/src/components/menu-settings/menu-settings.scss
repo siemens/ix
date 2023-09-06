@@ -32,8 +32,12 @@
 
     h2 {
       color: var(--theme-nav-overlay-header--color);
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
+  }
+
+  ix-tabs {
+    margin-bottom: 1.5rem;
   }
 
   .settings-tabs {

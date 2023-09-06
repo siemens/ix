@@ -6,14 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'mixins/scrollbar';
 
-@mixin ix-component() {
-  *,
-  *::after,
-  *::before {
-    box-sizing: border-box;
+export class ApplicationSidebarToggleEvent extends Event {
+  public constructor(public readonly force?: boolean) {
+    super('application-sidebar-toggle', { bubbles: true, composed: true });
   }
-
-  @include scrollbar();
 }

@@ -110,7 +110,7 @@ $menuItemPadding: 0.875rem;
   pointer-events: none;
   cursor: default;
 
-  .tab > .glyph {
+  .tab > .tab-icon {
     color: var(--theme-color-weak-text);
   }
 
@@ -154,5 +154,11 @@ $menuItemPadding: 0.875rem;
 :host(.selected[slot='bottom']) {
   .tab {
     background-color: var(--theme-nav-item-secondary--background--selected);
+  }
+}
+
+:host(.tab-nested) {
+  .tab::before {
+    display: none;
   }
 }

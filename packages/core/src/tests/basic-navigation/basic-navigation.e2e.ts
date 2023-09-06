@@ -52,7 +52,7 @@ regressionTest.describe('basic navigation', () => {
     await page.goto('basic-navigation/basic');
     await page.setViewportSize({
       height: 1200,
-      width: mediumWidth,
+      width: 780,
     });
     await page.waitForTimeout(500);
 

@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
+import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
@@ -39,6 +40,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
+export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
@@ -97,12 +99,31 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
+    interface IxApplication {
+        /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint": Breakpoint | undefined;
+        /**
+          * Application theme
+         */
+        "theme": IxTheme;
+        /**
+          * Use the system appearance dark or light
+         */
+        "themeSystemAppearance": boolean;
+    }
     interface IxApplicationHeader {
-        "breakpoint": Breakpoint;
         /**
           * Application name
          */
         "name": string;
+    }
+    interface IxApplicationSidebar {
     }
     /**
      * @since 2.0.0
@@ -122,6 +143,14 @@ export namespace Components {
           * Application name
          */
         "applicationName": string;
+        /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint": Breakpoint | undefined;
         /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */
@@ -398,6 +427,8 @@ export namespace Components {
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
+    }
+    interface IxContent {
     }
     interface IxContentHeader {
         /**
@@ -1134,10 +1165,6 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Supported layouts
-         */
-        "breakpoints": Breakpoint[];
-        /**
           * Internal
          */
         "enableMapExpand": boolean;
@@ -1150,10 +1177,6 @@ export namespace Components {
          */
         "enableToggleTheme": boolean;
         "expand": boolean;
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint": Breakpoint | undefined;
         "i18nCollapse": string;
         "i18nExpand": string;
         /**
@@ -2263,11 +2286,23 @@ declare global {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
     };
+    interface HTMLIxApplicationElement extends Components.IxApplication, HTMLStencilElement {
+    }
+    var HTMLIxApplicationElement: {
+        prototype: HTMLIxApplicationElement;
+        new (): HTMLIxApplicationElement;
+    };
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
     }
     var HTMLIxApplicationHeaderElement: {
         prototype: HTMLIxApplicationHeaderElement;
         new (): HTMLIxApplicationHeaderElement;
+    };
+    interface HTMLIxApplicationSidebarElement extends Components.IxApplicationSidebar, HTMLStencilElement {
+    }
+    var HTMLIxApplicationSidebarElement: {
+        prototype: HTMLIxApplicationSidebarElement;
+        new (): HTMLIxApplicationSidebarElement;
     };
     /**
      * @since 2.0.0
@@ -2379,6 +2414,12 @@ declare global {
     var HTMLIxColElement: {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
+    };
+    interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
+    }
+    var HTMLIxContentElement: {
+        prototype: HTMLIxContentElement;
+        new (): HTMLIxContentElement;
     };
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
     }
@@ -2904,7 +2945,9 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
+        "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
+        "ix-application-sidebar": HTMLIxApplicationSidebarElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
@@ -2920,6 +2963,7 @@ declare global {
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
+        "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
@@ -3025,12 +3069,31 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
+    interface IxApplication {
+        /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint"?: Breakpoint | undefined;
+        /**
+          * Application theme
+         */
+        "theme"?: IxTheme;
+        /**
+          * Use the system appearance dark or light
+         */
+        "themeSystemAppearance"?: boolean;
+    }
     interface IxApplicationHeader {
-        "breakpoint"?: Breakpoint;
         /**
           * Application name
          */
         "name"?: string;
+    }
+    interface IxApplicationSidebar {
     }
     /**
      * @since 2.0.0
@@ -3050,6 +3113,14 @@ declare namespace LocalJSX {
           * Application name
          */
         "applicationName"?: string;
+        /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
+          * Change the responsive layout of the menu structure
+         */
+        "forceBreakpoint"?: Breakpoint | undefined;
         /**
           * Hide application header. Will disable responsive feature of basic navigation.
          */
@@ -3378,6 +3449,8 @@ declare namespace LocalJSX {
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
+    }
+    interface IxContent {
     }
     interface IxContentHeader {
         /**
@@ -4184,10 +4257,6 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Supported layouts
-         */
-        "breakpoints"?: Breakpoint[];
-        /**
           * Internal
          */
         "enableMapExpand"?: boolean;
@@ -4200,10 +4269,6 @@ declare namespace LocalJSX {
          */
         "enableToggleTheme"?: boolean;
         "expand"?: boolean;
-        /**
-          * Change the responsive layout of the menu structure
-         */
-        "forceBreakpoint"?: Breakpoint | undefined;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         /**
@@ -5224,7 +5289,9 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
+        "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
+        "ix-application-sidebar": IxApplicationSidebar;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
@@ -5240,6 +5307,7 @@ declare namespace LocalJSX {
         "ix-category-filter": IxCategoryFilter;
         "ix-chip": IxChip;
         "ix-col": IxCol;
+        "ix-content": IxContent;
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
@@ -5327,7 +5395,9 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
+            "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
+            "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
             /**
              * @since 2.0.0
              */
@@ -5364,6 +5434,7 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;

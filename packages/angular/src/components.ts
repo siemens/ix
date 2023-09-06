@@ -74,14 +74,14 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'hideHeader']
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader']
 })
 @Component({
   selector: 'ix-basic-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'hideHeader'],
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader'],
 })
 export class IxBasicNavigation {
   protected el: HTMLElement;
@@ -1260,7 +1260,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1268,7 +1268,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
 })
 export class IxMenu {
   protected el: HTMLElement;
