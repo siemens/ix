@@ -435,7 +435,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
          */
         "format": string;
         /**
@@ -3409,7 +3409,7 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
          */
         "format"?: string;
         /**
