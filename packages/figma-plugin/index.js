@@ -14,6 +14,7 @@ const fs = require('fs');
 /**
  *
  * @param {Object} config Configuration
+ * @param {string} config.baseUrl Base url
  * @param {string} config.figmaFolder Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
  * @param {string | undefined} config.error_image Folder to images at build time
@@ -21,6 +22,9 @@ const fs = require('fs');
  * @returns {*}
  */
 const plugin = (config) => {
+  if (config.apiToken === undefined || config.apiToken === '') {
+    console.error('@siemens/figma-plugin no auth token provided');
+  }
   if (config.rimraf === true) {
     rimrafSync(config.figmaFolder);
     fs.mkdirSync(config.figmaFolder);

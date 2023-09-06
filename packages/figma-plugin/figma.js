@@ -30,6 +30,7 @@ async function getImageResource(fileName, nodeId, figmaToken) {
  * @param {{ url: string }} node
  * @param {Object} config Configuration
  * @param {string} config.figmaFolder Folder to images at build time
+ * @param {string} config.baseUrl Folder to images at build time
  * @param {string | undefined} config.apiToken Folder to images at build time
  * @param {string | undefined} config.error_image Folder to images at build time
  * @param {boolean} [config.rimraf=false] Folder to images at build time
@@ -39,7 +40,7 @@ module.exports = async function (node, config) {
   try {
     if (node.url.startsWith('https://www.figma.com/file/')) {
       if (config.apiToken === undefined || config.apiToken === '') {
-        node.url = config.error_image;
+        node.url = `${config.baseUrl}${config.error_image}`;
         return;
       }
 
@@ -87,7 +88,7 @@ module.exports = async function (node, config) {
           );
         }
 
-        node.url = `/figma/${imageFileName}`;
+        node.url = `${config.baseUrl}figma/${imageFileName}`;
       } else {
         node.url = imageUrl;
       }
@@ -98,6 +99,6 @@ module.exports = async function (node, config) {
     } else {
       console.error(error);
     }
-    node.url = config.error_image;
+    node.url = `${config.baseUrl}${config.error_image}`;
   }
 };

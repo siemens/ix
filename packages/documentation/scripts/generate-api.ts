@@ -163,29 +163,31 @@ SPDX-License-Identifier: MIT
     );
     const vuePreviews = fs.readdirSync(vuePreviewPath);
     await Promise.all(
-      vuePreviews.flatMap((previewPath) => {
-        const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
-        const writePath = path.join(
-          __dirname,
-          'docs',
-          'auto-generated',
-          'previews',
-          'vue'
-        );
-        fse.ensureDirSync(writePath);
-        const code = fs
-          .readFileSync(path.join(vuePreviewPath, previewPath))
-          .toString();
-        const markdown = generateMarkdown(previewPath, 'html', code);
+      vuePreviews
+        .filter((preview) => preview.endsWith('.vue'))
+        .flatMap((previewPath) => {
+          const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
+          const writePath = path.join(
+            __dirname,
+            'docs',
+            'auto-generated',
+            'previews',
+            'vue'
+          );
+          fse.ensureDirSync(writePath);
+          const code = fs
+            .readFileSync(path.join(vuePreviewPath, previewPath))
+            .toString();
+          const markdown = generateMarkdown(previewPath, 'html', code);
 
-        return [
-          fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
-          fsp.writeFile(
-            path.join(staticPath, 'vue', `${previewPath}.txt`),
-            code
-          ),
-        ];
-      })
+          return [
+            fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+            fsp.writeFile(
+              path.join(staticPath, 'vue', `${previewPath}.txt`),
+              code
+            ),
+          ];
+        })
     );
   }
 
