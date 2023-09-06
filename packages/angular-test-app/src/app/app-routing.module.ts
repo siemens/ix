@@ -109,7 +109,8 @@ import ToggleButtonSecondary from 'src/preview-examples/toggle-button-secondary'
 import ToggleButtonSecondaryGhost from 'src/preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from 'src/preview-examples/toggle-button-secondary-outline';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
-import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
+import ToggleDisabled from 'src/preview-examples/toggle-disabled';
+import ToggleNgModel from 'src/preview-examples/toggle-ng-model';
 import Tooltip from 'src/preview-examples/tooltip';
 import TooltipTitle from 'src/preview-examples/tooltip-title';
 import Tree from 'src/preview-examples/tree';
@@ -326,8 +327,9 @@ const routes: Routes = [
         path: 'toggle-button-primary-outline',
         component: ToggleButtonPrimaryOutline,
       },
-      { path: 'toggle-disabled', component: ToggleCustomDisabled },
+      { path: 'toggle-disabled', component: ToggleDisabled },
       { path: 'toggle-custom-label', component: ToggleCustomLabel },
+      { path: 'toggle-ng-model', component: ToggleNgModel },
       { path: 'toggle', component: Toggle },
       { path: 'upload', component: Upload },
       { path: 'vertical-tabs-with-avatar', component: VerticalTabsWithAvatar },
