@@ -113,7 +113,7 @@ const htmlSource = `
   </ix-row>
 </ix-grid>
 
-<h4>No Padding</h4>
+<h4>No padding</h4>
 <ix-grid no-padding>
   <ix-row>
     <ix-col size="2">1</ix-col>
@@ -126,7 +126,7 @@ const htmlSource = `
   </ix-row>
 </ix-grid>
 
-<h4>No Row Gap</h4>
+<h4>No row gap</h4>
 <ix-grid no-row-gap>
   <ix-row>
     <ix-col size="2">1</ix-col>
