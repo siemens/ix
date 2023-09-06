@@ -55,9 +55,9 @@ interface CalendarWeek {
 export class DatePicker {
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See @link https://day.js.org/docs/en/display/format for all available tokens.
    */
-  @Prop() format: string = 'yyyy/LL/dd';
+  @Prop() format: string = 'YYYY/MM/DD';
 
   /**
    * If true a range of dates can be selected.
@@ -361,12 +361,13 @@ export class DatePicker {
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
 
-    if (!this.range) {
+    if (!this.range || this.currFromDate === undefined) {
       this.currFromDate = date;
       this.onDateChange();
 
       return;
     }
+
     // Reset the range selection
     if (this.currFromDate !== undefined && this.currToDate !== undefined) {
       this.currFromDate = date;
