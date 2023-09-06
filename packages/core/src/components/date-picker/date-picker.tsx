@@ -397,7 +397,9 @@ export class DatePicker {
   private onDateChange() {
     this.getCurrentDate().then((date) => {
       this.dateChange.emit(date);
-      this.dateRangeChange.emit(date);
+      if (this.range) {
+        this.dateRangeChange.emit(date);
+      }
     });
   }
 
