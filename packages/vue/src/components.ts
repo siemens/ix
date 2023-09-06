@@ -162,17 +162,15 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', undefined, [
   'format',
   'range',
-  'individual',
   'corners',
   'from',
   'to',
   'minDate',
   'maxDate',
-  'eventDelimiter',
   'textSelectDate',
+  'weekStartIndex',
   'dateChange',
   'dateRangeChange',
-  'done',
   'dateSelect'
 ]);
 

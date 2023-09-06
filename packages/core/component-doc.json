@@ -2198,19 +2198,19 @@
         "ix-datetime-picker"
       ],
       "dependencies": [
+        "ix-icon",
         "ix-date-time-card",
         "ix-icon-button",
         "ix-button",
-        "ix-dropdown",
-        "ix-icon"
+        "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-date-picker": [
+          "ix-icon",
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
-          "ix-dropdown",
-          "ix-icon"
+          "ix-dropdown"
         ],
         "ix-icon-button": [
           "ix-spinner",
@@ -2252,28 +2252,6 @@
           "required": false
         },
         {
-          "name": "eventDelimiter",
-          "type": "string",
-          "mutable": false,
-          "attr": "event-delimiter",
-          "reflectToAttr": false,
-          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
-          "default": "' - '",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "format",
           "type": "string",
           "mutable": false,
@@ -2303,33 +2281,9 @@
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.format)",
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "individual",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
-            }
-          ],
-          "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -2429,10 +2383,31 @@
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -2443,30 +2418,29 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ start: string; end: string; }>",
+            "type": "Promise<{ from: string; to: string; }>",
             "docs": ""
           },
-          "signature": "getCurrentDate() => Promise<{ start: string; end: string; }>",
+          "signature": "getCurrentDate() => Promise<{ from: string; to: string; }>",
           "parameters": [],
-          "docs": "Get the current DateTime",
+          "docs": "Get the currently selected date-range",
           "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.",
+          "docs": "Date change.\nTriggers if the date changes.",
           "docsTags": [
             {
-              "name": "deprecated",
-              "text": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+              "name": "since",
+              "text": "2.0.0"
             }
-          ],
-          "deprecation": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+          ]
         },
         {
           "event": "dateRangeChange",
@@ -2474,13 +2448,18 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date range change.\nOnly triggered if datepicker is in range mode",
+          "docs": "Date range change.\nOnly triggered if date-picker is in range mode",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "Use date change (triggers on both modes)"
             }
-          ]
+          ],
+          "deprecation": "Use date change (triggers on both modes)"
         },
         {
           "event": "dateSelect",
@@ -2495,21 +2474,6 @@
               "text": "1.1.0"
             }
           ]
-        },
-        {
-          "event": "done",
-          "detail": "string",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Date selection confirmed via button action",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use `dateSelect`"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
         }
       ],
       "styles": [],
@@ -2542,11 +2506,11 @@
           "ix-button"
         ],
         "ix-date-picker": [
+          "ix-icon",
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
-          "ix-dropdown",
-          "ix-icon"
+          "ix-dropdown"
         ],
         "ix-icon-button": [
           "ix-spinner",

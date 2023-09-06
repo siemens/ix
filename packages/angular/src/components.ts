@@ -442,7 +442,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'format', 'from', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -450,38 +450,31 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'format', 'from', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
 })
 export class IxDatePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'done', 'dateSelect']);
+    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'dateSelect']);
   }
 }
 
 
-import type { LegacyDateChangeEvent as IIxDatePickerLegacyDateChangeEvent } from '@siemens/ix';
 import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/ix';
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Date change event
-
-If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+   * Date change.
+Triggers if the date changes. @since 2.0.0
    */
-  dateChange: EventEmitter<CustomEvent<IIxDatePickerLegacyDateChangeEvent>>;
+  dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Date range change.
-Only triggered if datepicker is in range mode @since 1.1.0
+Only triggered if date-picker is in range mode @since 1.1.0,@deprecated Use date change (triggers on both modes)
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
-  /**
-   * Date selection confirmed via button action @deprecated Will be removed in 2.0.0. Use `dateSelect`
-   */
-  done: EventEmitter<CustomEvent<string>>;
   /**
    * Date selection confirmed via button action @since 1.1.0
    */
