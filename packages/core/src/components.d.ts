@@ -439,7 +439,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * The selected starting date. If the date-picker is not in range mode this is the selected date.  Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
@@ -467,12 +467,12 @@ export namespace Components {
          */
         "textSelectDate": string;
         /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * The selected end date. If the the date-picker is not in range mode this property has no impact.  Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
          */
         "weekStartIndex": number;
@@ -3413,7 +3413,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * The selected starting date. If the date-picker is not in range mode this is the selected date.  Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -3428,14 +3428,14 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Date change. Triggers if the date changes.
+          * Triggers if the date selection changes.
           * @since 2.0.0
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change. Only triggered if date-picker is in range mode
+          * Triggers if the date selection changes. Only triggered if date-picker is in range mode
           * @since 1.1.0
-          * @deprecated Use date change (triggers on both modes)
+          * @deprecated Use `dateChange` (triggers on both modes)
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -3453,12 +3453,12 @@ declare namespace LocalJSX {
          */
         "textSelectDate"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * The selected end date. If the the date-picker is not in range mode this property has no impact.  Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
          */
         "weekStartIndex"?: number;

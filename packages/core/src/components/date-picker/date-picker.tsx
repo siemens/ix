@@ -38,8 +38,6 @@ export type DateChangeEvent = {
   to: string;
 };
 
-export type LegacyDateChangeEvent = DateChangeEvent | string;
-
 export type DateTimeCorners = DateTimeCardCorners;
 
 interface CalendarWeek {
@@ -70,10 +68,9 @@ export class DatePicker {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * Picker date. If the picker is in range mode this property is the start date.
-   * If set to `null` no default start date will be pre-selected.
+   * The selected starting date. If the date-picker is not in range mode this is the selected date.
    *
-   * Format is based on `format`
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
@@ -86,10 +83,9 @@ export class DatePicker {
   }
 
   /**
-   * Picker date. If the picker is in range mode this property is the end date.
-   * If the picker is not in range mode leave this value `null`
+   * The selected end date. If the the date-picker is not in range mode this property has no impact.
    *
-   * Format is based on `format`
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
@@ -126,26 +122,25 @@ export class DatePicker {
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    *
    * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
 
   /**
-   * Date change.
-   * Triggers if the date changes.
+   * Triggers if the date selection changes.
    *
    * @since 2.0.0
    */
   @Event() dateChange: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date range change.
+   * Triggers if the date selection changes.
    * Only triggered if date-picker is in range mode
    *
    * @since 1.1.0
-   * @deprecated Use date change (triggers on both modes)
+   * @deprecated Use `dateChange` (triggers on both modes)
    */
   @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
 

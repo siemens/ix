@@ -2274,7 +2274,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
+          "docs": "The selected starting date. If the date-picker is not in range mode this is the selected date.\n\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -2376,7 +2376,7 @@
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docs": "The selected end date. If the the date-picker is not in range mode this property has no impact.\n\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -2397,7 +2397,7 @@
           "mutable": false,
           "attr": "week-start-index",
           "reflectToAttr": false,
-          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 would result in starting the week on monday.",
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
           "docsTags": [
             {
               "name": "since",
@@ -2434,7 +2434,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date change.\nTriggers if the date changes.",
+          "docs": "Triggers if the date selection changes.",
           "docsTags": [
             {
               "name": "since",
@@ -2448,7 +2448,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date range change.\nOnly triggered if date-picker is in range mode",
+          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker is in range mode",
           "docsTags": [
             {
               "name": "since",
@@ -2456,10 +2456,10 @@
             },
             {
               "name": "deprecated",
-              "text": "Use date change (triggers on both modes)"
+              "text": "Use `dateChange` (triggers on both modes)"
             }
           ],
-          "deprecation": "Use date change (triggers on both modes)"
+          "deprecation": "Use `dateChange` (triggers on both modes)"
         },
         {
           "event": "dateSelect",

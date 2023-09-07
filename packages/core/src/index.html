@@ -31,6 +31,18 @@ SPDX-License-Identifier: MIT
 
   <body style="margin: 0px; height: 100vh">
     <my-component />
-    <ix-date-picker></ix-date-picker>
+    <ix-date-picker from="2023/09/05" to="2023/09/10"></ix-date-picker>
+    <script>
+      const datePicker = document.querySelector('ix-date-picker');
+      datePicker.addEventListener('dateChange', event => {
+        console.log(event.detail);
+      });
+      datePicker.addEventListener('dateRangeChange', event => {
+        console.log(event.detail);
+      });
+      datePicker.addEventListener('dateSelect', event => {
+        console.log(event.detail);
+      });
+    </script>
   </body>
 </html>

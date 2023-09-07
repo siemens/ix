@@ -15,18 +15,7 @@ import SourceVueDatepickerRange from './../auto-generated/previews/vue/datepicke
 
 # Date picker
 
-## Usage
-
-<Playground
-name="datepicker" height="35rem"
-frameworks={{
-  react: SourceReactDatepicker,
-  angular: SourceAngularDatepicker,
-  javascript: SourceDatepicker,
-  vue: SourceVueDatepicker
-}}></Playground>
-
-### with range selection
+## With Range Selection
 
 <Playground
 name="datepicker-range" height="35rem"
@@ -36,6 +25,17 @@ frameworks={{
   angular: SourceAngularDatepickerRange,
   javascript: SourceDatepickerRange,
   vue: SourceVueDatepickerRange
+}}></Playground>
+
+### Single Selection
+
+<Playground
+name="datepicker" height="35rem"
+frameworks={{
+  react: SourceReactDatepicker,
+  angular: SourceAngularDatepicker,
+  javascript: SourceDatepicker,
+  vue: SourceVueDatepicker
 }}></Playground>
 
 ## Properties
