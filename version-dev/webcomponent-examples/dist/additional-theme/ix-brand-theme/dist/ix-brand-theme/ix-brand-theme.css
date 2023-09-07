@@ -14,14 +14,6 @@
 /* Line heights */
 /* Animation timings */
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-/*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 /*
@@ -68,6 +60,7 @@
   --theme-color-component-7: #00ffb91f;
   --theme-color-component-7--active: #16565c;
   --theme-color-component-error: #331131;
+  --theme-color-component-info: #062c63;
   --theme-color-component-8--hover: #001f39;
   --theme-color-component-8: #00183b;
   --theme-color-component-9: #00ffb9;
@@ -131,7 +124,7 @@
   --theme-color-contrast-text: #ffffff;
   --theme-color-std-text: #ffffff;
   --theme-color-soft-text: #ffffff99;
-  --theme-color-weak-text: #ffffff4d;
+  --theme-color-weak-text: rgba(255,255,255,0.45);
   --theme-color-inv-contrast-text: #000000;
   --theme-color-inv-std-text: #000028;
   --theme-color-inv-soft-text: #000028a6;
@@ -165,7 +158,7 @@
   --theme-chart-10: #8c49ff;
   --theme-chart-10-40: #8c49ff66;
   --theme-chart-11: #ba31ff;
-  --theme-chart-11-40: #ba31ff;
+  --theme-chart-11-40: rgba(186,49,255,0.4);
   --theme-chart-12: #cd31e7;
   --theme-chart-12-40: #cd31e766;
   --theme-chart-13: #ec7a91;
@@ -178,7 +171,7 @@
   --theme-chart-16-40: #baba9d66;
   --theme-chart-17: #b5bd00;
   --theme-chart-17-40: #b5bd0066;
-  --theme-chart-axes: #ffffff00;
+  --theme-chart-axes: rgba(255,255,255,0.3);
   --theme-chart-grid-lines: #ffffff1a;
   --theme-chart-grid-fill: #23233c;
   --theme-chart-ticks: #ffffff59;
@@ -221,7 +214,7 @@
   --theme-btn-secondary--background--hover: var(--theme-color-component-1--hover);
   --theme-btn-secondary--background--active: var(--theme-color-component-1--active);
   --theme-btn-secondary--background--disabled: var(--theme-color-component-1);
-  --theme-btn-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-secondary--color: var(--theme-color-std-text);
   --theme-btn-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-secondary--color--disabled: var(--theme-color-weak-text);
@@ -233,7 +226,7 @@
   --theme-btn-outline-secondary--border-color--hover: var(--theme-color-component-4);
   --theme-btn-outline-secondary--border-color--active: var(--theme-color-component-4);
   --theme-btn-outline-secondary--border-color--disabled: var(--theme-color-component-4);
-  --theme-btn-outline-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-outline-secondary--color: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--disabled: var(--theme-color-weak-text);
@@ -241,7 +234,7 @@
   --theme-btn-invisible-secondary--background--hover: var(--theme-color-ghost--hover);
   --theme-btn-invisible-secondary--background--active: var(--theme-color-ghost--active);
   --theme-btn-invisible-secondary--background--disabled: var(--theme-color-ghost);
-  --theme-btn-invisible-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-invisible-secondary--color: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--disabled: var(--theme-color-weak-text);
@@ -264,36 +257,36 @@
   --theme-checkbox-unchecked--background: var(--theme-color-secondary);
   --theme-checkbox-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-checkbox-unchecked--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--border-color--hover: var(--theme-color-dynamic);
+  --theme-checkbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-heckbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--border-color--active: var(--theme-color-dynamic);
   --theme-checkbox-unchecked--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-unchecked--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-checked--background: var(--theme-color-secondary);
-  --theme-checkbox-checked--border-color: var(--theme-color-contrast-bdr);
-  --theme-checkbox-checked--color: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-checked--border-color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-checked--color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--active: var(--theme-color-secondary--active);
-  --theme-checkbox-checked--border-color--active: var(--theme-color-dynamic);
-  --theme-checkbox-checked--color--active: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-checked--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-checked--color--disabled: var(--theme-color-weak-text);
-  --theme-checkbox-mixed--background: var(--theme-color-secondary);
-  --theme-checkbox-mixed--border-color: var(--theme-color-contrast-bdr);
-  --theme-checkbox-mixed--color: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-mixed--border-color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--active: var(--theme-color-secondary--active);
-  --theme-checkbox-mixed--border-color--active: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--color--active: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-mixed--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-mixed--color--disabled: var(--theme-color-weak-text);
+  --theme-checkbox-unchecked--border-color--disabled: var(--theme-color-component-4);
+  --theme-checkbox-checked--background: var(--theme-color-dynamic);
+  --theme-checkbox-checked--border-color: var(--theme-color-0);
+  --theme-checkbox-checked--color: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--hover: var(--theme-color-dynamic--hover);
+  --theme-checkbox-checked--border-color--hover: var(--theme-color-0);
+  --theme-checkbox-checked--color--hover: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--active: var(--theme-color-dynamic--active);
+  --theme-checkbox-checked--border-color--active: var(--theme-color-0);
+  --theme-checkbox-checked--color--active: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--disabled: var(--theme-color-component-4);
+  --theme-checkbox-checked--border-color--disabled: var(--theme-color-0);
+  --theme-checkbox-checked--color--disabled: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background: var(--theme-color-dynamic);
+  --theme-checkbox-mixed--border-color: var(--theme-color-0);
+  --theme-checkbox-mixed--color: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--hover: var(--theme-color-dynamic--hover);
+  --theme-checkbox-mixed--border-color--hover: var(--theme-color-0);
+  --theme-checkbox-mixed--color--hover: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--active: var(--theme-color-dynamic--active);
+  --theme-checkbox-mixed--border-color--active: var(--theme-color-0);
+  --theme-checkbox-mixed--color--active: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--disabled: var(--theme-color-component-4);
+  --theme-checkbox-mixed--border-color--disabled: var(--theme-color-0);
+  --theme-checkbox-mixed--color--disabled: var(--theme-color-primary--contrast);
   --theme-checkbox-label--color: var(--theme-color-std-text);
   --theme-checkbox-label--color--disabled: var(--theme-color-weak-text);
   --theme-ghost--background: var(--theme-color-ghost);
@@ -303,24 +296,24 @@
   --theme-radiobtn-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-radiobtn-unchecked--border-color--hover: var(--theme-color-dynamic);
   --theme-radiobtn-unchecked--border-color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-unchecked--border-color--disabled: var(--theme-color-weak-bdr);
+  --theme-radiobtn-unchecked--border-color--disabled: var(--theme-color-component-4);
   --theme-radiobtn-unchecked--background--hover: var(--theme-color-secondary--hover);
   --theme-radiobtn-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-radiobtn-unchecked--background--disabled: var(--theme-color-ghost);
-  --theme-radiobtn-checked--color: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--hover: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--disabled: var(--theme-color-weak-text);
+  --theme-radiobtn-checked--color: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--hover: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--active: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--disabled: var(--theme-color-primary--contrast);
   --theme-radiobtn-label--color: var(--theme-color-std-text);
   --theme-radiobtn-label--color--disabled: var(--theme-color-weak-text);
-  --theme-radiobtn-checked--background: var(--theme-color-secondary);
-  --theme-radiobtn-checked--background--hover: var(--theme-color-secondary--hover);
-  --theme-radiobtn-checked--background--active: var(--theme-color-secondary--active);
-  --theme-radiobtn-checked--background--disabled: var(--theme-color-ghost);
-  --theme-radiobtn-checked--border-color: var(--theme-color-contrast-bdr);
-  --theme-radiobtn-checked--border-color--hover: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--border-color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--border-color--disabled: var(--theme-color-weak-bdr);
+  --theme-radiobtn-checked--background: var(--theme-color-dynamic);
+  --theme-radiobtn-checked--background--hover: var(--theme-color-dynamic--hover);
+  --theme-radiobtn-checked--background--active: var(--theme-color-dynamic--active);
+  --theme-radiobtn-checked--background--disabled: var(--theme-color-component-4);
+  --theme-radiobtn-checked--border-color: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--hover: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--active: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--disabled: var(--theme-color-0);
   --theme-nav--background: var(--theme-color-2);
   --theme-avatar-btn--background: var(--theme-color-ghost);
   --theme-avatar-btn--background--hover: var(--theme-color-ghost--hover);
@@ -372,12 +365,15 @@
   --theme-nav-item-secondary-icon--color--disabled: var(--theme-color-weak-text);
   --theme-avatar--background: var(--theme-color-component-3);
   --theme-input--border-color: var(--theme-color-std-bdr);
+  --theme-input--border-color--autofill: var(--theme-color-std-bdr);
   --theme-input--background: var(--theme-color-component-8);
+  --theme-input--background--autofill: var(--theme-color-component-info);
   --theme-input-hint--color: var(--theme-color-soft-text);
   --theme-input--border-color-bottom--readonly: var(--theme-color-soft-bdr);
   --theme-input-error--background: var(--theme-color-component-error);
   --theme-input--color--disabled: var(--theme-color-weak-text);
   --theme-input--color: var(--theme-color-std-text);
+  --theme-input--color--autofill: var(--theme-color-std-text);
   --theme-input--background--hover: var(--theme-color-component-8--hover);
   --theme-input--border-color--hover: var(--theme-color-dynamic);
   --theme-input--background--focus: var(--theme-color-component-8--hover);
@@ -462,7 +458,7 @@
   --theme-chip-primary-outline--background--display: var(--theme-color-secondary);
   --theme-chip-primary-outline--border-color--display: var(--theme-color-primary);
   --theme-chip-primary-outline--color--display: var(--theme-color-std-text);
-  --theme-switch-off--background: var(--theme-color-component-3);
+  --theme-switch-off--background: var(--theme-color-component-4);
   --theme-menu--background: var(--theme-color-2);
   --theme-menu--border-color: var(--theme-color-0);
   --theme-menu-header--color: var(--theme-color-soft-text);
@@ -510,8 +506,8 @@
   --theme-select-list--background: var(--theme-color-2);
   --theme-select-list--border-color: var(--theme-color-0);
   --theme-tab--background: var(--theme-color-ghost);
-  --theme-tab--background--hover: var(--theme-color-ghost--hover);
-  --theme-tab--background--active: var(--theme-color-ghost--active);
+  --theme-tab--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-tab--background--active: var(--theme-color-ghost-primary--active);
   --theme-tab--background--selected: var(--theme-color-ghost);
   --theme-tab--background--disabled: var(--theme-color-ghost);
   --theme-tab-indicator--background: var(--theme-color-soft-bdr);
@@ -539,8 +535,8 @@
   --theme-animated-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-animated-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-circle--background: var(--theme-color-component-1);
-  --theme-animated-tab-circle--background--hover: var(--theme-color-1--hover);
-  --theme-animated-tab-circle--background--active: var(--theme-color-1--active);
+  --theme-animated-tab-circle--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-animated-tab-circle--background--active: var(--theme-color-ghost-primary--active);
   --theme-animated-tab-circle--background--selected: var(--theme-color-ghost);
   --theme-animated-tab-circle--background--disabled: var(--theme-color-ghost);
   --theme-animated-tab-circle--border-color: var(--theme-color-0);
@@ -568,16 +564,16 @@
   --theme-select-list-item-hint--color--hover: var(--theme-color-soft-text);
   --theme-select-list-item-hint--color--active: var(--theme-color-soft-text);
   --theme-switch-off--background--hover: var(--theme-color-component-5);
-  --theme-switch-off--background--active: var(--theme-color-component-5);
-  --theme-switch-off--background--disabled: var(--theme-color-component-3);
+  --theme-switch-off--background--active: var(--theme-color-component-4);
+  --theme-switch-off--background--disabled: var(--theme-color-component-2);
   --theme-switch-on--background: var(--theme-color-dynamic);
-  --theme-switch-on--background--hover: var(--theme-color-dynamic-alt--hover);
-  --theme-switch-on--background--active: var(--theme-color-dynamic-alt--active);
-  --theme-switch-on--background--disabled: var(--theme-color-component-3);
-  --theme-switch-mixed--background: var(--theme-color-component-3);
+  --theme-switch-on--background--hover: var(--theme-color-dynamic--hover);
+  --theme-switch-on--background--active: var(--theme-color-dynamic--active);
+  --theme-switch-on--background--disabled: var(--theme-color-component-2);
+  --theme-switch-mixed--background: var(--theme-color-component-4);
   --theme-switch-mixed--background--hover: var(--theme-color-component-5);
-  --theme-switch-mixed--background--active: var(--theme-color-component-5);
-  --theme-switch-mixed--background--disabled: var(--theme-color-component-3);
+  --theme-switch-mixed--background--active: var(--theme-color-component-4);
+  --theme-switch-mixed--background--disabled: var(--theme-color-component-2);
   --theme-switch-off--border-color: var(--theme-color-0);
   --theme-switch-off--border-color--hover: var(--theme-color-0);
   --theme-switch-off--border-color--active: var(--theme-color-0);
@@ -590,29 +586,29 @@
   --theme-switch-mixed--border-color--hover: var(--theme-color-0);
   --theme-switch-mixed--border-color--active: var(--theme-color-0);
   --theme-switch-mixed--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-off--background: var(--theme-color-secondary);
-  --theme-switch-thumb-off--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-off--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-off--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-on--background: var(--theme-color-secondary);
-  --theme-switch-thumb-on--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-on--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-on--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-mixed--background: var(--theme-color-secondary);
-  --theme-switch-thumb-mixed--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-mixed--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-mixed--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-off--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-off--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-off--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-off--background: var(--theme-color-1);
+  --theme-switch-thumb-off--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--active: var(--theme-color-1);
+  --theme-switch-thumb-off--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-on--background: var(--theme-color-1);
+  --theme-switch-thumb-on--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-on--background--active: var(--theme-color-1);
+  --theme-switch-thumb-on--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-mixed--background: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--active: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-off--border-color: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-off--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-on--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-on--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-on--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-on--border-color: var(--theme-color-0);
+  --theme-switch-thumb-on--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-on--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-on--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-mixed--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-mixed--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-mixed--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-mixed--border-color: var(--theme-color-0);
+  --theme-switch-thumb-mixed--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-mixed--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-mixed--border-color--disabled: var(--theme-color-0);
   --theme-switch--color: var(--theme-color-std-text);
   --theme-switch--color--hover: var(--theme-color-std-text);
@@ -626,7 +622,7 @@
   --theme-scrollbar-track--background--hover: var(--theme-color-3);
   --theme-scrollbar-thumb--background--hover: var(--theme-color-7);
   --theme-toast-timer-track--background: var(--theme-color-0);
-  --theme-toast-timer-value--background: var(--theme-color-component-3);
+  --theme-toast-timer-value--background: var(--theme-color-component-4);
   --theme-toast--background: var(--theme-color-2);
   --theme-toast--border-color: var(--theme-color-0);
   --theme-toast--color: var(--theme-color-std-text);
@@ -738,7 +734,7 @@
   --theme-event-item--border--hover: var(--theme-color-0);
   --theme-event-item--border: var(--theme-color-0);
   --theme-event-item--border--active: var(--theme-color-0);
-  --theme-event-item--border--selected: var(--theme-color-contrast-bdr);
+  --theme-event-item--border--selected: var(--theme-color-dynamic);
   --theme-event-item--border--disabled: var(--theme-color-0);
   --theme-event-item--background--hover: var(--theme-color-component-1--hover);
   --theme-event-item--background--active: var(--theme-color-component-1--active);
@@ -897,7 +893,7 @@
   --theme-menu--box-shadow: var(--theme-shadow-4);
   --theme-navigation--box-shadow: var(--theme-shadow-2);
   --theme-modal--box-shadow: var(--theme-shadow-4);
-  --theme-switch-thumb--box-shadow: var(--theme-shadow-1);
+  --theme-switch-thumb--box-shadow: none;
   --theme-tile--box-shadow: none;
   --theme-toast--box-shadow: var(--theme-shadow-4);
 }
@@ -906,37 +902,62 @@
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-dark, :root body:not([class^=theme-]) {
-  --theme-siemens-sans: Siemens Sans;
+  --theme-font-code: JetBrains Mono;
+  --theme-font-sans: Siemens Sans;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-dark, :root body:not([class^=theme-]) {
-  --theme-font-weight-bold: 700;
   --theme-font-weight-normal: 400;
+  --theme-font-weight-bold: 700;
+  --theme-font-weight-black: 900;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-dark, :root body:not([class^=theme-]) {
-  --theme-text-h2: var(--theme-font-weight-bold) var(--theme-font-size-xl)/var(--theme-line-height-h2) var(--theme-siemens-sans);
-  --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-siemens-sans);
-  --theme-text-l-title: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-siemens-sans);
-  --theme-text-l-title-single: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-siemens-sans);
-  --theme-text-l: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-siemens-sans);
-  --theme-text-l-single: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-siemens-sans);
-  --theme-text-default-title: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
-  --theme-text-default-title-single: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-siemens-sans);
-  --theme-text-default: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
-  --theme-text-default-single: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-siemens-sans);
-  --theme-text-caption: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption) var(--theme-siemens-sans);
-  --theme-text-caption-single: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption-single) var(--theme-siemens-sans);
-  --theme-text-s: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s) var(--theme-siemens-sans);
-  --theme-text-s-single: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s-single) var(--theme-siemens-sans);
-  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/var(--theme-line-height-xs) var(--theme-siemens-sans);
-  --theme-text-default-underline: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
+  --theme-text-h2: var(--theme-font-weight-bold) var(--theme-font-size-xl)/var(--theme-line-height-h2) var(--theme-font-sans);
+  --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-font-sans);
+  --theme-text-l-title: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-font-sans);
+  --theme-text-l-title-single: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-font-sans);
+  --theme-text-l: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-font-sans);
+  --theme-text-l-single: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-font-sans);
+  --theme-text-default-title: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-text-default-title-single: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-font-sans);
+  --theme-text-default: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-text-default-single: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-font-sans);
+  --theme-text-caption: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption) var(--theme-font-sans);
+  --theme-text-caption-single: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption-single) var(--theme-font-sans);
+  --theme-text-s: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s) var(--theme-font-sans);
+  --theme-text-s-single: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s-single) var(--theme-font-sans);
+  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/140% var(--theme-font-sans);
+  --theme-text-default-underline: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-label: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-xs: var(--theme-font-weight-normal) var(--theme-ms--2)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-body: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-xs: var(--theme-font-weight-normal) var(--theme-ms--2)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-display: var(--theme-font-weight-normal) var(--theme-ms-3)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xs: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-sm: var(--theme-font-weight-normal) var(--theme-ms-2)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-lg: var(--theme-font-weight-normal) var(--theme-ms-4)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xl: var(--theme-font-weight-bold) var(--theme-ms-5)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xxl: var(--theme-font-weight-bold) var(--theme-ms-6)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-h6: var(--theme-font-weight-bold) var(--theme-ms--1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h5: var(--theme-font-weight-bold) var(--theme-ms-0)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h4: var(--theme-font-weight-bold) var(--theme-ms-1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h3: var(--theme-font-weight-bold) var(--theme-ms-2)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h2: var(--theme-font-weight-bold) var(--theme-ms-3)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h1: var(--theme-font-weight-bold) var(--theme-ms-4)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-code: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-lg) var(--theme-font-code);
+  --theme-code-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-lg) var(--theme-font-code);
+  --theme-code-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-lg) var(--theme-font-code);
 }
 
 /*
@@ -974,6 +995,18 @@
   --theme-small-icon-size: 1rem;
   --theme-focus--border-thickness: 0.0625rem;
   --theme-input-min-width: 2rem;
+  --theme-size--3: 0.375rem;
+  --theme-size--2: 0.5rem;
+  --theme-size--1: 0.75rem;
+  --theme-size-0: 1rem;
+  --theme-size-1: 1.5rem;
+  --theme-size-2: 2rem;
+  --theme-size-3: 3rem;
+  --theme-size-4: 4rem;
+  --theme-size-5: 6rem;
+  --theme-size-6: 8rem;
+  --theme-size-7: 12rem;
+  --theme-size-8: 16rem;
   --theme-tab-indicator--height: 0.125rem;
 }
 
@@ -987,13 +1020,23 @@
   --theme-font-size-default: 0.875rem;
   --theme-font-size-l: 1rem;
   --theme-font-size-xl: 1.375rem;
+  --theme-ms--2: 0.625rem;
+  --theme-ms--1: 0.75rem;
+  --theme-ms-0: 0.875rem;
+  --theme-ms-1: 1rem;
+  --theme-ms-2: 1.25rem;
+  --theme-ms-3: 1.5rem;
+  --theme-ms-4: 1.8125rem;
+  --theme-ms-5: 2.1875rem;
+  --theme-ms-6: 2.625rem;
+  --theme-ms-7: 3.125rem;
+  --theme-ms-8: 3.75rem;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-dark, :root body:not([class^=theme-]) {
-  --theme-line-height-xs: 140%;
   --theme-line-height-s: 150%;
   --theme-line-height-s-single: 150%;
   --theme-line-height-caption: 150%;
@@ -1004,6 +1047,10 @@
   --theme-line-height-l-single: 125%;
   --theme-line-height-h2: 145.5%;
   --theme-line-height-xl: 109.1%;
+  --theme-line-height-xs: 100%;
+  --theme-line-height-sm: 120%;
+  --theme-line-height-md: 143%;
+  --theme-line-height-lg: 150%;
 }
 
 /*
@@ -1028,6 +1075,18 @@
 :root .theme-brand-dark, :root body:not([class^=theme-]) {
   --theme-input-padding-y: 0.5rem;
   --theme-input-padding-x: 0.5rem;
+  --theme-space--3: 0.125rem;
+  --theme-space--2: 0.1875rem;
+  --theme-space--1: 0.25rem;
+  --theme-space-0: 0.735rem;
+  --theme-space-1: 0.5rem;
+  --theme-space-2: 0.75rem;
+  --theme-space-3: 1rem;
+  --theme-space-4: 1.5rem;
+  --theme-space-5: 2rem;
+  --theme-space-6: 3rem;
+  --theme-space-7: 4rem;
+  --theme-space-8: 6rem;
 }
 
 /*
@@ -1084,6 +1143,22 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
+  --theme-letter-spacing-xs: -1.2%;
+  --theme-letter-spacing-sm: -0.6%;
+  --theme-letter-spacing-md: 0%;
+  --theme-letter-spacing-lg: 0.6%;
+  --theme-letter-spacing-xl: 1.2%;
+  --theme-letter-spacing-xxl: 2%;
+}
+
+:root .theme-brand-dark, :root body:not([class^=theme-]) {
+  --ix-theme-name: brand-dark;
+}
+
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
+ */
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
@@ -1091,11 +1166,11 @@
   --theme-color-ghost: #00000000;
   --theme-color-ghost--hover: #bdbdae26;
   --theme-color-ghost--active: #8f8f7526;
-  --theme-color-ghost--selected: #00ffb933;
+  --theme-color-ghost--selected: #00ffb92e;
   --theme-color-ghost--selected-hover: #20c57e38;
   --theme-color-ghost--selected-active: #009e6738;
   --theme-color-ghost-primary--active: #00cf9633;
-  --theme-color-ghost-primary--hover: #00ffb933;
+  --theme-color-ghost-primary--hover: #00ffb92e;
   --theme-color-ghost-alt: #00002808;
   --theme-color-ghost-alt--hover: #afafa438;
   --theme-color-ghost-alt--active: #8b8b8338;
@@ -1114,7 +1189,7 @@
   --theme-color-dynamic-alt--hover: #62eec7;
   --theme-color-dynamic-alt--active: #5ce0bc;
   --theme-color-secondary: #ffffff;
-  --theme-color-secondary--hover: #ccfff1;
+  --theme-color-secondary--hover: #d1fff2;
   --theme-color-secondary--active: #b8f2e2;
   --theme-color-component-1: #bdbdae33;
   --theme-color-component-1--hover: #bdbdae59;
@@ -1125,9 +1200,10 @@
   --theme-color-component-5: #00002873;
   --theme-color-component-6: #00002899;
   --theme-color-component-7--hover: #00ffb9;
-  --theme-color-component-7: #00ffb933;
+  --theme-color-component-7: #00ffb92e;
   --theme-color-component-7--active: #00f2b0;
   --theme-color-component-error: #fcccd7;
+  --theme-color-component-info: #d0e9fb;
   --theme-color-component-8--hover: #d1fff2;
   --theme-color-component-8: #ebf7f8;
   --theme-color-component-9: #0b6165;
@@ -1140,7 +1216,7 @@
   --theme-color-component-10--disabled: #00515926;
   --theme-color-1--hover: #f2f2f2;
   --theme-color-1--active: #e5e5e5;
-  --theme-color-component-11: rgba(215,215,208,0.2);
+  --theme-color-component-11: #d7d7d033;
   --theme-color-0: #ffffff00;
   --theme-color-1: #ffffff;
   --theme-color-2: #f3f3f0;
@@ -1281,7 +1357,7 @@
   --theme-btn-secondary--background--hover: var(--theme-color-component-1--hover);
   --theme-btn-secondary--background--active: var(--theme-color-component-1--active);
   --theme-btn-secondary--background--disabled: var(--theme-color-component-1);
-  --theme-btn-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-secondary--color: var(--theme-color-std-text);
   --theme-btn-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-secondary--color--disabled: var(--theme-color-weak-text);
@@ -1293,7 +1369,7 @@
   --theme-btn-outline-secondary--border-color--hover: var(--theme-color-component-4);
   --theme-btn-outline-secondary--border-color--active: var(--theme-color-component-4);
   --theme-btn-outline-secondary--border-color--disabled: var(--theme-color-component-4);
-  --theme-btn-outline-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-outline-secondary--color: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-outline-secondary--color--disabled: var(--theme-color-weak-text);
@@ -1301,7 +1377,7 @@
   --theme-btn-invisible-secondary--background--hover: var(--theme-color-ghost--hover);
   --theme-btn-invisible-secondary--background--active: var(--theme-color-ghost--active);
   --theme-btn-invisible-secondary--background--disabled: var(--theme-color-ghost);
-  --theme-btn-invisible-secondary--color: var(--theme-color-soft-text);
+  --theme-btn-invisible-secondary--color: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--hover: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--active: var(--theme-color-std-text);
   --theme-btn-invisible-secondary--color--disabled: var(--theme-color-weak-text);
@@ -1324,36 +1400,36 @@
   --theme-checkbox-unchecked--background: var(--theme-color-secondary);
   --theme-checkbox-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-checkbox-unchecked--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--border-color--hover: var(--theme-color-dynamic);
+  --theme-checkbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-heckbox-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-checkbox-unchecked--border-color--active: var(--theme-color-dynamic);
   --theme-checkbox-unchecked--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-unchecked--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-checked--background: var(--theme-color-secondary);
-  --theme-checkbox-checked--border-color: var(--theme-color-contrast-bdr);
-  --theme-checkbox-checked--color: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-checked--border-color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-checked--color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--active: var(--theme-color-secondary--active);
-  --theme-checkbox-checked--border-color--active: var(--theme-color-dynamic);
-  --theme-checkbox-checked--color--active: var(--theme-color-dynamic);
-  --theme-checkbox-checked--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-checked--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-checked--color--disabled: var(--theme-color-weak-text);
-  --theme-checkbox-mixed--background: var(--theme-color-secondary);
-  --theme-checkbox-mixed--border-color: var(--theme-color-contrast-bdr);
-  --theme-checkbox-mixed--color: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--hover: var(--theme-color-secondary--hover);
-  --theme-checkbox-mixed--border-color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--color--hover: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--active: var(--theme-color-secondary--active);
-  --theme-checkbox-mixed--border-color--active: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--color--active: var(--theme-color-dynamic);
-  --theme-checkbox-mixed--background--disabled: var(--theme-color-ghost);
-  --theme-checkbox-mixed--border-color--disabled: var(--theme-color-weak-bdr);
-  --theme-checkbox-mixed--color--disabled: var(--theme-color-weak-text);
+  --theme-checkbox-unchecked--border-color--disabled: var(--theme-color-component-4);
+  --theme-checkbox-checked--background: var(--theme-color-dynamic);
+  --theme-checkbox-checked--border-color: var(--theme-color-0);
+  --theme-checkbox-checked--color: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--hover: var(--theme-color-dynamic--hover);
+  --theme-checkbox-checked--border-color--hover: var(--theme-color-0);
+  --theme-checkbox-checked--color--hover: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--active: var(--theme-color-dynamic--active);
+  --theme-checkbox-checked--border-color--active: var(--theme-color-0);
+  --theme-checkbox-checked--color--active: var(--theme-color-primary--contrast);
+  --theme-checkbox-checked--background--disabled: var(--theme-color-component-4);
+  --theme-checkbox-checked--border-color--disabled: var(--theme-color-0);
+  --theme-checkbox-checked--color--disabled: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background: var(--theme-color-dynamic);
+  --theme-checkbox-mixed--border-color: var(--theme-color-0);
+  --theme-checkbox-mixed--color: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--hover: var(--theme-color-dynamic--hover);
+  --theme-checkbox-mixed--border-color--hover: var(--theme-color-0);
+  --theme-checkbox-mixed--color--hover: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--active: var(--theme-color-dynamic--active);
+  --theme-checkbox-mixed--border-color--active: var(--theme-color-0);
+  --theme-checkbox-mixed--color--active: var(--theme-color-primary--contrast);
+  --theme-checkbox-mixed--background--disabled: var(--theme-color-component-4);
+  --theme-checkbox-mixed--border-color--disabled: var(--theme-color-0);
+  --theme-checkbox-mixed--color--disabled: var(--theme-color-primary--contrast);
   --theme-checkbox-label--color: var(--theme-color-std-text);
   --theme-checkbox-label--color--disabled: var(--theme-color-weak-text);
   --theme-ghost--background: var(--theme-color-ghost);
@@ -1363,24 +1439,24 @@
   --theme-radiobtn-unchecked--border-color: var(--theme-color-contrast-bdr);
   --theme-radiobtn-unchecked--border-color--hover: var(--theme-color-dynamic);
   --theme-radiobtn-unchecked--border-color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-unchecked--border-color--disabled: var(--theme-color-weak-bdr);
+  --theme-radiobtn-unchecked--border-color--disabled: var(--theme-color-component-4);
   --theme-radiobtn-unchecked--background--hover: var(--theme-color-secondary--hover);
   --theme-radiobtn-unchecked--background--active: var(--theme-color-secondary--active);
   --theme-radiobtn-unchecked--background--disabled: var(--theme-color-ghost);
-  --theme-radiobtn-checked--color: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--hover: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--color--disabled: var(--theme-color-weak-text);
+  --theme-radiobtn-checked--color: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--hover: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--active: var(--theme-color-primary--contrast);
+  --theme-radiobtn-checked--color--disabled: var(--theme-color-primary--contrast);
   --theme-radiobtn-label--color: var(--theme-color-std-text);
   --theme-radiobtn-label--color--disabled: var(--theme-color-weak-text);
-  --theme-radiobtn-checked--background: var(--theme-color-secondary);
-  --theme-radiobtn-checked--background--hover: var(--theme-color-secondary--hover);
-  --theme-radiobtn-checked--background--active: var(--theme-color-secondary--active);
-  --theme-radiobtn-checked--background--disabled: var(--theme-color-ghost);
-  --theme-radiobtn-checked--border-color: var(--theme-color-contrast-bdr);
-  --theme-radiobtn-checked--border-color--hover: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--border-color--active: var(--theme-color-dynamic);
-  --theme-radiobtn-checked--border-color--disabled: var(--theme-color-weak-bdr);
+  --theme-radiobtn-checked--background: var(--theme-color-dynamic);
+  --theme-radiobtn-checked--background--hover: var(--theme-color-dynamic--hover);
+  --theme-radiobtn-checked--background--active: var(--theme-color-dynamic--active);
+  --theme-radiobtn-checked--background--disabled: var(--theme-color-component-4);
+  --theme-radiobtn-checked--border-color: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--hover: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--active: var(--theme-color-0);
+  --theme-radiobtn-checked--border-color--disabled: var(--theme-color-0);
   --theme-nav--background: var(--theme-color-2);
   --theme-avatar-btn--background: var(--theme-color-ghost);
   --theme-avatar-btn--background--hover: var(--theme-color-ghost--hover);
@@ -1432,12 +1508,15 @@
   --theme-nav-item-secondary-icon--color--disabled: var(--theme-color-weak-text);
   --theme-avatar--background: var(--theme-color-component-3);
   --theme-input--border-color: var(--theme-color-std-bdr);
+  --theme-input--border-color--autofill: var(--theme-color-std-bdr);
   --theme-input--background: var(--theme-color-component-8);
+  --theme-input--background--autofill: var(--theme-color-component-info);
   --theme-input-hint--color: var(--theme-color-soft-text);
   --theme-input--border-color-bottom--readonly: var(--theme-color-soft-bdr);
   --theme-input-error--background: var(--theme-color-component-error);
   --theme-input--color--disabled: var(--theme-color-weak-text);
   --theme-input--color: var(--theme-color-std-text);
+  --theme-input--color--autofill: var(--theme-color-std-text);
   --theme-input--background--hover: var(--theme-color-component-8--hover);
   --theme-input--border-color--hover: var(--theme-color-dynamic);
   --theme-input--background--focus: var(--theme-color-component-8--hover);
@@ -1522,7 +1601,7 @@
   --theme-chip-primary-outline--background--display: var(--theme-color-secondary);
   --theme-chip-primary-outline--border-color--display: var(--theme-color-primary);
   --theme-chip-primary-outline--color--display: var(--theme-color-std-text);
-  --theme-switch-off--background: var(--theme-color-component-3);
+  --theme-switch-off--background: var(--theme-color-component-4);
   --theme-menu--background: var(--theme-color-2);
   --theme-menu--border-color: var(--theme-color-0);
   --theme-menu-header--color: var(--theme-color-soft-text);
@@ -1570,8 +1649,8 @@
   --theme-select-list--background: var(--theme-color-2);
   --theme-select-list--border-color: var(--theme-color-0);
   --theme-tab--background: var(--theme-color-ghost);
-  --theme-tab--background--hover: var(--theme-color-ghost--hover);
-  --theme-tab--background--active: var(--theme-color-ghost--active);
+  --theme-tab--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-tab--background--active: var(--theme-color-ghost-primary--active);
   --theme-tab--background--selected: var(--theme-color-ghost);
   --theme-tab--background--disabled: var(--theme-color-ghost);
   --theme-tab-indicator--background: var(--theme-color-soft-bdr);
@@ -1599,8 +1678,8 @@
   --theme-animated-tab-icon--color--selected: var(--theme-color-std-text);
   --theme-animated-tab-icon--color--disabled: var(--theme-color-weak-text);
   --theme-animated-tab-circle--background: var(--theme-color-component-1);
-  --theme-animated-tab-circle--background--hover: var(--theme-color-1--hover);
-  --theme-animated-tab-circle--background--active: var(--theme-color-1--active);
+  --theme-animated-tab-circle--background--hover: var(--theme-color-ghost-primary--hover);
+  --theme-animated-tab-circle--background--active: var(--theme-color-ghost-primary--active);
   --theme-animated-tab-circle--background--selected: var(--theme-color-ghost);
   --theme-animated-tab-circle--background--disabled: var(--theme-color-ghost);
   --theme-animated-tab-circle--border-color: var(--theme-color-0);
@@ -1628,16 +1707,16 @@
   --theme-select-list-item-hint--color--hover: var(--theme-color-soft-text);
   --theme-select-list-item-hint--color--active: var(--theme-color-soft-text);
   --theme-switch-off--background--hover: var(--theme-color-component-5);
-  --theme-switch-off--background--active: var(--theme-color-component-5);
-  --theme-switch-off--background--disabled: var(--theme-color-component-3);
+  --theme-switch-off--background--active: var(--theme-color-component-4);
+  --theme-switch-off--background--disabled: var(--theme-color-component-2);
   --theme-switch-on--background: var(--theme-color-dynamic);
-  --theme-switch-on--background--hover: var(--theme-color-dynamic-alt--hover);
-  --theme-switch-on--background--active: var(--theme-color-dynamic-alt--active);
-  --theme-switch-on--background--disabled: var(--theme-color-component-3);
-  --theme-switch-mixed--background: var(--theme-color-component-3);
+  --theme-switch-on--background--hover: var(--theme-color-dynamic--hover);
+  --theme-switch-on--background--active: var(--theme-color-dynamic--active);
+  --theme-switch-on--background--disabled: var(--theme-color-component-2);
+  --theme-switch-mixed--background: var(--theme-color-component-4);
   --theme-switch-mixed--background--hover: var(--theme-color-component-5);
-  --theme-switch-mixed--background--active: var(--theme-color-component-5);
-  --theme-switch-mixed--background--disabled: var(--theme-color-component-3);
+  --theme-switch-mixed--background--active: var(--theme-color-component-4);
+  --theme-switch-mixed--background--disabled: var(--theme-color-component-2);
   --theme-switch-off--border-color: var(--theme-color-0);
   --theme-switch-off--border-color--hover: var(--theme-color-0);
   --theme-switch-off--border-color--active: var(--theme-color-0);
@@ -1650,29 +1729,29 @@
   --theme-switch-mixed--border-color--hover: var(--theme-color-0);
   --theme-switch-mixed--border-color--active: var(--theme-color-0);
   --theme-switch-mixed--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-off--background: var(--theme-color-secondary);
-  --theme-switch-thumb-off--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-off--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-off--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-on--background: var(--theme-color-secondary);
-  --theme-switch-thumb-on--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-on--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-on--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-mixed--background: var(--theme-color-secondary);
-  --theme-switch-thumb-mixed--background--hover: var(--theme-color-secondary--hover);
-  --theme-switch-thumb-mixed--background--active: var(--theme-color-secondary--active);
-  --theme-switch-thumb-mixed--background--disabled: var(--theme-color-8);
-  --theme-switch-thumb-off--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-off--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-off--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-off--background: var(--theme-color-1);
+  --theme-switch-thumb-off--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-off--background--active: var(--theme-color-1);
+  --theme-switch-thumb-off--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-on--background: var(--theme-color-1);
+  --theme-switch-thumb-on--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-on--background--active: var(--theme-color-1);
+  --theme-switch-thumb-on--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-mixed--background: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--hover: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--active: var(--theme-color-1);
+  --theme-switch-thumb-mixed--background--disabled: var(--theme-color-component-3);
+  --theme-switch-thumb-off--border-color: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-off--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-off--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-on--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-on--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-on--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-on--border-color: var(--theme-color-0);
+  --theme-switch-thumb-on--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-on--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-on--border-color--disabled: var(--theme-color-0);
-  --theme-switch-thumb-mixed--border-color: var(--theme-color-primary);
-  --theme-switch-thumb-mixed--border-color--hover: var(--theme-color-dynamic);
-  --theme-switch-thumb-mixed--border-color--active: var(--theme-color-dynamic);
+  --theme-switch-thumb-mixed--border-color: var(--theme-color-0);
+  --theme-switch-thumb-mixed--border-color--hover: var(--theme-color-0);
+  --theme-switch-thumb-mixed--border-color--active: var(--theme-color-0);
   --theme-switch-thumb-mixed--border-color--disabled: var(--theme-color-0);
   --theme-switch--color: var(--theme-color-std-text);
   --theme-switch--color--hover: var(--theme-color-std-text);
@@ -1686,7 +1765,7 @@
   --theme-scrollbar-track--background--hover: var(--theme-color-3);
   --theme-scrollbar-thumb--background--hover: var(--theme-color-7);
   --theme-toast-timer-track--background: var(--theme-color-0);
-  --theme-toast-timer-value--background: var(--theme-color-component-3);
+  --theme-toast-timer-value--background: var(--theme-color-component-4);
   --theme-toast--background: var(--theme-color-2);
   --theme-toast--border-color: var(--theme-color-0);
   --theme-toast--color: var(--theme-color-std-text);
@@ -1797,7 +1876,7 @@
   --theme-event-item--border--hover: var(--theme-color-0);
   --theme-event-item--border: var(--theme-color-0);
   --theme-event-item--border--active: var(--theme-color-0);
-  --theme-event-item--border--selected: var(--theme-color-contrast-bdr);
+  --theme-event-item--border--selected: var(--theme-color-dynamic);
   --theme-event-item--border--disabled: var(--theme-color-0);
   --theme-event-item--background--hover: var(--theme-color-component-1--hover);
   --theme-event-item--background--active: var(--theme-color-component-1--active);
@@ -1957,7 +2036,7 @@
   --theme-menu--box-shadow: var(--theme-shadow-4);
   --theme-navigation--box-shadow: var(--theme-shadow-2);
   --theme-modal--box-shadow: var(--theme-shadow-4);
-  --theme-switch-thumb--box-shadow: var(--theme-shadow-1);
+  --theme-switch-thumb--box-shadow: none;
   --theme-tile--box-shadow: none;
   --theme-toast--box-shadow: var(--theme-shadow-4);
 }
@@ -1966,37 +2045,62 @@
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-light {
-  --theme-siemens-sans: Siemens Sans;
+  --theme-font-code: JetBrains Mono;
+  --theme-font-sans: Siemens Sans;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-light {
-  --theme-font-weight-bold: 700;
   --theme-font-weight-normal: 400;
+  --theme-font-weight-bold: 700;
+  --theme-font-weight-black: 900;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-light {
-  --theme-text-h2: var(--theme-font-weight-bold) var(--theme-font-size-xl)/var(--theme-line-height-h2) var(--theme-siemens-sans);
-  --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-siemens-sans);
-  --theme-text-l-title: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-siemens-sans);
-  --theme-text-l-title-single: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-siemens-sans);
-  --theme-text-l: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-siemens-sans);
-  --theme-text-l-single: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-siemens-sans);
-  --theme-text-default-title: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
-  --theme-text-default-title-single: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-siemens-sans);
-  --theme-text-default: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
-  --theme-text-default-single: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-siemens-sans);
-  --theme-text-caption: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption) var(--theme-siemens-sans);
-  --theme-text-caption-single: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption-single) var(--theme-siemens-sans);
-  --theme-text-s: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s) var(--theme-siemens-sans);
-  --theme-text-s-single: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s-single) var(--theme-siemens-sans);
-  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/var(--theme-line-height-xs) var(--theme-siemens-sans);
-  --theme-text-default-underline: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-siemens-sans);
+  --theme-text-h2: var(--theme-font-weight-bold) var(--theme-font-size-xl)/var(--theme-line-height-h2) var(--theme-font-sans);
+  --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-font-sans);
+  --theme-text-l-title: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-font-sans);
+  --theme-text-l-title-single: var(--theme-font-weight-bold) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-font-sans);
+  --theme-text-l: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l) var(--theme-font-sans);
+  --theme-text-l-single: var(--theme-font-weight-normal) var(--theme-font-size-l)/var(--theme-line-height-l-single) var(--theme-font-sans);
+  --theme-text-default-title: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-text-default-title-single: var(--theme-font-weight-bold) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-font-sans);
+  --theme-text-default: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-text-default-single: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default-single) var(--theme-font-sans);
+  --theme-text-caption: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption) var(--theme-font-sans);
+  --theme-text-caption-single: var(--theme-font-weight-bold) var(--theme-font-size-caption)/var(--theme-line-height-caption-single) var(--theme-font-sans);
+  --theme-text-s: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s) var(--theme-font-sans);
+  --theme-text-s-single: var(--theme-font-weight-normal) var(--theme-font-size-s)/var(--theme-line-height-s-single) var(--theme-font-sans);
+  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/140% var(--theme-font-sans);
+  --theme-text-default-underline: var(--theme-font-weight-normal) var(--theme-font-size-default)/var(--theme-line-height-default) var(--theme-font-sans);
+  --theme-label: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-label-xs: var(--theme-font-weight-normal) var(--theme-ms--2)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-body: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-xs: var(--theme-font-weight-normal) var(--theme-ms--2)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-body-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-display: var(--theme-font-weight-normal) var(--theme-ms-3)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xs: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-sm: var(--theme-font-weight-normal) var(--theme-ms-2)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-lg: var(--theme-font-weight-normal) var(--theme-ms-4)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xl: var(--theme-font-weight-bold) var(--theme-ms-5)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-display-xxl: var(--theme-font-weight-bold) var(--theme-ms-6)/var(--theme-line-height-xs) var(--theme-font-sans);
+  --theme-h6: var(--theme-font-weight-bold) var(--theme-ms--1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h5: var(--theme-font-weight-bold) var(--theme-ms-0)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h4: var(--theme-font-weight-bold) var(--theme-ms-1)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h3: var(--theme-font-weight-bold) var(--theme-ms-2)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h2: var(--theme-font-weight-bold) var(--theme-ms-3)/var(--theme-line-height-md) var(--theme-font-sans);
+  --theme-h1: var(--theme-font-weight-bold) var(--theme-ms-4)/var(--theme-line-height-sm) var(--theme-font-sans);
+  --theme-code: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-lg) var(--theme-font-code);
+  --theme-code-sm: var(--theme-font-weight-normal) var(--theme-ms--1)/var(--theme-line-height-lg) var(--theme-font-code);
+  --theme-code-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-lg) var(--theme-font-code);
 }
 
 /*
@@ -2034,6 +2138,18 @@
   --theme-small-icon-size: 1rem;
   --theme-focus--border-thickness: 0.0625rem;
   --theme-input-min-width: 2rem;
+  --theme-size--3: 0.375rem;
+  --theme-size--2: 0.5rem;
+  --theme-size--1: 0.75rem;
+  --theme-size-0: 1rem;
+  --theme-size-1: 1.5rem;
+  --theme-size-2: 2rem;
+  --theme-size-3: 3rem;
+  --theme-size-4: 4rem;
+  --theme-size-5: 6rem;
+  --theme-size-6: 8rem;
+  --theme-size-7: 12rem;
+  --theme-size-8: 16rem;
   --theme-tab-indicator--height: 0.125rem;
 }
 
@@ -2047,13 +2163,23 @@
   --theme-font-size-default: 0.875rem;
   --theme-font-size-l: 1rem;
   --theme-font-size-xl: 1.375rem;
+  --theme-ms--2: 0.625rem;
+  --theme-ms--1: 0.75rem;
+  --theme-ms-0: 0.875rem;
+  --theme-ms-1: 1rem;
+  --theme-ms-2: 1.25rem;
+  --theme-ms-3: 1.5rem;
+  --theme-ms-4: 1.8125rem;
+  --theme-ms-5: 2.1875rem;
+  --theme-ms-6: 2.625rem;
+  --theme-ms-7: 3.125rem;
+  --theme-ms-8: 3.75rem;
 }
 
 /*
  * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 :root .theme-brand-light {
-  --theme-line-height-xs: 140%;
   --theme-line-height-s: 150%;
   --theme-line-height-s-single: 150%;
   --theme-line-height-caption: 150%;
@@ -2064,6 +2190,10 @@
   --theme-line-height-l-single: 125%;
   --theme-line-height-h2: 145.5%;
   --theme-line-height-xl: 109.1%;
+  --theme-line-height-xs: 100%;
+  --theme-line-height-sm: 120%;
+  --theme-line-height-md: 143%;
+  --theme-line-height-lg: 150%;
 }
 
 /*
@@ -2088,6 +2218,18 @@
 :root .theme-brand-light {
   --theme-input-padding-y: 0.5rem;
   --theme-input-padding-x: 0.5rem;
+  --theme-space--3: 0.125rem;
+  --theme-space--2: 0.1875rem;
+  --theme-space--1: 0.25rem;
+  --theme-space-0: 0.735rem;
+  --theme-space-1: 0.5rem;
+  --theme-space-2: 0.75rem;
+  --theme-space-3: 1rem;
+  --theme-space-4: 1.5rem;
+  --theme-space-5: 2rem;
+  --theme-space-6: 3rem;
+  --theme-space-7: 4rem;
+  --theme-space-8: 6rem;
 }
 
 /*
@@ -2141,6 +2283,22 @@
   --theme-neutral-bdr-2: 0.125rem solid var(--theme-color-neutral);
 }
 
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
+ */
+:root .theme-brand-light {
+  --theme-letter-spacing-xs: -1.2%;
+  --theme-letter-spacing-sm: -0.6%;
+  --theme-letter-spacing-md: 0%;
+  --theme-letter-spacing-lg: 0.6%;
+  --theme-letter-spacing-xl: 1.2%;
+  --theme-letter-spacing-xxl: 2%;
+}
+
+:root .theme-brand-light {
+  --ix-theme-name: brand-light;
+}
+
 @font-face {
   font-family: Siemens Sans;
   src: url("./fonts/sisan36.eot"), url("./fonts/sisan36.woff2") format("woff2"), url("./fonts/sisan36.woff") format("woff"), url("./fonts/sisan36.ttf") format("truetype");
@@ -2164,13 +2322,4 @@
   src: url("./fonts/sisan03.eot"), url("./fonts/sisan03.woff2") format("woff2"), url("./fonts/sisan03.woff") format("woff"), url("./fonts/sisan03.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
-}
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smooting: grayscale;
-  font-family: Siemens Sans, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.429em;
-  color: var(--theme-color-std-text);
 }

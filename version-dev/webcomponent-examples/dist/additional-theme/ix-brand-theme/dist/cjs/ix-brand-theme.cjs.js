@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-46224112.js');
+const index = require('./index-b3c85302.js');
 
 /*
- Stencil Client Patch Browser v3.2.1 | MIT Licensed | https://stenciljs.com
+ Stencil Client Patch Browser v3.4.2 | MIT Licensed | https://stenciljs.com
  */
 const patchBrowser = () => {
     const importMeta = (typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('ix-brand-theme.cjs.js', document.baseURI).href));
