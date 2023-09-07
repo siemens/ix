@@ -4765,31 +4765,15 @@
           "required": false
         },
         {
-          "name": "fixed",
-          "type": "\"fixed\" | \"fixed-lg\" | \"fixed-md\" | \"fixed-sm\" | boolean",
+          "name": "noPadding",
+          "type": "boolean",
           "mutable": false,
-          "attr": "fixed",
+          "attr": "no-padding",
           "reflectToAttr": false,
-          "docs": "The grid will have a fixed width",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [
-            {
-              "value": "fixed",
-              "type": "string"
-            },
-            {
-              "value": "fixed-lg",
-              "type": "string"
-            },
-            {
-              "value": "fixed-md",
-              "type": "string"
-            },
-            {
-              "value": "fixed-sm",
-              "type": "string"
-            },
             {
               "type": "boolean"
             }
@@ -4798,12 +4782,12 @@
           "required": false
         },
         {
-          "name": "fluid",
+          "name": "noRowGap",
           "type": "boolean",
           "mutable": false,
-          "attr": "fluid",
+          "attr": "no-row-gap",
           "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
+          "docs": "Remove the gap between rows",
           "docsTags": [],
           "default": "false",
           "values": [

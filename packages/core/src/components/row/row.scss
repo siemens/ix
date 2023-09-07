@@ -11,3 +11,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+:host(:not(:first-of-type)) {
+  margin-block-start: var(--ix-grid-row-margin, 0);
+}

@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './grid-fixed.html',
+  templateUrl: './grid-padding.html',
   styles: [
     `
       ix-grid {
@@ -24,7 +24,13 @@ import { Component } from '@angular/core';
         text-align: center;
         color: var(--theme-color-inv-contrast-text);
       }
+
+      .example-parent {
+        padding-top: 1rem;
+        padding-bottom: 0.25rem;
+        background-color: var(--theme-color-info-40);
+      }
     `,
   ],
 })
-export default class GridFixed {}
+export default class GridPadding {}
