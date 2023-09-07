@@ -40,6 +40,7 @@ export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNaviga
 export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', undefined, [
   'collapsed',
   'label',
+  'sublabel',
   'icon',
   'collapsedChange'
 ]);
@@ -326,8 +327,8 @@ export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-fo
 
 
 export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
-  'fixed',
-  'fluid',
+  'noPadding',
+  'noRowGap',
   'columns'
 ]);
 

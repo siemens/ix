@@ -15,7 +15,7 @@ import './grid.css';
 
 <template>
   <div class="example-parent">
-    <h4>Non fluid (default)</h4>
+    <h4>Grid with padding</h4>
     <IxGrid>
       <IxRow>
         <IxCol>1</IxCol>
@@ -33,8 +33,8 @@ import './grid.css';
       </IxRow>
     </IxGrid>
 
-    <h4>fluid</h4>
-    <IxGrid fluid>
+    <h4>Grid without padding</h4>
+    <IxGrid noPadding>
       <IxRow>
         <IxCol>1</IxCol>
         <IxCol>2</IxCol>

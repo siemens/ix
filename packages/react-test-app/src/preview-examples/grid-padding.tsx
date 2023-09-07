@@ -14,9 +14,9 @@ import './grid.css';
 
 export default () => {
   return (
-    <>
-      <h5>fixed: sm</h5>
-      <IxGrid fixed="fixed-sm" className={'ExampleGrid'}>
+    <div className="example-parent">
+      <h4>Grid with padding</h4>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -24,11 +24,17 @@ export default () => {
           <IxCol>4</IxCol>
           <IxCol>5</IxCol>
           <IxCol>6</IxCol>
+          <IxCol>7</IxCol>
+          <IxCol>8</IxCol>
+          <IxCol>9</IxCol>
+          <IxCol>10</IxCol>
+          <IxCol>11</IxCol>
+          <IxCol>12</IxCol>
         </IxRow>
       </IxGrid>
 
-      <h5>fixed</h5>
-      <IxGrid fixed className={'ExampleGrid'}>
+      <h4>Grid without padding</h4>
+      <IxGrid noPadding className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -36,32 +42,14 @@ export default () => {
           <IxCol>4</IxCol>
           <IxCol>5</IxCol>
           <IxCol>6</IxCol>
+          <IxCol>7</IxCol>
+          <IxCol>8</IxCol>
+          <IxCol>9</IxCol>
+          <IxCol>10</IxCol>
+          <IxCol>11</IxCol>
+          <IxCol>12</IxCol>
         </IxRow>
       </IxGrid>
-
-      <h5>fixed: md</h5>
-      <IxGrid fixed="fixed-md" className={'ExampleGrid'}>
-        <IxRow>
-          <IxCol>1</IxCol>
-          <IxCol>2</IxCol>
-          <IxCol>3</IxCol>
-          <IxCol>4</IxCol>
-          <IxCol>5</IxCol>
-          <IxCol>6</IxCol>
-        </IxRow>
-      </IxGrid>
-
-      <h5>fixed: lg</h5>
-      <IxGrid fixed="fixed-lg" className={'ExampleGrid'}>
-        <IxRow>
-          <IxCol>1</IxCol>
-          <IxCol>2</IxCol>
-          <IxCol>3</IxCol>
-          <IxCol>4</IxCol>
-          <IxCol>5</IxCol>
-          <IxCol>6</IxCol>
-        </IxRow>
-      </IxGrid>
-    </>
+    </div>
   );
 };

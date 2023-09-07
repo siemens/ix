@@ -96,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label']
+  inputs: ['collapsed', 'icon', 'label', 'sublabel']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label'],
+  inputs: ['collapsed', 'icon', 'label', 'sublabel'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -911,14 +911,14 @@ export declare interface IxFormField extends Components.IxFormField {}
 
 
 @ProxyCmp({
-  inputs: ['columns', 'fixed', 'fluid']
+  inputs: ['columns', 'noPadding', 'noRowGap']
 })
 @Component({
   selector: 'ix-grid',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['columns', 'fixed', 'fluid'],
+  inputs: ['columns', 'noPadding', 'noRowGap'],
 })
 export class IxGrid {
   protected el: HTMLElement;

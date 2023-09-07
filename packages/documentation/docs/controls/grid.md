@@ -23,18 +23,10 @@ import ColEvents from './../auto-generated/ix-col/events.md';
   examplesByName>
 </Playground>
 
-### Fixed
+### Padding
 
 <Playground
-  height="18rem"
-  name="grid-fixed"
-  examplesByName>
-</Playground>
-
-### Fluid
-
-<Playground
-  name="grid-fluid"
+  name="grid-padding"
   height="14rem"
   examplesByName>
 </Playground>

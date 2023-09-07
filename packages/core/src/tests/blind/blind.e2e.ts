@@ -17,6 +17,12 @@ regressionTest.describe('blind', () => {
     expect(await blind.screenshot()).toMatchSnapshot();
   });
 
+  regressionTest('sublabel', async ({ page }) => {
+    await page.goto('blind/sublabel');
+    const blind = await page.waitForSelector('ix-blind');
+    expect(await blind.screenshot()).toMatchSnapshot();
+  });
+
   regressionTest('collapsed', async ({ page }) => {
     await page.goto('blind/basic');
     await page.locator('.blind-header').click();
