@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-blind label="Example" icon="info">
+    <ix-blind label="Example" icon="info" sublabel="Sublabel">
       <ix-icon-button
         id="context-menu"
         slot="header-actions"

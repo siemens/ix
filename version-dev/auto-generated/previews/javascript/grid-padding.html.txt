@@ -1,0 +1,44 @@
+<div class="example-parent">
+  <h4>Grid with padding</h4>
+  <ix-grid>
+    <ix-row>
+      <ix-col>1</ix-col>
+      <ix-col>2</ix-col>
+      <ix-col>3</ix-col>
+      <ix-col>4</ix-col>
+      <ix-col>5</ix-col>
+      <ix-col>6</ix-col>
+      <ix-col>7</ix-col>
+      <ix-col>8</ix-col>
+      <ix-col>9</ix-col>
+      <ix-col>10</ix-col>
+      <ix-col>11</ix-col>
+      <ix-col>12</ix-col>
+    </ix-row>
+  </ix-grid>
+
+  <h4>Grid without padding</h4>
+  <ix-grid no-padding>
+    <ix-row>
+      <ix-col>1</ix-col>
+      <ix-col>2</ix-col>
+      <ix-col>3</ix-col>
+      <ix-col>4</ix-col>
+      <ix-col>5</ix-col>
+      <ix-col>6</ix-col>
+      <ix-col>7</ix-col>
+      <ix-col>8</ix-col>
+      <ix-col>9</ix-col>
+      <ix-col>10</ix-col>
+      <ix-col>11</ix-col>
+      <ix-col>12</ix-col>
+    </ix-row>
+  </ix-grid>
+</div>
+<style>
+  .example-parent {
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    background-color: var(--theme-color-info-40);
+  }
+</style>

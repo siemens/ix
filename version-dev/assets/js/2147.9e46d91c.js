@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[2147],{2147:(s,t,e)=>{e.r(t),e.d(t,{ix_row:()=>l});var r=e(8823);const l=class{constructor(s){(0,r.r)(this,s)}render(){return(0,r.h)(r.H,null,(0,r.h)("slot",null))}};l.style=":host{display:flex;flex-wrap:wrap}"}}]);
