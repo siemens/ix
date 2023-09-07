@@ -20,8 +20,8 @@ import ApiModalInstanceAngular from './\_modal/angular/modal-instance.html.md'
 import ApiModalConfigReact from './\_modal/react/modal-config.md'
 import ApiModalRefReact from './\_modal/react/modal-ref.html.md'
 
-import ModalConfig from './../auto-generated/utils/core/ModalConfig.md'
-import ModalInstance from './../auto-generated/utils/core/ModalInstance.md'
+import ModalConfig from './../auto-generated/utils/ModalConfig.md'
+import ModalInstance from './../auto-generated/utils/ModalInstance.md'
 
 import SourceReactLoading from './../auto-generated/previews/react/loading.md'
 import SourceReactMessage from './../auto-generated/previews/react/message.md'
