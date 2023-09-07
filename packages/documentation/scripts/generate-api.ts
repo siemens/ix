@@ -127,29 +127,31 @@ SPDX-License-Identifier: MIT
     );
     const reactPreviews = fs.readdirSync(reactPreviewPath);
     await Promise.all(
-      reactPreviews.flatMap((previewPath) => {
-        const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
-        const writePath = path.join(
-          __dirname,
-          'docs',
-          'auto-generated',
-          'previews',
-          'react'
-        );
-        fse.ensureDirSync(writePath);
-        const code = fs
-          .readFileSync(path.join(reactPreviewPath, previewPath))
-          .toString();
-        const markdown = generateMarkdown(previewPath, 'tsx', code);
+      reactPreviews
+        .filter((preview) => preview.endsWith('.tsx'))
+        .flatMap((previewPath) => {
+          const name = previewPath.substring(0, previewPath.lastIndexOf('.'));
+          const writePath = path.join(
+            __dirname,
+            'docs',
+            'auto-generated',
+            'previews',
+            'react'
+          );
+          fse.ensureDirSync(writePath);
+          const code = fs
+            .readFileSync(path.join(reactPreviewPath, previewPath))
+            .toString();
+          const markdown = generateMarkdown(previewPath, 'tsx', code);
 
-        return [
-          fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
-          fsp.writeFile(
-            path.join(staticPath, 'react', `${previewPath}.txt`),
-            code
-          ),
-        ];
-      })
+          return [
+            fsp.writeFile(path.join(writePath, `${name}.md`), markdown),
+            fsp.writeFile(
+              path.join(staticPath, 'react', `${previewPath}.txt`),
+              code
+            ),
+          ];
+        })
     );
   }
 
