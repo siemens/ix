@@ -19,7 +19,7 @@ test('should not have regression', async ({ mount, page }) => {
     width: largeWidth,
   });
   await mount(htmlSource);
-  const grid = page.locator('ix-grid').nth(0);
+  const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -31,7 +31,7 @@ test('should not have regression large', async ({ mount, page }) => {
     width: largeWidth,
   });
   await mount(htmlSimple);
-  const grid = page.locator('ix-grid').nth(0);
+  const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -43,7 +43,7 @@ test('should not have regression medium', async ({ mount, page }) => {
     width: mediumWidth,
   });
   await mount(htmlSimple);
-  const grid = page.locator('ix-grid').nth(0);
+  const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -55,14 +55,14 @@ test('should not have regression small', async ({ mount, page }) => {
     width: smallWidth,
   });
   await mount(htmlSimple);
-  const grid = page.locator('ix-grid').nth(0);
+  const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
 const htmlSimple = `
-  <ix-grid>
+  <ix-layout-grid>
     <ix-row>
       <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
         1
@@ -74,7 +74,7 @@ const htmlSimple = `
         3
       </ix-col>
     </ix-row>
-  </ix-grid>
+  </ix-layout-grid>
 
   <style>
     ix-col {
@@ -88,7 +88,7 @@ const htmlSimple = `
 
 const htmlSource = `
 <h4>Column = 4</h4>
-<ix-grid columns="4">
+<ix-layout-grid columns="4">
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>
@@ -98,10 +98,10 @@ const htmlSource = `
     <ix-col size="2">4</ix-col>
     <ix-col size="2">5</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
 <h4>Normal</h4>
-<ix-grid>
+<ix-layout-grid>
   <ix-row>
     <ix-col>1</ix-col>
     <ix-col>2</ix-col>
@@ -111,10 +111,10 @@ const htmlSource = `
     <ix-col>4</ix-col>
     <ix-col>5</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
 <h4>No padding</h4>
-<ix-grid no-padding>
+<ix-layout-grid no-padding>
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>
@@ -124,10 +124,10 @@ const htmlSource = `
     <ix-col size="2">4</ix-col>
     <ix-col size="2">5</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
 <h4>No row gap</h4>
-<ix-grid no-row-gap>
+<ix-layout-grid no-row-gap>
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>
@@ -147,7 +147,7 @@ const htmlSource = `
     <ix-col size="2">4</ix-col>
     <ix-col size="2">5</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
 <style>
 ix-col {

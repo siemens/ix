@@ -10,7 +10,7 @@ import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {
   IxButton,
   IxCol,
-  IxGrid,
+  IxLayoutGrid,
   IxRow,
   IxSelect,
   IxSelectItem,
@@ -42,7 +42,7 @@ export default () => {
   };
 
   return (
-    <IxGrid className="ThemeSwitcher">
+    <IxLayoutGrid className="ThemeSwitcher">
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>
@@ -78,6 +78,6 @@ export default () => {
           <label htmlFor="system"></label>
         </IxCol>
       </IxRow>
-    </IxGrid>
+    </IxLayoutGrid>
   );
 };

@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { IxCol, IxGrid, IxRow } from '@siemens/ix-vue';
+import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 // Example styling for documentation
 import './grid.css';
 </script>
@@ -16,7 +16,7 @@ import './grid.css';
 <template>
   <div class="example-parent">
     <h4>Grid with padding</h4>
-    <IxGrid>
+    <IxLayoutGrid>
       <IxRow>
         <IxCol>1</IxCol>
         <IxCol>2</IxCol>
@@ -31,10 +31,10 @@ import './grid.css';
         <IxCol>11</IxCol>
         <IxCol>12</IxCol>
       </IxRow>
-    </IxGrid>
+    </IxLayoutGrid>
 
     <h4>Grid without padding</h4>
-    <IxGrid noPadding>
+    <IxLayoutGrid noPadding>
       <IxRow>
         <IxCol>1</IxCol>
         <IxCol>2</IxCol>
@@ -49,7 +49,7 @@ import './grid.css';
         <IxCol>11</IxCol>
         <IxCol>12</IxCol>
       </IxRow>
-    </IxGrid>
+    </IxLayoutGrid>
   </div>
 </template>
 
