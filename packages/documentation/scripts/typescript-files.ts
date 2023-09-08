@@ -134,13 +134,13 @@ async function generateDocsForEntrypoint(
 
     let utilsPath = path.join(targetPath, 'utils');
 
-    if (typedoc.source.startsWith('packages/core')) {
+    if (typedoc.source.startsWith(path.join('packages', 'core'))) {
       utilsPath = path.join(utilsPath, 'core');
-    } else if (typedoc.source.startsWith('packages/react')) {
+    } else if (typedoc.source.startsWith(path.join('packages', 'react'))) {
       utilsPath = path.join(utilsPath, 'react');
-    } else if (typedoc.source.startsWith('packages/angular')) {
+    } else if (typedoc.source.startsWith(path.join('packages', 'angular'))) {
       utilsPath = path.join(utilsPath, 'angular');
-    } else if (typedoc.source.startsWith('packages/vue')) {
+    } else if (typedoc.source.startsWith(path.join('packages', 'vue'))) {
       utilsPath = path.join(utilsPath, 'vue');
     }
 
