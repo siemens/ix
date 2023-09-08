@@ -8678,18 +8678,18 @@
       "dependents": [],
       "dependencies": [
         "ix-card",
+        "ix-card-content",
         "ix-card-title",
         "ix-icon",
-        "ix-card-content",
         "ix-typography",
         "ix-card-accordion"
       ],
       "dependencyGraph": {
         "ix-push-card": [
           "ix-card",
+          "ix-card-content",
           "ix-card-title",
           "ix-icon",
-          "ix-card-content",
           "ix-typography",
           "ix-card-accordion"
         ],
