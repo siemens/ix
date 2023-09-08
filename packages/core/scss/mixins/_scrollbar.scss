@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@mixin scrollbar() {
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-track--background);
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: var(--theme-scrollbar-track--background--hover);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: var(--theme-scrollbar-thumb--background);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-scrollbar-thumb--background--hover);
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+}

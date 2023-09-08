@@ -113,8 +113,8 @@ const htmlSource = `
   </ix-row>
 </ix-grid>
 
-<h4>Fluid</h4>
-<ix-grid fluid>
+<h4>No padding</h4>
+<ix-grid no-padding>
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>
@@ -126,8 +126,18 @@ const htmlSource = `
   </ix-row>
 </ix-grid>
 
-<h4>Fixed</h4>
-<ix-grid fixed>
+<h4>No row gap</h4>
+<ix-grid no-row-gap>
+  <ix-row>
+    <ix-col size="2">1</ix-col>
+    <ix-col size="2">2</ix-col>
+    <ix-col>
+      <ix-button style="width: 100%;">Test</ix-button>
+    </ix-col>
+    <ix-col size="2">4</ix-col>
+    <ix-col size="2">5</ix-col>
+  </ix-row>
+
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>
@@ -139,42 +149,6 @@ const htmlSource = `
   </ix-row>
 </ix-grid>
 
-<h4>Fixed all sizes</h4>
-<ix-grid fixed="fixed-sm">
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-grid>
-
-<ix-grid fixed="fixed-md">
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-grid>
-
-<ix-grid fixed="fixed-lg">
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-grid>
 <style>
 ix-col {
   background-color: var(--theme-color-success-40);

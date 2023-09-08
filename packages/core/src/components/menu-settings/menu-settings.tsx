@@ -111,8 +111,8 @@ export class MenuAbout {
             icon="close"
             onClick={(e) =>
               this.close.emit({
-                nativeEvent: e,
                 name: 'ix-menu-settings',
+                nativeEvent: e,
               })
             }
           ></ix-icon-button>

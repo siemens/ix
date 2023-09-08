@@ -9,13 +9,6 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
-export type GridSizingBehavior =
-  | boolean
-  | 'fixed'
-  | 'fixed-sm'
-  | 'fixed-md'
-  | 'fixed-lg';
-
 /**
  * @since 2.0.0
  */
@@ -26,14 +19,14 @@ export type GridSizingBehavior =
 })
 export class Grid {
   /**
-   * The grid will have a fixed width
-   */
-  @Prop() fixed: GridSizingBehavior = false;
-
-  /**
    * The grid will not have any horizontal padding
    */
-  @Prop() fluid = false;
+  @Prop() noPadding = false;
+
+  /**
+   * Remove the gap between rows
+   */
+  @Prop() noRowGap = false;
 
   /**
    * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -41,23 +34,11 @@ export class Grid {
   @Prop() columns = 12;
 
   render() {
-    const classRecord = {};
-    if (
-      (this.fixed as string) === '' ||
-      (typeof this.fixed === 'boolean' && this.fixed)
-    ) {
-      classRecord['fixed'] = true;
-    }
-
-    if (this.fixed && typeof this.fixed === 'string') {
-      classRecord[`${this.fixed}`] = true;
-    }
-
     return (
       <Host
         class={{
-          ...classRecord,
-          fluid: this.fluid,
+          'no-padding': this.noPadding,
+          'no-row-gap': this.noRowGap,
         }}
         style={{
           '--ix-grid-columns': `${this.columns}`,

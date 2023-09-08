@@ -15,3 +15,4 @@ export * from './module';
 export * from './theme';
 export * from './toast';
 export * from './tree';
+export * from './select-value-accessor'

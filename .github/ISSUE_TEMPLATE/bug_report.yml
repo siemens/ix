@@ -1,5 +1,5 @@
 name: Bug Report
-description: Siemens iX bug report 📚
+description: Bug report 📚
 labels: ['triage']
 body:
   - type: markdown
@@ -45,5 +45,7 @@ body:
     id: logs
     attributes:
       label: Code to produce this issue.
-      description: Please copy and paste any relevant code to re-produce this issue.
+      description: Please copy and paste any relevant code to re-produce this issue (__preferred__ stackblitz/codesandbox/... link or a github repository).
       render: shell
+    validations:
+      required: true

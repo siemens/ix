@@ -99,8 +99,7 @@ import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
 import Grid from './preview-examples/grid.vue';
 import GridSize from './preview-examples/grid-size.vue';
-import GridFluid from './preview-examples/grid-fluid.vue';
-import GridFixed from './preview-examples/grid-fixed.vue';
+import GridPadding from './preview-examples/grid-padding.vue';
 
 const routes: any = {
   '/': App,
@@ -194,8 +193,7 @@ const routes: any = {
   '/preview/menu-category': MenuCategory,
   '/preview/grid': Grid,
   '/preview/grid-size': GridSize,
-  '/preview/grid-fluid': GridFluid,
-  '/preview/grid-fixed': GridFixed
+  '/preview/grid-padding': GridPadding,
 };
 
 const currentPath = ref(window.location.pathname);

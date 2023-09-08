@@ -18,7 +18,7 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxBlind label="Example">
+      <IxBlind label="Example" sublabel="Sublabel">
         <IxIconButton
           id="context-menu"
           slot="header-actions"

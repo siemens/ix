@@ -15,8 +15,8 @@ import './grid.css';
 export default () => {
   return (
     <div className="example-parent">
-      <h4>Non fluid (default)</h4>
-      <IxGrid>
+      <h4>Grid with padding</h4>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -33,8 +33,8 @@ export default () => {
         </IxRow>
       </IxGrid>
 
-      <h4>fluid</h4>
-      <IxGrid fluid>
+      <h4>Grid without padding</h4>
+      <IxGrid noPadding className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>

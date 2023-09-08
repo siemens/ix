@@ -14,48 +14,64 @@ export default async function loadExamples(
 ) {
   const config = {};
 
-  if (frameworks.includes('web-component')) {
-    const { default: WebComponentHTML } = await import(
-      //@ts-ignore
-      `../../docs/auto-generated/previews/web-component/${name}.md`
-    );
+  try {
+    if (frameworks.includes('web-component')) {
+      const { default: WebComponentHTML } = await import(
+        //@ts-ignore
+        `../../docs/auto-generated/previews/web-component/${name}.md`
+      );
 
-    config['javascript'] = WebComponentHTML as React.ReactElement;
+      config['javascript'] = WebComponentHTML as React.ReactElement;
+    }
+  } catch (error) {
+    console.log(`Cannot find web component ${name}`);
   }
 
-  if (frameworks.includes('react')) {
-    const { default: ReactTSX } = await import(
-      //@ts-ignore
-      `../../docs/auto-generated/previews/react/${name}.md`
-    );
+  try {
+    if (frameworks.includes('react')) {
+      const { default: ReactTSX } = await import(
+        //@ts-ignore
+        `../../docs/auto-generated/previews/react/${name}.md`
+      );
 
-    config['react'] = ReactTSX as React.ReactElement;
+      config['react'] = ReactTSX as React.ReactElement;
+    }
+  } catch (error) {
+    console.log(`Cannot find react ${name}`);
   }
 
-  if (frameworks.includes('vue')) {
-    const { default: Vue } = await import(
-      //@ts-ignore
-      `../../docs/auto-generated/previews/vue/${name}.md`
-    );
+  try {
+    if (frameworks.includes('vue')) {
+      const { default: Vue } = await import(
+        //@ts-ignore
+        `../../docs/auto-generated/previews/vue/${name}.md`
+      );
 
-    config['vue'] = Vue as React.ReactElement;
+      config['vue'] = Vue as React.ReactElement;
+    }
+  } catch (error) {
+    console.log(`Cannot find vue ${name}`);
   }
 
-  if (frameworks.includes('angular')) {
-    const { default: AngularTS } = await import(
-      //@ts-ignore
-      `../../docs/auto-generated/previews/angular/${name}.ts.md`
-    );
+  try {
+    if (frameworks.includes('angular')) {
+      const { default: AngularTS } = await import(
+        //@ts-ignore
+        `../../docs/auto-generated/previews/angular/${name}.ts.md`
+      );
 
-    const { default: AngularHTML } = await import(
-      //@ts-ignore
-      `../../docs/auto-generated/previews/angular/${name}.html.md`
-    );
+      const { default: AngularHTML } = await import(
+        //@ts-ignore
+        `../../docs/auto-generated/previews/angular/${name}.html.md`
+      );
 
-    config['angular'] = {
-      [`${name}.html`]: AngularHTML,
-      [`${name}.ts`]: AngularTS,
-    };
+      config['angular'] = {
+        [`${name}.html`]: AngularHTML,
+        [`${name}.ts`]: AngularTS,
+      };
+    }
+  } catch (error) {
+    console.log(`Cannot find angular ${name}`);
   }
 
   return config;

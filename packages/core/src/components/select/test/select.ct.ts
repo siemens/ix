@@ -72,7 +72,7 @@ test('single selection', async ({ mount, page }) => {
     `);
   const element = page.locator('ix-select');
   await element.evaluate(
-    (select: HTMLIxSelectElement) => (select.selectedIndices = ['22'])
+    (select: HTMLIxSelectElement) => (select.value = '22')
   );
 
   await page.locator('.chevron-down-container').click();
@@ -96,9 +96,7 @@ test('multiple selection', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await element.evaluate(
-    (select: HTMLIxSelectElement) => (select.selectedIndices = [])
-  );
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
   await page.locator('.chevron-down-container').click();
 
   const dropdown = element.locator('ix-dropdown');

@@ -45,6 +45,8 @@ test('should render menu items with a[href]', async ({ mount, page }) => {
   const link2 = page.getByText('Link 1', { exact: true });
   await expect(link2).toBeVisible();
 
+  await link2.hover();
+
   await page.waitForTimeout(1000);
 
   expect(

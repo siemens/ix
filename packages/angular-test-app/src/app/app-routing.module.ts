@@ -46,8 +46,7 @@ import EventListSelected from 'src/preview-examples/event-list-selected';
 import ExpandingSearch from 'src/preview-examples/expanding-search';
 import FlipTile from 'src/preview-examples/flip-tile';
 import Grid from 'src/preview-examples/grid';
-import GridFixed from 'src/preview-examples/grid-fixed';
-import GridFluid from 'src/preview-examples/grid-fluid';
+import GridPadding from 'src/preview-examples/grid-padding';
 import GridSize from 'src/preview-examples/grid-size';
 import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
@@ -85,6 +84,7 @@ import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
+import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
 import Spinner from 'src/preview-examples/spinner';
 import SpinnerLarge from 'src/preview-examples/spinner-large';
@@ -293,6 +293,7 @@ const routes: Routes = [
       { path: 'radio-button', component: Radiobutton },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
+      { path: 'select-ng-model', component: SelectNgModel },
       { path: 'select', component: Select },
       { path: 'settings', component: Settings },
       { path: 'spinner', component: Spinner },
@@ -363,8 +364,7 @@ const routes: Routes = [
       { path: 'menu-category', component: MenuCategory },
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
-      { path: 'grid-fluid', component: GridFluid },
-      { path: 'grid-fixed', component: GridFixed },
+      { path: 'grid-padding', component: GridPadding },
     ],
   },
 ];

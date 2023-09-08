@@ -8,15 +8,18 @@
  */
 
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { themeSwitcher, ThemeSwitcher } from '@siemens/ix';
+import { themeSwitcher } from '@siemens/ix';
 
+/**
+ * @deprecated Use themeSwitcher from core package `import { themeSwitcher } from '@siemens/ix';`
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   @Output() themeChanged = new EventEmitter<string>();
 
-  private themeSwitcher: ThemeSwitcher;
+  private themeSwitcher: typeof themeSwitcher;
 
   constructor() {
     this.themeSwitcher = themeSwitcher;
