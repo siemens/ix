@@ -133,6 +133,14 @@ export class DateTimePicker {
   @Prop() textSelectDate = 'Done';
 
   /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   *
+   * @since 2.0.0
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
    * Done event
    *
    * Set `doneEventDelimiter` to null or undefine to get the typed event
@@ -221,6 +229,7 @@ export class DateTimePicker {
             format={this.dateFormat}
             minDate={this.minDate}
             maxDate={this.maxDate}
+            weekStartIndex={this.weekStartIndex}
           ></ix-date-picker>
 
           <ix-time-picker

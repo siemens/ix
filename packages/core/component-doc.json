@@ -2903,6 +2903,28 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],

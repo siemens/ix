@@ -500,7 +500,7 @@ export class DatePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card corners={this.corners}>
+        <ix-date-time-card corners={this.corners} individual={false}>
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}

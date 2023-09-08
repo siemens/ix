@@ -592,6 +592,11 @@ export namespace Components {
           * @since 1.1.0
          */
         "to": string | null;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex": number;
     }
     /**
      * @since 1.4.0
@@ -3650,6 +3655,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "to"?: string | null;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex"?: number;
     }
     /**
      * @since 1.4.0
