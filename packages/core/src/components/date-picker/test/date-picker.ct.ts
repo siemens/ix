@@ -151,7 +151,9 @@ test.describe('date picker tests range', () => {
     });
   });
 
-  test('select different range fires dateChange and dateRangeChange event', async ({ page }) => {
+  test('select different range fires dateChange and dateRangeChange event', async ({
+    page,
+  }) => {
     const dateChangeEventPromise = page.evaluate(() => {
       return new Promise((f) => {
         document.addEventListener('dateChange', (data) => f(data));
