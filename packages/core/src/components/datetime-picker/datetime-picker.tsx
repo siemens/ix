@@ -230,6 +230,7 @@ export class DateTimePicker {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
+            class="date-picker-override"
           ></ix-date-picker>
 
           <ix-time-picker

@@ -2,9 +2,11 @@
 
 ## v2.0.0
 
+### Remove string output from `dateChange` event in `ix-date-picker`
+
 ### Change `onDateChange` event to `DateChangeEvent` in `ix-date-picker`
 
-### Change `getCurrentDate` method return property names from `ix-date-picker`
+### Change `getCurrentDate` method return property names in `ix-date-picker`
 
 ### Remove deprecated properties from `ix-date-picker`
 

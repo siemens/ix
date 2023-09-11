@@ -22,10 +22,13 @@
     display: flex;
     flex-direction: column;
 
-    &.individual {
-      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
-        0 12px 18px 0px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--theme-menu--border-color);
+    // &.individual {
+    //   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
+    //     0 12px 18px 0px rgba(0, 0, 0, 0.1);
+    //   border: 1px solid var(--theme-menu--border-color);
+    // }
+
+    &.rounded {
       border-radius: 4px;
     }
 

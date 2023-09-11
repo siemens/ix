@@ -2298,7 +2298,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -2316,6 +2316,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],
@@ -2345,7 +2349,7 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "The selected starting date. If the date-picker is not in range mode this is the selected date.\n\nFormat has to match the `format` property.",
+          "docs": "The selected starting date. If the date-picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -2408,7 +2412,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "If true a range of dates can be selected.",
+          "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2425,7 +2429,7 @@
           "mutable": false,
           "attr": "text-select-date",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
+          "docs": "Text of the button that confirms date selection.",
           "docsTags": [
             {
               "name": "since",
@@ -2447,7 +2451,7 @@
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "The selected end date. If the the date-picker is not in range mode this property has no impact.\n\nFormat has to match the `format` property.",
+          "docs": "The selected end date. If the the date-picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -2494,7 +2498,7 @@
           },
           "signature": "getCurrentDate() => Promise<{ from: string; to: string; }>",
           "parameters": [],
-          "docs": "Get the currently selected date-range",
+          "docs": "Get the currently selected date-range.",
           "docsTags": []
         }
       ],
@@ -2519,7 +2523,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker is in range mode",
+          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker is in range mode.",
           "docsTags": [
             {
               "name": "since",
@@ -10163,7 +10167,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -10181,6 +10185,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],

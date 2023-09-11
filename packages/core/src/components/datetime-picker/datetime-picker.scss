@@ -19,9 +19,19 @@
   position: relative;
   width: 32.6875rem;
 
+  .date-picker-override {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   .flex {
     display: flex;
     justify-content: center;
+  }
+
+  .individual {
+    box-shadow: none;
+    border: none;
   }
 
   .btn-select-date {

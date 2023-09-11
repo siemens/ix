@@ -473,12 +473,12 @@ export namespace Components {
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date.  Format has to match the `format` property.
+          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date-range
+          * Get the currently selected date-range.
          */
         "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**
@@ -492,16 +492,16 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * If true a range of dates can be selected.
+          * If true a date-range can be selected (from/to).
          */
         "range": boolean;
         /**
-          * Text of date select button
+          * Text of the button that confirms date selection.
           * @since 1.1.0
          */
         "textSelectDate": string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact.  Format has to match the `format` property.
+          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -3505,7 +3505,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date.  Format has to match the `format` property.
+          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -3525,7 +3525,7 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Triggers if the date selection changes. Only triggered if date-picker is in range mode
+          * Triggers if the date selection changes. Only triggered if date-picker is in range mode.
           * @since 1.1.0
           * @deprecated Use `dateChange` (triggers on both modes)
          */
@@ -3536,16 +3536,16 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * If true a range of dates can be selected.
+          * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
         /**
-          * Text of date select button
+          * Text of the button that confirms date selection.
           * @since 1.1.0
          */
         "textSelectDate"?: string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact.  Format has to match the `format` property.
+          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;

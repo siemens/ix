@@ -22,12 +22,10 @@ import {
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import dayjs, { Dayjs, MonthNames, WeekdayNames } from 'dayjs';
-import isLeapYear from 'dayjs/plugin/isLeapYear';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-dayjs.extend(isLeapYear);
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(localeData);
 dayjs.extend(weekday);
@@ -58,7 +56,7 @@ export class DatePicker {
   @Prop() format: string = 'YYYY/MM/DD';
 
   /**
-   * If true a range of dates can be selected.
+   * If true a date-range can be selected (from/to).
    */
   @Prop() range: boolean = true;
 
@@ -69,7 +67,6 @@ export class DatePicker {
 
   /**
    * The selected starting date. If the date-picker is not in range mode this is the selected date.
-   *
    * Format has to match the `format` property.
    *
    * @since 1.1.0
@@ -84,7 +81,6 @@ export class DatePicker {
 
   /**
    * The selected end date. If the the date-picker is not in range mode this property has no impact.
-   *
    * Format has to match the `format` property.
    *
    * @since 1.1.0
@@ -114,7 +110,7 @@ export class DatePicker {
   @Prop() maxDate: string;
 
   /**
-   * Text of date select button
+   * Text of the button that confirms date selection.
    *
    * @since 1.1.0
    */
@@ -137,7 +133,7 @@ export class DatePicker {
 
   /**
    * Triggers if the date selection changes.
-   * Only triggered if date-picker is in range mode
+   * Only triggered if date-picker is in range mode.
    *
    * @since 1.1.0
    * @deprecated Use `dateChange` (triggers on both modes)
@@ -152,7 +148,7 @@ export class DatePicker {
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the currently selected date-range
+   * Get the currently selected date-range.
    */
   @Method()
   async getCurrentDate() {
@@ -371,11 +367,13 @@ export class DatePicker {
 
       return;
     }
+
     // Don't do anything if the range doesn't differ by at least one day
     // Otherwise the user would have to do one extra click if they choose to change the range again
     if (date.isSame(this.currFromDate, 'day')) {
       return;
     }
+
     // Swap from/to if the second date is before the current date
     if (date.isBefore(this.currFromDate)) {
       this.currToDate = this.currFromDate;
@@ -384,6 +382,7 @@ export class DatePicker {
 
       return;
     }
+
     // Set the range normally
     this.currToDate = date;
     this.onDateChange();
@@ -419,7 +418,7 @@ export class DatePicker {
         selectedDayObj.isAfter(this.currFromDate, 'day') &&
         this.currToDate !== undefined &&
         selectedDayObj.isBefore(this.currToDate, 'day'),
-      disabled: !this.isWithinMinMax(selectedDayObj),
+      disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
   }
 
@@ -455,7 +454,7 @@ export class DatePicker {
     return !isBefore && !isAfter;
   }
 
-  private isWithinMinMax(date: Dayjs): boolean {
+  private isWithinMinMaxDate(date: Dayjs): boolean {
     const _minDate = this.minDate
       ? dayjs(this.minDate, this.format)
       : undefined;
@@ -500,111 +499,110 @@ export class DatePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card corners={this.corners} individual={false}>
-          <div class="header" slot="header">
-            <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(-1)}
-              ghost
-              icon="chevron-left"
-              variant="primary"
-              class="arrows"
-            ></ix-icon-button>
-
-            <div class="selector">
-              <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
-                <span class="fontSize capitalize">
-                  {this.monthNames[this.selectedMonth]} {this.selectedYear}
-                </span>
-              </ix-button>
-              <ix-dropdown
-                class="dropdown"
-                trigger={this.dropdownButtonRef}
-                placement="bottom-start"
-              >
-                <div class="wrapper">
-                  <div
-                    class="overflow"
-                    onScroll={() => this.infiniteScrollYears()}
-                    ref={(ref) => (this.yearContainerRef = ref)}
-                  >
-                    {this.renderYears()}
-                  </div>
-                  <div class="overflow">
-                    {this.monthNames.map((month, index) => (
-                      <div
-                        key={month}
-                        class={{
-                          arrowYear: true,
-                          selected:
-                            this.tempYear === this.selectedYear &&
-                            this.tempMonth === index,
-                          'disabled-item': !this.isWithinMinMaxMonth(index),
-                        }}
-                        onClick={() => this.selectMonth(index)}
-                      >
-                        <ix-icon
+        <div class="container">
+          <ix-date-time-card corners={this.corners} individual={true}>
+            <div class="header" slot="header">
+              <ix-icon-button
+                onClick={() => this.changeToAdjacentMonth(-1)}
+                ghost
+                icon="chevron-left"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <div class="selector">
+                <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
+                  <span class="fontSize capitalize">
+                    {this.monthNames[this.selectedMonth]} {this.selectedYear}
+                  </span>
+                </ix-button>
+                <ix-dropdown
+                  class="dropdown"
+                  trigger={this.dropdownButtonRef}
+                  placement="bottom-start"
+                >
+                  <div class="wrapper">
+                    <div
+                      class="overflow"
+                      onScroll={() => this.infiniteScrollYears()}
+                      ref={(ref) => (this.yearContainerRef = ref)}
+                    >
+                      {this.renderYears()}
+                    </div>
+                    <div class="overflow">
+                      {this.monthNames.map((month, index) => (
+                        <div
+                          key={month}
                           class={{
-                            hidden:
-                              this.tempYear !== this.selectedYear ||
-                              this.tempMonth !== index,
-                            checkPosition: true,
+                            arrowYear: true,
+                            selected:
+                              this.tempYear === this.selectedYear &&
+                              this.tempMonth === index,
+                            'disabled-item': !this.isWithinMinMaxMonth(index),
                           }}
-                          name="single-check"
-                          size="16"
-                        ></ix-icon>
-                        <div>
-                          <span
-                            class={{ capitalize: true, monthMargin: true }}
-                          >{`${month} ${this.tempYear}`}</span>
+                          onClick={() => this.selectMonth(index)}
+                        >
+                          <ix-icon
+                            class={{
+                              hidden:
+                                this.tempYear !== this.selectedYear ||
+                                this.tempMonth !== index,
+                              checkPosition: true,
+                            }}
+                            name="single-check"
+                            size="16"
+                          ></ix-icon>
+                          <div>
+                            <span
+                              class={{ capitalize: true, monthMargin: true }}
+                            >{`${month} ${this.tempYear}`}</span>
+                          </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                </ix-dropdown>
+              </div>
+              <ix-icon-button
+                onClick={() => this.changeToAdjacentMonth(1)}
+                ghost
+                icon="chevron-right"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+            </div>
+            <div class="grid">
+              <div class="calendar-item week-day"></div>
+              {this.dayNames.map((name) => (
+                <div key={name} class="calendar-item week-day">
+                  {name.slice(0, 3)}
+                </div>
+              ))}
+              {this.calendar.map((week) => {
+                return (
+                  <Fragment>
+                    <div class="calendar-item week-number">
+                      {week.weekNumber}
+                    </div>
+                    {week.dayNumbers.map((day) => (
+                      <div
+                        key={day}
+                        class={this.getDayClasses(day)}
+                        onClick={() => this.selectDay(day)}
+                      >
+                        {day}
                       </div>
                     ))}
-                  </div>
-                </div>
-              </ix-dropdown>
+                  </Fragment>
+                );
+              })}
             </div>
-
-            <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(1)}
-              ghost
-              icon="chevron-right"
-              variant="primary"
-              class="arrows"
-            ></ix-icon-button>
-          </div>
-
-          <div class="grid">
-            <div class="calendar-item week-day"></div>
-            {this.dayNames.map((name) => (
-              <div key={name} class="calendar-item week-day">
-                {name.slice(0, 3)}
-              </div>
-            ))}
-
-            {this.calendar.map((week) => {
-              return (
-                <Fragment>
-                  <div class="calendar-item week-number">{week.weekNumber}</div>
-                  {week.dayNumbers.map((day) => (
-                    <div
-                      key={day}
-                      class={this.getDayClasses(day)}
-                      onClick={() => this.selectDay(day)}
-                    >
-                      {day}
-                    </div>
-                  ))}
-                </Fragment>
-              );
-            })}
-          </div>
-
-          <div class={{ button: true, hidden: !this.range }}>
-            <ix-button onClick={() => this.onDone()}>
-              {this.textSelectDate}
-            </ix-button>
-          </div>
-        </ix-date-time-card>
+            <div class={{ button: true, hidden: !this.range }}>
+              <ix-button onClick={() => this.onDone()}>
+                {this.textSelectDate}
+              </ix-button>
+            </div>
+          </ix-date-time-card>
+        </div>
       </Host>
     );
   }

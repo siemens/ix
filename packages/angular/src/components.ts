@@ -471,7 +471,7 @@ export declare interface IxDatePicker extends Components.IxDatePicker {
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Triggers if the date selection changes.
-Only triggered if date-picker is in range mode @since 1.1.0,@deprecated Use `dateChange` (triggers on both modes)
+Only triggered if date-picker is in range mode. @since 1.1.0,@deprecated Use `dateChange` (triggers on both modes)
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
