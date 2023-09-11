@@ -9,36 +9,23 @@ title: Updating to v2
 Welcome to the migration guide for upgrading from Siemens iX v1 to v2.
 Please follow this guide to ensure a smooth and successful migration process.
 
-# Update your code
+## Checkout the the breaking changes in detail
 
-## Replace Bootstrap Modal parts with iX Modal components
+Checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
 
-//TODO: Enhance migration guide regarding new modal system
 
-```tsx
-<ix-dialog>
+# New concepts
+
+## Replace Bootstrap Modal parts with iX modal components
+
+```html
   <ix-modal-header>My Header</ix-modal-header>
   <ix-modal-content>My Content</ix-modal-content>
   <ix-modal-footer>
     <ix-button>Save</ix-button>
     <ix-button>Cancel</ix-button>
   </ix-modal-footer>
-</ix-dialog>
 ```
-
-## Deprecation Notice: ix-menu-item `tabIcon` property
-
-Previously, the `tabIcon` property was used to specify an icon for the `ix-menu-item`. However, to enhance clarity and align with established naming conventions in the library, we have deprecated the `tabIcon` property in favor of the more concise property name `icon`.
-
-```html
-<!-- Previous code -->
-<ix-menu-item tabIcon="my-icon"></ix-menu-item>
-
-<!-- Updated code -->
-<ix-menu-item icon="my-icon"></ix-menu-item>
-```
-
-# New design concepts
 
 ## ix-basic-navigation and ix-menu
 
@@ -107,6 +94,6 @@ Please note that as part of this migration, some changes may be required in your
 
 # Questions ❓🙋‍♀️
 
-Don't forget to checkout your [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md).
+Don't forget to checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md).
 
 If you have question or facing problems during migration [contact us over our forum](https://community.siemens.com/c/ix/)

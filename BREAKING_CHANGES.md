@@ -2,12 +2,16 @@
 
 ## v2.0.0
 
-### Change `itemSelectionChange` event from `ix-select`
+### Change `itemSelectionChange` event and `selectedIndices` prop from `ix-select`
 
-Change type of CustomEvent to:
+**_Before_**
+```tsx
+<ix-select onItemSelectionChange={...} selectedIndices={...}></ix-select>
+```
 
-```typescript
-@Event() itemSelectionChange: EventEmitter<string[]>
+**_Now_**
+```tsx
+<ix-select onValueChange={...} value={...}></ix-select>
 ```
 
 ### Remove `ix-animated-tab` and `ix-animated-tabs`
