@@ -101,6 +101,7 @@
   --trace-color: var(--theme-color-dynamic);
   --tick-color: var(--theme-color-5);
   --tick-color--active: var(--theme-color-dynamic);
+  --track-color: var(--theme-color-component-4);
 
   input[type='range'] {
     position: absolute;
@@ -120,6 +121,7 @@
     content: '';
     position: absolute;
     display: block;
+    z-index: -1;
 
     width: calc(
       calc(7px + calc(100% * var(--trace-end)) - calc(16px * var(--trace-end))) -
@@ -219,7 +221,7 @@
 
   .track {
     position: absolute;
-    background-color: var(--theme-color-component-1);
+    background-color: var(--track-color);
     height: 4px;
     width: calc(100% - 1rem);
     margin-left: 0.5rem;
@@ -269,7 +271,7 @@
 }
 
 :host(.error) {
-  --trace-color: var(--theme-color-alarm);
+  --trace-color: var(--theme-color-alarm-40);
   --tick-color--active: var(--theme-color-alarm);
 
   @include thumb() {
@@ -280,10 +282,10 @@
 :host(.disabled) {
   pointer-events: none;
 
-  --trace-color: var(--theme-color-7);
+  --track-color: var(--theme-color-component-3);
+  --trace-color: var(--theme-color-3);
   --tick-color: var(--theme-color-7);
   --tick-color--active: var(--theme-color-7);
-  --trace-reference-color: var(--theme-color-7);
 
   @include thumb() {
     background-color: var(--theme-color-7);
