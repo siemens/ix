@@ -22,7 +22,7 @@ export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
   const [selectedTheme, setSelectedTheme] = useState(themes[1]);
 
-  const selectionChange = (event: IxSelectCustomEvent<string[]>) => {
+  const selectionChange = (event: IxSelectCustomEvent<string | string[]>) => {
     const newTheme = event.detail[0];
     themeSwitcher.setTheme(newTheme);
     setSelectedTheme(newTheme);
@@ -56,8 +56,8 @@ export default () => {
         <IxCol size="2">Theme</IxCol>
         <IxCol>
           <IxSelect
-            selectedIndices={selectedTheme}
-            onItemSelectionChange={selectionChange}
+            value={selectedTheme}
+            onValueChange={selectionChange}
             placeholder="Select a theme"
           >
             {themes.map((theme) => (
