@@ -53,8 +53,7 @@ import EventListSelected from 'src/preview-examples/event-list-selected';
 import ExpandingSearch from 'src/preview-examples/expanding-search';
 import FlipTile from 'src/preview-examples/flip-tile';
 import Grid from 'src/preview-examples/grid';
-import GridFixed from 'src/preview-examples/grid-fixed';
-import GridFluid from 'src/preview-examples/grid-fluid';
+import GridPadding from 'src/preview-examples/grid-padding';
 import GridSize from 'src/preview-examples/grid-size';
 import Group from 'src/preview-examples/group';
 import GroupContextMenu from 'src/preview-examples/group-context-menu';
@@ -93,6 +92,7 @@ import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
+import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
@@ -107,7 +107,7 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
-import ThemeSwitcherService from 'src/preview-examples/theme-switcher';
+import ThemeSwitcherExample from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
@@ -192,6 +192,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Radiobutton,
     SelectEditable,
     SelectMultiple,
+    SelectNgModel,
     Select,
     Settings,
     Spinner,
@@ -202,7 +203,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Textarea,
     TextareaReadonly,
     TextareaDisabled,
-    ThemeSwitcherService,
+    ThemeSwitcherExample,
     Tile,
     Timepicker,
     ToggleButtonPrimaryGhost,
@@ -250,8 +251,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     SliderError,
     Grid,
     GridSize,
-    GridFluid,
-    GridFixed,
+    GridPadding,
   ],
   imports: [
     BrowserModule,

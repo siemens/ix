@@ -6,8 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import cssnano from 'cssnano';
 import fse from 'fs-extra';
 import path from 'path';
+import postcss from 'postcss';
 import rimraf from 'rimraf';
 import sass from 'sass';
 
@@ -41,12 +43,16 @@ function compileThemes() {
   console.log('Compile themes');
 
   const themes = collectThemeFiles();
-  themes.forEach(({ filePath, themeName }) => {
+  return themes.map(({ filePath, themeName }) => {
     console.log(`\t${themeName}`);
     const { css } = sass.compile(filePath, {
       sourceMap: false,
     });
-    fse.writeFileSync(path.join(DIST_THEME, `${themeName}.css`), css);
+
+    return {
+      path: path.join(DIST_THEME, `${themeName}.css`),
+      css,
+    };
   });
 }
 
@@ -61,7 +67,13 @@ function compileCore() {
       path.join(ROOT, '..', '..', 'node_modules'),
     ],
   });
-  fse.writeFileSync(path.join(DIST_CSS, 'siemens-ix-core.css'), css);
+
+  return [
+    {
+      path: path.join(DIST_CSS, 'siemens-ix-core.css'),
+      css,
+    },
+  ];
 }
 
 function copyDistCssToDist() {
@@ -69,8 +81,42 @@ function copyDistCssToDist() {
   fse.copySync(DIST_CSS, DIST);
 }
 
-setupDistFolder();
-compileThemes();
-compileCore();
+(async () => {
+  setupDistFolder();
 
-copyDistCssToDist();
+  let cssFiles: {
+    path: string;
+    css: string;
+  }[] = [];
+
+  cssFiles = [...cssFiles, ...compileThemes()];
+  cssFiles = [...cssFiles, ...compileCore()];
+
+  const optimizedCss = await Promise.all(
+    cssFiles.map(async (result) => {
+      const { path, css } = result;
+
+      return postcss([
+        cssnano({
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+            },
+          ],
+        }),
+      ]).process(css, {
+        from: path,
+        to: path,
+      });
+    })
+  );
+
+  optimizedCss.forEach((result) => {
+    fse.writeFileSync(result.opts.to, result.css);
+  });
+
+  copyDistCssToDist();
+})();

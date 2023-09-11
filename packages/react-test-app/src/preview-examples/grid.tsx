@@ -15,7 +15,7 @@ import './grid.css';
 export default () => {
   return (
     <>
-      <IxGrid>
+      <IxGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>

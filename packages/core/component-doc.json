@@ -341,6 +341,54 @@
           "required": false
         },
         {
+          "name": "breakpoints",
+          "type": "(\"sm\" | \"md\" | \"lg\")[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Supported layouts",
+          "docsTags": [],
+          "default": "['sm', 'md', 'lg']",
+          "values": [
+            {
+              "type": "(\"sm\""
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "type": "\"lg\")[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "forceBreakpoint",
+          "type": "\"lg\" | \"md\" | \"sm\"",
+          "mutable": false,
+          "attr": "force-breakpoint",
+          "reflectToAttr": false,
+          "docs": "Change the responsive layout of the menu structure",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "lg",
+              "type": "string"
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "value": "sm",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "hideHeader",
           "type": "boolean",
           "mutable": false,
@@ -379,11 +427,13 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon"
+        "ix-icon",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-blind": [
-          "ix-icon"
+          "ix-icon",
+          "ix-typography"
         ]
       },
       "props": [
@@ -433,6 +483,27 @@
           "reflectToAttr": false,
           "docs": "Label of blind",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "sublabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "sublabel",
+          "reflectToAttr": false,
+          "docs": "Secondary label inside blind header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -4694,31 +4765,15 @@
           "required": false
         },
         {
-          "name": "fixed",
-          "type": "\"fixed\" | \"fixed-lg\" | \"fixed-md\" | \"fixed-sm\" | boolean",
+          "name": "noPadding",
+          "type": "boolean",
           "mutable": false,
-          "attr": "fixed",
+          "attr": "no-padding",
           "reflectToAttr": false,
-          "docs": "The grid will have a fixed width",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [
-            {
-              "value": "fixed",
-              "type": "string"
-            },
-            {
-              "value": "fixed-lg",
-              "type": "string"
-            },
-            {
-              "value": "fixed-md",
-              "type": "string"
-            },
-            {
-              "value": "fixed-sm",
-              "type": "string"
-            },
             {
               "type": "boolean"
             }
@@ -4727,12 +4782,12 @@
           "required": false
         },
         {
-          "name": "fluid",
+          "name": "noRowGap",
           "type": "boolean",
           "mutable": false,
-          "attr": "fluid",
+          "attr": "no-row-gap",
           "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
+          "docs": "Remove the gap between rows",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -6436,29 +6491,6 @@
           "required": false
         },
         {
-          "name": "breakpoints",
-          "type": "(\"sm\" | \"md\" | \"lg\")[]",
-          "mutable": false,
-          "reflectToAttr": false,
-          "docs": "Supported layouts",
-          "docsTags": [],
-          "default": "['sm', 'md', 'lg']",
-          "values": [
-            {
-              "type": "(\"sm\""
-            },
-            {
-              "value": "md",
-              "type": "string"
-            },
-            {
-              "type": "\"lg\")[]"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "enableMapExpand",
           "type": "boolean",
           "mutable": false,
@@ -6521,31 +6553,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "forceBreakpoint",
-          "type": "\"lg\" | \"md\" | \"sm\"",
-          "mutable": false,
-          "attr": "force-breakpoint",
-          "reflectToAttr": false,
-          "docs": "Change the responsive layout of the menu structure",
-          "docsTags": [],
-          "values": [
-            {
-              "value": "lg",
-              "type": "string"
-            },
-            {
-              "value": "md",
-              "type": "string"
-            },
-            {
-              "value": "sm",
-              "type": "string"
             }
           ],
           "optional": false,
@@ -9082,9 +9089,14 @@
           "mutable": true,
           "attr": "selected-indices",
           "reflectToAttr": false,
-          "docs": "Indices of selected items\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
-          "docsTags": [],
-          "default": "[]",
+          "docs": "Indices of selected items.\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.0.0. Use the `value` property instead."
+            }
+          ],
+          "deprecation": "since 2.0.0. Use the `value` property instead.",
           "values": [
             {
               "type": "string"
@@ -9093,7 +9105,31 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Current selected value.\nThis corresponds to the value property of ix-select-items",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": true,
           "required": false
         }
       ],
@@ -9129,7 +9165,27 @@
           "cancelable": true,
           "composed": true,
           "docs": "Item selection changed",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.0.0. Use `valueChange` instead."
+            }
+          ],
+          "deprecation": "since 2.0.0. Use `valueChange` instead."
+        },
+        {
+          "event": "valueChange",
+          "detail": "string | string[]",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Value changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -11599,6 +11655,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-blind",
         "ix-card-list",
         "ix-content-header",
         "ix-dropdown-header",
@@ -11615,6 +11672,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-blind": [
           "ix-typography"
         ],
         "ix-card-list": [

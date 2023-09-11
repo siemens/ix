@@ -74,14 +74,14 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'hideHeader']
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader']
 })
 @Component({
   selector: 'ix-basic-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'hideHeader'],
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader'],
 })
 export class IxBasicNavigation {
   protected el: HTMLElement;
@@ -96,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label']
+  inputs: ['collapsed', 'icon', 'label', 'sublabel']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label'],
+  inputs: ['collapsed', 'icon', 'label', 'sublabel'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -911,14 +911,14 @@ export declare interface IxFormField extends Components.IxFormField {}
 
 
 @ProxyCmp({
-  inputs: ['columns', 'fixed', 'fluid']
+  inputs: ['columns', 'noPadding', 'noRowGap']
 })
 @Component({
   selector: 'ix-grid',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['columns', 'fixed', 'fluid'],
+  inputs: ['columns', 'noPadding', 'noRowGap'],
 })
 export class IxGrid {
   protected el: HTMLElement;
@@ -1260,7 +1260,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1268,7 +1268,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'breakpoints', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'forceBreakpoint', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
 })
 export class IxMenu {
   protected el: HTMLElement;
@@ -1774,28 +1774,32 @@ export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices', 'value']
 })
 @Component({
   selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices', 'value'],
 })
 export class IxSelect {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemSelectionChange', 'inputChange', 'addItem']);
+    proxyOutputs(this, this.el, ['valueChange', 'itemSelectionChange', 'inputChange', 'addItem']);
   }
 }
 
 
 export declare interface IxSelect extends Components.IxSelect {
   /**
-   * Item selection changed
+   * Value changed @since 2.0.0
+   */
+  valueChange: EventEmitter<CustomEvent<string | string[]>>;
+  /**
+   * Item selection changed @deprecated since 2.0.0. Use `valueChange` instead.
    */
   itemSelectionChange: EventEmitter<CustomEvent<string[]>>;
   /**

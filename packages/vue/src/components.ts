@@ -19,8 +19,7 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', undefined, [
-  'name',
-  'breakpoint'
+  'name'
 ]);
 
 
@@ -32,13 +31,16 @@ export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar',
 
 export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNavigation>('ix-basic-navigation', undefined, [
   'applicationName',
-  'hideHeader'
+  'hideHeader',
+  'forceBreakpoint',
+  'breakpoints'
 ]);
 
 
 export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', undefined, [
   'collapsed',
   'label',
+  'sublabel',
   'icon',
   'collapsedChange'
 ]);
@@ -325,8 +327,8 @@ export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-fo
 
 
 export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
-  'fixed',
-  'fluid',
+  'noPadding',
+  'noRowGap',
   'columns'
 ]);
 
@@ -456,8 +458,6 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', undef
   'i18nExpandSidebar',
   'expand',
   'pinned',
-  'forceBreakpoint',
-  'breakpoints',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',
@@ -616,6 +616,7 @@ export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', undefine
 
 export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', undefined, [
   'selectedIndices',
+  'value',
   'allowClear',
   'mode',
   'editable',
@@ -626,6 +627,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'i18nSelectListHeader',
   'i18nNoMatches',
   'hideListHeader',
+  'valueChange',
   'itemSelectionChange',
   'inputChange',
   'addItem'
