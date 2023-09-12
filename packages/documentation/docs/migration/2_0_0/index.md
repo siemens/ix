@@ -9,10 +9,9 @@ title: Updating to v2
 Welcome to the migration guide for upgrading from Siemens iX v1 to v2.
 Please follow this guide to ensure a smooth and successful migration process.
 
-## Checkout the the breaking changes in detail
+## Checkout the breaking changes in detail
 
 Checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
-
 
 # New concepts
 
