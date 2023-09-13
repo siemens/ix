@@ -158,7 +158,7 @@ export class DatePicker {
     if (this.range) {
       return {
         from: _from,
-        to: _to ?? _from,
+        to: _from,
       };
     }
 
@@ -365,12 +365,6 @@ export class DatePicker {
       this.currToDate = undefined;
       this.onDateChange();
 
-      return;
-    }
-
-    // Don't do anything if the range doesn't differ by at least one day
-    // Otherwise the user would have to do one extra click if they choose to change the range again
-    if (date.isSame(this.currFromDate, 'day')) {
       return;
     }
 
