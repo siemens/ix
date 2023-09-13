@@ -896,23 +896,6 @@ export namespace Components {
          */
         "label": string;
     }
-    /**
-     * @since 2.0.0
-     */
-    interface IxGrid {
-        /**
-          * Overwrite the default number of columns. Choose between 2 and 12 columns.
-         */
-        "columns": number;
-        /**
-          * The grid will not have any horizontal padding
-         */
-        "noPadding": boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap": boolean;
-    }
     interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
@@ -1094,6 +1077,23 @@ export namespace Components {
         "state": 'neutral' | 'warning' | 'alarm';
         "unit": string;
         "value": string | number;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLayoutGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns": number;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "noPadding": boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap": boolean;
     }
     /**
      * @since 2.0.0
@@ -2616,15 +2616,6 @@ declare global {
         prototype: HTMLIxFormFieldElement;
         new (): HTMLIxFormFieldElement;
     };
-    /**
-     * @since 2.0.0
-     */
-    interface HTMLIxGridElement extends Components.IxGrid, HTMLStencilElement {
-    }
-    var HTMLIxGridElement: {
-        prototype: HTMLIxGridElement;
-        new (): HTMLIxGridElement;
-    };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
     var HTMLIxGroupElement: {
@@ -2687,6 +2678,15 @@ declare global {
     var HTMLIxKpiElement: {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxLayoutGridElement extends Components.IxLayoutGrid, HTMLStencilElement {
+    }
+    var HTMLIxLayoutGridElement: {
+        prototype: HTMLIxLayoutGridElement;
+        new (): HTMLIxLayoutGridElement;
     };
     /**
      * @since 2.0.0
@@ -3048,7 +3048,6 @@ declare global {
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
         "ix-form-field": HTMLIxFormFieldElement;
-        "ix-grid": HTMLIxGridElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
@@ -3058,6 +3057,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -4040,23 +4040,6 @@ declare namespace LocalJSX {
          */
         "label"?: string;
     }
-    /**
-     * @since 2.0.0
-     */
-    interface IxGrid {
-        /**
-          * Overwrite the default number of columns. Choose between 2 and 12 columns.
-         */
-        "columns"?: number;
-        /**
-          * The grid will not have any horizontal padding
-         */
-        "noPadding"?: boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap"?: boolean;
-    }
     interface IxGroup {
         /**
           * Whether the group is collapsed or expanded. Defaults to true.
@@ -4258,6 +4241,23 @@ declare namespace LocalJSX {
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLayoutGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns"?: number;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "noPadding"?: boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -5442,7 +5442,6 @@ declare namespace LocalJSX {
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
         "ix-form-field": IxFormField;
-        "ix-grid": IxGrid;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
@@ -5452,6 +5451,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -5585,10 +5585,6 @@ declare module "@stencil/core" {
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
             "ix-form-field": LocalJSX.IxFormField & JSXBase.HTMLAttributes<HTMLIxFormFieldElement>;
-            /**
-             * @since 2.0.0
-             */
-            "ix-grid": LocalJSX.IxGrid & JSXBase.HTMLAttributes<HTMLIxGridElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
@@ -5607,6 +5603,10 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             /**
              * @since 2.0.0
              */

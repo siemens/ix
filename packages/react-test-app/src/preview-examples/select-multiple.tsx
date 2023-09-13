@@ -18,7 +18,7 @@ export default () => {
   }, [setSelection]);
 
   return (
-    <IxSelect mode="multiple" selectedIndices={selection}>
+    <IxSelect mode="multiple" value={selection}>
       <IxSelectItem label="Item 1" value="1"></IxSelectItem>
       <IxSelectItem label="Item 2" value="2"></IxSelectItem>
       <IxSelectItem label="Item 3" value="3"></IxSelectItem>

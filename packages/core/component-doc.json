@@ -4727,86 +4727,6 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/grid",
-      "filePath": "./src/components/grid/grid.tsx",
-      "fileName": "grid.tsx",
-      "readmePath": "./src/components/grid/readme.md",
-      "usagesDir": "./src/components/grid/usage",
-      "tag": "ix-grid",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "columns",
-          "type": "number",
-          "mutable": false,
-          "attr": "columns",
-          "reflectToAttr": false,
-          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
-          "docsTags": [],
-          "default": "12",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "noPadding",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "no-padding",
-          "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "noRowGap",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "no-row-gap",
-          "reflectToAttr": false,
-          "docs": "Remove the gap between rows",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "./src/components/group",
       "filePath": "./src/components/group/group.tsx",
       "fileName": "group.tsx",
@@ -6022,6 +5942,86 @@
             },
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid",
+      "filePath": "./src/components/grid/layout-grid.tsx",
+      "fileName": "layout-grid.tsx",
+      "readmePath": "./src/components/grid/readme.md",
+      "usagesDir": "./src/components/grid/usage",
+      "tag": "ix-layout-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "columns",
+          "type": "number",
+          "mutable": false,
+          "attr": "columns",
+          "reflectToAttr": false,
+          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
+          "docsTags": [],
+          "default": "12",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "noPadding",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-padding",
+          "reflectToAttr": false,
+          "docs": "The grid will not have any horizontal padding",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "noRowGap",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-row-gap",
+          "reflectToAttr": false,
+          "docs": "Remove the gap between rows",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,

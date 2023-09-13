@@ -8,14 +8,14 @@
 -->
 
 <script setup lang="ts">
-import { IxCol, IxGrid, IxRow } from '@siemens/ix-vue';
+import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 // Example styling for documentation
 import './grid.css';
 </script>
 
 <template>
   <h4>Column 6 takes up more space to a max of 12 columns total</h4>
-  <IxGrid>
+  <IxLayoutGrid>
     <IxRow>
       <IxCol>1</IxCol>
       <IxCol>2</IxCol>
@@ -24,10 +24,10 @@ import './grid.css';
       <IxCol>5</IxCol>
       <IxCol size="6">6</IxCol>
     </IxRow>
-  </IxGrid>
+  </IxLayoutGrid>
 
   <h4>Stack columns on smaller screens</h4>
-  <IxGrid>
+  <IxLayoutGrid>
     <IxRow>
       <IxCol size="12" size-md="3">
         1
@@ -42,6 +42,6 @@ import './grid.css';
         4
       </IxCol>
     </IxRow>
-  </IxGrid>
+  </IxLayoutGrid>
 </template>
 
