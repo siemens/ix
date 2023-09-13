@@ -14,7 +14,26 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  colors = Array.from({ length: 9 }).map((_, i) => `var(--theme-color-${i})`);
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host style={{ padding: '5rem' }}>
+        <ix-button>Button</ix-button>
+        <ix-select></ix-select>
+
+        <div style={{ height: '10rem', display: 'flex', flexDirection: 'row' }}>
+          {this.colors.map((c) => (
+            <div
+              style={{
+                height: '10rem',
+                width: '2rem',
+                background: c,
+              }}
+            ></div>
+          ))}
+        </div>
+      </Host>
+    );
   }
 }

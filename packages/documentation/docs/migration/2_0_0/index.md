@@ -13,6 +13,19 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 Checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
 
+# New default theme
+
+We replaced the old theme with a more modern looking theme.
+
+__Old:__
+
+![ix theme old](theme_old.png)
+
+__New:__
+
+![ix theme new](theme_new.png)
+
+
 # New concepts
 
 ## Replace Bootstrap Modal parts with iX modal components
@@ -90,6 +103,16 @@ Here are the key advantages of migrating to Shadow DOM components:
 2. **Improved Performance**: Shadow DOM components have better performance due to the browser's optimized rendering of the encapsulated DOM subtree. This results in faster initial rendering and improved overall responsiveness of the components.
 
 Please note that as part of this migration, some changes may be required in your codebase if you were relying on direct manipulation or styling of our components. We recommend reviewing our updated documentation and examples to ensure a smooth transition and take full advantage of the benefits offered by Shadow DOM components.
+
+## Preparation of removing bootstrap as dependency
+
+As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Which means that we are no longer depends on any css framework. This give us the opportunity to divide us from bootstrap. Which does not mean that bootstrap is bad or lesser good the alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
+
+As for now bootstrap is still a part of our library but in future releases we planning to drop bootstrap entirely.
+
+If you want to check if your application are still working smoothness without bootstrap you can already test this by loading the new `core css` file without any dependency to bootstrap anymore.
+
+A detailed description can be found [here](./../../guidelines/theme#applying-only-one-theme-to-reduce-build-size).
 
 # Questions ❓🙋‍♀️
 

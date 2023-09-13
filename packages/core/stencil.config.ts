@@ -27,6 +27,10 @@ const copyAssets = [
     src: './../../../node_modules/bootstrap',
     dest: 'build/bootstrap',
   },
+  {
+    src: '../dist-css',
+    dest: 'build/dist-css',
+  },
 ];
 
 try {

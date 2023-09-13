@@ -753,7 +753,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -792,6 +793,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -8858,7 +8862,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-pagination"
+        "ix-pagination",
+        "my-component"
       ],
       "dependencies": [
         "ix-select-item",
@@ -8891,6 +8896,9 @@
           "ix-icon"
         ],
         "ix-pagination": [
+          "ix-select"
+        ],
+        "my-component": [
           "ix-select"
         ]
       },
@@ -12199,8 +12207,41 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-button",
+        "ix-select"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-button",
+          "ix-select"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-select": [
+          "ix-select-item",
+          "ix-filter-chip",
+          "ix-icon-button",
+          "ix-icon",
+          "ix-dropdown",
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
