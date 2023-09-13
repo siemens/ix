@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './grid-padding.html',
   styles: [
     `
-      ix-grid {
+      ix-layout-grid {
         margin-bottom: 1rem;
       }
 

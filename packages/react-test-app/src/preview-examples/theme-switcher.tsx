@@ -10,7 +10,7 @@ import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {
   IxButton,
   IxCol,
-  IxGrid,
+  IxLayoutGrid,
   IxRow,
   IxSelect,
   IxSelectItem,
@@ -22,7 +22,7 @@ export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
   const [selectedTheme, setSelectedTheme] = useState(themes[1]);
 
-  const selectionChange = (event: IxSelectCustomEvent<string[]>) => {
+  const selectionChange = (event: IxSelectCustomEvent<string | string[]>) => {
     const newTheme = event.detail[0];
     themeSwitcher.setTheme(newTheme);
     setSelectedTheme(newTheme);
@@ -42,7 +42,7 @@ export default () => {
   };
 
   return (
-    <IxGrid className="ThemeSwitcher">
+    <IxLayoutGrid className="ThemeSwitcher">
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>
@@ -56,8 +56,8 @@ export default () => {
         <IxCol size="2">Theme</IxCol>
         <IxCol>
           <IxSelect
-            selectedIndices={selectedTheme}
-            onItemSelectionChange={selectionChange}
+            value={selectedTheme}
+            onValueChange={selectionChange}
             placeholder="Select a theme"
           >
             {themes.map((theme) => (
@@ -78,6 +78,6 @@ export default () => {
           <label htmlFor="system"></label>
         </IxCol>
       </IxRow>
-    </IxGrid>
+    </IxLayoutGrid>
   );
 };

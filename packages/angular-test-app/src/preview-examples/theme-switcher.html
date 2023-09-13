@@ -1,4 +1,4 @@
-<ix-grid>
+<ix-layout-grid>
   <ix-row>
     <ix-col size="2">
       <span>Light/Dark</span>
@@ -12,7 +12,7 @@
     <ix-col size="2">Theme</ix-col>
     <ix-col>
       <ix-select
-        [selectedIndices]="selectedTheme"
+        [value]="selectedTheme"
         (itemSelectionChange)="onItemSelectionChange($event)"
         placeholder="Select a theme"
       >
@@ -32,4 +32,4 @@
       <label for="system"></label>
     </ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>

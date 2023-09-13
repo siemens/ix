@@ -326,13 +326,6 @@ export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-fo
 ]);
 
 
-export const IxGrid = /*@__PURE__*/ defineContainer<JSX.IxGrid>('ix-grid', undefined, [
-  'noPadding',
-  'noRowGap',
-  'columns'
-]);
-
-
 export const IxGroup = /*@__PURE__*/ defineContainer<JSX.IxGroup>('ix-group', undefined, [
   'suppressHeaderSelection',
   'header',
@@ -419,6 +412,13 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', undefine
   'unit',
   'state',
   'orientation'
+]);
+
+
+export const IxLayoutGrid = /*@__PURE__*/ defineContainer<JSX.IxLayoutGrid>('ix-layout-grid', undefined, [
+  'noPadding',
+  'noRowGap',
+  'columns'
 ]);
 
 

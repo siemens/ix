@@ -13,11 +13,11 @@ import { Component, h, Host, Prop } from '@stencil/core';
  * @since 2.0.0
  */
 @Component({
-  tag: 'ix-grid',
-  styleUrl: 'grid.scss',
+  tag: 'ix-layout-grid',
+  styleUrl: 'layout-grid.scss',
   shadow: true,
 })
-export class Grid {
+export class LayoutGrid {
   /**
    * The grid will not have any horizontal padding
    */
@@ -41,7 +41,7 @@ export class Grid {
           'no-row-gap': this.noRowGap,
         }}
         style={{
-          '--ix-grid-columns': `${this.columns}`,
+          '--ix-layout-grid-columns': `${this.columns}`,
         }}
       >
         <slot></slot>
