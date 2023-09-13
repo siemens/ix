@@ -2,6 +2,7 @@ import Playground from '@site/src/components/Playground';
 import Tags from './../auto-generated/ix-slider/tags.md';
 import Props from './../auto-generated/ix-slider/props.md';
 import Events from './../auto-generated/ix-slider/events.md';
+import Slots from './../auto-generated/ix-slider/slots.md';
 
 # Slider
 
@@ -48,3 +49,7 @@ import Events from './../auto-generated/ix-slider/events.md';
 ### Events
 
 <Events />
+
+### Slots
+
+<Slots />
