@@ -9664,7 +9664,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "since 2.0.0. Use the `ix-dropdown-item` component instead."
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -9678,6 +9683,7 @@
           "ix-icon"
         ]
       },
+      "deprecation": "since 2.0.0. Use the `ix-dropdown-item` component instead.",
       "props": [
         {
           "name": "icon",

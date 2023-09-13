@@ -13,8 +13,8 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-split-button label="Action text" splitIcon="chevron-down-small">
-      <ix-split-button-item label="Item 1"></ix-split-button-item>
-      <ix-split-button-item label="Item 2"></ix-split-button-item>
+      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-split-button>
   `,
 })
