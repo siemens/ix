@@ -158,7 +158,7 @@ export class DatePicker {
     if (this.range) {
       return {
         from: _from,
-        to: _from,
+        to: _to,
       };
     }
 
