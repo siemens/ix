@@ -19,6 +19,7 @@ export const DIRECTIVES = [
   d.IxChip,
   d.IxCol,
   d.IxContentHeader,
+  d.IxDateInput,
   d.IxDatePicker,
   d.IxDatetimePicker,
   d.IxDivider,

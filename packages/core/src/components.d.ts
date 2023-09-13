@@ -5,7 +5,6 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
@@ -17,6 +16,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
@@ -38,7 +38,6 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
@@ -50,6 +49,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
@@ -72,54 +72,6 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface DateInput {
-        /**
-          * Corner style
-         */
-        "corners": DateTimeCardCorners;
-        /**
-          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
-         */
-        "format": string;
-        /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "from": string | undefined;
-        /**
-          * Label for the input
-         */
-        "label": string;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate": string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate": string;
-        /**
-          * If true a date-range can be selected (from/to).
-         */
-        "range": boolean;
-        /**
-          * Text of the button that confirms date selection.
-          * @since 1.1.0
-         */
-        "textSelectDate": string;
-        /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "to": string | undefined;
-        /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
-         */
-        "weekStartIndex": number;
-    }
     /**
      * @since 1.6.0
      */
@@ -510,6 +462,54 @@ export namespace Components {
           * Grid item name
          */
         "itemName": string;
+    }
+    interface IxDateInput {
+        /**
+          * Corner style
+         */
+        "corners": DateTimeCardCorners;
+        /**
+          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
+         */
+        "format": string;
+        /**
+          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "from": string | undefined;
+        /**
+          * Label for the input
+         */
+        "label": string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
+          * If true a date-range can be selected (from/to).
+         */
+        "range": boolean;
+        /**
+          * Text of the button that confirms date selection.
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "to": string | undefined;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatePicker {
         /**
@@ -2329,12 +2329,6 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    interface HTMLDateInputElement extends Components.DateInput, HTMLStencilElement {
-    }
-    var HTMLDateInputElement: {
-        prototype: HTMLDateInputElement;
-        new (): HTMLDateInputElement;
-    };
     /**
      * @since 1.6.0
      */
@@ -2496,6 +2490,12 @@ declare global {
     var HTMLIxCssGridItemElement: {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
+    };
+    interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
+    }
+    var HTMLIxDateInputElement: {
+        prototype: HTMLIxDateInputElement;
+        new (): HTMLIxDateInputElement;
     };
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
@@ -3002,7 +3002,6 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "date-input": HTMLDateInputElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -3026,6 +3025,7 @@ declare global {
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
+        "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -3103,54 +3103,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface DateInput {
-        /**
-          * Corner style
-         */
-        "corners"?: DateTimeCardCorners;
-        /**
-          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
-         */
-        "format"?: string;
-        /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "from"?: string | undefined;
-        /**
-          * Label for the input
-         */
-        "label"?: string;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate"?: string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate"?: string;
-        /**
-          * If true a date-range can be selected (from/to).
-         */
-        "range"?: boolean;
-        /**
-          * Text of the button that confirms date selection.
-          * @since 1.1.0
-         */
-        "textSelectDate"?: string;
-        /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "to"?: string | undefined;
-        /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
-         */
-        "weekStartIndex"?: number;
-    }
     /**
      * @since 1.6.0
      */
@@ -3597,6 +3549,54 @@ declare namespace LocalJSX {
           * Grid item name
          */
         "itemName"?: string;
+    }
+    interface IxDateInput {
+        /**
+          * Corner style
+         */
+        "corners"?: DateTimeCardCorners;
+        /**
+          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "from"?: string | undefined;
+        /**
+          * Label for the input
+         */
+        "label"?: string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * If true a date-range can be selected (from/to).
+         */
+        "range"?: boolean;
+        /**
+          * Text of the button that confirms date selection.
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "to"?: string | undefined;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatePicker {
         /**
@@ -5397,7 +5397,6 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
-        "date-input": DateInput;
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
@@ -5421,6 +5420,7 @@ declare namespace LocalJSX {
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
+        "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -5501,7 +5501,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "date-input": LocalJSX.DateInput & JSXBase.HTMLAttributes<HTMLDateInputElement>;
             /**
              * @since 1.6.0
              */
@@ -5549,6 +5548,7 @@ declare module "@stencil/core" {
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;

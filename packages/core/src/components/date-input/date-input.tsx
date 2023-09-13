@@ -1,15 +1,16 @@
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Fragment, h, Host, Prop } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 @Component({
-  tag: 'date-input',
+  tag: 'ix-date-input',
+  styleUrl: 'date-input.scss',
   shadow: true,
 })
 export class DateInput {
   /**
    * Label for the input
    */
-  @Prop() label: string = '';
+  @Prop() label: string;
 
   /**
    * Date format string.
@@ -74,10 +75,85 @@ export class DateInput {
    */
   @Prop() weekStartIndex = 0;
 
+  private focusedInput!: HTMLElement;
+  private datePicker!: HTMLIxDatePickerElement;
+
+  private onInputFocus = (event: FocusEvent) => {
+    this.focusedInput = event.target as HTMLElement;
+    this.datePicker.hidden = false;
+  };
+
+  private onInputBlur = (event: FocusEvent) => {
+    const relatedElem = event.relatedTarget as HTMLElement;
+    if (
+      relatedElem?.tagName === 'IX-DATE-PICKER' ||
+      relatedElem?.tagName === 'IX-DATETIME-PICKER'
+    ) {
+      this.focusedInput.focus();
+      return;
+    }
+
+    this.datePicker.hidden = true;
+  };
+
+  renderRangeInput(): any {
+    return (
+      <Fragment>
+        <div class="range-input">
+          <input
+            id="firstInput"
+            type="text"
+            class="form-control"
+            placeholder={this.format}
+            onFocus={this.onInputFocus}
+            onBlur={this.onInputBlur}
+          />
+          <span class="icon">
+            <ix-icon name="arrow-right"></ix-icon>
+          </span>
+          <input
+            id="secondInput"
+            type="text"
+            class="form-control"
+            placeholder={this.format}
+            onFocus={this.onInputFocus}
+            onBlur={this.onInputBlur}
+          />
+          <span class="dropdown-icon">
+            <ix-icon name="chevron-down-small"></ix-icon>
+          </span>
+        </div>
+      </Fragment>
+    );
+  }
+
+  renderSingleInput(): any {
+    return (
+      <Fragment>
+        <input
+          type="text"
+          class="form-control"
+          placeholder={this.format}
+          onFocus={this.onInputFocus}
+        />
+      </Fragment>
+    );
+  }
+
   render() {
     return (
       <Host>
-        <slot></slot>
+        <div class="date-input">
+          {this.label ? <label htmlFor="#firstInput">{this.label}</label> : ''}
+          {this.range ? this.renderRangeInput() : this.renderSingleInput()}
+          <ix-date-picker
+            class="picker"
+            hidden={true}
+            ref={(el) => (this.datePicker = el as HTMLIxDatePickerElement)}
+            tabIndex={-1}
+          ></ix-date-picker>
+        </div>
+        test
       </Host>
     );
   }

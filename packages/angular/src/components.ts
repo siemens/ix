@@ -442,6 +442,28 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
+  inputs: ['corners', 'format', 'from', 'label', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
+})
+@Component({
+  selector: 'ix-date-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['corners', 'format', 'from', 'label', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+})
+export class IxDateInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxDateInput extends Components.IxDateInput {}
+
+
+@ProxyCmp({
   inputs: ['corners', 'format', 'from', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })

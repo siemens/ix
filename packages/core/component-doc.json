@@ -2254,6 +2254,262 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/date-input",
+      "filePath": "./src/components/date-input/date-input.tsx",
+      "fileName": "date-input.tsx",
+      "readmePath": "./src/components/date-input/readme.md",
+      "usagesDir": "./src/components/date-input/usage",
+      "tag": "ix-date-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon",
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "ix-date-input": [
+          "ix-icon",
+          "ix-date-picker"
+        ],
+        "ix-date-picker": [
+          "ix-icon",
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
+      "props": [
+        {
+          "name": "corners",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
+          "mutable": false,
+          "attr": "corners",
+          "reflectToAttr": false,
+          "docs": "Corner style",
+          "docsTags": [],
+          "default": "'rounded'",
+          "values": [
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Date format string.\nSee @link https://day.js.org/docs/en/display/format for all available tokens.",
+          "docsTags": [],
+          "default": "'YYYY/MM/DD'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "mutable": false,
+          "attr": "from",
+          "reflectToAttr": false,
+          "docs": "The selected starting date. If the date-picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the input",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "max-date",
+          "reflectToAttr": false,
+          "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "min-date",
+          "reflectToAttr": false,
+          "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "range",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "range",
+          "reflectToAttr": false,
+          "docs": "If true a date-range can be selected (from/to).",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of the button that confirms date selection.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "mutable": false,
+          "attr": "to",
+          "reflectToAttr": false,
+          "docs": "The selected end date. If the the date-picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/date-picker",
       "filePath": "./src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -2266,6 +2522,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -2290,6 +2547,9 @@
         "ix-button": [
           "ix-spinner",
           "ix-icon"
+        ],
+        "ix-date-input": [
+          "ix-date-picker"
         ],
         "ix-datetime-picker": [
           "ix-date-picker"
