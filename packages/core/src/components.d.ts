@@ -695,11 +695,6 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active": boolean;
-        /**
           * Disable button
          */
         "disabled": boolean;
@@ -828,11 +823,6 @@ export namespace Components {
           * Disable event list item
          */
         "disabled": boolean;
-        /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity": number;
         /**
           * Show event list item as selected
          */
@@ -1349,7 +1339,7 @@ export namespace Components {
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -3474,11 +3464,6 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
-          * @deprecated Will be removed in 2.0.0. Use `closeChip`
-         */
-        "onClose"?: (event: IxChipCustomEvent<any>) => void;
-        /**
-          * Fire event if close button is clicked
           * @since 1.5.0
          */
         "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
@@ -3823,11 +3808,6 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active"?: boolean;
-        /**
           * Disable button
          */
         "disabled"?: boolean;
@@ -3964,11 +3944,6 @@ declare namespace LocalJSX {
           * Event list item click
          */
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
-        /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity"?: number;
         /**
           * Show event list item as selected
          */
@@ -4516,7 +4491,7 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
