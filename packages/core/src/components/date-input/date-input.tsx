@@ -107,6 +107,7 @@ export class DateInput {
             placeholder={this.format}
             onFocus={this.onInputFocus}
             onBlur={this.onInputBlur}
+            value={this.from}
           />
           <span class="icon">
             <ix-icon name="arrow-right"></ix-icon>
@@ -118,6 +119,7 @@ export class DateInput {
             placeholder={this.format}
             onFocus={this.onInputFocus}
             onBlur={this.onInputBlur}
+            value={this.to}
           />
           <span class="dropdown-icon">
             <ix-icon name="chevron-down-small"></ix-icon>
@@ -135,6 +137,8 @@ export class DateInput {
           class="form-control"
           placeholder={this.format}
           onFocus={this.onInputFocus}
+          onBlur={this.onInputBlur}
+          value={this.from}
         />
       </Fragment>
     );
@@ -154,6 +158,8 @@ export class DateInput {
           ></ix-date-picker>
         </div>
         test
+        {this.from}
+        {this.to}
       </Host>
     );
   }
