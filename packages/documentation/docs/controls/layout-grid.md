@@ -1,11 +1,11 @@
 import Playground from '@site/src/components/Playground';
-import Props from './../auto-generated/ix-grid/props.md';
-import Events from './../auto-generated/ix-grid/events.md';
+import Props from './../auto-generated/ix-layout-grid/props.md';
+import Events from './../auto-generated/ix-layout-grid/events.md';
 
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
-# Grid
+# Layout grid
 
 ## Usage
 
@@ -31,7 +31,7 @@ import ColEvents from './../auto-generated/ix-col/events.md';
   examplesByName>
 </Playground>
 
-## Properties (ix-grid)
+## Properties (ix-layout-grid)
 
 ### Props 
 

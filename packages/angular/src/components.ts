@@ -911,28 +911,6 @@ export declare interface IxFormField extends Components.IxFormField {}
 
 
 @ProxyCmp({
-  inputs: ['columns', 'noPadding', 'noRowGap']
-})
-@Component({
-  selector: 'ix-grid',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['columns', 'noPadding', 'noRowGap'],
-})
-export class IxGrid {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxGrid extends Components.IxGrid {}
-
-
-@ProxyCmp({
   inputs: ['collapsed', 'expandOnHeaderClick', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
@@ -1174,6 +1152,28 @@ export class IxKpi {
 
 
 export declare interface IxKpi extends Components.IxKpi {}
+
+
+@ProxyCmp({
+  inputs: ['columns', 'noPadding', 'noRowGap']
+})
+@Component({
+  selector: 'ix-layout-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['columns', 'noPadding', 'noRowGap'],
+})
+export class IxLayoutGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLayoutGrid extends Components.IxLayoutGrid {}
 
 
 @ProxyCmp({

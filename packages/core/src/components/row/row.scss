@@ -13,5 +13,5 @@
 }
 
 :host(:not(:first-of-type)) {
-  margin-block-start: var(--ix-grid-row-margin, 0);
+  margin-block-start: var(--ix-layout-grid-row-margin, 0);
 }
