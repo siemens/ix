@@ -92,7 +92,7 @@ export class CardAccordion {
           }}
         >
           <div class="expand-content-inner">
-            <div class={'expand-content-body'}>
+            <div class="expand-content-body">
               <slot></slot>
             </div>
             <div class={'expand-content-footer'}></div>
