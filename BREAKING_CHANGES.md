@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### Deprecated `ix-split-button-item`
+
+Use `ix-dropdown-item` as an successor of `ix-split-button-item`. `ix-split-button-item` will be removed in the major release.
+
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:
