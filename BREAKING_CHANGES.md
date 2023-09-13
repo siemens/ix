@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### `ix-dropdown-item` remove 'itemClick' event
+
+Remove `itemClick` event use native `click` event instead.
+
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:

@@ -3888,9 +3888,6 @@ declare namespace LocalJSX {
           * Label of dropdown item
          */
         "label"?: string;
-        /**
-          * Click on item
-         */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
         "suppressChecked"?: boolean;
     }
