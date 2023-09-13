@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxCol, IxGrid, IxRow } from '@siemens/ix-react';
+import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-react';
 import React from 'react';
 // Example styling for documentation
 import './grid.css';
@@ -16,7 +16,7 @@ export default () => {
   return (
     <>
       <h4>Column 6 takes up more space to a max of 12 columns total</h4>
-      <IxGrid className={'ExampleGrid'}>
+      <IxLayoutGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>1</IxCol>
           <IxCol>2</IxCol>
@@ -25,10 +25,10 @@ export default () => {
           <IxCol>5</IxCol>
           <IxCol size="6">6</IxCol>
         </IxRow>
-      </IxGrid>
+      </IxLayoutGrid>
 
       <h4>Stack columns on smaller screens</h4>
-      <IxGrid className={'ExampleGrid'}>
+      <IxLayoutGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol size="12" size-md="3">
             1
@@ -43,7 +43,7 @@ export default () => {
             4
           </IxCol>
         </IxRow>
-      </IxGrid>
+      </IxLayoutGrid>
     </>
   );
 };

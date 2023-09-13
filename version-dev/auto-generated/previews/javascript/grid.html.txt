@@ -1,4 +1,4 @@
-<ix-grid>
+<ix-layout-grid>
   <ix-row>
     <ix-col>1</ix-col>
     <ix-col>2</ix-col>
@@ -7,9 +7,9 @@
     <ix-col>5</ix-col>
     <ix-col>6</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
-<ix-grid>
+<ix-layout-grid>
   <ix-row>
     <ix-col>1</ix-col>
     <ix-col>2</ix-col>
@@ -24,4 +24,4 @@
     <ix-col>11</ix-col>
     <ix-col>12</ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>

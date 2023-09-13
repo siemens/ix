@@ -6,7 +6,7 @@
   }
 </style>
 
-<ix-grid>
+<ix-layout-grid>
   <ix-row>
     <ix-col size="2">
       <span>Light/Dark</span>
@@ -31,7 +31,7 @@
       <label for="system"></label>
     </ix-col>
   </ix-row>
-</ix-grid>
+</ix-layout-grid>
 
 <script type="module">
   import { themeSwitcher } from '@siemens/ix';
@@ -57,7 +57,7 @@
       themeSelect.appendChild(item);
     });
 
-    themeSelect.selectedIndices = selectedTheme;
+    themeSelect.value = selectedTheme;
 
     themeSelect.addEventListener(
       'itemSelectionChange',
