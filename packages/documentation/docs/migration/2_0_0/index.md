@@ -106,7 +106,7 @@ Please note that as part of this migration, some changes may be required in your
 
 ## Preparation of removing bootstrap as dependency
 
-As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Which means that we are no longer depends on any css framework. This give us the opportunity to divide us from bootstrap. Which does not mean that bootstrap is bad or lesser good the alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
+As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Which means that we are no longer depends on any css framework. This give us the opportunity to remove bootstrap. Which does not mean that bootstrap is a bad or lesser good solution to alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
 
 As for now bootstrap is still a part of our library but in future releases we planning to drop bootstrap entirely.
 
