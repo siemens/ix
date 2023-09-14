@@ -84,6 +84,7 @@ import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
 import Modal from 'src/preview-examples/modal-by-template';
+import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
@@ -252,6 +253,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Grid,
     GridSize,
     GridPadding,
+    ModalSizes,
   ],
   imports: [
     BrowserModule,

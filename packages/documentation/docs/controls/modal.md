@@ -29,7 +29,25 @@ import SourceReactMessage from './../auto-generated/previews/react/message.md'
 
 # Modal
 
-## Custom modal
+## Sizes
+
+Modals support the following sizes:
+
+- `360`
+- `480`
+- `600`
+- `720`
+- `840`
+- `full-width` - uses all the space of the screen.
+
+<Playground
+  height="18rem"
+  name="modal-sizes"
+  examplesByName
+>
+</Playground>
+
+## Custom
 
 How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
 Select the appropriate section below for the respective usage information.
