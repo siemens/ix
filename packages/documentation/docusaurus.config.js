@@ -174,7 +174,7 @@ const config = {
       require.resolve('docusaurus-lunr-search'),
       {
         languages: ['en'],
-        excludeRoutes: ['docs/changelogs/**/*', '**/auto-generated/**/*'],
+        excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
       },
     ],
   ],
