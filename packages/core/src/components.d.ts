@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
+import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -42,6 +43,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
+export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -175,6 +177,11 @@ export namespace Components {
           * @since 2.0.0
          */
         "sublabel": string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant": BlindVariant;
     }
     interface IxBreadcrumb {
         /**
@@ -3203,6 +3210,11 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "sublabel"?: string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant"?: BlindVariant;
     }
     interface IxBreadcrumb {
         /**

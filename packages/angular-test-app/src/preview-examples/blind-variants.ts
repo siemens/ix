@@ -7,15 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
+import { Component } from '@angular/core';
 
-:host {
-  display: block;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  padding: 0rem 0rem 0rem 0rem;
-  ix-blind {
-    margin: 1rem;
-  }
-}
+@Component({
+  selector: 'app-example',
+  templateUrl: './blind.html',
+})
+export default class Blind {}

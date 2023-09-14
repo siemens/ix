@@ -13,23 +13,20 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('blind/basic');
-    const blind = await page.waitForSelector('ix-blind');
-    expect(await blind.screenshot()).toMatchSnapshot();
-  });
-
-  regressionTest('sublabel', async ({ page }) => {
-    await page.goto('blind/sublabel');
-    const blind = await page.waitForSelector('ix-blind');
-    expect(await blind.screenshot()).toMatchSnapshot();
+    await page.waitForSelector('ix-blind');
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('collapsed', async ({ page }) => {
     await page.goto('blind/basic');
-    await page.locator('.blind-header').click();
+    await page
+      .locator('.blind-header')
+      .evaluateAll((list) => list.forEach((e) => (e as HTMLElement).click()));
     await page.waitForSelector('.blind-header.closed');
     await page.waitForTimeout(800);
-    const blind = await page.waitForSelector('ix-blind');
-    expect(await blind.screenshot()).toMatchSnapshot();
+    await page.waitForSelector('ix-blind');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('header-actions', async ({ page }) => {

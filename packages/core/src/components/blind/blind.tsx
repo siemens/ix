@@ -18,9 +18,13 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 
+export type BlindVariant = CardVariant | 'primary' | 'outline';
+
 let sequentialInstanceId = 0;
+
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
@@ -48,6 +52,12 @@ export class Blind {
    * @since 1.5.0
    */
   @Prop() icon: string;
+
+  /**
+   * Blind variant
+   * @since 2.0.0
+   */
+  @Prop() variant: BlindVariant = 'insight';
 
   /**
    * Collapsed state changed
@@ -126,10 +136,15 @@ export class Blind {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          [`blind-${this.variant}`]: true,
+        }}
+      >
         <button
           class={{
             'blind-header': true,
+            [`blind-${this.variant}`]: true,
             closed: this.collapsed,
           }}
           type="button"
@@ -139,8 +154,13 @@ export class Blind {
           onClick={(e) => this.onHeaderClick(e)}
         >
           <ix-icon
-            class={'collapse-icon'}
+            class="collapse-icon"
             name="chevron-right-small"
+            color={
+              this.variant === 'insight' || this.variant === 'outline'
+                ? 'color-primary'
+                : `color-${this.variant}--contrast`
+            }
             ref={(ref) => (this.chevronRef = ref)}
           ></ix-icon>
           <div
@@ -149,34 +169,43 @@ export class Blind {
           >
             {this.label !== undefined ? (
               <span class="blind-header-title-basic">
-                {this.icon !== undefined ? (
-                  <ix-icon name={this.icon}></ix-icon>
-                ) : (
-                  ''
-                )}
-                <ix-typography format="label-lg" bold>
-                  <div class="blind-header-title-label" title={this.label}>
-                    {this.label}
-                  </div>
-                </ix-typography>
-                {this.sublabel !== undefined ? (
-                  <ix-typography color="soft">
-                    <div
-                      class="blind-header-title-sublabel"
-                      title={this.sublabel}
-                    >
-                      {this.sublabel}
+                <div class="blind-header-title-col">
+                  {this.icon !== undefined ? (
+                    <ix-icon
+                      name={this.icon}
+                      color={
+                        this.variant === 'insight' || this.variant === 'outline'
+                          ? 'color-std-text'
+                          : `color-${this.variant}--contrast`
+                      }
+                    ></ix-icon>
+                  ) : (
+                    ''
+                  )}
+                  <ix-typography title={this.label} format="label-lg" bold>
+                    <div class="blind-header-title-label" title={this.label}>
+                      {this.label}
                     </div>
                   </ix-typography>
-                ) : (
-                  ''
-                )}
-                <span
-                  class="header-actions"
-                  onClick={(e) => e.stopImmediatePropagation()}
-                >
-                  <slot name="header-actions"></slot>
-                </span>
+                </div>
+
+                <div class="blind-header-title-col">
+                  {this.sublabel !== undefined ? (
+                    <ix-typography title={this.sublabel}>
+                      <div class="blind-header-title-sublabel">
+                        {this.sublabel}
+                      </div>
+                    </ix-typography>
+                  ) : (
+                    ''
+                  )}
+                  <span
+                    class="header-actions"
+                    onClick={(e) => e.stopImmediatePropagation()}
+                  >
+                    <slot name="header-actions"></slot>
+                  </span>
+                </div>
               </span>
             ) : (
               <slot name="custom-header"></slot>

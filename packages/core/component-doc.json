@@ -425,7 +425,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
         "ix-typography"
@@ -434,6 +436,9 @@
         "ix-blind": [
           "ix-icon",
           "ix-typography"
+        ],
+        "my-component": [
+          "ix-blind"
         ]
       },
       "props": [
@@ -506,6 +511,65 @@
           ],
           "values": [
             {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Blind variant",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "'insight'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "insight",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
               "type": "string"
             }
           ],
@@ -5082,7 +5146,8 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
-        "ix-toast"
+        "ix-toast",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner",
@@ -5166,6 +5231,9 @@
           "ix-icon-button"
         ],
         "ix-toast": [
+          "ix-icon-button"
+        ],
+        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -12368,8 +12436,24 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-blind",
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind",
+          "ix-icon-button"
+        ],
+        "ix-blind": [
+          "ix-icon",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

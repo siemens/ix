@@ -16,6 +16,12 @@ import SourceReactHeaderActions from './../auto-generated/previews/react/blind-h
 import SourceVueHeaderActions from './../auto-generated/previews/vue/blind-header-actions.md'
 import SourceAngularHeaderActions from './../auto-generated/previews/angular/blind-header-actions.ts.md'
 
+import WebComponentVariants from './../auto-generated/previews/web-component/blind-variants.md'
+import SourceReactVariants from './../auto-generated/previews/react/blind-variants.md'
+import SourceVueVariants from './../auto-generated/previews/vue/blind-variants.md'
+import SourceAngularVariants from './../auto-generated/previews/angular/blind-variants.ts.md'
+
+
 import Playground from '@site/src/components/Playground'
 
 <Playground
@@ -46,6 +52,20 @@ frameworks={{
     vue: SourceVueHeaderActions
 }}>
 </Playground>
+
+<ApiTableSinceTag message="2.0.0" />
+
+<Playground
+name="blind-variants"
+height="16rem"
+frameworks={{
+    react: SourceReactVariants,
+    angular: SourceAngularVariants,
+    javascript: WebComponentVariants,
+    vue: SourceVueVariants
+}}>
+</Playground>
+
 
 ### Properties
 
