@@ -4,7 +4,7 @@
 
 ### Deprecated `ix-split-button-item`
 
-Use `ix-dropdown-item` as an successor of `ix-split-button-item`. `ix-split-button-item` will be removed in the major release.
+Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.
 
 ### Change `itemSelectionChange` event from `ix-select`
 
