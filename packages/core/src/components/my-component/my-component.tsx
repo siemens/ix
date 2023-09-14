@@ -15,6 +15,10 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-date-input></ix-date-input>
+      </Host>
+    );
   }
 }

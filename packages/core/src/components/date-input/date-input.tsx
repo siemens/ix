@@ -1,4 +1,12 @@
-import { Component, Fragment, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  State,
+} from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 // import { DateChangeEvent } from '../date-picker/date-picker';
 // import { IxDatePickerCustomEvent } from 'src/components';
@@ -9,6 +17,8 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
   shadow: true,
 })
 export class DateInput {
+  @Element() hostElement: HTMLIxDateInputElement;
+
   /**
    * Label for the input
    */
@@ -76,6 +86,10 @@ export class DateInput {
    * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
+
+  // Logt eine Warnung in die Console, das ist hier in dem fall aber nichts kritisch da sich die Ref nur
+  // einmal nach dem rendenr aendert!
+  @State() triggerRef: HTMLElement;
 
   private focusedInput!: HTMLElement;
   // private datePicker!: HTMLIxDatePickerElement;
@@ -153,7 +167,11 @@ export class DateInput {
   render() {
     return (
       <Host>
-        <div id="dateinput" class="date-input">
+        <div
+          id="dateinput"
+          class="date-input"
+          ref={(ref) => (this.triggerRef = ref)}
+        >
           {this.label ? <label htmlFor="firstInput">{this.label}</label> : ''}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
           {/* <ix-date-picker
@@ -179,8 +197,8 @@ export class DateInput {
         >
           <ix-dropdown-item label="item"></ix-dropdown-item>
         </ix-dropdown> */}
-        <ix-button id="triggerId">Open</ix-button>
-        <ix-dropdown trigger="triggerId">
+        {/* <ix-button id="triggerId">Open</ix-button> */}
+        <ix-dropdown trigger={this.triggerRef}>
           <ix-dropdown-header label="Category"></ix-dropdown-header>
           <ix-dropdown-item label="Item 2"></ix-dropdown-item>
           <ix-dropdown-item label="Item 3"></ix-dropdown-item>
