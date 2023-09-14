@@ -2,6 +2,15 @@
 
 ## v2.0.0
 
+### 'ix-time-picker' removed deprecated properties
+
+- show-time-reference
+- individual
+
+### `ix-dropdown-item` remove 'itemClick' event
+
+Remove `itemClick` event use native `click` event instead.
+
 ### `ix-event-list-item` remove deprecated props
 
 Remove deprecated props
@@ -20,13 +29,15 @@ Remove deprecated events
 
 - `close`
 
-
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:
 
 ```typescript
-@Event() itemSelectionChange: EventEmitter<string[]>
+@Event()
+itemSelectionChange
+:
+EventEmitter<string[]>
 ```
 
 ### Remove `ix-animated-tab` and `ix-animated-tabs`
@@ -304,13 +315,19 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 **_Before_**
 
 ```typescript
-@Event() close: EventEmitter<string>;
+@Event()
+close
+:
+EventEmitter<string>;
 ```
 
 **_Now_**
 
 ```typescript
-@Event() close: EventEmitter<{
+@Event()
+close
+:
+EventEmitter<{
   nativeEvent: MouseEvent;
   name: string;
 }>;

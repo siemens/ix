@@ -40,6 +40,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "dayjs": "^1.11.9",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

@@ -228,11 +228,11 @@ export class DateTimePicker {
           <ix-time-picker
             ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
-            individual={false}
+            // individual={false}
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
-            showTimeReference={this.showTimeReference}
+            // showTimeReference={this.showTimeReference}
             onTimeChange={(event) => this.onTimeChange(event)}
             time={this.time}
             format={this.timeFormat}

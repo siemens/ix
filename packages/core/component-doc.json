@@ -3878,17 +3878,7 @@
           "docsTags": []
         }
       ],
-      "events": [
-        {
-          "event": "itemClick",
-          "detail": "HTMLIxDropdownItemElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Click on item",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -10384,33 +10374,10 @@
               "text": "1.1.0"
             }
           ],
-          "default": "'TT'",
+          "default": "'HH:mm:ss'",
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "individual",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
-            }
-          ],
-          "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -10468,22 +10435,17 @@
           "required": false
         },
         {
-          "name": "showTimeReference",
-          "type": "any",
-          "mutable": true,
-          "attr": "show-time-reference",
+          "name": "standaloneAppearance",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "standalone-appearance",
           "reflectToAttr": false,
-          "docs": "Show time reference input",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0 time reference is default aligned with formt tt"
-            }
-          ],
-          "default": "undefined",
+          "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
+          "docsTags": [],
+          "default": "true",
           "values": [
             {
-              "type": "any"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -10524,7 +10486,7 @@
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.format)",
+          "default": "dayjs().format(this.format)",
           "values": [
             {
               "type": "string"
@@ -10541,7 +10503,7 @@
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "DateTime.fromFormat(\n    this.time,\n    this.format\n  ).toFormat('a') as 'PM' | 'AM'",
+          "default": "this.is12HourFormat()\n      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')\n      : undefined",
           "values": [
             {
               "value": "AM",

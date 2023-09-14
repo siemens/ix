@@ -673,17 +673,11 @@ export class IxDropdownItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
 
-export declare interface IxDropdownItem extends Components.IxDropdownItem {
-  /**
-   * Click on item
-   */
-  itemClick: EventEmitter<CustomEvent<HTMLIxDropdownItemElement>>;
-}
+export declare interface IxDropdownItem extends Components.IxDropdownItem {}
 
 
 @ProxyCmp({
@@ -2022,7 +2016,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2030,7 +2024,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'showHour', 'showMinutes', 'showSeconds', 'standaloneAppearance', 'textSelectTime', 'time', 'timeReference'],
 })
 export class IxTimePicker {
   protected el: HTMLElement;
