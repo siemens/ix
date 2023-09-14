@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### `ix-dropdown-item` remove 'itemClick' event
+
+Remove `itemClick` event use native `click` event instead.
+
 ### `ix-event-list-item` remove deprecated props
 
 Remove deprecated props
@@ -19,7 +23,6 @@ Remove deprecated props
 Remove deprecated events
 
 - `close`
-
 
 ### Change `itemSelectionChange` event from `ix-select`
 

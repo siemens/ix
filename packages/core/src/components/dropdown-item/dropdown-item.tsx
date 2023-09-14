@@ -51,19 +51,13 @@ export class DropdownItem {
    */
   @Prop() checked = false;
 
-  /**
-   * @internal
-   */
+  /** @internal */
   @Prop() isSubMenu = false;
 
-  /**
-   * @internal
-   */
+  /** @internal */
   @Prop() suppressChecked = false;
 
-  /**
-   * Click on item
-   */
+  /** @internal */
   @Event() itemClick: EventEmitter<HTMLIxDropdownItemElement>;
 
   /**

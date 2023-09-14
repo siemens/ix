@@ -3878,17 +3878,7 @@
           "docsTags": []
         }
       ],
-      "events": [
-        {
-          "event": "itemClick",
-          "detail": "HTMLIxDropdownItemElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Click on item",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
