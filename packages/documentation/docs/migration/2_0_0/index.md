@@ -9,9 +9,10 @@ title: Updating to v2
 Welcome to the migration guide for upgrading from Siemens iX v1 to v2.
 Please follow this guide to ensure a smooth and successful migration process.
 
-## Checkout the breaking changes in detail
+## Breaking changes in v2.0.0
 
-Checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
+You can find our guide describing all breaking changes in detail [here](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
+These are the most important ones:
 
 # New default theme
 
@@ -28,7 +29,20 @@ __New:__
 
 # New concepts
 
-## Replace Bootstrap Modal parts with iX modal components
+## Replacement of Bootstrap Modal parts with iX modal components
+
+__Old:__
+
+```html
+  <div class="modal-header>My Header</div>
+  <div class="modal-body">My Content</div>
+  <div class="modal-footer">
+    <ix-button>Save</ix-button>
+    <ix-button>Cancel</ix-button>
+  </div>
+```
+
+__New:__
 
 ```html
   <ix-modal-header>My Header</ix-modal-header>
@@ -39,7 +53,7 @@ __New:__
   </ix-modal-footer>
 ```
 
-## ix-basic-navigation and ix-menu
+## Updates in ix-basic-navigation and ix-menu
 
 In the latest version of `ix-basic-navigation`, we have changed how menu items overflowing outside the menu container are being handled. Previously, when there were too many items, users had to click on a dropdown to see the hidden ones, resulting in a suboptimal experience.
 Now the list of menu items will scroll vertically to prevent overflow.
@@ -47,7 +61,7 @@ This ensures that all menu items remain contained within the menu, offering a mo
 
 ### New component `ix-menu-category`
 
-`ix-menu-category` is a new addition to the `ix-menu` that enables the creation of second-level navigation within the `ix-menu` component. With `ix-menu-category`, you can organize your menu items into categories, providing a hierarchical structure for your menu navigation.
+`ix-menu-category` is a new addition to the `ix-menu` that enables the creation of a second level of navigation within the `ix-menu` component. With `ix-menu-category`, you can organize your menu items into categories, providing a hierarchical structure for your menu navigation.
 
 ```tsx
 <ix-menu-category label="AI Configuration" icon="rocket">
@@ -56,27 +70,27 @@ This ensures that all menu items remain contained within the menu, offering a mo
 </ix-menu-category>
 ```
 
-### Multiple screen layouts within the `ix-basic-navigation`
+### Multiple screen layouts within `ix-basic-navigation`
 
 The `ix-basic-navigation` introduces new layout breakpoints that affect the display and behavior of the menu component based on the screen size. These breakpoints provide a responsive and adaptive menu layout for different devices and screen resolutions.
 
 ![Menu Layout](capture_layout_feature.gif)
 
-With the updated version of ix-menu, you have the flexibility to choose which layout breakpoints are supported. You can specify the supported modes using the `breakpoints` property. This allows you to customize the menu's behavior and appearance according to your specific requirements.
+With the updated version of `ix-menu`, you have the flexibility to choose which layout breakpoints you want to supported. You can specify the supported modes using the `breakpoints` property. This allows you to customize the menu's behavior and appearance according to your specific requirements.
 
-The following breakpoints are now available in ix-menu:
+Here you can see all available breaakpoints and how they affect `ix-menu`:
 
 - **sm**: `only screen and (min-width: 36em)`
-  - Menu not visible.
+  - Menu not visible
 - **md**: `only screen and (min-width: 48em)`
-  - Menu visible but requires expansion to see the complete menu.
+  - Menu is visible but has to be expaned to see it fully
 - **lg**: `only screen and (min-width: 62em)`
-  - Shows the menu as pinned in full width.
-  - The overlaying content is moved to the left.
+  - Shows the menu as pinned and in its full width
+  - The underlying content will be shifted to the right to be fully accessible
 
-These breakpoints enable the menu to adapt its layout and behavior according to the available screen space, ensuring optimal visibility and usability for different screen sizes.
+These breakpoints enable the menu to adapt its layout and behavior according to the available screen real estate, ensuring optimal visibility and usability for different screen sizes.
 
-By setting the `breakpoints` property, you can define which layout modes should be enabled for your menu. For example, if you want to support only the small and medium breakpoints, you can set the `breakpoints` property as follows:
+In addition to that you can specify which layout modes should be enabled for your menu by setting the `breakpoints` property. For example, if you want to support only the small and medium viewports, you can set the `breakpoints` property as follows:
 
 ```tsx
 <ix-basic-navigation breakpoints={['sm', 'lg']}>
@@ -98,15 +112,15 @@ We are excited to announce that we have migrated all of our components to Shadow
 
 Here are the key advantages of migrating to Shadow DOM components:
 
-1. **Interoperable**: Shadow DOM provides encapsulation for components, isolating their styles and markup within a dedicated DOM subtree. This ensures predictable and maintainable styling, while enabling seamless integration of self-contained and reusable components into various projects without conflicts or interference with existing styles and functionality.
+1. **Interoperability**: Shadow DOM provides encapsulation for components, isolating their styles and markup within a dedicated DOM subtree. This ensures predictable and maintainable styling, while enabling seamless integration of self-contained and reusable components into various projects without conflicts or interference with existing styles and functionality.
 
 2. **Improved Performance**: Shadow DOM components have better performance due to the browser's optimized rendering of the encapsulated DOM subtree. This results in faster initial rendering and improved overall responsiveness of the components.
 
-Please note that as part of this migration, some changes may be required in your codebase if you were relying on direct manipulation or styling of our components. We recommend reviewing our updated documentation and examples to ensure a smooth transition and take full advantage of the benefits offered by Shadow DOM components.
+Please note that as part of this migration, some changes may be required in your codebase if you were relying on direct manipulation or styling of our components. We recommend review of our updated documentation and examples to ensure a smooth transition so you can take full advantage of the benefits offered by Shadow DOM components.
 
-## Preparation of removing bootstrap as dependency
+## Preparation for removing Bootstrap as dependency TODO
 
-As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Which means that we are no longer depends on any css framework. This give us the opportunity to remove bootstrap. Which does not mean that bootstrap is a bad or lesser good solution to alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
+As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Therefore we no longer depend on any third party CSS framework. This gives us the opportunity to remove bootstrap. Which does not mean that bootstrap is a bad or lesser good solution to alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
 
 As for now bootstrap is still a part of our library but in future releases we planning to drop bootstrap entirely.
 
@@ -118,4 +132,4 @@ A detailed description can be found [here](./../../guidelines/theme#applying-onl
 
 Don't forget to checkout the [Breaking Changes guide](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md).
 
-If you have question or facing problems during migration [contact us over our forum](https://community.siemens.com/c/ix/)
+If you have further questions or you are facing any problems during migration please [contact us over our forum](https://community.siemens.com/c/ix/).
