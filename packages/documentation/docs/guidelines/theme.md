@@ -15,22 +15,21 @@ You can also create your own themes in order to customize the design system to y
 
 Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
 
-## Using old classic theme
+## Using the old classic theme
 
-The legacy theme is not longer part of the main css file. In this case you have to load the theme
-manual. This can be done within various ways.
+The original classic theme was deprecated in favor of an updated version that is more easily maintainable for us.
+The legacy theme is still available but no longer part of the main CSS file. In order to still apply it to your app you have to load it manually.
+This can be done in various ways.
 
-The simplest way is to use bundler/loader and just import the legacy styles inside of your global stylesheet.
+The simplest way is to use the bundler/loader and just import the legacy styles inside of your global stylesheet.
 
-e.g
-
-styles.css:
+e.g. styles.css:
 ```
 @import '@siemens/ix/dist-css/theme/legacy-classic-dark.css';
 @import '@siemens/ix/dist-css/theme/legacy-classic-light.css';
 ```
 
-If this step is done you can provide the class namings on the body tag. Following examples uses the `theme-legacy-classic-dark`
+If this step is done you can set the theme name class on the body tag:
 
 ```html
 <html>
