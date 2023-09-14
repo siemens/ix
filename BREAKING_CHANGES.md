@@ -6,6 +6,24 @@
 
 Remove `itemClick` event use native `click` event instead.
 
+### `ix-event-list-item` remove deprecated props
+
+Remove deprecated props
+
+- `opacity`
+
+### `ix-dropdown-button` remove deprecated props
+
+Remove deprecated props
+
+- `active`
+
+### `ix-chip` remove deprecated events
+
+Remove deprecated events
+
+- `close`
+
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:
