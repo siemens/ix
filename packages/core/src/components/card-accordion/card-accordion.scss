@@ -9,17 +9,12 @@
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
 
-$action-height: 2.5rem;
-$expand-content-height: 15rem;
-
 :host {
   @include ix-component;
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
-  height: $action-height;
-  max-height: $action-height;
   transition: var(--theme-default-time) ease-in-out;
 
   .expand-action {
@@ -29,7 +24,7 @@ $expand-content-height: 15rem;
 
     appearance: button;
 
-    height: $action-height;
+    height: 2.5rem;
     width: 100%;
 
     background-color: var(--theme-color-component-1);
@@ -68,33 +63,37 @@ $expand-content-height: 15rem;
   }
 
   .expand-content {
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    position: absolute;
-    top: $action-height;
+    display: grid;
+    position: relative;
+    grid-template-rows: 0fr;
     transition: var(--theme-default-time) ease-in-out;
     width: 100%;
-    height: 0;
-    max-height: 20rem;
+    max-height: 14.75rem;
+    opacity: 0;
     background-color: var(--theme-color-component-1);
   }
 
   .expand-content.show {
-    height: $expand-content-height;
+    grid-template-rows: 14.75rem;
     opacity: 1;
+  }
+
+  .expand-content-inner {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
   }
 
   .expand-content.show .expand-content-body {
     display: none;
     overflow: hidden;
-
     color: var(--theme-color-std-text);
   }
 
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
+    height: calc(100% - 1rem);
   }
 
   .expand-content-footer {
@@ -110,9 +109,4 @@ $expand-content-height: 15rem;
     border-bottom-left-radius: var(--theme-default-border-radius);
     border-bottom-right-radius: var(--theme-default-border-radius);
   }
-}
-
-:host(.show) {
-  height: calc(#{$expand-content-height} + #{$action-height});
-  max-height: calc(#{$expand-content-height} + #{$action-height});
 }

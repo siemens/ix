@@ -8,8 +8,6 @@
  */
 @import 'mixins/shadow-dom/component';
 
-$paddingContentLeftRight: 1rem;
-
 :host {
   @include ix-component;
   display: flex;
@@ -30,8 +28,6 @@ $paddingContentLeftRight: 1rem;
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    padding: 1rem $paddingContentLeftRight;
-    // min-height: calc(13.5rem - 2.5rem);
     height: calc(100% - 2rem);
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--theme-default-border-radius);
