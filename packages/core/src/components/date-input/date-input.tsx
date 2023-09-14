@@ -1,5 +1,7 @@
 import { Component, Fragment, h, Host, Prop } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+// import { DateChangeEvent } from '../date-picker/date-picker';
+// import { IxDatePickerCustomEvent } from 'src/components';
 
 @Component({
   tag: 'ix-date-input',
@@ -76,11 +78,11 @@ export class DateInput {
   @Prop() weekStartIndex = 0;
 
   private focusedInput!: HTMLElement;
-  private datePicker!: HTMLIxDatePickerElement;
+  // private datePicker!: HTMLIxDatePickerElement;
 
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLElement;
-    this.datePicker.hidden = false;
+    // this.datePicker.hidden = false;
   };
 
   private onInputBlur = (event: FocusEvent) => {
@@ -93,8 +95,12 @@ export class DateInput {
       return;
     }
 
-    this.datePicker.hidden = true;
+    // this.datePicker.hidden = true;
   };
+
+  // private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
+  //   // event.d
+  // }
 
   renderRangeInput(): any {
     return (
@@ -147,19 +153,41 @@ export class DateInput {
   render() {
     return (
       <Host>
-        <div class="date-input">
-          {this.label ? <label htmlFor="#firstInput">{this.label}</label> : ''}
+        <div id="dateinput" class="date-input">
+          {this.label ? <label htmlFor="firstInput">{this.label}</label> : ''}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
-          <ix-date-picker
+          {/* <ix-date-picker
             class="picker"
             hidden={true}
             ref={(el) => (this.datePicker = el as HTMLIxDatePickerElement)}
-            tabIndex={-1}
-          ></ix-date-picker>
+            tabindex={-1}
+            corners={this.corners}
+            range={this.range}
+            onDateChange={(event) => this.onDateChange(event)}
+            from={this.from}
+            to={this.to}
+            format={this.format}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            weekStartIndex={this.weekStartIndex}
+          ></ix-date-picker> */}
         </div>
-        test
-        {this.from}
-        {this.to}
+        {/* <ix-button id="triggerId">test</ix-button>
+        <ix-dropdown
+          trigger="triggerId"
+          // anchor={<ix-date-picker></ix-date-picker>}
+        >
+          <ix-dropdown-item label="item"></ix-dropdown-item>
+        </ix-dropdown> */}
+        <ix-button id="triggerId">Open</ix-button>
+        <ix-dropdown trigger="triggerId">
+          <ix-dropdown-header label="Category"></ix-dropdown-header>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 4"></ix-dropdown-item>
+          <ix-divider></ix-divider>
+          <ix-dropdown-item label="Item 5"></ix-dropdown-item>
+        </ix-dropdown>
       </Host>
     );
   }
