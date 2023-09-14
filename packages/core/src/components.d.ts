@@ -30,6 +30,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
+import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -63,6 +64,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
+export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -693,11 +695,6 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active": boolean;
-        /**
           * Disable button
          */
         "disabled": boolean;
@@ -826,11 +823,6 @@ export namespace Components {
           * Disable event list item
          */
         "disabled": boolean;
-        /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity": number;
         /**
           * Show event list item as selected
          */
@@ -1347,7 +1339,7 @@ export namespace Components {
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -1630,6 +1622,48 @@ export namespace Components {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled": boolean;
+        /**
+          * Show error state and message
+         */
+        "error": boolean | string;
+        /**
+          * Define tick marker on the slider. Marker has to be within slider min/max
+         */
+        "marker": SliderMarker;
+        /**
+          * Maximum slider value
+         */
+        "max": number;
+        /**
+          * Minimum slider value
+         */
+        "min": number;
+        /**
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+         */
+        "step": number;
+        /**
+          * Show a trace line
+         */
+        "trace": boolean;
+        /**
+          * Define the start point of the trace line
+         */
+        "traceReference": number;
+        /**
+          * Current value of the slider
+         */
+        "value": number;
+    }
     interface IxSpinner {
         "hideTrack": boolean;
         /**
@@ -1903,10 +1937,12 @@ export namespace Components {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame": boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for": string;
+        "hideTooltip": () => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -1916,6 +1952,7 @@ export namespace Components {
           * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showTooltip": (anchorElement: any) => Promise<void>;
         /**
           * Title of the tooltip
          */
@@ -2229,6 +2266,10 @@ export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
 export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
+}
+export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSliderElement;
 }
 export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2820,6 +2861,15 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
+    }
+    var HTMLIxSliderElement: {
+        prototype: HTMLIxSliderElement;
+        new (): HTMLIxSliderElement;
+    };
     interface HTMLIxSpinnerElement extends Components.IxSpinner, HTMLStencilElement {
     }
     var HTMLIxSpinnerElement: {
@@ -3030,6 +3080,7 @@ declare global {
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
+        "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
@@ -3419,11 +3470,6 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
-          * @deprecated Will be removed in 2.0.0. Use `closeChip`
-         */
-        "onClose"?: (event: IxChipCustomEvent<any>) => void;
-        /**
-          * Fire event if close button is clicked
           * @since 1.5.0
          */
         "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
@@ -3768,11 +3814,6 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active"?: boolean;
-        /**
           * Disable button
          */
         "disabled"?: boolean;
@@ -3909,11 +3950,6 @@ declare namespace LocalJSX {
           * Event list item click
          */
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
-        /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity"?: number;
         /**
           * Show event list item as selected
          */
@@ -4461,7 +4497,7 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -4782,6 +4818,49 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Show error state and message
+         */
+        "error"?: boolean | string;
+        /**
+          * Define tick marker on the slider. Marker has to be within slider min/max
+         */
+        "marker"?: SliderMarker;
+        /**
+          * Maximum slider value
+         */
+        "max"?: number;
+        /**
+          * Minimum slider value
+         */
+        "min"?: number;
+        "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
+        /**
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+         */
+        "step"?: number;
+        /**
+          * Show a trace line
+         */
+        "trace"?: boolean;
+        /**
+          * Define the start point of the trace line
+         */
+        "traceReference"?: number;
+        /**
+          * Current value of the slider
+         */
+        "value"?: number;
+    }
     interface IxSpinner {
         "hideTrack"?: boolean;
         /**
@@ -5084,6 +5163,7 @@ declare namespace LocalJSX {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame"?: boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
@@ -5382,6 +5462,7 @@ declare namespace LocalJSX {
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
+        "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
         "ix-split-button-item": IxSplitButtonItem;
@@ -5560,6 +5641,10 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
             /**

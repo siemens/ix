@@ -34,7 +34,7 @@ export class MenuItem {
   /**
    * Icon name from @siemens/ix-icons
    *
-   * @deprecated Use `icon` property. Will be removed in 3.0.0
+   * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
   @Prop() tabIcon = 'document';
 

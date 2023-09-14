@@ -139,7 +139,6 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'background',
   'color',
   'outline',
-  'close',
   'closeChip'
 ]);
 
@@ -237,7 +236,6 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'variant',
   'outline',
   'ghost',
-  'active',
   'disabled',
   'label',
   'icon',
@@ -288,7 +286,6 @@ export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem
   'selected',
   'disabled',
   'chevron',
-  'opacity',
   'itemClick'
 ]);
 
@@ -358,8 +355,7 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undefined, [
   'size',
   'color',
-  'name',
-  'src'
+  'name'
 ]);
 
 
@@ -643,6 +639,20 @@ export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-
 ]);
 
 
+export const IxSlider = /*@__PURE__*/ defineContainer<JSX.IxSlider>('ix-slider', undefined, [
+  'step',
+  'min',
+  'max',
+  'value',
+  'marker',
+  'trace',
+  'traceReference',
+  'disabled',
+  'error',
+  'valueChange'
+]);
+
+
 export const IxSpinner = /*@__PURE__*/ defineContainer<JSX.IxSpinner>('ix-spinner', undefined, [
   'variant',
   'size',
@@ -760,7 +770,8 @@ export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-toolti
   'for',
   'titleContent',
   'interactive',
-  'placement'
+  'placement',
+  'animationFrame'
 ]);
 
 

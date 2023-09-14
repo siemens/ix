@@ -78,6 +78,7 @@ export const IxPushCard = /*@__PURE__*/createReactComponent<JSX.IxPushCard, HTML
 export const IxRow = /*@__PURE__*/createReactComponent<JSX.IxRow, HTMLIxRowElement>('ix-row');
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select');
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item');
+export const IxSlider = /*@__PURE__*/createReactComponent<JSX.IxSlider, HTMLIxSliderElement>('ix-slider');
 export const IxSpinner = /*@__PURE__*/createReactComponent<JSX.IxSpinner, HTMLIxSpinnerElement>('ix-spinner');
 export const IxSplitButton = /*@__PURE__*/createReactComponent<JSX.IxSplitButton, HTMLIxSplitButtonElement>('ix-split-button');
 export const IxSplitButtonItem = /*@__PURE__*/createReactComponent<JSX.IxSplitButtonItem, HTMLIxSplitButtonItemElement>('ix-split-button-item');
