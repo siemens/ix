@@ -1805,21 +1805,6 @@
       "methods": [],
       "events": [
         {
-          "event": "close",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fire event if close button is clicked",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use `closeChip`"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Use `closeChip`"
-        },
-        {
           "event": "closeChip",
           "detail": "any",
           "bubbles": true,
@@ -3536,29 +3521,6 @@
       },
       "props": [
         {
-          "name": "active",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "active",
-          "reflectToAttr": false,
-          "docs": "Active button (has no effect)",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 3.0.0"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed in 3.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "disabled",
           "type": "boolean",
           "mutable": false,
@@ -4272,29 +4234,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "opacity",
-          "type": "number",
-          "mutable": false,
-          "attr": "opacity",
-          "reflectToAttr": false,
-          "docs": "Opacity of the status indicator.\nDefaults to 1.0",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
-            }
-          ],
-          "default": "1",
-          "deprecation": "Will be removed in 2.0.0",
-          "values": [
-            {
-              "type": "number"
             }
           ],
           "optional": false,
@@ -7600,11 +7539,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Use `icon` property. Will be removed in 3.0.0"
+              "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
           "default": "'document'",
-          "deprecation": "Use `icon` property. Will be removed in 3.0.0",
+          "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
               "type": "string"
@@ -8678,18 +8617,18 @@
       "dependents": [],
       "dependencies": [
         "ix-card",
+        "ix-card-content",
         "ix-card-title",
         "ix-icon",
-        "ix-card-content",
         "ix-typography",
         "ix-card-accordion"
       ],
       "dependencyGraph": {
         "ix-push-card": [
           "ix-card",
+          "ix-card-content",
           "ix-card-title",
           "ix-icon",
-          "ix-card-content",
           "ix-typography",
           "ix-card-accordion"
         ],

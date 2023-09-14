@@ -2,6 +2,25 @@
 
 ## v2.0.0
 
+### `ix-event-list-item` remove deprecated props
+
+Remove deprecated props
+
+- `opacity`
+
+### `ix-dropdown-button` remove deprecated props
+
+Remove deprecated props
+
+- `active`
+
+### `ix-chip` remove deprecated events
+
+Remove deprecated events
+
+- `close`
+
+
 ### Change `itemSelectionChange` event from `ix-select`
 
 Change type of CustomEvent to:
