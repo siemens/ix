@@ -139,7 +139,6 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', undef
   'background',
   'color',
   'outline',
-  'close',
   'closeChip'
 ]);
 
@@ -237,7 +236,6 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'variant',
   'outline',
   'ghost',
-  'active',
   'disabled',
   'label',
   'icon',
@@ -288,7 +286,6 @@ export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem
   'selected',
   'disabled',
   'chevron',
-  'opacity',
   'itemClick'
 ]);
 
