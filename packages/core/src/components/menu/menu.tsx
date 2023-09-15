@@ -7,7 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { bulb, cogwheel, info } from '@siemens/ix-icons/icons';
+import {
+  bulb,
+  cogwheel,
+  info,
+  navigationLeft,
+  navigationRight,
+} from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -497,7 +503,7 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? 'navigation-left' : 'navigation-right';
+    return this.mapExpand ? navigationLeft : navigationRight;
   }
 
   private isMenuItemClicked(event: Event) {

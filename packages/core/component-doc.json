@@ -171,14 +171,32 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-basic-navigation", "ix-map-navigation"],
-      "dependencies": ["ix-burger-menu"],
+      "dependents": [
+        "ix-basic-navigation",
+        "ix-map-navigation"
+      ],
+      "dependencies": [
+        "ix-burger-menu"
+      ],
       "dependencyGraph": {
-        "ix-application-header": ["ix-burger-menu"],
-        "ix-burger-menu": ["ix-icon-button", "ix-spinner", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-basic-navigation": ["ix-application-header"],
-        "ix-map-navigation": ["ix-application-header"]
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-map-navigation": [
+          "ix-application-header"
+        ]
       },
       "props": [
         {
@@ -222,10 +240,14 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu-avatar"],
+      "dependents": [
+        "ix-menu-avatar"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-avatar": ["ix-avatar"]
+        "ix-menu-avatar": [
+          "ix-avatar"
+        ]
       },
       "props": [
         {
@@ -281,12 +303,25 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-application-header"],
+      "dependencies": [
+        "ix-application-header"
+      ],
       "dependencyGraph": {
-        "ix-basic-navigation": ["ix-application-header"],
-        "ix-application-header": ["ix-burger-menu"],
-        "ix-burger-menu": ["ix-icon-button", "ix-spinner", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -391,9 +426,15 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon", "ix-typography"],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography"
+      ],
       "dependencyGraph": {
-        "ix-blind": ["ix-icon", "ix-typography"]
+        "ix-blind": [
+          "ix-icon",
+          "ix-typography"
+        ]
       },
       "props": [
         {
@@ -502,15 +543,24 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-dropdown", "ix-dropdown-item", "ix-breadcrumb-item"],
+      "dependencies": [
+        "ix-dropdown",
+        "ix-dropdown-item",
+        "ix-breadcrumb-item"
+      ],
       "dependencyGraph": {
         "ix-breadcrumb": [
           "ix-dropdown",
           "ix-dropdown-item",
           "ix-breadcrumb-item"
         ],
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-breadcrumb-item": ["ix-icon", "ix-spinner"]
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
+        ]
       },
       "props": [
         {
@@ -624,11 +674,21 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-breadcrumb"],
-      "dependencies": ["ix-icon", "ix-spinner"],
+      "dependents": [
+        "ix-breadcrumb"
+      ],
+      "dependencies": [
+        "ix-icon",
+        "ix-spinner"
+      ],
       "dependencyGraph": {
-        "ix-breadcrumb-item": ["ix-icon", "ix-spinner"],
-        "ix-breadcrumb": ["ix-breadcrumb-item"]
+        "ix-breadcrumb-item": [
+          "ix-icon",
+          "ix-spinner"
+        ],
+        "ix-breadcrumb": [
+          "ix-breadcrumb-item"
+        ]
       },
       "props": [
         {
@@ -695,19 +755,45 @@
         "ix-time-picker",
         "ix-upload"
       ],
-      "dependencies": ["ix-spinner", "ix-icon"],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-button": ["ix-spinner", "ix-icon"],
-        "ix-card-list": ["ix-button"],
-        "ix-date-picker": ["ix-button"],
-        "ix-datetime-picker": ["ix-button"],
-        "ix-dropdown-button": ["ix-button"],
-        "ix-empty-state": ["ix-button"],
-        "ix-menu-about-news": ["ix-button"],
-        "ix-modal-example": ["ix-button"],
-        "ix-split-button": ["ix-button"],
-        "ix-time-picker": ["ix-button"],
-        "ix-upload": ["ix-button"]
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-card-list": [
+          "ix-button"
+        ],
+        "ix-date-picker": [
+          "ix-button"
+        ],
+        "ix-datetime-picker": [
+          "ix-button"
+        ],
+        "ix-dropdown-button": [
+          "ix-button"
+        ],
+        "ix-empty-state": [
+          "ix-button"
+        ],
+        "ix-menu-about-news": [
+          "ix-button"
+        ],
+        "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-split-button": [
+          "ix-button"
+        ],
+        "ix-time-picker": [
+          "ix-button"
+        ],
+        "ix-upload": [
+          "ix-button"
+        ]
       },
       "props": [
         {
@@ -868,12 +954,22 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-action-card", "ix-card-list", "ix-push-card"],
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-push-card"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": ["ix-card"],
-        "ix-card-list": ["ix-card"],
-        "ix-push-card": ["ix-card"]
+        "ix-action-card": [
+          "ix-card"
+        ],
+        "ix-card-list": [
+          "ix-card"
+        ],
+        "ix-push-card": [
+          "ix-card"
+        ]
       },
       "props": [
         {
@@ -947,11 +1043,19 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-push-card"],
-      "dependencies": ["ix-icon"],
+      "dependents": [
+        "ix-push-card"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-card-accordion": ["ix-icon"],
-        "ix-push-card": ["ix-card-accordion"]
+        "ix-card-accordion": [
+          "ix-icon"
+        ],
+        "ix-push-card": [
+          "ix-card-accordion"
+        ]
       },
       "props": [],
       "methods": [],
@@ -978,12 +1082,22 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-action-card", "ix-card-list", "ix-push-card"],
+      "dependents": [
+        "ix-action-card",
+        "ix-card-list",
+        "ix-push-card"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": ["ix-card-content"],
-        "ix-card-list": ["ix-card-content"],
-        "ix-push-card": ["ix-card-content"]
+        "ix-action-card": [
+          "ix-card-content"
+        ],
+        "ix-card-list": [
+          "ix-card-content"
+        ],
+        "ix-push-card": [
+          "ix-card-content"
+        ]
       },
       "props": [],
       "methods": [],
@@ -1028,8 +1142,14 @@
           "ix-typography",
           "ix-button"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -1218,10 +1338,14 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-push-card"],
+      "dependents": [
+        "ix-push-card"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-push-card": ["ix-card-title"]
+        "ix-push-card": [
+          "ix-card-title"
+        ]
       },
       "props": [],
       "methods": [],
@@ -1264,8 +1388,13 @@
           "ix-dropdown",
           "ix-spinner"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-filter-chip": ["ix-icon-button"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ]
       },
       "props": [
         {
@@ -1512,10 +1641,19 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon-button", "ix-icon"],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-chip": ["ix-icon-button", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-chip": [
+          "ix-icon-button",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -1995,10 +2133,19 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon-button", "ix-typography"],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-typography"
+      ],
       "dependencyGraph": {
-        "ix-content-header": ["ix-icon-button", "ix-typography"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-content-header": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -2103,7 +2250,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-datetime-picker"],
+      "dependents": [
+        "ix-datetime-picker"
+      ],
       "dependencies": [
         "ix-date-time-card",
         "ix-icon-button",
@@ -2119,9 +2268,17 @@
           "ix-dropdown",
           "ix-icon"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"],
-        "ix-datetime-picker": ["ix-date-picker"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-datetime-picker": [
+          "ix-date-picker"
+        ]
       },
       "props": [
         {
@@ -2429,9 +2586,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-date-picker", "ix-time-picker", "ix-button"],
+      "dependencies": [
+        "ix-date-picker",
+        "ix-time-picker",
+        "ix-button"
+      ],
       "dependencyGraph": {
-        "ix-datetime-picker": ["ix-date-picker", "ix-time-picker", "ix-button"],
+        "ix-datetime-picker": [
+          "ix-date-picker",
+          "ix-time-picker",
+          "ix-button"
+        ],
         "ix-date-picker": [
           "ix-date-time-card",
           "ix-icon-button",
@@ -2439,8 +2604,14 @@
           "ix-dropdown",
           "ix-icon"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-time-picker": [
           "ix-date-time-card",
           "ix-typography",
@@ -2831,10 +3002,14 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu-category"],
+      "dependents": [
+        "ix-menu-category"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-category": ["ix-divider"]
+        "ix-menu-category": [
+          "ix-divider"
+        ]
       },
       "props": [],
       "methods": [],
@@ -2857,10 +3032,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon-button"],
+      "dependencies": [
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-drawer": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-drawer": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -3037,14 +3219,30 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-breadcrumb": ["ix-dropdown"],
-        "ix-category-filter": ["ix-dropdown"],
-        "ix-date-picker": ["ix-dropdown"],
-        "ix-dropdown-button": ["ix-dropdown"],
-        "ix-menu-avatar": ["ix-dropdown"],
-        "ix-menu-category": ["ix-dropdown"],
-        "ix-select": ["ix-dropdown"],
-        "ix-split-button": ["ix-dropdown"]
+        "ix-breadcrumb": [
+          "ix-dropdown"
+        ],
+        "ix-category-filter": [
+          "ix-dropdown"
+        ],
+        "ix-date-picker": [
+          "ix-dropdown"
+        ],
+        "ix-dropdown-button": [
+          "ix-dropdown"
+        ],
+        "ix-menu-avatar": [
+          "ix-dropdown"
+        ],
+        "ix-menu-category": [
+          "ix-dropdown"
+        ],
+        "ix-select": [
+          "ix-dropdown"
+        ],
+        "ix-split-button": [
+          "ix-dropdown"
+        ]
       },
       "props": [
         {
@@ -3299,7 +3497,12 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-button", "ix-icon", "ix-icon-button", "ix-dropdown"],
+      "dependencies": [
+        "ix-button",
+        "ix-icon",
+        "ix-icon-button",
+        "ix-dropdown"
+      ],
       "dependencyGraph": {
         "ix-dropdown-button": [
           "ix-button",
@@ -3307,8 +3510,14 @@
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-button": ["ix-spinner", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -3492,9 +3701,13 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-typography"],
+      "dependencies": [
+        "ix-typography"
+      ],
       "dependencyGraph": {
-        "ix-dropdown-header": ["ix-typography"]
+        "ix-dropdown-header": [
+          "ix-typography"
+        ]
       },
       "props": [
         {
@@ -3541,15 +3754,31 @@
         "ix-select-item",
         "ix-split-button-item"
       ],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-breadcrumb": ["ix-dropdown-item"],
-        "ix-menu-avatar-item": ["ix-dropdown-item"],
-        "ix-menu-category": ["ix-dropdown-item"],
-        "ix-select": ["ix-dropdown-item"],
-        "ix-select-item": ["ix-dropdown-item"],
-        "ix-split-button-item": ["ix-dropdown-item"]
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-breadcrumb": [
+          "ix-dropdown-item"
+        ],
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-menu-category": [
+          "ix-dropdown-item"
+        ],
+        "ix-select": [
+          "ix-dropdown-item"
+        ],
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-split-button-item": [
+          "ix-dropdown-item"
+        ]
       },
       "props": [
         {
@@ -3701,10 +3930,21 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon", "ix-typography", "ix-button"],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-button"
+      ],
       "dependencyGraph": {
-        "ix-empty-state": ["ix-icon", "ix-typography", "ix-button"],
-        "ix-button": ["ix-spinner", "ix-icon"]
+        "ix-empty-state": [
+          "ix-icon",
+          "ix-typography",
+          "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -3927,9 +4167,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-event-list-item": ["ix-icon"]
+        "ix-event-list-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -4038,10 +4282,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon-button"],
+      "dependencies": [
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-expanding-search": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-expanding-search": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -4147,13 +4398,27 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-category-filter", "ix-select"],
-      "dependencies": ["ix-icon-button"],
+      "dependents": [
+        "ix-category-filter",
+        "ix-select"
+      ],
+      "dependencies": [
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-filter-chip": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-category-filter": ["ix-filter-chip"],
-        "ix-select": ["ix-filter-chip"]
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-category-filter": [
+          "ix-filter-chip"
+        ],
+        "ix-select": [
+          "ix-filter-chip"
+        ]
       },
       "props": [
         {
@@ -4226,10 +4491,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon-button"],
+      "dependencies": [
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-flip-tile": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-flip-tile": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -4396,12 +4668,27 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon", "ix-group-context-menu", "ix-group-item"],
+      "dependencies": [
+        "ix-icon",
+        "ix-group-context-menu",
+        "ix-group-item"
+      ],
       "dependencyGraph": {
-        "ix-group": ["ix-icon", "ix-group-context-menu", "ix-group-item"],
-        "ix-group-context-menu": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-group-item": ["ix-icon"]
+        "ix-group": [
+          "ix-icon",
+          "ix-group-context-menu",
+          "ix-group-item"
+        ],
+        "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-group-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -4567,12 +4854,23 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-group"],
-      "dependencies": ["ix-icon-button"],
+      "dependents": [
+        "ix-group"
+      ],
+      "dependencies": [
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-group-context-menu": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-group": ["ix-group-context-menu"]
+        "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-group-context-menu"
+        ]
       },
       "props": [],
       "methods": [],
@@ -4594,11 +4892,19 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-group"],
-      "dependencies": ["ix-icon"],
+      "dependents": [
+        "ix-group"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-group-item": ["ix-icon"],
-        "ix-group": ["ix-group-item"]
+        "ix-group-item": [
+          "ix-icon"
+        ],
+        "ix-group": [
+          "ix-group-item"
+        ]
       },
       "props": [
         {
@@ -4778,34 +5084,90 @@
         "ix-time-picker",
         "ix-toast"
       ],
-      "dependencies": ["ix-spinner", "ix-icon"],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-burger-menu": ["ix-icon-button"],
-        "ix-card-list": ["ix-icon-button"],
-        "ix-category-filter": ["ix-icon-button"],
-        "ix-chip": ["ix-icon-button"],
-        "ix-content-header": ["ix-icon-button"],
-        "ix-date-picker": ["ix-icon-button"],
-        "ix-drawer": ["ix-icon-button"],
-        "ix-dropdown-button": ["ix-icon-button"],
-        "ix-expanding-search": ["ix-icon-button"],
-        "ix-filter-chip": ["ix-icon-button"],
-        "ix-flip-tile": ["ix-icon-button"],
-        "ix-group-context-menu": ["ix-icon-button"],
-        "ix-map-navigation": ["ix-icon-button"],
-        "ix-map-navigation-overlay": ["ix-icon-button"],
-        "ix-menu-about": ["ix-icon-button"],
-        "ix-menu-about-news": ["ix-icon-button"],
-        "ix-menu-settings": ["ix-icon-button"],
-        "ix-message-bar": ["ix-icon-button"],
-        "ix-modal-example": ["ix-icon-button"],
-        "ix-modal-header": ["ix-icon-button"],
-        "ix-pagination": ["ix-icon-button"],
-        "ix-select": ["ix-icon-button"],
-        "ix-split-button": ["ix-icon-button"],
-        "ix-time-picker": ["ix-icon-button"],
-        "ix-toast": ["ix-icon-button"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button"
+        ],
+        "ix-card-list": [
+          "ix-icon-button"
+        ],
+        "ix-category-filter": [
+          "ix-icon-button"
+        ],
+        "ix-chip": [
+          "ix-icon-button"
+        ],
+        "ix-content-header": [
+          "ix-icon-button"
+        ],
+        "ix-date-picker": [
+          "ix-icon-button"
+        ],
+        "ix-drawer": [
+          "ix-icon-button"
+        ],
+        "ix-dropdown-button": [
+          "ix-icon-button"
+        ],
+        "ix-expanding-search": [
+          "ix-icon-button"
+        ],
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-flip-tile": [
+          "ix-icon-button"
+        ],
+        "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-map-navigation": [
+          "ix-icon-button"
+        ],
+        "ix-map-navigation-overlay": [
+          "ix-icon-button"
+        ],
+        "ix-menu-about": [
+          "ix-icon-button"
+        ],
+        "ix-menu-about-news": [
+          "ix-icon-button"
+        ],
+        "ix-menu-settings": [
+          "ix-icon-button"
+        ],
+        "ix-message-bar": [
+          "ix-icon-button"
+        ],
+        "ix-modal-example": [
+          "ix-icon-button"
+        ],
+        "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-pagination": [
+          "ix-icon-button"
+        ],
+        "ix-select": [
+          "ix-icon-button"
+        ],
+        "ix-split-button": [
+          "ix-icon-button"
+        ],
+        "ix-time-picker": [
+          "ix-icon-button"
+        ],
+        "ix-toast": [
+          "ix-icon-button"
+        ]
       },
       "props": [
         {
@@ -5033,9 +5395,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-spinner", "ix-icon"],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-icon-toggle-button": ["ix-spinner", "ix-icon"]
+        "ix-icon-toggle-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -5250,9 +5618,13 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-key-value": ["ix-icon"]
+        "ix-key-value": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -5396,9 +5768,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-kpi": ["ix-icon"]
+        "ix-kpi": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -5606,9 +5982,13 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-link-button": ["ix-icon"]
+        "ix-link-button": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -5706,10 +6086,22 @@
           "ix-application-header",
           "ix-icon-button"
         ],
-        "ix-map-navigation-overlay": ["ix-icon", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-application-header": ["ix-burger-menu"],
-        "ix-burger-menu": ["ix-icon-button", "ix-spinner", "ix-icon"]
+        "ix-map-navigation-overlay": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -5871,12 +6263,25 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-map-navigation"],
-      "dependencies": ["ix-icon", "ix-icon-button"],
+      "dependents": [
+        "ix-map-navigation"
+      ],
+      "dependencies": [
+        "ix-icon",
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-map-navigation-overlay": ["ix-icon", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-map-navigation": ["ix-map-navigation-overlay"]
+        "ix-map-navigation-overlay": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-map-navigation": [
+          "ix-map-navigation-overlay"
+        ]
       },
       "props": [
         {
@@ -5958,12 +6363,27 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-burger-menu", "ix-menu-item"],
+      "dependencies": [
+        "ix-burger-menu",
+        "ix-menu-item"
+      ],
       "dependencyGraph": {
-        "ix-menu": ["ix-burger-menu", "ix-menu-item"],
-        "ix-burger-menu": ["ix-icon-button", "ix-spinner", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-menu-item": ["ix-icon"]
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-menu-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -6354,11 +6774,24 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
+      "dependencies": [
+        "ix-tab-item",
+        "ix-icon-button",
+        "ix-tabs"
+      ],
       "dependencyGraph": {
-        "ix-menu-about": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-tabs": ["ix-icon"]
+        "ix-menu-about": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-tabs": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -6495,8 +6928,14 @@
           "ix-icon-button",
           "ix-button"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -6639,11 +7078,23 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-avatar", "ix-dropdown", "ix-menu-avatar-item"],
+      "dependencies": [
+        "ix-avatar",
+        "ix-dropdown",
+        "ix-menu-avatar-item"
+      ],
       "dependencyGraph": {
-        "ix-menu-avatar": ["ix-avatar", "ix-dropdown", "ix-menu-avatar-item"],
-        "ix-menu-avatar-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"]
+        "ix-menu-avatar": [
+          "ix-avatar",
+          "ix-dropdown",
+          "ix-menu-avatar-item"
+        ],
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -6767,12 +7218,22 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu-avatar"],
-      "dependencies": ["ix-dropdown-item"],
+      "dependents": [
+        "ix-menu-avatar"
+      ],
+      "dependencies": [
+        "ix-dropdown-item"
+      ],
       "dependencyGraph": {
-        "ix-menu-avatar-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-menu-avatar": ["ix-menu-avatar-item"]
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-menu-avatar": [
+          "ix-menu-avatar-item"
+        ]
       },
       "props": [
         {
@@ -6860,8 +7321,12 @@
           "ix-typography",
           "ix-divider"
         ],
-        "ix-menu-item": ["ix-icon"],
-        "ix-dropdown-item": ["ix-icon"]
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -6937,12 +7402,23 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu", "ix-menu-category"],
-      "dependencies": ["ix-icon"],
+      "dependents": [
+        "ix-menu",
+        "ix-menu-category"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-menu-item": ["ix-icon"],
-        "ix-menu": ["ix-menu-item"],
-        "ix-menu-category": ["ix-menu-item"]
+        "ix-menu-item": [
+          "ix-icon"
+        ],
+        "ix-menu": [
+          "ix-menu-item"
+        ],
+        "ix-menu-category": [
+          "ix-menu-item"
+        ]
       },
       "props": [
         {
@@ -7056,7 +7532,7 @@
               "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
-          "default": "'document'",
+          "default": "document",
           "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
@@ -7092,11 +7568,24 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
+      "dependencies": [
+        "ix-tab-item",
+        "ix-icon-button",
+        "ix-tabs"
+      ],
       "dependencyGraph": {
-        "ix-menu-settings": ["ix-tab-item", "ix-icon-button", "ix-tabs"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-tabs": ["ix-icon"]
+        "ix-menu-settings": [
+          "ix-tab-item",
+          "ix-icon-button",
+          "ix-tabs"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-tabs": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -7220,10 +7709,19 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon", "ix-icon-button"],
+      "dependencies": [
+        "ix-icon",
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-message-bar": ["ix-icon", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-message-bar": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -7556,11 +8054,23 @@
       "docsTags": [],
       "encapsulation": "none",
       "dependents": [],
-      "dependencies": ["ix-icon-button", "ix-button"],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-button"
+      ],
       "dependencyGraph": {
-        "ix-modal-example": ["ix-icon-button", "ix-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"]
+        "ix-modal-example": [
+          "ix-icon-button",
+          "ix-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [],
       "methods": [],
@@ -7616,10 +8126,21 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon", "ix-typography", "ix-icon-button"],
+      "dependencies": [
+        "ix-icon",
+        "ix-typography",
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-modal-header": ["ix-icon", "ix-typography", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-modal-header": [
+          "ix-icon",
+          "ix-typography",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -7724,7 +8245,10 @@
           "ix-spinner",
           "ix-icon"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
         "ix-select": [
           "ix-select-item",
           "ix-filter-chip",
@@ -7733,9 +8257,15 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-filter-chip": ["ix-icon-button"]
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ]
       },
       "props": [
         {
@@ -7912,9 +8442,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-pill": ["ix-icon"]
+        "ix-pill": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -8088,7 +8622,9 @@
           "ix-typography",
           "ix-card-accordion"
         ],
-        "ix-card-accordion": ["ix-icon"]
+        "ix-card-accordion": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -8250,7 +8786,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-pagination"],
+      "dependents": [
+        "ix-pagination"
+      ],
       "dependencies": [
         "ix-select-item",
         "ix-filter-chip",
@@ -8268,11 +8806,22 @@
           "ix-dropdown",
           "ix-dropdown-item"
         ],
-        "ix-select-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-filter-chip": ["ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-pagination": ["ix-select"]
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-filter-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select"
+        ]
       },
       "props": [
         {
@@ -8602,13 +9151,26 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-pagination", "ix-select"],
-      "dependencies": ["ix-dropdown-item"],
+      "dependents": [
+        "ix-pagination",
+        "ix-select"
+      ],
+      "dependencies": [
+        "ix-dropdown-item"
+      ],
       "dependencyGraph": {
-        "ix-select-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"],
-        "ix-pagination": ["ix-select-item"],
-        "ix-select": ["ix-select-item"]
+        "ix-select-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ],
+        "ix-pagination": [
+          "ix-select-item"
+        ],
+        "ix-select": [
+          "ix-select-item"
+        ]
       },
       "props": [
         {
@@ -8704,10 +9266,18 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-tooltip", "ix-typography"],
+      "dependencies": [
+        "ix-tooltip",
+        "ix-typography"
+      ],
       "dependencyGraph": {
-        "ix-slider": ["ix-tooltip", "ix-typography"],
-        "ix-tooltip": ["ix-typography"]
+        "ix-slider": [
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
       },
       "props": [
         {
@@ -8927,16 +9497,36 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-breadcrumb-item": ["ix-spinner"],
-        "ix-burger-menu": ["ix-spinner"],
-        "ix-button": ["ix-spinner"],
-        "ix-category-filter": ["ix-spinner"],
-        "ix-icon-button": ["ix-spinner"],
-        "ix-icon-toggle-button": ["ix-spinner"],
-        "ix-modal-loading": ["ix-spinner"],
-        "ix-pagination": ["ix-spinner"],
-        "ix-toggle-button": ["ix-spinner"],
-        "ix-upload": ["ix-spinner"]
+        "ix-breadcrumb-item": [
+          "ix-spinner"
+        ],
+        "ix-burger-menu": [
+          "ix-spinner"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-category-filter": [
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-icon-toggle-button": [
+          "ix-spinner"
+        ],
+        "ix-modal-loading": [
+          "ix-spinner"
+        ],
+        "ix-pagination": [
+          "ix-spinner"
+        ],
+        "ix-toggle-button": [
+          "ix-spinner"
+        ],
+        "ix-upload": [
+          "ix-spinner"
+        ]
       },
       "props": [
         {
@@ -9016,11 +9606,25 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-button", "ix-icon-button", "ix-dropdown"],
+      "dependencies": [
+        "ix-button",
+        "ix-icon-button",
+        "ix-dropdown"
+      ],
       "dependencyGraph": {
-        "ix-split-button": ["ix-button", "ix-icon-button", "ix-dropdown"],
-        "ix-button": ["ix-spinner", "ix-icon"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-split-button": [
+          "ix-button",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -9223,10 +9827,16 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-dropdown-item"],
+      "dependencies": [
+        "ix-dropdown-item"
+      ],
       "dependencyGraph": {
-        "ix-split-button-item": ["ix-dropdown-item"],
-        "ix-dropdown-item": ["ix-icon"]
+        "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "ix-dropdown-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -9291,11 +9901,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu-about", "ix-menu-settings"],
+      "dependents": [
+        "ix-menu-about",
+        "ix-menu-settings"
+      ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-menu-about": ["ix-tab-item"],
-        "ix-menu-settings": ["ix-tab-item"]
+        "ix-menu-about": [
+          "ix-tab-item"
+        ],
+        "ix-menu-settings": [
+          "ix-tab-item"
+        ]
       },
       "props": [
         {
@@ -9478,12 +10095,23 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-menu-about", "ix-menu-settings"],
-      "dependencies": ["ix-icon"],
+      "dependents": [
+        "ix-menu-about",
+        "ix-menu-settings"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-tabs": ["ix-icon"],
-        "ix-menu-about": ["ix-tabs"],
-        "ix-menu-settings": ["ix-tabs"]
+        "ix-tabs": [
+          "ix-icon"
+        ],
+        "ix-menu-about": [
+          "ix-tabs"
+        ],
+        "ix-menu-settings": [
+          "ix-tabs"
+        ]
       },
       "props": [
         {
@@ -9678,7 +10306,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-datetime-picker"],
+      "dependents": [
+        "ix-datetime-picker"
+      ],
       "dependencies": [
         "ix-date-time-card",
         "ix-typography",
@@ -9692,9 +10322,17 @@
           "ix-icon-button",
           "ix-button"
         ],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-button": ["ix-spinner", "ix-icon"],
-        "ix-datetime-picker": ["ix-time-picker"]
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-datetime-picker": [
+          "ix-time-picker"
+        ]
       },
       "props": [
         {
@@ -9958,12 +10596,25 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-toast-container"],
-      "dependencies": ["ix-icon", "ix-icon-button"],
+      "dependents": [
+        "ix-toast-container"
+      ],
+      "dependencies": [
+        "ix-icon",
+        "ix-icon-button"
+      ],
       "dependencyGraph": {
-        "ix-toast": ["ix-icon", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"],
-        "ix-toast-container": ["ix-toast"]
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-toast-container": [
+          "ix-toast"
+        ]
       },
       "props": [
         {
@@ -10109,11 +10760,21 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-toast"],
+      "dependencies": [
+        "ix-toast"
+      ],
       "dependencyGraph": {
-        "ix-toast-container": ["ix-toast"],
-        "ix-toast": ["ix-icon", "ix-icon-button"],
-        "ix-icon-button": ["ix-spinner", "ix-icon"]
+        "ix-toast-container": [
+          "ix-toast"
+        ],
+        "ix-toast": [
+          "ix-icon",
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -10368,9 +11029,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-spinner", "ix-icon"],
+      "dependencies": [
+        "ix-spinner",
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-toggle-button": ["ix-spinner", "ix-icon"]
+        "ix-toggle-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -10539,11 +11206,19 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": ["ix-slider"],
-      "dependencies": ["ix-typography"],
+      "dependents": [
+        "ix-slider"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
       "dependencyGraph": {
-        "ix-tooltip": ["ix-typography"],
-        "ix-slider": ["ix-tooltip"]
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-slider": [
+          "ix-tooltip"
+        ]
       },
       "props": [
         {
@@ -10660,10 +11335,16 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-tree-item"],
+      "dependencies": [
+        "ix-tree-item"
+      ],
       "dependencyGraph": {
-        "ix-tree": ["ix-tree-item"],
-        "ix-tree-item": ["ix-icon"]
+        "ix-tree": [
+          "ix-tree-item"
+        ],
+        "ix-tree-item": [
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -10795,11 +11476,19 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": ["ix-tree"],
-      "dependencies": ["ix-icon"],
+      "dependents": [
+        "ix-tree"
+      ],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-tree-item": ["ix-icon"],
-        "ix-tree": ["ix-tree-item"]
+        "ix-tree-item": [
+          "ix-icon"
+        ],
+        "ix-tree": [
+          "ix-tree-item"
+        ]
       },
       "props": [
         {
@@ -10911,20 +11600,48 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "ix-action-card": ["ix-typography"],
-        "ix-blind": ["ix-typography"],
-        "ix-card-list": ["ix-typography"],
-        "ix-content-header": ["ix-typography"],
-        "ix-dropdown-header": ["ix-typography"],
-        "ix-empty-state": ["ix-typography"],
-        "ix-menu-about-news": ["ix-typography"],
-        "ix-menu-category": ["ix-typography"],
-        "ix-modal-header": ["ix-typography"],
-        "ix-pagination": ["ix-typography"],
-        "ix-push-card": ["ix-typography"],
-        "ix-slider": ["ix-typography"],
-        "ix-time-picker": ["ix-typography"],
-        "ix-tooltip": ["ix-typography"]
+        "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-blind": [
+          "ix-typography"
+        ],
+        "ix-card-list": [
+          "ix-typography"
+        ],
+        "ix-content-header": [
+          "ix-typography"
+        ],
+        "ix-dropdown-header": [
+          "ix-typography"
+        ],
+        "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-menu-about-news": [
+          "ix-typography"
+        ],
+        "ix-menu-category": [
+          "ix-typography"
+        ],
+        "ix-modal-header": [
+          "ix-typography"
+        ],
+        "ix-pagination": [
+          "ix-typography"
+        ],
+        "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-slider": [
+          "ix-typography"
+        ],
+        "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
       },
       "props": [
         {
@@ -11068,10 +11785,19 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-spinner", "ix-button"],
+      "dependencies": [
+        "ix-spinner",
+        "ix-button"
+      ],
       "dependencyGraph": {
-        "ix-upload": ["ix-spinner", "ix-button"],
-        "ix-button": ["ix-spinner", "ix-icon"]
+        "ix-upload": [
+          "ix-spinner",
+          "ix-button"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
       },
       "props": [
         {
@@ -11419,9 +12145,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": ["ix-icon"],
+      "dependencies": [
+        "ix-icon"
+      ],
       "dependencyGraph": {
-        "ix-workflow-step": ["ix-icon"]
+        "ix-workflow-step": [
+          "ix-icon"
+        ]
       },
       "props": [
         {

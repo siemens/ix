@@ -8,7 +8,7 @@
  */
 
 import { chevronDownSmall } from '@siemens/ix-icons/icons';
-import { Component, Element, h, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
 
