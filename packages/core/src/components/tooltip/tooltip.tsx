@@ -246,7 +246,7 @@ export class Tooltip {
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
     this.destroyAutoUpdate();
   }
 
