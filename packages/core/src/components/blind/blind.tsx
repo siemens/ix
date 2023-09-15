@@ -58,7 +58,7 @@ export class Blind {
   @Element() hostElement!: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
-  private id = ++sequentialInstanceId;
+  private blindId = ++sequentialInstanceId;
 
   constructor() {}
 
@@ -134,8 +134,8 @@ export class Blind {
             closed: this.collapsed,
           }}
           type="button"
-          aria-labelledby={`ix-blind-header-title-${this.id}`}
-          aria-controls={`ix-blind-content-section-${this.id}`}
+          aria-labelledby={`ix-blind-header-title-${this.blindId}`}
+          aria-controls={`ix-blind-content-section-${this.blindId}`}
           aria-expanded={a11yBoolean(!this.collapsed)}
           onClick={(e) => this.onHeaderClick(e)}
         >
@@ -146,7 +146,7 @@ export class Blind {
           ></ix-icon>
           <div
             class="blind-header-title"
-            id={`ix-blind-header-title-${this.id}`}
+            id={`ix-blind-header-title-${this.blindId}`}
           >
             {this.label !== undefined ? (
               <span class="blind-header-title-basic">
@@ -185,8 +185,8 @@ export class Blind {
           </div>
         </button>
         <section
-          id={`ix-blind-content-section-${this.id}`}
-          aria-labelledby={`ix-blind-header-title-${this.id}`}
+          id={`ix-blind-content-section-${this.blindId}`}
+          aria-labelledby={`ix-blind-header-title-${this.blindId}`}
         >
           <div
             class={{
