@@ -88,9 +88,6 @@ export const config: Config = {
       components: ['ix-group', 'ix-group-item'],
     },
     {
-      components: ['ix-icon'],
-    },
-    {
       components: ['ix-icon-button'],
     },
     {
