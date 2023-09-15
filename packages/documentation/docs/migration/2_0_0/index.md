@@ -118,13 +118,14 @@ Here are the key advantages of migrating to Shadow DOM components:
 
 Please note that as part of this migration, some changes may be required in your codebase if you were relying on direct manipulation or styling of our components. We recommend review of our updated documentation and examples to ensure a smooth transition so you can take full advantage of the benefits offered by Shadow DOM components.
 
-## Preparation for removing Bootstrap as dependency TODO
+## Preparation for removing Bootstrap as dependency
 
-As part of the [Shadow DOM](#shadow-dom) refactoring all components are interoperable. Therefore we no longer depend on any third party CSS framework. This gives us the opportunity to remove bootstrap. Which does not mean that bootstrap is a bad or lesser good solution to alternatives like Tailwind. We want to give the application developer the chance to chooser there css framework by there own without having conflicts.
+One goal of the [Shadow DOM](#shadow-dom) refactoring was to make all ix components interoperable. Therefore we decided we no longer want to depend on any third party CSS framework.
+In the past we relied on bootstrap which is no longer necessary. By removing boostrap from the list of peer dependecies we will provide you with the flexibility to choose anyone of the available CSS frameworks without running into conflicts.
 
-As for now bootstrap is still a part of our library but in future releases we planning to drop bootstrap entirely.
+As for now bootstrap is still a part of our library but we are planning to drop bootstrap entirely in a future release.
 
-If you want to check if your application are still working smoothness without bootstrap you can already test this by loading the new `core css` file without any dependency to bootstrap anymore.
+If you want to check if your application is still working smoothly without bootstrap you can already test this by loading the new `core CSS` file.
 
 A detailed description can be found [here](./../../guidelines/theme#applying-only-one-theme-to-reduce-build-size).
 
