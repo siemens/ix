@@ -12,8 +12,16 @@ SPDX-License-Identifier: MIT
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <ix-button>Show modal</ix-button>
+    <template id="modal-example-template">
+      <ix-modal-header>Message headline</ix-modal-header>
+      <ix-modal-content>Message text lorem ipsum</ix-modal-content>
+      <ix-modal-footer>
+        <ix-button outline>Cancel</ix-button>
+        <ix-button>OK</ix-button>
+      </ix-modal-footer>
+    </template>
     <script type="module">
-      import { modal, closeModal, dismissModal } from '@siemens/ix';
+      import { showModal, closeModal, dismissModal } from '@siemens/ix';
 
       function createExampleModal() {
         const name = 'modal-example';
@@ -36,26 +44,9 @@ SPDX-License-Identifier: MIT
             }
 
             firstRender() {
-              const modalTemplate = document.createElement('template');
-              modalTemplate.innerHTML = `
-              <div>
-                <div class="modal-header">
-                Message headline
-                <ix-icon-button
-                  data-button-close
-                  ghost
-                  icon="close"
-                  class="dismiss-modal"
-                ></ix-icon-button>
-                </div>
-                <div class="modal-body">Message text lorem ipsum</div>
-                <div class="modal-footer">
-                  <ix-button outline class="dismiss-modal"> Cancel </ix-button>
-                  <ix-button class="close-modal">OK</ix-button>
-                </div>
-              </div>
-              `;
-
+              const modalTemplate = document.getElementById(
+                'modal-example-template'
+              );
               const template = modalTemplate.content.cloneNode(true);
               this.append(template);
             }
@@ -74,24 +65,8 @@ SPDX-License-Identifier: MIT
         button.addEventListener('click', async () => {
           const customModal = document.createElement(exampleModalName);
 
-          const m = await modal({
+          const modal = await showModal({
             content: customModal,
-          });
-
-          m.htmlElement
-            .querySelector('.close-modal')
-            .addEventListener('click', () => {
-              closeModal(customModal, 'Done!');
-            });
-
-          m.htmlElement.querySelectorAll('.dismiss-modal').forEach((item) =>
-            item.addEventListener('click', () => {
-              dismissModal(customModal, 'cancelled!');
-            })
-          );
-
-          m.htmlElement.addEventListener('keydown', (keyEvent) => {
-            console.log(keyEvent.key);
           });
         });
       })();

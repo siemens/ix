@@ -6,12 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  IxButton,
-  IxDropdown,
-  IxDropdownItem,
-  IxIcon,
-} from '@siemens/ix-react';
+import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React, { useEffect, useState } from 'react';
@@ -21,7 +16,6 @@ import styles from './SwitchTheme.module.css';
 function ThemeEntry(props: {
   label: string;
   color: string;
-  active: boolean;
   id: string;
   onClick?: (event: React.MouseEvent, id: string) => void;
 }) {
@@ -30,19 +24,11 @@ function ThemeEntry(props: {
       className={styles.Dropdown__Item}
       onClick={(e) => props.onClick(e, props.id)}
     >
-      <div className={styles.Dropdown__Check}>
-        {props.active ? (
-          <i
-            className="glyph glyph-single-check"
-            style={{ color: 'var(--theme-color-primary)' }}
-          />
-        ) : null}
-      </div>
-      <div className={styles.Dropdown__Label}>{props.label}</div>
       <div
         className={styles.Theme__Color}
         style={{ backgroundColor: props.color }}
       ></div>
+      <div className={styles.Dropdown__Label}>{props.label}</div>
     </div>
   );
 }
@@ -111,27 +97,20 @@ export function SwitchTheme(props: { icon: string; label: string }) {
   }
 
   return (
-    <>
-      <IxButton id="switch-theme-button" outline>
-        <IxIcon name={props.icon} className="me-2" />
-        {getLabel(theme)}
-        <IxIcon name="chevron-down-small" />
-      </IxButton>
-      <IxDropdown trigger={'switch-theme-button'}>
-        {registeredThemes.map(({ id, label, color }) => {
-          return (
-            <IxDropdownItem key={id}>
-              <ThemeEntry
-                id={id}
-                label={label}
-                active={id === theme}
-                color={color}
-                onClick={(_, id) => onThemeChange(id)}
-              />
-            </IxDropdownItem>
-          );
-        })}
-      </IxDropdown>
-    </>
+    <IxDropdownButton outline icon={props.icon} label={getLabel(theme)}>
+      {registeredThemes.map(({ id, label, color }) => {
+        return (
+          <IxDropdownItem key={id} checked={id === theme}>
+            <ThemeEntry
+              key={id}
+              id={id}
+              label={label}
+              color={color}
+              onClick={(_, id) => onThemeChange(id)}
+            />
+          </IxDropdownItem>
+        );
+      })}
+    </IxDropdownButton>
   );
 }

@@ -9,32 +9,53 @@
 
 import { contextMenu } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-group-context-menu',
   styleUrl: './group-context-menu.scss',
-  scoped: true,
+  shadow: true,
 })
 export class GroupContextMenu {
-  @Element() host!: HTMLIxGroupContextMenuElement;
+  @Element() hostElement!: HTMLIxGroupContextMenuElement;
 
   @State() showContextMenu = false;
 
-  get dropdownElement() {
-    return this.host.querySelector('ix-dropdown');
+  private getTrigger() {
+    return this.hostElement;
   }
 
-  get groupDropdownItem() {
-    return this.host.querySelectorAll('ix-group-dropdown-item');
+  private configureDropdown(
+    dropdownElement: HTMLIxDropdownElement,
+    triggerElement: HTMLElement
+  ) {
+    dropdownElement.positioningStrategy = 'fixed';
+    dropdownElement.trigger = triggerElement;
   }
 
-  private configureDropdown(triggerElement: HTMLElement) {
-    this.dropdownElement.positioningStrategy = 'fixed';
-    this.dropdownElement.trigger = triggerElement;
-  }
+  private onSlotChange() {
+    const slot = this.hostElement.shadowRoot.querySelector('slot');
+    if (!slot) {
+      return;
+    }
+    const elements = getSlottedElements(slot);
+    this.showContextMenu = elements.length !== 0;
 
-  componentWillRender() {
-    this.showContextMenu = !!this.dropdownElement;
+    const dropdownElement = elements.find(
+      (elm: Element) => elm.tagName === 'IX-DROPDOWN'
+    );
+
+    const triggerElement = this.getTrigger();
+
+    if (!triggerElement) {
+      return;
+    }
+
+    if (!dropdownElement) {
+      return;
+    }
+
+    this.configureDropdown(dropdownElement, triggerElement);
   }
 
   render() {
@@ -42,14 +63,11 @@ export class GroupContextMenu {
       <Host>
         <ix-icon-button
           class={{ hide: !this.showContextMenu }}
-          ref={(ref) =>
-            this.dropdownElement ? this.configureDropdown(ref) : null
-          }
           size="24"
           ghost={true}
           icon={contextMenu}
         ></ix-icon-button>
-        <slot></slot>
+        <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>
     );
   }

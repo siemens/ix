@@ -20,7 +20,7 @@
     <td>Show new toast</td>
     <td>
       <code>
-        show(config: ToastCoing): Promise&lt;&#123; onClose: TypedEvent&lt;any&gt;, close: (result?: any) =&gt; void&#125;&gt;
+        show(config: ToastConfig): Promise&lt;&#123; onClose: TypedEvent&lt;any&gt;, close: (result?: any) =&gt; void&#125;&gt;
       </code>
     </td>
   </tr>

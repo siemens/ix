@@ -32,6 +32,12 @@ export class FilterChip {
   @Prop() disabled = false;
 
   /**
+   * If true the filter chip will be in readonly mode
+   * @since 2.0.0
+   */
+  @Prop() readonly = false;
+
+  /**
    * Close clicked
    */
   @Event() closeClick: EventEmitter<void>;
@@ -44,20 +50,25 @@ export class FilterChip {
 
   render() {
     return (
-      <Host class={{ disabled: this.disabled }} title={this.el.textContent}>
+      <Host
+        class={{ disabled: this.disabled, readonly: this.readonly }}
+        title={this.el.textContent}
+      >
         <div class="slot-container">
           <slot></slot>
         </div>
-        <ix-icon-button
-          ghost
-          oval
-          icon={closeSmall}
-          size="16"
-          tabindex={this.disabled ? -1 : 0}
-          variant="Primary"
-          disabled={this.disabled}
-          onClick={(e) => this.onCloseClick(e)}
-        ></ix-icon-button>
+        {!this.disabled && !this.readonly ? (
+          <ix-icon-button
+            ghost
+            oval
+            icon={closeSmall}
+            size="16"
+            tabindex={this.disabled ? -1 : 0}
+            variant="primary"
+            disabled={this.disabled}
+            onClick={(e) => this.onCloseClick(e)}
+          ></ix-icon-button>
+        ) : null}
       </Host>
     );
   }

@@ -52,17 +52,18 @@ export class WorkflowStep {
   /**
    * Set selected
    */
-  @Prop({ mutable: true }) selected: boolean = false;
+  @Prop() selected: boolean = false;
 
   /**
    * Activate navigation click
    *
-   * @deprecated Will be changed to '@internal' in 2.0.0
+   * @internal
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';
+
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
   /**
@@ -71,14 +72,6 @@ export class WorkflowStep {
   @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean;
-
-  private select() {
-    if (!this.clickable) return;
-    if (this.disabled) return;
-
-    this.selected = true;
-    this.selectedHandler();
-  }
 
   @Watch('selected')
   selectedHandler() {
@@ -159,20 +152,18 @@ export class WorkflowStep {
           size="24"
         ></ix-icon>
       </Fragment>
-    ) : (
-      ''
-    );
+    ) : null;
 
     return (
       <Host onClick={() => this.onStepClick()}>
         <div
           tabIndex={0}
-          onClick={() => this.select()}
           class={{
             step: true,
             selected: this.selected,
             vertical: this.vertical,
             disabled: this.disabled,
+            clickable: this.clickable && !this.disabled,
           }}
         >
           <div class="wrapper">

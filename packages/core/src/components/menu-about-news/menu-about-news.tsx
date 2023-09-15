@@ -94,7 +94,7 @@ export class MenuAboutNews {
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
             <ix-button
-              variant="Primary"
+              variant="primary"
               onClick={(e) => {
                 this.show = false;
                 this.showMore.emit(e);

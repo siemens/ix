@@ -307,7 +307,7 @@ export class TimePicker {
       <Host>
         <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
-            <div class="title">Time</div>
+            <ix-typography variant="default-title">Time</ix-typography>
           </div>
 
           <div class="clock">
@@ -317,7 +317,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('up', { hours: true })}
                 ghost
                 icon={chevronUp}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -342,7 +342,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('down', { hours: true })}
                 ghost
                 icon={chevronDown}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -359,7 +359,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('up', { minutes: true })}
                 ghost
                 icon={chevronUp}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -384,7 +384,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('down', { minutes: true })}
                 ghost
                 icon={chevronDown}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -401,7 +401,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('up', { seconds: true })}
                 ghost
                 icon={chevronUp}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -426,7 +426,7 @@ export class TimePicker {
                 onClick={() => this.updateInput('down', { seconds: true })}
                 ghost
                 icon={chevronDown}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -443,7 +443,7 @@ export class TimePicker {
                 onClick={() => this.changeReference()}
                 ghost
                 icon={chevronUp}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <div class="time-reference">{this.timeReference}</div>
@@ -452,7 +452,7 @@ export class TimePicker {
                 onClick={() => this.changeReference()}
                 ghost
                 icon={chevronDown}
-                variant="Primary"
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>

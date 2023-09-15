@@ -10,10 +10,14 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require('path');
+
 let withBrandTheme = false;
 
 const libCss = [
   require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
   require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
 ];
 
@@ -61,6 +65,15 @@ const config = {
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
+          remarkPlugins: [
+            require('@siemens/figma-plugin')({
+              baseUrl: baseUrl,
+              figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
+              error_image: 'img/figma_error.png',
+              apiToken: process.env.FIGMA_API_TOKEN,
+              rimraf: true,
+            }),
+          ],
         },
         theme: {
           customCss,

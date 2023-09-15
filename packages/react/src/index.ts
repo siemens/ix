@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 export * from './components';
+export * from './context';
 export * from './ix-icon';
 export * from './modal';
 export * from './toast';

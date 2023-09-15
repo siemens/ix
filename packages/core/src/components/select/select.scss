@@ -8,11 +8,14 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: inline-block;
   position: relative;
   height: auto;
@@ -42,13 +45,38 @@
     &:focus-within {
       background-color: var(--theme-input--background--focus);
       border-color: var(--theme-input--border-color--focus);
-      outline: 1px solid #119fff !important;
+      outline: 1px solid #119fff;
       outline-offset: var(--theme-input--focus--outline-offset);
     }
   }
 
   .select.readonly {
     box-shadow: none !important;
+    border: none;
+    border-radius: 0px;
+    border-bottom: var(--theme-input--border-thickness) solid
+      var(--theme-color-weak-bdr);
+
+    &,
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+    }
+
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      outline: none;
+    }
+
+    input {
+      color: var(--theme-color-weak-text);
+    }
+
+    input:focus,
+    input:focus-visible {
+      outline: none;
+    }
   }
 
   .hidden {
@@ -156,6 +184,6 @@
     align-items: center;
     height: $default-control-height;
     color: var(--theme-select-list-item-hint--color);
-    margin: 0 $small-space 0 $x-large-space;
+    margin: 0 $small-space 0 1rem;
   }
 }

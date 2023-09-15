@@ -120,6 +120,10 @@ $menu-expanded-width: 16rem;
     left: $menu-expanded-width;
   }
 
+  .menu-overlay-container {
+    display: contents;
+  }
+
   .menu-avatar {
     max-height: 3rem;
   }
@@ -148,7 +152,7 @@ $menu-expanded-width: 16rem;
   }
 }
 
-:host(.mode-small) {
+:host(.breakpoint-sm) {
   .menu:not(.expanded) {
     width: 0;
   }
@@ -167,7 +171,7 @@ $menu-expanded-width: 16rem;
   }
 }
 
-:host(.mode-large) {
+:host(.breakpoint-lg) {
   position: relative;
 
   .menu.expanded {

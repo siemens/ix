@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { VariantsMapping } from './type-mapping';
 
 export type TypographyVariants =
@@ -37,8 +37,29 @@ export type TypographyColors =
   | 'inv-weak'
   | 'alarm';
 
+type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
+type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
+type TypographyFormatDisplay =
+  | 'display'
+  | 'display-xs'
+  | 'display-sm'
+  | 'display-lg'
+  | 'display-xl'
+  | 'display-xxl';
+type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
+type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
+
+export type TypographyFormat =
+  | TypographyFormatLabel
+  | TypographyFormatBody
+  | TypographyFormatDisplay
+  | TypographyFormatHeading
+  | TypographyFormatCode;
+
+export type TextDecoration = 'none' | 'underline' | 'line-through';
+
 /**
- * @internal
+ * @since 2.0.0
  */
 @Component({
   tag: 'ix-typography',
@@ -48,33 +69,59 @@ export type TypographyColors =
 export class IxTypography {
   /**
    * Font variant based on theme variables
+   *
+   * @deprecated Use `format` property
+   * @internal
    */
-  @Prop() variant: TypographyVariants = 'default';
+  @Prop() variant: TypographyVariants;
+
+  /**
+   * Text format
+   */
+  @Prop() format: TypographyFormat;
 
   /**
    * Text color based on theme variables
    */
   @Prop() color: TypographyColors;
 
-  render() {
-    const typographyClass = {
-      [VariantsMapping[this.variant]]: true,
-    };
+  /**
+   * Display text bold
+   */
+  @Prop() bold = false;
 
-    const fontColor =
-      this.color !== undefined
-        ? `var(--theme-color-${this.color}-text)`
-        : 'inherit';
+  /**
+   * Text decoration
+   */
+  @Prop() textDecoration: TextDecoration = 'none';
+
+  render() {
+    let typographyClass = {};
+
+    if (this.variant) {
+      typographyClass[VariantsMapping[this.variant ?? 'default']] = true;
+    } else {
+      typographyClass[`typography-${this.format ?? 'body'}`] = true;
+    }
+
+    if (this.textDecoration !== 'none') {
+      typographyClass[`typography-decoration-${this.textDecoration}`] = true;
+    }
+
+    typographyClass['typography-weight-bold'] = this.bold;
+
+    let style = {};
+
+    if (this.color) {
+      style = {
+        color: `var(--theme-color-${this.color}-text)`,
+      };
+    }
 
     return (
-      <div
-        class={typographyClass}
-        style={{
-          color: fontColor,
-        }}
-      >
+      <Host class={typographyClass} style={style}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

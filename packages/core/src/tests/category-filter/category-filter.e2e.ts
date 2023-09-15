@@ -20,7 +20,7 @@ regressionTest.describe('category-filter', () => {
 
   regressionTest('categories', async ({ page }) => {
     await page.goto('category-filter/categories');
-    await page.locator('input').click();
+    await page.locator('input').first().click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

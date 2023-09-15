@@ -71,7 +71,6 @@ export default () => {
               })}
             />
           </IxValidationTooltip>
-          <div className="valid-feedback">Looks good!</div>
         </div>
         <div className="col-md-4">
           <label htmlFor="validationCustomUsername" className="form-label">

@@ -22,11 +22,13 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import { applicationLayoutService } from '../utils/application-layout/service';
+import { Breakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
-import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
-import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
@@ -79,7 +81,11 @@ export class Menu {
   @Prop() maxVisibleMenuItems = 9;
 
   /**
-   * Expand menu
+   * Accessibility i18n label for the burger menu of the sidebar
+   */
+  @Prop() i18nExpandSidebar = 'Expand sidebar';
+
+  /**
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
 
@@ -89,42 +95,18 @@ export class Menu {
   @Prop() pinned = false;
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      console.warn('ix-map-navigation does not support pinning of the menu');
+      return;
+    }
     this.setPinned(this.pinned);
     if (newPinned) {
-      screenMode.disableModeDetection();
-      screenMode.setMode('large');
+      applicationLayoutService.disableBreakpointDetection();
+      applicationLayoutService.setBreakpoint('lg');
       return;
     }
 
-    screenMode.enableModeDetection();
-  }
-
-  /**
-   * Change the responsive layout of the menu structure
-   */
-  @Prop() forceLayout: Mode | undefined;
-  forceLayoutChange(newMode: Mode | undefined) {
-    if (this.pinned) {
-      console.warn('You cannot force a layout while pinned property is set!');
-      return;
-    }
-
-    if (!newMode) {
-      screenMode.enableModeDetection();
-      return;
-    }
-
-    screenMode.disableModeDetection();
-    screenMode.setMode(newMode);
-  }
-
-  /**
-   * Supported layouts
-   */
-  @Prop() supportedModes: Mode[] = ['small', 'medium', 'large'];
-  @Watch('supportedModes')
-  supportedModesChange(modes: Mode[]) {
-    screenMode.setSupportedMods(modes);
+    applicationLayoutService.enableBreakpointDetection();
   }
 
   /**
@@ -160,10 +142,12 @@ export class Menu {
   @State() showPinned = false;
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement | null;
-  @State() mode: Mode = 'large';
+  @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-
+  @State() applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
   private isTransitionDisabled = false;
 
   // FBC IAM workaround #488
@@ -246,7 +230,7 @@ export class Menu {
     return this.hostElement.querySelector('.about-news')!;
   }
 
-  get aboutsNewsPopover(): HTMLIxMenuAboutNewsElement {
+  get aboutNewsPopover(): HTMLIxMenuAboutNewsElement {
     return (
       document.querySelector('ix-menu-about-news') ??
       this.hostElement.querySelector('ix-menu-about-news')!
@@ -285,23 +269,29 @@ export class Menu {
     if (this.pinned) {
       this.pinnedChange(this.pinned);
     }
-
-    if (this.forceLayout) {
-      this.forceLayoutChange(this.forceLayout);
-    }
-
-    if (this.supportedModes !== undefined && this.supportedModes.length > 0) {
-      this.supportedModesChange(this.supportedModes);
-    }
   }
 
   componentWillLoad() {
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        if (ctx.hideHeader === true) {
+          this.onBreakpointChange('md');
+          return;
+        }
+
+        this.onBreakpointChange(applicationLayoutService.breakpoint);
+      },
+      true
+    );
+
     menuController.register(this.hostElement);
-    const layout = hostContext('ix-basic-navigation', this.hostElement);
-    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
-      screenMode.onChange.on((mode) => this.onModeChange(mode));
-      this.onModeChange(screenMode.mode);
-    }
+    applicationLayoutService.onChange.on((breakpoint) =>
+      this.onBreakpointChange(breakpoint)
+    );
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   componentWillRender() {
@@ -317,13 +307,25 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onModeChange(mode: Mode) {
-    if (!this.supportedModes.includes(mode)) {
+  private onBreakpointChange(mode: Breakpoint) {
+    if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
-    this.mode = mode;
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      this.breakpoint = 'md';
+      return;
+    }
+    if (!this.applicationLayoutContext) {
+      return;
+    }
 
-    if (this.mode === 'large') {
+    if (this.applicationLayoutContext.hideHeader && mode === 'sm') {
+      return;
+    }
+
+    this.breakpoint = mode;
+
+    if (this.breakpoint === 'lg') {
       this.setPinned(true);
       this.toggleMenu(true);
       return;
@@ -356,23 +358,22 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutsNewsPopover) {
+    if (!this.aboutNewsPopover) {
       return;
     }
 
-    this.aboutsNewsPopover.style.bottom =
-      this.getAboutPopoverVerticalPosition();
+    this.aboutNewsPopover.style.bottom = this.getAboutPopoverVerticalPosition();
 
-    if (!this.popoverArea?.contains(this.aboutsNewsPopover)) {
+    if (!this.popoverArea?.contains(this.aboutNewsPopover)) {
       const showMore = () => {
-        if (this.aboutsNewsPopover?.aboutItemLabel && this.about) {
-          this.about.activeTabLabel = this.aboutsNewsPopover.aboutItemLabel;
+        if (this.aboutNewsPopover?.aboutItemLabel && this.about) {
+          this.about.activeTabLabel = this.aboutNewsPopover.aboutItemLabel;
           this.toggleAbout(true);
         }
       };
 
-      this.aboutsNewsPopover.addEventListener('showMore', showMore.bind(this));
-      document.body.appendChild(this.aboutsNewsPopover);
+      this.aboutNewsPopover.addEventListener('showMore', showMore.bind(this));
+      document.body.appendChild(this.aboutNewsPopover);
     }
   }
 
@@ -401,8 +402,8 @@ export class Menu {
       this.expand = !this.expand;
     }
 
-    if (this.aboutsNewsPopover) {
-      this.aboutsNewsPopover.expanded = this.expand;
+    if (this.aboutNewsPopover) {
+      this.aboutNewsPopover.expanded = this.expand;
     }
 
     this.expandChange.emit(this.expand);
@@ -565,16 +566,28 @@ export class Menu {
     }
   }
 
+  private isHiddenFromViewport() {
+    return this.breakpoint === 'sm' && this.expand === false;
+  }
+
+  private sidebarToggle() {
+    this.mapExpandChange.emit(this.mapExpand);
+
+    this.hostElement.dispatchEvent(
+      new ApplicationSidebarToggleEvent(this.mapExpand)
+    );
+  }
+
   render() {
     return (
       <Host
         class={{
           expanded: this.expand,
-          [`mode-${this.mode}`]: true,
+          [`breakpoint-${this.breakpoint}`]: true,
         }}
         slot="menu"
       >
-        <div
+        <aside
           class={{
             menu: true,
             expanded: this.expand,
@@ -586,6 +599,7 @@ export class Menu {
           <ix-burger-menu
             onClick={async () => this.toggleMenu()}
             expanded={this.expand}
+            ixAriaLabel={this.i18nExpandSidebar}
             pinned={this.showPinned}
             class={{
               'burger-menu': true,
@@ -614,7 +628,9 @@ export class Menu {
                 }}
               ></div>
               <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
-                <slot></slot>
+                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                  <slot></slot>
+                ) : null}
               </div>
               <div
                 class={{
@@ -628,6 +644,7 @@ export class Menu {
           <div class="bottom-tab-divider"></div>
           {this.settings ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="settings"
               class={{
                 'internal-tab': true,
@@ -644,6 +661,7 @@ export class Menu {
           <div id="popover-area"></div>
           {this.about ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="aboutAndLegal"
               class={{
                 'internal-tab': true,
@@ -658,6 +676,7 @@ export class Menu {
           ) : null}
           {this.enableToggleTheme ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
@@ -666,17 +685,18 @@ export class Menu {
               {this.i18nToggleTheme}
             </ix-menu-item>
           ) : null}
-          {this.enableMapExpand ? (
+          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="menu-collapse"
-              onClick={() => this.mapExpandChange.emit(this.mapExpand)}
+              onClick={() => this.sidebarToggle()}
               class="internal-tab bottom-tab"
               icon={`${this.getCollapseIcon()}`}
             >
               {this.getCollapseText()}
             </ix-menu-item>
           ) : null}
-        </div>
+        </aside>
         <div
           class={{
             'menu-overlay': true,
@@ -688,8 +708,12 @@ export class Menu {
             this.checkTransition();
           }}
         >
-          {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
-          {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          <div class={'menu-overlay-container'}>
+            {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
+          </div>
+          <div class={'menu-overlay-container'}>
+            {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          </div>
         </div>
       </Host>
     );

@@ -4,12 +4,109 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-## [1.6.3](https://github.com/siemens/ix/compare/v1.6.2...v1.6.3) (2023-06-16)
+# [2.0.0-beta.1](https://github.com/siemens/ix/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2023-09-06)
 
 
 ### Bug Fixes
 
+* **aggrid:** use default font fallbacks from core ([#719](https://github.com/siemens/ix/issues/719)) ([5eed3b3](https://github.com/siemens/ix/commit/5eed3b3ce97094e4ba1ddb3eafb1a08feeb35a07))
+* **angular:** fix change detection on modal when using a TemplateRef ([#714](https://github.com/siemens/ix/issues/714)) ([fdfc9ef](https://github.com/siemens/ix/commit/fdfc9ef965f04c88d4949cac346d48b9074012a3))
+* **core/blind:** remove blind content after collapse changed ([#690](https://github.com/siemens/ix/issues/690)) ([4f0c548](https://github.com/siemens/ix/commit/4f0c548b8dcaeade49258de86aa7c99b59266961))
+* **core/breakcrumb:** remove hover style from last breadcrumb ([#726](https://github.com/siemens/ix/issues/726)) ([9d3ef3d](https://github.com/siemens/ix/commit/9d3ef3d7dfc0e20bf59e22da99dcc88055016f3c))
+* **core/dropdownbutton:** dropdown alignment ([#694](https://github.com/siemens/ix/issues/694)) ([5d95a1e](https://github.com/siemens/ix/commit/5d95a1edf2c4af15b19d7d76d99b7c4dc986cfb0))
+* **core/menu:** a-tag styling ([#689](https://github.com/siemens/ix/issues/689)) ([3e3e30b](https://github.com/siemens/ix/commit/3e3e30bdbafd8cd84f99f03fedfe43868fb080af))
+* **core/modal:** allow dialog to overflow ([#692](https://github.com/siemens/ix/issues/692)) ([357e3b5](https://github.com/siemens/ix/commit/357e3b58a68a6c61d14d66f8bdd45cd6503faf8f))
+* **core/pushcard:** use std-text as default color ([#696](https://github.com/siemens/ix/issues/696)) ([ca59395](https://github.com/siemens/ix/commit/ca5939552018fe1d41ce09a3121482d6c3113506))
+* **core/split-button:** prevent inner event to bubble up ([#710](https://github.com/siemens/ix/issues/710)) ([01d9f4f](https://github.com/siemens/ix/commit/01d9f4f17c09e91f0026fe3c611c7ce3edddcd80))
+* **core/styles:** reduce css file size ([#739](https://github.com/siemens/ix/issues/739)) ([c7e601c](https://github.com/siemens/ix/commit/c7e601c7e7f345f6ed6c3db6d24380e5083924e1))
+* **core/workflow-steps:** onStepSelected event  ([#626](https://github.com/siemens/ix/issues/626)) ([4e8cac7](https://github.com/siemens/ix/commit/4e8cac79fa893b8faf97801b6783626a6d5753f7))
+* **core:** update classic theme ([#725](https://github.com/siemens/ix/issues/725)) ([fb49e96](https://github.com/siemens/ix/commit/fb49e96cf3a202c525536d2a62599da48aa4af36))
+
+
+### Features
+
+* **core/breadcrumb:** add keyboard navigation ([#688](https://github.com/siemens/ix/issues/688)) ([1550bf2](https://github.com/siemens/ix/commit/1550bf2d2fb1c86b8ad69a73e7c5791c73ce1ed5))
+* **core/breadcrumb:** migrate to shadow dom ([#679](https://github.com/siemens/ix/issues/679)) ([f8dc56a](https://github.com/siemens/ix/commit/f8dc56a119f82fde731b88872f1171cf5ebd1540))
+* **core/category-filter:** enable shadow dom ([#724](https://github.com/siemens/ix/issues/724)) ([01deb3f](https://github.com/siemens/ix/commit/01deb3fa43790e41657fd756e2ade3d7938eb36e))
+* **core/flip-tile:** migrate to shadow dom ([#680](https://github.com/siemens/ix/issues/680)) ([6744195](https://github.com/siemens/ix/commit/674419598d4fcc684dbac80e0412663f21b95563))
+* **core/grid:** add grid component ([#721](https://github.com/siemens/ix/issues/721)) ([d82ef06](https://github.com/siemens/ix/commit/d82ef069181e12394ee25e220cad3eaea9825f26))
+* **core/input-group:** migrate to shadow dom ([#673](https://github.com/siemens/ix/issues/673)) ([9c9cb0e](https://github.com/siemens/ix/commit/9c9cb0ed2dcf3c639203cfd762c1e18d03a54d09))
+* **core/input:** add basic input styling ([#717](https://github.com/siemens/ix/issues/717)) ([429f39e](https://github.com/siemens/ix/commit/429f39e482706cc6b151f5ef3c4db60fd046eccb))
+* **core/map-navigation-overlay:** migrate to shadow dom ([#707](https://github.com/siemens/ix/issues/707)) ([cadc503](https://github.com/siemens/ix/commit/cadc503594f12d90a4689827f7d1c7c2e33d46bd))
+* **core/menu:** provide keyboard navigation ([#685](https://github.com/siemens/ix/issues/685)) ([4327a96](https://github.com/siemens/ix/commit/4327a96e7465168cfa8c332dca8f5c0bb9ee195c))
+* **core/pagination:** migrate to shadow dom ([#678](https://github.com/siemens/ix/issues/678)) ([a8c2187](https://github.com/siemens/ix/commit/a8c2187139c3f526681bdde9136eee983c103df8))
+* **core/select:** migrate to shadow dom ([#670](https://github.com/siemens/ix/issues/670)) ([0d00293](https://github.com/siemens/ix/commit/0d00293352dc7cd43271c4e3b9d31fbdafe34288))
+* **core/select:** support for angular forms ([#738](https://github.com/siemens/ix/issues/738)) ([c0bb78f](https://github.com/siemens/ix/commit/c0bb78f5798291ba7af5e5fe958dd86c638aba2c))
+* **core/tabs:** add additional navigation events ([#669](https://github.com/siemens/ix/issues/669)) ([d800f29](https://github.com/siemens/ix/commit/d800f297da1383d640ba1b7e74d1dd02c4c695f5))
+* **core/toggle-button|icon-toggle-button:** add new components ([#623](https://github.com/siemens/ix/issues/623)) ([8870e65](https://github.com/siemens/ix/commit/8870e656435c0a31232397ef9bcda9f17a683059))
+* **core/toggle-button|icon-toggle-button:** add toggle button components ([#675](https://github.com/siemens/ix/issues/675)) ([29e70e1](https://github.com/siemens/ix/commit/29e70e10a8230be8369cd3e6c634d9c8541658ab))
+* **core/tree:** migrate to shadow dom ([#672](https://github.com/siemens/ix/issues/672)) ([955180a](https://github.com/siemens/ix/commit/955180af823388e3e676480d43ed9cc6f8f756d6))
+* **core/validation-tooltip:** migrate to shadow dom ([#671](https://github.com/siemens/ix/issues/671)) ([d228212](https://github.com/siemens/ix/commit/d228212be7f1d19a324dc1b09f8c003097acd974))
+* **core:** application frame enhancement ([#735](https://github.com/siemens/ix/issues/735)) ([e4fe29d](https://github.com/siemens/ix/commit/e4fe29d2995e15bf5869c290081a5c3df8444213))
+* **core:** font rework ([#713](https://github.com/siemens/ix/issues/713)) ([6cc51f6](https://github.com/siemens/ix/commit/6cc51f6fe587a1fcacebbed2eb7ba8b9dea2d410))
+
+
+
+# [2.0.0-beta.0](https://github.com/siemens/ix/compare/v1.6.3...v2.0.0-beta.0) (2023-08-02)
+
+
+### Bug Fixes
+
+* **aggrid:** remove box shadow from editor cells ([#600](https://github.com/siemens/ix/issues/600)) ([e3821b3](https://github.com/siemens/ix/commit/e3821b342d0edcf2a703f741f0397241f460381f))
+* **core/basic-navigation:** increase content width to 100% ([#571](https://github.com/siemens/ix/issues/571)) ([adbb655](https://github.com/siemens/ix/commit/adbb655ef3d834d2a8472c9eb6ea2361e421b99a))
+* **core/button:** pass through submit related events ([#578](https://github.com/siemens/ix/issues/578)) ([3301a0d](https://github.com/siemens/ix/commit/3301a0db25dcace9597e41ac9fbeaab269fe3310))
+* **core/chip:** typo ([94dfed1](https://github.com/siemens/ix/commit/94dfed1a24b65587378d4260f3faec74c70081b8))
+* **core/date-picker:** done button hidden ([#624](https://github.com/siemens/ix/issues/624)) ([b7e95f5](https://github.com/siemens/ix/commit/b7e95f50ba51c26acbaef49573e458fff62f9f50))
+* **core/drawer:** start show true ([#652](https://github.com/siemens/ix/issues/652)) ([56c730b](https://github.com/siemens/ix/commit/56c730bbcc3d0b5a6aee16d11edd9d1a767bab19))
+* **core/dropdown-button:** deprecate unused property active ([#599](https://github.com/siemens/ix/issues/599)) ([029fdf9](https://github.com/siemens/ix/commit/029fdf92e6ca2874542595dfed91b4c08f5e3779))
+* **core/expanding-search:** remove typo in variant ([5ab05e0](https://github.com/siemens/ix/commit/5ab05e03e91d240f8934ca31d40ee94f32824ca8))
+* **core/icon-button:** deprecated size 32  ([#620](https://github.com/siemens/ix/issues/620)) ([e989be5](https://github.com/siemens/ix/commit/e989be5b99dc60fd77793b3c9e4fc868506feeb4))
+* **core/input:** slot heights ([#610](https://github.com/siemens/ix/issues/610)) ([6007776](https://github.com/siemens/ix/commit/600777684b787e22dff4f1e9ce1daef84fb07372))
+* **core/spinner:** update secondary color ([#617](https://github.com/siemens/ix/issues/617)) ([242ac05](https://github.com/siemens/ix/commit/242ac05b6af45c13a226307cda2157354f74ce89))
+* **core/upload:** drop while loading and input width ([#655](https://github.com/siemens/ix/issues/655)) ([2a12e33](https://github.com/siemens/ix/commit/2a12e3304193b4625febf6b62b6ba347522e3082))
+* **core:** change variant values to lower case ([#641](https://github.com/siemens/ix/issues/641)) ([c737d47](https://github.com/siemens/ix/commit/c737d47251748e6a66a909607bbf42d2d3f1e572))
+
+
+### Features
+
+* **core/avatar:** add avatar component  ([#598](https://github.com/siemens/ix/issues/598)) ([6bcda4f](https://github.com/siemens/ix/commit/6bcda4ff537fe85fabda409d0765c5d2263f915b))
+* **core/chip:** enable shadow dom ([#603](https://github.com/siemens/ix/issues/603)) ([53e9fe6](https://github.com/siemens/ix/commit/53e9fe6de8816f469d0be27effbcb5da301ffd35))
+* **core/datetime-picker:** enable shadow dom ([#586](https://github.com/siemens/ix/issues/586)) ([4e875aa](https://github.com/siemens/ix/commit/4e875aabd5ee99606fa839d2740fe2b790e18c42))
+* **core/dropdownbutton:** migrate to shadow dom ([#638](https://github.com/siemens/ix/issues/638)) ([5ac2ecb](https://github.com/siemens/ix/commit/5ac2ecb99a37fd04e704816e5bf6a93a480f617d))
+* **core/dropdown:** enable shadow dom ([#552](https://github.com/siemens/ix/issues/552)) ([7480b3d](https://github.com/siemens/ix/commit/7480b3d238e5183da5561cf1fff7150b5e21a20b))
+* **core/event-list:** enable shadow dom  ([#565](https://github.com/siemens/ix/issues/565)) ([898ae23](https://github.com/siemens/ix/commit/898ae234d12a0af2a3f5d124fa058f0d219f392a))
+* **core/expanding-search:** migrate to shadow dom ([#636](https://github.com/siemens/ix/issues/636)) ([2b81bc2](https://github.com/siemens/ix/commit/2b81bc22f5d68856dfd04083ef0dc187fc547560))
+* **core/filter-chip:** enable shadow dom ([#602](https://github.com/siemens/ix/issues/602)) ([e4b0355](https://github.com/siemens/ix/commit/e4b0355565c2001dc286722a045e3e990ed9f587))
+* **core/group:** migrate to shadow dom ([#661](https://github.com/siemens/ix/issues/661)) ([8970a03](https://github.com/siemens/ix/commit/8970a034432e49a2dfe53e226816ed24a246d031))
+* **core/link-button:** add link button component ([#580](https://github.com/siemens/ix/issues/580)) ([d98cabc](https://github.com/siemens/ix/commit/d98cabc6d8253ecf9328b40b7cf74f7d6129edb2))
+* **core/menu:** implement a11y features for menu and burger-menu ([#582](https://github.com/siemens/ix/issues/582)) ([b640409](https://github.com/siemens/ix/commit/b6404093904e265a35459a7cf518911763c21939))
+* **core/menu:** rework of menu ([#592](https://github.com/siemens/ix/issues/592)) ([932b051](https://github.com/siemens/ix/commit/932b051f19d4f35a1b1af42bab551eed393e3a16))
+* **core/modal:** migrate to shadow dom ([#648](https://github.com/siemens/ix/issues/648)) ([0421bf5](https://github.com/siemens/ix/commit/0421bf56290a3ffd8d58a17e2f95a3d47256c334))
+* **core/pill:** migrate to shadow dom ([#664](https://github.com/siemens/ix/issues/664)) ([37b5ec8](https://github.com/siemens/ix/commit/37b5ec891d98b3bad13b757dc800f42cc77b2e88))
+* **core/select:** input event ([#608](https://github.com/siemens/ix/issues/608)) ([750eb8e](https://github.com/siemens/ix/commit/750eb8e18cd3679bcae0242fd808a686c5bee283))
+* **core/split-button:** migrate to shadow DOM ([#607](https://github.com/siemens/ix/issues/607)) ([3b6dea9](https://github.com/siemens/ix/commit/3b6dea9a73b21880ad5a5b0e4e666516cd55b799))
+* **core/tabs:** enable shadowDOM ([#594](https://github.com/siemens/ix/issues/594)) ([69e69c0](https://github.com/siemens/ix/commit/69e69c01a3533622e9f6acfdbb0aa3417d594471))
+* **core/tile:** enable shadow dom ([#549](https://github.com/siemens/ix/issues/549)) ([2f4d843](https://github.com/siemens/ix/commit/2f4d843ddb7647023da1f2605cbdb88620f5b7e4))
+* **core/toast:** enable shadow dom ([#581](https://github.com/siemens/ix/issues/581)) ([8ac2a47](https://github.com/siemens/ix/commit/8ac2a47da2121a67a225db91056b68fef1b2449c))
+* **core/toggle:** component rework ([#568](https://github.com/siemens/ix/issues/568)) ([17daf4b](https://github.com/siemens/ix/commit/17daf4ba70c17ab3f404d5b87c1a5fb5c8dfdc2a))
+* **core/toggle:** migrate to shadow dom ([#662](https://github.com/siemens/ix/issues/662)) ([8d5b979](https://github.com/siemens/ix/commit/8d5b97927635ddf9354ff2e745a74d5b9fe84d5b))
+* **core/upload:** migrate to shadow dom ([#663](https://github.com/siemens/ix/issues/663)) ([bdced37](https://github.com/siemens/ix/commit/bdced37197c80e6e10a6b8090265cb41c2fc790f))
+* **core/workflow:** enable shadow dom ([#551](https://github.com/siemens/ix/issues/551)) ([0a58428](https://github.com/siemens/ix/commit/0a5842831583857ec17c34408401bf253773d814))
+* **core:** new classic theme ([#634](https://github.com/siemens/ix/issues/634)) ([23b554d](https://github.com/siemens/ix/commit/23b554d74a68dcd24bc70c339521a495ce31f3b4))
+* **core:** replace spinner animation and add loading state to button ([#583](https://github.com/siemens/ix/issues/583)) ([2c5b183](https://github.com/siemens/ix/commit/2c5b18312b1668cc39fae0b5442f5083766e921f))
+
+
+
+## [1.6.3](https://github.com/siemens/ix/compare/v1.6.2...v1.6.3) (2023-06-19)
+
+
+### Bug Fixes
+
+* **core/button:** dispatch form submit event ([4dc776a](https://github.com/siemens/ix/commit/4dc776ad7c2c6b97387e81d08c9f0e8c7e7274c1))
+* **core/button:** dispatch submit event with shadow button ([7ca99a1](https://github.com/siemens/ix/commit/7ca99a14efb7a4ca78065d93dcc89a562b275721))
 * **core/button:** pass through submit related events ([#578](https://github.com/siemens/ix/issues/578)) ([8a0b410](https://github.com/siemens/ix/commit/8a0b410b64bccb949c27f73f0a1d93cce480f42c))
+* **core/icon-button:** dispatch form submit event ([3e91ecf](https://github.com/siemens/ix/commit/3e91ecf2ec5d50dac4dfa6c02655ee729199b3fc))
+* **core/icon-button:** dispatch submit event with shadow button ([febb1b8](https://github.com/siemens/ix/commit/febb1b862d62510b707bd6fde16440d23b586f3e))
 
 
 

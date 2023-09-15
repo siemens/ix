@@ -8,16 +8,24 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/shadows';
+@import 'mixins/shadow-dom/component';
 @import 'mixins/text-truncation';
+@import '../button/button';
+@import 'legacy/components/dropdown';
+@import 'legacy/components/forms';
+@import 'components/form/input';
 
 :host {
+  @include ix-component;
+
   display: block;
   position: relative;
+  height: auto;
 
-  .focus {
+  @include host-focus-visible {
     border-color: var(--theme-color-primary);
     box-shadow: 0 0 $tiny-space 0 var(--theme-color-primary) !important;
   }
@@ -33,10 +41,24 @@
   }
 
   .input-container {
+    &:not(.readonly):not(.disabled) {
+      @include element-input('false');
+    }
+
+    &.disabled {
+      color: var(--theme-input--color--disabled);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid
+        var(--theme-input--border-color-bottom--disabled);
+    }
+
+    &.readonly {
+      @include element-input;
+    }
+
     display: flex;
-    height: 100%;
+    height: auto;
     max-height: 3.75rem;
-    padding: 1px $large-space 1px $x-large-space;
+    padding: 1px $large-space 1px $x-large-space !important;
 
     &.no-icon {
       padding-left: $tiny-space;
@@ -51,9 +73,12 @@
   .text-input {
     @include ellipsis;
     @include text-default;
+    width: auto;
+    height: 1.75rem;
+    min-height: $large-space;
     background: transparent;
     flex-grow: 1;
-    height: 1.75rem;
+    box-shadow: none;
 
     &,
     &:hover,
@@ -117,11 +142,18 @@
       .dropdown-item {
         @include text-default-single;
         @include ellipsis;
+        @include focus-visible {
+          border-color: var(--theme-color-focus-bdr);
+        }
+
         height: $large-control-height;
         margin: $tiny-space $small-space;
         padding-inline: $small-space;
+        border: 1px solid transparent;
         border-radius: 100rem;
         width: auto;
+        justify-content: flex-start;
+        flex-grow: 1;
       }
 
       .category-item {
@@ -136,7 +168,13 @@
     }
 
     .btn-toggle-operator {
+      width: 2rem;
+      height: 2rem;
       margin-inline: $small-space;
     }
+  }
+
+  .d-none {
+    display: none;
   }
 }

@@ -9,6 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { CardVariant } from '../card/card';
+import { TypographyColors } from '../typography/typography';
 
 export type PushCardVariant = CardVariant;
 
@@ -47,21 +48,26 @@ export class PushCard {
   @Prop() variant: PushCardVariant = 'insight';
 
   render() {
+    const color: TypographyColors =
+      this.variant === 'insight' || this.variant === 'notification'
+        ? 'std'
+        : undefined;
+
     return (
       <Host>
         <ix-card variant={this.variant}>
-          <ix-card-title>
-            {this.icon ? (
-              <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
-            ) : null}
-            <span class={'notification'}>{this.notification ?? 0}</span>
-            <slot name="title-action"></slot>
-          </ix-card-title>
           <ix-card-content>
-            <ix-typography variant="default-title-single">
+            <ix-card-title>
+              {this.icon ? (
+                <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
+              ) : null}
+              <span class={'notification'}>{this.notification ?? 0}</span>
+              <slot name="title-action"></slot>
+            </ix-card-title>
+            <ix-typography color={color} format="h4">
               {this.heading}
             </ix-typography>
-            <ix-typography>{this.subheading}</ix-typography>
+            <ix-typography color={color}>{this.subheading}</ix-typography>
           </ix-card-content>
           <ix-card-accordion>
             <slot></slot>

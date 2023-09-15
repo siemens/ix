@@ -115,10 +115,10 @@ export class MenuAbout {
   render() {
     return (
       <Host
+        slot="ix-menu-about"
         class={{
           show: this.show,
         }}
-        slot="ix-menu-about"
       >
         <div class="about-header">
           <h2 class="text-h2">{this.label}</h2>
@@ -134,10 +134,7 @@ export class MenuAbout {
             }
           ></ix-icon-button>
         </div>
-        <ix-tabs
-          selected={this.getSelectedTabIndex(this.activeTabLabel)}
-          class="about-tabs"
-        >
+        <ix-tabs selected={this.getSelectedTabIndex(this.activeTabLabel)}>
           {this.getTabItems()}
         </ix-tabs>
         <div class="about-items">

@@ -475,7 +475,7 @@ export class DatePicker {
               onClick={() => this.changeMonth(-1)}
               ghost
               icon={chevronLeft}
-              variant="Primary"
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
 
@@ -488,7 +488,7 @@ export class DatePicker {
               <ix-dropdown
                 class="dropdown"
                 trigger={this.dropdownButtonRef}
-                placement="bottom"
+                placement="bottom-start"
               >
                 <div class="wrapper">
                   <div
@@ -552,7 +552,7 @@ export class DatePicker {
               onClick={() => this.changeMonth(1)}
               ghost
               icon={chevronRight}
-              variant="Primary"
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
           </div>
@@ -583,7 +583,9 @@ export class DatePicker {
             })}
           </div>
 
-          <div class={{ button: true, hidden: !this.individual }}>
+          <div
+            class={{ button: true, hidden: !this.individual || !this.range }}
+          >
             <ix-button onClick={() => this.onDone()}>
               {this.textSelectDate}
             </ix-button>

@@ -147,6 +147,10 @@ export class Drawer {
     });
   }
 
+  componentDidLoad() {
+    this.onShowChanged(this.show);
+  }
+
   render() {
     return (
       <Host

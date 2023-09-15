@@ -35,7 +35,7 @@ export class MenuItem {
   /**
    * Icon name from @siemens/ix-icons
    *
-   * @deprecated Use `icon` property. Will be removed in 3.0.0
+   * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
   @Prop() tabIcon = document;
 
@@ -64,6 +64,12 @@ export class MenuItem {
   @State() title: string;
 
   private observer: MutationObserver;
+  private isHostedInsideCategory = false;
+
+  componentWillLoad() {
+    this.isHostedInsideCategory =
+      !!this.hostElement.closest('ix-menu-category');
+  }
 
   componentWillRender() {
     this.title = this.hostElement.innerText;
@@ -107,11 +113,20 @@ export class MenuItem {
           'home-tab': this.home,
           'bottom-tab': this.bottom,
           active: this.active,
+          'tab-nested': this.isHostedInsideCategory,
         }}
         {...extendedAttributes}
       >
-        <li class="tab" title={this.title}>
-          <ix-icon name={this.icon ?? this.tabIcon}></ix-icon>
+        <button
+          class="tab"
+          title={this.title}
+          tabIndex={this.disabled ? -1 : 0}
+          role="listitem"
+        >
+          <ix-icon
+            class={'tab-icon'}
+            name={this.icon ?? this.tabIcon}
+          ></ix-icon>
           <div class="notification">
             {this.notifications ? (
               <div class="pill">{this.notifications}</div>
@@ -120,7 +135,7 @@ export class MenuItem {
           <span class="tab-text text-default">
             <slot></slot>
           </span>
-        </li>
+        </button>
       </Host>
     );
   }

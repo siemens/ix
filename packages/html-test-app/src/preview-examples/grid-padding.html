@@ -1,0 +1,70 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div class="example-parent">
+      <h4>Grid with padding</h4>
+      <ix-layout-grid>
+        <ix-row>
+          <ix-col>1</ix-col>
+          <ix-col>2</ix-col>
+          <ix-col>3</ix-col>
+          <ix-col>4</ix-col>
+          <ix-col>5</ix-col>
+          <ix-col>6</ix-col>
+          <ix-col>7</ix-col>
+          <ix-col>8</ix-col>
+          <ix-col>9</ix-col>
+          <ix-col>10</ix-col>
+          <ix-col>11</ix-col>
+          <ix-col>12</ix-col>
+        </ix-row>
+      </ix-layout-grid>
+
+      <h4>Grid without padding</h4>
+      <ix-layout-grid no-padding>
+        <ix-row>
+          <ix-col>1</ix-col>
+          <ix-col>2</ix-col>
+          <ix-col>3</ix-col>
+          <ix-col>4</ix-col>
+          <ix-col>5</ix-col>
+          <ix-col>6</ix-col>
+          <ix-col>7</ix-col>
+          <ix-col>8</ix-col>
+          <ix-col>9</ix-col>
+          <ix-col>10</ix-col>
+          <ix-col>11</ix-col>
+          <ix-col>12</ix-col>
+        </ix-row>
+      </ix-layout-grid>
+    </div>
+    <style>
+      .example-parent {
+        padding-top: 1rem;
+        padding-bottom: 0.25rem;
+        background-color: var(--theme-color-info-40);
+      }
+    </style>
+    <!-- Preview code -->
+    <style>
+      ix-layout-grid {
+        margin-bottom: 1rem;
+      }
+
+      ix-col {
+        background-color: var(--theme-color-primary);
+        border: var(--theme-std-bdr-2);
+        text-align: center;
+        color: var(--theme-color-inv-contrast-text);
+      }
+    </style>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -21,13 +21,16 @@ import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items.vue';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate.vue';
 import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
-import ButtonSelected from './preview-examples/button-selected.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import Chip from './preview-examples/chip.vue';
+import Slider from './preview-examples/slider.vue';
+import SliderTrace from './preview-examples/slider-trace.vue';
+import SliderMarker from './preview-examples/slider-marker.vue';
+import SliderError from './preview-examples/slider-error.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
@@ -98,6 +101,9 @@ import Validation from './preview-examples/validation.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
+import Grid from './preview-examples/grid.vue';
+import GridSize from './preview-examples/grid-size.vue';
+import GridPadding from './preview-examples/grid-padding.vue';
 
 const routes: any = {
   '/': App,
@@ -105,7 +111,6 @@ const routes: any = {
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/buttons': Buttons,
   '/preview/button-with-icon': ButtonWithIcon,
-  '/preview/button-selected': ButtonSelected,
   '/preview/button-group': ButtonGroup,
   '/preview/blind': Blind,
   '/preview/breadcrumb': Breadcrumb,
@@ -190,6 +195,13 @@ const routes: any = {
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
   '/preview/menu-category': MenuCategory,
+  '/preview/slider': Slider,
+  '/preview/slider-trace': SliderTrace,
+  '/preview/slider-marker': SliderMarker,
+  '/preview/slider-error': SliderError,
+  '/preview/grid': Grid,
+  '/preview/grid-size': GridSize,
+  '/preview/grid-padding': GridPadding,
 };
 
 const currentPath = ref(window.location.pathname);

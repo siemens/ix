@@ -39,6 +39,12 @@ export class Blind {
   @Prop() label: string;
 
   /**
+   * Secondary label inside blind header
+   * @since 2.0.0
+   */
+  @Prop() sublabel: string;
+
+  /**
    * Optional icon to be displayed next to the header label
    * @since 1.5.0
    */
@@ -149,7 +155,23 @@ export class Blind {
                 ) : (
                   ''
                 )}
-                <span class="blind-header-title-default">{this.label}</span>
+                <ix-typography format="label-lg" bold>
+                  <div class="blind-header-title-label" title={this.label}>
+                    {this.label}
+                  </div>
+                </ix-typography>
+                {this.sublabel !== undefined ? (
+                  <ix-typography color="soft">
+                    <div
+                      class="blind-header-title-sublabel"
+                      title={this.sublabel}
+                    >
+                      {this.sublabel}
+                    </div>
+                  </ix-typography>
+                ) : (
+                  ''
+                )}
                 <span
                   class="header-actions"
                   onClick={(e) => e.stopImmediatePropagation()}
@@ -172,7 +194,7 @@ export class Blind {
               hide: this.collapsed,
             }}
           >
-            <slot></slot>
+            {!this.collapsed ? <slot></slot> : null}
           </div>
         </section>
       </Host>

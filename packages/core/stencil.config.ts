@@ -23,6 +23,10 @@ const copyAssets = [
     src: './../../../node_modules/@siemens/ix-icons/dist',
     dest: 'build/ix-icons',
   },
+  {
+    src: './../../../node_modules/bootstrap',
+    dest: 'build/bootstrap',
+  },
 ];
 
 try {
@@ -41,9 +45,6 @@ try {
 
 export const config: Config = {
   bundles: [
-    {
-      components: ['ix-animated-tabs', 'ix-animated-tab'],
-    },
     {
       components: ['ix-application-header'],
     },
@@ -66,9 +67,6 @@ export const config: Config = {
       components: ['ix-chip'],
     },
     {
-      components: ['ix-counter-pill'],
-    },
-    {
       components: ['ix-drawer'],
     },
     {
@@ -87,7 +85,7 @@ export const config: Config = {
       components: ['ix-flip-tile', 'ix-flip-tile-content'],
     },
     {
-      components: ['ix-group', 'ix-group-dropdown-item', 'ix-group-item'],
+      components: ['ix-group', 'ix-group-item'],
     },
     {
       components: ['ix-icon'],
@@ -118,7 +116,7 @@ export const config: Config = {
       components: ['ix-message-bar'],
     },
     {
-      components: ['ix-modal', 'ix-modal-container'],
+      components: ['ix-modal'],
     },
     {
       components: ['ix-pill'],
@@ -193,6 +191,15 @@ export const config: Config = {
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents: ['my-component', 'ix-tree'],
+      valueAccessorConfigs: [
+        {
+          elementSelectors:
+            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
+          event: 'valueChange',
+          targetAttr: 'value',
+          type: 'select',
+        },
+      ],
     }),
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',

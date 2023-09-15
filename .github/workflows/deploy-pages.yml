@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir .tmp-brand
           cd .tmp-brand
-          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
+          npm install @siemens/ix-brand-theme@1.3.0-beta.0 --no-save --legacy-peer-deps
           cd ..
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
 
@@ -63,6 +63,7 @@ jobs:
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
         env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           BASE_URL: /version-dev/
         with:
           filter: 'documentation'
@@ -72,6 +73,7 @@ jobs:
         uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
         env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           BASE_URL: /
         with:
           filter: 'documentation'

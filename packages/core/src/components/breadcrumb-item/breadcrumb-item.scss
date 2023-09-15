@@ -7,6 +7,70 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import 'mixins/shadow-dom/component';
+@import '../button/button-mixin';
+@import '../button/button';
+
+@include all-btn-variants;
+
 :host {
-  display: block;
+  @include ix-component;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: 0.25rem;
+  max-width: 15rem;
+  min-width: 0;
+
+  li {
+    display: contents;
+  }
+
+  .btn {
+    pointer-events: all;
+    width: fit-content;
+    padding-right: 0;
+    padding-left: 0.25rem;
+  }
+
+  .chevron {
+    pointer-events: none;
+    margin-left: 0.5rem;
+    margin-right: 0rem;
+    --theme-color-std-text: var(--theme-color-soft-text);
+    --ix-icon-color: var(--theme-color-std-text);
+  }
+
+  ::slotted(a[href]) {
+    text-decoration: none !important;
+  }
+
+  ::slotted(a[href]:active) {
+    text-decoration: none !important;
+  }
+}
+
+:host(:last-child) {
+  .btn:not(.dropdown-trigger) {
+    color: var(--theme-color-soft-text);
+  }
+}
+
+:host(.hide-chevron) {
+  cursor: default;
+
+  .btn {
+    padding-right: 0.5rem;
+    pointer-events: none;
+  }
+}
+
+:host(.invisible) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  outline: none;
 }

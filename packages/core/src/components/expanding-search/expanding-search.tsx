@@ -21,7 +21,7 @@ import {
 @Component({
   tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',
-  scoped: true,
+  shadow: true,
 })
 export class ExpandingSearch {
   /**
@@ -46,9 +46,7 @@ export class ExpandingSearch {
   @Prop() fullWidth = false;
 
   @State() isFieldChanged = false;
-
   @State() expanded = false;
-
   @State() hasFocus = false;
 
   /**
@@ -108,27 +106,20 @@ export class ExpandingSearch {
           fullWidth: this.fullWidth,
         }}
       >
-        <button
-          class={{
-            btn: true,
-            'btn-invisible-primary': true,
-            'btn-icon': true,
-            'btn-search': true,
-            'disable-pointer': this.expanded,
-          }}
+        <ix-icon-button
+          size={this.expanded ? '16' : '24'}
+          icon={this.icon}
+          ghost
+          variant="primary"
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-        >
-          <ix-icon
-            class="btn-search-icon"
-            name={this.icon}
-            size={this.expanded ? '16' : '24'}
-            color={
-              this.hasFocus ? 'input-search-icon--color--focus' : undefined
-            }
-          ></ix-icon>
-        </button>
+          color={this.hasFocus ? 'input-search-icon--color--focus' : undefined}
+          class={{
+            'btn-search': true,
+            'btn-search--expanded': this.expanded,
+          }}
+        ></ix-icon-button>
 
         <div
           class={{

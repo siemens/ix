@@ -12,13 +12,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-dropdown-button',
   template: `
-    <ix-dropdown-button label="Dropdown" variant="Primary" icon="checkboxes">
+    <ix-dropdown-button label="Dropdown" variant="primary" icon="checkboxes">
       <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
     </ix-dropdown-button>
     <ix-dropdown-button
       label="Dropdown"
-      variant="Primary"
+      variant="primary"
       outline
       icon="checkboxes"
     >
@@ -27,7 +27,7 @@ import { Component } from '@angular/core';
     </ix-dropdown-button>
     <ix-dropdown-button
       label="Dropdown"
-      variant="Primary"
+      variant="primary"
       ghost
       icon="checkboxes"
     >
@@ -36,7 +36,7 @@ import { Component } from '@angular/core';
     </ix-dropdown-button>
     <ix-dropdown-button
       label="Dropdown"
-      variant="Primary"
+      variant="primary"
       disabled
       icon="checkboxes"
     >

@@ -8,7 +8,7 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
@@ -44,6 +44,21 @@
     .collapse-icon {
       color: var(--theme-blind-header-icon-closed--color);
       padding: $tiny-space $small-space;
+    }
+
+    ix-typography,
+    .blind-header-title-label,
+    .blind-header-title-sublabel {
+      @include ellipsis;
+      flex-grow: 1;
+    }
+
+    .blind-header-title-label {
+      padding-inline-end: 0.5rem;
+    }
+
+    .blind-header-title-sublabel {
+      padding-inline: 0.5rem;
     }
 
     .blind-header-title,

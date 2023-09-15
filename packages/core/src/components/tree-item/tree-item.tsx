@@ -14,7 +14,7 @@ import { TreeItemContext } from '../tree/tree-model';
 @Component({
   tag: 'ix-tree-item',
   styleUrl: 'tree-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class TreeItem {
   /**

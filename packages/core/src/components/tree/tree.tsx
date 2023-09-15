@@ -31,10 +31,10 @@ import {
 @Component({
   tag: 'ix-tree',
   styleUrl: 'tree.css',
-  scoped: true,
+  shadow: true,
 })
 export class Tree {
-  @Element() host!: HTMLIxTreeElement;
+  @Element() hostElement!: HTMLIxTreeElement;
 
   /**
    * Initial root element will not be rendered
@@ -89,10 +89,12 @@ export class Tree {
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
   private updates = new Map<string, UpdateCallback>();
-
   private observer: MutationObserver;
-
   private hasFirstRender = false;
+
+  private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
+    element.style.paddingLeft = item.level + 'rem';
+  }
 
   private getVirtualizerOptions() {
     const list = this.buildTreeList(this.model[this.root]);
@@ -121,7 +123,8 @@ export class Tree {
       total: list.length,
       generate: (index: number) => {
         const item = list[index];
-        const renderedTreeItem = this.host.querySelector(
+
+        const renderedTreeItem = this.hostElement.querySelector(
           `[data-tree-node-id="${item.id}"]`
         ) as HTMLIxTreeItemElement;
 
@@ -138,6 +141,7 @@ export class Tree {
             doUpdate(item, { ...this.context });
           }
 
+          this.updatePadding(renderedTreeItem, item);
           return renderedTreeItem;
         }
 
@@ -162,8 +166,8 @@ export class Tree {
 
         const el = innerElement;
         el.setAttribute('data-tree-node-id', item.id);
-        el.style.paddingLeft = item.level + 'rem';
         el.style.paddingRight = '1rem';
+        this.updatePadding(el, item);
 
         if (!this.itemClickListener.has(el)) {
           const itemClickCallback = (e: Event) => {
@@ -252,7 +256,7 @@ export class Tree {
       this.nodeRemoved.emit(removed);
     });
 
-    this.observer.observe(this.host, {
+    this.observer.observe(this.hostElement, {
       childList: true,
     });
   }
@@ -293,14 +297,18 @@ export class Tree {
 
   private refreshList() {
     if (this.hyperlist) {
-      this.hyperlist.refresh(this.host, this.getVirtualizerOptions());
+      this.hyperlist.refresh(this.hostElement, this.getVirtualizerOptions());
     }
   }
 
   private initList() {
+    if (!this.model) {
+      return;
+    }
+
     this.hyperlist?.destroy();
     const config = this.getVirtualizerOptions();
-    this.hyperlist = new Hyperlist(this.host, config);
+    this.hyperlist = new Hyperlist(this.hostElement, config);
   }
 
   render() {

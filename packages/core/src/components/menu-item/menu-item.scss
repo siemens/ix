@@ -10,7 +10,9 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+
 $menuItemHeight: 3rem;
+$menuItemPadding: 0.875rem;
 
 :host {
   position: relative;
@@ -22,27 +24,27 @@ $menuItemHeight: 3rem;
   max-height: var(--ix-menu-item-height, $menuItemHeight);
 
   .tab {
+    all: unset;
+    box-sizing: border-box;
     display: flex;
     position: relative;
     align-items: center;
     height: var(--ix-menu-item-height, $menuItemHeight);
+    width: calc(100%);
     z-index: 500;
-    padding-left: 0.875rem;
+    padding-left: $menuItemPadding;
 
     @include ghost-hover-pressed;
   }
 
-  i.glyph {
+  .tab-icon {
     color: var(--theme-nav-item-primary-icon--color);
     position: relative;
   }
 
   .tab:focus-visible {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: none;
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: -1px;
   }
 
   .tab:not(:last-child) {
@@ -108,7 +110,7 @@ $menuItemHeight: 3rem;
   pointer-events: none;
   cursor: default;
 
-  .tab > .glyph {
+  .tab > .tab-icon {
     color: var(--theme-color-weak-text);
   }
 
@@ -152,5 +154,11 @@ $menuItemHeight: 3rem;
 :host(.selected[slot='bottom']) {
   .tab {
     background-color: var(--theme-nav-item-secondary--background--selected);
+  }
+}
+
+:host(.tab-nested) {
+  .tab::before {
+    display: none;
   }
 }

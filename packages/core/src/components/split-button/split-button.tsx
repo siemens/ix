@@ -19,7 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
-import { Placement } from '../dropdown/placement';
+import { AlignedPlacement } from '../dropdown/placement';
 
 export type SplitButtonVariant = ButtonVariant;
 
@@ -34,7 +34,7 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: SplitButtonVariant = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'primary';
 
   /**
    * Button outline variant
@@ -69,7 +69,7 @@ export class SplitButton {
   /**
    * Placement of the dropdown
    */
-  @Prop() placement: Placement = 'bottom-start';
+  @Prop() placement: AlignedPlacement = 'bottom-start';
 
   @State() toggle = false;
 
@@ -106,19 +106,23 @@ export class SplitButton {
       class: {
         'left-button-border': !this.outline,
       },
-      onClick: (e) => this.buttonClick.emit(e),
     };
     return (
       <Host>
         <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
           {this.label ? (
-            <ix-button {...buttonAttributes} icon={this.icon}>
+            <ix-button
+              {...buttonAttributes}
+              icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
+            >
               {this.label}
             </ix-button>
           ) : (
             <ix-icon-button
               {...buttonAttributes}
               icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
             ></ix-icon-button>
           )}
           <ix-icon-button

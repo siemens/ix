@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-select mode="multiple" [selectedIndices]="selectedIndices">
+    <ix-select mode="multiple" [value]="value">
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
       <ix-select-item label="Item 3" value="3"></ix-select-item>
@@ -21,5 +21,5 @@ import { Component } from '@angular/core';
   `,
 })
 export default class SelectMultiple {
-  selectedIndices = ['1', '3'];
+  value = ['1', '3'];
 }

@@ -11,6 +11,8 @@ import { chevronLeftSmall, chevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   h,
   Host,
   Listen,
@@ -50,6 +52,13 @@ export class Tabs {
    * Set placement style
    */
   @Prop() placement: 'bottom' | 'top' = 'bottom';
+
+  /**
+   * `selected` property changed
+   *
+   * @since 2.0.0
+   */
+  @Event() selectedChange: EventEmitter<number>;
 
   @State() totalItems = 0;
   @State() currentScrollAmount = 0;
@@ -167,7 +176,14 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (this.dragStop()) return;
+    if (this.dragStop()) {
+      return;
+    }
+
+    const { defaultPrevented } = this.selectedChange.emit(index);
+    if (defaultPrevented) {
+      return;
+    }
 
     this.setSelected(index);
     this.moveTabToView(index);
@@ -239,14 +255,26 @@ export class Tabs {
 
   componentDidLoad() {
     const tabs = this.getTabs();
-    tabs.forEach((element, index) => {
-      const isDisabled = element.getAttribute('disabled') !== null;
-      if (!isDisabled)
-        element.addEventListener('click', () => this.clickTab(index));
-
+    tabs.forEach((element) => {
       element.addEventListener('mousedown', (event) =>
         this.dragStart(element, event)
       );
+    });
+  }
+
+  @Listen('tabClick')
+  onTabClick(event: CustomEvent) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    const target = event.target;
+    const tabs = this.getTabs();
+
+    tabs.forEach((tab, index) => {
+      if (!tab.disabled && tab === target) {
+        this.clickTab(index);
+      }
     });
   }
 

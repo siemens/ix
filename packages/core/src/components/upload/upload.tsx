@@ -23,7 +23,7 @@ import { UploadFileState } from './upload-file-state';
 @Component({
   tag: 'ix-upload',
   styleUrl: 'upload.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Upload {
   /**
@@ -90,7 +90,7 @@ export class Upload {
   @Element() hostElement!: HTMLIxUploadElement;
 
   get inputElement(): HTMLInputElement {
-    return this.hostElement.querySelector('#upload-browser');
+    return this.hostElement.shadowRoot.querySelector('#upload-browser');
   }
 
   @State() isFileOver = false;
@@ -101,18 +101,22 @@ export class Upload {
 
   private fileDropped(evt: DragEvent) {
     evt.preventDefault();
+    if (this.disabled) {
+      return;
+    }
 
     const file: File | FileList = evt.dataTransfer.files;
     this.isFileOver = false;
 
     this.filesToUpload = this.convertToFileArray(file);
-
     this.filesChanged.emit(this.filesToUpload);
   }
 
   private fileOver(event: DragEvent) {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
+    if (this.state !== UploadFileState.LOADING) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    }
 
     if (!this.multiple && event.dataTransfer.items.length > 1) {
       event.preventDefault();
@@ -129,6 +133,9 @@ export class Upload {
   }
 
   private fileChangeEvent(event: any) {
+    if (this.disabled) {
+      return;
+    }
     this.filesToUpload = this.convertToFileArray(event.target.files);
 
     this.filesChanged.emit(this.filesToUpload);
@@ -206,12 +213,17 @@ export class Upload {
         <div
           class={{
             'file-upload-area': true,
-            'file-over': this.isFileOver,
+            'file-over':
+              this.state !== UploadFileState.LOADING && this.isFileOver,
             checking: this.state === UploadFileState.LOADING,
             disabled: this.disabled,
             multiline: this.multiline,
           }}
-          onDrop={(e) => this.fileDropped(e)}
+          onDrop={(e) => {
+            if (this.state !== UploadFileState.LOADING) {
+              this.fileDropped(e);
+            }
+          }}
           onDragOver={(e) => this.fileOver(e)}
           onDragLeave={() => this.fileLeave()}
           draggable={!this.disabled}

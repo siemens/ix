@@ -9,34 +9,21 @@
 
 import { eye } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
 
 @Component({
   tag: 'ix-flip-tile',
   styleUrl: 'flip-tile.scss',
-  scoped: true,
+  shadow: true,
 })
 export class FlipTile {
-  private readonly ANIMATION_DURATION = 150;
-  private contentContainerElement: HTMLDivElement;
-  private contentItems: NodeList;
-
-  @Element() hostElement: HTMLIxFlipTileElement;
-
-  @State() index = 0;
-
-  @State() isFlipAnimationActive: boolean;
+  @Element() hostElement!: HTMLIxFlipTileElement;
 
   /**
    * Variation of the Flip
    */
   @Prop() state: FlipTileState;
-
-  /**
-   * Tmp property name
-   * @deprecated Will be removed in 2.0.0. Setting this property has no effect
-   */
-  @Prop() footer: string;
 
   /**
    * Height interpreted as REM
@@ -50,31 +37,53 @@ export class FlipTile {
    */
   @Prop() width: number | 'auto' = 16;
 
+  @State() index = 0;
+  @State() isFlipAnimationActive: boolean;
+
+  private readonly ANIMATION_DURATION = 150;
+  private contentItems: Array<HTMLIxFlipTileContentElement>;
+
+  private observer: MutationObserver;
+
   componentDidLoad() {
-    this.contentItems = this.contentContainerElement.querySelectorAll(
-      'ix-flip-tile-content'
-    );
-    this.contentItems.forEach((_, index) => {
-      if (index !== this.index) {
-        this.toggleContentItem(index);
-      }
+    this.observer = createMutationObserver(() => this.updateContentItems());
+    this.observer.observe(this.hostElement, {
+      childList: true,
     });
+  }
+
+  componentWillLoad() {
+    this.updateContentItems();
+    this.updateContentVisibility(this.index);
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private updateContentItems() {
+    this.contentItems = Array.from(
+      this.hostElement.querySelectorAll('ix-flip-tile-content')
+    );
+  }
+
+  private updateContentVisibility(indexVisible: number) {
+    this.contentItems.forEach(
+      (content, index) => (content.contentVisible = index === indexVisible)
+    );
   }
 
   private toggleIndex() {
     this.doFlipAnimation();
   }
 
-  private toggleContentItem(index: number) {
-    const item = this.contentItems[index] as HTMLElement;
-    item.classList.toggle('d-none');
-  }
-
   private doFlipAnimation() {
     this.isFlipAnimationActive = true;
 
     setTimeout(() => {
-      this.toggleContentItem(this.index);
+      this.updateContentVisibility(this.index);
 
       if (this.index >= this.contentItems.length - 1) {
         this.index = 0;
@@ -82,7 +91,7 @@ export class FlipTile {
         this.index++;
       }
 
-      this.toggleContentItem(this.index);
+      this.updateContentVisibility(this.index);
     }, this.ANIMATION_DURATION);
 
     setTimeout(() => {
@@ -118,16 +127,13 @@ export class FlipTile {
             </div>
             <ix-icon-button
               icon={eye}
-              variant="Primary"
+              variant="primary"
               ghost
               onClick={() => this.toggleIndex()}
             ></ix-icon-button>
           </div>
 
-          <div
-            class="content-container"
-            ref={(el) => (this.contentContainerElement = el)}
-          >
+          <div class="content-container">
             <slot></slot>
           </div>
           <div

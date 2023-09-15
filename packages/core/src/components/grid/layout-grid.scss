@@ -1,0 +1,29 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+:host {
+  --ix-layout-grid-gutter: 1.5rem;
+
+  display: block;
+  flex: 1;
+  width: 100%;
+
+  padding-left: calc(var(--ix-layout-grid-gutter) * 0.5);
+  padding-right: calc(var(--ix-layout-grid-gutter) * 0.5);
+
+  --ix-layout-grid-row-margin: 1rem;
+}
+
+:host(.no-padding) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+:host(.no-row-gap) {
+  --ix-layout-grid-row-margin: 0rem;
+}

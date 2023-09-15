@@ -19,7 +19,8 @@ test('renders', async ({ mount, page }) => {
       </ix-menu>
     `);
   const element = page.locator('ix-menu');
-  await expect(element).toHaveClass('mode-large hydrated');
+  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
 test('should stay close after menu click when NOT pinned', async ({
@@ -34,14 +35,16 @@ test('should stay close after menu click when NOT pinned', async ({
       </ix-basic-navigation>
     `);
   const menu = page.locator('ix-menu');
-  await menu.evaluate((menu: HTMLIxMenuElement) => {
-    menu.supportedModes = ['medium'];
-  });
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
 
   await expect(menu).toHaveClass(/expanded/);
-  await page.getByRole('listitem').click();
+  await page.locator('ix-menu-item').click();
   await expect(menu).not.toHaveClass(/expanded/);
 });
 
@@ -62,7 +65,7 @@ test('should stay open after menu click when pinned', async ({
 
   await expect(menu).not.toHaveClass(/expanded/);
 
-  await page.getByRole('listitem').click();
+  await page.locator('ix-menu-item').click();
 
   await expect(menu).not.toHaveClass(/expanded/);
 });
@@ -172,10 +175,7 @@ test('should close about by item click', async ({ mount, page }) => {
   await clickAboutButton(element, page);
   let about = page.locator('ix-menu-about');
   let settings = page.locator('ix-menu-settings');
-  const menuItem = page
-    .locator('ix-menu-item')
-    .filter({ hasText: 'Random' })
-    .getByRole('listitem');
+  const menuItem = page.locator('ix-menu-item').filter({ hasText: 'Random' });
 
   await menuItem.click();
   await expect(about).not.toBeVisible();

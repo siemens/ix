@@ -8,8 +8,9 @@
  */
 
 import { chevronDownSmall } from '@siemens/ix-icons/icons';
-import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, h, Host, Prop, State } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
+import { AlignedPlacement } from '../dropdown/placement';
 
 export type DropdownButtonVariant = ButtonVariant;
 
@@ -19,13 +20,15 @@ export type DropdownButtonVariant = ButtonVariant;
 @Component({
   tag: 'ix-dropdown-button',
   styleUrl: 'dropdown-button.scss',
-  scoped: true,
+  shadow: true,
 })
 export class DropdownButton {
+  @Element() hostElement!: HTMLIxDropdownButtonElement;
+
   /**
    * Button variant
    */
-  @Prop() variant: DropdownButtonVariant = 'Primary';
+  @Prop() variant: DropdownButtonVariant = 'primary';
 
   /**
    * Outline button
@@ -36,12 +39,6 @@ export class DropdownButton {
    * Button with no background or outline
    */
   @Prop() ghost = false;
-
-  /**
-   * Active button (has no effect)
-   * @deprecated Will be removed in 3.0.0
-   */
-  @Prop() active = false;
 
   /**
    * Disable button
@@ -58,6 +55,13 @@ export class DropdownButton {
    */
   @Prop() icon: string;
 
+  /**
+   * Placement of the dropdown
+   *
+   * @since 2.0.0
+   */
+  @Prop() placement: AlignedPlacement;
+
   @State() dropdownAnchor!: HTMLElement;
 
   private getTriangle() {
@@ -66,8 +70,8 @@ export class DropdownButton {
         class={{
           triangle: true,
           hide: this.label !== '',
-          primary: this.variant === 'Primary',
-          secondary: this.variant === 'Secondary',
+          primary: this.variant === 'primary',
+          secondary: this.variant === 'secondary',
           ghost: this.ghost,
           outline: this.outline,
           disabled: this.disabled,
@@ -95,14 +99,19 @@ export class DropdownButton {
               outline={this.outline}
               ghost={this.ghost}
               disabled={this.disabled}
+              alignment="start"
             >
-              <ix-icon
-                name={this.icon}
-                size="24"
-                class={{ hide: this.icon === '' || this.icon === undefined }}
-              ></ix-icon>
-              <div class={'button-label'}>{this.label}</div>
-              <ix-icon name={chevronDownSmall} size="24"></ix-icon>
+              <div class={'content'}>
+                {this.icon ? (
+                  <ix-icon
+                    name={this.icon}
+                    size="24"
+                    class={'dropdown-icon'}
+                  ></ix-icon>
+                ) : null}
+                <div class={'button-label'}>{this.label}</div>
+                <ix-icon name={chevronDownSmall} size="24"></ix-icon>
+              </div>
             </ix-button>
           ) : (
             <div>
@@ -121,9 +130,7 @@ export class DropdownButton {
         <ix-dropdown
           class="dropdown"
           trigger={this.dropdownAnchor}
-          placement="bottom"
-          positioningStrategy={'fixed'}
-          adjustDropdownWidthToReferenceWidth={true}
+          placement={this.placement}
         >
           <slot></slot>
         </ix-dropdown>

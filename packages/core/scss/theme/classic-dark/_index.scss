@@ -14,3 +14,10 @@
 @import "./spacing";
 @import "./borderWidth";
 @import "./border";
+@import "./letterSpacing";
+
+:root {
+  .theme-classic-dark {
+    --ix-theme-name: classic-dark;
+  }
+}

@@ -9,7 +9,7 @@
 
 import { close } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host } from '@stencil/core';
-import { closeModal, dismissModal } from '../modal/modal-utils';
+import { closeModal, dismissModal } from '../utils/modal';
 
 @Component({
   tag: 'ix-modal-example',
