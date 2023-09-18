@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-select editable [selectedIndices]="selectedIndices">
+    <ix-select editable [value]="value">
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
       <ix-select-item label="Item 3" value="3"></ix-select-item>
@@ -21,5 +21,5 @@ import { Component } from '@angular/core';
   `,
 })
 export default class SelectEditable {
-  selectedIndices = '1';
+  value = '1';
 }

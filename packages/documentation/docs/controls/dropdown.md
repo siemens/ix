@@ -89,7 +89,3 @@ frameworks={{
 ### Props
 
 <ItemProps />
-
-### Events
-
-<ItemEvents />

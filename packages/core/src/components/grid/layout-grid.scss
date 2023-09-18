@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 :host {
-  --ix-grid-gutter: 1.5rem;
+  --ix-layout-grid-gutter: 1.5rem;
 
   display: block;
   flex: 1;
   width: 100%;
 
-  padding-left: calc(var(--ix-grid-gutter) * 0.5);
-  padding-right: calc(var(--ix-grid-gutter) * 0.5);
+  padding-left: calc(var(--ix-layout-grid-gutter) * 0.5);
+  padding-right: calc(var(--ix-layout-grid-gutter) * 0.5);
 
-  --ix-grid-row-margin: 1rem;
+  --ix-layout-grid-row-margin: 1rem;
 }
 
 :host(.no-padding) {
@@ -25,5 +25,5 @@
 }
 
 :host(.no-row-gap) {
-  --ix-grid-row-margin: 0rem;
+  --ix-layout-grid-row-margin: 0rem;
 }
