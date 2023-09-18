@@ -10,9 +10,10 @@
 export * from '@siemens/ix';
 export * from './components';
 export * from './dropdown/trigger.directive';
+export { IxIcon } from './ix-icon';
 export * from './modal';
 export * from './module';
+export * from './select-value-accessor';
 export * from './theme';
 export * from './toast';
 export * from './tree';
-export * from './select-value-accessor'

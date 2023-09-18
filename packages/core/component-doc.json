@@ -12368,8 +12368,14 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-icon"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

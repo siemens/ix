@@ -44,6 +44,7 @@ try {
 }
 
 export const config: Config = {
+  globalScript: './src/setup.ts',
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
@@ -79,7 +80,7 @@ export const config: Config = {
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['my-component', 'ix-tree'],
+      excludeComponents: ['my-component', 'ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
         {
           elementSelectors:

@@ -11,6 +11,42 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 # Update your code
 
+## Move `@siemens/ix-icons` from `"dependencies"` to `"peerDependencies"`
+
+`@siemens/ix-icons` is no longer a direct dependency of `@siemens/ix`, `@siemens/ix-react`, `@siemens/ix-angular` and `@siemens/ix-vue`.
+
+If you are using `@siemens/ix-react`, `@siemens/ix-angular` and `@siemens/ix-vue` you dont have to adapt any code.
+If you are using `@siemens/ix` direct you have to define the custom elements of the `@siemens/ix-icons` package.
+
+```typescript
+import { defineCustomElements } from '@siemens/ix-icons/loader';
+
+(async () => {
+  await defineCustomElements();
+})();
+```
+
+For more information checkout the [@siemens/ix-icons repository](https://github.com/siemens/ix-icons).
+
+## `@siemens/ix-icons` removed icon font
+
+The internal implementation of `@siemens/ix-icons` changed from icon font implementation to an `svg` based implementation.
+This should not have any direct impact you application.
+
+## `@siemens/ix`, `@siemens/ix-react`, `@siemens/ix-angular` and `@siemens/ix-vue` with custom icon support
+
+You can now provide custom icons as inline svg or relative/absolute path to an asset
+
+example of an custom icon via path:
+```tsx
+  <ix-icon name="./assets/my-icon.svg"></ix-icon>
+  <ix-icon name="https://my.example.cdn.address/assets/my-icon.svg"></ix-icon>
+```
+
+//TODO: Link icon markdown 
+There are some constrains about custom icons please checkout the guide in the documentation 
+<!-- [here](./../../guidelines/icons.md) -->
+
 ## Replace Bootstrap Modal parts with iX Modal components
 
 //TODO: Enhance migration guide regarding new modal system
