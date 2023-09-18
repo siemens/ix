@@ -131,9 +131,7 @@ test('filter', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await element.evaluate(
-    (select: HTMLIxSelectElement) => (select.selectedIndices = [])
-  );
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
   await page.locator('.chevron-down-container').click();
   const dropdown = element.locator('ix-dropdown');

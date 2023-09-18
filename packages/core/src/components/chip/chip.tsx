@@ -72,13 +72,6 @@ export class Chip {
   /**
    * Fire event if close button is clicked
    *
-   *  @deprecated Will be removed in 2.0.0. Use `closeChip`
-   */
-  @Event() close: EventEmitter;
-
-  /**
-   * Fire event if close button is clicked
-   *
    * @since 1.5.0
    */
   @Event() closeChip: EventEmitter;
@@ -97,7 +90,6 @@ export class Chip {
             style={this.variant === 'custom' ? { color: this.color } : {}}
             ghost
             onClick={(event) => {
-              this.close.emit(event);
               this.closeChip.emit(event);
               event.stopPropagation();
             }}

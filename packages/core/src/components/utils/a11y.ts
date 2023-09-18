@@ -9,13 +9,14 @@
 export const a11yBoolean = (value: boolean) => (value ? 'true' : 'false');
 
 export const a11yHostAttributes = (
-  hostElement: HTMLElement
+  hostElement: HTMLElement,
+  ignoreAttributes: A11yAttributeName[] = []
 ): Record<A11yAttributeName, any> => {
   const attributeObject: Record<string, any> = {};
   a11yAttributes.forEach((attr) => {
     if (hostElement.hasAttribute(attr)) {
       const value = hostElement.getAttribute(attr);
-      if (value !== null) {
+      if (value !== null && !ignoreAttributes.includes(attr)) {
         attributeObject[attr] = hostElement.getAttribute(attr);
       }
       hostElement.removeAttribute(attr);

@@ -255,8 +255,8 @@ export class Pagination {
               hideListHeader
               i18nPlaceholder=""
               i18nSelectListHeader=""
-              selected-indices={this.itemCount}
-              onItemSelectionChange={(e) => {
+              value={`${this.itemCount}`}
+              onValueChange={(e) => {
                 const count = Number.parseInt(e.detail[0]);
                 this.itemCountChanged.emit(count);
               }}

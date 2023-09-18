@@ -107,9 +107,7 @@ regressionTest.describe('select', () => {
 
     const element = page.locator('ix-select');
 
-    await element.evaluate(
-      (el: HTMLIxSelectElement) => (el.selectedIndices = ['1'])
-    );
+    await element.evaluate((el: HTMLIxSelectElement) => (el.value = ['1']));
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -121,7 +119,7 @@ regressionTest.describe('select', () => {
 
     await element.evaluate((el: HTMLIxSelectElement) => {
       el.mode = 'multiple';
-      el.selectedIndices = ['1', '2'];
+      el.value = ['1', '2'];
     });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

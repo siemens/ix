@@ -1805,21 +1805,6 @@
       "methods": [],
       "events": [
         {
-          "event": "close",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Fire event if close button is clicked",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use `closeChip`"
-            }
-          ],
-          "deprecation": "Will be removed in 2.0.0. Use `closeChip`"
-        },
-        {
           "event": "closeChip",
           "detail": "any",
           "bubbles": true,
@@ -3526,29 +3511,6 @@
       },
       "props": [
         {
-          "name": "active",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "active",
-          "reflectToAttr": false,
-          "docs": "Active button (has no effect)",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 3.0.0"
-            }
-          ],
-          "default": "false",
-          "deprecation": "Will be removed in 3.0.0",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "disabled",
           "type": "boolean",
           "mutable": false,
@@ -3906,17 +3868,7 @@
           "docsTags": []
         }
       ],
-      "events": [
-        {
-          "event": "itemClick",
-          "detail": "HTMLIxDropdownItemElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Click on item",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -4262,29 +4214,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "opacity",
-          "type": "number",
-          "mutable": false,
-          "attr": "opacity",
-          "reflectToAttr": false,
-          "docs": "Opacity of the status indicator.\nDefaults to 1.0",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
-            }
-          ],
-          "default": "1",
-          "deprecation": "Will be removed in 2.0.0",
-          "values": [
-            {
-              "type": "number"
             }
           ],
           "optional": false,
@@ -4703,86 +4632,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/grid",
-      "filePath": "./src/components/grid/grid.tsx",
-      "fileName": "grid.tsx",
-      "readmePath": "./src/components/grid/readme.md",
-      "usagesDir": "./src/components/grid/usage",
-      "tag": "ix-grid",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.0.0"
-        }
-      ],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "columns",
-          "type": "number",
-          "mutable": false,
-          "attr": "columns",
-          "reflectToAttr": false,
-          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
-          "docsTags": [],
-          "default": "12",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "noPadding",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "no-padding",
-          "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "noRowGap",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "no-row-gap",
-          "reflectToAttr": false,
-          "docs": "Remove the gap between rows",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -6012,6 +5861,86 @@
             },
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/grid",
+      "filePath": "./src/components/grid/layout-grid.tsx",
+      "fileName": "layout-grid.tsx",
+      "readmePath": "./src/components/grid/readme.md",
+      "usagesDir": "./src/components/grid/usage",
+      "tag": "ix-layout-grid",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "columns",
+          "type": "number",
+          "mutable": false,
+          "attr": "columns",
+          "reflectToAttr": false,
+          "docs": "Overwrite the default number of columns. Choose between 2 and 12 columns.",
+          "docsTags": [],
+          "default": "12",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "noPadding",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-padding",
+          "reflectToAttr": false,
+          "docs": "The grid will not have any horizontal padding",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "noRowGap",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-row-gap",
+          "reflectToAttr": false,
+          "docs": "Remove the gap between rows",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -7590,11 +7519,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Use `icon` property. Will be removed in 3.0.0"
+              "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
           "default": "'document'",
-          "deprecation": "Use `icon` property. Will be removed in 3.0.0",
+          "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
               "type": "string"
@@ -8668,18 +8597,18 @@
       "dependents": [],
       "dependencies": [
         "ix-card",
+        "ix-card-content",
         "ix-card-title",
         "ix-icon",
-        "ix-card-content",
         "ix-typography",
         "ix-card-accordion"
       ],
       "dependencyGraph": {
         "ix-push-card": [
           "ix-card",
+          "ix-card-content",
           "ix-card-title",
           "ix-icon",
-          "ix-card-content",
           "ix-typography",
           "ix-card-accordion"
         ],
@@ -9300,6 +9229,237 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "./src/components/slider",
+      "filePath": "./src/components/slider/slider.tsx",
+      "fileName": "slider.tsx",
+      "readmePath": "./src/components/slider/readme.md",
+      "usagesDir": "./src/components/slider/usage",
+      "tag": "ix-slider",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.0.0"
+        },
+        {
+          "name": "slot",
+          "text": "label-start - Element will be displayed at the start of the slider"
+        },
+        {
+          "name": "slot",
+          "text": "label-end - Element will be displayed at the end of the slider"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-tooltip",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-slider": [
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Show control as disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "error",
+          "type": "boolean | string",
+          "mutable": false,
+          "attr": "error",
+          "reflectToAttr": false,
+          "docs": "Show error state and message",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "marker",
+          "type": "number[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Define tick marker on the slider. Marker has to be within slider min/max",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "Maximum slider value",
+          "docsTags": [],
+          "default": "100",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "Minimum slider value",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "mutable": false,
+          "attr": "step",
+          "reflectToAttr": false,
+          "docs": "Legal number intervals",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
+            }
+          ],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "trace",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "trace",
+          "reflectToAttr": false,
+          "docs": "Show a trace line",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "traceReference",
+          "type": "number",
+          "mutable": false,
+          "attr": "trace-reference",
+          "reflectToAttr": false,
+          "docs": "Define the start point of the trace line",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Current value of the slider",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChange",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [
+        {
+          "name": "label-end",
+          "docs": "Element will be displayed at the end of the slider"
+        },
+        {
+          "name": "label-start",
+          "docs": "Element will be displayed at the start of the slider"
+        }
+      ],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "pointerup",
+          "target": "window",
+          "capture": false,
+          "passive": true
+        }
+      ]
     },
     {
       "dirPath": "./src/components/spinner",
@@ -11040,13 +11200,18 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-slider"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-slider": [
+          "ix-tooltip"
         ]
       },
       "props": [
@@ -11423,6 +11588,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-push-card",
+        "ix-slider",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -11459,6 +11625,9 @@
           "ix-typography"
         ],
         "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-slider": [
           "ix-typography"
         ],
         "ix-time-picker": [

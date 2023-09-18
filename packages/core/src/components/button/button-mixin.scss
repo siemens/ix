@@ -24,6 +24,7 @@
         color: var(--theme-btn-#{$name}--color);
 
         --ix-button-color: var(--theme-btn-#{$name}--color);
+        --ix-icon-color: var(--ix-button-color);
 
         @if $enable-border {
           border-width: var(--theme-btn--border-thickness);
