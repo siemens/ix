@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
-    "@siemens/ix-icons": "^1.1.0",
+    "@siemens/ix-icons": "^1.2.0",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil-community/postcss": "^2.1.0",
     "@stencil/angular-output-target": "^0.5.0",

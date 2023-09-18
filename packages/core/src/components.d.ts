@@ -30,6 +30,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
+import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -63,6 +64,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
+export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
@@ -694,11 +696,6 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active": boolean;
-        /**
           * Disable button
          */
         "disabled": boolean;
@@ -828,11 +825,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity": number;
-        /**
           * Show event list item as selected
          */
         "selected": boolean;
@@ -894,23 +886,6 @@ export namespace Components {
           * Label
          */
         "label": string;
-    }
-    /**
-     * @since 2.0.0
-     */
-    interface IxGrid {
-        /**
-          * Overwrite the default number of columns. Choose between 2 and 12 columns.
-         */
-        "columns": number;
-        /**
-          * The grid will not have any horizontal padding
-         */
-        "noPadding": boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap": boolean;
     }
     interface IxGroup {
         /**
@@ -1093,6 +1068,23 @@ export namespace Components {
         "state": 'neutral' | 'warning' | 'alarm';
         "unit": string;
         "value": string | number;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLayoutGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns": number;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "noPadding": boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap": boolean;
     }
     /**
      * @since 2.0.0
@@ -1348,7 +1340,7 @@ export namespace Components {
         "notifications": number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -1631,6 +1623,48 @@ export namespace Components {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled": boolean;
+        /**
+          * Show error state and message
+         */
+        "error": boolean | string;
+        /**
+          * Define tick marker on the slider. Marker has to be within slider min/max
+         */
+        "marker": SliderMarker;
+        /**
+          * Maximum slider value
+         */
+        "max": number;
+        /**
+          * Minimum slider value
+         */
+        "min": number;
+        /**
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+         */
+        "step": number;
+        /**
+          * Show a trace line
+         */
+        "trace": boolean;
+        /**
+          * Define the start point of the trace line
+         */
+        "traceReference": number;
+        /**
+          * Current value of the slider
+         */
+        "value": number;
+    }
     interface IxSpinner {
         "hideTrack": boolean;
         /**
@@ -1901,10 +1935,12 @@ export namespace Components {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame": boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for": string;
+        "hideTooltip": () => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -1914,6 +1950,7 @@ export namespace Components {
           * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showTooltip": (anchorElement: any) => Promise<void>;
         /**
           * Title of the tooltip
          */
@@ -2227,6 +2264,10 @@ export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
 export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
+}
+export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSliderElement;
 }
 export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2566,15 +2607,6 @@ declare global {
         prototype: HTMLIxFormFieldElement;
         new (): HTMLIxFormFieldElement;
     };
-    /**
-     * @since 2.0.0
-     */
-    interface HTMLIxGridElement extends Components.IxGrid, HTMLStencilElement {
-    }
-    var HTMLIxGridElement: {
-        prototype: HTMLIxGridElement;
-        new (): HTMLIxGridElement;
-    };
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
     }
     var HTMLIxGroupElement: {
@@ -2637,6 +2669,15 @@ declare global {
     var HTMLIxKpiElement: {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
+    };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxLayoutGridElement extends Components.IxLayoutGrid, HTMLStencilElement {
+    }
+    var HTMLIxLayoutGridElement: {
+        prototype: HTMLIxLayoutGridElement;
+        new (): HTMLIxLayoutGridElement;
     };
     /**
      * @since 2.0.0
@@ -2818,6 +2859,15 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    /**
+     * @since 2.0.0
+     */
+    interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
+    }
+    var HTMLIxSliderElement: {
+        prototype: HTMLIxSliderElement;
+        new (): HTMLIxSliderElement;
+    };
     interface HTMLIxSpinnerElement extends Components.IxSpinner, HTMLStencilElement {
     }
     var HTMLIxSpinnerElement: {
@@ -2989,7 +3039,6 @@ declare global {
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
         "ix-form-field": HTMLIxFormFieldElement;
-        "ix-grid": HTMLIxGridElement;
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
@@ -2999,6 +3048,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
         "ix-map-navigation-overlay": HTMLIxMapNavigationOverlayElement;
@@ -3025,6 +3075,7 @@ declare global {
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
+        "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
@@ -3414,11 +3465,6 @@ declare namespace LocalJSX {
         "icon"?: string | undefined;
         /**
           * Fire event if close button is clicked
-          * @deprecated Will be removed in 2.0.0. Use `closeChip`
-         */
-        "onClose"?: (event: IxChipCustomEvent<any>) => void;
-        /**
-          * Fire event if close button is clicked
           * @since 1.5.0
          */
         "onCloseChip"?: (event: IxChipCustomEvent<any>) => void;
@@ -3760,11 +3806,6 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
-          * Active button (has no effect)
-          * @deprecated Will be removed in 3.0.0
-         */
-        "active"?: boolean;
-        /**
           * Disable button
          */
         "disabled"?: boolean;
@@ -3825,9 +3866,6 @@ declare namespace LocalJSX {
           * Label of dropdown item
          */
         "label"?: string;
-        /**
-          * Click on item
-         */
         "onItemClick"?: (event: IxDropdownItemCustomEvent<HTMLIxDropdownItemElement>) => void;
         "suppressChecked"?: boolean;
     }
@@ -3902,11 +3940,6 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxEventListItemCustomEvent<any>) => void;
         /**
-          * Opacity of the status indicator. Defaults to 1.0
-          * @deprecated Will be removed in 2.0.0
-         */
-        "opacity"?: number;
-        /**
           * Show event list item as selected
          */
         "selected"?: boolean;
@@ -3976,23 +4009,6 @@ declare namespace LocalJSX {
           * Label
          */
         "label"?: string;
-    }
-    /**
-     * @since 2.0.0
-     */
-    interface IxGrid {
-        /**
-          * Overwrite the default number of columns. Choose between 2 and 12 columns.
-         */
-        "columns"?: number;
-        /**
-          * The grid will not have any horizontal padding
-         */
-        "noPadding"?: boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap"?: boolean;
     }
     interface IxGroup {
         /**
@@ -4195,6 +4211,23 @@ declare namespace LocalJSX {
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
+    }
+    /**
+     * @since 2.0.0
+     */
+    interface IxLayoutGrid {
+        /**
+          * Overwrite the default number of columns. Choose between 2 and 12 columns.
+         */
+        "columns"?: number;
+        /**
+          * The grid will not have any horizontal padding
+         */
+        "noPadding"?: boolean;
+        /**
+          * Remove the gap between rows
+         */
+        "noRowGap"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -4453,7 +4486,7 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Icon name from @siemens/ix-icons
-          * @deprecated Use `icon` property. Will be removed in 3.0.0
+          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -4774,6 +4807,49 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
+    /**
+     * @since 2.0.0
+     */
+    interface IxSlider {
+        /**
+          * Show control as disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Show error state and message
+         */
+        "error"?: boolean | string;
+        /**
+          * Define tick marker on the slider. Marker has to be within slider min/max
+         */
+        "marker"?: SliderMarker;
+        /**
+          * Maximum slider value
+         */
+        "max"?: number;
+        /**
+          * Minimum slider value
+         */
+        "min"?: number;
+        "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
+        /**
+          * Legal number intervals
+          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+         */
+        "step"?: number;
+        /**
+          * Show a trace line
+         */
+        "trace"?: boolean;
+        /**
+          * Define the start point of the trace line
+         */
+        "traceReference"?: number;
+        /**
+          * Current value of the slider
+         */
+        "value"?: number;
+    }
     interface IxSpinner {
         "hideTrack"?: boolean;
         /**
@@ -5073,6 +5149,7 @@ declare namespace LocalJSX {
      * @since 1.4.0
      */
     interface IxTooltip {
+        "animationFrame"?: boolean;
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
@@ -5335,7 +5412,6 @@ declare namespace LocalJSX {
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
         "ix-form-field": IxFormField;
-        "ix-grid": IxGrid;
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
@@ -5345,6 +5421,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
         "ix-map-navigation-overlay": IxMapNavigationOverlay;
@@ -5371,6 +5448,7 @@ declare namespace LocalJSX {
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
+        "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
         "ix-split-button-item": IxSplitButtonItem;
@@ -5477,10 +5555,6 @@ declare module "@stencil/core" {
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
             "ix-form-field": LocalJSX.IxFormField & JSXBase.HTMLAttributes<HTMLIxFormFieldElement>;
-            /**
-             * @since 2.0.0
-             */
-            "ix-grid": LocalJSX.IxGrid & JSXBase.HTMLAttributes<HTMLIxGridElement>;
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
@@ -5499,6 +5573,10 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-layout-grid": LocalJSX.IxLayoutGrid & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             /**
              * @since 2.0.0
              */
@@ -5549,6 +5627,10 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            /**
+             * @since 2.0.0
+             */
+            "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;

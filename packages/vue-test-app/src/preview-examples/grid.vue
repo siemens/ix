@@ -8,13 +8,13 @@
 -->
 
 <script setup lang="ts">
-import { IxCol, IxGrid, IxRow } from '@siemens/ix-vue';
+import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
 // Example styling for documentation
 import './grid.css';
 </script>
 
 <template>
-  <IxGrid>
+  <IxLayoutGrid>
     <IxRow>
       <IxCol>1</IxCol>
       <IxCol>2</IxCol>
@@ -23,9 +23,9 @@ import './grid.css';
       <IxCol>5</IxCol>
       <IxCol>6</IxCol>
     </IxRow>
-  </IxGrid>
+  </IxLayoutGrid>
 
-  <IxGrid>
+  <IxLayoutGrid>
     <IxRow>
       <IxCol>1</IxCol>
       <IxCol>2</IxCol>
@@ -40,6 +40,6 @@ import './grid.css';
       <IxCol>11</IxCol>
       <IxCol>12</IxCol>
     </IxRow>
-  </IxGrid>
+  </IxLayoutGrid>
 </template>
 
