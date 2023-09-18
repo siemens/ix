@@ -68,7 +68,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() dateFormat: string = 'yyyy/LL/dd';
+  @Prop() dateFormat: string = 'YYYY/MM/DD';
 
   /**
    * Time format string.
