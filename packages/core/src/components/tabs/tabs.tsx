@@ -8,10 +8,6 @@
  */
 
 import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
-import {
   Component,
   Element,
   Event,
@@ -289,7 +285,7 @@ export class Tabs {
           style={this.stylePreviousArrow}
           onClick={() => this.move(this.scrollAmount, true)}
         >
-          <ix-icon name={iconChevronLeftSmall}></ix-icon>
+          <ix-icon name={'chevron-left-small'}></ix-icon>
         </div>
         <div
           class={{
@@ -309,7 +305,7 @@ export class Tabs {
           style={this.styleNextArrow}
           onClick={() => this.move(-this.scrollAmount, true)}
         >
-          <ix-icon name={iconChevronRightSmall}></ix-icon>
+          <ix-icon name={'chevron-right-small'}></ix-icon>
         </div>
       </Host>
     );

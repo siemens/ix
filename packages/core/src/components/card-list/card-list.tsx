@@ -1,4 +1,3 @@
-import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -28,7 +27,7 @@ function CardListTitle(props: {
     <div class="CardList_Title">
       <ix-icon-button
         ghost
-        icon={iconChevronDown}
+        icon={'chevron-down'}
         onClick={props.onClick}
         color="color-primary"
         class={{
@@ -313,7 +312,7 @@ export class CardList {
               >
                 <ix-card-content class="Show__All__Card__Content">
                   <ix-icon
-                    name={iconMoreMenu}
+                    name={'more-menu'}
                     size={'32'}
                     class={'Show__All__Card__Icon'}
                   ></ix-icon>

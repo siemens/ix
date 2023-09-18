@@ -8,10 +8,6 @@
  */
 
 import {
-  iconChevronRightSmall,
-  iconSingleCheck,
-} from '@siemens/ix-icons/icons';
-import {
   Component,
   Element,
   Event,
@@ -105,7 +101,7 @@ export class DropdownItem {
               {this.checked ? (
                 <ix-icon
                   class="checkmark"
-                  name={iconSingleCheck}
+                  name={'single-check'}
                   size="16"
                 ></ix-icon>
               ) : null}
@@ -120,7 +116,7 @@ export class DropdownItem {
           </div>
           {this.isSubMenu ? (
             <ix-icon
-              name={iconChevronRightSmall}
+              name={'chevron-right-small'}
               class={'submenu-icon'}
             ></ix-icon>
           ) : null}

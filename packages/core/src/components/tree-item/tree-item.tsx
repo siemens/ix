@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconChevronRight } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 
@@ -58,7 +57,7 @@ export class TreeItem {
         >
           {this.hasChildren ? (
             <ix-icon
-              name={iconChevronRight}
+              name={'chevron-right'}
               size="16"
               class={{
                 ['icon-toggle-down']: this.context?.isExpanded,

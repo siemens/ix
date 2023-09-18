@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
@@ -110,7 +109,7 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name={iconChevronDownSmall} size="24"></ix-icon>
+                <ix-icon name={'chevron-down-small'} size="24"></ix-icon>
               </div>
             </ix-button>
           ) : (

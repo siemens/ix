@@ -8,10 +8,6 @@
  */
 
 import {
-  iconChevronLeftSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
-import {
   Component,
   Element,
   Event,
@@ -217,7 +213,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === 0}
           ghost
-          icon={iconChevronLeftSmall}
+          icon={'chevron-left-small'}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
@@ -248,7 +244,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === this.count - 1}
           ghost
-          icon={iconChevronRightSmall}
+          icon={'chevron-right-small'}
           onClick={() => this.increase()}
         ></ix-icon-button>
 

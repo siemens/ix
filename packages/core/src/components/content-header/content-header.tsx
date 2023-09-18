@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 export type ContentHeaderVariant = 'primary' | 'secondary';
@@ -50,7 +49,7 @@ export class ContentHeader {
           <ix-icon-button
             class={'backButton'}
             variant="primary"
-            icon={iconArrowLeft}
+            icon={'arrow-left'}
             ghost={true}
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>

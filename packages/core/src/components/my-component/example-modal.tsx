@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconClose } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host } from '@stencil/core';
 import { closeModal, dismissModal } from '../utils/modal';
 
@@ -34,7 +33,7 @@ export class ModalExample {
             <ix-icon-button
               data-close-button
               ghost
-              icon={iconClose}
+              icon={'close'}
               onClick={() => this.dismiss()}
             ></ix-icon-button>
           </div>

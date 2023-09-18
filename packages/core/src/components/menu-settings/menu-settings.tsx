@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -109,7 +108,7 @@ export class MenuAbout {
           <ix-icon-button
             ghost
             size="24"
-            icon={iconClose}
+            icon={'close'}
             onClick={(e) =>
               this.close.emit({
                 name: 'ix-menu-settings',

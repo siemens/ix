@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconClear } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -630,7 +629,7 @@ export class CategoryFilter {
         }}
         ghost
         oval
-        icon={iconClear}
+        icon={'clear'}
         size="16"
       ></ix-icon-button>
     );

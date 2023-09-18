@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -116,7 +115,7 @@ export class BreadcrumbItem {
               <Fragment>
                 {this.showChevron ? (
                   <ix-icon
-                    name={iconChevronRightSmall}
+                    name={'chevron-right-small'}
                     size="16"
                     class={'chevron'}
                   ></ix-icon>

@@ -15,7 +15,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconDoubleChevronRight } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 import { getButtonClasses } from '../button/base-button';
@@ -53,7 +52,7 @@ export class BurgerMenu {
         }}
       >
         {this.pinned ? (
-          <ix-icon-button icon={iconDoubleChevronRight} ghost></ix-icon-button>
+          <ix-icon-button icon={'double-chevron-right'} ghost></ix-icon-button>
         ) : (
           <button
             class={{

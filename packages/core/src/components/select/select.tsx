@@ -7,11 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  iconChevronDownSmall,
-  iconClear,
-  iconPlus,
-} from '@siemens/ix-icons/icons';
+import { iconPlus } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -504,7 +500,7 @@ export class Select {
                 (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
-                    icon={iconClear}
+                    icon={'clear'}
                     ghost
                     oval
                     size="16"
@@ -522,7 +518,7 @@ export class Select {
                       if (this.editable) this.dropdownWrapperRef = ref;
                     }}
                   >
-                    <ix-icon class="chevron" name={iconChevronDownSmall} />
+                    <ix-icon class="chevron" name={'chevron-down-small'} />
                   </div>
                 )}
               </div>

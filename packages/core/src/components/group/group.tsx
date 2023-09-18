@@ -8,10 +8,6 @@
  */
 
 import {
-  iconChevronDownSmall,
-  iconChevronRightSmall,
-} from '@siemens/ix-icons/icons';
-import {
   Component,
   Element,
   Event,
@@ -219,7 +215,7 @@ export class Group {
                   hidden: this.slotSize === 0,
                 }}
                 name={
-                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
+                  this.collapsed ? 'chevron-right-small' : 'chevron-down-small'
                 }
                 onClick={(e) => this.onExpandClick(e)}
               ></ix-icon>

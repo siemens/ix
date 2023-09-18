@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -141,7 +140,7 @@ export class Blind {
         >
           <ix-icon
             class={'collapse-icon'}
-            name={iconChevronRightSmall}
+            name={'chevron-right-small'}
             ref={(ref) => (this.chevronRef = ref)}
           ></ix-icon>
           <div

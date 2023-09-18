@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconCloseSmall, iconShout } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 
 @Component({
@@ -67,7 +66,7 @@ export class MenuAboutNews {
         <div class="banner-container">
           <ix-icon
             color="color-inv-contrast-text"
-            name={iconShout}
+            name={'shout'}
             size="32"
           ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +82,7 @@ export class MenuAboutNews {
 
         <ix-icon-button
           size="24"
-          icon={iconCloseSmall}
+          icon={'close-small'}
           ghost
           onClick={() => {
             this.show = false;
