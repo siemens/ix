@@ -745,7 +745,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-card-list",
-        "ix-date-input",
         "ix-date-picker",
         "ix-datetime-picker",
         "ix-dropdown-button",
@@ -766,9 +765,6 @@
           "ix-icon"
         ],
         "ix-card-list": [
-          "ix-button"
-        ],
-        "ix-date-input": [
           "ix-button"
         ],
         "ix-date-picker": [
@@ -2269,26 +2265,37 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon",
-        "ix-button",
         "ix-dropdown",
-        "ix-dropdown-item"
+        "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-input": [
           "ix-icon",
-          "ix-button",
           "ix-dropdown",
-          "ix-dropdown-item"
+          "ix-date-picker"
+        ],
+        "ix-date-picker": [
+          "ix-icon",
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-button": [
           "ix-spinner",
           "ix-icon"
         ],
-        "ix-dropdown-item": [
-          "ix-icon"
+        "my-component": [
+          "ix-date-input"
         ]
       },
       "props": [
@@ -2521,6 +2528,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -2545,6 +2553,9 @@
         "ix-button": [
           "ix-spinner",
           "ix-icon"
+        ],
+        "ix-date-input": [
+          "ix-date-picker"
         ],
         "ix-datetime-picker": [
           "ix-date-picker"
@@ -4035,7 +4046,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
-        "ix-date-input",
         "ix-menu-avatar-item",
         "ix-menu-category",
         "ix-select",
@@ -4050,9 +4060,6 @@
           "ix-icon"
         ],
         "ix-breadcrumb": [
-          "ix-dropdown-item"
-        ],
-        "ix-date-input": [
           "ix-dropdown-item"
         ],
         "ix-menu-avatar-item": [
@@ -12456,8 +12463,34 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-date-input"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-date-input"
+        ],
+        "ix-date-input": [
+          "ix-icon",
+          "ix-dropdown",
+          "ix-date-picker"
+        ],
+        "ix-date-picker": [
+          "ix-icon",
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

@@ -29,49 +29,20 @@ input {
 :host {
   @include ix-component;
 
+  #firstInput {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-right: 0px;
+  }
+  #secondInput {
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0;
+  }
+
   .date-input {
     /* REMOVE */
     margin: 10px;
-    position: relative;
-
-    .picker {
-      position: absolute;
-      z-index: 1;
-      top: 110%;
-      // visibility: hidden;
-    }
-
-    // &:focus-within .picker {
-    //   visibility: visible;
-      
-    // }
-  }
-
-  .icon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-    outline-offset: -var(--theme-input--border-thickness, -1px);
-  }
-
-  .dropdown-icon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-    outline-offset: -var(--theme-input--border-thickness, -1px);
-
-    border-right: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-    border-top-right-radius: var(--theme-input--border-radius);
-    border-bottom-right-radius: var(--theme-input--border-radius);
-  }
-
-  .range-input {
     /* REMOVE */
     width: 300px;
     display: flex;
@@ -84,16 +55,29 @@ input {
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus);
     }
-  }
 
-  #firstInput {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-right: 0px;
-  }
-  #secondInput {
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0;
+    .icon-button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  
+      border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+      outline-offset: -var(--theme-input--border-thickness, -1px);
+  
+      border-right: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+      border-top-right-radius: var(--theme-input--border-radius);
+      border-bottom-right-radius: var(--theme-input--border-radius);
+    }
+
+    .arrow-icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  
+      border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+      outline-offset: -var(--theme-input--border-thickness, -1px);
+    }
   }
 }

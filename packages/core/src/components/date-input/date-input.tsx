@@ -6,10 +6,11 @@ import {
   Host,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
+import { IxDatePickerCustomEvent, IxDropdownCustomEvent } from 'src/components';
+import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-// import { DateChangeEvent } from '../date-picker/date-picker';
-// import { IxDatePickerCustomEvent } from 'src/components';
 
 @Component({
   tag: 'ix-date-input',
@@ -47,6 +48,10 @@ export class DateInput {
    * @since 1.1.0
    */
   @Prop() from: string | undefined;
+  @Watch('from')
+  watchFromPropHandler(newValue: string) {
+    this._from = newValue;
+  }
 
   /**
    * The selected end date. If the the date-picker is not in range mode this property has no impact.
@@ -55,6 +60,9 @@ export class DateInput {
    * @since 1.1.0
    */
   @Prop() to: string | undefined;
+  watchToPropHandler(newValue: string) {
+    this._to = newValue;
+  }
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -87,64 +95,80 @@ export class DateInput {
    */
   @Prop() weekStartIndex = 0;
 
-  // Logt eine Warnung in die Console, das ist hier in dem fall aber nichts kritisch da sich die Ref nur
-  // einmal nach dem rendenr aendert!
-  @State() triggerRef: HTMLElement;
+  @State() private triggerRef: HTMLElement;
+  // @State() private datePickerRef: HTMLElement;
+  @State() private _from: string;
+  @State() private _to: string;
 
   private focusedInput!: HTMLElement;
-  // private datePicker!: HTMLIxDatePickerElement;
+  private datePicker!: HTMLIxDatePickerElement;
 
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLElement;
-    // this.datePicker.hidden = false;
   };
 
   private onInputBlur = (event: FocusEvent) => {
     const relatedElem = event.relatedTarget as HTMLElement;
-    if (
-      relatedElem?.tagName === 'IX-DATE-PICKER' ||
-      relatedElem?.tagName === 'IX-DATETIME-PICKER'
-    ) {
+    if (relatedElem?.tagName === this.datePicker.tagName) {
       this.focusedInput.focus();
       return;
     }
 
-    // this.datePicker.hidden = true;
+    this.focusedInput = undefined;
   };
 
-  // private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
-  //   // event.d
-  // }
+  private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
+    this._from = event.detail.from;
+    this._to = event.detail.to;
+  }
+
+  onShowChange(event: IxDropdownCustomEvent<boolean>) {
+    // this.showDatePicker = event.detail;
+    // this.showDatePicker = true;
+    // if (this.focusedInput) {
+    //   event.preventDefault();
+    // }
+  }
+
+  onFromInputChange(event) {
+    if (this._from !== event.target.value) this._from = event.target.value;
+  }
+
+  onToInputChange(event) {
+    if (this._to !== event.target.value) this._to = event.target.value;
+  }
+
+  componentWillLoad() {
+    this._from = this.from;
+    this._to = this.to;
+  }
 
   renderRangeInput(): any {
     return (
       <Fragment>
-        <div class="range-input">
-          <input
-            id="firstInput"
-            type="text"
-            class="form-control"
-            placeholder={this.format}
-            onFocus={this.onInputFocus}
-            onBlur={this.onInputBlur}
-            value={this.from}
-          />
-          <span class="icon">
-            <ix-icon name="arrow-right"></ix-icon>
-          </span>
-          <input
-            id="secondInput"
-            type="text"
-            class="form-control"
-            placeholder={this.format}
-            onFocus={this.onInputFocus}
-            onBlur={this.onInputBlur}
-            value={this.to}
-          />
-          <span class="dropdown-icon">
-            <ix-icon name="chevron-down-small"></ix-icon>
-          </span>
-        </div>
+        <input
+          id="firstInput"
+          type="text"
+          class="form-control"
+          placeholder={this.format}
+          onFocus={this.onInputFocus}
+          onBlur={this.onInputBlur}
+          value={this._from}
+          onInput={(event) => this.onFromInputChange(event)}
+        />
+        <span class="arrow-icon">
+          <ix-icon name="arrow-right"></ix-icon>
+        </span>
+        <input
+          id="secondInput"
+          type="text"
+          class="form-control"
+          placeholder={this.format}
+          onFocus={this.onInputFocus}
+          onBlur={this.onInputBlur}
+          value={this._to}
+          onInput={(event) => this.onToInputChange(event)}
+        />
       </Fragment>
     );
   }
@@ -154,11 +178,12 @@ export class DateInput {
       <Fragment>
         <input
           type="text"
+          id="firstInput"
           class="form-control"
           placeholder={this.format}
           onFocus={this.onInputFocus}
           onBlur={this.onInputBlur}
-          value={this.from}
+          value={this._from}
         />
       </Fragment>
     );
@@ -174,38 +199,36 @@ export class DateInput {
         >
           {this.label ? <label htmlFor="firstInput">{this.label}</label> : ''}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
-          {/* <ix-date-picker
+          <ix-icon-button
+            class="icon-button"
+            ghost
+            icon="chevron-down-small"
+          ></ix-icon-button>
+        </div>
+        {/* <ix-dropdown
+          trigger={this.triggerRef}
+          // show={this.showDatePicker}
+          // onShowChanged={(event) => this.onShowChange(event)}
+          closeBehavior="outside"
+        > */}
+        <div>
+          <ix-date-picker
             class="picker"
-            hidden={true}
-            ref={(el) => (this.datePicker = el as HTMLIxDatePickerElement)}
-            tabindex={-1}
+            tabIndex={0}
+            ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
             corners={this.corners}
             range={this.range}
             onDateChange={(event) => this.onDateChange(event)}
-            from={this.from}
-            to={this.to}
+            from={this._from}
+            to={this._to}
             format={this.format}
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
-          ></ix-date-picker> */}
+          ></ix-date-picker>
         </div>
-        {/* <ix-button id="triggerId">test</ix-button>
-        <ix-dropdown
-          trigger="triggerId"
-          // anchor={<ix-date-picker></ix-date-picker>}
-        >
-          <ix-dropdown-item label="item"></ix-dropdown-item>
-        </ix-dropdown> */}
-        {/* <ix-button id="triggerId">Open</ix-button> */}
-        <ix-dropdown trigger={this.triggerRef}>
-          <ix-dropdown-header label="Category"></ix-dropdown-header>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 3"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 4"></ix-dropdown-item>
-          <ix-divider></ix-divider>
-          <ix-dropdown-item label="Item 5"></ix-dropdown-item>
-        </ix-dropdown>
+        {/* <ix-dropdown-item label="test"></ix-dropdown-item> */}
+        {/* </ix-dropdown> */}
       </Host>
     );
   }
