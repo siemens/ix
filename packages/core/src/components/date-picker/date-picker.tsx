@@ -22,10 +22,12 @@ import {
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import dayjs, { Dayjs, MonthNames, WeekdayNames } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+dayjs.extend(customParseFormat);
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(localeData);
 dayjs.extend(weekday);
@@ -75,7 +77,7 @@ export class DatePicker {
   @Watch('from')
   watchFromPropHandler(newValue: string) {
     if (newValue !== undefined) {
-      this.currFromDate = dayjs(newValue, this.format);
+      this.currFromDate = dayjs(newValue, this.format, true);
     }
   }
 
@@ -89,7 +91,7 @@ export class DatePicker {
   @Watch('to')
   watchToPropHandler(newValue: string) {
     if (newValue !== undefined) {
-      this.currToDate = dayjs(newValue, this.format);
+      this.currToDate = dayjs(newValue, this.format, true);
     }
   }
 
@@ -152,8 +154,12 @@ export class DatePicker {
    */
   @Method()
   async getCurrentDate() {
-    const _from = this.currFromDate?.format(this.format);
-    const _to = this.currToDate?.format(this.format);
+    const _from = this.currFromDate?.isValid()
+      ? this.currFromDate.format(this.format)
+      : undefined;
+    const _to = this.currToDate?.isValid()
+      ? this.currToDate?.format(this.format)
+      : undefined;
 
     if (this.range) {
       return {
@@ -188,9 +194,9 @@ export class DatePicker {
 
   componentWillLoad() {
     this.currFromDate =
-      this.from !== undefined ? dayjs(this.from, this.format) : undefined;
+      this.from !== undefined ? dayjs(this.from, this.format, true) : undefined;
     this.currToDate =
-      this.to !== undefined ? dayjs(this.to, this.format) : undefined;
+      this.to !== undefined ? dayjs(this.to, this.format, true) : undefined;
 
     const year = this.currFromDate?.year() ?? dayjs().year();
     this.startYear = year - 5;
@@ -418,10 +424,10 @@ export class DatePicker {
 
   private isWithinMinMaxYear(year: number): boolean {
     const minDateYear = this.minDate
-      ? dayjs(this.minDate, this.format).year()
+      ? dayjs(this.minDate, this.format, true).year()
       : undefined;
     const maxDateYear = this.maxDate
-      ? dayjs(this.maxDate, this.format).year()
+      ? dayjs(this.maxDate, this.format, true).year()
       : undefined;
     const isBefore = minDateYear ? year < minDateYear : false;
     const isAfter = maxDateYear ? year > maxDateYear : false;
@@ -431,10 +437,10 @@ export class DatePicker {
 
   private isWithinMinMaxMonth(month: number): boolean {
     const minDateObj = this.minDate
-      ? dayjs(this.minDate, this.format)
+      ? dayjs(this.minDate, this.format, true)
       : undefined;
     const maxDateObj = this.maxDate
-      ? dayjs(this.maxDate, this.format)
+      ? dayjs(this.maxDate, this.format, true)
       : undefined;
     const minDateMonth = minDateObj?.month();
     const maxDateMonth = maxDateObj?.month();
@@ -450,10 +456,10 @@ export class DatePicker {
 
   private isWithinMinMaxDate(date: Dayjs): boolean {
     const _minDate = this.minDate
-      ? dayjs(this.minDate, this.format)
+      ? dayjs(this.minDate, this.format, true)
       : undefined;
     const _maxDate = this.maxDate
-      ? dayjs(this.maxDate, this.format)
+      ? dayjs(this.maxDate, this.format, true)
       : undefined;
     const isBefore = _minDate ? date.isBefore(_minDate, 'day') : false;
     const isAfter = _maxDate ? date.isAfter(_maxDate, 'day') : false;
