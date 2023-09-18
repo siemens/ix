@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { contextMenu } from '@siemens/ix-icons/icons';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -59,7 +59,7 @@ export class SplitButton {
   /**
    * Icon of the button on the right
    */
-  @Prop() splitIcon = contextMenu;
+  @Prop() splitIcon = iconContextMenu;
 
   /**
    * Disabled

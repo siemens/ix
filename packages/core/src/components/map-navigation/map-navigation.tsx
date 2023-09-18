@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { contextMenu } from '@siemens/ix-icons/icons';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -245,7 +245,7 @@ export class MapNavigation {
                   ''
                 ) : (
                   <ix-icon-button
-                    icon={contextMenu}
+                    icon={iconContextMenu}
                     ghost
                     size="24"
                     variant="secondary"

@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { chevronRightSmall, singleCheck } from '@siemens/ix-icons/icons';
+import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -102,7 +105,7 @@ export class DropdownItem {
               {this.checked ? (
                 <ix-icon
                   class="checkmark"
-                  name={singleCheck}
+                  name={iconSingleCheck}
                   size="16"
                 ></ix-icon>
               ) : null}
@@ -116,7 +119,10 @@ export class DropdownItem {
             <slot></slot>
           </div>
           {this.isSubMenu ? (
-            <ix-icon name={chevronRightSmall} class={'submenu-icon'}></ix-icon>
+            <ix-icon
+              name={iconChevronRightSmall}
+              class={'submenu-icon'}
+            ></ix-icon>
           ) : null}
         </button>
       </Host>

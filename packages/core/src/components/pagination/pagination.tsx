@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { chevronLeftSmall, chevronRightSmall } from '@siemens/ix-icons/icons';
+import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -214,7 +217,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === 0}
           ghost
-          icon={chevronLeftSmall}
+          icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
@@ -245,7 +248,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === this.count - 1}
           ghost
-          icon={chevronRightSmall}
+          icon={iconChevronRightSmall}
           onClick={() => this.increase()}
         ></ix-icon-button>
 

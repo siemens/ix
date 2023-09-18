@@ -8,11 +8,11 @@
  */
 
 import {
-  bulb,
-  cogwheel,
-  info,
-  navigationLeft,
-  navigationRight,
+  iconBulb,
+  iconCogwheel,
+  iconInfo,
+  iconNavigationLeft,
+  iconNavigationRight,
 } from '@siemens/ix-icons/icons';
 import {
   Component,
@@ -503,7 +503,7 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? navigationLeft : navigationRight;
+    return this.mapExpand ? iconNavigationLeft : iconNavigationRight;
   }
 
   private isMenuItemClicked(event: Event) {
@@ -657,7 +657,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              icon={cogwheel}
+              icon={iconCogwheel}
               onClick={async () => this.toggleSettings(!this.showSettings)}
             >
               {this.i18nSettings}
@@ -674,7 +674,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              icon={info}
+              icon={iconInfo}
               onClick={async () => this.toggleAbout(!this.showAbout)}
             >
               {this.i18nLegal}
@@ -686,7 +686,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              icon={bulb}
+              icon={iconBulb}
             >
               {this.i18nToggleTheme}
             </ix-menu-item>

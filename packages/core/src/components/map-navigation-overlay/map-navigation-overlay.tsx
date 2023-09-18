@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { close } from '@siemens/ix-icons/icons';
+import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -102,7 +102,7 @@ export class MapNavigationOverlay {
           <ix-icon-button
             class="overlay-close"
             ghost
-            icon={close}
+            icon={iconClose}
             size="24"
             onClick={() => this.closeOverlay()}
           ></ix-icon-button>

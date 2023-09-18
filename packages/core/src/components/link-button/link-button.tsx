@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { chevronRightSmall } from '@siemens/ix-icons/icons';
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
@@ -49,7 +49,11 @@ export class LinkButton {
           href={this.disabled ? undefined : this.url}
           target={this.target}
         >
-          <ix-icon class="icon" name={chevronRightSmall} size="16"></ix-icon>
+          <ix-icon
+            class="icon"
+            name={iconChevronRightSmall}
+            size="16"
+          ></ix-icon>
           <div
             class={{
               link: true,

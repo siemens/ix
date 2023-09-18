@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { chevronDownSmall } from '@siemens/ix-icons/icons';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import anime from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
@@ -174,7 +174,7 @@ export class MenuCategory {
           <div class="category">
             {this.label}
             <ix-icon
-              name={chevronDownSmall}
+              name={iconChevronDownSmall}
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,

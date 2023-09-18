@@ -7,7 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { close, error, info, success, warning } from '@siemens/ix-icons/icons';
+import {
+  iconClose,
+  iconError,
+  iconInfo,
+  iconSuccess,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -73,16 +79,16 @@ export class Toast {
 
     switch (this.type) {
       case 'info':
-        return <ix-icon name={info} size="24" color="color-std-text" />;
+        return <ix-icon name={iconInfo} size="24" color="color-std-text" />;
 
       case 'error':
-        return <ix-icon name={error} size="24" color="color-alarm" />;
+        return <ix-icon name={iconError} size="24" color="color-alarm" />;
 
       case 'success':
-        return <ix-icon name={success} size="24" color="color-success" />;
+        return <ix-icon name={iconSuccess} size="24" color="color-success" />;
 
       case 'warning':
-        return <ix-icon name={warning} size="24" color="color-warning" />;
+        return <ix-icon name={iconWarning} size="24" color="color-warning" />;
 
       default:
         return '';
@@ -134,7 +140,7 @@ export class Toast {
           </div>
           <div class="toast-close">
             <ix-icon-button
-              icon={close}
+              icon={iconClose}
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { logOut } from '@siemens/ix-icons/icons';
+import { iconLogOut } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -91,7 +91,7 @@ export class MenuAvatar {
           <slot></slot>
           <ix-menu-avatar-item
             label={this.i18nLogout}
-            icon={logOut}
+            icon={iconLogOut}
             onClick={(e) => {
               this.logoutClick.emit(e);
             }}

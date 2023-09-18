@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { chevronDownSmall, chevronRightSmall } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDownSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -215,7 +218,9 @@ export class Group {
                 class={{
                   hidden: this.slotSize === 0,
                 }}
-                name={this.collapsed ? chevronRightSmall : chevronDownSmall}
+                name={
+                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
+                }
                 onClick={(e) => this.onExpandClick(e)}
               ></ix-icon>
             </div>

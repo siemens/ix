@@ -8,9 +8,9 @@
  */
 
 import {
-  chevronLeft,
-  chevronRight,
-  singleCheck,
+  iconChevronLeft,
+  iconChevronRight,
+  iconSingleCheck,
 } from '@siemens/ix-icons/icons';
 import {
   Component,
@@ -474,7 +474,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
               ghost
-              icon={chevronLeft}
+              icon={iconChevronLeft}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
@@ -507,7 +507,7 @@ export class DatePicker {
                             hidden: this.tempYear !== year,
                             arrowPosition: true,
                           }}
-                          name={chevronRight}
+                          name={iconChevronRight}
                           size="12"
                         ></ix-icon>
                         <div
@@ -533,7 +533,7 @@ export class DatePicker {
                             hidden: this.tempMonth - 1 !== index,
                             checkPosition: true,
                           }}
-                          name={singleCheck}
+                          name={iconSingleCheck}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -551,7 +551,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(1)}
               ghost
-              icon={chevronRight}
+              icon={iconChevronRight}
               variant="primary"
               class="arrows"
             ></ix-icon-button>

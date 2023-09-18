@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { circleFilled, triangleFilled } from '@siemens/ix-icons/icons';
+import { iconCircleFilled, iconTriangleFilled } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -141,7 +141,9 @@ export class WorkflowStep {
       <Fragment>
         <ix-icon
           color="color-1"
-          name={this.iconName === 'warning' ? triangleFilled : circleFilled}
+          name={
+            this.iconName === 'warning' ? iconTriangleFilled : iconCircleFilled
+          }
           class="absolute"
           size="24"
         ></ix-icon>

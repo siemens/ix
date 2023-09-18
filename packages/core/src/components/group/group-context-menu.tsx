@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { contextMenu } from '@siemens/ix-icons/icons';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
@@ -65,7 +65,7 @@ export class GroupContextMenu {
           class={{ hide: !this.showContextMenu }}
           size="24"
           ghost={true}
-          icon={contextMenu}
+          icon={iconContextMenu}
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>
