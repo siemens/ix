@@ -170,7 +170,6 @@ export class DatePicker {
 
   @State() currFromDate: Dayjs;
   @State() currToDate: Dayjs;
-  @State() calendar: CalendarWeek[];
 
   @State() selectedYear: number;
   @State() tempYear: number;
@@ -183,6 +182,7 @@ export class DatePicker {
   @State() yearContainerRef: HTMLElement;
 
   private readonly DAYS_IN_WEEK = 7;
+  private calendar: CalendarWeek[];
   private dayNames: WeekdayNames;
   private monthNames: MonthNames = dayjs.months();
 
