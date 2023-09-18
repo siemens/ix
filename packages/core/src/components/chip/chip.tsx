@@ -52,7 +52,7 @@ export class Chip {
   /**
    * Show icon
    */
-  @Prop() icon: string | undefined;
+  @Prop() icon: string;
 
   /**
    * Custom color for pill. Only working for `variant='custom'`
@@ -141,7 +141,7 @@ export class Chip {
           <ix-icon
             class={{
               'with-icon': true,
-              hidden: this.icon === undefined || this.icon === '',
+              hidden: !this.icon,
             }}
             name={this.icon}
             size={'24'}

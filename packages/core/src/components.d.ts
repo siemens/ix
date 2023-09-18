@@ -395,7 +395,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon": string;
         /**
           * Show chip with outline style
          */
@@ -3461,7 +3461,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Fire event if close button is clicked
           * @since 1.5.0
