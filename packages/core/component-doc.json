@@ -1612,7 +1612,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-icon-button"
       ],
@@ -1622,6 +1624,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-chip"
         ]
       },
       "props": [
@@ -12162,8 +12167,20 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-chip"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-chip"
+        ],
+        "ix-chip": [
+          "ix-icon-button"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

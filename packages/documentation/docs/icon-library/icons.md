@@ -8,15 +8,6 @@ import Icons from '@site/src/components/Icons';
 
 Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG.
 
-## Installation:
-
-- Install `@siemens/ix-icons` (e.g. `npm install --save @siemens/ix-icons`)
-- Load `@siemens/ix-icons/dist/scss/ix-icons.css`:
-
-```scss
-@import '@siemens/ix-icons/dist/scss/ix-icons.css';
-```
-
 ## Usage
 
 ### Angular
