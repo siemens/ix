@@ -68,6 +68,16 @@ input {
       border-right: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
       border-top-right-radius: var(--theme-input--border-radius);
       border-bottom-right-radius: var(--theme-input--border-radius);
+
+      &.clear {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 0px;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
     }
 
     .arrow-icon {

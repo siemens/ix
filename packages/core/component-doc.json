@@ -2255,14 +2255,18 @@
       ],
       "dependencies": [
         "ix-icon",
-        "ix-dropdown",
+        "ix-icon-button",
         "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-input": [
           "ix-icon",
-          "ix-dropdown",
+          "ix-icon-button",
           "ix-date-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-date-picker": [
           "ix-icon",
@@ -2270,10 +2274,6 @@
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
         ],
         "ix-button": [
           "ix-spinner",
@@ -3466,7 +3466,6 @@
       "dependents": [
         "ix-breadcrumb",
         "ix-category-filter",
-        "ix-date-input",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -3480,9 +3479,6 @@
           "ix-dropdown"
         ],
         "ix-category-filter": [
-          "ix-dropdown"
-        ],
-        "ix-date-input": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -5323,6 +5319,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
+        "ix-date-input",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -5366,6 +5363,9 @@
           "ix-icon-button"
         ],
         "ix-content-header": [
+          "ix-icon-button"
+        ],
+        "ix-date-input": [
           "ix-icon-button"
         ],
         "ix-date-picker": [
@@ -12641,8 +12641,12 @@
         ],
         "ix-date-input": [
           "ix-icon",
-          "ix-dropdown",
+          "ix-icon-button",
           "ix-date-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
         ],
         "ix-date-picker": [
           "ix-icon",
@@ -12650,10 +12654,6 @@
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
         ],
         "ix-button": [
           "ix-spinner",

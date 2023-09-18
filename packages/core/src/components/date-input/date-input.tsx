@@ -8,7 +8,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { IxDatePickerCustomEvent, IxDropdownCustomEvent } from 'src/components';
+import { IxDatePickerCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
@@ -95,7 +95,7 @@ export class DateInput {
    */
   @Prop() weekStartIndex = 0;
 
-  @State() private triggerRef: HTMLElement;
+  // @State() private triggerRef: HTMLElement;
   // @State() private datePickerRef: HTMLElement;
   @State() private _from: string;
   @State() private _to: string;
@@ -122,13 +122,18 @@ export class DateInput {
     this._to = event.detail.to;
   }
 
-  onShowChange(event: IxDropdownCustomEvent<boolean>) {
-    // this.showDatePicker = event.detail;
-    // this.showDatePicker = true;
-    // if (this.focusedInput) {
-    //   event.preventDefault();
-    // }
-  }
+  private clear = () => {
+    this._from = undefined;
+    this._to = undefined;
+  };
+
+  // onShowChange(event: IxDropdownCustomEvent<boolean>) {
+  // this.showDatePicker = event.detail;
+  // this.showDatePicker = true;
+  // if (this.focusedInput) {
+  //   event.preventDefault();
+  // }
+  // }
 
   onFromInputChange(event) {
     if (this._from !== event.target.value) this._from = event.target.value;
@@ -195,15 +200,26 @@ export class DateInput {
         <div
           id="dateinput"
           class="date-input"
-          ref={(ref) => (this.triggerRef = ref)}
+          // ref={(ref) => (this.triggerRef = ref)}
         >
           {this.label ? <label htmlFor="firstInput">{this.label}</label> : ''}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
-          <ix-icon-button
-            class="icon-button"
-            ghost
-            icon="chevron-down-small"
-          ></ix-icon-button>
+          <span
+            class={{
+              'icon-button': true,
+              clear: true,
+            }}
+          >
+            <ix-icon-button
+              ghost
+              icon="clear"
+              class={{ hidden: !this._from && !this._to }}
+              onClick={this.clear}
+            ></ix-icon-button>
+          </span>
+          <span class="icon-button">
+            <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
+          </span>
         </div>
         {/* <ix-dropdown
           trigger={this.triggerRef}
@@ -213,7 +229,6 @@ export class DateInput {
         > */}
         <div>
           <ix-date-picker
-            class="picker"
             tabIndex={0}
             ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
             corners={this.corners}
