@@ -82,7 +82,7 @@ test('single selection', async ({ mount, page }) => {
 
   await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Item 2' }).locator('i')
+    page.getByRole('button', { name: 'Item 2' }).locator('ix-icon')
   ).toBeVisible();
 });
 
@@ -111,8 +111,8 @@ test('multiple selection', async ({ mount, page }) => {
   await item3.click();
   await page.locator('.chevron-down-container').click();
 
-  await expect(item1.locator('i')).toBeVisible();
-  await expect(item3.locator('i')).toBeVisible();
+  await expect(item1.locator('ix-icon')).toBeVisible();
+  await expect(item3.locator('ix-icon')).toBeVisible();
 
   const chip1 = chips.getByTitle('Item 1');
   const chip3 = chips.getByTitle('Item 3');
