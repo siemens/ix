@@ -11,6 +11,9 @@ import {
 import { IxDatePickerCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import { Validator } from '../utils/validators/validator';
+import { getValidator } from '../utils/validators/validator.factory';
+import { DateValidatorParam } from '../utils/validators/date-input/date-input-validators';
 
 @Component({
   tag: 'ix-date-input',
@@ -100,14 +103,30 @@ export class DateInput {
   @State() private _from: string;
   @State() private _to: string;
 
-  private focusedInput!: HTMLElement;
+  private firstInput: HTMLInputElement;
+  private secondInput: HTMLInputElement;
+  private focusedInput!: HTMLInputElement;
   private datePicker!: HTMLIxDatePickerElement;
+  private validator: Validator<DateValidatorParam>;
 
   private onInputFocus = (event: FocusEvent) => {
-    this.focusedInput = event.target as HTMLElement;
+    this.focusedInput = event.target as HTMLInputElement;
   };
 
   private onInputBlur = (event: FocusEvent) => {
+    const param: DateValidatorParam = {
+      from: this.firstInput.value,
+      to: this.secondInput.value,
+      format: this.format,
+      min: this.minDate,
+      max: this.maxDate,
+    };
+    const valid = this.validator.validate(param);
+    if (!valid) {
+      this.firstInput.setCustomValidity(this.validator.errorMessage);
+      this.secondInput.setCustomValidity(this.validator.errorMessage);
+    }
+
     const relatedElem = event.relatedTarget as HTMLElement;
     if (relatedElem?.tagName === this.datePicker.tagName) {
       this.focusedInput.focus();
@@ -146,6 +165,8 @@ export class DateInput {
   componentWillLoad() {
     this._from = this.from;
     this._to = this.to;
+
+    this.validator = getValidator(['valid', 'toAfterFrom', 'withinMinMax']);
   }
 
   renderRangeInput(): any {
@@ -153,6 +174,7 @@ export class DateInput {
       <Fragment>
         <input
           id="firstInput"
+          ref={(ref) => (this.firstInput = ref as HTMLInputElement)}
           type="text"
           class="form-control"
           placeholder={this.format}
@@ -166,6 +188,7 @@ export class DateInput {
         </span>
         <input
           id="secondInput"
+          ref={(ref) => (this.secondInput = ref as HTMLInputElement)}
           type="text"
           class="form-control"
           placeholder={this.format}
@@ -182,8 +205,9 @@ export class DateInput {
     return (
       <Fragment>
         <input
-          type="text"
+          ref={(ref) => (this.firstInput = ref as HTMLInputElement)}
           id="firstInput"
+          type="text"
           class="form-control"
           placeholder={this.format}
           onFocus={this.onInputFocus}
