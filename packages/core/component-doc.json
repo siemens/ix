@@ -425,9 +425,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon",
         "ix-typography"
@@ -436,9 +434,6 @@
         "ix-blind": [
           "ix-icon",
           "ix-typography"
-        ],
-        "my-component": [
-          "ix-blind"
         ]
       },
       "props": [
@@ -5146,8 +5141,7 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
-        "ix-toast",
-        "my-component"
+        "ix-toast"
       ],
       "dependencies": [
         "ix-spinner",
@@ -5231,9 +5225,6 @@
           "ix-icon-button"
         ],
         "ix-toast": [
-          "ix-icon-button"
-        ],
-        "my-component": [
           "ix-icon-button"
         ]
       },
@@ -12436,24 +12427,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-blind",
-        "ix-icon-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-blind",
-          "ix-icon-button"
-        ],
-        "ix-blind": [
-          "ix-icon",
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
