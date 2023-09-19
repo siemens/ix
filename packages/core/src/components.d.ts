@@ -1709,6 +1709,9 @@ export namespace Components {
          */
         "variant": SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -2879,6 +2882,9 @@ declare global {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
     }
     var HTMLIxSplitButtonItemElement: {
@@ -4901,6 +4907,9 @@ declare namespace LocalJSX {
          */
         "variant"?: SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -5635,6 +5644,9 @@ declare module "@stencil/core" {
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            /**
+             * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+             */
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
