@@ -14,13 +14,20 @@ export type DateValidatorParam = {
 
 export const ValidDateValidator: Validator<DateValidatorParam> = {
   validate: (value: DateValidatorParam) => {
+    if (value.from && value.to && value.format) {
+      return (
+        dayjs(value.from, value.format, true).isValid() &&
+        dayjs(value.to, value.format, true).isValid()
+      );
+    }
+
     if (value.from && value.format) {
-      return dayjs(value.from, value.format).isValid();
+      return dayjs(value.from, value.format, true).isValid();
     }
 
     return true;
   },
-  errorMessage: 'Invalid date',
+  errorMessage: 'One or both dates are invalid',
 };
 
 export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {

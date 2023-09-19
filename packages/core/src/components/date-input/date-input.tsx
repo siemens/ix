@@ -11,9 +11,9 @@ import {
 import { IxDatePickerCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import { DateValidatorParam } from '../utils/validators/date-input/date-input-validators';
 import { Validator } from '../utils/validators/validator';
 import { getValidator } from '../utils/validators/validator.factory';
-import { DateValidatorParam } from '../utils/validators/date-input/date-input-validators';
 
 @Component({
   tag: 'ix-date-input',
@@ -114,18 +114,7 @@ export class DateInput {
   };
 
   private onInputBlur = (event: FocusEvent) => {
-    const param: DateValidatorParam = {
-      from: this.firstInput.value,
-      to: this.secondInput.value,
-      format: this.format,
-      min: this.minDate,
-      max: this.maxDate,
-    };
-    const valid = this.validator.validate(param);
-    if (!valid) {
-      this.firstInput.setCustomValidity(this.validator.errorMessage);
-      this.secondInput.setCustomValidity(this.validator.errorMessage);
-    }
+    this.setInputValidity();
 
     const relatedElem = event.relatedTarget as HTMLElement;
     if (relatedElem?.tagName === this.datePicker.tagName) {
@@ -135,6 +124,28 @@ export class DateInput {
 
     this.focusedInput = undefined;
   };
+
+  private setInputValidity() {
+    const param: DateValidatorParam = {
+      from: this.firstInput.value,
+      to: this.secondInput.value,
+      format: this.format,
+      min: this.minDate,
+      max: this.maxDate,
+    };
+
+    const valid = this.validator.validate(param);
+    if (!valid) {
+      this.firstInput.setCustomValidity(this.validator.errorMessage);
+      this.secondInput.setCustomValidity(this.validator.errorMessage);
+    } else {
+      this.firstInput.setCustomValidity('');
+      this.secondInput.setCustomValidity('');
+    }
+
+    // this.firstInput.reportValidity();
+    // this.secondInput.reportValidity();
+  }
 
   private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
     this._from = event.detail.from;
