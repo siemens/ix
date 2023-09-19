@@ -34,10 +34,7 @@ Remove deprecated events
 Change type of CustomEvent to:
 
 ```typescript
-@Event()
-itemSelectionChange
-:
-EventEmitter<string[]>
+@Event() itemSelectionChange: EventEmitter<string[]>
 ```
 
 ### Remove `ix-animated-tab` and `ix-animated-tabs`
@@ -315,19 +312,14 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 **_Before_**
 
 ```typescript
-@Event()
-close
-:
-EventEmitter<string>;
+@Event() close: EventEmitter<string>;
 ```
 
 **_Now_**
 
 ```typescript
 @Event()
-close
-:
-EventEmitter<{
+close: EventEmitter<{
   nativeEvent: MouseEvent;
   name: string;
 }>;

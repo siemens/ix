@@ -2873,7 +2873,7 @@
               "text": "1.1.0"
             }
           ],
-          "default": "'TT'",
+          "default": "'HH:mm:ss'",
           "values": [
             {
               "type": "string"

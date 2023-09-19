@@ -25,7 +25,7 @@ regressionTest.describe('time picker', () => {
     const dateTimeCard = await page.$('ix-date-time-card');
 
     const incrementButtons = await dateTimeCard.$$(
-      'div.clock div.time button.btn.btn-invisible-primary.btn-icon.btn-icon-16:has(ix-icon[name="chevron-up"])'
+      'div.clock div.time button.btn.btn-invisible-primary.btn-icon.btn-icon-16 ix-icon i.glyph.glyph-chevron-up'
     );
     const inputFields = await dateTimeCard.$$(
       'div.clock div.time input.form-control'
@@ -49,7 +49,7 @@ regressionTest.describe('time picker', () => {
     const dateTimeCard = await page.$('ix-date-time-card');
 
     const decrementButtons = await dateTimeCard.$$(
-      'div.clock div.time button.btn.btn-invisible-primary.btn-icon.btn-icon-16:has(ix-icon[name="chevron-down"])'
+      'div.clock div.time button.btn.btn-invisible-primary.btn-icon.btn-icon-16 ix-icon i.glyph.glyph-chevron-down'
     );
     const inputFields = await dateTimeCard.$$(
       'div.clock div.time input.form-control'
