@@ -519,10 +519,6 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
-        /**
-          * set styles
-         */
-        "individual": boolean;
         "standaloneAppearance": boolean;
     }
     interface IxDatetimePicker {
@@ -1799,10 +1795,6 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string>;
         /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual": boolean;
-        /**
           * Show hour input
          */
         "showHour": boolean;
@@ -1815,10 +1807,9 @@ export namespace Components {
          */
         "showSeconds": boolean;
         /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
-        "showTimeReference": any;
+        "standaloneAppearance": boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -1832,7 +1823,7 @@ export namespace Components {
         /**
           * Set time reference
          */
-        "timeReference": 'AM' | 'PM';
+        "timeReference": 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -3609,10 +3600,6 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
-        /**
-          * set styles
-         */
-        "individual"?: boolean;
         "standaloneAppearance"?: boolean;
     }
     interface IxDatetimePicker {
@@ -5000,10 +4987,6 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual"?: boolean;
-        /**
           * Time event
          */
         "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
@@ -5024,10 +5007,9 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
-        "showTimeReference"?: any;
+        "standaloneAppearance"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -5041,7 +5023,7 @@ declare namespace LocalJSX {
         /**
           * Set time reference
          */
-        "timeReference"?: 'AM' | 'PM';
+        "timeReference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**

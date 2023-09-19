@@ -76,7 +76,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() timeFormat: string = 'TT';
+  @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
@@ -236,15 +236,13 @@ export class DateTimePicker {
           <ix-time-picker
             ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
-            individual={false}
+            standaloneAppearance={false}
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
-            showTimeReference={this.showTimeReference}
             onTimeChange={(event) => this.onTimeChange(event)}
-            time={this.time}
             format={this.timeFormat}
-            timeReference={this.timeReference}
+            time={this.time}
           ></ix-time-picker>
           <div class="separator"></div>
         </div>

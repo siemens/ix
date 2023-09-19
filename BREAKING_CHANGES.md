@@ -9,6 +9,10 @@
 ### Change `getCurrentDate` method return property names in `ix-date-picker`
 
 ### Remove deprecated properties from `ix-date-picker`
+### 'ix-time-picker' removed deprecated properties
+
+- show-time-reference
+- individual
 
 ### `ix-dropdown-item` remove 'itemClick' event
 
@@ -321,7 +325,8 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 **_Now_**
 
 ```typescript
-@Event() close: EventEmitter<{
+@Event()
+close: EventEmitter<{
   nativeEvent: MouseEvent;
   name: string;
 }>;

@@ -712,12 +712,11 @@ export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', undef
 export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', undefined, [
   'format',
   'corners',
-  'individual',
+  'standaloneAppearance',
   'showHour',
   'showMinutes',
   'showSeconds',
   'time',
-  'showTimeReference',
   'timeReference',
   'textSelectTime',
   'done',
