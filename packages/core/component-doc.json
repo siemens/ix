@@ -3270,7 +3270,7 @@
           "mutable": false,
           "attr": "close-behavior",
           "reflectToAttr": false,
-          "docs": "Close behavior",
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
           "docsTags": [],
           "default": "'both'",
           "values": [

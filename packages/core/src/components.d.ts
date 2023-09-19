@@ -641,7 +641,7 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -3754,7 +3754,7 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
