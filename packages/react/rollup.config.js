@@ -10,7 +10,7 @@
 import typescript from '@rollup/plugin-typescript';
 import path from 'path';
 import pkg from './package.json';
-console.log(Object.keys(pkg.dependencies));
+
 /** @type {import('rollup').RollupOptions} */
 export default {
   // eslint-disable-next-line no-undef
