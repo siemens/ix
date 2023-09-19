@@ -2,7 +2,33 @@
 
 ## v2.0.0
 
-### Change `itemSelectionChange` event and `selectedIndices` prop from `ix-select`
+### Deprecated `ix-split-button-item`
+
+Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.
+
+### `ix-dropdown-item` remove 'itemClick' event
+
+Remove `itemClick` event use native `click` event instead.
+
+### `ix-event-list-item` remove deprecated props
+
+Remove deprecated props
+
+- `opacity`
+
+### `ix-dropdown-button` remove deprecated props
+
+Remove deprecated props
+
+- `active`
+
+### `ix-chip` remove deprecated events
+
+Remove deprecated events
+
+- `close`
+
+### Change `itemSelectionChange` event from `ix-select`
 
 **_Before_**
 ```tsx

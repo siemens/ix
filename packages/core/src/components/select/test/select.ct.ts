@@ -51,6 +51,9 @@ test('editable mode', async ({ mount, page }) => {
   await expect(add).toBeVisible();
 
   await add.click();
+
+  await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
+
   await page.locator('.chevron-down-container').click();
 
   await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
