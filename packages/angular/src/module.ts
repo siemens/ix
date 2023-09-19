@@ -20,6 +20,7 @@ import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './modal';
 import { SelectValueAccessor } from './select-value-accessor';
+import { BooleanValueAccessor } from './boolean-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
@@ -29,6 +30,7 @@ const DECLARATIONS = [
   IxDropdownTriggerDirective,
   IxIcon,
   SelectValueAccessor,
+  BooleanValueAccessor
 ];
 
 @NgModule({

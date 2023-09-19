@@ -139,7 +139,12 @@ export class Select {
   private labelMutationObserver: MutationObserver;
 
   get items() {
-    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
+    return [
+      ...Array.from(this.hostElement.querySelectorAll('ix-select-item')),
+      ...Array.from(
+        this.hostElement.shadowRoot.querySelectorAll('ix-select-item')
+      ),
+    ];
   }
 
   get selectedItems() {
@@ -147,7 +152,7 @@ export class Select {
   }
 
   get addItemButton() {
-    return this.hostElement.querySelector('.add-item');
+    return this.hostElement.shadowRoot.querySelector('.add-item');
   }
 
   get isSingleMode() {

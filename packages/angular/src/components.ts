@@ -96,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label', 'sublabel']
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label', 'sublabel'],
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
 })
 export class IxBlind {
   protected el: HTMLElement;

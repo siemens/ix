@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### Deprecated `ix-split-button-item`
+
+Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.
+
 ### `ix-dropdown-item` remove 'itemClick' event
 
 Remove `itemClick` event use native `click` event instead.

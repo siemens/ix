@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
+import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -42,6 +43,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
+export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -175,6 +177,11 @@ export namespace Components {
           * @since 2.0.0
          */
         "sublabel": string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant": BlindVariant;
     }
     interface IxBreadcrumb {
         /**
@@ -641,7 +648,7 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -1709,6 +1716,9 @@ export namespace Components {
          */
         "variant": SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -2879,6 +2889,9 @@ declare global {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
     }
     var HTMLIxSplitButtonItemElement: {
@@ -3203,6 +3216,11 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "sublabel"?: string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant"?: BlindVariant;
     }
     interface IxBreadcrumb {
         /**
@@ -3754,7 +3772,7 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -4901,6 +4919,9 @@ declare namespace LocalJSX {
          */
         "variant"?: SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -5635,6 +5656,9 @@ declare module "@stencil/core" {
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            /**
+             * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+             */
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;

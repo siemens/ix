@@ -129,6 +129,7 @@ export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', de
   'label',
   'sublabel',
   'icon',
+  'variant',
   'collapsedChange'
 ]);
 
