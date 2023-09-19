@@ -673,17 +673,11 @@ export class IxDropdownItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
 
-export declare interface IxDropdownItem extends Components.IxDropdownItem {
-  /**
-   * Click on item
-   */
-  itemClick: EventEmitter<CustomEvent<HTMLIxDropdownItemElement>>;
-}
+export declare interface IxDropdownItem extends Components.IxDropdownItem {}
 
 
 @ProxyCmp({

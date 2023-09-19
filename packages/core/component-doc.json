@@ -3878,17 +3878,7 @@
           "docsTags": []
         }
       ],
-      "events": [
-        {
-          "event": "itemClick",
-          "detail": "HTMLIxDropdownItemElement",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Click on item",
-          "docsTags": []
-        }
-      ],
+      "events": [],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -8617,18 +8607,18 @@
       "dependents": [],
       "dependencies": [
         "ix-card",
+        "ix-card-content",
         "ix-card-title",
         "ix-icon",
-        "ix-card-content",
         "ix-typography",
         "ix-card-accordion"
       ],
       "dependencyGraph": {
         "ix-push-card": [
           "ix-card",
+          "ix-card-content",
           "ix-card-title",
           "ix-icon",
-          "ix-card-content",
           "ix-typography",
           "ix-card-accordion"
         ],
