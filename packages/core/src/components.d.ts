@@ -497,6 +497,7 @@ export namespace Components {
           * If true a date-range can be selected (from/to).
          */
         "range": boolean;
+        "standaloneAppearance": boolean;
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
@@ -522,6 +523,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
+        "standaloneAppearance": boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -3585,6 +3587,7 @@ declare namespace LocalJSX {
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
+        "standaloneAppearance"?: boolean;
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
@@ -3610,6 +3613,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
+        "standaloneAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**

@@ -126,6 +126,9 @@ export class DatePicker {
    */
   @Prop() weekStartIndex = 0;
 
+  /** @internal */
+  @Prop() standaloneAppearance = true;
+
   /**
    * Triggers if the date selection changes.
    *
@@ -500,7 +503,10 @@ export class DatePicker {
     return (
       <Host>
         <div class="container">
-          <ix-date-time-card corners={this.corners} individual={true}>
+          <ix-date-time-card
+            corners={this.corners}
+            standaloneAppearance={this.standaloneAppearance}
+          >
             <div class="header" slot="header">
               <ix-icon-button
                 onClick={() => this.changeToAdjacentMonth(-1)}

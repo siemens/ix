@@ -230,7 +230,7 @@ export class DateTimePicker {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
-            class="border-override"
+            standaloneAppearance={false}
           ></ix-date-picker>
 
           <ix-time-picker
@@ -245,7 +245,6 @@ export class DateTimePicker {
             time={this.time}
             format={this.timeFormat}
             timeReference={this.timeReference}
-            class="border-override"
           ></ix-time-picker>
           <div class="separator"></div>
         </div>

@@ -15,6 +15,11 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-date-picker></ix-date-picker>
+        <ix-datetime-picker></ix-datetime-picker>
+      </Host>
+    );
   }
 }

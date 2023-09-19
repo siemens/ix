@@ -170,6 +170,7 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'maxDate',
   'textSelectDate',
   'weekStartIndex',
+  'standaloneAppearance',
   'dateChange',
   'dateRangeChange',
   'dateSelect'
@@ -354,7 +355,8 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 export const IxIcon = /*@__PURE__*/ defineContainer<JSX.IxIcon>('ix-icon', undefined, [
   'size',
   'color',
-  'name'
+  'name',
+  'src'
 ]);
 
 

@@ -2251,7 +2251,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-icon",
@@ -2277,6 +2278,9 @@
           "ix-icon"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -2553,7 +2557,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-date-picker",
         "ix-time-picker",
@@ -2585,6 +2591,9 @@
           "ix-typography",
           "ix-icon-button",
           "ix-button"
+        ],
+        "my-component": [
+          "ix-datetime-picker"
         ]
       },
       "props": [
@@ -12362,8 +12371,42 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-date-picker",
+        "ix-datetime-picker"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-date-picker",
+          "ix-datetime-picker"
+        ],
+        "ix-date-picker": [
+          "ix-icon",
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-button": [
+          "ix-spinner",
+          "ix-icon"
+        ],
+        "ix-datetime-picker": [
+          "ix-date-picker",
+          "ix-time-picker",
+          "ix-button"
+        ],
+        "ix-time-picker": [
+          "ix-date-time-card",
+          "ix-typography",
+          "ix-icon-button",
+          "ix-button"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
