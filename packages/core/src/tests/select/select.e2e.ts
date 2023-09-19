@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('select/basic');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -21,7 +21,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('editable', async ({ page }) => {
     await page.goto('select/editable');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -29,7 +29,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('mode-multiple', async ({ page }) => {
     await page.goto('select/mode-multiple');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -65,7 +65,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('overflow', async ({ page }) => {
     await page.goto('select/overflow');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -73,7 +73,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('autoplacement', async ({ page }) => {
     await page.goto('select/autoplacement');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -81,7 +81,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('allow-clear', async ({ page }) => {
     await page.goto('select/allow-clear');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     await page.locator('text=Item 2').first().click();
 
@@ -90,7 +90,7 @@ regressionTest.describe('select', () => {
 
   regressionTest('list-header-hide', async ({ page }) => {
     await page.goto('select/list-header-hide');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

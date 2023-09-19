@@ -453,8 +453,6 @@ export class Select {
         <div
           class={{
             select: true,
-            focus: this.hasFocus,
-            editable: this.editable,
             disabled: this.disabled,
             readonly: this.readonly,
           }}
@@ -512,14 +510,15 @@ export class Select {
                   />
                 ) : null}
                 {this.disabled || this.readonly ? null : (
-                  <div
-                    class="chevron-down-container"
+                  <ix-icon-button
+                    data-select-dropdown
+                    class={{ 'dropdown-visible': this.dropdownShow }}
+                    icon="chevron-down-small"
+                    ghost
                     ref={(ref) => {
                       if (this.editable) this.dropdownWrapperRef = ref;
                     }}
-                  >
-                    <ix-icon class="chevron" name={'chevron-down-small'} />
-                  </div>
+                  ></ix-icon-button>
                 )}
               </div>
             </div>
