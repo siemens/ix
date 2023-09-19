@@ -21,13 +21,13 @@ export declare interface IxIcon extends Components.IxIcon {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['color', 'name', 'size'],
+  inputs: ['color', 'name'],
 })
 @Component({
   selector: 'ix-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['color', 'name', 'size'],
+  inputs: ['color', 'name'],
 })
 export class IxIcon {
   protected el: HTMLElement;

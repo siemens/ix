@@ -13,5 +13,5 @@ import { defineContainer } from './vue-component-lib/utils';
 export const IxIcon = /*@__PURE__*/ defineContainer<IxIconsJSX.IxIcon>(
   'ix-icon',
   undefined,
-  ['size', 'color', 'name', 'src']
+  ['size', 'color', 'name']
 );
