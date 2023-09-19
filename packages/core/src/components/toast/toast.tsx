@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -134,7 +133,7 @@ export class Toast {
           </div>
           <div class="toast-close">
             <ix-icon-button
-              icon={iconClose}
+              icon={'close'}
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}

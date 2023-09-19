@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconPlus } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -555,7 +554,7 @@ export class Select {
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
-              icon={iconPlus}
+              icon={'plus'}
               class={{
                 'add-item': true,
               }}
