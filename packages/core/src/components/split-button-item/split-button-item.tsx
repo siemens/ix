@@ -16,6 +16,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+ */
 @Component({
   tag: 'ix-split-button-item',
   styleUrl: 'split-button-item.css',
