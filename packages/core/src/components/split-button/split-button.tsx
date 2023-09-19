@@ -80,12 +80,6 @@ export class SplitButton {
   private triggerElement: HTMLElement;
   private dropdownElement: HTMLIxDropdownElement;
 
-  get splitItems() {
-    return Array.from(
-      this.hostElement.querySelectorAll('ix-split-button-item')
-    );
-  }
-
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {
       this.dropdownElement.trigger = this.triggerElement;

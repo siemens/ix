@@ -11,9 +11,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: ` <ix-split-button icon="document" splitIcon="chevron-down-small">
-    <ix-dropdown-item icon="cut"></ix-dropdown-item>
-    <ix-dropdown-item icon="bulb"></ix-dropdown-item>
-  </ix-split-button>`,
+  template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
 })
-export default class SplitButtonIcons {}
+export default class Toggle {
+  checked = false
+}

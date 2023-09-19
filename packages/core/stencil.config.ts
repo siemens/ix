@@ -197,6 +197,13 @@ export const config: Config = {
           targetAttr: 'value',
           type: 'select',
         },
+        {
+          elementSelectors:
+            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
+          event: 'checkedChange',
+          targetAttr: 'checked',
+          type: 'boolean',
+        },
       ],
     }),
     reactOutputTarget({

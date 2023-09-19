@@ -9,10 +9,15 @@
 ### Change `getCurrentDate` method return property names in `ix-date-picker`
 
 ### Remove deprecated properties from `ix-date-picker`
+
 ### 'ix-time-picker' removed deprecated properties
 
 - show-time-reference
 - individual
+
+### Deprecated `ix-split-button-item`
+
+Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.
 
 ### `ix-dropdown-item` remove 'itemClick' event
 
