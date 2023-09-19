@@ -43,6 +43,6 @@
   },
   "peerDependencies": {
     "vue": ">=3.2.45",
-    "@siemens/ix-icons": "^1.2.0"
+    "@siemens/ix-icons": "2.0.0-beta.0"
   }
 }
