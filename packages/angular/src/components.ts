@@ -510,7 +510,7 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Date selection event is fired after confirm button is pressed @since 1.1.0
+   * Datetime selection event is fired after confirm button is pressed @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }

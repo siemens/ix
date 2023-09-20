@@ -3642,7 +3642,7 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Date selection event is fired after confirm button is pressed
+          * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
