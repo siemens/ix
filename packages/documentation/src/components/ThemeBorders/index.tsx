@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { toast } from '@siemens/ix';
-import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
+import {
+  IxCol,
+  IxIcon,
+  IxIconButton,
+  IxInputGroup,
+  IxLayoutGrid,
+  IxRow,
+} from '@siemens/ix-react';
 import React, { useState } from 'react';
 import { themeBorders } from './borders';
 import './ThemeBorders.css';
@@ -35,9 +42,9 @@ function Search(props: { onChange: (value: string) => void }) {
   );
 }
 
-function BorderPreview(props: { border: string; col: string }) {
+function BorderPreview(props: { border: string }) {
   return (
-    <div className={`col-${props.col} Border__Preview`}>
+    <div className={`Border__Preview`}>
       <div
         style={{
           borderTop: `var(${props.border})`,
@@ -47,7 +54,7 @@ function BorderPreview(props: { border: string; col: string }) {
   );
 }
 
-function ThemeBorders() {
+const ThemeBorders: React.FC = () => {
   const [borders, setBorders] = useState(themeBorders);
 
   const updateFilter = (filter) => {
@@ -73,27 +80,32 @@ function ThemeBorders() {
   return (
     <div className="Theme__Borders">
       <Search onChange={(value) => updateFilter(value)} />
-      <div className="container-fluid">
+      <IxLayoutGrid>
         {borders.map((border) => {
           return (
-            <div key={border} className={'Section row'}>
-              <BorderPreview border={border} col={'2'} />
-
-              <div className="col-8 Border__Name">{border}</div>
-              <IxIconButton
-                icon="copy"
-                ghost
-                style={{ marginRight: '1rem' }}
-                className="col-1 Copy__Icon"
-                oval
-                onClick={() => copyToClipboard(border)}
-              />
-            </div>
+            <IxRow key={border} className={'Section'}>
+              <IxCol size="3">
+                <BorderPreview border={border} />
+              </IxCol>
+              <IxCol size="8" className="Border__Name">
+                {border}
+              </IxCol>
+              <IxCol size="1">
+                <IxIconButton
+                  icon="copy"
+                  ghost
+                  style={{ marginRight: '1rem' }}
+                  className="Copy__Icon"
+                  oval
+                  onClick={() => copyToClipboard(border)}
+                />
+              </IxCol>
+            </IxRow>
           );
         })}
-      </div>
+      </IxLayoutGrid>
     </div>
   );
-}
+};
 
 export default ThemeBorders;
