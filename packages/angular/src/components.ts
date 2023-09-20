@@ -8,6 +8,28 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
+})
+@Component({
+  selector: 'datetime-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+})
+export class DatetimeInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface DatetimeInput extends Components.DatetimeInput {}
+
+
+@ProxyCmp({
   inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({
@@ -438,14 +460,14 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'from', 'label', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-date-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'label', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
 })
 export class IxDateInput {
   protected el: HTMLElement;

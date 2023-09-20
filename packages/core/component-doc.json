@@ -7,6 +7,269 @@
   },
   "components": [
     {
+      "dirPath": "./src/components/datetime-input",
+      "filePath": "./src/components/datetime-input/datetime-input.tsx",
+      "fileName": "datetime-input.tsx",
+      "readmePath": "./src/components/datetime-input/readme.md",
+      "usagesDir": "./src/components/datetime-input/usage",
+      "tag": "datetime-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-dropdown",
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "datetime-input": [
+          "ix-icon-button",
+          "ix-dropdown",
+          "ix-date-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "corners",
+          "type": "DateTimeCardCorners",
+          "mutable": false,
+          "attr": "corners",
+          "reflectToAttr": false,
+          "docs": "Corner style",
+          "docsTags": [],
+          "default": "'rounded'",
+          "values": [
+            {
+              "type": "DateTimeCardCorners"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Date format string.\nSee @link https://day.js.org/docs/en/display/format for all available tokens.",
+          "docsTags": [],
+          "default": "'YYYY/MM/DD'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "mutable": false,
+          "attr": "from",
+          "reflectToAttr": false,
+          "docs": "The selected starting date. If the date-picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the input",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "labelPosition",
+          "type": "\"above\" | \"inline\"",
+          "mutable": false,
+          "attr": "label-position",
+          "reflectToAttr": false,
+          "docs": "Position of the label",
+          "docsTags": [],
+          "default": "'above'",
+          "values": [
+            {
+              "value": "above",
+              "type": "string"
+            },
+            {
+              "value": "inline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "max-date",
+          "reflectToAttr": false,
+          "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "min-date",
+          "reflectToAttr": false,
+          "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "range",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "range",
+          "reflectToAttr": false,
+          "docs": "If true a date-range can be selected (from/to).",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of the button that confirms date selection.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "mutable": false,
+          "attr": "to",
+          "reflectToAttr": false,
+          "docs": "The selected end date. If the the date-picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/action-card",
       "filePath": "./src/components/action-card/action-card.tsx",
       "fileName": "action-card.tsx",
@@ -2281,30 +2544,27 @@
         "my-component"
       ],
       "dependencies": [
-        "ix-icon",
         "ix-icon-button",
+        "ix-dropdown",
         "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-input": [
-          "ix-icon",
           "ix-icon-button",
+          "ix-dropdown",
           "ix-date-picker"
         ],
         "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
+          "ix-spinner"
         ],
         "ix-date-picker": [
-          "ix-icon",
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
         ],
         "ix-button": [
-          "ix-spinner",
-          "ix-icon"
+          "ix-spinner"
         ],
         "my-component": [
           "ix-date-input"
@@ -2389,6 +2649,28 @@
           "docsTags": [],
           "values": [
             {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "labelPosition",
+          "type": "\"above\" | \"inline\"",
+          "mutable": false,
+          "attr": "label-position",
+          "reflectToAttr": false,
+          "docs": "Position of the label",
+          "docsTags": [],
+          "default": "'above'",
+          "values": [
+            {
+              "value": "above",
+              "type": "string"
+            },
+            {
+              "value": "inline",
               "type": "string"
             }
           ],
@@ -2540,6 +2822,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "datetime-input",
         "ix-date-input",
         "ix-datetime-picker"
       ],
@@ -2561,6 +2844,9 @@
         ],
         "ix-button": [
           "ix-spinner"
+        ],
+        "datetime-input": [
+          "ix-date-picker"
         ],
         "ix-date-input": [
           "ix-date-picker"
@@ -3451,8 +3737,10 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "datetime-input",
         "ix-breadcrumb",
         "ix-category-filter",
+        "ix-date-input",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -3462,10 +3750,16 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "datetime-input": [
+          "ix-dropdown"
+        ],
         "ix-breadcrumb": [
           "ix-dropdown"
         ],
         "ix-category-filter": [
+          "ix-dropdown"
+        ],
+        "ix-date-input": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -5268,6 +5562,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "datetime-input",
         "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
@@ -5301,6 +5596,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "datetime-input": [
+          "ix-icon-button"
         ],
         "ix-burger-menu": [
           "ix-icon-button"
@@ -12439,24 +12737,21 @@
           "ix-date-input"
         ],
         "ix-date-input": [
-          "ix-icon",
           "ix-icon-button",
+          "ix-dropdown",
           "ix-date-picker"
         ],
         "ix-icon-button": [
-          "ix-spinner",
-          "ix-icon"
+          "ix-spinner"
         ],
         "ix-date-picker": [
-          "ix-icon",
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
         ],
         "ix-button": [
-          "ix-spinner",
-          "ix-icon"
+          "ix-spinner"
         ]
       },
       "props": [],
