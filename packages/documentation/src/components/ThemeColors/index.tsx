@@ -6,11 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { toast } from '@siemens/ix';
-import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import {
+  IxCol,
+  IxIcon,
+  IxIconButton,
+  IxInputGroup,
+  IxLayoutGrid,
+  IxRow,
+  showToast,
+} from '@siemens/ix-react';
+import React, { useEffect, useState } from 'react';
 import { resolveColorValue, themeColors } from './resolve-colors';
 import './ThemeColors.css';
 
@@ -26,7 +32,6 @@ function Search(props: { onChange: (value: string) => void }) {
 
       <input
         type={'text'}
-        className={'form-control'}
         placeholder="Search"
         onChange={(input) => {
           const value = input.target.value;
@@ -40,21 +45,19 @@ function Search(props: { onChange: (value: string) => void }) {
 function ColorPreview(props: { color: string }) {
   const baseUrl = useBaseUrl('/');
   return (
-    <div className="col-sm-1">
-      <div className="Color__Preview">
-        <img src={`${baseUrl}img/chessboard_pattern.png`} />
-        <div
-          className="Color__Value"
-          style={{
-            backgroundColor: props.color,
-          }}
-        ></div>
-      </div>
+    <div className="Color__Preview">
+      <img src={`${baseUrl}img/chessboard_pattern.png`} />
+      <div
+        className="Color__Value"
+        style={{
+          backgroundColor: props.color,
+        }}
+      ></div>
     </div>
   );
 }
 
-function ThemeColors() {
+const ThemeColors: React.FC = () => {
   const [colors, setColors] = useState(themeColors);
 
   const updateFilter = (filter) => {
@@ -71,41 +74,51 @@ function ThemeColors() {
 
   const copyToClipboard = async (value: string) => {
     await navigator.clipboard.writeText(value);
-    toast.success({
+    await showToast({
       message: 'Copied to clipboard!',
       autoCloseDelay: 800,
     });
   };
 
+  useEffect(() => {
+    window.addEventListener('theme-change', () => {
+      setColors([...colors]);
+    });
+  }, []);
+
   return (
     <div className="Theme__Colors">
       <Search onChange={(value) => updateFilter(value)} />
-      <div className="container-fluid">
+      <IxLayoutGrid>
         {colors.map((color) => {
           const colorValue = resolveColorValue(color);
           return (
-            <div key={color} className={'Section row'}>
-              <BrowserOnly>
-                {() => {
-                  return <ColorPreview color={colorValue} />;
-                }}
-              </BrowserOnly>
-              <div className="col-sm-7 Color__Name">{color}</div>
-              <div className="col-sm-3 Color__RGB">{colorValue}</div>
-              <IxIconButton
-                icon="copy"
-                ghost
-                style={{ marginRight: '1rem' }}
-                className="col-sm-1 Copy__Icon"
-                oval
-                onClick={() => copyToClipboard(color)}
-              />
-            </div>
+            <IxRow key={color} className={'Section'}>
+              <IxCol size="3">
+                <ColorPreview color={colorValue!} />
+              </IxCol>
+              <IxCol size="5">
+                <div className="Color__Name">{color}</div>
+              </IxCol>
+              <IxCol size="3">
+                <div className="Color__RGB">{colorValue}</div>
+              </IxCol>
+              <IxCol size="1">
+                <IxIconButton
+                  icon="copy"
+                  ghost
+                  style={{ marginRight: '1rem' }}
+                  className="Copy__Icon"
+                  oval
+                  onClick={() => copyToClipboard(color)}
+                />
+              </IxCol>
+            </IxRow>
           );
         })}
-      </div>
+      </IxLayoutGrid>
     </div>
   );
-}
+};
 
 export default ThemeColors;
