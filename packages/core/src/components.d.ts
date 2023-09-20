@@ -402,7 +402,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon": string;
         /**
           * Show chip with outline style
          */
@@ -642,7 +642,7 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -3468,7 +3468,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Fire event if close button is clicked
           * @since 1.5.0
@@ -3747,7 +3747,7 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**

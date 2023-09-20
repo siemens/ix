@@ -33,7 +33,7 @@ export class ModalExample {
             <ix-icon-button
               data-close-button
               ghost
-              icon="close"
+              icon={'close'}
               onClick={() => this.dismiss()}
             ></ix-icon-button>
           </div>

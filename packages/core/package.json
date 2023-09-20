@@ -21,6 +21,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "components/",
     "dist/",
     "loader/",
     "scss/"
@@ -53,7 +54,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
-    "@siemens/ix-icons": "^1.2.0",
+    "@siemens/ix-icons": "2.0.0-beta.0",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil-community/postcss": "^2.1.0",
     "@stencil/angular-output-target": "^0.5.0",
@@ -88,7 +89,8 @@
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",
-    "bootstrap": "~5.2.0"
+    "bootstrap": "~5.2.0",
+    "@siemens/ix-icons": "2.0.0-beta.0"
   },
   "config": {
     "commitizen": {

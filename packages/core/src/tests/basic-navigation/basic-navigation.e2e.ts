@@ -159,7 +159,7 @@ regressionTest.describe('basic navigation mobile', () => {
       page.locator('ix-menu').locator('.menu.expanded')
     ).toBeVisible();
 
-    const settingsButton = await page.waitForSelector('#settings');
+    const settingsButton = await page.waitForSelector('ix-menu-item#settings');
     await settingsButton.click();
 
     const settings = page.locator('ix-menu-settings');
@@ -214,7 +214,7 @@ regressionTest.describe('basic navigation mobile', () => {
     // Animation
     await page.waitForTimeout(500);
 
-    const settings = page.locator('#settings');
+    const settings = page.locator('ix-menu-item#settings');
     await settings.click({
       force: true,
     });

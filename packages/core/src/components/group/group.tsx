@@ -214,7 +214,9 @@ export class Group {
                 class={{
                   hidden: this.slotSize === 0,
                 }}
-                name={`chevron-${this.collapsed ? 'right' : 'down'}-small`}
+                name={
+                  this.collapsed ? 'chevron-right-small' : 'chevron-down-small'
+                }
                 onClick={(e) => this.onExpandClick(e)}
               ></ix-icon>
             </div>

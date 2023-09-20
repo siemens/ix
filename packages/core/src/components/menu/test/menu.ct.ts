@@ -183,13 +183,13 @@ test('should close about by item click', async ({ mount, page }) => {
 });
 
 async function clickAboutButton(element: Locator, page: Page) {
-  const aboutButton = element.locator('#aboutAndLegal');
+  const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
   await page.waitForTimeout(1000);
 }
 
 async function clickSettingsButton(element: Locator, page: Page) {
-  const settingsButton = element.locator('#settings');
+  const settingsButton = element.locator('ix-menu-item#settings');
   await settingsButton.click();
   await page.waitForTimeout(1000);
 }
