@@ -491,6 +491,10 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Position of the label
+         */
+        "labelPosition": 'above' | 'inline';
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
@@ -3620,6 +3624,10 @@ declare namespace LocalJSX {
           * Label for the input
          */
         "label"?: string;
+        /**
+          * Position of the label
+         */
+        "labelPosition"?: 'above' | 'inline';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0

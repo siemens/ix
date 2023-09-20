@@ -30,25 +30,45 @@ input {
   @include ix-component;
 
   #firstInput {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-right: 0px;
+    border: 0;
   }
   #secondInput {
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0;
+    border: 0;
+  }
+
+  label {
+    .inline {
+      display: inline-block;
+      text-align: right;
+    }
+  }
+
+  span {
+    &.vertical-align {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    &.label {
+      padding-left: 0.25rem;
+    }
+  }
+
+  ix-dropdown {
+    margin-top: 0.25rem !important;
+    padding: 0;
   }
 
   .date-input {
     /* REMOVE */
     margin: 10px;
     /* REMOVE */
-    width: 300px;
+    width: 400px;
     display: flex;
 
     background-color: var(--theme-input--background);
     border-radius: var(--theme-input--border-radius);
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
 
     &:focus-within {
       outline: 1px solid var(--theme-color-focus-bdr);
@@ -60,14 +80,6 @@ input {
       display: flex;
       flex-direction: row;
       align-items: center;
-  
-      border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-      outline-offset: -var(--theme-input--border-thickness, -1px);
-  
-      border-right: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-      border-top-right-radius: var(--theme-input--border-radius);
-      border-bottom-right-radius: var(--theme-input--border-radius);
 
       &.clear {
         border-top-right-radius: 0px;
@@ -78,16 +90,6 @@ input {
       .hidden {
         visibility: hidden;
       }
-    }
-
-    .arrow-icon {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-  
-      border-top: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
-      outline-offset: -var(--theme-input--border-thickness, -1px);
     }
   }
 }

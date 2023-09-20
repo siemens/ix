@@ -29,6 +29,11 @@ export class DateInput {
   @Prop() label: string;
 
   /**
+   * Position of the label
+   */
+  @Prop() labelPosition: 'above' | 'inline' = 'above';
+
+  /**
    * Date format string.
    * See @link https://day.js.org/docs/en/display/format for all available tokens.
    */
@@ -98,7 +103,7 @@ export class DateInput {
    */
   @Prop() weekStartIndex = 0;
 
-  // @State() private triggerRef: HTMLElement;
+  @State() private triggerRef: HTMLElement;
   // @State() private datePickerRef: HTMLElement;
   @State() private _from: string;
   @State() private _to: string;
@@ -122,7 +127,7 @@ export class DateInput {
       return;
     }
 
-    this.focusedInput = undefined;
+    // this.focusedInput = undefined;
   };
 
   private setInputValidity() {
@@ -142,9 +147,6 @@ export class DateInput {
       this.firstInput.setCustomValidity('');
       this.secondInput.setCustomValidity('');
     }
-
-    // this.firstInput.reportValidity();
-    // this.secondInput.reportValidity();
   }
 
   private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
@@ -152,9 +154,11 @@ export class DateInput {
     this._to = event.detail.to;
   }
 
-  private clear = () => {
+  private readonly clear = () => {
     this._from = undefined;
     this._to = undefined;
+
+    this.focusedInput.focus();
   };
 
   // onShowChange(event: IxDropdownCustomEvent<boolean>) {
@@ -194,7 +198,7 @@ export class DateInput {
           value={this._from}
           onInput={(event) => this.onFromInputChange(event)}
         />
-        <span class="arrow-icon">
+        <span class="vertical-align">
           <ix-icon name="arrow-right"></ix-icon>
         </span>
         <input
@@ -232,12 +236,23 @@ export class DateInput {
   render() {
     return (
       <Host>
+        {this.labelPosition === 'above' ? (
+          <label htmlFor="firstInput">{this.label}</label>
+        ) : (
+          ''
+        )}
         <div
           id="dateinput"
           class="date-input"
-          // ref={(ref) => (this.triggerRef = ref)}
+          ref={(ref) => (this.triggerRef = ref)}
         >
-          {this.label ? <label htmlFor="firstInput">{this.label}</label> : ''}
+          {this.labelPosition === 'inline' ? (
+            <span class="vertical-align label">
+              <label htmlFor="firstInput">{this.label}</label>
+            </span>
+          ) : (
+            ''
+          )}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
           <span
             class={{
@@ -256,13 +271,14 @@ export class DateInput {
             <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
           </span>
         </div>
-        {/* <ix-dropdown
+        <ix-dropdown
           trigger={this.triggerRef}
           // show={this.showDatePicker}
           // onShowChanged={(event) => this.onShowChange(event)}
           closeBehavior="outside"
-        > */}
-        <div>
+          onClick={(event) => event.stopImmediatePropagation()}
+          class="dropdown"
+        >
           <ix-date-picker
             tabIndex={0}
             ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
@@ -275,10 +291,9 @@ export class DateInput {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
+            onClick={(event) => event.stopImmediatePropagation()}
           ></ix-date-picker>
-        </div>
-        {/* <ix-dropdown-item label="test"></ix-dropdown-item> */}
-        {/* </ix-dropdown> */}
+        </ix-dropdown>
       </Host>
     );
   }
