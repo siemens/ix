@@ -9,9 +9,9 @@
 
 // Implementation of scss breakpoints mixins/_break-points.scss
 const mediaQueries = {
-  sm: '(min-width: 36em)',
-  md: '(min-width: 48em)',
-  lg: '(min-width: 62em)',
+  sm: '(min-width: 48em)',
+  md: '(min-width: 48.0625em) and (max-width: 80em)',
+  lg: '(min-width: 80.0625em)',
 } as const;
 
 export type Breakpoint = keyof typeof mediaQueries;
