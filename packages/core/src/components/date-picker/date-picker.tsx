@@ -76,9 +76,9 @@ export class DatePicker {
   @Prop() from: string | undefined;
   @Watch('from')
   watchFromPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currFromDate = dayjs(newValue, this.format, true);
-    }
+    this.currFromDate = newValue
+      ? dayjs(newValue, this.format, true)
+      : undefined;
   }
 
   /**
@@ -90,9 +90,7 @@ export class DatePicker {
   @Prop() to: string | undefined;
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currToDate = dayjs(newValue, this.format, true);
-    }
+    this.currToDate = newValue ? dayjs(newValue, this.format, true) : undefined;
   }
 
   /**
