@@ -40,12 +40,6 @@ export class DropdownButton {
   @Prop() ghost = false;
 
   /**
-   * Active button (has no effect)
-   * @deprecated Will be removed in 3.0.0
-   */
-  @Prop() active = false;
-
-  /**
    * Disable button
    */
   @Prop() disabled = false;
@@ -115,7 +109,7 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name="chevron-down-small" size="24"></ix-icon>
+                <ix-icon name={'chevron-down-small'} size="24"></ix-icon>
               </div>
             </ix-button>
           ) : (

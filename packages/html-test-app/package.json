@@ -18,6 +18,6 @@
     "@siemens/ix": "~2.0.0-beta.1",
     "@siemens/ix-aggrid": "~2.0.0-beta.1",
     "@siemens/ix-echarts": "~2.0.0-beta.1",
-    "@siemens/ix-icons": "^1.1.0"
+    "@siemens/ix-icons": "2.0.0-beta.0"
   }
 }

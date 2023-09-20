@@ -11,12 +11,13 @@ import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-icon-button icon="rocket">Content</ix-icon-button>`);
+
   const button = page.locator('ix-icon-button');
   await expect(button).toHaveClass(/hydrated/);
   expect(button.allInnerTexts).not.toEqual('Content');
 
   await expect(button.locator('ix-icon')).toBeVisible();
-  await expect(button.locator('ix-icon')).toHaveAttribute('name', 'rocket');
+  await expect(button.locator('ix-icon').locator('title')).toHaveText('rocket');
 });
 
 test('show spinner while loading', async ({ mount, page }) => {

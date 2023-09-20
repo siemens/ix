@@ -213,7 +213,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === 0}
           ghost
-          icon="chevron-left-small"
+          icon={'chevron-left-small'}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
@@ -244,7 +244,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === this.count - 1}
           ghost
-          icon="chevron-right-small"
+          icon={'chevron-right-small'}
           onClick={() => this.increase()}
         ></ix-icon-button>
 

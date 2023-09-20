@@ -52,7 +52,7 @@ export class Chip {
   /**
    * Show icon
    */
-  @Prop() icon: string | undefined;
+  @Prop() icon: string;
 
   /**
    * Custom color for pill. Only working for `variant='custom'`
@@ -72,13 +72,6 @@ export class Chip {
   /**
    * Fire event if close button is clicked
    *
-   *  @deprecated Will be removed in 2.0.0. Use `closeChip`
-   */
-  @Event() close: EventEmitter;
-
-  /**
-   * Fire event if close button is clicked
-   *
    * @since 1.5.0
    */
   @Event() closeChip: EventEmitter;
@@ -86,23 +79,20 @@ export class Chip {
   private getCloseButton() {
     return (
       <div class="close-button-container">
-        {
-          <ix-icon-button
-            type="button"
-            variant="secondary"
-            icon="close-small"
-            class="close-button"
-            oval
-            size="16"
-            style={this.variant === 'custom' ? { color: this.color } : {}}
-            ghost
-            onClick={(event) => {
-              this.close.emit(event);
-              this.closeChip.emit(event);
-              event.stopPropagation();
-            }}
-          ></ix-icon-button>
-        }
+        <ix-icon-button
+          type="button"
+          variant="secondary"
+          icon={'close-small'}
+          class="close-button"
+          oval
+          size="16"
+          style={this.variant === 'custom' ? { color: this.color } : {}}
+          ghost
+          onClick={(event) => {
+            this.closeChip.emit(event);
+            event.stopPropagation();
+          }}
+        ></ix-icon-button>
       </div>
     );
   }
@@ -151,7 +141,7 @@ export class Chip {
           <ix-icon
             class={{
               'with-icon': true,
-              hidden: this.icon === undefined || this.icon === '',
+              hidden: !this.icon,
             }}
             name={this.icon}
             size={'24'}

@@ -48,14 +48,6 @@ export class EventListItem {
   @Prop() chevron: boolean;
 
   /**
-   * Opacity of the status indicator.
-   * Defaults to 1.0
-   *
-   * @deprecated Will be removed in 2.0.0
-   */
-  @Prop() opacity = 1;
-
-  /**
    * Event list item click
    */
   @Event() itemClick: EventEmitter;
@@ -87,7 +79,7 @@ export class EventListItem {
             class={`indicator ${!this.color ? 'indicator-empty' : ''}`}
             style={{
               'background-color': this.color ? color : 'inherit',
-              opacity: `${this.disabled ? 0.4 : this.opacity}`,
+              opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>
 
@@ -97,7 +89,7 @@ export class EventListItem {
             </div>
             {this.chevron && (
               <ix-icon
-                name="chevron-right"
+                name={'chevron-right'}
                 size="16"
                 class="chevron-icon"
               ></ix-icon>

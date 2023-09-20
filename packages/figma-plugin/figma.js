@@ -64,6 +64,7 @@ module.exports = async function (node, config) {
         config.apiToken
       );
 
+      console.log(`Requested image ${imageUrl}`);
       if (process.env.NODE_ENV === 'production') {
         const imageFileName = `${imageUUID}.png`;
 
@@ -81,16 +82,24 @@ module.exports = async function (node, config) {
             imageStream.on('finish', resolve);
             imageStream.on('error', reject);
           });
+
+          console.log(`Image downloaded to ${imagePath}`);
         } else {
           console.log(
             'Skip download use existing image:',
             `/figma/${imageFileName}`
+          );
+
+          console.log(
+            `Skip download use existing image: /figma/${imageFileName}`
           );
         }
 
         node.url = `${config.baseUrl}figma/${imageFileName}`;
       } else {
         node.url = imageUrl;
+
+        console.log(`Use inline image: ${imageUrl}`);
       }
     }
   } catch (error) {

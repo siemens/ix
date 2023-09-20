@@ -125,7 +125,7 @@ export class FlipTile {
               <slot name="header"></slot>
             </div>
             <ix-icon-button
-              icon="eye"
+              icon={'eye'}
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}

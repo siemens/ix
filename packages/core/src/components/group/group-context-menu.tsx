@@ -64,7 +64,7 @@ export class GroupContextMenu {
           class={{ hide: !this.showContextMenu }}
           size="24"
           ghost={true}
-          icon="context-menu"
+          icon={'context-menu'}
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>

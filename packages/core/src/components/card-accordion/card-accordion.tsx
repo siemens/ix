@@ -67,12 +67,7 @@ export class CardAccordion {
 
   render() {
     return (
-      <Host
-        slot="card-accordion"
-        class={{
-          show: this.expandContent,
-        }}
-      >
+      <Host slot="card-accordion">
         <button
           tabIndex={0}
           class={{ 'expand-action': true, show: this.expandContent }}
@@ -83,7 +78,7 @@ export class CardAccordion {
           aria-controls={getAriaControlsId()}
         >
           <ix-icon
-            name="chevron-right-small"
+            name={'chevron-right-small'}
             class={{
               'expand-icon': true,
               show: this.expandContent,
@@ -96,10 +91,12 @@ export class CardAccordion {
             show: this.expandContent,
           }}
         >
-          <div class={'expand-content-body'}>
-            <slot></slot>
+          <div class="expand-content-inner">
+            <div class="expand-content-body">
+              <slot></slot>
+            </div>
+            <div class="expand-content-footer"></div>
           </div>
-          <div class={'expand-content-footer'}></div>
         </div>
       </Host>
     );

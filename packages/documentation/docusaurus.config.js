@@ -15,10 +15,10 @@ const path = require('path');
 let withBrandTheme = false;
 
 const libCss = [
+  require.resolve('animate.css/animate.css'),
   require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
   require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
   require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
-  require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
 ];
 
 try {
@@ -173,10 +173,8 @@ const config = {
     [
       require.resolve('docusaurus-lunr-search'),
       {
-        excludeRoutes: [
-          '/docs/auto-generated/**/*',
-          '/docs/installation/CHANGELOG',
-        ],
+        languages: ['en'],
+        excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
       },
     ],
   ],

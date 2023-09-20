@@ -96,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label', 'sublabel']
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label', 'sublabel'],
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -374,16 +374,12 @@ export class IxChip {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close', 'closeChip']);
+    proxyOutputs(this, this.el, ['closeChip']);
   }
 }
 
 
 export declare interface IxChip extends Components.IxChip {
-  /**
-   * Fire event if close button is clicked @deprecated Will be removed in 2.0.0. Use `closeChip`
-   */
-  close: EventEmitter<CustomEvent<any>>;
   /**
    * Fire event if close button is clicked @since 1.5.0
    */
@@ -618,14 +614,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
 })
 export class IxDropdownButton {
   protected el: HTMLElement;
@@ -677,17 +673,11 @@ export class IxDropdownItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
 
-export declare interface IxDropdownItem extends Components.IxDropdownItem {
-  /**
-   * Click on item
-   */
-  itemClick: EventEmitter<CustomEvent<HTMLIxDropdownItemElement>>;
-}
+export declare interface IxDropdownItem extends Components.IxDropdownItem {}
 
 
 @ProxyCmp({
@@ -762,14 +752,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 
 @ProxyCmp({
-  inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected']
+  inputs: ['chevron', 'color', 'disabled', 'selected']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected'],
+  inputs: ['chevron', 'color', 'disabled', 'selected'],
 })
 export class IxEventListItem {
   protected el: HTMLElement;
@@ -993,28 +983,6 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
    */
   selectedChanged: EventEmitter<CustomEvent<HTMLIxGroupItemElement>>;
 }
-
-
-@ProxyCmp({
-  inputs: ['color', 'name', 'size']
-})
-@Component({
-  selector: 'ix-icon',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'name', 'size'],
-})
-export class IxIcon {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxIcon extends Components.IxIcon {}
 
 
 @ProxyCmp({

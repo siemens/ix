@@ -155,7 +155,7 @@ export class ExpandingSearch {
           {this.isFieldChanged ? (
             <ix-icon-button
               class="btn-clear"
-              icon="clear"
+              icon={'clear'}
               ghost={true}
               size="16"
               data-testid="clear-button"

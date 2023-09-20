@@ -19,7 +19,7 @@ test('renders', async ({ mount, page }) => {
   const element = page.locator('ix-select');
   await expect(element).toHaveClass(/hydrated/);
 
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
 
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
@@ -38,7 +38,7 @@ test('editable mode', async ({ mount, page }) => {
   const element = page.locator('ix-select');
   await expect(element).toHaveClass(/hydrated/);
 
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('Not existing');
 
   const dropdown = element.locator('ix-dropdown');
@@ -51,7 +51,8 @@ test('editable mode', async ({ mount, page }) => {
   await expect(add).toBeVisible();
 
   await add.click();
-  await page.locator('.chevron-down-container').click();
+  await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
+  await page.locator('[data-select-dropdown]').click();
 
   await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
@@ -75,14 +76,14 @@ test('single selection', async ({ mount, page }) => {
     (select: HTMLIxSelectElement) => (select.value = '22')
   );
 
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
 
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
   await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Item 2' }).locator('i')
+    page.getByRole('button', { name: 'Item 2' }).locator('ix-icon')
   ).toBeVisible();
 });
 
@@ -97,7 +98,7 @@ test('multiple selection', async ({ mount, page }) => {
     `);
   const element = page.locator('ix-select');
   await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
 
   const dropdown = element.locator('ix-dropdown');
   const chips = element.locator('.chips');
@@ -107,12 +108,12 @@ test('multiple selection', async ({ mount, page }) => {
   const item1 = element.locator('ix-select-item').nth(0);
   const item3 = element.locator('ix-select-item').nth(2);
   await item1.click();
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
   await item3.click();
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
 
-  await expect(item1.locator('i')).toBeVisible();
-  await expect(item3.locator('i')).toBeVisible();
+  await expect(item1.locator('ix-icon')).toBeVisible();
+  await expect(item3.locator('ix-icon')).toBeVisible();
 
   const chip1 = chips.getByTitle('Item 1');
   const chip3 = chips.getByTitle('Item 3');
@@ -133,7 +134,7 @@ test('filter', async ({ mount, page }) => {
   const element = page.locator('ix-select');
   await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
-  await page.locator('.chevron-down-container').click();
+  await page.locator('[data-select-dropdown]').click();
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 

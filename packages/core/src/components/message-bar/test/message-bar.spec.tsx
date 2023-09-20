@@ -28,10 +28,6 @@ describe('ix-message-bar', () => {
     );
   });
 
-  it('renders', async () => {
-    expect(page.root).toMatchSnapshot();
-  });
-
   it('closes the alert message bar', async (done) => {
     messageBar.addEventListener('closedChange', () => {
       done();

@@ -121,7 +121,8 @@ import ToggleButtonSecondary from 'src/preview-examples/toggle-button-secondary'
 import ToggleButtonSecondaryGhost from 'src/preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from 'src/preview-examples/toggle-button-secondary-outline';
 import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
-import ToggleCustomDisabled from 'src/preview-examples/toggle-disabled';
+import ToggleDisabled from 'src/preview-examples/toggle-disabled';
+import ToggleNgModel from 'src/preview-examples/toggle-ng-model';
 import Tooltip from 'src/preview-examples/tooltip';
 import TooltipTitle from 'src/preview-examples/tooltip-title';
 import Tree from 'src/preview-examples/tree';
@@ -212,8 +213,9 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     ToggleButtonSecondary,
     ToggleButtonSecondaryGhost,
     ToggleButtonSecondaryOutline,
-    ToggleCustomDisabled,
+    ToggleDisabled,
     ToggleCustomLabel,
+    ToggleNgModel,
     Toggle,
     Upload,
     VerticalTabsWithAvatar,
