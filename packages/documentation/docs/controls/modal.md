@@ -31,14 +31,16 @@ import SourceReactMessage from './../auto-generated/previews/react/message.md'
 
 ## Sizes
 
-Modals support the following sizes:
+Our Modals support the following sizes:
 
 - `360`
 - `480`
 - `600`
 - `720`
 - `840`
-- `full-width` - uses all the space of the screen.
+- `full-width` - Use the maximal size of the screen width
+
+The `size` can be configured over the configuration object of the `showModal` function.
 
 <Playground
   height="18rem"
