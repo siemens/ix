@@ -60,7 +60,7 @@ export class FilterChip {
           <ix-icon-button
             ghost
             oval
-            icon="close-small"
+            icon={'close-small'}
             size="16"
             tabindex={this.disabled ? -1 : 0}
             variant="primary"

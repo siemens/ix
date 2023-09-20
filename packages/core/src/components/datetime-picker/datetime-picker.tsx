@@ -68,7 +68,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() dateFormat: string = 'yyyy/LL/dd';
+  @Prop() dateFormat: string = 'YYYY/MM/DD';
 
   /**
    * Time format string.
@@ -76,7 +76,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() timeFormat: string = 'TT';
+  @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
@@ -85,7 +85,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() from: string;
+  @Prop() from: string | undefined;
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -95,7 +95,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() to: string | null = null;
+  @Prop() to: string | undefined;
 
   /**
    * Select time with format string
@@ -111,14 +111,6 @@ export class DateTimePicker {
    * @since 1.1.0
    */
   @Prop() showTimeReference = undefined;
-
-  /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   */
-  @Prop() eventDelimiter = ' - ';
 
   /**
    * Set time reference
@@ -141,13 +133,6 @@ export class DateTimePicker {
   @Prop() weekStartIndex = 0;
 
   /**
-   * Done event
-   *
-   * Set `doneEventDelimiter` to null or undefine to get the typed event
-   */
-  @Event() done: EventEmitter<string>;
-
-  /**
    * Time change
    *
    * @since 1.1.0
@@ -162,7 +147,7 @@ export class DateTimePicker {
   @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Date selection event is fired after confirm button is pressend
+   * Datetime selection event is fired after confirm button is pressed
    *
    * @since 1.1.0
    */
@@ -171,47 +156,31 @@ export class DateTimePicker {
   private datePickerElement: HTMLIxDatePickerElement;
   private timePickerElement: HTMLIxTimePickerElement;
 
-  private _from: string;
-  private _to: string;
-  private _time: string;
-
-  private onDone() {
-    this.done.emit(
-      [this._from, this._to ?? '', this._time].join(this.eventDelimiter)
-    );
+  private async onDone() {
+    const date = await this.datePickerElement.getCurrentDate();
+    const time = await this.timePickerElement.getCurrentTime();
 
     this.dateSelect.emit({
-      from: this._from,
-      to: this._to,
-      time: this._time,
+      from: date.from,
+      to: date.to,
+      time: time,
     });
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: date } = event;
     this.dateChange.emit(date);
-
-    const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.from;
-    this._to = currentDateTime.to;
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: time } = event;
     this.timeChange.emit(time);
-
-    const currentDateTime = await this.timePickerElement.getCurrentTime();
-    this._time = currentDateTime;
-  }
-
-  componentDidLoad() {
-    this._from = this.from;
-    this._to = this.to;
-    this._time = this.time;
   }
 
   render() {
@@ -230,22 +199,19 @@ export class DateTimePicker {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
-            class="border-override"
+            standaloneAppearance={false}
           ></ix-date-picker>
 
           <ix-time-picker
             ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
-            individual={false}
+            standaloneAppearance={false}
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
-            showTimeReference={this.showTimeReference}
             onTimeChange={(event) => this.onTimeChange(event)}
-            time={this.time}
             format={this.timeFormat}
-            timeReference={this.timeReference}
-            class="border-override"
+            time={this.time}
           ></ix-time-picker>
           <div class="separator"></div>
         </div>

@@ -76,9 +76,9 @@ export class DatePicker {
   @Prop() from: string | undefined;
   @Watch('from')
   watchFromPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currFromDate = dayjs(newValue, this.format, true);
-    }
+    this.currFromDate = newValue
+      ? dayjs(newValue, this.format, true)
+      : undefined;
   }
 
   /**
@@ -90,9 +90,7 @@ export class DatePicker {
   @Prop() to: string | undefined;
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    if (newValue !== undefined) {
-      this.currToDate = dayjs(newValue, this.format, true);
-    }
+    this.currToDate = newValue ? dayjs(newValue, this.format, true) : undefined;
   }
 
   /**
@@ -125,6 +123,9 @@ export class DatePicker {
    * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
+
+  /** @internal */
+  @Prop() standaloneAppearance = true;
 
   /**
    * Triggers if the date selection changes.
@@ -500,7 +501,10 @@ export class DatePicker {
     return (
       <Host>
         <div class="container">
-          <ix-date-time-card corners={this.corners} individual={true}>
+          <ix-date-time-card
+            corners={this.corners}
+            standaloneAppearance={this.standaloneAppearance}
+          >
             <div class="header" slot="header">
               <ix-icon-button
                 onClick={() => this.changeToAdjacentMonth(-1)}
@@ -596,7 +600,12 @@ export class DatePicker {
                 );
               })}
             </div>
-            <div class={{ button: true, hidden: !this.range }}>
+            <div
+              class={{
+                button: true,
+                hidden: !this.range || !this.standaloneAppearance,
+              }}
+            >
               <ix-button onClick={() => this.onDone()}>
                 {this.textSelectDate}
               </ix-button>

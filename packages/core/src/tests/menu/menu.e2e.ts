@@ -39,10 +39,10 @@ test('should render menu items with a[href]', async ({ mount, page }) => {
   const category = page.locator('ix-menu-category');
   await category.click();
 
-  const link1 = page.getByText('Link 1', { exact: true });
+  const link1 = page.getByText('Link 1');
   await expect(link1).toBeVisible();
 
-  const link2 = page.getByText('Link 1', { exact: true });
+  const link2 = page.getByText('Link 2');
   await expect(link2).toBeVisible();
 
   await link2.hover();

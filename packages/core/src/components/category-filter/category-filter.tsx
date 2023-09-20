@@ -629,7 +629,7 @@ export class CategoryFilter {
         }}
         ghost
         oval
-        icon="clear"
+        icon={'clear'}
         size="16"
       ></ix-icon-button>
     );

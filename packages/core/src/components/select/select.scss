@@ -18,6 +18,7 @@
 
   display: inline-block;
   position: relative;
+  min-height: 2rem;
   height: auto;
   border-radius: var(--theme-input--border-radius);
 
@@ -29,7 +30,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: auto;
     background-color: var(--theme-input--background);
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
@@ -95,6 +95,7 @@
     position: relative;
     align-items: flex-start;
     width: 100%;
+    height: 100%;
 
     .chips {
       position: relative;
@@ -135,39 +136,8 @@
     }
   }
 
-  .chevron-down-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    min-width: 2rem;
-    height: 2rem;
-
-    @include hover {
-      color: var(--theme-color-dynamic--hover);
-    }
-
-    @include active {
-      color: var(--theme-color-dynamic--hover);
-    }
-  }
-
-  .editable {
-    .chevron-down-container {
-      @include hover {
-        color: var(--theme-color-std-text);
-        background-color: var(
-          --theme-btn-invisible-secondary--background--hover
-        );
-      }
-
-      @include active {
-        color: var(--theme-color-std-text);
-        background-color: var(
-          --theme-btn-invisible-secondary--background--active
-        );
-      }
-    }
+  .dropdown-visible {
+    --ix-icon-button-color: var(--theme-color-dynamic--hover);
   }
 
   .add-item {

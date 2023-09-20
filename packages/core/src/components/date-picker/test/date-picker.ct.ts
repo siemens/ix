@@ -46,12 +46,7 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date in next month', async ({ page }) => {
-    // ">"-icon-button
-    await page
-      .locator('button')
-      .filter({ has: page.locator('i') })
-      .nth(1)
-      .click();
+    await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^31$/).click();
 
     expect(await getDateObj(page)).toEqual({
@@ -61,12 +56,7 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date in previous month', async ({ page }) => {
-    // "<"-icon-button
-    await page
-      .locator('button')
-      .filter({ has: page.locator('i') })
-      .nth(0)
-      .click();
+    await page.getByRole('button').filter({ hasText: 'chevron-left' }).click();
     await page.getByText(/^31$/).nth(1).click();
 
     expect(await getDateObj(page)).toEqual({
@@ -138,11 +128,7 @@ test.describe('date picker tests range', () => {
 
   test('select range spanning over 2 months', async ({ page }) => {
     await page.getByText(/^28$/).click();
-    await page
-      .locator('button')
-      .filter({ has: page.locator('i') })
-      .nth(1)
-      .click();
+    await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^5$/).click();
 
     expect(await getDateObj(page)).toEqual({

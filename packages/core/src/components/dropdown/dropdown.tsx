@@ -71,7 +71,7 @@ export class Dropdown {
   @Prop() anchor: string | HTMLElement;
 
   /**
-   * Close behavior
+   * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
    */
   @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
 

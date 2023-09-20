@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
+import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -42,6 +43,7 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
+export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
@@ -175,6 +177,11 @@ export namespace Components {
           * @since 2.0.0
          */
         "sublabel": string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant": BlindVariant;
     }
     interface IxBreadcrumb {
         /**
@@ -395,7 +402,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon": string;
         /**
           * Show chip with outline style
          */
@@ -545,6 +552,7 @@ export namespace Components {
           * If true a date-range can be selected (from/to).
          */
         "range": boolean;
+        "standaloneAppearance": boolean;
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
@@ -566,10 +574,7 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
-        /**
-          * set styles
-         */
-        "individual": boolean;
+        "standaloneAppearance": boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -578,15 +583,10 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter": string;
-        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string;
+        "from": string | undefined;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -641,7 +641,7 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to": string | null;
+        "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
@@ -690,7 +690,7 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -1758,6 +1758,9 @@ export namespace Components {
          */
         "variant": SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -1845,10 +1848,6 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string>;
         /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual": boolean;
-        /**
           * Show hour input
          */
         "showHour": boolean;
@@ -1861,10 +1860,9 @@ export namespace Components {
          */
         "showSeconds": boolean;
         /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
-        "showTimeReference": any;
+        "standaloneAppearance": boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -1878,7 +1876,7 @@ export namespace Components {
         /**
           * Set time reference
          */
-        "timeReference": 'AM' | 'PM';
+        "timeReference": 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -2934,6 +2932,9 @@ declare global {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
     }
     var HTMLIxSplitButtonItemElement: {
@@ -3259,6 +3260,11 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "sublabel"?: string;
+        /**
+          * Blind variant
+          * @since 2.0.0
+         */
+        "variant"?: BlindVariant;
     }
     interface IxBreadcrumb {
         /**
@@ -3517,7 +3523,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Fire event if close button is clicked
           * @since 1.5.0
@@ -3688,6 +3694,7 @@ declare namespace LocalJSX {
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
+        "standaloneAppearance"?: boolean;
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
@@ -3709,10 +3716,7 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
-        /**
-          * set styles
-         */
-        "individual"?: boolean;
+        "standaloneAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -3721,15 +3725,10 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter"?: string;
-        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string;
+        "from"?: string | undefined;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3746,14 +3745,10 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Date selection event is fired after confirm button is pressend
+          * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
-        /**
-          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
-         */
-        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Time change
           * @since 1.1.0
@@ -3803,7 +3798,7 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to"?: string | null;
+        "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
@@ -3855,7 +3850,7 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Close behavior
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
@@ -5002,6 +4997,9 @@ declare namespace LocalJSX {
          */
         "variant"?: SplitButtonVariant;
     }
+    /**
+     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+     */
     interface IxSplitButtonItem {
         /**
           * Dropdown icon
@@ -5099,10 +5097,6 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual"?: boolean;
-        /**
           * Time event
          */
         "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
@@ -5123,10 +5117,9 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
-        "showTimeReference"?: any;
+        "standaloneAppearance"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -5140,7 +5133,7 @@ declare namespace LocalJSX {
         /**
           * Set time reference
          */
-        "timeReference"?: 'AM' | 'PM';
+        "timeReference"?: 'AM' | 'PM' | undefined;
     }
     interface IxToast {
         /**
@@ -5738,6 +5731,9 @@ declare module "@stencil/core" {
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
+            /**
+             * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+             */
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;

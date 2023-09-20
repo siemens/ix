@@ -25,7 +25,6 @@ yarn add @siemens/ix-angular @siemens/ix-icons
 Import the iX styling in your global stylesheet (e.g.: `src/styles.scss`):
 
 ```css
-@import '@siemens/ix-icons/dist/css/ix-icons.css';
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
 

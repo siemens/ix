@@ -10,6 +10,15 @@
 
 ### Remove deprecated properties from `ix-date-picker`
 
+### 'ix-time-picker' removed deprecated properties
+
+- show-time-reference
+- individual
+
+### Deprecated `ix-split-button-item`
+
+Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.
+
 ### `ix-dropdown-item` remove 'itemClick' event
 
 Remove `itemClick` event use native `click` event instead.
@@ -321,7 +330,8 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 **_Now_**
 
 ```typescript
-@Event() close: EventEmitter<{
+@Event()
+close: EventEmitter<{
   nativeEvent: MouseEvent;
   name: string;
 }>;
