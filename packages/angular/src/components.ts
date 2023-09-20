@@ -478,21 +478,21 @@ Only triggered if date-picker is in range mode. @since 1.1.0,@deprecated Use `da
 
 
 @ProxyCmp({
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['dateFormat', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  inputs: ['dateFormat', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
 })
 export class IxDatetimePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['done', 'timeChange', 'dateChange', 'dateSelect']);
+    proxyOutputs(this, this.el, ['timeChange', 'dateChange', 'dateSelect']);
   }
 }
 
@@ -502,12 +502,6 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
-   * Done event
-
-Set `doneEventDelimiter` to null or undefine to get the typed event
-   */
-  done: EventEmitter<CustomEvent<string>>;
-  /**
    * Time change @since 1.1.0
    */
   timeChange: EventEmitter<CustomEvent<string>>;
@@ -516,7 +510,7 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Date selection event is fired after confirm button is pressend @since 1.1.0
+   * Date selection event is fired after confirm button is pressed @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }

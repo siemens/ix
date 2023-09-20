@@ -2679,28 +2679,6 @@
           "required": false
         },
         {
-          "name": "eventDelimiter",
-          "type": "string",
-          "mutable": false,
-          "attr": "event-delimiter",
-          "reflectToAttr": false,
-          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
-          "default": "' - '",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "from",
           "type": "string",
           "mutable": false,
@@ -3006,22 +2984,13 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date selection event is fired after confirm button is pressend",
+          "docs": "Date selection event is fired after confirm button is pressed",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ]
-        },
-        {
-          "event": "done",
-          "detail": "string",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "Done event\n\nSet `doneEventDelimiter` to null or undefine to get the typed event",
-          "docsTags": []
         },
         {
           "event": "timeChange",

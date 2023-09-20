@@ -113,14 +113,6 @@ export class DateTimePicker {
   @Prop() showTimeReference = undefined;
 
   /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   */
-  @Prop() eventDelimiter = ' - ';
-
-  /**
    * Set time reference
    */
   @Prop() timeReference: 'AM' | 'PM';
@@ -141,13 +133,6 @@ export class DateTimePicker {
   @Prop() weekStartIndex = 0;
 
   /**
-   * Done event
-   *
-   * Set `doneEventDelimiter` to null or undefine to get the typed event
-   */
-  @Event() done: EventEmitter<string>;
-
-  /**
    * Time change
    *
    * @since 1.1.0
@@ -162,7 +147,7 @@ export class DateTimePicker {
   @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Date selection event is fired after confirm button is pressend
+   * Datetime selection event is fired after confirm button is pressed
    *
    * @since 1.1.0
    */
@@ -171,47 +156,31 @@ export class DateTimePicker {
   private datePickerElement: HTMLIxDatePickerElement;
   private timePickerElement: HTMLIxTimePickerElement;
 
-  private _from: string;
-  private _to: string;
-  private _time: string;
-
-  private onDone() {
-    this.done.emit(
-      [this._from, this._to ?? '', this._time].join(this.eventDelimiter)
-    );
+  private async onDone() {
+    const date = await this.datePickerElement.getCurrentDate();
+    const time = await this.timePickerElement.getCurrentTime();
 
     this.dateSelect.emit({
-      from: this._from,
-      to: this._to,
-      time: this._time,
+      from: date.from,
+      to: date.to,
+      time: time,
     });
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: date } = event;
     this.dateChange.emit(date);
-
-    const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.from;
-    this._to = currentDateTime.to;
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: time } = event;
     this.timeChange.emit(time);
-
-    const currentDateTime = await this.timePickerElement.getCurrentTime();
-    this._time = currentDateTime;
-  }
-
-  componentDidLoad() {
-    this._from = this.from;
-    this._to = this.to;
-    this._time = this.time;
   }
 
   render() {

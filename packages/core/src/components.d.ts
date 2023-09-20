@@ -535,11 +535,6 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter": string;
-        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
@@ -3627,11 +3622,6 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-         */
-        "eventDelimiter"?: string;
-        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
@@ -3652,14 +3642,10 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Date selection event is fired after confirm button is pressend
+          * Date selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
-        /**
-          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
-         */
-        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Time change
           * @since 1.1.0

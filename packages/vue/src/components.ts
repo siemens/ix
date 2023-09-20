@@ -191,11 +191,9 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'to',
   'time',
   'showTimeReference',
-  'eventDelimiter',
   'timeReference',
   'textSelectDate',
   'weekStartIndex',
-  'done',
   'timeChange',
   'dateChange',
   'dateSelect'
