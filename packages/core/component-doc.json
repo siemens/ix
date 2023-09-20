@@ -2882,7 +2882,6 @@
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
