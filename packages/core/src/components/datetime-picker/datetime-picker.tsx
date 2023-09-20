@@ -186,8 +186,8 @@ export class DateTimePicker {
   render() {
     return (
       <Host>
-        <div class="flex">
-          <div class="separator"></div>
+        <div class="flex flex-md-row">
+          <div class="separator-md"></div>
           <ix-date-picker
             ref={(ref) => (this.datePickerElement = ref)}
             corners="left"
@@ -201,7 +201,6 @@ export class DateTimePicker {
             weekStartIndex={this.weekStartIndex}
             standaloneAppearance={false}
           ></ix-date-picker>
-
           <ix-time-picker
             ref={(ref) => (this.timePickerElement = ref)}
             corners="right"
@@ -213,10 +212,13 @@ export class DateTimePicker {
             format={this.timeFormat}
             time={this.time}
           ></ix-time-picker>
-          <div class="separator"></div>
+          <div class="separator-md"></div>
         </div>
 
-        <ix-button class="btn-select-date" onClick={() => this.onDone()}>
+        <ix-button
+          class="btn-select-date btn-md-width"
+          onClick={() => this.onDone()}
+        >
           {this.textSelectDate}
         </ix-button>
       </Host>
