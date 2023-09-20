@@ -14,24 +14,7 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
-  datetimepicker: HTMLIxDatetimePickerElement;
-  test = '2023/09/21';
-  update = () => {
-    this.datetimepicker.from = '2023/09/23';
-  };
-
   render() {
-    return (
-      <Host>
-        <ix-date-picker></ix-date-picker>
-        <ix-datetime-picker
-          ref={(ref) =>
-            (this.datetimepicker = ref as HTMLIxDatetimePickerElement)
-          }
-          from={this.test}
-        ></ix-datetime-picker>
-        <button onClick={this.update}>test</button>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
