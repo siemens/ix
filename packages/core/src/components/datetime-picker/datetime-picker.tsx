@@ -85,7 +85,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() from: string;
+  @Prop() from: string | undefined;
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -95,7 +95,7 @@ export class DateTimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() to: string | null = null;
+  @Prop() to: string | undefined;
 
   /**
    * Select time with format string

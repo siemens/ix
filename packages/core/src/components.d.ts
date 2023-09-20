@@ -538,7 +538,7 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string;
+        "from": string | undefined;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -593,7 +593,7 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to": string | null;
+        "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
@@ -3625,7 +3625,7 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string;
+        "from"?: string | undefined;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3695,7 +3695,7 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to"?: string | null;
+        "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
