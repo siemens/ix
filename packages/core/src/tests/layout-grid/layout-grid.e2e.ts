@@ -7,17 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
-
-const smallWidth = 700;
-const mediumWidth = 780;
-const largeWidth = 1026;
+import { test, viewPorts } from '@utils/test';
 
 test('should not have regression', async ({ mount, page }) => {
-  await page.setViewportSize({
-    height: 720,
-    width: largeWidth,
-  });
+  await page.setViewportSize(viewPorts.lg);
   await mount(htmlSource);
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
@@ -26,10 +19,7 @@ test('should not have regression', async ({ mount, page }) => {
 });
 
 test('should not have regression large', async ({ mount, page }) => {
-  await page.setViewportSize({
-    height: 720,
-    width: largeWidth,
-  });
+  await page.setViewportSize(viewPorts.lg);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
@@ -38,10 +28,7 @@ test('should not have regression large', async ({ mount, page }) => {
 });
 
 test('should not have regression medium', async ({ mount, page }) => {
-  await page.setViewportSize({
-    height: 720,
-    width: mediumWidth,
-  });
+  await page.setViewportSize(viewPorts.md);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
@@ -50,10 +37,7 @@ test('should not have regression medium', async ({ mount, page }) => {
 });
 
 test('should not have regression small', async ({ mount, page }) => {
-  await page.setViewportSize({
-    height: 720,
-    width: smallWidth,
-  });
+  await page.setViewportSize(viewPorts.sm);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);

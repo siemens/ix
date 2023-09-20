@@ -10,6 +10,10 @@ import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
+  page.setViewportSize({
+    height: 500,
+    width: 1400,
+  });
   await mount(
     `
       <ix-basic-navigation application-name="test">

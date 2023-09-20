@@ -8,18 +8,12 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
-const smallWidth = 700;
-const mediumWidth = 780;
-const largeWidth = 1026;
+import { regressionTest, test, viewPorts } from '@utils/test';
 
 regressionTest.describe('basic navigation large', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');
-    await page.setViewportSize({
-      height: 1200,
-      width: largeWidth,
-    });
+    await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
 
     await page.waitForTimeout(1000);
@@ -31,10 +25,7 @@ regressionTest.describe('basic navigation large', () => {
 
   regressionTest('content width', async ({ page }) => {
     await page.goto('basic-navigation/content-width');
-    await page.setViewportSize({
-      height: 1200,
-      width: largeWidth,
-    });
+    await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
 
     await expect(page.getByText('Example content')).toBeVisible();
@@ -50,10 +41,7 @@ regressionTest.describe('basic navigation large', () => {
 regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic-navigation/basic');
-    await page.setViewportSize({
-      height: 1200,
-      width: 780,
-    });
+    await page.setViewportSize(viewPorts.md);
     await page.waitForTimeout(500);
 
     await page.waitForTimeout(1000);
@@ -65,10 +53,7 @@ regressionTest.describe('basic navigation', () => {
 
   regressionTest('content width', async ({ page }) => {
     await page.goto('basic-navigation/content-width');
-    await page.setViewportSize({
-      height: 1200,
-      width: mediumWidth,
-    });
+    await page.setViewportSize(viewPorts.md);
     await page.waitForTimeout(500);
     await expect(page.getByText('Example content')).toBeVisible();
 
@@ -81,10 +66,7 @@ regressionTest.describe('basic navigation', () => {
 
   regressionTest('expanded', async ({ page }) => {
     await page.goto('basic-navigation/basic');
-    await page.setViewportSize({
-      height: 1200,
-      width: mediumWidth,
-    });
+    await page.setViewportSize(viewPorts.md);
     await page.waitForTimeout(500);
 
     await page.locator('ix-menu ix-burger-menu').click();
@@ -105,10 +87,7 @@ regressionTest.describe('basic navigation', () => {
 regressionTest.describe('basic navigation mobile', () => {
   regressionTest('mobile', async ({ page }) => {
     await page.goto('basic-navigation/mobile');
-    await page.setViewportSize({
-      height: 1200,
-      width: smallWidth,
-    });
+    await page.setViewportSize(viewPorts.sm);
 
     await page.waitForTimeout(500);
 
@@ -121,10 +100,7 @@ regressionTest.describe('basic navigation mobile', () => {
 
   regressionTest('mobile expanded', async ({ page }) => {
     await page.goto('basic-navigation/mobile');
-    await page.setViewportSize({
-      height: 1200,
-      width: smallWidth,
-    });
+    await page.setViewportSize(viewPorts.sm);
 
     await page.waitForTimeout(500);
     const menuElement = await page.waitForSelector(
@@ -145,10 +121,7 @@ regressionTest.describe('basic navigation mobile', () => {
 
   regressionTest('mobile overlay', async ({ page }) => {
     await page.goto('basic-navigation/mobile');
-    await page.setViewportSize({
-      height: 1200,
-      width: smallWidth,
-    });
+    await page.setViewportSize(viewPorts.sm);
 
     await page.waitForTimeout(500);
     const menuElement = await page.waitForSelector(
@@ -196,10 +169,7 @@ regressionTest.describe('basic navigation mobile', () => {
       `
     );
 
-    await page.setViewportSize({
-      height: 1200,
-      width: smallWidth,
-    });
+    await page.setViewportSize(viewPorts.sm);
 
     // Animation
     await page.waitForTimeout(500);
