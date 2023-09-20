@@ -13,6 +13,7 @@ Please follow this guide to ensure a smooth and successful migration process.
 
 You can find our guide describing all breaking changes in detail [here](https://github.com/siemens/ix/blob/main/BREAKING_CHANGES.md#v200).
 These are the most important ones:
+
 ## Move `@siemens/ix-icons` from `"dependencies"` to `"peerDependencies"`
 
 `@siemens/ix-icons` is no longer a direct dependency of `@siemens/ix`, `@siemens/ix-react`, `@siemens/ix-angular` and `@siemens/ix-vue`.
