@@ -279,6 +279,11 @@ export class Dropdown {
   })
   clickOutside(event: Event) {
     const target = event.target as HTMLElement;
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (
       this.show === false ||
       this.closeBehavior === false ||
@@ -290,21 +295,21 @@ export class Dropdown {
     switch (this.closeBehavior) {
       case 'outside':
         if (!this.dropdownRef.contains(target)) {
-          this.close(event);
+          this.close();
         }
         break;
       case 'inside':
         if (this.dropdownRef.contains(target) && this.hostElement !== target) {
-          this.close(event);
+          this.close();
         }
         break;
       case 'both':
         if (this.hostElement !== target) {
-          this.close(event);
+          this.close();
         }
         break;
       default:
-        this.close(event);
+        this.close();
     }
   }
 
@@ -337,8 +342,11 @@ export class Dropdown {
       event?.stopPropagation();
     }
 
-    this.show = !this.show;
-    this.showChanged.emit(this.show);
+    const { defaultPrevented } = this.showChanged.emit(this.show);
+
+    if (!defaultPrevented) {
+      this.show = !this.show;
+    }
   }
 
   private open(event?: Event) {
@@ -348,24 +356,19 @@ export class Dropdown {
       event?.stopPropagation();
     }
 
-    this.show = true;
-    this.showChanged.emit(true);
+    const { defaultPrevented } = this.showChanged.emit(true);
+
+    if (!defaultPrevented) {
+      this.show = true;
+    }
   }
 
-  private close(event?: Event) {
-    if (event?.defaultPrevented) {
-      const target = event.target as HTMLElement;
-      if (
-        target.contains(this.anchorElement) ||
-        target.contains(this.triggerElement) ||
-        target.shadowRoot.contains(this.anchorElement) ||
-        target.shadowRoot.contains(this.triggerElement)
-      )
-        return;
-    }
+  private close() {
+    const { defaultPrevented } = this.showChanged.emit(false);
 
-    this.show = false;
-    this.showChanged.emit(false);
+    if (!defaultPrevented) {
+      this.show = false;
+    }
   }
 
   private async applyDropdownPosition() {
