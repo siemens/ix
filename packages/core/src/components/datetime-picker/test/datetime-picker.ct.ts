@@ -41,7 +41,7 @@ test.describe('date picker tests single', () => {
     });
 
     const incrementButtons = (
-      await page.$$('ix-icon-button:has(i.glyph-chevron-up)')
+      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
     ).slice(0, 3);
 
     for (const button of incrementButtons) {

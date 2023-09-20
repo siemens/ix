@@ -46,7 +46,7 @@ test.describe('date picker tests single', () => {
 
     //Slice is necessary, because on element is on Shadow-DOM
     const incrementButtons = (
-      await page.$$('ix-icon-button:has(i.glyph-chevron-up)')
+      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
     ).slice(0, 3);
 
     for (const button of incrementButtons) {
@@ -59,11 +59,11 @@ test.describe('date picker tests single', () => {
   test('decrement time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    const incrementButtons = (
-      await page.$$('ix-icon-button:has(i.glyph-chevron-down)')
+    const decrementButtons = (
+      await page.$$('ix-icon-button:has(svg title:has-text("chevron-down"))')
     ).slice(0, 3);
 
-    for (const button of incrementButtons) {
+    for (const button of decrementButtons) {
       await button.click();
     }
 
@@ -88,17 +88,16 @@ test.describe('date picker tests single', () => {
     await page.waitForSelector('ix-date-time-card');
     const dateTimeCard = await page.$$('ix-date-time-card');
 
-    const incrementButtons = await dateTimeCard[1].$$(
-      'ix-icon-button:has(i.glyph-chevron-down)'
+    const decrementButtons = await dateTimeCard[1].$$(
+      'ix-icon-button:has(svg title:has-text("chevron-down"))'
     );
-    await incrementButtons[3].click();
+    await decrementButtons[3].click();
 
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 PM']);
   });
 
   test('select different date fires dateChange event', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
-    const dateTimeCard = await page.$('ix-date-time-card');
 
     const timeChangeEvent = page.evaluate(() => {
       return new Promise((f) => {
@@ -106,9 +105,9 @@ test.describe('date picker tests single', () => {
       });
     });
 
-    const incrementButtons = await dateTimeCard.$$(
-      'ix-icon-button:has(i.glyph-chevron-down)'
-    );
+    const incrementButtons = (
+      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
+    ).slice(0, 3);
     await incrementButtons[2].click();
 
     expect(await timeChangeEvent).toBeTruthy();
