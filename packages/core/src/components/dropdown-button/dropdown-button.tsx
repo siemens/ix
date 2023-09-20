@@ -109,7 +109,7 @@ export class DropdownButton {
                   ></ix-icon>
                 ) : null}
                 <div class={'button-label'}>{this.label}</div>
-                <ix-icon name="chevron-down-small" size="24"></ix-icon>
+                <ix-icon name={'chevron-down-small'} size="24"></ix-icon>
               </div>
             </ix-button>
           ) : (

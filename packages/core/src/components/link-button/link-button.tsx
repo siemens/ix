@@ -48,7 +48,11 @@ export class LinkButton {
           href={this.disabled ? undefined : this.url}
           target={this.target}
         >
-          <ix-icon class="icon" name="chevron-right-small" size="16"></ix-icon>
+          <ix-icon
+            class="icon"
+            name={'chevron-right-small'}
+            size="16"
+          ></ix-icon>
           <div
             class={{
               link: true,

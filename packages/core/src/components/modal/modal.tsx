@@ -142,7 +142,7 @@ export class Modal {
    */
   @Method()
   async showModal() {
-    this.dialog.showModal();
+    this.dialog?.showModal();
   }
 
   /**

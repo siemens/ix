@@ -315,7 +315,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { hours: true })}
                 ghost
-                icon="chevron-up"
+                icon={'chevron-up'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -340,7 +340,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { hours: true })}
                 ghost
-                icon="chevron-down"
+                icon={'chevron-down'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -357,7 +357,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { minutes: true })}
                 ghost
-                icon="chevron-up"
+                icon={'chevron-up'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -382,7 +382,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { minutes: true })}
                 ghost
-                icon="chevron-down"
+                icon={'chevron-down'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -399,7 +399,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { seconds: true })}
                 ghost
-                icon="chevron-up"
+                icon={'chevron-up'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -424,7 +424,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { seconds: true })}
                 ghost
-                icon="chevron-down"
+                icon={'chevron-down'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -441,7 +441,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-up"
+                icon={'chevron-up'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -450,7 +450,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-down"
+                icon={'chevron-down'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>

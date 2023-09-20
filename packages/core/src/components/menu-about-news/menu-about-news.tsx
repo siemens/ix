@@ -66,7 +66,7 @@ export class MenuAboutNews {
         <div class="banner-container">
           <ix-icon
             color="color-inv-contrast-text"
-            name="shout"
+            name={'shout'}
             size="32"
           ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,7 @@ export class MenuAboutNews {
 
         <ix-icon-button
           size="24"
-          icon="close-small"
+          icon={'close-small'}
           ghost
           onClick={() => {
             this.show = false;

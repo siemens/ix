@@ -52,7 +52,7 @@ export class BurgerMenu {
         }}
       >
         {this.pinned ? (
-          <ix-icon-button icon="double-chevron-right" ghost></ix-icon-button>
+          <ix-icon-button icon={'double-chevron-right'} ghost></ix-icon-button>
         ) : (
           <button
             class={{
