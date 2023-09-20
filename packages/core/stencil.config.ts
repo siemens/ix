@@ -44,117 +44,7 @@ try {
 }
 
 export const config: Config = {
-  bundles: [
-    {
-      components: ['ix-application-header'],
-    },
-    {
-      components: ['ix-basic-navigation'],
-    },
-    {
-      components: ['ix-blind'],
-    },
-    {
-      components: ['ix-breadcrumb', 'ix-breadcrumb-item'],
-    },
-    {
-      components: ['ix-button'],
-    },
-    {
-      components: ['ix-category-filter'],
-    },
-    {
-      components: ['ix-chip'],
-    },
-    {
-      components: ['ix-drawer'],
-    },
-    {
-      components: ['ix-dropdown', 'ix-dropdown-item'],
-    },
-    {
-      components: ['ix-event-list', 'ix-event-list-item'],
-    },
-    {
-      components: ['ix-expanding-search'],
-    },
-    {
-      components: ['ix-filter-chip'],
-    },
-    {
-      components: ['ix-flip-tile', 'ix-flip-tile-content'],
-    },
-    {
-      components: ['ix-group', 'ix-group-item'],
-    },
-    {
-      components: ['ix-icon'],
-    },
-    {
-      components: ['ix-icon-button'],
-    },
-    {
-      components: ['ix-input-group'],
-    },
-    {
-      components: ['ix-map-navigation', 'ix-map-navigation-overlay'],
-    },
-    {
-      components: [
-        'ix-menu',
-        'ix-menu-item',
-        'ix-menu-about',
-        'ix-menu-about-item',
-        'ix-menu-about-news',
-        'ix-menu-avatar',
-        'ix-menu-avatar-item',
-        'ix-menu-settings',
-        'ix-menu-settings-item',
-      ],
-    },
-    {
-      components: ['ix-message-bar'],
-    },
-    {
-      components: ['ix-modal'],
-    },
-    {
-      components: ['ix-pill'],
-    },
-    {
-      components: ['ix-select', 'ix-select-item'],
-    },
-    {
-      components: ['ix-spinner'],
-    },
-    {
-      components: ['ix-split-button', 'ix-split-button-item'],
-    },
-    {
-      components: ['ix-tile'],
-    },
-    {
-      components: ['ix-toast', 'ix-toast-container'],
-    },
-    {
-      components: ['ix-toggle'],
-    },
-    {
-      components: ['ix-tree', 'ix-tree-item'],
-    },
-    {
-      components: ['ix-upload'],
-    },
-    {
-      components: ['ix-workflow-step', 'ix-workflow-steps'],
-    },
-    {
-      components: ['ix-content-header'],
-    },
-    {
-      components: ['ix-empty-state'],
-    },
-  ],
+  globalScript: './src/setup.ts',
   extras: {
     appendChildSlotFix: true,
     slotChildNodesFix: true,
@@ -181,14 +71,16 @@ export const config: Config = {
     vueOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../vue/src/components.ts',
-      excludeComponents: ['my-component'],
-      includeDefineCustomElements: true,
+      includeImportCustomElements: true,
+      includePolyfills: false,
+      includeDefineCustomElements: false,
+      excludeComponents: ['my-component', 'ix-icon'],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['my-component', 'ix-tree'],
+      excludeComponents: ['my-component', 'ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
         {
           elementSelectors:
@@ -209,8 +101,10 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../react/src/components.ts',
-      includeDefineCustomElements: true,
-      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item'],
+      includeImportCustomElements: true,
+      includePolyfills: false,
+      includeDefineCustomElements: false,
+      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
       type: 'dist',
@@ -218,6 +112,15 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      dir: 'components',
+      copy: [
+        {
+          src: '../scripts/custom-elements',
+          dest: 'components',
+          warn: true,
+        },
+      ],
+      includeGlobalScripts: false,
     },
     {
       type: 'docs-custom',

@@ -57,7 +57,7 @@ export class TreeItem {
         >
           {this.hasChildren ? (
             <ix-icon
-              name="chevron-right"
+              name={'chevron-right'}
               size="16"
               class={{
                 ['icon-toggle-down']: this.context?.isExpanded,

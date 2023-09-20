@@ -51,7 +51,7 @@
     }
 
     ix-icon {
-      color: var(--ix-icon-button-color);
+      color: var(--ix-icon-button-color, currentColor);
       margin: 0;
     }
 

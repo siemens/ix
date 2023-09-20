@@ -39,7 +39,6 @@ export const DIRECTIVES = [
   d.IxGroup,
   d.IxGroupContextMenu,
   d.IxGroupItem,
-  d.IxIcon,
   d.IxIconButton,
   d.IxIconToggleButton,
   d.IxInputGroup,

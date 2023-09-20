@@ -244,7 +244,7 @@ export class MapNavigation {
                   ''
                 ) : (
                   <ix-icon-button
-                    icon="context-menu"
+                    icon={'context-menu'}
                     ghost
                     size="24"
                     variant="secondary"

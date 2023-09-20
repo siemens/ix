@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import '@siemens/ix-icons/dist/css/ix-icons.css';
+import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 import './placeholder-logo';
@@ -79,6 +79,7 @@ function setBodySizes() {
 
 (async function init() {
   await applyPolyfills();
+  await ixIconsDefineCustomElements();
   await defineCustomElements();
 
   detectThemeSwitching();

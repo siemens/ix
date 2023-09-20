@@ -39,8 +39,7 @@
     pointer-events: none;
     margin-left: 0.5rem;
     margin-right: 0rem;
-    --theme-color-std-text: var(--theme-color-soft-text);
-    --ix-icon-color: var(--theme-color-std-text);
+    color: var(--theme-color-soft-text);
   }
 
   ::slotted(a[href]) {

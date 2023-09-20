@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { chevronRightSmall } from '@siemens/ix-icons/icons';
+
 import {
   Component,
   Element,
@@ -101,7 +101,7 @@ export class DropdownItem {
               {this.checked ? (
                 <ix-icon
                   class="checkmark"
-                  name="single-check"
+                  name={'single-check'}
                   size="16"
                 ></ix-icon>
               ) : null}
@@ -115,7 +115,10 @@ export class DropdownItem {
             <slot></slot>
           </div>
           {this.isSubMenu ? (
-            <ix-icon name={chevronRightSmall} class={'submenu-icon'}></ix-icon>
+            <ix-icon
+              name={'chevron-right-small'}
+              class={'submenu-icon'}
+            ></ix-icon>
           ) : null}
         </button>
       </Host>

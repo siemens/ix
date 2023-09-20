@@ -90,7 +90,7 @@ export class MenuAvatar {
           <slot></slot>
           <ix-menu-avatar-item
             label={this.i18nLogout}
-            icon="log-out"
+            icon={'log-out'}
             onClick={(e) => {
               this.logoutClick.emit(e);
             }}

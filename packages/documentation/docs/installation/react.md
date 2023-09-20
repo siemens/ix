@@ -23,6 +23,5 @@ yarn add @siemens/ix-react@latest @siemens/ix-icons
 ### Import styles
 
 ```css
-@import '@siemens/ix-icons/dist/css/ix-icons.css';
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```

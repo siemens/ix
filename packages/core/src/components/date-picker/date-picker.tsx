@@ -469,7 +469,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
               ghost
-              icon="chevron-left"
+              icon={'chevron-left'}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
@@ -502,7 +502,7 @@ export class DatePicker {
                             hidden: this.tempYear !== year,
                             arrowPosition: true,
                           }}
-                          name="chevron-right"
+                          name={'chevron-right'}
                           size="12"
                         ></ix-icon>
                         <div
@@ -528,7 +528,7 @@ export class DatePicker {
                             hidden: this.tempMonth - 1 !== index,
                             checkPosition: true,
                           }}
-                          name="single-check"
+                          name={'single-check'}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -546,7 +546,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(1)}
               ghost
-              icon="chevron-right"
+              icon={'chevron-right'}
               variant="primary"
               class="arrows"
             ></ix-icon-button>

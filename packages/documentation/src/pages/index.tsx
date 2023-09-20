@@ -5,6 +5,7 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { IxIcon } from '@siemens/ix-react';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
@@ -146,66 +147,52 @@ function Homepage() {
         <div className={styles.Card_Box}>
           <div className={styles.Card_Info}>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Open-source community contributions welcome
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Web-based system requiring no installation
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Shape your own corporate design with theming
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Designed for complex UI and Data Analytics
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Delivered as framework agnostic
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Timeless visual design with intuitive UX
             </div>
             <div className={styles.Card_Line}>
-              <i
-                className={clsx(
-                  'glyph glyph-' + 'single-check',
-                  styles.Card_Icon
-                )}
-              ></i>
+              <IxIcon
+                name="single-check"
+                className={clsx(styles.Card_Icon)}
+              ></IxIcon>
               Built by Siemens UX/UI experts
             </div>
           </div>
@@ -214,11 +201,12 @@ function Homepage() {
         <a
           href="#getting-started"
           className={clsx(
-            'glyph glyph-' + 'chevron-down',
             styles.scroll_down,
             'animate__animated animate__shakeY'
           )}
-        ></a>
+        >
+          <IxIcon name="chevron-down"></IxIcon>
+        </a>
       </div>
     </div>
   );
@@ -244,15 +232,15 @@ function Button(props: {
       <div
         className={clsx(styles.IconDiv, props.icon === '' ? styles.hidden : '')}
       >
-        <i
+        <IxIcon
+          name={props.icon}
           className={clsx(
-            'glyph glyph-' + props.icon,
             styles.Icon,
             props.style === 'primary' ? styles.Primary : '',
             props.style === 'secondary' ? styles.Secondary : '',
             props.style === 'grey' ? styles.Grey : ''
           )}
-        ></i>
+        ></IxIcon>
       </div>
       <div
         className={clsx(
@@ -501,16 +489,15 @@ function Icons() {
               <div className={styles.row} key={index}>
                 {iconLine.map((icon, iKey) => (
                   <div key={iKey + icon}>
-                    <i
-                      className={clsx('glyph glyph-' + icon, styles.icon_main)}
-                    ></i>
-                    <i
+                    <IxIcon
+                      name={icon}
+                      className={clsx(styles.icon_main)}
+                    ></IxIcon>
+                    <IxIcon
                       id={icon}
-                      className={clsx(
-                        'glyph glyph-' + icon,
-                        styles.icon_shadow
-                      )}
-                    ></i>
+                      name={icon}
+                      className={clsx(styles.icon_shadow)}
+                    ></IxIcon>
                   </div>
                 ))}
               </div>
@@ -551,10 +538,11 @@ function BrandDesign() {
           ></Headline>
 
           <div className={styles.row}>
-            <i
-              className={clsx('glyph glyph-chevron-left', styles.arrow)}
+            <IxIcon
+              name="chevron-left"
+              className={clsx(styles.arrow)}
               onClick={() => click(-1)}
-            ></i>
+            ></IxIcon>
             <img
               src={useBaseUrl('/img/Screen_07_Macbook_01.png')}
               alt=""
@@ -565,10 +553,11 @@ function BrandDesign() {
               alt=""
               className={step !== 2 ? styles.hidden : ''}
             />
-            <i
-              className={clsx('glyph glyph-chevron-right', styles.arrow)}
+            <IxIcon
+              name="chevron-right"
+              className={clsx(styles.arrow)}
               onClick={() => click(1)}
-            ></i>
+            ></IxIcon>
           </div>
 
           <div className={styles.carousel_indicators}>
@@ -643,13 +632,11 @@ function InformationCards() {
                 {cardLine.map((icon, iKey) => (
                   <div className={clsx(styles.card)} key={iKey}>
                     <div className={styles.icon_gap}>
-                      <i
-                        className={clsx(
-                          'glyph glyph-' + 'bulb-filled',
-                          icon !== 'bulb' ? styles.hidden : ''
-                        )}
-                      ></i>
-                      <i className={clsx('glyph glyph-' + icon)}></i>
+                      <IxIcon
+                        name="bulb-filled"
+                        className={clsx(icon !== 'bulb' ? styles.hidden : '')}
+                      ></IxIcon>
+                      <IxIcon name={icon}></IxIcon>
                     </div>
 
                     <div className={clsx(styles.text)}>
@@ -685,28 +672,34 @@ function FooterButtons() {
   );
 }
 
-export default function Home() {
+const Home: React.FC = () => {
   // const { siteConfig } = useDocusaurusContext();
   return (
     <BrowserOnly>
       {() => (
         <>
-          <Anime easing="easeInOutExpo" duration="2000" opacity={[0, 1]}>
-            <Layout>
-              <Homepage />
-              <CallToActions />
-              <Devices />
-              <UX />
-              <Developers />
-              <Icons />
-              <BrandDesign />
-              <Components />
-              <InformationCards />
-              <FooterButtons />
-            </Layout>
-          </Anime>
+          <Anime
+            easing="easeInOutExpo"
+            duration="2000"
+            opacity={[0, 1]}
+          ></Anime>
+
+          <Layout>
+            <Homepage />
+            <CallToActions />
+            <Devices />
+            <UX />
+            <Developers />
+            <Icons />
+            <BrandDesign />
+            <Components />
+            <InformationCards />
+            <FooterButtons />
+          </Layout>
         </>
       )}
     </BrowserOnly>
   );
-}
+};
+
+export default Home;

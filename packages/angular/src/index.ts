@@ -11,6 +11,7 @@ export * from '@siemens/ix';
 export * from './boolean-value-accessor';
 export * from './components';
 export * from './dropdown/trigger.directive';
+export { IxIcon } from './ix-icon';
 export * from './modal';
 export * from './module';
 export * from './select-value-accessor';

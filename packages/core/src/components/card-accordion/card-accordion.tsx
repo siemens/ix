@@ -78,7 +78,7 @@ export class CardAccordion {
           aria-controls={getAriaControlsId()}
         >
           <ix-icon
-            name="chevron-right-small"
+            name={'chevron-right-small'}
             class={{
               'expand-icon': true,
               show: this.expandContent,
