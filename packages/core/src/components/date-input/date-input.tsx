@@ -1,9 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   Fragment,
   h,
   Host,
+  Method,
   Prop,
   State,
   Watch,
@@ -103,6 +115,34 @@ export class DateInput {
    */
   @Prop() weekStartIndex = 0;
 
+  /**
+   * Triggers if the date selection changes.
+
+   */
+  @Event() dateChange: EventEmitter<DateChangeEvent>;
+
+  /**
+   * Date selection confirmed via button action
+   */
+  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+
+  /**
+   * Triggers every time one of the inputs changes
+   */
+  @Event() inputChange: EventEmitter<DateChangeEvent>;
+
+  /**
+   * Gets the current input
+   * @returns DateChangeEvent
+   */
+  @Method()
+  async getCurrentInput(): Promise<DateChangeEvent> {
+    return {
+      from: this._from,
+      to: this._to,
+    };
+  }
+
   @State() private triggerRef: HTMLElement;
   // @State() private datePickerRef: HTMLElement;
   @State() private _from: string;
@@ -152,6 +192,11 @@ export class DateInput {
   private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
     this._from = event.detail.from;
     this._to = event.detail.to;
+
+    this.dateChange.emit({
+      from: this._from,
+      to: this._to,
+    });
   }
 
   private readonly clear = () => {
@@ -171,10 +216,19 @@ export class DateInput {
 
   onFromInputChange(event) {
     if (this._from !== event.target.value) this._from = event.target.value;
+    this.onInputChange();
   }
 
   onToInputChange(event) {
     if (this._to !== event.target.value) this._to = event.target.value;
+    this.onInputChange();
+  }
+
+  onInputChange() {
+    this.inputChange.emit({
+      from: this.firstInput.value,
+      to: this.secondInput.value,
+    });
   }
 
   componentWillLoad() {

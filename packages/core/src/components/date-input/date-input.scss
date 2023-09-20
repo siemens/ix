@@ -29,13 +29,6 @@ input {
 :host {
   @include ix-component;
 
-  #firstInput {
-    border: 0;
-  }
-  #secondInput {
-    border: 0;
-  }
-
   label {
     .inline {
       display: inline-block;
@@ -69,6 +62,10 @@ input {
     background-color: var(--theme-input--background);
     border-radius: var(--theme-input--border-radius);
     border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+
+    input {
+      border: 0;
+    }
 
     &:focus-within {
       outline: 1px solid var(--theme-color-focus-bdr);
