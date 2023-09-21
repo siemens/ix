@@ -19,7 +19,7 @@ import ColEvents from './../auto-generated/ix-col/events.md';
 ### Size
 
 <Playground
-  height="15rem"
+  height="17rem"
   name="grid-size"
   examplesByName>
 </Playground>
@@ -28,7 +28,7 @@ import ColEvents from './../auto-generated/ix-col/events.md';
 
 <Playground
   name="grid-padding"
-  height="14rem"
+  height="17rem"
   examplesByName>
 </Playground>
 
