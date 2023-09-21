@@ -205,7 +205,7 @@ export class TimePicker {
   }
 
   render() {
-    const timepickerInformation: TimePickerDescriptor[] = [
+    let timepickerInformation: TimePickerDescriptor[] = [
       {
         unit: 'hours',
         placeholder: 'HH',
@@ -223,17 +223,26 @@ export class TimePicker {
       },
     ];
 
-    const allHidden: boolean = timepickerInformation.every(
-      (info) => info.hidden
-    );
+    /*
+     Check count of hidden elements
+     */
+    const hiddenCount = timepickerInformation.filter(
+      (item) => item.hidden
+    ).length;
 
-    if (allHidden) {
+    /*
+     If all hidden, every element getting set to visible,
+     otherwise hidden element getting removed
+     */
+    if (hiddenCount === 0) {
       timepickerInformation.forEach((info) => {
         info.hidden = false;
       });
+    } else {
+      timepickerInformation = timepickerInformation.filter(
+        (item) => !item.hidden
+      );
     }
-
-    const sum = +this.showHour + +this.showMinutes + +this.showSeconds;
 
     return (
       <Host>
@@ -289,7 +298,7 @@ export class TimePicker {
                   ></ix-icon-button>
                 </div>
 
-                {index !== timepickerInformation.length - 1 && sum != 1 && (
+                {index !== timepickerInformation.length - 1 && (
                   <div
                     class={{
                       'column-seperator': true,

@@ -13,10 +13,6 @@
 :host {
   @include ix-component;
 
-  .container {
-    width: 352px;
-  }
-
   .header {
     display: flex;
     align-items: center;
