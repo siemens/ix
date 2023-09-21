@@ -16,30 +16,20 @@
 
   @import 'legacy/components/forms';
 
-  @media (min-width: 576px) {
-    .clock {
-      padding: 4.25rem 0;
-    }
-
-    .header {
-      height: $large-control-height !important;
-    }
-  }
-
   .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: $medium-control-height;
+    height: $large-control-height;
   }
 
   .clock {
     display: flex;
     justify-content: center;
-    padding: 0.5rem 0 2.75rem;
+    padding: 1.5rem 0;
   }
 
-  .time {
+  .flex {
     display: flex;
   }
 

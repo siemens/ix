@@ -17,8 +17,11 @@
   background-color: var(--theme-menu--background);
   border-radius: 4px;
   position: relative;
-  width: max-content;
-  max-width: 576px;
+  width: min-content;
+
+  .no-padding {
+    padding: 0;
+  }
 
   .flex {
     display: flex;
@@ -27,25 +30,13 @@
   }
 
   @media (min-width: 576px) {
-
-    .flex-md-row {
-      flex-direction: row;
-    }
+    min-width: max-content;
 
     .btn-select-date {
       left: unset !important;
     }
 
-    .separator-md {
-      border: 1px solid var(--theme-datepicker-separator--background);
-      width: 100%;
-      margin-top: 72px;
-      height: 1px;
-    }
-
   }
-
-
 
   .individual {
     box-shadow: none;
@@ -54,10 +45,9 @@
 
   .btn-select-date {
     position: absolute;
-    bottom: $default-space;
-    right: $default-space;
-    left: $default-space;
+    bottom: $tiny-space;
+    right: $tiny-space;
+    left: $tiny-space;
   }
-
 
 }

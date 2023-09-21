@@ -186,41 +186,49 @@ export class DateTimePicker {
   render() {
     return (
       <Host>
-        <div class="flex flex-md-row">
-          <div class="separator-md"></div>
-          <ix-date-picker
-            ref={(ref) => (this.datePickerElement = ref)}
-            corners="left"
-            range={this.range}
-            onDateChange={(event) => this.onDateChange(event)}
-            from={this.from}
-            to={this.to}
-            format={this.dateFormat}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            weekStartIndex={this.weekStartIndex}
-            standaloneAppearance={false}
-          ></ix-date-picker>
-          <ix-time-picker
-            ref={(ref) => (this.timePickerElement = ref)}
-            corners="right"
-            standaloneAppearance={false}
-            showHour={this.showHour}
-            showMinutes={this.showMinutes}
-            showSeconds={this.showSeconds}
-            onTimeChange={(event) => this.onTimeChange(event)}
-            format={this.timeFormat}
-            time={this.time}
-          ></ix-time-picker>
-          <div class="separator-md"></div>
-        </div>
+        <ix-layout-grid no-padding>
+          <ix-row>
+            <ix-col class="no-padding">
+              <ix-date-picker
+                ref={(ref) => (this.datePickerElement = ref)}
+                corners="left"
+                range={this.range}
+                onDateChange={(event) => this.onDateChange(event)}
+                from={this.from}
+                to={this.to}
+                format={this.dateFormat}
+                minDate={this.minDate}
+                maxDate={this.maxDate}
+                weekStartIndex={this.weekStartIndex}
+                standaloneAppearance={false}
+              ></ix-date-picker>
+            </ix-col>
 
-        <ix-button
-          class="btn-select-date btn-md-width"
-          onClick={() => this.onDone()}
-        >
-          {this.textSelectDate}
-        </ix-button>
+            <ix-col class="no-padding">
+              <ix-time-picker
+                ref={(ref) => (this.timePickerElement = ref)}
+                corners="right"
+                standaloneAppearance={false}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
+                onTimeChange={(event) => this.onTimeChange(event)}
+                format={this.timeFormat}
+                time={this.time}
+              ></ix-time-picker>
+            </ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col>
+              <ix-button
+                class="btn-select-date btn-md-width"
+                onClick={() => this.onDone()}
+              >
+                {this.textSelectDate}
+              </ix-button>
+            </ix-col>
+          </ix-row>
+        </ix-layout-grid>
       </Host>
     );
   }

@@ -118,11 +118,9 @@ export class TimePicker {
   }
 
   get timePeriod() {
-    const period = this.is12HourFormat()
+    return this.is12HourFormat()
       ? (dayjs(this._time, this.format).format('A') as 'AM' | 'PM')
       : undefined;
-
-    return period;
   }
 
   private modifyInputOnChange(
@@ -234,7 +232,7 @@ export class TimePicker {
      If all hidden, every element getting set to visible,
      otherwise hidden element getting removed
      */
-    if (hiddenCount === 0) {
+    if (!hiddenCount) {
       timepickerInformation.forEach((info) => {
         info.hidden = false;
       });
@@ -243,6 +241,8 @@ export class TimePicker {
         (item) => !item.hidden
       );
     }
+
+    console.log(timepickerInformation);
 
     return (
       <Host>
@@ -255,7 +255,7 @@ export class TimePicker {
           </div>
           <div class="clock">
             {timepickerInformation.map((descriptor, index: number) => (
-              <div class="time">
+              <div class="flex">
                 <div class={{ columns: true, hidden: descriptor.hidden }}>
                   <ix-icon-button
                     size="16"
