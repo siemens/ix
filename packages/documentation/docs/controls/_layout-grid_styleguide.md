@@ -11,7 +11,7 @@ The layout grid is based on a 12 column layout. Columns are nested in rows and a
 ### Layout grid options
 - The default number of columns in a grid is 12. It is possible to choose any number of columns between 2 and 12.
 - Layout grids contain horizontal padding. The padding can be removed.
-- Between rows, a gap in introduced. This gap can be removed.
+- As a general rule, a gutter of <kbd>1.5rem</kbd> is applied. The gutter can be decreased to allow for a narrower grouping of columns.
 ### Column options
 - The size of a column is defined by the available space and the number of columns. If no size is set, columns will automatically have equal width. The size of a column can be adjusted so that it takes a higher percentage of the available space. The size property referes to the number of columns used out of the default of 12 per row.
 
@@ -35,4 +35,4 @@ Example: In a 12 column layout with 4 columns with equal width in place, <kbd>si
 
 ## Behaviour in context
 
-Decreasing and increasing the viewport width influences the width of each column within a layout grid. When Column width is decreased to the point that the minimum content width is reached for at least one column, the layout breaks into a second line. 
+Decreasing and increasing the viewport width influences the width of each column within a layout grid. When column width is decreased to the point that the minimum content width is reached for at least one column, the layout breaks into a second line. 
