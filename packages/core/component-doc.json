@@ -5893,29 +5893,42 @@
           "required": false
         },
         {
-          "name": "noPadding",
-          "type": "boolean",
+          "name": "gap",
+          "type": "\"12\" | \"16\" | \"24\" | \"8\"",
           "mutable": false,
-          "attr": "no-padding",
+          "attr": "gap",
           "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
+          "docs": "Grid gap",
           "docsTags": [],
-          "default": "false",
+          "default": "'24'",
           "values": [
             {
-              "type": "boolean"
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
             }
           ],
           "optional": false,
           "required": false
         },
         {
-          "name": "noRowGap",
+          "name": "noPadding",
           "type": "boolean",
           "mutable": false,
-          "attr": "no-row-gap",
+          "attr": "no-padding",
           "reflectToAttr": false,
-          "docs": "Remove the gap between rows",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [

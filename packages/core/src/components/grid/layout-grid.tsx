@@ -24,9 +24,9 @@ export class LayoutGrid {
   @Prop() noPadding = false;
 
   /**
-   * Remove the gap between rows
+   * Grid gap
    */
-  @Prop() noRowGap = false;
+  @Prop() gap: '8' | '12' | '16' | '24' = '24';
 
   /**
    * Overwrite the default number of columns. Choose between 2 and 12 columns.
@@ -38,10 +38,10 @@ export class LayoutGrid {
       <Host
         class={{
           'no-padding': this.noPadding,
-          'no-row-gap': this.noRowGap,
         }}
         style={{
           '--ix-layout-grid-columns': `${this.columns}`,
+          '--ix-layout-grid-gutter': `${this.gap}px`,
         }}
       >
         <slot></slot>

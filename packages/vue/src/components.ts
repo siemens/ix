@@ -494,7 +494,7 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIx
 
 export const IxLayoutGrid = /*@__PURE__*/ defineContainer<JSX.IxLayoutGrid>('ix-layout-grid', defineIxLayoutGrid, [
   'noPadding',
-  'noRowGap',
+  'gap',
   'columns'
 ]);
 
