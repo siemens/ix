@@ -49,6 +49,10 @@
       "path": "./packages/eslint-config"
     },
     {
+      "name": "figma-plugin",
+      "path": "./packages/figma-plugin"
+    },
+    {
       "name": "root",
       "path": "."
     }
