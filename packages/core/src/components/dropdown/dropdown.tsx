@@ -147,14 +147,14 @@ export class Dropdown {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
 
+  get slotElement() {
+    return this.hostElement.shadowRoot.querySelector('slot');
+  }
+
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        if (this.closeBehavior === 'outside') {
-          this.triggerElement.addEventListener('click', this.openBind);
-        } else {
-          this.triggerElement.addEventListener('click', this.toggleBind);
-        }
+        this.triggerElement.addEventListener('click', this.openBind);
         break;
 
       case 'hover':
@@ -272,12 +272,19 @@ export class Dropdown {
     if (oldTriggerValue) {
       this.unregisterListener(oldTriggerValue);
     }
+
+    // if (
+    //   !newTriggerValue &&
+    //   this.hostElement.parentElement.tagName === 'IX-DROPDOWN-ITEM'
+    // ) {
+    //   this.anchor = this.hostElement.parentElement;
+    // }
   }
 
   @Listen('click', {
     target: 'window',
   })
-  clickOutside(event: Event) {
+  clickOutside(event: PointerEvent) {
     const target = event.target as HTMLElement;
 
     if (event.defaultPrevented) {
@@ -292,14 +299,17 @@ export class Dropdown {
     ) {
       return;
     }
+
+    const clickInsideDropdown = this.isClickInsideDropdown(event);
+
     switch (this.closeBehavior) {
       case 'outside':
-        if (!this.dropdownRef.contains(target)) {
+        if (!clickInsideDropdown || this.anchor === target) {
           this.close();
         }
         break;
       case 'inside':
-        if (this.dropdownRef.contains(target) && this.hostElement !== target) {
+        if (clickInsideDropdown && this.hostElement !== target) {
           this.close();
         }
         break;
@@ -335,11 +345,11 @@ export class Dropdown {
     return true;
   }
 
-  private toggle(event?: Event) {
-    event?.preventDefault();
+  private toggle(event: Event) {
+    event.preventDefault();
 
     if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event?.stopPropagation();
+      event.stopPropagation();
     }
 
     const { defaultPrevented } = this.showChanged.emit(this.show);
@@ -349,11 +359,11 @@ export class Dropdown {
     }
   }
 
-  private open(event?: Event) {
-    event?.preventDefault();
+  private open(event: Event) {
+    event.preventDefault();
 
     if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event?.stopPropagation();
+      event.stopPropagation();
     }
 
     const { defaultPrevented } = this.showChanged.emit(true);
@@ -443,9 +453,7 @@ export class Dropdown {
   }
 
   async componentDidLoad() {
-    if (this.trigger) {
-      this.changedTrigger(this.trigger, null);
-    }
+    this.changedTrigger(this.trigger, null);
   }
 
   async componentDidRender() {
@@ -460,6 +468,16 @@ export class Dropdown {
     ) {
       (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
     }
+  }
+
+  private isClickInsideDropdown(event: PointerEvent) {
+    const rect = this.dropdownRef.getBoundingClientRect();
+    return (
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width
+    );
   }
 
   disconnectedCallback() {
