@@ -272,13 +272,6 @@ export class Dropdown {
     if (oldTriggerValue) {
       this.unregisterListener(oldTriggerValue);
     }
-
-    // if (
-    //   !newTriggerValue &&
-    //   this.hostElement.parentElement.tagName === 'IX-DROPDOWN-ITEM'
-    // ) {
-    //   this.anchor = this.hostElement.parentElement;
-    // }
   }
 
   @Listen('click', {

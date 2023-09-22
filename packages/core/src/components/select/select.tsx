@@ -364,19 +364,17 @@ export class Select {
       return;
     }
 
-    const indexOfNavigationItem = items.findIndex(
+    let indexOfNavigationItem = items.findIndex(
       (item) => item === this.navigationItem
     );
 
-    let newIndex = indexOfNavigationItem;
-
     if (key === 'ArrowDown') {
-      newIndex++;
+      indexOfNavigationItem++;
     } else {
-      newIndex--;
+      indexOfNavigationItem--;
     }
 
-    const newFocusItem = items[newIndex];
+    const newFocusItem = items[indexOfNavigationItem];
     this.applyFocusTo(newFocusItem);
   }
 
