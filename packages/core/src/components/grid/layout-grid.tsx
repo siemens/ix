@@ -21,7 +21,7 @@ export class LayoutGrid {
   /**
    * The grid will not have any horizontal padding
    */
-  @Prop() noPadding = false;
+  @Prop() noMargin = false;
 
   /**
    * Grid gap
@@ -37,7 +37,7 @@ export class LayoutGrid {
     return (
       <Host
         class={{
-          'no-padding': this.noPadding,
+          'no-margin': this.noMargin,
         }}
         style={{
           '--ix-layout-grid-columns': `${this.columns}`,

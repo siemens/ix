@@ -5923,10 +5923,10 @@
           "required": false
         },
         {
-          "name": "noPadding",
+          "name": "noMargin",
           "type": "boolean",
           "mutable": false,
-          "attr": "no-padding",
+          "attr": "no-margin",
           "reflectToAttr": false,
           "docs": "The grid will not have any horizontal padding",
           "docsTags": [],

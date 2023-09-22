@@ -15,7 +15,7 @@ import './grid.css';
 export default () => {
   return (
     <div className="example-parent">
-      <h4>Grid with padding</h4>
+      <h4>Grid with margin</h4>
       <IxLayoutGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol>
@@ -57,8 +57,8 @@ export default () => {
         </IxRow>
       </IxLayoutGrid>
 
-      <h4>Grid without padding</h4>
-      <IxLayoutGrid noPadding className={'ExampleGrid'}>
+      <h4>Grid without margin</h4>
+      <IxLayoutGrid noMargin className={'ExampleGrid'}>
         <IxRow>
           <IxCol>
             <IxTypography format="display">1</IxTypography>

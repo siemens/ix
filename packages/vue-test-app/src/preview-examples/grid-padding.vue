@@ -15,7 +15,7 @@ import './grid.css';
 
 <template>
   <div class="example-parent">
-    <h4>Grid with padding</h4>
+    <h4>Grid with margin</h4>
     <IxLayoutGrid>
       <IxRow>
         <IxCol><IxTypography format="display">1</IxTypography></IxCol>
@@ -33,8 +33,8 @@ import './grid.css';
       </IxRow>
     </IxLayoutGrid>
 
-    <h4>Grid without padding</h4>
-    <IxLayoutGrid noPadding>
+    <h4>Grid without margin</h4>
+    <IxLayoutGrid noMargin>
       <IxRow>
         <IxCol><IxTypography format="display">1</IxTypography></IxCol>
         <IxCol><IxTypography format="display">2</IxTypography></IxCol>

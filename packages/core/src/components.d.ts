@@ -1090,7 +1090,7 @@ export namespace Components {
         /**
           * The grid will not have any horizontal padding
          */
-        "noPadding": boolean;
+        "noMargin": boolean;
     }
     /**
      * @since 2.0.0
@@ -4247,7 +4247,7 @@ declare namespace LocalJSX {
         /**
           * The grid will not have any horizontal padding
          */
-        "noPadding"?: boolean;
+        "noMargin"?: boolean;
     }
     /**
      * @since 2.0.0

@@ -98,7 +98,7 @@ const htmlSource = `
 </ix-layout-grid>
 
 <h4>No padding</h4>
-<ix-layout-grid no-padding>
+<ix-layout-grid no-margin>
   <ix-row>
     <ix-col size="2">1</ix-col>
     <ix-col size="2">2</ix-col>

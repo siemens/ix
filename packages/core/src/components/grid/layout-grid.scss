@@ -17,7 +17,7 @@
   padding-right: calc(var(--ix-layout-grid-gutter) * 0.5);
 }
 
-:host(.no-padding) {
+:host(.no-margin) {
   padding-left: 0;
   padding-right: 0;
 }

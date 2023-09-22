@@ -1123,14 +1123,14 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 
 @ProxyCmp({
-  inputs: ['columns', 'gap', 'noPadding']
+  inputs: ['columns', 'gap', 'noMargin']
 })
 @Component({
   selector: 'ix-layout-grid',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['columns', 'gap', 'noPadding'],
+  inputs: ['columns', 'gap', 'noMargin'],
 })
 export class IxLayoutGrid {
   protected el: HTMLElement;
