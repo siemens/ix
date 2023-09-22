@@ -59,6 +59,13 @@
         solid
         var(--theme-input--border-color-bottom--readonly);
     }
+
+    &.read-only,
+    &:read-only {
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
 
   &:disabled {
@@ -69,6 +76,10 @@
     color: var(--theme-input--color--disabled);
     border-bottom: var(--theme-input--border-thickness, 1px) solid
       var(--theme-input--border-color-bottom--disabled);
+  }
+
+  &:disabled::placeholder {
+    color: transparent;
   }
 }
 

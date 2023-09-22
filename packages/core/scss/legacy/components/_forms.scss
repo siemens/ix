@@ -85,7 +85,7 @@
   cursor: default !important;
 
   &::placeholder {
-    color: var(--theme-color-soft-text);
+    color: transparent;
   }
 }
 
@@ -101,7 +101,7 @@
   border-color: var(--theme-input--border-color-bottom--disabled);
 
   &::placeholder {
-    color: var(--theme-color-weak-text);
+    color: transparent;
   }
 }
 
