@@ -2,7 +2,7 @@
 
 ## v2.0.0
 
-### `input[class="form-control"]` and `input[class="form-control"]` are deprecated
+### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated
 
 The assignment of the 'form-control' class for input and textarea elements is no longer required.
 
