@@ -5,7 +5,6 @@ import Props from './../auto-generated/ix-validation-tooltip/props.md';
 import SourceValidation from './../auto-generated/previews/web-component/validation.md';
 import SourceReactValidation from './../auto-generated/previews/react/validation.md';
 import SourceAngularValidation from './../auto-generated/previews/angular/validation.ts.md';
-import SourceVueValidation from './../auto-generated/previews/vue/validation.md';
 
 # Form validation
 
@@ -22,7 +21,6 @@ frameworks={{
   react: SourceReactValidation,
   angular: SourceAngularValidation,
   javascript: SourceValidation,
-  vue: SourceVueValidation
 }}>
 </Playground>
 

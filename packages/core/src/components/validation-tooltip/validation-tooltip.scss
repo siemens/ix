@@ -14,6 +14,7 @@
   display: inline-block;
   position: relative;
   $padding: 5px;
+  width: 100%;
 
   .validation-tooltip {
     background-color: var(--theme-tootlip--background);

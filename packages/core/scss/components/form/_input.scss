@@ -91,6 +91,11 @@
 @mixin form {
   label {
     color: var(--theme-color-soft-text);
+    padding: 2px 0px;
+  }
+
+  label.label-alignment-left {
+    padding: 6px 0px;
   }
 
   input {
@@ -149,14 +154,14 @@
 
     :invalid,
     .is-invalid {
-      ~ .invalid-feedback {
+      & ~ .invalid-feedback {
         display: block;
       }
     }
 
     :valid,
     .is-valid {
-      ~ .valid-feedback {
+      & ~ .valid-feedback {
         display: block;
       }
     }

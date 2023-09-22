@@ -2,6 +2,10 @@
 
 ## v2.0.0
 
+### `input[class="form-control"]` and `input[class="form-control"]` are deprecated
+
+The assignment of the 'form-control' class for input and textarea elements is no longer required.
+
 ### Deprecated `ix-split-button-item`
 
 Use `ix-dropdown-item` instead of `ix-split-button-item`. `ix-split-button-item` will be removed in the next major release.

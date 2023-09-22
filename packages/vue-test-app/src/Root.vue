@@ -97,7 +97,6 @@ import Toggle from './preview-examples/toggle.vue';
 import Tooltip from './preview-examples/tooltip.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
-import Validation from './preview-examples/validation.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
@@ -168,7 +167,6 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
-  '/preview/validation': Validation,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/basic-navigation': BasicNavigation,
