@@ -8,9 +8,10 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { test, viewPorts } from '@utils/test';
 
 test('should render menu items with a[href]', async ({ mount, page }) => {
+  await page.setViewportSize(viewPorts.lg);
   await mount(`
   <ix-basic-navigation>
     <ix-menu>

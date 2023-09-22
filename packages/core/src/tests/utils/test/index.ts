@@ -8,3 +8,18 @@
  */
 
 export * from './page';
+
+export const viewPorts = {
+  sm: {
+    height: 800,
+    width: 360,
+  },
+  md: {
+    height: 768,
+    width: 1024,
+  },
+  lg: {
+    height: 1080,
+    width: 1920,
+  },
+} as const;

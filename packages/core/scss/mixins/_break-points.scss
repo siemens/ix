@@ -8,15 +8,39 @@
  */
 
 $screen-breakpoints: (
-  sm: 36em,
-  md: 48em,
-  lg: 62em,
+  sm: (
+    max: 48em,
+  ),
+  md: (
+    min: 48.0625em,
+    max: 80em,
+  ),
+  lg: (
+    min: 80.0625em,
+  ),
 );
 
-@mixin media-breakpoint-up($name, $breakpoints: $screen-breakpoints) {
+@function breakpoint-min($name, $breakpoints: $screen-breakpoints) {
+  @return map-get($map: map-get($map: $breakpoints, $key: $name), $key: min);
+}
+
+@function breakpoint-max($name, $breakpoints: $screen-breakpoints) {
+  @return map-get($map: map-get($map: $breakpoints, $key: $name), $key: max);
+}
+
+@mixin media-breakpoint-match($name, $breakpoints: $screen-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
-  @if $min {
-    @media (min-width: $min) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $min and $max {
+    @media only screen and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $min and not $max {
+    @media only screen and (min-width: $min) {
+      @content;
+    }
+  } @else if not $min and $max {
+    @media only screen and (max-width: $max) {
       @content;
     }
   } @else {
