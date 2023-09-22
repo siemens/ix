@@ -22,7 +22,7 @@ Before you start designing your specific icon set for your application, consider
 
 - Do not create alternatives to existing iX icons just for the sake of your own look
 
-- Advise other designers within your company to not create the same icon multiple times
+- Ask other designers within your company about the existance of an icion, to prevent creation of duplicates
 
 - Finally: Entrust a professional designer with the task of designing an icon
 
@@ -88,7 +88,7 @@ These guidelines extend the basic guidelines on [Siemens brandville](https://bra
 ## 5. Stroke widths
 
 - Default stroke width is 2px
-- In case icon readabilty can't be guaranteed otherwise stroke widths of 1.5px or even 1x are also allowed. Before doing that please make sure all rules from section 4 are followed.
+- In case icon readabilty can't be guaranteed otherwise, stroke widths of 1.5px or even 1x are also allowed. Before doing that please make sure all rules from section 4 are followed.
 
 ![Stroke widths](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=809-23096&mode=design&t=LqIxNidruCmTfYDF-4)
 
@@ -119,7 +119,7 @@ These guidelines extend the basic guidelines on [Siemens brandville](https://bra
 
 ### Integrate in Figma
 - Create a component from your icon
-- Use a short, descriptive and unique name - also consider adding a project or application prefix to the icon name to prevent naming collisions with other external icons
+- Use a short, descriptive and unique name - also consider adding a project or application suffix to the icon name to prevent naming collisions with other external icons
 - "Publish" the document with your icon(s) and it will be available as library in your document assets
 - Activate your library in the design document
 
