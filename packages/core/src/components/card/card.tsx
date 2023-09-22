@@ -8,7 +8,8 @@ export type CardVariant =
   | 'warning'
   | 'info'
   | 'neutral'
-  | 'success';
+  | 'success'
+  | 'primary';
 
 /**
  * @since 1.6.0
