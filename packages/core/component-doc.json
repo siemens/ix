@@ -7830,7 +7830,7 @@
         },
         {
           "name": "size",
-          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-screen\" | \"full-width\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -7861,6 +7861,10 @@
             },
             {
               "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-screen",
               "type": "string"
             },
             {

@@ -39,6 +39,7 @@ Our modals support the following sizes:
 - `720`
 - `840`
 - `full-width` - Modal extends to fill entire screen width (modal will still have some horizontal margin)
+- `full-screen` - Modal extends to fill entire screen
 
 The `size` can be configured over the configuration object of the `showModal` function.
 

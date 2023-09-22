@@ -9,6 +9,7 @@
 import { IxModalSize } from '@siemens/ix';
 import { IxButton, Modal, ModalRef, showModal } from '@siemens/ix-react';
 import React, { useRef } from 'react';
+
 export default () => {
   const modalRef = useRef<ModalRef>(null);
 
@@ -34,6 +35,9 @@ export default () => {
       <IxButton onClick={() => open('840')}>Show modal size 840</IxButton>
       <IxButton onClick={() => open('full-width')}>
         Show full-width modal
+      </IxButton>
+      <IxButton onClick={() => open('full-screen')}>
+        Show modal size full-screen
       </IxButton>
     </div>
   );
