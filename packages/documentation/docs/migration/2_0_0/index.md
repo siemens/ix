@@ -46,9 +46,7 @@ example of a custom icon via path:
   <ix-icon name="https://my.example.cdn.address/assets/my-icon.svg"></ix-icon>
 ```
 
-//TODO: Link icon markdown 
-There are some constraints for using custom icons. For more information please refer to the guide in the documentation:
-<!-- [here](./../../guidelines/icons.md) -->
+There are some constraints for using custom icons. For more information please refer to the guide in the documentation [here](./../../icon-library/icons.md)
 
 ## Replace Bootstrap Modal parts with iX Modal components
 

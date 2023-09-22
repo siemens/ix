@@ -28,7 +28,7 @@ Remove deprecated events
 
 - `close`
 
-### Change `itemSelectionChange` event from `ix-select`
+### Change `itemSelectionChange` event from `ix-select` and `selectedIndices` prop from `ix-select`
 
 **_Before_**
 ```tsx
