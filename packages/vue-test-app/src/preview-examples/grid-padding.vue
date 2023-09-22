@@ -8,46 +8,46 @@
 -->
 
 <script setup lang="ts">
-import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-vue';
+import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 // Example styling for documentation
 import './grid.css';
 </script>
 
 <template>
   <div class="example-parent">
-    <h4>Grid with padding</h4>
+    <h4>Grid with margin</h4>
     <IxLayoutGrid>
       <IxRow>
-        <IxCol>1</IxCol>
-        <IxCol>2</IxCol>
-        <IxCol>3</IxCol>
-        <IxCol>4</IxCol>
-        <IxCol>5</IxCol>
-        <IxCol>6</IxCol>
-        <IxCol>7</IxCol>
-        <IxCol>8</IxCol>
-        <IxCol>9</IxCol>
-        <IxCol>10</IxCol>
-        <IxCol>11</IxCol>
-        <IxCol>12</IxCol>
+        <IxCol><IxTypography format="display">1</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">2</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">3</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">4</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">5</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">6</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">7</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">8</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">9</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">10</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">11</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">12</IxTypography></IxCol>
       </IxRow>
     </IxLayoutGrid>
 
-    <h4>Grid without padding</h4>
-    <IxLayoutGrid noPadding>
+    <h4>Grid without margin</h4>
+    <IxLayoutGrid noMargin>
       <IxRow>
-        <IxCol>1</IxCol>
-        <IxCol>2</IxCol>
-        <IxCol>3</IxCol>
-        <IxCol>4</IxCol>
-        <IxCol>5</IxCol>
-        <IxCol>6</IxCol>
-        <IxCol>7</IxCol>
-        <IxCol>8</IxCol>
-        <IxCol>9</IxCol>
-        <IxCol>10</IxCol>
-        <IxCol>11</IxCol>
-        <IxCol>12</IxCol>
+        <IxCol><IxTypography format="display">1</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">2</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">3</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">4</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">5</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">6</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">7</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">8</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">9</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">10</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">11</IxTypography></IxCol>
+        <IxCol><IxTypography format="display">12</IxTypography></IxCol>
       </IxRow>
     </IxLayoutGrid>
   </div>
