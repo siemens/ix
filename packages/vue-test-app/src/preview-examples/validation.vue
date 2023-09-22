@@ -32,7 +32,7 @@ const onSubmit = async (data: any) => {
       <input
         id="validationCustom01"
         type="text"
-        class="form-control"
+
         :required="!!firstName.error"
         :class="[firstName.error ? 'is-invalid' : '']"
         v-model="firstName.value"
@@ -47,7 +47,7 @@ const onSubmit = async (data: any) => {
         <input
           id="validationCustom02"
           type="text"
-          class="form-control"
+
           :required="!!lastName.error"
           :class="[lastName.error ? 'is-invalid' : '']"
           v-model="lastName.value"
@@ -62,7 +62,7 @@ const onSubmit = async (data: any) => {
         id="validationCustomUsername"
         aria-describedby="inputGroupPrepend"
         type="text"
-        class="form-control"
+
         :required="!!userName.error"
         :class="[userName.error ? 'is-invalid' : '']"
         v-model="userName.value"

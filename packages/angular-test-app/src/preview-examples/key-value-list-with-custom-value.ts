@@ -14,30 +14,15 @@ import { Component } from '@angular/core';
   template: `
     <ix-key-value-list>
       <ix-key-value label="Label" labelPosition="left">
-        <input
-          class="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </ix-key-value>
 
       <ix-key-value label="Label" labelPosition="left">
-        <input
-          class="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </ix-key-value>
 
       <ix-key-value label="Label" labelPosition="left">
-        <input
-          class="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </ix-key-value>
     </ix-key-value-list>
   `,

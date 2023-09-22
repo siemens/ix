@@ -45,9 +45,7 @@ export default () => {
           </label>
           <input
             type="text"
-            className={`form-control ${
-              formState.errors.firstName ? 'is-invalid' : ''
-            }`}
+            className={`${formState.errors.firstName ? 'is-invalid' : ''}`}
             id="validationCustom01"
             {...register('firstName', {
               required: true,
@@ -62,9 +60,7 @@ export default () => {
             </label>
             <input
               type="text"
-              className={`form-control ${
-                formState.errors.lastName ? 'is-invalid' : ''
-              }`}
+              className={`${formState.errors.lastName ? 'is-invalid' : ''}`}
               id="validationCustom02"
               {...register('lastName', {
                 required: true,
@@ -78,9 +74,7 @@ export default () => {
           </label>
           <input
             type="text"
-            className={`form-control ${
-              formState.errors.userName ? 'is-invalid' : ''
-            }`}
+            className={`${formState.errors.userName ? 'is-invalid' : ''}`}
             id="validationCustomUsername"
             aria-describedby="inputGroupPrepend"
             {...register('userName', {

@@ -25,7 +25,6 @@ import { Component } from '@angular/core';
         <input
           name="firstName"
           type="text"
-          class="form-control"
           id="validationCustom01"
           [(ngModel)]="data.firstName"
           #firstName="ngModel"
@@ -43,7 +42,6 @@ import { Component } from '@angular/core';
           <input
             name="lastName"
             type="text"
-            class="form-control"
             id="validationCustom02"
             [(ngModel)]="data.lastName"
             #lastName="ngModel"
@@ -58,7 +56,6 @@ import { Component } from '@angular/core';
         <input
           name="userName"
           type="text"
-          class="form-control"
           id="validationCustomUsername"
           aria-describedby="inputGroupPrepend"
           [(ngModel)]="data.userName"
