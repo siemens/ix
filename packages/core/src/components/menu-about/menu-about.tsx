@@ -124,7 +124,7 @@ export class MenuAbout {
           <ix-icon-button
             ghost
             size="24"
-            icon="close"
+            icon={'close'}
             onClick={(e) =>
               this.close.emit({
                 name: 'ix-menu-about',

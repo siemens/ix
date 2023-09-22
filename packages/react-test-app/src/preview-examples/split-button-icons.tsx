@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxSplitButton, IxSplitButtonItem } from '@siemens/ix-react';
+import { IxDropdownItem, IxSplitButton } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
-    <IxSplitButton label="Action text" splitIcon='chevron-down-small'>
-      <IxSplitButtonItem label="Item 1" icon="cut"></IxSplitButtonItem>
-      <IxSplitButtonItem label="Item 2" icon="bulb"></IxSplitButtonItem>
+    <IxSplitButton label="Action text" splitIcon="chevron-down-small">
+      <IxDropdownItem label="Item 1" icon="cut"></IxDropdownItem>
+      <IxDropdownItem label="Item 2" icon="bulb"></IxDropdownItem>
     </IxSplitButton>
   );
 };

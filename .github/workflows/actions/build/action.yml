@@ -35,7 +35,7 @@ runs:
 
     - name: build all
       if: ${{ inputs.filter == 'none' }}
-      run: yarn build  ${{ inputs.args }}
+      run: yarn build ${{ inputs.args }}
       shell: bash
 
     - name: Check for local development changes

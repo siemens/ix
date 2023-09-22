@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { defineCustomElements as iconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 
 let didInitialize = false;
 
 export const appInitialize = (doc: Document) => {
-  return () => {
+  return async () => {
     const win: Window | undefined = doc.defaultView as any;
     if (win && typeof (window as any) !== 'undefined') {
       if (didInitialize) {
@@ -21,9 +22,9 @@ export const appInitialize = (doc: Document) => {
 
       didInitialize = true;
 
-      applyPolyfills().then(() => {
-        return defineCustomElements();
-      });
+      await applyPolyfills();
+      await iconsDefineCustomElements();
+      await defineCustomElements();
     }
   };
 };

@@ -139,7 +139,12 @@ export class Select {
   private labelMutationObserver: MutationObserver;
 
   get items() {
-    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
+    return [
+      ...Array.from(this.hostElement.querySelectorAll('ix-select-item')),
+      ...Array.from(
+        this.hostElement.shadowRoot.querySelectorAll('ix-select-item')
+      ),
+    ];
   }
 
   get selectedItems() {
@@ -147,7 +152,7 @@ export class Select {
   }
 
   get addItemButton() {
-    return this.hostElement.querySelector('.add-item');
+    return this.hostElement.shadowRoot.querySelector('.add-item');
   }
 
   get isSingleMode() {
@@ -452,8 +457,6 @@ export class Select {
         <div
           class={{
             select: true,
-            focus: this.hasFocus,
-            editable: this.editable,
             disabled: this.disabled,
             readonly: this.readonly,
           }}
@@ -499,7 +502,7 @@ export class Select {
                 (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
-                    icon="clear"
+                    icon={'clear'}
                     ghost
                     oval
                     size="16"
@@ -511,14 +514,15 @@ export class Select {
                   />
                 ) : null}
                 {this.disabled || this.readonly ? null : (
-                  <div
-                    class="chevron-down-container"
+                  <ix-icon-button
+                    data-select-dropdown
+                    class={{ 'dropdown-visible': this.dropdownShow }}
+                    icon="chevron-down-small"
+                    ghost
                     ref={(ref) => {
                       if (this.editable) this.dropdownWrapperRef = ref;
                     }}
-                  >
-                    <ix-icon class="chevron" name="chevron-down-small" />
-                  </div>
+                  ></ix-icon-button>
                 )}
               </div>
             </div>
@@ -555,7 +559,7 @@ export class Select {
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
-              icon="plus"
+              icon={'plus'}
               class={{
                 'add-item': true,
               }}

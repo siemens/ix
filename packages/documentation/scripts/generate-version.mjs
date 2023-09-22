@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import execa from 'execa';
 import fsExtra from 'fs-extra';
 import path from 'path';
-import execa from 'execa';
 
 const __dirname = path.resolve();
 const version = process.argv[2];
@@ -36,10 +36,6 @@ function replaceAssetsWithCDN(source) {
   const cdnLoadSyles = `<link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@siemens/ix@${version}/dist/siemens-ix/siemens-ix.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@siemens/ix-icons@1.0.1/dist/css/ix-icons.css"
     />
     <link
       rel="stylesheet"

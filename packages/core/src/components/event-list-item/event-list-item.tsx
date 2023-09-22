@@ -89,7 +89,7 @@ export class EventListItem {
             </div>
             {this.chevron && (
               <ix-icon
-                name="chevron-right"
+                name={'chevron-right'}
                 size="16"
                 class="chevron-icon"
               ></ix-icon>

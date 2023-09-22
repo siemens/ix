@@ -46,7 +46,7 @@ export class Kpi {
         return (
           <ix-icon
             color="kpi-display-icon--color"
-            name="alarm"
+            name={'alarm'}
             size="16"
           ></ix-icon>
         );
@@ -55,7 +55,7 @@ export class Kpi {
         return (
           <ix-icon
             color="kpi-display-icon--color"
-            name="warning"
+            name={'warning'}
             size="16"
           ></ix-icon>
         );
