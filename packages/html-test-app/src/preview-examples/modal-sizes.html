@@ -7,19 +7,19 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pill example</title>
+    <title>Modal sizes</title>
     <link rel="stylesheet" href="./example.css" />
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <div class="modal-sizes-example">
-      <ix-button data-modal-size="360">Show Modal size 360</ix-button>
-      <ix-button data-modal-size="480">Show Modal size 480</ix-button>
-      <ix-button data-modal-size="600">Show Modal size 600</ix-button>
-      <ix-button data-modal-size="720">Show Modal size 720</ix-button>
-      <ix-button data-modal-size="840">Show Modal size 840</ix-button>
+      <ix-button data-modal-size="360">Show modal size 360</ix-button>
+      <ix-button data-modal-size="480">Show modal size 480</ix-button>
+      <ix-button data-modal-size="600">Show modal size 600</ix-button>
+      <ix-button data-modal-size="720">Show modal size 720</ix-button>
+      <ix-button data-modal-size="840">Show modal size 840</ix-button>
       <ix-button data-modal-size="full-width"
-        >Show Modal size full-width</ix-button
+        >Show full-width modal</ix-button
       >
     </div>
 
@@ -57,7 +57,7 @@ SPDX-License-Identifier: MIT
               );
               const template = modalTemplate.content.cloneNode(true);
               const button = template.querySelector('ix-button');
-              button.innerText = `Modal with size = ${this.size}`;
+              button.innerText = `Modal with size ${this.size}`;
               button.addEventListener('click', () => dismissModal(this));
               this.append(template);
             }

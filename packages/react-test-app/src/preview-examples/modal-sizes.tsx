@@ -18,7 +18,7 @@ export default () => {
       content: (
         <Modal ref={modalRef}>
           <IxButton onClick={() => modalRef.current?.close(null)}>
-            Modal with size = {size}
+            Modal with size {size}
           </IxButton>
         </Modal>
       ),
@@ -27,13 +27,13 @@ export default () => {
 
   return (
     <div className="modal-sizes-example">
-      <IxButton onClick={() => open('360')}>Show Modal size 360</IxButton>
-      <IxButton onClick={() => open('480')}>Show Modal size 480</IxButton>
-      <IxButton onClick={() => open('600')}>Show Modal size 600</IxButton>
-      <IxButton onClick={() => open('720')}>Show Modal size 720</IxButton>
-      <IxButton onClick={() => open('840')}>Show Modal size 840</IxButton>
+      <IxButton onClick={() => open('360')}>Show modal size 360</IxButton>
+      <IxButton onClick={() => open('480')}>Show modal size 480</IxButton>
+      <IxButton onClick={() => open('600')}>Show modal size 600</IxButton>
+      <IxButton onClick={() => open('720')}>Show modal size 720</IxButton>
+      <IxButton onClick={() => open('840')}>Show modal size 840</IxButton>
       <IxButton onClick={() => open('full-width')}>
-        Show Modal size full-width
+        Show full-width modal
       </IxButton>
     </div>
   );

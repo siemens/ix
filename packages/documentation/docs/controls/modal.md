@@ -31,14 +31,14 @@ import SourceReactMessage from './../auto-generated/previews/react/message.md'
 
 ## Sizes
 
-Our Modals support the following sizes:
+Our modals support the following sizes:
 
 - `360`
 - `480`
 - `600`
 - `720`
 - `840`
-- `full-width` - Use the maximal size of the screen width
+- `full-width` - Modal extends to fill entire screen width (modal will still have some horizontal margin)
 
 The `size` can be configured over the configuration object of the `showModal` function.
 
