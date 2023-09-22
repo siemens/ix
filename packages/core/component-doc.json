@@ -1869,9 +1869,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-datetime-picker"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-datetime-picker": [
+          "ix-col"
+        ]
+      },
       "props": [
         {
           "name": "size",
@@ -2578,12 +2584,18 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-layout-grid",
+        "ix-row",
+        "ix-col",
         "ix-date-picker",
         "ix-time-picker",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-datetime-picker": [
+          "ix-layout-grid",
+          "ix-row",
+          "ix-col",
           "ix-date-picker",
           "ix-time-picker",
           "ix-button"
@@ -5829,9 +5841,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-datetime-picker"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-datetime-picker": [
+          "ix-layout-grid"
+        ]
+      },
       "props": [
         {
           "name": "columns",
@@ -8617,9 +8635,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-datetime-picker"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-datetime-picker": [
+          "ix-row"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
