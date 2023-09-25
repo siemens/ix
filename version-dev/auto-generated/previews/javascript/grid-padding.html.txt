@@ -1,37 +1,37 @@
 <div class="example-parent">
-  <h4>Grid with padding</h4>
+  <h4>Grid with margin</h4>
   <ix-layout-grid>
     <ix-row>
-      <ix-col>1</ix-col>
-      <ix-col>2</ix-col>
-      <ix-col>3</ix-col>
-      <ix-col>4</ix-col>
-      <ix-col>5</ix-col>
-      <ix-col>6</ix-col>
-      <ix-col>7</ix-col>
-      <ix-col>8</ix-col>
-      <ix-col>9</ix-col>
-      <ix-col>10</ix-col>
-      <ix-col>11</ix-col>
-      <ix-col>12</ix-col>
+      <ix-col><ix-typography format="display">1</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">2</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">3</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">4</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">5</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">6</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">7</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">8</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">9</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">10</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">11</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">12</ix-typography></ix-col>
     </ix-row>
   </ix-layout-grid>
 
-  <h4>Grid without padding</h4>
-  <ix-layout-grid no-padding>
+  <h4>Grid without margin</h4>
+  <ix-layout-grid no-margin>
     <ix-row>
-      <ix-col>1</ix-col>
-      <ix-col>2</ix-col>
-      <ix-col>3</ix-col>
-      <ix-col>4</ix-col>
-      <ix-col>5</ix-col>
-      <ix-col>6</ix-col>
-      <ix-col>7</ix-col>
-      <ix-col>8</ix-col>
-      <ix-col>9</ix-col>
-      <ix-col>10</ix-col>
-      <ix-col>11</ix-col>
-      <ix-col>12</ix-col>
+      <ix-col><ix-typography format="display">1</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">2</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">3</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">4</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">5</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">6</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">7</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">8</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">9</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">10</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">11</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">12</ix-typography></ix-col>
     </ix-row>
   </ix-layout-grid>
 </div>
@@ -39,6 +39,6 @@
   .example-parent {
     padding-top: 1rem;
     padding-bottom: 0.25rem;
-    background-color: var(--theme-color-info-40);
+    background-color: var(--theme-color-ghost--hover);
   }
 </style>
