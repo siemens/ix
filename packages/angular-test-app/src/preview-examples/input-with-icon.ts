@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
   template: `
     <form class="needs-validation m-2">
       <ix-input-group>
-        <input type="text" class="form-control" />
+        <input type="text" />
         <span slot="input-end"><ix-icon name="about" size="16"></ix-icon></span>
       </ix-input-group>
     </form>

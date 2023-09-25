@@ -13,12 +13,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-key-value label="Label">
-      <input
-        class="form-control"
-        placeholder="Enter text here"
-        type="text"
-        slot="custom-value"
-      />
+      <input placeholder="Enter text here" type="text" slot="custom-value" />
     </ix-key-value>
   `,
 })

@@ -14,8 +14,7 @@ import { Component } from '@angular/core';
   template: `
     <form class="needs-validation m-2">
       <input
-        class="form-control"
-        defaultValue="Some example text"
+        value="Some example text"
         placeholder="Enter text here"
         type="text"
         disabled

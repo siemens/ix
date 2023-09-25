@@ -18,10 +18,30 @@ SPDX-License-Identifier: MIT
       }
     </style>
   </head>
+
   <body>
     <div>
-      <input class="form-control" placeholder="Enter text here" type="text" />
-      <input placeholder="Enter text here" type="text" />
+      <input
+        class="form-control"
+        placeholder="Enter text here"
+        type="text"
+        disabled
+      />
+      <input placeholder="Enter text here" type="text" disabled />
+
+      <input
+        class="form-control"
+        placeholder="Enter text here"
+        type="text"
+        value="some value"
+        disabled
+      />
+      <input
+        placeholder="Enter text here"
+        type="text"
+        disabled
+        value="some value"
+      />
     </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

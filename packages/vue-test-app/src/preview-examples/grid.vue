@@ -9,9 +9,26 @@
 
 <script setup lang="ts">
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
-// Example styling for documentation
-import './grid.css';
 </script>
+
+<style scoped>
+ix-layout-grid {
+  margin-bottom: 1rem;
+}
+
+ix-col {
+  background-color: var(--theme-color-primary);
+  border: var(--theme-std-bdr-2);
+  text-align: center;
+  color: var(--theme-color-inv-contrast-text);
+}
+
+.example-parent {
+  padding-top: 1rem;
+  padding-bottom: 0.25rem;
+  background-color: var(--theme-color-info-40);
+}
+</style>
 
 <template>
   <IxLayoutGrid>
