@@ -16,7 +16,7 @@ import {
   IxSelectItem,
 } from '@siemens/ix-react';
 import React, { ChangeEvent, useState } from 'react';
-import './theme-switcher.css';
+import './styles/theme-switcher.css';
 
 export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);

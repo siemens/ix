@@ -1,8 +1,6 @@
 <ix-button id="iconTriggerId">Open</ix-button>
 <ix-dropdown trigger="iconTriggerId">
-  <ix-dropdown-item id="submenuTrigger" label="Submenu">
-    <ix-icon name="chevron-right-small" size="24"></ix-icon>
-  </ix-dropdown-item>
+  <ix-dropdown-item id="submenuTrigger" label="Submenu"></ix-dropdown-item>
   <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
   <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
   <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>

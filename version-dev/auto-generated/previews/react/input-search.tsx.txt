@@ -34,7 +34,6 @@ export default () => {
         <input
           id="input-string"
           type="string"
-          className="form-control"
           onChange={handleChange}
           value={message}
         />

@@ -1,0 +1,74 @@
+<div class="modal-sizes-example">
+  <ix-button data-modal-size="360">Show modal size 360</ix-button>
+  <ix-button data-modal-size="480">Show modal size 480</ix-button>
+  <ix-button data-modal-size="600">Show modal size 600</ix-button>
+  <ix-button data-modal-size="720">Show modal size 720</ix-button>
+  <ix-button data-modal-size="840">Show modal size 840</ix-button>
+  <ix-button data-modal-size="full-width">Show full-width modal</ix-button>
+  <ix-button data-modal-size="full-screen"
+    >Show modal size full-screen</ix-button
+  >
+</div>
+
+<template id="modal-example-template">
+  <ix-button style="width: 100%"></ix-button>
+</template>
+<script type="module">
+  import { showModal, dismissModal } from '@siemens/ix';
+
+  function createExampleModal() {
+    const name = 'modal-example';
+    window.customElements.define(
+      name,
+      class extends HTMLElement {
+        isInitalRender = false;
+
+        constructor() {
+          super();
+
+          this.size = '360';
+        }
+
+        connectedCallback() {
+          if (this.isInitalRender) {
+            return;
+          }
+
+          this.isInitalRender = true;
+          this.firstRender();
+        }
+
+        firstRender() {
+          const modalTemplate = document.getElementById(
+            'modal-example-template'
+          );
+          const template = modalTemplate.content.cloneNode(true);
+          const button = template.querySelector('ix-button');
+          button.innerText = `Modal with size ${this.size}`;
+          button.addEventListener('click', () => dismissModal(this));
+          this.append(template);
+        }
+      }
+    );
+
+    return name;
+  }
+
+  (async function () {
+    const exampleModalName = createExampleModal();
+
+    await window.customElements.whenDefined('ix-button');
+    const buttons = document.querySelectorAll('ix-button');
+
+    buttons.forEach((button) =>
+      button.addEventListener('click', async () => {
+        const customModal = document.createElement(exampleModalName);
+        customModal.size = button.getAttribute('data-modal-size');
+        const modal = await showModal({
+          content: customModal,
+          size: customModal.size,
+        });
+      })
+    );
+  })();
+</script>

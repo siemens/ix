@@ -13,12 +13,7 @@ import React from 'react';
 export default () => {
   return (
     <IxKeyValue label="Label">
-      <input
-        className="form-control"
-        placeholder="Enter text here"
-        type="text"
-        slot="custom-value"
-      />
+      <input placeholder="Enter text here" type="text" slot="custom-value" />
     </IxKeyValue>
   );
 };

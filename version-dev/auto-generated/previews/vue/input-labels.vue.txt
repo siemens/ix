@@ -16,11 +16,11 @@ import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-vue';
   <form className="needs-validation m-2">
     <IxInputGroup>
         <span slot="input-start">Label Start</span>
-        <input type="text" className="form-control" />
+        <input type="text" />
       </IxInputGroup>
 
       <IxInputGroup>
-        <input type="text" className="form-control" />
+        <input type="text" />
         <span slot="input-end">Label End</span>
       </IxInputGroup>
   </form>
