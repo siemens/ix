@@ -63,6 +63,20 @@
     width: 95%;
   }
 
+  .modal-size-full-screen {
+    left: 0px !important;
+    top: 0px !important;
+    transform: none !important;
+
+    width: calc(100% - 28px);
+    min-width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+
+    height: calc(100% - 28px);
+    min-height: calc(100% - 28px);
+    max-height: calc(100% - 28px);
+  }
+
   .dialog-backdrop {
     display: block;
     position: fixed;
@@ -72,6 +86,10 @@
     left: 0px;
 
     pointer-events: none;
+  }
+
+  ::slotted(ix-modal-footer) {
+    margin-top: auto;
   }
 }
 

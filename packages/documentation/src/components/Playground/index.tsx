@@ -9,7 +9,7 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { IxTabItem, IxTabs } from '@siemens/ix-react';
+import { IxIconButton, IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -20,6 +20,26 @@ import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
 
 type MdxContent = ({}) => {};
+
+function ButtonOpenIframe({ name }: { name: string }) {
+  const baseUrl = useBaseUrl('/');
+
+  return (
+    <IxIconButton
+      icon="open-external"
+      ghost
+      size="16"
+      oval
+      title="Open in new tab"
+      onClick={() => {
+        window.open(
+          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=theme-brand-dark`,
+          '_blank'
+        );
+      }}
+    ></IxIconButton>
+  );
+}
 
 function ButtonOpenGithub({
   name,
@@ -353,7 +373,9 @@ export function _Playground({
                     files={getFileNames()}
                   />
                 </>
-              ) : null}
+              ) : (
+                <ButtonOpenIframe name={name}></ButtonOpenIframe>
+              )}
             </div>
           </div>
           {renderSourceCodeSnippet()}

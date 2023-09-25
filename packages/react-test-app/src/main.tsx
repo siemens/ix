@@ -65,6 +65,7 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
 import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
+import ModalSizes from './preview-examples/modal-sizes';
 import Pill from './preview-examples/pill';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
@@ -232,6 +233,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/settings" element={<Settings />} />
         <Route path="/preview/kpi" element={<Kpi />} />
         <Route path="/preview/modal" element={<ModalExample />} />
+        <Route path="/preview/modal-sizes" element={<ModalSizes />} />
         <Route path="/preview/validation" element={<Validation />} />
         <Route path="/preview/workflow" element={<Workflow />} />
         <Route
