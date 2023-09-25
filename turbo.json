@@ -5,6 +5,7 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": [
+        "components/**",
         "dist/**",
         "dist-css/**",
         "build/**",

@@ -82,31 +82,36 @@ export class InputGroup {
     const slot = this.hostElement.shadowRoot.querySelector(
       'slot[name="input-start"]'
     );
-    const startPadding = this.getChildrenWidth(slot);
+    setTimeout(() => {
+      const startPadding = this.getChildrenWidth(slot);
 
-    if (startPadding !== 0) {
-      this.inputPaddingLeft = 15 + startPadding;
-    }
+      if (startPadding !== 0) {
+        this.inputPaddingLeft = 15 + startPadding;
+      }
 
-    if (!this.inputElement) {
-      return;
-    }
+      if (!this.inputElement) {
+        return;
+      }
 
-    if (
-      (this.inputElement.form?.classList.contains('was-validated') ||
-        this.inputElement.form?.noValidate === false) &&
-      !this.inputElement.validity.valid
-    ) {
-      this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
-      this.inputPaddingLeft += 32;
-    }
+      if (
+        (this.inputElement.form?.classList.contains('was-validated') ||
+          this.inputElement.form?.noValidate === false) &&
+        !this.inputElement.validity.valid
+      ) {
+        this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
+        this.inputPaddingLeft += 32;
+      }
+    });
   }
 
   private endSlotChanged() {
     const slot = this.hostElement.shadowRoot.querySelector(
       'slot[name="input-end"]'
     );
-    this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
+
+    setTimeout(() => {
+      this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
+    });
   }
 
   private getChildrenWidth(slotElement: Element) {
