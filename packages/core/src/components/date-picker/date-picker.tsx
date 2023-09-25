@@ -32,7 +32,7 @@ export type DateTimeCorners = DateTimeCardCorners;
 
 @Component({
   tag: 'ix-date-picker',
-  styleUrl: 'date-picker.scss',
+  styleUrl: './date-picker.scss',
   shadow: true,
 })
 export class DatePicker {
