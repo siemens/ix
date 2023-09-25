@@ -9,41 +9,30 @@
 @import 'mixins/shadow-dom/component';
 @import 'components/form/input';
 
-input {
-  box-shadow: none;
-
-  &.hover,
-  &:hover {
-    border-color: var(--theme-input--border-color);
-    background-color: var(--theme-input--background);
-  }
-
-  &.focus,
-  &:focus {
-    outline: initial;
-    outline-offset: initial;
-    border-color: var(--theme-input--border-color);
-  }
-}
-
 :host {
   @include ix-component;
+
+  input {
+    box-shadow: none;
+  
+    &.hover,
+    &:hover {
+      border-color: var(--theme-input--border-color);
+      background-color: var(--theme-input--background);
+    }
+  
+    &.focus,
+    &:focus {
+      outline: initial;
+      outline-offset: initial;
+      border-color: var(--theme-input--border-color);
+    }
+  }
 
   label {
     .inline {
       display: inline-block;
       text-align: right;
-    }
-  }
-
-  span {
-    &.vertical-align {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    &.label {
-      padding-left: 0.25rem;
     }
   }
 

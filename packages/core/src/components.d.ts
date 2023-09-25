@@ -78,86 +78,6 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface DatetimeInput {
-        /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat": string;
-        /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from": string | undefined;
-        /**
-          * Label for the input
-         */
-        "label": string;
-        /**
-          * Position of the label
-         */
-        "labelPosition": 'above' | 'inline';
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate": string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate": string;
-        /**
-          * Set range size
-         */
-        "range": boolean;
-        /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference": any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate": string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time": string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat": string;
-        /**
-          * Set time reference
-         */
-        "timeReference": 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to": string | undefined;
-        /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
-         */
-        "weekStartIndex": number;
-    }
     /**
      * @since 1.6.0
      */
@@ -666,6 +586,86 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners1;
         "standaloneAppearance": boolean;
+    }
+    interface IxDatetimeInput {
+        /**
+          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from": string | undefined;
+        /**
+          * Label for the input
+         */
+        "label": string;
+        /**
+          * Position of the label
+         */
+        "labelPosition": 'above' | 'inline';
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
+          * Set range size
+         */
+        "range": boolean;
+        /**
+          * Show hour input
+         */
+        "showHour": boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes": boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds": boolean;
+        /**
+          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * @since 1.1.0
+         */
+        "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time": string;
+        /**
+          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | undefined;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatetimePicker {
         /**
@@ -2463,12 +2463,6 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    interface HTMLDatetimeInputElement extends Components.DatetimeInput, HTMLStencilElement {
-    }
-    var HTMLDatetimeInputElement: {
-        prototype: HTMLDatetimeInputElement;
-        new (): HTMLDatetimeInputElement;
-    };
     /**
      * @since 1.6.0
      */
@@ -2648,6 +2642,12 @@ declare global {
     var HTMLIxDateTimeCardElement: {
         prototype: HTMLIxDateTimeCardElement;
         new (): HTMLIxDateTimeCardElement;
+    };
+    interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
+    }
+    var HTMLIxDatetimeInputElement: {
+        prototype: HTMLIxDatetimeInputElement;
+        new (): HTMLIxDatetimeInputElement;
     };
     interface HTMLIxDatetimePickerElement extends Components.IxDatetimePicker, HTMLStencilElement {
     }
@@ -3154,7 +3154,6 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "datetime-input": HTMLDatetimeInputElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -3181,6 +3180,7 @@ declare global {
         "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
+        "ix-datetime-input": HTMLIxDatetimeInputElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
@@ -3257,86 +3257,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface DatetimeInput {
-        /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat"?: string;
-        /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from"?: string | undefined;
-        /**
-          * Label for the input
-         */
-        "label"?: string;
-        /**
-          * Position of the label
-         */
-        "labelPosition"?: 'above' | 'inline';
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate"?: string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate"?: string;
-        /**
-          * Set range size
-         */
-        "range"?: boolean;
-        /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference"?: any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate"?: string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time"?: string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat"?: string;
-        /**
-          * Set time reference
-         */
-        "timeReference"?: 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to"?: string | undefined;
-        /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
-         */
-        "weekStartIndex"?: number;
-    }
     /**
      * @since 1.6.0
      */
@@ -3915,6 +3835,86 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners1;
         "standaloneAppearance"?: boolean;
+    }
+    interface IxDatetimeInput {
+        /**
+          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from"?: string | undefined;
+        /**
+          * Label for the input
+         */
+        "label"?: string;
+        /**
+          * Position of the label
+         */
+        "labelPosition"?: 'above' | 'inline';
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * Set range size
+         */
+        "range"?: boolean;
+        /**
+          * Show hour input
+         */
+        "showHour"?: boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds"?: boolean;
+        /**
+          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * @since 1.1.0
+         */
+        "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time"?: string;
+        /**
+          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | undefined;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.0.0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatetimePicker {
         /**
@@ -5665,7 +5665,6 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface IntrinsicElements {
-        "datetime-input": DatetimeInput;
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
@@ -5692,6 +5691,7 @@ declare namespace LocalJSX {
         "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
+        "ix-datetime-input": IxDatetimeInput;
         "ix-datetime-picker": IxDatetimePicker;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
@@ -5771,7 +5771,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "datetime-input": LocalJSX.DatetimeInput & JSXBase.HTMLAttributes<HTMLDatetimeInputElement>;
             /**
              * @since 1.6.0
              */
@@ -5822,6 +5821,7 @@ declare module "@stencil/core" {
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
+            "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             /**
              * @since 1.4.0

@@ -17,7 +17,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-date-input></ix-date-input>
+        <ix-datetime-input></ix-datetime-input>
       </Host>
     );
   }

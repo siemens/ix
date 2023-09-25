@@ -295,11 +295,7 @@ export class DateInput {
         ) : (
           ''
         )}
-        <div
-          id="dateinput"
-          class="date-input"
-          ref={(ref) => (this.triggerRef = ref)}
-        >
+        <div class="date-input" ref={(ref) => (this.triggerRef = ref)}>
           {this.labelPosition === 'inline' ? (
             <span class="vertical-align label">
               <label htmlFor="firstInput">{this.label}</label>

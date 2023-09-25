@@ -6,7 +6,92 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@import 'mixins/shadow-dom/component';
+@import 'components/form/input';
 
 :host {
-  display: block;
+  @include ix-component;
+
+  input {
+    box-shadow: none;
+  
+    &.hover,
+    &:hover {
+      border-color: var(--theme-input--border-color);
+      background-color: var(--theme-input--background);
+    }
+  
+    &.focus,
+    &:focus {
+      outline: initial;
+      outline-offset: initial;
+      border-color: var(--theme-input--border-color);
+    }
+  }
+
+  label {
+    .inline {
+      display: inline-block;
+      text-align: right;
+    }
+  }
+
+  span {
+    &.vertical-align {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    &.label {
+      padding-left: 0.25rem;
+    }
+  }
+
+  ix-dropdown {
+    margin-top: 0.25rem !important;
+    padding: 0;
+  }
+
+  .range-inputs {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .datetime-input {
+    /* REMOVE */
+    margin: 10px;
+    /* REMOVE */
+    width: 300px;
+    display: flex;
+
+    background-color: var(--theme-input--background);
+    border-radius: var(--theme-input--border-radius);
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+
+    input {
+      border: 0;
+    }
+
+    &:focus-within {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      border-color: var(--theme-input--border-color--focus);
+    }
+
+    .icon-button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &.clear {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 0px;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+    }
+  }
 }
