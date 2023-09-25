@@ -308,6 +308,7 @@ export class Select {
     } else {
       this.navigationItem = undefined;
     }
+    this.filterItemsWithTypeahead();
   }
 
   @Listen('keydown', {
@@ -380,6 +381,10 @@ export class Select {
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputRef.value;
 
+    if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
+      return;
+    }
+
     if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
@@ -421,9 +426,7 @@ export class Select {
     }
 
     if (this.isSingleMode) {
-      if (this.dropdownShow && this.isDropdownEmpty) {
-        this.dropdownShow = false;
-      }
+      return;
     }
 
     if (!this.dropdownShow && this.mode !== 'multiple') {
