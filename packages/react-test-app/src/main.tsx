@@ -90,6 +90,7 @@ import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
 import Toast from './preview-examples/toast';
 import ToastCustom from './preview-examples/toast-custom';
+import ToastPosition from './preview-examples/toast-position';
 import Toggle from './preview-examples/toggle';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label';
 import ToggleDisabled from './preview-examples/toggle-disabled';
@@ -217,6 +218,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/timepicker" element={<Timepicker />} />
         <Route path="/preview/toast" element={<Toast />} />
         <Route path="/preview/toast-custom" element={<ToastCustom />} />
+        <Route path="/preview/toast-position" element={<ToastPosition />} />
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/toggle-disabled" element={<ToggleDisabled />} />
         <Route

@@ -13,6 +13,7 @@ import { ToastConfig } from './toast-utils';
 
 @Component({
   tag: 'ix-toast-container',
+  styleUrl: './styles/toast-container.scss',
   shadow: true,
 })
 export class ToastContainer {
@@ -72,8 +73,8 @@ export class ToastContainer {
 
     toast.toastTitle = config.title;
     toast.type = config.type;
-    toast.autoClose = config.autoClose;
-    toast.autoCloseDelay = config.autoCloseDelay;
+    toast.autoClose = config.autoClose ?? true;
+    toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
     toast.addEventListener(
@@ -90,7 +91,9 @@ export class ToastContainer {
       toast.appendChild(config.message);
     }
 
-    this.hostContainer.appendChild(toast);
+    setTimeout(() => {
+      this.hostContainer.appendChild(toast);
+    });
 
     return {
       onClose,
@@ -101,6 +104,15 @@ export class ToastContainer {
   }
 
   render() {
-    return <Host></Host>;
+    return (
+      <Host
+        class={{
+          'toast-container--bottom-right': this.position === 'bottom-right',
+          'toast-container--top-right': this.position === 'top-right',
+        }}
+      >
+        {/* <slot></slot> */}
+      </Host>
+    );
   }
 }
