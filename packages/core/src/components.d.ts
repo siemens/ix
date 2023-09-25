@@ -1084,13 +1084,13 @@ export namespace Components {
          */
         "columns": number;
         /**
+          * Grid gap
+         */
+        "gap": '8' | '12' | '16' | '24';
+        /**
           * The grid will not have any horizontal padding
          */
-        "noPadding": boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap": boolean;
+        "noMargin": boolean;
     }
     /**
      * @since 2.0.0
@@ -4241,13 +4241,13 @@ declare namespace LocalJSX {
          */
         "columns"?: number;
         /**
+          * Grid gap
+         */
+        "gap"?: '8' | '12' | '16' | '24';
+        /**
           * The grid will not have any horizontal padding
          */
-        "noPadding"?: boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap"?: boolean;
+        "noMargin"?: boolean;
     }
     /**
      * @since 2.0.0

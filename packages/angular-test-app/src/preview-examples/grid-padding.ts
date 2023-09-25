@@ -18,17 +18,23 @@ import { Component } from '@angular/core';
         margin-bottom: 1rem;
       }
 
-      ix-col {
-        background-color: var(--theme-color-primary);
-        border: var(--theme-std-bdr-2);
-        text-align: center;
-        color: var(--theme-color-inv-contrast-text);
+      ix-col > ix-typography {
+        display: flex;
+        padding: 0.15rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 0;
+        align-self: stretch;
+        border: 1px solid var(--theme-color-soft-bdr);
+        background: var(--theme-color-ghost);
+        border-radius: 3px;
       }
 
       .example-parent {
         padding-top: 1rem;
         padding-bottom: 0.25rem;
-        background-color: var(--theme-color-info-40);
+        background-color: var(--theme-color-ghost--hover);
       }
     `,
   ],

@@ -1,47 +1,12 @@
 ---
-sidebar_position: 3
+title: Icons
 ---
 
-import Icons from '@site/src/components/Icons';
+import DocsTabs from '@site/src/components/DocsTabs';
 
-# Industrial icon system
+import DocsUx from './\_icon_styleguide.md';
+import DocsCode from './\_icon_code.md';
 
-Integrate our growing and comprehensive icon system for industrial applications using web fonts or SVG.
+# Icons
 
-## Usage
-
-### Angular
-
-```html
-<ix-icon name="star" size="16"></ix-icon>
-<ix-icon name="star" size="24"></ix-icon>
-<ix-icon name="star" size="32"></ix-icon>
-```
-
-### React
-
-```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
-```
-
-### Web components
-
-```html
-<ix-icon name="star" size="16"></ix-icon>
-<ix-icon name="star" size="24"></ix-icon>
-<ix-icon name="star" size="32"></ix-icon>
-```
-
-### Vue
-
-```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
-```
-
-## Icon library
-
-<Icons></Icons>
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
