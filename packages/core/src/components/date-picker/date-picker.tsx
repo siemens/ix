@@ -503,114 +503,116 @@ export class DatePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card
-          corners={this.corners}
-          standaloneAppearance={this.standaloneAppearance}
-        >
-          <div class="header" slot="header">
-            <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(-1)}
-              ghost
-              icon="chevron-left"
-              variant="primary"
-              class="arrows"
-            ></ix-icon-button>
-            <div class="selector">
-              <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
-                <span class="fontSize capitalize">
-                  {this.monthNames[this.selectedMonth]} {this.selectedYear}
-                </span>
-              </ix-button>
-              <ix-dropdown
-                class="dropdown"
-                trigger={this.dropdownButtonRef}
-                placement="bottom-start"
-              >
-                <div class="wrapper">
-                  <div
-                    class="overflow"
-                    onScroll={() => this.infiniteScrollYears()}
-                    ref={(ref) => (this.yearContainerRef = ref)}
-                  >
-                    {this.renderYears()}
-                  </div>
-                  <div class="overflow">
-                    {this.monthNames.map((month, index) => (
-                      <div
-                        key={month}
-                        class={{
-                          arrowYear: true,
-                          selected:
-                            this.tempYear === this.selectedYear &&
-                            this.tempMonth === index,
-                          'disabled-item': !this.isWithinMinMaxMonth(index),
-                        }}
-                        onClick={() => this.selectMonth(index)}
-                      >
-                        <ix-icon
+        <div class="container">
+          <ix-date-time-card
+            corners={this.corners}
+            standaloneAppearance={this.standaloneAppearance}
+          >
+            <div class="header" slot="header">
+              <ix-icon-button
+                onClick={() => this.changeToAdjacentMonth(-1)}
+                ghost
+                icon="chevron-left"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <div class="selector">
+                <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
+                  <span class="fontSize capitalize">
+                    {this.monthNames[this.selectedMonth]} {this.selectedYear}
+                  </span>
+                </ix-button>
+                <ix-dropdown
+                  class="dropdown"
+                  trigger={this.dropdownButtonRef}
+                  placement="bottom-start"
+                >
+                  <div class="wrapper">
+                    <div
+                      class="overflow"
+                      onScroll={() => this.infiniteScrollYears()}
+                      ref={(ref) => (this.yearContainerRef = ref)}
+                    >
+                      {this.renderYears()}
+                    </div>
+                    <div class="overflow">
+                      {this.monthNames.map((month, index) => (
+                        <div
+                          key={month}
                           class={{
-                            hidden:
-                              this.tempYear !== this.selectedYear ||
-                              this.tempMonth !== index,
-                            checkPosition: true,
+                            arrowYear: true,
+                            selected:
+                              this.tempYear === this.selectedYear &&
+                              this.tempMonth === index,
+                            'disabled-item': !this.isWithinMinMaxMonth(index),
                           }}
-                          name="single-check"
-                          size="16"
-                        ></ix-icon>
-                        <div>
-                          <span
-                            class={{ capitalize: true, monthMargin: true }}
-                          >{`${month} ${this.tempYear}`}</span>
+                          onClick={() => this.selectMonth(index)}
+                        >
+                          <ix-icon
+                            class={{
+                              hidden:
+                                this.tempYear !== this.selectedYear ||
+                                this.tempMonth !== index,
+                              checkPosition: true,
+                            }}
+                            name="single-check"
+                            size="16"
+                          ></ix-icon>
+                          <div>
+                            <span
+                              class={{ capitalize: true, monthMargin: true }}
+                            >{`${month} ${this.tempYear}`}</span>
+                          </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                </ix-dropdown>
+              </div>
+              <ix-icon-button
+                onClick={() => this.changeToAdjacentMonth(1)}
+                ghost
+                icon="chevron-right"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+            </div>
+            <div class="grid">
+              <div class="calendar-item week-day"></div>
+              {this.dayNames.map((name) => (
+                <div key={name} class="calendar-item week-day">
+                  {name.slice(0, 3)}
+                </div>
+              ))}
+              {this.calendar.map((week) => {
+                return (
+                  <Fragment>
+                    <div class="calendar-item week-number">{week.weekNumber}</div>
+                    {week.dayNumbers.map((day) => (
+                      <div
+                        key={day}
+                        class={this.getDayClasses(day)}
+                        onClick={() => this.selectDay(day)}
+                      >
+                        {day}
                       </div>
                     ))}
-                  </div>
-                </div>
-              </ix-dropdown>
+                  </Fragment>
+                );
+              })}
             </div>
-            <ix-icon-button
-              onClick={() => this.changeToAdjacentMonth(1)}
-              ghost
-              icon="chevron-right"
-              variant="primary"
-              class="arrows"
-            ></ix-icon-button>
-          </div>
-          <div class="grid">
-            <div class="calendar-item week-day"></div>
-            {this.dayNames.map((name) => (
-              <div key={name} class="calendar-item week-day">
-                {name.slice(0, 3)}
-              </div>
-            ))}
-            {this.calendar.map((week) => {
-              return (
-                <Fragment>
-                  <div class="calendar-item week-number">{week.weekNumber}</div>
-                  {week.dayNumbers.map((day) => (
-                    <div
-                      key={day}
-                      class={this.getDayClasses(day)}
-                      onClick={() => this.selectDay(day)}
-                    >
-                      {day}
-                    </div>
-                  ))}
-                </Fragment>
-              );
-            })}
-          </div>
-          <div
-            class={{
-              button: true,
-              hidden: !this.range || !this.standaloneAppearance,
-            }}
-          >
-            <ix-button onClick={() => this.onDone()}>
-              {this.textSelectDate}
-            </ix-button>
-          </div>
-        </ix-date-time-card>
+            <div
+              class={{
+                button: true,
+                hidden: !this.range || !this.standaloneAppearance,
+              }}
+            >
+              <ix-button onClick={() => this.onDone()}>
+                {this.textSelectDate}
+              </ix-button>
+            </div>
+          </ix-date-time-card>
+        </div>
       </Host>
     );
   }
