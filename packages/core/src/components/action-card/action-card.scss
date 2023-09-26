@@ -88,6 +88,14 @@
   ix-card.card-neutral:active {
     --ix-card-background: var(--theme-color-neutral--active);
   }
+
+  ix-card.card-primary:hover {
+    --ix-card-background: var(--theme-color-primary--hover);
+  }
+
+  ix-card.card-primary:active {
+    --ix-card-background: var(--theme-color-primary--active);
+  }
 }
 
 :host(:hover) {
@@ -122,6 +130,10 @@
   ix-card.card-neutral:hover {
     --ix-card-background: var(--theme-color-neutral--hover);
   }
+
+  ix-card.card-primary:hover {
+    --ix-card-background: var(--theme-color-primary--hover);
+  }
 }
 
 :host(:active) {
@@ -155,6 +167,10 @@
 
   ix-card.card-neutral:active {
     --ix-card-background: var(--theme-color-neutral--active);
+  }
+
+  ix-card.card-primary:active {
+    --ix-card-background: var(--theme-color-primary--active);
   }
 }
 
@@ -193,5 +209,9 @@
 
   ix-card.card-neutral {
     --ix-card-background: var(--theme-color-neutral--active);
+  }
+
+  ix-card.card-primary {
+    --ix-card-background: var(--theme-color-primary--active);
   }
 }
