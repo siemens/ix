@@ -656,7 +656,10 @@ export class Menu {
               {this.i18nSettings}
             </ix-menu-item>
           ) : null}
-          <slot name="bottom"></slot>
+          <div onClick={(e) => this.onMenuItemsClick(e)}>
+            <slot name="bottom"></slot>
+          </div>
+
           <div id="popover-area"></div>
           {this.about ? (
             <ix-menu-item

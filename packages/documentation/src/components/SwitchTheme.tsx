@@ -10,6 +10,7 @@ import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React, { useEffect, useState } from 'react';
+import { ThemeChangeEvent } from '../utils/theme-change-event';
 import { getDefaultTheme } from './config';
 import styles from './SwitchTheme.module.css';
 
@@ -22,7 +23,7 @@ function ThemeEntry(props: {
   return (
     <div
       className={styles.Dropdown__Item}
-      onClick={(e) => props.onClick(e, props.id)}
+      onClick={(e) => props.onClick?.(e, props.id)}
     >
       <div
         className={styles.Theme__Color}
@@ -89,11 +90,17 @@ export function SwitchTheme(props: { icon: string; label: string }) {
     localStorage.setItem('theme', theme);
     document.body.className = theme;
 
+    dispatchThemeChange(theme);
+
     setOpen(false);
   };
 
   function getLabel(id: string = 'theme-classic-dark') {
-    return registeredThemes.find((t) => t.id === id).label;
+    return registeredThemes.find((t) => t.id === id)?.label;
+  }
+
+  function dispatchThemeChange(theme: string) {
+    window.dispatchEvent(new ThemeChangeEvent(theme));
   }
 
   return (

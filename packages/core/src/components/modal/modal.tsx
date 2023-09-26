@@ -21,7 +21,7 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
-export type IxModalDynamicSize = 'full-width';
+export type IxModalDynamicSize = 'full-width' | 'full-screen';
 export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 
 @Component({

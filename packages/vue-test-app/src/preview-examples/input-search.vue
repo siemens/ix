@@ -27,7 +27,7 @@ function clearInput() {
       <input
         id="input-string"
         type="string"
-        className="form-control"
+
         v-model="text"
       />
       <span slot="input-end">

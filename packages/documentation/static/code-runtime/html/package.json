@@ -11,7 +11,7 @@
   ],
   "devDependencies": {
     "vite": "^3.1.0",
-    "@siemens/ix": "^1",
-    "@siemens/ix-icons": "^1"
+    "@siemens/ix": "latest",
+    "@siemens/ix-icons": "latest"
   }
 }

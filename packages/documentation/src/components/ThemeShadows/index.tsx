@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { toast } from '@siemens/ix';
-import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
+import {
+  IxCol,
+  IxIcon,
+  IxIconButton,
+  IxInputGroup,
+  IxLayoutGrid,
+  IxRow,
+} from '@siemens/ix-react';
 import React, { useState } from 'react';
 import { themeShadows } from './shadows';
 import './ThemeShadows.css';
@@ -37,7 +44,7 @@ function Search(props: { onChange: (value: string) => void }) {
 
 function ShadowPreview(props: { border: string }) {
   return (
-    <div className="col-2 Shadow__Preview">
+    <div className="Shadow__Preview">
       <div
         style={{
           boxShadow: `var(${props.border})`,
@@ -47,7 +54,7 @@ function ShadowPreview(props: { border: string }) {
   );
 }
 
-function ThemeShadows() {
+const ThemeShadows: React.FC = () => {
   const [borders, setBorders] = useState(themeShadows);
 
   const updateFilter = (filter) => {
@@ -73,26 +80,32 @@ function ThemeShadows() {
   return (
     <div className="Theme__Shadows">
       <Search onChange={(value) => updateFilter(value)} />
-      <div className="container-fluid">
+      <IxLayoutGrid>
         {borders.map((border) => {
           return (
-            <div key={border} className={'Section row'}>
-              <ShadowPreview border={border} />
-              <div className="col-8 Shadow__Name">{border}</div>
-              <IxIconButton
-                icon="copy"
-                ghost
-                style={{ marginRight: '1rem' }}
-                className="col-1 Copy__Icon"
-                oval
-                onClick={() => copyToClipboard(border)}
-              />
-            </div>
+            <IxRow key={border} className={'Section'}>
+              <IxCol size="2">
+                <ShadowPreview border={border} />
+              </IxCol>
+              <IxCol size="9" className="Shadow__Name">
+                {border}
+              </IxCol>
+              <IxCol size="1">
+                <IxIconButton
+                  icon="copy"
+                  ghost
+                  style={{ marginRight: '1rem' }}
+                  className="Copy__Icon"
+                  oval
+                  onClick={() => copyToClipboard(border)}
+                />
+              </IxCol>
+            </IxRow>
           );
         })}
-      </div>
+      </IxLayoutGrid>
     </div>
   );
-}
+};
 
 export default ThemeShadows;

@@ -10,12 +10,37 @@ Everyone can use the two embedded themes that already ship with Siemens Industri
 
 - Classic light (theme-classic-light)
 - Classic dark (theme-classic-dark)
-- **deprecated** Legacy Classic light (theme-legacy-classic-light)
-- **deprecated** Legacy Classic dark (theme-legacy-classic-dark)
 
 You can also create your own themes in order to customize the design system to your own brand.
 
 Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
+
+## Using the old classic theme
+
+The original classic theme was deprecated in favor of an updated version that is more easily maintainable for us.
+The legacy theme is still available but no longer part of the main CSS file. In order to still apply it to your app you have to load it manually.
+This can be done in various ways.
+
+The simplest way is to use the bundler/loader and just import the legacy styles inside of your global stylesheet.
+
+e.g. styles.css:
+```
+@import '@siemens/ix/dist-css/theme/legacy-classic-dark.css';
+@import '@siemens/ix/dist-css/theme/legacy-classic-light.css';
+```
+
+If this step is done you can set the theme name class on the body tag:
+
+```html
+<html>
+  <!-- Framework related imports -->
+  <!--  -->
+  <body class="theme-legacy-classic-dark"></body>
+</html>
+```
+
+- **deprecated** Legacy Classic light (theme-legacy-classic-light)
+- **deprecated** Legacy Classic dark (theme-legacy-classic-dark)
 
 ## Siemens AG Corporate Brand Theme
 

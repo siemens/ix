@@ -14,7 +14,7 @@ import { IxKeyValue } from '@siemens/ix-vue';
 <template>
   <IxKeyValue label="Label">
     <input
-      className="form-control"
+
       placeholder="Enter text here"
       type="text"
       slot="custom-value"

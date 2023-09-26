@@ -16,12 +16,12 @@ import { IxInputGroup } from '@siemens/ix-vue';
   <form className="needs-validation m-2">
     <IxInputGroup>
         <span slot="input-start">Text:</span>
-        <input placeholder="Enter text" type="text" className="form-control" />
+        <input placeholder="Enter text" type="text" />
       </IxInputGroup>
 
       <IxInputGroup>
         <span slot="input-start">Number:</span>
-        <input type="number" className="form-control" />
+        <input type="number" />
         <span slot="input-end">.00</span>
         <span slot="input-end">$</span>
       </IxInputGroup>
@@ -31,7 +31,7 @@ import { IxInputGroup } from '@siemens/ix-vue';
         <input
           placeholder="Enter password"
           type="password"
-          className="form-control"
+
         />
       </IxInputGroup>
 
@@ -40,13 +40,13 @@ import { IxInputGroup } from '@siemens/ix-vue';
         <input
           placeholder="example@domain.com"
           type="email"
-          className="form-control"
+
         />
       </IxInputGroup>
 
       <IxInputGroup>
         <span slot="input-start">Telephone:</span>
-        <input placeholder="111-111-111" type="tel" className="form-control" />
+        <input placeholder="111-111-111" type="tel" />
       </IxInputGroup>
   </form>
 </template>

@@ -66,7 +66,7 @@ module.exports = async function (node, config) {
 
       console.log(`Requested image ${imageUrl}`);
       if (process.env.NODE_ENV === 'production') {
-        const imageFileName = `${imageUUID}.png`;
+        const imageFileName = `${imageUUID.replace(/:/, '_')}.png`;
 
         if (!fs.existsSync(path.join(config.figmaFolder, imageFileName))) {
           const imageResponse = await axios.get(imageUrl, {

@@ -14,28 +14,13 @@ export default () => {
   return (
     <IxKeyValueList>
       <IxKeyValue label="Label" labelPosition="left">
-        <input
-          className="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </IxKeyValue>
       <IxKeyValue label="Label" labelPosition="left">
-        <input
-          className="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </IxKeyValue>
       <IxKeyValue label="Label" labelPosition="left">
-        <input
-          className="form-control"
-          placeholder="Enter text here"
-          type="text"
-          slot="custom-value"
-        />
+        <input placeholder="Enter text here" type="text" slot="custom-value" />
       </IxKeyValue>
     </IxKeyValueList>
   );
