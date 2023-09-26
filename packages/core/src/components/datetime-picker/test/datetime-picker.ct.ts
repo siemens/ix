@@ -17,7 +17,7 @@ test('renders', async ({ mount, page }) => {
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('date picker tests single', () => {
+test.describe('datetime picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
       `
@@ -51,7 +51,7 @@ test.describe('date picker tests single', () => {
     expect(await timeChangeEvent).toBeTruthy;
   });
 
-  test('change date units', async ({ page }) => {
+  test('change date', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const dateChangeEvent = page.evaluate(() => {

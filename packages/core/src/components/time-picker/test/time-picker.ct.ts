@@ -22,7 +22,7 @@ test('renders', async ({ mount, page }) => {
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('date picker tests single', () => {
+test.describe('time picker tests', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-time-picker
@@ -37,7 +37,7 @@ test.describe('date picker tests single', () => {
     );
   });
 
-  test('get date', async ({ page }) => {
+  test('get time', async ({ page }) => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 AM']);
   });
 
@@ -96,7 +96,7 @@ test.describe('date picker tests single', () => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 PM']);
   });
 
-  test('select different date fires dateChange event', async ({ page }) => {
+  test('select different time fires timeChange event', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const timeChangeEvent = page.evaluate(() => {
