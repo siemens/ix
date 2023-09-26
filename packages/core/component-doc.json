@@ -105,7 +105,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -135,6 +135,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -1017,7 +1021,7 @@
       "props": [
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -1047,6 +1051,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -8607,7 +8615,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -8637,6 +8645,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {

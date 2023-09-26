@@ -80,6 +80,11 @@
   color: var(--theme-color-neutral--contrast);
 }
 
+:host(.card-primary) {
+  --ix-card-background: var(--theme-color-primary);
+  color: var(--theme-color-neutral--contrast);
+}
+
 :host(:not(.card-insight)) {
   --ix-card-border-color: transparent;
 }
