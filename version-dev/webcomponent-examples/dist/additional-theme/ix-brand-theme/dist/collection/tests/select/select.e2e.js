@@ -11,19 +11,19 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('select/basic');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('editable', async ({ page }) => {
     await page.goto('select/editable');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('mode-multiple', async ({ page }) => {
     await page.goto('select/mode-multiple');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -46,26 +46,26 @@ regressionTest.describe('select', () => {
   });
   regressionTest('overflow', async ({ page }) => {
     await page.goto('select/overflow');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('autoplacement', async ({ page }) => {
     await page.goto('select/autoplacement');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('allow-clear', async ({ page }) => {
     await page.goto('select/allow-clear');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     await page.locator('text=Item 2').first().click();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('list-header-hide', async ({ page }) => {
     await page.goto('select/list-header-hide');
-    await page.locator('.chevron-down-container').click();
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
     await page.waitForSelector('.dropdown-menu.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -76,7 +76,7 @@ regressionTest.describe('select', () => {
   regressionTest('readonly select Index', async ({ page }) => {
     await page.goto('select/readonly');
     const element = page.locator('ix-select');
-    await element.evaluate((el) => (el.selectedIndices = ['1']));
+    await element.evaluate((el) => (el.value = ['1']));
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
   regressionTest('readonly select multiple index', async ({ page }) => {
@@ -84,7 +84,7 @@ regressionTest.describe('select', () => {
     const element = page.locator('ix-select');
     await element.evaluate((el) => {
       el.mode = 'multiple';
-      el.selectedIndices = ['1', '2'];
+      el.value = ['1', '2'];
     });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

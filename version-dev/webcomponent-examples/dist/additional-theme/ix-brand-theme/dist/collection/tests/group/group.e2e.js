@@ -26,7 +26,7 @@ regressionTest.describe('group', () => {
   });
   regressionTest('item selected', async ({ page }) => {
     await page.goto('group/basic');
-    await page.locator('.btn-expand-header .glyph').click();
+    await page.locator('.btn-expand-header ix-icon').click();
     await page.locator('text=Example text 1').first().click();
     await page.locator('text=Example text 2').first().hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

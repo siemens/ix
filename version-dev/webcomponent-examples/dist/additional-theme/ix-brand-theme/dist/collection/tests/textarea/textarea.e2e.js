@@ -17,5 +17,9 @@ regressionTest.describe('textarea', () => {
     await page.goto('textarea/readonly');
     expect(await page.screenshot()).toMatchSnapshot();
   });
+  regressionTest('disabled', async ({ page }) => {
+    await page.goto('textarea/disabled');
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });
 //# sourceMappingURL=textarea.e2e.js.map
