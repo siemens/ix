@@ -75,3 +75,30 @@ test('modal with dropdown', async ({ mount, page }) => {
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
+
+[`360`, `480`, `600`, `720`, `840`, `full-width`, `full-screen`].forEach(
+  (size) => {
+    test(`modal size ${size}`, async ({ page, mount }) => {
+      await page.setViewportSize({
+        height: 1080,
+        width: 1920,
+      });
+
+      await mount(`
+      <ix-modal size="${size}">
+        <ix-modal-header>Header</ix-modal-header>
+        <ix-modal-content>Some Content 123 content 123 content 123 content 123</ix-modal-content>
+        <ix-modal-footer>
+          <ix-button>Test</ix-button>
+        </ix-modal-footer>
+      </ix-modal>
+    `);
+
+      const modal = page.locator('ix-modal');
+      await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+
+      await page.waitForTimeout(1000);
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+  }
+);

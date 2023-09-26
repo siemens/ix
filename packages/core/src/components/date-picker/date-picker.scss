@@ -12,6 +12,9 @@
 
 :host {
   @include ix-component;
+  display: block;
+  position: relative;
+  width: 22rem;
 
   .container {
     max-width: 352px;

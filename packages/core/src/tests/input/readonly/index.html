@@ -5,18 +5,52 @@ SPDX-License-Identifier: MIT
 -->
 
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      body {
+        padding: 1rem;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <title>Stencil Component Starter</title>
-</head>
+  <body>
+    <div>
+      <input
+        class="form-control"
+        placeholder="Enter text here"
+        type="text"
+        readonly
+        value="some value"
+      />
+      <input
+        placeholder="Enter text here"
+        type="text"
+        readonly
+        value="some value"
+      />
 
-<body>
-  <div class="m-2">
-    <input class="form-control" defaultValue="" placeholder="Enter text here" type="text" readonly />
-  </div>
-  <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
-</body>
-
+      <input
+        class="form-control"
+        placeholder="Enter text here"
+        type="text"
+        readonly
+        value="some value"
+        disabled
+      />
+      <input
+        placeholder="Enter text here"
+        type="text"
+        readonly
+        value="some value"
+        disabled
+      />
+    </div>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
 </html>

@@ -46,6 +46,6 @@
 }
 
 .Hide__Input {
-  border: none;
+  border: none !important;
   text-align: center;
 }

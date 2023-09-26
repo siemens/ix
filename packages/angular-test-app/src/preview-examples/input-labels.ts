@@ -15,11 +15,11 @@ import { Component } from '@angular/core';
     <form class="needs-validation m-2">
       <ix-input-group style="margin-bottom: 0.5rem;">
         <span slot="input-start">Label Start</span>
-        <input type="text" class="form-control" />
+        <input type="text" />
       </ix-input-group>
 
       <ix-input-group>
-        <input type="text" class="form-control" />
+        <input type="text" />
         <span slot="input-end">Label End</span>
       </ix-input-group>
     </form>
