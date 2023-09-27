@@ -166,8 +166,6 @@ export class DateInput {
       this.focusedInput.focus();
       return;
     }
-
-    // this.focusedInput = undefined;
   };
 
   private setInputValidity() {
@@ -205,14 +203,6 @@ export class DateInput {
 
     this.focusedInput.focus();
   };
-
-  // onShowChange(event: IxDropdownCustomEvent<boolean>) {
-  // this.showDatePicker = event.detail;
-  // this.showDatePicker = true;
-  // if (this.focusedInput) {
-  //   event.preventDefault();
-  // }
-  // }
 
   onFromInputChange(event) {
     if (this._from !== event.target.value) this._from = event.target.value;
@@ -323,10 +313,8 @@ export class DateInput {
         </div>
         <ix-dropdown
           trigger={this.triggerRef}
-          // show={this.showDatePicker}
-          // onShowChanged={(event) => this.onShowChange(event)}
           closeBehavior="outside"
-          onClick={(event) => event.stopImmediatePropagation()}
+          onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
           <ix-date-picker

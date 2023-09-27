@@ -354,9 +354,7 @@ export class DatetimeInput {
         </div>
         <ix-dropdown
           trigger={isSecondInput ? this.toTriggerRef : this.fromTriggerRef}
-          // show={this.showDatePicker}
-          // onShowChanged={(event) => this.onShowChange(event)}
-          closeBehavior={false}
+          closeBehavior="outside"
           onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
