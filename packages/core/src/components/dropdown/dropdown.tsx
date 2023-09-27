@@ -192,7 +192,7 @@ export class Dropdown {
 
   private async registerListener(element: string | HTMLElement) {
     this.triggerElement = await this.resolveElement(element);
-    console.log(this.triggerElement);
+
     if (this.triggerElement) {
       if (Array.isArray(this.triggerEvent)) {
         this.triggerEvent.forEach((triggerEvent) => {
@@ -254,7 +254,11 @@ export class Dropdown {
 
     if (newShow) {
       dropdownDisposer.forEach((dispose, id) => {
-        if (id !== this.localUId && !this.isAnchorSubmenu()) {
+        if (
+          id !== this.localUId &&
+          !this.isAnchorSubmenu() &&
+          !this.isNestedDropdown(this.hostElement)
+        ) {
           dispose();
         }
       });
