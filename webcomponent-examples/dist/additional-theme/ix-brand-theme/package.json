@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-brand-theme",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Theme for Siemens ix",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -26,13 +26,14 @@
     "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\""
   },
   "peerDependencies": {
-    "@siemens/ix": "^1.5.0",
+    "@siemens/ix": "^2.0.0",
+    "@siemens/ix-icons": "^2.0.0",
     "@stencil/core": "^3.2.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.24.1",
-    "@siemens/ix": "^1.5.0",
-    "@siemens/ix-icons": "^1.0.4",
+    "@playwright/test": "^1.32.1",
+    "@siemens/ix": "^2.0.0",
+    "@siemens/ix-icons": "^2.0.0",
     "@stencil/core": "^3.2.1",
     "@stencil/sass": "^3.0.0",
     "@types/jest": "^27.5.2",

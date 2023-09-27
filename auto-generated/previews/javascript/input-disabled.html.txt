@@ -1,6 +1,5 @@
 <form class="needs-validation m-2">
   <input
-    class="form-control"
     value="Some example text"
     placeholder="Enter text here"
     type="text"

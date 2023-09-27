@@ -1,0 +1,12 @@
+<div>
+  <ix-toggle-button variant="Primary" ghost> Normal </ix-toggle-button>
+  <ix-toggle-button variant="Primary" ghost pressed>
+    Pressed
+  </ix-toggle-button>
+  <ix-toggle-button variant="Primary" ghost disabled>
+    Disabled
+  </ix-toggle-button>
+  <ix-toggle-button variant="Primary" ghost disabled loading>
+    Loading
+  </ix-toggle-button>
+</div>

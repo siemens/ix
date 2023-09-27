@@ -24,7 +24,6 @@ import { Component } from '@angular/core';
           (keyup)="onKey($event)"
           id="input-string"
           type="string"
-          class="form-control"
         />
         <span slot="input-end">
           <ix-icon-button

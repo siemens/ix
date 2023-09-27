@@ -1,0 +1,40 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blind example</title>
+    <script type="module" crossorigin src="../assets/slider-error.6caf822e.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/index.b8b85bd9.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.605b7607.js">
+    <link rel="stylesheet" href="../assets/index.93cad09a.css">
+    <link rel="stylesheet" href="../assets/init.4da593cd.css">
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-slider trace trace-reference="50" error>
+      <span slot="label-start">0</span>
+      <span slot="label-end">100</span>
+    </ix-slider>
+
+    <ix-slider
+      min="0"
+      max="50"
+      step="10"
+      value="20"
+      trace
+      trace-reference="50"
+      error="Error message"
+    >
+      <span slot="label-start">0</span>
+      <span slot="label-end">100</span>
+    </ix-slider>
+    
+    <!-- Preview code -->
+    
+  </body>
+</html>

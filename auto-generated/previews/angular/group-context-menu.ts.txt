@@ -14,8 +14,8 @@ import { Component } from '@angular/core';
   template: `
     <ix-group header="Header text" sub-header="Subheader text">
       <ix-dropdown slot="dropdown">
-        <ix-group-dropdown-item label="Item 1"></ix-group-dropdown-item>
-        <ix-group-dropdown-item label="Item 2"></ix-group-dropdown-item>
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       </ix-dropdown>
       <ix-group-item text="Example text 1"></ix-group-item>
       <ix-group-item text="Example text 2"></ix-group-item>

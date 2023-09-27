@@ -1,0 +1,44 @@
+<div class="example-parent">
+  <h4>Grid with margin</h4>
+  <ix-layout-grid>
+    <ix-row>
+      <ix-col><ix-typography format="display">1</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">2</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">3</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">4</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">5</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">6</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">7</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">8</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">9</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">10</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">11</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">12</ix-typography></ix-col>
+    </ix-row>
+  </ix-layout-grid>
+
+  <h4>Grid without margin</h4>
+  <ix-layout-grid no-margin>
+    <ix-row>
+      <ix-col><ix-typography format="display">1</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">2</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">3</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">4</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">5</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">6</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">7</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">8</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">9</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">10</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">11</ix-typography></ix-col>
+      <ix-col><ix-typography format="display">12</ix-typography></ix-col>
+    </ix-row>
+  </ix-layout-grid>
+</div>
+<style>
+  .example-parent {
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    background-color: var(--theme-color-ghost--hover);
+  }
+</style>

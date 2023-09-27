@@ -1,0 +1,10 @@
+<div>
+  <ix-icon-toggle-button icon="checkboxes"></ix-icon-toggle-button>
+  <ix-icon-toggle-button icon="checkboxes" pressed></ix-icon-toggle-button>
+  <ix-icon-toggle-button icon="checkboxes" disabled></ix-icon-toggle-button>
+  <ix-icon-toggle-button
+    icon="checkboxes"
+    disabled
+    loading
+  ></ix-icon-toggle-button>
+</div>

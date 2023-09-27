@@ -14,9 +14,7 @@ import { Component } from '@angular/core';
   template: `
     <ix-button #trigger>Open</ix-button>
     <ix-dropdown [ixDropdownTrigger]="trigger">
-      <ix-dropdown-item #submenu label="Submenu">
-        <ix-icon name="chevron-right-small" size="24"></ix-icon>
-      </ix-dropdown-item>
+      <ix-dropdown-item #submenu label="Submenu"></ix-dropdown-item>
       <ix-dropdown-item icon="star" label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item icon="document" label="Item 2"></ix-dropdown-item>
       <ix-dropdown-item icon="bulb" label="Item 3"></ix-dropdown-item>

@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "vue": "^3.2.6",
-    "@siemens/ix": "^1",
-    "@siemens/ix-icons": "^1",
-    "@siemens/ix-vue": "^1"
+    "@siemens/ix": "latest",
+    "@siemens/ix-icons": "latest",
+    "@siemens/ix-vue": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

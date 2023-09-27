@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-46224112.js');
+const index = require('./index-b3c85302.js');
 
 const siemensLogoCss = ":host{display:inline-block}:host .logo>path{fill:var(--theme-app-header-logo--color)}";
 

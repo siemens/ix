@@ -1,0 +1,1 @@
+  <ix-link-button url="https://ix.siemens.io/">Link text</ix-link-button>

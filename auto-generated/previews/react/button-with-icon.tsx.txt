@@ -14,11 +14,11 @@ export default () => {
   return (
     <>
       <div>
-        <IxIconButton class="m-1" icon="info" variant="Primary"></IxIconButton>
+        <IxIconButton class="m-1" icon="info" variant="primary"></IxIconButton>
         <IxIconButton
           class="m-1"
           icon="info"
-          variant="Secondary"
+          variant="secondary"
         ></IxIconButton>
         <IxIconButton class="m-1" icon="info" outline></IxIconButton>
         <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
@@ -29,13 +29,13 @@ export default () => {
           class="m-1"
           icon="info"
           oval
-          variant="Primary"
+          variant="primary"
         ></IxIconButton>
         <IxIconButton
           class="m-1"
           icon="info"
           oval
-          variant="Secondary"
+          variant="secondary"
         ></IxIconButton>
         <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
         <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>

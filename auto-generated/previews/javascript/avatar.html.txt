@@ -1,0 +1,1 @@
+  <ix-avatar></ix-avatar>

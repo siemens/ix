@@ -812,6 +812,7 @@ export declare namespace JSXBase {
         datetime?: string;
     }
     interface DialogHTMLAttributes<T> extends HTMLAttributes<T> {
+        onCancel?: (event: Event) => void;
         onClose?: (event: Event) => void;
         open?: boolean;
         returnValue?: string;
@@ -1130,6 +1131,8 @@ export declare namespace JSXBase {
         summary?: string;
     }
     interface TextareaHTMLAttributes<T> extends HTMLAttributes<T> {
+        autoComplete?: string;
+        autocomplete?: string;
         autoFocus?: boolean;
         autofocus?: boolean | string;
         cols?: number;
