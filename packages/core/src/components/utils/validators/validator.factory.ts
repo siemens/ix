@@ -2,13 +2,15 @@ import {
   DateWithinMinMaxValidator,
   ToDateAfterFromDateValidator,
   ValidDateValidator,
-} from './date-input/date-input-validators';
+} from './datetime-input/date-input-validators';
+import { ValidTimeValidator } from './datetime-input/time-input-validators';
 import { Validator } from './validator';
 
 export enum ValidatorNames {
-  valid = 'valid',
+  validDate = 'validDate',
   toAfterFrom = 'toAfterFrom',
   withinMinMax = 'withinMinMax',
+  validTime = 'validTime',
 }
 
 export function getValidator(list: Array<string>): Validator<any> {
@@ -19,12 +21,14 @@ export function getValidator(list: Array<string>): Validator<any> {
 
 function validatorFactory(name: string): Validator<any> {
   switch (name) {
-    case ValidatorNames.valid:
+    case ValidatorNames.validDate:
       return ValidDateValidator;
     case ValidatorNames.toAfterFrom:
       return ToDateAfterFromDateValidator;
     case ValidatorNames.withinMinMax:
       return DateWithinMinMaxValidator;
+    case ValidatorNames.validTime:
+      return ValidTimeValidator;
     default:
       return defaultValidator;
   }

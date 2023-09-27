@@ -23,7 +23,7 @@ import {
 import { IxDatePickerCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import { DateValidatorParam } from '../utils/validators/date-input/date-input-validators';
+import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { Validator } from '../utils/validators/validator';
 import { getValidator } from '../utils/validators/validator.factory';
 
@@ -177,8 +177,7 @@ export class DateInput {
       max: this.maxDate,
     };
 
-    const valid = this.validator.validate(param);
-    if (!valid) {
+    if (!this.validator.validate(param)) {
       this.firstInput.setCustomValidity(this.validator.errorMessage);
       this.secondInput.setCustomValidity(this.validator.errorMessage);
     } else {
@@ -225,7 +224,7 @@ export class DateInput {
     this._from = this.from;
     this._to = this.to;
 
-    this.validator = getValidator(['valid', 'toAfterFrom', 'withinMinMax']);
+    this.validator = getValidator(['validDate', 'toAfterFrom', 'withinMinMax']);
   }
 
   renderRangeInput(): any {

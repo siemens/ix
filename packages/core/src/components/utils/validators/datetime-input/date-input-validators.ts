@@ -13,7 +13,7 @@ export type DateValidatorParam = {
 };
 
 export const ValidDateValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam) => {
+  validate: (value: DateValidatorParam): boolean => {
     if (value.from && value.to && value.format) {
       return (
         dayjs(value.from, value.format, true).isValid() &&
@@ -31,7 +31,7 @@ export const ValidDateValidator: Validator<DateValidatorParam> = {
 };
 
 export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam) => {
+  validate: (value: DateValidatorParam): boolean => {
     if (value.from && value.to && value.format) {
       const _from = dayjs(value.from, value.format, true);
       const _to = dayjs(value.to, value.format, true);
@@ -45,7 +45,7 @@ export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {
 };
 
 export const DateWithinMinMaxValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam) => {
+  validate: (value: DateValidatorParam): boolean => {
     if (value.from && value.format && value.min && value.max) {
       const _date = dayjs(value.from, value.format, true);
       const _min = dayjs(value.min, value.format, true);

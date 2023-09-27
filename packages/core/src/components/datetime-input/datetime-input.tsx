@@ -12,7 +12,8 @@ import {
   DateTimeDateChangeEvent,
   IxDatetimePickerCustomEvent,
 } from 'src/components';
-import { DateValidatorParam } from '../utils/validators/date-input/date-input-validators';
+import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
+import { TimeValidatorParam } from '../utils/validators/datetime-input/time-input-validators';
 import { Validator } from '../utils/validators/validator';
 import { getValidator } from '../utils/validators/validator.factory';
 
@@ -159,14 +160,15 @@ export class DatetimeInput {
   private toTimeInput: HTMLInputElement;
   private focusedInput!: HTMLInputElement;
   private datePicker!: HTMLIxDatetimePickerElement;
-  private validator: Validator<DateValidatorParam>;
+  private dateValidator: Validator<DateValidatorParam>;
+  private timeValidator: Validator<TimeValidatorParam>;
 
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
   };
 
   private onInputBlur = (event: FocusEvent) => {
-    // this.setInputValidity();
+    this.setInputValidity();
 
     const relatedElem = event.relatedTarget as HTMLElement;
     if (relatedElem?.tagName === this.datePicker.tagName) {
@@ -175,24 +177,37 @@ export class DatetimeInput {
     }
   };
 
-  // private setInputValidity() {
-  //   const param: DateValidatorParam = {
-  //     from: this.fromDateInput.value,
-  //     to: this.fromTimeInput.value,
-  //     format: this.dateFormat,
-  //     min: this.minDate,
-  //     max: this.maxDate,
-  //   };
+  private setInputValidity() {
+    const dateParam: DateValidatorParam = {
+      from: this.fromDateInput.value,
+      to: this.toDateInput.value,
+      format: this.dateFormat,
+      min: this.minDate,
+      max: this.maxDate,
+    };
 
-  //   const valid = this.validator.validate(param);
-  //   if (!valid) {
-  //     this.fromDateInput.setCustomValidity(this.validator.errorMessage);
-  //     this.fromTimeInput.setCustomValidity(this.validator.errorMessage);
-  //   } else {
-  //     this.fromDateInput.setCustomValidity('');
-  //     this.fromTimeInput.setCustomValidity('');
-  //   }
-  // }
+    if (!this.dateValidator.validate(dateParam)) {
+      this.fromDateInput.setCustomValidity(this.dateValidator.errorMessage);
+      this.fromTimeInput.setCustomValidity(this.dateValidator.errorMessage);
+    } else {
+      this.fromDateInput.setCustomValidity('');
+      this.fromTimeInput.setCustomValidity('');
+    }
+
+    const timeParam: TimeValidatorParam = {
+      fromTime: this.fromTimeInput.value,
+      toTime: this.toTimeInput.value,
+      format: this.timeFormat,
+    };
+
+    if (!this.timeValidator.validate(timeParam)) {
+      this.fromTimeInput.setCustomValidity(this.timeValidator.errorMessage);
+      this.toTimeInput.setCustomValidity(this.timeValidator.errorMessage);
+    } else {
+      this.fromTimeInput.setCustomValidity('');
+      this.toTimeInput.setCustomValidity('');
+    }
+  }
 
   private readonly onFromDateChange = (
     event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
@@ -276,7 +291,12 @@ export class DatetimeInput {
     this.fromDate = this.from;
     this.toDate = this.to;
 
-    this.validator = getValidator(['valid', 'toAfterFrom', 'withinMinMax']);
+    this.dateValidator = getValidator([
+      'validDate',
+      'toAfterFrom',
+      'withinMinMax',
+    ]);
+    this.timeValidator = getValidator(['validTime']);
   }
 
   private renderInput(
