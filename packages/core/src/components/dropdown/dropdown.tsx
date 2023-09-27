@@ -253,7 +253,11 @@ export class Dropdown {
 
     if (newShow) {
       dropdownDisposer.forEach((dispose, id) => {
-        if (id !== this.localUId && !this.isAnchorSubmenu()) {
+        if (
+          id !== this.localUId &&
+          !this.isAnchorSubmenu() &&
+          !this.isNestedDropdown(this.hostElement)
+        ) {
           dispose();
         }
       });
