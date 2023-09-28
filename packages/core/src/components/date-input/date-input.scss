@@ -9,6 +9,11 @@
 @import 'mixins/shadow-dom/component';
 @import 'components/form/input';
 
+:host(.label-flex) {
+  display: flex;
+  flex-direction: row;
+}
+
 :host {
   @include ix-component;
 
@@ -29,11 +34,8 @@
     }
   }
 
-  label {
-    .inline {
-      display: inline-block;
-      text-align: right;
-    }
+  .label-color {
+    color: var(--theme-color-soft-text);
   }
 
   span {
@@ -41,6 +43,14 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+    }
+
+    &.left-position {
+      margin-right: 10px;
+    }
+
+    &.inside-position {
+      margin-left: 5px;
     }
   }
 
@@ -50,8 +60,6 @@
   }
 
   .date-input {
-    /* REMOVE */
-    margin: 10px;
     /* REMOVE */
     width: 400px;
     display: flex;

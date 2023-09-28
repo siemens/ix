@@ -43,7 +43,7 @@ export class DateInput {
   /**
    * Position of the label
    */
-  @Prop() labelPosition: 'above' | 'inline' = 'above';
+  @Prop() labelPosition: 'top' | 'left' | 'inside' = 'top';
 
   /**
    * Date format string.
@@ -276,22 +276,42 @@ export class DateInput {
     );
   }
 
+  renderLabel(isInsideInput: boolean): any {
+    if (
+      !this.label ||
+      (isInsideInput && !(this.labelPosition === 'inside')) ||
+      (!isInsideInput && this.labelPosition === 'inside')
+    ) {
+      return '';
+    }
+
+    return (
+      <span
+        id="date-input-label"
+        class={{
+          'vertical-align':
+            this.labelPosition === 'left' || this.labelPosition === 'inside',
+          'left-position': this.labelPosition === 'left',
+          'inside-position': this.labelPosition === 'inside',
+        }}
+      >
+        {this.label}
+      </span>
+    );
+  }
+
   render() {
     return (
-      <Host>
-        {this.labelPosition === 'above' ? (
-          <label htmlFor="firstInput">{this.label}</label>
-        ) : (
-          ''
-        )}
-        <div class="date-input" ref={(ref) => (this.triggerRef = ref)}>
-          {this.labelPosition === 'inline' ? (
-            <span class="vertical-align label">
-              <label htmlFor="firstInput">{this.label}</label>
-            </span>
-          ) : (
-            ''
-          )}
+      <Host class={{ 'label-flex': this.labelPosition === 'left' }}>
+        {/* renders if position is top/left */}
+        {this.renderLabel(false)}
+        <div
+          class="date-input"
+          aria-labelledby="date-input-label"
+          ref={(ref) => (this.triggerRef = ref)}
+        >
+          {/* renders if position is inside */}
+          {this.renderLabel(true)}
           {this.range ? this.renderRangeInput() : this.renderSingleInput()}
           <span
             class={{
@@ -310,6 +330,7 @@ export class DateInput {
             <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
           </span>
         </div>
+
         <ix-dropdown
           trigger={this.triggerRef}
           closeBehavior="outside"
