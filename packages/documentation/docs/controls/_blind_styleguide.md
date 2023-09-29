@@ -27,15 +27,15 @@ Multiple blinds can be placed below each other to create an accordion. The recom
 
 ## Variants
 Multiple blind variants are available:
-- Filled: Default variant
-- Outline: Variant for lower visual emphasis
-- Primary: Variant for high visual emphasis
-- Alarm: Display alarm state
-- Critical: Display critical state
-- Warning: Display warning state
-- Success: Display success state
-- Info: Display info state
-- Neutral: Display neutral state
+- **Filled**: Default variant
+- **Outline**: Variant for lower visual emphasis
+- **Primary**: Variant for high visual emphasis
+- **Alarm**: Display alarm state
+- **Critical**: Display critical state
+- **Warning**: Display warning state
+- **Success**: Display success state
+- **Info**: Display info state
+- **Neutral**: Display neutral state
 
 ![Blind variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=929%3A47485&mode=design&t=9faEnH99BaAxqCGM-1)
 
@@ -64,6 +64,7 @@ For all blind variants, a default, hover, active and focused state is available.
 
 ## Related patterns:
 
-- Tabs
-- Tree
-- Workflow
+- [Tabs](tabs.md)
+- [Tree](tree.md)
+- [Workflow](workflow.md)
+
