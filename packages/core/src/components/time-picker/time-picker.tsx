@@ -232,7 +232,7 @@ export class TimePicker {
      If all hidden, every element getting set to visible,
      otherwise hidden element getting removed
      */
-    if (!hiddenCount) {
+    if (hiddenCount == timepickerInformation.length) {
       timepickerInformation.forEach((info) => {
         info.hidden = false;
       });
@@ -241,8 +241,6 @@ export class TimePicker {
         (item) => !item.hidden
       );
     }
-
-    console.log(timepickerInformation);
 
     return (
       <Host>
