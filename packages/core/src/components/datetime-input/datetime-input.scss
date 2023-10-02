@@ -29,21 +29,19 @@
     }
   }
 
-  label {
-    .inline {
-      display: inline-block;
-      text-align: right;
-    }
-  }
-
   span {
     &.vertical-align {
       display: flex;
       flex-direction: row;
       align-items: center;
     }
+
     &.label {
       padding-left: 0.25rem;
+    }
+
+    &.label-color {
+      color: var(--theme-color-soft-text);
     }
   }
 
@@ -57,11 +55,11 @@
     flex-direction: row;
   }
 
+  .second-input {
+    margin-left: 10px;
+  }
+
   .datetime-input {
-    /* REMOVE */
-    margin: 10px;
-    /* REMOVE */
-    width: 300px;
     display: flex;
 
     background-color: var(--theme-input--background);

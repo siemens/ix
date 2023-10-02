@@ -7,15 +7,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Fragment, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Fragment,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import {
   DateTimeDateChangeEvent,
+  DateTimeSelectEvent,
   IxDatetimePickerCustomEvent,
 } from 'src/components';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { TimeValidatorParam } from '../utils/validators/datetime-input/time-input-validators';
 import { Validator } from '../utils/validators/validator';
 import { getValidator } from '../utils/validators/validator.factory';
+
+export type DatetimeInputChangeEvent = {
+  fromDate: string;
+  toDate: string;
+  fromTime: string;
+  toTime: string;
+};
 
 type InputChangeCallback = (event: Event) => void;
 type DateChangeCallback = (
@@ -29,7 +48,8 @@ type TimeChangeCallback = (event: IxDatetimePickerCustomEvent<string>) => void;
   shadow: true,
 })
 export class DatetimeInput {
-  // @Element() hostElement: htmlixdatetimeinputelement;
+  @Element() hostElement: HTMLIxDatetimeInputElement;
+
   /**
    * Label for the input
    */
@@ -146,9 +166,65 @@ export class DatetimeInput {
    */
   @Prop() weekStartIndex = 0;
 
+  /**
+   * Triggers if the first date selection changes.
+   *
+   * @emits string
+   */
+  @Event() fromDateChange: EventEmitter<string>;
+
+  /**
+   * Triggers if the second date selection changes.
+   *
+   * @emits string
+   */
+  @Event() toDateChange: EventEmitter<string>;
+
+  /**
+   * Triggers if the first time selection changes.
+   *
+   * @emits string
+   */
+  @Event() fromTimeChange: EventEmitter<string>;
+
+  /**
+   * Triggers if the second time selection changes.
+   *
+   * @emits string
+   */
+  @Event() toTimeChange: EventEmitter<string>;
+
+  /**
+   * Date selection confirmed via button action
+   *
+   * @emits DateTimeSelectEvent
+   */
+  @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
+
+  /**
+   * Triggers every time one of the inputs changes
+   *
+   * @emits DatetimeInputChangeEvent
+   */
+  @Event() inputChange: EventEmitter<DatetimeInputChangeEvent>;
+
+  /**
+   * Gets the current input
+   *
+   * @returns DatetimeInputChangeEvent
+   */
+  @Method()
+  async getCurrentInput(): Promise<DatetimeInputChangeEvent> {
+    return {
+      fromDate: this.fromDate,
+      toDate: this.toDate,
+      fromTime: this.fromTime,
+      toTime: this.toTime,
+    };
+  }
+
   @State() private fromTriggerRef: HTMLElement;
   @State() private toTriggerRef: HTMLElement;
-  // @State() private datePickerRef: HTMLElement;
   @State() private fromDate: string;
   @State() private toDate: string;
   @State() private fromTime: string;
@@ -213,24 +289,36 @@ export class DatetimeInput {
     event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
   ) => {
     this.fromDate = event.detail.from;
+
+    this.fromDateChange.emit(this.fromDate);
+    this.onInputChange();
   };
 
   private readonly onToDateChange = (
     event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
   ) => {
     this.toDate = event.detail.from;
+
+    this.toDateChange.emit(this.toDate);
+    this.onInputChange();
   };
 
   private readonly onFromTimeChange = (
     event: IxDatetimePickerCustomEvent<string>
   ) => {
     this.fromTime = event.detail;
+
+    this.fromTimeChange.emit(this.fromTime);
+    this.onInputChange();
   };
 
   private readonly onToTimeChange = (
     event: IxDatetimePickerCustomEvent<string>
   ) => {
     this.toTime = event.detail;
+
+    this.toTimeChange.emit(this.toTime);
+    this.onInputChange();
   };
 
   private readonly clear = (isSecondInput: boolean) => {
@@ -255,6 +343,8 @@ export class DatetimeInput {
     if (this.fromDate !== target.value) {
       this.fromDate = target.value;
     }
+
+    this.onInputChange();
   };
 
   private readonly onToDateInputChange = (
@@ -265,6 +355,8 @@ export class DatetimeInput {
     if (this.toDate !== target.value) {
       this.toDate = target.value;
     }
+
+    this.onInputChange();
   };
 
   private readonly onFromTimeInputChange = (
@@ -275,6 +367,8 @@ export class DatetimeInput {
     if (this.fromTime !== target.value) {
       this.fromTime = target.value;
     }
+
+    this.onInputChange();
   };
 
   private readonly onToTimeInputChange = (
@@ -285,7 +379,30 @@ export class DatetimeInput {
     if (this.toTime !== target.value) {
       this.toTime = target.value;
     }
+
+    this.onInputChange();
   };
+
+  private readonly onDateSelect = (
+    event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>
+  ) => {
+    this.dateSelect.emit(event.detail);
+
+    const dropdown = document.querySelector(
+      'ix-dropdown'
+    ) as HTMLIxDropdownElement;
+
+    dropdown.classList.toggle('show');
+  };
+
+  private onInputChange() {
+    this.inputChange.emit({
+      fromDate: this.fromDate !== undefined ? this.fromDate : '',
+      toDate: this.toDate !== undefined ? this.toDate : '',
+      fromTime: this.fromTime !== undefined ? this.fromTime : '',
+      toTime: this.toTime !== undefined ? this.toTime : '',
+    });
+  }
 
   componentWillLoad() {
     this.fromDate = this.from;
@@ -309,76 +426,84 @@ export class DatetimeInput {
     return (
       <Fragment>
         <div
-          class="datetime-input"
-          ref={(ref) => {
-            if (isSecondInput) {
-              this.toTriggerRef = ref;
-            } else {
-              this.fromTriggerRef = ref;
-            }
+          class={{
+            'second-input': isSecondInput,
           }}
         >
-          <input
+          <span>From</span>
+          <div
+            class="datetime-input"
             ref={(ref) => {
               if (isSecondInput) {
-                this.toDateInput = ref;
+                this.toTriggerRef = ref;
               } else {
-                this.fromDateInput = ref;
+                this.fromTriggerRef = ref;
               }
-            }}
-            id="input-div"
-            type="text"
-            class="form-control"
-            placeholder={this.dateFormat}
-            onFocus={this.onInputFocus}
-            onBlur={this.onInputBlur}
-            value={isSecondInput ? this.toDate : this.fromDate}
-            onInput={(event) => dateInputChangeCallback(event)}
-          />
-          <input
-            ref={(ref) => {
-              if (isSecondInput) {
-                this.toTimeInput = ref;
-              } else {
-                this.fromTimeInput = ref;
-              }
-            }}
-            type="text"
-            class="form-control"
-            placeholder={this.timeFormat}
-            onFocus={this.onInputFocus}
-            onBlur={this.onInputBlur}
-            value={isSecondInput ? this.toTime : this.fromTime}
-            onInput={(event) => timeInputChangeCallback(event)}
-          />
-          <span
-            class={{
-              'icon-button': true,
-              clear: true,
             }}
           >
-            <ix-icon-button
-              ghost
-              icon="clear"
-              class={{
-                hidden:
-                  (isSecondInput && !this.toDate && !this.toTime) ||
-                  (!isSecondInput && !this.fromDate && !this.fromTime),
+            <input
+              ref={(ref) => {
+                if (isSecondInput) {
+                  this.toDateInput = ref;
+                } else {
+                  this.fromDateInput = ref;
+                }
               }}
-              onClick={() => this.clear(isSecondInput)}
-            ></ix-icon-button>
-          </span>
-          <span class="icon-button">
-            <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
-          </span>
+              id="input-div"
+              type="text"
+              class="form-control"
+              placeholder={this.dateFormat}
+              onFocus={this.onInputFocus}
+              onBlur={this.onInputBlur}
+              value={isSecondInput ? this.toDate : this.fromDate}
+              onInput={(event) => dateInputChangeCallback(event)}
+            />
+            <input
+              ref={(ref) => {
+                if (isSecondInput) {
+                  this.toTimeInput = ref;
+                } else {
+                  this.fromTimeInput = ref;
+                }
+              }}
+              type="text"
+              class="form-control"
+              placeholder={this.timeFormat}
+              onFocus={this.onInputFocus}
+              onBlur={this.onInputBlur}
+              value={isSecondInput ? this.toTime : this.fromTime}
+              onInput={(event) => timeInputChangeCallback(event)}
+            />
+            <span
+              class={{
+                'icon-button': true,
+                clear: true,
+              }}
+            >
+              <ix-icon-button
+                ghost
+                icon="clear"
+                class={{
+                  hidden:
+                    (isSecondInput && !this.toDate && !this.toTime) ||
+                    (!isSecondInput && !this.fromDate && !this.fromTime),
+                }}
+                onClick={() => this.clear(isSecondInput)}
+              ></ix-icon-button>
+            </span>
+            <span class="icon-button">
+              <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
+            </span>
+          </div>
         </div>
         <ix-dropdown
           trigger={isSecondInput ? this.toTriggerRef : this.fromTriggerRef}
           closeBehavior="outside"
-          onClick={(event) => event.stopPropagation()}
+          // onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
           <ix-datetime-picker
+            onClick={(event) => event.stopPropagation()}
             tabIndex={0}
             ref={(ref) =>
               (this.datePicker = ref as HTMLIxDatetimePickerElement)
@@ -387,12 +512,18 @@ export class DatetimeInput {
             onDateChange={(event) => dateChangeCallback(event)}
             onTimeChange={(event) => timeChangeCallback(event)}
             from={isSecondInput ? this.toDate : this.fromDate}
+            time={isSecondInput ? this.toTime : this.fromTime}
             dateFormat={this.dateFormat}
             timeFormat={this.timeFormat}
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
-            onClick={(event) => event.stopPropagation()}
+            showTimeReference={this.showTimeReference}
+            showHour={this.showHour}
+            showMinutes={this.showMinutes}
+            showSeconds={this.showSeconds}
+            timeReference={this.timeReference}
+            onDateSelect={(event) => this.onDateSelect(event)}
           ></ix-datetime-picker>
         </ix-dropdown>
       </Fragment>
@@ -402,14 +533,12 @@ export class DatetimeInput {
   private renderRangeInput() {
     return (
       <div class="range-inputs">
-        <label>From</label>
         {this.renderInput(
           this.onFromDateInputChange,
           this.onFromTimeInputChange,
           this.onFromDateChange,
           this.onFromTimeChange
         )}
-        <label>To</label>
         {this.renderInput(
           this.onToDateInputChange,
           this.onToTimeInputChange,

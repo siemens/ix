@@ -271,6 +271,7 @@ export class DateInput {
           onFocus={this.onInputFocus}
           onBlur={this.onInputBlur}
           value={this._from}
+          onInput={(event) => this.onFromInputChange(event)}
         />
       </Fragment>
     );
