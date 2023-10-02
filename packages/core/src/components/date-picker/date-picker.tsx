@@ -81,6 +81,11 @@ export class DatePicker {
     this.currFromDate = newValue
       ? dayjs(newValue, this.format, true)
       : undefined;
+
+    if (this.currFromDate.isValid()) {
+      this.selectedYear = this.currFromDate.year();
+      this.selectedMonth = this.currFromDate.month();
+    }
   }
 
   /**
@@ -94,6 +99,11 @@ export class DatePicker {
   @Watch('to')
   watchToPropHandler(newValue: string) {
     this.currToDate = newValue ? dayjs(newValue, this.format, true) : undefined;
+
+    if (this.currToDate.isValid()) {
+      this.selectedYear = this.currToDate.year();
+      this.selectedMonth = this.currToDate.month();
+    }
   }
 
   /**
