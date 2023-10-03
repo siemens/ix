@@ -80,6 +80,7 @@ export class DateInput {
    * @since 1.1.0
    */
   @Prop() to: string | undefined;
+  @Watch('to')
   watchToPropHandler(newValue: string) {
     this._to = newValue;
   }
