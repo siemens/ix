@@ -28,6 +28,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { HTMLStencilElement } from '@stencil/core/internal';
 import { AlignedPlacement } from './placement';
 
 /**
@@ -36,7 +37,11 @@ import { AlignedPlacement } from './placement';
 export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 type DisposeDropdown = () => void;
-const dropdownDisposer = new Map<string, DisposeDropdown>();
+type DropdownDisposerEntry = {
+  element: HTMLStencilElement;
+  dispose: DisposeDropdown;
+};
+const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
 let sequenceId = 0;
 
 @Component({
@@ -140,7 +145,10 @@ export class Dropdown {
       console.warn('Dropdown with duplicated id detected');
     }
 
-    dropdownDisposer.set(this.localUId, this.close.bind(this));
+    dropdownDisposer.set(this.localUId, {
+      dispose: this.close.bind(this),
+      element: this.hostElement,
+    });
   }
 
   get dropdownItems() {
@@ -252,9 +260,13 @@ export class Dropdown {
     }
 
     if (newShow) {
-      dropdownDisposer.forEach((dispose, id) => {
-        if (id !== this.localUId && !this.isAnchorSubmenu()) {
-          dispose();
+      dropdownDisposer.forEach((entry, id) => {
+        if (
+          id !== this.localUId &&
+          !this.isAnchorSubmenu() &&
+          !entry.element.contains(this.hostElement)
+        ) {
+          entry.dispose();
         }
       });
     }
