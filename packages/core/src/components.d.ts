@@ -21,7 +21,9 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { DateTimeSelectEvent } from "src/components";
+import { DatetimeInputChangeEvent } from "./components/datetime-input/datetime-input";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -57,7 +59,9 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { DateTimeSelectEvent } from "src/components";
+export { DatetimeInputChangeEvent } from "./components/datetime-input/datetime-input";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -500,7 +504,7 @@ export namespace Components {
         /**
           * Position of the label
          */
-        "labelPosition": 'above' | 'inline';
+        "labelPosition": 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -597,7 +601,17 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string | undefined;
+        "fromDate": string | undefined;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "fromTime": string;
+        /**
+          * Gets the current input
+          * @returns DatetimeInputChangeEvent
+         */
+        "getCurrentInput": () => Promise<DatetimeInputChangeEvent>;
         /**
           * Label for the input
          */
@@ -643,11 +657,6 @@ export namespace Components {
          */
         "textSelectDate": string;
         /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time": string;
-        /**
           * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
           * @since 1.1.0
          */
@@ -660,7 +669,12 @@ export namespace Components {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to": string | undefined;
+        "toDate": string | undefined;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "toTime": string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
@@ -2306,6 +2320,10 @@ export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
 }
+export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatetimeInputElement;
+}
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
@@ -3725,7 +3743,7 @@ declare namespace LocalJSX {
         /**
           * Position of the label
          */
-        "labelPosition"?: 'above' | 'inline';
+        "labelPosition"?: 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3846,7 +3864,12 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string | undefined;
+        "fromDate"?: string | undefined;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "fromTime"?: string;
         /**
           * Label for the input
          */
@@ -3865,6 +3888,36 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "minDate"?: string;
+        /**
+          * Date selection confirmed via button action
+          * @emits DateTimeSelectEvent
+         */
+        "onDateSelect"?: (event: IxDatetimeInputCustomEvent<DateTimeSelectEvent>) => void;
+        /**
+          * Triggers if the first date selection changes.
+          * @emits string
+         */
+        "onFromDateChange"?: (event: IxDatetimeInputCustomEvent<string>) => void;
+        /**
+          * Triggers if the first time selection changes.
+          * @emits string
+         */
+        "onFromTimeChange"?: (event: IxDatetimeInputCustomEvent<string>) => void;
+        /**
+          * Triggers every time one of the inputs changes
+          * @emits DatetimeInputChangeEvent
+         */
+        "onInputChange"?: (event: IxDatetimeInputCustomEvent<DatetimeInputChangeEvent>) => void;
+        /**
+          * Triggers if the second date selection changes.
+          * @emits string
+         */
+        "onToDateChange"?: (event: IxDatetimeInputCustomEvent<string>) => void;
+        /**
+          * Triggers if the second time selection changes.
+          * @emits string
+         */
+        "onToTimeChange"?: (event: IxDatetimeInputCustomEvent<string>) => void;
         /**
           * Set range size
          */
@@ -3892,11 +3945,6 @@ declare namespace LocalJSX {
          */
         "textSelectDate"?: string;
         /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time"?: string;
-        /**
           * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
           * @since 1.1.0
          */
@@ -3909,7 +3957,12 @@ declare namespace LocalJSX {
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
           * @since 1.1.0
          */
-        "to"?: string | undefined;
+        "toDate"?: string | undefined;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "toTime"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
@@ -3946,7 +3999,7 @@ declare namespace LocalJSX {
           * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
+        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent1>) => void;
         /**
           * Time change
           * @since 1.1.0
