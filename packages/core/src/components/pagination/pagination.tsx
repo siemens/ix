@@ -257,7 +257,10 @@ export class Pagination {
               i18nSelectListHeader=""
               value={`${this.itemCount}`}
               onValueChange={(e) => {
-                const count = Number.parseInt(e.detail[0]);
+                const count = Number.parseInt(
+                  Array.isArray(e.detail) ? e.detail[0] : e.detail
+                );
+
                 this.itemCountChanged.emit(count);
               }}
             >
