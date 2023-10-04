@@ -28,7 +28,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { HTMLStencilElement } from '@stencil/core/internal';
 import { AlignedPlacement } from './placement';
 
 /**
@@ -38,7 +37,7 @@ export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 type DisposeDropdown = () => void;
 type DropdownDisposerEntry = {
-  element: HTMLStencilElement;
+  element: HTMLIxDropdownElement;
   dispose: DisposeDropdown;
 };
 const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
