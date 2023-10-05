@@ -17,7 +17,38 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-date-input></ix-date-input>
+        <form
+          class="needs-validation"
+          novalidate
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <ix-layout-grid>
+            <ix-row>
+              <ix-col size="4">
+                <label htmlFor="validationCustom01">First name</label>
+                <input type="text" id="validationCustom01" required />
+                <div class="invalid-feedback">Please choose a first name.</div>
+                <div class="valid-feedback">Looks good!</div>
+              </ix-col>
+            </ix-row>
+            <ix-row>
+              <ix-col size="4">
+                <ix-date-input
+                  id="validationCustom02"
+                  range={true}
+                ></ix-date-input>
+                <div class="invalid-feedback">asdasd</div>
+              </ix-col>
+            </ix-row>
+            <ix-row>
+              <ix-col>
+                <ix-button type="submit">Submit form</ix-button>
+              </ix-col>
+            </ix-row>
+          </ix-layout-grid>
+        </form>
       </Host>
     );
   }

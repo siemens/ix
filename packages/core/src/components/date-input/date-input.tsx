@@ -225,6 +225,22 @@ export class DateInput {
     this._to = this.to;
 
     this.validator = getValidator(['validDate', 'toAfterFrom', 'withinMinMax']);
+
+    const hiddenInput = document.createElement('input');
+    hiddenInput.style.display = 'none';
+    this.hostElement.appendChild(hiddenInput);
+
+    hiddenInput.form.addEventListener('submit', () => {
+      //TODO: Check if form is submitted
+      this.setInputValidity();
+      const isValid = [
+        this.firstInput.validity.valid,
+        this.secondInput.validity.valid,
+      ].some((valid) => valid);
+
+      this.hostElement.classList.toggle('is-invalid', !isValid);
+      this.hostElement.classList.toggle('is-valid', isValid);
+    });
   }
 
   renderRangeInput(): any {
@@ -240,6 +256,7 @@ export class DateInput {
           onBlur={this.onInputBlur}
           value={this._from}
           onInput={(event) => this.onFromInputChange(event)}
+          required
         />
         <span class="vertical-align">
           <ix-icon name="arrow-right"></ix-icon>
@@ -254,6 +271,7 @@ export class DateInput {
           onBlur={this.onInputBlur}
           value={this._to}
           onInput={(event) => this.onToInputChange(event)}
+          required
         />
       </Fragment>
     );

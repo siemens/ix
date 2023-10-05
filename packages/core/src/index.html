@@ -29,39 +29,6 @@ SPDX-License-Identifier: MIT
   </head>
 
   <body style="margin: 0px; height: 100vh">
-    <!-- <my-component /> -->
-    <form class="needs-validation" novalidate>
-      <ix-layout-grid>
-        <ix-row>
-          <ix-col size="4">
-            <label for="validationCustom01">First name</label>
-            <ix-input-group><input type="text" id="validationCustom01" value="" required /></ix-input-group>
-            <div class="invalid-feedback">Please choose a first name.</div>
-            <div class="valid-feedback">Looks good!</div>
-          </ix-col>
-        </ix-row>
-        <ix-row>
-          <ix-col size="4">
-            <ix-date-input id="validationCustom02" range="false"></ix-date-input>
-            <div class="invalid-feedback">asdasd</div>
-          </ix-col>
-        </ix-row>
-        <ix-row>
-          <ix-col>
-            <button class="btn btn-primary" type="submit">Submit form</button>
-          </ix-col>
-        </ix-row>
-      </ix-layout-grid>
-    </form>
-    <script>
-      (async () => {
-        await window.customElements.whenDefined('ix-validation-tooltip');
-        const forms = document.querySelector('form');
-        forms.addEventListener('submit', (event) => {
-          event.preventDefault();
-          forms.classList.add('was-validated');
-        });
-      })();
-    </script>
+    <my-component />
   </body>
 </html>
