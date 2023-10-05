@@ -64,7 +64,7 @@ test.describe('date input tests single', () => {
       from: '2023/01/13',
       to: undefined,
     });
-    expect(await page.locator('input').inputValue()).toEqual('2023/01/13');
+    await expect(page.locator('input')).toHaveValue('2023/01/13');
   });
 
   test('clear button clears input', async ({ page }) => {
