@@ -41,7 +41,7 @@ test.describe('datetime input tests single', () => {
 
     await page.getByPlaceholder('YYYY/MM/DD').click();
     await page.getByPlaceholder('YYYY/MM/DD').fill(testDate);
-    await page.getByPlaceholder('HH:mm:ss').fill(testTime)
+    await page.getByPlaceholder('HH:mm:ss').fill(testTime);
 
     const month = page
       .locator('ix-button')
@@ -54,6 +54,41 @@ test.describe('datetime input tests single', () => {
       from: testDate,
       to: undefined,
       fromTime: testTime,
+      toTime: undefined,
+    });
+  });
+
+  test('selected date and time are entered in inputs', async ({ page }) => {
+    await page.$eval(
+      DATETIME_INPUT_SELECTOR,
+      (el: HTMLIxDatetimeInputElement) => {
+        el.fromDate = '2023/01/01';
+        el.fromTime = '00:00:00';
+      }
+    );
+
+    await page.getByPlaceholder('YYYY/MM/DD').click();
+    await page.getByText('13', { exact: true }).click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-up' })
+      .nth(2)
+      .click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-up' })
+      .nth(1)
+      .click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-down' })
+      .nth(1)
+      .click();
+
+    expect(await getDatetimeInputObj(page)).toBe({
+      fromDate: '2023/01/13',
+      toDate: undefined,
+      fromTime: '23:01:01',
       toTime: undefined,
     });
   });
