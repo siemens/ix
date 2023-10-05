@@ -19,19 +19,23 @@
 
   input {
     box-shadow: none;
-  
+
     &.hover,
     &:hover {
       border-color: var(--theme-input--border-color);
       background-color: var(--theme-input--background);
     }
-  
+
     &.focus,
     &:focus {
       outline: initial;
       outline-offset: initial;
       border-color: var(--theme-input--border-color);
     }
+  }
+
+  input:invalid {
+    background-color: red;
   }
 
   .label-color {
@@ -64,7 +68,8 @@
 
     background-color: var(--theme-input--background);
     border-radius: var(--theme-input--border-radius);
-    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+    border: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color);
 
     &:focus-within {
       outline: 1px solid var(--theme-color-focus-bdr);
@@ -91,6 +96,5 @@
         visibility: hidden;
       }
     }
-
   }
 }
