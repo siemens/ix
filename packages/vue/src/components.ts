@@ -22,6 +22,7 @@ import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/compo
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -245,6 +246,21 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
   'headerSubtitle',
   'hasBackButton',
   'backButtonClick'
+]);
+
+
+export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
+  'format',
+  'range',
+  'from',
+  'to',
+  'minDate',
+  'maxDate',
+  'initialSelectedDateRangeName',
+  'customRangeAllowed',
+  'dateRangeOptions',
+  'tst1',
+  'dateRangeChange'
 ]);
 
 

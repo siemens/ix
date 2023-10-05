@@ -438,6 +438,40 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to', 'tst1'],
+  methods: ['getDateRange']
+})
+@Component({
+  selector: 'ix-date-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to', 'tst1'],
+})
+export class IxDateDropdown {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateRangeChange']);
+  }
+}
+
+
+import type { DateChangeEvent as IIxDateDropdownDateChangeEvent } from '@siemens/ix';
+
+export declare interface IxDateDropdown extends Components.IxDateDropdown {
+  /**
+   * EventEmitter for date range change events.
+
+This event is emitted when the date range changes within the component.
+The event payload contains information about the selected date range. @event undefined,@private undefined
+   */
+  dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateChangeEvent>>;
+}
+
+
+@ProxyCmp({
   inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
   methods: ['getCurrentDate']
 })

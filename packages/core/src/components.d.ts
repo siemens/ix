@@ -17,7 +17,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
-import { DateChangeEvent } from "./components/date-dropdown/date-dropdown";
+import { DateChangeEvent, DateDropdownOption } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -53,7 +53,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
-export { DateChangeEvent } from "./components/date-dropdown/date-dropdown";
+export { DateChangeEvent, DateDropdownOption } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -476,6 +476,15 @@ export namespace Components {
     }
     interface IxDateDropdown {
         /**
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date range are available for selection.
+          * @default ''
+         */
+        "customRangeAllowed": boolean;
+        /**
+          * dasd
+         */
+        "dateRangeOptions": DateDropdownOption[];
+        /**
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format": string;
@@ -484,6 +493,16 @@ export namespace Components {
           * @since 1.1.0
          */
         "from": string | null;
+        /**
+          * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
+          * @returns The selected date range.
+         */
+        "getDateRange": () => Promise<DateChangeEvent>;
+        /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+          * @default ''
+         */
+        "initialSelectedDateRangeName": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3603,6 +3622,15 @@ declare namespace LocalJSX {
     }
     interface IxDateDropdown {
         /**
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date range are available for selection.
+          * @default ''
+         */
+        "customRangeAllowed"?: boolean;
+        /**
+          * dasd
+         */
+        "dateRangeOptions"?: DateDropdownOption[];
+        /**
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format"?: string;
@@ -3611,6 +3639,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "from"?: string | null;
+        /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+          * @default ''
+         */
+        "initialSelectedDateRangeName"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -3621,6 +3654,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "minDate"?: string;
+        /**
+          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
+          * @event 
+          * @private
+         */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateChangeEvent>) => void;
         /**
           * If true a range of dates can be selected.
