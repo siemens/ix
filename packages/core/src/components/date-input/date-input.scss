@@ -66,14 +66,14 @@
     border-radius: var(--theme-input--border-radius);
     border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
 
-    input {
-      border: 0;
-    }
-
     &:focus-within {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus);
+    }
+
+    input {
+      border: 0;
     }
 
     .icon-button {
@@ -91,5 +91,6 @@
         visibility: hidden;
       }
     }
+
   }
 }

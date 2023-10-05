@@ -132,12 +132,8 @@ test.describe('date input tests range', () => {
       from: '2023/01/13',
       to: '2023/01/21',
     });
-    expect(await page.locator('input').nth(0).inputValue()).toEqual(
-      '2023/01/13'
-    );
-    expect(await page.locator('input').nth(1).inputValue()).toEqual(
-      '2023/01/21'
-    );
+    await expect(page.locator('input').nth(0)).toHaveValue('2023/01/13');
+    await expect(page.locator('input').nth(1)).toHaveValue('2023/01/21');
   });
 
   test('clear button clears both inputs', async ({ page }) => {

@@ -439,7 +439,9 @@ export class DatetimeInput {
             'second-input': isSecondInput,
           }}
         >
-          <span>From</span>
+          {this.range && (
+            <span class="label-color">{isSecondInput ? 'To' : 'From'}</span>
+          )}
           <div
             class="datetime-input"
             ref={(ref) => {
@@ -541,20 +543,24 @@ export class DatetimeInput {
 
   private renderRangeInput() {
     return (
-      <div class="range-inputs">
-        {this.renderInput(
-          this.onFromDateInputChange,
-          this.onFromTimeInputChange,
-          this.onFromDateChange,
-          this.onFromTimeChange
-        )}
-        {this.renderInput(
-          this.onToDateInputChange,
-          this.onToTimeInputChange,
-          this.onToDateChange,
-          this.onToTimeChange,
-          true
-        )}
+      <div class="range-input-container">
+        <div class="range-input">
+          {this.renderInput(
+            this.onFromDateInputChange,
+            this.onFromTimeInputChange,
+            this.onFromDateChange,
+            this.onFromTimeChange
+          )}
+        </div>
+        <div class="range-input">
+          {this.renderInput(
+            this.onToDateInputChange,
+            this.onToTimeInputChange,
+            this.onToDateChange,
+            this.onToTimeChange,
+            true
+          )}
+        </div>
       </div>
     );
   }
@@ -562,6 +568,7 @@ export class DatetimeInput {
   render() {
     return (
       <Host>
+        {!this.range && <label>{this.label}</label>}
         {this.range
           ? this.renderRangeInput()
           : this.renderInput(

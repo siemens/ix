@@ -145,7 +145,6 @@ export class DateInput {
   }
 
   @State() private triggerRef: HTMLElement;
-  // @State() private datePickerRef: HTMLElement;
   @State() private _from: string;
   @State() private _to: string;
 
@@ -305,55 +304,56 @@ export class DateInput {
   render() {
     return (
       <Host class={{ 'label-flex': this.labelPosition === 'left' }}>
-        {/* renders if position is top/left */}
-        {this.renderLabel(false)}
-        <div
-          class="date-input"
-          aria-labelledby="date-input-label"
-          ref={(ref) => (this.triggerRef = ref)}
-        >
-          {/* renders if position is inside */}
-          {this.renderLabel(true)}
-          {this.range ? this.renderRangeInput() : this.renderSingleInput()}
-          <span
-            class={{
-              'icon-button': true,
-              clear: true,
-            }}
+        <form class="needs-validation" novalidate>
+          {/* renders if position is top/left */}
+          {this.renderLabel(false)}
+          <div
+            class="date-input"
+            aria-labelledby="date-input-label"
+            ref={(ref) => (this.triggerRef = ref)}
           >
-            <ix-icon-button
-              ghost
-              icon="clear"
-              class={{ hidden: !this._from && !this._to }}
-              onClick={this.clear}
-            ></ix-icon-button>
-          </span>
-          <span class="icon-button">
-            <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
-          </span>
-        </div>
-
-        <ix-dropdown
-          trigger={this.triggerRef}
-          closeBehavior="outside"
-          onClick={(event) => event.stopPropagation()}
-          class="dropdown"
-        >
-          <ix-date-picker
-            tabIndex={0}
-            ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
-            corners={this.corners}
-            range={this.range}
-            onDateChange={(event) => this.onDateChange(event)}
-            from={this._from}
-            to={this._to}
-            format={this.format}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            weekStartIndex={this.weekStartIndex}
-            onClick={(event) => event.stopImmediatePropagation()}
-          ></ix-date-picker>
-        </ix-dropdown>
+            {/* renders if position is inside */}
+            {this.renderLabel(true)}
+            {this.range ? this.renderRangeInput() : this.renderSingleInput()}
+            <span
+              class={{
+                'icon-button': true,
+                clear: true,
+              }}
+            >
+              <ix-icon-button
+                ghost
+                icon="clear"
+                class={{ hidden: !this._from && !this._to }}
+                onClick={this.clear}
+              ></ix-icon-button>
+            </span>
+            <span class="icon-button">
+              <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
+            </span>
+          </div>
+          <ix-dropdown
+            trigger={this.triggerRef}
+            closeBehavior="outside"
+            onClick={(event) => event.stopPropagation()}
+            class="dropdown"
+          >
+            <ix-date-picker
+              tabIndex={0}
+              ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
+              corners={this.corners}
+              range={this.range}
+              onDateChange={(event) => this.onDateChange(event)}
+              from={this._from}
+              to={this._to}
+              format={this.format}
+              minDate={this.minDate}
+              maxDate={this.maxDate}
+              weekStartIndex={this.weekStartIndex}
+              onClick={(event) => event.stopImmediatePropagation()}
+            ></ix-date-picker>
+          </ix-dropdown>
+        </form>
       </Host>
     );
   }

@@ -12,6 +12,12 @@
 :host {
   @include ix-component;
 
+  ix-dropdown {
+    margin-top: 0.25rem !important;
+    padding: 0;
+    overflow-y: visible;
+  }
+
   input {
     box-shadow: none;
   
@@ -45,15 +51,17 @@
     }
   }
 
-  ix-dropdown {
-    margin-top: 0.25rem !important;
-    padding: 0;
-  }
-
-  .range-inputs {
+  .range-input-container {
     display: flex;
     flex-direction: row;
+    width: 100%;
+
+    .range-input {
+      flex: 0 0 50%;
+    }
   }
+
+  
 
   .second-input {
     margin-left: 10px;
