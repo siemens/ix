@@ -75,6 +75,8 @@
   }
 
   :host(.disabled) {
+    pointer-events: none;
+
     .btn-#{$name} {
       &.disabled,
       &:disabled {
