@@ -28,12 +28,17 @@ test('renders', async ({ mount, page }) => {
 //TODO: Parse ranges
 test.describe('date dropdown tests', () => {
   test.beforeEach(async ({ mount, page }) => {
-    await mount(
-      `
-      <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-      <ix-date-dropdown></ix-date-dropdown>
-      `
-    );
+    await mount(` <ix-date-dropdown></ix-date-dropdown> `);
+
+    // Load dayjs
+    await page.evaluate(() => {
+      return new Promise<void>((resolve) => {
+        const script = document.createElement('script');
+        script.onload = () => resolve();
+        script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js';
+        document.body.appendChild(script);
+      });
+    });
 
     await page.$eval(
       DATE_DROPDOWN_SELECTOR,
