@@ -6570,8 +6570,14 @@
           "attr": "max-visible-menu-items",
           "reflectToAttr": false,
           "docs": "Maximum number of menu items to show in case enough vertical space is available.\nExtra menu items will be collapsed to 'show more' menu item.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Has no effect on component. Will get removed with next major release (v3)"
+            }
+          ],
           "default": "9",
+          "deprecation": "- Has no effect on component. Will get removed with next major release (v3)",
           "values": [
             {
               "type": "number"
