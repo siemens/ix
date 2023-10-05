@@ -29,9 +29,10 @@ test('renders', async ({ mount, page }) => {
 test.describe('date dropdown tests', () => {
   test.beforeEach(async ({ mount, page }) => {
     await mount(
-      `<ix-date-dropdown
-        >
-        </ix-date-dropdown>`
+      `
+      <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+      <ix-date-dropdown></ix-date-dropdown>
+      `
     );
 
     await page.$eval(
@@ -41,28 +42,28 @@ test.describe('date dropdown tests', () => {
           {
             label: 'No time limit',
             getValue: (): DateRangeOption => {
-              const today: dayjs.Dayjs = (window as any).dayjs();
+              const today = (window as any).dayjs();
               return { from: undefined, to: today };
             },
           },
           {
             label: 'Today',
             getValue: (): DateRangeOption => {
-              const today: dayjs.Dayjs = dayjs();
+              const today = (window as any).dayjs();
               return { from: today, to: today };
             },
           },
           {
             label: 'Last 7 days',
             getValue: (): DateRangeOption => {
-              const today: dayjs.Dayjs = dayjs();
+              const today = (window as any).dayjs();
               return { from: today, to: today.subtract(7, 'day') };
             },
           },
           {
             label: 'Last week',
             getValue: (): DateRangeOption => {
-              const today: dayjs.Dayjs = dayjs();
+              const today = (window as any).dayjs();
               const prevWeek: dayjs.Dayjs = today.subtract(7, 'day');
               return {
                 from: prevWeek.startOf('week'),
@@ -73,7 +74,7 @@ test.describe('date dropdown tests', () => {
           {
             label: 'Current month',
             getValue: (): DateRangeOption => {
-              const today: dayjs.Dayjs = dayjs();
+              const today = (window as any).dayjs();
               return { from: today.startOf('month'), to: today.endOf('month') };
             },
           },
