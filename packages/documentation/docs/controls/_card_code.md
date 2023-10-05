@@ -1,12 +1,22 @@
 import Playground from '@site/src/components/Playground';
 
+import ActionCardTags from './../auto-generated/ix-action-card/tags.md';
+import ActionCardProps from './../auto-generated/ix-action-card/props.md';
+import ActionCardEvents from './../auto-generated/ix-action-card/events.md';
+
 import PushCardTags from './../auto-generated/ix-push-card/tags.md';
 import PushCardProps from './../auto-generated/ix-push-card/props.md';
 import PushCardEvents from './../auto-generated/ix-push-card/events.md';
 
-import ActionCardTags from './../auto-generated/ix-action-card/tags.md';
-import ActionCardProps from './../auto-generated/ix-action-card/props.md';
-import ActionCardEvents from './../auto-generated/ix-action-card/events.md';
+import CardTags from './../auto-generated/ix-card/tags.md';
+import CardProps from './../auto-generated/ix-card/props.md';
+import CardEvents from './../auto-generated/ix-card/events.md';
+
+import WebComponentCard from './../auto-generated/previews/web-component/card.md'
+import ReactCard from './../auto-generated/previews/react/card.md'
+import VueCard from './../auto-generated/previews/vue/card.md'
+import AngularTsCard from './../auto-generated/previews/angular/card.ts.md'
+import AngularHtmlCard from './../auto-generated/previews/angular/card.html.md'
 
 import WebComponentPushCard from './../auto-generated/previews/web-component/push-card.md'
 import ReactPushCard from './../auto-generated/previews/react/push-card.md'
@@ -71,3 +81,29 @@ frameworks={{
 ### Events
 
 <PushCardEvents />
+
+## Card (ix-card)
+
+<CardTags />
+
+<Playground
+height="17rem"
+name="card"
+frameworks={{
+  javascript: WebComponentCard,
+  react: ReactCard,
+  vue: VueCard,
+  angular: {
+    "card.html": AngularHtmlCard,
+    "card.ts": AngularTsCard
+  },
+}}>
+</Playground>
+
+### Properties
+
+<CardProps />
+
+### Events
+
+<CardEvents />
