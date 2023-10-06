@@ -184,6 +184,8 @@ export class DateInput {
       from: this._from,
       to: this._to,
     });
+
+    this.updateValidity();
   }
 
   private readonly clear = () => {
@@ -204,14 +206,18 @@ export class DateInput {
   }
 
   onInputChange() {
-    if (this.wasValidated) {
-      this.setInputValidity();
-    }
-
     this.inputChange.emit({
       from: this.firstInput.value,
       to: this.secondInput.value,
     });
+
+    this.updateValidity();
+  }
+
+  private updateValidity() {
+    if (this.wasValidated) {
+      this.setInputValidity();
+    }
   }
 
   private readonly setInputValidity = () => {
