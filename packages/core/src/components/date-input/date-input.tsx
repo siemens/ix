@@ -162,6 +162,7 @@ export class DateInput {
   private focusedInput!: HTMLInputElement;
   private datePicker!: HTMLIxDatePickerElement;
   private validator: Validator<DateValidatorParam>;
+  private wasValidated: boolean;
 
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
@@ -203,6 +204,10 @@ export class DateInput {
   }
 
   onInputChange() {
+    if (this.wasValidated) {
+      this.setInputValidity();
+    }
+
     this.inputChange.emit({
       from: this.firstInput.value,
       to: this.secondInput.value,
@@ -231,6 +236,8 @@ export class DateInput {
     this.dateInputDiv.classList.toggle('is-valid', isValid);
     this.hostElement.classList.toggle('is-invalid', !isValid);
     this.hostElement.classList.toggle('is-valid', isValid);
+
+    this.wasValidated = true;
   };
 
   componentWillLoad() {
