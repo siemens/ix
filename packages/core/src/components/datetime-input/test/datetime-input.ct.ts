@@ -92,4 +92,28 @@ test.describe('datetime input tests single', () => {
       toTime: undefined,
     });
   });
+
+  test('clear button clears inputs', async ({ page }) => {
+    await page.getByPlaceholder('YYYY/MM/DD').fill('2023/01/01');
+    await page.getByPlaceholder('HH:mm:ss').fill('00:00:00');
+    await page.locator('.icon-button').first().click();
+
+    expect(await getDatetimeInputObj(page)).toEqual({
+      fromDate: undefined,
+      fromTime: undefined,
+      toDate: undefined,
+      toTime: undefined,
+    });
+  });
+});
+
+test.describe('datetime input tests range', () => {
+  test.beforeEach(async ({ mount }) => {
+    await mount(`<ix-datetime-input range="true"></ix-datetime-input>`);
+  });
+
+  test('renders', async ({ page }) => {
+    const dateInput = page.locator(DATETIME_INPUT_SELECTOR);
+    await expect(dateInput).toHaveClass(/hydrated/);
+  });
 });
