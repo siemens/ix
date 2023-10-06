@@ -27,7 +27,7 @@ export const ValidDateValidator: Validator<DateValidatorParam> = {
 
     return true;
   },
-  errorMessage: 'One or both dates are invalid',
+  errorMessage: 'One or both dates are invalid.',
 };
 
 export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {
@@ -41,7 +41,7 @@ export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {
 
     return true;
   },
-  errorMessage: 'Second date must be after first date',
+  errorMessage: 'Second date must be after first date.',
 };
 
 export const DateWithinMinMaxValidator: Validator<DateValidatorParam> = {
@@ -59,5 +59,5 @@ export const DateWithinMinMaxValidator: Validator<DateValidatorParam> = {
 
     return true;
   },
-  errorMessage: 'Date must be within min/max date',
+  errorMessage: 'Date must be within min/max date.',
 };

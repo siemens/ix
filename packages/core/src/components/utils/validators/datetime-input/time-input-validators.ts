@@ -25,5 +25,5 @@ export const ValidTimeValidator: Validator<TimeValidatorParam> = {
 
     return true;
   },
-  errorMessage: 'One or both times are invalid',
+  errorMessage: 'One or both times are invalid.',
 };

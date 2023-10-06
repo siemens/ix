@@ -498,6 +498,11 @@ export namespace Components {
          */
         "getCurrentInput": () => Promise<DateChangeEvent>;
         /**
+          * Gets the current error message if the input is invalid
+          * @returns string
+         */
+        "getValidityErrorMessage": () => Promise<string>;
+        /**
           * Label for the input
          */
         "label": string;
