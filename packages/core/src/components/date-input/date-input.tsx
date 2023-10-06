@@ -153,7 +153,7 @@ export class DateInput {
     return this.validator.errorMessage;
   }
 
-  @State() private triggerRef: HTMLElement;
+  @State() private dateInputDiv: HTMLDivElement;
   @State() private _from: string;
   @State() private _to: string;
 
@@ -168,32 +168,12 @@ export class DateInput {
   };
 
   private onInputBlur = (event: FocusEvent) => {
-    this.setInputValidity();
-
     const relatedElem = event.relatedTarget as HTMLElement;
     if (relatedElem?.tagName === this.datePicker.tagName) {
       this.focusedInput.focus();
       return;
     }
   };
-
-  private setInputValidity() {
-    const param: DateValidatorParam = {
-      from: this.firstInput.value,
-      to: this.secondInput.value,
-      format: this.format,
-      min: this.minDate,
-      max: this.maxDate,
-    };
-
-    if (!this.validator.validate(param)) {
-      this.firstInput.setCustomValidity(this.validator.errorMessage);
-      this.secondInput.setCustomValidity(this.validator.errorMessage);
-    } else {
-      this.firstInput.setCustomValidity('');
-      this.secondInput.setCustomValidity('');
-    }
-  }
 
   private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
     this._from = event.detail.from;
@@ -229,14 +209,26 @@ export class DateInput {
     });
   }
 
-  private readonly parentFormSubmitted = () => {
-    this.setInputValidity();
-    const isValid = [
-      this.firstInput.validity.valid,
-      this.secondInput.validity.valid,
-    ].some((valid) => valid);
+  private readonly setInputValidity = () => {
+    const param: DateValidatorParam = {
+      from: this.firstInput.value,
+      to: this.secondInput.value,
+      format: this.format,
+      min: this.minDate,
+      max: this.maxDate,
+    };
 
-    this.triggerRef.classList.toggle('is-invalid', !isValid);
+    const isValid = this.validator.validate(param);
+    if (!isValid) {
+      this.firstInput.setCustomValidity(this.validator.errorMessage);
+      this.secondInput.setCustomValidity(this.validator.errorMessage);
+    } else {
+      this.firstInput.setCustomValidity('');
+      this.secondInput.setCustomValidity('');
+    }
+
+    this.dateInputDiv.classList.toggle('is-invalid', !isValid);
+    this.dateInputDiv.classList.toggle('is-valid', isValid);
     this.hostElement.classList.toggle('is-invalid', !isValid);
     this.hostElement.classList.toggle('is-valid', isValid);
   };
@@ -251,7 +243,7 @@ export class DateInput {
     hiddenInput.style.display = 'none';
     this.hostElement.appendChild(hiddenInput);
 
-    hiddenInput.form.addEventListener('submit', this.parentFormSubmitted);
+    hiddenInput.form.addEventListener('submit', this.setInputValidity);
   }
 
   renderRangeInput(): any {
@@ -338,7 +330,7 @@ export class DateInput {
         <div
           class="date-input"
           aria-labelledby="date-input-label"
-          ref={(ref) => (this.triggerRef = ref)}
+          ref={(ref) => (this.dateInputDiv = ref)}
         >
           {/* renders if position is inside */}
           {this.renderLabel(true)}
@@ -361,7 +353,7 @@ export class DateInput {
           </span>
         </div>
         <ix-dropdown
-          trigger={this.triggerRef}
+          trigger={this.dateInputDiv}
           closeBehavior="outside"
           onClick={(event) => event.stopPropagation()}
           class="dropdown"

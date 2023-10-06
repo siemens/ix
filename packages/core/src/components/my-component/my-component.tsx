@@ -32,14 +32,6 @@ export class MyComponent {
           <ix-layout-grid>
             <ix-row>
               <ix-col size="4">
-                <label htmlFor="validationCustom01">First name</label>
-                <input type="text" id="validationCustom01" required />
-                <div class="invalid-feedback">Please choose a first name.</div>
-                <div class="valid-feedback">Looks good!</div>
-              </ix-col>
-            </ix-row>
-            <ix-row>
-              <ix-col size="4">
                 <ix-date-input
                   id="validationCustom02"
                   ref={(ref) =>
