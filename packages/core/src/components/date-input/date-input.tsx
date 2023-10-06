@@ -233,7 +233,6 @@ export class DateInput {
     }
 
     this.dateInputDiv.classList.toggle('is-invalid', !isValid);
-    this.dateInputDiv.classList.toggle('is-valid', isValid);
     this.hostElement.classList.toggle('is-invalid', !isValid);
     this.hostElement.classList.toggle('is-valid', isValid);
 
