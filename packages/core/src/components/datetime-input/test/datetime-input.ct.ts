@@ -22,8 +22,8 @@ test.describe('datetime input tests single', () => {
   });
 
   test('renders', async ({ page }) => {
-    const dateInput = page.locator(DATETIME_INPUT_SELECTOR);
-    await expect(dateInput).toHaveClass(/hydrated/);
+    const datetimeInput = page.locator(DATETIME_INPUT_SELECTOR);
+    await expect(datetimeInput).toHaveClass(/hydrated/);
   });
 
   test('no initial value', async ({ page }) => {
@@ -113,7 +113,7 @@ test.describe('datetime input tests range', () => {
   });
 
   test('renders', async ({ page }) => {
-    const dateInput = page.locator(DATETIME_INPUT_SELECTOR);
-    await expect(dateInput).toHaveClass(/hydrated/);
+    const datetimeInput = page.locator(DATETIME_INPUT_SELECTOR);
+    await expect(datetimeInput).toHaveClass(/hydrated/);
   });
 });

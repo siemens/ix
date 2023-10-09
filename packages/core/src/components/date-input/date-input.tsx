@@ -15,6 +15,7 @@ import {
   Fragment,
   h,
   Host,
+  Listen,
   Method,
   Prop,
   State,
@@ -64,8 +65,6 @@ export class DateInput {
   /**
    * The selected starting date. If the date-picker is not in range mode this is the selected date.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() from: string | undefined;
   @Watch('from')
@@ -76,8 +75,6 @@ export class DateInput {
   /**
    * The selected end date. If the the date-picker is not in range mode this property has no impact.
    * Format has to match the `format` property.
-   *
-   * @since 1.1.0
    */
   @Prop() to: string | undefined;
   @Watch('to')
@@ -88,33 +85,30 @@ export class DateInput {
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() maxDate: string;
 
   /**
    * Text of the button that confirms date selection.
-   *
-   * @since 1.1.0
    */
   @Prop() textSelectDate = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
+
+  /**
+   * Suppresses the error message that displays below the input if validation failed.
+   */
+  @Prop() suppressErrorHandlingMessage: boolean = false;
 
   /**
    * Triggers if the date selection changes.
@@ -151,6 +145,11 @@ export class DateInput {
   @Method()
   async getValidityErrorMessage(): Promise<string> {
     return this.validator.errorMessage;
+  }
+
+  @Listen('dateSelect')
+  dateSelectHandler() {
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   @State() private dateInputDiv: HTMLDivElement;
@@ -382,9 +381,9 @@ export class DateInput {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
-            onClick={(event) => event.stopImmediatePropagation()}
           ></ix-date-picker>
         </ix-dropdown>
+        <ix-dropdown></ix-dropdown>
       </Host>
     );
   }

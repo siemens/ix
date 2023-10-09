@@ -489,7 +489,6 @@ export namespace Components {
         "format": string;
         /**
           * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from": string | undefined;
         /**
@@ -512,12 +511,10 @@ export namespace Components {
         "labelPosition": 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate": string;
         /**
@@ -525,18 +522,19 @@ export namespace Components {
          */
         "range": boolean;
         /**
+          * Suppresses the error message that displays below the input if validation failed.
+         */
+        "suppressErrorHandlingMessage": boolean;
+        /**
           * Text of the button that confirms date selection.
-          * @since 1.1.0
          */
         "textSelectDate": string;
         /**
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
          */
         "weekStartIndex": number;
     }
@@ -3738,7 +3736,6 @@ declare namespace LocalJSX {
         "format"?: string;
         /**
           * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "from"?: string | undefined;
         /**
@@ -3751,12 +3748,10 @@ declare namespace LocalJSX {
         "labelPosition"?: 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate"?: string;
         /**
@@ -3776,18 +3771,19 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
         /**
+          * Suppresses the error message that displays below the input if validation failed.
+         */
+        "suppressErrorHandlingMessage"?: boolean;
+        /**
           * Text of the button that confirms date selection.
-          * @since 1.1.0
          */
         "textSelectDate"?: string;
         /**
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
-          * @since 1.1.0
          */
         "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
          */
         "weekStartIndex"?: number;
     }
