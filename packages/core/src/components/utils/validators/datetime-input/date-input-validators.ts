@@ -12,52 +12,64 @@ export type DateValidatorParam = {
   max?: string;
 };
 
-export const ValidDateValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam): boolean => {
-    if (value.from && value.to && value.format) {
-      return (
-        dayjs(value.from, value.format, true).isValid() &&
-        dayjs(value.to, value.format, true).isValid()
-      );
-    }
+export function getValidDateValidator(
+  customErrorMessage?: string
+): Validator<DateValidatorParam> {
+  return {
+    validate: (value: DateValidatorParam): boolean => {
+      if (value.from && value.to && value.format) {
+        return (
+          dayjs(value.from, value.format, true).isValid() &&
+          dayjs(value.to, value.format, true).isValid()
+        );
+      }
 
-    if (value.from && value.format) {
-      return dayjs(value.from, value.format, true).isValid();
-    }
+      if (value.from && value.format) {
+        return dayjs(value.from, value.format, true).isValid();
+      }
 
-    return true;
-  },
-  errorMessage: 'One or both dates are invalid.',
-};
+      return true;
+    },
+    errorMessage: customErrorMessage ?? 'One or both dates are invalid.',
+  };
+}
 
-export const ToDateAfterFromDateValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam): boolean => {
-    if (value.from && value.to && value.format) {
-      const _from = dayjs(value.from, value.format, true);
-      const _to = dayjs(value.to, value.format, true);
+export function getToDateAfterFromDateValidator(
+  customErrorMessage?: string
+): Validator<DateValidatorParam> {
+  return {
+    validate: (value: DateValidatorParam): boolean => {
+      if (value.from && value.to && value.format) {
+        const _from = dayjs(value.from, value.format, true);
+        const _to = dayjs(value.to, value.format, true);
 
-      return _to.isAfter(_from, 'day') || _to.isSame(_from, 'day');
-    }
+        return _to.isAfter(_from, 'day') || _to.isSame(_from, 'day');
+      }
 
-    return true;
-  },
-  errorMessage: 'Second date must be after first date.',
-};
+      return true;
+    },
+    errorMessage: customErrorMessage ?? 'Second date must be after first date.',
+  };
+}
 
-export const DateWithinMinMaxValidator: Validator<DateValidatorParam> = {
-  validate: (value: DateValidatorParam): boolean => {
-    if (value.from && value.format && value.min && value.max) {
-      const _date = dayjs(value.from, value.format, true);
-      const _min = dayjs(value.min, value.format, true);
-      const _max = dayjs(value.max, value.format, true);
+export function getDateWithinMinMaxValidator(
+  customErrorMessage?: string
+): Validator<DateValidatorParam> {
+  return {
+    validate: (value: DateValidatorParam): boolean => {
+      if (value.from && value.format && value.min && value.max) {
+        const _date = dayjs(value.from, value.format, true);
+        const _min = dayjs(value.min, value.format, true);
+        const _max = dayjs(value.max, value.format, true);
 
-      return (
-        (_date.isAfter(_min, 'day') || _date.isSame(_min, 'day')) &&
-        (_date.isBefore(_max, 'day') || _date.isSame(_max, 'day'))
-      );
-    }
+        return (
+          (_date.isAfter(_min, 'day') || _date.isSame(_min, 'day')) &&
+          (_date.isBefore(_max, 'day') || _date.isSame(_max, 'day'))
+        );
+      }
 
-    return true;
-  },
-  errorMessage: 'Date must be within min/max date.',
-};
+      return true;
+    },
+    errorMessage: customErrorMessage ?? 'Date must be within min/max date.',
+  };
+}

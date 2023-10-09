@@ -14,6 +14,19 @@
   flex-direction: row;
 }
 
+:host(.is-invalid) {
+  .invalid-feedback {
+    display: block;
+    color: var(--theme-color-alarm-text);
+  }
+}
+
+:host(.is-valid) {
+  .invalid-feedback {
+    display: none;
+  }
+}
+
 :host {
   @include ix-component;
 

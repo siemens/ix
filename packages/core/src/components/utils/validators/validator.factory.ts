@@ -1,34 +1,49 @@
 import {
-  DateWithinMinMaxValidator,
-  ToDateAfterFromDateValidator,
-  ValidDateValidator,
+  getDateWithinMinMaxValidator,
+  getToDateAfterFromDateValidator,
+  getValidDateValidator,
 } from './datetime-input/date-input-validators';
-import { ValidTimeValidator } from './datetime-input/time-input-validators';
+import { getValidTimeValidator } from './datetime-input/time-input-validators';
 import { Validator } from './validator';
 
-export enum ValidatorNames {
+export enum ValidatorName {
   validDate = 'validDate',
   toAfterFrom = 'toAfterFrom',
   withinMinMax = 'withinMinMax',
   validTime = 'validTime',
 }
 
-export function getValidator(list: Array<string>): Validator<any> {
+export interface ValidatorEntry {
+  name: string;
+  options?: any;
+}
+
+export function getValidator(
+  list: Array<string | ValidatorEntry>
+): Validator<any> {
   return (list || [])
-    .map((v) => validatorFactory(v))
+    .map((v) => {
+      if (typeof v === 'string') {
+        return validatorFactory(v);
+      }
+
+      return validatorFactory(v.name, v.options);
+    })
     .reduce(combineValidator, defaultValidator);
 }
 
-function validatorFactory(name: string): Validator<any> {
+function validatorFactory(name: string, options?: any): Validator<any> {
+  options ? options : {};
+
   switch (name) {
-    case ValidatorNames.validDate:
-      return ValidDateValidator;
-    case ValidatorNames.toAfterFrom:
-      return ToDateAfterFromDateValidator;
-    case ValidatorNames.withinMinMax:
-      return DateWithinMinMaxValidator;
-    case ValidatorNames.validTime:
-      return ValidTimeValidator;
+    case ValidatorName.validDate:
+      return getValidDateValidator(options?.errorMessage);
+    case ValidatorName.toAfterFrom:
+      return getToDateAfterFromDateValidator(options?.errorMessage);
+    case ValidatorName.withinMinMax:
+      return getDateWithinMinMaxValidator(options?.errorMessage);
+    case ValidatorName.validTime:
+      return getValidTimeValidator(options?.errorMessage);
     default:
       return defaultValidator;
   }

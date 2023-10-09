@@ -25,8 +25,6 @@ export class MyComponent {
           novalidate
           onSubmit={async (e) => {
             e.preventDefault();
-
-            this.errorMessage = await this.dateInput.getValidityErrorMessage();
           }}
         >
           <ix-layout-grid>
@@ -47,7 +45,7 @@ export class MyComponent {
                   }
                   range={true}
                 ></ix-date-input>
-                <div class="invalid-feedback">{this.errorMessage}</div>
+                {/* <div class="invalid-feedback">{this.errorMessage}</div> */}
               </ix-col>
             </ix-row>
             <ix-row>

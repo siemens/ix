@@ -25,8 +25,11 @@ import { IxDatePickerCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
-import { Validator } from '../utils/validators/validator';
-import { getValidator } from '../utils/validators/validator.factory';
+import { InputValidator, Validator } from '../utils/validators/validator';
+import {
+  getValidator,
+  ValidatorEntry,
+} from '../utils/validators/validator.factory';
 
 @Component({
   tag: 'ix-date-input',
@@ -111,6 +114,15 @@ export class DateInput {
   @Prop() suppressErrorHandlingMessage: boolean = false;
 
   /**
+   * Array of validators that are active when the date input is part of a form
+   */
+  @Prop() validators: InputValidator[] | string[] = [
+    'validDate',
+    'toAfterFrom',
+    'withinMinMax',
+  ];
+
+  /**
    * Triggers if the date selection changes.
 
    */
@@ -136,15 +148,6 @@ export class DateInput {
       from: this._from,
       to: this._to,
     };
-  }
-
-  /**
-   * Gets the current error message if the input is invalid
-   * @returns string
-   */
-  @Method()
-  async getValidityErrorMessage(): Promise<string> {
-    return this.validator.errorMessage;
   }
 
   @Listen('dateSelect')
@@ -191,7 +194,7 @@ export class DateInput {
     this._from = undefined;
     this._to = undefined;
 
-    this.focusedInput.focus();
+    this.firstInput.focus();
   };
 
   onFromInputChange(event) {
@@ -248,7 +251,15 @@ export class DateInput {
     this._from = this.from;
     this._to = this.to;
 
-    this.validator = getValidator(['validDate', 'toAfterFrom', 'withinMinMax']);
+    const validatorEntries: ValidatorEntry[] = this.validators.map((v) => {
+      return {
+        name: v.validator,
+        options: {
+          errorMessage: v.errorMessage ?? undefined,
+        },
+      };
+    });
+    this.validator = getValidator(validatorEntries);
 
     const hiddenInput = document.createElement('input');
     hiddenInput.style.display = 'none';
@@ -381,9 +392,10 @@ export class DateInput {
             minDate={this.minDate}
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
+            onClick={(event) => event.stopPropagation()}
           ></ix-date-picker>
         </ix-dropdown>
-        <ix-dropdown></ix-dropdown>
+        <div class="invalid-feedback">{this.validator.errorMessage}</div>
       </Host>
     );
   }

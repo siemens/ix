@@ -18,6 +18,7 @@ import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+import { InputValidator } from "./components/utils/validators/validator";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -56,6 +57,7 @@ export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
+export { InputValidator } from "./components/utils/validators/validator";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -497,11 +499,6 @@ export namespace Components {
          */
         "getCurrentInput": () => Promise<DateChangeEvent>;
         /**
-          * Gets the current error message if the input is invalid
-          * @returns string
-         */
-        "getValidityErrorMessage": () => Promise<string>;
-        /**
           * Label for the input
          */
         "label": string;
@@ -533,6 +530,10 @@ export namespace Components {
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to": string | undefined;
+        /**
+          * Array of validators that are active when the date input is part of a form
+         */
+        "validators": InputValidator[] | string[];
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
          */
@@ -3782,6 +3783,10 @@ declare namespace LocalJSX {
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
         "to"?: string | undefined;
+        /**
+          * Array of validators that are active when the date input is part of a form
+         */
+        "validators"?: InputValidator[] | string[];
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
          */

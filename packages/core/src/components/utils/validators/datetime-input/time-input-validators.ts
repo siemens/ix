@@ -10,20 +10,24 @@ export type TimeValidatorParam = {
   format: string;
 };
 
-export const ValidTimeValidator: Validator<TimeValidatorParam> = {
-  validate: (value: TimeValidatorParam): boolean => {
-    if (value.fromTime && value.toTime && value.format) {
-      return (
-        dayjs(value.fromTime, value.format, true).isValid() &&
-        dayjs(value.toTime, value.format, true).isValid()
-      );
-    }
+export function getValidTimeValidator(
+  customErrorMessage?: string
+): Validator<TimeValidatorParam> {
+  return {
+    validate: (value: TimeValidatorParam): boolean => {
+      if (value.fromTime && value.toTime && value.format) {
+        return (
+          dayjs(value.fromTime, value.format, true).isValid() &&
+          dayjs(value.toTime, value.format, true).isValid()
+        );
+      }
 
-    if (value.fromTime && value.format) {
-      return dayjs(value.fromTime, value.format, true).isValid();
-    }
+      if (value.fromTime && value.format) {
+        return dayjs(value.fromTime, value.format, true).isValid();
+      }
 
-    return true;
-  },
-  errorMessage: 'One or both times are invalid.',
-};
+      return true;
+    },
+    errorMessage: customErrorMessage ?? 'One or both times are invalid.',
+  };
+}
