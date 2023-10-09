@@ -11,6 +11,7 @@ Commonly, the layout grid is based on a 12 column layout. Columns are nested in 
 
 ## Options
 ### Layout grid options
+- Bla bla new stuff
 - The default number of columns in a grid is 12. It is possible to choose any number of columns between 2 and 12
 - Layout grids contain horizontal margins. For smaller viewports or when used within a component, the margin can be removed or reduced
 - As a general rule, a gutter of ``1.5rem`` is applied. The gutter can be decreased to allow for a narrower grouping of columns
