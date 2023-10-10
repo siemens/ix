@@ -27,8 +27,10 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { InputValidator, Validator } from '../utils/validators/validator';
 import {
+  convertInputValidators,
+  DATE_VALIDATORS,
   getValidator,
-  ValidatorEntry,
+  ValidatorName,
 } from '../utils/validators/validator.factory';
 
 @Component({
@@ -156,6 +158,7 @@ export class DateInput {
   }
 
   @State() private dateInputDiv: HTMLDivElement;
+  @State() private errorMessage: string;
   @State() private _from: string;
   @State() private _to: string;
 
@@ -195,6 +198,7 @@ export class DateInput {
     this._to = undefined;
 
     this.firstInput.focus();
+    this.onInputChange();
   };
 
   onFromInputChange(event) {
@@ -245,20 +249,16 @@ export class DateInput {
     this.hostElement.classList.toggle('is-valid', isValid);
 
     this.wasValidated = true;
+    this.errorMessage = this.validator.errorMessage;
   };
 
   componentWillLoad() {
     this._from = this.from;
     this._to = this.to;
 
-    const validatorEntries: ValidatorEntry[] = this.validators.map((v) => {
-      return {
-        name: v.validator,
-        options: {
-          errorMessage: v.errorMessage ?? undefined,
-        },
-      };
-    });
+    const validatorEntries = convertInputValidators(this.validators).filter(
+      (v) => DATE_VALIDATORS.includes(v.name as ValidatorName)
+    );
     this.validator = getValidator(validatorEntries);
 
     const hiddenInput = document.createElement('input');
@@ -395,7 +395,7 @@ export class DateInput {
             onClick={(event) => event.stopPropagation()}
           ></ix-date-picker>
         </ix-dropdown>
-        <div class="invalid-feedback">{this.validator.errorMessage}</div>
+        <div class="invalid-feedback">{this.errorMessage}</div>
       </Host>
     );
   }
