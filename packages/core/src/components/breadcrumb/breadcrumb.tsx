@@ -149,10 +149,18 @@ export class Breadcrumb {
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
-            // Need to force update previous button to change `aria-expanded`
-            forceUpdate(
-              this.hostElement.shadowRoot.getElementById(this.previousButtonId)
+            const previousButton = this.hostElement.shadowRoot.getElementById(
+              this.previousButtonId
             );
+
+            // Need to force update previous button to change `aria-expanded`
+            if (previousButton) {
+              forceUpdate(
+                this.hostElement.shadowRoot.getElementById(
+                  this.previousButtonId
+                )
+              );
+            }
           }}
         >
           {this.items
