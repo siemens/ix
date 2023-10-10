@@ -107,7 +107,6 @@ export class DateDropdown {
    * that returns the start and end dates of the range as a DateRangeOption object.
    *
    * Example format:
-   * [
    *   {
    *     label: 'No time limit',
    *     getValue: (): DateRangeOption => {
@@ -116,7 +115,6 @@ export class DateDropdown {
    *     },
    *   },
    *   // ... other predefined date range options ...
-   * ]
    */
   @Prop() public dateRangeOptions: DateDropdownOption[] = [];
 
