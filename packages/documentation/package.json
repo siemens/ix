@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -23,11 +23,11 @@
     "@docusaurus/preset-classic": "2.4.0",
     "@docusaurus/theme-live-codeblock": "2.4.0",
     "@mdx-js/react": "^1.6.22",
-    "@siemens/html-test-app": "~2.0.2",
-    "@siemens/ix": "~2.0.2",
-    "@siemens/ix-echarts": "~2.0.2",
+    "@siemens/html-test-app": "~2.0.3",
+    "@siemens/ix": "~2.0.3",
+    "@siemens/ix-echarts": "~2.0.3",
     "@siemens/ix-icons": "2.0.0-beta.0",
-    "@siemens/ix-react": "~2.0.2",
+    "@siemens/ix-react": "~2.0.3",
     "@stackblitz/sdk": "^1.8.1",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",
