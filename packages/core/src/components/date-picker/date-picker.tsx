@@ -82,7 +82,7 @@ export class DatePicker {
       ? dayjs(newValue, this.format, true)
       : undefined;
 
-    if (this.currFromDate.isValid()) {
+    if (this.currFromDate?.isValid()) {
       this.selectedYear = this.currFromDate.year();
       this.selectedMonth = this.currFromDate.month();
     }
@@ -100,7 +100,7 @@ export class DatePicker {
   watchToPropHandler(newValue: string) {
     this.currToDate = newValue ? dayjs(newValue, this.format, true) : undefined;
 
-    if (this.currToDate.isValid()) {
+    if (this.currToDate?.isValid()) {
       this.selectedYear = this.currToDate.year();
       this.selectedMonth = this.currToDate.month();
     }
