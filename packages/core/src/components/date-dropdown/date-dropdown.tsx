@@ -139,6 +139,10 @@ export class DateDropdown {
 
   @Element() hostElement: HTMLIxDateDropdownElement;
 
+  constructor() {
+    this.updateSelectedDateRange(this.initialSelectedDateRangeName);
+  }
+
   @Watch('dateRangeOptions')
   @Watch('initialSelectedDateRangeName')
   public initialSelectedDateRangeNameChanged(): void {
