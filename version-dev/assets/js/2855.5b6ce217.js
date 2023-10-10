@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[2855],{2855:(t,s,e)=>{e.r(s),e.d(s,{ix_menu_settings_item:()=>l});var n=e(35254);const l=class{constructor(t){(0,n.r)(this,t),this.label=void 0}render(){return(0,n.h)(n.H,null,(0,n.h)("slot",null))}};l.style=":host{display:block}"}}]);
