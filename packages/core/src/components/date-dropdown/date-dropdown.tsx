@@ -91,7 +91,7 @@ export class DateDropdown {
    * if not set or no according date range label is found, nothing will be selected
    * @default ''
    */
-  @Prop() initialSelectedDateRangeName: string = '';
+  @Prop() public initialSelectedDateRangeName: string = '';
 
   /**
    * Controls whether the user is allowed to pick custom date ranges in the component.
@@ -102,7 +102,21 @@ export class DateDropdown {
   @Prop() public customRangeAllowed: boolean = true;
 
   /**
-   * dasd
+   * An array of predefined date range options for the date picker.
+   * Each option is an object with a label describing the range and a function
+   * that returns the start and end dates of the range as a DateRangeOption object.
+   *
+   * Example format:
+   * [
+   *   {
+   *     label: 'No time limit',
+   *     getValue: (): DateRangeOption => {
+   *       // Calculate the date range here
+   *       return { from: undefined, to: today };
+   *     },
+   *   },
+   *   // ... other predefined date range options ...
+   * ]
    */
   @Prop() public dateRangeOptions: DateDropdownOption[] = [];
 
@@ -127,20 +141,23 @@ export class DateDropdown {
 
   @Element() hostElement: HTMLIxDateDropdownElement;
 
-  constructor() {
+  @Watch('dateRangeOptions')
+  @Watch('initialSelectedDateRangeName')
+  public initialSelectedDateRangeNameChanged(): void {
+    this.updateSelectedDateRange(this.initialSelectedDateRangeName);
+  }
+
+  private updateSelectedDateRange(newDateRangeName: string): void {
     const dateRangeOption = this.dateRangeOptions.find(
-      (option) => option.label === this.initialSelectedDateRangeName
+      (option) => option.label === newDateRangeName
     );
 
     const selectedDateRangeName = dateRangeOption
-      ? this.initialSelectedDateRangeName
+      ? newDateRangeName
       : 'No range set';
 
     if (dateRangeOption) {
-      this.setSelectedDateRange(
-        this.initialSelectedDateRangeName,
-        dateRangeOption.getValue
-      );
+      this.setSelectedDateRange(newDateRangeName, dateRangeOption.getValue);
     }
 
     this.savedDateRangeName = selectedDateRangeName;
@@ -170,9 +187,6 @@ export class DateDropdown {
     getDateRange: () => DateRangeOption
   ): void {
     this.currentlySelectedDateRangeName = dateRangeName;
-    console.log('!!');
-    console.log(dateRangeName);
-    console.log(getDateRange);
 
     if (dateRangeName !== CUSTOM_RANGE_LABEL) {
       const associatedDateRangeValue = getDateRange();

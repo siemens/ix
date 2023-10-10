@@ -22,10 +22,8 @@ test('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
   await expect(dateDropdown).toHaveClass(/hydrated/);
-  document.querySelector('ix-date-dropdown').customRangeAllowed = false;
 });
 
-//TODO: Parse ranges
 test.describe('date dropdown tests', () => {
   test.beforeEach(async ({ mount, page }) => {
     await mount(` <ix-date-dropdown></ix-date-dropdown> `);
@@ -43,6 +41,8 @@ test.describe('date dropdown tests', () => {
     await page.$eval(
       DATE_DROPDOWN_SELECTOR,
       (el: HTMLIxDateDropdownElement) => {
+        el.initialSelectedDateRangeName = 'Today';
+        el.customRangeAllowed = true;
         el.dateRangeOptions = [
           {
             label: 'No time limit',
@@ -62,7 +62,7 @@ test.describe('date dropdown tests', () => {
             label: 'Last 7 days',
             getValue: (): DateRangeOption => {
               const today = (window as any).dayjs();
-              return { from: today, to: today.subtract(7, 'day') };
+              return { from: today.subtract(7, 'day'), to: today };
             },
           },
           {
@@ -102,7 +102,7 @@ test.describe('date dropdown tests', () => {
     const dateDropDownButtonText = await page.$('div.content div.button-label');
 
     const selectedDateRange = await getDateRange(page);
-    const endDate: dayjs.Dayjs = dayjs().subtract(1, 'day');
+    const endDate: dayjs.Dayjs = dayjs();
     const startDate: dayjs.Dayjs = endDate.subtract(7, 'day');
 
     expect(await dateDropDownButtonText.textContent()).toEqual('Last 7 days');
@@ -155,7 +155,7 @@ test.describe('date dropdown tests', () => {
     await dateDropDownButton.click();
 
     const intervalOptionsButton = await page.$(
-      'ix-dropdown-item div.dropdown-item-text:has-text("Last 14 days")'
+      'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
     );
     await intervalOptionsButton.click();
 
@@ -167,8 +167,8 @@ test.describe('date dropdown tests', () => {
 
     const initialSetDate = await getDateRange(page);
 
-    const endDate = dayjs().subtract(1, 'day');
-    const startDate = endDate.subtract(7, 'day');
+    const endDate = dayjs();
+    const startDate = endDate;
 
     expect(initialSetDate[0]).toEqual({
       from: startDate.format('YYYY-MM-DD'),
