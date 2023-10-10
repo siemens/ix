@@ -91,15 +91,15 @@ test.describe('date dropdown tests', () => {
   test('select different date interval and get date', async ({ page }) => {
     await page.waitForSelector('ix-dropdown-button ix-icon');
 
-    const dateDropDownButton = await page.$('ix-dropdown-button');
+    const dateDropDownButton = page.locator('ix-dropdown-button');
     await dateDropDownButton.click();
 
-    const intervalOptionsButton = await page.$(
+    const intervalOptionsButton = page.locator(
       'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
     );
     await intervalOptionsButton.click();
 
-    const dateDropDownButtonText = await page.$('div.content div.button-label');
+    const dateDropDownButtonText = page.locator('div.content div.button-label');
 
     const selectedDateRange = await getDateRange(page);
     const endDate: dayjs.Dayjs = dayjs();
@@ -115,25 +115,25 @@ test.describe('date dropdown tests', () => {
   test('select custom date interval and get time', async ({ page }) => {
     await page.waitForSelector('ix-dropdown-button ix-icon');
 
-    const dateDropDownButton = await page.$('ix-dropdown-button');
+    const dateDropDownButton = page.locator('ix-dropdown-button');
     await dateDropDownButton.click();
 
-    const intervalOptionsButton = await page.$(
+    const intervalOptionsButton = page.locator(
       'ix-dropdown-item div.dropdown-item-text:has-text("Custom...")'
     );
     await intervalOptionsButton.click();
 
-    const startDateButton = await page.$(
+    const startDateButton = page.locator(
       'ix-date-picker ix-date-time-card div.grid div.calendar-item:not(.week-number):has-text("3")'
     );
-    await startDateButton.click();
+    await startDateButton.first().click();
 
-    const endDateButton = await page.$(
+    const endDateButton = page.locator(
       'ix-date-picker ix-date-time-card div.grid div.calendar-item:not(.week-number):has-text("11")'
     );
     await endDateButton.click();
 
-    const doneButton = await page.$(
+    const doneButton = page.locator(
       'ix-col div.pull-right ix-button:has-text("Done")'
     );
     await doneButton.click();
@@ -151,10 +151,10 @@ test.describe('date dropdown tests', () => {
       });
     });
 
-    const dateDropDownButton = await page.$('ix-dropdown-button');
+    const dateDropDownButton = page.locator('ix-dropdown-button');
     await dateDropDownButton.click();
 
-    const intervalOptionsButton = await page.$(
+    const intervalOptionsButton = page.locator(
       'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
     );
     await intervalOptionsButton.click();
