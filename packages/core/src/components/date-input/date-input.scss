@@ -80,6 +80,15 @@
     border: var(--theme-input--border-thickness, 1px) solid
       var(--theme-input--border-color);
 
+    &:hover {
+      border-color: var(--theme-input--border-color--hover);
+      background-color: var(--theme-input--background--hover);
+
+      input {
+        background-color: var(--theme-input--background--hover);
+      }
+    }
+
     &:focus-within {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);

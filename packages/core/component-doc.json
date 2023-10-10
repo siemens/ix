@@ -3311,6 +3311,25 @@
           "required": false
         },
         {
+          "name": "validators",
+          "type": "InputValidator[] | string[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Array of validators that are active when the date input is part of a form",
+          "docsTags": [],
+          "default": "[\n    'validDate',\n    'toAfterFrom',\n    'withinMinMax',\n    'validTime',\n  ]",
+          "values": [
+            {
+              "type": "InputValidator[]"
+            },
+            {
+              "type": "string[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "weekStartIndex",
           "type": "number",
           "mutable": false,

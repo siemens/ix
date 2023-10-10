@@ -35,11 +35,11 @@ export class MyComponent {
             </ix-row>
             <ix-row>
               <ix-col size="4">
-                <ix-date-input
+                {/* <ix-date-input
                   id="validationCustom02"
                   range={true}
-                ></ix-date-input>
-                {/* <ix-datetime-input id="222" label="label"></ix-datetime-input> */}
+                ></ix-date-input> */}
+                <ix-datetime-input id="222" label="label"></ix-datetime-input>
               </ix-col>
             </ix-row>
             <ix-row>

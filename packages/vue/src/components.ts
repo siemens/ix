@@ -306,6 +306,7 @@ export const IxDatetimeInput = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput
   'timeReference',
   'textSelectDate',
   'weekStartIndex',
+  'validators',
   'fromDateChange',
   'toDateChange',
   'fromTimeChange',

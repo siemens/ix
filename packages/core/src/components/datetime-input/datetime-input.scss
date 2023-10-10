@@ -85,8 +85,13 @@
     border-radius: var(--theme-input--border-radius);
     border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
 
-    input {
-      border: 0;
+    &:hover {
+      border-color: var(--theme-input--border-color--hover);
+      background-color: var(--theme-input--background--hover);
+
+      input {
+        background-color: var(--theme-input--background--hover);
+      }
     }
 
     &.is-invalid {
@@ -108,6 +113,10 @@
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus);
+    }
+
+    input {
+      border: 0;
     }
 
     .icon-button {
