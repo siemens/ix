@@ -458,7 +458,7 @@ export class IxDateDropdown {
 }
 
 
-import type { DateChangeEvent as IIxDateDropdownDateChangeEvent } from '@siemens/ix';
+import type { DateRangeChangeEvent as IIxDateDropdownDateRangeChangeEvent } from '@siemens/ix';
 
 export declare interface IxDateDropdown extends Components.IxDateDropdown {
   /**
@@ -467,7 +467,7 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
 This event is emitted when the date range changes within the component.
 The event payload contains information about the selected date range. @event undefined,@private undefined
    */
-  dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateChangeEvent>>;
+  dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
 
 

@@ -28,7 +28,7 @@ export type DateRangeOption = {
   to: dayjs.Dayjs;
 };
 
-export type DateChangeEvent = {
+export type DateRangeChangeEvent = {
   from: string;
   to: string;
 };
@@ -120,9 +120,9 @@ export class DateDropdown {
 
   @State() private hideDatePicker: boolean = true;
   @State() private currentlySelectedDateRangeName: string;
-  @State() private associatedDateRangeValue: DateChangeEvent;
+  @State() private associatedDateRangeValue: DateRangeChangeEvent;
   @State() private savedDateRangeName: string;
-  @State() private datePickerRange: DateChangeEvent;
+  @State() private datePickerRange: DateRangeChangeEvent;
 
   /**
    * EventEmitter for date range change events.
@@ -133,7 +133,7 @@ export class DateDropdown {
    * @event
    * @private
    */
-  @Event() private dateRangeChange: EventEmitter<DateChangeEvent>;
+  @Event() private dateRangeChange: EventEmitter<DateRangeChangeEvent>;
 
   @State() private triggerRef: HTMLElement;
 
@@ -177,10 +177,10 @@ export class DateDropdown {
    * Retrieves the currently selected date range from the component.
    * This method returns the selected date range as a `DateChangeEvent` object.
    *
-   * @returns {Promise<DateChangeEvent>} The selected date range.
+   * @returns {Promise<DateRangeChangeEvent>} The selected date range.
    */
   @Method()
-  public async getDateRange(): Promise<DateChangeEvent> {
+  public async getDateRange(): Promise<DateRangeChangeEvent> {
     return this.associatedDateRangeValue;
   }
 

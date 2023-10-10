@@ -2521,10 +2521,10 @@
         {
           "name": "getDateRange",
           "returns": {
-            "type": "Promise<DateChangeEvent>",
+            "type": "Promise<DateRangeChangeEvent>",
             "docs": "The selected date range."
           },
-          "signature": "getDateRange() => Promise<DateChangeEvent>",
+          "signature": "getDateRange() => Promise<DateRangeChangeEvent>",
           "parameters": [],
           "docs": "Retrieves the currently selected date range from the component.\nThis method returns the selected date range as a `DateChangeEvent` object.",
           "docsTags": [
