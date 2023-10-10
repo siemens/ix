@@ -438,7 +438,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to', 'tst1'],
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })
 @Component({
@@ -446,7 +446,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to', 'tst1'],
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
