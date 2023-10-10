@@ -16,6 +16,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -76,6 +77,14 @@ export class TimePicker {
    * @since 1.1.0
    */
   @Prop() time: string = dayjs().format(this.format);
+
+  @Watch('time')
+  watchTimePropHandler(newValue: string) {
+    this._time = dayjs(newValue, this.format, true);
+    if (!this._time.isValid()) {
+      throw new Error('Format is not supported or not correct');
+    }
+  }
 
   /**
    * Set time reference
