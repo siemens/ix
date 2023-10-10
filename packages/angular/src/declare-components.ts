@@ -2,7 +2,6 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
-  d.DatetimeInput,
   d.IxActionCard,
   d.IxApplicationHeader,
   d.IxAvatar,
@@ -22,6 +21,7 @@ export const DIRECTIVES = [
   d.IxContentHeader,
   d.IxDateInput,
   d.IxDatePicker,
+  d.IxDatetimeInput,
   d.IxDatetimePicker,
   d.IxDivider,
   d.IxDrawer,

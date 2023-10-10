@@ -5,7 +5,6 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@siemens/ix/components';
 
-import { defineCustomElement as defineDatetimeInput } from '@siemens/ix/components/datetime-input.js';
 import { defineCustomElement as defineIxActionCard } from '@siemens/ix/components/ix-action-card.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
@@ -25,6 +24,7 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -96,21 +96,6 @@ import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix
 import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
-
-
-export const DatetimeInput = /*@__PURE__*/ defineContainer<JSX.DatetimeInput>('datetime-input', defineDatetimeInput, [
-  'label',
-  'labelPosition',
-  'format',
-  'range',
-  'corners',
-  'from',
-  'to',
-  'minDate',
-  'maxDate',
-  'textSelectDate',
-  'weekStartIndex'
-]);
 
 
 export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
@@ -276,7 +261,12 @@ export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput>('ix-da
   'minDate',
   'maxDate',
   'textSelectDate',
-  'weekStartIndex'
+  'weekStartIndex',
+  'suppressErrorHandlingMessage',
+  'validators',
+  'dateChange',
+  'dateSelect',
+  'inputChange'
 ]);
 
 
@@ -294,6 +284,34 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'dateChange',
   'dateRangeChange',
   'dateSelect'
+]);
+
+
+export const IxDatetimeInput = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput>('ix-datetime-input', defineIxDatetimeInput, [
+  'label',
+  'labelPosition',
+  'range',
+  'showHour',
+  'showMinutes',
+  'showSeconds',
+  'minDate',
+  'maxDate',
+  'dateFormat',
+  'timeFormat',
+  'fromDate',
+  'toDate',
+  'fromTime',
+  'toTime',
+  'showTimeReference',
+  'timeReference',
+  'textSelectDate',
+  'weekStartIndex',
+  'fromDateChange',
+  'toDateChange',
+  'fromTimeChange',
+  'toTimeChange',
+  'dateSelect',
+  'inputChange'
 ]);
 
 

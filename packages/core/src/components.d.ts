@@ -680,6 +680,10 @@ export namespace Components {
          */
         "toTime": string;
         /**
+          * Array of validators that are active when the date input is part of a form
+         */
+        "validators": InputValidator[] | string[];
+        /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0
          */
@@ -3969,6 +3973,10 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "toTime"?: string;
+        /**
+          * Array of validators that are active when the date input is part of a form
+         */
+        "validators"?: InputValidator[] | string[];
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.0.0

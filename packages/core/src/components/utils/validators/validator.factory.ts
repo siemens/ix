@@ -4,7 +4,7 @@ import {
   getValidDateValidator,
 } from './datetime-input/date-input-validators';
 import { getValidTimeValidator } from './datetime-input/time-input-validators';
-import { Validator } from './validator';
+import { InputValidator, Validator } from './validator';
 
 export enum ValidatorName {
   validDate = 'validDate',
@@ -13,9 +13,29 @@ export enum ValidatorName {
   validTime = 'validTime',
 }
 
+export const TIME_VALIDATORS = [ValidatorName.validTime];
+export const DATE_VALIDATORS = [
+  ValidatorName.validDate,
+  ValidatorName.toAfterFrom,
+  ValidatorName.withinMinMax,
+];
+
 export interface ValidatorEntry {
   name: string;
   options?: any;
+}
+
+export function convertInputValidators(
+  validators: InputValidator[] | string[]
+): ValidatorEntry[] {
+  return validators.map((v) => {
+    return {
+      name: v.validator ?? v,
+      options: {
+        errorMessage: v.errorMessage ?? undefined,
+      },
+    };
+  });
 }
 
 export function getValidator(
@@ -53,7 +73,10 @@ const defaultValidator: Validator<any> = {
   validate: (_x: any) => true,
 };
 
-function combineValidator<A>(v1: Validator<A>, v2: Validator<A>): Validator<A> {
+export function combineValidator<A>(
+  v1: Validator<A>,
+  v2: Validator<A>
+): Validator<A> {
   let combined: Validator<A>;
   combined = {
     validate: (x: A) => {

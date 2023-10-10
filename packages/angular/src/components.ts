@@ -8,28 +8,6 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
-})
-@Component({
-  selector: 'datetime-input',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
-})
-export class DatetimeInput {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface DatetimeInput extends Components.DatetimeInput {}
-
-
-@ProxyCmp({
   inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({
@@ -460,25 +438,42 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex']
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorHandlingMessage', 'textSelectDate', 'to', 'validators', 'weekStartIndex'],
+  methods: ['getCurrentInput']
 })
 @Component({
   selector: 'ix-date-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorHandlingMessage', 'textSelectDate', 'to', 'validators', 'weekStartIndex'],
 })
 export class IxDateInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'inputChange']);
   }
 }
 
 
-export declare interface IxDateInput extends Components.IxDateInput {}
+import type { DateChangeEvent as IIxDateInputDateChangeEvent } from '@siemens/ix';
+
+export declare interface IxDateInput extends Components.IxDateInput {
+  /**
+   * Triggers if the date selection changes.
+   */
+  dateChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+  /**
+   * Date selection confirmed via button action
+   */
+  dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+  /**
+   * Triggers every time one of the inputs changes
+   */
+  inputChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+}
 
 
 @ProxyCmp({
@@ -518,6 +513,58 @@ Only triggered if date-picker is in range mode. @since 1.1.0,@deprecated Use `da
    * Date selection confirmed via button action @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['dateFormat', 'fromDate', 'fromTime', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'weekStartIndex'],
+  methods: ['getCurrentInput']
+})
+@Component({
+  selector: 'ix-datetime-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['dateFormat', 'fromDate', 'fromTime', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'weekStartIndex'],
+})
+export class IxDatetimeInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'inputChange']);
+  }
+}
+
+
+import type { DateTimeSelectEvent as IIxDatetimeInputDateTimeSelectEvent } from '@siemens/ix';
+import type { DatetimeInputChangeEvent as IIxDatetimeInputDatetimeInputChangeEvent } from '@siemens/ix';
+
+export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
+  /**
+   * Triggers if the first date selection changes. @emits string
+   */
+  fromDateChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the second date selection changes. @emits string
+   */
+  toDateChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the first time selection changes. @emits string
+   */
+  fromTimeChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the second time selection changes. @emits string
+   */
+  toTimeChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Date selection confirmed via button action @emits DateTimeSelectEvent
+   */
+  dateSelect: EventEmitter<CustomEvent<IIxDatetimeInputDateTimeSelectEvent>>;
+  /**
+   * Triggers every time one of the inputs changes @emits DatetimeInputChangeEvent
+   */
+  inputChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputChangeEvent>>;
 }
 
 
