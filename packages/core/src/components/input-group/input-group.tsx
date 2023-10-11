@@ -115,7 +115,8 @@ export class InputGroup {
           this.inputElement.form?.noValidate === false) &&
         !this.inputElement.validity.valid
       ) {
-        this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
+        this.inputElement.style.backgroundPositionX = `${left}px`;
         this.inputPaddingLeft += 32;
       }
     });
