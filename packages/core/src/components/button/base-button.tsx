@@ -90,6 +90,7 @@ export function BaseButton(props: BaseButtonProps, children) {
       {props.loading ? <ix-spinner size="small" hideTrack></ix-spinner> : null}
       {props.icon && !props.loading ? (
         <ix-icon
+          class="icon"
           name={props.icon}
           size={props.iconSize as any}
           color={props.iconColor}

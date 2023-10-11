@@ -143,6 +143,10 @@
     .content-start {
       width: 100%;
     }
+
+    .icon {
+      pointer-events: none;
+    }
   }
 
   :host(.disabled) {
