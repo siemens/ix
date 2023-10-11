@@ -114,7 +114,7 @@ test('modal should show centered', async ({ mount, page }) => {
 
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
-  // anime.js will always disable
+  // Wait until anime.js perform the slideIn animation
   await page.waitForTimeout(2000);
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
