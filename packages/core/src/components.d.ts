@@ -474,9 +474,12 @@ export namespace Components {
          */
         "itemName": string;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxDateDropdown {
         /**
-          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date range are available for selection.
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
           * @default ''
          */
         "customRangeAllowed": boolean;
@@ -490,7 +493,6 @@ export namespace Components {
         "format": string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
-          * @since 1.1.0
          */
         "from": string | null;
         /**
@@ -505,12 +507,10 @@ export namespace Components {
         "initialSelectedDateRangeName": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate": string;
         /**
@@ -519,7 +519,6 @@ export namespace Components {
         "range": boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
          */
         "to": string | null;
     }
@@ -2549,6 +2548,9 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
     }
     var HTMLIxDateDropdownElement: {
@@ -3621,9 +3623,12 @@ declare namespace LocalJSX {
          */
         "itemName"?: string;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxDateDropdown {
         /**
-          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date range are available for selection.
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
           * @default ''
          */
         "customRangeAllowed"?: boolean;
@@ -3637,7 +3642,6 @@ declare namespace LocalJSX {
         "format"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
-          * @since 1.1.0
          */
         "from"?: string | null;
         /**
@@ -3647,12 +3651,10 @@ declare namespace LocalJSX {
         "initialSelectedDateRangeName"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
          */
         "minDate"?: string;
         /**
@@ -3667,7 +3669,6 @@ declare namespace LocalJSX {
         "range"?: boolean;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
          */
         "to"?: string | null;
     }
@@ -5660,6 +5661,9 @@ declare module "@stencil/core" {
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;

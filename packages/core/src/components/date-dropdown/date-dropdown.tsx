@@ -33,6 +33,9 @@ export type DateRangeChangeEvent = {
   to: string;
 };
 
+/**
+ * @since 2.1.0
+ */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',
@@ -55,8 +58,6 @@ export class DateDropdown {
    * If set to `null` no default start date will be pre-selected.
    *
    * Format is based on `format`
-   *
-   * @since 1.1.0
    */
   @Prop() from: string | null = null;
 
@@ -65,24 +66,18 @@ export class DateDropdown {
    * If the picker is not in range mode leave this value `null`
    *
    * Format is based on `format`
-   *
-   * @since 1.1.0
    */
   @Prop() to: string | null = null;
 
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() maxDate: string;
 
@@ -96,7 +91,7 @@ export class DateDropdown {
   /**
    * Controls whether the user is allowed to pick custom date ranges in the component.
    * When set to 'true', the user can select a custom date range using the date picker.
-   * When set to 'false', only predefined time date range are available for selection.
+   * When set to 'false', only predefined time date ranges are available for selection.
    * @default ''
    */
   @Prop() public customRangeAllowed: boolean = true;

@@ -2293,7 +2293,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -2342,7 +2347,7 @@
           "mutable": false,
           "attr": "custom-range-allowed",
           "reflectToAttr": false,
-          "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date range are available for selection.",
+          "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
           "docsTags": [
             {
               "name": "default",
@@ -2398,12 +2403,7 @@
           "attr": "from",
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "null",
           "values": [
             {
@@ -2442,12 +2442,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -2463,12 +2458,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -2501,12 +2491,7 @@
           "attr": "to",
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "null",
           "values": [
             {

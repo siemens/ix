@@ -12,15 +12,13 @@
 :host {
   @include ix-component;
   display: block;
-
-  @media screen and (max-width: 500px) {
+  @media (max-width: 48em) {
     .min-width {
       width: min-content;
     }
   }
 
-  @media screen and (min-width: 500px) {
-
+  @media (min-width: 48em) {
     .border-right {
       border-right: var(--theme-x-weak-bdr-2);
     }
