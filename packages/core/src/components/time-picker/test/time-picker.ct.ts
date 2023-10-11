@@ -72,16 +72,17 @@ test.describe('time picker tests', () => {
 
   test('maximum / minimum time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
-    const dateTimeCard = await page.$('ix-date-time-card');
-
-    const inputFields = await dateTimeCard.$$('input');
+    const inputFields = await page
+      .locator('ix-date-time-card')
+      .locator('input')
+      .all();
 
     for (const field of inputFields) {
       await field.type('100');
       await field.press('Enter');
     }
 
-    expect(await getTimeObjs(page)).toEqual(['23:59:59', '10:11:12 AM']);
+    expect(await getTimeObjs(page)).toEqual(['23:59:59', '12:59:59 PM']);
   });
 
   test('change time reference', async ({ page }) => {
@@ -111,5 +112,19 @@ test.describe('time picker tests', () => {
     await incrementButtons[2].click();
 
     expect(await timeChangeEvent).toBeTruthy();
+  });
+
+  test('change time from outside', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+      el.time = '10:11:15';
+    });
+
+    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+      el.time = '11:12:15';
+    });
+
+    expect(['11:12:15', '10:11:12 AM']).toEqual(await getTimeObjs(page));
   });
 });

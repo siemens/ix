@@ -11,6 +11,7 @@ import {
   Component,
   Event,
   EventEmitter,
+  forceUpdate,
   h,
   Host,
   Method,
@@ -18,7 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import dayjs from 'dayjs';
+import dayjs, { UnitType } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
@@ -30,6 +31,12 @@ interface TimePickerDescriptor {
   unit: 'hours' | 'minutes' | 'seconds';
   placeholder: string;
   hidden: boolean;
+}
+
+interface TimeOutputFormat {
+  hours: string;
+  minutes: string;
+  seconds: string;
 }
 
 @Component({
@@ -89,10 +96,7 @@ export class TimePicker {
   /**
    * Set time reference
    */
-  @Prop({ mutable: true }) timeReference: 'AM' | 'PM' | undefined =
-    this.is12HourFormat()
-      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')
-      : undefined;
+  @Prop() timeReference: 'AM' | 'PM' | undefined;
 
   /**
    * Text of date select button
@@ -110,105 +114,76 @@ export class TimePicker {
    * Time change event
    */
   @Event() timeChange: EventEmitter<string>;
-  @State() referenceInputRef: HTMLInputElement;
+
   @State() private _time: dayjs.Dayjs;
-  private formatMap: {};
+  @State() private _timeRef: 'AM' | 'PM' | undefined;
+  @State() private _formattedTime: TimeOutputFormat;
 
-  get hour() {
-    return this._time.hour();
-  }
-
-  get minutes() {
-    return this._time.minute();
-  }
-
-  get seconds() {
-    return this._time.second();
-  }
-
-  get timePeriod() {
-    return this.is12HourFormat()
-      ? (dayjs(this._time, this.format).format('A') as 'AM' | 'PM')
+  constructor() {
+    this._time = dayjs(this.time, this.format);
+    this._timeRef = this.format.includes('h')
+      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')
       : undefined;
+    this.formatTime();
   }
 
-  private modifyInputOnChange(
-    currentValue: number,
-    inputRef: HTMLInputElement,
-    unit: 'hours' | 'minutes' | 'seconds'
-  ) {
-    const max: number = this.getMaxDisplayedUnit(unit);
-    let value = currentValue;
-    if (this.timeReference === 'PM' && unit === 'hours') value += 12;
-
-    if (currentValue >= max) value = max;
-    if (value < 0) value = 0;
-
-    this._time = this._time.set(unit, value);
-    inputRef.value = value.toString();
-
-    this.emitTimeChange();
+  @Watch('time')
+  onExternalTimeChange() {
+    this._time = dayjs(this.time, this.format);
   }
 
-  private modifyInputOnClick(
-    step: 'up' | 'down',
-    unit: 'hours' | 'minutes' | 'seconds'
-  ) {
-    step === 'up'
-      ? (this._time = this._time.add(1, unit))
-      : (this._time = this._time.subtract(1, unit));
+  @Watch('_time')
+  formatTime() {
+    const [hour, minutes, seconds] = this._time
+      .format(this.format)
+      .split(' ')[0]
+      .split(':');
 
-    this.emitTimeChange();
-  }
-
-  private changeReference() {
-    this.timeReference = this.timeReference === 'AM' ? 'PM' : 'AM';
-
-    if (!this._time.format('A').includes(this.timeReference)) {
-      this._time = this._time.add(12, 'hour');
-    }
-
-    this.emitTimeChange();
-  }
-
-  private emitTimeChange() {
-    const time = this._time.format(this.format);
-    this.timeChange.emit(time);
-  }
-
-  componentWillLoad() {
-    this.formatMap = {
-      hours: this.is12HourFormat() ? 'h' : 'H',
-      minutes: 'm',
-      seconds: 's',
+    this._formattedTime = {
+      hours: hour,
+      minutes: minutes,
+      seconds: seconds,
     };
 
-    this._time = dayjs(this.time, this.format);
-    if (!this._time.isValid()) {
-      throw new Error('Format is not supported or not correct');
+    forceUpdate(this);
+  }
+
+  @Watch('_time')
+  onInternalTimeChange() {
+    this.timeChange.emit(this._time.format(this.format));
+    if (this._timeRef) this._timeRef = this._time.format('A') as 'AM' | 'PM';
+  }
+
+  timeUpdate(unit: UnitType, value: number): number {
+    let maxValue = dayjs().endOf('day').get(unit);
+
+    if (this._timeRef === 'PM' && unit === 'hours') value += 12;
+    if (this._timeRef === 'AM' && unit === 'hours') maxValue = 12;
+
+    if (value > maxValue) {
+      value = maxValue;
+    } else if (value < 0) {
+      value = 0;
+    }
+
+    this._time = this._time.set(unit, value);
+    return value;
+  }
+
+  changeTimeReference() {
+    this._timeRef = this._timeRef === 'AM' ? 'PM' : 'AM';
+
+    if (!this._time.format('A').includes(this._timeRef)) {
+      this._time = this._time.add(12, 'hour');
     }
   }
 
   /**
-   * Get current time
+   * Get the current time based on the wanted format
    */
   @Method()
   async getCurrentTime() {
     return this._time.format(this.format);
-  }
-
-  private getMaxDisplayedUnit(unit: 'hours' | 'minutes' | 'seconds') {
-    return +dayjs().endOf('day').format(this.formatMap[unit]);
-  }
-
-  private formatTime(unit: 'hours' | 'minutes' | 'seconds') {
-    let formattedTime = this._time.format(this.formatMap[unit]);
-    if (+formattedTime < 10) formattedTime = '0' + formattedTime;
-    return formattedTime;
-  }
-
-  private is12HourFormat() {
-    return this.format.includes('h');
   }
 
   render() {
@@ -268,7 +243,7 @@ export class TimePicker {
                     <ix-icon-button
                       size="16"
                       onClick={() =>
-                        this.modifyInputOnClick('up', descriptor.unit)
+                        (this._time = this._time.add(1, descriptor.unit))
                       }
                       ghost
                       icon="chevron-up"
@@ -282,22 +257,21 @@ export class TimePicker {
                       type="number"
                       placeholder={descriptor.placeholder}
                       min="0"
-                      max={this.getMaxDisplayedUnit(descriptor.unit)}
-                      value={this.formatTime(descriptor.unit)}
+                      max={dayjs().endOf('day').get(descriptor.unit)}
+                      value={this._formattedTime[descriptor.unit]}
                       onChange={(e) => {
                         let inputElement = e.target as HTMLInputElement;
-                        this.modifyInputOnChange(
-                          +inputElement.value,
-                          inputElement,
-                          descriptor.unit
-                        );
+                        inputElement.value = this.timeUpdate(
+                          descriptor.unit,
+                          +inputElement.value
+                        ).toString();
                       }}
                     ></input>
 
                     <ix-icon-button
                       size="16"
                       onClick={() =>
-                        this.modifyInputOnClick('down', descriptor.unit)
+                        (this._time = this._time.subtract(1, descriptor.unit))
                       }
                       ghost
                       icon="chevron-down"
@@ -323,21 +297,21 @@ export class TimePicker {
                 class={{
                   columns: true,
                   'default-space': true,
-                  hidden: !this.is12HourFormat(),
+                  hidden: this._timeRef === undefined,
                 }}
               >
                 <ix-icon-button
                   size="16"
-                  onClick={() => this.changeReference()}
+                  onClick={() => this.changeTimeReference()}
                   ghost
                   icon="chevron-up"
                   variant="primary"
                   class="arrows"
                 ></ix-icon-button>
-                <div class="time-reference">{this.timePeriod}</div>
+                <div class="time-reference">{this._timeRef}</div>
                 <ix-icon-button
                   size="16"
-                  onClick={() => this.changeReference()}
+                  onClick={() => this.changeTimeReference()}
                   ghost
                   icon="chevron-down"
                   variant="primary"

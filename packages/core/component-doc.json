@@ -10382,12 +10382,11 @@
         {
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
-          "mutable": true,
+          "mutable": false,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "this.is12HourFormat()\n      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')\n      : undefined",
           "values": [
             {
               "value": "AM",
@@ -10411,7 +10410,7 @@
           },
           "signature": "getCurrentTime() => Promise<string>",
           "parameters": [],
-          "docs": "Get current time",
+          "docs": "Get the current time based on the wanted format",
           "docsTags": []
         }
       ],

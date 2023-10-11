@@ -1796,7 +1796,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * Get current time
+          * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string>;
         /**
