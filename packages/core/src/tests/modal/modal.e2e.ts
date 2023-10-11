@@ -113,5 +113,8 @@ test('modal should show centered', async ({ mount, page }) => {
   await expect(modal).toHaveClass(/hydrated/);
 
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+
+  // anime.js will always disable
+  await page.waitForTimeout(2000);
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
