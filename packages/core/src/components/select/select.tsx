@@ -477,7 +477,7 @@ export class Select {
           }}
           ref={(ref) => {
             this.dropdownAnchor = ref;
-            if (!this.editable) this.dropdownWrapperRef = ref;
+            this.dropdownWrapperRef = ref;
           }}
         >
           <div class="input-container">
@@ -534,9 +534,6 @@ export class Select {
                     class={{ 'dropdown-visible': this.dropdownShow }}
                     icon="chevron-down-small"
                     ghost
-                    ref={(ref) => {
-                      if (this.editable) this.dropdownWrapperRef = ref;
-                    }}
                   ></ix-icon-button>
                 )}
               </div>
