@@ -66,3 +66,7 @@
     overflow-y: auto;
   }
 }
+
+:host(.toggle) {
+  visibility: visible;
+}

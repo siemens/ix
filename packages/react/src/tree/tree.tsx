@@ -14,11 +14,13 @@ import ReactDOM from 'react-dom/client';
 import { createReactComponent } from '../react-component-lib';
 import { StyleReactProps } from '../react-component-lib/interfaces';
 
+import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree.js';
+
 // eslint-disable-next-line no-inline-comments
-const InternalIxTree = /*@__PURE__*/ createReactComponent<
+export const InternalIxTree = /*@__PURE__*/ createReactComponent<
   JSX.IxTree,
   HTMLIxTreeElement
->('ix-tree');
+>('ix-tree', undefined, undefined, defineIxTree);
 
 export const IxTree = (
   props: Omit<JSX.IxTree, 'renderItem'> &

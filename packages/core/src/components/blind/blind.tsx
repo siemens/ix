@@ -21,7 +21,7 @@ import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 
-export type BlindVariant = CardVariant | 'primary' | 'outline';
+export type BlindVariant = CardVariant | 'outline';
 
 let sequentialInstanceId = 0;
 
