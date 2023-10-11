@@ -24,6 +24,7 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
+import { defineCustomElement as defineIxDatetimePickerRework } from '@siemens/ix/components/ix-datetime-picker-rework.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
 import { defineCustomElement as defineIxDropdown } from '@siemens/ix/components/ix-dropdown.js';
@@ -251,21 +252,45 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
   'format',
   'range',
+  'individual',
   'corners',
   'from',
   'to',
   'minDate',
   'maxDate',
+  'eventDelimiter',
   'textSelectDate',
-  'weekStartIndex',
-  'standaloneAppearance',
   'dateChange',
   'dateRangeChange',
+  'done',
   'dateSelect'
 ]);
 
 
 export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePicker>('ix-datetime-picker', defineIxDatetimePicker, [
+  'range',
+  'showHour',
+  'showMinutes',
+  'showSeconds',
+  'minDate',
+  'maxDate',
+  'dateFormat',
+  'timeFormat',
+  'from',
+  'to',
+  'time',
+  'showTimeReference',
+  'eventDelimiter',
+  'timeReference',
+  'textSelectDate',
+  'done',
+  'timeChange',
+  'dateChange',
+  'dateSelect'
+]);
+
+
+export const IxDatetimePickerRework = /*@__PURE__*/ defineContainer<JSX.IxDatetimePickerRework>('ix-datetime-picker-rework', defineIxDatetimePickerRework, [
   'range',
   'showHour',
   'showMinutes',
@@ -790,11 +815,12 @@ export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defin
 export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
-  'standaloneAppearance',
+  'individual',
   'showHour',
   'showMinutes',
   'showSeconds',
   'time',
+  'showTimeReference',
   'timeReference',
   'textSelectTime',
   'done',

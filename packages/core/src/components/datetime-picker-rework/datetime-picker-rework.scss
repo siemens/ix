@@ -17,23 +17,37 @@
   background-color: var(--theme-menu--background);
   border-radius: 4px;
   position: relative;
-  width: 32.6875rem;
+  width: min-content;
+
+  .no-padding {
+    padding: 0;
+  }
 
   .flex {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+  }
+
+  @media (min-width: 576px) {
+    min-width: max-content;
+
+    .btn-select-date {
+      left: unset !important;
+    }
+
+  }
+
+  .individual {
+    box-shadow: none;
+    border: none;
   }
 
   .btn-select-date {
     position: absolute;
-    bottom: $default-space;
-    right: $default-space;
+    bottom: $tiny-space;
+    right: $tiny-space;
+    left: $tiny-space;
   }
 
-  .separator {
-    border: 1px solid var(--theme-datepicker-separator--background);
-    width: 100%;
-    margin-top: 72px;
-    height: 1px;
-  }
 }

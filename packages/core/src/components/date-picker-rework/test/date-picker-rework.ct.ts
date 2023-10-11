@@ -9,15 +9,15 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-const DATE_PICKER_SELECTOR = 'ix-date-picker';
+const DATE_PICKER_SELECTOR = 'ix-date-picker-rework';
 const getDateObj = (page: Page) => {
-  return page.$eval(DATE_PICKER_SELECTOR, (el: HTMLIxDatePickerElement) =>
+  return page.$eval(DATE_PICKER_SELECTOR, (el: HTMLIxDatePickerReworkElement) =>
     el.getCurrentDate()
   );
 };
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-picker></ix-date-picker>`);
+  await mount(`<ix-date-picker-rework></ix-date-picker-rework>`);
   const datePicker = page.locator(DATE_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
@@ -25,7 +25,7 @@ test('renders', async ({ mount, page }) => {
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker from="2023/09/05" range="false"></ix-date-picker>`
+      `<ix-date-picker-rework from="2023/09/05" range="false"></ix-date-picker-rework>`
     );
   });
 

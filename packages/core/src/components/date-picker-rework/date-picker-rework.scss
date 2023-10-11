@@ -16,10 +16,21 @@
   position: relative;
   width: 22rem;
 
+  .container {
+    max-width: 352px;
+  }
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .disabled-item {
+    pointer-events: none;
+    background-color: var(--theme-datepicker-day--background--disabled);
+    color: var(--theme-datepicker-day--color--disabled);
+    cursor: default;
   }
 
   .selector {
@@ -179,7 +190,6 @@
           background-color: var(--theme-datepicker-day--background--disabled);
           color: var(--theme-datepicker-day--color--disabled);
           cursor: default;
-          pointer-events: none;
         }
       }
 
