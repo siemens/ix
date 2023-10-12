@@ -27,6 +27,6 @@
     error="Error message"
   >
     <span slot="label-start">0</span>
-    <span slot="label-end">100</span>
+    <span slot="label-end">50</span>
   </IxSlider>
 </template>
