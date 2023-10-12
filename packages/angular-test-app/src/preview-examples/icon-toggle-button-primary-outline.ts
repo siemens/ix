@@ -12,22 +12,29 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button variant="primary" outline></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      variant="primary"
+      outline
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="primary"
       outline
       pressed
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="primary"
       outline
       disabled
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       variant="primary"
       outline
       disabled
       loading
+      icon="checkboxes"
     ></ix-icon-toggle-button>
   `,
 })

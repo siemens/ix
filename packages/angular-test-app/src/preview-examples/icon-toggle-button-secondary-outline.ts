@@ -12,29 +12,72 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button outline></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline pressed></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline disabled loading></ix-icon-toggle-button>
+    <ix-icon-toggle-button outline icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      pressed
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      disabled
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      disabled
+      loading
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
 
-    <ix-icon-toggle-button outline size="16"></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="16" pressed></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="16" disabled></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="16"
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="16"
+      pressed
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="16"
+      disabled
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       outline
       size="16"
       disabled
       loading
+      icon="checkboxes"
     ></ix-icon-toggle-button>
 
-    <ix-icon-toggle-button outline size="24"></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="24" pressed></ix-icon-toggle-button>
-    <ix-icon-toggle-button outline size="24" disabled></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="24"
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="24"
+      pressed
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      outline
+      size="24"
+      disabled
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       outline
       size="24"
       disabled
       loading
+      icon="checkboxes"
     ></ix-icon-toggle-button>
   `,
 })
