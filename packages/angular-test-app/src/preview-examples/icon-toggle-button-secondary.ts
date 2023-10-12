@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-icon-toggle-button></ix-icon-toggle-button>
-    <ix-icon-toggle-button></ix-icon-toggle-button>
+    <ix-icon-toggle-button pressed></ix-icon-toggle-button>
     <ix-icon-toggle-button disabled></ix-icon-toggle-button>
     <ix-icon-toggle-button disabled loading></ix-icon-toggle-button>
   `,

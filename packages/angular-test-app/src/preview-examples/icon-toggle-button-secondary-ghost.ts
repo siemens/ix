@@ -13,13 +13,9 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-icon-toggle-button ghost></ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost pressed></ix-icon-toggle-button>
     <ix-icon-toggle-button ghost disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      ghost
-      disabled
-      loading
-    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost disabled loading></ix-icon-toggle-button>
   `,
 })
 export default class Buttons {}
