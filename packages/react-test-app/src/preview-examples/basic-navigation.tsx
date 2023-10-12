@@ -12,7 +12,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxBasicNavigation>
+    <IxBasicNavigation applicationName='Application name'>
       <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
