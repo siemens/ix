@@ -12,6 +12,6 @@ import { IxButton } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxButton className="m-1" variant="primary"> Button </IxButton>
-  <IxButton className="m-1" variant="primary" disabled> Button </IxButton>
+  <IxButton className="m-1"> Button </IxButton>
+  <IxButton className="m-1" disabled> Button </IxButton>
 </template>
