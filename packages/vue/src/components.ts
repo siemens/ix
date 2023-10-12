@@ -94,7 +94,6 @@ import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix
 import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
-import { defineCustomElement as defineTestComponent } from '@siemens/ix/components/test-component.js';
 
 
 export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
@@ -926,11 +925,5 @@ export const IxWorkflowSteps = /*@__PURE__*/ defineContainer<JSX.IxWorkflowSteps
   'clickable',
   'selectedIndex',
   'stepSelected'
-]);
-
-
-export const TestComponent = /*@__PURE__*/ defineContainer<JSX.TestComponent>('test-component', defineTestComponent, [
-  'disabled',
-  'buttonClicked'
 ]);
 

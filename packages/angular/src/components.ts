@@ -2310,33 +2310,3 @@ export declare interface IxWorkflowSteps extends Components.IxWorkflowSteps {
 }
 
 
-@ProxyCmp({
-  inputs: ['disabled']
-})
-@Component({
-  selector: 'test-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled'],
-})
-export class TestComponent {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['buttonClicked']);
-  }
-}
-
-
-import type { ClickEvent as ITestComponentClickEvent } from '@siemens/ix';
-
-export declare interface TestComponent extends Components.TestComponent {
-  /**
-   * Button is clicked.
-   */
-  buttonClicked: EventEmitter<CustomEvent<ITestComponentClickEvent>>;
-}
-
-

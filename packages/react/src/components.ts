@@ -92,7 +92,6 @@ import { defineCustomElement as defineIxUpload } from '@siemens/ix/components/ix
 import { defineCustomElement as defineIxValidationTooltip } from '@siemens/ix/components/ix-validation-tooltip.js';
 import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/components/ix-workflow-step.js';
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
-import { defineCustomElement as defineTestComponent } from '@siemens/ix/components/test-component.js';
 
 export const IxActionCard = /*@__PURE__*/createReactComponent<JSX.IxActionCard, HTMLIxActionCardElement>('ix-action-card', undefined, undefined, defineIxActionCard);
 export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxApplicationHeader, HTMLIxApplicationHeaderElement>('ix-application-header', undefined, undefined, defineIxApplicationHeader);
@@ -181,4 +180,3 @@ export const IxUpload = /*@__PURE__*/createReactComponent<JSX.IxUpload, HTMLIxUp
 export const IxValidationTooltip = /*@__PURE__*/createReactComponent<JSX.IxValidationTooltip, HTMLIxValidationTooltipElement>('ix-validation-tooltip', undefined, undefined, defineIxValidationTooltip);
 export const IxWorkflowStep = /*@__PURE__*/createReactComponent<JSX.IxWorkflowStep, HTMLIxWorkflowStepElement>('ix-workflow-step', undefined, undefined, defineIxWorkflowStep);
 export const IxWorkflowSteps = /*@__PURE__*/createReactComponent<JSX.IxWorkflowSteps, HTMLIxWorkflowStepsElement>('ix-workflow-steps', undefined, undefined, defineIxWorkflowSteps);
-export const TestComponent = /*@__PURE__*/createReactComponent<JSX.TestComponent, HTMLTestComponentElement>('test-component', undefined, undefined, defineTestComponent);

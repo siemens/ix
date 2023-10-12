@@ -89,6 +89,5 @@ export const DIRECTIVES = [
   d.IxUpload,
   d.IxValidationTooltip,
   d.IxWorkflowStep,
-  d.IxWorkflowSteps,
-  d.TestComponent
+  d.IxWorkflowSteps
 ];

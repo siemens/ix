@@ -40,7 +40,6 @@ import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
-import { ClickEvent } from "./components/test-component/test-component";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
@@ -76,7 +75,6 @@ export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
-export { ClickEvent } from "./components/test-component/test-component";
 export namespace Components {
     /**
      * @since 1.6.0
@@ -2140,12 +2138,6 @@ export namespace Components {
     }
     interface MyComponent {
     }
-    interface TestComponent {
-        /**
-          * If true the button is disabled.
-         */
-        "disabled": boolean;
-    }
 }
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2338,10 +2330,6 @@ export interface IxWorkflowStepCustomEvent<T> extends CustomEvent<T> {
 export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxWorkflowStepsElement;
-}
-export interface TestComponentCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLTestComponentElement;
 }
 declare global {
     /**
@@ -3022,12 +3010,6 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
-    interface HTMLTestComponentElement extends Components.TestComponent, HTMLStencilElement {
-    }
-    var HTMLTestComponentElement: {
-        prototype: HTMLTestComponentElement;
-        new (): HTMLTestComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
@@ -3127,7 +3109,6 @@ declare global {
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
         "my-component": HTMLMyComponentElement;
-        "test-component": HTMLTestComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -5414,16 +5395,6 @@ declare namespace LocalJSX {
     }
     interface MyComponent {
     }
-    interface TestComponent {
-        /**
-          * If true the button is disabled.
-         */
-        "disabled"?: boolean;
-        /**
-          * Button is clicked.
-         */
-        "onButtonClicked"?: (event: TestComponentCustomEvent<ClickEvent>) => void;
-    }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
@@ -5523,7 +5494,6 @@ declare namespace LocalJSX {
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
         "my-component": MyComponent;
-        "test-component": TestComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -5718,7 +5688,6 @@ declare module "@stencil/core" {
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-            "test-component": LocalJSX.TestComponent & JSXBase.HTMLAttributes<HTMLTestComponentElement>;
         }
     }
 }
