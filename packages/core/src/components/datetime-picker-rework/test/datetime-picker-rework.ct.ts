@@ -9,7 +9,7 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
-const DATE_TIME_PICKER_SELECTOR = 'ix-time-picker-rework';
+const DATE_TIME_PICKER_SELECTOR = 'ix-datetime-picker-rework';
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-datetime-picker-rework></ix-datetime-picker-rework>`);
