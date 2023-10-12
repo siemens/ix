@@ -18,11 +18,7 @@ import { Component } from '@angular/core';
         icon="info"
         variant="primary"
       ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        variant="secondary"
-      ></ix-icon-button>
+      <ix-icon-button class="m-1" icon="info"></ix-icon-button>
       <ix-icon-button class="m-1" icon="info" outline></ix-icon-button>
       <ix-icon-button class="m-1" icon="info" ghost></ix-icon-button>
     </div>
@@ -34,12 +30,7 @@ import { Component } from '@angular/core';
         oval
         variant="primary"
       ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        oval
-        variant="secondary"
-      ></ix-icon-button>
+      <ix-icon-button class="m-1" icon="info" oval></ix-icon-button>
       <ix-icon-button class="m-1" icon="info" oval outline></ix-icon-button>
       <ix-icon-button class="m-1" icon="info" oval ghost></ix-icon-button>
     </div>
