@@ -16,12 +16,14 @@ import { IxDropdownButton } from '@siemens/ix-vue';
     <IxDropdownItem label="Item 1"></IxDropdownItem>
     <IxDropdownItem label="Item 2"></IxDropdownItem>
   </IxDropdownButton>
-
+  <IxDropdownButton label="" outline icon="checkboxes">
+    <IxDropdownItem label="Item 1"></IxDropdownItem>
+    <IxDropdownItem label="Item 2"></IxDropdownItem>
+  </IxDropdownButton>
   <IxDropdownButton label="" ghost icon="checkboxes">
     <IxDropdownItem label="Item 1"></IxDropdownItem>
     <IxDropdownItem label="Item 2"></IxDropdownItem>
   </IxDropdownButton>
-
   <IxDropdownButton label="" disabled icon="checkboxes">
     <IxDropdownItem label="Item 1"></IxDropdownItem>
     <IxDropdownItem label="Item 2"></IxDropdownItem>
