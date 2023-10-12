@@ -38,7 +38,7 @@ import { Component } from '@angular/core';
       <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
     </ix-flip-tile>
 
-    <ix-flip-tile state="Info">
+    <ix-flip-tile state="info">
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
@@ -50,7 +50,7 @@ import { Component } from '@angular/core';
       <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
     </ix-flip-tile>
 
-    <ix-flip-tile state="Warning">
+    <ix-flip-tile state="warning">
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
@@ -62,7 +62,7 @@ import { Component } from '@angular/core';
       <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
     </ix-flip-tile>
 
-    <ix-flip-tile state="Alarm">
+    <ix-flip-tile state="alarm">
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
