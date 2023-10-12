@@ -1,3 +1,5 @@
+import Playground from '@site/src/components/Playground';
+
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
@@ -28,8 +30,10 @@ import '@siemens/ix-echarts';
 
 ## Usage
 
-<Preview name="echarts" height="42rem">
-  <TabItem value="javascript">
-    <SourceEcharts />
-  </TabItem>
-</Preview>
+<Playground
+height="20rem"
+name="echarts"
+frameworks={{
+  javascript: SourceEcharts,
+}}>
+</Playground>
