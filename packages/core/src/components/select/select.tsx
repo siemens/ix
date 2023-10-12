@@ -307,6 +307,8 @@ export class Select {
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
       this.navigationItem = undefined;
+      this.inputFilterText = undefined;
+      this.inputRef.value = this.selectedLabels[0];
     }
   }
 
