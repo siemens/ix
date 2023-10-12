@@ -14,8 +14,8 @@ export default () => {
   return (
     <IxContentHeader
       has-back-button
-      header-title="content title"
-      header-subtitle="subtitle content"
+      header-title="Content title"
+      header-subtitle="Subtitle"
     >
       <IxButton ghost>Button1</IxButton>
       <IxButton ghost>Button2</IxButton>

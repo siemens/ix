@@ -14,8 +14,8 @@ export default () => {
   return (
     <IxContentHeader
       variant="secondary"
-      header-title="content title"
-      header-subtitle="subtitle content"
+      header-title="Content title"
+      header-subtitle="Subtitle"
     >
       <IxIconButton icon="pen" ghost variant="primary">
         Button1
