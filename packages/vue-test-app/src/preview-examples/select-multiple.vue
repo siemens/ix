@@ -13,7 +13,7 @@ import { nextTick, onMounted, ref } from 'vue';
 
 const selection = ref<string[]>([]);
 
-onMounted(() => nextTick(() => (selection.value = ['1', '2'])));
+onMounted(() => nextTick(() => (selection.value = ['1', '3'])));
 </script>
 
 <template>
