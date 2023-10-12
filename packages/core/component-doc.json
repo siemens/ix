@@ -12271,6 +12271,57 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "./src/components/test-component",
+      "filePath": "./src/components/test-component/test-component.tsx",
+      "fileName": "test-component.tsx",
+      "readmePath": "./src/components/test-component/readme.md",
+      "usagesDir": "./src/components/test-component/usage",
+      "tag": "test-component",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "If true the button is disabled.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "buttonClicked",
+          "detail": "{ clicks: number; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Button is clicked.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     }
   ]
 }

@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Component example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <test-component>Test</test-component>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('test-component');
+        const testComponent = document.querySelector('test-component');
+
+        testComponent.addEventListener('buttonClicked', function(event) {
+          console.log('Button clicked count:', event.detail.clicks);
+        })
+      })()
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

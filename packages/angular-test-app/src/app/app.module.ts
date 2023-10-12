@@ -105,6 +105,7 @@ import SplitButton from 'src/preview-examples/split-button';
 import SplitButtonIcons from 'src/preview-examples/split-button-icons';
 import Tabs from 'src/preview-examples/tabs';
 import TabsRounded from 'src/preview-examples/tabs-rounded';
+import TestComponent from 'src/preview-examples/test-component';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
@@ -202,6 +203,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     SplitButtonIcons,
     SplitButton,
     Tabs,
+    TestComponent,
     Textarea,
     TextareaReadonly,
     TextareaDisabled,
