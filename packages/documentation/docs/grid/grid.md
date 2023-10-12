@@ -1,3 +1,5 @@
+import Playground from '@site/src/components/Playground';
+
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
@@ -62,14 +64,10 @@ e.g.:
 
 ## Usage
 
-<Preview name="aggrid" height="16rem">
-  <TabItem value="javascript">
-    <SourceAggrid />
-  </TabItem>
-  <TabItem value="react">
-    <ReactSourceAggrid />
-  </TabItem>
-  <TabItem value="angular">
-    <AngularSourceAggrid />
-  </TabItem>
-</Preview>
+<Playground
+name="aggrid" height="20rem"
+frameworks={{
+  react: ReactSourceAggrid,
+  javascript: SourceAggrid,
+  angular: AngularSourceAggrid
+}}></Playground>
