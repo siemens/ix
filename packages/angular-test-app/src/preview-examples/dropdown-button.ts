@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dropdown-button',
+  selector: 'app-example',
   template: `
     <ix-dropdown-button label="Dropdown" icon="checkboxes">
       <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
@@ -28,4 +28,4 @@ import { Component } from '@angular/core';
     </ix-dropdown-button>
   `,
 })
-export class Dropdown {}
+export default class Dropdown {}
