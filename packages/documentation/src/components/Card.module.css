@@ -23,7 +23,31 @@
   background-color: var(--theme-color-2);
   margin: 0 1.25rem 1.25rem 0;
   cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease-in-out;
+
+  @media (max-width: 684px) {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  @media (min-width: 664px) and (max-width: 684px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 997px) and (max-width: 1087px) {
+    /*margin-right: 0;*/
+    width: 100%;
+  }
+
+  &:hover {
+    transform: scale(1.07);
+    text-decoration: none !important;
+  }
+
 }
+
+
 
 .Card.Auto__Width {
   width: auto;
@@ -32,12 +56,18 @@
 .Card_big {
   display: flex;
   flex-direction: column;
-  width: 640px;
+  max-width: 640px;
+  width: 100%;
   min-width: 19.375rem;
   height: 60px;
   background-color: var(--theme-color-2);
-  margin: 0 1.25rem 1.25rem 0;
+  margin: 0 0 1.25rem 0;
   cursor: pointer;
+
+  @media (min-width: 994px)  {
+    margin-right: 1.25rem;
+  }
+
 }
 
 .Card.With__Icon {
