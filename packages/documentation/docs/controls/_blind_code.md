@@ -19,7 +19,8 @@ import SourceAngularHeaderActions from './../auto-generated/previews/angular/bli
 import WebComponentVariants from './../auto-generated/previews/web-component/blind-variants.md'
 import SourceReactVariants from './../auto-generated/previews/react/blind-variants.md'
 import SourceVueVariants from './../auto-generated/previews/vue/blind-variants.md'
-import SourceAngularVariants from './../auto-generated/previews/angular/blind-variants.ts.md'
+import SourceAngularVariantsTs from './../auto-generated/previews/angular/blind-variants.ts.md'
+import SourceAngularVariantsHtml from './../auto-generated/previews/angular/blind-variants.html.md'
 
 
 import Playground from '@site/src/components/Playground'
@@ -60,7 +61,10 @@ name="blind-variants"
 height="16rem"
 frameworks={{
     react: SourceReactVariants,
-    angular: SourceAngularVariants,
+    angular: {
+        "blind.html": SourceAngularVariantsHtml,
+        "blind.ts": SourceAngularVariantsTs
+    },
     javascript: WebComponentVariants,
     vue: SourceVueVariants
 }}>
