@@ -30,6 +30,8 @@ test.describe('date picker tests single', () => {
   });
 
   test('date is selected', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     expect(await getDateObj(page)).toEqual({
       from: '2023/09/05',
       to: undefined,
@@ -37,6 +39,7 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
     await page.getByText(/^19$/).click();
 
     expect(await getDateObj(page)).toEqual({
@@ -46,6 +49,8 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date in next month', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^31$/).click();
 
@@ -56,6 +61,8 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date in previous month', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     await page.getByRole('button').filter({ hasText: 'chevron-left' }).click();
     await page.getByText(/^31$/).nth(1).click();
 
@@ -66,6 +73,8 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date from specific month', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     await page
       .locator('ix-button')
       .filter({ hasText: /^September 2023$/ })
@@ -90,6 +99,8 @@ test.describe('date picker tests single', () => {
   });
 
   test('select different date fires dateChange event', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     const eventPromise = page.evaluate(() => {
       return new Promise((f) => {
         document.addEventListener('dateChange', (data) => f(data));
@@ -110,6 +121,8 @@ test.describe('date picker tests range', () => {
   });
 
   test('range is selected', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     expect(await getDateObj(page)).toEqual({
       from: '2023/09/05',
       to: '2023/09/10',
@@ -117,6 +130,8 @@ test.describe('date picker tests range', () => {
   });
 
   test('select different range', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     await page.getByText(/^12$/).click();
     await page.getByText(/^17$/).click();
 
@@ -127,6 +142,8 @@ test.describe('date picker tests range', () => {
   });
 
   test('select range spanning over 2 months', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     await page.getByText(/^28$/).click();
     await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^5$/).click();
@@ -140,6 +157,8 @@ test.describe('date picker tests range', () => {
   test('select different range fires dateChange and dateRangeChange event', async ({
     page,
   }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     const dateChangeEventPromise = page.evaluate(() => {
       return new Promise((f) => {
         document.addEventListener('dateChange', (data) => f(data));
@@ -159,6 +178,8 @@ test.describe('date picker tests range', () => {
   });
 
   test('done click fires dateSelect event', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
     const dateSelectEventPromise = page.evaluate(() => {
       return new Promise((f) => {
         document.addEventListener('dateSelect', (data) => f(data));
