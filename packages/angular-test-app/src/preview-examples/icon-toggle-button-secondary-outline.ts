@@ -57,24 +57,24 @@ import { Component } from '@angular/core';
 
     <ix-icon-toggle-button
       outline
-      size="24"
+      size="12"
       icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       outline
-      size="24"
+      size="12"
       pressed
       icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       outline
-      size="24"
+      size="12"
       disabled
       icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
       outline
-      size="24"
+      size="12"
       disabled
       loading
       icon="checkboxes"
