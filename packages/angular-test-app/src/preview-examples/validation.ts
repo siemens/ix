@@ -30,12 +30,11 @@ import { Component } from '@angular/core';
           #firstName="ngModel"
           required
         />
+        <div class="invalid-feedback">Please choose a first name.</div>
         <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="col-md-4">
-        <ix-validation-tooltip
-          message="Error hint textError hint textError hint textError hint textError hint textError hint textError hint textError hint textError hint text"
-        >
+        <ix-validation-tooltip message="Cannot be empty!">
           <label htmlFor="validationCustom02" class="form-label">
             Last name
           </label>
