@@ -11,8 +11,7 @@
 
 <template>
   <textarea
-
     placeholder="Enter text here"
     readOnly
-  ></textarea>
+  >Some example text</textarea>
 </template>
