@@ -166,6 +166,13 @@
       }
     }
   }
+
+  form:not(.was-validated) {
+    .invalid-feedback,
+    .valid-feedback {
+      display: none !important;
+    }
+  }
 }
 
 @include form;

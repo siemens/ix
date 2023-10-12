@@ -159,4 +159,35 @@ test('validation padding with input-start slot', async ({ mount, page }) => {
   await button.click();
 
   await expect(input).toHaveCSS('background-position-x', '27px');
+  await expect(input).toHaveCSS('padding-left', '59px');
+});
+
+test('validation with class padding with input-start slot', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form class="needs-validation" noValidation>
+      <ix-input-group>
+        <ix-icon name="eye" size="12" slot="input-start"></ix-icon>
+        <input type="text" class="is-invalid" />
+      </ix-input-group>
+    </form>
+  `);
+
+  const form = page.locator('form');
+  await form.evaluate((form) =>
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.classList.add('was-validated');
+    })
+  );
+
+  const group = page.locator('ix-input-group');
+  await expect(group).toHaveClass(/hydrated/);
+
+  const input = group.locator('input');
+
+  await expect(input).toHaveCSS('background-position-x', '27px');
+  await expect(input).toHaveCSS('padding-left', '59px');
 });
