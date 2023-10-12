@@ -146,7 +146,7 @@
 
     .icon {
       // Prevents icon to show title tooltip
-      // if embedded is ix-icon-button or ix-button[icon]
+      // if embedded in ix-icon-button or ix-button[icon]
       pointer-events: none;
     }
   }
