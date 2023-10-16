@@ -9,6 +9,7 @@
 
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Fragment,
@@ -36,6 +37,8 @@ export type DateTimeCorners = DateTimeCardCorners;
   shadow: true,
 })
 export class DatePicker {
+  @Element() hostElement: HTMLIxDatePickerElement;
+
   private daysInWeek = 7;
   private dayNames = Info.weekdays();
   private monthNames = Info.months();
@@ -309,6 +312,8 @@ export class DatePicker {
     this.monthValue = month;
     this.yearValue = this.tempYear;
     this.tempMonth = month;
+
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   private infiniteScrollYears() {
