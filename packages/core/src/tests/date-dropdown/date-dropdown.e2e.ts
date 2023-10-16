@@ -11,10 +11,10 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('date dropdown', () => {
-  regressionTest('basic', async ({page}) => {
+  regressionTest('basic', async ({ page }) => {
     await page.goto('date-dropdown/basic');
     await page.locator('ix-dropdown-button').click();
     await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
