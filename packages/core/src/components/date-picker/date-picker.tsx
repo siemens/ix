@@ -19,8 +19,8 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import {DateTime, Info, MonthNumbers} from 'luxon';
-import {DateTimeCardCorners} from '../date-time-card/date-time-card';
+import { DateTime, Info, MonthNumbers } from 'luxon';
+import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 export type DateChangeEvent = {
   from: string;
@@ -284,10 +284,10 @@ export class DatePicker {
       const firstWeekDay = week.find((day) => day !== undefined);
       const weekNumber = firstWeekDay
         ? DateTime.local(
-          this.yearValue,
-          this.monthValue,
-          weekdays[index - 1][0]
-        ).weekNumber
+            this.yearValue,
+            this.monthValue,
+            weekdays[index - 1][0]
+          ).weekNumber
         : undefined;
       calendar.push([weekNumber, week]);
     }
@@ -332,7 +332,7 @@ export class DatePicker {
         ...[...Array(5).keys()].map((year) => year + this.years[0] - 5),
         ...this.years,
       ];
-      this.yearContainerRef.scroll({behavior: 'smooth', top: scroll + 100});
+      this.yearContainerRef.scroll({ behavior: 'smooth', top: scroll + 100 });
     }
 
     if (atBottom) {
@@ -342,7 +342,7 @@ export class DatePicker {
           (year) => year + this.years[this.years.length - 1]
         ),
       ];
-      this.yearContainerRef.scroll({behavior: 'smooth', top: scroll - 50});
+      this.yearContainerRef.scroll({ behavior: 'smooth', top: scroll - 50 });
     }
   }
 
@@ -469,7 +469,10 @@ export class DatePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card standaloneAppearance={this.individual} corners={this.corners}>
+        <ix-date-time-card
+          standaloneAppearance={this.individual}
+          corners={this.corners}
+        >
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
@@ -499,7 +502,7 @@ export class DatePicker {
                     {this.years.map((year) => (
                       <div
                         key={year}
-                        class={{arrowYear: true}}
+                        class={{ arrowYear: true }}
                         onClick={(event) => this.selectTempYear(event, year)}
                       >
                         <ix-icon
@@ -511,7 +514,7 @@ export class DatePicker {
                           size="12"
                         ></ix-icon>
                         <div
-                          style={{'min-width': 'max-content'}}
+                          style={{ 'min-width': 'max-content' }}
                         >{`${year}`}</div>
                       </div>
                     ))}
@@ -538,7 +541,7 @@ export class DatePicker {
                         ></ix-icon>
                         <div>
                           <span
-                            class={{capitalize: true, monthMargin: true}}
+                            class={{ capitalize: true, monthMargin: true }}
                           >{`${month} ${this.tempYear}`}</span>
                         </div>
                       </div>
@@ -584,7 +587,7 @@ export class DatePicker {
           </div>
 
           <div
-            class={{button: true, hidden: !this.individual || !this.range}}
+            class={{ button: true, hidden: !this.individual || !this.range }}
           >
             <ix-button onClick={() => this.onDone()}>
               {this.textSelectDate}
