@@ -37,7 +37,7 @@ export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 type DisposeDropdown = () => void;
 type DropdownDisposerEntry = {
-  element: HTMLIxDropdownElement;
+  isActive: boolean;
   dispose: DisposeDropdown;
 };
 const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
@@ -146,7 +146,7 @@ export class Dropdown {
 
     dropdownDisposer.set(this.localUId, {
       dispose: this.close.bind(this),
-      element: this.hostElement,
+      isActive: false,
     });
   }
 
@@ -248,6 +248,13 @@ export class Dropdown {
 
   @Watch('show')
   async changedShow(newShow: boolean) {
+    dropdownDisposer.forEach((entry, id) => {
+      if (id === this.localUId) {
+        entry.isActive = newShow;
+        return;
+      }
+    });
+
     if (newShow) {
       this.anchorElement = await (this.anchor
         ? this.resolveElement(this.anchor)
@@ -263,7 +270,7 @@ export class Dropdown {
         if (
           id !== this.localUId &&
           !this.isAnchorSubmenu() &&
-          !entry.element.contains(this.hostElement)
+          !entry.isActive
         ) {
           entry.dispose();
         }
