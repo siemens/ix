@@ -33,6 +33,11 @@ import {
   ValidatorName,
 } from '../utils/validators/validator.factory';
 
+export interface DateInputEvent {
+  InputName: string;
+  Event: Event;
+}
+
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
@@ -136,9 +141,28 @@ export class DateInput {
   @Event() dateSelect: EventEmitter<DateChangeEvent>;
 
   /**
-   * Triggers every time one of the inputs changes
+   * Triggers if one of the inputs changes
+   * @emits DateInputEvent
    */
-  @Event() inputChange: EventEmitter<DateChangeEvent>;
+  @Event() ixOnChange: EventEmitter<DateInputEvent>;
+
+  /**
+   * Triggers if one of the inputs gets focus
+   * @emits DateInputEvent
+   */
+  @Event() ixOnFocus: EventEmitter<DateInputEvent>;
+
+  /**
+   * Triggers if one of the inputs loses focus
+   * @emits DateInputEvent
+   */
+  @Event() ixOnBlur: EventEmitter<DateInputEvent>;
+
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button
+   * @emits void
+   */
+  @Event() ixOnClear: EventEmitter<void>;
 
   /**
    * Gets the current input
@@ -169,8 +193,23 @@ export class DateInput {
   private validator: Validator<DateValidatorParam>;
   private wasValidated: boolean;
 
+  private getFocusedInputName(): string {
+    if (this.focusedInput === this.firstInput) {
+      return 'from';
+    }
+
+    if (this.focusedInput === this.secondInput) {
+      return 'to';
+    }
+  }
+
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
+
+    this.ixOnFocus.emit({
+      InputName: this.getFocusedInputName(),
+      Event: event,
+    });
   };
 
   private onInputBlur = (event: FocusEvent) => {
@@ -179,6 +218,11 @@ export class DateInput {
       this.focusedInput.focus();
       return;
     }
+
+    this.ixOnBlur.emit({
+      InputName: this.getFocusedInputName(),
+      Event: event,
+    });
   };
 
   private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
@@ -198,23 +242,24 @@ export class DateInput {
     this._to = undefined;
 
     this.firstInput.focus();
-    this.onInputChange();
+    this.ixOnClear.emit();
+    this.updateValidity();
   };
 
   onFromInputChange(event) {
     if (this._from !== event.target.value) this._from = event.target.value;
-    this.onInputChange();
+    this.onInputChange(event, 'from');
   }
 
   onToInputChange(event) {
     if (this._to !== event.target.value) this._to = event.target.value;
-    this.onInputChange();
+    this.onInputChange(event, 'to');
   }
 
-  onInputChange() {
-    this.inputChange.emit({
-      from: this.firstInput.value,
-      to: this.secondInput.value,
+  onInputChange(event: InputEvent, input: string) {
+    this.ixOnChange.emit({
+      InputName: input,
+      Event: event,
     });
 
     this.updateValidity();

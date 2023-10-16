@@ -35,12 +35,17 @@ import {
   ValidatorName,
 } from '../utils/validators/validator.factory';
 
-export type DatetimeInputChangeEvent = {
+export interface DatetimeInputValues {
   fromDate: string;
   toDate: string;
   fromTime: string;
   toTime: string;
-};
+}
+
+export interface DatetimeInputEvent {
+  InputName: string;
+  Event: Event;
+}
 
 type InputChangeCallback = (event: Event) => void;
 type DateChangeCallback = (
@@ -229,15 +234,33 @@ export class DatetimeInput {
    *
    * @emits DatetimeInputChangeEvent
    */
-  @Event() inputChange: EventEmitter<DatetimeInputChangeEvent>;
+  @Event() ixOnChange: EventEmitter<DatetimeInputEvent>;
+
+  /**
+   * Triggers if one of the inputs gets focus
+   * @emits DatetimeInputEvent
+   */
+  @Event() ixOnFocus: EventEmitter<DatetimeInputEvent>;
+
+  /**
+   * Triggers if one of the inputs loses focus
+   * @emits DatetimeInputEvent
+   */
+  @Event() ixOnBlur: EventEmitter<DatetimeInputEvent>;
+
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button
+   * @emits string with the name of the input that was cleared
+   */
+  @Event() ixOnClear: EventEmitter<string>;
 
   /**
    * Gets the current input
    *
-   * @returns DatetimeInputChangeEvent
+   * @returns DatetimeInputValues
    */
   @Method()
-  async getCurrentInput(): Promise<DatetimeInputChangeEvent> {
+  async getCurrentInput(): Promise<DatetimeInputValues> {
     return {
       fromDate: this._fromDate,
       toDate: this._toDate,
@@ -266,6 +289,11 @@ export class DatetimeInput {
 
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
+
+    this.ixOnFocus.emit({
+      InputName: this.getFocusedInputName(),
+      Event: event,
+    });
   };
 
   private onInputBlur = (event: FocusEvent) => {
@@ -274,6 +302,11 @@ export class DatetimeInput {
       this.focusedInput.focus();
       return;
     }
+
+    this.ixOnBlur.emit({
+      InputName: this.getFocusedInputName(),
+      Event: event,
+    });
   };
 
   private readonly onFromDateChange = (
@@ -282,7 +315,7 @@ export class DatetimeInput {
     this._fromDate = event.detail.from;
 
     this.fromDateChange.emit(this._fromDate);
-    this.onInputChange();
+    this.updateValidity();
   };
 
   private readonly onToDateChange = (
@@ -291,7 +324,7 @@ export class DatetimeInput {
     this._toDate = event.detail.from;
 
     this.toDateChange.emit(this._toDate);
-    this.onInputChange();
+    this.updateValidity();
   };
 
   private readonly onFromTimeChange = (
@@ -300,7 +333,7 @@ export class DatetimeInput {
     this._fromTime = event.detail;
 
     this.fromTimeChange.emit(this._fromTime);
-    this.onInputChange();
+    this.updateValidity();
   };
 
   private readonly onToTimeChange = (
@@ -309,7 +342,7 @@ export class DatetimeInput {
     this._toTime = event.detail;
 
     this.toTimeChange.emit(this._toTime);
-    this.onInputChange();
+    this.updateValidity();
   };
 
   private readonly clear = (isSecondInput: boolean) => {
@@ -318,11 +351,13 @@ export class DatetimeInput {
       this._toTime = undefined;
 
       this.toDateInput.focus();
+      this.ixOnClear.emit('to');
     } else {
       this._fromDate = undefined;
       this._fromTime = undefined;
 
       this.fromDateInput.focus();
+      this.ixOnClear.emit('from');
     }
   };
 
@@ -335,7 +370,7 @@ export class DatetimeInput {
       this._fromDate = target.value;
     }
 
-    this.onInputChange();
+    this.onInputChange(event);
   };
 
   private readonly onToDateInputChange = (
@@ -347,7 +382,7 @@ export class DatetimeInput {
       this._toDate = target.value;
     }
 
-    this.onInputChange();
+    this.onInputChange(event);
   };
 
   private readonly onFromTimeInputChange = (
@@ -359,7 +394,7 @@ export class DatetimeInput {
       this._fromTime = target.value;
     }
 
-    this.onInputChange();
+    this.onInputChange(event);
   };
 
   private readonly onToTimeInputChange = (
@@ -371,7 +406,7 @@ export class DatetimeInput {
       this._toTime = target.value;
     }
 
-    this.onInputChange();
+    this.onInputChange(event);
   };
 
   private readonly onDateSelect = (
@@ -382,12 +417,28 @@ export class DatetimeInput {
     this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   };
 
-  private onInputChange() {
-    this.inputChange.emit({
-      fromDate: this._fromDate !== undefined ? this._fromDate : '',
-      toDate: this._toDate !== undefined ? this._toDate : '',
-      fromTime: this._fromTime !== undefined ? this._fromTime : '',
-      toTime: this._toTime !== undefined ? this._toTime : '',
+  private getFocusedInputName() {
+    if (this.focusedInput === this.fromDateInput) {
+      return 'fromDate';
+    }
+
+    if (this.focusedInput === this.toDateInput) {
+      return 'toDate';
+    }
+
+    if (this.focusedInput === this.fromTimeInput) {
+      return 'fromTime';
+    }
+
+    if (this.focusedInput === this.toTimeInput) {
+      return 'toTime';
+    }
+  }
+
+  private onInputChange(event: Event) {
+    this.ixOnChange.emit({
+      InputName: this.getFocusedInputName(),
+      Event: event,
     });
 
     this.updateValidity();
