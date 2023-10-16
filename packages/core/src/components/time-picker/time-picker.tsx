@@ -17,8 +17,8 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
-import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import {DateTime} from 'luxon';
+import {DateTimeCardCorners} from '../date-time-card/date-time-card';
 
 export type TimePickerCorners = DateTimeCardCorners;
 
@@ -72,12 +72,12 @@ export class TimePicker {
    *
    * @since 1.1.0 time reference is default aligned with formt tt
    */
-  @Prop({ mutable: true }) showTimeReference = undefined;
+  @Prop({mutable: true}) showTimeReference = undefined;
 
   /**
    * Set time reference
    */
-  @Prop({ mutable: true }) timeReference: 'AM' | 'PM' = DateTime.fromFormat(
+  @Prop({mutable: true}) timeReference: 'AM' | 'PM' = DateTime.fromFormat(
     this.time,
     this.format
   ).toFormat('a') as 'PM' | 'AM';
@@ -194,7 +194,7 @@ export class TimePicker {
 
   private updateInput(
     step: 'up' | 'down',
-    { hours = undefined, minutes = undefined, seconds = undefined }
+    {hours = undefined, minutes = undefined, seconds = undefined}
   ) {
     if (hours) {
       if (this.showTimeReference) {
@@ -236,7 +236,7 @@ export class TimePicker {
 
     if (this.timeReference === 'PM') hour += 12;
 
-    this._time = this._time.set({ hour });
+    this._time = this._time.set({hour});
   }
 
   private emitTimeChange() {
@@ -310,10 +310,10 @@ export class TimePicker {
           </div>
 
           <div class="clock">
-            <div class={{ columns: true, hidden: hideHour }}>
+            <div class={{columns: true, hidden: hideHour}}>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('up', { hours: true })}
+                onClick={() => this.updateInput('up', {hours: true})}
                 ghost
                 icon={'chevron-up'}
                 variant="primary"
@@ -338,7 +338,7 @@ export class TimePicker {
               ></input>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('down', { hours: true })}
+                onClick={() => this.updateInput('down', {hours: true})}
                 ghost
                 icon={'chevron-down'}
                 variant="primary"
@@ -347,15 +347,15 @@ export class TimePicker {
             </div>
 
             <div
-              class={{ 'column-seperator': true, hidden: hideHourSeperator }}
+              class={{'column-seperator': true, hidden: hideHourSeperator}}
             >
               :
             </div>
 
-            <div class={{ columns: true, hidden: hideMinutes }}>
+            <div class={{columns: true, hidden: hideMinutes}}>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('up', { minutes: true })}
+                onClick={() => this.updateInput('up', {minutes: true})}
                 ghost
                 icon={'chevron-up'}
                 variant="primary"
@@ -380,7 +380,7 @@ export class TimePicker {
               ></input>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('down', { minutes: true })}
+                onClick={() => this.updateInput('down', {minutes: true})}
                 ghost
                 icon={'chevron-down'}
                 variant="primary"
@@ -389,15 +389,15 @@ export class TimePicker {
             </div>
 
             <div
-              class={{ 'column-seperator': true, hidden: hideMinutesSeperator }}
+              class={{'column-seperator': true, hidden: hideMinutesSeperator}}
             >
               :
             </div>
 
-            <div class={{ columns: true, hidden: hideSeconds }}>
+            <div class={{columns: true, hidden: hideSeconds}}>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('up', { seconds: true })}
+                onClick={() => this.updateInput('up', {seconds: true})}
                 ghost
                 icon={'chevron-up'}
                 variant="primary"
@@ -422,7 +422,7 @@ export class TimePicker {
               ></input>
               <ix-icon-button
                 size="16"
-                onClick={() => this.updateInput('down', { seconds: true })}
+                onClick={() => this.updateInput('down', {seconds: true})}
                 ghost
                 icon={'chevron-down'}
                 variant="primary"
@@ -456,7 +456,7 @@ export class TimePicker {
               ></ix-icon-button>
             </div>
           </div>
-          <div class={{ button: true, hidden: hideIndividual }}>
+          <div class={{button: true, hidden: hideIndividual}}>
             <ix-button
               onClick={() => this.done.emit(this._time.toFormat(this.format))}
             >
