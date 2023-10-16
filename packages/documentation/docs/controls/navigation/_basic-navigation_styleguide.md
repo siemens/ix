@@ -1,19 +1,56 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Demo';
 
+The Basic Navigation is a combination of essential infrastructural components forming the basic layout structure of an application. Alternatively, the [Map Navigation](#link) offers an additional but less flexible layout.  
 
-## Viewport's
+![Basic Navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
+
+The Basic Navigation consists of the following parts:
+- App Header (1): component at the top of the application
+- [Navigation Menu](#link) (2): component for navigation
+- App content (3): the actual content of an application
+
+### App Header
+
+![App Header](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
+
+The App Header (1) hosts the brand logo (4) and the application name (5). The application name can be extended by additional information about the current application context. Use the pipe character "|" and 2 spaces before and after to separate both.  
+In case the application will be hosted inside a framework that comes with its own header, it is possible to hide the App Header to avoid 2 headers on top of each other (option: hideHeader). The brand identity and the application name should then be provided by the framework’s header.
 
 <ApiTableSinceTag message="2.0.0" />
+The Basic Navigation now adapts to breakpoints. More information see [Behavior](#behavior).
 
-The following breakpoints are now available in ix-menu:
 
-- **Small**: `only screen and (min-width: 36em)`
-  - Menu not visible.
-- **Medium**: `only screen and (min-width: 48em)`
-  - Menu visible but requires expansion to see the complete menu.
-- **Large**: `only screen and (min-width: 62em)`
-  - Shows the menu as pinned in full width.
-  - The overlaying content is moved to the left.
+## Options
+| Option                    | Description and usage                                                                                        |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| breakpoints | Defines which breakpoints the Basic Navigation will adapt to: lg (large), md (medium), sm (small)|
+| hideHeader | If true, the header component will be hidden.
+| forceBreakpoint | This option is intended to force the application to use only one of the available breakpoints.
 
+## Behavior
+The Basic Navigation adapts by default automatically to the three breakpoints. Depending on the breakpoint, the behavior of the Navigation Menu is different.
+
+![Behavior at different breakpoints](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-57503&mode=design&t=SxUA6AcHswBAiIzi-11)
+
+### Breakpoint Large (lg) – desktop (6/7)
+- `only screen and (min-width: 62em)`
+- At this breakpoint the Navigation Menu and the application content will share the available viewport width.
+- Clicking the Navigation Menu icon, the Navigation Menu will expand permanently until the collapse button is clicked, the content width will adapt accordingly
+
+### Breakpoint Medium (md) – tablet (8/9)
+-  `only screen and (min-width: 48em)`
+- Clicking the Navigation Menu icon, the Navigation Menu will expand temporarily as overlay
+- Another click or tap on the content or an navigation item will collapse the Navigation Menu again
+
+### Breakpoint Small (sm) – mobile phone (10/11)
+-  `only screen and (min-width: 36em)`
+- The Navigation Menu disappears, the Navigation Menu icon moves into the Application Header
+- Clicking the icon, the Navigation Menu appears as an overlay
+
+### Example
 <Playground name="menu-layouts" height="30rem" noMargin frameworks={{}}></Playground>
+
+## Dos and Don’ts
+- Avoid placing additional components inside the App Header to keep a clean and consistent look of Siemens applications. Furthermore, the header will host infrastructural elements in near future that could collide.
+
