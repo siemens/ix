@@ -1,5 +1,5 @@
 ---
-title: About and legal
+title: About and legal overlay
 ---
 
 import Playground from '@site/src/components/Playground';

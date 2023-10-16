@@ -6,9 +6,9 @@ The Basic Navigation is a combination of essential infrastructural components fo
 ![Basic Navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
 The Basic Navigation consists of the following parts:
-- App Header (1): component at the top of the application
-- [Navigation Menu](#link) (2): component for navigation
-- App content (3): the actual content of an application
+- (1) App Header: component at the top of the application
+- (2) [Navigation Menu](./vertical-tabs.md): component for navigation
+- (3) App content: the actual content of an application
 
 ### App Header
 
