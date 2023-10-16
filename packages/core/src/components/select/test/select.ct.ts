@@ -61,7 +61,7 @@ test('editable mode', async ({ mount, page }) => {
     .getByRole('listitem')
     .filter({ hasText: 'Not existing' });
 
-  await expect(addedItem).toBeVisible();
+  await expect(addedItem.first()).toBeVisible();
 });
 
 test('single selection', async ({ mount, page }) => {
@@ -149,4 +149,25 @@ test('filter', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
   await expect(item4).not.toBeVisible();
   await expect(item_abc).toBeVisible();
+});
+
+test('display selected option', async ({ mount, page }) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="11" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="22" label="Item 2">Test</ix-select-item>
+        </ix-select>
+    `);
+  const element = page.locator('ix-select');
+  await element.evaluate(
+    (select: HTMLIxSelectElement) => (select.value = '22')
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('Not existing');
+
+  await page.click('body');
+
+  const inputText = await page.inputValue('input');
+  expect(inputText).toEqual('Item 2');
 });

@@ -307,8 +307,12 @@ export class Select {
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
       this.navigationItem = undefined;
-      this.inputFilterText = undefined;
-      this.inputRef.value = this.selectedLabels[0];
+
+      if (this.selectedLabels[0] && !this.isMultipleMode) {
+        this.inputRef.value = this.selectedLabels[0];
+      } else {
+        this.clearInput();
+      }
     }
   }
 
