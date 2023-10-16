@@ -9,16 +9,16 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-const DATE_PICKER_SELECTOR = 'ix-date-picker-rework';
-const getDateObj = (page: Page) => {
-  return page.$eval(DATE_PICKER_SELECTOR, (el: HTMLIxDatePickerReworkElement) =>
-    el.getCurrentDate()
-  );
+const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker-rework';
+const getDateObj = async (page: Page) => {
+  return await page.$$eval(DATE_PICKER_REWORK_SELECTOR, (elements) => {
+    return Promise.all(elements.map((elem) => elem.getCurrentDate()));
+  });
 };
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker-rework></ix-date-picker-rework>`);
-  const datePicker = page.locator(DATE_PICKER_SELECTOR);
+  const datePicker = page.locator(DATE_PICKER_REWORK_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
@@ -32,7 +32,7 @@ test.describe('date picker tests single', () => {
   test('date is selected', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: undefined,
     });
@@ -42,7 +42,7 @@ test.describe('date picker tests single', () => {
     await page.waitForSelector('ix-date-time-card');
     await page.getByText(/^19$/).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/19',
       to: undefined,
     });
@@ -54,7 +54,7 @@ test.describe('date picker tests single', () => {
     await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^31$/).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/10/31',
       to: undefined,
     });
@@ -66,7 +66,7 @@ test.describe('date picker tests single', () => {
     await page.getByRole('button').filter({ hasText: 'chevron-left' }).click();
     await page.getByText(/^31$/).nth(1).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/08/31',
       to: undefined,
     });
@@ -92,7 +92,7 @@ test.describe('date picker tests single', () => {
       .click();
     await page.getByText(/^1$/).nth(1).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2021/01/01',
       to: undefined,
     });
@@ -116,14 +116,14 @@ test.describe('date picker tests single', () => {
 test.describe('date picker tests range', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker from="2023/09/05" to="2023/09/10"></ix-date-picker>`
+      `<ix-date-picker-rework from="2023/09/05" to="2023/09/10"></ix-date-picker-rework>`
     );
   });
 
   test('range is selected', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: '2023/09/10',
     });
@@ -135,7 +135,7 @@ test.describe('date picker tests range', () => {
     await page.getByText(/^12$/).click();
     await page.getByText(/^17$/).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/12',
       to: '2023/09/17',
     });
@@ -148,7 +148,7 @@ test.describe('date picker tests range', () => {
     await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
     await page.getByText(/^5$/).click();
 
-    expect(await getDateObj(page)).toEqual({
+    expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/28',
       to: '2023/10/05',
     });

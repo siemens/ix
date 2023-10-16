@@ -12,12 +12,24 @@ import { regressionTest } from '@utils/test';
 
 regressionTest.describe('date picker', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('date-picker/basic');
+    await page.goto('date-picker-rework/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('range', async ({ page }) => {
-    await page.goto('date-picker/range');
+    await page.goto('date-picker-rework/range');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('year/month selection', async ({ page }) => {
+    await page.goto('date-picker-rework/year-month-selection');
+    const button = page.locator('div.selector > ix-button');
+    button.click();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('week start', async ({ page }) => {
+    await page.goto('date-picker-rework/week-start');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

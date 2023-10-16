@@ -72,7 +72,7 @@ export class DatePickerRework {
   @Prop() corners: DateTimeCardCorners = 'rounded';
 
   /**
-   * The selected starting date. If the date-picker is not in range mode this is the selected date.
+   * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
    * Format has to match the `format` property.
    *
    * @since 1.1.0
@@ -92,7 +92,7 @@ export class DatePickerRework {
   }
 
   /**
-   * The selected end date. If the the date-picker is not in range mode this property has no impact.
+   * The selected end date. If the the date-picker-rework is not in range mode this property has no impact.
    * Format has to match the `format` property.
    *
    * @since 1.1.0
@@ -152,7 +152,7 @@ export class DatePickerRework {
 
   /**
    * Triggers if the date selection changes.
-   * Only triggered if date-picker is in range mode.
+   * Only triggered if date-picker-rework is in range mode.
    *
    * @since 1.1.0
    * @deprecated Use `dateChange` (triggers on both modes)

@@ -540,7 +540,7 @@ export namespace Components {
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
@@ -569,7 +569,7 @@ export namespace Components {
          */
         "textSelectDate": string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -3839,7 +3839,7 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -3859,7 +3859,7 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
         /**
-          * Triggers if the date selection changes. Only triggered if date-picker is in range mode.
+          * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
           * @since 1.1.0
           * @deprecated Use `dateChange` (triggers on both modes)
          */
@@ -3880,7 +3880,7 @@ declare namespace LocalJSX {
          */
         "textSelectDate"?: string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;

@@ -10,14 +10,9 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('date picker', () => {
+regressionTest.describe('time picker', () => {
   regressionTest('basic', async ({ page }) => {
-    await page.goto('date-picker/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('range', async ({ page }) => {
-    await page.goto('date-picker/range');
+    await page.goto('time-picker-rework/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
