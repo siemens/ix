@@ -19,7 +19,7 @@ import SourceVueAvatar from './../auto-generated/previews/vue/avatar.md'
 import SourceVueAvatarImage from './../auto-generated/previews/vue/avatar-image.md'
 import SourceVueAvatarInitials from './../auto-generated/previews/vue/avatar-initials.md'
 
-An Avatar is a visual representation of an identity. Avatars are often used to represent the logged in user or other users the user can interact with. Identity information are usually provided by identity providers or user management systems. The amount of information provided may vary from system to system.. The iX avatar component offers different options to handle this.
+Avatars are visual or textual representations of individual identities and they are most often used to represent users logged into a system. Identity providers or user management systems usually provide identity information, and the amount of information provided varies from system to system. The iX avatar component offers different options to handle this.
 
 ## Options
 
@@ -27,15 +27,15 @@ An Avatar is a visual representation of an identity. Avatars are often used to r
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Default (1)  | Without any set option the visual is just a predefined placeholder graphic, it can be used when identity information are unavailable or cannot be used for other reasons.|
-| Initials (2) | Shows a string of one or two characters, can be used when only textual information are available. Examples: initials of user’s first and last name (JD for John Doe), first character of the username (J for johndoe)|
+| Default (1)  | Without any set option the visual is just a predefined placeholder graphic, it can be used when identity information is unavailable or cannot be used for other reasons.|
+| Initials (2) | Shows a string of one or two characters, can be used when only textual information is available. Examples: a user’s initials (JD for John Doe), the first character from the username (J for johndoe)|
 | Image (3)    | Shows an image, can be used when identity information includes an image|
  
 ## Behavior
-The avatar is a display only component with no further interactions. A provided image will be proportionally scaled to fill the content. A circle shape will clip the image. All image formats the browser engines support can be used.
+The avatar is a display-only component with no further interactions. Images provided are proportionally scaled to fill the content. A circle shape clips the image. All image formats that browser engines support can be used.
 
 ## Dos and Don’ts
 
 ![Avatar dos and Don‘ts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=975-13&mode=design&t=SxUA6AcHswBAiIzi-4)
 
-- Do not use more than 2 characters when using the option "Initials"
+- Don't use more than 2 characters when using the "Initials" option
