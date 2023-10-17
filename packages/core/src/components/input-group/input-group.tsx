@@ -110,7 +110,7 @@ export class InputGroup {
         return;
       }
 
-      const isInputInValid =
+      const isInputInvalid =
         !this.inputElement.validity.valid ||
         this.inputElement.classList.contains('is-invalid');
 
@@ -118,7 +118,7 @@ export class InputGroup {
         this.inputElement.form?.classList.contains('was-validated') ||
         this.inputElement.form?.noValidate === false;
 
-      if (formWasValidated && isInputInValid) {
+      if (formWasValidated && isInputInvalid) {
         const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
         this.inputElement.style.backgroundPosition = `left ${left}px center`;
         this.inputPaddingLeft += 32;
