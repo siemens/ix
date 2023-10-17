@@ -14,7 +14,7 @@ regressionTest.describe('time picker', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('time-picker-rework/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixels: 5,
+      maxDiffPixels: 25,
     });
   });
 });

@@ -28,7 +28,7 @@ regressionTest.describe('date picker', () => {
   regressionTest('year/month selection', async ({ page }) => {
     await page.goto('date-picker-rework/year-month-selection');
     const button = page.locator('div.selector > ix-button');
-    button.click();
+    await button.click();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
