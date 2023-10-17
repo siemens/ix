@@ -7142,6 +7142,28 @@
           "required": false
         },
         {
+          "name": "showLogoutButton",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-logout-button",
+          "reflectToAttr": false,
+          "docs": "Control the visibility of the logout button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.2"
+            }
+          ],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "top",
           "type": "string",
           "mutable": false,

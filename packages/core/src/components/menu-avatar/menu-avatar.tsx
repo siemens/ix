@@ -14,6 +14,7 @@ import {
   h,
   Host,
   Prop,
+  State,
 } from '@stencil/core';
 
 @Component({
@@ -51,7 +52,19 @@ export class MenuAvatar {
   /**
    * Use for translation
    */
-  @Prop() i18nLogout = 'Logout';
+  @Prop() i18nLogout: string = 'Logout';
+
+  /**
+   *  Control the visibility of the logout button
+   *  @since 2.0.2
+   */
+  @Prop() showLogoutButton: boolean = true;
+
+  /**
+   * Control fo the visibility of the dropdown menu
+   * @since 2.0.2
+   */
+  @State() hasContent: boolean = true;
 
   /**
    * Logout click
@@ -59,6 +72,10 @@ export class MenuAvatar {
   @Event() logoutClick: EventEmitter;
 
   private avatarElementId = 'ix-menu-avatar-id';
+
+  componentWillLoad() {
+    this.hasContent = this.hostElement.innerHTML !== '';
+  }
 
   render() {
     return (
@@ -80,22 +97,26 @@ export class MenuAvatar {
             </span>
           </div>
         </button>
-        <ix-dropdown
-          trigger={this.hostElement}
-          placement={'right-start'}
-          offset={{
-            mainAxis: 16,
-          }}
-        >
-          <slot></slot>
-          <ix-menu-avatar-item
-            label={this.i18nLogout}
-            icon={'log-out'}
-            onClick={(e) => {
-              this.logoutClick.emit(e);
+        {this.hasContent || this.showLogoutButton ? (
+          <ix-dropdown
+            trigger={this.hostElement}
+            placement={'right-start'}
+            offset={{
+              mainAxis: 16,
             }}
-          ></ix-menu-avatar-item>
-        </ix-dropdown>
+          >
+            <slot></slot>
+            {this.showLogoutButton ? (
+              <ix-menu-avatar-item
+                label={this.i18nLogout}
+                icon={'log-out'}
+                onClick={(e) => {
+                  this.logoutClick.emit(e);
+                }}
+              ></ix-menu-avatar-item>
+            ) : null}
+          </ix-dropdown>
+        ) : null}
       </Host>
     );
   }

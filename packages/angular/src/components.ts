@@ -1343,14 +1343,14 @@ export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
 
 
 @ProxyCmp({
-  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'showLogoutButton', 'top']
 })
 @Component({
   selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top'],
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'showLogoutButton', 'top'],
 })
 export class IxMenuAvatar {
   protected el: HTMLElement;
