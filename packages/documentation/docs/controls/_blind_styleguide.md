@@ -10,9 +10,9 @@ import SourceAngularHtml from './../auto-generated/previews/angular/blind.html.m
 
 import Playground from '@site/src/components/Playground'
 
-Blinds are UI controls that allow the users to hide or reveal content by clicking on a control element. Blinds can display a large amount of content in a compact space or present information in an organized and hierarchical way. Blinds reduce cognitive load of the user be removing clutter and less important information from an interface. We don't use blinds if the content is central to the user's task due to reduced visibility and accessibility.
+Blinds are UI controls that allow the users to hide or reveal content by clicking on a control element. Blinds can display a large amount of content in a compact space or present information in an organized and hierarchical way. Blinds reduce the user's cognitive load by removing clutter and less important information from an interface. We typically don't use blinds if the content is central to the user's task due to its reduced visibility and accessibility.
 
-Blinds consist of a header section on the top and a content section below, the header section contains a chevron on the left followed by the blind's label. Within the content section, content can be placed freely.
+Blinds consist of a header section on the top and a content section below. The header section contains a chevron on the left followed by the blind's label. Within the content section, content can be placed freely.
 
 ![Blind overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A2&mode=design&t=9faEnH99BaAxqCGM-1)
 
@@ -26,16 +26,12 @@ Multiple blinds can be placed below each other to create an accordion. The recom
 ![Accordion](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A655&mode=design&t=9faEnH99BaAxqCGM-1)
 
 ## Variants
-Multiple blind variants are available:
+Multiple blind variants are available: 
 - **Filled**: Default variant
 - **Outline**: Variant for lower visual emphasis
 - **Primary**: Variant for high visual emphasis
-- **Alarm**: Display alarm state
-- **Critical**: Display critical state
-- **Warning**: Display warning state
-- **Success**: Display success state
-- **Info**: Display info state
-- **Neutral**: Display neutral state
+- **State-related variants**: Alarm, critical, warning, success, info, neutral
+
 
 ![Blind variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=929%3A47485&mode=design&t=9faEnH99BaAxqCGM-1)
 
@@ -43,7 +39,7 @@ Multiple blind variants are available:
 ## Options
 - **Icon**: Blinds can, but don't have to, include an icon in the header section. The icon is positioned before the blind label.
 - **Sublabel**: A secondary label can be placed within the header section. The sublabel gives additional information about the blind's content.
-- **Header action**: The header section can contain an action area. We typically use the action area to include one or two buttons for actions directly related to the blind, e.g., to delete the blind or to navigate to additional content.
+- **Header action**: The header section can contain an action area. We typically use the action area to include one or two buttons for actions directly related to the blind, e.g. to delete the blind or to navigate to additional content.
 
 ## Behavior in context
 
@@ -57,10 +53,11 @@ For all blind variants, a default, hover, active and focused state is available.
 
 ## Dos and don'ts
 
-- The header section has a fixed height for single-line text entries. Don't use multi-line text in the header.
-- Don't change the position of the chevron icon and the blind's label in the header.
-- Don't use a blind if there is only a single category to be displayed. The recommended number of blinds ranges between three and seven.
-- Don't use blinds to display hierarchically structured files or objects - rather use a tree for such cases.
+- Do stay within the recommended number of blinds - between 3 and 7
+- Don't use multi-line text in the header. The header section has a fixed height for single-line text entries 
+- Don't change the position of the chevron icon and the blind's label in the header
+- Don't use a blind if there is only a single category to be displayed
+- Don't use blinds to display hierarchically structured files or objects - rather use a tree for such cases
 
 ## Related patterns:
 
