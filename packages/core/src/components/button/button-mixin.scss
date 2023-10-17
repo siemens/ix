@@ -143,6 +143,12 @@
     .content-start {
       width: 100%;
     }
+
+    .icon {
+      // Prevents icon to show title tooltip
+      // if embedded in ix-icon-button or ix-button[icon]
+      pointer-events: none;
+    }
   }
 
   :host(.disabled) {
