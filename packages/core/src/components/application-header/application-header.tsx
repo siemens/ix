@@ -9,7 +9,9 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
+import { useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
@@ -29,18 +31,34 @@ export class ApplicationHeader {
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
 
+  @State() suppressResponsive = false;
+
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
 
   componentWillLoad() {
+    useContextConsumer(this.hostElement, ApplicationLayoutContext, (ctx) => {
+      if (ctx?.host === 'map-navigation') {
+        this.suppressResponsive = true;
+        this.breakpoint = 'md';
+        return;
+      }
+
+      this.breakpoint = applicationLayoutService.breakpoint;
+    });
+
     this.menuDisposable = menuController.expandChange.on((show) => {
       this.menuExpanded = show;
     });
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
+      if (this.suppressResponsive) {
+        this.breakpoint = 'md';
+        return;
+      }
+
       this.breakpoint = mode;
     });
-    this.breakpoint = applicationLayoutService.breakpoint;
   }
 
   componentDidLoad() {
@@ -83,7 +101,7 @@ export class ApplicationHeader {
         class={{ [`breakpoint-${this.breakpoint}`]: true }}
         slot="application-header"
       >
-        {this.breakpoint === 'sm' ? (
+        {this.breakpoint === 'sm' && this.suppressResponsive === false ? (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}

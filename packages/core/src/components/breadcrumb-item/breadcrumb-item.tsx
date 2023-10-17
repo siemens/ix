@@ -16,6 +16,7 @@ import {
   h,
   Host,
   Prop,
+  State,
 } from '@stencil/core';
 import animejs from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
@@ -61,8 +62,18 @@ export class BreadcrumbItem {
   /**@internal */
   @Event() itemClick: EventEmitter<string>;
 
+  @State() a11y: any;
+
   componentDidLoad() {
     this.animationFadeIn();
+  }
+
+  componentWillLoad() {
+    this.a11y = a11yHostAttributes(this.hostElement, [
+      'aria-describedby',
+      'aria-controls',
+      'aria-expanded',
+    ]);
   }
 
   animationFadeIn() {
@@ -76,7 +87,6 @@ export class BreadcrumbItem {
   }
 
   render() {
-    const a11y = a11yHostAttributes(this.hostElement);
     const props: BaseButtonProps = {
       variant: this.ghost ? 'primary' : 'secondary',
       outline: false,
@@ -94,7 +104,7 @@ export class BreadcrumbItem {
       extraClasses: {
         'dropdown-trigger': this.isDropdownTrigger,
       },
-      ariaAttributes: a11y,
+      ariaAttributes: this.a11y,
     };
 
     if (!this.visible) {

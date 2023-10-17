@@ -1190,6 +1190,7 @@ export namespace Components {
         "i18nToggleTheme": string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
+          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
          */
         "maxVisibleMenuItems": number;
         /**
@@ -4339,6 +4340,7 @@ declare namespace LocalJSX {
         "i18nToggleTheme"?: string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
+          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
          */
         "maxVisibleMenuItems"?: number;
         /**

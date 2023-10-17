@@ -1,3 +1,25 @@
+## [2.0.3](https://github.com/siemens/ix/compare/v2.0.2-beta.0...v2.0.3) (2023-10-10)
+
+
+
+## [2.0.2-beta.0](https://github.com/siemens/ix/compare/v2.0.2...v2.0.2-beta.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* **core/breadcrumb:** check if overflow button is existing in DOM ([#811](https://github.com/siemens/ix/issues/811)) ([bbe6f28](https://github.com/siemens/ix/commit/bbe6f280f9fe28d639683d43fdb0894d8577417c))
+* **core/button:** prevent native events to be dispatched ([#804](https://github.com/siemens/ix/issues/804)) ([ac756a5](https://github.com/siemens/ix/commit/ac756a57559e65a5839c4e2fb2dcc789d999cb8f))
+* **core/checkbox, core/radiobutton:** remove min-height ([#816](https://github.com/siemens/ix/issues/816)) ([976fc45](https://github.com/siemens/ix/commit/976fc4528cc9d0811301453d2e310e952cb0c300))
+* **core/drawer:** add missing host class selector ([#815](https://github.com/siemens/ix/issues/815)) ([0409fc8](https://github.com/siemens/ix/commit/0409fc8da7a72ca79a50dfced46c2fb94892399c))
+* **core/drodown:** nested dropdown closes parent dropdown ([#789](https://github.com/siemens/ix/issues/789)) ([12d2472](https://github.com/siemens/ix/commit/12d247240a4f6a3ff6814fed273bb9bc5671f340))
+* **core/input-group:** detect inital value padding ([#803](https://github.com/siemens/ix/issues/803)) ([17efd6e](https://github.com/siemens/ix/commit/17efd6ee9e42226043f189b266b2aaccc3228ee3))
+* **core/map-navigation:** suppress responsive behavior ([#810](https://github.com/siemens/ix/issues/810)) ([e7d702d](https://github.com/siemens/ix/commit/e7d702de8d20d6a5dc5283b78473d954f08837e7))
+* **core/modal:** skip tick during vdom rendering ([#788](https://github.com/siemens/ix/issues/788)) ([d28c6ea](https://github.com/siemens/ix/commit/d28c6ea618f3fd06680f6043812fd5d9d8c5798b))
+* **core/pagination:** dispatch complete page number ([#805](https://github.com/siemens/ix/issues/805)) ([51ae5b2](https://github.com/siemens/ix/commit/51ae5b2f24e1cd6987f8893723b533f7be3a3e94))
+* **react/tree:** load ix-tree web component on initialize react lib ([#806](https://github.com/siemens/ix/issues/806)) ([27fdee3](https://github.com/siemens/ix/commit/27fdee3dd66118134ef8e49f6f34903c1bb1932b))
+
+
+
 ## [2.0.1](https://github.com/siemens/ix/compare/v2.0.0...v2.0.1) (2023-09-26)
 
 

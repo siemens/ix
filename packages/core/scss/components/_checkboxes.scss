@@ -19,9 +19,12 @@
     width: 1px;
     max-height: 1px;
     max-width: 1px;
+    min-height: 0px;
+    min-width: 0px;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
+    appearance: none;
   }
 
   [type='checkbox']:not(:checked) + label,
