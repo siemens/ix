@@ -232,6 +232,7 @@ export class DateTimePicker {
             showHour={this.showHour}
             showMinutes={this.showMinutes}
             showSeconds={this.showSeconds}
+            showTimeReference={this.showTimeReference}
             onTimeChange={(event) => this.onTimeChange(event)}
             time={this.time}
             format={this.timeFormat}

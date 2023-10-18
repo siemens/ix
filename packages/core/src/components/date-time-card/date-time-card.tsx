@@ -21,7 +21,12 @@ export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
 })
 export class DateTimeCard {
   /** @internal */
-  @Prop() standaloneAppearance = true;
+  @Prop() standaloneAppearance = undefined;
+
+  /**
+   * set styles
+   */
+  @Prop() individual: boolean = true;
 
   /**
    * Set corners style
@@ -31,7 +36,10 @@ export class DateTimeCard {
   private cardClasses() {
     return {
       card: true,
-      standaloneAppearance: this.standaloneAppearance,
+      standaloneAppearance:
+        this.standaloneAppearance !== undefined
+          ? this.standaloneAppearance
+          : this.individual,
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',

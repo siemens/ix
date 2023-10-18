@@ -13,8 +13,9 @@
 
 :host {
   @include ix-component;
-
   @import 'legacy/components/forms';
+
+  display: block;
 
   @media (max-width: 576px) {
     .clock {
@@ -34,10 +35,6 @@
     .header {
       height: $large-control-height !important;
     }
-  }
-
-  .container {
-    max-width: 352px;
   }
 
   .header {

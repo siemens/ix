@@ -304,10 +304,7 @@ export class TimePicker {
 
     return (
       <Host>
-        <ix-date-time-card
-          standaloneAppearance={this.individual}
-          corners={this.corners}
-        >
+        <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
             <ix-typography variant="default-title">Time</ix-typography>
           </div>

@@ -469,10 +469,7 @@ export class DatePicker {
   render() {
     return (
       <Host>
-        <ix-date-time-card
-          standaloneAppearance={this.individual}
-          corners={this.corners}
-        >
+        <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}

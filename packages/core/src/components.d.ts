@@ -584,7 +584,11 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
-        "standaloneAppearance": boolean;
+        /**
+          * set styles
+         */
+        "individual": boolean;
+        "standaloneAppearance": any;
     }
     interface IxDatetimePicker {
         /**
@@ -3895,7 +3899,11 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
-        "standaloneAppearance"?: boolean;
+        /**
+          * set styles
+         */
+        "individual"?: boolean;
+        "standaloneAppearance"?: any;
     }
     interface IxDatetimePicker {
         /**
@@ -5422,13 +5430,13 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Time event
-         */
-        "onDone"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
-        /**
           * Time change event
          */
         "onTimeChange"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
+        /**
+          * Time event
+         */
+        "onTimeSelect"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
         /**
           * Show hour input
          */

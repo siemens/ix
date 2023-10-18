@@ -24,7 +24,6 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
-import { defineCustomElement as defineIxDatetimePickerRework } from '@siemens/ix/components/ix-datetime-picker-rework.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
 import { defineCustomElement as defineIxDropdown } from '@siemens/ix/components/ix-dropdown.js';
@@ -284,28 +283,6 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'timeReference',
   'textSelectDate',
   'done',
-  'timeChange',
-  'dateChange',
-  'dateSelect'
-]);
-
-
-export const IxDatetimePickerRework = /*@__PURE__*/ defineContainer<JSX.IxDatetimePickerRework>('ix-datetime-picker-rework', defineIxDatetimePickerRework, [
-  'range',
-  'showHour',
-  'showMinutes',
-  'showSeconds',
-  'minDate',
-  'maxDate',
-  'dateFormat',
-  'timeFormat',
-  'from',
-  'to',
-  'time',
-  'showTimeReference',
-  'timeReference',
-  'textSelectDate',
-  'weekStartIndex',
   'timeChange',
   'dateChange',
   'dateSelect'

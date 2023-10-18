@@ -2,19 +2,6 @@
 
 ## v2.0.0
 
-### Remove string output from `dateChange` event in `ix-date-picker`
-
-### Change `onDateChange` event to `DateChangeEvent` in `ix-date-picker`
-
-### Change `getCurrentDate` method return property names in `ix-date-picker`
-
-### Remove deprecated properties from `ix-date-picker`
-
-### 'ix-time-picker' removed deprecated properties
-
-- show-time-reference
-- individual
-
 ### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated
 
 The assignment of the 'form-control' class for input and textarea elements is no longer required.

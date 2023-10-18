@@ -24,7 +24,6 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
-import { defineCustomElement as defineIxDatetimePickerRework } from '@siemens/ix/components/ix-datetime-picker-rework.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
 import { defineCustomElement as defineIxDropdown } from '@siemens/ix/components/ix-dropdown.js';
@@ -113,7 +112,6 @@ export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColEleme
 export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHeader, HTMLIxContentHeaderElement>('ix-content-header', undefined, undefined, defineIxContentHeader);
 export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker', undefined, undefined, defineIxDatePicker);
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker', undefined, undefined, defineIxDatetimePicker);
-export const IxDatetimePickerRework = /*@__PURE__*/createReactComponent<JSX.IxDatetimePickerRework, HTMLIxDatetimePickerReworkElement>('ix-datetime-picker-rework', undefined, undefined, defineIxDatetimePickerRework);
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider', undefined, undefined, defineIxDivider);
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer', undefined, undefined, defineIxDrawer);
 export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTMLIxDropdownElement>('ix-dropdown', undefined, undefined, defineIxDropdown);

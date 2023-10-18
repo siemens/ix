@@ -11,7 +11,6 @@ import {
   Component,
   Event,
   EventEmitter,
-  forceUpdate,
   h,
   Host,
   Method,
@@ -53,7 +52,6 @@ export class TimePickerRework {
    *
    * @since 1.1.0
    */
-  // @Prop() format: string = 'HH:mm:ss';
   @Prop() format: string = 'HH:mm:ss';
 
   /**
@@ -111,7 +109,7 @@ export class TimePickerRework {
   /**
    * Time event
    */
-  @Event() done: EventEmitter<string>;
+  @Event() timeSelect: EventEmitter<string>;
 
   /**
    * Time change event
@@ -130,11 +128,6 @@ export class TimePickerRework {
     this.formatTime();
   }
 
-  @Watch('time')
-  onExternalTimeChange() {
-    this._time = dayjs(this.time, this.format);
-  }
-
   @Watch('_time')
   formatTime() {
     const [hour, minutes, seconds] = this._time
@@ -147,8 +140,6 @@ export class TimePickerRework {
       minutes: minutes,
       seconds: seconds,
     };
-
-    forceUpdate(this);
   }
 
   @Watch('_time')
@@ -209,16 +200,16 @@ export class TimePickerRework {
     ];
 
     /*
-         Check count of hidden elements
-         */
+     *  Check count of hidden elements
+     */
     const hiddenCount = timepickerInformation.filter(
       (item) => item.hidden
     ).length;
 
     /*
-         If all hidden, every element getting set to visible,
-         otherwise hidden element getting removed
-         */
+     * If all hidden, every element getting set to visible,
+     *otherwise hidden element getting removed
+     */
     if (hiddenCount == timepickerInformation.length) {
       timepickerInformation.forEach((info) => {
         info.hidden = false;
@@ -231,106 +222,106 @@ export class TimePickerRework {
 
     return (
       <Host>
-        <div class="container">
-          <ix-date-time-card
-            standaloneAppearance={this.standaloneAppearance}
-            corners={this.corners}
-          >
-            <div class="header" slot="header">
-              <ix-typography variant="default-title">Time</ix-typography>
-            </div>
-            <div class="clock">
-              {timepickerInformation.map((descriptor, index: number) => (
-                <div class="flex">
-                  <div class={{ columns: true, hidden: descriptor.hidden }}>
-                    <ix-icon-button
-                      size="16"
-                      onClick={() =>
-                        (this._time = this._time.add(1, descriptor.unit))
-                      }
-                      ghost
-                      icon="chevron-up"
-                      variant="primary"
-                      class="arrows"
-                    ></ix-icon-button>
+        <ix-date-time-card
+          standaloneAppearance={this.standaloneAppearance}
+          corners={this.corners}
+        >
+          <div class="header" slot="header">
+            <ix-typography variant="default-title">Time</ix-typography>
+          </div>
+          <div class="clock">
+            {timepickerInformation.map((descriptor, index: number) => (
+              <div class="flex">
+                <div class={{ columns: true, hidden: descriptor.hidden }}>
+                  <ix-icon-button
+                    size="16"
+                    onClick={() =>
+                      (this._time = this._time.add(1, descriptor.unit))
+                    }
+                    ghost
+                    icon="chevron-up"
+                    variant="primary"
+                    class="arrows"
+                  ></ix-icon-button>
 
-                    <input
-                      class="form-control"
-                      name={descriptor.unit}
-                      type="number"
-                      placeholder={descriptor.placeholder}
-                      min="0"
-                      max={dayjs().endOf('day').get(descriptor.unit)}
-                      value={this._formattedTime[descriptor.unit]}
-                      onChange={(e) => {
-                        let inputElement = e.target as HTMLInputElement;
-                        inputElement.value = this.timeUpdate(
-                          descriptor.unit,
-                          +inputElement.value
-                        ).toString();
-                      }}
-                    ></input>
+                  <input
+                    class="form-control"
+                    name={descriptor.unit}
+                    type="number"
+                    placeholder={descriptor.placeholder}
+                    min="0"
+                    max={dayjs().endOf('day').get(descriptor.unit)}
+                    value={this._formattedTime[descriptor.unit]}
+                    onChange={(e) => {
+                      let inputElement = e.target as HTMLInputElement;
+                      inputElement.value = this.timeUpdate(
+                        descriptor.unit,
+                        +inputElement.value
+                      ).toString();
+                    }}
+                  ></input>
 
-                    <ix-icon-button
-                      size="16"
-                      onClick={() =>
-                        (this._time = this._time.subtract(1, descriptor.unit))
-                      }
-                      ghost
-                      icon="chevron-down"
-                      variant="primary"
-                      class="arrows"
-                    ></ix-icon-button>
-                  </div>
-
-                  {index !== timepickerInformation.length - 1 && (
-                    <div
-                      class={{
-                        'column-seperator': true,
-                        hidden: descriptor.hidden,
-                      }}
-                    >
-                      :
-                    </div>
-                  )}
+                  <ix-icon-button
+                    size="16"
+                    onClick={() =>
+                      (this._time = this._time.subtract(1, descriptor.unit))
+                    }
+                    ghost
+                    icon="chevron-down"
+                    variant="primary"
+                    class="arrows"
+                  ></ix-icon-button>
                 </div>
-              ))}
 
-              <div
-                class={{
-                  columns: true,
-                  'default-space': true,
-                  hidden: this._timeRef === undefined,
-                }}
-              >
-                <ix-icon-button
-                  size="16"
-                  onClick={() => this.changeTimeReference()}
-                  ghost
-                  icon="chevron-up"
-                  variant="primary"
-                  class="arrows"
-                ></ix-icon-button>
-                <div class="time-reference">{this._timeRef}</div>
-                <ix-icon-button
-                  size="16"
-                  onClick={() => this.changeTimeReference()}
-                  ghost
-                  icon="chevron-down"
-                  variant="primary"
-                  class="arrows"
-                ></ix-icon-button>
+                {index !== timepickerInformation.length - 1 && (
+                  <div
+                    class={{
+                      'column-seperator': true,
+                      hidden: descriptor.hidden,
+                    }}
+                  >
+                    :
+                  </div>
+                )}
               </div>
+            ))}
+
+            <div
+              class={{
+                columns: true,
+                'default-space': true,
+                hidden: this._timeRef === undefined,
+              }}
+            >
+              <ix-icon-button
+                size="16"
+                onClick={() => this.changeTimeReference()}
+                ghost
+                icon="chevron-up"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <div class="time-reference">{this._timeRef}</div>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.changeTimeReference()}
+                ghost
+                icon="chevron-down"
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
             </div>
-            <div class={{ button: true, hidden: !this.standaloneAppearance }}>
-              <ix-button
-                onClick={() => this.done.emit(this._time.format(this.format))}
-              >
-                {this.textSelectTime}
-              </ix-button>
-            </div>
-          </ix-date-time-card>
-        </div>
+          </div>
+          <div class={{ button: true, hidden: !this.standaloneAppearance }}>
+            <ix-button
+              onClick={() =>
+                this.timeSelect.emit(this._time.format(this.format))
+              }
+            >
+              {this.textSelectTime}
+            </ix-button>
+          </div>
+        </ix-date-time-card>
       </Host>
     );
   }
