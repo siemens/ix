@@ -307,6 +307,7 @@ export class Select {
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
       this.navigationItem = undefined;
+      this.inputFilterText = '';
 
       if (this.selectedLabels[0] && !this.isMultipleMode) {
         this.inputRef.value = this.selectedLabels[0];
