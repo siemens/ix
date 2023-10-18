@@ -2597,13 +2597,60 @@
           "docsTags": []
         },
         {
-          "event": "inputChange",
-          "detail": "{ from: string; to: string; }",
+          "event": "ixOnBlur",
+          "detail": "DateInputEvent",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Triggers every time one of the inputs changes",
-          "docsTags": []
+          "docs": "Triggers if one of the inputs loses focus",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "DateInputEvent"
+            }
+          ]
+        },
+        {
+          "event": "ixOnChange",
+          "detail": "DateInputEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if one of the inputs changes",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "DateInputEvent"
+            }
+          ]
+        },
+        {
+          "event": "ixOnClear",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if the inputs get cleared by pressing the clear button",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "void"
+            }
+          ]
+        },
+        {
+          "event": "ixOnFocus",
+          "detail": "DateInputEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if one of the inputs gets focus",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "DateInputEvent"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -3356,16 +3403,16 @@
         {
           "name": "getCurrentInput",
           "returns": {
-            "type": "Promise<DatetimeInputChangeEvent>",
-            "docs": "DatetimeInputChangeEvent"
+            "type": "Promise<DatetimeInputValues>",
+            "docs": "DatetimeInputValues"
           },
-          "signature": "getCurrentInput() => Promise<DatetimeInputChangeEvent>",
+          "signature": "getCurrentInput() => Promise<DatetimeInputValues>",
           "parameters": [],
           "docs": "Gets the current input",
           "docsTags": [
             {
               "name": "returns",
-              "text": "DatetimeInputChangeEvent"
+              "text": "DatetimeInputValues"
             }
           ]
         }
@@ -3373,7 +3420,7 @@
       "events": [
         {
           "event": "dateSelect",
-          "detail": "DateTimeSelectEvent",
+          "detail": "{ from: string; to: string; time: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3414,8 +3461,22 @@
           ]
         },
         {
-          "event": "inputChange",
-          "detail": "{ fromDate: string; toDate: string; fromTime: string; toTime: string; }",
+          "event": "ixOnBlur",
+          "detail": "DatetimeInputEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if one of the inputs loses focus",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "DatetimeInputEvent"
+            }
+          ]
+        },
+        {
+          "event": "ixOnChange",
+          "detail": "DatetimeInputEvent",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3424,6 +3485,34 @@
             {
               "name": "emits",
               "text": "DatetimeInputChangeEvent"
+            }
+          ]
+        },
+        {
+          "event": "ixOnClear",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if the inputs get cleared by pressing the clear button",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "string with the name of the input that was cleared"
+            }
+          ]
+        },
+        {
+          "event": "ixOnFocus",
+          "detail": "DatetimeInputEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggers if one of the inputs gets focus",
+          "docsTags": [
+            {
+              "name": "emits",
+              "text": "DatetimeInputEvent"
             }
           ]
         },

@@ -453,12 +453,13 @@ export class IxDateInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'inputChange']);
+    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'ixOnChange', 'ixOnFocus', 'ixOnBlur', 'ixOnClear']);
   }
 }
 
 
 import type { DateChangeEvent as IIxDateInputDateChangeEvent } from '@siemens/ix';
+import type { DateInputEvent as IIxDateInputDateInputEvent } from '@siemens/ix';
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
@@ -470,9 +471,21 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
   /**
-   * Triggers every time one of the inputs changes
+   * Triggers if one of the inputs changes @emits DateInputEvent
    */
-  inputChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+  ixOnChange: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if one of the inputs gets focus @emits DateInputEvent
+   */
+  ixOnFocus: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if one of the inputs loses focus @emits DateInputEvent
+   */
+  ixOnBlur: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button @emits void
+   */
+  ixOnClear: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -532,13 +545,13 @@ export class IxDatetimeInput {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'inputChange']);
+    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'ixOnChange', 'ixOnFocus', 'ixOnBlur', 'ixOnClear']);
   }
 }
 
 
 import type { DateTimeSelectEvent as IIxDatetimeInputDateTimeSelectEvent } from '@siemens/ix';
-import type { DatetimeInputChangeEvent as IIxDatetimeInputDatetimeInputChangeEvent } from '@siemens/ix';
+import type { DatetimeInputEvent as IIxDatetimeInputDatetimeInputEvent } from '@siemens/ix';
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
@@ -564,7 +577,19 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
    * Triggers every time one of the inputs changes @emits DatetimeInputChangeEvent
    */
-  inputChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputChangeEvent>>;
+  ixOnChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if one of the inputs gets focus @emits DatetimeInputEvent
+   */
+  ixOnFocus: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if one of the inputs loses focus @emits DatetimeInputEvent
+   */
+  ixOnBlur: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button @emits string with the name of the input that was cleared
+   */
+  ixOnClear: EventEmitter<CustomEvent<string>>;
 }
 
 

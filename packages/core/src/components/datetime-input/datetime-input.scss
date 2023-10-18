@@ -9,7 +9,7 @@
 @import 'mixins/shadow-dom/component';
 @import 'components/form/input';
 
-:host(.is-invalid) {
+:host(.invalid) {
   .invalid-feedback {
     display: block;
     color: var(--theme-color-alarm-text);

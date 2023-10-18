@@ -266,7 +266,10 @@ export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput>('ix-da
   'validators',
   'dateChange',
   'dateSelect',
-  'inputChange'
+  'ixOnChange',
+  'ixOnFocus',
+  'ixOnBlur',
+  'ixOnClear'
 ]);
 
 
@@ -312,7 +315,10 @@ export const IxDatetimeInput = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput
   'fromTimeChange',
   'toTimeChange',
   'dateSelect',
-  'inputChange'
+  'ixOnChange',
+  'ixOnFocus',
+  'ixOnBlur',
+  'ixOnClear'
 ]);
 
 

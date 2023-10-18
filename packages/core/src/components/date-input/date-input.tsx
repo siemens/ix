@@ -240,6 +240,8 @@ export class DateInput {
   private readonly clear = () => {
     this._from = undefined;
     this._to = undefined;
+    this.firstInput.value = '';
+    this.secondInput.value = '';
 
     this.firstInput.focus();
     this.ixOnClear.emit();
@@ -290,7 +292,7 @@ export class DateInput {
     }
 
     this.dateInputDiv.classList.toggle('is-invalid', !isValid);
-    this.hostElement.classList.toggle('is-invalid', !isValid);
+    this.hostElement.classList.toggle('invalid', !isValid);
     this.hostElement.classList.toggle('is-valid', isValid);
 
     this.wasValidated = true;

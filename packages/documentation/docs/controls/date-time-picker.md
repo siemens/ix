@@ -7,7 +7,7 @@ import SourceReactDatetimepicker from './../auto-generated/previews/react/dateti
 import SourceAngularDatetimepicker from './../auto-generated/previews/angular/datetimepicker.ts.md'
 import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepicker.md'
 
-# Date time picker
+# Datetime picker
 
 ## Usage
 

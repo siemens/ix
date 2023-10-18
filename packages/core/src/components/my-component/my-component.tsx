@@ -27,19 +27,23 @@ export class MyComponent {
           <ix-layout-grid>
             <ix-row>
               <ix-col size="4">
-                <label htmlFor="validationCustom01">First name</label>
-                <input type="text" id="validationCustom01" required />
-                <div class="invalid-feedback">Please choose a first name.</div>
+                <ix-date-input
+                  validators={[
+                    {
+                      validator: 'validDate',
+                      errorMessage: 'Custom message 1',
+                    },
+                    {
+                      validator: 'toAfterFrom',
+                      errorMessage: 'Custom message 2',
+                    },
+                    {
+                      validator: 'withinMinMax',
+                      errorMessage: 'Custom message 3',
+                    },
+                  ]}
+                ></ix-date-input>
                 <div class="valid-feedback">Looks good!</div>
-              </ix-col>
-            </ix-row>
-            <ix-row>
-              <ix-col size="4">
-                {/* <ix-date-input
-                  id="validationCustom02"
-                  range={true}
-                ></ix-date-input> */}
-                <ix-datetime-input id="222" label="label"></ix-datetime-input>
               </ix-col>
             </ix-row>
             <ix-row>

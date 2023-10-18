@@ -19,11 +19,11 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { IxDatetimePickerCustomEvent } from 'src/components';
 import {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
-  IxDatetimePickerCustomEvent,
-} from 'src/components';
+} from '../datetime-picker/datetime-picker';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { TimeValidatorParam } from '../utils/validators/datetime-input/time-input-validators';
 import { InputValidator, Validator } from '../utils/validators/validator';
@@ -487,7 +487,7 @@ export class DatetimeInput {
 
     this.fromInputDiv.classList.toggle('is-invalid', !isValid);
     this.toInputDiv.classList.toggle('is-invalid', !isValid);
-    this.hostElement.classList.toggle('is-invalid', !isValid);
+    this.hostElement.classList.toggle('invalid', !isValid);
     this.hostElement.classList.toggle('is-valid', isValid);
 
     this.wasValidated = true;

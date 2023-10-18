@@ -14,7 +14,7 @@
   flex-direction: row;
 }
 
-:host(.is-invalid) {
+:host(.invalid) {
   .invalid-feedback {
     display: block;
     color: var(--theme-color-alarm-text);
@@ -70,6 +70,7 @@
   ix-dropdown {
     margin-top: 0.25rem !important;
     padding: 0;
+    overflow-y: visible;
   }
 
   .date-input {

@@ -1,0 +1,42 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blind example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <form class="needs-validation" novalidate>
+      <ix-layout-grid>
+        <ix-row>
+          <ix-col size="8">
+            <ix-datetime-input></ix-datetime-input>
+            <div class="valid-feedback">Looks good!</div>
+          </ix-col>
+        </ix-row>
+        <ix-row>
+          <ix-col>
+            <ix-button type="submit">Submit form</ix-button>
+          </ix-col>
+        </ix-row>
+      </ix-layout-grid>
+    </form>
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-validation-tooltip');
+        const forms = document.querySelector('form');
+        forms.addEventListener('submit', (event) => {
+          event.preventDefault();
+          forms.classList.add('was-validated');
+        });
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

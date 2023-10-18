@@ -20,10 +20,11 @@ import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { InputValidator } from "./components/utils/validators/validator";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
+import { DateInputEvent } from "./components/date-input/date-input";
 import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "src/components";
-import { DatetimeInputChangeEvent } from "./components/datetime-input/datetime-input";
+import { DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
@@ -59,10 +60,11 @@ export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { InputValidator } from "./components/utils/validators/validator";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
+export { DateInputEvent } from "./components/date-input/date-input";
 export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeSelectEvent } from "src/components";
-export { DatetimeInputChangeEvent } from "./components/datetime-input/datetime-input";
+export { DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
@@ -613,9 +615,9 @@ export namespace Components {
         "fromTime": string;
         /**
           * Gets the current input
-          * @returns DatetimeInputChangeEvent
+          * @returns DatetimeInputValues
          */
-        "getCurrentInput": () => Promise<DatetimeInputChangeEvent>;
+        "getCurrentInput": () => Promise<DatetimeInputValues>;
         /**
           * Label for the input
          */
@@ -3768,9 +3770,25 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDateInputCustomEvent<DateChangeEvent>) => void;
         /**
-          * Triggers every time one of the inputs changes
+          * Triggers if one of the inputs loses focus
+          * @emits DateInputEvent
          */
-        "onInputChange"?: (event: IxDateInputCustomEvent<DateChangeEvent>) => void;
+        "onIxOnBlur"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
+        /**
+          * Triggers if one of the inputs changes
+          * @emits DateInputEvent
+         */
+        "onIxOnChange"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
+        /**
+          * Triggers if the inputs get cleared by pressing the clear button
+          * @emits void
+         */
+        "onIxOnClear"?: (event: IxDateInputCustomEvent<void>) => void;
+        /**
+          * Triggers if one of the inputs gets focus
+          * @emits DateInputEvent
+         */
+        "onIxOnFocus"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -3914,10 +3932,25 @@ declare namespace LocalJSX {
          */
         "onFromTimeChange"?: (event: IxDatetimeInputCustomEvent<string>) => void;
         /**
+          * Triggers if one of the inputs loses focus
+          * @emits DatetimeInputEvent
+         */
+        "onIxOnBlur"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
+        /**
           * Triggers every time one of the inputs changes
           * @emits DatetimeInputChangeEvent
          */
-        "onInputChange"?: (event: IxDatetimeInputCustomEvent<DatetimeInputChangeEvent>) => void;
+        "onIxOnChange"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
+        /**
+          * Triggers if the inputs get cleared by pressing the clear button
+          * @emits string with the name of the input that was cleared
+         */
+        "onIxOnClear"?: (event: IxDatetimeInputCustomEvent<string>) => void;
+        /**
+          * Triggers if one of the inputs gets focus
+          * @emits DatetimeInputEvent
+         */
+        "onIxOnFocus"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
         /**
           * Triggers if the second date selection changes.
           * @emits string
