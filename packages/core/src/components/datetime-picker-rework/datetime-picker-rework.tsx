@@ -37,17 +37,17 @@ export class DatetimePickerRework {
   /**
    * Show hour input
    */
-  @Prop() showHour = false;
+  @Prop() showHour = true;
 
   /**
    * Show minutes input
    */
-  @Prop() showMinutes = false;
+  @Prop() showMinutes = true;
 
   /**
    * Show seconds input
    */
-  @Prop() showSeconds = false;
+  @Prop() showSeconds = true;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -209,6 +209,7 @@ export class DatetimePickerRework {
 
             <ix-col class="no-padding">
               <ix-time-picker-rework
+                class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 corners="right"
                 standaloneAppearance={false}

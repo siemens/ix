@@ -19,6 +19,10 @@
   position: relative;
   width: min-content;
 
+  .min-width {
+    width: min-content;
+  }
+
   .no-padding {
     padding: 0;
   }
