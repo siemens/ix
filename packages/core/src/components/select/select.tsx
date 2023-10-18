@@ -518,7 +518,7 @@ export class Select {
                   value={this.inputValue}
                   ref={(ref) => (this.inputRef = ref)}
                   onBlur={(e) => this.onInputBlur(e)}
-                  onFocus={() => this.dropdownAnchor  .click()}
+                  onFocus={() => this.dropdownAnchor.click()}
                   onInput={() => this.filterItemsWithTypeahead()}
                 />
                 {this.allowClear &&
