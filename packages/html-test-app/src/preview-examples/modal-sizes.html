@@ -8,6 +8,18 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Modal sizes</title>
+    <style>
+      .modal-sizes-example {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-sizes-example > * {
+        width: auto;
+        margin: 0.25rem;
+      }
+    </style>
     <link rel="stylesheet" href="./example.css" />
   </head>
   <body class="theme-brand-dark">
@@ -18,7 +30,7 @@ SPDX-License-Identifier: MIT
       <ix-button data-modal-size="600">Show modal size 600</ix-button>
       <ix-button data-modal-size="720">Show modal size 720</ix-button>
       <ix-button data-modal-size="840">Show modal size 840</ix-button>
-      <ix-button data-modal-size="full-width">Show full-width modal</ix-button>
+      <ix-button data-modal-size="full-width">Show modal size full-width</ix-button>
       <ix-button data-modal-size="full-screen"
         >Show modal size full-screen</ix-button
       >
