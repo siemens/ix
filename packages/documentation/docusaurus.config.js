@@ -34,10 +34,10 @@ try {
 
 const customCss = [
   ...libCss,
-  require.resolve('./src/css/custom.css'),
-  require.resolve('./src/css/search.css'),
-  require.resolve('./src/css/api-table.css'),
-  require.resolve('./src/css/cards.css'),
+  require.resolve('./src/css/custom.scss'),
+  require.resolve('./src/css/search.scss'),
+  require.resolve('./src/css/api-table.scss'),
+  require.resolve('./src/css/cards.scss'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';
