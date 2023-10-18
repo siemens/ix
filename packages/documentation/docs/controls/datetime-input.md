@@ -60,7 +60,7 @@ The `ix-datetime-input` validation can be customized by passing the names of the
 - `toAfterFrom` - The second date of the date range is after the first one.
 - `withinMinMax` - The entered dates are within the given `minDate` and `maxDate`.
 
-If one of the validations that have been set fails, an error message will be displayed below the `ix-date-input`. These can be customized by passing an array of `InputValidator` instead of `string` to the `validators` property:
+If one of the validations that have been set fails, an error message will be displayed below the `ix-datetime-input`. These can be customized by passing an array of `InputValidator` instead of `string` to the `validators` property:
 
 ```tsx
 <ix-date-input
