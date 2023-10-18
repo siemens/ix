@@ -21,7 +21,7 @@ Blinds consist of a header section on the top and a content section below. The h
 
 ## Types
 
-Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is `0.5rem`. Blinds within an accordion can either close and open independently or dependently depending on the design requirements.
+Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is `0.5rem`. Typically, only one blind can be opened within an accordion but users can be allowed to open multiple blinds at a time.
 
 ![Accordion](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A655&mode=design&t=9faEnH99BaAxqCGM-1)
 
