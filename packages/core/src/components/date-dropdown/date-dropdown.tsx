@@ -20,12 +20,12 @@ const CUSTOM_RANGE_LABEL = 'Custom...';
 
 export type DateDropdownOption = {
   label: string;
-  getValue: () => DateRangeOption;
+  getValue: () => any;
 };
 
 export type DateRangeOption = {
-  from: dayjs.Dayjs;
-  to: dayjs.Dayjs;
+  from: dayjs.Dayjs | undefined;
+  to: dayjs.Dayjs | undefined;
 };
 
 export type DateRangeChangeEvent = {
@@ -186,11 +186,11 @@ export class DateDropdown {
     this.currentlySelectedDateRangeName = dateRangeName;
 
     if (dateRangeName !== CUSTOM_RANGE_LABEL) {
-      const associatedDateRangeValue = getDateRange();
+      const { from, to } = getDateRange();
 
       this.associatedDateRangeValue = {
-        from: associatedDateRangeValue.from.format(this.format),
-        to: associatedDateRangeValue.to.format(this.format),
+        from: from ? from.format(this.format) : undefined,
+        to: to ? to.format(this.format) : undefined,
       };
     } else {
       this.hideDatePicker = false;
