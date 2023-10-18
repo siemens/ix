@@ -53,6 +53,9 @@ type DateChangeCallback = (
 ) => void;
 type TimeChangeCallback = (event: IxDatetimePickerCustomEvent<string>) => void;
 
+/**
+ * @since 3.0.0
+ */
 @Component({
   tag: 'ix-datetime-input',
   styleUrl: 'datetime-input.scss',
@@ -94,41 +97,31 @@ export class DatetimeInput {
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() minDate: string;
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
-   *
-   * @since 1.1.0
    */
   @Prop() maxDate: string;
 
   /**
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() dateFormat: string = 'YYYY/MM/DD';
 
   /**
    * Time format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-   *
-   * @since 1.1.0
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
    *
-   * Format is based on `format`
-   *
-   * @since 1.1.0
+   * Format is based on `dateFormat`
    */
   @Prop() fromDate: string | undefined;
 
@@ -136,31 +129,23 @@ export class DatetimeInput {
    * Picker date. If the picker is in range mode this property is the end date.
    * If the picker is not in range mode leave this value `null`
    *
-   * Format is based on `format`
-   *
-   * @since 1.1.0
+   * Format is based on `dateFormat`
    */
   @Prop() toDate: string | undefined;
 
   /**
    * Select time with format string
-   *
-   * @since 1.1.0
    */
   @Prop() fromTime: string;
 
   /**
    * Select time with format string
-   *
-   * @since 1.1.0
    */
   @Prop() toTime: string;
 
   /**
    * Show time reference input
    * Time reference is default aligned with @see {this.timeFormat}
-   *
-   * @since 1.1.0
    */
   @Prop() showTimeReference = undefined;
 
@@ -171,16 +156,12 @@ export class DatetimeInput {
 
   /**
    * Text of date select button
-   *
-   * @since 1.1.0
    */
   @Prop() textSelectDate = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-   *
-   * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
 

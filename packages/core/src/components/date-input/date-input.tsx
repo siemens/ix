@@ -38,6 +38,9 @@ export interface DateInputEvent {
   Event: Event;
 }
 
+/**
+ * @since 3.0.0
+ */
 @Component({
   tag: 'ix-date-input',
   styleUrl: 'date-input.scss',
@@ -58,7 +61,7 @@ export class DateInput {
 
   /**
    * Date format string.
-   * See @link https://day.js.org/docs/en/display/format for all available tokens.
+   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
    */
   @Prop() format: string = 'YYYY/MM/DD';
 
