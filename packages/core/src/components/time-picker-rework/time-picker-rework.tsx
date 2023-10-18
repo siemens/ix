@@ -67,17 +67,17 @@ export class TimePickerRework {
   /**
    * Show hour input
    */
-  @Prop() showHour = false;
+  @Prop() showHour = true;
 
   /**
    * Show minutes input
    */
-  @Prop() showMinutes = false;
+  @Prop() showMinutes = true;
 
   /**
    * Show seconds input
    */
-  @Prop() showSeconds = false;
+  @Prop() showSeconds = true;
 
   /**
    * Select time with format string
@@ -122,7 +122,15 @@ export class TimePickerRework {
 
   constructor() {
     this._time = dayjs(this.time, this.format);
-    this._timeRef = this.format.includes('h')
+
+    if (!this._time.isValid()) {
+      console.error(
+        'Invalid time format. Enter the format does not match the format of the passed time.'
+      );
+      return;
+    }
+
+    this._timeRef = this.format.includes('A')
       ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')
       : undefined;
     this.formatTime();
@@ -199,26 +207,9 @@ export class TimePickerRework {
       },
     ];
 
-    /*
-     *  Check count of hidden elements
-     */
-    const hiddenCount = timepickerInformation.filter(
-      (item) => item.hidden
-    ).length;
-
-    /*
-     * If all hidden, every element getting set to visible,
-     *otherwise hidden element getting removed
-     */
-    if (hiddenCount == timepickerInformation.length) {
-      timepickerInformation.forEach((info) => {
-        info.hidden = false;
-      });
-    } else {
-      timepickerInformation = timepickerInformation.filter(
-        (item) => !item.hidden
-      );
-    }
+    timepickerInformation = timepickerInformation.filter(
+      (item) => !item.hidden
+    );
 
     return (
       <Host>
@@ -251,7 +242,11 @@ export class TimePickerRework {
                     placeholder={descriptor.placeholder}
                     min="0"
                     max={dayjs().endOf('day').get(descriptor.unit)}
-                    value={this._formattedTime[descriptor.unit]}
+                    value={
+                      this._formattedTime
+                        ? this._formattedTime[descriptor.unit]
+                        : null
+                    }
                     onChange={(e) => {
                       let inputElement = e.target as HTMLInputElement;
                       inputElement.value = this.timeUpdate(

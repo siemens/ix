@@ -16,6 +16,8 @@
   @import 'legacy/components/forms';
 
   display: block;
+  position: relative;
+  width: 22rem;
 
   @media (max-width: 576px) {
     .clock {
