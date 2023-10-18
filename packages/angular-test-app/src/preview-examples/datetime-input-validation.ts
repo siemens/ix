@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
     >
       <ix-layout-grid>
         <ix-row>
-          <ix-col size="8">
+          <ix-col size="10">
             <ix-datetime-input></ix-datetime-input>
             <div class="valid-feedback">Looks good!</div>
           </ix-col>

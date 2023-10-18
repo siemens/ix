@@ -36,7 +36,7 @@ export default () => {
         onSubmit={handleSubmit(onSubmit)}>
         <IxLayoutGrid>
           <IxRow>
-            <IxCol size="8">
+            <IxCol size="10">
               <IxDatetimeInput></IxDatetimeInput>
               <div className="valid-feedback">Looks good!</div>
             </IxCol>
