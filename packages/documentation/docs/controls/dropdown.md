@@ -25,6 +25,8 @@ import SourceAngularDropdownSubmenu from './../auto-generated/previews/angular/d
 
 import SourceVueDropdown from './../auto-generated/previews/vue/dropdown.md'
 import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-icon.md'
+import SourceVueDropdownQuickActions from './../auto-generated/previews/vue/dropdown-quick-actions.md'
+import SourceVueDropdownSubmenu from './../auto-generated/previews/vue/dropdown-submenu.md'
 
 # Dropdown
 
@@ -62,7 +64,8 @@ frameworks={{
     "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsHtml,
     "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsTs
   },
-  javascript: SourceDropdownQuickActions
+  javascript: SourceDropdownQuickActions,
+  vue: SourceVueDropdownQuickActions
 }}></Playground>
 
 ### Dropdown with submenu
@@ -72,7 +75,8 @@ name="dropdown-submenu" height="22rem"
 frameworks={{
   react: SourceReactDropdownSubmenu,
   angular: SourceAngularDropdownSubmenu,
-  javascript: SourceDropdownSubmenu
+  javascript: SourceDropdownSubmenu,
+  vue: SourceVueDropdownSubmenu
 }}></Playground>
 
 ## Properties (ix-dropdown)
