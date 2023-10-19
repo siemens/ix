@@ -17,7 +17,8 @@ import { GridOptions } from 'ag-grid-community';
       style="height: 12rem; width: 100%"
       class="ag-theme-alpine-dark ag-theme-ix"
       [gridOptions]="gridOptions"
-    ></ag-grid-angular>
+    >
+    </ag-grid-angular>
   `,
 })
 export default class AGGrid {

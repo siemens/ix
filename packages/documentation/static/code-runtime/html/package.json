@@ -9,6 +9,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@siemens/ix-aggrid": "latest"
+  },
   "devDependencies": {
     "vite": "^3.1.0",
     "@siemens/ix": "latest",

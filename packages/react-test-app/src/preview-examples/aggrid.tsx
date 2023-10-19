@@ -8,8 +8,10 @@
  */
 
 import { GridOptions } from 'ag-grid-community';
-
 import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import React from 'react';
 
 const gridOptions = {
@@ -56,11 +58,11 @@ const gridOptions = {
 
 export default () => {
   return (
-    <div
-      style={{ height: '12rem', width: '100%' }}
-      className="ag-theme-alpine-dark ag-theme-ix"
-    >
-      <AgGridReact gridOptions={gridOptions} />
+    <div style={{ height: '12rem', width: '100%' }}>
+      <AgGridReact
+        gridOptions={gridOptions}
+        className="ag-theme-alpine-dark ag-theme-ix"
+      ></AgGridReact>
     </div>
   );
 };

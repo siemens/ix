@@ -21,7 +21,10 @@
     "@siemens/ix-icons": "latest",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.12.0"
+    "zone.js": "~0.12.0",
+    "@siemens/ix-aggrid": "latest",
+    "ag-grid-community": "^28",
+    "ag-grid-angular": "^28"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.0.2",

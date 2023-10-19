@@ -8,6 +8,9 @@
 -->
 
 <script setup lang="ts">
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { GridOptions } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3';
 
@@ -55,10 +58,10 @@ const gridOptions = {
 </script>
 
 <template>
-  <div
+  <AgGridVue
     style="height: 12rem; width: 100%"
-    className="ag-theme-alpine-dark ag-theme-ix"
+    class="ag-theme-alpine-dark ag-theme-ix"
+    :gridOptions="gridOptions"
   >
-    <AgGridVue :gridOptions="gridOptions" />
-  </div>
+  </AgGridVue>
 </template>
