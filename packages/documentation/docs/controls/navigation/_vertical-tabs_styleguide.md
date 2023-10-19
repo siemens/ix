@@ -7,8 +7,6 @@ The Navigation Menu is an essential part of the [Basic Navigation](./basic-navig
 - (3) Navigation section: navigates through the main parts of an application
 - (4) [Bottom section](#bottom-section): hosts infrastructural actions and additional content, that will not navigate away from the selected main part
 
-<br>
-
 ## Avatar button
 
 The Avatar button is optional. It shows information about the logged in user. When collapsed it shows only the avatar. Expanded it shows additional user information. On click it a dropdown menu with user related actions. The available actions are application specific. The logout item is available by default.
@@ -22,8 +20,6 @@ The Avatar button is optional. It shows information about the logged in user. Wh
 | bottom | defines the second line of additional user information, intended to show secondary information like the current role. An overflow will be clipped with ellipsis (...) |
 | initials | Will show the Avatar with initials |
 | image | Will show an image avatar |
-
-<br>
 
 ## Menu Item and Menu Category
 Menu Items represent the main parts of an application. They have an icon for a quick visual identification. When the Navigation Menu is expanded the full name of the item is visible. 
@@ -48,7 +44,7 @@ Menu Categories can host Menu items as a second navigation level. Such second le
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| notifications (number) | Will display a number at the top right corner of the icon (2)|
+| notifications (number) | Will display a number at the top right corner of the icon (2) |
 
 
 
@@ -63,19 +59,19 @@ Items in this section will not navigate away from the current content. They eith
 - (4) About & legal information, opens an overlay intended to display legal information, release notes, license information etc.
 - (5) Only relevant for Map Navigation: collapses/expands side panel
 
-<br>
+<br></br>
 
 ## Options of Navigation Menu
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| enableSettings <br> `default: true` | Shows the settings icon (gear wheel) in the Bottom section, this item opens a settings overlay, the content can be freely defined|
-| enableToggleTheme <br> `default: false` | Shows the theme toggle icon, offers an easy and direct way to toggle between light and dark mode. Should not be used when dedicated theme settings are available elsewhere, e.g. in the settings overlay
-| enableMapExpand <br> `default: false`| Only relevant for the [Map Navigation](./map-navigation.md), will show an icon that expands/collapses the side panel of the Map Navigation
+| enableSettings  `default: true` | Shows the settings icon (gear wheel) in the Bottom section, this item opens a settings overlay, the content can be freely defined |
+| enableToggleTheme  `default: false` | Shows the theme toggle icon, offers an easy and direct way to toggle between light and dark mode. Should not be used when dedicated theme settings are available elsewhere, e.g. in the settings overlay |
+| enableMapExpand  `default: false`| Only relevant for the [Map Navigation](./map-navigation.md), will show an icon that expands/collapses the side panel of the Map Navigation |
 
 There are other options available but without relevance for the UX guidelines. For more information see the Code tab.  
 
-<br>
+<br></br>
 
 ## Behavior
 
@@ -85,7 +81,7 @@ There are other options available but without relevance for the UX guidelines. F
 - The widths of the collapse and expand state are fixed and cannot be configured
 - The Menu Items can overflow, recognizable by the shadow at the bottom and/or top 
 
-<br>
+<br></br>
 
 ## Dos and Don‘ts
 - Do not place non-navigational item in the navigation section. The navigation section is for navigational items only.

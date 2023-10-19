@@ -14,8 +14,8 @@ The popover news component is intended to present news information like release 
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | label | Defines the header text of the popover news (1)|
 | i18nShowMore | Only available in code, changes the text of the "Show more" button (4) |
-| offsetBottom | Only available in code, adjusts the position of the popover, the spike (5) should point to the info icon
-| show | Only available in code, triggers the popover to appear
+| offsetBottom | Only available in code, adjusts the position of the popover, the spike (5) should point to the info icon |
+| show | Only available in code, triggers the popover to appear |
 
 ## Behavior
 Unlike a modal, the popover news will not prevent the user from navigating and interacting with the content. It only overlays the content partially.  

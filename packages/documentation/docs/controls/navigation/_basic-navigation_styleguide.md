@@ -24,9 +24,9 @@ The Basic Navigation now adapts to breakpoints. More information see [Behavior](
 ## Options
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| breakpoints | Defines which breakpoints the Basic Navigation will adapt to: lg (large), md (medium), sm (small)|
-| hideHeader | If true, the header component will be hidden.
-| forceBreakpoint | This option is intended to force the application to use only one of the available breakpoints.
+| breakpoints | Defines which breakpoints the Basic Navigation will adapt to: lg (large), md (medium), sm (small) |
+| hideHeader | If true, the header component will be hidden. |
+| forceBreakpoint | This option is intended to force the application to use only one of the available breakpoints. |
 
 ## Behavior
 The Basic Navigation adapts by default automatically to the three breakpoints. Depending on the breakpoint, the behavior of the Navigation Menu is different.

@@ -18,8 +18,7 @@ The Map Navigation consists of the following parts:
 ### App Header
 
 The App Header (1) hosts the brand logo and the application name. As the space for the application name is limited, the application name should be short and not extended by any other information. The App Header is placed inside the context panel. Therefore, it will appear and disappear with the context panel.
-
-<br>
+<br></br>
 
 ## Behavior
 
