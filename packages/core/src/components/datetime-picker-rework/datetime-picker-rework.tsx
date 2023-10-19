@@ -213,7 +213,7 @@ export class DatetimePickerRework {
                 ref={(ref) => (this.timePickerElement = ref)}
                 corners="right"
                 standaloneAppearance={false}
-                showHour={this.showHour}
+                showHours={this.showHour}
                 showMinutes={this.showMinutes}
                 showSeconds={this.showSeconds}
                 onTimeChange={(event) => this.onTimeChange(event)}

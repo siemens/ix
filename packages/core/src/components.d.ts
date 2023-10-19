@@ -1987,7 +1987,7 @@ export namespace Components {
         /**
           * Show hour input
          */
-        "showHour": boolean;
+        "showHours": boolean;
         /**
           * Show minutes input
          */
@@ -5440,7 +5440,7 @@ declare namespace LocalJSX {
         /**
           * Show hour input
          */
-        "showHour"?: boolean;
+        "showHours"?: boolean;
         /**
           * Show minutes input
          */

@@ -67,7 +67,7 @@ export class TimePickerRework {
   /**
    * Show hour input
    */
-  @Prop() showHour = true;
+  @Prop() showHours = true;
 
   /**
    * Show minutes input
@@ -193,7 +193,7 @@ export class TimePickerRework {
       {
         unit: 'hours',
         placeholder: 'HH',
-        hidden: !this.showHour,
+        hidden: !this.showHours,
       },
       {
         unit: 'minutes',
