@@ -10,12 +10,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgxEchartsModule } from 'ngx-echarts';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
@@ -133,6 +131,8 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({
@@ -263,6 +263,9 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     IxModule.forRoot(),
     AgGridModule,
     FormsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

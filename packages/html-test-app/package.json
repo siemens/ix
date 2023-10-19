@@ -13,11 +13,13 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@siemens/ix": "latest",
+    "@siemens/ix-icons": "latest",
+    "@siemens/ix-aggrid": "latest",
+    "@siemens/ix-echarts": "latest"
+  },
   "devDependencies": {
-    "vite": "^3.1.0",
-    "@siemens/ix": "~2.0.3",
-    "@siemens/ix-aggrid": "~2.0.3",
-    "@siemens/ix-echarts": "~2.0.3",
-    "@siemens/ix-icons": "^2.0.0"
+    "vite": "^3.1.0"
   }
 }

@@ -10,11 +10,12 @@
     "dist"
   ],
   "dependencies": {
-    "@siemens/ix-aggrid": "latest"
+    "@siemens/ix": "latest",
+    "@siemens/ix-icons": "latest",
+    "@siemens/ix-aggrid": "latest",
+    "@siemens/ix-echarts": "latest"
   },
   "devDependencies": {
-    "vite": "^3.1.0",
-    "@siemens/ix": "latest",
-    "@siemens/ix-icons": "latest"
+    "vite": "^3.1.0"
   }
 }
