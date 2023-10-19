@@ -80,6 +80,7 @@ export class DateInput {
    * Format has to match the `format` property.
    */
   @Prop() from: string | undefined;
+
   @Watch('from')
   watchFromPropHandler(newValue: string) {
     this._from = newValue;
@@ -90,6 +91,7 @@ export class DateInput {
    * Format has to match the `format` property.
    */
   @Prop() to: string | undefined;
+
   @Watch('to')
   watchToPropHandler(newValue: string) {
     this._to = newValue;

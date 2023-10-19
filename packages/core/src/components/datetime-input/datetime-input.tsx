@@ -18,6 +18,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { IxDatetimePickerCustomEvent } from 'src/components';
 import {
@@ -125,6 +126,11 @@ export class DatetimeInput {
    */
   @Prop() fromDate: string | undefined;
 
+  @Watch('fromDate')
+  watchFromDatePropHandler(newValue: string) {
+    this._fromDate = newValue;
+  }
+
   /**
    * Picker date. If the picker is in range mode this property is the end date.
    * If the picker is not in range mode leave this value `null`
@@ -133,15 +139,30 @@ export class DatetimeInput {
    */
   @Prop() toDate: string | undefined;
 
+  @Watch('toDate')
+  watchToDatePropHandler(newValue: string) {
+    this._toDate = newValue;
+  }
+
   /**
    * Select time with format string
    */
   @Prop() fromTime: string;
 
+  @Watch('fromTime')
+  watchFromTimePropHandler(newValue: string) {
+    this._fromTime = newValue;
+  }
+
   /**
    * Select time with format string
    */
   @Prop() toTime: string;
+
+  @Watch('toTime')
+  watchToTimePropHandler(newValue: string) {
+    this._toTime = newValue;
+  }
 
   /**
    * Show time reference input
