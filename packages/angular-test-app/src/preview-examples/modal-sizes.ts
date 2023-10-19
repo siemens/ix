@@ -39,6 +39,7 @@ export default class ModalSizes {
       content: this.customModalRef,
       data: size,
       size: size,
+      disableClose: true
     });
   }
 }

@@ -47,6 +47,7 @@ export default class Modal {
     const instance = await this.modalService.open({
       content: this.customModalRef,
       data: 'Some data',
+      disableClose: true
     });
 
     instance.onClose.on((a) => {
