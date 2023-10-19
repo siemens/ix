@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# Themes
+# IX imrovment
 
 Siemens Industrial Experience supports theming for all of its components.
 
