@@ -20,6 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
+import { OnListener } from '../utils/listener';
 
 @Component({
   tag: 'ix-select',
@@ -310,9 +311,7 @@ export class Select {
     }
   }
 
-  @Listen('keydown', {
-    target: 'window',
-  })
+  @OnListener<Select>('keydown', (self) => self.dropdownShow)
   async onKeyDown(event: KeyboardEvent) {
     if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
       this.onArrowNavigation(event, event.code);
