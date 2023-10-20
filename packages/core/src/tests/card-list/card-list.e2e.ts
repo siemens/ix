@@ -14,13 +14,17 @@ regressionTest.describe('card-list: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
     await page.goto('card-list/basic');
     await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('layout scrolling', async ({ page }) => {
     await page.goto('card-list/layout-scroll');
     await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('layout scrolling end', async ({ page }) => {
@@ -28,6 +32,8 @@ regressionTest.describe('card-list: basic', () => {
 
     await page.locator('#end').scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 });

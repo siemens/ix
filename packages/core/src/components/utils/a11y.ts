@@ -18,8 +18,8 @@ export const a11yHostAttributes = (
       const value = hostElement.getAttribute(attr);
       if (value !== null && !ignoreAttributes.includes(attr)) {
         attributeObject[attr] = hostElement.getAttribute(attr);
+        hostElement.removeAttribute(attr);
       }
-      hostElement.removeAttribute(attr);
     }
   });
 

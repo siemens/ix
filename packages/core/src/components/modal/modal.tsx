@@ -21,7 +21,7 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
-export type IxModalDynamicSize = 'full-width';
+export type IxModalDynamicSize = 'full-width' | 'full-screen';
 export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;
 
 @Component({
@@ -93,7 +93,7 @@ export class Modal {
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
-    let transformY = this.centered ? '-50' : 40;
+    let transformY = this.centered ? '-50%' : 40;
 
     anime({
       targets: this.dialog,
@@ -108,7 +108,7 @@ export class Modal {
   private slideOutModal(completeCallback: Function) {
     const duration = this.animation ? Animation.mediumTime : 0;
 
-    let transformY = this.centered ? '-50' : 40;
+    let transformY = this.centered ? '-50%' : 40;
 
     anime({
       targets: this.dialog,
@@ -142,7 +142,7 @@ export class Modal {
    */
   @Method()
   async showModal() {
-    this.dialog?.showModal();
+    setTimeout(() => this.dialog.showModal());
   }
 
   /**
@@ -217,7 +217,10 @@ export class Modal {
             aria-modal={a11yBoolean(true)}
             aria-describedby={this.ariaAttributes['aria-describedby']}
             aria-labelledby={this.ariaAttributes['aria-labelledby']}
-            class={`modal modal-size-${this.size}`}
+            class={{
+              modal: true,
+              [`modal-size-${this.size}`]: true,
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Escape' && this.keyboard === false) {
                 e.preventDefault();

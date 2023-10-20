@@ -13,7 +13,9 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
     await page.goto('push-card/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 
   regressionTest('should click accordion', async ({ page }) => {
@@ -27,6 +29,8 @@ regressionTest.describe('push-card: basic', () => {
     // Animation time
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
   });
 });

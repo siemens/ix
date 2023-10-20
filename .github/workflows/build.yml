@@ -58,6 +58,7 @@ jobs:
           if-no-files-found: error
           path: |
             packages/core/dist
+            packages/core/components
             packages/core/loader
             packages/core/www
             packages/react/dist

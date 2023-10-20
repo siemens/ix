@@ -105,7 +105,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -135,6 +135,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -1017,7 +1021,7 @@
       "props": [
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -1047,6 +1051,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -6562,8 +6570,14 @@
           "attr": "max-visible-menu-items",
           "reflectToAttr": false,
           "docs": "Maximum number of menu items to show in case enough vertical space is available.\nExtra menu items will be collapsed to 'show more' menu item.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Has no effect on component. Will get removed with next major release (v3)"
+            }
+          ],
           "default": "9",
+          "deprecation": "- Has no effect on component. Will get removed with next major release (v3)",
           "values": [
             {
               "type": "number"
@@ -7843,7 +7857,7 @@
         },
         {
           "name": "size",
-          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-screen\" | \"full-width\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -7874,6 +7888,10 @@
             },
             {
               "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-screen",
               "type": "string"
             },
             {
@@ -8603,7 +8621,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -8633,6 +8651,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {

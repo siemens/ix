@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import styles from './Icons.module.css';
 
-export default function Icons() {
+const Icons: React.FC = () => {
   const refs = useRef<{ [k: string]: any }>({});
 
   const [searchIcon, setSearchIcon] = useState<string>();
@@ -24,7 +24,6 @@ export default function Icons() {
         <span className={clsx(styles.Search__Label)}>Search: </span>
         <input
           placeholder="Search Icon"
-          className="form-control"
           onInput={(e) =>
             setSearchIcon(
               (e.target as HTMLInputElement).value.toLocaleLowerCase()
@@ -48,7 +47,7 @@ export default function Icons() {
                 ref={(r) => {
                   refs.current[icon] = r;
                 }}
-                className={clsx('form-control', styles.Hide__Input)}
+                className={clsx(styles.Hide__Input)}
                 type="text"
                 readOnly
                 value={icon}
@@ -59,4 +58,6 @@ export default function Icons() {
       </div>
     </>
   );
-}
+};
+
+export default Icons;

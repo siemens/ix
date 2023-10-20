@@ -182,6 +182,30 @@ test('should close about by item click', async ({ mount, page }) => {
   await expect(settings).not.toBeVisible();
 });
 
+test('should close menu by bottom icon click', async ({ mount, page }) => {
+  await mount(`
+    <ix-menu>
+      <ix-menu-item>Random</ix-menu-item>
+      <ix-menu-item slot="bottom">BottomMenuItem</ix-menu-item>
+      <ix-menu-about>
+      </ix-menu-about>
+      <ix-menu-settings>
+      </ix-menu-settings>
+    </ix-menu>
+  `);
+
+  const element = page.locator('ix-menu');
+  await element.getByRole('button', { name: 'Expand sidebar' }).click();
+  const innerMenu = element.locator('.menu');
+  await expect(innerMenu).toHaveClass(/expanded/);
+
+  const bottomMenu = element.locator('ix-menu-item[slot="bottom"]');
+  await bottomMenu.click();
+
+  await expect(innerMenu).not.toHaveClass(/expanded/);
+  await expect(element).toBeVisible();
+});
+
 async function clickAboutButton(element: Locator, page: Page) {
   const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
