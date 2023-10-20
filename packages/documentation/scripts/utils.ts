@@ -1,10 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
  */
 export function escapeMarkdown(markdown: string) {
   let replacedMarkdown = markdown;
@@ -29,12 +24,4 @@ export function escapeMarkdown(markdown: string) {
   });
 
   return replacedMarkdown;
-}
-
-export function formatMultiline(str) {
-  return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
-}
-
-export function removeNewLines(str) {
-  return str.replace(/\n/g, str);
 }
