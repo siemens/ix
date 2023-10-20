@@ -25,28 +25,31 @@
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.15s ease-in-out;
+}
 
-  @media (max-width: 684px) {
+@media (max-width: 684px) {
+  .Card {
     width: 100%;
     margin-right: 0;
   }
-
-  @media (min-width: 664px) and (max-width: 684px) {
-    max-width: 640px;
-  }
-
-  @media (min-width: 997px) and (max-width: 1087px) {
-    width: 100%;
-  }
-
-  &:hover {
-    transform: scale(1.07);
-    text-decoration: none !important;
-  }
-
 }
 
+@media (min-width: 664px) and (max-width: 684px) {
+  .Card {
+    max-width: 640px;
+  }
+}
 
+@media (min-width: 997px) and (max-width: 1087px) {
+  .Card {
+    width: 100%;
+  }
+}
+
+.Card:hover {
+  transform: scale(1.07);
+  text-decoration: none !important;
+}
 
 .Card.Auto__Width {
   width: auto;
@@ -62,11 +65,12 @@
   background-color: var(--theme-color-2);
   margin: 0 0 1.25rem 0;
   cursor: pointer;
+}
 
-  @media (min-width: 994px)  {
+@media (min-width: 994px) {
+  .Card_big {
     margin-right: 1.25rem;
   }
-
 }
 
 .Card.With__Icon {
