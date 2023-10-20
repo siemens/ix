@@ -56,7 +56,6 @@ export function Card(
       )}
       style={props.style}
     >
-
       <div
         className={clsx(styles.Label, 'text-h2', {
           [styles.Full__Height]: !props.icon,
@@ -73,7 +72,6 @@ export function Card(
           </div>
         </>
       ) : null}
-
     </Link>
   );
 }
