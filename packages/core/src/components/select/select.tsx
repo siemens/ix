@@ -267,6 +267,7 @@ export class Select {
 
   componentDidLoad() {
     this.inputRef.addEventListener('input', () => {
+      this.dropdownShow = true;
       this.inputChange.emit(this.inputRef.value);
     });
   }
