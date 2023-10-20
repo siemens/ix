@@ -14,12 +14,12 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { OnListener } from '../utils/listener';
 
 export type SliderMarker = Array<number>;
 
@@ -44,7 +44,7 @@ function between(min: number, value: number, max: number) {
   styleUrl: 'slider.scss',
   shadow: true,
 })
-export class IxSlider {
+export class Slider {
   @Element() hostElement!: HTMLIxSliderElement;
 
   /**
@@ -177,9 +177,7 @@ export class IxSlider {
   // Listen globally on window because sometimes the event listener
   // of the DOM element input itself is not called if the release
   // click is not inside the element anymore
-  @Listen('pointerup', {
-    target: 'window',
-  })
+  @OnListener<Slider>('pointerUp', (self) => self.showTooltip)
   onPointerUp() {
     this.showTooltip = false;
   }
