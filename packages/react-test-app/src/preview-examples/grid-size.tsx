@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxCol, IxLayoutGrid, IxRow } from '@siemens/ix-react';
+import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-react';
 import React from 'react';
 // Example styling for documentation
-import './grid.css';
+import './styles/grid.css';
 
 export default () => {
   return (
@@ -18,12 +18,24 @@ export default () => {
       <h4>Column 6 takes up more space to a max of 12 columns total</h4>
       <IxLayoutGrid className={'ExampleGrid'}>
         <IxRow>
-          <IxCol>1</IxCol>
-          <IxCol>2</IxCol>
-          <IxCol>3</IxCol>
-          <IxCol>4</IxCol>
-          <IxCol>5</IxCol>
-          <IxCol size="6">6</IxCol>
+          <IxCol>
+            <IxTypography format="display">1</IxTypography>
+          </IxCol>
+          <IxCol>
+            <IxTypography format="display">2</IxTypography>
+          </IxCol>
+          <IxCol>
+            <IxTypography format="display">3</IxTypography>
+          </IxCol>
+          <IxCol>
+            <IxTypography format="display">4</IxTypography>
+          </IxCol>
+          <IxCol>
+            <IxTypography format="display">5</IxTypography>
+          </IxCol>
+          <IxCol size="6">
+            <IxTypography format="display">6</IxTypography>
+          </IxCol>
         </IxRow>
       </IxLayoutGrid>
 
@@ -31,16 +43,16 @@ export default () => {
       <IxLayoutGrid className={'ExampleGrid'}>
         <IxRow>
           <IxCol size="12" size-md="3">
-            1
+            <IxTypography format="display">1</IxTypography>
           </IxCol>
           <IxCol size="12" size-md="3">
-            2
+            <IxTypography format="display">2</IxTypography>
           </IxCol>
           <IxCol size="12" size-md="3">
-            3
+            <IxTypography format="display">3</IxTypography>
           </IxCol>
           <IxCol size="12" size-md="3">
-            4
+            <IxTypography format="display">4</IxTypography>
           </IxCol>
         </IxRow>
       </IxLayoutGrid>

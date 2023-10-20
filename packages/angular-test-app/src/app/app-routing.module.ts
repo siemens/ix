@@ -76,6 +76,7 @@ import MenuCategory from 'src/preview-examples/menu-category';
 import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Modal from 'src/preview-examples/modal-by-template';
+import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PopoverNews from 'src/preview-examples/popover-news';
@@ -375,6 +376,7 @@ const routes: Routes = [
       { path: 'grid', component: Grid },
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },
+      { path: 'modal-sizes', component: ModalSizes },
     ],
   },
 ];

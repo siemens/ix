@@ -20,6 +20,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
+import { OnListener } from '../utils/listener';
 
 @Component({
   tag: 'ix-select',
@@ -310,16 +311,14 @@ export class Select {
     }
   }
 
-  @Listen('keydown', {
-    target: 'window',
-  })
+  @OnListener<Select>('keydown', (self) => self.dropdownShow)
   async onKeyDown(event: KeyboardEvent) {
-    if (!this.dropdownShow) {
-      return;
+    if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
+      this.onArrowNavigation(event, event.code);
     }
 
-    if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
-      this.onArrowNavigation(event);
+    if (!this.dropdownShow) {
+      return;
     }
 
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
@@ -349,32 +348,47 @@ export class Select {
     }
   }
 
-  private onArrowNavigation(event: KeyboardEvent) {
-    event.stopPropagation();
+  private onArrowNavigation(
+    event: KeyboardEvent,
+    key: 'ArrowDown' | 'ArrowUp'
+  ) {
     event.preventDefault();
+    event.stopPropagation();
 
-    const focusItem = this.items.find(
-      (item) => document.activeElement === item.querySelector('button')
-    );
-    this.navigationItem = focusItem;
+    this.dropdownShow = true;
 
-    const selectItems = this.items.filter(
-      (i) => !i.classList.contains('d-none')
-    );
-
-    const index = selectItems.indexOf(this.navigationItem);
-
-    if (event.code === 'ArrowDown' && index < selectItems.length - 1) {
-      this.navigationItem = selectItems[index + 1];
-    } else if (event.code === 'ArrowUp' && index > 0) {
-      this.navigationItem = selectItems[index - 1];
+    const items = this.items.filter((i) => !i.classList.contains('d-none'));
+    if (this.navigationItem === undefined) {
+      this.applyFocusTo(items[0]);
+      return;
     }
 
-    this.setHoverEffectForNavigatedSelectItem();
+    let indexOfNavigationItem = items.findIndex(
+      (item) => item === this.navigationItem
+    );
+
+    if (key === 'ArrowDown') {
+      indexOfNavigationItem++;
+    } else {
+      indexOfNavigationItem--;
+    }
+
+    const newFocusItem = items[indexOfNavigationItem];
+    this.applyFocusTo(newFocusItem);
   }
 
-  private setHoverEffectForNavigatedSelectItem() {
-    this.navigationItem?.querySelector('button').focus();
+  private applyFocusTo(element: HTMLIxSelectItemElement) {
+    if (!element) {
+      return;
+    }
+    this.navigationItem = element;
+
+    setTimeout(() => {
+      element.shadowRoot
+        .querySelector('ix-dropdown-item')
+        .shadowRoot.querySelector('button')
+        .focus();
+    });
   }
 
   private filterItemsWithTypeahead() {

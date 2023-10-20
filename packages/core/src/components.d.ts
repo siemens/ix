@@ -1236,13 +1236,13 @@ export namespace Components {
          */
         "columns": number;
         /**
+          * Grid gap
+         */
+        "gap": '8' | '12' | '16' | '24';
+        /**
           * The grid will not have any horizontal padding
          */
-        "noPadding": boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap": boolean;
+        "noMargin": boolean;
     }
     /**
      * @since 2.0.0
@@ -1342,6 +1342,7 @@ export namespace Components {
         "i18nToggleTheme": string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
+          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
          */
         "maxVisibleMenuItems": number;
         /**
@@ -4613,13 +4614,13 @@ declare namespace LocalJSX {
          */
         "columns"?: number;
         /**
+          * Grid gap
+         */
+        "gap"?: '8' | '12' | '16' | '24';
+        /**
           * The grid will not have any horizontal padding
          */
-        "noPadding"?: boolean;
-        /**
-          * Remove the gap between rows
-         */
-        "noRowGap"?: boolean;
+        "noMargin"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -4711,6 +4712,7 @@ declare namespace LocalJSX {
         "i18nToggleTheme"?: string;
         /**
           * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
+          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
          */
         "maxVisibleMenuItems"?: number;
         /**

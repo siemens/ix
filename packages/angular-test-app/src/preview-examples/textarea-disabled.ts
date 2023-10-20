@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <textarea class="form-control" placeholder="Enter text here" disabled>
+    <textarea placeholder="Enter text here" disabled>
   Some example text
 </textarea>
   `,

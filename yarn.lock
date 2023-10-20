@@ -3401,8 +3401,15 @@
 
 "@siemens/ix-icons@2.0.0-beta.0":
   version "2.0.0-beta.0"
-  resolved "https://registry.npmjs.org/@siemens/ix-icons/-/ix-icons-2.0.0-beta.0.tgz#8419dc7891d758a88365120d4d34e9d5755dec17"
+  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.0-beta.0.tgz#8419dc7891d758a88365120d4d34e9d5755dec17"
   integrity sha512-TCtmYU7tVDEPQ1uuoxzcPL/xIIeyMmkZF+xtcaNucLVXC+Gc13iNMVxKiYpOCJ8t+azh7Bo/TCqwdvZfmjMqVA==
+  dependencies:
+    "@stencil/core" "3.2.1"
+
+"@siemens/ix-icons@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.0.tgz#a8060c4679dd652f528284eddfa55a43630a0ca0"
+  integrity sha512-BQMy6Q2OnTGkG0xTc/cnmUGLLc8TSv7rOXq6gkXKpPYp7JEsxrwrJTDxWeSNDo+Sgu0GjNCsQjaGuqkBzgdxVw==
   dependencies:
     "@stencil/core" "3.2.1"
 

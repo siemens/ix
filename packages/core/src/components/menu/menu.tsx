@@ -76,6 +76,8 @@ export class Menu {
   /**
    * Maximum number of menu items to show in case enough vertical space is available.
    * Extra menu items will be collapsed to 'show more' menu item.
+   *
+   * @deprecated - Has no effect on component. Will get removed with next major release (v3)
    */
   @Prop() maxVisibleMenuItems = 9;
 
@@ -656,7 +658,10 @@ export class Menu {
               {this.i18nSettings}
             </ix-menu-item>
           ) : null}
-          <slot name="bottom"></slot>
+          <div onClick={(e) => this.onMenuItemsClick(e)}>
+            <slot name="bottom"></slot>
+          </div>
+
           <div id="popover-area"></div>
           {this.about ? (
             <ix-menu-item

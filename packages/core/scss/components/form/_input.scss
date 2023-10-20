@@ -59,6 +59,13 @@
         solid
         var(--theme-input--border-color-bottom--readonly);
     }
+
+    &.read-only,
+    &:read-only {
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
 
   &:disabled {
@@ -70,6 +77,10 @@
     border-bottom: var(--theme-input--border-thickness, 1px) solid
       var(--theme-input--border-color-bottom--disabled);
   }
+
+  &:disabled::placeholder {
+    color: transparent;
+  }
 }
 
 @mixin element-textarea {
@@ -80,6 +91,11 @@
 @mixin form {
   label {
     color: var(--theme-color-soft-text);
+    padding: 2px 0px;
+  }
+
+  label.label-alignment-left {
+    padding: 6px 0px;
   }
 
   input {
@@ -138,14 +154,14 @@
 
     :invalid,
     .is-invalid {
-      ~ .invalid-feedback {
+      & ~ .invalid-feedback {
         display: block;
       }
     }
 
     :valid,
     .is-valid {
-      ~ .valid-feedback {
+      & ~ .valid-feedback {
         display: block;
       }
     }

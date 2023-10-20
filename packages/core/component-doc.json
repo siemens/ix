@@ -105,7 +105,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -135,6 +135,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -1021,7 +1025,7 @@
       "props": [
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -1051,6 +1055,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -4439,20 +4447,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        },
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/dropdown-button",
@@ -6864,29 +6859,42 @@
           "required": false
         },
         {
-          "name": "noPadding",
-          "type": "boolean",
+          "name": "gap",
+          "type": "\"12\" | \"16\" | \"24\" | \"8\"",
           "mutable": false,
-          "attr": "no-padding",
+          "attr": "gap",
           "reflectToAttr": false,
-          "docs": "The grid will not have any horizontal padding",
+          "docs": "Grid gap",
           "docsTags": [],
-          "default": "false",
+          "default": "'24'",
           "values": [
             {
-              "type": "boolean"
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "value": "16",
+              "type": "string"
+            },
+            {
+              "value": "24",
+              "type": "string"
+            },
+            {
+              "value": "8",
+              "type": "string"
             }
           ],
           "optional": false,
           "required": false
         },
         {
-          "name": "noRowGap",
+          "name": "noMargin",
           "type": "boolean",
           "mutable": false,
-          "attr": "no-row-gap",
+          "attr": "no-margin",
           "reflectToAttr": false,
-          "docs": "Remove the gap between rows",
+          "docs": "The grid will not have any horizontal padding",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -7520,8 +7528,14 @@
           "attr": "max-visible-menu-items",
           "reflectToAttr": false,
           "docs": "Maximum number of menu items to show in case enough vertical space is available.\nExtra menu items will be collapsed to 'show more' menu item.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Has no effect on component. Will get removed with next major release (v3)"
+            }
+          ],
           "default": "9",
+          "deprecation": "- Has no effect on component. Will get removed with next major release (v3)",
           "values": [
             {
               "type": "number"
@@ -8801,7 +8815,7 @@
         },
         {
           "name": "size",
-          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-width\"",
+          "type": "\"360\" | \"480\" | \"600\" | \"720\" | \"840\" | \"full-screen\" | \"full-width\"",
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
@@ -8832,6 +8846,10 @@
             },
             {
               "value": "840",
+              "type": "string"
+            },
+            {
+              "value": "full-screen",
               "type": "string"
             },
             {
@@ -9561,7 +9579,7 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
@@ -9591,6 +9609,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "primary",
               "type": "string"
             },
             {
@@ -9997,12 +10019,6 @@
           "event": "ix-select-item:labelChange",
           "capture": false,
           "passive": false
-        },
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
         }
       ]
     },
@@ -10326,14 +10342,7 @@
         }
       ],
       "parts": [],
-      "listeners": [
-        {
-          "event": "pointerup",
-          "target": "window",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/spinner",

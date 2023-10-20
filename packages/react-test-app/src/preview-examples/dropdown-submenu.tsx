@@ -7,12 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  IxButton,
-  IxDropdown,
-  IxDropdownItem,
-  IxIcon,
-} from '@siemens/ix-react';
+import { IxButton, IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
@@ -20,9 +15,7 @@ export default () => {
     <>
       <IxButton id="iconTriggerId">Open</IxButton>
       <IxDropdown trigger="iconTriggerId">
-        <IxDropdownItem id="submenuTrigger" label="Submenu">
-          <IxIcon name="chevron-right-small" size="24"></IxIcon>
-        </IxDropdownItem>
+        <IxDropdownItem id="submenuTrigger" label="Submenu"></IxDropdownItem>
         <IxDropdownItem icon="star" label="Item 1"></IxDropdownItem>
         <IxDropdownItem icon="document" label="Item 2"></IxDropdownItem>
         <IxDropdownItem icon="bulb" label="Item 3"></IxDropdownItem>

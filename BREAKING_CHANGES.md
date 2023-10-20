@@ -14,6 +14,9 @@
 
 - show-time-reference
 - individual
+### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated
+
+The assignment of the 'form-control' class for input and textarea elements is no longer required.
 
 ### Deprecated `ix-split-button-item`
 
@@ -41,12 +44,16 @@ Remove deprecated events
 
 - `close`
 
-### Change `itemSelectionChange` event from `ix-select`
+### Change `itemSelectionChange` event from `ix-select` and `selectedIndices` prop from `ix-select`
 
-Change type of CustomEvent to:
+**_Before_**
+```tsx
+<ix-select onItemSelectionChange={...} selectedIndices={...}></ix-select>
+```
 
-```typescript
-@Event() itemSelectionChange: EventEmitter<string[]>
+**_Now_**
+```tsx
+<ix-select onValueChange={...} value={...}></ix-select>
 ```
 
 ### Remove `ix-animated-tab` and `ix-animated-tabs`

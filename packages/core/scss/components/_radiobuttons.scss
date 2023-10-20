@@ -17,9 +17,14 @@
     clip-path: inset(50%);
     height: 1px;
     width: 1px;
+    min-height: 0px;
+    min-width: 0px;
+    max-height: 1px;
+    max-width: 1px;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
+    appearance: none;
   }
 
   [type='radio']:not(:checked) + label,
@@ -110,7 +115,7 @@
       background-color: var(--theme-radiobtn-checked--color);
       border-radius: 100%;
       position: absolute;
-      top: 0.3125rem;
+      top: 0.4125rem;
       left: 0.3125rem;
     }
 
