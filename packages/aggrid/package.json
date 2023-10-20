@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "2.0.1",
+  "version": "2.1.0-beta.0",
   "files": [
     "LICENSE",
     "README.md",
