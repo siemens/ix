@@ -45,5 +45,5 @@ test('should not fire event when disabled', async ({ mount, page }) => {
   const button = page.locator('ix-button');
 
   await expect(button).toHaveClass(/hydrated/);
-  expect(button).toHaveCSS('pointer-events', 'none');
+  await expect(button).toHaveCSS('pointer-events', 'none');
 });
