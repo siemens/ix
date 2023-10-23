@@ -19,6 +19,7 @@ import {
 import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
+import { OnListener } from '../utils/listener';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -85,6 +86,13 @@ export class Modal {
    * Dialog cancel
    */
   @Event() dialogDismiss: EventEmitter;
+
+  @OnListener<Modal>('keydown', (self) => !self.keyboard)
+  onKey(e: KeyboardEvent) {
+    if (e.key === 'Escape' && this.keyboard === false) {
+      e.preventDefault();
+    }
+  }
 
   get dialog() {
     return this.hostElement.shadowRoot.querySelector('dialog');
@@ -220,11 +228,6 @@ export class Modal {
             class={{
               modal: true,
               [`modal-size-${this.size}`]: true,
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape' && this.keyboard === false) {
-                e.preventDefault();
-              }
             }}
             onClick={(event) => this.onModalClick(event)}
             onCancel={(e) => {
