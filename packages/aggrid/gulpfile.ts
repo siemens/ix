@@ -11,6 +11,7 @@ import cssnano from 'cssnano';
 import { dest, series, src } from 'gulp';
 import gulpPostcss from 'gulp-postcss';
 import gulpSass from 'gulp-sass';
+import path from 'path';
 import { rimraf } from 'rimraf';
 import dartSass from 'sass';
 
@@ -22,7 +23,8 @@ const buildStyles = () =>
   src('./scss/ix-aggrid.scss')
     .pipe(
       sass({
-        includePaths: ['node_modules'],
+        // Need to include root node_modules because of yarn hoisting
+        includePaths: ['node_modules', path.join(__dirname, '..', '..', 'node_modules')],
       }),
     )
     .pipe(
