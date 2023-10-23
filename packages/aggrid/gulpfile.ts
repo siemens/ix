@@ -11,8 +11,11 @@ import cssnano from 'cssnano';
 import { dest, series, src } from 'gulp';
 import gulpPostcss from 'gulp-postcss';
 import gulpSass from 'gulp-sass';
+import path from 'path';
 import { rimraf } from 'rimraf';
 import dartSass from 'sass';
+
+const e2eTestFiles = [require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'), require.resolve('@siemens/ix-icons/dist/css/ix-icons.css')];
 
 const sass = gulpSass(dartSass);
 
@@ -22,7 +25,8 @@ const buildStyles = () =>
   src('./scss/ix-aggrid.scss')
     .pipe(
       sass({
-        includePaths: ['node_modules'],
+        // Need to include root node_modules because of yarn hoisting
+        includePaths: ['node_modules', path.join(__dirname, '..', '..', 'node_modules')],
       }),
     )
     .pipe(
@@ -42,5 +46,7 @@ const buildStyles = () =>
     )
     .pipe(dest('./dist/ix-aggrid/'));
 
-const build: any = series(clean, buildStyles);
+const copyTestFiles = () => src(e2eTestFiles).pipe(dest('./www'));
+
+const build: any = series(clean, buildStyles, copyTestFiles);
 export default build;
