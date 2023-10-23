@@ -12,9 +12,9 @@ LICENSE file in the root directory of this source tree.
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css" />
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css" />
 
-    <link rel="stylesheet" href="/www/build/ix-aggrid.css" />
-    <link rel="stylesheet" href="/www/build/ix/dist/siemens-ix/siemens-ix.css" />
-    <link rel="stylesheet" href="/www/build/ix-icons/css/ix-icons.css" />
+    <link rel="stylesheet" href="/dist/ix-aggrid/ix-aggrid.css" />
+    <link rel="stylesheet" href="/node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css" />
+    <link rel="stylesheet" href="/node_modules/@siemens/ix-icons/dist/css/ix-icons.css" />
     <style>
       body {
         min-height: 100vh;
@@ -33,20 +33,25 @@ LICENSE file in the root directory of this source tree.
         const columnDefs = [
           { field: 'make', resizable: true, checkboxSelection: true },
           { field: 'model', resizable: true, sortable: true, filter: true },
-          { field: 'price', resizable: true, editable: true },
+          { field: 'price', resizable: true },
         ];
 
-        const rowData = [
-          { make: 'Toyota', model: 'Celica', price: 35000, checked: false },
-          { make: 'Ford', model: 'Mondeo', price: 32000, checked: true },
-          { make: 'Porsche', model: 'Boxster', price: 72000, checked: false },
-        ];
+        const rowData = (() => {
+          const data = [];
+
+          for (let i = 0; i < 500; i++) {
+            data.push({ make: 'Toyota', model: 'Celica', price: 35000, checked: false });
+          }
+
+          return data;
+        })();
 
         const gridOptions = {
           columnDefs: columnDefs,
           rowData: rowData,
           rowSelection: 'multiple',
           suppressCellFocus: true,
+          pagination: true,
         };
 
         const gridDiv = document.querySelector('div.ag-theme-ix');
