@@ -7,6 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 import { Component, h, Host } from '@stencil/core';
+import dayjs from 'dayjs';
 
 @Component({
   tag: 'my-component',
@@ -14,7 +15,16 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  async componentWillRender() {
+    await import('dayjs/locale/de');
+    dayjs.locale('de');
+  }
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-date-picker-rework></ix-date-picker-rework>
+      </Host>
+    );
   }
 }

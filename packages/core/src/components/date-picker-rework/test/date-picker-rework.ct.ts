@@ -8,6 +8,7 @@
  */
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
+import dayjs from 'dayjs';
 
 const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker-rework';
 const getDateObj = async (page: Page) => {
@@ -20,6 +21,51 @@ test('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker-rework></ix-date-picker-rework>`);
   const datePicker = page.locator(DATE_PICKER_REWORK_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
+});
+
+test('translation', async ({ mount, page }) => {
+  // await page.evaluate(() => {
+  //   return new Promise<void>((resolve) => {
+  //     const script = document.createElement('script');
+  //     script.onload = () => resolve();
+  //     script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js';
+  //     document.head.appendChild(script);
+  //   });
+  // });
+
+  // await page.evaluate(() => {
+  //   return new Promise<void>((resolve) => {
+  //     const script = document.createElement('script');
+  //     script.onload = () => resolve();
+  //     script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/locale/de.js';
+  //     document.head.appendChild(script);
+  //   });
+  // });
+
+  // await page.evaluate(() => {
+  //   return new Promise<void>((resolve) => {
+  //     const script = document.createElement('script');
+  //     script.appendChild(document.createTextNode('dayjs.locale("de");'));
+  //     document.head.appendChild(script);
+  //     resolve();
+  //   });
+  // });
+
+  // const dayjs = (await import('dayjs')).default;
+
+  // const localeData = await import('dayjs/plugin/localeData');
+  // dayjs.extend(localeData.default);
+
+  await import('dayjs/locale/de');
+  dayjs.locale('de');
+  // const test = dayjs.weekdays();
+
+  await mount(
+    `<ix-date-picker-rework from="2023/01/01"></ix-date-picker-rework>`
+  );
+
+  const header = page.getByText('Januar 2023');
+  await expect(header).toHaveClass(/hydrated/);
 });
 
 test.describe('date picker tests single', () => {
