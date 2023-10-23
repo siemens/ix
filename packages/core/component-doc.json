@@ -802,8 +802,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner"
@@ -840,9 +839,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -1881,15 +1877,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-col"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "size",
@@ -2293,11 +2283,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "3.0.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-dropdown",
@@ -2320,9 +2313,6 @@
         ],
         "ix-button": [
           "ix-spinner"
-        ],
-        "my-component": [
-          "ix-date-input"
         ]
       },
       "props": [
@@ -2362,7 +2352,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee @link https://day.js.org/docs/en/display/format for all available tokens.",
+          "docs": "Date format string.\nSee {@link \"https://day.js.org/docs/en/display/format\"} for all available tokens.",
           "docsTags": [],
           "default": "'YYYY/MM/DD'",
           "values": [
@@ -2985,7 +2975,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "3.0.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -3031,12 +3026,7 @@
           "attr": "date-format",
           "reflectToAttr": false,
           "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'YYYY/MM/DD'",
           "values": [
             {
@@ -3052,13 +3042,8 @@
           "mutable": false,
           "attr": "from-date",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `dateFormat`",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3074,12 +3059,7 @@
           "attr": "from-time",
           "reflectToAttr": false,
           "docs": "Select time with format string",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3133,12 +3113,7 @@
           "attr": "max-date",
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3154,12 +3129,7 @@
           "attr": "min-date",
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3243,12 +3213,7 @@
           "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input\nTime reference is default aligned with @see {this.timeFormat}",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "undefined",
           "values": [
             {
@@ -3265,12 +3230,7 @@
           "attr": "text-select-date",
           "reflectToAttr": false,
           "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'Done'",
           "values": [
             {
@@ -3287,12 +3247,7 @@
           "attr": "time-format",
           "reflectToAttr": false,
           "docs": "Time format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'HH:mm:ss'",
           "values": [
             {
@@ -3329,13 +3284,8 @@
           "mutable": false,
           "attr": "to-date",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `dateFormat`",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3351,12 +3301,7 @@
           "attr": "to-time",
           "reflectToAttr": false,
           "docs": "Select time with format string",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            }
-          ],
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -3391,12 +3336,7 @@
           "attr": "week-start-index",
           "reflectToAttr": false,
           "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "0",
           "values": [
             {
@@ -6831,15 +6771,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-layout-grid"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "columns",
@@ -9652,15 +9586,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-row"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
@@ -13189,39 +13117,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-layout-grid",
-        "ix-row",
-        "ix-col",
-        "ix-date-input",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-layout-grid",
-          "ix-row",
-          "ix-col",
-          "ix-date-input",
-          "ix-button"
-        ],
-        "ix-date-input": [
-          "ix-icon-button",
-          "ix-dropdown",
-          "ix-date-picker"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-date-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
