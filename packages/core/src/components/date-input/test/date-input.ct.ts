@@ -27,7 +27,7 @@ test.describe('date input tests single', () => {
   });
 
   test('no initial value', async ({ page }) => {
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: undefined,
       to: undefined,
     });
@@ -36,7 +36,10 @@ test.describe('date input tests single', () => {
   test('entered date is selected', async ({ page }) => {
     const testDate = '2023/02/15';
 
-    await page.getByPlaceholder('YYYY/MM/DD').click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-down-small' })
+      .click();
     await page.getByPlaceholder('YYYY/MM/DD').fill(testDate);
 
     const month = page
@@ -46,32 +49,37 @@ test.describe('date input tests single', () => {
 
     await expect(month).toHaveClass(/hydrated/);
     await expect(day).toHaveClass(/selected/);
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: testDate,
       to: undefined,
     });
   });
 
   test('selected date is entered in input', async ({ page }) => {
+    const testDate = '2023/01/13';
+
     await page.$eval(DATE_INPUT_SELECTOR, (el: HTMLIxDateInputElement) => {
       el.from = '2023/01/01';
     });
 
-    await page.getByPlaceholder('YYYY/MM/DD').click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-down-small' })
+      .click();
     await page.getByText('13', { exact: true }).click();
 
-    expect(await getDateInputObj(page)).toEqual({
-      from: '2023/01/13',
+    expect(await getDateInputObj(page)).toStrictEqual({
+      from: testDate,
       to: undefined,
     });
-    await expect(page.locator('input')).toHaveValue('2023/01/13');
+    await expect(page.getByPlaceholder('YYYY/MM/DD')).toHaveValue(testDate);
   });
 
   test('clear button clears input', async ({ page }) => {
     await page.getByPlaceholder('YYYY/MM/DD').fill('2023/01/01');
     await page.locator('.icon-button').first().click();
 
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: undefined,
       to: undefined,
     });
@@ -89,7 +97,7 @@ test.describe('date input tests range', () => {
   });
 
   test('no initial value', async ({ page }) => {
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: undefined,
       to: undefined,
     });
@@ -99,7 +107,10 @@ test.describe('date input tests range', () => {
     const testDate1 = '2023/02/15';
     const testDate2 = '2023/02/21';
 
-    await page.getByPlaceholder('YYYY/MM/DD').nth(0).click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-down-small' })
+      .click();
     await page.getByPlaceholder('YYYY/MM/DD').nth(0).fill(testDate1);
     await page.getByPlaceholder('YYYY/MM/DD').nth(1).fill(testDate2);
 
@@ -112,28 +123,38 @@ test.describe('date input tests range', () => {
     await expect(month).toHaveClass(/hydrated/);
     await expect(day1).toHaveClass(/selected/);
     await expect(day2).toHaveClass(/selected/);
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: testDate1,
       to: testDate2,
     });
   });
 
   test('selected dates are entered in inputs', async ({ page }) => {
+    const testDate1 = '2023/01/13';
+    const testDate2 = '2023/01/21';
+
     await page.$eval(DATE_INPUT_SELECTOR, (el: HTMLIxDateInputElement) => {
       el.from = '2023/01/01';
       el.to = '2023/01/01';
     });
 
-    await page.locator('svg').filter({ hasText: 'chevron-down-small' }).click();
+    await page
+      .getByRole('button')
+      .filter({ hasText: 'chevron-down-small' })
+      .click();
     await page.getByText('13', { exact: true }).click();
     await page.getByText('21', { exact: true }).click();
 
-    expect(await getDateInputObj(page)).toEqual({
-      from: '2023/01/13',
-      to: '2023/01/21',
+    expect(await getDateInputObj(page)).toStrictEqual({
+      from: testDate1,
+      to: testDate2,
     });
-    await expect(page.locator('input').nth(0)).toHaveValue('2023/01/13');
-    await expect(page.locator('input').nth(1)).toHaveValue('2023/01/21');
+    await expect(page.getByPlaceholder('YYYY/MM/DD').nth(0)).toHaveValue(
+      testDate1
+    );
+    await expect(page.getByPlaceholder('YYYY/MM/DD').nth(1)).toHaveValue(
+      testDate2
+    );
   });
 
   test('clear button clears both inputs', async ({ page }) => {
@@ -141,7 +162,7 @@ test.describe('date input tests range', () => {
     await page.getByPlaceholder('YYYY/MM/DD').nth(1).fill('2023/01/02');
     await page.locator('.icon-button').first().click();
 
-    expect(await getDateInputObj(page)).toEqual({
+    expect(await getDateInputObj(page)).toStrictEqual({
       from: undefined,
       to: undefined,
     });
