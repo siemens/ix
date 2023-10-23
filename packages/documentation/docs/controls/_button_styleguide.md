@@ -1,4 +1,4 @@
-# UX Description
+
 
 Buttons are used to initiate actions, to apply actions to selected objects and to activate/deactivate functions.
 
