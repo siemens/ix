@@ -3399,11 +3399,6 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-aggrid@~2.1.0-beta.0":
-  version "2.1.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-aggrid/-/ix-aggrid-2.1.0-beta.0.tgz#c3a8459ed243c1c3cb3ceebef0dfaa3602532774"
-  integrity sha512-I0W0vEOIoIT9Y2ca8UPPn9nHPk3hlQS1zM536uctuHi6eTWDz3biSn7gXfUVQLuwwtintFvGQmtaSX5gR2riNQ==
-
 "@siemens/ix-icons@2.0.0-beta.0":
   version "2.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.0-beta.0.tgz#8419dc7891d758a88365120d4d34e9d5755dec17"
@@ -3417,18 +3412,6 @@
   integrity sha512-BQMy6Q2OnTGkG0xTc/cnmUGLLc8TSv7rOXq6gkXKpPYp7JEsxrwrJTDxWeSNDo+Sgu0GjNCsQjaGuqkBzgdxVw==
   dependencies:
     "@stencil/core" "3.2.1"
-
-"@siemens/ix@~2.0.1":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix/-/ix-2.0.3.tgz#759a395619beaca81ab27b639524f172cb272080"
-  integrity sha512-lUzJfPfITxzqKQX+aZCkiKxBzdFkkPXcsR1sAl5c7g3dp0seoRZ5N2CbR/LL1g4EHJxDfvm9KfYJvaSICYYfWg==
-  dependencies:
-    "@floating-ui/dom" "^1.5.1"
-    "@stencil/core" "^3.2.1"
-    "@types/luxon" "^3.3.0"
-    animejs "~3.2.1"
-    hyperlist "^1.0.0"
-    luxon "^3.3.0"
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.44"
