@@ -23,11 +23,11 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Method,
   Prop,
   Watch,
 } from '@stencil/core';
+import { OnListener } from '../utils/listener';
 import { AlignedPlacement } from './placement';
 
 /**
@@ -285,9 +285,7 @@ export class Dropdown {
     }
   }
 
-  @Listen('click', {
-    target: 'window',
-  })
+  @OnListener<Dropdown>('click', (self) => self.show)
   clickOutside(event: PointerEvent) {
     const target = event.target as HTMLElement;
 
@@ -327,9 +325,7 @@ export class Dropdown {
     }
   }
 
-  @Listen('keydown', {
-    target: 'window',
-  })
+  @OnListener<Dropdown>('keydown', (self) => self.show)
   keydown(event: KeyboardEvent) {
     if (this.show === true && event.code === 'Escape') {
       this.close();

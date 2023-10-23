@@ -2,7 +2,7 @@
   "name": "@siemens/html-test-app",
   "private": true,
   "license": "MIT",
-  "version": "2.0.3",
+  "version": "2.1.0-beta.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
