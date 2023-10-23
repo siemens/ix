@@ -272,36 +272,6 @@ export class Dropdown {
     }
   }
 
-  // Find the document-fragment or document node which contains the given node
-  private findRootNode(n: Node): Node {
-    if (n.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-      if (n instanceof ShadowRoot) {
-        return n.host;
-      }
-    }
-
-    if (n.nodeType === Node.DOCUMENT_NODE) {
-      return n;
-    }
-
-    return this.findRootNode(n.parentNode);
-  }
-
-  // findEventTarget will find what the event target (with respect to Window)
-  // should be for this element:
-  // - if in a shadow DOM then the shadow host element
-  // - otherwise, the element itself
-  private findShadowNode(n: Node): Node {
-    const rootNode = this.findRootNode(n);
-
-    if (rootNode === document) {
-      // not in shadow dom
-      return n;
-    }
-
-    return rootNode;
-  }
-
   @Watch('trigger')
   changedTrigger(
     newTriggerValue: string | HTMLElement,
