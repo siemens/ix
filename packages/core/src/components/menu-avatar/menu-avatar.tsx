@@ -6,7 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component,Element,Event,EventEmitter,h,Host,Prop,State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
+import { hasSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -64,6 +75,11 @@ export class MenuAvatar {
 
   private avatarElementId = 'ix-menu-avatar-id';
 
+  @Watch('showLogoutButton')
+  tst() {
+    console.log(this.showLogoutButton);
+  }
+
   render() {
     return (
       <Host slot="ix-menu-avatar">
@@ -94,7 +110,7 @@ export class MenuAvatar {
           >
             <slot
               onSlotchange={() => {
-                this.hasContent = this.hostElement.innerHTML !== '';
+                this.hasContent = hasSlottedElements(this.hostElement);
               }}
             ></slot>
             {this.showLogoutButton ? (
