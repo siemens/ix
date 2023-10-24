@@ -310,7 +310,6 @@ export class Select {
     } else {
       this.navigationItem = undefined;
     }
-    this.filterItemsWithTypeahead();
   }
 
   @OnListener<Select>('keydown', (self) => self.dropdownShow)
@@ -514,7 +513,11 @@ export class Select {
                   value={this.inputValue}
                   ref={(ref) => (this.inputRef = ref)}
                   onBlur={(e) => this.onInputBlur(e)}
+                  onFocus={() => {
+                    this.navigationItem = undefined;
+                  }}
                   onInput={() => this.filterItemsWithTypeahead()}
+                  onKeyDown={(e) => this.onKeyDown(e)}
                 />
                 {this.allowClear &&
                 (this.selectedLabels?.length || this.inputFilterText) ? (
