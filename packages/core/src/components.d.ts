@@ -693,6 +693,11 @@ export namespace Components {
          */
         "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
+          * If set to true an open dropdown will close if the trigger element gets clicked again.
+          * @since 2.1.0
+         */
+        "triggerToggles": boolean;
+        /**
           * Update position of dropdown
          */
         "updatePosition": () => Promise<void>;
@@ -701,6 +706,11 @@ export namespace Components {
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -3821,11 +3831,21 @@ declare namespace LocalJSX {
           * Define one or more events to open dropdown
          */
         "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
+        /**
+          * If set to true an open dropdown will close if the trigger element gets clicked again.
+          * @since 2.1.0
+         */
+        "triggerToggles"?: boolean;
     }
     /**
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */

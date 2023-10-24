@@ -313,6 +313,7 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'placement',
   'positioningStrategy',
   'header',
+  'triggerToggles',
   'offset',
   'triggerEvent',
   'overwriteDropdownStyle',
@@ -327,6 +328,7 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'disabled',
   'label',
   'icon',
+  'closeBehavior',
   'placement'
 ]);
 

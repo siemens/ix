@@ -95,6 +95,12 @@ export class Dropdown {
   @Prop() header?: string;
 
   /**
+   * If set to true an open dropdown will close if the trigger element gets clicked again.
+   * @since 2.1.0
+   */
+  @Prop() triggerToggles: boolean;
+
+  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -161,15 +167,24 @@ export class Dropdown {
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        this.triggerElement.addEventListener('click', this.openBind);
+        this.triggerElement.addEventListener(
+          'click',
+          this.triggerToggles ? this.toggleBind : this.openBind
+        );
         break;
 
       case 'hover':
-        this.triggerElement.addEventListener('mouseenter', this.openBind);
+        this.triggerElement.addEventListener(
+          'mouseenter',
+          this.triggerToggles ? this.toggleBind : this.openBind
+        );
         break;
 
       case 'focus':
-        this.triggerElement.addEventListener('focusin', this.openBind);
+        this.triggerElement.addEventListener(
+          'focusin',
+          this.triggerToggles ? this.toggleBind : this.openBind
+        );
         break;
     }
   }
@@ -181,18 +196,25 @@ export class Dropdown {
     switch (triggerEvent) {
       case 'click':
         if (this.closeBehavior === 'outside') {
-          triggerElement.removeEventListener('click', this.openBind);
-        } else {
-          triggerElement.removeEventListener('click', this.toggleBind);
+          triggerElement.removeEventListener(
+            'click',
+            this.triggerToggles ? this.toggleBind : this.openBind
+          );
         }
         break;
 
       case 'hover':
-        triggerElement.removeEventListener('mouseenter', this.openBind);
+        triggerElement.removeEventListener(
+          'mouseenter',
+          this.triggerToggles ? this.toggleBind : this.openBind
+        );
         break;
 
       case 'focus':
-        triggerElement.removeEventListener('focusin', this.openBind);
+        triggerElement.removeEventListener(
+          'focusin',
+          this.triggerToggles ? this.toggleBind : this.openBind
+        );
         break;
     }
   }
