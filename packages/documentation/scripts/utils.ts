@@ -30,11 +30,3 @@ export function escapeMarkdown(markdown: string) {
 
   return replacedMarkdown;
 }
-
-export function formatMultiline(str) {
-  return str.split('\n\n').join('<br /><br />').split('\n').join(' ');
-}
-
-export function removeNewLines(str) {
-  return str.replace(/\n/g, str);
-}
