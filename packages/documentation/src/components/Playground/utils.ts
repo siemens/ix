@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import sdk from '@stackblitz/sdk';
 import { TargetFramework } from './framework-types';
 
@@ -138,21 +139,26 @@ async function openAngularStackBlitz(
     }
   });
   const declare_component_ts = `
-    ${declareComponents
-      .map(
-        (filename, index) =>
-          `import COMPONENT_${index} from './${(filename as String).substring(
-            0,
-            (filename as String).lastIndexOf('.')
-          )}'`
-      )
-      .join(';')}
+/*
+* SPDX-FileCopyrightText: 2023 Siemens AG
+*
+* SPDX-License-Identifier: MIT
+*/
 
-    export const DECLARE = [
-      //@__DELCARE__COMPONENTS
-      ${declareComponents.map((_, index) => `COMPONENT_${index}`)}
-    ];
-  `;
+${declareComponents
+  .map(
+    (filename, index) =>
+      `import COMPONENT_${index} from './${(filename as String).substring(
+        0,
+        (filename as String).lastIndexOf('.')
+      )}'`
+  )
+  .join(';')}
+
+export const DECLARE = [
+  //@__DELCARE__COMPONENTS
+  ${declareComponents.map((_, index) => `COMPONENT_${index}`)}
+];`;
 
   const exampleFiles = {};
   additionalFiles.forEach(({ filename, sourceCode }) => {
