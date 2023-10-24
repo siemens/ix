@@ -6,16 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-} from '@stencil/core';
+import { Component,Element,Event,EventEmitter,h,Host,Prop,State } from '@stencil/core';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -73,10 +64,6 @@ export class MenuAvatar {
 
   private avatarElementId = 'ix-menu-avatar-id';
 
-  componentWillLoad() {
-    this.hasContent = this.hostElement.innerHTML !== '';
-  }
-
   render() {
     return (
       <Host slot="ix-menu-avatar">
@@ -105,7 +92,11 @@ export class MenuAvatar {
               mainAxis: 16,
             }}
           >
-            <slot></slot>
+            <slot
+              onSlotchange={() => {
+                this.hasContent = this.hostElement.innerHTML !== '';
+              }}
+            ></slot>
             {this.showLogoutButton ? (
               <ix-menu-avatar-item
                 label={this.i18nLogout}

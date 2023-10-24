@@ -30,5 +30,16 @@ SPDX-License-Identifier: MIT
 
   <body style="margin: 0px; height: 100vh">
     <my-component />
+    <ix-menu>
+      <ix-menu-avatar image="https://ui-avatars.com/api/?name=John+Doe" show-logout-button="false">
+      </ix-menu-avatar>
+      <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
+      <ix-menu-item tab-icon="globe"> Normal Tab </ix-menu-item>
+      <ix-menu-item tab-icon="star" disabled> Disabled Tab </ix-menu-item>
+      <ix-menu-item tab-icon="star"> With other Icon </ix-menu-item>
+      <ix-menu-item tab-icon="globe" style="display: none">
+        Should not visible
+      </ix-menu-item>
+    </ix-menu>
   </body>
 </html>
