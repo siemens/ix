@@ -12290,26 +12290,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-date-picker-rework"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-date-picker-rework"
-        ],
-        "ix-date-picker-rework": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
