@@ -60,14 +60,21 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [placeholder_logo, index_html, main_js, package_json, vite_config_ts] =
-    await loadSourceCodeFromStatic([
-      `${baseUrl}code-runtime/html/src/components/placeholder-logo.js`,
-      `${baseUrl}code-runtime/html/src/index.html`,
-      `${baseUrl}code-runtime/html/src/main.js`,
-      `${baseUrl}code-runtime/html/package.json`,
-      `${baseUrl}code-runtime/html/vite.config.ts`,
-    ]);
+  const [
+    placeholder_logo,
+    index_html,
+    main_js,
+    package_json,
+    vite_config_ts,
+    license,
+  ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/html/src/components/placeholder-logo.js`,
+    `${baseUrl}code-runtime/html/src/index.html`,
+    `${baseUrl}code-runtime/html/src/main.js`,
+    `${baseUrl}code-runtime/html/package.json`,
+    `${baseUrl}code-runtime/html/vite.config.ts`,
+    `${baseUrl}code-runtime/html/LICENSE.md`,
+  ]);
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
@@ -91,6 +98,7 @@ async function openHtmlStackBlitz(
         'src/main.js': main_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
+        'LICENSE.md': license,
       },
     },
     {
@@ -117,6 +125,7 @@ async function openAngularStackBlitz(
     package_json,
     tsconfig_app_json,
     tsconfig_json,
+    license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/angular/src/app/app.component.css`,
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
@@ -130,6 +139,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/package.json`,
     `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
+    `${baseUrl}code-runtime/angular/LICENSE.md`,
   ]);
 
   const declareComponents = [];
@@ -143,6 +153,9 @@ async function openAngularStackBlitz(
 * SPDX-FileCopyrightText: 2023 Siemens AG
 *
 * SPDX-License-Identifier: MIT
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
 */
 
 ${declareComponents
@@ -184,6 +197,7 @@ export const DECLARE = [
         'package.json': package_json,
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
+        'LICENSE.md': license,
         ...exampleFiles,
       },
     },
@@ -204,6 +218,7 @@ async function openReactStackBlitz(
     index_tsx,
     package_json,
     tsconfig_json,
+    license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/react/src/styles/placeholder-logo.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
@@ -211,6 +226,7 @@ async function openReactStackBlitz(
     `${baseUrl}code-runtime/react/src/index.tsx`,
     `${baseUrl}code-runtime/react/package.json`,
     `${baseUrl}code-runtime/react/tsconfig.json`,
+    `${baseUrl}code-runtime/react/LICENSE.md`,
   ]);
 
   const [renderFirstExample] = sourceFiles;
@@ -246,6 +262,7 @@ async function openReactStackBlitz(
         'public/index.html': index_html,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
+        'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run start"
         }`,
@@ -270,6 +287,7 @@ async function openVueStackBlitz(
     package_json,
     tsconfig_json,
     vite_config_ts,
+    license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/vue/src/styles/placeholder-logo.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
@@ -279,6 +297,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
+    `${baseUrl}code-runtime/vue/LICENSE.md`,
   ]);
 
   const [renderFirstExample] = sourceFiles;
@@ -313,6 +332,7 @@ async function openVueStackBlitz(
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': vite_config_ts,
+        'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run dev"
         }`,
