@@ -67,7 +67,7 @@ test('should dispatch items count change', async ({ mount, page }) => {
     .click();
 
   await pagination.locator('ix-dropdown-item').nth(3).click();
-  expect(pagination.locator('ix-dropdown')).not.toBeVisible();
+  await expect(pagination.locator('ix-dropdown')).not.toBeVisible();
 
   await expect(pagination).toHaveClass(/hydrated/);
   expect(await itemChanged).toBe(40);

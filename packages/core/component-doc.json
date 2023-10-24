@@ -3516,20 +3516,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        },
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/dropdown-button",
@@ -9101,12 +9088,6 @@
           "event": "ix-select-item:labelChange",
           "capture": false,
           "passive": false
-        },
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
         }
       ]
     },
@@ -9430,14 +9411,7 @@
         }
       ],
       "parts": [],
-      "listeners": [
-        {
-          "event": "pointerup",
-          "target": "window",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/spinner",
