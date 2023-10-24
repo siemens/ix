@@ -536,6 +536,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+         */
+        "dayJsLocale": ILocale;
+        /**
           * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
          */
         "format": string;
@@ -664,12 +668,16 @@ export namespace Components {
     }
     interface IxDatetimePickerRework {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+         */
+        "dayJsLocale": ILocale;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
@@ -684,7 +692,7 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * Set range size
+          * If true a date-range can be selected (from/to).
          */
         "range": boolean;
         /**
@@ -715,7 +723,7 @@ export namespace Components {
          */
         "time": string;
         /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat": string;
@@ -724,7 +732,7 @@ export namespace Components {
          */
         "timeReference": 'AM' | 'PM';
         /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -1976,7 +1984,7 @@ export namespace Components {
          */
         "corners": TimePickerCorners1;
         /**
-          * Format of time string
+          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "format": string;
@@ -2006,7 +2014,7 @@ export namespace Components {
          */
         "textSelectTime": string;
         /**
-          * Select time with format string
+          * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
          */
         "time": string;
@@ -3839,6 +3847,10 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+         */
+        "dayJsLocale"?: ILocale;
+        /**
           * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
          */
         "format"?: string;
@@ -3998,12 +4010,16 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePickerRework {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+         */
+        "dayJsLocale"?: ILocale;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -4033,7 +4049,7 @@ declare namespace LocalJSX {
          */
         "onTimeChange"?: (event: IxDatetimePickerReworkCustomEvent<string>) => void;
         /**
-          * Set range size
+          * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
         /**
@@ -4064,7 +4080,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat"?: string;
@@ -4073,7 +4089,7 @@ declare namespace LocalJSX {
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
@@ -5425,7 +5441,7 @@ declare namespace LocalJSX {
          */
         "corners"?: TimePickerCorners1;
         /**
-          * Format of time string
+          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
           * @since 1.1.0
          */
         "format"?: string;
@@ -5459,7 +5475,7 @@ declare namespace LocalJSX {
          */
         "textSelectTime"?: string;
         /**
-          * Select time with format string
+          * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
          */
         "time"?: string;

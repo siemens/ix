@@ -142,6 +142,18 @@ export class DatePickerRework {
    */
   @Prop() weekStartIndex = 0;
 
+  /**
+   * DayJS locale object used for translation.
+   * See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+   */
+  @Prop() dayJsLocale: ILocale;
+
+  @Watch('dayJsLocale')
+  watchDayJsLocalePropHandler(newValue: ILocale) {
+    dayjs.locale(newValue);
+    this.setTranslations();
+  }
+
   /** @internal */
   @Prop() standaloneAppearance = true;
 
@@ -206,12 +218,16 @@ export class DatePickerRework {
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
+  @State() dayNames: WeekdayNames;
+  @State() monthNames: MonthNames;
+
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[];
-  private dayNames: WeekdayNames;
-  private monthNames: MonthNames = dayjs.months();
 
   componentWillLoad() {
+    dayjs.locale(this.dayJsLocale);
+    this.setTranslations();
+
     this.currFromDate =
       this.from !== undefined ? dayjs(this.from, this.format, true) : undefined;
     this.currToDate =
@@ -225,15 +241,19 @@ export class DatePickerRework {
     this.selectedYear = year;
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
-
-    this.dayNames = this.rotateWeekDayNames(
-      dayjs.weekdays(),
-      this.weekStartIndex
-    );
   }
 
   componentWillRender() {
     this.calculateCalendar();
+  }
+
+  private setTranslations() {
+    this.dayNames = this.rotateWeekDayNames(
+      dayjs.weekdays(),
+      this.weekStartIndex
+    );
+
+    this.monthNames = dayjs.months();
   }
 
   /**
@@ -287,11 +307,16 @@ export class DatePickerRework {
       );
     }
 
-    // If the last week has week-number 1
     let correctLastWeek = false;
-    if (startWeek > endWeek) {
+    if (endWeek === 1) {
       endWeek = monthEnd.isoWeeksInYear() + 1;
       correctLastWeek = true;
+    }
+
+    let correctFirstWeek = false;
+    if (startWeek === monthEnd.isoWeeksInYear()) {
+      startWeek = 1;
+      correctFirstWeek = true;
     }
 
     let currDayNumber = 1;
@@ -319,6 +344,10 @@ export class DatePickerRework {
 
     if (correctLastWeek) {
       calendar[calendar.length - 1].weekNumber = 1;
+    }
+
+    if (correctFirstWeek) {
+      calendar[0].weekNumber = monthEnd.isoWeeksInYear();
     }
 
     this.calendar = calendar;

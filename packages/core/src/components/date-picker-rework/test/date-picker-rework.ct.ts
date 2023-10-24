@@ -8,13 +8,29 @@
  */
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
-import dayjs from 'dayjs';
+
+declare global {
+  interface Window {
+    dayjs_locale_de: any;
+  }
+}
 
 const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker-rework';
 const getDateObj = async (page: Page) => {
   return await page.$$eval(DATE_PICKER_REWORK_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentDate()));
   });
+};
+
+const addScript = async (page: Page, scriptPath: string) => {
+  return page.evaluate((scriptPath) => {
+    return new Promise<void>((resolve) => {
+      const script = document.createElement('script');
+      script.onload = () => resolve();
+      script.src = scriptPath;
+      document.head.appendChild(script);
+    });
+  }, scriptPath);
 };
 
 test('renders', async ({ mount, page }) => {
@@ -24,48 +40,22 @@ test('renders', async ({ mount, page }) => {
 });
 
 test('translation', async ({ mount, page }) => {
-  // await page.evaluate(() => {
-  //   return new Promise<void>((resolve) => {
-  //     const script = document.createElement('script');
-  //     script.onload = () => resolve();
-  //     script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js';
-  //     document.head.appendChild(script);
-  //   });
-  // });
-
-  // await page.evaluate(() => {
-  //   return new Promise<void>((resolve) => {
-  //     const script = document.createElement('script');
-  //     script.onload = () => resolve();
-  //     script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/locale/de.js';
-  //     document.head.appendChild(script);
-  //   });
-  // });
-
-  // await page.evaluate(() => {
-  //   return new Promise<void>((resolve) => {
-  //     const script = document.createElement('script');
-  //     script.appendChild(document.createTextNode('dayjs.locale("de");'));
-  //     document.head.appendChild(script);
-  //     resolve();
-  //   });
-  // });
-
-  // const dayjs = (await import('dayjs')).default;
-
-  // const localeData = await import('dayjs/plugin/localeData');
-  // dayjs.extend(localeData.default);
-
-  await import('dayjs/locale/de');
-  dayjs.locale('de');
-  // const test = dayjs.weekdays();
-
   await mount(
     `<ix-date-picker-rework from="2023/01/01"></ix-date-picker-rework>`
   );
 
-  const header = page.getByText('Januar 2023');
-  await expect(header).toHaveClass(/hydrated/);
+  await addScript(page, 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js');
+  await addScript(page, 'https://cdn.jsdelivr.net/npm/dayjs@1/locale/de.js');
+
+  await page.$eval(
+    DATE_PICKER_REWORK_SELECTOR,
+    (el: HTMLIxDatePickerReworkElement) => {
+      el.dayJsLocale = window.dayjs_locale_de;
+    }
+  );
+
+  const header = page.getByText('Januar 2023').nth(0);
+  await expect(header).toHaveCount(1);
 });
 
 test.describe('date picker tests single', () => {

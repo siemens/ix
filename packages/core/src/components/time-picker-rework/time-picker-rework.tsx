@@ -49,6 +49,7 @@ interface TimeOutputFormat {
 export class TimePickerRework {
   /**
    * Format of time string
+   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
    *
    * @since 1.1.0
    */
@@ -81,6 +82,7 @@ export class TimePickerRework {
 
   /**
    * Select time with format string
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */

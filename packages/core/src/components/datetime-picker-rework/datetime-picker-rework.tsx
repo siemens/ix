@@ -30,7 +30,7 @@ export type DateTimeDateChangeEvent =
 })
 export class DatetimePickerRework {
   /**
-   * Set range size
+   * If true a date-range can be selected (from/to).
    */
   @Prop() range = true;
 
@@ -67,7 +67,7 @@ export class DatetimePickerRework {
 
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
    *
    * @since 1.1.0
    */
@@ -75,26 +75,23 @@ export class DatetimePickerRework {
 
   /**
    * Time format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
    *
    * @since 1.1.0
    */
   @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
-   * Picker date. If the picker is in range mode this property is the start date.
-   *
-   * Format is based on `format`
+   * The selected starting date. If the date-picker-rework is not in range mode this is the selected date.
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
   @Prop() from: string | undefined;
 
   /**
-   * Picker date. If the picker is in range mode this property is the end date.
-   * If the picker is not in range mode leave this value `null`
-   *
-   * Format is based on `format`
+   * The selected end date. If the the date-picker-rework is not in range mode this property has no impact.
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
@@ -134,6 +131,12 @@ export class DatetimePickerRework {
    * @since 2.0.0
    */
   @Prop() weekStartIndex = 0;
+
+  /**
+   * DayJS locale object used for translation.
+   * See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+   */
+  @Prop() dayJsLocale: ILocale;
 
   /**
    * Time change
