@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 

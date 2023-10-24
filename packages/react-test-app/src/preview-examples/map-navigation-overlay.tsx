@@ -15,6 +15,8 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 import React, { useState } from 'react';
+// Example styling for documentation
+import './styles/placeholder-logo.css';
 
 export default () => {
   const [overlay, setOverlay] = useState(false);

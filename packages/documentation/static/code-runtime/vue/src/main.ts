@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import { ixPlugin } from '@siemens/ix-vue';

@@ -11,6 +11,8 @@
 import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
+<style src="./styles/placeholder-logo.css"></style>
+
 <template>
   <IxMapNavigation
     applicationName="Test Application"

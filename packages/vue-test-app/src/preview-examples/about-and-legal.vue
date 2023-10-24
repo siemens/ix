@@ -21,6 +21,8 @@ const menu = ref<HTMLIxMenuElement>();
 watch(menu, () => menu.value?.toggleAbout(true));
 </script>
 
+<style src="./styles/placeholder-logo.css"></style>
+
 <template>
   <IxBasicNavigation>
     <div className="placeholder-logo" slot="logo"></div>

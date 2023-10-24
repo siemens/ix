@@ -1,5 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+@import './styles/placeholder-logo.css';

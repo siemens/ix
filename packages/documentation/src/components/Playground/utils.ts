@@ -59,8 +59,9 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [index_html, main_js, package_json, vite_config_ts] =
+  const [placeholder_logo, index_html, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
+      `${baseUrl}code-runtime/html/src/components/placeholder-logo.js`,
       `${baseUrl}code-runtime/html/src/index.html`,
       `${baseUrl}code-runtime/html/src/main.js`,
       `${baseUrl}code-runtime/html/package.json`,
@@ -81,6 +82,7 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
+        'src/components/placeholder-logo.js': placeholder_logo,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
           renderFirstExample.sourceCode
@@ -106,6 +108,7 @@ async function openAngularStackBlitz(
     app_component_html,
     app_component_ts,
     app_module_ts,
+    placeholder_logo,
     index_html,
     main_ts,
     styles_css,
@@ -118,6 +121,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
+    `${baseUrl}code-runtime/angular/src/styles/placeholder-logo.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.css`,
@@ -166,6 +170,7 @@ async function openAngularStackBlitz(
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
+        'src/styles/placeholder-logo.css': placeholder_logo,
         'src/index.html': index_html,
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
@@ -186,14 +191,21 @@ async function openReactStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
-    await loadSourceCodeFromStatic([
-      `${baseUrl}code-runtime/react/App.tsx`,
-      `${baseUrl}code-runtime/react/index.html`,
-      `${baseUrl}code-runtime/react/index.tsx`,
-      `${baseUrl}code-runtime/react/package.json`,
-      `${baseUrl}code-runtime/react/tsconfig.json`,
-    ]);
+  const [
+    placeholder_logo,
+    app_tsx,
+    index_html,
+    index_tsx,
+    package_json,
+    tsconfig_json,
+  ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/react/src/styles/placeholder-logo.css`,
+    `${baseUrl}code-runtime/react/src/App.tsx`,
+    `${baseUrl}code-runtime/react/public/index.html`,
+    `${baseUrl}code-runtime/react/src/index.tsx`,
+    `${baseUrl}code-runtime/react/package.json`,
+    `${baseUrl}code-runtime/react/tsconfig.json`,
+  ]);
 
   const [renderFirstExample] = sourceFiles;
 
@@ -222,14 +234,15 @@ async function openReactStackBlitz(
       description: 'iX react playground',
       files: {
         ...files,
-        'public/index.html': index_html,
+        'src/styles/placeholder-logo.css': placeholder_logo,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
+        'public/index.html': index_html,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
-        "startCommand": "yarn run start"
-      }`,
+          "startCommand": "yarn run start"
+        }`,
       },
     },
     {
@@ -243,21 +256,23 @@ async function openVueStackBlitz(
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
+    placeholder_logo,
     app_vue,
+    main_ts,
+    env_d_ts,
     index_html,
-    index_ts,
     package_json,
     tsconfig_json,
-    viteconfig_ts,
-    env_d_ts,
+    vite_config_ts,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/vue/App.vue`,
+    `${baseUrl}code-runtime/vue/src/styles/placeholder-logo.css`,
+    `${baseUrl}code-runtime/vue/src/App.vue`,
+    `${baseUrl}code-runtime/vue/src/main.ts`,
+    `${baseUrl}code-runtime/vue/env.d.ts`,
     `${baseUrl}code-runtime/vue/index.html`,
-    `${baseUrl}code-runtime/vue/main.ts`,
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
-    `${baseUrl}code-runtime/vue/env.d.ts`,
   ]);
 
   const [renderFirstExample] = sourceFiles;
@@ -284,13 +299,14 @@ async function openVueStackBlitz(
       description: 'iX vue playground',
       files: {
         ...files,
-        'index.html': index_html,
-        'src/main.ts': index_ts,
+        'src/styles/placeholder-logo.css': placeholder_logo,
+        'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
-        'src/env.d.ts': env_d_ts,
+        'index.html': index_html,
+        'env.d.ts': env_d_ts,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
-        'vite.config.ts': viteconfig_ts,
+        'vite.config.ts': vite_config_ts,
         '.stackblitzrc': `{
           "startCommand": "yarn run dev"
         }`,

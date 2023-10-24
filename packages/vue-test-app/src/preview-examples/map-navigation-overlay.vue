@@ -20,6 +20,8 @@ import { ref } from 'vue';
 const overlay = ref(false);
 </script>
 
+<style src="./styles/placeholder-logo.css"></style>
+
 <template>
   <IxMapNavigation>
     <div className="placeholder-logo" slot="logo"></div>
