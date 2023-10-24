@@ -28,6 +28,7 @@
     "@siemens/ix-echarts": "~2.1.0-beta.0",
     "@siemens/ix-icons": "2.0.0-beta.0",
     "@siemens/ix-react": "~2.1.0-beta.0",
+    "@siemens/ix-angular": "~2.0.3",
     "@stackblitz/sdk": "^1.8.1",
     "@stencil/postcss": "^2.1.0",
     "clsx": "^1.2.1",

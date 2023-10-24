@@ -134,16 +134,16 @@ async function openAngularStackBlitz(
   const declareComponents = [];
   additionalFiles.forEach(({ filename, sourceCode }) => {
     if (/@Component/gms.test(sourceCode)) {
-      declareComponents.push(filename);
+      declareComponents.push(filename as never);
     }
   });
   const declare_component_ts = `
     ${declareComponents
       .map(
         (filename, index) =>
-          `import COMPONENT_${index} from './${filename.substring(
+          `import COMPONENT_${index} from './${(filename as String).substring(
             0,
-            filename.lastIndexOf('.')
+            (filename as String).lastIndexOf('.')
           )}'`
       )
       .join(';')}

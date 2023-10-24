@@ -3399,12 +3399,20 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-aggrid@latest":
+"@siemens/ix-aggrid@latest", "@siemens/ix-aggrid@~2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-aggrid/-/ix-aggrid-2.0.3.tgz#6268acfbdb5ab89c7c41e14a9dd611cd5204a609"
   integrity sha512-hFAoQswGODYq1VaDti9W5SOdcapYT2k0tEwIxgibBEaDTNnG07jIMJj6l0Bm9fYndcHQEIGTfMZQIjGY7YjDiQ==
 
-"@siemens/ix-echarts@latest":
+"@siemens/ix-angular@~2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@siemens/ix-angular/-/ix-angular-2.0.3.tgz#3c7eb0add370de651a528d54fd90c54a652115e0"
+  integrity sha512-WAOdjomxCRlPaJmULdqLRKwYpfrPp+snhr6ATuUFjR1IVo8eRIZk0IZX8v+5Dt23H0bdmZK17pIXL52fhm2L6g==
+  dependencies:
+    "@siemens/ix" "~2.0.3"
+    tslib "^2.3.0"
+
+"@siemens/ix-echarts@latest", "@siemens/ix-echarts@~2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-echarts/-/ix-echarts-2.0.3.tgz#2c14f5365a91f08d7b513536afdedc6214568505"
   integrity sha512-S9NPpAYRyEKGGb/ruGnpB12ywwUgsUATc4sXvXLNHaHSxAnIKw6Tz86+bR/GkdB4kTgyoFbmVpeRzXEQ/BNsyg==
@@ -3444,7 +3452,7 @@
   dependencies:
     "@siemens/ix" "~2.0.3"
 
-"@siemens/ix@latest":
+"@siemens/ix@latest", "@siemens/ix@~2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix/-/ix-2.0.3.tgz#759a395619beaca81ab27b639524f172cb272080"
   integrity sha512-lUzJfPfITxzqKQX+aZCkiKxBzdFkkPXcsR1sAl5c7g3dp0seoRZ5N2CbR/LL1g4EHJxDfvm9KfYJvaSICYYfWg==
