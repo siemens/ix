@@ -1,5 +1,0 @@
-<ix-category-filter placeholder="Filter by"></ix-category-filter>
-<script>
-  const categoryFilter = document.querySelector('ix-category-filter');
-  categoryFilter.suggestions = ['Item 1', 'Item 2'];
-</script>

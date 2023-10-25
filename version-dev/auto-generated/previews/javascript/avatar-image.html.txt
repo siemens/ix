@@ -1,1 +1,0 @@
-  <ix-avatar image="https://ui-avatars.com/api/?name=John+Doe"></ix-avatar>

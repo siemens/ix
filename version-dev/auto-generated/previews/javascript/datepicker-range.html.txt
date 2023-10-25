@@ -1,1 +1,0 @@
-<ix-date-picker from="2022/12/15" to="2022/12/24"></ix-date-picker>

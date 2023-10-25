@@ -1,3 +1,0 @@
-<ix-key-value label="Label">
-  <input placeholder="Enter text here" type="text" slot="custom-value" />
-</ix-key-value>

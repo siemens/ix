@@ -1,0 +1,27 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buttons example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div>
+      <input type="checkbox" id="checkbox_01" />
+      <label for="checkbox_01">Simple checkbox</label>
+    </div>
+    <script>
+      (function () {
+        const checkbox = document.querySelector('#checkbox_01');
+        checkbox.indeterminate = true;
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
