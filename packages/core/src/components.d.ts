@@ -276,6 +276,10 @@ export namespace Components {
      * @since 1.6.0
      */
     interface IxCardAccordion {
+        /**
+          * collapse the card
+         */
+        "collapse": boolean;
     }
     /**
      * @since 1.6.0
@@ -1530,6 +1534,10 @@ export namespace Components {
      * @since 1.6.0
      */
     interface IxPushCard {
+        /**
+          * collapse the card
+         */
+        "collapse": boolean;
         /**
           * Card heading
          */
@@ -3325,6 +3333,10 @@ declare namespace LocalJSX {
      * @since 1.6.0
      */
     interface IxCardAccordion {
+        /**
+          * collapse the card
+         */
+        "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
     }
     /**
@@ -4710,6 +4722,10 @@ declare namespace LocalJSX {
      * @since 1.6.0
      */
     interface IxPushCard {
+        /**
+          * collapse the card
+         */
+        "collapse"?: boolean;
         /**
           * Card heading
          */

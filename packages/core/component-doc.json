@@ -1103,7 +1103,25 @@
           "ix-card-accordion"
         ]
       },
-      "props": [],
+      "props": [
+        {
+          "name": "collapse",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "collapse",
+          "reflectToAttr": false,
+          "docs": "collapse the card",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -8541,6 +8559,23 @@
         ]
       },
       "props": [
+        {
+          "name": "collapse",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "collapse",
+          "reflectToAttr": false,
+          "docs": "collapse the card",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "heading",
           "type": "string",

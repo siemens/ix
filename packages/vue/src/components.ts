@@ -174,6 +174,7 @@ export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defin
 
 
 export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
+  'collapse',
   'accordionExpand'
 ]);
 
@@ -684,7 +685,8 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'notification',
   'heading',
   'subheading',
-  'variant'
+  'variant',
+  'collapse'
 ]);
 
 
