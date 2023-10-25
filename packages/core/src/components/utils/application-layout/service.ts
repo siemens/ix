@@ -53,10 +53,14 @@ class ApplicationLayoutService {
     });
 
     if (matchBreakpoints.every(([_, match]) => match === false)) {
-      this.#breakpointChangeListener.emit(
-        breakpoints[matchBreakpoints.length - 1]
-      );
-      this.#breakpoint = breakpoints[breakpoints[matchBreakpoints.length - 1]];
+      let breakPointIndex = 0;
+      if (!this.#supportedBreakpoints.includes('lg')) {
+        breakPointIndex = matchBreakpoints.length - 1;
+      }
+
+      const [breakpoint, _] = matchBreakpoints[breakPointIndex];
+      this.#breakpointChangeListener.emit(breakpoint);
+      this.#breakpoint = breakpoint;
       return;
     }
 
