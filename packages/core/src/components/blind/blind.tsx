@@ -72,14 +72,7 @@ export class Blind {
 
   constructor() {}
 
-  private onHeaderClick(e: Event) {
-    if ((e.target as Element).closest('.header-actions')) {
-      return;
-    }
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
+  private onHeaderClick() {
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
   }
@@ -197,9 +190,7 @@ export class Blind {
                     <slot name="header-actions"></slot>
                   </div>
                 </Fragment>
-              ) : (
-                <slot name="custom-header"></slot>
-              )}
+              ) : null}
             </div>
           </div>
 
@@ -213,8 +204,10 @@ export class Blind {
             aria-labelledby={`ix-blind-header-title-${this.blindId}`}
             aria-controls={`ix-blind-content-section-${this.blindId}`}
             aria-expanded={a11yBoolean(!this.collapsed)}
-            onClick={(e) => this.onHeaderClick(e)}
-          ></button>
+            onClick={() => this.onHeaderClick()}
+          >
+            <slot name="custom-header"></slot>
+          </button>
         </div>
         <section
           id={`ix-blind-content-section-${this.blindId}`}
