@@ -53,8 +53,10 @@ class ApplicationLayoutService {
     });
 
     if (matchBreakpoints.every(([_, match]) => match === false)) {
-      this.#breakpointChangeListener.emit(breakpoints[0]);
-      this.#breakpoint = breakpoints[0];
+      this.#breakpointChangeListener.emit(
+        breakpoints[matchBreakpoints.length - 1]
+      );
+      this.#breakpoint = breakpoints[breakpoints[matchBreakpoints.length - 1]];
       return;
     }
 
