@@ -21,7 +21,7 @@ import {
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
-import dayjs, { Dayjs, MonthNames, WeekdayNames } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isLeapYear from 'dayjs/plugin/isLeapYear';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
@@ -218,8 +218,8 @@ export class DatePickerRework {
   @State() dropdownButtonRef: HTMLElement;
   @State() yearContainerRef: HTMLElement;
 
-  @State() dayNames: WeekdayNames;
-  @State() monthNames: MonthNames;
+  @State() dayNames: string[];
+  @State() monthNames: string[];
 
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[];
@@ -260,11 +260,8 @@ export class DatePickerRework {
    * Rotate the WeekdayNames array.
    * Based on the position that should be the new 0-index.
    */
-  private rotateWeekDayNames(
-    weekdays: WeekdayNames,
-    index: number
-  ): WeekdayNames {
-    const clone = [...weekdays] as WeekdayNames;
+  private rotateWeekDayNames(weekdays: string[], index: number): string[] {
+    const clone = [...weekdays];
 
     if (index === 0) {
       return clone;
