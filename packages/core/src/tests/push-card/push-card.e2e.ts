@@ -47,7 +47,7 @@ test('push card expand', async ({ page, mount }) => {
       > </ix-push-card>
   `);
 
-  page.locator('ix-push-card');
+  await page.waitForSelector('ix-push-card');
 
   expect(
     await page.screenshot({ fullPage: true, animations: 'disabled' })
