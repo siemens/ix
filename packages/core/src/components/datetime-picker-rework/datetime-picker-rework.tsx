@@ -16,9 +16,7 @@ export type DateTimeSelectEvent = {
   time: string;
 };
 
-export type DateTimeDateChangeEvent =
-  | string
-  | Omit<DateTimeSelectEvent, 'time'>;
+export type DateTimeDateChangeEvent = Omit<DateTimeSelectEvent, 'time'>;
 
 /**
  * @internal
@@ -173,7 +171,7 @@ export class DatetimePickerRework {
     });
   }
 
-  private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
+  private async onDateChange(event: CustomEvent<DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
 

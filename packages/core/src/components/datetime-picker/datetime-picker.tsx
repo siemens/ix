@@ -16,7 +16,9 @@ export type DateTimeSelectEvent = {
   time: string;
 };
 
-export type DateTimeDateChangeEvent = Omit<DateTimeSelectEvent, 'time'>;
+export type DateTimeDateChangeEvent =
+  | string
+  | Omit<DateTimeSelectEvent, 'time'>;
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -177,7 +179,7 @@ export class DateTimePicker {
     });
   }
 
-  private async onDateChange(event: CustomEvent<DateChangeEvent>) {
+  private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
     const { detail: date } = event;

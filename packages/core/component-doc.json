@@ -2312,18 +2312,18 @@
       "dependencies": [
         "ix-icon-button",
         "ix-dropdown",
-        "ix-date-picker"
+        "ix-date-picker-rework"
       ],
       "dependencyGraph": {
         "ix-date-input": [
           "ix-icon-button",
           "ix-dropdown",
-          "ix-date-picker"
+          "ix-date-picker-rework"
         ],
         "ix-icon-button": [
           "ix-spinner"
         ],
-        "ix-date-picker": [
+        "ix-date-picker-rework": [
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
@@ -2693,7 +2693,6 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -2714,9 +2713,6 @@
         ],
         "ix-button": [
           "ix-spinner"
-        ],
-        "ix-date-input": [
-          "ix-date-picker"
         ],
         "ix-datetime-picker": [
           "ix-date-picker"
@@ -3040,23 +3036,26 @@
       "dependencies": [
         "ix-icon-button",
         "ix-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker-rework"
       ],
       "dependencyGraph": {
         "ix-datetime-input": [
           "ix-icon-button",
           "ix-dropdown",
-          "ix-datetime-picker"
+          "ix-datetime-picker-rework"
         ],
         "ix-icon-button": [
           "ix-spinner"
         ],
-        "ix-datetime-picker": [
-          "ix-date-picker",
-          "ix-time-picker",
+        "ix-datetime-picker-rework": [
+          "ix-layout-grid",
+          "ix-row",
+          "ix-col",
+          "ix-date-picker-rework",
+          "ix-time-picker-rework",
           "ix-button"
         ],
-        "ix-date-picker": [
+        "ix-date-picker-rework": [
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
@@ -3065,7 +3064,7 @@
         "ix-button": [
           "ix-spinner"
         ],
-        "ix-time-picker": [
+        "ix-time-picker-rework": [
           "ix-date-time-card",
           "ix-typography",
           "ix-icon-button",
@@ -3564,9 +3563,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-datetime-input"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-date-picker",
         "ix-time-picker",
@@ -3595,9 +3592,6 @@
           "ix-typography",
           "ix-icon-button",
           "ix-button"
-        ],
-        "ix-datetime-input": [
-          "ix-datetime-picker"
         ]
       },
       "props": [
@@ -3911,7 +3905,7 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "string | { from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -4193,6 +4187,7 @@
         "ix-date-input",
         "ix-date-picker",
         "ix-date-picker-rework",
+        "ix-datetime-input",
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
@@ -4214,6 +4209,9 @@
           "ix-dropdown"
         ],
         "ix-date-picker-rework": [
+          "ix-dropdown"
+        ],
+        "ix-datetime-input": [
           "ix-dropdown"
         ],
         "ix-dropdown-button": [
@@ -6008,6 +6006,7 @@
         "ix-date-input",
         "ix-date-picker",
         "ix-date-picker-rework",
+        "ix-datetime-input",
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
@@ -6058,6 +6057,9 @@
           "ix-icon-button"
         ],
         "ix-date-picker-rework": [
+          "ix-icon-button"
+        ],
+        "ix-datetime-input": [
           "ix-icon-button"
         ],
         "ix-drawer": [

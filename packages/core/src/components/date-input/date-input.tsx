@@ -21,7 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { IxDatePickerCustomEvent } from 'src/components';
+import { IxDatePickerReworkCustomEvent } from 'src/components';
 import { DateChangeEvent } from '../date-picker/date-picker';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
@@ -194,7 +194,7 @@ export class DateInput {
   private firstInput: HTMLInputElement;
   private secondInput: HTMLInputElement;
   private focusedInput!: HTMLInputElement;
-  private datePicker!: HTMLIxDatePickerElement;
+  private datePicker!: HTMLIxDatePickerReworkElement;
   private validator: Validator<DateValidatorParam>;
   private wasValidated: boolean;
 
@@ -230,7 +230,7 @@ export class DateInput {
     });
   };
 
-  private onDateChange(event: IxDatePickerCustomEvent<DateChangeEvent>) {
+  private onDateChange(event: IxDatePickerReworkCustomEvent<DateChangeEvent>) {
     this._from = event.detail.from;
     this._to = event.detail.to;
 
@@ -432,9 +432,11 @@ export class DateInput {
           onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
-          <ix-date-picker
+          <ix-date-picker-rework
             tabIndex={0}
-            ref={(ref) => (this.datePicker = ref as HTMLIxDatePickerElement)}
+            ref={(ref) =>
+              (this.datePicker = ref as HTMLIxDatePickerReworkElement)
+            }
             corners={this.corners}
             range={this.range}
             onDateChange={(event) => this.onDateChange(event)}
@@ -445,7 +447,7 @@ export class DateInput {
             maxDate={this.maxDate}
             weekStartIndex={this.weekStartIndex}
             onClick={(event) => event.stopPropagation()}
-          ></ix-date-picker>
+          ></ix-date-picker-rework>
         </ix-dropdown>
         <div class="invalid-feedback">{this.errorMessage}</div>
       </Host>

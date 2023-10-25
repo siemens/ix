@@ -18,11 +18,16 @@ import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
+import { InputValidator } from "./components/utils/validators/validator";
+import { DateChangeEvent } from "./components/date-picker/date-picker";
+import { DateInputEvent } from "./components/date-input/date-input";
+import { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+import { DateChangeEvent as DateChangeEvent2 } from "./components/date-picker-rework/date-picker-rework";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-import { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
+import { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
+import { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
+import { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent2 } from "./components/datetime-picker-rework/datetime-picker-rework";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -56,11 +61,16 @@ export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
+export { InputValidator } from "./components/utils/validators/validator";
+export { DateChangeEvent } from "./components/date-picker/date-picker";
+export { DateInputEvent } from "./components/date-input/date-input";
+export { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+export { DateChangeEvent as DateChangeEvent2 } from "./components/date-picker-rework/date-picker-rework";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-export { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
+export { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
+export { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
+export { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent2 } from "./components/datetime-picker-rework/datetime-picker-rework";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -2512,6 +2522,10 @@ export interface IxDatePickerReworkCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerReworkElement;
 }
+export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatetimeInputElement;
+}
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
@@ -4072,12 +4086,12 @@ declare namespace LocalJSX {
           * Date range change. Only triggered if datepicker is in range mode
           * @since 1.1.0
          */
-        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
         /**
           * Date selection confirmed via button action
           * @deprecated Will be removed in 2.0.0. Use `dateSelect`
@@ -4130,18 +4144,18 @@ declare namespace LocalJSX {
           * Triggers if the date selection changes.
           * @since 2.0.0
          */
-        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
+        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
         /**
           * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
           * @since 1.1.0
           * @deprecated Use `dateChange` (triggers on both modes)
          */
-        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
+        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -4425,7 +4439,7 @@ declare namespace LocalJSX {
           * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent1>) => void;
+        "onDateSelect"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent2>) => void;
         /**
           * Time change
           * @since 1.1.0

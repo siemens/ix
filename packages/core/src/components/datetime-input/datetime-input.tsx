@@ -20,11 +20,11 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { IxDatetimePickerCustomEvent } from 'src/components';
+import { IxDatetimePickerReworkCustomEvent } from 'src/components';
 import {
   DateTimeDateChangeEvent,
   DateTimeSelectEvent,
-} from '../datetime-picker/datetime-picker';
+} from '../datetime-picker-rework/datetime-picker-rework';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { TimeValidatorParam } from '../utils/validators/datetime-input/time-input-validators';
 import { InputValidator, Validator } from '../utils/validators/validator';
@@ -49,10 +49,14 @@ export interface DatetimeInputEvent {
 }
 
 type InputChangeCallback = (event: Event) => void;
+
 type DateChangeCallback = (
-  event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
+  event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent>
 ) => void;
-type TimeChangeCallback = (event: IxDatetimePickerCustomEvent<string>) => void;
+
+type TimeChangeCallback = (
+  event: IxDatetimePickerReworkCustomEvent<string>
+) => void;
 
 /**
  * @since 3.0.0
@@ -284,7 +288,7 @@ export class DatetimeInput {
   private toDateInput: HTMLInputElement;
   private toTimeInput: HTMLInputElement;
   private focusedInput!: HTMLInputElement;
-  private datePicker!: HTMLIxDatetimePickerElement;
+  private datePicker!: HTMLIxDatetimePickerReworkElement;
   private dateValidator: Validator<DateValidatorParam>;
   private timeValidator: Validator<TimeValidatorParam>;
   private wasValidated: boolean;
@@ -312,7 +316,7 @@ export class DatetimeInput {
   };
 
   private readonly onFromDateChange = (
-    event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
+    event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent>
   ) => {
     this._fromDate = event.detail.from;
 
@@ -321,7 +325,7 @@ export class DatetimeInput {
   };
 
   private readonly onToDateChange = (
-    event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>
+    event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent>
   ) => {
     this._toDate = event.detail.from;
 
@@ -330,7 +334,7 @@ export class DatetimeInput {
   };
 
   private readonly onFromTimeChange = (
-    event: IxDatetimePickerCustomEvent<string>
+    event: IxDatetimePickerReworkCustomEvent<string>
   ) => {
     this._fromTime = event.detail;
 
@@ -339,7 +343,7 @@ export class DatetimeInput {
   };
 
   private readonly onToTimeChange = (
-    event: IxDatetimePickerCustomEvent<string>
+    event: IxDatetimePickerReworkCustomEvent<string>
   ) => {
     this._toTime = event.detail;
 
@@ -412,7 +416,7 @@ export class DatetimeInput {
   };
 
   private readonly onDateSelect = (
-    event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>
+    event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent>
   ) => {
     this.dateSelect.emit(event.detail);
 
@@ -607,11 +611,11 @@ export class DatetimeInput {
           // onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
-          <ix-datetime-picker
+          <ix-datetime-picker-rework
             onClick={(event) => event.stopPropagation()}
             tabIndex={0}
             ref={(ref) =>
-              (this.datePicker = ref as HTMLIxDatetimePickerElement)
+              (this.datePicker = ref as HTMLIxDatetimePickerReworkElement)
             }
             range={false}
             onDateChange={(event) => dateChangeCallback(event)}
@@ -629,7 +633,7 @@ export class DatetimeInput {
             showSeconds={this.showSeconds}
             timeReference={this.timeReference}
             onDateSelect={(event) => this.onDateSelect(event)}
-          ></ix-datetime-picker>
+          ></ix-datetime-picker-rework>
         </ix-dropdown>
       </Fragment>
     );

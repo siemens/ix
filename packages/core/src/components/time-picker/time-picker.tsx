@@ -16,7 +16,6 @@ import {
   Method,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -74,14 +73,6 @@ export class TimePicker {
    * @since 1.1.0 time reference is default aligned with formt tt
    */
   @Prop({ mutable: true }) showTimeReference = undefined;
-
-  @Watch('time')
-  watchTimePropHandler(newValue: string) {
-    this._time = dayjs(newValue, this.format, true);
-    if (!this._time.isValid()) {
-      throw new Error('Format is not supported or not correct');
-    }
-  }
 
   /**
    * Set time reference
