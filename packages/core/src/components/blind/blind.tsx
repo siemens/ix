@@ -162,6 +162,7 @@ export class Blind {
                 <Fragment>
                   {this.icon && (
                     <ix-icon
+                      class="blind-header-title-icon"
                       name={this.icon}
                       color={
                         this.variant === 'insight' || this.variant === 'outline'
@@ -171,7 +172,7 @@ export class Blind {
                     ></ix-icon>
                   )}
                   <div class={'blind-header-title-row'}>
-                    <div class="blind-header-title-col blind-header-title-col-label">
+                    <div class="blind-header-title-col">
                       <ix-typography title={this.label} format="label-lg" bold>
                         <div
                           class="blind-header-title-label"

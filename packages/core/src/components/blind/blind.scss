@@ -129,8 +129,9 @@
     }
   }
 
+  .blind-header-title-icon,
   .collapse-icon {
-    margin: $tiny-space $small-space;
+    margin-right: $small-space;
   }
 
   .blind-header-title-row {
@@ -144,10 +145,6 @@
     display: inline-flex;
     align-items: center;
     min-width: 0;
-  }
-
-  .blind-header-title-col-label {
-    flex-grow: 0.35;
   }
 
   .blind-header-title-col:not(:first-of-type) {
