@@ -3399,51 +3399,22 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-aggrid@latest", "@siemens/ix-aggrid@~2.0.3":
+"@siemens/ix-aggrid@latest":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-aggrid/-/ix-aggrid-2.0.3.tgz#6268acfbdb5ab89c7c41e14a9dd611cd5204a609"
   integrity sha512-hFAoQswGODYq1VaDti9W5SOdcapYT2k0tEwIxgibBEaDTNnG07jIMJj6l0Bm9fYndcHQEIGTfMZQIjGY7YjDiQ==
 
-"@siemens/ix-angular@~2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-angular/-/ix-angular-2.0.3.tgz#3c7eb0add370de651a528d54fd90c54a652115e0"
-  integrity sha512-WAOdjomxCRlPaJmULdqLRKwYpfrPp+snhr6ATuUFjR1IVo8eRIZk0IZX8v+5Dt23H0bdmZK17pIXL52fhm2L6g==
-  dependencies:
-    "@siemens/ix" "~2.0.3"
-    tslib "^2.3.0"
-
-"@siemens/ix-echarts@latest", "@siemens/ix-echarts@~2.0.3":
+"@siemens/ix-echarts@latest":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-echarts/-/ix-echarts-2.0.3.tgz#2c14f5365a91f08d7b513536afdedc6214568505"
   integrity sha512-S9NPpAYRyEKGGb/ruGnpB12ywwUgsUATc4sXvXLNHaHSxAnIKw6Tz86+bR/GkdB4kTgyoFbmVpeRzXEQ/BNsyg==
 
-"@siemens/ix-icons@2.0.0-beta.0":
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.0-beta.0.tgz#8419dc7891d758a88365120d4d34e9d5755dec17"
-  integrity sha512-TCtmYU7tVDEPQ1uuoxzcPL/xIIeyMmkZF+xtcaNucLVXC+Gc13iNMVxKiYpOCJ8t+azh7Bo/TCqwdvZfmjMqVA==
-  dependencies:
-    "@stencil/core" "3.2.1"
-
-"@siemens/ix-icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.0.tgz#a8060c4679dd652f528284eddfa55a43630a0ca0"
-  integrity sha512-BQMy6Q2OnTGkG0xTc/cnmUGLLc8TSv7rOXq6gkXKpPYp7JEsxrwrJTDxWeSNDo+Sgu0GjNCsQjaGuqkBzgdxVw==
-  dependencies:
-    "@stencil/core" "3.2.1"
-
-"@siemens/ix-icons@latest":
+"@siemens/ix-icons@latest", "@siemens/ix-icons@~2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.1.tgz#bebfa13d5f9069410b9afd025ceb08b44baf93b2"
   integrity sha512-BT0mqB7rGj+DX0tRHYWsIeOf+hV7a9IHWT0F7owNKLNwTs4VXvYkokRhc82vVnQjL81NGs9Vjo62MMrEa2oGqA==
   dependencies:
     "@stencil/core" "3.2.1"
-
-"@siemens/ix-react@latest":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-react/-/ix-react-2.0.3.tgz#087660091a759e3f66e1fcb5ff806ca7ad6df362"
-  integrity sha512-ZPDh/DdJMGtX4mWTIru28tSmCAxfySmWYAiSi0teocZRS1JY38ozpdvT/MnGH7w8CLI4ilxsh6/eZ1MzpwUqjA==
-  dependencies:
-    "@siemens/ix" "~2.0.3"
 
 "@siemens/ix-vue@latest":
   version "2.0.3"

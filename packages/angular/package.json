@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@angular/core": ">=13.3.12",
-    "@siemens/ix-icons": "^2.0.0"
+    "@siemens/ix-icons": "~2.0.1"
   },
   "devDependencies": {
     "@angular/common": "v13-lts",

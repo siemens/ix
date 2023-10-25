@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@siemens/ix": "latest",
-    "@siemens/ix-react": "latest",
-    "@siemens/ix-icons": "latest",
-    "@siemens/ix-aggrid": "latest",
-    "@siemens/ix-echarts": "latest",
+    "@siemens/ix": "~2.1.0-beta.0",
+    "@siemens/ix-react": "~2.1.0-beta.0",
+    "@siemens/ix-icons": "~2.0.1",
+    "@siemens/ix-aggrid": "~2.1.0-beta.0",
+    "@siemens/ix-echarts": "~2.1.0-beta.0",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",
     "react": "^18.2.0",
