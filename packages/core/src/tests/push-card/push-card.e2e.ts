@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import {regressionTest, test} from '@utils/test';
+import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -47,7 +47,7 @@ test('push card expand', async ({ page, mount }) => {
       > </ix-push-card>
   `);
 
-  await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
-
-  expect(await page.screenshot({ fullPage: true, animations: 'disabled'})).toMatchSnapshot();
+  expect(
+    await page.screenshot({ fullPage: true, animations: 'disabled' })
+  ).toMatchSnapshot();
 });
