@@ -9,24 +9,24 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
-const DATE_TIME_PICKER_SELECTOR = 'ix-time-picker';
+const DATE_TIME_PICKER_SELECTOR = 'ix-datetime-picker-rework';
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-datetime-picker></ix-datetime-picker>`);
+  await mount(`<ix-datetime-picker-rework></ix-datetime-picker-rework>`);
   const datePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('date picker tests single', () => {
+test.describe('datetime picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
       `
-      <ix-datetime-picker
+      <ix-datetime-picker-rework
         range="false"
         from="1990/03/29"
         time="09:10:12"
         week-start-index="1"
-      ></ix-datetime-picker>
+      ></ix-datetime-picker-rework>
       `
     );
   });
@@ -51,7 +51,7 @@ test.describe('date picker tests single', () => {
     expect(await timeChangeEvent).toBeTruthy;
   });
 
-  test('change date units', async ({ page }) => {
+  test('change date', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const dateChangeEvent = page.evaluate(() => {

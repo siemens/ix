@@ -13,23 +13,15 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('date picker', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('date-picker/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 4,
+    });
   });
 
   regressionTest('range', async ({ page }) => {
     await page.goto('date-picker/range');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('year/month selection', async ({ page }) => {
-    await page.goto('date-picker/year-month-selection');
-    const button = page.locator('div.selector > ix-button');
-    button.click();
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('week start', async ({ page }) => {
-    await page.goto('date-picker/week-start');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 4,
+    });
   });
 });

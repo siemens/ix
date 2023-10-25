@@ -18,19 +18,10 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 export type TimePickerCorners = DateTimeCardCorners;
-
-dayjs.extend(customParseFormat);
-
-interface TimePickerDescriptor {
-  unit: 'hours' | 'minutes' | 'seconds';
-  placeholder: string;
-  hidden: boolean;
-}
 
 @Component({
   tag: 'ix-time-picker',
@@ -43,8 +34,7 @@ export class TimePicker {
    *
    * @since 1.1.0
    */
-  // @Prop() format: string = 'HH:mm:ss';
-  @Prop() format: string = 'HH:mm:ss';
+  @Prop() format: string = 'TT';
 
   /**
    * Corner style
@@ -52,9 +42,9 @@ export class TimePicker {
   @Prop() corners: TimePickerCorners = 'rounded';
 
   /**
-   * Controls the visual presentation and styling of the component when it is displayed as a standalone element
+   * @deprecated Will be removed in 2.0.0
    */
-  @Prop() standaloneAppearance: boolean = true;
+  @Prop() individual: boolean = true;
 
   /**
    * Show hour input
@@ -76,7 +66,14 @@ export class TimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() time: string = dayjs().format(this.format);
+  @Prop() time: string = DateTime.now().toFormat(this.format);
+
+  /**
+   * Show time reference input
+   *
+   * @since 1.1.0 time reference is default aligned with formt tt
+   */
+  @Prop({ mutable: true }) showTimeReference = undefined;
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
@@ -89,10 +86,10 @@ export class TimePicker {
   /**
    * Set time reference
    */
-  @Prop({ mutable: true }) timeReference: 'AM' | 'PM' | undefined =
-    this.is12HourFormat()
-      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')
-      : undefined;
+  @Prop({ mutable: true }) timeReference: 'AM' | 'PM' = DateTime.fromFormat(
+    this.time,
+    this.format
+  ).toFormat('a') as 'PM' | 'AM';
 
   /**
    * Text of date select button
@@ -110,84 +107,159 @@ export class TimePicker {
    * Time change event
    */
   @Event() timeChange: EventEmitter<string>;
+
+  @State() hourInputRef: HTMLInputElement;
+  @State() minuteInputRef: HTMLInputElement;
+  @State() secondInputRef: HTMLInputElement;
   @State() referenceInputRef: HTMLInputElement;
-  @State() private _time: dayjs.Dayjs;
-  private formatMap: {};
 
   get hour() {
-    return this._time.hour();
+    return this._time.hour;
   }
 
   get minutes() {
-    return this._time.minute();
+    return this._time.minute;
   }
 
   get seconds() {
-    return this._time.second();
+    return this._time.second;
   }
 
-  get timePeriod() {
-    const period = this.is12HourFormat()
-      ? (dayjs(this._time, this.format).format('A') as 'AM' | 'PM')
-      : undefined;
+  private _time: DateTime = DateTime.now();
 
-    return period;
+  private setInputValue(
+    inputElement: HTMLInputElement,
+    value: number,
+    max: number
+  ) {
+    if (value > max) {
+      inputElement.value = max.toString();
+    } else if (value < 0) {
+      inputElement.value = '0';
+    } else {
+      inputElement.value = value.toString();
+    }
+
+    this.updateAndEmitTime();
   }
 
-  private modifyInputOnChange(
+  private updateAndEmitTime() {
+    this._time = this._time.set({
+      hour: Number(this.hourInputRef.value),
+      minute: Number(this.minuteInputRef.value),
+      second: Number(this.secondInputRef.value),
+    });
+
+    this.setHourAccordingToReference();
+
+    this.emitTimeChange();
+  }
+
+  private toggleInputValue(
+    inputElement: HTMLInputElement,
     currentValue: number,
-    inputRef: HTMLInputElement,
-    unit: 'hours' | 'minutes' | 'seconds'
+    step: 'up' | 'down',
+    max: number
   ) {
-    const max: number = this.getMaxDisplayedUnit(unit);
-    let value = currentValue;
-    if (this.timeReference === 'PM' && unit === 'hours') value += 12;
-
-    if (currentValue >= max) value = max;
-    if (value < 0) value = 0;
-
-    this._time = this._time.set(unit, value);
-    inputRef.value = value.toString();
-
-    this.emitTimeChange();
+    if (step === 'up') {
+      if (currentValue === max) {
+        inputElement.value = '0';
+      } else {
+        inputElement.stepUp();
+      }
+    } else {
+      if (currentValue === 0) {
+        inputElement.value = max.toString();
+      } else {
+        inputElement.stepDown();
+      }
+    }
   }
 
-  private modifyInputOnClick(
-    step: 'up' | 'down',
-    unit: 'hours' | 'minutes' | 'seconds'
+  private toggleHourInputWithRef(
+    inputElement: HTMLInputElement,
+    currentValue: number,
+    step: 'up' | 'down'
   ) {
-    step === 'up'
-      ? (this._time = this._time.add(1, unit))
-      : (this._time = this._time.subtract(1, unit));
+    if (step === 'up') {
+      if (currentValue === this.getMaxHour()) {
+        inputElement.value = '0';
+      } else {
+        inputElement.stepUp();
+      }
+    } else {
+      if (
+        (this.showTimeReference &&
+          this.timeReference === 'PM' &&
+          currentValue === 12) ||
+        currentValue === 0
+      ) {
+        inputElement.value = this.getMaxDisplayedHour().toString();
+      } else {
+        inputElement.stepDown();
+      }
+    }
+  }
 
-    this.emitTimeChange();
+  private updateInput(
+    step: 'up' | 'down',
+    { hours = undefined, minutes = undefined, seconds = undefined }
+  ) {
+    if (hours) {
+      if (this.showTimeReference) {
+        this.toggleHourInputWithRef(this.hourInputRef, this.hour, step);
+      } else {
+        this.toggleInputValue(this.hourInputRef, this.hour, step, 23);
+      }
+    }
+
+    if (minutes) {
+      this.toggleInputValue(this.minuteInputRef, this.minutes, step, 59);
+    }
+
+    if (seconds) {
+      this.toggleInputValue(this.secondInputRef, this.seconds, step, 59);
+    }
+
+    this.updateAndEmitTime();
   }
 
   private changeReference() {
-    this.timeReference = this.timeReference === 'AM' ? 'PM' : 'AM';
-
-    if (!this._time.format('A').includes(this.timeReference)) {
-      this._time = this._time.add(12, 'hour');
+    if (this.timeReference === 'AM') {
+      this.timeReference = 'PM';
+    } else {
+      this.timeReference = 'AM';
     }
+
+    this.setHourAccordingToReference();
 
     this.emitTimeChange();
   }
 
+  private setHourAccordingToReference() {
+    if (!this.showTimeReference) {
+      return;
+    }
+
+    let hour = Number(this.hourInputRef.value);
+
+    if (this.timeReference === 'PM') hour += 12;
+
+    this._time = this._time.set({ hour });
+  }
+
   private emitTimeChange() {
-    const time = this._time.format(this.format);
+    const time = this._time.toFormat(this.format);
     this.timeChange.emit(time);
   }
 
   componentWillLoad() {
-    this.formatMap = {
-      hours: this.is12HourFormat() ? 'h' : 'H',
-      minutes: 'm',
-      seconds: 's',
-    };
-
-    this._time = dayjs(this.time, this.format);
-    if (!this._time.isValid()) {
-      throw new Error('Format is not supported or not correct');
+    this._time = DateTime.fromFormat(this.time, this.format);
+    if (this.showTimeReference === undefined) {
+      const matchedKeys = Object.keys(
+        DateTime.fromFormatExplain(this.time, this.format).matches
+      );
+      this.showTimeReference = matchedKeys.includes('a');
     }
   }
 
@@ -196,150 +268,206 @@ export class TimePicker {
    */
   @Method()
   async getCurrentTime() {
-    return this._time.format(this.format);
+    return this._time.toFormat(this.format);
   }
 
-  private getMaxDisplayedUnit(unit: 'hours' | 'minutes' | 'seconds') {
-    return +dayjs().endOf('day').format(this.formatMap[unit]);
+  private getDisplayedHour() {
+    if (this.showTimeReference && this.timeReference === 'PM') {
+      return this._time.hour - 12;
+    }
+
+    return this._time.hour;
   }
 
-  private formatTime(unit: 'hours' | 'minutes' | 'seconds') {
-    let formattedTime = this._time.format(this.formatMap[unit]);
-    if (+formattedTime < 10) formattedTime = '0' + formattedTime;
-    return formattedTime;
+  private getMaxDisplayedHour() {
+    if (this.showTimeReference) {
+      return 11;
+    }
+
+    return 23;
   }
 
-  private is12HourFormat() {
-    return this.format.includes('h');
+  private getMaxHour() {
+    if (this.showTimeReference && this.timeReference === 'AM') {
+      return 11;
+    }
+
+    return 23;
   }
 
   render() {
-    const timepickerInformation: TimePickerDescriptor[] = [
-      {
-        unit: 'hours',
-        placeholder: 'HH',
-        hidden: !this.showHour,
-      },
-      {
-        unit: 'minutes',
-        placeholder: 'MM',
-        hidden: !this.showMinutes,
-      },
-      {
-        unit: 'seconds',
-        placeholder: 'SS',
-        hidden: !this.showSeconds,
-      },
-    ];
+    let hideHour = !this.showHour;
+    let hideMinutes = !this.showMinutes;
+    let hideSeconds = !this.showSeconds;
+    const hideTimeReference = !this.showTimeReference;
+    const hideIndividual = !this.individual;
 
-    const allHidden: boolean = timepickerInformation.every(
-      (info) => info.hidden
-    );
-
-    if (allHidden) {
-      timepickerInformation.forEach((info) => {
-        info.hidden = false;
-      });
+    if (hideHour && hideMinutes && hideSeconds) {
+      hideHour = false;
+      hideMinutes = false;
+      hideSeconds = false;
     }
 
-    const sum = +this.showHour + +this.showMinutes + +this.showSeconds;
+    const hideHourSeperator = hideMinutes || hideHour;
+    const hideMinutesSeperator = hideSeconds || hideMinutes;
 
     return (
       <Host>
-        <ix-date-time-card
-          standaloneAppearance={this.standaloneAppearance}
-          corners={this.corners}
-        >
+        <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
             <ix-typography variant="default-title">Time</ix-typography>
           </div>
+
           <div class="clock">
-            {timepickerInformation.map((descriptor, index: number) => (
-              <div class="time">
-                <div class={{ columns: true, hidden: descriptor.hidden }}>
-                  <ix-icon-button
-                    size="16"
-                    onClick={() =>
-                      this.modifyInputOnClick('up', descriptor.unit)
-                    }
-                    ghost
-                    icon="chevron-up"
-                    variant="primary"
-                    class="arrows"
-                  ></ix-icon-button>
+            <div class={{ columns: true, hidden: hideHour }}>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('up', { hours: true })}
+                ghost
+                icon={'chevron-up'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <input
+                class="form-control"
+                name="hours"
+                type="number"
+                placeholder="HH"
+                min="0"
+                max={this.getMaxDisplayedHour()}
+                value={this.getDisplayedHour()}
+                ref={(ref) => (this.hourInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.hourInputRef,
+                    Number(this.hourInputRef.value),
+                    this.getMaxDisplayedHour()
+                  )
+                }
+              ></input>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('down', { hours: true })}
+                ghost
+                icon={'chevron-down'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+            </div>
 
-                  <input
-                    class="form-control"
-                    name={descriptor.unit}
-                    type="number"
-                    placeholder={descriptor.placeholder}
-                    min="0"
-                    max={this.getMaxDisplayedUnit(descriptor.unit)}
-                    value={this.formatTime(descriptor.unit)}
-                    onChange={(e) => {
-                      let inputElement = e.target as HTMLInputElement;
-                      this.modifyInputOnChange(
-                        +inputElement.value,
-                        inputElement,
-                        descriptor.unit
-                      );
-                    }}
-                  ></input>
+            <div
+              class={{ 'column-seperator': true, hidden: hideHourSeperator }}
+            >
+              :
+            </div>
 
-                  <ix-icon-button
-                    size="16"
-                    onClick={() =>
-                      this.modifyInputOnClick('down', descriptor.unit)
-                    }
-                    ghost
-                    icon="chevron-down"
-                    variant="primary"
-                    class="arrows"
-                  ></ix-icon-button>
-                </div>
+            <div class={{ columns: true, hidden: hideMinutes }}>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('up', { minutes: true })}
+                ghost
+                icon={'chevron-up'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <input
+                class="form-control"
+                name="minutes"
+                type="number"
+                placeholder="MM"
+                min="0"
+                max="59"
+                value={this.minutes}
+                ref={(ref) => (this.minuteInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.minuteInputRef,
+                    Number(this.minuteInputRef.value),
+                    59
+                  )
+                }
+              ></input>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('down', { minutes: true })}
+                ghost
+                icon={'chevron-down'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+            </div>
 
-                {index !== timepickerInformation.length - 1 && sum != 1 && (
-                  <div
-                    class={{
-                      'column-seperator': true,
-                      hidden: descriptor.hidden,
-                    }}
-                  >
-                    :
-                  </div>
-                )}
-              </div>
-            ))}
+            <div
+              class={{ 'column-seperator': true, hidden: hideMinutesSeperator }}
+            >
+              :
+            </div>
+
+            <div class={{ columns: true, hidden: hideSeconds }}>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('up', { seconds: true })}
+                ghost
+                icon={'chevron-up'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+              <input
+                class="form-control"
+                name="seconds"
+                type="number"
+                placeholder="SS"
+                min="0"
+                max="59"
+                value={this.seconds}
+                ref={(ref) => (this.secondInputRef = ref)}
+                onChange={() =>
+                  this.setInputValue(
+                    this.secondInputRef,
+                    Number(this.secondInputRef.value),
+                    59
+                  )
+                }
+              ></input>
+              <ix-icon-button
+                size="16"
+                onClick={() => this.updateInput('down', { seconds: true })}
+                ghost
+                icon={'chevron-down'}
+                variant="primary"
+                class="arrows"
+              ></ix-icon-button>
+            </div>
 
             <div
               class={{
                 columns: true,
                 'default-space': true,
-                hidden: !this.is12HourFormat(),
+                hidden: hideTimeReference,
               }}
             >
               <ix-icon-button
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-up"
+                icon={'chevron-up'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
-              <div class="time-reference">{this.timePeriod}</div>
+              <div class="time-reference">{this.timeReference}</div>
               <ix-icon-button
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-down"
+                icon={'chevron-down'}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
           </div>
-          <div class={{ button: true, hidden: !this.standaloneAppearance }}>
+          <div class={{ button: true, hidden: hideIndividual }}>
             <ix-button
-              onClick={() => this.done.emit(this._time.format(this.format))}
+              onClick={() => this.done.emit(this._time.toFormat(this.format))}
             >
               {this.textSelectTime}
             </ix-button>

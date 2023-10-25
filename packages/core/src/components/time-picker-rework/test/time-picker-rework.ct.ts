@@ -9,7 +9,7 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-const TIME_PICKER_SELECTOR = 'ix-time-picker';
+const TIME_PICKER_SELECTOR = 'ix-time-picker-rework';
 const getTimeObjs = async (page: Page) => {
   return await page.$$eval(TIME_PICKER_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentTime()));
@@ -17,27 +17,27 @@ const getTimeObjs = async (page: Page) => {
 };
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-time-picker></ix-time-picker>`);
+  await mount(`<ix-time-picker-rework></ix-time-picker-rework>`);
   const datePicker = page.locator(TIME_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('date picker tests single', () => {
+test.describe('time picker tests', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-time-picker
+      `<ix-time-picker-rework
       time="09:10:11"
       >
-      </ix-time-picker>
-      <ix-time-picker
+      </ix-time-picker-rework>
+      <ix-time-picker-rework
       time="10:11:12 AM"
       format="hh:mm:ss A"
       >
-      </ix-time-picker>`
+      </ix-time-picker-rework>`
     );
   });
 
-  test('get date', async ({ page }) => {
+  test('get time', async ({ page }) => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 AM']);
   });
 
@@ -72,16 +72,17 @@ test.describe('date picker tests single', () => {
 
   test('maximum / minimum time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
-    const dateTimeCard = await page.$('ix-date-time-card');
-
-    const inputFields = await dateTimeCard.$$('input');
+    const inputFields = await page
+      .locator('ix-date-time-card')
+      .locator('input')
+      .all();
 
     for (const field of inputFields) {
       await field.type('100');
       await field.press('Enter');
     }
 
-    expect(await getTimeObjs(page)).toEqual(['23:59:59', '10:11:12 AM']);
+    expect(await getTimeObjs(page)).toEqual(['23:59:59', '12:59:59 PM']);
   });
 
   test('change time reference', async ({ page }) => {
@@ -96,7 +97,7 @@ test.describe('date picker tests single', () => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 PM']);
   });
 
-  test('select different date fires dateChange event', async ({ page }) => {
+  test('select different time fires timeChange event', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const timeChangeEvent = page.evaluate(() => {
@@ -111,5 +112,19 @@ test.describe('date picker tests single', () => {
     await incrementButtons[2].click();
 
     expect(await timeChangeEvent).toBeTruthy();
+  });
+
+  test('change time from outside', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+      el.time = '10:11:15';
+    });
+
+    await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
+      el.time = '11:12:15';
+    });
+
+    expect(['11:12:15', '10:11:12 AM']).toEqual(await getTimeObjs(page));
   });
 });

@@ -276,16 +276,17 @@ export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput>('ix-da
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
   'format',
   'range',
+  'individual',
   'corners',
   'from',
   'to',
   'minDate',
   'maxDate',
+  'eventDelimiter',
   'textSelectDate',
-  'weekStartIndex',
-  'standaloneAppearance',
   'dateChange',
   'dateRangeChange',
+  'done',
   'dateSelect'
 ]);
 
@@ -335,9 +336,10 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'to',
   'time',
   'showTimeReference',
+  'eventDelimiter',
   'timeReference',
   'textSelectDate',
-  'weekStartIndex',
+  'done',
   'timeChange',
   'dateChange',
   'dateSelect'
@@ -847,11 +849,12 @@ export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defin
 export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
-  'standaloneAppearance',
+  'individual',
   'showHour',
   'showMinutes',
   'showSeconds',
   'time',
+  'showTimeReference',
   'timeReference',
   'textSelectTime',
   'done',

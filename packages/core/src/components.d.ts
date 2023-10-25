@@ -18,14 +18,11 @@ import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-import { InputValidator } from "./components/utils/validators/validator";
-import { DateChangeEvent } from "./components/date-picker/date-picker";
-import { DateInputEvent } from "./components/date-input/date-input";
-import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-import { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
-import { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -40,6 +37,7 @@ import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
+import { TimePickerCorners as TimePickerCorners1 } from "./components/time-picker-rework/time-picker-rework";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { TypedEvent } from "./components/utils/typed-event";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -58,14 +56,11 @@ export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
-export { InputValidator } from "./components/utils/validators/validator";
-export { DateChangeEvent } from "./components/date-picker/date-picker";
-export { DateInputEvent } from "./components/date-input/date-input";
-export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker/date-picker";
+export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-export { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
-export { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -80,6 +75,7 @@ export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
+export { TimePickerCorners as TimePickerCorners1 } from "./components/time-picker-rework/time-picker-rework";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { TypedEvent } from "./components/utils/typed-event";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -550,11 +546,67 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter": string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from": string | null;
+        /**
+          * Get the current DateTime
+         */
+        "getCurrentDate": () => Promise<{ start: string; end: string; }>;
+        /**
+          * @deprecated Will be removed in 2.0.0
+         */
+        "individual": boolean;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
+          * If true a range of dates can be selected.
+         */
+        "range": boolean;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | null;
+    }
+    interface IxDatePickerRework {
+        /**
+          * Corner style
+         */
+        "corners": DateTimeCardCorners;
+        /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+         */
+        "dayJsLocale": ILocale;
+        /**
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+         */
+        "format": string;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
@@ -583,7 +635,7 @@ export namespace Components {
          */
         "textSelectDate": string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -598,7 +650,11 @@ export namespace Components {
           * Set corners style
          */
         "corners": DateTimeCardCorners1;
-        "standaloneAppearance": boolean;
+        /**
+          * set styles
+         */
+        "individual": boolean;
+        "standaloneAppearance": any;
     }
     /**
      * @since 3.0.0
@@ -693,10 +749,15 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter": string;
+        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from": string | undefined;
+        "from": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -749,6 +810,77 @@ export namespace Components {
         "timeReference": 'AM' | 'PM';
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to": string | null;
+    }
+    interface IxDatetimePickerRework {
+        /**
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat": string;
+        /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+         */
+        "dayJsLocale": ILocale;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "from": string | undefined;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate": string;
+        /**
+          * If true a date-range can be selected (from/to).
+         */
+        "range": boolean;
+        /**
+          * Show hour input
+         */
+        "showHour": boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes": boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds": boolean;
+        /**
+          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * @since 1.1.0
+         */
+        "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate": string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time": string;
+        /**
+          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
+        /**
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -1959,9 +2091,59 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string>;
         /**
+          * @deprecated Will be removed in 2.0.0
+         */
+        "individual": boolean;
+        /**
           * Show hour input
          */
         "showHour": boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes": boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds": boolean;
+        /**
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
+         */
+        "showTimeReference": any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime": string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time": string;
+        /**
+          * Set time reference
+         */
+        "timeReference": 'AM' | 'PM';
+    }
+    interface IxTimePickerRework {
+        /**
+          * Corner style
+         */
+        "corners": TimePickerCorners1;
+        /**
+          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "format": string;
+        /**
+          * Get the current time based on the wanted format
+         */
+        "getCurrentTime": () => Promise<string>;
+        /**
+          * Show hour input
+         */
+        "showHours": boolean;
         /**
           * Show minutes input
          */
@@ -1980,7 +2162,7 @@ export namespace Components {
          */
         "textSelectTime": string;
         /**
-          * Select time with format string
+          * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
          */
         "time": string;
@@ -2326,13 +2508,17 @@ export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
 }
-export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
+export interface IxDatePickerReworkCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxDatetimeInputElement;
+    target: HTMLIxDatePickerReworkElement;
 }
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
+}
+export interface IxDatetimePickerReworkCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDatetimePickerReworkElement;
 }
 export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2453,6 +2639,10 @@ export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTimePickerElement;
+}
+export interface IxTimePickerReworkCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTimePickerReworkElement;
 }
 export interface IxToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2664,6 +2854,12 @@ declare global {
         prototype: HTMLIxDatePickerElement;
         new (): HTMLIxDatePickerElement;
     };
+    interface HTMLIxDatePickerReworkElement extends Components.IxDatePickerRework, HTMLStencilElement {
+    }
+    var HTMLIxDatePickerReworkElement: {
+        prototype: HTMLIxDatePickerReworkElement;
+        new (): HTMLIxDatePickerReworkElement;
+    };
     interface HTMLIxDateTimeCardElement extends Components.IxDateTimeCard, HTMLStencilElement {
     }
     var HTMLIxDateTimeCardElement: {
@@ -2684,6 +2880,12 @@ declare global {
     var HTMLIxDatetimePickerElement: {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
+    };
+    interface HTMLIxDatetimePickerReworkElement extends Components.IxDatetimePickerRework, HTMLStencilElement {
+    }
+    var HTMLIxDatetimePickerReworkElement: {
+        prototype: HTMLIxDatetimePickerReworkElement;
+        new (): HTMLIxDatetimePickerReworkElement;
     };
     /**
      * @since 1.4.0
@@ -3096,6 +3298,12 @@ declare global {
         prototype: HTMLIxTimePickerElement;
         new (): HTMLIxTimePickerElement;
     };
+    interface HTMLIxTimePickerReworkElement extends Components.IxTimePickerRework, HTMLStencilElement {
+    }
+    var HTMLIxTimePickerReworkElement: {
+        prototype: HTMLIxTimePickerReworkElement;
+        new (): HTMLIxTimePickerReworkElement;
+    };
     interface HTMLIxToastElement extends Components.IxToast, HTMLStencilElement {
     }
     var HTMLIxToastElement: {
@@ -3209,9 +3417,11 @@ declare global {
         "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
+        "ix-date-picker-rework": HTMLIxDatePickerReworkElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-input": HTMLIxDatetimeInputElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
+        "ix-datetime-picker-rework": HTMLIxDatetimePickerReworkElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
@@ -3271,6 +3481,7 @@ declare global {
         "ix-tabs": HTMLIxTabsElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
+        "ix-time-picker-rework": HTMLIxTimePickerReworkElement;
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
@@ -3825,11 +4036,83 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Date format string. See @link https://day.js.org/docs/en/display/format for all available tokens.
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter"?: string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
         /**
-          * The selected starting date. If the date-picker is not in range mode this is the selected date. Format has to match the `format` property.
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * @since 1.1.0
+         */
+        "from"?: string | null;
+        /**
+          * @deprecated Will be removed in 2.0.0
+         */
+        "individual"?: boolean;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.
+          * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+         */
+        "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;
+        /**
+          * Date range change. Only triggered if datepicker is in range mode
+          * @since 1.1.0
+         */
+        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        /**
+          * Date selection confirmed via button action
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        /**
+          * Date selection confirmed via button action
+          * @deprecated Will be removed in 2.0.0. Use `dateSelect`
+         */
+        "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
+        /**
+          * If true a range of dates can be selected.
+         */
+        "range"?: boolean;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | null;
+    }
+    interface IxDatePickerRework {
+        /**
+          * Corner style
+         */
+        "corners"?: DateTimeCardCorners;
+        /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+         */
+        "dayJsLocale"?: ILocale;
+        /**
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -3847,18 +4130,18 @@ declare namespace LocalJSX {
           * Triggers if the date selection changes.
           * @since 2.0.0
          */
-        "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
+        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
         /**
-          * Triggers if the date selection changes. Only triggered if date-picker is in range mode.
+          * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
           * @since 1.1.0
           * @deprecated Use `dateChange` (triggers on both modes)
          */
-        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
+        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent1>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -3870,7 +4153,7 @@ declare namespace LocalJSX {
          */
         "textSelectDate"?: string;
         /**
-          * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
@@ -3885,7 +4168,11 @@ declare namespace LocalJSX {
           * Set corners style
          */
         "corners"?: DateTimeCardCorners1;
-        "standaloneAppearance"?: boolean;
+        /**
+          * set styles
+         */
+        "individual"?: boolean;
+        "standaloneAppearance"?: any;
     }
     /**
      * @since 3.0.0
@@ -4020,10 +4307,15 @@ declare namespace LocalJSX {
          */
         "dateFormat"?: string;
         /**
+          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
+          * @since 1.1.0
+         */
+        "eventDelimiter"?: string;
+        /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
           * @since 1.1.0
          */
-        "from"?: string | undefined;
+        "from"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -4040,10 +4332,14 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event is fired after confirm button is pressed
+          * Date selection event is fired after confirm button is pressend
           * @since 1.1.0
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent1>) => void;
+        /**
+          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
+         */
+        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Time change
           * @since 1.1.0
@@ -4091,6 +4387,92 @@ declare namespace LocalJSX {
         "timeReference"?: 'AM' | 'PM';
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+          * @since 1.1.0
+         */
+        "to"?: string | null;
+    }
+    interface IxDatetimePickerRework {
+        /**
+          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "dateFormat"?: string;
+        /**
+          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+         */
+        "dayJsLocale"?: ILocale;
+        /**
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * @since 1.1.0
+         */
+        "from"?: string | undefined;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+          * @since 1.1.0
+         */
+        "minDate"?: string;
+        /**
+          * Date change
+          * @since 1.1.0
+         */
+        "onDateChange"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent1>) => void;
+        /**
+          * Datetime selection event is fired after confirm button is pressed
+          * @since 1.1.0
+         */
+        "onDateSelect"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent1>) => void;
+        /**
+          * Time change
+          * @since 1.1.0
+         */
+        "onTimeChange"?: (event: IxDatetimePickerReworkCustomEvent<string>) => void;
+        /**
+          * If true a date-range can be selected (from/to).
+         */
+        "range"?: boolean;
+        /**
+          * Show hour input
+         */
+        "showHour"?: boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds"?: boolean;
+        /**
+          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * @since 1.1.0
+         */
+        "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectDate"?: string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time"?: string;
+        /**
+          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "timeFormat"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
+        /**
+          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
@@ -5393,6 +5775,10 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
+          * @deprecated Will be removed in 2.0.0
+         */
+        "individual"?: boolean;
+        /**
           * Time event
          */
         "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
@@ -5413,6 +5799,56 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
+          * Show time reference input
+          * @since 1.1.0 time reference is default aligned with formt tt
+         */
+        "showTimeReference"?: any;
+        /**
+          * Text of date select button
+          * @since 1.1.0
+         */
+        "textSelectTime"?: string;
+        /**
+          * Select time with format string
+          * @since 1.1.0
+         */
+        "time"?: string;
+        /**
+          * Set time reference
+         */
+        "timeReference"?: 'AM' | 'PM';
+    }
+    interface IxTimePickerRework {
+        /**
+          * Corner style
+         */
+        "corners"?: TimePickerCorners1;
+        /**
+          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * @since 1.1.0
+         */
+        "format"?: string;
+        /**
+          * Time change event
+         */
+        "onTimeChange"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
+        /**
+          * Time event
+         */
+        "onTimeSelect"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
+        /**
+          * Show hour input
+         */
+        "showHours"?: boolean;
+        /**
+          * Show minutes input
+         */
+        "showMinutes"?: boolean;
+        /**
+          * Show seconds input
+         */
+        "showSeconds"?: boolean;
+        /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
         "standaloneAppearance"?: boolean;
@@ -5422,7 +5858,7 @@ declare namespace LocalJSX {
          */
         "textSelectTime"?: string;
         /**
-          * Select time with format string
+          * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
          */
         "time"?: string;
@@ -5788,9 +6224,11 @@ declare namespace LocalJSX {
         "ix-css-grid-item": IxCssGridItem;
         "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
+        "ix-date-picker-rework": IxDatePickerRework;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-input": IxDatetimeInput;
         "ix-datetime-picker": IxDatetimePicker;
+        "ix-datetime-picker-rework": IxDatetimePickerRework;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
@@ -5850,6 +6288,7 @@ declare namespace LocalJSX {
         "ix-tabs": IxTabs;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
+        "ix-time-picker-rework": IxTimePickerRework;
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
@@ -5921,12 +6360,14 @@ declare module "@stencil/core" {
              */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
+            "ix-date-picker-rework": LocalJSX.IxDatePickerRework & JSXBase.HTMLAttributes<HTMLIxDatePickerReworkElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             /**
              * @since 3.0.0
              */
             "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
+            "ix-datetime-picker-rework": LocalJSX.IxDatetimePickerRework & JSXBase.HTMLAttributes<HTMLIxDatetimePickerReworkElement>;
             /**
              * @since 1.4.0
              */
@@ -6043,6 +6484,7 @@ declare module "@stencil/core" {
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
+            "ix-time-picker-rework": LocalJSX.IxTimePickerRework & JSXBase.HTMLAttributes<HTMLIxTimePickerReworkElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
