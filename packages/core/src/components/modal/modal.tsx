@@ -89,7 +89,7 @@ export class Modal {
 
   @OnListener<Modal>('keydown', (self) => !self.keyboard)
   onKey(e: KeyboardEvent) {
-    if (e.key === 'Escape' && this.keyboard === false) {
+    if (e.key === 'Escape') {
       e.preventDefault();
     }
   }
