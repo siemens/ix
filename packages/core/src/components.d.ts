@@ -693,11 +693,6 @@ export namespace Components {
          */
         "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
-          * If set to true an open dropdown will close if the trigger element gets clicked again.
-          * @since 2.1.0
-         */
-        "triggerToggles": boolean;
-        /**
           * Update position of dropdown
          */
         "updatePosition": () => Promise<void>;
@@ -3831,11 +3826,6 @@ declare namespace LocalJSX {
           * Define one or more events to open dropdown
          */
         "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
-        /**
-          * If set to true an open dropdown will close if the trigger element gets clicked again.
-          * @since 2.1.0
-         */
-        "triggerToggles"?: boolean;
     }
     /**
      * @since 1.3.0

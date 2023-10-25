@@ -137,7 +137,6 @@ export class DropdownButton {
           trigger={this.dropdownAnchor}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
-          triggerToggles
         >
           <slot></slot>
         </ix-dropdown>

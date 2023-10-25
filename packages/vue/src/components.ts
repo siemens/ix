@@ -313,7 +313,6 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'placement',
   'positioningStrategy',
   'header',
-  'triggerToggles',
   'offset',
   'triggerEvent',
   'overwriteDropdownStyle',

@@ -95,12 +95,6 @@ export class Dropdown {
   @Prop() header?: string;
 
   /**
-   * If set to true an open dropdown will close if the trigger element gets clicked again.
-   * @since 2.1.0
-   */
-  @Prop() triggerToggles: boolean;
-
-  /**
    * Move dropdown along main axis of alignment
    *
    * @internal
@@ -138,13 +132,11 @@ export class Dropdown {
   private dropdownRef: HTMLElement;
 
   private toggleBind: any;
-  private openBind: any;
 
   private localUId = `dropdown-${sequenceId++}-${new Date().valueOf()}`;
 
   constructor() {
     this.toggleBind = this.toggle.bind(this);
-    this.openBind = this.open.bind(this);
 
     if (dropdownDisposer.has(this.localUId)) {
       console.warn('Dropdown with duplicated id detected');
@@ -167,24 +159,15 @@ export class Dropdown {
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        this.triggerElement.addEventListener(
-          'click',
-          this.triggerToggles ? this.toggleBind : this.openBind
-        );
+        this.triggerElement.addEventListener('click', this.toggleBind);
         break;
 
       case 'hover':
-        this.triggerElement.addEventListener(
-          'mouseenter',
-          this.triggerToggles ? this.toggleBind : this.openBind
-        );
+        this.triggerElement.addEventListener('mouseenter', this.toggleBind);
         break;
 
       case 'focus':
-        this.triggerElement.addEventListener(
-          'focusin',
-          this.triggerToggles ? this.toggleBind : this.openBind
-        );
+        this.triggerElement.addEventListener('focusin', this.toggleBind);
         break;
     }
   }
@@ -196,25 +179,16 @@ export class Dropdown {
     switch (triggerEvent) {
       case 'click':
         if (this.closeBehavior === 'outside') {
-          triggerElement.removeEventListener(
-            'click',
-            this.triggerToggles ? this.toggleBind : this.openBind
-          );
+          triggerElement.removeEventListener('click', this.toggleBind);
         }
         break;
 
       case 'hover':
-        triggerElement.removeEventListener(
-          'mouseenter',
-          this.triggerToggles ? this.toggleBind : this.openBind
-        );
+        triggerElement.removeEventListener('mouseenter', this.toggleBind);
         break;
 
       case 'focus':
-        triggerElement.removeEventListener(
-          'focusin',
-          this.triggerToggles ? this.toggleBind : this.openBind
-        );
+        triggerElement.removeEventListener('focusin', this.toggleBind);
         break;
     }
   }
@@ -378,20 +352,6 @@ export class Dropdown {
 
     if (!defaultPrevented) {
       this.show = !this.show;
-    }
-  }
-
-  private open(event: Event) {
-    event.preventDefault();
-
-    if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event.stopPropagation();
-    }
-
-    const { defaultPrevented } = this.showChanged.emit(true);
-
-    if (!defaultPrevented) {
-      this.show = true;
     }
   }
 
