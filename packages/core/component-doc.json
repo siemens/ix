@@ -802,8 +802,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner"
@@ -840,9 +839,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -3779,8 +3775,7 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item",
-        "my-component"
+        "ix-split-button-item"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3800,9 +3795,6 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
-          "ix-dropdown-item"
-        ],
-        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -6349,9 +6341,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item"
@@ -6367,9 +6357,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "my-component": [
-          "ix-menu"
         ]
       },
       "props": [
@@ -7062,9 +7049,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-avatar",
         "ix-dropdown",
@@ -7078,9 +7063,6 @@
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
-        ],
-        "my-component": [
-          "ix-menu-avatar"
         ]
       },
       "props": [
@@ -12302,44 +12284,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-application",
-        "ix-menu",
-        "ix-menu-avatar",
-        "ix-dropdown-item",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-application",
-          "ix-menu",
-          "ix-menu-avatar",
-          "ix-dropdown-item",
-          "ix-button"
-        ],
-        "ix-menu": [
-          "ix-burger-menu",
-          "ix-menu-item"
-        ],
-        "ix-burger-menu": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-menu-avatar": [
-          "ix-avatar",
-          "ix-dropdown",
-          "ix-menu-avatar-item"
-        ],
-        "ix-menu-avatar-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],
