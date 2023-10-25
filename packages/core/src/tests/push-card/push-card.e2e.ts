@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest,test } from '@utils/test';
+import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
