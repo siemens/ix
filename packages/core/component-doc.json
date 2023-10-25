@@ -3779,7 +3779,8 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3799,6 +3800,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -7224,8 +7228,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-avatar",
-        "my-component"
+        "ix-menu-avatar"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -7235,9 +7238,6 @@
           "ix-dropdown-item"
         ],
         "ix-menu-avatar": [
-          "ix-menu-avatar-item"
-        ],
-        "my-component": [
           "ix-menu-avatar-item"
         ]
       },
@@ -12306,7 +12306,7 @@
         "ix-application",
         "ix-menu",
         "ix-menu-avatar",
-        "ix-menu-avatar-item",
+        "ix-dropdown-item",
         "ix-button"
       ],
       "dependencyGraph": {
@@ -12314,7 +12314,7 @@
           "ix-application",
           "ix-menu",
           "ix-menu-avatar",
-          "ix-menu-avatar-item",
+          "ix-dropdown-item",
           "ix-button"
         ],
         "ix-menu": [
