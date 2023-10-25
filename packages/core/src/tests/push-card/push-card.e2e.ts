@@ -33,4 +33,14 @@ regressionTest.describe('push-card: basic', () => {
       await page.screenshot({ fullPage: true, animations: 'disabled' })
     ).toMatchSnapshot();
   });
+
+  regressionTest(
+    'should have visual regressions on collapse parameter',
+    async ({ page }) => {
+      await page.goto('push-card/collapse');
+      expect(
+        await page.screenshot({ fullPage: true, animations: 'disabled' })
+      ).toMatchSnapshot();
+    }
+  );
 });
