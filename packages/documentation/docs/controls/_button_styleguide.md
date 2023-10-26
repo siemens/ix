@@ -1,40 +1,49 @@
 # UX Description
 
 Buttons are used to initiate actions, to apply actions to selected objects and to activate/deactivate functions.
-
-Go to:
-
-- [Variants](#variants)
-- [Behavior in context](#behavior-in-context)
-- [States](#states)
-- [Do and don't](#do-and-dont)
-
-## Usage
-
-### When to use
-
 Buttons should be used to trigger an immediate action. They can be placed within dialogs, forms, modal windows and other containers. Each content area should include only one primary button.
-
-### When not to use
-
 When many actions/functions are necessary, using only buttons can easily overcrowd the screen. Don't only rely on buttons in such cases, but consider alternatives such as dropdown or split buttons or moving some of the functionality to a drawer or a dialog.
 Do not use buttons for navigation. To foward a user to a new page, use a hyperlink instead.
 
+Buttons are the keystones of user interface design, offering users a tangible way to interact with digital environments. Our design guidelines outline key principles for creating effective and user-friendly buttons. By following the button design guidelines, you can create user-friendly interfaces that guide users through their digital journeys with clarity, responsiveness, and accessibility. Consistent, well-designed buttons are the building blocks of a positive user experience.
+
+
+## Anatomy
+
+![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097%3A5037&mode=design&t=QmxiHvZF7qOmGQQj-1)
+
+
+
+1. Contained button       | 2. Outlined button      | 3. Ghost  button        | 4. Icon  button          |
+--------------------------|-------------------------|-------------------------|--------------------------|
+- A. Container            |- A. Container           |- A. Text label          |- C. Container (optional) |        
+- B. Text label           |- B. Text label          |- C. Icon (optional)     |- B. Icon                 |
+- C. Icon (optional)      |- C. Icon (optional)     |                         |                          | 
+     
+
+
+
+![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1068%3A4671&mode=design&t=QmxiHvZF7qOmGQQj-1)
+
+
+1. Default varioant
+2. Outlined variant
+3. Ghost variant
+
+
+
 ## Variants
 
-Buttons are available as primary, secondary and tertiary variants. Through the selective use of fill and outline color, different emphasis is given by each variant. Buttons can contain an icon and text, only text or only an icon. All buttons have a respective grey variant to be used within sections with less importance.
+- **Primary button:** for the most important or primary actions within the user interface, to draw the user's immediate attention to the most important and frequently used action. These are typically actions that advance the user through a process, such as "Submit," "Save," "Sign Up," or "Checkout." it's crucial to note that primary buttons are identified by their unique and distinguishing colors.
 
-![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=143-9694&mode=design&t=oeSCpzdXLLAiSHv2-0)
+- **Secondary button:** for actions that are less commonly performed or that offer additional choices. These could include actions like "Cancel," "Reset," or "Advanced Options, " or support the primary action. For instance, in a dialog box, a secondary button might be used for "Don't Save" when the primary action is "Save." It's important to underscore that secondary buttons are characterized by a uted grey color.
+
+- **Tertiary button:** are used for actions that are typically not part of the core user journey but serve specialized or conditional purposes.Tertiary buttons can represent actions such as "Advanced Settings," "More Options," "Help," or "Customize." They may also be used for conditional actions like "Change Preferences" or "View Details."
+
 
 ### Emphasis
 
-Emphasis is used to create a visual hierachy between the buttons in one layout. A primary button can be accompanied by buttons of medium and low emphasis. There is no strict rule to place a secondary next to primary button. To create a clear hierarchy, tertiary buttons can be used instead which improves user guidance.
-
-| Variant                    | Description and usage                                                                                        |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Primary button             | Call to action with highest emphasis, most-likely the next action. Use sparingly, preferably one per layout. |
-| Secondary (outline) button | Standard action which requires medium emphasis and but needs to be easily recognizable.                      |
-| Tertiary (ghost) button    | Action requiring less attention.                                                                             |
+Emphasis is a fundamental design principle used to guide user attention, and convey hierarchy within the buttons in one layout for the user. In a layout, it's possible for an app to present more than one button concurrently. This allows for a primary button to be accompanied by secondary and tertiary buttons, each serving less pivotal functions. When incorporating multiple buttons, it's crucial to avoid any confusion where the active state of one button may be mistaken for the disabled state of another.
 
 Lower emphasis can also be assigned to content areas through the use of grey buttons. Default (colored) and grey buttons should not be mixed in one line.
 
@@ -79,7 +88,7 @@ A button group, also known as segmented buttons or toggle buttons, is an element
 
 ### Interaction
 
-A button can be triggered by clicking/pressing anywhere within the button container. When the button is focused, it can be triggered by pressing <kbd>Space</kbd>.
+Buttons are interactive components that enable users to trigger specific actions, navigate between screens or pages, and control the behavior of an application or website.  <kbd>Space</kbd>.
 
 ### Text truncation
 
@@ -105,7 +114,6 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 | Selected Active | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
 | Focused         | The focused state is indicated by a focus frame.                                                                               |
 
-## Anatomy
 
 ### Sizing
 
