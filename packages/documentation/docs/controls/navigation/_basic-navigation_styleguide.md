@@ -1,56 +1,53 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Demo';
 
-The Basic Navigation is a combination of essential infrastructural components forming the basic layout structure of an application. Alternatively, the [Map Navigation](#link) offers an additional but less flexible layout.  
+Basic navigation is a combination of essential infrastructural components forming the basic application layout structure. Alternatively, the [map navigation](#link) offers an additional but less flexible layout.  
 
-![Basic Navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
+![Basic navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
-The Basic Navigation consists of the following parts:
-- (1) App Header: component at the top of the application
-- (2) [Navigation Menu](./vertical-tabs.md): component for navigation
-- (3) App content: the actual content of an application
+Basic navigation has:
+- (1) App header: component at the top of the application
+- (2) [Navigation menu](./vertical-tabs.md): component for navigation
+- (3) App content
 
-### App Header
+### App header
 
-![App Header](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
+![App header](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
 
-The App Header (1) hosts the brand logo (4) and the application name (5). The application name can be extended by additional information about the current application context. Use the pipe character "|" and 2 spaces before and after to separate both.  
-In case the application will be hosted inside a framework that comes with its own header, it is possible to hide the App Header to avoid 2 headers on top of each other (option: hideHeader). The brand identity and the application name should then be provided by the framework’s header.
-
-<ApiTableSinceTag message="2.0.0" />
-The Basic Navigation now adapts to breakpoints. More information see [Behavior](#behavior).
+The app header typically (1) hosts the brand logo (4) and the application name (5). The name can be extended with additional information by using the pipe character "|" and 2 spaces before and after to separate both.  
+If the application is hosted inside a framework that comes with its own header, you can hide the app header to avoid 2 headers on top of each other (option: hideHeader). The brand identity and the application name is then be provided by the framework’s header.
 
 
 ## Options
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| breakpoints | Defines which breakpoints the Basic Navigation will adapt to: lg (large), md (medium), sm (small) |
-| hideHeader | If true, the header component will be hidden. |
-| forceBreakpoint | This option is intended to force the application to use only one of the available breakpoints. |
+| breakpoints | Defines which breakpoints the basic navigation will adapt to: lg (large), md (medium), sm (small) |
+| hideHeader | If true, the header component is hidden |
+| forceBreakpoint | This option forces the application to use only one of the available breakpoints |
 
 ## Behavior
-The Basic Navigation adapts by default automatically to the three breakpoints. Depending on the breakpoint, the behavior of the Navigation Menu is different.
+Basic navigation automatically adapts, by default, to the three breakpoints. Depending on the breakpoint, the behavior of the navigation menu is different.
 
 ![Behavior at different breakpoints](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-57503&mode=design&t=SxUA6AcHswBAiIzi-11)
 
-### Breakpoint Large (lg) – desktop (6/7)
+### Breakpoint large (lg) – desktop (6/7)
 - `only screen and (min-width: 62em)`
-- At this breakpoint the Navigation Menu and the application content will share the available viewport width.
-- Clicking the Navigation Menu icon, the Navigation Menu will expand permanently until the collapse button is clicked, the content width will adapt accordingly
+- At this breakpoint, the navigation menu and the application content shares the available viewport width
+- Clicking the navigation menu icon expands it permanently until the collapse button is clicked ( content width adapts accordingly)
 
-### Breakpoint Medium (md) – tablet (8/9)
+### Breakpoint medium (md) – tablet (8/9)
 -  `only screen and (min-width: 48em)`
-- Clicking the Navigation Menu icon, the Navigation Menu will expand temporarily as overlay
-- Another click or tap on the content or an navigation item will collapse the Navigation Menu again
+- Clicking the navigation menu icon expands it temporarily as an overlay
+- Another click or tap on the content or a navigation item collapses the navigation menu again
 
-### Breakpoint Small (sm) – mobile phone (10/11)
+### Breakpoint small (sm) – mobile phone (10/11)
 -  `only screen and (min-width: 36em)`
-- The Navigation Menu disappears, the Navigation Menu icon moves into the Application Header
-- Clicking the icon, the Navigation Menu appears as an overlay
+- Navigation menu disappears and the icon moves into the application header
+- Clicking the icon displays the navigation menu as an overlay
 
 ### Example
 <Playground name="menu-layouts" height="30rem" noMargin frameworks={{}}></Playground>
 
 ## Dos and Don’ts
-- Avoid placing additional components inside the App Header to keep a clean and consistent look of Siemens applications. Furthermore, the header will host infrastructural elements in near future that could collide.
+- Don't place additional components inside the application header for Siemens applications
 
