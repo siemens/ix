@@ -132,7 +132,7 @@
 
 @mixin typography-h6 {
   @include define-typography(
-    $size: var(--theme-ms-1),
+    $size: var(--theme-ms--1),
     $font-weight: var(--theme-font-weight-bold)
   );
 }

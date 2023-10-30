@@ -13,8 +13,17 @@ import {
 } from '@site/src/components/ApiTable';
 import fse from 'fs-extra';
 import path from 'path';
-import { renderSinceTag } from '../docs-tags';
-import { escapeMarkdown } from '../utils';
+import { escapeMarkdown } from './utils';
+
+type DocsTag = { name: string; text: string };
+
+function htmlSinceTag(value: string) {
+  return `<span className="Api__Table Docs__Tag">Since: ${value}</span>`;
+}
+
+function htmlDeprecatedTag(value: string) {
+  return `<span className="Api__Table Docs__Tag Docs__Tag__Deprecated" title="${value}">Deprecated: ${value}</span>`;
+}
 
 export async function writeApi(component: any, folderPath: string) {
   const output = path.join(folderPath, component.tag);
@@ -64,7 +73,14 @@ export function writeSlots(slots: { name: string; docs: string }[]) {
   return staticCode;
 }
 
-function writeEvents(events) {
+function writeEvents(
+  events: {
+    docsTags: DocsTag[];
+    event: string;
+    docs: string;
+    detail: string;
+  }[]
+) {
   if (events.length === 0) {
     return 'No events available for this component.';
   }
@@ -108,7 +124,16 @@ function writeEvents(events) {
   return staticCode;
 }
 
-function writeProps(properties) {
+function writeProps(
+  properties: {
+    name: string;
+    docs: string;
+    type: string;
+    attr: string;
+    default: string;
+    docsTags: DocsTag[];
+  }[]
+) {
   if (properties.length === 0) {
     return 'No properties available for this component.';
   }
@@ -171,13 +196,17 @@ function writeOverview(component: any) {
   return `${docs}`;
 }
 
-function writeTags(component: any) {
+function writeTags(component: { docsTags: DocsTag[] }) {
   const { docsTags } = component;
 
   const renderedDocsTags = docsTags
     .map((tag) => {
       if (tag.name === 'since') {
-        return renderSinceTag(tag.text);
+        return htmlSinceTag(tag.text);
+      }
+
+      if (tag.name === 'deprecated') {
+        return htmlDeprecatedTag(tag.text);
       }
 
       return null;
