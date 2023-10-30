@@ -1290,7 +1290,7 @@ export namespace Components {
         "initials": string;
         /**
           * Control the visibility of the logout button
-          * @since 2.0.2
+          * @since 2.1.0
          */
         "showLogoutButton": boolean;
         /**
@@ -4452,7 +4452,7 @@ declare namespace LocalJSX {
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * Control the visibility of the logout button
-          * @since 2.0.2
+          * @since 2.1.0
          */
         "showLogoutButton"?: boolean;
         /**

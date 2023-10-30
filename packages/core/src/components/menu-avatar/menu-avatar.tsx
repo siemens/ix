@@ -15,9 +15,8 @@ import {
   Host,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
-import { hasSlottedElements } from '../utils/shadow-dom';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -58,15 +57,15 @@ export class MenuAvatar {
 
   /**
    *  Control the visibility of the logout button
-   *  @since 2.0.2
+   *  @since 2.1.0
    */
   @Prop() showLogoutButton: boolean = true;
 
   /**
    * Control fo the visibility of the dropdown menu
-   * @since 2.0.2
+   * @since 2.1.0
    */
-  @State() hasContent: boolean = true;
+  @State() showContextMenu: boolean = false;
 
   /**
    * Logout click
@@ -75,9 +74,13 @@ export class MenuAvatar {
 
   private avatarElementId = 'ix-menu-avatar-id';
 
-  @Watch('showLogoutButton')
-  tst() {
-    console.log(this.showLogoutButton);
+  onSlotChange() {
+    const slot = this.hostElement.shadowRoot.querySelector('slot');
+    if (!slot) {
+      return;
+    }
+    const elements = getSlottedElements(slot);
+    this.showContextMenu = elements.length !== 0;
   }
 
   render() {
@@ -100,30 +103,26 @@ export class MenuAvatar {
             </span>
           </div>
         </button>
-        {this.hasContent || this.showLogoutButton ? (
-          <ix-dropdown
-            trigger={this.hostElement}
-            placement={'right-start'}
-            offset={{
-              mainAxis: 16,
-            }}
-          >
-            <slot
-              onSlotchange={() => {
-                this.hasContent = hasSlottedElements(this.hostElement);
+        <ix-dropdown
+          trigger={this.hostElement}
+          placement={'right-start'}
+          hidden={!this.showContextMenu && !this.showLogoutButton}
+          offset={{
+            mainAxis: 16,
+          }}
+        >
+          <slot onSlotchange={() => this.onSlotChange()}></slot>
+          {this.showLogoutButton ? (
+            <ix-menu-avatar-item
+              hidden={!this.showLogoutButton}
+              label={this.i18nLogout}
+              icon={'log-out'}
+              onClick={(e) => {
+                this.logoutClick.emit(e);
               }}
-            ></slot>
-            {this.showLogoutButton ? (
-              <ix-menu-avatar-item
-                label={this.i18nLogout}
-                icon={'log-out'}
-                onClick={(e) => {
-                  this.logoutClick.emit(e);
-                }}
-              ></ix-menu-avatar-item>
-            ) : null}
-          </ix-dropdown>
-        ) : null}
+            ></ix-menu-avatar-item>
+          ) : null}
+        </ix-dropdown>
       </Host>
     );
   }
