@@ -1,35 +1,13 @@
 # UX Description
 
-Buttons are used to initiate actions, to apply actions to selected objects and to activate/deactivate functions.
-Buttons should be used to trigger an immediate action. They can be placed within dialogs, forms, modal windows and other containers. Each content area should include only one primary button.
-When many actions/functions are necessary, using only buttons can easily overcrowd the screen. Don't only rely on buttons in such cases, but consider alternatives such as dropdown or split buttons or moving some of the functionality to a drawer or a dialog.
-Do not use buttons for navigation. To foward a user to a new page, use a hyperlink instead.
+Buttons are used to initiate actions, to apply actions to selected objects and to activate/deactivate functions. Buttons should be used to trigger an immediate action. They can be placed within dialogs, forms, modal windows and other containers. Each content area should include only one primary button. Buttons are the keystones of user interface design, offering users a tangible way to interact with digital environments. Our design guidelines outline key principles for creating effective and user-friendly buttons. By following the button design guidelines, you can create user-friendly interfaces that guide users through their digital journeys with clarity, responsiveness, and accessibility. Consistent, well-designed buttons are the building blocks of a positive user experience.
 
-Buttons are the keystones of user interface design, offering users a tangible way to interact with digital environments. Our design guidelines outline key principles for creating effective and user-friendly buttons. By following the button design guidelines, you can create user-friendly interfaces that guide users through their digital journeys with clarity, responsiveness, and accessibility. Consistent, well-designed buttons are the building blocks of a positive user experience.
-
-
-## Anatomy
-
-![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097%3A5037&mode=design&t=QmxiHvZF7qOmGQQj-1)
-
-
-
-1. Contained button       | 2. Outlined button      | 3. Ghost  button        | 4. Icon  button          |
---------------------------|-------------------------|-------------------------|--------------------------|
-- A. Container            |- A. Container           |- A. Text label          |- C. Container (optional) |        
-- B. Text label           |- B. Text label          |- C. Icon (optional)     |- B. Icon                 |
-- C. Icon (optional)      |- C. Icon (optional)     |                         |                          | 
-     
-
-
-
-![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1068%3A4671&mode=design&t=QmxiHvZF7qOmGQQj-1)
+![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1068%3A4671&mode=design&t=QmxiHvZF7qOmGQQj-1)
 
 
 1. Default varioant
 2. Outlined variant
 3. Ghost variant
-
 
 
 ## Variants
@@ -43,11 +21,28 @@ Buttons are the keystones of user interface design, offering users a tangible wa
 
 ### Emphasis
 
-Emphasis is a fundamental design principle used to guide user attention, and convey hierarchy within the buttons in one layout for the user. In a layout, it's possible for an app to present more than one button concurrently. This allows for a primary button to be accompanied by secondary and tertiary buttons, each serving less pivotal functions. When incorporating multiple buttons, it's crucial to avoid any confusion where the active state of one button may be mistaken for the disabled state of another.
+Emphasis is a fundamental design principle, it tailors button design to suit the specific scene, adapting as required. In essence, emphasizing buttons is like giving them a leading role in the design narrative. It ensures that each button's significance is highlighted, leading users through a cohesive and intuitive user experience where every interaction is well-timed and resonates with the audience. Emphasis establishes a visual hierarchy among buttons. Primary buttons take the center stage, secondary buttons play supporting roles, and tertiary buttons remain in the background. 
+Like maintaining a consistent theme in a performance, emphasis keeps button design uniform throughout the interface. This minimizes user confusion and maximizes user satisfaction.
 
 Lower emphasis can also be assigned to content areas through the use of grey buttons. Default (colored) and grey buttons should not be mixed in one line.
 
 Hint: Conflicting naming conventions in components, grey button equals property variant "Secondary" in implemented components.
+
+
+## Behaviour in context
+
+### Interaction
+
+Buttons are interactive components that enable users to trigger specific actions, navigate between screens or pages, and control the behavior of an application or website.  <kbd>Space</kbd>.
+
+### Text truncation
+
+Button labels are not truncated. All text on buttons is one line only. Labels should be kept concise to allow users to quickly scan, understand and remember them.
+
+### Alignment
+
+Buttons can be left-justified or right-justified or fully span a container's width with right-justified alignment being most commonly used.
+
 
 ### Content
 
@@ -84,36 +79,16 @@ A button group, also known as segmented buttons or toggle buttons, is an element
 
 ![Button group](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=145-10524&mode=design&t=oeSCpzdXLLAiSHv2-0)
 
-## Behavior in context
 
-### Interaction
+## Options/Formatting
 
-Buttons are interactive components that enable users to trigger specific actions, navigate between screens or pages, and control the behavior of an application or website.  <kbd>Space</kbd>.
+![Anatomy](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097%3A5037&mode=design&t=QmxiHvZF7qOmGQQj-1)
 
-### Text truncation
-
-Button labels are not truncated. All text on buttons is one line only. Labels should be kept concise to allow users to quickly scan, understand and remember them.
-
-### Alignment
-
-Buttons can be left-justified or right-justified or fully span a container's width with right-justified alignment being most commonly used.
-
-## States
-
-Button states are equal for text-only, icon-only and text and icon buttons.
-
-![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=oeSCpzdXLLAiSHv2-0)
-
-| State           | Description                                                                                                                    |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Hover           | The hover state is indicated by fill color change and text/icon color change (except primary button).                          |
-| Active          | The active state is indicated by fill color change and text/icon color change (except primary button). Equal to pressed state. |
-| Disabled        | The disabled state is indicated by fill color change and text/icon color change (except primary button).                      |
-| Selected        | The selected state is indicated by text/icon and fill color change. Only available for tertiary (ghost) grey button.           |
-| Selected Hover  | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
-| Selected Active | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
-| Focused         | The focused state is indicated by a focus frame.                                                                               |
-
+1. Contained button       | 2. Outlined button      | 3. Ghost  button        | 4. Icon  button          |
+--------------------------|-------------------------|-------------------------|--------------------------|
+- A. Container            |- A. Container           |- A. Text label          |- C. Container (optional) |        
+- B. Text label           |- B. Text label          |- C. Icon (optional)     |- B. Icon                 |
+- C. Icon (optional)      |- C. Icon (optional)     |                         |                          | 
 
 ### Sizing
 
@@ -130,14 +105,41 @@ Button states are equal for text-only, icon-only and text and icon buttons.
 
 A default margin between adjacent buttons of <kbd>0.5rem</kbd> is defined. Depending on the context, this margin may be increased, though.
 
-## Do and don't
+## States
 
-- Given enough space, buttons should be aligned horizontally rather than vertically.
-- When grouping multiple buttons, e.g. in a dialog, buttons should be right-justified with the primary action on the very right.
-- Avoid generic button labels (e.g. Yes/No), use meaningful labels instead (e.g. Save, Download, Edit) so that the user easily understands which action is triggered by pressing the button.
+Button states are equal for text-only, icon-only and text and icon buttons.
+
+It is advised not to incorporate "selectable buttons" in order to maintain interface consistency and avoid user confusion.
+
+![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=oeSCpzdXLLAiSHv2-0)
+
+| State           | Description                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Hover           | The hover state is indicated by fill color change and text/icon color change (except primary button).                          |
+| Active          | The active state is indicated by fill color change and text/icon color change (except primary button). Equal to pressed state. |
+| Disabled        | The disabled state is indicated by fill color change and text/icon color change (except primary button).                       |
+| Selected        | The selected state is indicated by text/icon and fill color change. Only available for tertiary (ghost) grey button.           |
+| Selected Hover  | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
+| Selected Active | The selected state is indicated by fill color change. Only available for tertiary (ghost) grey button.                         |
+| Focused         | The focused state is indicated by a focus frame.                                                                               |
+
+## Does and doesn't
+
+- It is advisable to maintain uniform button height throughout the interface, and we recommend a specific height of... for achieving this consistency.
+- Button icons are essential visual elements that provide users with quick and intuitive cues about the button's functionality and purpose, it is recommended to place the icon on the leading side of the button element.
+- it is recommended to have only one primary button in each visual unit to ensure a clear and singular focus on the main call to action.
+
+- When many actions/functions are necessary, using only buttons can easily overcrowd the screen. Don't only rely on buttons in such cases, but consider alternatives such as dropdown or split buttons or moving some of the functionality to a drawer or a dialog.
+- Do not use buttons for navigation. To foward a user to a new page, use a hyperlink instead.
+
 - For more information, see also the UX writing guidelines on [Diaglogs and buttons](/docs/language/dialogs-and-buttons.md).
+
 ## Related patterns:
 
+- [Icon button]
 - [Dropdown button](./dropdown-button.md)
-- [Modal](./modal.md)
 - [Split button](./split-button.md)
+- [Toggle button]
+- [Modal](./modal.md)
+
+
