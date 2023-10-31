@@ -1,4 +1,4 @@
-You can use the popover news component to present news and information like release notes, new app features, or marketing-related information when the  application starts. The information should also be available within the [About and legal overlay](./about-and-legal.md).
+You can use the popover news component to present news and information like release notes, new app features, or marketing-related information when the application starts. The information should also be available within the [About and legal overlay](./about-and-legal.md).
 
 ![Popover news](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70517&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
@@ -18,7 +18,7 @@ You can use the popover news component to present news and information like rele
 | show | Only available in code and triggers the popover to appear |
 
 ## Behavior
-Unlike a modal, popover news does not prevent users from navigating and interacting with the content. It only overlays the content partially and appears  once triggered by the app. As soon as the user closes the popover, it does not appear again until it is re-triggered. Therefore, the information should be additionally available in the [About and legal overlay](./about-and-legal.md).    The popover spike should always point to the information icon so users can find the information again. The "offsetBottom" option can be used to control its exact position.
+Unlike a modal, popover news does not prevent users from navigating and interacting with the content. It only overlays the content partially and appears once triggered by the app. As soon as the user closes the popover, it does not appear again until it is re-triggered. Therefore, the information should be additionally available in the [About and legal overlay](./about-and-legal.md). The popover spike should always point to the information icon so users can find the information again. The "offsetBottom" option can be used to control its exact position.
 
 ## Dos and don’ts
 - Do use popover news for "nice to know" information

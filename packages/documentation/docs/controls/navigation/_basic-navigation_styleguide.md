@@ -33,7 +33,7 @@ Basic navigation automatically adapts, by default, to the three breakpoints. Dep
 ### Breakpoint large (lg) – desktop (6/7)
 - `only screen and (min-width: 62em)`
 - At this breakpoint, the navigation menu and the application content shares the available viewport width
-- Clicking the navigation menu icon expands it permanently until the collapse button is clicked ( content width adapts accordingly)
+- Clicking the navigation menu icon expands it permanently until the collapse button is clicked (content width adapts accordingly)
 
 ### Breakpoint medium (md) – tablet (8/9)
 -  `only screen and (min-width: 48em)`
