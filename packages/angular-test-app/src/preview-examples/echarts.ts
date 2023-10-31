@@ -29,7 +29,7 @@ import { EChartsOption } from 'echarts';
   ],
 })
 export default class BarChartComponent implements OnInit {
-  theme = 'brand-dark'; // brand-dark, brand-light, classic-dark or classic-light
+  theme = ''; // brand-dark, brand-light, classic-dark or classic-light
 
   options: EChartsOption = {
     tooltip: {
