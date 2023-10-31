@@ -7,11 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
-import './placeholder-logo';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import './components/placeholder-logo';
 
 function loadAdditionalTheme() {
   const theme = __THEME__;

@@ -11,24 +11,11 @@ LICENSE file in the root directory of this source tree.
 <html>
   <head>
     <title>Dropdown example</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-    <script>
-      function detectThemeSwitching() {
-        const searchParams = new URLSearchParams(location.search);
-
-        if (!searchParams.has('theme')) {
-          return 'brand-dark';
-        }
-        const theme = searchParams.get('theme');
-        return theme.substring('theme-'.length, theme.length);
-      }
-
-      const theme = detectThemeSwitching();
-      window.demoTheme = theme;
-    </script>
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
     <div
       id="main"
       style="display: block; position: relative; width: 100%; height: 40rem"
