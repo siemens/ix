@@ -1,30 +1,28 @@
 ---
-title: Map Navigation
+title: Map navigation
 ---
 
-Map navigation is a combination of essential infrastructural components forming a layout structure for the requirement of presenting a map like content (geographical maps, P&I diagrams or other plans) supported by a collapsible context panel. Furthermore, an overlay can temporarily present additional information.  
-Due to its narrowed focus to a very specific usecase the Map Navigation is limited in its flexibility and does not offer all features the [Basic Navigation](./basic-navigation.md) offers. I case of doubt, rather use the [Basic Navigation](./basic-navigation.md).
+Map navigation is a combination of infrastructural components that form a layout structure to present map-like content (geographical maps, P&I diagrams or other plans). It is supported by a collapsible context panel and an overlay can temporarily present additional information. Map navigation does not offer all features the [basic navigation](./basic-navigation.md) offers.
 
-![Map Navigation layout](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1020-71241&mode=design&t=Ntzn8IlSOlPey8s5-11)
+![Map navigation layout](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1020-71241&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
 The Map Navigation consists of the following parts:
-- (1) [App Header](#app-header), only included in the panel to save space for for the map content
-- (2) [Navigation Menu](./vertical-tabs.md): component for navigation
-- (3) Context panel: intended to provide additional information, navigation and controls to configure the map content
-- (4) The actual (map) content, intended to show map-like content, P&I diagrams or other plans
-- (5) Control to expand and collapse the context panel
-- (6) Overlay: intended to show detail information to selected objects inside the map or the context panel, will be triggered programmatically
+- (1) [App header](#app-header): included in the panel to save space for for the map content
+- (2) [Navigation menu](./vertical-tabs.md): navigation component
+- (3) Context panel: provides additional information, navigation and controls to configure map content
+- (4) Map content: shows map-like content, P&I diagrams or other plans
+- (5) Control: expands and collapses the context panel
+- (6) Overlay: shows detailed information to selected objects inside the map or the context panel
 
 ### App header
 
-The app header (1) hosts the brand logo and the application name. As the space for the application name is limited, the application name should be short and not extended by any other information. The App Header is placed inside the context panel. Therefore, it will appear and disappear with the context panel.
+App headers (1) host the brand logo and the application name. As this space is limited, we recommend short application names without further information. App headers are placed inside the context panel which means they appear and disappear with the context panel.
 <br></br>
 
 ## Behavior
 
-Map navigation does not adapt to breakpoints (unlike [Basic Navigation](./basic-navigation.md)). Map navigation is intended to be used on desktop.
-The Navigation Menu provides a control at the bottom (5) to expand and collapse the context panel. this will also affect the application header to maximize the space for the actual (map) content.  
-The overlay’s (6) background appears semi-transparent with background blur to support the purpose of a temporary overlay.
+Map navigation does not adapt to breakpoints (unlike [basic navigation](./basic-navigation.md)) and should be used on desktop.
+The navigation menu provides a control at the bottom (5) to expand and collapse the context panel. This also affects the application header to maximize the space for your map-like content.  The overlay’s (6) background appears semi-transparent with background blur to support the temporary overlay.
 
 ## Dos and Don‘ts
 
