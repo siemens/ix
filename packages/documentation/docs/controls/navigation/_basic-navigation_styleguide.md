@@ -1,7 +1,7 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Demo';
 
-Basic navigation is a combination of essential infrastructural components forming the basic application layout structure. Alternatively, the [map navigation](#link) offers an additional but less flexible layout.  
+Basic navigation is a combination of essential infrastructure components forming the basic application layout structure. Alternatively, the [map navigation](#link) offers an additional but less flexible layout.  
 
 ![Basic navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
@@ -14,7 +14,7 @@ Basic navigation has:
 
 ![App header](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
 
-The app header typically (1) hosts the brand logo (4) and the application name (5). The name can be extended with additional information by using the pipe character "|" and 2 spaces before and after to separate both.  If the application is hosted inside a framework that comes with its own header, you can hide the app header to avoid 2 headers on top of each other (option: hideHeader). The brand identity and the application name is then provided by the framework’s header.
+The app header typically (1) hosts the brand logo (4) and the application name (5). The name can be extended with additional information by using the pipe character "|" and 2 spaces before and after to separate both. If the application is hosted inside a framework that comes with its own header, you can hide the app header to avoid 2 headers on top of each other (option: hideHeader). The brand identity and the application name is then provided by the framework’s header.
 
 
 ## Options
