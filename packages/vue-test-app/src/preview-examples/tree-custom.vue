@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { TreeContext, TreeModel } from '@siemens/ix';
 import { IxButton, IxTree } from '@siemens/ix-vue';
 import { defineComponent, onMounted, ref } from 'vue';
