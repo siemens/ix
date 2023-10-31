@@ -11,9 +11,14 @@ LICENSE file in the root directory of this source tree.
 <html>
   <body class="theme-brand-dark">
     <!-- Preview code -->
+    <link
+      rel="stylesheet"
+      href="./styles/grid.css"
+    />
+
     <div class="example-parent">
       <h4>Grid with margin</h4>
-      <ix-layout-grid>
+      <ix-layout-grid class="example-grid">
         <ix-row>
           <ix-col><ix-typography format="display">1</ix-typography></ix-col>
           <ix-col><ix-typography format="display">2</ix-typography></ix-col>
@@ -31,7 +36,7 @@ LICENSE file in the root directory of this source tree.
       </ix-layout-grid>
 
       <h4>Grid without margin</h4>
-      <ix-layout-grid no-margin>
+      <ix-layout-grid no-margin class="example-grid">
         <ix-row>
           <ix-col><ix-typography format="display">1</ix-typography></ix-col>
           <ix-col><ix-typography format="display">2</ix-typography></ix-col>
@@ -48,32 +53,7 @@ LICENSE file in the root directory of this source tree.
         </ix-row>
       </ix-layout-grid>
     </div>
-    <style>
-      .example-parent {
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
-        background-color: var(--theme-color-ghost--hover);
-      }
-    </style>
     <!-- Preview code -->
-    <style>
-      ix-layout-grid {
-        margin-bottom: 1rem;
-      }
-
-      ix-col > ix-typography {
-        display: flex;
-        padding: 0.15rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 0;
-        align-self: stretch;
-        border: 1px solid var(--theme-color-soft-bdr);
-        background: var(--theme-color-ghost);
-        border-radius: 3px;
-      }
-    </style>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

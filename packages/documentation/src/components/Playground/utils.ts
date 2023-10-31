@@ -62,6 +62,7 @@ async function openHtmlStackBlitz(
 ) {
   const [
     placeholder_logo,
+    grid,
     index_html,
     main_js,
     package_json,
@@ -69,6 +70,7 @@ async function openHtmlStackBlitz(
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/html/src/components/placeholder-logo.js`,
+    `${baseUrl}code-runtime/html/src/styles/grid.css`,
     `${baseUrl}code-runtime/html/src/index.html`,
     `${baseUrl}code-runtime/html/src/main.js`,
     `${baseUrl}code-runtime/html/package.json`,
@@ -91,6 +93,7 @@ async function openHtmlStackBlitz(
       files: {
         ...files,
         'src/components/placeholder-logo.js': placeholder_logo,
+        'src/styles/grid.css': grid,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
           renderFirstExample.sourceCode
@@ -118,6 +121,7 @@ async function openAngularStackBlitz(
     app_component_ts,
     app_module_ts,
     placeholder_logo,
+    grid,
     index_html,
     main_ts,
     styles_css,
@@ -132,6 +136,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
     `${baseUrl}code-runtime/angular/src/styles/placeholder-logo.css`,
+    `${baseUrl}code-runtime/angular/src/styles/grid.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.css`,
@@ -190,6 +195,7 @@ export const DECLARE = [
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
         'src/styles/placeholder-logo.css': placeholder_logo,
+        'src/styles/grid.css': grid,
         'src/index.html': index_html,
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
@@ -213,6 +219,7 @@ async function openReactStackBlitz(
 ) {
   const [
     placeholder_logo,
+    grid,
     app_tsx,
     index_html,
     index_tsx,
@@ -221,6 +228,7 @@ async function openReactStackBlitz(
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/react/src/styles/placeholder-logo.css`,
+    `${baseUrl}code-runtime/react/src/styles/grid.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
     `${baseUrl}code-runtime/react/public/index.html`,
     `${baseUrl}code-runtime/react/src/index.tsx`,
@@ -257,6 +265,7 @@ async function openReactStackBlitz(
       files: {
         ...files,
         'src/styles/placeholder-logo.css': placeholder_logo,
+        'src/styles/grid.css': grid,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'public/index.html': index_html,
@@ -280,6 +289,7 @@ async function openVueStackBlitz(
 ) {
   const [
     placeholder_logo,
+    grid,
     app_vue,
     main_ts,
     env_d_ts,
@@ -290,6 +300,7 @@ async function openVueStackBlitz(
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/vue/src/styles/placeholder-logo.css`,
+    `${baseUrl}code-runtime/vue/src/styles/grid.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
     `${baseUrl}code-runtime/vue/src/main.ts`,
     `${baseUrl}code-runtime/vue/env.d.ts`,
@@ -325,6 +336,7 @@ async function openVueStackBlitz(
       files: {
         ...files,
         'src/styles/placeholder-logo.css': placeholder_logo,
+        'src/styles/grid.css': grid,
         'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
         'index.html': index_html,

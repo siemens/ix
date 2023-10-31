@@ -11,28 +11,11 @@ LICENSE file in the root directory of this source tree.
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 </script>
 
-<style scoped>
-ix-layout-grid {
-  margin-bottom: 1rem;
-}
-
-ix-col {
-  background-color: var(--theme-color-primary);
-  border: var(--theme-std-bdr-2);
-  text-align: center;
-  color: var(--theme-color-inv-contrast-text);
-}
-
-.example-parent {
-  padding-top: 1rem;
-  padding-bottom: 0.25rem;
-  background-color: var(--theme-color-info-40);
-}
-</style>
+<style scoped src="./styles/grid.css"></style>
 
 <template>
   <h4>Column 6 takes up more space to a max of 12 columns total</h4>
-  <IxLayoutGrid>
+  <IxLayoutGrid className='example-grid'>
     <IxRow>
       <IxCol><IxTypography format="display">1</IxTypography></IxCol>
       <IxCol><IxTypography format="display">2</IxTypography></IxCol>
@@ -44,7 +27,7 @@ ix-col {
   </IxLayoutGrid>
 
   <h4>Stack columns on smaller screens</h4>
-  <IxLayoutGrid>
+  <IxLayoutGrid className='example-grid'>
     <IxRow>
       <IxCol size="12" size-md="3">
         <IxTypography format="display">1</IxTypography>

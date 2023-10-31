@@ -9,14 +9,13 @@
 
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-react';
 import React from 'react';
-// Example styling for documentation
 import './styles/grid.css';
 
 export default () => {
   return (
     <div className="example-parent">
       <h4>Grid with margin</h4>
-      <IxLayoutGrid className={'ExampleGrid'}>
+      <IxLayoutGrid className={'example-grid'}>
         <IxRow>
           <IxCol>
             <IxTypography format="display">1</IxTypography>
@@ -58,7 +57,7 @@ export default () => {
       </IxLayoutGrid>
 
       <h4>Grid without margin</h4>
-      <IxLayoutGrid noMargin className={'ExampleGrid'}>
+      <IxLayoutGrid noMargin className={'example-grid'}>
         <IxRow>
           <IxCol>
             <IxTypography format="display">1</IxTypography>
