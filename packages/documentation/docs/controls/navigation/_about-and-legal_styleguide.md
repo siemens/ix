@@ -2,7 +2,7 @@
 title: About and legal overlay
 ---
 
-The About and legal component is an overlay we typically use to show application information, application versions, license terms, legal regulations, copyright information and other legal related content. It appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.
+The About and legal component is an overlay we typically use to show application information, application versions, license terms, legal regulations, copyright information and other legal content. It appears when users click on the "About and legal" icon (1) and overlays the current content. Closing this overlay brings users back to the original content.
 
 ![About and legal overlay](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1029-79866&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
@@ -10,10 +10,10 @@ The About and legal component is an overlay we typically use to show application
 - (2) Replaceable content header with the default string "About & legal information"
 - (3) Close button to close the overlay
 - (4) Tabs (optional) to navigate through multiple content categories
-- (5) Changeable content which we use to add sepcific application information and local legal regulations (note our Figma design is our personal recommendation)
+- (5) Changeable content which we use to add specific application information and local legal regulations (note our Figma design is our personal recommendation)
 
 ## Behavior
-Overlay opens on top of application content with a semi-transparent background with a background blur effect to emphasize the overlay character. Closing this overlay brings back users to the previous content.  
+Overlay opens on top of application content with a semi-transparent background with a background blur effect to emphasize the overlay character. Closing this overlay brings users back to the previous content.  
 
 The overlay can be closed in three ways:
 - Select the close button
