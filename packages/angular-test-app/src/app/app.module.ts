@@ -133,10 +133,12 @@ import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationTestComponent } from './components/navigation-test.component';
+import { AppExample } from './components/example/example.component';
+import { NavigationTestComponent } from './components/navigation-test/navigation-test.component';
 
 @NgModule({
   declarations: [
+    AppExample,
     AppComponent,
     Buttons,
     ButtonGroup,

@@ -125,9 +125,14 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
-import { NavigationTestComponent } from './components/navigation-test.component';
+import { AppExample } from './components/example/example.component';
+import { NavigationTestComponent } from './components/navigation-test/navigation-test.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AppExample,
+  },
   {
     path: 'testing',
     children: [

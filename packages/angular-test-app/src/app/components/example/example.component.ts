@@ -7,14 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import { Component } from '@angular/core';
 
-function App() {
-  return (
-    <div>
-      {/* <!-- example code --> */}
-    </div>
-  );
-}
-
-export default App;
+@Component({
+  selector: 'app-example',
+  styleUrls: ['example.component.scss'],
+  templateUrl: 'example.component.html',
+})
+export class AppExample {}

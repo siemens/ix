@@ -8,15 +8,10 @@
 -->
 
 <script setup lang="ts">
-import { IxButton } from '@siemens/ix-vue';
-import { ref } from 'vue';
-
-const toggle = ref(false);
 </script>
 
 <template>
   <div>
-    <IxButton @click="toggle = !toggle">Toggle!</IxButton>
-    <IxButton>{{ toggle ? 'Test 1' : 'Test 2' }}</IxButton>
+    <!-- example code -->
   </div>
 </template>
