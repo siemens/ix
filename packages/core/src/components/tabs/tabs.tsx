@@ -242,7 +242,7 @@ export class Tabs {
 
     tabs.forEach((element) => {
       element.setAttribute('placement', this.placement);
-    })
+    });
   }
 
   componentDidRender() {
