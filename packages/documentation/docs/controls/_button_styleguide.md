@@ -19,7 +19,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Icon:** Icons can also be displayed with button labels.
 - **Disabled:** Buttons can be disabled (see also button states).
 - **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
-- **Type:** A submit button is available. 
+- **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event.
 
 ## Behaviour in context
 - **Interaction:** Buttons can be triggered by selecting anywhere within the button container. When buttons are focused, they can be triggered by pressing  <kbd>Space</kbd>.
