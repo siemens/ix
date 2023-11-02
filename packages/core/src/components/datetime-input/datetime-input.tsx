@@ -87,17 +87,17 @@ export class DatetimeInput {
   /**
    * Show hour input
    */
-  @Prop() showHour = false;
+  @Prop() showHour = true;
 
   /**
    * Show minutes input
    */
-  @Prop() showMinutes = false;
+  @Prop() showMinutes = true;
 
   /**
    * Show seconds input
    */
-  @Prop() showSeconds = false;
+  @Prop() showSeconds = true;
 
   /**
    * The earliest date that can be selected by the date picker.
