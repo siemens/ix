@@ -344,7 +344,12 @@
           "mutable": false,
           "reflectToAttr": false,
           "docs": "Supported layouts",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
