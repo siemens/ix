@@ -236,7 +236,7 @@ export class Tabs {
     return true;
   }
 
-  componentDidRender() {
+  configureTabsAttributes() {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
 
@@ -267,6 +267,7 @@ export class Tabs {
         this.getArrowStyle(showNextArrow)
       );
     });
+    this.configureTabsAttributes();
   }
 
   componentDidLoad() {
