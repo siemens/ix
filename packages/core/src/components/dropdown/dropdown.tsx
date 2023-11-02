@@ -37,7 +37,8 @@ export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 type DisposeDropdown = () => void;
 type DropdownDisposerEntry = {
-  isActive: boolean;
+  element: HTMLIxDropdownElement;
+  child: HTMLIxDropdownElement;
   dispose: DisposeDropdown;
 };
 const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
@@ -146,8 +147,41 @@ export class Dropdown {
 
     dropdownDisposer.set(this.localUId, {
       dispose: this.close.bind(this),
-      isActive: false,
+      element: this.hostElement,
+      child: null,
     });
+
+    const parentDropdown = this.closestPassShadow(
+      this.hostElement.parentNode,
+      'ix-dropdown'
+    );
+    if (parentDropdown) {
+      for (let entry of dropdownDisposer.values()) {
+        if (entry.element === parentDropdown) {
+          entry.child = this.hostElement;
+        }
+      }
+    }
+  }
+
+  closestPassShadow(node, selector) {
+    if (!node) {
+      return null;
+    }
+
+    if (node instanceof ShadowRoot) {
+      return this.closestPassShadow(node.host, selector);
+    }
+
+    if (node instanceof HTMLElement) {
+      if (node.matches(selector)) {
+        return node;
+      } else {
+        return this.closestPassShadow(node.parentNode, selector);
+      }
+    }
+
+    return this.closestPassShadow(node.parentNode, selector);
   }
 
   get dropdownItems() {
@@ -248,13 +282,6 @@ export class Dropdown {
 
   @Watch('show')
   async changedShow(newShow: boolean) {
-    dropdownDisposer.forEach((entry, id) => {
-      if (id === this.localUId) {
-        entry.isActive = newShow;
-        return;
-      }
-    });
-
     if (newShow) {
       this.anchorElement = await (this.anchor
         ? this.resolveElement(this.anchor)
@@ -270,7 +297,7 @@ export class Dropdown {
         if (
           id !== this.localUId &&
           !this.isAnchorSubmenu() &&
-          !entry.isActive
+          entry.child !== this.hostElement
         ) {
           entry.dispose();
         }
