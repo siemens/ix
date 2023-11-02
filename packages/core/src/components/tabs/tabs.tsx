@@ -236,7 +236,16 @@ export class Tabs {
     return true;
   }
 
-  configureTabsAttributes() {
+  componentWillLoad() {
+    const tabs = this.getTabs();
+    console.log(tabs);
+
+    tabs.forEach((element) => {
+      element.setAttribute('placement', this.placement);
+    })
+  }
+
+  componentDidRender() {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
 
@@ -250,7 +259,6 @@ export class Tabs {
         'selected',
         index === this.selected ? 'true' : 'false'
       );
-      element.setAttribute('placement', this.placement);
     });
   }
 
@@ -267,7 +275,6 @@ export class Tabs {
         this.getArrowStyle(showNextArrow)
       );
     });
-    this.configureTabsAttributes();
   }
 
   componentDidLoad() {
