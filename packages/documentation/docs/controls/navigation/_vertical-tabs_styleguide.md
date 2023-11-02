@@ -3,7 +3,7 @@ The navigation menu is an essential part of the [basic navigation](./basic-navig
 ![Navigation menu collapsed and expanded](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
 
 - (1) Expand/collapse icon button: expands and collapses the navigation menu
-- (2) [Avatar button](#avatar-button): optionally shows the logged-in user and provides access to user-related actions
+- (2) [Avatar button](#avatar-button) (optional): shows the logged-in user and provides access to user-related actions
 - (3) Navigation section: navigates through the main parts of an application
 - (4) [Bottom section](#bottom-section): hosts infrastructural actions and additional content but does not navigate away from the selected main part
 
@@ -24,7 +24,7 @@ The avatar button is optional. It shows information about the logged-in user. Wh
 ## Menu item and menu category
 Menu items represent the main parts of an application. They have an icon for quick visual identification. When the navigation menu is expanded, the full name of the item is visible. 
 
-Menu categories can host menu items as a second navigation level. Second level menu items items don’t have icons.
+Menu categories can host menu items as a second navigation level. Second level menu items don’t have icons.
 
 ![Navigation item](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=998-67465&mode=design&t=puecEZZMJ24R1ngI-11)
 
@@ -53,10 +53,10 @@ Items in this section do not navigate away from the current content. They either
 
 ![Bottom section icons](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10817&mode=design&t=ljAWsgheUZngQeQG-11)
 
-- (1) Settings: opens an settings overlay
+- (1) Settings: opens the [settings](./settings.md) overlay
 - (2) Toggle theme: toggles between light and dark theme
 - (3) Custom item
-- (4) About & legal information: opens an overlay to display legal information, release notes, license information, etc.
+- (4) About & legal information: opens the [about & legal](./about-and-legal.md) overlay to display legal information, release notes, license information, etc.
 - (5) Only relevant for map navigation: collapses/expands side panel
 
 <br></br>
@@ -65,9 +65,9 @@ Items in this section do not navigate away from the current content. They either
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| enableSettings  `default: true` | shows the settings icon (gear wheel) in the bottom section, this item opens a settings overlay, the content can be freely defined |
-| enableToggleTheme  `default: false` | shows the theme toggle icon, offers an easy and direct way to toggle between light and dark mode. We do not use this when dedicated theme settings are available elsewhere, e.g. in the settings overlay |
-| enableMapExpand  `default: false`| only relevant for [map navigation](./map-navigation.md), shows an icon that expands/collapses the side panel of the map navigation |
+| enableSettings <br/> `default: true` | shows the settings icon (gear wheel) in the bottom section, this item opens the [settings](./settings.md) overlay, the content can be freely defined |
+| enableToggleTheme <br/> `default: false` | shows the theme toggle icon, offers an easy and direct way to toggle between light and dark mode. We do not use this when dedicated theme settings are available elsewhere, e.g. in the settings overlay |
+| enableMapExpand <br/> `default: false`| only relevant for [map navigation](./map-navigation.md), shows an icon that expands/collapses the side panel of the map navigation |
 
  See the code tab for more information and other options available.
 
@@ -79,7 +79,7 @@ Items in this section do not navigate away from the current content. They either
 
 - Navigation menu expands and collapses with a transition
 - The width of the collapse and expand state are fixed and cannot be configured
-- Menu items can overflow, this is recognizable by the shadow at the bottom and/or top 
+- the number of menu items can overflow, this is recognizable by the shadow at the bottom and/or top 
 
 <br></br>
 
