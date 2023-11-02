@@ -42,7 +42,7 @@ export default function NavbarLogo() {
   return (
     <div className="navbar__brand">
       <a href={base} target="_self">
-        <img className="navbar__logo" src={logo}></img>
+        <img className="navbar__logo" src={logo} alt={"Siemens Industrial Experience"} aria-label={"Siemens Industrial Experience"}></img>
       </a>
     </div>
   );

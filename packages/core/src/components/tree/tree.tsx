@@ -272,8 +272,8 @@ export class Tree {
   }
 
   disconnectedCallback() {
-    this.hyperlist.destroy();
-    this.observer.disconnect();
+    this.hyperlist?.destroy();
+    this.observer?.disconnect();
   }
 
   @Watch('model')
