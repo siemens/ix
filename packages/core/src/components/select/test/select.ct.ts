@@ -150,3 +150,27 @@ test('filter', async ({ mount, page }) => {
   await expect(item4).not.toBeVisible();
   await expect(item_abc).toBeVisible();
 });
+
+test('open filtered dropdown on input', async ({ mount, page }) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+    `);
+  const element = page.locator('ix-select');
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+
+  await page.locator('[data-testid="input"]').focus();
+  page.keyboard.down('Escape');
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).not.toBeVisible();
+
+  page.keyboard.down('1');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+
+  await expect(item1).toBeVisible();
+  await expect(item2).not.toBeVisible();
+});
