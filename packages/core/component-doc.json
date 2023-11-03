@@ -423,13 +423,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-blind": [
           "ix-typography"
+        ],
+        "my-component": [
+          "ix-blind"
         ]
       },
       "props": [
@@ -440,6 +445,23 @@
           "attr": "collapsed",
           "reflectToAttr": true,
           "docs": "Collapsed state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled state",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -577,6 +599,97 @@
           "cancelable": true,
           "composed": true,
           "docs": "Collapsed state changed",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "./src/components/blind-group",
+      "filePath": "./src/components/blind-group/blind-group.tsx",
+      "fileName": "blind-group.tsx",
+      "readmePath": "./src/components/blind-group/readme.md",
+      "usagesDir": "./src/components/blind-group/usage",
+      "tag": "ix-blind-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind-group"
+        ]
+      },
+      "props": [
+        {
+          "name": "disableAccordion",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disable-accordion",
+          "reflectToAttr": false,
+          "docs": "Disable accordion",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expandedIndex",
+          "type": "number",
+          "mutable": true,
+          "attr": "expanded-index",
+          "reflectToAttr": true,
+          "docs": "Index of the opened blind",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "individualBlindOpen",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "individual-blind-open",
+          "reflectToAttr": false,
+          "docs": "Allow only one blind to be opened at time",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "expandedIndexChange",
+          "detail": "number",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "`expandedIndex` changed",
           "docsTags": []
         }
       ],
@@ -802,7 +915,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner"
@@ -839,6 +953,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -12236,8 +12353,24 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-blind-group",
+        "ix-blind",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-blind-group",
+          "ix-blind",
+          "ix-button"
+        ],
+        "ix-blind": [
+          "ix-typography"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENxSE file in the root directory of this source tree.
  */
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, State } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -14,6 +14,10 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  @State() initialOpened: number = 3;
+  @State() individualBlindOpen: boolean = true;
+  @State() disableAccordion: boolean = false;
+
   render() {
     return <Host></Host>;
   }

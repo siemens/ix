@@ -7,6 +7,7 @@ export const DIRECTIVES = [
   d.IxAvatar,
   d.IxBasicNavigation,
   d.IxBlind,
+  d.IxBlindGroup,
   d.IxBreadcrumb,
   d.IxBreadcrumbItem,
   d.IxButton,

@@ -96,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
+  inputs: ['collapsed', 'disabled', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
+  inputs: ['collapsed', 'disabled', 'icon', 'label', 'sublabel', 'variant'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -120,6 +120,34 @@ export declare interface IxBlind extends Components.IxBlind {
    * Collapsed state changed
    */
   collapsedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['disableAccordion', 'expandedIndex', 'individualBlindOpen']
+})
+@Component({
+  selector: 'ix-blind-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disableAccordion', 'expandedIndex', 'individualBlindOpen'],
+})
+export class IxBlindGroup {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandedIndexChange']);
+  }
+}
+
+
+export declare interface IxBlindGroup extends Components.IxBlindGroup {
+  /**
+   * `expandedIndex` changed
+   */
+  expandedIndexChange: EventEmitter<CustomEvent<number>>;
 }
 
 

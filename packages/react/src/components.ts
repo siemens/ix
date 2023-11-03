@@ -10,6 +10,7 @@ import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/co
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
 import { defineCustomElement as defineIxBasicNavigation } from '@siemens/ix/components/ix-basic-navigation.js';
 import { defineCustomElement as defineIxBlind } from '@siemens/ix/components/ix-blind.js';
+import { defineCustomElement as defineIxBlindGroup } from '@siemens/ix/components/ix-blind-group.js';
 import { defineCustomElement as defineIxBreadcrumb } from '@siemens/ix/components/ix-breadcrumb.js';
 import { defineCustomElement as defineIxBreadcrumbItem } from '@siemens/ix/components/ix-breadcrumb-item.js';
 import { defineCustomElement as defineIxButton } from '@siemens/ix/components/ix-button.js';
@@ -98,6 +99,7 @@ export const IxApplicationHeader = /*@__PURE__*/createReactComponent<JSX.IxAppli
 export const IxAvatar = /*@__PURE__*/createReactComponent<JSX.IxAvatar, HTMLIxAvatarElement>('ix-avatar', undefined, undefined, defineIxAvatar);
 export const IxBasicNavigation = /*@__PURE__*/createReactComponent<JSX.IxBasicNavigation, HTMLIxBasicNavigationElement>('ix-basic-navigation', undefined, undefined, defineIxBasicNavigation);
 export const IxBlind = /*@__PURE__*/createReactComponent<JSX.IxBlind, HTMLIxBlindElement>('ix-blind', undefined, undefined, defineIxBlind);
+export const IxBlindGroup = /*@__PURE__*/createReactComponent<JSX.IxBlindGroup, HTMLIxBlindGroupElement>('ix-blind-group', undefined, undefined, defineIxBlindGroup);
 export const IxBreadcrumb = /*@__PURE__*/createReactComponent<JSX.IxBreadcrumb, HTMLIxBreadcrumbElement>('ix-breadcrumb', undefined, undefined, defineIxBreadcrumb);
 export const IxBreadcrumbItem = /*@__PURE__*/createReactComponent<JSX.IxBreadcrumbItem, HTMLIxBreadcrumbItemElement>('ix-breadcrumb-item', undefined, undefined, defineIxBreadcrumbItem);
 export const IxButton = /*@__PURE__*/createReactComponent<JSX.IxButton, HTMLIxButtonElement>('ix-button', undefined, undefined, defineIxButton);

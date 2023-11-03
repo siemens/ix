@@ -37,6 +37,11 @@ export class Blind {
   @Prop({ mutable: true, reflect: true }) collapsed = false;
 
   /**
+   * Disabled state
+   */
+  @Prop() disabled = false;
+
+  /**
    * Label of blind
    */
   @Prop() label: string;
@@ -147,6 +152,7 @@ export class Blind {
             [`blind-${this.variant}`]: true,
             closed: this.collapsed,
           }}
+          disabled={this.disabled}
           type="button"
           aria-labelledby={`ix-blind-header-title-${this.blindId}`}
           aria-controls={`ix-blind-content-section-${this.blindId}`}

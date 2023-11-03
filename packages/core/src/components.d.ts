@@ -164,6 +164,10 @@ export namespace Components {
          */
         "collapsed": boolean;
         /**
+          * Disabled state
+         */
+        "disabled": boolean;
+        /**
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
@@ -182,6 +186,20 @@ export namespace Components {
           * @since 2.0.0
          */
         "variant": BlindVariant;
+    }
+    interface IxBlindGroup {
+        /**
+          * Disable accordion
+         */
+        "disableAccordion": boolean;
+        /**
+          * Index of the opened blind
+         */
+        "expandedIndex": number;
+        /**
+          * Allow only one blind to be opened at time
+         */
+        "individualBlindOpen": boolean;
     }
     interface IxBreadcrumb {
         /**
@@ -2143,6 +2161,10 @@ export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBlindElement;
 }
+export interface IxBlindGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxBlindGroupElement;
+}
 export interface IxBreadcrumbCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBreadcrumbElement;
@@ -2379,6 +2401,12 @@ declare global {
     var HTMLIxBlindElement: {
         prototype: HTMLIxBlindElement;
         new (): HTMLIxBlindElement;
+    };
+    interface HTMLIxBlindGroupElement extends Components.IxBlindGroup, HTMLStencilElement {
+    }
+    var HTMLIxBlindGroupElement: {
+        prototype: HTMLIxBlindGroupElement;
+        new (): HTMLIxBlindGroupElement;
     };
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
     }
@@ -3018,6 +3046,7 @@ declare global {
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
+        "ix-blind-group": HTMLIxBlindGroupElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
         "ix-burger-menu": HTMLIxBurgerMenuElement;
@@ -3200,6 +3229,10 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
+          * Disabled state
+         */
+        "disabled"?: boolean;
+        /**
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
@@ -3222,6 +3255,24 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "variant"?: BlindVariant;
+    }
+    interface IxBlindGroup {
+        /**
+          * Disable accordion
+         */
+        "disableAccordion"?: boolean;
+        /**
+          * Index of the opened blind
+         */
+        "expandedIndex"?: number;
+        /**
+          * Allow only one blind to be opened at time
+         */
+        "individualBlindOpen"?: boolean;
+        /**
+          * `expandedIndex` changed
+         */
+        "onExpandedIndexChange"?: (event: IxBlindGroupCustomEvent<number>) => void;
     }
     interface IxBreadcrumb {
         /**
@@ -5403,6 +5454,7 @@ declare namespace LocalJSX {
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
+        "ix-blind-group": IxBlindGroup;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
         "ix-burger-menu": IxBurgerMenu;
@@ -5513,6 +5565,7 @@ declare module "@stencil/core" {
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
+            "ix-blind-group": LocalJSX.IxBlindGroup & JSXBase.HTMLAttributes<HTMLIxBlindGroupElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
             "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;

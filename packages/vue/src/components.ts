@@ -10,6 +10,7 @@ import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/co
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
 import { defineCustomElement as defineIxBasicNavigation } from '@siemens/ix/components/ix-basic-navigation.js';
 import { defineCustomElement as defineIxBlind } from '@siemens/ix/components/ix-blind.js';
+import { defineCustomElement as defineIxBlindGroup } from '@siemens/ix/components/ix-blind-group.js';
 import { defineCustomElement as defineIxBreadcrumb } from '@siemens/ix/components/ix-breadcrumb.js';
 import { defineCustomElement as defineIxBreadcrumbItem } from '@siemens/ix/components/ix-breadcrumb-item.js';
 import { defineCustomElement as defineIxButton } from '@siemens/ix/components/ix-button.js';
@@ -126,11 +127,20 @@ export const IxBasicNavigation = /*@__PURE__*/ defineContainer<JSX.IxBasicNaviga
 
 export const IxBlind = /*@__PURE__*/ defineContainer<JSX.IxBlind>('ix-blind', defineIxBlind, [
   'collapsed',
+  'disabled',
   'label',
   'sublabel',
   'icon',
   'variant',
   'collapsedChange'
+]);
+
+
+export const IxBlindGroup = /*@__PURE__*/ defineContainer<JSX.IxBlindGroup>('ix-blind-group', defineIxBlindGroup, [
+  'expandedIndex',
+  'individualBlindOpen',
+  'disableAccordion',
+  'expandedIndexChange'
 ]);
 
 
