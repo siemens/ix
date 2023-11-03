@@ -633,6 +633,8 @@ export class DatePickerRework {
                       key={day}
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
+                      onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
+                      tabIndex={0}
                     >
                       {day}
                     </div>
