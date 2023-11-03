@@ -19,6 +19,20 @@ export class MyComponent {
   @State() disableAccordion: boolean = false;
 
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-blind-group disableAccordion={true}>
+          <ix-blind label="Example">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+          </ix-blind>
+          <ix-blind label="Example">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+          </ix-blind>
+          <ix-blind label="Example">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+          </ix-blind>
+        </ix-blind-group>
+      </Host>
+    );
   }
 }

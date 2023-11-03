@@ -915,8 +915,7 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner"
@@ -953,9 +952,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -12355,20 +12351,15 @@
       "dependents": [],
       "dependencies": [
         "ix-blind-group",
-        "ix-blind",
-        "ix-button"
+        "ix-blind"
       ],
       "dependencyGraph": {
         "my-component": [
           "ix-blind-group",
-          "ix-blind",
-          "ix-button"
+          "ix-blind"
         ],
         "ix-blind": [
           "ix-typography"
-        ],
-        "ix-button": [
-          "ix-spinner"
         ]
       },
       "props": [],
