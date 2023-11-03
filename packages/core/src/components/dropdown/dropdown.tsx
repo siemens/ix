@@ -132,14 +132,20 @@ export class Dropdown {
   private dropdownRef: HTMLElement;
 
   private toggleBind: any;
+  private openBind: any;
+  private focusInBind: any;
+  private focusOutBind: any;
 
   private localUId = `dropdown-${sequenceId++}-${new Date().valueOf()}`;
 
   constructor() {
     this.toggleBind = this.toggle.bind(this);
+    this.openBind = this.open.bind(this);
+    this.focusInBind = this.focusIn.bind(this);
+    this.focusOutBind = this.focusOut.bind(this);
 
     if (dropdownDisposer.has(this.localUId)) {
-      console.warn('Dropdown with duplicated id detected');
+      console.warn('Dropdown with duplicated ID detected');
     }
 
     dropdownDisposer.set(this.localUId, {
@@ -156,18 +162,31 @@ export class Dropdown {
     return this.hostElement.shadowRoot.querySelector('slot');
   }
 
+  private hasFocusTrigger() {
+    return (
+      Array.isArray(this.triggerEvent) &&
+      this.triggerEvent.indexOf('focus') != -1
+    );
+  }
+
   private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
     switch (triggerEvent) {
       case 'click':
-        this.triggerElement.addEventListener('click', this.toggleBind);
+        if (this.hasFocusTrigger()) {
+          // Delay mouse handler registration to prevent events from immediately closing dropdown again
+          this.triggerElement.addEventListener('focusin', this.focusInBind);
+          this.triggerElement.addEventListener('focusout', this.focusOutBind);
+        } else {
+          this.triggerElement.addEventListener('click', this.toggleBind);
+        }
         break;
 
       case 'hover':
-        this.triggerElement.addEventListener('mouseenter', this.toggleBind);
+        this.triggerElement.addEventListener('mouseenter', this.openBind);
         break;
 
       case 'focus':
-        this.triggerElement.addEventListener('focusin', this.toggleBind);
+        this.triggerElement.addEventListener('focusin', this.openBind);
         break;
     }
   }
@@ -178,17 +197,23 @@ export class Dropdown {
   ) {
     switch (triggerEvent) {
       case 'click':
-        if (this.closeBehavior === 'outside') {
+        if (this.hasFocusTrigger()) {
+          this.triggerElement.removeEventListener('focusin', this.focusInBind);
+          this.triggerElement.removeEventListener(
+            'focusout',
+            this.focusOutBind
+          );
+        } else {
           triggerElement.removeEventListener('click', this.toggleBind);
         }
         break;
 
       case 'hover':
-        triggerElement.removeEventListener('mouseenter', this.toggleBind);
+        triggerElement.removeEventListener('mouseenter', this.openBind);
         break;
 
       case 'focus':
-        triggerElement.removeEventListener('focusin', this.toggleBind);
+        triggerElement.removeEventListener('focusin', this.openBind);
         break;
     }
   }
@@ -323,7 +348,7 @@ export class Dropdown {
 
   @OnListener<Dropdown>('keydown', (self) => self.show)
   keydown(event: KeyboardEvent) {
-    if (this.show === true && event.code === 'Escape') {
+    if (event.code === 'Escape') {
       this.close();
     }
   }
@@ -348,10 +373,24 @@ export class Dropdown {
       event.stopPropagation();
     }
 
-    const { defaultPrevented } = this.showChanged.emit(this.show);
+    const { defaultPrevented } = this.showChanged.emit(!this.show);
 
     if (!defaultPrevented) {
       this.show = !this.show;
+    }
+  }
+
+  private open(event: Event) {
+    event.preventDefault();
+
+    if (this.isNestedDropdown(event.target as HTMLElement)) {
+      event.stopPropagation();
+    }
+
+    const { defaultPrevented } = this.showChanged.emit(true);
+
+    if (!defaultPrevented) {
+      this.show = true;
     }
   }
 
@@ -361,6 +400,14 @@ export class Dropdown {
     if (!defaultPrevented) {
       this.show = false;
     }
+  }
+
+  private focusIn() {
+    this.triggerElement.addEventListener('mousedown', this.toggleBind);
+  }
+
+  private focusOut() {
+    this.triggerElement.removeEventListener('mousedown', this.toggleBind);
   }
 
   private async applyDropdownPosition() {
