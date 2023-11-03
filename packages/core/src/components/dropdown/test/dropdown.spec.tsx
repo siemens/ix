@@ -11,6 +11,10 @@ import { newSpecPage } from '@stencil/core/testing';
 import { fireEvent } from '@testing-library/dom';
 import { Dropdown } from '../dropdown';
 
+// https://github.com/ionic-team/stencil/issues/3260
+global.DocumentFragment = class DocumentFragment extends Node {};
+global.ShadowRoot = class ShadowRoot extends DocumentFragment {};
+
 describe('ix-dropdown', () => {
   it('should open with anchor element', async () => {
     const page = await newSpecPage({
