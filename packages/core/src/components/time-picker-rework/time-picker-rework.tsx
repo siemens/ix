@@ -127,7 +127,7 @@ export class TimePickerRework {
 
     if (!this._time.isValid()) {
       console.error(
-        'Invalid time format. Enter the format does not match the format of the passed time.'
+        'Invalid time format. The configured format does not match the format of the passed time.'
       );
       return;
     }
