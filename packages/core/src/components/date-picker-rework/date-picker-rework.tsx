@@ -9,6 +9,7 @@
 
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Fragment,
@@ -57,6 +58,8 @@ interface CalendarWeek {
   shadow: true,
 })
 export class DatePickerRework {
+  @Element() hostElement: HTMLIxDatePickerReworkElement;
+
   /**
    * Date format string.
    * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
@@ -220,6 +223,7 @@ export class DatePickerRework {
 
   @State() dayNames: string[];
   @State() monthNames: string[];
+  @State() firstMonthRef: HTMLElement;
 
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[];
@@ -351,8 +355,12 @@ export class DatePickerRework {
   }
 
   private selectTempYear(event: MouseEvent, year: number) {
-    event.stopPropagation();
+    event?.stopPropagation();
     this.tempYear = year;
+  }
+
+  private focusMonth() {
+    this.firstMonthRef.focus();
   }
 
   private infiniteScrollYears() {
@@ -384,6 +392,8 @@ export class DatePickerRework {
     this.selectedMonth = month;
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
+
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   private changeToAdjacentMonth(number: -1 | 1) {
@@ -524,6 +534,13 @@ export class DatePickerRework {
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={(event) => this.selectTempYear(event, year)}
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              this.selectTempYear(null, year);
+              this.focusMonth();
+            }
+          }}
+          tabIndex={0}
         >
           <ix-icon
             class={{
@@ -579,6 +596,11 @@ export class DatePickerRework {
                     {this.monthNames.map((month, index) => (
                       <div
                         key={month}
+                        ref={(ref) => {
+                          if (month === this.monthNames[0]) {
+                            this.firstMonthRef = ref as HTMLElement;
+                          }
+                        }}
                         class={{
                           arrowYear: true,
                           selected:
@@ -587,6 +609,10 @@ export class DatePickerRework {
                           'disabled-item': !this.isWithinMinMaxMonth(index),
                         }}
                         onClick={() => this.selectMonth(index)}
+                        onKeyUp={(event) =>
+                          event.key === 'Enter' && this.selectMonth(index)
+                        }
+                        tabIndex={0}
                       >
                         <ix-icon
                           class={{
@@ -634,7 +660,7 @@ export class DatePickerRework {
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
                       onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
-                      tabIndex={0}
+                      tabIndex={day ? 0 : -1}
                     >
                       {day}
                     </div>
