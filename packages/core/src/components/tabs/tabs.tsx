@@ -17,6 +17,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -238,23 +239,23 @@ export class Tabs {
 
   componentWillLoad() {
     const tabs = this.getTabs();
-    console.log(tabs);
+    this.totalItems = tabs.length;
 
     tabs.forEach((element) => {
+      if (this.small) element.setAttribute('small', 'true');
+      if (this.rounded) element.setAttribute('rounded', 'true');
+
+      element.setAttribute('layout', this.layout);
+
       element.setAttribute('placement', this.placement);
     });
   }
 
-  componentDidRender() {
+  @Watch('selected')
+  onSelectedChange() {
     const tabs = this.getTabs();
-    this.totalItems = tabs.length;
 
     tabs.forEach((element, index) => {
-      if (this.small) element.setAttribute('small', 'true');
-
-      if (this.rounded) element.setAttribute('rounded', 'true');
-
-      element.setAttribute('layout', this.layout);
       element.setAttribute(
         'selected',
         index === this.selected ? 'true' : 'false'
