@@ -1,7 +1,3 @@
----
-title: Settings overlay
----
-
 import Playground from '@site/src/components/Playground';
 
 import Props from './../../auto-generated/ix-menu-settings/props.md';

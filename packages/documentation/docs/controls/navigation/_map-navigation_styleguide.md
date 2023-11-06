@@ -1,7 +1,3 @@
----
-title: Map navigation
----
-
 Map navigation is a combination of infrastructural components that form a layout structure to present map-like content (geographical maps, P&I diagrams or other plans). It is supported by a collapsible context panel and an overlay can temporarily present additional information. Map navigation does not offer all features the [basic navigation](./basic-navigation.md) offers.
 
 ![Map navigation layout](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1020-71241&mode=design&t=Ntzn8IlSOlPey8s5-11)

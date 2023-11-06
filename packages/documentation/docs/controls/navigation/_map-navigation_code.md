@@ -1,7 +1,3 @@
----
-title: Map Navigation
----
-
 import Playground from '@site/src/components/Playground';
 
 import Props from './../../auto-generated/ix-map-navigation/props.md';
