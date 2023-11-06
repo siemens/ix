@@ -32,8 +32,6 @@ type TypeDocProperty = {
   comment: string;
 };
 
-const entryPoints = ['./../core/src/components/utils/modal/modal.ts'];
-
 async function generateDocsForEntrypoint(
   entrypoint: string,
   targetPath: string
@@ -60,10 +58,10 @@ async function generateDocsForEntrypoint(
   const types: TypeDocTarget[] = [];
 
   if (project) {
-    project.children.forEach((child) => {
+    project.children?.forEach((child) => {
       const source = path.relative(
         path.join(__dirname, '..', '..', '..'),
-        child.sources[0].fullFileName
+        child.sources![0].fullFileName
       );
       const properties: TypeDocProperty[] = [];
       types.push({
@@ -95,7 +93,7 @@ async function generateDocsForEntrypoint(
           comment: property?.comment?.summary
             .filter((summary) => summary.kind === 'text')
             .map((summary) => summary.text)
-            .join(''),
+            .join('')!,
         });
       });
     });
@@ -120,7 +118,7 @@ async function generateDocsForEntrypoint(
           },
           {
             name: 'Default',
-            value: prop.defaultValue,
+            value: prop.defaultValue!,
           },
         ],
       });
@@ -154,8 +152,11 @@ async function generateDocsForEntrypoint(
   return Promise.all(promises);
 }
 
-export async function writeTypeScriptFiles(targetPath: string) {
+export async function writeTypeScriptFiles(
+  classPath: string[],
+  targetPath: string
+) {
   return Promise.all(
-    entryPoints.map((e) => generateDocsForEntrypoint(e, targetPath))
+    classPath.map((e) => generateDocsForEntrypoint(e, targetPath))
   );
 }
