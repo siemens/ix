@@ -30,33 +30,7 @@ SPDX-License-Identifier: MIT
 </head>
 
 <body style="margin: 0px; height: 100vh">
-  <my-component/>
-  <ix-date-dropdown></ix-date-dropdown>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
-  <script>
-    document.querySelector('ix-date-dropdown').dateRangeOptions = [
-      {
-        label: 'No time limit',
-        getValue: () => {
-          return {from: undefined, to: window.dayjs()}
-        }
-      },
-      {
-        label: 'Today',
-        getValue: () => {
-          const today = window.dayjs();
-          return { from: today, to: today };
-        },
-      },
-      {
-        label: 'Last 7 days',
-        getValue: () => {
-          const today = window.dayjs();
-          return { from: today.subtract(7, 'day'), to: today };
-        },
-      },
-    ]
-  </script>
+  <my-component />
   <script type="module" src="./init.js"></script>
 </body>
 </html>
