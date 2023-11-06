@@ -14,7 +14,30 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  selected: number = 0;
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-tabs selected={this.selected} placement="top">
+          <ix-tab-item>tab1</ix-tab-item>
+          <ix-tab-item>tab2</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+          <ix-tab-item>tab3</ix-tab-item>
+        </ix-tabs>
+      </Host>
+    );
   }
 }

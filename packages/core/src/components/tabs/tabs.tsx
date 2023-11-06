@@ -17,7 +17,6 @@ import {
   Listen,
   Prop,
   State,
-  Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -239,34 +238,32 @@ export class Tabs {
 
   componentWillLoad() {
     const tabs = this.getTabs();
-    this.totalItems = tabs.length;
 
-    tabs.forEach((element) => {
+    tabs.map((element, index) => {
       if (this.small) element.setAttribute('small', 'true');
+
       if (this.rounded) element.setAttribute('rounded', 'true');
 
       element.setAttribute('layout', this.layout);
+      element.setAttribute(
+        'selected',
+        index === this.selected ? 'true' : 'false'
+      );
 
       element.setAttribute('placement', this.placement);
     });
   }
 
-  @Watch('selected')
-  onSelectedChange() {
+  componentDidRender() {
     const tabs = this.getTabs();
-
-    tabs.forEach((element, index) => {
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
-    });
+    this.totalItems = tabs.length;
   }
 
   componentWillRender() {
     requestAnimationFrameNoNgZone(() => {
       const showNextArrow = this.showNextArrow();
       const previousArrow = this.showPreviousArrow();
+
       Object.assign(
         this.arrowLeftElement.style,
         this.getArrowStyle(previousArrow)
