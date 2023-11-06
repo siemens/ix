@@ -24,7 +24,7 @@ Feature requests need to include a clear description of the desired feature. Ide
 
 Bug reports need to include a clear description of the problem as well as additional information that can help in solving the issue (e.g. software versions, stack traces).
 
-## Merge requests
+## Pull requests
 
 If you are planning to contribute a larger change to iX it is advisable to open an issue for discussion first. This way you can make sure in advance that your changes will actually get accepted.
 

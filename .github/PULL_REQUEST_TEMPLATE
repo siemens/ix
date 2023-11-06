@@ -5,25 +5,13 @@
   Before submitting a pull request, please make sure the following is done:
 
   1. Fork [the repository](https://github.com/siemens/ix) and create your branch from `main`.
-  2. Run `yarn` in the repository root.
+  2. Run `pnpm install` in the repository root.
   3. If you've fixed a bug or added code that should be tested, add tests!
-  4. Ensure the test suite passes (`yarn test` and `yarn visual-regression` (docker needed)).
+  4. Ensure the test suite passes (`pnpm test` and `pnpm visual-regression` (docker needed)).
   5. Format your code with [prettier](https://github.com/prettier/prettier).
   6. Make sure your code lints.
 
 -->
-
-## Pull request checklist
-
-Please check if your PR fulfills the following requirements:
-
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been reviewed and added / updated if needed (for bug fixes / features)
-- [ ] Build (`yarn build`) was run locally and any changes were pushed
-- [ ] Unit tests (`yarn test`) were run locally and passed
-- [ ] Visual Regression Tests (`yarn visual-regression`) were run locally and passed
-- [ ] Linting (`npm lint`) was run locally and passed
-
 ## Pull request type
 
 <!-- Please do not submit updates to dependencies unless it fixes an issue. -->
@@ -32,18 +20,18 @@ Please check if your PR fulfills the following requirements:
 
 Please check the type of change your PR introduces:
 
-- [ ] Bug fix
-- [ ] Feature
-- [ ] Refactoring (no functional changes, no API changes)
-- [ ] Build related changes
-- [ ] Documentation content changes
-- [ ] Other (please describe):
+- [ ] 🐛 Bug fix
+- [ ] 🍕 Feature
+- [ ] 👨‍💻 Refactoring (no functional changes, no API changes)
+- [ ] 📸 Build related changes
+- [ ] 📄 Documentation content changes
+- [ ] 🌊 Other (please describe):
 
 ## What is the current behavior?
 
 <!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
 
-GitHub Issue Number: N/A
+GitHub Issue Number: #<ISSUE NUMBER>
 
 ## What is the new behavior?
 
@@ -51,18 +39,13 @@ GitHub Issue Number: N/A
 
 -
 -
--
 
-## Does this introduce a breaking change?
 
-- [ ] Yes
-- [ ] No
+## Added tests?
 
-<!-- If this introduces a breaking change, please describe the impact and migration path for existing applications below. -->
-
-## Testing
-
-<!-- Please describe the steps you took to test the changes in this PR. These steps can be programmatic (e.g. unit tests) and/or manual. -->
+- [ ] 👍 yes
+- [ ] 🙅 no, because they aren't needed
+- [ ] 🙋 no, because I need help
 
 ## Other information
 
