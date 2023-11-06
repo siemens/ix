@@ -41,7 +41,7 @@ Basic navigation automatically adapts, by default, to the three breakpoints. Dep
 
 ### Breakpoint small (sm) – mobile phone (10/11)
 -  `only screen and (min-width: 36em)`
-- Navigation menu disappears and the icon moves into the application header
+- The navigation menu disappears and the icon moves into the application header
 - Clicking the icon displays the navigation menu as an overlay
 
 ### Example
