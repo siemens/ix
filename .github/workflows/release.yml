@@ -1,10 +1,11 @@
-name: Release
+name: Check changesets
 
 on:
   push:
     branches:
       - 'main'
-
+    paths:
+      - .changeset/**
 
 concurrency: release-${{ github.ref }}
 
@@ -20,7 +21,7 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          commit:
+          commit: [ci] release
           version: pnpm ci:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
