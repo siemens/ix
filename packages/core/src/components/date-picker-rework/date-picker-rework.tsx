@@ -29,6 +29,7 @@ import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+import { OnListener } from '../utils/listener';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(isoWeeksInYear);
@@ -224,9 +225,66 @@ export class DatePickerRework {
   @State() dayNames: string[];
   @State() monthNames: string[];
   @State() firstMonthRef: HTMLElement;
+  @State() focusedDay: number = 1;
+  @State() focusedDayElem: HTMLElement;
 
+  private isDayFocus: boolean;
+  private monthChangedFromFocus: boolean;
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[];
+
+  @OnListener<DatePickerRework>('keydown')
+  handleKeyUp(event: KeyboardEvent) {
+    if (!this.isDayFocus) {
+      return;
+    }
+
+    let _focusedDay = this.focusedDay;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+        _focusedDay--;
+        break;
+      case 'ArrowRight':
+        _focusedDay++;
+        break;
+      case 'ArrowUp':
+        _focusedDay = _focusedDay - 7;
+        break;
+      case 'ArrowDown':
+        _focusedDay = _focusedDay + 7;
+        break;
+      default:
+        return;
+    }
+
+    if (_focusedDay > this.getDaysInCurrentMonth()) {
+      _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
+      this.changeToAdjacentMonth(1);
+      this.monthChangedFromFocus = true;
+    } else if (_focusedDay < 1) {
+      this.changeToAdjacentMonth(-1);
+      _focusedDay = _focusedDay + this.getDaysInCurrentMonth();
+      this.monthChangedFromFocus = true;
+    }
+
+    this.focusedDay = _focusedDay;
+  }
+
+  private getDaysInCurrentMonth(): number {
+    return dayjs()
+      .month(this.selectedMonth)
+      .year(this.selectedYear)
+      .daysInMonth();
+  }
+
+  onDayBlur() {
+    this.isDayFocus = false;
+  }
+
+  onDayFocus() {
+    this.isDayFocus = true;
+  }
 
   componentWillLoad() {
     dayjs.locale(this.dayJsLocale);
@@ -249,6 +307,17 @@ export class DatePickerRework {
 
   componentWillRender() {
     this.calculateCalendar();
+  }
+
+  componentDidRender() {
+    if (!this.monthChangedFromFocus && !this.isDayFocus) {
+      return;
+    }
+
+    const dayElem = this.hostElement.shadowRoot.querySelector(
+      `[id=day-cell-${this.focusedDay}]`
+    ) as HTMLElement;
+    dayElem.focus();
   }
 
   private setTranslations() {
@@ -657,10 +726,13 @@ export class DatePickerRework {
                   {week.dayNumbers.map((day) => (
                     <div
                       key={day}
+                      id={`day-cell-${day}`}
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
                       onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
-                      tabIndex={day ? 0 : -1}
+                      tabIndex={day === this.focusedDay ? 0 : -1}
+                      onFocus={() => this.onDayFocus()}
+                      onBlur={() => this.onDayBlur()}
                     >
                       {day}
                     </div>
