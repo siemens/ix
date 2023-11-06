@@ -600,6 +600,7 @@ export class DatePickerRework {
           key={year}
           class={{
             arrowYear: true,
+            'month-dropdown-item': true,
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={(event) => this.selectTempYear(event, year)}
@@ -672,6 +673,7 @@ export class DatePickerRework {
                         }}
                         class={{
                           arrowYear: true,
+                          'month-dropdown-item': true,
                           selected:
                             this.tempYear === this.selectedYear &&
                             this.tempMonth === index,
@@ -694,9 +696,7 @@ export class DatePickerRework {
                           size="16"
                         ></ix-icon>
                         <div>
-                          <span
-                            class={{ capitalize: true, monthMargin: true }}
-                          >{`${month} ${this.tempYear}`}</span>
+                          <span class="capitalize monthMargin">{`${month} ${this.tempYear}`}</span>
                         </div>
                       </div>
                     ))}
