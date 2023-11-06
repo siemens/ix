@@ -44,7 +44,7 @@ Menu categories can host menu items as a second navigation level. Second level m
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| notifications (number) |  displays a number at the top right corner of the icon (2) |
+| notifications (`number`) |  displays a number at the top right corner of the icon (2) |
 
 
 
