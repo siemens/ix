@@ -20,10 +20,10 @@ jobs:
 
       - name: Build
         env:
-          BASE_URL: /ix/version-dev/
+          BASE_URL: /ix/
         run: pnpm build --cache-dir=.turbo --filter documentation
 
-      - name: Deploy preview 🚀
+      - name: Deploy prod v2 documentation 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           force: false
