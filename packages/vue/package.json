@@ -31,7 +31,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@siemens/ix": "~99.88.77"
+    "@siemens/ix": "~2.0.3"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
