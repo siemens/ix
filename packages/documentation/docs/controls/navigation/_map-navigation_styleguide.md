@@ -22,7 +22,7 @@ The app header (1) hosts the brand logo and the application name. As this space 
 ## Behavior
 
 Map navigation does not adapt to breakpoints (unlike [basic navigation](./basic-navigation.md)) and should be used on desktop.
-The navigation menu provides a control at the bottom (5) to expand and collapse the context panel. This also affects the application header to maximize the space for your map-like content.  The overlay’s (6) background appears semi-transparent with background blur to emphasize its overlaying characteristic.
+The navigation menu provides a control at the bottom (5) to expand and collapse the context panel. This also affects the application header to maximize the space for your map-like content.  The overlay’s (6) background appears semi-transparent with background blur to emphasize the overlay character.
 
 ## Dos and Don‘ts
 
