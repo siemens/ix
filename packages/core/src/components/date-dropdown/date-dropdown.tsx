@@ -46,7 +46,7 @@ export class DateDropdown {
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    */
-  @Prop() public format = 'LLLL/dd/ccc';
+  @Prop() public format = 'YYYY-MM-DD';
 
   /**
    * If true a range of dates can be selected.
@@ -188,10 +188,14 @@ export class DateDropdown {
     if (dateRangeName !== CUSTOM_RANGE_LABEL) {
       const { from, to } = getDateRange();
 
+      console.log(from);
+      console.log(to);
+
       this.associatedDateRangeValue = {
         from: from ? from.format(this.format) : undefined,
         to: to ? to.format(this.format) : undefined,
       };
+      console.log(this.associatedDateRangeValue);
     } else {
       this.hideDatePicker = false;
     }
