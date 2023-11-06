@@ -10,15 +10,15 @@
  */
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  plugins: ['prettier'],
   extends: ['turbo', 'prettier'],
+  plugins: ['prettier'],
   rules: {
+    'prettier/prettier': 'error',
     quotes: [
       'error',
       'single',
       { avoidEscape: true, allowTemplateLiterals: true },
     ],
-    'prettier/prettier': 'error',
     'no-inline-comments': 'error',
   },
 };

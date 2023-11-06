@@ -14,8 +14,7 @@ Nevertheless feedback of any kind will be helpful.
 
 :::info
 
-The iX Blazor library is not developed by the Siemens Industrial Experience team itslef.
-All credits go to the maintainers of [siemens-ix-blazor](https://github.com/yagizhanNY/siemens-ix-blazor/graphs/contributors) who are entirely responsible for the package.
+The Blazor Library is not developed by the Siemens Industrial Experience Team all credits goes to the contributors of [siemens-ix-blazor](https://github.com/yagizhanNY/siemens-ix-blazor/graphs/contributors)
 
 :::
 

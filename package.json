@@ -13,14 +13,11 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "yarn@1.22.15",
+  "packageManager": "pnpm@8.9.2",
   "engines": {
     "npm": ">=8.x.x",
     "node": ">=16.16.x"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
     "build": "dotenv -- turbo run build",
@@ -33,16 +30,15 @@
     "release": "node ./scripts/release.js",
     "push-git": "node ./scripts/push-git.js",
     "sonarqube": "sonar-scanner",
-    "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix test:e2e && yarn workspace @siemens/ix-aggrid test:e2e",
-    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
-    "visual-regression-windows": "docker run --rm --network host -v %cd%:/work/ -w /work mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
-    "test": "turbo run test",
+    "visual-regression": "dotenv -- turbo run visual-regression",
+    "test": "dotenv -- turbo run test",
     "prepare": "husky install"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "colorette": "^2.0.19",
@@ -59,7 +55,7 @@
     "prettier-plugin-organize-imports": "^3.2.1",
     "semver": "^7.3.7",
     "sonarqube-scanner": "^2.8.1",
-    "turbo": "^1.4.3",
+    "turbo": "^1.10.16",
     "typescript": "~4.7.2"
   },
   "config": {

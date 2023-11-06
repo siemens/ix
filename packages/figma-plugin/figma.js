@@ -6,9 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const axios = require('axios');
-const path = require('path');
-const fs = require('fs');
+import axios from 'axios';
+import path from 'path';
+import fs from 'fs';
 
 async function getImageResource(fileName, nodeId, figmaToken) {
   const res = await axios.get(`https://api.figma.com/v1/images/${fileName}`, {

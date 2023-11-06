@@ -1,40 +1,54 @@
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-import React from 'react';
-import { useThemeConfig } from '@docusaurus/theme-common';
+import React, { type ReactNode } from 'react';
+import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
-import NavbarItem from '@theme/NavbarItem';
+import NavbarItem, { type Props as NavbarItemConfig } from '@theme/NavbarItem';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
+import SearchBar from '@theme/SearchBar';
 import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
-import styles from './styles.module.css';
+import NavbarSearch from '@theme/Navbar/Search';
 import { SwitchTheme } from '@site/src/components/SwitchTheme';
-import SearchBar from '@theme/SearchBar';
+
+import styles from './styles.module.css';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
-  return useThemeConfig().navbar.items;
+  return useThemeConfig().navbar.items as NavbarItemConfig[];
 }
-function NavbarItems({ items }) {
+
+function NavbarItems({ items }: { items: NavbarItemConfig[] }): JSX.Element {
   return (
     <>
       {items.map((item, i) => (
-        <NavbarItem {...item} key={i} />
+        <ErrorCauseBoundary
+          key={i}
+          onError={(error) =>
+            new Error(
+              `A theme navbar item failed to render.
+Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
+${JSON.stringify(item, null, 2)}`,
+              //@ts-ignore
+              { cause: error }
+            )
+          }
+        >
+          <NavbarItem {...item} />
+        </ErrorCauseBoundary>
       ))}
     </>
   );
 }
-function NavbarContentLayout({ left, right }) {
+
+function NavbarContentLayout({
+  left,
+  right,
+}: {
+  left: ReactNode;
+  right: ReactNode;
+}) {
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
@@ -42,11 +56,15 @@ function NavbarContentLayout({ left, right }) {
     </div>
   );
 }
-export default function NavbarContent() {
+
+export default function NavbarContent(): JSX.Element {
   const mobileSidebar = useNavbarMobileSidebar();
+
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
+
   const searchBarItem = items.find((item) => item.type === 'search');
+
   const isDocs = () => {
     if (typeof window === 'undefined') {
       return true;
@@ -73,9 +91,14 @@ export default function NavbarContent() {
         <>
           <NavbarItems items={rightItems} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
+
           {isDocs() ? null : (
             <>
-              <SearchBar />
+              {!searchBarItem && (
+                <NavbarSearch>
+                  <SearchBar />
+                </NavbarSearch>
+              )}
               <SwitchTheme icon="image" label="Theme"></SwitchTheme>
             </>
           )}

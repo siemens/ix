@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
 import { JsonDocs } from '@stencil/core/internal';
-import { postcss } from '@stencil/postcss';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
@@ -52,7 +52,7 @@ export const config: Config = {
     scopedSlotTextContentFix: true,
   },
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/'],
+    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
   },

@@ -28,10 +28,10 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
-    "@siemens/ix": "~2.1.0-beta.0",
+    "@siemens/ix": "2.1.0-beta.0",
     "@types/estree": "~0.0.51",
-    "@types/react": "~18.0.15",
-    "@types/react-dom": "~18.0.6",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint-config-ix": "*",
@@ -52,6 +52,6 @@
     "@siemens/ix-icons": "^2.0.0"
   },
   "dependencies": {
-    "@siemens/ix": "~2.1.0-beta.0"
+    "@siemens/ix": "2.1.0-beta.0"
   }
 }

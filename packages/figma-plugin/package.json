@@ -1,10 +1,13 @@
 {
   "name": "@siemens/figma-plugin",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "axios": "^1.5.0",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "unist-util-visit": "^5.0.0"
   }
 }

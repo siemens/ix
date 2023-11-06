@@ -48,7 +48,7 @@ If this step is done you can set the theme name class on the body tag:
 
 The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
 
-Siemens AG employees can access the Corporate Brand Theme at [**https://code.siemens.com/siemens-ix/ix-brand-theme**](https://code.siemens.com/siemens-ix/ix-brand-theme).
+Siemens AG employees can access the Corporate Brand Theme [here](https://code.siemens.com/siemens-ix/ix-brand-theme).
 
 </div>
 

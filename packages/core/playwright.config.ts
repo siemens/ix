@@ -76,7 +76,7 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: buildProjectsWithThemes(),
   webServer: {
-    command: 'npm run host-root',
+    command: 'pnpm run host-root',
     port: 8080,
   },
 };

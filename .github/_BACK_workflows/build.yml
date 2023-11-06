@@ -1,0 +1,124 @@
+name: build
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/*'
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - run: |
+          echo "github.ref = ${{ github.ref }}"
+          echo "github.sha = ${{ github.sha }}"
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/install
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
+      - uses: ./.github/workflows/actions/build
+
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    needs: [build]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-build
+          if-no-files-found: error
+          path: |
+            packages/core/dist
+            packages/core/components
+            packages/core/loader
+            packages/core/www
+            packages/react/dist
+            packages/vue/dist
+            packages/angular/dist
+            packages/aggrid/dist
+            packages/aggrid/www
+            packages/aggrid/loader
+            packages/echarts/dist
+
+  visual-test:
+    needs: [build]
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
+      - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/visual-regression
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    container:
+      image: mcr.microsoft.com/playwright:v1.32.1-focal
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/build-cache
+      - uses: ./.github/workflows/actions/install
+      - uses: ./.github/workflows/actions/test
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/lint
+
+  lint-commit-message:
+    runs-on: ubuntu-latest
+    needs: [install]
+    container:
+      image: node:18.12.1
+      env:
+        DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/install
+      - name: Validate all commits from PR
+        if: github.event_name == 'pull_request'
+        run: yarn commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose

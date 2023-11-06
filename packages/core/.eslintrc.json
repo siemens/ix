@@ -1,6 +1,4 @@
 {
-  "root": true,
-  "plugins": ["@stencil-community/eslint-plugin"],
   "extends": ["plugin:@stencil-community/recommended", "ix"],
   "rules": {
     "@stencil-community/async-methods": 0,

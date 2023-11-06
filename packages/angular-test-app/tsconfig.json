@@ -22,8 +22,7 @@
     "preserveSymlinks": true,
     "paths": {
       "@siemens/ix-angular": ["./../angular/dist"],
-      "@siemens/ix-angular/*": ["./../angular/dist"],
-      "@angular/*": ["../node_modules/@angular/*"]
+      "@siemens/ix-angular/*": ["./../angular/dist"]
     }
   },
   "angularCompilerOptions": {

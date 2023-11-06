@@ -4,17 +4,6 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-# [2.1.0-beta.0](https://github.com/siemens/ix/compare/v2.0.3...v2.1.0-beta.0) (2023-10-20)
-
-
-### Bug Fixes
-
-* **core/button:** prevent interaction of ix-icon ([#839](https://github.com/siemens/ix/issues/839)) ([a0bd2af](https://github.com/siemens/ix/commit/a0bd2afb0a147fddcc4e665c574279070087fce8))
-* **core/modal:** use percentage to align modal centered ([#836](https://github.com/siemens/ix/issues/836)) ([87622f4](https://github.com/siemens/ix/commit/87622f48f247233c6bfba7328cdf8ccb605e1635))
-* **core:** request animation depending on zonejs; reduce global events ([#855](https://github.com/siemens/ix/issues/855)) ([98a615c](https://github.com/siemens/ix/commit/98a615cfab02e270f006c1eeeb2b3cd40969cee0))
-
-
-
 ## [2.0.3](https://github.com/siemens/ix/compare/v2.0.2-beta.0...v2.0.3) (2023-10-10)
 
 

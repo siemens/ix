@@ -6,27 +6,26 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { useState } from 'react';
 
-export default function NavbarLogo() {
+export default function NavbarLogo(): JSX.Element {
   const base = useBaseUrl('/');
   const [logo, setLogo] = useState('');
 
-  useEffect(() => {
-    const isDarkVariant = () => document.body.className.includes('-dark');
+  const updateLogo = () => {
+    if (!document.body.className.includes('theme-')) {
+      setLogo(`${base}img/logo.svg`);
+      return;
+    }
+    if (document.body.className.includes('-dark')) {
+      setLogo(`${base}img/logo.svg`);
+    } else {
+      setLogo(`${base}img/logo-dark.svg`);
+    }
+  };
 
-    const updateLogo = () => {
-      if (isDarkVariant()) {
-        setLogo(`${base}img/logo.svg`);
-      } else {
-        setLogo(`${base}img/logo-dark.svg`);
-      }
-    };
-
+  useLayoutEffect(() => {
     updateLogo();
 
     const mutationObserver = new MutationObserver(() => {
@@ -41,9 +40,12 @@ export default function NavbarLogo() {
 
   return (
     <div className="navbar__brand">
-      <a href={base} target="_self">
-        <img className="navbar__logo" src={logo} alt={"Siemens Industrial Experience"} aria-label={"Siemens Industrial Experience"}></img>
-      </a>
+      <img
+        className="navbar__logo"
+        src={logo}
+        alt={'Siemens Industrial Experience'}
+        aria-label={'Siemens Industrial Experience'}
+      ></img>
     </div>
   );
 }
