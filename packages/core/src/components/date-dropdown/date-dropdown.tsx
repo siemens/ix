@@ -46,7 +46,7 @@ export class DateDropdown {
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    */
-  @Prop() public format = 'YYYY-MM-DD';
+  @Prop() public format = 'LLLL/dd/ccc';
 
   /**
    * If true a range of dates can be selected.
@@ -260,9 +260,10 @@ export class DateDropdown {
                     checked={
                       this.currentlySelectedDateRangeName === CUSTOM_RANGE_LABEL
                     }
-                    onClick={() =>
-                      this.setSelectedDateRange(CUSTOM_RANGE_LABEL, undefined)
-                    }
+                    onClick={(e) => {
+                      this.setSelectedDateRange(CUSTOM_RANGE_LABEL, undefined);
+                      e.preventDefault();
+                    }}
                   ></ix-dropdown-item>
                 </div>
               </ix-col>
@@ -279,9 +280,10 @@ export class DateDropdown {
                 ></ix-date-picker>
                 <div class="pull-right">
                   <ix-button
-                    onClick={() =>
-                      (this.associatedDateRangeValue = this.datePickerRange)
-                    }
+                    onClick={() => {
+                      console.log(this.datePickerRange);
+                      this.associatedDateRangeValue = this.datePickerRange;
+                    }}
                   >
                     Done
                   </ix-button>
