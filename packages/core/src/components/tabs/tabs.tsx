@@ -257,6 +257,13 @@ export class Tabs {
   componentDidRender() {
     const tabs = this.getTabs();
     this.totalItems = tabs.length;
+
+    tabs.map((element, index) => {
+      element.setAttribute(
+        'selected',
+        index === this.selected ? 'true' : 'false'
+      );
+    });
   }
 
   componentWillRender() {
