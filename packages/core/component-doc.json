@@ -7826,14 +7826,37 @@
           "required": false
         },
         {
+          "name": "closeOnEscape",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "close-on-escape",
+          "reflectToAttr": false,
+          "docs": "If set to true the modal can be closed by pressing the Escape key",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "keyboard",
           "type": "boolean",
           "mutable": false,
           "attr": "keyboard",
           "reflectToAttr": false,
           "docs": "Use ESC to dismiss the modal",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Use closeOnEscape instead"
+            }
+          ],
           "default": "true",
+          "deprecation": "- Use closeOnEscape instead",
           "values": [
             {
               "type": "boolean"

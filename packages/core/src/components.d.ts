@@ -1408,11 +1408,16 @@ export namespace Components {
          */
         "closeOnBackdropClick": boolean;
         /**
+          * If set to true the modal can be closed by pressing the Escape key
+         */
+        "closeOnEscape": boolean;
+        /**
           * Dismiss the dialog
          */
         "dismissModal": <T = any>(reason?: T) => Promise<void>;
         /**
           * Use ESC to dismiss the modal
+          * @deprecated - Use closeOnEscape instead
          */
         "keyboard": boolean;
         /**
@@ -4576,7 +4581,12 @@ declare namespace LocalJSX {
          */
         "closeOnBackdropClick"?: boolean;
         /**
+          * If set to true the modal can be closed by pressing the Escape key
+         */
+        "closeOnEscape"?: boolean;
+        /**
           * Use ESC to dismiss the modal
+          * @deprecated - Use closeOnEscape instead
          */
         "keyboard"?: boolean;
         /**
