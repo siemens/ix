@@ -1,6 +1,6 @@
 {
   "name": "vue-test-app",
-  "version": "2.1.0-beta.0",
+  "version": "2.0.3",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "ag-grid-community": "^28.2.1",
-    "@siemens/ix": "2.1.0-beta.0",
-    "@siemens/ix-vue": "2.1.0-beta.0",
+    "@siemens/ix": "~99.88.77",
+    "@siemens/ix-vue": "~99.88.77",
     "@siemens/ix-icons": "^2.0.0",
-    "@siemens/ix-aggrid": "2.1.0-beta.0",
+    "@siemens/ix-aggrid": "~99.88.77",
     "ag-grid-vue3": "^28.2.1",
     "vue": "^3.2.45",
     "web-vitals": "^2.1.4",
