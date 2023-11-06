@@ -2579,10 +2579,10 @@
         {
           "name": "getCurrentInput",
           "returns": {
-            "type": "Promise<DateChangeEvent>",
+            "type": "Promise<DateChangeEventRework>",
             "docs": "DateChangeEvent"
           },
-          "signature": "getCurrentInput() => Promise<DateChangeEvent>",
+          "signature": "getCurrentInput() => Promise<DateChangeEventRework>",
           "parameters": [],
           "docs": "Gets the current input",
           "docsTags": [
@@ -3216,7 +3216,7 @@
           "reflectToAttr": false,
           "docs": "Show hour input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -3233,7 +3233,7 @@
           "reflectToAttr": false,
           "docs": "Show minutes input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -3250,7 +3250,7 @@
           "reflectToAttr": false,
           "docs": "Show seconds input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"

@@ -19,10 +19,10 @@ import { ContentHeaderVariant } from "./components/content-header/content-header
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { InputValidator } from "./components/utils/validators/validator";
-import { DateChangeEvent } from "./components/date-picker/date-picker";
+import { DateChangeEventRework } from "./components/date-picker-rework/date-picker-rework";
 import { DateInputEvent } from "./components/date-input/date-input";
-import { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-import { DateChangeEvent as DateChangeEvent2 } from "./components/date-picker-rework/date-picker-rework";
+import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+import { DateChangeEventRework as DateChangeEventRework1 } from "./components/date-picker-rework/date-picker-rework";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
 import { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
@@ -62,10 +62,10 @@ export { ContentHeaderVariant } from "./components/content-header/content-header
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { InputValidator } from "./components/utils/validators/validator";
-export { DateChangeEvent } from "./components/date-picker/date-picker";
+export { DateChangeEventRework } from "./components/date-picker-rework/date-picker-rework";
 export { DateInputEvent } from "./components/date-input/date-input";
-export { DateChangeEvent as DateChangeEvent1, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-export { DateChangeEvent as DateChangeEvent2 } from "./components/date-picker-rework/date-picker-rework";
+export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
+export { DateChangeEventRework as DateChangeEventRework1 } from "./components/date-picker-rework/date-picker-rework";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
 export { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
@@ -508,7 +508,7 @@ export namespace Components {
           * Gets the current input
           * @returns DateChangeEvent
          */
-        "getCurrentInput": () => Promise<DateChangeEvent>;
+        "getCurrentInput": () => Promise<DateChangeEventRework>;
         /**
           * Label for the input
          */
@@ -3994,11 +3994,11 @@ declare namespace LocalJSX {
         /**
           * Triggers if the date selection changes.
          */
-        "onDateChange"?: (event: IxDateInputCustomEvent<DateChangeEvent>) => void;
+        "onDateChange"?: (event: IxDateInputCustomEvent<DateChangeEventRework>) => void;
         /**
           * Date selection confirmed via button action
          */
-        "onDateSelect"?: (event: IxDateInputCustomEvent<DateChangeEvent>) => void;
+        "onDateSelect"?: (event: IxDateInputCustomEvent<DateChangeEventRework>) => void;
         /**
           * Triggers if one of the inputs loses focus
           * @emits DateInputEvent
@@ -4086,12 +4086,12 @@ declare namespace LocalJSX {
           * Date range change. Only triggered if datepicker is in range mode
           * @since 1.1.0
          */
-        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent1>) => void;
+        "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
           * @deprecated Will be removed in 2.0.0. Use `dateSelect`
@@ -4144,18 +4144,18 @@ declare namespace LocalJSX {
           * Triggers if the date selection changes.
           * @since 2.0.0
          */
-        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
+        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
         /**
           * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
           * @since 1.1.0
           * @deprecated Use `dateChange` (triggers on both modes)
          */
-        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
+        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
         /**
           * Date selection confirmed via button action
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEvent2>) => void;
+        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */

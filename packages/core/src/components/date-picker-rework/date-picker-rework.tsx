@@ -36,7 +36,7 @@ dayjs.extend(localeData);
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 
-export type DateChangeEvent = {
+export type DateChangeEventRework = {
   from: string;
   to: string;
 };
@@ -162,7 +162,7 @@ export class DatePickerRework {
    *
    * @since 2.0.0
    */
-  @Event() dateChange: EventEmitter<DateChangeEvent>;
+  @Event() dateChange: EventEmitter<DateChangeEventRework>;
 
   /**
    * Triggers if the date selection changes.
@@ -171,14 +171,14 @@ export class DatePickerRework {
    * @since 1.1.0
    * @deprecated Use `dateChange` (triggers on both modes)
    */
-  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
+  @Event() dateRangeChange: EventEmitter<DateChangeEventRework>;
 
   /**
    * Date selection confirmed via button action
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+  @Event() dateSelect: EventEmitter<DateChangeEventRework>;
 
   /**
    * Get the currently selected date-range.

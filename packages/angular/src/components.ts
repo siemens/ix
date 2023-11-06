@@ -458,18 +458,18 @@ export class IxDateInput {
 }
 
 
-import type { DateChangeEvent as IIxDateInputDateChangeEvent } from '@siemens/ix';
+import type { DateChangeEventRework as IIxDateInputDateChangeEventRework } from '@siemens/ix';
 import type { DateInputEvent as IIxDateInputDateInputEvent } from '@siemens/ix';
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Triggers if the date selection changes.
    */
-  dateChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+  dateChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
   /**
    * Date selection confirmed via button action
    */
-  dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEvent>>;
+  dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
   /**
    * Triggers if one of the inputs changes @emits DateInputEvent
    */

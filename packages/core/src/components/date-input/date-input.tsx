@@ -22,7 +22,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { IxDatePickerReworkCustomEvent } from 'src/components';
-import { DateChangeEvent } from '../date-picker/date-picker';
+import { DateChangeEventRework } from '../date-picker-rework/date-picker-rework';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 import { DateValidatorParam } from '../utils/validators/datetime-input/date-input-validators';
 import { InputValidator, Validator } from '../utils/validators/validator';
@@ -138,12 +138,12 @@ export class DateInput {
    * Triggers if the date selection changes.
 
    */
-  @Event() dateChange: EventEmitter<DateChangeEvent>;
+  @Event() dateChange: EventEmitter<DateChangeEventRework>;
 
   /**
    * Date selection confirmed via button action
    */
-  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+  @Event() dateSelect: EventEmitter<DateChangeEventRework>;
 
   /**
    * Triggers if one of the inputs changes
@@ -174,7 +174,7 @@ export class DateInput {
    * @returns DateChangeEvent
    */
   @Method()
-  async getCurrentInput(): Promise<DateChangeEvent> {
+  async getCurrentInput(): Promise<DateChangeEventRework> {
     return {
       from: this._from,
       to: this._to,
@@ -230,7 +230,9 @@ export class DateInput {
     });
   };
 
-  private onDateChange(event: IxDatePickerReworkCustomEvent<DateChangeEvent>) {
+  private onDateChange(
+    event: IxDatePickerReworkCustomEvent<DateChangeEventRework>
+  ) {
     this._from = event.detail.from;
     this._to = event.detail.to;
 
