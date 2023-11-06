@@ -2387,7 +2387,7 @@
           "reflectToAttr": false,
           "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [],
-          "default": "'YYYY-MM-DD'",
+          "default": "'LLLL/dd/ccc'",
           "values": [
             {
               "type": "string"
