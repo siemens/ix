@@ -5,6 +5,9 @@ on:
     branches:
       - 'release/v*'
 
+
+concurrency: release-${{ github.ref }}
+
 jobs:
   release:
     runs-on: ubuntu-latest
