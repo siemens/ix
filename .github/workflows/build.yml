@@ -5,10 +5,7 @@ on:
     branches:
       - 'main'
       - 'release/*'
-      - 'changeset-release/main'
   pull_request:
-    branches:
-      - '**'
   workflow_dispatch:
   workflow_call:
 
