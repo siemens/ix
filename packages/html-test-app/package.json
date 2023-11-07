@@ -5,6 +5,7 @@
   "version": "2.1.0-beta.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -12,13 +13,11 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "@siemens/ix": "~2.1.0-beta.0",
-    "@siemens/ix-icons": "~2.0.1",
-    "@siemens/ix-aggrid": "~2.1.0-beta.0",
-    "@siemens/ix-echarts": "~2.1.0-beta.0"
-  },
   "devDependencies": {
+    "@siemens/ix": "~2.1.0-beta.0",
+    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-aggrid": "~2.1.0-beta.0",
+    "@siemens/ix-echarts": "~2.1.0-beta.0",
     "vite": "^3.1.0"
   }
 }

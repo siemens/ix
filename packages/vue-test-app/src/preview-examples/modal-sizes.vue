@@ -34,18 +34,7 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped>
-.modal-sizes-example {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.modal-sizes-example > * {
-  width: auto;
-  margin: 0.25rem;
-}
-</style>
+<style scoped src="./styles/modal-sizes.css"></style>
 
 <template>
   <div class="modal-sizes-example">

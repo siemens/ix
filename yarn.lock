@@ -3399,41 +3399,17 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-aggrid@latest":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-aggrid/-/ix-aggrid-2.0.3.tgz#6268acfbdb5ab89c7c41e14a9dd611cd5204a609"
-  integrity sha512-hFAoQswGODYq1VaDti9W5SOdcapYT2k0tEwIxgibBEaDTNnG07jIMJj6l0Bm9fYndcHQEIGTfMZQIjGY7YjDiQ==
-
 "@siemens/ix-echarts@latest":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@siemens/ix-echarts/-/ix-echarts-2.0.3.tgz#2c14f5365a91f08d7b513536afdedc6214568505"
   integrity sha512-S9NPpAYRyEKGGb/ruGnpB12ywwUgsUATc4sXvXLNHaHSxAnIKw6Tz86+bR/GkdB4kTgyoFbmVpeRzXEQ/BNsyg==
 
-"@siemens/ix-icons@^2.0.0", "@siemens/ix-icons@latest", "@siemens/ix-icons@~2.0.1":
+"@siemens/ix-icons@^2.0.0", "@siemens/ix-icons@~2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.1.tgz#bebfa13d5f9069410b9afd025ceb08b44baf93b2"
   integrity sha512-BT0mqB7rGj+DX0tRHYWsIeOf+hV7a9IHWT0F7owNKLNwTs4VXvYkokRhc82vVnQjL81NGs9Vjo62MMrEa2oGqA==
   dependencies:
     "@stencil/core" "3.2.1"
-
-"@siemens/ix-vue@latest":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-vue/-/ix-vue-2.0.3.tgz#ef305c0c32a1d364da48da650a33aef004cabd6e"
-  integrity sha512-P31w6Y/kjdtMpFVL1/EPEty94B5At/aU61nt5DYGkwovuj2KX5KqBhbHIb4EPCWx0f4qT405DTiA880SWnGI4g==
-  dependencies:
-    "@siemens/ix" "~2.0.3"
-
-"@siemens/ix@latest", "@siemens/ix@~2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix/-/ix-2.0.3.tgz#759a395619beaca81ab27b639524f172cb272080"
-  integrity sha512-lUzJfPfITxzqKQX+aZCkiKxBzdFkkPXcsR1sAl5c7g3dp0seoRZ5N2CbR/LL1g4EHJxDfvm9KfYJvaSICYYfWg==
-  dependencies:
-    "@floating-ui/dom" "^1.5.1"
-    "@stencil/core" "^3.2.1"
-    "@types/luxon" "^3.3.0"
-    animejs "~3.2.1"
-    hyperlist "^1.0.0"
-    luxon "^3.3.0"
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.44"

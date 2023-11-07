@@ -13,14 +13,7 @@ import { themeSwitcher } from '@siemens/ix';
 @Component({
   selector: 'app-example',
   templateUrl: './theme-switcher.html',
-  styles: [
-    `
-      ix-col {
-        align-items: center;
-        height: 2.5rem;
-      }
-    `,
-  ],
+  styleUrls: ['../styles/theme-switcher.css'],
 })
 export default class ThemeSwitcherExample {
   themes = ['theme-classic-light', 'theme-classic-dark'];

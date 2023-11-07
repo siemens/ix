@@ -10,6 +10,7 @@
 import { IxModalSize } from '@siemens/ix';
 import { IxButton, Modal, ModalRef, showModal } from '@siemens/ix-react';
 import React, { useRef } from 'react';
+import './styles/modal-sizes.css';
 
 export default () => {
   const modalRef = useRef<ModalRef>(null);
@@ -27,29 +28,17 @@ export default () => {
     });
   };
 
-  const styles = {
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    alignItems: 'center',
-    width: 'auto',
-    margin: '0.25rem',
-  };
-
-  const buttonStyles = {
-    marginBottom: '0.5rem'
-  };
-
   return (
-    <div className="modal-sizes-example" style={styles}>
-      <IxButton onClick={() => open('360')} style={buttonStyles}>Show modal size 360</IxButton>
-      <IxButton onClick={() => open('480')} style={buttonStyles}>Show modal size 480</IxButton>
-      <IxButton onClick={() => open('600')} style={buttonStyles}>Show modal size 600</IxButton>
-      <IxButton onClick={() => open('720')} style={buttonStyles}>Show modal size 720</IxButton>
-      <IxButton onClick={() => open('840')} style={buttonStyles}>Show modal size 840</IxButton>
-      <IxButton onClick={() => open('full-width')} style={buttonStyles}>
+    <div className="modal-sizes-example">
+      <IxButton onClick={() => open('360')}>Show modal size 360</IxButton>
+      <IxButton onClick={() => open('480')}>Show modal size 480</IxButton>
+      <IxButton onClick={() => open('600')}>Show modal size 600</IxButton>
+      <IxButton onClick={() => open('720')}>Show modal size 720</IxButton>
+      <IxButton onClick={() => open('840')}>Show modal size 840</IxButton>
+      <IxButton onClick={() => open('full-width')}>
         Show modal size full-width
       </IxButton>
-      <IxButton onClick={() => open('full-screen')} style={buttonStyles}>
+      <IxButton onClick={() => open('full-screen')}>
         Show modal size full-screen
       </IxButton>
     </div>
