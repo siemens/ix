@@ -1,14 +1,18 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "danielleroux/ix" }
-  ],
+  "changelog": false,
   "commit": false,
   "fixed": [],
   "linked": [["@siemens/ix", "@siemens/ix-*"]],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "angular-test-app",
+    "react-test-app",
+    "vue-test-app",
+    "html-test-app",
+    "figma-plugin",
+    "documentation"
+  ]
 }

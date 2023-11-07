@@ -400,9 +400,6 @@ importers:
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.0.0(@types/react@18.2.33)(react@18.2.0)
-      '@siemens/html-test-app':
-        specifier: workspace:*
-        version: link:../html-test-app
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -430,6 +427,9 @@ importers:
       execa:
         specifier: ^5.1.1
         version: 5.1.1
+      html-test-app:
+        specifier: workspace:*
+        version: link:../html-test-app
       prism-react-renderer:
         specifier: ^2.1.0
         version: 2.1.0(react@18.2.0)
@@ -458,9 +458,6 @@ importers:
       '@docusaurus/types':
         specifier: 3.0.0
         version: 3.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@siemens/figma-plugin':
-        specifier: workspace:*
-        version: link:../figma-plugin
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
@@ -473,6 +470,9 @@ importers:
       axios:
         specifier: ^1.5.1
         version: 1.5.1
+      figma-plugin:
+        specifier: workspace:*
+        version: link:../figma-plugin
       listr2:
         specifier: ^7.0.1
         version: 7.0.2

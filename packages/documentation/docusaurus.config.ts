@@ -9,7 +9,7 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
-import figmaPlugin from '@siemens/figma-plugin';
+import figmaPlugin from 'figma-plugin';
 import path from 'path';
 import fs from 'fs';
 
