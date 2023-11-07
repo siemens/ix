@@ -200,13 +200,13 @@ importers:
         specifier: ^14.2.0
         version: 14.3.0(@angular/common@14.3.0)(@angular/core@14.3.0)(@angular/platform-browser@14.3.0)(rxjs@7.5.7)
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../core
       '@siemens/ix-aggrid':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../aggrid
       '@siemens/ix-angular':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../angular
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -400,19 +400,19 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(@types/react@18.2.33)(react@18.2.0)
       '@siemens/html-test-app':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../html-test-app
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../core
       '@siemens/ix-echarts':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 2.0.0-beta.0
         version: 2.0.0-beta.0
       '@siemens/ix-react':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../react
       '@stackblitz/sdk':
         specifier: ^1.8.1
@@ -554,13 +554,13 @@ importers:
   packages/html-test-app:
     devDependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../core
       '@siemens/ix-aggrid':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../aggrid
       '@siemens/ix-echarts':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -633,16 +633,16 @@ importers:
   packages/react-test-app:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../core
       '@siemens/ix-aggrid':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../aggrid
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
       '@siemens/ix-react':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../react
       ag-grid-community:
         specifier: ^29.1.0
@@ -713,16 +713,16 @@ importers:
   packages/vue-test-app:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../core
       '@siemens/ix-aggrid':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../aggrid
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
       '@siemens/ix-vue':
-        specifier: ~2.0.3
+        specifier: workspace:*
         version: link:../vue
       ag-grid-community:
         specifier: ^28.2.1

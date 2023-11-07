@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@siemens/ix": "~2.0.3",
-    "@siemens/ix-aggrid": "~2.0.3",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
-    "@siemens/ix-react": "~2.0.3",
+    "@siemens/ix-react": "workspace:*",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",
     "react": "^18.2.0",

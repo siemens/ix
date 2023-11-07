@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "ag-grid-community": "^28.2.1",
-    "@siemens/ix": "~2.0.3",
-    "@siemens/ix-vue": "~2.0.3",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-vue": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
-    "@siemens/ix-aggrid": "~2.0.3",
+    "@siemens/ix-aggrid": "workspace:*",
     "ag-grid-vue3": "^28.2.1",
     "vue": "^3.2.45",
     "web-vitals": "^2.1.4",
