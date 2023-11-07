@@ -31,112 +31,6 @@ iX is an open-source design system for designers and developers, to consistently
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
 
-## Development
-
-### Installation
-
-```sh
-yarn install
-```
-
-### Build
-
-```sh
-yarn build || yarn build --filter=<workspace-name>
-```
-
-### Development
-
-```sh
-yarn start || yarn start --filter=<workspace-name>
-```
-
-### Execute unit tests
-
-```sh
-yarn test
-```
-
-### Visual regression testing
-
-**_Docker cli must be installed on your system_**  
-If you execute the visual-regression tests, please be sure to execute the build step before.
-
-- Build the library
-
-```sh
-yarn build
-```
-
-- Start playwright docker container. (Currently v1.30.0-focal but can be a newer version)
-
-```sh
-docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
-```
-
-- Start the test suite
-  - All tests run `yarn visual-regression-ci`
-  - Workspace run `yarn workspace @siemens/ix test:e2e`
-
-- Check the results in `packages/<workspace>/playwright-report/index.html`
-- Adapt and update snapshots with `yarn workspace @siemens/ix test:e2e <test name> -u`
-- Check the git diff and commit changes 🎉
-
-### Documentation
-
-To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
-
-Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside root.
-
-Serve documentation [locally](http://localhost:3000/siemens-ix/)
-
-```sh
-yarn start --filter=documentation
-```
-
-### Release
-
-```sh
-yarn release
-```
-
-## Project structure
-
-### Package `core`
-
-Contains all styles and the webcomponents.
-
-**_published as `@siemens/ix`_**
-
-### Package `react`
-
-Contains the wrapper components for react.
-
-**_published as `@siemens/ix-react`_**
-
-### Package `angular`
-
-Contains the wrapper components for angular.
-
-**_published as `@siemens/ix-angular`_**
-
-### Package `html-test-app`, `react-test-app` and `angular-test-app`
-
-These packages contain playground applications to explore and test the respective `ix` components.
-The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
-These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
-
-**_Not published_**
-
-### Package `documentation`
-
-Contains the documentation.
-
-### Package `aggrid`
-
-Contains the brand and classic theme for the aggrid library
-
-**_published as `@siemens/ix-aggrid`_**
 
 ## Git hooks via husky
 
@@ -154,12 +48,12 @@ yarn husky install
 
 Contributions, issues and feature requests are welcome!
 
+Checkout our [contribution guidelines](/CONTRIBUTING.md)
+
 ## 👨‍💻 Maintainers
 
 - Daniel Leroux <daniel.leroux@siemens.com>
 - Lukas Maurer <lukas.maurer@siemens.com>
-- Carlos Leandro Cruz Ferrer <carlos.cruz_ferrer@siemens.com>
-- Gonçalo Ferreira <goncalo.alves-ferreira@siemens.com>
 
 ## 📝 License
 
