@@ -1,0 +1,29 @@
+name: Check changesets
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - .changeset/**
+
+concurrency: release-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          commit: "ci: release"
+          title: "ci: release"
+          version: pnpm ci:version
+          publish: pnpm ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
