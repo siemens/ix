@@ -282,6 +282,12 @@ pnpm start --filter=documentation
 
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
 
+##### Git hooks via husky
+
+If you execute `pnpm install` you will get git hooks which verify the git commit message.
+
+Checkout more [details here](https://github.com/typicode/husky)
+
 ##### Type
 
 Must be one of the following:
