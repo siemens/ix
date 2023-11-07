@@ -8133,7 +8133,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Close icon is clicked",
+          "docs": "Fire Event when close icon is clicked and closes the modal\nCan be prevented, in which case only the event is triggered, and the modal remains open",
           "docsTags": []
         }
       ],

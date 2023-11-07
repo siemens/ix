@@ -1638,7 +1638,8 @@ export class IxModalHeader {
 
 export declare interface IxModalHeader extends Components.IxModalHeader {
   /**
-   * Close icon is clicked
+   * Fire Event when close icon is clicked and closes the modal
+Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
