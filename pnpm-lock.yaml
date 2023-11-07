@@ -126,9 +126,6 @@ importers:
 
   packages/angular:
     dependencies:
-      '@angular/forms':
-        specifier: v13-lts
-        version: 13.4.0(@angular/common@13.4.0)(@angular/core@13.4.0)(@angular/platform-browser@13.4.0)(rxjs@7.5.7)
       '@siemens/ix':
         specifier: ~2.0.3
         version: link:../core
@@ -148,6 +145,9 @@ importers:
       '@angular/core':
         specifier: v13-lts
         version: 13.4.0(rxjs@7.5.7)(zone.js@0.11.8)
+      '@angular/forms':
+        specifier: v13-lts
+        version: 13.4.0(@angular/common@13.4.0)(@angular/core@13.4.0)(@angular/platform-browser@13.4.0)(rxjs@7.5.7)
       '@jest/globals':
         specifier: ^29.3.1
         version: 29.7.0
@@ -1239,6 +1239,7 @@ packages:
       '@angular/core': 13.4.0(rxjs@7.5.7)(zone.js@0.11.8)
       rxjs: 7.5.7
       tslib: 2.6.2
+    dev: true
 
   /@angular/common@14.3.0(@angular/core@14.3.0)(rxjs@7.5.7):
     resolution: {integrity: sha512-pV9oyG3JhGWeQ+TFB0Qub6a1VZWMNZ6/7zEopvYivdqa5yDLLDSBRWb6P80RuONXyGnM1pa7l5nYopX+r/23GQ==}
@@ -1329,6 +1330,7 @@ packages:
       rxjs: 7.5.7
       tslib: 2.6.2
       zone.js: 0.11.8
+    dev: true
 
   /@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8):
     resolution: {integrity: sha512-wYiwItc0Uyn4FWZ/OAx/Ubp2/WrD3EgUJ476y1XI7yATGPF8n9Ld5iCXT08HOvc4eBcYlDfh90kTXR6/MfhzdQ==}
@@ -1355,7 +1357,7 @@ packages:
       '@angular/platform-browser': 13.4.0(@angular/common@13.4.0)(@angular/core@13.4.0)
       rxjs: 7.5.7
       tslib: 2.6.2
-    dev: false
+    dev: true
 
   /@angular/forms@14.3.0(@angular/common@14.3.0)(@angular/core@14.3.0)(@angular/platform-browser@14.3.0)(rxjs@7.5.7):
     resolution: {integrity: sha512-fBZZC2UFMom2AZPjGQzROPXFWO6kvCsPDKctjJwClVC8PuMrkm+RRyiYRdBbt2qxWHEqOZM2OCQo73xUyZOYHw==}
@@ -1419,6 +1421,7 @@ packages:
       '@angular/common': 13.4.0(@angular/core@13.4.0)(rxjs@7.5.7)
       '@angular/core': 13.4.0(rxjs@7.5.7)(zone.js@0.11.8)
       tslib: 2.6.2
+    dev: true
 
   /@angular/platform-browser@14.3.0(@angular/animations@14.3.0)(@angular/common@14.3.0)(@angular/core@14.3.0):
     resolution: {integrity: sha512-w9Y3740UmTz44T0Egvc+4QV9sEbO61L+aRHbpkLTJdlEGzHByZvxJmJyBYmdqeyTPwc/Zpy7c02frlpfAlyB7A==}

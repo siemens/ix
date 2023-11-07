@@ -19,8 +19,8 @@
     "@siemens/ix": "~2.0.3"
   },
   "peerDependencies": {
-    "@angular/core": ">=13.3.12",
-    "@angular/forms": "v13-lts",
+    "@angular/core": ">=13.4.0",
+    "@angular/forms": ">=13.4.0",
     "@siemens/ix-icons": "^2.0.0"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "@angular/compiler": "v13-lts",
     "@angular/compiler-cli": "v13-lts",
     "@angular/core": "v13-lts",
+    "@angular/forms": "v13-lts",
     "@jest/globals": "^29.3.1",
     "@siemens/ix": "~2.0.3",
     "@types/jest": "^29.2.3",
