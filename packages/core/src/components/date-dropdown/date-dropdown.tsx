@@ -188,14 +188,10 @@ export class DateDropdown {
     if (dateRangeName !== CUSTOM_RANGE_LABEL) {
       const { from, to } = getDateRange();
 
-      console.log(from);
-      console.log(to);
-
       this.associatedDateRangeValue = {
         from: from ? from.format(this.format) : undefined,
         to: to ? to.format(this.format) : undefined,
       };
-      console.log(this.associatedDateRangeValue);
     } else {
       this.hideDatePicker = false;
     }
@@ -285,7 +281,6 @@ export class DateDropdown {
                 <div class="pull-right">
                   <ix-button
                     onClick={() => {
-                      console.log(this.datePickerRange);
                       this.associatedDateRangeValue = this.datePickerRange;
                     }}
                   >
