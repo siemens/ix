@@ -30,7 +30,8 @@ export type CardAccordionExpandChangeEvent = {
 })
 export class CardAccordion {
   /**
-   * collapse the card
+   * Collapse the card
+   * @since 2.1.0
    */
   @Prop() collapse = false;
 

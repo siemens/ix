@@ -48,7 +48,8 @@ export class PushCard {
   @Prop() variant: PushCardVariant = 'insight';
 
   /**
-   * collapse the card
+   * Collapse the card
+   * @since 2.1.0
    */
   @Prop() collapse: boolean = true;
 

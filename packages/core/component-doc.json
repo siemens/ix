@@ -1110,8 +1110,13 @@
           "mutable": false,
           "attr": "collapse",
           "reflectToAttr": false,
-          "docs": "collapse the card",
-          "docsTags": [],
+          "docs": "Collapse the card",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -8565,8 +8570,13 @@
           "mutable": false,
           "attr": "collapse",
           "reflectToAttr": false,
-          "docs": "collapse the card",
-          "docsTags": [],
+          "docs": "Collapse the card",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "default": "true",
           "values": [
             {
