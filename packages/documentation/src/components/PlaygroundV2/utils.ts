@@ -11,6 +11,11 @@ import { TargetFramework } from './framework-types';
 
 const repositoryUrl = 'https://github.com/siemens/ix/tree/main/packages';
 
+export type SourceFile = {
+  filename: string;
+  source: string;
+};
+
 function getSourceCodeFile({
   name,
   framework,
@@ -55,10 +60,7 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
-async function openHtmlStackBlitz(
-  baseUrl: string,
-  sourceFiles: { filename: string; sourceCode: string }[]
-) {
+async function openHtmlStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
   const [index_html, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/html/src/index.html`,
@@ -71,7 +73,7 @@ async function openHtmlStackBlitz(
 
   const files = {};
   additionalFiles.forEach((file) => {
-    files[`src/${file.filename}`] = file.sourceCode;
+    files[`src/${file.filename}`] = file.source;
   });
 
   sdk.openProject(
@@ -83,7 +85,7 @@ async function openHtmlStackBlitz(
         ...files,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
-          renderFirstExample.sourceCode
+          renderFirstExample.source
         ),
         'src/main.js': main_js,
         'package.json': package_json,
@@ -99,7 +101,7 @@ async function openHtmlStackBlitz(
 async function openAngularStackBlitz(
   baseUrl: string,
   name: string,
-  additionalFiles: { filename: string; sourceCode: string }[]
+  additionalFiles: SourceFile[]
 ) {
   const [
     app_component_css,
@@ -127,9 +129,9 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
-  const declareComponents = [];
-  additionalFiles.forEach(({ filename, sourceCode }) => {
-    if (/@Component/gms.test(sourceCode)) {
+  const declareComponents: string[] = [];
+  additionalFiles.forEach(({ filename, source }) => {
+    if (/@Component/gms.test(source)) {
       declareComponents.push(filename);
     }
   });
@@ -151,8 +153,8 @@ async function openAngularStackBlitz(
   `;
 
   const exampleFiles = {};
-  additionalFiles.forEach(({ filename, sourceCode }) => {
-    exampleFiles[`src/app/${filename}`] = sourceCode;
+  additionalFiles.forEach(({ filename, source }) => {
+    exampleFiles[`src/app/${filename}`] = source;
   });
 
   sdk.openProject(
@@ -182,10 +184,7 @@ async function openAngularStackBlitz(
   );
 }
 
-async function openReactStackBlitz(
-  baseUrl: string,
-  sourceFiles: { filename: string; sourceCode: string }[]
-) {
+async function openReactStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
   const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/react/App.tsx`,
@@ -211,8 +210,8 @@ async function openReactStackBlitz(
 
   const files: Record<string, string> = {};
 
-  sourceFiles.forEach(({ filename, sourceCode }) => {
-    files[`src/${filename}`] = sourceCode;
+  sourceFiles.forEach(({ filename, source }) => {
+    files[`src/${filename}`] = source;
   });
 
   sdk.openProject(
@@ -238,10 +237,7 @@ async function openReactStackBlitz(
   );
 }
 
-async function openVueStackBlitz(
-  baseUrl: string,
-  sourceFiles: { filename: string; sourceCode: string }[]
-) {
+async function openVueStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
   const [
     app_vue,
     index_html,
@@ -273,8 +269,8 @@ async function openVueStackBlitz(
 
   const files: Record<string, string> = {};
 
-  sourceFiles.forEach(({ filename, sourceCode }) => {
-    files[`src/${filename}`] = sourceCode;
+  sourceFiles.forEach(({ filename, source }) => {
+    files[`src/${filename}`] = source;
   });
 
   sdk.openProject(
@@ -330,25 +326,23 @@ export async function openStackBlitz({
   baseUrl,
 }: {
   name: string;
-  files: string[];
+  files: SourceFile[];
   framework: TargetFramework;
   baseUrl: string;
 }) {
-  const additionalFiles = await getSourceCodeFiles(baseUrl, framework, files);
-
   if (framework === TargetFramework.REACT) {
-    return openReactStackBlitz(baseUrl, additionalFiles);
+    return openReactStackBlitz(baseUrl, files);
   }
 
   if (framework === TargetFramework.ANGULAR) {
-    return openAngularStackBlitz(baseUrl, name, additionalFiles);
+    return openAngularStackBlitz(baseUrl, name, files);
   }
 
   if (framework === TargetFramework.JAVASCRIPT) {
-    return openHtmlStackBlitz(baseUrl, additionalFiles);
+    return openHtmlStackBlitz(baseUrl, files);
   }
 
   if (framework === TargetFramework.VUE) {
-    return openVueStackBlitz(baseUrl, additionalFiles);
+    return openVueStackBlitz(baseUrl, files);
   }
 }

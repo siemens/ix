@@ -1,13 +1,39 @@
-name: main and preview
+name: Pull Request
 
 on:
-  push:
-    branches:
-      - 'main'
-      - 'release/*'
+  pull_request:
+    branches-ignore:
+      - changeset-release/main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: pr-${{ github.ref }}
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      core: ${{ steps.changes.outputs.core }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          core:
+            - 'packages/core/**'
+          docs:
+            - 'packages/documentation/**'
+            - 'packages/html-test-app/**'
+            - 'packages/angular-test-app/**'
+            - 'packages/react-test-app/**'
+            - 'packages/vue-test-app/**'
+
   build:
+    needs: changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,7 +45,8 @@ jobs:
         run: pnpm build --cache-dir=.turbo --filter \!documentation
 
   visual-testing-core:
-    needs: [build]
+    if: ${{ needs.changes.outputs.core == 'true' }}
+    needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
@@ -111,6 +138,7 @@ jobs:
         run: pnpm lint
 
   deploy-preview:
+    if: ${{ needs.changes.outputs.docs == 'true' }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -121,15 +149,13 @@ jobs:
 
       - name: Build
         env:
-          BASE_URL: /ix/version-dev/
+          BASE_URL: /ix/pr-preview/pr-${{ github.event.number }}/
         run: pnpm build --cache-dir=.turbo --filter documentation
 
-      - name: Deploy main preview 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
         with:
-          force: false
-          folder: ./packages/documentation/build
-          target-folder: version-dev
-          clean-exclude: |
-            version-*
-            pr-preview
+          source-dir: ./packages/documentation/build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto

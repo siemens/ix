@@ -17,14 +17,10 @@ import {
 } from '@siemens/ix-react';
 import CodeBlock from '@theme/CodeBlock';
 import { useEffect, useState } from 'react';
-import { TargetFramework } from '../Playground/framework-types';
+import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
-
-type SourceFile = {
-  filename: string;
-  source: string;
-};
+import { openStackBlitz, SourceFile } from './utils';
 
 function getBranchPath(framework: TargetFramework) {
   let path = 'html';
@@ -68,13 +64,19 @@ function sliceHtmlCode(code: string) {
 }
 
 async function fetchSource(path: string) {
+  console.log('FETCH SOURCE FROM', path);
   const response = await fetch(`${path}.txt`);
   const source = await response.text();
 
   // Docusaurus don' throw a classic 404 if a sub route is not found
   // Check if the response is the bootstrap code of docusaurus
   // If this is the case the resource is not existing
-  if (!source || source?.includes(`<div id="__docusaurus"></div>`)) {
+  console.log(source);
+  if (
+    !source ||
+    source?.includes('<div id="__docusaurus"></div>') ||
+    source?.includes('Page Not Found')
+  ) {
     return null;
   }
 
@@ -150,8 +152,10 @@ function SourceCodePreview(props: {
   name: string;
   files?: Record<TargetFramework, string[]>;
   examplesByName?: boolean;
+  onSourceCodeFetched: (files: SourceFile[]) => void;
 }) {
   const [isFetching, setFetching] = useState(true);
+
   const baseUrl = useBaseUrl('/auto-generated');
 
   const [files, setFiles] = useState<SourceFile[]>([]);
@@ -194,6 +198,10 @@ function SourceCodePreview(props: {
       });
     }
   }, [props.framework]);
+
+  useEffect(() => {
+    props.onSourceCodeFetched(files);
+  }, [files]);
 
   if (isFetching) {
     return <IxSpinner></IxSpinner>;
@@ -240,9 +248,10 @@ function SourceCodePreview(props: {
 
 export default function PlaygroundV2(props: PlaygroundV2Props) {
   const [tab, setTab] = useState<TargetFramework>(TargetFramework.PREVIEW);
+  const baseUrl = useBaseUrl('/');
   const baseUrlAssets = useBaseUrl('/img');
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
-
+  const [files, setFiles] = useState<SourceFile[]>([]);
   const isTabVisible = (framework: TargetFramework) => {
     if (props.examplesByName) {
       return true;
@@ -293,9 +302,12 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
                 size="16"
                 icon={`${baseUrlAssets}/stackblitz.svg`}
                 onClick={() => {
-                  window.open(
-                    `https://stackblitz.com/github/${getBranchPath(tab)}`
-                  );
+                  openStackBlitz({
+                    baseUrl: baseUrl,
+                    files: files,
+                    framework: tab,
+                    name: props.name,
+                  });
                 }}
               ></IxIconButton>
 
@@ -314,6 +326,7 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
       {tab === TargetFramework.PREVIEW ? <Demo {...props}></Demo> : null}
       {tab !== TargetFramework.PREVIEW ? (
         <SourceCodePreview
+          onSourceCodeFetched={(files) => setFiles(files)}
           framework={tab}
           name={props.name}
           files={props.files}

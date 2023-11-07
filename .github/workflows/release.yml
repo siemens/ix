@@ -24,5 +24,6 @@ jobs:
           commit: "ci: release"
           title: "ci: release"
           version: pnpm ci:version
+          publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

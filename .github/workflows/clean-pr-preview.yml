@@ -1,18 +1,13 @@
-name: Deploy PR previews
+name: Pull Request Preview Cleanup
 
 on:
   pull_request:
-    paths:
-      - packages/documentation/**
     branches-ignore:
       - changeset-release/main
     types:
-      - opened
-      - reopened
-      - synchronize
       - closed
 
-concurrency: preview-${{ github.ref }}
+concurrency: pr-${{ github.ref }}
 
 jobs:
   deploy-preview:
@@ -23,15 +18,10 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Build
-        env:
-          BASE_URL: /ix/pr-preview/pr-${{ github.event.number }}/
-        run: pnpm build --cache-dir=.turbo --filter documentation
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./packages/documentation/build
           preview-branch: gh-pages
           umbrella-dir: pr-preview
-          action: auto
+          action: remove
