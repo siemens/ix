@@ -137,7 +137,7 @@ Enhancement suggestions are tracked as [GitHub issues](/issues).
 2. Take a look at the [Stencil Documentation](https://stenciljs.com/docs/introduction/) and other components to understand the implementation of these components.
 3. Make your changes to the component. If the change is overly complex or out of the ordinary, add comments so we can understand the changes.
 4. [Preview your changes](#preview-changes) locally.
-5. [Modify the documentation](#modifying-and-preview-documentation) if needed.
+5. [Modify the documentation](#modify-and-preview-documentation) if needed.
 6. [Run lint](#lint-changes) on the directory and make sure there are no errors.
 7. [Build the project](#building-changes).
 8. After the build is finished, commit the changes. Please follow the [commit message format](#commit-message-format) for every commit.
