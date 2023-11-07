@@ -3,7 +3,14 @@
   "changelog": false,
   "commit": false,
   "fixed": [],
-  "linked": [["@siemens/ix", "@siemens/ix-*"]],
+  "linked": [
+    [
+      "@siemens/ix",
+      "@siemens/ix-angular",
+      "@siemens/ix-react",
+      "@siemens/ix-vue"
+    ]
+  ],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
