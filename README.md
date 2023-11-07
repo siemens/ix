@@ -75,7 +75,6 @@ docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwrig
 ```
 
 - Start the test suite
-
   - All tests run `yarn visual-regression-ci`
   - Workspace run `yarn workspace @siemens/ix test:e2e`
 

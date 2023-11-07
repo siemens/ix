@@ -24,6 +24,10 @@ jobs:
         filters: |
           core:
             - 'packages/core/**'
+          angular:
+            - 'packages/angular/**'
+          aggrid:
+            - 'packages/aggrid/**'
           docs:
             - 'packages/documentation/**'
             - 'packages/html-test-app/**'
@@ -70,6 +74,7 @@ jobs:
           retention-days: 1
 
   visual-testing-aggrid:
+    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.aggrid == 'true' }}
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -115,6 +120,7 @@ jobs:
           path: playwright-report
           retention-days: 2
   unit:
+    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.angular == 'true' }}
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
