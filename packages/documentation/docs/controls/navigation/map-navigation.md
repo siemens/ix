@@ -1,35 +1,14 @@
 ---
 sidebar_position: 6
-title: Map Navigation
+title: Map navigation
 ---
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/Playground'
+import DocsTabs from '@site/src/components/DocsTabs';
 
-import Props from './../../auto-generated/ix-map-navigation/props.md';
-import Events from './../../auto-generated/ix-map-navigation/events.md';
-import PropsOverlay from './../../auto-generated/ix-map-navigation-overlay/props.md';
-import EventsOverlay from './../../auto-generated/ix-map-navigation-overlay/events.md';
+import DocsUx from './\_map-navigation_styleguide.md';
+import DocsCode from './\_map-navigation_code.md';
 
-## Usage
+# Map Navigation
 
-<Playground
-name="map-navigation" height="35rem" noMargin
-hideInitalCodePreview
-examplesByName></Playground>
-
-## Custom overlay
-
-<Playground
-name="map-navigation-overlay" height="35rem" noMargin
-hideInitalCodePreview
-examplesByName></Playground>
-
-## Properties (ix-map-navigation)
-
-#### Props
-
-<Props />
-
-#### Events
-
-<Events />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />

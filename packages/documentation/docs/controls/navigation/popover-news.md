@@ -1,23 +1,14 @@
-import Playground from '@site/src/components/PlaygroundV2';
+---
+sidebar_position: 7
+title: Popover news
+---
 
-import Props from './../../auto-generated/ix-menu-about-news/props.md';
-import Events from './../../auto-generated/ix-menu-about-news/events.md';
+import Playground from '@site/src/components/Playground'
+import DocsTabs from '@site/src/components/DocsTabs';
+
+import DocsUx from './\_popover-news_styleguide.md';
+import DocsCode from './\_popover-news_code.md';
 
 # Popover news
 
-## Usage
-
-<Playground
-name="popover-news" height="30rem" noMargin
-examplesByName>
-</Playground>
-
-## Properties
-
-### Props
-
-<Props />
-
-### Events
-
-<Events />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
