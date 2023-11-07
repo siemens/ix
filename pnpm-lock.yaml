@@ -173,6 +173,7 @@ importers:
       typescript:
         specifier: 4.6.4
         version: 4.6.4
+    publishDirectory: dist
 
   packages/angular-test-app:
     dependencies:
@@ -208,7 +209,7 @@ importers:
         version: link:../aggrid
       '@siemens/ix-angular':
         specifier: workspace:*
-        version: link:../angular
+        version: link:../angular/dist
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
