@@ -3,7 +3,6 @@ sidebar_position: 6
 title: Map navigation
 ---
 
-import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_map-navigation_styleguide.md';
