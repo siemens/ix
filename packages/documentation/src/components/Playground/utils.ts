@@ -386,15 +386,29 @@ async function getSourceCodeFiles(
   filenames: string[]
 ) {
   const getPath = (name: string) =>
-    `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
+    `${baseUrl}auto-generated/previews/${framework.replace(
+      'javascript',
+      'web-components'
+    )}/${name}`;
 
   const sourceFiles: { filename: string; sourceCode: string }[] = [];
   const files = await loadSourceCodeFromStatic(filenames.map(getPath));
 
   files.forEach((value, index) => {
+    let parts: string[] = value.split('<!-- Preview code -->');
+    let result: string;
+
+    if (parts.length > 1) {
+      // <!-- Preview code --> found, extract content
+      result = parts[1].trim();
+    } else {
+      // <!-- Preview code --> not found, use entire string
+      result = value;
+    }
+
     sourceFiles.push({
       filename: filenames[index],
-      sourceCode: value,
+      sourceCode: result,
     });
   });
 
