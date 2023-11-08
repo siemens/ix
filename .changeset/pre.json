@@ -16,5 +16,7 @@
     "@siemens/ix-vue": "2.0.3",
     "vue-test-app": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "smooth-avocados-work"
+  ]
 }
