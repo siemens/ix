@@ -9,18 +9,44 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
+declare global {
+  interface Window {
+    showModal: any;
+  }
+}
+
 test('closes on Escape key down', async ({ mount, page }) => {
-  await mount(`
-    <ix-modal>
+  await mount(``);
+
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        window.showModal = ix.showModal;
+      `;
+      document.body.appendChild(script);
+      resolve();
+    });
+  });
+
+  await page.waitForTimeout(1000);
+
+  await page.evaluate(() => {
+    const elm = document.createElement('ix-modal');
+    elm.innerHTML = `
       <ix-modal-header>Title</ix-modal-header>
       <ix-modal-content>Content</ix-modal-header>
-    </ix-modal>
-    `);
-  const modal = page.locator('ix-modal');
-  await modal.evaluate((m: HTMLIxModalElement) => m.showModal());
-  const dialog = page.locator('dialog');
+    `;
+    window.showModal({
+      content: elm,
+    });
+  });
+  const dialog = page.locator('ix-modal dialog');
   await expect(dialog).toBeVisible();
   await page.locator('ix-modal-content').click();
   await page.keyboard.down('Escape');
-  expect(dialog).not.toBeVisible();
+
+  await expect(dialog).not.toBeVisible();
 });
