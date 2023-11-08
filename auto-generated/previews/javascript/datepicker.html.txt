@@ -1,1 +1,0 @@
-<ix-date-picker></ix-date-picker>

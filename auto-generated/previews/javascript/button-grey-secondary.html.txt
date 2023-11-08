@@ -1,6 +1,0 @@
-<div>
-  <ix-button class="m-1" outline variant="secondary"> Button </ix-button>
-  <ix-button class="m-1" disabled outline variant="secondary">
-    Button
-  </ix-button>
-</div>

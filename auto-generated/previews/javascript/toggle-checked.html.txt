@@ -1,1 +1,0 @@
-  <ix-toggle checked></ix-toggle>

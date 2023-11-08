@@ -1,1 +1,0 @@
-<textarea placeholder="Enter text here"></textarea>

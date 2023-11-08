@@ -1,7 +1,0 @@
-<ix-basic-navigation application-name="Application name">
-  <placeholder-logo slot="logo"></placeholder-logo>
-  <ix-menu>
-    <ix-menu-item>Item 1</ix-menu-item>
-    <ix-menu-item>Item 2</ix-menu-item>
-  </ix-menu>
-</ix-basic-navigation>

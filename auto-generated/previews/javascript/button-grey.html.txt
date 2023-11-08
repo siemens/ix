@@ -1,4 +1,0 @@
-<div>
-  <ix-button class="m-1" variant="secondary"> Button </ix-button>
-  <ix-button class="m-1" disabled variant="secondary"> Button </ix-button>
-</div>

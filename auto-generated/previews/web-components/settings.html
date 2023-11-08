@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-basic-navigation>
+      <placeholder-logo slot="logo"></placeholder-logo>
+      <ix-menu>
+        <ix-menu-settings>
+          <ix-menu-settings-item
+            label="Example Setting 1"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            label="Example Setting 2"
+          ></ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-basic-navigation>
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-menu');
+        const menu = document.querySelector('ix-menu');
+        await menu.toggleSettings(true);
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

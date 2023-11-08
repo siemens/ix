@@ -1,5 +1,0 @@
-<ix-key-value
-  label="Label"
-  label-position="left"
-  value="Value"
-></ix-key-value>
