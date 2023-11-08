@@ -108,9 +108,7 @@ test('multiple selection', async ({ mount, page }) => {
   const item1 = element.locator('ix-select-item').nth(0);
   const item3 = element.locator('ix-select-item').nth(2);
   await item1.click();
-  await page.locator('[data-select-dropdown]').click();
   await item3.click();
-  await page.locator('[data-select-dropdown]').click();
 
   await expect(item1.locator('ix-icon')).toBeVisible();
   await expect(item3.locator('ix-icon')).toBeVisible();
@@ -149,6 +147,25 @@ test('filter', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
   await expect(item4).not.toBeVisible();
   await expect(item_abc).toBeVisible();
+});
+
+test('multiple trigger events', async ({ mount, page }) => {
+  await mount(`
+    <ix-select triggerEvents={['click', 'focus']}>
+      <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+      <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+      <ix-select-item value="4" label="Item 4">Test</ix-select-item>
+    </ix-select>
+  `);
+
+  const element = page.locator('ix-select');
+  await element.locator('input').click();
+
+  await page.waitForTimeout(1000);
+
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
 });
 
 test('open filtered dropdown on input', async ({ mount, page }) => {
