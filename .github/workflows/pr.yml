@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       core: ${{ steps.changes.outputs.core }}
+      angular: ${{ steps.changes.outputs.angular }}
+      aggrid: ${{ steps.changes.outputs.aggrid }}
+      docs: ${{ steps.changes.outputs.docs }}
     steps:
     - uses: actions/checkout@v3
     - uses: dorny/paths-filter@v2
