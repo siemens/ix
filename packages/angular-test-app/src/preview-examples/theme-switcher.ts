@@ -15,7 +15,7 @@ import { themeSwitcher } from '@siemens/ix';
   templateUrl: './theme-switcher.html',
   styleUrls: ['../styles/theme-switcher.css'],
 })
-export default class ThemeSwitcherExample {
+export default class ThemeSwitcher {
   themes = ['theme-classic-light', 'theme-classic-dark'];
   selectedTheme = this.themes[1];
 

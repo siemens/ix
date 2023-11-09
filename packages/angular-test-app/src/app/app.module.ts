@@ -106,7 +106,7 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
-import ThemeSwitcherExample from 'src/preview-examples/theme-switcher';
+import ThemeSwitcher from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
@@ -133,12 +133,10 @@ import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppExample } from './components/example/example.component';
 import { NavigationTestComponent } from './components/navigation-test/navigation-test.component';
 
 @NgModule({
   declarations: [
-    AppExample,
     AppComponent,
     Buttons,
     ButtonGroup,
@@ -207,7 +205,6 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     Textarea,
     TextareaReadonly,
     TextareaDisabled,
-    ThemeSwitcherExample,
     Tile,
     Timepicker,
     ToggleButtonPrimaryGhost,
@@ -218,6 +215,7 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     ToggleDisabled,
     ToggleCustomLabel,
     ToggleNgModel,
+    ThemeSwitcher,
     Toggle,
     Upload,
     VerticalTabsWithAvatar,

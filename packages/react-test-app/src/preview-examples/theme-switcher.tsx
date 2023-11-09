@@ -24,7 +24,7 @@ export default () => {
   const [selectedTheme, setSelectedTheme] = useState(themes[1]);
 
   const selectionChange = (event: IxSelectCustomEvent<string | string[]>) => {
-    const newTheme = event.detail[0];
+    const newTheme: string = event.detail as string;
     themeSwitcher.setTheme(newTheme);
     setSelectedTheme(newTheme);
   };

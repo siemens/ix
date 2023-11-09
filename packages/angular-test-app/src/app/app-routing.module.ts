@@ -100,7 +100,7 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
-import ThemeService from 'src/preview-examples/theme-switcher';
+import ThemeSwitcher from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
 import Toast from 'src/preview-examples/toast';
@@ -125,14 +125,9 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
-import { AppExample } from './components/example/example.component';
 import { NavigationTestComponent } from './components/navigation-test/navigation-test.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppExample,
-  },
   {
     path: 'testing',
     children: [
@@ -316,7 +311,7 @@ const routes: Routes = [
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
-      { path: 'theme-switcher', component: ThemeService },
+      { path: 'theme-switcher', component: ThemeSwitcher },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
