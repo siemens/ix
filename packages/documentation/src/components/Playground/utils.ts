@@ -395,20 +395,9 @@ async function getSourceCodeFiles(
   const files = await loadSourceCodeFromStatic(filenames.map(getPath));
 
   files.forEach((value, index) => {
-    const isHtml: boolean = value.split('</head>').length > 1;
-    let result: string = value;
-
-    if (isHtml) {
-      result = value.split('</head>')[1].split('</body>')[0];
-      result = result.replace(/<body[^>]*>/, '');
-      result = result.replace('../main.js', './main.js');
-      result = result.replace(/<!--(.*?)-->/g, '');
-      result = result.trim().replace(/^\n+|\n+$/g, '');
-    }
-
     sourceFiles.push({
       filename: filenames[index],
-      sourceCode: result,
+      sourceCode: value,
     });
   });
 
