@@ -8,17 +8,19 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Vertical tabs example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu category example</title>
+  </head>
+  <body class="theme-classic-dark">
     <style>
       ix-basic-navigation {
         width: 100vw;
         height: 100vh;
       }
     </style>
-  </head>
-  <body class="theme-classic-dark">
     <!-- Preview code -->
     <ix-basic-navigation>
       <ix-menu>
@@ -30,7 +32,7 @@ LICENSE file in the root directory of this source tree.
         </ix-menu-category>
       </ix-menu>
     </ix-basic-navigation>
-    <!-- Preview code -->
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-menu');
@@ -38,6 +40,7 @@ LICENSE file in the root directory of this source tree.
         menu.breakpoints = ['medium'];
       })();
     </script>
+    <!-- Preview code -->
     <script type="module" src="../main.js"></script>
   </body>
 </html>

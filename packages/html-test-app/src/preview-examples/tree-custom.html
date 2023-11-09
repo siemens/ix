@@ -8,13 +8,14 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Test example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tree custom example</title>
   </head>
   <body class="theme-classic-dark">
     <!-- Preview code -->
-
     <div style="height: 8rem; width: 100%">
       <ix-button id="expand" ghost style="margin-bottom: 2rem"
         >Expand Tree</ix-button
@@ -22,7 +23,7 @@ LICENSE file in the root directory of this source tree.
       <ix-tree root="root" id="tree"></ix-tree>
     </div>
 
-    <script type="text/javascript">
+    <script>
       (async function () {
         await window.customElements.whenDefined('ix-tree');
         const tree = document.getElementById('tree');
@@ -105,7 +106,6 @@ LICENSE file in the root directory of this source tree.
         };
       })();
     </script>
-
     <!-- Preview code -->
     <script type="module" src="../main.js"></script>
   </body>

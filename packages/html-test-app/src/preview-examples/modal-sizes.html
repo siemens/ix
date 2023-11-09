@@ -8,17 +8,18 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Modal sizes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal sizes example</title>
   </head>
   <body class="theme-classic-dark">
-    <!-- Preview code -->
     <link
       rel="stylesheet"
       href="./styles/modal-sizes.css"
     />
-
+    <!-- Preview code -->
     <div class="modal-sizes-example">
       <ix-button data-modal-size="360">Show modal size 360</ix-button>
       <ix-button data-modal-size="480">Show modal size 480</ix-button>
@@ -34,6 +35,7 @@ LICENSE file in the root directory of this source tree.
     <template id="modal-example-template">
       <ix-button style="width: 100%"></ix-button>
     </template>
+
     <script type="module">
       import { showModal, dismissModal } from '@siemens/ix';
 

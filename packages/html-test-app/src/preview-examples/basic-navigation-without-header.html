@@ -8,8 +8,10 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic navigation without header example</title>
   </head>
   <body class="theme-classic-dark">
@@ -20,7 +22,7 @@ LICENSE file in the root directory of this source tree.
         <ix-menu-item>Item 2</ix-menu-item>
       </ix-menu>
     </ix-basic-navigation>
-    <!-- Preview code -->
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-menu');
@@ -28,6 +30,7 @@ LICENSE file in the root directory of this source tree.
         menu.breakpoints = ['medium'];
       })();
     </script>
+    <!-- Preview code -->
     <script type="module" src="../main.js"></script>
   </body>
 </html>
