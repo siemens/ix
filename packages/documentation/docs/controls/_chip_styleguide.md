@@ -1,35 +1,49 @@
-Chips are compact, interactive elements commonly used in user interfaces to represent information, choices, or actions in a concise format. They are versatile components that provide a visual and often interactive representation of data, such as tags, labels, or selections and are widely employed for content organization, categorization, and user interaction.
-
-**Usage:** Chips offer users the ability to input data, make choices, fine-tune content searches, and initiate actions. In contrast to buttons, which are expected to have a consistent appearance and familiar action labels, chips are intended to dynamically appear as a cluster of multiple interactive elements. 
+A chip, often referred to as a tag or badge, is a compact and often interactive element designed to visually represent a particular attribute or action. Typically, a chip comprises a straightforward shape or container that contains concise text or an icon. It may also include supplementary visual cues or status indicators.It can be checkable, dismissible, or clickable.
 
 ![Chip overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149%3A41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
  
-
 1. Container 
 2. Label text 
-3. Leading icon or image (optional) 
-4. Trailing remove icon (optional, input & filter chips only) 
+3. Icon
+4. Close
 
 
 ## Variants
-(Chip variants help maintain clarity and consistency in design.)?? By using predefined chips for specific purposes (e.g., success, warning, error,alarm, critical, custom, neutral), designers ensure that users can quickly and intuitively understand the meaning of visual elements. They provide guidance on how to interact with a system or understand the information being presented. For example, a "success" chip indicates that a task has been completed successfully.
+
+Chip variants allow designers to apply different styles, colors, or visual cues to chips based on their purpose, importance, or context within the interface. Chip variants are typically used to convey different levels of importance, urgency, or status to users. Each variant has its own visual characteristics, such as color, typography, or icons, to differentiate them from one another.
+
+- **Primary**: may be used for the main action or focus of the interface, for example, in an e-commerce application, you can use the primary chip variant to highlight the "Add to Cart" button for a product.
+- **Succes**: is used to indicate successful operations or positive outcomes. For example, in a survey app, you can use the success chip variant to indicate that a user has successfully submitted their response.
+- **Warning**: highlight potential issues, errors, or warnings that users should be aware of. For instance, in a form validation scenario, you can use the warning chip variant to indicate that a field has an invalid input.
+- **Alarm**: can be used for urgent notifications that require immediate attention. For instance, in a healthcare app, you can use the alarm chip variant to notify users about critical medication reminders or emergency alerts.
+- **Critical**:  is similar to the alarm variant but can be used for less severe situations. For example, in a project management tool, you can use the critical chip variant to indicate a task that is approaching its deadline.
+- **Custom**:  allows you to define your own styling based on your specific needs. For example, in a social media app, you can create a custom chip variant to highlight verified user profiles with a unique color, icon, or label, indicating their authenticity.
+- **Info**: is used to provide informational messages or non-essential details. For instance, in a weather app, you can use the info chip variant to display additional information about the current temperature or weather conditions.
+- **Neutral**: can be used for general messages or content that doesn't require any specific emphasis. For example, in a messaging app, you can use the neutral chip variant to display the sender's name or timestamp of a message.
 
 ![Chip variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1201%3A9512&mode=design&t=ruQOzpPQJMKwnk8f-1)
 
 
+## Options
+
+- **Text**: this could be a label, a short description, a name, or any other relevant textual information, for instance, a chip may show "John Doe" to represent an individual contact
+- **Icon**: Icon items can, but don't have to, include an icon. The icon is positioned before the chip label. Icons can be included for each item or only for specific items (e.g. the root item).
+- **Colors**: explain the use of colors to differentiate chips based on their purpose, status, or importance, for example with a green background color to indicate a successful operation or a red background color to indicate an error or warning.
+
+
  ## Behaviour 
 
-- **Editable:** editable chips provide users with the ability to modify the content within the chip, such as tags, labels, or input values. 
+- **True/False:** True/False chips can have a true/false state, allowing users to select or toggle between two options. For example, in a settings page, a chip labeled "Dark Mode" can be initially set to false. When the user clicks on the chip, it toggles to true, enabling dark mode for the application.
 
-- **Interaction:** is a fundamental aspect of modern user interfaces, making it easier for users to navigate, select, and manage content, particularly in applications that involve categorization, filtering, or multi-choice options.  
+- **Interaction:** responding to user clicks or taps to trigger actions or navigate to different parts of the application. For instance, in a music player app, a chip labeled "Play" can be clicked to start playing a selected song.
 
-- **Transformativ:** intuitive and user-friendly approach for users to edit or personalize content within a chip.  
+- **Transformativ:** can transform or change their appearance or behavior based on user actions. For example, in an e-commerce app, a chip representing a shopping cart may dynamically update to display the number of items added to the cart as the user adds or removes items.
 
-- **Multiple:**  providing a straightforward and efficient way for users how users interact with and manage several chips within a user interface. 
+- **Multiple:** users can select multiple chips to perform actions or apply filters simultaneously. In a photo editing app, multiple chips can be selected to apply different filters to an image, such as "Vintage," "Black and White," and "Sepia." 
 
-- **Movable:** allowing users to customize the positioning of items, categories, or tags within an interface in an intuitive and user-friendly manner. 
+- **Placement:** within the message input field in a messaging app provide quick access to emojis, stickers, or frequently used phrases.
 
-- **Placement:** Input chips have the flexibility to be combined with various other elements, offering multiple possible appearances: list that can be scrolled horizontally, inline with the text input cursor in a field, stacked list. 
+- **Dismiss:** user clicks on the "X" icon or the close button, the task chip is dismissed from the list or interface. The dismissed task is removed visually, providing a sense of completion or removal.
 
 
 
@@ -43,12 +57,13 @@ Chips are compact, interactive elements commonly used in user interfaces to repr
 
 ## Dos and Don'ts: 
 
-- Tagging and Categorization: Do labeling and classifying various items or products across different industries, facilitating easier tracking and organization.
+- Do use chips for tagging and categorization, allowing users to easily organize and filter content. For example, in a recipe app, chips can be used to categorize recipes by dietary preferences (e.g., vegan, gluten-free).
 
-- Label text: Do label text effectively using chips, allowing for organized and structured information management.
+- Do ensure proper color contrast between the chip background and the text/icon to improve readability. For instance, using a dark-colored chip with light-colored text/icons ensures accessibility for users with visual impairments.
 
-- Filtering and Sorting: Do manag and organize various items or data in a structured manner across different applications and industries.
+- Do consider the size and spacing of chips to ensure they are easy to tap or click on mobile and desktop interfaces.
 
-- Overuse: Don`ts overuse chips to ensure a balanced and effective application of the resource in your system or process.
+- Don't use chips with unclear purposes or labels. For example, using generic labels like "Option 1" or "Miscellaneous" can confuse users and make it difficult for them to understand the purpose of the chip.
 
-- Unclear Purpose: Don`ts use chips for unclear purposes, as this can lead to inefficiency and confusion within the system.
+- Don't overuse chips, as it can lead to a cluttered interface and overwhelm users. For instance, in a messaging app, using chips for every single message could make the conversation hard to read and navigate.
+
