@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import fs from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
