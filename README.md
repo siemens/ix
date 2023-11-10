@@ -70,15 +70,8 @@ Adopt major frameworks for seamless integration into your project.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-
-## Installation
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
 
