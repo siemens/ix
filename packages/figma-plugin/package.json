@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "dist/figma.js",
+  "types": "dist/figma.d.ts",
   "license": "MIT",
   "type": "module",
   "dependencies": {

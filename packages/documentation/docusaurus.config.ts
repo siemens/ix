@@ -87,10 +87,10 @@ const config: Config = {
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
           remarkPlugins: [
             figmaPlugin({
-              baseUrl: baseUrl,
+              baseUrl: `${baseUrl}figma`,
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
               error_image: 'img/figma_error.png',
-              apiToken: process.env.FIGMA_API_TOKEN,
+              apiToken: process.env.FIGMA_API_TOKEN!,
               rimraf: true,
             }),
           ],
