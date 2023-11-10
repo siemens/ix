@@ -151,7 +151,7 @@ export default (config: FigmaConfig) => {
         const imagesForFileName = await getImageResource(
           fileName,
           Array.from(ids),
-          process.env.FIGMA_API_TOKEN
+          config.apiToken
         );
 
         bucketUrls.set(fileName, imagesForFileName);
