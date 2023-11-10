@@ -117,9 +117,10 @@ async function processImage(
 }
 
 export default (config: FigmaConfig) => {
+  let hasValidFigmaToken = true;
   if (config.apiToken === undefined || config.apiToken === '') {
     console.error('@siemens/figma-plugin no auth token provided');
-    return;
+    return () => {};
   }
 
   if (config.rimraf === true) {
