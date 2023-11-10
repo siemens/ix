@@ -128,7 +128,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: ~2.0.4
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -408,8 +408,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 2.0.0-beta.0
-        version: 2.0.0-beta.0
+        specifier: 2.0.1
+        version: 2.0.1
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -552,6 +552,13 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+    devDependencies:
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@types/node@20.8.9)(typescript@5.2.2)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
 
   packages/html-test-app:
     devDependencies:
@@ -574,7 +581,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: ~2.0.4
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -687,7 +694,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.3
+        specifier: ~2.0.4
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -6429,13 +6436,6 @@ packages:
 
   /@sideway/pinpoint@2.0.0:
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
-
-  /@siemens/ix-icons@2.0.0-beta.0:
-    resolution: {integrity: sha512-TCtmYU7tVDEPQ1uuoxzcPL/xIIeyMmkZF+xtcaNucLVXC+Gc13iNMVxKiYpOCJ8t+azh7Bo/TCqwdvZfmjMqVA==}
-    engines: {node: '>=16.16.x', npm: '>=8.x.x'}
-    dependencies:
-      '@stencil/core': 3.2.1
-    dev: false
 
   /@siemens/ix-icons@2.0.1:
     resolution: {integrity: sha512-BT0mqB7rGj+DX0tRHYWsIeOf+hV7a9IHWT0F7owNKLNwTs4VXvYkokRhc82vVnQjL81NGs9Vjo62MMrEa2oGqA==}
