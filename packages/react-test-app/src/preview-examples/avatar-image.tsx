@@ -12,6 +12,6 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxAvatar image="https://ui-avatars.com/api/?name=John+Doe"></IxAvatar>
+    <IxAvatar image="https://www.gravatar.com/avatar/00000000000000000000000000000000"></IxAvatar>
   );
 };
