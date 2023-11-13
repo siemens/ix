@@ -796,13 +796,16 @@
         "ix-card-list",
         "ix-date-dropdown",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-datetime-picker",
+        "ix-datetime-picker-rework",
         "ix-dropdown-button",
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-upload"
       ],
       "dependencies": [
@@ -821,7 +824,13 @@
         "ix-date-picker": [
           "ix-button"
         ],
+        "ix-date-picker-rework": [
+          "ix-button"
+        ],
         "ix-datetime-picker": [
+          "ix-button"
+        ],
+        "ix-datetime-picker-rework": [
           "ix-button"
         ],
         "ix-dropdown-button": [
@@ -840,6 +849,9 @@
           "ix-button"
         ],
         "ix-time-picker": [
+          "ix-button"
+        ],
+        "ix-time-picker-rework": [
           "ix-button"
         ],
         "ix-upload": [
@@ -1882,11 +1894,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-dropdown"
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
+          "ix-col"
+        ],
+        "ix-datetime-picker-rework": [
           "ix-col"
         ]
       },
@@ -2588,7 +2604,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -2606,6 +2622,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],
@@ -2640,7 +2660,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
@@ -3513,6 +3533,7 @@
         "ix-category-filter",
         "ix-date-dropdown",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
@@ -3531,6 +3552,9 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
+          "ix-dropdown"
+        ],
+        "ix-date-picker-rework": [
           "ix-dropdown"
         ],
         "ix-dropdown-button": [
@@ -5332,6 +5356,7 @@
         "ix-chip",
         "ix-content-header",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
@@ -5350,6 +5375,7 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-toast"
       ],
       "dependencies": [
@@ -5375,6 +5401,9 @@
           "ix-icon-button"
         ],
         "ix-date-picker": [
+          "ix-icon-button"
+        ],
+        "ix-date-picker-rework": [
           "ix-icon-button"
         ],
         "ix-drawer": [
@@ -5429,6 +5458,9 @@
           "ix-icon-button"
         ],
         "ix-time-picker": [
+          "ix-icon-button"
+        ],
+        "ix-time-picker-rework": [
           "ix-icon-button"
         ],
         "ix-toast": [
@@ -6154,11 +6186,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-dropdown"
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
+          "ix-layout-grid"
+        ],
+        "ix-datetime-picker-rework": [
           "ix-layout-grid"
         ]
       },
@@ -8975,11 +9011,15 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-dropdown"
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
+          "ix-row"
+        ],
+        "ix-datetime-picker-rework": [
           "ix-row"
         ]
       },
@@ -10526,7 +10566,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -10544,6 +10584,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],
@@ -11770,6 +11814,7 @@
         "ix-push-card",
         "ix-slider",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-tooltip"
       ],
       "dependencies": [],
@@ -11811,6 +11856,9 @@
           "ix-typography"
         ],
         "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-time-picker-rework": [
           "ix-typography"
         ],
         "ix-tooltip": [
