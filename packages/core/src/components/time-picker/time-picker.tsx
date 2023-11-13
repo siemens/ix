@@ -456,7 +456,6 @@ export class TimePicker {
               ></ix-icon-button>
             </div>
           </div>
-
           <div class={{ button: true, hidden: hideIndividual }}>
             <ix-button
               onClick={() => this.done.emit(this._time.toFormat(this.format))}
