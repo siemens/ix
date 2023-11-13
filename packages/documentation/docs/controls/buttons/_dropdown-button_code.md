@@ -19,7 +19,6 @@ import SourceAngularDropdownButtonIcon from './../auto-generated/previews/angula
 import SourceVueDropdownButton from './../auto-generated/previews/vue/dropdown-button.md';
 import SourceVueDropdownButtonIcon from './../auto-generated/previews/vue/dropdown-button-icon.md';
 
-# Dropdown button
 
 <Tags />
 

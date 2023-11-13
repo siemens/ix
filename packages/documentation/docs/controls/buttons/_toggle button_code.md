@@ -59,8 +59,6 @@ import VueIconToggleButtonSecondaryOutline from './../auto-generated/previews/vu
 import VueIconToggleButtonPrimaryGhost from './../auto-generated/previews/vue/icon-toggle-button-primary-ghost.md'
 import VueIconToggleButtonPrimaryOutline from './../auto-generated/previews/vue/icon-toggle-button-primary-outline.md'
 
-# Toggle Buttons
-
 <Tags />
 
 ## Toggle button secondary outline

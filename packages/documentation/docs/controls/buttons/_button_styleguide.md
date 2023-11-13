@@ -13,7 +13,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
 ## Options
-- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit" "Save" or "Add". We use these sparingly, and recommend only one per layout. These are typically called *primary* buttons in  UX. 
+- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit" "Save" or "Add". We use these sparingly, and recommend only one per layout. These are typically called *primary* buttons in UX. 
 - **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel" "Reset" or "Advanced Options". These are typically called *secondary* in UX.
 - **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. Tertiary buttons can represent actions such as "Advanced settings" "More options" "Help" or "Customize". They may also be used for conditional actions like "Change preferences" or "View details".
 - **Icon:** Icons can also be displayed with button labels.
@@ -25,10 +25,11 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Interaction:** Buttons can be triggered by selecting anywhere within the button container. When buttons are focused, they can be triggered by pressing  <kbd>Space</kbd>.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
+- **Button groups:** Buttons can be grouped based on their relationship. A button group can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons.
 
 ## States
 
-Buttons have five states: Default, hover, active, disabled and focused.
+Buttons have five states: Default, hover, active, disabled and focused. In disabled state, buttons are visually displayed but don't offer any user interaction.
 
 ![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
@@ -37,7 +38,7 @@ Buttons have five states: Default, hover, active, disabled and focused.
 - Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
 - Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
 - Do use a default margin between adjacent buttons of at least <kbd>0.5rem</kbd>
-- Do adjust default and outline button width to label length or container width. 
+- Do adjust default and outline button width to label length or container width 
 - Don't extend your ghost button width beyond the label's available width
 - Don't only rely on buttons when many actions/functions are necessary (consider dropdowns, split buttons or moving some functionality to a drawer or a dialog)
 - Don't use buttons for navigation
