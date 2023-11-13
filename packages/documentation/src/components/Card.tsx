@@ -45,39 +45,33 @@ export function Card(
   return (
     <Link
       to={link()}
-      style={{
-        textDecoration: 'none',
-      }}
+      className={clsx(
+        styles.Card,
+        {
+          [styles.Card__Primary]: props.isPrimary,
+          [styles.With__Icon]: props.icon,
+          [styles.Auto__Width]: props.autoWidth,
+        },
+        props.size === 'big' ? styles.Card_big : styles.Card
+      )}
+      style={props.style}
     >
       <div
-        className={clsx(
-          styles.Card,
-          {
-            [styles.Card__Primary]: props.isPrimary,
-            [styles.With__Icon]: props.icon,
-            [styles.Auto__Width]: props.autoWidth,
-          },
-          props.size === 'big' ? styles.Card_big : styles.Card
-        )}
-        style={props.style}
+        className={clsx(styles.Label, 'text-h2', {
+          [styles.Full__Height]: !props.icon,
+        })}
       >
-        <div
-          className={clsx(styles.Label, 'text-h2', {
-            [styles.Full__Height]: !props.icon,
-          })}
-        >
-          {props.label}
-          {props.children}
-        </div>
-        {props.icon ? (
-          <>
-            <div className={styles.Splitter}></div>
-            <div className={styles.Icon}>
-              <IxIcon name={props.icon} size="32"></IxIcon>
-            </div>
-          </>
-        ) : null}
+        {props.label}
+        {props.children}
       </div>
+      {props.icon ? (
+        <>
+          <div className={styles.Splitter}></div>
+          <div className={styles.Icon}>
+            <IxIcon name={props.icon} size="32"></IxIcon>
+          </div>
+        </>
+      ) : null}
     </Link>
   );
 }

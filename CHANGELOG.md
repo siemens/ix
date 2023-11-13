@@ -1,3 +1,33 @@
+## [2.0.4-beta.0](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.0.4-beta.0) (2023-11-06)
+
+
+### Bug Fixes
+
+* **core/basic-navigation:** fixed behavior on missing breakpoints ([#874](https://github.com/siemens/ix/issues/874)) ([9370b32](https://github.com/siemens/ix/commit/9370b32b009d9e55024f9fccb136333f292c0366))
+* **core/blind:** remove custom action from button tag ([#876](https://github.com/siemens/ix/issues/876)) ([f26ae57](https://github.com/siemens/ix/commit/f26ae579abbd218ea6d140afa04881ccdcffb5bd))
+* **core/button:** documentation fix ([#885](https://github.com/siemens/ix/issues/885)) ([9ff270f](https://github.com/siemens/ix/commit/9ff270f7364e1c96bf55811f129fd06fb0608e3a))
+* **core/dropdown:** nested dropdown fix for shadow dom ([#849](https://github.com/siemens/ix/issues/849)) ([28e73f5](https://github.com/siemens/ix/commit/28e73f519dbc2530b8bf6e7bf88f42d5335dfc30))
+* **core/event-list-item:** fix right padding ([#859](https://github.com/siemens/ix/issues/859)) ([f58cc97](https://github.com/siemens/ix/commit/f58cc979b7e25d57ea638514abe9f05437a50538))
+* **core/input-group:** add padding left for error image ([#838](https://github.com/siemens/ix/issues/838)) ([fa44ab5](https://github.com/siemens/ix/commit/fa44ab554b1ebbe842e99d11295890ccebc74911))
+* **core/modal-header:** prevent npe ([28da016](https://github.com/siemens/ix/commit/28da0163eaa8c1d5cdf592bb61c8c57965f3dc4e))
+* **core/select:** improve handling of filter dropdown ([#784](https://github.com/siemens/ix/issues/784)) ([3767fce](https://github.com/siemens/ix/commit/3767fce2cd95a125cebcee3076ac272ad2357d23))
+* **core/tabs:** prevent tab flickering ([#890](https://github.com/siemens/ix/issues/890)) ([bded378](https://github.com/siemens/ix/commit/bded3787d441a3a7de98ee04fdc311c436eaee6f))
+* **core/tree:** add undefined check to disconnected callback ([#867](https://github.com/siemens/ix/issues/867)) ([38e5ca6](https://github.com/siemens/ix/commit/38e5ca6b5bf71bac5e19557f4402ca8039cf72a6))
+* **core/typography:** use ms--1 size in h6 ([#871](https://github.com/siemens/ix/issues/871)) ([44841dd](https://github.com/siemens/ix/commit/44841dde2a9986bcd835d04ccc9e8a36d78241a7))
+
+
+
+# [2.1.0-beta.0](https://github.com/siemens/ix/compare/v2.0.3...v2.1.0-beta.0) (2023-10-20)
+
+
+### Bug Fixes
+
+* **core/button:** prevent interaction of ix-icon ([#839](https://github.com/siemens/ix/issues/839)) ([a0bd2af](https://github.com/siemens/ix/commit/a0bd2afb0a147fddcc4e665c574279070087fce8))
+* **core/modal:** use percentage to align modal centered ([#836](https://github.com/siemens/ix/issues/836)) ([87622f4](https://github.com/siemens/ix/commit/87622f48f247233c6bfba7328cdf8ccb605e1635))
+* **core:** request animation depending on zonejs; reduce global events ([#855](https://github.com/siemens/ix/issues/855)) ([98a615c](https://github.com/siemens/ix/commit/98a615cfab02e270f006c1eeeb2b3cd40969cee0))
+
+
+
 ## [2.0.3](https://github.com/siemens/ix/compare/v2.0.2-beta.0...v2.0.3) (2023-10-10)
 
 

@@ -102,3 +102,19 @@ test('modal with dropdown', async ({ mount, page }) => {
     });
   }
 );
+
+test('modal should show centered', async ({ mount, page }) => {
+  await mount(`
+  <ix-modal centered>
+    <div style="height: 500px">Some content</div>
+  </ix-modal>
+    `);
+  const modal = page.locator('ix-modal');
+  await expect(modal).toHaveClass(/hydrated/);
+
+  await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+
+  // Wait until anime.js perform the slideIn animation
+  await page.waitForTimeout(2000);
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});

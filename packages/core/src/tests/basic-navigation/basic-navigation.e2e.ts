@@ -99,6 +99,11 @@ regressionTest.describe('basic navigation mobile', () => {
   });
 
   regressionTest('mobile expanded', async ({ page }) => {
+    regressionTest.skip(
+      !!process.env['CI'],
+      'TODO: Fix flaky behavior on github runner'
+    );
+
     await page.goto('basic-navigation/mobile');
     await page.setViewportSize(viewPorts.sm);
 

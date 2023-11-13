@@ -110,12 +110,17 @@ export class InputGroup {
         return;
       }
 
-      if (
-        (this.inputElement.form?.classList.contains('was-validated') ||
-          this.inputElement.form?.noValidate === false) &&
-        !this.inputElement.validity.valid
-      ) {
-        this.inputElement.style.backgroundPositionX = `${this.inputPaddingLeft}px`;
+      const isInputInvalid =
+        !this.inputElement.validity.valid ||
+        this.inputElement.classList.contains('is-invalid');
+
+      const formWasValidated =
+        this.inputElement.form?.classList.contains('was-validated') ||
+        this.inputElement.form?.noValidate === false;
+
+      if (formWasValidated && isInputInvalid) {
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
+        this.inputElement.style.backgroundPosition = `left ${left}px center`;
         this.inputPaddingLeft += 32;
       }
     });
