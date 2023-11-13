@@ -160,6 +160,9 @@ const config = {
                 label: 'Digital ID',
                 href: 'https://www.siemens.com/digital-id',
               },
+              {
+                html: '<a class="footer__link-item" href="javascript:void(0)" onClick="UC_UI.showSecondLayer();">Privacy Settings</a>',
+              },
             ],
           },
         ],
