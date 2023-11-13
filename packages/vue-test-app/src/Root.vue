@@ -33,6 +33,8 @@ import SliderMarker from './preview-examples/slider-marker.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import DateDropdown from "./preview-examples/date-dropdown.vue";
+import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.vue";
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -118,6 +120,8 @@ const routes: any = {
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/aggrid': AGGrid,
   '/preview/chip': Chip,
+  '/preview/date-dropdown': DateDropdown,
+  '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,

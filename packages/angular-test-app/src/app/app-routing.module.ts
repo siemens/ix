@@ -30,6 +30,8 @@ import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
+import DateDropdown from 'src/preview-examples/date-dropdown';
+import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
@@ -231,6 +233,14 @@ const routes: Routes = [
       {
         path: 'chip',
         component: Chip,
+      },
+      {
+        path: 'date-dropdown',
+        component: DateDropdown,
+      },
+      {
+        path: 'date-dropdown-user-range',
+        component: DateDropdownUserRange,
       },
       {
         path: 'datepicker',
