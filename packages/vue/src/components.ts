@@ -633,6 +633,7 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
   'beforeDismiss',
   'centered',
   'keyboard',
+  'closeOnEscape',
   'dialogClose',
   'dialogDismiss'
 ]);
