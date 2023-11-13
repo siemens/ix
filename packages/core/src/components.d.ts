@@ -17,6 +17,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 import { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
@@ -55,6 +56,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
 export { DateChangeEvent as DateChangeEvent1 } from "./components/date-picker-rework/date-picker-rework";
@@ -482,6 +484,54 @@ export namespace Components {
           * Grid item name
          */
         "itemName": string;
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxDateDropdown {
+        /**
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
+          * @default ''
+         */
+        "customRangeAllowed": boolean;
+        /**
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+         */
+        "dateRangeOptions": DateDropdownOption[];
+        /**
+          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+         */
+        "format": string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+         */
+        "from": string | null;
+        /**
+          * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
+          * @returns The selected date range.
+         */
+        "getDateRange": () => Promise<DateRangeChangeEvent>;
+        /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+          * @default ''
+         */
+        "initialSelectedDateRangeName": string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate": string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate": string;
+        /**
+          * If true a range of dates can be selected.
+         */
+        "range": boolean;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+         */
+        "to": string | null;
     }
     interface IxDatePicker {
         /**
@@ -2367,6 +2417,10 @@ export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxContentHeaderElement;
 }
+export interface IxDateDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDateDropdownElement;
+}
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
@@ -2701,6 +2755,15 @@ declare global {
     var HTMLIxCssGridItemElement: {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
+    };
+    /**
+     * @since 2.1.0
+     */
+    interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
+    }
+    var HTMLIxDateDropdownElement: {
+        prototype: HTMLIxDateDropdownElement;
+        new (): HTMLIxDateDropdownElement;
     };
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
     }
@@ -3260,6 +3323,7 @@ declare global {
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
+        "ix-date-dropdown": HTMLIxDateDropdownElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-picker-rework": HTMLIxDatePickerReworkElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
@@ -3792,6 +3856,55 @@ declare namespace LocalJSX {
           * Grid item name
          */
         "itemName"?: string;
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxDateDropdown {
+        /**
+          * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
+          * @default ''
+         */
+        "customRangeAllowed"?: boolean;
+        /**
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+         */
+        "dateRangeOptions"?: DateDropdownOption[];
+        /**
+          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+         */
+        "from"?: string | null;
+        /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+          * @default ''
+         */
+        "initialSelectedDateRangeName"?: string;
+        /**
+          * The latest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "maxDate"?: string;
+        /**
+          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
+         */
+        "minDate"?: string;
+        /**
+          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
+          * @event 
+          * @private
+         */
+        "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
+          * If true a range of dates can be selected.
+         */
+        "range"?: boolean;
+        /**
+          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
+         */
+        "to"?: string | null;
     }
     interface IxDatePicker {
         /**
@@ -5869,6 +5982,7 @@ declare namespace LocalJSX {
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
+        "ix-date-dropdown": IxDateDropdown;
         "ix-date-picker": IxDatePicker;
         "ix-date-picker-rework": IxDatePickerRework;
         "ix-date-time-card": IxDateTimeCard;
@@ -6000,6 +6114,10 @@ declare module "@stencil/core" {
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            /**
+             * @since 2.1.0
+             */
+            "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-picker-rework": LocalJSX.IxDatePickerRework & JSXBase.HTMLAttributes<HTMLIxDatePickerReworkElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
