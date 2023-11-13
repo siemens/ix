@@ -37,6 +37,10 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'roadmap',
+        },
+        {
+          type: 'doc',
           id: 'installation/CHANGELOG',
         },
       ],
