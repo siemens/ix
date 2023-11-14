@@ -324,7 +324,15 @@ const tasks = new Listr<Context>(
 
 async function getRawStingContent(path: string) {
   const response = await fs.readFile(path);
-  return response.toString();
+  let content = response.toString();
+
+  // Remove the top comment (either HTML or CSS style) and any newlines that follow it
+  content = content.replace(/(<!--[\s\S]*?-->|\/\*[\s\S]*?\*\/)\n*/, '');
+
+  // Remove any newlines at the end of the string
+  content = content.replace(/\n*$/, '');
+
+  return content;
 }
 
 /**
