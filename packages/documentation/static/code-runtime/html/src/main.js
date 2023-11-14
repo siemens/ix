@@ -10,7 +10,7 @@
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css'
+import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import './components/placeholder-logo';
 
 function loadAdditionalTheme() {
@@ -44,36 +44,14 @@ function detectThemeSwitching() {
   }
 }
 
-function isMarginSuppressed() {
-  const searchParams = new URLSearchParams(location.search);
-  return searchParams.has('no-margin');
-}
-
-/**
- * Add margin around body the get better iframe viewport
- */
-function addMarginToDemo() {
-  if (!isMarginSuppressed()) {
-    document.body.style.margin = '1rem';
-  }
-}
-
 function setBodySizes() {
   const styleElement = document.createElement('style');
 
-  styleElement.innerText = isMarginSuppressed()
-    ? `
+  styleElement.innerText = `
   body {
     height: calc(100vh);
     width: calc(100vw);
-  }
-  `
-    : `
-    body {
-      height: calc(100vh - 2rem);
-      width: calc(100vw - 2rem);
-    }
-  `;
+  }`;
 
   document.head.appendChild(styleElement);
 }
