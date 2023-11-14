@@ -7,104 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import './components/placeholder-logo';
 
-function loadAdditionalTheme() {
-  const theme = __THEME__;
-  if (theme?.css) {
-    const base = `./../additional-theme`;
-    const css = theme.css;
-    const head = document.head;
-
-    const style_link = document.createElement('link');
-    style_link.rel = 'stylesheet';
-    style_link.href = `${base}/${css}`;
-    head.appendChild(style_link);
-
-    const loader = `${base}/${theme.loader}/index.es2017.js`;
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.innerHTML = `
-      import { defineCustomElements } from '${loader}';
-      defineCustomElements();
-    `;
-    head.appendChild(script);
-  }
-}
-
-function detectThemeSwitching() {
-  const searchParams = new URLSearchParams(location.search);
-  if (searchParams.has('theme')) {
-    const theme = searchParams.get('theme');
-    document.body.className = theme;
-  }
-}
-
-function setBodySizes() {
-  const styleElement = document.createElement('style');
-
-  styleElement.innerText = `
-  body {
-    height: calc(100vh);
-    width: calc(100vw);
-  }`;
-
-  document.head.appendChild(styleElement);
-}
-
-(async function init() {
+(async () => {
   await applyPolyfills();
-  await ixIconsDefineCustomElements();
   await defineCustomElements();
-
-  detectThemeSwitching();
-  setBodySizes();
-  addMarginToDemo();
-  loadAdditionalTheme();
-
-  const header = document.head;
-  const scrollbarStyle = document.createElement('style');
-  scrollbarStyle.innerHTML = scrollbarOverwrite;
-  header.appendChild(scrollbarStyle);
 })();
-
-const scrollbarOverwrite = `
-  ::-webkit-scrollbar-button {
-    display: none;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
-  }
-
-  ::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
-  }
-
-  ::-webkit-scrollbar-corner {
-    display: none;
-  }
-`;
