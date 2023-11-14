@@ -592,6 +592,7 @@ export const IxMenuAvatar = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-
   'image',
   'initials',
   'i18nLogout',
+  'showLogoutButton',
   'logoutClick'
 ]);
 
