@@ -5557,6 +5557,27 @@
           "required": false
         },
         {
+          "name": "ixAriaLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "ix-aria-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the icon button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "1.7.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "loading",
           "type": "boolean",
           "mutable": false,
@@ -5573,27 +5594,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "ixAriaLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "ix-aria-label",
-          "reflectToAttr": false,
-          "docs": "Accessibility label for the icon button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.7.0"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,

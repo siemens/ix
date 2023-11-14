@@ -1164,15 +1164,15 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Loading button
-          * @since 2.0.0
-         */
-        "loading": boolean;
-        /**
           * Accessibility label for the icon button
           * @since 1.7.0
          */
         "ixAriaLabel": string;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading": boolean;
         /**
           * Button outline
          */
@@ -4641,15 +4641,15 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Loading button
-          * @since 2.0.0
-         */
-        "loading"?: boolean;
-        /**
           * Accessibility label for the icon button
           * @since 1.7.0
          */
         "ixAriaLabel"?: string;
+        /**
+          * Loading button
+          * @since 2.0.0
+         */
+        "loading"?: boolean;
         /**
           * Button outline
          */

@@ -1021,36 +1021,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['color', 'name', 'size']
-})
-@Component({
-  selector: 'ix-icon',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'name', 'size'],
-})
-export class IxIcon {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxIcon extends Components.IxIcon {}
-
-
-@ProxyCmp({
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'ixAriaLabel', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'ixAriaLabel', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'ixAriaLabel', 'outline', 'oval', 'selected', 'size', 'type', 'variant'],
+  inputs: ['color', 'disabled', 'ghost', 'icon', 'ixAriaLabel', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLElement;
