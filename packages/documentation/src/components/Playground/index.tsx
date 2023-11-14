@@ -137,7 +137,6 @@ function FileTabs(props: {
     <>
       <IxTabs>
         {props.files.map((source) => {
-          const SourceNode = source.node as any;
           return (
             <IxTabItem
               key={source.filename}
