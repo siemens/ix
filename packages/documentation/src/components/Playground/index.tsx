@@ -19,6 +19,7 @@ import Demo, { DemoProps } from '../Demo';
 import { TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
+import { themeSwitcher } from '@siemens/ix';
 
 type MdxContent = ({}) => {};
 
@@ -33,8 +34,10 @@ function ButtonOpenIframe({ name }: { name: string }) {
       oval
       title="Open in new tab"
       onClick={() => {
+        const theme = themeSwitcher.getCurrentTheme()
+
         window.open(
-          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=theme-brand-dark`,
+          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=${theme}`,
           '_blank'
         );
       }}
