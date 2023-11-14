@@ -50,6 +50,16 @@
       text-transform: capitalize;
     }
 
+    .month-dropdown-item {
+      margin-left: 4px;
+      margin-right: 4px;
+
+      &:focus {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+    }
+
     .arrowYear {
       display: flex;
       position: relative;
@@ -111,6 +121,11 @@
       width: 40px;
       height: 40px;
       cursor: pointer;
+
+      &:focus {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
 
       &.today {
         border: 1px solid var(--theme-datepicker-today--border-color);
@@ -272,7 +287,7 @@
       &.week-number {
         font-size: 10px;
         line-height: 14px;
-        color: var(--theme-datepicker-ix--color);
+        color: var(--theme-datepicker-weekday--color);
         border: none;
         background: none;
         cursor: initial;

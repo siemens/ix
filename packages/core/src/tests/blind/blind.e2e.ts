@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {
@@ -35,5 +35,26 @@ regressionTest.describe('blind', () => {
     await page.waitForTimeout(800);
     await page.waitForSelector('ix-dropdown.show');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  test('should no hover on slot', async ({ mount, page }) => {
+    await mount(`
+    <ix-blind label="Example label" style="width: 25rem">
+        <ix-button
+          ghost
+          data-testid="slot"
+          slot="header-actions"
+          icon="context-menu"
+        ></ix-button>
+      Some content
+    </ix-blind>
+    `);
+    const blindElement = page.locator('ix-blind');
+    await expect(blindElement).toHaveClass(/hydrated/);
+
+    const slotElement = page.getByTestId('slot');
+    await slotElement.hover();
+
+    await expect(blindElement).toHaveScreenshot();
   });
 });

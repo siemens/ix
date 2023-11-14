@@ -22,6 +22,7 @@ import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/compo
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
@@ -176,6 +177,7 @@ export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defin
 
 
 export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
+  'collapse',
   'accordionExpand'
 ]);
 
@@ -247,6 +249,20 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
   'headerSubtitle',
   'hasBackButton',
   'backButtonClick'
+]);
+
+
+export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
+  'format',
+  'range',
+  'from',
+  'to',
+  'minDate',
+  'maxDate',
+  'initialSelectedDateRangeName',
+  'customRangeAllowed',
+  'dateRangeOptions',
+  'dateRangeChange'
 ]);
 
 
@@ -633,6 +649,7 @@ export const IxMenuAvatar = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-
   'image',
   'initials',
   'i18nLogout',
+  'showLogoutButton',
   'logoutClick'
 ]);
 
@@ -690,6 +707,7 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
   'beforeDismiss',
   'centered',
   'keyboard',
+  'closeOnEscape',
   'dialogClose',
   'dialogDismiss'
 ]);
@@ -741,7 +759,8 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'notification',
   'heading',
   'subheading',
-  'variant'
+  'variant',
+  'collapse'
 ]);
 
 

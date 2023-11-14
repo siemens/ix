@@ -9,6 +9,7 @@
 
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Fragment,
@@ -28,6 +29,7 @@ import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
 import localeData from 'dayjs/plugin/localeData';
 import weekday from 'dayjs/plugin/weekday';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+import { OnListener } from '../utils/listener';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(isoWeeksInYear);
@@ -57,6 +59,8 @@ interface CalendarWeek {
   shadow: true,
 })
 export class DatePickerRework {
+  @Element() hostElement: HTMLIxDatePickerReworkElement;
+
   /**
    * Date format string.
    * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
@@ -220,9 +224,67 @@ export class DatePickerRework {
 
   @State() dayNames: string[];
   @State() monthNames: string[];
+  @State() firstMonthRef: HTMLElement;
+  @State() focusedDay: number = 1;
+  @State() focusedDayElem: HTMLElement;
 
+  private isDayFocus: boolean;
+  private monthChangedFromFocus: boolean;
   private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[];
+
+  @OnListener<DatePickerRework>('keydown')
+  handleKeyUp(event: KeyboardEvent) {
+    if (!this.isDayFocus) {
+      return;
+    }
+
+    let _focusedDay = this.focusedDay;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+        _focusedDay--;
+        break;
+      case 'ArrowRight':
+        _focusedDay++;
+        break;
+      case 'ArrowUp':
+        _focusedDay = _focusedDay - 7;
+        break;
+      case 'ArrowDown':
+        _focusedDay = _focusedDay + 7;
+        break;
+      default:
+        return;
+    }
+
+    if (_focusedDay > this.getDaysInCurrentMonth()) {
+      _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
+      this.changeToAdjacentMonth(1);
+      this.monthChangedFromFocus = true;
+    } else if (_focusedDay < 1) {
+      this.changeToAdjacentMonth(-1);
+      _focusedDay = _focusedDay + this.getDaysInCurrentMonth();
+      this.monthChangedFromFocus = true;
+    }
+
+    this.focusedDay = _focusedDay;
+  }
+
+  private getDaysInCurrentMonth(): number {
+    return dayjs()
+      .month(this.selectedMonth)
+      .year(this.selectedYear)
+      .daysInMonth();
+  }
+
+  onDayBlur() {
+    this.isDayFocus = false;
+  }
+
+  onDayFocus() {
+    this.isDayFocus = true;
+  }
 
   componentWillLoad() {
     dayjs.locale(this.dayJsLocale);
@@ -245,6 +307,17 @@ export class DatePickerRework {
 
   componentWillRender() {
     this.calculateCalendar();
+  }
+
+  componentDidRender() {
+    if (!this.monthChangedFromFocus && !this.isDayFocus) {
+      return;
+    }
+
+    const dayElem = this.hostElement.shadowRoot.querySelector(
+      `[id=day-cell-${this.focusedDay}]`
+    ) as HTMLElement;
+    dayElem.focus();
   }
 
   private setTranslations() {
@@ -351,8 +424,12 @@ export class DatePickerRework {
   }
 
   private selectTempYear(event: MouseEvent, year: number) {
-    event.stopPropagation();
+    event?.stopPropagation();
     this.tempYear = year;
+  }
+
+  private focusMonth() {
+    this.firstMonthRef.focus();
   }
 
   private infiniteScrollYears() {
@@ -384,6 +461,8 @@ export class DatePickerRework {
     this.selectedMonth = month;
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
+
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   private changeToAdjacentMonth(number: -1 | 1) {
@@ -521,9 +600,17 @@ export class DatePickerRework {
           key={year}
           class={{
             arrowYear: true,
+            'month-dropdown-item': true,
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={(event) => this.selectTempYear(event, year)}
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              this.selectTempYear(null, year);
+              this.focusMonth();
+            }
+          }}
+          tabIndex={0}
         >
           <ix-icon
             class={{
@@ -579,14 +666,24 @@ export class DatePickerRework {
                     {this.monthNames.map((month, index) => (
                       <div
                         key={month}
+                        ref={(ref) => {
+                          if (month === this.monthNames[0]) {
+                            this.firstMonthRef = ref as HTMLElement;
+                          }
+                        }}
                         class={{
                           arrowYear: true,
+                          'month-dropdown-item': true,
                           selected:
                             this.tempYear === this.selectedYear &&
                             this.tempMonth === index,
                           'disabled-item': !this.isWithinMinMaxMonth(index),
                         }}
                         onClick={() => this.selectMonth(index)}
+                        onKeyUp={(event) =>
+                          event.key === 'Enter' && this.selectMonth(index)
+                        }
+                        tabIndex={0}
                       >
                         <ix-icon
                           class={{
@@ -599,9 +696,7 @@ export class DatePickerRework {
                           size="16"
                         ></ix-icon>
                         <div>
-                          <span
-                            class={{ capitalize: true, monthMargin: true }}
-                          >{`${month} ${this.tempYear}`}</span>
+                          <span class="capitalize monthMargin">{`${month} ${this.tempYear}`}</span>
                         </div>
                       </div>
                     ))}
@@ -631,8 +726,13 @@ export class DatePickerRework {
                   {week.dayNumbers.map((day) => (
                     <div
                       key={day}
+                      id={`day-cell-${day}`}
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
+                      onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
+                      tabIndex={day === this.focusedDay ? 0 : -1}
+                      onFocus={() => this.onDayFocus()}
+                      onBlur={() => this.onDayBlur()}
                     >
                       {day}
                     </div>

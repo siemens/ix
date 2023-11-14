@@ -127,7 +127,7 @@ export class TimePickerRework {
 
     if (!this._time.isValid()) {
       console.error(
-        'Invalid time format. Enter the format does not match the format of the passed time.'
+        'Invalid time format. The configured format does not match the format of the passed time.'
       );
       return;
     }
@@ -242,14 +242,19 @@ export class TimePickerRework {
                     name={descriptor.unit}
                     type="number"
                     placeholder={descriptor.placeholder}
-                    min="0"
-                    max={dayjs().endOf('day').get(descriptor.unit)}
                     value={
                       this._formattedTime
                         ? this._formattedTime[descriptor.unit]
                         : null
                     }
-                    onChange={(e) => {
+                    onKeyDown={(e) => {
+                      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+
+                      const value = e.key === 'ArrowUp' ? 1 : -1;
+                      this._time = this._time.add(value, descriptor.unit);
+                      e.preventDefault();
+                    }}
+                    onChange={(e: any) => {
                       let inputElement = e.target as HTMLInputElement;
                       inputElement.value = this.timeUpdate(
                         descriptor.unit,
