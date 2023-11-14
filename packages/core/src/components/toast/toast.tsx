@@ -133,7 +133,7 @@ export class Toast {
           </div>
           <div class="toast-close">
             <ix-icon-button
-              icon="close"
+              icon={'close'}
               size="24"
               ghost
               onClick={() => this.closeToast.emit()}

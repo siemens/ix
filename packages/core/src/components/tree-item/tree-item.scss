@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'mixins/hover';
 @import 'common-variables';
-@import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: flex;
   align-items: center;
 
@@ -20,32 +21,6 @@
   width: 100%;
 
   cursor: pointer;
-
-  &:not(.disabled):not(:disabled):not(.selected) {
-    &.hover,
-    &:hover {
-      background-color: var(--theme-tree-item--background--hover);
-    }
-
-    &.active,
-    &:active {
-      background-color: var(--theme-tree-item--background--active);
-    }
-  }
-
-  &.selected {
-    background-color: var(--theme-tree-item--background--selected);
-
-    &.hover,
-    &:hover {
-      background-color: var(--theme-tree-item--background--selected-hover);
-    }
-
-    &.active,
-    &:active {
-      background-color: var(--theme-tree-item--background--selected-active);
-    }
-  }
 
   .tree-node-container {
     display: flex;
@@ -70,4 +45,28 @@
       }
     }
   }
+}
+
+:host(:not(.disabled):not(:disabled):not(.selected).hover),
+:host(:not(.disabled):not(:disabled):not(.selected):hover) {
+  background-color: var(--theme-tree-item--background--hover);
+}
+
+:host(:not(.disabled):not(:disabled):not(.selected).active),
+:host(:not(.disabled):not(:disabled):not(.selected):active) {
+  background-color: var(--theme-tree-item--background--active);
+}
+
+:host(.selected) {
+  background-color: var(--theme-tree-item--background--selected);
+}
+
+:host(.selected.hover),
+:host(.selected:hover) {
+  background-color: var(--theme-tree-item--background--selected-hover);
+}
+
+:host(.selected.active),
+:host(.selected:active) {
+  background-color: var(--theme-tree-item--background--selected-active);
 }

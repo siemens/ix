@@ -7,41 +7,152 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 @Component({
   tag: 'ix-input-group',
   styleUrl: 'input-group.scss',
-  scoped: true,
+  shadow: true,
 })
 export class InputGroup {
-  @Element() host!: HTMLIxInputGroupElement;
+  @Element() hostElement!: HTMLIxInputGroupElement;
+
+  @State() inputPaddingLeft = 0;
+  @State() inputPaddingRight = 0;
+
+  private get inputElement() {
+    return this.hostElement.querySelector('input') as HTMLInputElement;
+  }
+
+  private observer: MutationObserver;
+
+  componentWillLoad() {
+    const { valid } = this.inputElement.validity;
+    this.inputElement.addEventListener('valid', () => {
+      this.onValidInput();
+    });
+    this.inputElement.addEventListener('invalid', () => {
+      this.onInvalidInput();
+    });
+    this.inputElement.addEventListener('input', () => {
+      this.startSlotChanged();
+    });
+
+    this.inputElement.form?.addEventListener('submit', () => {
+      this.startSlotChanged();
+    });
+
+    valid ? this.onValidInput() : this.onInvalidInput();
+
+    this.observer = new MutationObserver(() => {
+      this.startSlotChanged();
+      this.endSlotChanged();
+    });
+
+    this.observer.observe(this.hostElement, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+  }
 
   componentDidRender() {
-    let paddingRight = 15;
-    let paddingLeft = 15;
-    this.host.querySelectorAll('[slot="input-end"]').forEach((item) => {
-      item.classList.add('input-group-label');
-      paddingRight += item.getBoundingClientRect().width;
-    });
+    this.prepareInputElement();
+  }
 
-    this.host.querySelectorAll('[slot="input-start"]').forEach((item) => {
-      item.classList.add('input-group-label');
-      paddingLeft += item.getBoundingClientRect().width;
-    });
+  private onValidInput() {
+    this.startSlotChanged();
+  }
 
-    const inputElement = this.host.querySelector(
-      'input.form-control'
-    ) as HTMLInputElement;
+  private onInvalidInput() {
+    this.startSlotChanged();
+  }
 
-    if (inputElement) {
-      inputElement.style.paddingRight = paddingRight + 'px';
-      inputElement.style.paddingLeft = paddingLeft + 'px';
+  private prepareInputElement() {
+    if (this.inputElement) {
+      this.inputElement.style.width = '100%';
+
+      if (this.inputPaddingRight !== 0) {
+        this.inputElement.style.paddingRight = this.inputPaddingRight + 'px';
+      } else {
+        this.inputElement.style.paddingRight = '0.5rem';
+      }
+
+      if (this.inputPaddingLeft !== 0) {
+        this.inputElement.style.paddingLeft = this.inputPaddingLeft + 'px';
+      } else {
+        this.inputElement.style.paddingLeft = '0.5rem';
+      }
     } else {
       console.warn(
-        'You used the ix-input-group without an input-tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
       );
     }
+  }
+
+  private startSlotChanged() {
+    const slot = this.hostElement.shadowRoot.querySelector(
+      'slot[name="input-start"]'
+    );
+
+    setTimeout(() => {
+      const startPadding = this.getChildrenWidth(slot);
+
+      if (startPadding !== 0) {
+        this.inputPaddingLeft = 15 + startPadding;
+      } else {
+        this.inputPaddingLeft = 0;
+      }
+
+      if (!this.inputElement) {
+        return;
+      }
+
+      const isInputInvalid =
+        !this.inputElement.validity.valid ||
+        this.inputElement.classList.contains('is-invalid');
+
+      const formWasValidated =
+        this.inputElement.form?.classList.contains('was-validated') ||
+        this.inputElement.form?.noValidate === false;
+
+      if (formWasValidated && isInputInvalid) {
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
+        this.inputElement.style.backgroundPosition = `left ${left}px center`;
+        this.inputPaddingLeft += 32;
+      }
+    });
+  }
+
+  private endSlotChanged() {
+    const slot = this.hostElement.shadowRoot.querySelector(
+      'slot[name="input-end"]'
+    );
+
+    setTimeout(() => {
+      this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
+    });
+  }
+
+  private getChildrenWidth(slotElement: Element) {
+    if (!slotElement) {
+      return 0;
+    }
+
+    const endElements = getSlottedElements<HTMLElement>(slotElement);
+    if (endElements.length === 0) {
+      return 0;
+    }
+
+    let width = 0;
+
+    endElements.forEach((element) => {
+      width += element.getBoundingClientRect().width;
+    });
+
+    return width;
   }
 
   render() {

@@ -7,19 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 @import 'common-variables';
+@import 'legacy/components/buttons';
 @import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
+
+$focus-bdr-width: 0.0625rem;
 
 :host {
+  @include ix-component;
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 2rem;
   width: 2.5rem;
   border-radius: var(--theme-btn--border-radius);
+  pointer-events: all;
 
   svg {
     display: inline-block;
-    position: relative;
+    vertical-align: middle;
   }
 
   .line {
@@ -32,14 +39,21 @@
   }
 }
 
-:host(:hover) {
-  background-color: var(--theme-menu-btn--background--hover);
-  border-radius: var(--theme-btn--border-radius);
+@include host-hover {
+  .burger-menu-button {
+    background-color: var(--theme-menu-btn--background--hover);
+  }
 }
 
-:host(:active) {
-  background-color: var(--theme-menu-btn--background--active);
-  border-radius: var(--theme-btn--border-radius);
+.burger-menu-button {
+  width: 40px;
+  padding: 0;
+}
+
+@include host-active {
+  .burger-menu-button {
+    background-color: var(--theme-menu-btn--background--active);
+  }
 }
 
 :host(.expanded) {
@@ -58,5 +72,9 @@
     opacity: 1;
     transform: rotate(45deg);
     y: 11px;
+  }
+
+  ix-icon-button {
+    transform: rotate(180deg);
   }
 }

@@ -12,15 +12,20 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
   Prop,
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 
+export type BlindVariant = CardVariant | 'outline';
+
 let sequentialInstanceId = 0;
+
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
@@ -38,10 +43,22 @@ export class Blind {
   @Prop() label: string;
 
   /**
+   * Secondary label inside blind header
+   * @since 2.0.0
+   */
+  @Prop() sublabel: string;
+
+  /**
    * Optional icon to be displayed next to the header label
    * @since 1.5.0
    */
   @Prop() icon: string;
+
+  /**
+   * Blind variant
+   * @since 2.0.0
+   */
+  @Prop() variant: BlindVariant = 'insight';
 
   /**
    * Collapsed state changed
@@ -51,18 +68,11 @@ export class Blind {
   @Element() hostElement!: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
-  private id = ++sequentialInstanceId;
+  private blindId = ++sequentialInstanceId;
 
   constructor() {}
 
-  private onHeaderClick(e: Event) {
-    if ((e.target as Element).closest('.header-actions')) {
-      return;
-    }
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
+  private onHeaderClick() {
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
   }
@@ -120,50 +130,88 @@ export class Blind {
 
   render() {
     return (
-      <Host>
-        <button
-          class={{
-            'blind-header': true,
-            closed: this.collapsed,
-          }}
-          type="button"
-          aria-labelledby={`ix-blind-header-title-${this.id}`}
-          aria-controls={`ix-blind-content-section-${this.id}`}
-          aria-expanded={a11yBoolean(!this.collapsed)}
-          onClick={(e) => this.onHeaderClick(e)}
-        >
-          <ix-icon
-            class={'collapse-icon'}
-            name="chevron-right-small"
-            ref={(ref) => (this.chevronRef = ref)}
-          ></ix-icon>
-          <div
-            class="blind-header-title"
-            id={`ix-blind-header-title-${this.id}`}
-          >
-            {this.label !== undefined ? (
-              <span class="blind-header-title-basic">
-                {this.icon !== undefined ? (
-                  <ix-icon name={this.icon}></ix-icon>
-                ) : (
-                  ''
-                )}
-                <span class="blind-header-title-default">{this.label}</span>
-                <span
-                  class="header-actions"
-                  onClick={(e) => e.stopImmediatePropagation()}
-                >
-                  <slot name="header-actions"></slot>
-                </span>
-              </span>
-            ) : (
-              <slot name="custom-header"></slot>
-            )}
+      <Host
+        class={{
+          [`blind-${this.variant}`]: true,
+        }}
+      >
+        <div class={'blind-header-wrapper'}>
+          <div class={'blind-header-content'}>
+            <ix-icon
+              class="collapse-icon"
+              name={'chevron-right-small'}
+              color={
+                this.variant === 'insight' || this.variant === 'outline'
+                  ? 'color-primary'
+                  : `color-${this.variant}--contrast`
+              }
+              ref={(ref) => (this.chevronRef = ref)}
+            ></ix-icon>
+            <div
+              class="blind-header-title"
+              id={`ix-blind-header-title-${this.blindId}`}
+            >
+              {this.label !== undefined ? (
+                <Fragment>
+                  {this.icon && (
+                    <ix-icon
+                      class="blind-header-title-icon"
+                      name={this.icon}
+                      color={
+                        this.variant === 'insight' || this.variant === 'outline'
+                          ? 'color-std-text'
+                          : `color-${this.variant}--contrast`
+                      }
+                    ></ix-icon>
+                  )}
+                  <div class={'blind-header-title-row'}>
+                    <div class="blind-header-title-col">
+                      <ix-typography title={this.label} format="label-lg" bold>
+                        <div
+                          class="blind-header-title-label"
+                          title={this.label}
+                        >
+                          {this.label}
+                        </div>
+                      </ix-typography>
+                    </div>
+
+                    {this.sublabel && (
+                      <div class="blind-header-title-col">
+                        <ix-typography title={this.sublabel}>
+                          <div class="blind-header-title-sublabel">
+                            {this.sublabel}
+                          </div>
+                        </ix-typography>
+                      </div>
+                    )}
+                  </div>
+                  <div class="header-actions">
+                    <slot name="header-actions"></slot>
+                  </div>
+                </Fragment>
+              ) : null}
+            </div>
           </div>
-        </button>
+
+          <button
+            class={{
+              'blind-header': true,
+              [`blind-${this.variant}`]: true,
+              closed: this.collapsed,
+            }}
+            type="button"
+            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
+            aria-controls={`ix-blind-content-section-${this.blindId}`}
+            aria-expanded={a11yBoolean(!this.collapsed)}
+            onClick={() => this.onHeaderClick()}
+          >
+            <slot name="custom-header"></slot>
+          </button>
+        </div>
         <section
-          id={`ix-blind-content-section-${this.id}`}
-          aria-labelledby={`ix-blind-header-title-${this.id}`}
+          id={`ix-blind-content-section-${this.blindId}`}
+          aria-labelledby={`ix-blind-header-title-${this.blindId}`}
         >
           <div
             class={{
@@ -171,7 +219,7 @@ export class Blind {
               hide: this.collapsed,
             }}
           >
-            <slot></slot>
+            {!this.collapsed ? <slot></slot> : null}
           </div>
         </section>
       </Host>

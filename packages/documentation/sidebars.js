@@ -37,6 +37,10 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'roadmap',
+        },
+        {
+          type: 'doc',
           id: 'installation/CHANGELOG',
         },
       ],
@@ -69,7 +73,23 @@ const sidebars = {
           items: [
             {
               type: 'doc',
+              id: 'installation/installation',
+            },
+            {
+              type: 'doc',
               id: 'installation/angular',
+            },
+            {
+              type: 'doc',
+              id: 'installation/react',
+            },
+            {
+              type: 'doc',
+              id: 'installation/javascript',
+            },
+            {
+              type: 'doc',
+              id: 'installation/vue',
             },
             {
               type: 'doc',
@@ -78,22 +98,6 @@ const sidebars = {
             {
               type: 'doc',
               id: 'installation/csp',
-            },
-            {
-              type: 'doc',
-              id: 'installation/installation',
-            },
-            {
-              type: 'doc',
-              id: 'installation/javascript',
-            },
-            {
-              type: 'doc',
-              id: 'installation/react',
-            },
-            {
-              type: 'doc',
-              id: 'installation/vue',
             },
           ],
         },

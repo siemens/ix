@@ -146,6 +146,10 @@ export class Drawer {
     });
   }
 
+  componentDidLoad() {
+    this.onShowChanged(this.show);
+  }
+
   render() {
     return (
       <Host
@@ -170,7 +174,7 @@ export class Drawer {
           </div>
           <ix-icon-button
             class="close-button"
-            icon="close"
+            icon={'close'}
             size="24"
             ghost
             onClick={() => this.onCloseClicked()}

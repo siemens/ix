@@ -25,7 +25,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
 }
 
 .Open {
@@ -64,15 +63,6 @@
   width: 100%;
 }
 
-.Dropdown__Check {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  position: relative;
-  min-width: 24px;
-  min-height: 24px;
-}
-
 .Dropdown__Item {
   display: flex;
   position: relative;
@@ -97,6 +87,7 @@
   position: relative;
   justify-content: flex-start;
   align-items: center;
+  color: var(--theme-color-std-text);
 }
 
 .Theme__Color {
@@ -105,5 +96,5 @@
   border: var(--theme-soft-bdr-1);
   background-color: #6a7f98;
   border-radius: 40px;
-  margin-left: 2rem;
+  margin-right: 2rem;
 }

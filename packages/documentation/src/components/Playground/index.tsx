@@ -6,18 +6,40 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { IxTabItem, IxTabs } from '@siemens/ix-react';
+import { IxIconButton, IxTabItem, IxTabs } from '@siemens/ix-react';
 import GitHubImage from '@site/static/img/github.svg';
 import StackBlitzImage from '@site/static/img/stackblitz.svg';
 import React, { useEffect, useMemo, useState } from 'react';
+import loadExamples from '../../utils/load';
 import Demo, { DemoProps } from '../Demo';
 import { TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
 
 type MdxContent = ({}) => {};
+
+function ButtonOpenIframe({ name }: { name: string }) {
+  const baseUrl = useBaseUrl('/');
+
+  return (
+    <IxIconButton
+      icon="open-external"
+      ghost
+      size="16"
+      oval
+      title="Open in new tab"
+      onClick={() => {
+        window.open(
+          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=theme-brand-dark`,
+          '_blank'
+        );
+      }}
+    ></IxIconButton>
+  );
+}
 
 function ButtonOpenGithub({
   name,
@@ -69,15 +91,18 @@ function ButtonOpenStackBlitz({
   );
 }
 
+type PlaygroundFiles = {
+  react?: Record<string, MdxContent> | MdxContent;
+  angular?: Record<string, MdxContent> | MdxContent;
+  webcomponents?: Record<string, MdxContent> | MdxContent;
+  vue?: Record<string, MdxContent> | MdxContent;
+};
+
 interface PlaygroundProps {
   hideInitalCodePreview?: boolean;
-  frameworks?: {
-    react?: Record<string, MdxContent> | MdxContent;
-    angular?: Record<string, MdxContent> | MdxContent;
-    webcomponents?: Record<string, MdxContent> | MdxContent;
-    vue?: Record<string, MdxContent> | MdxContent;
-  };
+  frameworks?: PlaygroundFiles;
   availableFrameworks?: TargetFramework[];
+  examplesByName?: boolean;
 }
 
 function getPathId(pathname: string) {
@@ -134,17 +159,20 @@ function getDefaultTargetFramework(availableFrameworks?: TargetFramework[]) {
   );
 }
 
-export default function Playground({
+export function _Playground({
   name,
   height,
   noMargin,
   theme,
-  frameworks,
+  frameworks: frameworkCode,
   availableFrameworks,
+  examplesByName,
 }: DemoProps & PlaygroundProps) {
   const { pathname: _pathname } = useLocation();
   const baseUrl = useBaseUrl('/');
   const [showCode, setShowCode] = useState<boolean>(!false);
+
+  const [frameworks, setFrameworks] = useState<PlaygroundFiles | null>(null);
 
   const [targetFramework, setTargetFramework] = useState<TargetFramework>(
     getDefaultTargetFramework(availableFrameworks)
@@ -164,6 +192,27 @@ export default function Playground({
     () => getPathId(_pathname + name),
     [name, _pathname]
   );
+
+  useEffect(() => {
+    if (frameworkCode instanceof Promise) {
+      frameworkCode.then((r) => {
+        setFrameworks(r);
+      });
+
+      return;
+    }
+
+    if (frameworkCode) {
+      setFrameworks(frameworkCode);
+
+      return;
+    }
+
+    if (examplesByName) {
+      loadExamples(name).then((codeSnippets) => setFrameworks(codeSnippets));
+      return;
+    }
+  }, [frameworkCode, setFrameworks]);
 
   useEffect(() => {
     const snippets: Record<
@@ -251,6 +300,10 @@ export default function Playground({
   }
 
   function isFrameworkConfigured(framework: TargetFramework) {
+    if (!frameworks) {
+      return false;
+    }
+
     if (availableFrameworks) {
       return (
         availableFrameworks.length === 0 ||
@@ -300,13 +353,13 @@ export default function Playground({
               ) : null}
 
               {isFrameworkConfigured(TargetFramework.VUE) ? (
-              <IxTabItem
-                selected={targetFramework === TargetFramework.VUE}
-                onClick={() => changeFramework(TargetFramework.VUE)}
-              >
-                Vue
-              </IxTabItem>
-            ) : null}
+                <IxTabItem
+                  selected={targetFramework === TargetFramework.VUE}
+                  onClick={() => changeFramework(TargetFramework.VUE)}
+                >
+                  Vue
+                </IxTabItem>
+              ) : null}
             </IxTabs>
 
             <div className="Playground__Toolbar__Actions">
@@ -320,7 +373,9 @@ export default function Playground({
                     files={getFileNames()}
                   />
                 </>
-              ) : null}
+              ) : (
+                <ButtonOpenIframe name={name}></ButtonOpenIframe>
+              )}
             </div>
           </div>
           {renderSourceCodeSnippet()}
@@ -328,4 +383,8 @@ export default function Playground({
       ) : null}
     </div>
   );
+}
+
+export default function (props) {
+  return <BrowserOnly>{() => <_Playground {...props} />}</BrowserOnly>;
 }

@@ -1,0 +1,168 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'legacy/mixins/fonts';
+@import 'mixins/shadow-dom/component';
+@import 'mixins/hover';
+
+@mixin btn-variant($name, $enable-border: true) {
+  :host {
+    .btn-#{$name} {
+      border-radius: var(--theme-btn--border-radius);
+
+      &,
+      &.focus,
+      &:focus-visible {
+        background-color: var(--theme-btn-#{$name}--background);
+        color: var(--theme-btn-#{$name}--color);
+
+        --ix-button-color: var(--theme-btn-#{$name}--color);
+
+        @if $enable-border {
+          border-width: var(--theme-btn--border-thickness);
+          border-color: var(--theme-btn-#{$name}--border-color);
+          border-style: solid;
+        } @else {
+          border-color: transparent;
+        }
+      }
+
+      @include focus-visible {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+
+      &.selected {
+        background-color: var(--theme-color-ghost--selected);
+        color: var(--theme-color-dynamic);
+
+        @include hover {
+          background-color: var(--theme-color-ghost--selected-hover);
+          color: var(--theme-color-dynamic);
+        }
+
+        @include active {
+          background-color: var(--theme-color-ghost--selected-active);
+          color: var(--theme-color-dynamic);
+        }
+      }
+
+      @include hover {
+        @if $enable-border {
+          border-color: var(--theme-btn-#{$name}--border-color--hover);
+        }
+
+        background-color: var(--theme-btn-#{$name}--background--hover);
+        color: var(--theme-btn-#{$name}--color--hover);
+      }
+
+      @include active {
+        @if $enable-border {
+          border-color: var(--theme-btn-#{$name}--border-color--active);
+        }
+
+        background-color: var(--theme-btn-#{$name}--background--active);
+        color: var(--theme-btn-#{$name}--color--active);
+      }
+    }
+  }
+
+  :host(.disabled) {
+    pointer-events: none;
+
+    .btn-#{$name} {
+      &.disabled,
+      &:disabled {
+        pointer-events: none;
+
+        @if $enable-border {
+          border-color: var(--theme-btn-#{$name}--border-color--disabled);
+        }
+
+        background-color: var(--theme-btn-#{$name}--background--disabled);
+        color: var(--theme-btn-#{$name}--color--disabled);
+        opacity: 1;
+
+        --ix-button-color: var(--theme-btn-#{$name}--color--disabled);
+      }
+    }
+  }
+}
+
+@mixin btn {
+  :host {
+    @include ix-component;
+    display: inline-block;
+    height: 2rem;
+    vertical-align: middle;
+    cursor: pointer;
+
+    @include text-default-title;
+
+    button {
+      all: unset;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      overflow: hidden;
+
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: 100%;
+
+      padding: 0 0.5rem;
+    }
+
+    ix-spinner {
+      margin-right: 0.25rem;
+    }
+
+    ix-icon {
+      margin-right: 0.25rem;
+    }
+
+    .content {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .content-start {
+      width: 100%;
+    }
+
+    .icon {
+      // Prevents icon to show title tooltip
+      // if embedded in ix-icon-button or ix-button[icon]
+      pointer-events: none;
+    }
+  }
+
+  :host(.disabled) {
+    cursor: default;
+  }
+}
+
+@mixin all-btn-variants {
+  @include btn;
+  $button-categories: (primary, secondary);
+
+  @each $category in $button-categories {
+    @include btn-variant($category);
+    @include btn-variant('outline-#{$category}');
+    @include btn-variant('invisible-#{$category}', false);
+  }
+}

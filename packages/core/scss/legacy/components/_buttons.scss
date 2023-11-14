@@ -1,0 +1,181 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import './mixins/hover';
+@import './mixins/text-truncation';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $x-large-space;
+  font-size: $font-size-default;
+  font-weight: $font-weight-bold;
+  transition: $default-time;
+  padding: 0 $small-space;
+  min-width: 5rem;
+  gap: $tiny-space;
+
+  @include ellipsis;
+
+  .glyph {
+    margin-right: $tiny-space;
+    font-weight: $font-weight-normal;
+  }
+
+  &:focus-visible,
+  &.focus {
+    box-shadow: none;
+  }
+}
+
+$button-categories: (primary, secondary);
+
+@mixin btn($name, $enable-border: true) {
+  .btn-#{$name} {
+    border-radius: var(--theme-btn--border-radius);
+
+    @if $enable-border == false {
+      --bs-btn-border-width: 0px;
+      --bs-btn-active-border-color: none;
+    }
+
+    &,
+    &.focus,
+    &:focus-visible {
+      background-color: var(--theme-btn-#{$name}--background);
+      color: var(--theme-btn-#{$name}--color);
+
+      --ix-button-color: var(--theme-btn-#{$name}--color);
+
+      @if $enable-border {
+        border-width: var(--theme-btn--border-thickness);
+        border-color: var(--theme-btn-#{$name}--border-color);
+        border-style: solid;
+      } @else {
+        border-color: transparent;
+      }
+    }
+
+    @include focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+
+    &.selected {
+      background-color: var(--theme-color-ghost--selected);
+      color: var(--theme-color-dynamic);
+    }
+
+    &.hover,
+    &:hover {
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--hover);
+      }
+
+      background-color: var(--theme-btn-#{$name}--background--hover);
+      color: var(--theme-btn-#{$name}--color--hover);
+    }
+
+    &.selected {
+      &.hover,
+      &:hover {
+        background-color: var(--theme-color-ghost--selected-hover);
+        color: var(--theme-color-dynamic);
+      }
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      @if $enable-border {
+        border-color: var(
+          --theme-btn-#{$name}--border-color--active
+        );
+      }
+
+     background-color: var(
+        --theme-btn-#{$name}--background--active
+      );
+      color: var(--theme-btn-#{$name}--color--active);
+    }
+
+    &.selected {
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active,
+      .show > &.dropdown-toggle {
+        background-color: var(
+          --theme-color-ghost--selected-active
+        );
+
+        color: var(--theme-color-dynamic);
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      pointer-events: none;
+      cursor: initial;
+
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--disabled);
+      }
+
+      background-color: var(--theme-btn-#{$name}--background--disabled);
+      color: var(--theme-btn-#{$name}--color--disabled);
+      opacity: 1;
+
+      --ix-button-color: var(--theme-btn-#{$name}--color--disabled);
+    }
+  }
+}
+
+@each $category in $button-categories {
+  @include btn($category);
+  @include btn('outline-#{$category}');
+  @include btn('invisible-#{$category}', false);
+}
+
+.btn-oval,
+.btn-icon {
+  min-width: $x-large-space;
+  width: $x-large-space;
+
+  .glyph {
+    margin-right: 0;
+  }
+}
+
+.btn-oval {
+  border-radius: 6.25rem;
+  width: $default-control-height;
+}
+
+.btn-icon-xs,
+.btn-icon-12 {
+  height: $default-space;
+  width: $default-space;
+  min-width: $default-space;
+  min-height: $default-space;
+}
+
+.btn-icon-s,
+.btn-icon-16 {
+  height: $large-space;
+  width: $large-space;
+  min-width: $large-space;
+  min-height: $large-space;
+}
+
+.btn-icon-32 {
+  height: $x-large-space;
+  width: $x-large-space;
+  min-width: $x-large-space;
+  min-height: $x-large-space;
+}

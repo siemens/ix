@@ -20,7 +20,7 @@ import {
 @Component({
   tag: 'ix-chip',
   styleUrl: 'chip.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Chip {
   @Element() el: HTMLIxChipElement;
@@ -52,7 +52,7 @@ export class Chip {
   /**
    * Show icon
    */
-  @Prop() icon: string | undefined;
+  @Prop() icon: string;
 
   /**
    * Custom color for pill. Only working for `variant='custom'`
@@ -72,13 +72,6 @@ export class Chip {
   /**
    * Fire event if close button is clicked
    *
-   *  @deprecated Will be removed in 2.0.0. Use `closeChip`
-   */
-  @Event() close: EventEmitter;
-
-  /**
-   * Fire event if close button is clicked
-   *
    * @since 1.5.0
    */
   @Event() closeChip: EventEmitter;
@@ -86,24 +79,20 @@ export class Chip {
   private getCloseButton() {
     return (
       <div class="close-button-container">
-        <button
+        <ix-icon-button
           type="button"
-          class="btn btn-invisible-secondary btn-icon btn-oval close-button"
+          variant="secondary"
+          icon={'close-small'}
+          class="close-button"
+          oval
+          size="16"
+          style={this.variant === 'custom' ? { color: this.color } : {}}
+          ghost
           onClick={(event) => {
-            this.close.emit(event);
             this.closeChip.emit(event);
             event.stopPropagation();
           }}
-        >
-          {this.variant === 'custom' ? (
-            <i
-              class="glyph glyph-16 glyph-close-small"
-              style={{ color: this.color }}
-            />
-          ) : (
-            <ix-icon name={'close-small'} size={'16'} />
-          )}
-        </button>
+        ></ix-icon-button>
       </div>
     );
   }
@@ -113,42 +102,55 @@ export class Chip {
 
     let customStyle = {};
 
-    if (this.variant === 'custom' && this.outline === false) {
+    if (this.variant === 'custom') {
       customStyle = {
         color: this.color,
-        backgroundColor: this.background,
-      };
-    }
-
-    if (this.variant === 'custom' && this.outline === true) {
-      customStyle = {
-        color: this.color,
-        borderColor: this.background,
+        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
 
     return (
       <Host
-        class={{
-          outline: this.outline,
-          inactive: isInactive,
-        }}
         tabIndex="-1"
         title={this.el.textContent}
-        style={{ ...customStyle }}
+        style={
+          this.variant === 'custom'
+            ? {
+                '--ix-icon-button-color': this.color,
+              }
+            : {}
+        }
       >
-        <ix-icon
+        <div
+          style={{ ...customStyle }}
           class={{
-            'with-icon': true,
-            hidden: this.icon === undefined || this.icon === '',
+            container: true,
+            outline: this.outline,
+            inactive: isInactive,
+            alarm: this.variant === 'alarm',
+            critical: this.variant === 'critical',
+            info: this.variant === 'info',
+            neutral: this.variant === 'neutral',
+            primary: this.variant === 'primary',
+            success: this.variant === 'success',
+            warning: this.variant === 'warning',
+            closable: this.closable,
+            icon: !!this.icon,
           }}
-          name={this.icon}
-          size={'24'}
-        />
-        <span class="slot-container">
-          <slot></slot>
-        </span>
-        {isInactive === false && this.closable ? this.getCloseButton() : null}
+        >
+          <ix-icon
+            class={{
+              'with-icon': true,
+              hidden: !this.icon,
+            }}
+            name={this.icon}
+            size={'24'}
+          />
+          <span class="slot-container">
+            <slot></slot>
+          </span>
+          {isInactive === false && this.closable ? this.getCloseButton() : null}
+        </div>
       </Host>
     );
   }

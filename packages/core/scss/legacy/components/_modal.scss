@@ -1,0 +1,41 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'legacy/mixins/fonts';
+
+.modal {
+  --bs-modal-footer-gap: 1rem;
+  --bs-modal-box-shadow: var(--theme-modal--box-shadow);
+}
+
+.modal-header {
+  @include text-default-title;
+  padding: 0;
+  padding-bottom: $tiny-space;
+  border: none;
+  align-items: center;
+
+  [data-close-button] {
+    margin-left: 1rem;
+  }
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 0;
+  padding-block-start: 2rem;
+
+  > * {
+    margin: 0 0 0 calc(var(--bs-modal-footer-gap) * 0.5);
+  }
+}

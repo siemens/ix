@@ -10,19 +10,20 @@
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   h,
   Host,
   Listen,
   Prop,
   State,
 } from '@stencil/core';
-
-let windowStartSize = window.innerWidth;
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
   tag: 'ix-tabs',
   styleUrl: 'tabs.scss',
-  scoped: false,
+  shadow: true,
 })
 export class Tabs {
   @Element() hostElement!: HTMLIxTabsElement;
@@ -52,13 +53,33 @@ export class Tabs {
    */
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
+  /**
+   * `selected` property changed
+   *
+   * @since 2.0.0
+   */
+  @Event() selectedChange: EventEmitter<number>;
+
   @State() totalItems = 0;
   @State() currentScrollAmount = 0;
   @State() scrollAmount = 100;
-  @State() styleNextArrow = {};
-  @State() stylePreviousArrow = {};
 
   @State() scrollActionAmount = 0;
+
+  private windowStartSize = window.innerWidth;
+
+  private get arrowLeftElement() {
+    return this.hostElement.shadowRoot.querySelector(
+      '[data-arrow-left]'
+    ) as HTMLElement;
+  }
+
+  private get arrowRightElement() {
+    return this.hostElement.shadowRoot.querySelector(
+      '[data-arrow-right]'
+    ) as HTMLElement;
+  }
+
   private clickAction: {
     timeout: NodeJS.Timeout;
     isClick: boolean;
@@ -72,9 +93,10 @@ export class Tabs {
     this.totalItems = 0;
     this.totalItems = this.getTabs().length;
 
-    if (windowStartSize === 0) return (windowStartSize = window.innerWidth);
-    this.move(windowStartSize - window.innerWidth);
-    windowStartSize = window.innerWidth;
+    if (this.windowStartSize === 0)
+      return (this.windowStartSize = window.innerWidth);
+    this.move(this.windowStartSize - window.innerWidth);
+    this.windowStartSize = window.innerWidth;
   }
 
   private getTabs() {
@@ -86,7 +108,7 @@ export class Tabs {
   }
 
   private getTabsWrapper() {
-    return this.hostElement.getElementsByClassName('items-content')[0];
+    return this.hostElement.shadowRoot.querySelector('.items-content');
   }
 
   private showArrows() {
@@ -164,7 +186,14 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (this.dragStop()) return;
+    if (this.dragStop()) {
+      return;
+    }
+
+    const { defaultPrevented } = this.selectedChange.emit(index);
+    if (defaultPrevented) {
+      return;
+    }
 
     this.setSelected(index);
     this.moveTabToView(index);
@@ -207,11 +236,10 @@ export class Tabs {
     return true;
   }
 
-  componentDidRender() {
+  componentWillLoad() {
     const tabs = this.getTabs();
-    this.totalItems = tabs.length;
 
-    tabs.forEach((element, index) => {
+    tabs.map((element, index) => {
       if (this.small) element.setAttribute('small', 'true');
 
       if (this.rounded) element.setAttribute('rounded', 'true');
@@ -221,53 +249,93 @@ export class Tabs {
         'selected',
         index === this.selected ? 'true' : 'false'
       );
+
       element.setAttribute('placement', this.placement);
     });
   }
 
+  componentDidRender() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    tabs.map((element, index) => {
+      element.setAttribute(
+        'selected',
+        index === this.selected ? 'true' : 'false'
+      );
+    });
+  }
+
   componentWillRender() {
-    requestAnimationFrame(() => {
-      this.styleNextArrow = this.getArrowStyle(this.showNextArrow());
-      this.stylePreviousArrow = this.getArrowStyle(this.showPreviousArrow());
+    requestAnimationFrameNoNgZone(() => {
+      const showNextArrow = this.showNextArrow();
+      const previousArrow = this.showPreviousArrow();
+
+      Object.assign(
+        this.arrowLeftElement.style,
+        this.getArrowStyle(previousArrow)
+      );
+      Object.assign(
+        this.arrowRightElement.style,
+        this.getArrowStyle(showNextArrow)
+      );
     });
   }
 
   componentDidLoad() {
     const tabs = this.getTabs();
-    tabs.forEach((element, index) => {
-      const isDisabled = element.getAttribute('disabled') !== null;
-      if (!isDisabled)
-        element.addEventListener('click', () => this.clickTab(index));
-
+    tabs.forEach((element) => {
       element.addEventListener('mousedown', (event) =>
         this.dragStart(element, event)
       );
     });
   }
 
+  @Listen('tabClick')
+  onTabClick(event: CustomEvent) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    const target = event.target;
+    const tabs = this.getTabs();
+
+    tabs.forEach((tab, index) => {
+      if (!tab.disabled && tab === target) {
+        this.clickTab(index);
+      }
+    });
+  }
+
   render() {
     return (
       <Host>
-        <div class="overflow-shadow" style={this.stylePreviousArrow}></div>
         <div
           class="arrow"
-          style={this.stylePreviousArrow}
+          data-arrow-left
           onClick={() => this.move(this.scrollAmount, true)}
         >
-          <span class="glyph glyph-chevron-left-small"></span>
+          <ix-icon name={'chevron-left-small'}></ix-icon>
         </div>
-        <div class="tab-items">
+        <div
+          class={{
+            'tab-items': true,
+            'overflow-shadow': true,
+            'shadow-left': this.showPreviousArrow(),
+            'shadow-right': this.showNextArrow(),
+            'shadow-both': this.showNextArrow() && this.showPreviousArrow(),
+          }}
+        >
           <div class="items-content">
             <slot></slot>
           </div>
         </div>
-        <div class="overflow-shadow right" style={this.styleNextArrow}></div>
         <div
           class="arrow right"
-          style={this.styleNextArrow}
+          data-arrow-right
           onClick={() => this.move(-this.scrollAmount, true)}
         >
-          <span class="glyph glyph-chevron-right-small"></span>
+          <ix-icon name={'chevron-right-small'}></ix-icon>
         </div>
       </Host>
     );

@@ -8,8 +8,9 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
-import { Button, ButtonVariant } from '../button/button';
+import { BaseButtonProps } from '../button/base-button';
+import { ButtonVariant } from '../button/button';
+import { BaseIconButton } from '../icon-button/base-icon-button';
 import { getFallbackLabelFromIconName } from '../utils/a11y';
 
 export type IconButtonVariant = ButtonVariant;
@@ -19,7 +20,7 @@ export type IconButtonVariant = ButtonVariant;
   styleUrl: 'icon-button.scss',
   shadow: true,
 })
-export class IconButton implements Button {
+export class IconButton {
   @Element() hostElement: HTMLIxIconButtonElement;
 
   /**
@@ -31,19 +32,12 @@ export class IconButton implements Button {
   /**
    * Variant of button
    */
-  @Prop() variant: IconButtonVariant = 'Secondary';
+  @Prop() variant: IconButtonVariant = 'secondary';
 
   /**
    * Button outline
    */
   @Prop() outline: boolean;
-
-  /**
-   * Button invisible
-   *
-   * @deprecated Use ghost property
-   */
-  @Prop() invisible: boolean;
 
   /**
    * Button invisible
@@ -56,12 +50,14 @@ export class IconButton implements Button {
   @Prop() oval: boolean;
 
   /**
-   * Button icon
+   * Icon name
    */
   @Prop() icon: string;
 
   /**
    * Size of icon in button
+   *
+   * @deprecated Only size 32 will be removed in 3.0.0
    */
   @Prop() size: '32' | '24' | '16' | '12' = '24';
 
@@ -69,11 +65,6 @@ export class IconButton implements Button {
    * Color of icon in  button
    */
   @Prop() color: string;
-
-  /**
-   * Selected state only working with outline or invisible
-   */
-  @Prop() selected = false;
 
   /**
    * Disabled
@@ -85,13 +76,33 @@ export class IconButton implements Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
-  dispatchFormEvents() {
-    if (this.type === 'submit') {
-      const form = this.hostElement.closest('form');
+  /**
+   * Loading button
+   *
+   * @since 2.0.0
+   */
+  @Prop() loading = false;
 
-      if (form) {
-        form.dispatchEvent(new Event('submit'));
-      }
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement: HTMLButtonElement;
+
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  dispatchFormEvents() {
+    if (this.type === 'submit' && this.submitButtonElement) {
+      this.submitButtonElement.click();
     }
   }
 
@@ -103,41 +114,37 @@ export class IconButton implements Button {
     };
   }
 
-  private getIconButtonClasses() {
-    return {
-      ...getButtonClasses(
-        this.variant,
-        this.outline,
-        this.ghost || this.invisible,
-        true,
-        this.oval,
-        this.selected,
-        this.disabled
-      ),
-      'icon-button': true,
-      ...this.getIconSizeClass(),
-    };
-  }
-
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      ariaAttributes: {
+        'aria-label': this.ixAriaLabel
+          ? this.ixAriaLabel
+          : getFallbackLabelFromIconName(this.icon),
+      },
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: true,
+      iconOval: this.oval,
+      selected: false,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      iconColor: this.color,
+      iconSize: this.size,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+      extraClasses: this.getIconSizeClass(),
+    };
+
     return (
-      <Host class={{ ...this.getIconSizeClass(), disabled: this.disabled }}>
-        <button
-          class={this.getIconButtonClasses()}
-          type={this.type}
-          aria-label={
-            this.ixAriaLabel
-              ? this.ixAriaLabel
-              : getFallbackLabelFromIconName(this.icon)
-          }
-          disabled={this.disabled}
-          onClick={() => this.dispatchFormEvents()}
-        >
-          <ix-icon size={this.size} name={this.icon} color={this.color} />
-          <div style={{ display: 'none' }}>
-            <slot></slot>
-          </div>
-        </button>
+      <Host
+        class={{
+          ...this.getIconSizeClass(),
+          disabled: this.disabled || this.loading,
+        }}
+      >
+        <BaseIconButton {...baseButtonProps}></BaseIconButton>
       </Host>
     );
   }

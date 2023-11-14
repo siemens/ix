@@ -25,7 +25,6 @@ import { Component } from '@angular/core';
         <input
           name="firstName"
           type="text"
-          class="form-control"
           id="validationCustom01"
           [(ngModel)]="data.firstName"
           #firstName="ngModel"
@@ -43,14 +42,12 @@ import { Component } from '@angular/core';
           <input
             name="lastName"
             type="text"
-            class="form-control"
             id="validationCustom02"
             [(ngModel)]="data.lastName"
             #lastName="ngModel"
             required
           />
         </ix-validation-tooltip>
-        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="col-md-4">
         <label htmlFor="validationCustomUsername" class="form-label">
@@ -59,7 +56,6 @@ import { Component } from '@angular/core';
         <input
           name="userName"
           type="text"
-          class="form-control"
           id="validationCustomUsername"
           aria-describedby="inputGroupPrepend"
           [(ngModel)]="data.userName"

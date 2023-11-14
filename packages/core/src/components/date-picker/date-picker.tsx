@@ -9,6 +9,7 @@
 
 import {
   Component,
+  Element,
   Event,
   EventEmitter,
   Fragment,
@@ -32,17 +33,19 @@ export type DateTimeCorners = DateTimeCardCorners;
 
 @Component({
   tag: 'ix-date-picker',
-  styleUrl: 'date-picker.scss',
-  scoped: true,
+  styleUrl: './date-picker.scss',
+  shadow: true,
 })
 export class DatePicker {
+  @Element() hostElement: HTMLIxDatePickerElement;
+
   private daysInWeek = 7;
   private dayNames = Info.weekdays();
   private monthNames = Info.months();
 
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
@@ -309,6 +312,8 @@ export class DatePicker {
     this.monthValue = month;
     this.yearValue = this.tempYear;
     this.tempMonth = month;
+
+    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
   private infiniteScrollYears() {
@@ -469,8 +474,8 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(-1)}
               ghost
-              icon="chevron-left"
-              variant="Primary"
+              icon={'chevron-left'}
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
 
@@ -483,7 +488,7 @@ export class DatePicker {
               <ix-dropdown
                 class="dropdown"
                 trigger={this.dropdownButtonRef}
-                placement="bottom"
+                placement="bottom-start"
               >
                 <div class="wrapper">
                   <div
@@ -502,7 +507,7 @@ export class DatePicker {
                             hidden: this.tempYear !== year,
                             arrowPosition: true,
                           }}
-                          name="chevron-right"
+                          name={'chevron-right'}
                           size="12"
                         ></ix-icon>
                         <div
@@ -528,7 +533,7 @@ export class DatePicker {
                             hidden: this.tempMonth - 1 !== index,
                             checkPosition: true,
                           }}
-                          name="single-check"
+                          name={'single-check'}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -546,8 +551,8 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeMonth(1)}
               ghost
-              icon="chevron-right"
-              variant="Primary"
+              icon={'chevron-right'}
+              variant="primary"
               class="arrows"
             ></ix-icon-button>
           </div>
@@ -578,7 +583,9 @@ export class DatePicker {
             })}
           </div>
 
-          <div class={{ button: true, hidden: !this.individual }}>
+          <div
+            class={{ button: true, hidden: !this.individual || !this.range }}
+          >
             <ix-button onClick={() => this.onDone()}>
               {this.textSelectDate}
             </ix-button>

@@ -15,7 +15,15 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom';
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 
 type ArrowPosition = {
   top?: string;
@@ -60,14 +68,17 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
+  /** @internal */
+  @Prop() animationFrame = false;
+
   @State() visible = false;
 
   @Element() hostElement: HTMLIxTooltipElement;
 
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
-  private onMouseEnterBind = this.showTooltip.bind(this);
-  private onMouseLeaveBind = this.hideTooltip.bind(this);
+  private onMouseEnterBind = this.onTooltipShow.bind(this);
+  private onMouseLeaveBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
 
@@ -81,13 +92,25 @@ export class Tooltip {
     }
   }
 
-  private showTooltip(e: any) {
-    clearTimeout(this.hideTooltipTimeout);
-    this.visible = true;
-    this.computeTooltipPosition(e.target);
+  private onTooltipShow(e: Event) {
+    this.showTooltip(e.target as Element);
   }
 
-  private hideTooltip() {
+  private onTooltipHide() {
+    this.hideTooltip();
+  }
+
+  /** @internal */
+  @Method()
+  async showTooltip(anchorElement: any) {
+    clearTimeout(this.hideTooltipTimeout);
+    this.visible = true;
+    this.computeTooltipPosition(anchorElement);
+  }
+
+  /** @internal */
+  @Method()
+  async hideTooltip() {
     this.hideTooltipTimeout = setTimeout(() => {
       this.visible = false;
     }, this.tooltipCloseTimeInMS);
@@ -129,7 +152,10 @@ export class Tooltip {
     }
   }
 
-  private async computeTooltipPosition(target: HTMLElement) {
+  private async computeTooltipPosition(target: Element) {
+    if (!target) {
+      return;
+    }
     this.disposeAutoUpdate = autoUpdate(
       target,
       this.hostElement,
@@ -171,6 +197,7 @@ export class Tooltip {
         ancestorResize: true,
         ancestorScroll: true,
         elementResize: true,
+        animationFrame: this.animationFrame,
       }
     );
   }
@@ -194,7 +221,7 @@ export class Tooltip {
       }
     });
     this.hostElement.addEventListener('mouseleave', () => {
-      this.hideTooltip();
+      this.onTooltipHide();
     });
   }
 
@@ -219,7 +246,7 @@ export class Tooltip {
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
     this.destroyAutoUpdate();
   }
 

@@ -6,11 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ElementHandle, Page, test as base, TestInfo } from '@playwright/test';
+import {
+  ElementHandle,
+  Page,
+  PageScreenshotOptions,
+  test as testBase,
+  TestInfo,
+} from '@playwright/test';
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
-  const theme = testInfo.project.metadata.theme;
+  const originalSceenshot = page.screenshot.bind(page);
+  const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
   testInfo.annotations.push({
     type: theme,
   });
@@ -24,17 +31,22 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     return response;
   };
 
+  page.screenshot = async (options?: PageScreenshotOptions) => {
+    await page.waitForTimeout(150);
+    return originalSceenshot(options);
+  };
+
   return page;
 }
 
-export const regressionTest = base.extend({
+export const regressionTest = testBase.extend({
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
     await use(page);
   },
 });
 
-export const test = base.extend<{
+export const test = testBase.extend<{
   mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
   createElement: (
     selector: string,
@@ -61,7 +73,7 @@ export const test = base.extend<{
     );
   },
   mount: async ({ page }, use, testInfo) => {
-    const theme = testInfo.project.metadata.theme;
+    const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
     });

@@ -11,7 +11,7 @@ import { IxActiveModal } from './modal-ref';
 import { ModalService } from './modal.service';
 
 jest.mock('@siemens/ix', () => ({
-  modal: jest.fn(() =>
+  showModal: jest.fn(() =>
     Promise.resolve({
       onClose: {
         once: jest.fn(),
@@ -25,16 +25,22 @@ jest.mock('@siemens/ix', () => ({
 }));
 
 test('should create modal by templateRef', () => {
+  const appRefMock = {
+    attachView: jest.fn(),
+  };
   const createEmbeddedViewMock = jest.fn((_: { $implicit: any }) => ({
     rootNodes: [{}],
     detectChanges: jest.fn(),
   }));
-  const modalService = new ModalService({} as any, {} as any, {} as any);
+  const modalService = new ModalService(
+    appRefMock as any,
+    {} as any,
+    {} as any
+  );
   modalService.open({
     content: {
       createEmbeddedView: createEmbeddedViewMock,
     } as any,
-    title: '',
     data: {
       sample: 'test',
     },
@@ -47,6 +53,7 @@ test('should create modal by templateRef', () => {
       dismiss: expect.any(Function),
     },
   });
+  expect(appRefMock.attachView).toHaveBeenCalled();
 });
 
 test('should create modal by component typ', async () => {
@@ -58,6 +65,11 @@ test('should create modal by component typ', async () => {
       hostView: {
         rootNodes: [jest.fn()],
         detectChanges: jest.fn(),
+      },
+      injector: {
+        get: jest.fn(() => ({
+          nativeElement: {}
+        })),
       },
     })),
   };
@@ -78,7 +90,6 @@ test('should create modal by component typ', async () => {
 
   await modalService.open({
     content: TestComponent,
-    title: '',
     data: {
       foo: 'bar',
     },

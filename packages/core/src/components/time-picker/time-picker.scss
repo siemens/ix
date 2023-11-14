@@ -8,85 +8,85 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
+@import 'components/form/input';
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+:host {
+  @include ix-component;
 
-.title {
-  display: flex;
-  align-items: center;
-  font: var(--theme-text-default-title);
-  min-height: $large-control-height;
-  color: var(--theme-datepicker-time-header--color);
-}
+  @import 'legacy/components/forms';
 
-.clock {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 0;
-}
-
-input,
-.time-reference {
-  width: 2.625rem;
-  height: $large-space;
-  text-align: center;
-  margin-top: $small-space;
-  margin-bottom: $small-space;
-
-  /* Chrome, Safari, Edge, Opera */
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0 0.3125rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $large-control-height;
   }
 
-  /* Firefox */
-  &[type='number'] {
-    -moz-appearance: textfield;
+  .clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4.25rem 0;
   }
 
-}
+  input,
+  .time-reference {
+    width: 2.625rem;
+    height: $large-space;
+    text-align: center;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
 
-.form-control[type=number] {
-  text-align: center;
-}
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0 0.3125rem;
+    }
 
-.columns {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
+    /* Firefox */
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
 
-.column-seperator {
-  display: flex;
-  align-items: center;
-  margin: 0 $tiny-space;
-}
+  .form-control[type='number'] {
+    text-align: center;
+  }
 
-.button {
-  display: flex;
-  justify-content: flex-end;
-}
+  .columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-.default-space {
-  margin-left: $default-space;
-}
+  .column-seperator {
+    display: flex;
+    align-items: center;
+    margin: 0 $tiny-space;
+  }
 
-.text-align {
-  text-align: center;
-}
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-.hidden {
-  display: none;
-}
+  .default-space {
+    margin-left: $default-space;
+  }
 
-.time-reference {
-  margin: $medium-space 0;
+  .text-align {
+    text-align: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .time-reference {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }

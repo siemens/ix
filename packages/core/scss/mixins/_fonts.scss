@@ -6,161 +6,205 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smooting: grayscale;
 }
 
-@mixin text-format(
-  $font-size,
-  $line-height,
-  $font-weight: $font-weight-normal,
-  $color-inverted: false
+@mixin define-typography(
+  $size: var(--theme-ms-0),
+  $line-height: var(--theme-line-height-lg),
+  $font-weight: var(--theme-font-weight-normal),
+  $letter-spacing: var(--theme-letter-spacing-xl),
+  $text-decoration: none,
+  $font-family: Siemens Sans
 ) {
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: $font-family, Siemens Sans, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-size: #{$size};
+  line-height: #{$line-height};
+  font-weight: #{$font-weight};
+  letter-spacing: #{$letter-spacing};
+  text-decoration: $text-decoration;
+
   @include font-smoothing();
-  font-family: Siemens Sans, sans-serif;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height: $line-height;
-
-  @if $color-inverted {
-    color: var(--theme-color-inv-std-text);
-  } @else {
-    color: var(--theme-color-std-text);
-  }
 }
 
-@mixin text-default($color-inverted: false) {
-  @include text-format(
-    $font-size-default,
-    $line-height-default,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-label {
+  @include define-typography($line-height: var(--theme-line-height-sm));
+}
+
+@mixin typography-label-xs {
+  @include define-typography(
+    $size: var(--theme-ms--2),
+    $line-height: var(--theme-line-height-sm),
+    $letter-spacing: var(--theme-letter-spacing-xxl)
   );
 }
 
-@mixin text-default-single($color-inverted: false) {
-  @include text-format(
-    $font-size-default,
-    $line-height-default-single,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-label-sm {
+  @include define-typography(
+    $size: var(--theme-ms--1),
+    $line-height: var(--theme-line-height-sm)
   );
 }
 
-@mixin text-default-title($color-inverted: false) {
-  @include text-format(
-    $font-size-default,
-    $line-height-default,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-label-lg {
+  @include define-typography(
+    $size: var(--theme-ms-1),
+    $line-height: var(--theme-line-height-sm),
+    $letter-spacing: var(--theme-letter-spacing-lg)
   );
 }
 
-@mixin text-default-title-single($color-inverted: false) {
-  @include text-format(
-    $font-size-default,
-    $line-height-default-single,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-body {
+  @include define-typography($line-height: var(--theme-line-height-md));
+}
+
+@mixin typography-body-xs {
+  @include define-typography(
+    $size: var(--theme-ms--2),
+    $letter-spacing: var(--theme-letter-spacing-xxl)
   );
 }
 
-@mixin text-xs($color-inverted: false) {
-  @include text-format(
-    $font-size-xs,
-    $line-height-xs,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-body-sm {
+  @include define-typography($size: var(--theme-ms--1));
+}
+
+@mixin typography-body-lg {
+  @include define-typography(
+    $size: var(--theme-ms-1),
+    $letter-spacing: var(--theme-letter-spacing-lg)
   );
 }
 
-@mixin text-s($color-inverted: false) {
-  @include text-format(
-    $font-size-s,
-    $line-height-s,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-display {
+  @include define-typography(
+    $size: var(--theme-ms-3),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-md)
   );
 }
 
-@mixin text-caption($color-inverted: false) {
-  @include text-format(
-    $font-size-caption,
-    $line-height-caption,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-display-xs {
+  @include define-typography(
+    $size: var(--theme-ms-1),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-sm)
   );
 }
 
-@mixin text-caption-single($color-inverted: false) {
-  @include text-format(
-    $font-size-caption,
-    $line-height-caption-single,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-display-sm {
+  @include define-typography(
+    $size: var(--theme-ms-2),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-lg)
   );
 }
 
-@mixin text-l($color-inverted: false) {
-  @include text-format(
-    $font-size-l,
-    $line-height-l,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-display-lg {
+  @include define-typography(
+    $size: var(--theme-ms-4),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-md)
   );
 }
 
-@mixin text-l-single($color-inverted: false) {
-  @include text-format(
-    $font-size-l,
-    $line-height-l-single,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-display-xl {
+  @include define-typography(
+    $size: var(--theme-ms-5),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-sm),
+    $font-weight: var(--theme-font-weight-bold)
   );
 }
 
-@mixin text-l-title($color-inverted: false) {
-  @include text-format(
-    $font-size-l,
-    $line-height-l,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-display-xxl {
+  @include define-typography(
+    $size: var(--theme-ms-6),
+    $line-height: var(--theme-line-height-xs),
+    $letter-spacing: var(--theme-letter-spacing-sm),
+    $font-weight: var(--theme-font-weight-bold)
   );
 }
 
-@mixin text-l-title-single($color-inverted: false) {
-  @include text-format(
-    $font-size-l,
-    $line-height-l-single,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-h6 {
+  @include define-typography(
+    $size: var(--theme-ms--1),
+    $font-weight: var(--theme-font-weight-bold)
   );
 }
 
-@mixin text-h2($color-inverted: false) {
-  @include text-format(
-    $font-size-xl,
-    $line-height-h2,
-    $font-weight-bold,
-    $color-inverted
+@mixin typography-h5 {
+  @include define-typography($font-weight: var(--theme-font-weight-bold));
+}
+
+@mixin typography-h4 {
+  @include define-typography(
+    $size: var(--theme-ms-1),
+    $font-weight: var(--theme-font-weight-bold),
+    $letter-spacing: var(--theme-letter-spacing-lg)
   );
 }
 
-@mixin text-xl($color-inverted: false) {
-  @include text-format(
-    $font-size-xl,
-    $line-height-xl,
-    $font-weight-normal,
-    $color-inverted
+@mixin typography-h3 {
+  @include define-typography(
+    $size: var(--theme-ms-2),
+    $font-weight: var(--theme-font-weight-bold),
+    $letter-spacing: var(--theme-letter-spacing-lg)
   );
 }
 
-@function automatic-text-color($color, $theshold: 50) {
-  @if (lightness($color) > $theshold) {
-    @return rgba(0, 0, 0, 0.99);
-  } @else {
-    @return rgba(255, 255, 255, 0.99);
-  }
+@mixin typography-h2 {
+  @include define-typography(
+    $size: var(--theme-ms-3),
+    $line-height: var(--theme-line-height-md),
+    $font-weight: var(--theme-font-weight-bold),
+    $letter-spacing: var(--theme-letter-spacing-md)
+  );
+}
+
+@mixin typography-h1 {
+  @include define-typography(
+    $size: var(--theme-ms-4),
+    $line-height: var(--theme-line-height-sm),
+    $font-weight: var(--theme-font-weight-bold),
+    $letter-spacing: var(--theme-letter-spacing-md)
+  );
+}
+
+@mixin typography-code {
+  @include define-typography(
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
+    $letter-spacing: var(--theme-letter-spacing-md)
+  );
+}
+
+@mixin typography-code-sm {
+  @include define-typography(
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
+    $size: var(--theme-ms--1)
+  );
+}
+
+@mixin typography-code-lg {
+  @include define-typography(
+    $font-family: (
+      JetBrainsMono,
+      Courier New,
+      monospace,
+    ),
+    $size: var(--theme-ms-1),
+    $letter-spacing: var(--theme-letter-spacing-md)
+  );
 }

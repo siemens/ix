@@ -13,6 +13,7 @@
   position: relative;
   width: 100%;
   height: 2.75rem;
+  min-height: 2.75rem;
   padding-left: 1rem;
 
   color: var(--theme-app-header--color);
@@ -20,6 +21,8 @@
 
   border-bottom: var(--theme-app-header--border-width) solid
     var(--theme-app-header--border-color);
+
+  z-index: var(--theme-z-index-fixed);
 
   .name {
     margin-left: 2.5rem;
@@ -38,7 +41,7 @@
   }
 }
 
-:host(.mode-mobile) {
+:host(.breakpoint-sm) {
   padding-left: 0.5rem;
 
   .logo {

@@ -20,7 +20,7 @@ import {
 @Component({
   tag: 'ix-filter-chip',
   styleUrl: 'filter-chip.scss',
-  scoped: true,
+  shadow: true,
 })
 export class FilterChip {
   @Element() el: HTMLIxFilterChipElement;
@@ -29,6 +29,12 @@ export class FilterChip {
    * If true the filter chip will be in disabled state
    */
   @Prop() disabled = false;
+
+  /**
+   * If true the filter chip will be in readonly mode
+   * @since 2.0.0
+   */
+  @Prop() readonly = false;
 
   /**
    * Close clicked
@@ -43,17 +49,25 @@ export class FilterChip {
 
   render() {
     return (
-      <Host class={{ disabled: this.disabled }} title={this.el.textContent}>
+      <Host
+        class={{ disabled: this.disabled, readonly: this.readonly }}
+        title={this.el.textContent}
+      >
         <div class="slot-container">
           <slot></slot>
         </div>
-        <button
-          disabled={this.disabled}
-          class="btn btn-invisible-primary btn-oval"
-          onClick={(e) => this.onCloseClick(e)}
-        >
-          <ix-icon name="close-small" size="16"></ix-icon>
-        </button>
+        {!this.disabled && !this.readonly ? (
+          <ix-icon-button
+            ghost
+            oval
+            icon={'close-small'}
+            size="16"
+            tabindex={this.disabled ? -1 : 0}
+            variant="primary"
+            disabled={this.disabled}
+            onClick={(e) => this.onCloseClick(e)}
+          ></ix-icon-button>
+        ) : null}
       </Host>
     );
   }

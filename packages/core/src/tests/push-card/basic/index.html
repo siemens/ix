@@ -14,68 +14,106 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="insight"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="notification"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="alarm"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="critical"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="warning"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="success"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="info"
-    ></ix-push-card>
-    <ix-push-card
-      icon="bulb"
-      notification="99"
-      heading="Heading content"
-      subheading="Subheading"
-      variant="neutral"
-    ></ix-push-card>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+      }
+    </style>
+    <div class="container">
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="insight"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="notification"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="alarm"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="critical"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="warning"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="success"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="info"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="neutral"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="primary"
+      >
+        <ix-topography format="h2">Some Content</ix-topography>
+      </ix-push-card>
+    </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>

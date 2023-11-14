@@ -6,19 +6,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@import 'mixins/shadow-dom/component';
+@import 'legacy/components/button-group';
 
 :host {
+  @include ix-component;
   display: inline-block;
 
   .btn-group {
-    // Overwrite styling from bootstrap button group
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
     width: 100%;
 
-    > button:nth-child(1) {
+    > ix-button:nth-child(1) {
       width: calc(100% - 2rem);
     }
 
-    > button:nth-child(2) {
+    > ix-button:nth-child(2) {
       width: 2rem;
     }
   }

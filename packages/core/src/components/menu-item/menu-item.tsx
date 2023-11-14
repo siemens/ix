@@ -10,6 +10,9 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
+/**
+ * @slot menu-item-label Custom label
+ */
 @Component({
   tag: 'ix-menu-item',
   styleUrl: 'menu-item.scss',
@@ -25,15 +28,20 @@ export class MenuItem {
    * Caution: this is no longer working. Please use slot="bottom" instead.
    *
    * Place tab on bottom
-   *
-   * @deprecated Will be removed in 2.0.0. Replaced by slot based implementation
    */
   @Prop() bottom = false;
 
   /**
    * Icon name from @siemens/ix-icons
+   *
+   * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
   @Prop() tabIcon = 'document';
+
+  /**
+   * Icon name from @siemens/ix-icons
+   */
+  @Prop() icon: string;
 
   /**
    * Show notification count on tab
@@ -55,6 +63,12 @@ export class MenuItem {
   @State() title: string;
 
   private observer: MutationObserver;
+  private isHostedInsideCategory = false;
+
+  componentWillLoad() {
+    this.isHostedInsideCategory =
+      !!this.hostElement.closest('ix-menu-category');
+  }
 
   componentWillRender() {
     this.title = this.hostElement.innerText;
@@ -79,6 +93,18 @@ export class MenuItem {
   }
 
   render() {
+    let extendedAttributes = {};
+    if (this.home) {
+      extendedAttributes = {
+        slot: 'home',
+      };
+    }
+
+    if (this.bottom) {
+      extendedAttributes = {
+        slot: 'bottom',
+      };
+    }
     return (
       <Host
         class={{
@@ -86,10 +112,20 @@ export class MenuItem {
           'home-tab': this.home,
           'bottom-tab': this.bottom,
           active: this.active,
+          'tab-nested': this.isHostedInsideCategory,
         }}
+        {...extendedAttributes}
       >
-        <li class="tab" title={this.title}>
-          <ix-icon name={this.tabIcon}></ix-icon>
+        <button
+          class="tab"
+          title={this.title}
+          tabIndex={this.disabled ? -1 : 0}
+          role="listitem"
+        >
+          <ix-icon
+            class={'tab-icon'}
+            name={this.icon ?? this.tabIcon}
+          ></ix-icon>
           <div class="notification">
             {this.notifications ? (
               <div class="pill">{this.notifications}</div>
@@ -98,7 +134,7 @@ export class MenuItem {
           <span class="tab-text text-default">
             <slot></slot>
           </span>
-        </li>
+        </button>
       </Host>
     );
   }

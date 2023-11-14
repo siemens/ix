@@ -12,7 +12,7 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MenuAboutNews {
   /**
@@ -66,7 +66,7 @@ export class MenuAboutNews {
         <div class="banner-container">
           <ix-icon
             color="color-inv-contrast-text"
-            name="shout"
+            name={'shout'}
             size="32"
           ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
@@ -75,12 +75,14 @@ export class MenuAboutNews {
         </div>
 
         <div class="cui-popover-news-header">
-          <span class="text-l-title">{this.label}</span>
+          <ix-typography variant="default-title-single">
+            {this.label}
+          </ix-typography>
         </div>
 
         <ix-icon-button
           size="24"
-          icon="close-small"
+          icon={'close-small'}
           ghost
           onClick={() => {
             this.show = false;
@@ -90,15 +92,15 @@ export class MenuAboutNews {
         <slot></slot>
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
-            <button
-              class="btn btn-primary"
+            <ix-button
+              variant="primary"
               onClick={(e) => {
                 this.show = false;
                 this.showMore.emit(e);
               }}
             >
               {this.i18nShowMore}
-            </button>
+            </ix-button>
           </div>
         ) : null}
         <div id="arrow"></div>

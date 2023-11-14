@@ -9,12 +9,17 @@
 
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const path = require('path');
+const figmaPlugin = require('@siemens/figma-plugin');
+
 
 let withBrandTheme = false;
 
 const libCss = [
+  require.resolve('animate.css/animate.css'),
   require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'),
-  require.resolve('@siemens/ix-icons/dist/css/ix-icons.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
+  require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
 ];
 
 try {
@@ -30,10 +35,10 @@ try {
 
 const customCss = [
   ...libCss,
-  require.resolve('./src/css/custom.css'),
-  require.resolve('./src/css/search.css'),
-  require.resolve('./src/css/api-table.css'),
-  require.resolve('./src/css/cards.css'),
+  require.resolve('./src/css/custom.scss'),
+  require.resolve('./src/css/search.scss'),
+  require.resolve('./src/css/api-table.scss'),
+  require.resolve('./src/css/cards.scss'),
 ];
 
 const baseUrl = process.env.BASE_URL || '/';
@@ -54,18 +59,27 @@ const config = {
     [
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         debug: false,
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
+          remarkPlugins: [
+            figmaPlugin.default({
+              baseUrl: `${baseUrl}figma`,
+              figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
+              error_image: 'img/figma_error.png',
+              apiToken: process.env.FIGMA_API_TOKEN,
+              rimraf: true,
+            }),
+          ],
         },
         theme: {
           customCss,
         },
-      }),
+      },
     ],
   ],
   customFields: {
@@ -73,7 +87,7 @@ const config = {
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       metadata: [
         {
           name: 'keywords',
@@ -113,6 +127,14 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/siemens/ix',
               },
+              {
+                label: 'iX Community',
+                href: 'https://community.siemens.com/c/ix',
+              },
+              {
+                label: 'Siemens Developer Portal',
+                href: 'https://developer.siemens.com',
+              },
             ],
           },
           {
@@ -146,16 +168,14 @@ const config = {
         theme: require('prism-react-renderer/themes/dracula'),
         theme2: require('prism-react-renderer/themes/dracula'),
       },
-    }),
+    },
   plugins: [
     'docusaurus-plugin-sass',
     [
       require.resolve('docusaurus-lunr-search'),
       {
-        excludeRoutes: [
-          '/docs/auto-generated/**/*',
-          '/docs/installation/CHANGELOG',
-        ],
+        languages: ['en'],
+        excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
       },
     ],
   ],

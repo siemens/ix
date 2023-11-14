@@ -13,18 +13,16 @@ SPDX-License-Identifier: MIT
     />
     <title>Stencil Component Starter</title>
     <style>
-      body {
-        display: flex;
-        flex-direction: column;
-      }
-
-      form {
-        margin: 0;
+      ix-category-filter {
+        margin: 1rem;
       }
     </style>
   </head>
   <body>
     <ix-category-filter placeholder="Filter by.."></ix-category-filter>
+    <ix-category-filter disabled placeholder="Filter by.."></ix-category-filter>
+    <ix-category-filter readonly placeholder="Filter by.."></ix-category-filter>
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-category-filter');
@@ -48,9 +46,11 @@ SPDX-License-Identifier: MIT
             },
           ],
         };
-        const categoryFilter = document.querySelector('ix-category-filter');
-        categoryFilter.categories = categories;
-        categoryFilter.filterState = filterState;
+        const categoryFilters = document.querySelectorAll('ix-category-filter');
+        categoryFilters.forEach((categoryFilter) => {
+          categoryFilter.categories = categories;
+          categoryFilter.filterState = filterState;
+        });
       })();
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>

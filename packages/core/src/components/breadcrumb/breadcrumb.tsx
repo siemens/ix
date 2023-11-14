@@ -12,20 +12,29 @@ import {
   Element,
   Event,
   EventEmitter,
+  forceUpdate,
   h,
   Host,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
-import animejs from 'animejs';
+import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
+
+let sequenceId = 0;
+const createId = (prefix: string = 'breadcrumb-') => {
+  return `${prefix}-${sequenceId++}`;
+};
 
 @Component({
   tag: 'ix-breadcrumb',
   styleUrl: 'breadcrumb.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Breadcrumb {
+  @Element() hostElement!: HTMLIxBreadcrumbElement;
+
   /**
    * Excess items will get hidden inside of dropdown
    */
@@ -35,11 +44,23 @@ export class Breadcrumb {
    * Items will be accessible through a dropdown
    */
   @Prop() nextItems: string[] = [];
+  @Watch('nextItems')
+  onNextItemsChange() {
+    this.onChildMutation();
+  }
 
   /**
    * Ghost breadcrumbs will not show solid backgrounds on individual crumbs unless there is a mouse event (e.g. hover)
    */
-  @Prop() ghost = false;
+  @Prop() ghost = true;
+
+  /**
+   * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list
+   * with conditionally hidden previous items
+   *
+   * @since 2.0.0
+   */
+  @Prop() ariaLabelPreviousButton = 'previous';
 
   /**
    * Crumb item clicked event
@@ -52,185 +73,133 @@ export class Breadcrumb {
   @Event() nextClick: EventEmitter<{ event: UIEvent; item: string }>;
 
   @State() previousButtonRef: HTMLElement;
-
   @State() nextButtonRef: HTMLElement;
-
-  @Element() hostElement: HTMLIxBreadcrumbElement;
-
-  get breadcrumbItems() {
-    return Array.from(this.hostElement.querySelectorAll('ix-breadcrumb-item'));
-  }
-
-  get crumbItems() {
-    return Array.from(this.hostElement.querySelectorAll('.crumb-items .crumb'));
-  }
-
-  @State() items: { label: string; icon?: string }[] = [];
+  @State() items: HTMLIxBreadcrumbItemElement[] = [];
+  @State() isPreviousDropdownExpanded = false;
 
   private mutationObserver: MutationObserver;
+
+  private previousButtonId = createId();
+  private previousDropdownId = createId();
 
   private onItemClick(item: string) {
     this.itemClick.emit(item);
   }
 
   componentDidLoad() {
-    this.mutationObserver = createMutationObserver(() => {
-      const updatedItems = this.getItems();
-      const update = () => {
-        this.items = updatedItems;
-      };
-
-      if (updatedItems.length >= this.items.length) {
-        update();
-      } else if (updatedItems.length < this.items.length) {
-        const last = this.crumbItems[this.crumbItems.length - 1] as HTMLElement;
-        this.animationFadeOut(last, () => update());
-      }
-    });
-
-    this.mutationObserver.observe(
-      this.hostElement.querySelector('.crumb-items'),
-      {
-        subtree: true,
-        childList: true,
-      }
+    this.mutationObserver = createMutationObserver(() =>
+      this.onChildMutation()
     );
+
+    this.mutationObserver.observe(this.hostElement, {
+      subtree: true,
+      childList: true,
+    });
   }
 
   componentWillLoad() {
-    this.items = this.getItems();
-  }
-
-  private getItems() {
-    return this.breadcrumbItems.map((item) => {
-      return { label: item.label, icon: item.icon };
-    });
+    this.onChildMutation();
   }
 
   disconnectedCallback() {
     this.mutationObserver?.disconnect();
   }
 
-  private animationFadeOut(ref: HTMLElement, complete: () => void) {
-    animejs({
-      targets: ref,
-      translateX: '-100%',
-      duration: 150,
-      opacity: [1, 0],
-      easing: 'linear',
-      complete: () => complete(),
+  private async onChildMutation() {
+    const updatedItems = this.getItems();
+
+    updatedItems.forEach((bc, index) => {
+      const shouldShowDropdown =
+        this.nextItems.length !== 0 && updatedItems.length - 1 === index;
+
+      bc.ghost = this.ghost;
+      bc.showChevron = updatedItems.length - 1 !== index || shouldShowDropdown;
+      bc.isDropdownTrigger = shouldShowDropdown;
+
+      if (shouldShowDropdown) {
+        this.nextButtonRef = bc;
+      }
+
+      if (updatedItems.length < this.visibleItemCount) {
+        return;
+      }
+
+      bc.visible = index >= updatedItems.length - this.visibleItemCount;
     });
+
+    this.items = updatedItems;
   }
 
-  private animationFadeIn(ref: HTMLElement) {
-    animejs({
-      targets: ref,
-      duration: 150,
-      opacity: [0, 1],
-      translateX: ['-100%', '0%'],
-      easing: 'linear',
-    });
-  }
-
-  private handleLastButtonRef(ref: HTMLDivElement, last: boolean) {
-    if (last) {
-      this.animationFadeIn(ref);
-    }
-    if (last && this.nextItems?.length) {
-      this.nextButtonRef = ref;
-    }
-  }
-
-  private sliceHiddenItems() {
-    let sliceIndex = 0;
-
-    if (this.items.length > this.visibleItemCount) {
-      sliceIndex = this.items.length - this.visibleItemCount;
-    }
-
-    return this.items.slice(sliceIndex);
-  }
-
-  private clickItem(item: string, last: boolean) {
-    if (!last) {
-      this.onItemClick(item);
-    }
-  }
-
-  private renderBreadcrumbItems() {
-    return this.sliceHiddenItems().map((item, index, array) => {
-      const last = index === array.length - 1;
-
-      const isLastItem = last && !this.nextItems?.length;
-      return (
-        <div
-          ref={(ref) => this.handleLastButtonRef(ref, last)}
-          data-breadcrumb={index}
-          class={{
-            crumb: true,
-            clickable: true,
-            ghost: this.ghost,
-            btn: !this.ghost,
-            last: isLastItem,
-            'remove-hover': isLastItem,
-          }}
-          onClick={() => this.clickItem(item.label, last)}
-          data-testid="item"
-        >
-          <span class="crumb-text remove-anchor">
-            {item.icon ? <ix-icon name={item.icon} size="16"></ix-icon> : ''}
-            <span
-              style={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {item.label}
-            </span>
-          </span>
-          {!isLastItem ? (
-            <span class="glyph glyph-18 glyph-chevron-right-small text-default-text"></span>
-          ) : null}
-        </div>
-      );
-    });
+  private getItems() {
+    return Array.from(this.hostElement.querySelectorAll('ix-breadcrumb-item'));
   }
 
   render() {
+    const a11y = a11yHostAttributes(this.hostElement);
     return (
       <Host>
         <ix-dropdown
+          id={this.previousDropdownId}
+          aria-label={this.ariaLabelPreviousButton}
           trigger={
             this.items?.length > this.visibleItemCount
               ? this.previousButtonRef
               : null
           }
+          onShowChanged={({ detail }) => {
+            this.isPreviousDropdownExpanded = detail;
+
+            const previousButton = this.hostElement.shadowRoot.getElementById(
+              this.previousButtonId
+            );
+
+            // Need to force update previous button to change `aria-expanded`
+            if (previousButton) {
+              forceUpdate(
+                this.hostElement.shadowRoot.getElementById(
+                  this.previousButtonId
+                )
+              );
+            }
+          }}
         >
           {this.items
             .slice(0, this.items.length - this.visibleItemCount)
-            .map((item) => (
-              <ix-dropdown-item
-                label={item.label}
-                onClick={() => this.onItemClick(item.label)}
-              ></ix-dropdown-item>
-            ))}
+            .map((item) => {
+              const label = item.label ?? item.innerText;
+
+              return (
+                <ix-dropdown-item
+                  label={label}
+                  onClick={() => {
+                    this.onItemClick(label);
+                  }}
+                  onItemClick={(event) => event.stopPropagation()}
+                ></ix-dropdown-item>
+              );
+            })}
         </ix-dropdown>
         {this.items?.length > this.visibleItemCount ? (
-          <div
-            class="crumb crumb-dropdown"
+          <ix-breadcrumb-item
+            id={this.previousButtonId}
             ref={(ref) => (this.previousButtonRef = ref)}
-          >
-            <span class="remove-anchor more-text">
-              <span class="more-text-ellipsis">...</span>
-              <span class="glyph glyph-16 glyph-chevron-right"></span>
-            </span>
-          </div>
+            label="..."
+            tabIndex={1}
+            onItemClick={(event) => event.stopPropagation()}
+            aria-describedby={this.previousDropdownId}
+            aria-controls={this.previousDropdownId}
+            aria-expanded={a11yBoolean(this.isPreviousDropdownExpanded)}
+            class={'previous-button'}
+          ></ix-breadcrumb-item>
         ) : null}
-        <div class="crumb-items">
-          {this.renderBreadcrumbItems()}
-          <slot></slot>
-        </div>
+        <nav
+          class="crumb-items"
+          aria-label={a11y['aria-label'] ?? 'breadcrumbs'}
+        >
+          <ol>
+            <slot></slot>
+          </ol>
+        </nav>
         <ix-dropdown trigger={this.nextButtonRef}>
           {this.nextItems?.map((item) => (
             <ix-dropdown-item
@@ -241,6 +210,7 @@ export class Breadcrumb {
                   item,
                 });
               }}
+              onItemClick={(event) => event.stopPropagation()}
             ></ix-dropdown-item>
           ))}
         </ix-dropdown>

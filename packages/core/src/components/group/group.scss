@@ -8,7 +8,7 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
@@ -142,11 +142,18 @@
   .group-content {
     display: flex;
     flex-direction: column;
+    gap: 1px;
+    margin-top: 1px;
   }
 
   .footer {
+    visibility: collapse;
     height: auto;
     min-height: 0;
+  }
+
+  .footer-visible {
+    visibility: visible;
   }
 
   .hidden {

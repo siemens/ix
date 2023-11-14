@@ -21,7 +21,7 @@ SPDX-License-Identifier: MIT
       (async function () {
         await window.customElements.whenDefined('ix-select');
         const select = document.querySelector('ix-select');
-        select.selectedIndices = ['1', '3'];
+        select.value = ['1', '3'];
       })();
     </script>
     <!-- Preview code -->

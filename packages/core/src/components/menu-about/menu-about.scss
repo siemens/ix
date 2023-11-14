@@ -8,7 +8,7 @@
  */
 
 @import 'common-variables';
-@import 'fonts';
+@import 'legacy/fonts';
 
 :host {
   display: block;
@@ -29,12 +29,12 @@
 
     h2 {
       color: var(--theme-nav-overlay-header--color);
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
   }
 
-  .about-tabs {
-    margin-bottom: $large-space;
+  ix-tabs {
+    margin-bottom: 1.5rem;
   }
 
   ix-menu-about-item {

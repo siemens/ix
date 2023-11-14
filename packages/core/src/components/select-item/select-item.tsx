@@ -23,7 +23,7 @@ import { IxSelectItemLabelChangeEvent } from './events';
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class SelectItem {
   @Element() hostElement: HTMLIxSelectItemElement;
@@ -85,6 +85,9 @@ export class SelectItem {
     return (
       <Host>
         <ix-dropdown-item
+          class={{
+            'select-item-checked': this.selected,
+          }}
           checked={this.selected}
           label={this.label ? this.label : this.value}
           onItemClick={(e) => this.onItemClick(e)}

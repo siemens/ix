@@ -50,12 +50,13 @@ In the following section we will describe how you can build an application with 
 `main.js`
 
 ```javascript
-import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 
 (async () => {
   await applyPolyfills();
+  await ixIconsDefineCustomElements();
   await defineCustomElements();
 })();
 ```

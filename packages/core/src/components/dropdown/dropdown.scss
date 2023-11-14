@@ -9,15 +9,27 @@
 
 @import 'common-variables';
 
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
-@import 'components/dropdown';
 
 :host {
+  background-color: var(--theme-color-2);
+  border-radius: var(--theme-default-border-radius);
   @include ix-component;
   min-width: 0px;
   z-index: var(--theme-z-index-dropdown);
+  box-shadow: var(--theme-shadow-4);
+
+  padding: 0.25rem 0px;
+
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    height: $large-control-height;
+    color: var(--theme-menu-header--color);
+    padding: 0 $default-space;
+  }
 }
 
 :host(.overflow) {

@@ -19,6 +19,13 @@ function loadResources() {
   ix.setAttribute('nomodule', '');
   ix.setAttribute('src', 'http://127.0.0.1:8080/www/build/siemens-ix.js');
 
+  var bootstrapStyling = document.createElement('link');
+  bootstrapStyling.setAttribute('rel', 'stylesheet');
+  bootstrapStyling.setAttribute(
+    'href',
+    'http://127.0.0.1:8080/www/build/bootstrap/dist/css/bootstrap.css'
+  );
+
   var ixStyling = document.createElement('link');
   ixStyling.setAttribute('rel', 'stylesheet');
   ixStyling.setAttribute(
@@ -54,6 +61,7 @@ function loadResources() {
     'http://127.0.0.1:8080/www/build/ix-icons/css/ix-icons.css'
   );
 
+  document.getElementsByTagName('head')[0].appendChild(bootstrapStyling);
   document.getElementsByTagName('head')[0].appendChild(ixEsm);
   document.getElementsByTagName('head')[0].appendChild(ix);
   document.getElementsByTagName('head')[0].appendChild(ixStyling);
