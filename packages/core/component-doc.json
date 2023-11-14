@@ -6341,7 +6341,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item"
@@ -6357,6 +6359,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -7049,7 +7054,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-avatar",
         "ix-dropdown",
@@ -7063,6 +7070,9 @@
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
+        ],
+        "my-component": [
+          "ix-menu-avatar"
         ]
       },
       "props": [
@@ -7210,7 +7220,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown-item"
@@ -7220,6 +7231,9 @@
           "ix-dropdown-item"
         ],
         "ix-menu-avatar": [
+          "ix-menu-avatar-item"
+        ],
+        "my-component": [
           "ix-menu-avatar-item"
         ]
       },
@@ -7384,7 +7398,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
-        "ix-menu-category"
+        "ix-menu-category",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -7392,6 +7407,9 @@
           "ix-menu-item"
         ],
         "ix-menu-category": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -12284,8 +12302,39 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-menu",
+        "ix-menu-avatar",
+        "ix-menu-avatar-item",
+        "ix-menu-item"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-menu",
+          "ix-menu-avatar",
+          "ix-menu-avatar-item",
+          "ix-menu-item"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-menu-avatar": [
+          "ix-avatar",
+          "ix-dropdown",
+          "ix-menu-avatar-item"
+        ],
+        "ix-menu-avatar-item": [
+          "ix-dropdown-item"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

@@ -62,7 +62,7 @@ export class MenuAvatar {
   @Prop() showLogoutButton: boolean = true;
 
   /**
-   * Control fo the visibility of the dropdown menu
+   * Control the visibility of the dropdown menu
    * @since 2.1.0
    */
   @State() showContextMenu: boolean = false;
@@ -114,7 +114,6 @@ export class MenuAvatar {
           <slot onSlotchange={() => this.onSlotChange()}></slot>
           {this.showLogoutButton ? (
             <ix-menu-avatar-item
-              hidden={!this.showLogoutButton}
               label={this.i18nLogout}
               icon={'log-out'}
               onClick={(e) => {
