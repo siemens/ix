@@ -13,7 +13,7 @@ import * as echarts from 'echarts';
 import { registerTheme } from '@siemens/ix-echarts';
 
 export default function BarChart() {
-  const theme = ''; // brand-dark, brand-light, classic-dark or classic-light
+  const theme = 'classic-dark'; // brand-dark, brand-light, classic-dark or classic-light
 
   useEffect(() => {
     registerTheme(echarts);

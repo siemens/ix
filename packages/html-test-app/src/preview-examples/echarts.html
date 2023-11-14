@@ -14,7 +14,10 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
     <!-- Sources -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"
+    ></script>
     <!-- Sources -->
   </head>
   <body class="theme-classic-dark">
@@ -27,127 +30,147 @@ LICENSE file in the root directory of this source tree.
     <script type="module">
       import { registerTheme } from '@siemens/ix-echarts';
 
-      registerTheme(echarts);
-
-      var myChart = echarts.init(
-        document.querySelector('#main'),
-        window.demoTheme // brand-dark, brand-light, classic-dark or classic-light
-      );
       // Draw the chart
-      myChart.setOption({
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow',
-          },
-        },
-        legend: {},
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true,
-        },
-        xAxis: [
-          {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          },
-        ],
-        yAxis: [
-          {
-            type: 'value',
-          },
-        ],
-        series: [
-          {
-            name: 'Direct',
-            type: 'bar',
-            emphasis: {
-              focus: 'series',
+      const drawChart = (myChart) => {
+        myChart.setOption({
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
             },
-            data: [320, 332, 301, 334, 390, 330, 320],
           },
-          {
-            name: 'Email',
-            type: 'bar',
-            stack: 'Ad',
-            emphasis: {
-              focus: 'series',
-            },
-            data: [120, 132, 101, 134, 90, 230, 210],
+          legend: {},
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
           },
-          {
-            name: 'Union Ads',
-            type: 'bar',
-            stack: 'Ad',
-            emphasis: {
-              focus: 'series',
+          xAxis: [
+            {
+              type: 'category',
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             },
-            data: [220, 182, 191, 234, 290, 330, 310],
-          },
-          {
-            name: 'Video Ads',
-            type: 'bar',
-            stack: 'Ad',
-            emphasis: {
-              focus: 'series',
+          ],
+          yAxis: [
+            {
+              type: 'value',
             },
-            data: [150, 232, 201, 154, 190, 330, 410],
-          },
-          {
-            name: 'Search Engine',
-            type: 'bar',
-            data: [862, 1018, 964, 1026, 1679, 1600, 1570],
-            emphasis: {
-              focus: 'series',
-            },
-            markLine: {
-              lineStyle: {
-                type: 'dashed',
+          ],
+          series: [
+            {
+              name: 'Direct',
+              type: 'bar',
+              emphasis: {
+                focus: 'series',
               },
-              data: [[{ type: 'min' }, { type: 'max' }]],
+              data: [320, 332, 301, 334, 390, 330, 320],
             },
-          },
-          {
-            name: 'Baidu',
-            type: 'bar',
-            barWidth: 5,
-            stack: 'Search Engine',
-            emphasis: {
-              focus: 'series',
+            {
+              name: 'Email',
+              type: 'bar',
+              stack: 'Ad',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [120, 132, 101, 134, 90, 230, 210],
             },
-            data: [620, 732, 701, 734, 1090, 1130, 1120],
-          },
-          {
-            name: 'Google',
-            type: 'bar',
-            stack: 'Search Engine',
-            emphasis: {
-              focus: 'series',
+            {
+              name: 'Union Ads',
+              type: 'bar',
+              stack: 'Ad',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [220, 182, 191, 234, 290, 330, 310],
             },
-            data: [120, 132, 101, 134, 290, 230, 220],
-          },
-          {
-            name: 'Bing',
-            type: 'bar',
-            stack: 'Search Engine',
-            emphasis: {
-              focus: 'series',
+            {
+              name: 'Video Ads',
+              type: 'bar',
+              stack: 'Ad',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [150, 232, 201, 154, 190, 330, 410],
             },
-            data: [60, 72, 71, 74, 190, 130, 110],
-          },
-          {
-            name: 'Others',
-            type: 'bar',
-            stack: 'Search Engine',
-            emphasis: {
-              focus: 'series',
+            {
+              name: 'Search Engine',
+              type: 'bar',
+              data: [862, 1018, 964, 1026, 1679, 1600, 1570],
+              emphasis: {
+                focus: 'series',
+              },
+              markLine: {
+                lineStyle: {
+                  type: 'dashed',
+                },
+                data: [[{ type: 'min' }, { type: 'max' }]],
+              },
             },
-            data: [62, 82, 91, 84, 109, 110, 120],
-          },
-        ],
+            {
+              name: 'Baidu',
+              type: 'bar',
+              barWidth: 5,
+              stack: 'Search Engine',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [620, 732, 701, 734, 1090, 1130, 1120],
+            },
+            {
+              name: 'Google',
+              type: 'bar',
+              stack: 'Search Engine',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [120, 132, 101, 134, 290, 230, 220],
+            },
+            {
+              name: 'Bing',
+              type: 'bar',
+              stack: 'Search Engine',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [60, 72, 71, 74, 190, 130, 110],
+            },
+            {
+              name: 'Others',
+              type: 'bar',
+              stack: 'Search Engine',
+              emphasis: {
+                focus: 'series',
+              },
+              data: [62, 82, 91, 84, 109, 110, 120],
+            },
+          ],
+        });
+      };
+
+      registerTheme(echarts);
+      const theme = document.body.className.replace('theme-', '');
+      var myChart = echarts.init(document.querySelector('#main'), theme);
+
+      // Draw the chart
+      drawChart(myChart);
+
+      // Create a MutationObserver instance
+      const observer = new MutationObserver((mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+          if (mutation.attributeName === 'class') {
+            let newTheme = document.body.className.replace('theme-', '');
+            myChart.dispose();
+            myChart = echarts.init(document.querySelector('#main'), newTheme);
+
+            // Draw the chart
+            drawChart(myChart);
+          }
+        }
       });
+
+      // Start observing the body for configured mutations
+      observer.observe(document.body, { attributes: true });
     </script>
     <!-- Preview code -->
     <script type="module" src="./main.js"></script>
