@@ -175,7 +175,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "my-component"
       ],
       "dependencies": [
         "ix-burger-menu"
@@ -195,6 +196,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "my-component": [
           "ix-application-header"
         ]
       },
@@ -241,11 +245,20 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-spinner"
+      ],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-spinner"
+        ],
         "ix-menu-avatar": [
+          "ix-avatar"
+        ],
+        "my-component": [
           "ix-avatar"
         ]
       },
@@ -6680,7 +6693,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-menu-item"
@@ -6696,6 +6711,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -7386,7 +7404,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Using the ix-application-header together with the avatar functionality"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7400,10 +7423,14 @@
           "ix-dropdown",
           "ix-menu-avatar-item"
         ],
+        "ix-avatar": [
+          "ix-spinner"
+        ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
         ]
       },
+      "deprecation": "Using the ix-application-header together with the avatar functionality",
       "props": [
         {
           "name": "bottom",
@@ -7546,7 +7573,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Using the ix-application-header together with the avatar functionality"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -7562,6 +7594,7 @@
           "ix-menu-avatar-item"
         ]
       },
+      "deprecation": "Using the ix-application-header together with the avatar functionality",
       "props": [
         {
           "name": "icon",
@@ -7723,7 +7756,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
-        "ix-menu-category"
+        "ix-menu-category",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -7731,6 +7765,9 @@
           "ix-menu-item"
         ],
         "ix-menu-category": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -9809,6 +9846,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
@@ -9822,6 +9860,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-spinner"
+        ],
         "ix-breadcrumb-item": [
           "ix-spinner"
         ],
@@ -12673,8 +12714,41 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-application",
+        "ix-application-header",
+        "ix-avatar",
+        "ix-menu",
+        "ix-menu-item",
+        "ix-content"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-application",
+          "ix-application-header",
+          "ix-avatar",
+          "ix-menu",
+          "ix-menu-item",
+          "ix-content"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-avatar": [
+          "ix-spinner"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-menu-item"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

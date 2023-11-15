@@ -1,0 +1,30 @@
+{
+  "name": "storybook",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "serve": "http-server ./storybook-static",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@siemens/ix": "2.0.4",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/html": "^7.5.3",
+    "@storybook/html-vite": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "@types/node": "^20.9.0",
+    "http-server": "^14.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.5.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
