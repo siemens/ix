@@ -90,6 +90,10 @@ export class TimePickerRework {
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
+    if (!newValue) {
+      return;
+    }
+
     this._time = dayjs(newValue, this.format, true);
     if (!this._time.isValid()) {
       throw new Error('Format is not supported or not correct');
