@@ -42,6 +42,7 @@ import CategoryFilter from './preview-examples/category-filter.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
+import Divider from './preview-examples/divider.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
 import DrawerFullHeight from './preview-examples/drawer-full-height.vue';
@@ -103,7 +104,6 @@ import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
 import Toast from './preview-examples/toast.vue';
-import ToggleColor from './preview-examples/toggle-color.vue';
 import ToggleCustomLabel from './preview-examples/toggle-custom-label.vue';
 import ToggleDisabled from './preview-examples/toggle-disabled.vue';
 import Toggle from './preview-examples/toggle.vue';
@@ -137,7 +137,6 @@ import SplitButtonIcons from './preview-examples/split-button-icons.vue';
 import SplitButton from './preview-examples/split-button.vue';
 import TabsRounded from './preview-examples/tabs-rounded.vue';
 import ThemeSwitcher from './preview-examples/theme-switcher.vue';
-import ToastCustomElement from './preview-examples/toast-custom-element.vue';
 import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-ghost.vue';
 import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline.vue';
 import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost.vue';
@@ -189,6 +188,7 @@ const routes: any = {
 '/preview/datepicker-range': DatepickerRange,
 '/preview/datepicker': Datepicker,
 '/preview/datetimepicker': Datetimepicker,
+'/preview/divider': Divider,
 '/preview/drawer-full-height': DrawerFullHeight,
 '/preview/drawer': Drawer,
 '/preview/dropdown-button-icon': DropdownButtonIcon,
@@ -270,7 +270,6 @@ const routes: any = {
 '/preview/theme-switcher': ThemeSwitcher,
 '/preview/tile': Tile,
 '/preview/timepicker': Timepicker,
-'/preview/toast-custom-element': ToastCustomElement,
 '/preview/toast-custom': ToastCustom,
 '/preview/toast-position': ToastPosition,
 '/preview/toast': Toast,
@@ -280,7 +279,6 @@ const routes: any = {
 '/preview/toggle-button-secondary-outline': ToggleButtonSecondaryOutline,
 '/preview/toggle-button-secondary': ToggleButtonSecondary,
 '/preview/toggle-checked': ToggleChecked,
-'/preview/toggle-color': ToggleColor,
 '/preview/toggle-custom-label': ToggleCustomLabel,
 '/preview/toggle-disabled': ToggleDisabled,
 '/preview/toggle-indeterminate': ToggleIndeterminate,
