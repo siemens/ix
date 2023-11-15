@@ -1148,6 +1148,11 @@ export namespace Components {
     }
     interface IxIconButton {
         /**
+          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @since 2.1.0
+         */
+        "a11yLabel": string;
+        /**
           * Color of icon in  button
          */
         "color": string;
@@ -4619,6 +4624,11 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface IxIconButton {
+        /**
+          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @since 2.1.0
+         */
+        "a11yLabel"?: string;
         /**
           * Color of icon in  button
          */

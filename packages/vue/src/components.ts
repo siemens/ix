@@ -457,6 +457,7 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 
 
 export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
+  'a11yLabel',
   'variant',
   'outline',
   'ghost',
