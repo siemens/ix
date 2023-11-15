@@ -1460,6 +1460,9 @@ export namespace Components {
          */
         "show": boolean;
     }
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -1489,6 +1492,9 @@ export namespace Components {
          */
         "top": string;
     }
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
@@ -3022,12 +3028,18 @@ declare global {
         prototype: HTMLIxMenuAboutNewsElement;
         new (): HTMLIxMenuAboutNewsElement;
     };
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
     }
     var HTMLIxMenuAvatarElement: {
         prototype: HTMLIxMenuAvatarElement;
         new (): HTMLIxMenuAvatarElement;
     };
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
     }
     var HTMLIxMenuAvatarItemElement: {
@@ -4931,6 +4943,9 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -4964,6 +4979,9 @@ declare namespace LocalJSX {
          */
         "top"?: string;
     }
+    /**
+     * @deprecated Using the ix-application-header together with the avatar functionality
+     */
     interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
@@ -6195,7 +6213,13 @@ declare module "@stencil/core" {
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
+            /**
+             * @deprecated Using the ix-application-header together with the avatar functionality
+             */
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
+            /**
+             * @deprecated Using the ix-application-header together with the avatar functionality
+             */
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
             /**
              * @since 2.0.0

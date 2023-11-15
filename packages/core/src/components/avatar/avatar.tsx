@@ -40,7 +40,9 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { BaseButton } from '../button/base-button';
+import { closestElement } from '../utils/shadow-dom';
 
 /**
  * @since 2.0.0
@@ -65,7 +67,41 @@ export class Avatar {
    */
   @Prop() initials: string;
 
+  @State() isClosestApplicationHeader = false;
+
+  componentWillLoad() {
+    const closest = closestElement('ix-application-header', this.hostElement);
+    this.isClosestApplicationHeader = closest !== null;
+  }
+
   render() {
+    if (this.isClosestApplicationHeader) {
+      return (
+        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
+          <BaseButton
+            disabled={false}
+            ghost={true}
+            iconOval={false}
+            icon={undefined}
+            iconOnly={false}
+            loading={false}
+            outline={false}
+            selected={false}
+            type="button"
+            variant="primary"
+          >
+            <li class="avatar">
+              {this.image ? (
+                <img src={this.image} class="avatar-image"></img>
+              ) : (
+                <DefaultAvatar initials={this.initials} />
+              )}
+            </li>
+          </BaseButton>
+        </Host>
+      );
+    }
+
     return (
       <Host>
         <li class="avatar">

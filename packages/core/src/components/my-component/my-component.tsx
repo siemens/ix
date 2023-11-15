@@ -15,6 +15,21 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-application>
+          <ix-application-header name="Test">
+            <ix-avatar></ix-avatar>
+          </ix-application-header>
+          <ix-menu>
+            <ix-menu-item>Test</ix-menu-item>
+          </ix-menu>
+          <ix-content>
+            Test
+            <ix-avatar></ix-avatar>
+          </ix-content>
+        </ix-application>
+      </Host>
+    );
   }
 }

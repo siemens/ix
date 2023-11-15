@@ -18,6 +18,9 @@ import {
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @deprecated Using the ix-application-header together with the avatar functionality
+ */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',

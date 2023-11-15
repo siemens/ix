@@ -30,7 +30,6 @@ export class ApplicationHeader {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
-
   @State() suppressResponsive = false;
 
   private menuDisposable?: Disposable;
@@ -111,7 +110,10 @@ export class ApplicationHeader {
           <slot name="logo"></slot>
         </div>
         <div class="name">{this.name}</div>
-        <slot></slot>
+        <div class="content">
+          <slot></slot>
+          <slot name="ix-application-header-avatar"></slot>
+        </div>
       </Host>
     );
   }

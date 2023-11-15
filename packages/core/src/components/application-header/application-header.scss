@@ -14,7 +14,7 @@
   width: 100%;
   height: 2.75rem;
   min-height: 2.75rem;
-  padding-left: 1rem;
+  padding: 0 1rem;
 
   color: var(--theme-app-header--color);
   background-color: var(--theme-app-header--background);
@@ -38,6 +38,11 @@
     overflow: hidden;
     line-height: 0rem;
     color: var(--theme-app-header-logo--color);
+  }
+
+  .content {
+    margin-left: auto;
+    margin-right: 0px;
   }
 }
 
