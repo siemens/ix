@@ -155,6 +155,7 @@ export namespace Components {
         "applicationName": string;
         /**
           * Supported layouts
+          * @example ['sm', 'md']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -3486,6 +3487,7 @@ declare namespace LocalJSX {
         "applicationName"?: string;
         /**
           * Supported layouts
+          * @example ['sm', 'md']
          */
         "breakpoints"?: Breakpoint[];
         /**
