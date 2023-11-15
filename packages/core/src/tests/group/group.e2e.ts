@@ -29,6 +29,13 @@ regressionTest.describe('group', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('header overflow', async ({ page }) => {
+    await page.goto('group/overflow');
+    await page.click("[id='group']");
+    await page.hover("[id='group']");
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('item selected', async ({ page }) => {
     await page.goto('group/basic');
     await page.locator('.btn-expand-header ix-icon').click();
