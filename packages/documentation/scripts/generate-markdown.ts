@@ -344,10 +344,13 @@ function wrap(
   newLinesStart = 1
 ) {
   const markdownHeader = `<!--
-SPDX-FileCopyrightText: 2023 Siemens AG
+  SPDX-FileCopyrightText: 2023 Siemens AG
 
-SPDX-License-Identifier: MIT
--->`;
+  SPDX-License-Identifier: MIT
+
+  This source code is licensed under the MIT license found in the
+  LICENSE file in the root directory of this source tree.
+  -->`;
 
   return `${markdownHeader}\n\n\`\`\`${language}${Array.from({
     length: newLinesStart,
