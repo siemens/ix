@@ -11,7 +11,7 @@ import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import './components/placeholder-logo';
+import './styles/styles.css';
 
 function loadAdditionalTheme() {
   const theme = __THEME__;
