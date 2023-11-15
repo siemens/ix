@@ -31,7 +31,6 @@ yarn add @siemens/ix-vue@latest @siemens/ix-icons
 ### Usage
 
 ```ts
-import '@siemens/ix-icons/dist/css/ix-icons.css';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import { createApp } from 'vue';

@@ -1,0 +1,71 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'mixins/shadow-dom/component';
+
+:host {
+  @include ix-component;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .category {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .category-chevron {
+    margin-left: auto;
+    margin-right: 0px;
+    transition: var(--theme-default-time) transform ease-in-out;
+  }
+
+  .category-chevron--open {
+    transform: rotate(-180deg);
+  }
+
+  .menu-items {
+    overflow: hidden;
+    max-height: 0px;
+    transition: var(--theme-default-time) max-height ease-in-out;
+    padding: 0.25rem 0 0.25rem 1.625rem;
+  }
+
+  .menu-items--expanded {
+    max-height: 999999999px;
+  }
+
+  .category-dropdown {
+    ::slotted(ix-menu-item) {
+      --ix-menu-item-height: 2.5rem;
+    }
+  }
+
+  .category-dropdown-header {
+    pointer-events: none;
+    min-width: 256px;
+  }
+
+  ::slotted(ix-menu-item) {
+    --ix-menu-item-height: 2.5rem;
+  }
+}
+
+:host(.expanded) {
+  background-color: var(--theme-color-ghost--active);
+}
+
+:host {
+  ::slotted(a[href]) {
+    text-decoration: none !important;
+  }
+}

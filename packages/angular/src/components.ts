@@ -8,16 +8,16 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
-  inputs: ['count', 'icon']
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant']
 })
 @Component({
-  selector: 'ix-animated-tab',
+  selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['count', 'icon'],
+  inputs: ['heading', 'icon', 'selected', 'subheading', 'variant'],
 })
-export class IxAnimatedTab {
+export class IxActionCard {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -26,35 +26,7 @@ export class IxAnimatedTab {
 }
 
 
-export declare interface IxAnimatedTab extends Components.IxAnimatedTab {}
-
-
-@ProxyCmp({
-  inputs: ['selectedIndex', 'tabPlacement']
-})
-@Component({
-  selector: 'ix-animated-tabs',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['selectedIndex', 'tabPlacement'],
-})
-export class IxAnimatedTabs {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['tabClick']);
-  }
-}
-
-
-export declare interface IxAnimatedTabs extends Components.IxAnimatedTabs {
-  /**
-   * Tab navigated
-   */
-  tabClick: EventEmitter<CustomEvent<any>>;
-}
+export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
@@ -80,14 +52,36 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'hideHeader']
+  inputs: ['image', 'initials']
+})
+@Component({
+  selector: 'ix-avatar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['image', 'initials'],
+})
+export class IxAvatar {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxAvatar extends Components.IxAvatar {}
+
+
+@ProxyCmp({
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader']
 })
 @Component({
   selector: 'ix-basic-navigation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'hideHeader'],
+  inputs: ['applicationName', 'breakpoints', 'forceBreakpoint', 'hideHeader'],
 })
 export class IxBasicNavigation {
   protected el: HTMLElement;
@@ -102,14 +96,14 @@ export declare interface IxBasicNavigation extends Components.IxBasicNavigation 
 
 
 @ProxyCmp({
-  inputs: ['collapsed', 'icon', 'label']
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label'],
+  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
 })
 export class IxBlind {
   protected el: HTMLElement;
@@ -130,14 +124,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ghost', 'nextItems', 'visibleItemCount']
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ghost', 'nextItems', 'visibleItemCount'],
+  inputs: ['ariaLabelPreviousButton', 'ghost', 'nextItems', 'visibleItemCount'],
 })
 export class IxBreadcrumb {
   protected el: HTMLElement;
@@ -184,14 +178,14 @@ export declare interface IxBreadcrumbItem extends Components.IxBreadcrumbItem {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'type', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant']
 })
 @Component({
   selector: 'ix-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'invisible', 'outline', 'selected', 'type', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'type', 'variant'],
 })
 export class IxButton {
   protected el: HTMLElement;
@@ -206,21 +200,143 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
-  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions']
+  inputs: ['variant']
+})
+@Component({
+  selector: 'ix-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['variant'],
+})
+export class IxCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCard extends Components.IxCard {}
+
+
+@ProxyCmp({
+  inputs: ['collapse']
+})
+@Component({
+  selector: 'ix-card-accordion',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapse'],
+})
+export class IxCardAccordion {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardAccordion extends Components.IxCardAccordion {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardContent extends Components.IxCardContent {}
+
+
+@ProxyCmp({
+  inputs: ['collapse', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling']
+})
+@Component({
+  selector: 'ix-card-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapse', 'i18nMoreCards', 'i18nShowAll', 'label', 'listStyle', 'showAllCount', 'suppressOverflowHandling'],
+})
+export class IxCardList {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['collapseChanged', 'showAllClick', 'showMoreCardClick']);
+  }
+}
+
+
+export declare interface IxCardList extends Components.IxCardList {
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  collapseChanged: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fire event when the collapse state is changed by the user
+   */
+  showAllClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  /**
+   * Fire event when the show more card is clicked.
+   */
+  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-card-title',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxCardTitle {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCardTitle extends Components.IxCardTitle {}
+
+
+@ProxyCmp({
+  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'suggestions']
 })
 @Component({
   selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['categories', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'initialState', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'repeatCategories', 'suggestions'],
+  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'suggestions'],
 })
 export class IxCategoryFilter {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['inputChanged', 'filterChanged']);
+    proxyOutputs(this, this.el, ['categoryChanged', 'inputChanged', 'filterChanged']);
   }
 }
 
@@ -229,6 +345,10 @@ import type { InputState as IIxCategoryFilterInputState } from '@siemens/ix';
 import type { FilterState as IIxCategoryFilterFilterState } from '@siemens/ix';
 
 export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
+  /**
+   * Event dispatched whenever the a category gets selected in the dropdown
+   */
+  categoryChanged: EventEmitter<CustomEvent<string>>;
   /**
    * Event dispatched whenever the text input changes.
    */
@@ -255,16 +375,12 @@ export class IxChip {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close', 'closeChip']);
+    proxyOutputs(this, this.el, ['closeChip']);
   }
 }
 
 
 export declare interface IxChip extends Components.IxChip {
-  /**
-   * Fire event if close button is clicked @deprecated Will be removed in 2.0.0. Use `closeChip`
-   */
-  close: EventEmitter<CustomEvent<any>>;
   /**
    * Fire event if close button is clicked @since 1.5.0
    */
@@ -273,16 +389,16 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
-  inputs: ['alignLeft', 'background', 'color', 'outline', 'variant']
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm']
 })
 @Component({
-  selector: 'ix-counter-pill',
+  selector: 'ix-col',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignLeft', 'background', 'color', 'outline', 'variant'],
+  inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm'],
 })
-export class IxCounterPill {
+export class IxCol {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -291,7 +407,69 @@ export class IxCounterPill {
 }
 
 
-export declare interface IxCounterPill extends Components.IxCounterPill {}
+export declare interface IxCol extends Components.IxCol {}
+
+
+@ProxyCmp({
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+})
+@Component({
+  selector: 'ix-content-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+})
+export class IxContentHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['backButtonClick']);
+  }
+}
+
+
+export declare interface IxContentHeader extends Components.IxContentHeader {
+  /**
+   * Triggered when back button is clicked
+   */
+  backButtonClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+  methods: ['getDateRange']
+})
+@Component({
+  selector: 'ix-date-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+})
+export class IxDateDropdown {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateRangeChange']);
+  }
+}
+
+
+import type { DateRangeChangeEvent as IIxDateDropdownDateRangeChangeEvent } from '@siemens/ix';
+
+export declare interface IxDateDropdown extends Components.IxDateDropdown {
+  /**
+   * EventEmitter for date range change events.
+
+This event is emitted when the date range changes within the component.
+The event payload contains information about the selected date range. @event undefined,@private undefined
+   */
+  dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
+}
 
 
 @ProxyCmp({
@@ -442,7 +620,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
 
 
 @ProxyCmp({
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -450,7 +628,7 @@ export declare interface IxDrawer extends Components.IxDrawer {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['adjustDropdownWidthToReferenceWidth', 'adjustDropdownWidthToReferenceWith', 'anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'trigger'],
 })
 export class IxDropdown {
   protected el: HTMLElement;
@@ -471,14 +649,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'disabled', 'ghost', 'icon', 'label', 'outline', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
 })
 export class IxDropdownButton {
   protected el: HTMLElement;
@@ -490,6 +668,28 @@ export class IxDropdownButton {
 
 
 export declare interface IxDropdownButton extends Components.IxDropdownButton {}
+
+
+@ProxyCmp({
+  inputs: ['label']
+})
+@Component({
+  selector: 'ix-dropdown-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class IxDropdownHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxDropdownHeader extends Components.IxDropdownHeader {}
 
 
 @ProxyCmp({
@@ -508,17 +708,11 @@ export class IxDropdownItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemClick']);
   }
 }
 
 
-export declare interface IxDropdownItem extends Components.IxDropdownItem {
-  /**
-   * Click on item
-   */
-  itemClick: EventEmitter<CustomEvent<HTMLIxDropdownItemElement>>;
-}
+export declare interface IxDropdownItem extends Components.IxDropdownItem {}
 
 
 @ProxyCmp({
@@ -593,14 +787,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 
 @ProxyCmp({
-  inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected']
+  inputs: ['chevron', 'color', 'disabled', 'selected']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'color', 'disabled', 'opacity', 'selected'],
+  inputs: ['chevron', 'color', 'disabled', 'selected'],
 })
 export class IxEventListItem {
   protected el: HTMLElement;
@@ -621,14 +815,14 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 
 
 @ProxyCmp({
-  inputs: ['icon', 'placeholder', 'value']
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value']
 })
 @Component({
   selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'placeholder', 'value'],
+  inputs: ['fullWidth', 'icon', 'placeholder', 'value'],
 })
 export class IxExpandingSearch {
   protected el: HTMLElement;
@@ -649,14 +843,14 @@ export declare interface IxExpandingSearch extends Components.IxExpandingSearch 
 
 
 @ProxyCmp({
-  inputs: ['disabled']
+  inputs: ['disabled', 'readonly']
 })
 @Component({
   selector: 'ix-filter-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled'],
+  inputs: ['disabled', 'readonly'],
 })
 export class IxFilterChip {
   protected el: HTMLElement;
@@ -677,14 +871,14 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['footer', 'height', 'state', 'width']
+  inputs: ['height', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['footer', 'height', 'state', 'width'],
+  inputs: ['height', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
@@ -717,6 +911,28 @@ export class IxFlipTileContent {
 
 
 export declare interface IxFlipTileContent extends Components.IxFlipTileContent {}
+
+
+@ProxyCmp({
+  inputs: ['label']
+})
+@Component({
+  selector: 'ix-form-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class IxFormField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxFormField extends Components.IxFormField {}
 
 
 @ProxyCmp({
@@ -777,28 +993,6 @@ export declare interface IxGroupContextMenu extends Components.IxGroupContextMen
 
 
 @ProxyCmp({
-  inputs: ['icon', 'label']
-})
-@Component({
-  selector: 'ix-group-dropdown-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label'],
-})
-export class IxGroupDropdownItem {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxGroupDropdownItem extends Components.IxGroupDropdownItem {}
-
-
-@ProxyCmp({
   inputs: ['focusable', 'icon', 'index', 'secondaryText', 'selected', 'suppressSelection', 'text']
 })
 @Component({
@@ -827,36 +1021,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['color', 'name', 'size']
-})
-@Component({
-  selector: 'ix-icon',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'name', 'size'],
-})
-export class IxIcon {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxIcon extends Components.IxIcon {}
-
-
-@ProxyCmp({
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant']
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'invisible', 'outline', 'oval', 'selected', 'size', 'type', 'variant'],
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLElement;
@@ -868,6 +1040,34 @@ export class IxIconButton {
 
 
 export declare interface IxIconButton extends Components.IxIconButton {}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'size', 'variant']
+})
+@Component({
+  selector: 'ix-icon-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'size', 'variant'],
+})
+export class IxIconToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
+  }
+}
+
+
+export declare interface IxIconToggleButton extends Components.IxIconToggleButton {
+  /**
+   * Pressed change event
+   */
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
@@ -958,6 +1158,50 @@ export declare interface IxKpi extends Components.IxKpi {}
 
 
 @ProxyCmp({
+  inputs: ['columns', 'gap', 'noMargin']
+})
+@Component({
+  selector: 'ix-layout-grid',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['columns', 'gap', 'noMargin'],
+})
+export class IxLayoutGrid {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLayoutGrid extends Components.IxLayoutGrid {}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'target', 'url']
+})
+@Component({
+  selector: 'ix-link-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'target', 'url'],
+})
+export class IxLinkButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
   inputs: ['applicationName', 'hideContextMenu', 'navigationTitle'],
   methods: ['toggleSidebar', 'openOverlay', 'closeOverlay']
 })
@@ -1019,7 +1263,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nMore', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1027,7 +1271,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nMore', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
 })
 export class IxMenu {
   protected el: HTMLElement;
@@ -1075,7 +1319,7 @@ export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed
    */
-  close: EventEmitter<CustomEvent<MouseEvent>>;
+  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
 }
 
 
@@ -1134,14 +1378,14 @@ export declare interface IxMenuAboutNews extends Components.IxMenuAboutNews {
 
 
 @ProxyCmp({
-  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top']
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'showLogoutButton', 'top']
 })
 @Component({
   selector: 'ix-menu-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'top'],
+  inputs: ['bottom', 'i18nLogout', 'image', 'initials', 'showLogoutButton', 'top'],
 })
 export class IxMenuAvatar {
   protected el: HTMLElement;
@@ -1190,14 +1434,36 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
 
 
 @ProxyCmp({
-  inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon']
+  inputs: ['icon', 'label', 'notifications']
+})
+@Component({
+  selector: 'ix-menu-category',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['icon', 'label', 'notifications'],
+})
+export class IxMenuCategory {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxMenuCategory extends Components.IxMenuCategory {}
+
+
+@ProxyCmp({
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'notifications', 'tabIcon'],
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon'],
 })
 export class IxMenuItem {
   protected el: HTMLElement;
@@ -1235,7 +1501,7 @@ export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed
    */
-  close: EventEmitter<CustomEvent<MouseEvent>>;
+  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
 }
 
 
@@ -1290,49 +1556,48 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
 
 
 @ProxyCmp({
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
-  methods: ['dismiss', 'close']
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'closeOnEscape', 'keyboard', 'size'],
+  methods: ['showModal', 'dismissModal', 'closeModal']
 })
 @Component({
   selector: 'ix-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['animation', 'ariaDescribedBy', 'ariaLabelledBy', 'backdrop', 'backdropClass', 'beforeDismiss', 'centered', 'content', 'headerTitle', 'icon', 'iconColor', 'keyboard', 'modalDialogClass', 'scrollable', 'size', 'windowClass'],
+  inputs: ['animation', 'backdrop', 'beforeDismiss', 'centered', 'closeOnBackdropClick', 'closeOnEscape', 'keyboard', 'size'],
 })
 export class IxModal {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['closed', 'dismissed']);
+    proxyOutputs(this, this.el, ['dialogClose', 'dialogDismiss']);
   }
 }
 
 
 export declare interface IxModal extends Components.IxModal {
   /**
-   * Modal closed
+   * Dialog close
    */
-  closed: EventEmitter<CustomEvent<any>>;
+  dialogClose: EventEmitter<CustomEvent<any>>;
   /**
-   * Modal dismissed
+   * Dialog cancel
    */
-  dismissed: EventEmitter<CustomEvent<any>>;
+  dialogDismiss: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  methods: ['showModal']
 })
 @Component({
-  selector: 'ix-modal-container',
+  selector: 'ix-modal-content',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
 })
-export class IxModalContainer {
+export class IxModalContent {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1341,7 +1606,7 @@ export class IxModalContainer {
 }
 
 
-export declare interface IxModalContainer extends Components.IxModalContainer {}
+export declare interface IxModalContent extends Components.IxModalContent {}
 
 
 @ProxyCmp({
@@ -1366,30 +1631,51 @@ export declare interface IxModalExample extends Components.IxModalExample {}
 
 
 @ProxyCmp({
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
 })
 @Component({
-  selector: 'ix-page-header',
+  selector: 'ix-modal-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+  inputs: [],
 })
-export class IxPageHeader {
+export class IxModalFooter {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['backButtonClick']);
   }
 }
 
 
-export declare interface IxPageHeader extends Components.IxPageHeader {
+export declare interface IxModalFooter extends Components.IxModalFooter {}
+
+
+@ProxyCmp({
+  inputs: ['hideClose', 'icon', 'iconColor']
+})
+@Component({
+  selector: 'ix-modal-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hideClose', 'icon', 'iconColor'],
+})
+export class IxModalHeader {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['closeClick']);
+  }
+}
+
+
+export declare interface IxModalHeader extends Components.IxModalHeader {
   /**
-   * triggered when back button is clicked
+   * Close icon is clicked
    */
-  backButtonClick: EventEmitter<CustomEvent<void>>;
+  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
 
 
@@ -1448,30 +1734,81 @@ export declare interface IxPill extends Components.IxPill {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices']
+  inputs: ['collapse', 'heading', 'icon', 'notification', 'subheading', 'variant']
+})
+@Component({
+  selector: 'ix-push-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapse', 'heading', 'icon', 'notification', 'subheading', 'variant'],
+})
+export class IxPushCard {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPushCard extends Components.IxPushCard {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-row',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxRow {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxRow extends Components.IxRow {}
+
+
+@ProxyCmp({
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices', 'value']
 })
 @Component({
   selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices'],
+  inputs: ['allowClear', 'disabled', 'editable', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'mode', 'readonly', 'selectedIndices', 'value'],
 })
 export class IxSelect {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['itemSelectionChange', 'addItem']);
+    proxyOutputs(this, this.el, ['valueChange', 'itemSelectionChange', 'inputChange', 'addItem']);
   }
 }
 
 
 export declare interface IxSelect extends Components.IxSelect {
   /**
-   * Item selection changed
+   * Value changed @since 2.0.0
    */
-  itemSelectionChange: EventEmitter<CustomEvent<string | string[]>>;
+  valueChange: EventEmitter<CustomEvent<string | string[]>>;
+  /**
+   * Item selection changed @deprecated since 2.0.0. Use `valueChange` instead.
+   */
+  itemSelectionChange: EventEmitter<CustomEvent<string[]>>;
+  /**
+   * Event dispatched whenever the text input changes. @since 2.0.0
+   */
+  inputChange: EventEmitter<CustomEvent<string>>;
   /**
    * Item added to selection
    */
@@ -1508,6 +1845,32 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 
 @ProxyCmp({
+  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value']
+})
+@Component({
+  selector: 'ix-slider',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value'],
+})
+export class IxSlider {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
+  }
+}
+
+
+export declare interface IxSlider extends Components.IxSlider {
+
+  valueChange: EventEmitter<CustomEvent<number>>;
+}
+
+
+@ProxyCmp({
   inputs: ['size', 'variant']
 })
 @Component({
@@ -1530,14 +1893,14 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'ghost', 'icon', 'invisible', 'label', 'outline', 'placement', 'splitIcon', 'variant']
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant']
 })
 @Component({
   selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'invisible', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
+  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
 })
 export class IxSplitButton {
   protected el: HTMLElement;
@@ -1600,11 +1963,19 @@ export class IxTabItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabClick']);
   }
 }
 
 
-export declare interface IxTabItem extends Components.IxTabItem {}
+import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
+
+export declare interface IxTabItem extends Components.IxTabItem {
+  /**
+   * On tab click @since 2.0.0
+   */
+  tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
+}
 
 
 @ProxyCmp({
@@ -1622,11 +1993,17 @@ export class IxTabs {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectedChange']);
   }
 }
 
 
-export declare interface IxTabs extends Components.IxTabs {}
+export declare interface IxTabs extends Components.IxTabs {
+  /**
+   * `selected` property changed @since 2.0.0
+   */
+  selectedChange: EventEmitter<CustomEvent<number>>;
+}
 
 
 @ProxyCmp({
@@ -1736,14 +2113,14 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
 })
 @Component({
   selector: 'ix-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'color', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn'],
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn'],
 })
 export class IxToggle {
   protected el: HTMLElement;
@@ -1760,6 +2137,34 @@ export declare interface IxToggle extends Components.IxToggle {
    * An event will be dispatched each time the slide-toggle changes its value.
    */
   checkedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant']
+})
+@Component({
+  selector: 'ix-toggle-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'ghost', 'icon', 'loading', 'outline', 'pressed', 'variant'],
+})
+export class IxToggleButton {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pressedChange']);
+  }
+}
+
+
+export declare interface IxToggleButton extends Components.IxToggleButton {
+  /**
+   * Pressed change event
+   */
+  pressedChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -1818,6 +2223,28 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 
 @ProxyCmp({
+  inputs: ['bold', 'color', 'format', 'textDecoration']
+})
+@Component({
+  selector: 'ix-typography',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['bold', 'color', 'format', 'textDecoration'],
+})
+export class IxTypography {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxTypography extends Components.IxTypography {}
+
+
+@ProxyCmp({
   inputs: ['accept', 'disabled', 'i18nUploadDisabled', 'i18nUploadFile', 'loadingText', 'multiline', 'multiple', 'selectFileText', 'state', 'uploadFailedText', 'uploadSuccessText'],
   methods: ['setFilesToUpload']
 })
@@ -1847,14 +2274,14 @@ export declare interface IxUpload extends Components.IxUpload {
 
 
 @ProxyCmp({
-  inputs: ['message', 'placement']
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement']
 })
 @Component({
   selector: 'ix-validation-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['message', 'placement'],
+  inputs: ['message', 'placement', 'suppressAutomaticPlacement'],
 })
 export class IxValidationTooltip {
   protected el: HTMLElement;
@@ -1869,14 +2296,14 @@ export declare interface IxValidationTooltip extends Components.IxValidationTool
 
 
 @ProxyCmp({
-  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical']
+  inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical']
 })
 @Component({
   selector: 'ix-workflow-step',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['clickable', 'disabled', 'position', 'selected', 'status', 'vertical'],
+  inputs: ['clickable', 'disabled', 'selected', 'status', 'vertical'],
 })
 export class IxWorkflowStep {
   protected el: HTMLElement;
@@ -1891,14 +2318,14 @@ export declare interface IxWorkflowStep extends Components.IxWorkflowStep {}
 
 
 @ProxyCmp({
-  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical']
+  inputs: ['clickable', 'selectedIndex', 'vertical']
 })
 @Component({
   selector: 'ix-workflow-steps',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['clickable', 'linear', 'selectedIndex', 'vertical'],
+  inputs: ['clickable', 'selectedIndex', 'vertical'],
 })
 export class IxWorkflowSteps {
   protected el: HTMLElement;

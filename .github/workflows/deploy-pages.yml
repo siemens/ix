@@ -40,32 +40,44 @@ jobs:
           apt-get update && apt-get install -y rsync
 
       - uses: ./.github/workflows/actions/install
-      - uses: ./.github/workflows/actions/build
+
+      - uses: actions/setup-node@v3
         with:
-          filter: '\!documentation --filter \!@siemens/html-test-app'
-      - name: 'Download @siemens/ix-brand-theme'
+          node-version: 18
+          registry-url: 'https://code.siemens.com/api/v4/projects/249177/packages/npm/'
+          scope: '@siemens'
+          always-auth: 'true'
+
+      - name: 'Download and link @siemens/ix-brand-theme'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
         run: |
-          rm .yarnrc
-          ROOT=$(pwd)
-          echo "@siemens:registry=https://code.siemens.com/api/v4/projects/249177/packages/npm/" >> .npmrc
-          echo "//code.siemens.com/api/v4/projects/249177/packages/npm/:_authToken=${{ secrets.READ_CSC_TOKEN }}" >> .npmrc
-          npm install @siemens/ix-brand-theme@^1.1.0 --no-save --legacy-peer-deps
-          rm .npmrc
+          mkdir .tmp-brand
+          cd .tmp-brand
+          npm install @siemens/ix-brand-theme@2.0.0 --no-save --legacy-peer-deps
+          cd ..
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
-          sed -i -e '/\"publishConfig\"/,/}/ d; /^$/d' ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json
-          rm ./packages/html-test-app/src/public/additional-theme/ix-brand-theme/package.json-e || true
 
       - name: 'Build documentation for dev instance'
+        uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'dev' }}
-        run: |
-          yarn workspace @siemens/html-test-app run build
-          BASE_URL=/version-dev/ yarn workspace documentation run build
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          BASE_URL: /version-dev/
+        with:
+          filter: 'documentation'
+          args: '--force'
 
       - name: 'Build documentation for prod instance'
+        uses: ./.github/workflows/actions/build
         if: ${{ github.event.inputs.deployment == 'prod' }}
-        run: |
-          yarn workspace @siemens/html-test-app run build
-          BASE_URL=/ yarn workspace documentation run build
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          BASE_URL: /
+        with:
+          filter: 'documentation'
+          args: '--force'
 
       - name: Deploy production instance 🚀
         uses: JamesIves/github-pages-deploy-action@v4

@@ -10,11 +10,5 @@
 import React from 'react';
 
 export default () => {
-  return (
-    <textarea
-      className="form-control"
-      placeholder="Enter text here"
-      disabled
-    ></textarea>
-  );
+  return <textarea placeholder="Enter text here" disabled></textarea>;
 };

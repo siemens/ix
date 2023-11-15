@@ -21,6 +21,7 @@ import {
   h,
   Host,
   Listen,
+  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -70,6 +71,9 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
+  /** @internal */
+  @Prop() animationFrame = false;
+
   @State() visible = false;
 
   @Element() hostElement: HTMLIxTooltipElement;
@@ -77,8 +81,8 @@ export class Tooltip {
   private id = ++sequentialInstanceId;
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
-  private onEnterElementBind = this.showTooltip.bind(this);
-  private onLeaveElementBind = this.hideTooltip.bind(this);
+  private onEnterElementBind = this.onTooltipShow.bind(this);
+  private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
 
@@ -92,13 +96,25 @@ export class Tooltip {
     }
   }
 
-  private showTooltip(e: any) {
-    clearTimeout(this.hideTooltipTimeout);
-    this.visible = true;
-    this.computeTooltipPosition(e.target);
+  private onTooltipShow(e: Event) {
+    this.showTooltip(e.target as Element);
   }
 
-  private hideTooltip() {
+  private onTooltipHide() {
+    this.hideTooltip();
+  }
+
+  /** @internal */
+  @Method()
+  async showTooltip(anchorElement: any) {
+    clearTimeout(this.hideTooltipTimeout);
+    this.visible = true;
+    this.computeTooltipPosition(anchorElement);
+  }
+
+  /** @internal */
+  @Method()
+  async hideTooltip() {
     this.hideTooltipTimeout = setTimeout(() => {
       this.visible = false;
     }, this.tooltipCloseTimeInMS);
@@ -140,7 +156,10 @@ export class Tooltip {
     }
   }
 
-  private async computeTooltipPosition(target: HTMLElement) {
+  private async computeTooltipPosition(target: Element) {
+    if (!target) {
+      return;
+    }
     this.disposeAutoUpdate = autoUpdate(
       target,
       this.hostElement,
@@ -182,6 +201,7 @@ export class Tooltip {
         ancestorResize: true,
         ancestorScroll: true,
         elementResize: true,
+        animationFrame: this.animationFrame,
       }
     );
   }
@@ -211,8 +231,8 @@ export class Tooltip {
     const { hostElement } = this;
     hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
     hostElement.addEventListener('focusin', () => this.clearHideTimeout());
-    hostElement.addEventListener('mouseleave', () => this.hideTooltip());
-    hostElement.addEventListener('focusout', () => this.hideTooltip());
+    hostElement.addEventListener('mouseleave', () => this.onTooltipHide());
+    hostElement.addEventListener('focusout', () => this.onTooltipHide());
   }
 
   @Listen('keydown', {
@@ -220,7 +240,7 @@ export class Tooltip {
   })
   keydown(event: KeyboardEvent) {
     if (event.code === 'Escape') {
-      this.hideTooltip();
+      this.onTooltipHide();
     }
   }
 
@@ -245,7 +265,7 @@ export class Tooltip {
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
     this.destroyAutoUpdate();
   }
 

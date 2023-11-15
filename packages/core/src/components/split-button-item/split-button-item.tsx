@@ -16,10 +16,13 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
+ */
 @Component({
   tag: 'ix-split-button-item',
   styleUrl: 'split-button-item.css',
-  scoped: true,
+  shadow: true,
 })
 export class SplitButtonItem {
   /**
@@ -42,8 +45,13 @@ export class SplitButtonItem {
   render() {
     return (
       <ix-dropdown-item
+        suppressChecked
         icon={this.icon}
         label={this.label}
+        onItemClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
         onClick={(e) => this.itemClick.emit(e)}
       ></ix-dropdown-item>
     );

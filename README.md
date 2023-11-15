@@ -16,6 +16,17 @@ SPDX-License-Identifier: MIT
 
 iX is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
+<h2 align="center">
+  <a href="https://ix.siemens.io/docs/installation/">Quickstart</a>
+  <span>-</span>
+  <a href="https://ix.siemens.io/docs/introduction">
+    Documentation
+  </a>
+  <span>-</span>
+  <a href="https://community.siemens.com/c/ix/">Community</a>
+</h2>
+
+
 ## Installation
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
@@ -73,6 +84,10 @@ docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwrig
 - Check the git diff and commit changes 🎉
 
 ### Documentation
+
+To see all image references it is necessary to create a personal access token (https://www.figma.com/developers/api#access-tokens).
+
+Store the token as environment variable "FIGMA_API_TOKEN" or in the .env file inside root.
 
 Serve documentation [locally](http://localhost:3000/siemens-ix/)
 

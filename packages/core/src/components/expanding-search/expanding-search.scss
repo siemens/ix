@@ -6,38 +6,40 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 @import 'common-variables';
+@import 'legacy/components/forms';
+@import 'mixins/shadow-dom/component';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
 $container-width: 11.5625rem;
 
 :host {
+  @include ix-component;
+
   display: inline-flex;
   width: auto;
   height: $x-large-space;
   align-items: center;
   justify-content: space-between;
-
-  &.right-position {
-    width: $container-width !important;
-  }
+  position: relative;
 
   .input-container {
     transition: all 0.3s ease-in-out;
   }
 
-  .disable-pointer {
-    pointer-events: none;
-  }
-
   input {
     box-shadow: var(--theme-input--box-shadow);
+    cursor: auto !important;
+    width: 100%;
   }
 
   .expanded {
     width: $container-width;
+
+    &.fullWidth {
+      width: 100%;
+    }
   }
 
   .collapsed {
@@ -82,6 +84,11 @@ $container-width: 11.5625rem;
     }
   }
 
+  .btn-search.btn-search--expanded {
+    margin-left: 0.25rem;
+    pointer-events: none;
+  }
+
   .btn-search:active {
     width: $x-large-space;
     height: $x-large-space;
@@ -115,5 +122,17 @@ $container-width: 11.5625rem;
 
   .opacity-after {
     opacity: 1;
+  }
+}
+
+:host(.right-position) {
+  width: $container-width !important;
+}
+
+:host(.right-position.fullWidth) {
+  width: 100% !important;
+
+  .fullWidth {
+    width: 100% !important;
   }
 }

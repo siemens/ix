@@ -10,8 +10,12 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'legacy/mixins/fonts';
 
 :host {
+  @include ix-component;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -32,13 +36,15 @@
   .toast-body {
     display: flex;
     position: relative;
+    min-height: 3.5rem;
     width: 100%;
     flex-grow: 1;
+    padding: 0.75rem;
 
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      margin: $default-space;
+      margin-right: $default-space;
     }
 
     .toast-content {
@@ -46,23 +52,30 @@
       text-overflow: ellipsis;
       min-width: 0;
       width: 100%;
-      max-width: 10.25rem;
-      margin-top: calc(
-        #{$default-space} + var(--theme-toast--border-thickness)
-      );
-      margin-bottom: $medium-space;
+
+      .toast-title {
+        @include text-default-title-single;
+        margin: 0.25rem 0px;
+      }
 
       .toast-message {
         min-width: 0;
+
+        @include text-default;
       }
+    }
+
+    .toast-icon + .toast-content {
+      max-width: 10.25rem;
     }
   }
 
   .toast-close {
     display: flex;
     position: relative;
-    margin: $medium-space;
     pointer-events: all;
+    margin-left: auto;
+    margin-right: 0px;
   }
 
   .toast-progress-bar {

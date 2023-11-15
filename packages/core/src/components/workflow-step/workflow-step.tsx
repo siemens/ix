@@ -15,7 +15,6 @@ import {
   Fragment,
   h,
   Host,
-  Listen,
   Prop,
   State,
   Watch,
@@ -24,7 +23,7 @@ import {
 @Component({
   tag: 'ix-workflow-step',
   styleUrl: 'workflow-step.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowStep {
   @Element() hostElement: HTMLIxWorkflowStepElement;
@@ -52,17 +51,18 @@ export class WorkflowStep {
   /**
    * Set selected
    */
-  @Prop({ mutable: true }) selected: boolean = false;
+  @Prop() selected: boolean = false;
 
   /**
    * Activate navigation click
    *
-   * @deprecated Will be changed to '@internal' in 2.0.0
+   * @internal
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
   @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
     'circle';
+
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
   /**
@@ -71,14 +71,6 @@ export class WorkflowStep {
   @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
 
   private customIconSlot: boolean;
-
-  private select() {
-    if (!this.clickable) return;
-    if (this.disabled) return;
-
-    this.selected = true;
-    this.selectedHandler();
-  }
 
   @Watch('selected')
   selectedHandler() {
@@ -137,8 +129,7 @@ export class WorkflowStep {
     );
   }
 
-  @Listen('click', { passive: true })
-  clickFunction() {
+  onStepClick() {
     if (!this.disabled && this.clickable) {
       this.selectedChanged.emit(this.hostElement);
     }
@@ -162,20 +153,18 @@ export class WorkflowStep {
           size="24"
         ></ix-icon>
       </Fragment>
-    ) : (
-      ''
-    );
+    ) : null;
 
     return (
-      <Host>
+      <Host onClick={() => this.onStepClick()}>
         <div
           tabIndex={0}
-          onClick={() => this.select()}
           class={{
             step: true,
             selected: this.selected,
             vertical: this.vertical,
             disabled: this.disabled,
+            clickable: this.clickable && !this.disabled,
           }}
         >
           <div class="wrapper">

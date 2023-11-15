@@ -8,8 +8,13 @@
  */
 
 @import 'common-variables';
+@import 'legacy/components/forms';
+@import '../icon-button/icon-button';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   &,
   .advanced-pagination,
   .item-count {
@@ -25,7 +30,7 @@
     padding: 0 $medium-space;
   }
 
-  input {
+  .page-selection {
     width: 4.125rem;
     text-align: center;
     margin: 0 $small-space;
@@ -50,7 +55,14 @@
     }
   }
 
-  ix-index-button + ix-index-button {
+  button {
+    width: auto;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  button + button {
     margin-inline-start: 0.125rem;
   }
 }

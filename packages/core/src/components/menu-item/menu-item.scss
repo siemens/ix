@@ -11,37 +11,40 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 
+$menuItemHeight: 3rem;
+$menuItemPadding: 0.875rem;
+
 :host {
   position: relative;
   display: block;
   cursor: pointer;
 
-  height: 3rem;
-  min-height: 3rem;
-  max-height: 3rem;
+  height: var(--ix-menu-item-height, $menuItemHeight);
+  min-height: var(--ix-menu-item-height, $menuItemHeight);
+  max-height: var(--ix-menu-item-height, $menuItemHeight);
 
   .tab {
+    all: unset;
+    box-sizing: border-box;
     display: flex;
     position: relative;
     align-items: center;
-    height: 3rem;
+    height: var(--ix-menu-item-height, $menuItemHeight);
+    width: calc(100%);
     z-index: 500;
-    padding-left: 0.875rem;
+    padding-left: $menuItemPadding;
 
     @include ghost-hover-pressed;
   }
 
-  i.glyph {
+  .tab-icon {
     color: var(--theme-nav-item-primary-icon--color);
     position: relative;
   }
 
   .tab:focus-visible {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: none;
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: -1px;
   }
 
   .tab:not(:last-child) {
@@ -78,6 +81,7 @@
     color: var(--theme-nav-item-primary--color);
     margin: 0 1.25rem;
     user-select: none;
+    width: 100%;
   }
 }
 
@@ -90,7 +94,7 @@
   .tab::before {
     content: '';
     background-color: var(--theme-nav-item-primary--border-color--selected);
-    height: 3rem;
+    height: var(--ix-menu-item-height, $menuItemHeight);
     width: 0.25rem;
     left: 0;
     position: absolute;
@@ -106,18 +110,13 @@
   pointer-events: none;
   cursor: default;
 
-  .tab > .glyph {
+  .tab > .tab-icon {
     color: var(--theme-color-weak-text);
   }
 
   .tab-text {
     color: var(--theme-color-weak-text);
   }
-}
-
-:host(.home-tab),
-:host([slot='home']) {
-  margin-bottom: 1.5rem;
 }
 
 :host(.bottom-tab),
@@ -155,5 +154,11 @@
 :host(.selected[slot='bottom']) {
   .tab {
     background-color: var(--theme-nav-item-secondary--background--selected);
+  }
+}
+
+:host(.tab-nested) {
+  .tab::before {
+    display: none;
   }
 }

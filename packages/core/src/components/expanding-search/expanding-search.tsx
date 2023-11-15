@@ -20,7 +20,7 @@ import {
 @Component({
   tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',
-  scoped: true,
+  shadow: true,
 })
 export class ExpandingSearch {
   /**
@@ -38,10 +38,14 @@ export class ExpandingSearch {
    */
   @Prop({ mutable: true }) value = '';
 
+  /**
+   * If true the search field will fill all available horizontal space of it's parent container when expanded.
+   * @since 1.6.0
+   */
+  @Prop() fullWidth = false;
+
   @State() isFieldChanged = false;
-
   @State() expanded = false;
-
   @State() hasFocus = false;
 
   /**
@@ -98,33 +102,28 @@ export class ExpandingSearch {
         class={{
           expanded: this.expanded,
           'right-position': this.expanded,
+          fullWidth: this.fullWidth,
         }}
       >
-        <button
-          class={{
-            btn: true,
-            'btn-invisible-primary': true,
-            'btn-icon': true,
-            'btn-search': true,
-            'disable-pointer': this.expanded,
-          }}
+        <ix-icon-button
+          size={this.expanded ? '16' : '24'}
+          icon={this.icon}
+          ghost
+          variant="primary"
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-        >
-          <ix-icon
-            class="btn-search-icon"
-            name={this.icon}
-            size={this.expanded ? '16' : '24'}
-            color={
-              this.hasFocus ? 'input-search-icon--color--focus' : undefined
-            }
-          ></ix-icon>
-        </button>
+          color={this.hasFocus ? 'input-search-icon--color--focus' : undefined}
+          class={{
+            'btn-search': true,
+            'btn-search--expanded': this.expanded,
+          }}
+        ></ix-icon-button>
 
         <div
           class={{
             expanded: this.expanded,
+            fullWidth: this.fullWidth,
             collapsed: !this.expanded,
             'disable-pointer': !this.expanded,
             'input-container': true,
@@ -156,7 +155,7 @@ export class ExpandingSearch {
           {this.isFieldChanged ? (
             <ix-icon-button
               class="btn-clear"
-              icon="clear"
+              icon={'clear'}
               ghost={true}
               size="16"
               data-testid="clear-button"

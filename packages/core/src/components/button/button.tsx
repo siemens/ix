@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
-import { getButtonClasses } from './base-button';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { BaseButton, BaseButtonProps } from './base-button';
 
-export type ButtonVariant = 'Primary' | 'Secondary';
+export type ButtonVariant = 'primary' | 'secondary';
 
 @Component({
   tag: 'ix-button',
@@ -19,9 +19,9 @@ export type ButtonVariant = 'Primary' | 'Secondary';
 })
 export class Button {
   /**
-   * Button varaint
+   * Button variant
    */
-  @Prop() variant: ButtonVariant = 'Primary';
+  @Prop() variant: ButtonVariant = 'primary';
 
   /**
    * Outline button
@@ -29,21 +29,9 @@ export class Button {
   @Prop() outline = false;
 
   /**
-   * Invisible button
-   *
-   * @deprecated use ghost property
-   */
-  @Prop() invisible = false;
-
-  /**
    * Button with no background or outline
    */
   @Prop() ghost = false;
-
-  /**
-   * Show button as selected. Should be used with outline or ghost
-   */
-  @Prop() selected = false;
 
   /**
    * Disable the button
@@ -55,27 +43,75 @@ export class Button {
    */
   @Prop() type: 'button' | 'submit' = 'button';
 
+  /**
+   * Loading button
+   *
+   * @since 2.0.0
+   */
+  @Prop() loading: boolean = false;
+
+  /**
+   * Icon name
+   */
+  @Prop() icon: string;
+
+  /** @internal */
+  @Prop() alignment: 'center' | 'start' = 'center';
+
+  /** @internal */
+  @Prop() iconSize: '12' | '16' | '24' = '24';
+
+  @Element() hostElement: HTMLIxButtonElement;
+
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement: HTMLButtonElement;
+
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  dispatchFormEvents() {
+    if (this.type === 'submit' && this.submitButtonElement) {
+      this.submitButtonElement.click();
+    }
+  }
+
   render() {
+    const baseButtonProps: BaseButtonProps = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      iconOnly: false,
+      iconOval: false,
+      selected: false,
+      disabled: this.disabled || this.loading,
+      icon: this.icon,
+      iconSize: this.iconSize,
+      loading: this.loading,
+      onClick: () => this.dispatchFormEvents(),
+      type: this.type,
+      alignment: this.alignment,
+    };
+
     return (
       <Host
         class={{
-          disabled: this.disabled,
+          disabled: this.disabled || this.loading,
         }}
       >
-        <button
-          type={this.type}
-          class={getButtonClasses(
-            this.variant,
-            this.outline,
-            this.ghost || this.invisible,
-            false,
-            false,
-            this.selected,
-            this.disabled
-          )}
-        >
+        <BaseButton {...baseButtonProps}>
           <slot></slot>
-        </button>
+        </BaseButton>
       </Host>
     );
   }

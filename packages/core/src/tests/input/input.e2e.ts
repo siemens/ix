@@ -47,4 +47,9 @@ regressionTest.describe('input', () => {
     await page.goto('input/readonly');
     expect(await page.screenshot()).toMatchSnapshot();
   });
+
+  regressionTest('disabled', async ({ page }) => {
+    await page.goto('input/disabled');
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });

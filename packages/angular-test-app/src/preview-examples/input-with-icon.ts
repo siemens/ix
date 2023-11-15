@@ -14,10 +14,8 @@ import { Component } from '@angular/core';
   template: `
     <form class="needs-validation m-2">
       <ix-input-group>
-        <span slot="input-start">Price</span>
-        <input type="number" class="form-control" />
-        <span slot="input-end">.00</span>
-        <span slot="input-end">$</span>
+        <input type="text" />
+        <span slot="input-end"><ix-icon name="about" size="16"></ix-icon></span>
       </ix-input-group>
     </form>
   `,

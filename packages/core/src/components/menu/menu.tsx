@@ -18,18 +18,22 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
+import anime from 'animejs';
+import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import { applicationLayoutService } from '../utils/application-layout/service';
+import { Breakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
-import { hostContext, isBasicNavigationLayout } from '../utils/screen/context';
-import { Mode } from '../utils/screen/mode';
-import { screenMode } from '../utils/screen/service';
 import { themeSwitcher } from '../utils/theme-switcher';
 
 @Component({
   tag: 'ix-menu',
   styleUrl: 'menu.scss',
-  scoped: false,
+  shadow: true,
 })
 export class Menu {
   @Element() hostElement!: HTMLIxMenuElement;
@@ -72,8 +76,39 @@ export class Menu {
   /**
    * Maximum number of menu items to show in case enough vertical space is available.
    * Extra menu items will be collapsed to 'show more' menu item.
+   *
+   * @deprecated - Has no effect on component. Will get removed with next major release (v3)
    */
   @Prop() maxVisibleMenuItems = 9;
+
+  /**
+   * Accessibility i18n label for the burger menu of the sidebar
+   */
+  @Prop() i18nExpandSidebar = 'Expand sidebar';
+
+  /**
+   */
+  @Prop({ mutable: true, reflect: true }) expand = false;
+
+  /**
+   * Menu stays pinned to the left
+   */
+  @Prop() pinned = false;
+  @Watch('pinned')
+  pinnedChange(newPinned: boolean) {
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      console.warn('ix-map-navigation does not support pinning of the menu');
+      return;
+    }
+    this.setPinned(this.pinned);
+    if (newPinned) {
+      applicationLayoutService.disableBreakpointDetection();
+      applicationLayoutService.setBreakpoint('lg');
+      return;
+    }
+
+    applicationLayoutService.enableBreakpointDetection();
+  }
 
   /**
    */
@@ -96,15 +131,6 @@ export class Menu {
   @Prop() i18nCollapse = 'Collapse';
 
   /**
-   */
-  @Prop() i18nMore = 'More…';
-
-  /**
-   * Expand menu
-   */
-  @Prop({ mutable: true, reflect: true }) expand = false;
-
-  /**
    * Menu expanded
    */
   @Event() expandChange: EventEmitter<boolean>;
@@ -113,47 +139,17 @@ export class Menu {
    * Map Sidebar expanded
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
-  @State() showMoreItems = false;
-  @State() visibleMenuItems = 0;
-  @State() countMoreNotifications = 0;
+
+  @State() showPinned = false;
   @State() mapExpand = true;
-  @State() activeTab: HTMLIxMenuItemElement;
-  @State() isMoreTabEmpty = false;
-  @State() mode: Mode = 'desktop';
-
-  private readonly domObserver = new MutationObserver(
-    this.onDomChange.bind(this)
-  );
-
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    this.visibleMenuItems = this.getMaxTabCount();
-  }
-
-  private handleNodeMutation(node: Node) {
-    if (!(node instanceof HTMLElement)) {
-      return;
-    }
-
-    if (node.matches('.tab')) {
-      this.onWindowResize();
-    }
-
-    if (node.matches('ix-menu-about') && this.menu.contains(node)) {
-      this.appendAbout();
-    }
-
-    if (node.matches('ix-menu-settings') && this.menu.contains(node)) {
-      this.appendSettings();
-    }
-  }
-
-  private onDomChange(mutations: MutationRecord[]) {
-    mutations.forEach((mutationRecord) => {
-      mutationRecord.addedNodes.forEach(this.handleNodeMutation.bind(this));
-      mutationRecord.removedNodes.forEach(this.handleNodeMutation.bind(this));
-    });
-  }
+  @State() activeTab: HTMLIxMenuItemElement | null;
+  @State() breakpoint: Breakpoint = 'lg';
+  @State() itemsScrollShadowTop = false;
+  @State() itemsScrollShadowBottom = false;
+  @State() applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private isTransitionDisabled = false;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -164,19 +160,21 @@ export class Menu {
   };
 
   get popoverArea() {
-    return this.hostElement.querySelector('#popover-area');
-  }
-
-  get overlayContainer() {
-    return this.hostElement.querySelector('.menu-overlay');
-  }
-
-  get invisibleContainer() {
-    return this.hostElement.querySelector('.menu-overlay-invisible');
+    return this.hostElement.shadowRoot!.querySelector('#popover-area');
   }
 
   get menu() {
-    return this.hostElement.querySelector('.menu');
+    return this.hostElement.shadowRoot!.querySelector('.menu');
+  }
+
+  get menuItemsContainer(): HTMLDivElement {
+    return this.menu!.querySelector('.tabs')!;
+  }
+
+  get overlayContainer() {
+    return this.hostElement.shadowRoot.querySelector(
+      '.menu-overlay'
+    ) as HTMLDivElement;
   }
 
   get menuItems() {
@@ -200,112 +198,101 @@ export class Menu {
   }
 
   get moreItemsDropdown(): HTMLElement {
-    return this.hostElement.querySelector('.internal-tab ix-dropdown');
+    return this.hostElement.shadowRoot!.querySelector(
+      '.internal-tab ix-dropdown'
+    )!;
   }
 
   get isMoreItemsDropdownEmpty(): boolean {
     return (
-      this.hostElement.querySelectorAll('.internal-tab ix-dropdown .appended')
-        .length === 0
+      this.hostElement.shadowRoot!.querySelectorAll(
+        '.internal-tab ix-dropdown .appended'
+      ).length === 0
     );
   }
 
   get moreItemsDropdownItems() {
-    return this.hostElement.querySelectorAll(
+    return this.hostElement.shadowRoot!.querySelectorAll(
       '.internal-tab ix-dropdown ix-menu-item'
     );
   }
 
   get activeMoreTabContainer() {
-    return this.hostElement.querySelector('.active-more-tab');
+    return this.hostElement.shadowRoot!.querySelector('.active-more-tab');
   }
 
   get activeMoreTab() {
-    return this.hostElement.querySelector('.active-more-tab ix-menu-item');
+    return this.hostElement.shadowRoot!.querySelector(
+      '.active-more-tab ix-menu-item'
+    );
   }
 
   get aboutPopoverContainer(): HTMLElement {
-    return this.hostElement.querySelector('.about-news');
+    return this.hostElement.querySelector('.about-news')!;
   }
 
-  get aboutPopover(): HTMLIxMenuAboutNewsElement {
-    return document.querySelector('ix-menu-about-news');
+  get aboutNewsPopover(): HTMLIxMenuAboutNewsElement {
+    return (
+      document.querySelector('ix-menu-about-news') ??
+      this.hostElement.querySelector('ix-menu-about-news')!
+    );
   }
 
   get aboutTab(): HTMLElement {
-    return this.hostElement.querySelector('#aboutAndLegal');
+    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal');
   }
 
-  get about(): HTMLIxMenuAboutElement {
+  get about(): HTMLIxMenuAboutElement | null {
     return this.hostElement.querySelector('ix-menu-about');
   }
 
-  get settings(): HTMLIxMenuSettingsElement {
+  get settings(): HTMLIxMenuSettingsElement | null {
     return this.hostElement.querySelector('ix-menu-settings');
   }
 
   get isSettingsEmpty(): boolean {
     return (
-      Array.from(this.hostElement.querySelectorAll('ix-menu-settings-item'))
-        .length === 0
+      Array.from(
+        this.hostElement.shadowRoot!.querySelectorAll('ix-menu-settings-item')
+      ).length === 0
     );
   }
 
-  get avatarItem(): HTMLIxMenuAvatarElement {
-    return this.hostElement.querySelector('ix-menu-avatar');
-  }
-
-  get tabsContainer(): HTMLDivElement {
-    return this.hostElement.querySelector('#menu-tabs');
-  }
-
-  private showTab(index: number) {
-    return index + 1 <= this.visibleMenuItems;
+  get tabsContainer() {
+    return this.hostElement;
   }
 
   componentDidLoad() {
-    this.settings?.addEventListener('close', () => {
-      this.showSettings = false;
-      this.settings.show = this.showSettings;
+    requestAnimationFrame(() => {
+      this.handleOverflowIndicator();
     });
 
-    this.settings?.addEventListener('animationend', () => {
-      if (!this.showSettings) {
-        this.settings.classList.add('d-none');
-        this.overlayContainer.classList.add('d-none');
-      }
-    });
-
-    this.about?.addEventListener('close', () => {
-      this.showAbout = false;
-      this.about.show = this.showAbout;
-    });
-
-    this.about?.addEventListener('animationend', () => {
-      if (!this.showAbout) {
-        this.about.classList.add('d-none');
-        this.overlayContainer.classList.add('d-none');
-      }
-    });
-
-    this.overlayContainer.classList.add('d-none');
-
-    this.onWindowResize();
-
-    this.domObserver.observe(this.hostElement, {
-      attributes: false,
-      childList: true,
-      subtree: true,
-    });
+    if (this.pinned) {
+      this.pinnedChange(this.pinned);
+    }
   }
 
   componentWillLoad() {
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        if (ctx.hideHeader === true) {
+          this.onBreakpointChange('md');
+          return;
+        }
+
+        this.onBreakpointChange(applicationLayoutService.breakpoint);
+      },
+      true
+    );
+
     menuController.register(this.hostElement);
-    const layout = hostContext('ix-basic-navigation', this.hostElement);
-    if (isBasicNavigationLayout(layout) && layout.hideHeader === false) {
-      screenMode.onChange.on((mode) => (this.mode = mode));
-      this.mode = screenMode.mode;
-    }
+    applicationLayoutService.onChange.on((breakpoint) =>
+      this.onBreakpointChange(breakpoint)
+    );
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   componentWillRender() {
@@ -313,64 +300,52 @@ export class Menu {
   }
 
   componentDidRender() {
-    this.visibleMenuItems = this.getMaxTabCount();
     this.appendFragments();
   }
 
+  private setPinned(pinned: boolean) {
+    this.showPinned = pinned;
+    menuController.setIsPinned(pinned);
+  }
+
+  private onBreakpointChange(mode: Breakpoint) {
+    if (!this.applicationLayoutContext && mode === 'sm') {
+      return;
+    }
+    if (this.applicationLayoutContext?.host === 'map-navigation') {
+      this.breakpoint = 'md';
+      return;
+    }
+    if (!this.applicationLayoutContext) {
+      return;
+    }
+
+    if (this.applicationLayoutContext.hideHeader && mode === 'sm') {
+      return;
+    }
+
+    this.breakpoint = mode;
+
+    if (this.breakpoint === 'lg') {
+      this.setPinned(true);
+      this.toggleMenu(true);
+      return;
+    }
+
+    this.setPinned(false);
+    this.toggleMenu(false);
+  }
+
   private appendFragments() {
-    this.appendAvatar();
-    this.appendAbout();
-    this.appendSettings();
     this.appendAboutNewsPopover();
-
-    // This lead to none infinite-loops and other bugs.
-    this.isMoreTabEmpty = this.isMoreItemsDropdownEmpty;
-
-    this.countMoreNotifications = this.getMoreNotificationsCount();
   }
 
   private resetActiveTab() {
     this.activeTab = null;
   }
 
-  private isMenuItemActive(item: HTMLIxMenuItemElement) {
-    return item.active || item.classList.contains('active');
-  }
-
   private appendTabs() {
     this.activeTab = null;
-
-    if (this.homeTab) {
-      this.hostElement.querySelector('.tabs-top').appendChild(this.homeTab);
-      this.homeTab.addEventListener('click', this.resetOverlay.bind(this));
-    }
-
-    this.menuItems.forEach((item: HTMLIxMenuItemElement, index) => {
-      if (this.showTab(index)) {
-        item.classList.remove('d-none');
-      } else {
-        item.classList.add('d-none');
-
-        if (this.isMenuItemActive(item)) {
-          this.activeTab = item;
-        }
-      }
-
-      // TODO: Find better solution to handle home tab
-      this.homeTab?.classList.remove('d-none');
-
-      item.addEventListener('click', this.resetOverlay.bind(this));
-    });
-  }
-
-  private appendAvatar() {
-    const avatar = this.avatarItem;
-    if (avatar) {
-      avatar.style.marginBottom = '1rem';
-      this.hostElement
-        .querySelector('#avatar-tab-placeholder')
-        ?.appendChild(avatar);
-    }
   }
 
   private getAboutPopoverVerticalPosition() {
@@ -384,130 +359,23 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutPopover) {
+    if (!this.aboutNewsPopover) {
       return;
     }
 
-    this.aboutPopover.style.bottom = this.getAboutPopoverVerticalPosition();
+    this.aboutNewsPopover.style.bottom = this.getAboutPopoverVerticalPosition();
 
-    if (!this.popoverArea?.contains(this.aboutPopover)) {
+    if (!this.popoverArea?.contains(this.aboutNewsPopover)) {
       const showMore = () => {
-        if (this.aboutPopover?.aboutItemLabel) {
-          this.about.activeTabLabel = this.aboutPopover.aboutItemLabel;
+        if (this.aboutNewsPopover?.aboutItemLabel && this.about) {
+          this.about.activeTabLabel = this.aboutNewsPopover.aboutItemLabel;
           this.toggleAbout(true);
         }
       };
 
-      this.aboutPopover.addEventListener('showMore', showMore.bind(this));
-      document.body.appendChild(this.aboutPopover);
+      this.aboutNewsPopover.addEventListener('showMore', showMore.bind(this));
+      document.body.appendChild(this.aboutNewsPopover);
     }
-  }
-
-  private appendSettings() {
-    if (this.settings) {
-      this.overlayContainer.appendChild(this.settings);
-    }
-  }
-
-  private appendAbout() {
-    if (this.about) {
-      this.overlayContainer.appendChild(this.about);
-    }
-  }
-
-  private getMoreNotificationsCount(): number {
-    const moreTabs = this.moreItemsDropdown?.querySelectorAll('.appended');
-    let count = 0;
-    moreTabs?.forEach((tab) => {
-      if (tab['notifications']) {
-        count += tab['notifications'];
-      }
-    });
-
-    return count;
-  }
-
-  private getAvailableHeight() {
-    const heightBurgerMenu = 60;
-    const heightHome = 72;
-    const heightAvatar = 56;
-    const heightBottomTab = 36;
-
-    let availableHeight = this.hostElement.clientHeight;
-
-    availableHeight -= heightBurgerMenu;
-
-    if (this.avatarItem) {
-      availableHeight -= heightAvatar;
-    }
-
-    if (this.homeTab) {
-      availableHeight -= heightHome;
-    }
-
-    if (this.showAbout) {
-      availableHeight -= heightBottomTab;
-    }
-
-    if (this.showSettings) {
-      availableHeight -= heightBottomTab;
-    }
-
-    if (this.menuBottomItems.length) {
-      availableHeight -= this.menuBottomItems.length * heightBottomTab;
-    }
-
-    if (this.enableMapExpand) {
-      availableHeight -= heightBottomTab;
-    }
-
-    // Subtract height of imprint and theme toggle tabs
-    availableHeight -= 2 * heightBottomTab;
-
-    // Subtract bottom margin of bottom tabs
-    availableHeight -= 16;
-
-    return availableHeight;
-  }
-
-  private getMaxTabCount() {
-    const heightTab = 48;
-    const availableHeight = this.getAvailableHeight();
-    const visibleCount = Math.floor(availableHeight / heightTab);
-    const menuItemCount = this.menuItems.length;
-
-    if (menuItemCount === 1) {
-      return 1;
-    }
-
-    if (menuItemCount < this.maxVisibleMenuItems) {
-      if (visibleCount > menuItemCount) {
-        return menuItemCount;
-      }
-
-      return Math.min(visibleCount - 2, menuItemCount);
-    }
-
-    if (menuItemCount === this.maxVisibleMenuItems) {
-      if (visibleCount < this.maxVisibleMenuItems) {
-        return visibleCount - 2;
-      }
-
-      if (visibleCount === this.maxVisibleMenuItems) {
-        return this.maxVisibleMenuItems - 2;
-      }
-
-      return Math.min(visibleCount, this.maxVisibleMenuItems);
-    }
-
-    if (visibleCount === this.maxVisibleMenuItems) {
-      return this.maxVisibleMenuItems - 2;
-    }
-    if (visibleCount >= this.maxVisibleMenuItems) {
-      return this.maxVisibleMenuItems - 1;
-    }
-
-    return Math.min(visibleCount - 2, this.maxVisibleMenuItems);
   }
 
   /**
@@ -516,32 +384,11 @@ export class Menu {
    */
   @Method()
   async toggleMapExpand(show?: boolean) {
-    this.skipAllOverlayAnimations();
-
     if (show !== undefined) {
       this.mapExpand = show;
     } else {
       this.mapExpand = !this.mapExpand;
     }
-  }
-
-  private skipAllOverlayAnimations() {
-    if (this.about) {
-      this.skipOverlayAnimationFor(this.about);
-    }
-    if (this.settings) {
-      this.skipOverlayAnimationFor(this.settings);
-    }
-  }
-
-  private skipOverlayAnimationFor(element: HTMLElement) {
-    const animateClass = 'animate__animated';
-
-    element?.classList.remove(animateClass);
-
-    setTimeout(() => {
-      element?.classList.add(animateClass);
-    }, 300);
   }
 
   /**
@@ -550,19 +397,41 @@ export class Menu {
    */
   @Method()
   async toggleMenu(show?: boolean) {
-    this.skipAllOverlayAnimations();
-
     if (show !== undefined) {
       this.expand = show;
     } else {
       this.expand = !this.expand;
     }
 
-    if (this.aboutPopover) {
-      this.aboutPopover.expanded = this.expand;
+    if (this.aboutNewsPopover) {
+      this.aboutNewsPopover.expanded = this.expand;
     }
 
     this.expandChange.emit(this.expand);
+
+    this.isTransitionDisabled = false;
+    this.checkTransition();
+  }
+
+  /**
+   * Disable transition of overlay while menu animation is running.
+   */
+  private checkTransition() {
+    const container = this.overlayContainer;
+
+    if (!container) {
+      return;
+    }
+
+    if (this.isTransitionDisabled) {
+      container.style.transitionProperty = 'left';
+    } else {
+      container.style.transitionProperty = 'all';
+    }
+  }
+
+  private isOverlayVisible() {
+    return this.showAbout || this.showSettings;
   }
 
   /**
@@ -571,19 +440,21 @@ export class Menu {
    */
   @Method()
   async toggleSettings(show: boolean) {
-    if (this.showAbout) {
-      this.skipAllOverlayAnimations();
-    } else {
-      this.skipOverlayAnimationFor(this.about);
+    if (!this.settings) {
+      return;
     }
 
-    this.about?.classList.add('d-none');
+    if (!this.isOverlayVisible()) {
+      this.animateOverlayFadeIn();
+    }
 
-    this.resetOverlay();
-    this.showSettings = show;
-    this.settings.show = this.showSettings;
-    this.settings.classList.remove('d-none');
-    this.overlayContainer.classList.remove('d-none');
+    if (show) {
+      this.resetOverlay();
+      this.showSettings = show;
+      this.settings.show = this.showSettings;
+    } else {
+      this.onOverlayClose();
+    }
   }
 
   /**
@@ -592,19 +463,21 @@ export class Menu {
    */
   @Method()
   async toggleAbout(show: boolean) {
-    if (this.showSettings) {
-      this.skipAllOverlayAnimations();
-    } else {
-      this.skipOverlayAnimationFor(this.settings);
+    if (!this.about) {
+      return;
     }
 
-    this.settings?.classList.add('d-none');
+    if (!this.isOverlayVisible()) {
+      this.animateOverlayFadeIn();
+    }
 
-    this.resetOverlay();
-    this.showAbout = show;
-    this.about.show = this.showAbout;
-    this.about.classList.remove('d-none');
-    this.overlayContainer.classList.remove('d-none');
+    if (show) {
+      this.resetOverlay();
+      this.showAbout = show;
+      this.about.show = this.showAbout;
+    } else {
+      this.onOverlayClose();
+    }
   }
 
   private resetOverlay() {
@@ -612,32 +485,12 @@ export class Menu {
     this.showAbout = false;
 
     if (this.settings) {
-      this.settings.show = this.showSettings;
+      this.settings.show = false;
     }
 
     if (this.about) {
-      this.about.show = this.showAbout;
+      this.about.show = false;
     }
-
-    this.toggleMenu(false);
-  }
-
-  private showMoreButton() {
-    const menuItemCount = this.menuItems.length;
-
-    if (menuItemCount === 1) {
-      return false;
-    }
-
-    if (menuItemCount < this.maxVisibleMenuItems) {
-      return this.visibleMenuItems < menuItemCount;
-    }
-
-    if (menuItemCount > this.maxVisibleMenuItems) {
-      return this.visibleMenuItems < this.maxVisibleMenuItems;
-    }
-
-    return this.visibleMenuItems <= this.maxVisibleMenuItems - 2;
   }
 
   private getCollapseText() {
@@ -645,18 +498,85 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? 'double-chevron-left' : 'double-chevron-right';
+    return this.mapExpand ? 'navigation-left' : 'navigation-right';
   }
 
-  private isMenuItemClicked(event: MouseEvent) {
-    const path = event.composedPath();
-    const menuItems = (path as HTMLElement[])
-      .filter((element) => element.id !== 'ix-menu-more-tab')
-      .filter((element) => {
-        return element.tagName === 'IX-MENU-ITEM';
-      });
+  private isMenuItemClicked(event: Event) {
+    if (event.target instanceof HTMLElement) {
+      return event.target.tagName === 'IX-MENU-ITEM';
+    }
 
-    return menuItems.some((menu) => this.tabsContainer.contains(menu));
+    return false;
+  }
+
+  @Listen('resize', { target: 'window' })
+  private handleOverflowIndicator() {
+    const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
+    this.itemsScrollShadowTop = scrollTop > 0;
+    this.itemsScrollShadowBottom =
+      Math.round(scrollTop + clientHeight) < scrollHeight;
+  }
+
+  @Listen('close')
+  onOverlayClose() {
+    this.animateOverlayFadeOut(() => {
+      this.resetOverlay();
+    });
+  }
+
+  private animateOverlayFadeIn() {
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.overlayContainer,
+        duration: 300,
+        backdropFilter: [0, 'blur(1rem)'],
+        translateX: ['-4rem', 0],
+        opacity: [0, 1],
+        easing: 'easeInSine',
+        begin: () => {
+          if (this.showPinned) {
+            return;
+          }
+
+          this.toggleMenu(false);
+        },
+      });
+    });
+  }
+
+  private animateOverlayFadeOut(onComplete: Function) {
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.overlayContainer,
+        duration: 300,
+        backdropFilter: ['blur(1rem)', 0],
+        translateX: [0, '-4rem'],
+        opacity: [1, 0],
+        easing: 'easeInSine',
+        complete: () => onComplete(),
+      });
+    });
+  }
+
+  private onMenuItemsClick(event: Event) {
+    if (this.isMenuItemClicked(event)) {
+      if (!this.showPinned) {
+        this.toggleMenu(false);
+      }
+      this.onOverlayClose();
+    }
+  }
+
+  private isHiddenFromViewport() {
+    return this.breakpoint === 'sm' && this.expand === false;
+  }
+
+  private sidebarToggle() {
+    this.mapExpandChange.emit(this.mapExpand);
+
+    this.hostElement.dispatchEvent(
+      new ApplicationSidebarToggleEvent(this.mapExpand)
+    );
   }
 
   render() {
@@ -664,10 +584,11 @@ export class Menu {
       <Host
         class={{
           expanded: this.expand,
-          [`mode-${this.mode}`]: true,
+          [`breakpoint-${this.breakpoint}`]: true,
         }}
+        slot="menu"
       >
-        <div
+        <aside
           class={{
             menu: true,
             expanded: this.expand,
@@ -679,105 +600,79 @@ export class Menu {
           <ix-burger-menu
             onClick={async () => this.toggleMenu()}
             expanded={this.expand}
+            ixAriaLabel={this.i18nExpandSidebar}
+            pinned={this.showPinned}
             class={{
               'burger-menu': true,
             }}
           ></ix-burger-menu>
-          <div id="avatar-tab-placeholder"></div>
+          <div class="menu-avatar">
+            <slot name="ix-menu-avatar"></slot>
+          </div>
+
           <div
             id="menu-tabs"
             style={{
               display: 'contents',
             }}
-            onClick={(event) => {
-              if (this.isMenuItemClicked(event)) {
-                this.resetOverlay();
-              }
-            }}
+            onClick={(e) => this.onMenuItemsClick(e)}
           >
-            <div class="tabs-top"></div>
-            <slot></slot>
-            <div class="active-more-tab">
-              {this.activeTab ? (
-                <ix-menu-item
-                  class="internal-tab"
-                  active={true}
-                  tabIcon={this.activeTab.tabIcon}
-                >
-                  {this.activeTab.innerText}
-                </ix-menu-item>
-              ) : null}
+            <div class="tabs-top">
+              <slot name="home"></slot>
             </div>
-            <ix-menu-item
-              id="ix-menu-more-tab"
-              tabIcon="more-menu"
-              class={{
-                'internal-tab': true,
-              }}
-              style={{
-                display: this.showMoreButton() ? 'block' : 'none',
-              }}
-              title="Show more"
-              notifications={this.countMoreNotifications}
-            >
-              {this.i18nMore}
-              <ix-dropdown
-                trigger={'ix-menu-more-tab'}
-                positioningStrategy={'fixed'}
-                placement={'right-start'}
-              >
-                {this.menuItems
-                  .filter(
-                    (elm: HTMLIxMenuItemElement, index) =>
-                      !this.showTab(index) &&
-                      !this.isMenuItemActive(elm) &&
-                      this.isVisible(elm)
-                  )
-                  .map((e: HTMLIxMenuItemElement) => {
-                    return (
-                      <ix-menu-item
-                        tabIcon={e.tabIcon}
-                        active={e.active}
-                        disabled={e.disabled}
-                        class="internal-tab appended"
-                        onClick={() => {
-                          this.resetOverlay();
-                          e.dispatchEvent(new CustomEvent('click'));
-                        }}
-                      >
-                        {e.innerText}
-                      </ix-menu-item>
-                    );
-                  })}
-              </ix-dropdown>
-            </ix-menu-item>
+            <div class="tabs-shadow-container">
+              <div
+                class={{
+                  'tabs--shadow': true,
+                  'tabs--shadow-top': true,
+                  'tabs--shadow--show': this.itemsScrollShadowTop,
+                }}
+              ></div>
+              <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
+                {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
+                  <slot></slot>
+                ) : null}
+              </div>
+              <div
+                class={{
+                  'tabs--shadow': true,
+                  'tabs--shadow-bottom': true,
+                  'tabs--shadow--show': this.itemsScrollShadowBottom,
+                }}
+              ></div>
+            </div>
           </div>
           <div class="bottom-tab-divider"></div>
-          {this.enableSettings && !this.isSettingsEmpty ? (
+          {this.settings ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="settings"
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              tabIcon="cogwheel"
+              icon={'cogwheel'}
               onClick={async () => this.toggleSettings(!this.showSettings)}
             >
               {this.i18nSettings}
             </ix-menu-item>
           ) : null}
-          <slot name="bottom"></slot>
+          <div onClick={(e) => this.onMenuItemsClick(e)}>
+            <slot name="bottom"></slot>
+          </div>
+
           <div id="popover-area"></div>
           {this.about ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="aboutAndLegal"
               class={{
                 'internal-tab': true,
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              tabIcon="info"
+              icon={'info'}
               onClick={async () => this.toggleAbout(!this.showAbout)}
             >
               {this.i18nLegal}
@@ -785,36 +680,45 @@ export class Menu {
           ) : null}
           {this.enableToggleTheme ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              tabIcon="bulb"
+              icon={'bulb'}
             >
               {this.i18nToggleTheme}
             </ix-menu-item>
           ) : null}
-          {this.enableMapExpand ? (
+          {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
             <ix-menu-item
+              disabled={this.isHiddenFromViewport()}
               id="menu-collapse"
-              onClick={() => this.mapExpandChange.emit(this.mapExpand)}
+              onClick={() => this.sidebarToggle()}
               class="internal-tab bottom-tab"
-              tabIcon={`${this.getCollapseIcon()}`}
+              icon={`${this.getCollapseIcon()}`}
             >
               {this.getCollapseText()}
             </ix-menu-item>
           ) : null}
-        </div>
+        </aside>
         <div
           class={{
             'menu-overlay': true,
+            visible: this.isOverlayVisible(),
             expanded: this.expand,
-            'd-block': this.showAbout || this.showSettings,
           }}
-          style={{
-            opacity: this.showAbout || this.showSettings ? '1' : '0',
+          onTransitionEnd={() => {
+            this.isTransitionDisabled = true;
+            this.checkTransition();
           }}
-        ></div>
-        <div class="menu-overlay-invisible"></div>
+        >
+          <div class={'menu-overlay-container'}>
+            {this.showSettings ? <slot name="ix-menu-settings"></slot> : null}
+          </div>
+          <div class={'menu-overlay-container'}>
+            {this.showAbout ? <slot name="ix-menu-about"></slot> : null}
+          </div>
+        </div>
       </Host>
     );
   }

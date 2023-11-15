@@ -21,7 +21,7 @@ import {
 @Component({
   tag: 'ix-group-item',
   styleUrl: 'group-item.scss',
-  scoped: true,
+  shadow: true,
 })
 export class GroupItem {
   @Element() hostElement!: HTMLIxGroupItemElement;
@@ -82,21 +82,22 @@ export class GroupItem {
           selected: this.selected && !this.suppressSelection,
           'suppress-selection': this.suppressSelection,
         }}
-        tabindex={this.focusable ? 0 : -1}
       >
-        <div class="group-entry-selection-indicator"></div>
-        {this.icon ? <ix-icon size="16" name={this.icon}></ix-icon> : null}
-        {this.text ? (
-          <span class="group-entry-text">
-            <span title={this.text}>{this.text}</span>
-          </span>
-        ) : null}
-        {this.secondaryText ? (
-          <span class="group-entry-text-secondary">
-            <span title={this.secondaryText}>{this.secondaryText}</span>
-          </span>
-        ) : null}
-        <slot></slot>
+        <button tabindex={this.focusable ? 0 : -1}>
+          <div class="group-entry-selection-indicator"></div>
+          {this.icon ? <ix-icon size="16" name={this.icon}></ix-icon> : null}
+          {this.text ? (
+            <span class="group-entry-text">
+              <span title={this.text}>{this.text}</span>
+            </span>
+          ) : null}
+          {this.secondaryText ? (
+            <span class="group-entry-text-secondary">
+              <span title={this.secondaryText}>{this.secondaryText}</span>
+            </span>
+          ) : null}
+          <slot></slot>
+        </button>
       </Host>
     );
   }

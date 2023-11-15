@@ -134,17 +134,19 @@ async function openAngularStackBlitz(
     }
   });
   const declare_component_ts = `
-    ${declareComponents.map(
-      (filename, index) =>
-        `import COMPONENT_${index} from './${filename.substring(
-          0,
-          filename.lastIndexOf('.')
-        )}'`
-    )}
+    ${declareComponents
+      .map(
+        (filename, index) =>
+          `import COMPONENT_${index} from './${filename.substring(
+            0,
+            filename.lastIndexOf('.')
+          )}'`
+      )
+      .join(';')}
 
     export const DECLARE = [
       //@__DELCARE__COMPONENTS
-      ${declareComponents.map((_, index) => `COMPONENT_${index},`)}
+      ${declareComponents.map((_, index) => `COMPONENT_${index}`)}
     ];
   `;
 
@@ -306,7 +308,7 @@ async function getSourceCodeFiles(
   filenames: string[]
 ) {
   const getPath = (name: string) =>
-    `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
+    `${baseUrl}auto-generated/previews/${framework}/${name}`;
 
   const sourceFiles: { filename: string; sourceCode: string }[] = [];
   const files = await loadSourceCodeFromStatic(filenames.map(getPath));

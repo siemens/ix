@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@import 'mixins/shadow-dom/component';
+
 :host {
+  @include ix-component;
+
   display: flex;
   position: relative;
   width: 100%;
@@ -19,23 +23,44 @@
     z-index: calc(var(--theme-z-index-sticky) + 1);
   }
 
+  .logo-wrapper {
+    display: contents;
+  }
+
   .content {
     display: flex;
-    height: calc(100% - 2.75rem);
-    width: calc(100% - 4rem);
+    height: 100%;
+    width: 100%;
     position: relative;
     margin-left: 3.25rem;
     overflow: auto;
   }
 
-  &.hide-header {
-    .content {
-      height: 100%;
-    }
+  .navigation-content {
+    display: flex;
+    position: relative;
+
+    flex-direction: row;
+
+    height: calc(100% - 2.75rem);
+    width: 100%;
   }
 }
 
-:host(.mode-mobile) {
+:host(.hide-header) {
+  .navigation-content,
+  .content {
+    height: 100%;
+  }
+}
+
+:host(.breakpoint-lg) {
+  .content {
+    margin-left: 0rem;
+  }
+}
+
+:host(.breakpoint-sm) {
   .content {
     margin-left: 0px;
     width: 100%;

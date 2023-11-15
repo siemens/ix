@@ -8,9 +8,12 @@
  */
 
 @import 'common-variables';
-@import 'fonts';
+@import 'legacy/fonts';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: block;
   background-color: var(--theme-nav-overlay--background);
   padding: $medium-space $default-space $default-space $x-large-space;
@@ -29,8 +32,12 @@
 
     h2 {
       color: var(--theme-nav-overlay-header--color);
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
+  }
+
+  ix-tabs {
+    margin-bottom: 1.5rem;
   }
 
   .settings-tabs {

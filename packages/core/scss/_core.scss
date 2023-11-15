@@ -1,0 +1,67 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* Import global stylings for Web Components */
+@import './../src/components/toast/styles/toast-container';
+
+@import './legacy/mixins/fonts';
+@import './legacy/fonts';
+
+/* Common */
+@import './common-variables';
+@import 'z-index';
+
+/* Components */
+@import 'legacy/components/modal';
+@import 'legacy/components/buttons';
+@import 'legacy/components/button-group';
+@import 'legacy/components/dropdown';
+@import 'legacy/components/forms';
+@import './components/form/input';
+@import './components/links';
+@import './components/checkboxes';
+@import './components/radiobuttons';
+@import './components/shadows';
+@import './components/input-group';
+@import './components/table';
+@import './components/fonts';
+
+@import 'mixins/scrollbar';
+
+:root {
+  --animate-duration: #{$default-time};
+  --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
+    Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+body {
+  @include typography-body();
+  color: var(--theme-color-std-text);
+  background-color: var(--theme-color-1);
+  margin: 0;
+}
+
+body:not(.disable-scrollbar) {
+  @include scrollbar();
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}

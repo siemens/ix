@@ -17,16 +17,15 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { getButtonClasses } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
-import { Placement } from '../dropdown/placement';
+import { AlignedPlacement } from '../dropdown/placement';
 
 export type SplitButtonVariant = ButtonVariant;
 
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',
-  scoped: true,
+  shadow: true,
 })
 export class SplitButton {
   @Element() hostElement!: HTMLIxSplitButtonElement;
@@ -34,19 +33,12 @@ export class SplitButton {
   /**
    * Color variant of button
    */
-  @Prop() variant: SplitButtonVariant = 'Primary';
+  @Prop() variant: SplitButtonVariant = 'primary';
 
   /**
    * Button outline variant
    */
   @Prop() outline = false;
-
-  /**
-   * Button invisible
-   *
-   * @deprecated Will be removed in 2.0.0. Use ghost property
-   */
-  @Prop() invisible = false;
 
   /**
    * Button invisible
@@ -64,7 +56,7 @@ export class SplitButton {
   @Prop() icon = '';
 
   /**
-   * Splitbutton icon
+   * Icon of the button on the right
    */
   @Prop() splitIcon = 'context-menu';
 
@@ -76,7 +68,7 @@ export class SplitButton {
   /**
    * Placement of the dropdown
    */
-  @Prop() placement: Placement = 'bottom-start';
+  @Prop() placement: AlignedPlacement = 'bottom-start';
 
   @State() toggle = false;
 
@@ -87,12 +79,6 @@ export class SplitButton {
 
   private triggerElement: HTMLElement;
   private dropdownElement: HTMLIxDropdownElement;
-
-  get splitItems() {
-    return Array.from(
-      this.hostElement.querySelectorAll('ix-split-button-item')
-    );
-  }
 
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {
@@ -105,47 +91,39 @@ export class SplitButton {
   }
 
   render() {
+    const buttonAttributes = {
+      variant: this.variant,
+      outline: this.outline,
+      ghost: this.ghost,
+      disabled: this.disabled,
+      class: {
+        'left-button-border': !this.outline,
+      },
+    };
     return (
       <Host>
         <div class={{ 'btn-group': true, 'middle-gap': !this.outline }}>
-          <button
-            class={{
-              ...getButtonClasses(
-                this.variant,
-                this.outline,
-                this.ghost || this.invisible,
-                !this.label,
-                false,
-                false,
-                this.disabled
-              ),
-              ...{
-                'left-button-border': !this.outline,
-              },
-            }}
-            onClick={(e) => this.buttonClick.emit(e)}
-          >
-            {this.icon ? <ix-icon name={this.icon} /> : null} {this.label}
-          </button>
-          <button
+          {this.label ? (
+            <ix-button
+              {...buttonAttributes}
+              icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
+            >
+              {this.label}
+            </ix-button>
+          ) : (
+            <ix-icon-button
+              {...buttonAttributes}
+              icon={this.icon}
+              onClick={(e) => this.buttonClick.emit(e)}
+            ></ix-icon-button>
+          )}
+          <ix-icon-button
+            {...buttonAttributes}
             ref={(r) => (this.triggerElement = r)}
-            class={{
-              ...getButtonClasses(
-                this.variant,
-                this.outline,
-                this.ghost || this.invisible,
-                true,
-                false,
-                false,
-                this.disabled
-              ),
-              ...{
-                anchor: true,
-              },
-            }}
-          >
-            <ix-icon name={this.splitIcon} />
-          </button>
+            class={'anchor'}
+            icon={this.splitIcon}
+          ></ix-icon-button>
         </div>
 
         <ix-dropdown ref={(r) => (this.dropdownElement = r)}>

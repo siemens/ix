@@ -13,17 +13,13 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('group', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('group/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('with context menu', async ({ page }) => {
     await page.goto('group/context-menu');
     await page.locator('ix-icon-button').click();
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('selected', async ({ page }) => {
@@ -35,12 +31,10 @@ regressionTest.describe('group', () => {
 
   regressionTest('item selected', async ({ page }) => {
     await page.goto('group/basic');
-    await page.locator('.btn-expand-header .glyph').click();
+    await page.locator('.btn-expand-header ix-icon').click();
     await page.locator('text=Example text 1').first().click();
-    await page.locator('text=Example text 1').first().hover();
+    await page.locator('text=Example text 2').first().hover();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
-
-  // ix-icon-button
 });

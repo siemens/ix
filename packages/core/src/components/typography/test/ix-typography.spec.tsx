@@ -8,11 +8,9 @@ describe('ix-typography', () => {
       html: `<ix-typography>Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography>
+      <ix-typography class="typography-body">
         <mock:shadow-root>
-        <div class="text-default" style="color: inherit;">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>
@@ -25,28 +23,54 @@ describe('ix-typography', () => {
       html: `<ix-typography color="soft">Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography color="soft">
+      <ix-typography color="soft" class="typography-body" style="color: var(--theme-color-soft-text);">
         <mock:shadow-root>
-        <div class="text-default" style="color: var(--theme-color-soft-text);">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>
     `);
   });
 
-  it('should render font style', async () => {
+  it('should show format', async () => {
+    const page = await newSpecPage({
+      components: [IxTypography],
+      html: `<ix-typography format="display-xl">Example content</ix-typography>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <ix-typography class="typography-display-xl" format="display-xl">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+        Example content
+      </ix-typography>
+    `);
+  });
+
+  it('should show text decoration', async () => {
+    const page = await newSpecPage({
+      components: [IxTypography],
+      html: `<ix-typography text-decoration="underline">Example content</ix-typography>`,
+    });
+    expect(page.root).toEqualHtml(`
+      <ix-typography class="typography-body typography-decoration-underline" text-decoration="underline">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+        Example content
+      </ix-typography>
+    `);
+  });
+
+  it('should provide fallback', async () => {
     const page = await newSpecPage({
       components: [IxTypography],
       html: `<ix-typography variant="h2">Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography variant="h2">
+      <ix-typography variant="h2" class="text-h2">
         <mock:shadow-root>
-        <div class="text-h2" style="color: inherit;">
           <slot></slot>
-        </div>
         </mock:shadow-root>
         Example content
       </ix-typography>

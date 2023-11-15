@@ -8,21 +8,16 @@
  */
 import {
   arrow,
-  autoPlacement,
   autoUpdate,
   computePosition,
   ComputePositionConfig,
+  flip,
   inline,
   offset,
   shift,
 } from '@floating-ui/dom';
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { getAlignment } from '../dropdown/alignment';
-import {
-  BasePlacement,
-  Placement,
-  PlacementWithAlignment,
-} from '../dropdown/placement';
+import { Side } from '../dropdown/placement';
 
 type Position = { x: number; y: number };
 
@@ -32,7 +27,7 @@ type Position = { x: number; y: number };
 @Component({
   tag: 'ix-validation-tooltip',
   styleUrl: 'validation-tooltip.scss',
-  scoped: true,
+  shadow: true,
 })
 export class ValidationTooltip {
   @Element() hostElement: HTMLIxValidationTooltipElement;
@@ -45,7 +40,14 @@ export class ValidationTooltip {
   /**
    * Placement of the tooltip
    */
-  @Prop() placement: Placement = 'top';
+  @Prop() placement: Side = 'top';
+
+  /**
+   * Suppress the automatic placement of the dropdown.
+   *
+   * @since 2.0.0
+   */
+  @Prop() suppressAutomaticPlacement = false;
 
   @State() isInputValid = true;
   @State() tooltipPosition: Position;
@@ -57,7 +59,7 @@ export class ValidationTooltip {
   private observer: MutationObserver;
 
   get arrow() {
-    return this.hostElement.querySelector('#arrow') as HTMLElement;
+    return this.hostElement.shadowRoot.querySelector('#arrow') as HTMLElement;
   }
 
   get inputElement() {
@@ -69,10 +71,10 @@ export class ValidationTooltip {
   }
 
   get tooltipElement(): HTMLElement {
-    return this.hostElement.querySelector('.validation-tooltip');
+    return this.hostElement.shadowRoot.querySelector('.validation-tooltip');
   }
 
-  private destoryAutoUpdate() {
+  private destroyAutoUpdate() {
     this.tooltipElement.style.display = 'none';
 
     if (this.autoUpdateCleanup) {
@@ -94,17 +96,12 @@ export class ValidationTooltip {
       ],
     };
 
-    if (this.placement.includes('auto')) {
+    if (!this.suppressAutomaticPlacement) {
       positionConfig.middleware.push(
-        autoPlacement({
-          alignment: getAlignment(this.placement),
-        })
+        flip({ fallbackStrategy: 'initialPlacement' })
       );
-    } else {
-      positionConfig.placement = this.placement as
-        | BasePlacement
-        | PlacementWithAlignment;
     }
+    positionConfig.placement = this.placement;
 
     this.autoUpdateCleanup = autoUpdate(
       this.inputElement,
@@ -188,7 +185,7 @@ export class ValidationTooltip {
 
   disconnectedCallback() {
     this.observer?.disconnect();
-    this.destoryAutoUpdate();
+    this.destroyAutoUpdate();
 
     this.formElement.removeEventListener('submit', this.onSubmitBind);
     this.inputElement.removeEventListener('focus', this.onInputFocusBind);
@@ -199,7 +196,7 @@ export class ValidationTooltip {
     if (!this.isInputValid) {
       this.applyTooltipPosition();
     } else {
-      this.destoryAutoUpdate();
+      this.destroyAutoUpdate();
     }
   }
 

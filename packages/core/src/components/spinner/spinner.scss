@@ -9,46 +9,104 @@
 
 @import 'mixins/shadow-dom/component';
 
-:host {
-  @include ix-component;
+@mixin ix-spinner($host-class: 'medium', $size: 2rem, $track-size: 4px) {
+  :host(.#{$host-class}) {
+    @include ix-component;
+    display: block;
+    position: relative;
 
-  display: flex;
-  position: relative;
-  height: 2rem;
-  width: 2rem;
-  justify-content: center;
-  align-items: center;
+    width: $size;
+    height: $size;
+    min-width: $size;
+    min-height: $size;
+    max-width: $size;
+    max-height: $size;
+    border-radius: 100%;
+    position: relative;
+    animation: rotate 2s linear infinite;
 
-  svg {
-    height: 2rem;
-    width: 2rem;
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes clipMask {
+      0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+      }
+      12.5% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+      }
+      25% {
+        clip-path: polygon(
+          50% 50%,
+          0 0,
+          100% 0,
+          100% 100%,
+          100% 100%,
+          100% 100%
+        );
+      }
+      37.5% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+      }
+      50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+      }
+      62.5% {
+        clip-path: polygon(50% 50%, 100% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+      }
+      75% {
+        clip-path: polygon(
+          50% 50%,
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          0 100%,
+          0 0
+        );
+      }
+      87.5% {
+        clip-path: polygon(50% 50%, 0 100%, 0 100%, 0 100%, 0 100%, 0 0);
+      }
+      100% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+      }
+    }
   }
 
-  #fill {
-    fill: var(--theme-color-weak-text);
+  :host(.#{$host-class})::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 8.33%;
+    border-radius: 100%;
+    border: $track-size solid
+      var(--ix-button-color, var(--theme-color-soft-text));
+    animation: clipMask 3s linear infinite;
   }
 
-  #stroke {
-    stroke: var(--theme-color-weak-text);
+  :host(:not(.hide-track)):host(.#{$host-class})::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 8.33%;
+    border-radius: 100%;
+    border: $track-size solid var(--theme-color-ghost--hover);
+  }
+
+  :host(.primary)::after {
+    border-color: var(--theme-color-dynamic);
+  }
+
+  :host(.primary)::before {
+    border-color: var(--theme-color-ghost--hover);
   }
 }
 
-:host(.primary) {
-  #fill {
-    fill: var(--theme-color-primary);
-  }
-
-  #stroke {
-    stroke: var(--theme-color-primary);
-  }
-}
-
-:host(.large) {
-  height: 6rem;
-  width: 6rem;
-
-  svg {
-    height: 5.75rem;
-    width: 6rem;
-  }
-}
+@include ix-spinner($host-class: 'xx-small', $size: 0.75rem, $track-size: 1px);
+@include ix-spinner($host-class: 'x-small', $size: 1.25rem, $track-size: 2px);
+@include ix-spinner($host-class: 'small', $size: 1.5rem, $track-size: 2px);
+@include ix-spinner($host-class: 'medium', $size: 2rem, $track-size: 2px);
+@include ix-spinner($host-class: 'large', $size: 6rem, $track-size: 4px);

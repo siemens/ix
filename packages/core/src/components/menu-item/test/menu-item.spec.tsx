@@ -8,7 +8,7 @@
  */
 import { newSpecPage } from '@stencil/core/testing';
 import { MenuItem } from '../menu-item';
-
+//@ts-ignore
 import { createMutationObserver } from '../../utils/mutation-observer';
 jest.mock('../../utils/mutation-observer');
 
@@ -29,9 +29,9 @@ describe('ix-menu-item', () => {
 
     const item = page.doc.querySelector('ix-menu-item');
 
-    const li = item.shadowRoot.querySelector('li');
+    const avatarElement = item.shadowRoot.querySelector('button');
 
-    expect(li.title).toBe('Example Title');
+    expect(avatarElement.title).toBe('Example Title');
   });
 
   it('should have a title from innerText', async () => {
@@ -44,9 +44,9 @@ describe('ix-menu-item', () => {
 
     const item = page.doc.querySelector('ix-menu-item');
 
-    const li = item.shadowRoot.querySelector('li');
+    const avatarElement = item.shadowRoot.querySelector('button');
 
-    expect(li.title).toBe('Example Title');
+    expect(avatarElement.title).toBe('Example Title');
   });
 
   it('should change title after content change', async () => {
@@ -58,7 +58,7 @@ describe('ix-menu-item', () => {
     await page.waitForChanges();
     const item = page.doc.querySelector('ix-menu-item');
     item.innerText = 'Updated Title';
-    const li = item.shadowRoot.querySelector('li');
-    expect(li.title).toStrictEqual('Example Title');
+    const avatarElement = item.shadowRoot.querySelector('button');
+    expect(avatarElement.title).toStrictEqual('Example Title');
   });
 });

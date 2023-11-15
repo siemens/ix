@@ -9,18 +9,22 @@
 
 @import 'common-variables';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'legacy/mixins/fonts';
+
+@mixin set-height($height) {
+  height: $height;
+  min-height: $height;
+  max-height: $height;
+}
+
+$heightSmall: 2.5rem;
+$heightMedium: 5rem;
+$heightBig: 10rem;
+$width: 11.937rem;
 
 :host {
-  @mixin set-height($height) {
-    height: $height;
-    min-height: $height;
-    max-height: $height;
-  }
-
-  $heightSmall: 2.5rem;
-  $heightMedium: 5rem;
-  $heightBig: 10rem;
-  $width: 11.937rem;
+  @include ix-component;
 
   min-width: $width;
   max-width: $width;
@@ -35,18 +39,6 @@
   color: var(--theme-color-std-text);
   box-shadow: var(--theme-tile--box-shadow);
 
-  &.tile-small {
-    @include set-height($heightSmall);
-  }
-
-  &.tile-medium {
-    @include set-height($heightMedium);
-  }
-
-  &.tile-big {
-    @include set-height($heightBig);
-  }
-
   // @each $key, $value in $color-map-status {
   //   &.tile-#{$key} {
   //     background-color: #{$value};
@@ -54,33 +46,26 @@
   //   }
   // }
 
-  &:active,
-  &:focus-visible,
-  &:visited {
-    outline: none;
-  }
-
   .tile-header {
     display: flex;
     align-items: center;
+
+    @include text-l-title;
   }
 
   .tile-header,
   .tile-subheader,
   .tile-content,
   .tile-footer {
-    &:not(:empty) {
-      padding: 0 $default-space;
-    }
+    padding: 0 $default-space;
   }
 
   .tile-header,
-  .tile-subheader,
   .tile-content {
     flex-grow: 1;
   }
 
-  .tile-header:not(:empty) {
+  .tile-header.has-content {
     display: flex;
     height: $large-control-height;
     max-height: $large-control-height;
@@ -92,12 +77,26 @@
     flex-grow: 0;
   }
 
-  .tile-content {
-    flex-grow: 1;
-  }
-
-  .tile-footer:not(:empty) {
+  .tile-footer.has-content {
     border-block-start: 1px solid var(--theme-color-1);
     height: $large-control-height;
   }
+}
+
+:host(.tile-small) {
+  @include set-height($heightSmall);
+}
+
+:host(.tile-medium) {
+  @include set-height($heightMedium);
+}
+
+:host(.tile-big) {
+  @include set-height($heightBig);
+}
+
+:host(:active),
+:host(:focus-visible),
+:host(:visited) {
+  outline: none;
 }

@@ -14,6 +14,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -21,7 +22,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 @Component({
   tag: 'ix-workflow-steps',
   styleUrl: 'workflow-steps.scss',
-  scoped: true,
+  shadow: true,
 })
 export class WorkflowSteps {
   @Element() hostElement!: HTMLIxWorkflowStepsElement;
@@ -30,12 +31,6 @@ export class WorkflowSteps {
    * Select orientation
    */
   @Prop() vertical: boolean = false;
-
-  /**
-   * Select linear mode
-   * @deprecated Has no effect on component. Will get removed in 2.0.0
-   */
-  @Prop() linear: boolean = false;
 
   /**
    * Activate navigation click
@@ -54,10 +49,6 @@ export class WorkflowSteps {
 
   private getSteps() {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
-  }
-
-  get stepsContent() {
-    return this.hostElement.querySelector('.steps');
   }
 
   updateSteps() {
@@ -84,21 +75,24 @@ export class WorkflowSteps {
 
   private observer: MutationObserver;
 
+  @Listen('selectedChanged')
+  onStepSelectionChanged(event: CustomEvent<HTMLIxWorkflowStepElement>) {
+    const eventTarget = event.detail;
+
+    const steps = this.getSteps();
+    const clickIndex = steps.findIndex((step) => step === eventTarget);
+    const clientEvent = this.stepSelected.emit(clickIndex);
+
+    if (clientEvent.defaultPrevented) {
+      return;
+    }
+
+    steps.forEach((step, index) => {
+      step.selected = index === clickIndex;
+    });
+  }
+
   componentDidLoad() {
-    this.stepsContent.addEventListener(
-      'selectedChanged',
-      (event: CustomEvent<HTMLIxWorkflowStepElement>) => {
-        const steps = this.getSteps();
-        steps.forEach((element) => {
-          if (element !== event.target) {
-            element.selected = false;
-          }
-        });
-      }
-    );
-
-    const slotDiv = this.hostElement.querySelector('.steps');
-
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
         if (mutation.type === 'childList') {
@@ -107,7 +101,7 @@ export class WorkflowSteps {
       }
     });
 
-    this.observer.observe(slotDiv, { childList: true });
+    this.observer.observe(this.hostElement, { childList: true });
   }
 
   disconnectedCallback() {

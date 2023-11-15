@@ -1,0 +1,131 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/fonts';
+
+@mixin font-label {
+  .typography-label {
+    @include typography-label;
+  }
+
+  .typography-label-xs {
+    @include typography-label-xs;
+  }
+
+  .typography-label-sm {
+    @include typography-label-sm;
+  }
+
+  .typography-label-lg {
+    @include typography-label-lg;
+  }
+
+  .typography-body {
+    @include typography-body;
+  }
+
+  .typography-body-xs {
+    @include typography-body-xs;
+  }
+
+  .typography-body-sm {
+    @include typography-body-sm;
+  }
+
+  .typography-body-lg {
+    @include typography-body-lg;
+  }
+
+  .typography-display {
+    @include typography-display;
+  }
+
+  .typography-display-xs {
+    @include typography-display-xs;
+  }
+
+  .typography-display-sm {
+    @include typography-display-sm;
+  }
+
+  .typography-display-lg {
+    @include typography-display-lg;
+  }
+
+  .typography-display-xl {
+    @include typography-display-xl;
+  }
+
+  .typography-display-xxl {
+    @include typography-display-xxl;
+  }
+
+  h6,
+  .typography-h6 {
+    @include typography-h6;
+  }
+
+  h5,
+  .typography-h5 {
+    @include typography-h5;
+  }
+
+  h4,
+  .typography-h4 {
+    @include typography-h4;
+  }
+
+  h3,
+  .typography-h3 {
+    @include typography-h3;
+  }
+
+  h2,
+  .typography-h2 {
+    @include typography-h2;
+  }
+
+  h1,
+  .typography-h1 {
+    @include typography-h1;
+  }
+
+  .typography-code {
+    @include typography-code;
+  }
+
+  .typography-code-lg {
+    @include typography-code-lg;
+  }
+
+  .typography-code-sm {
+    @include typography-code-sm;
+  }
+
+  .typography-decoration-none {
+    text-decoration: none !important;
+  }
+
+  .typography-decoration-underline {
+    text-decoration: underline !important;
+  }
+
+  .typography-decoration-line-through {
+    text-decoration: line-through !important;
+  }
+
+  .typography-weight-bold {
+    font-weight: 700 !important;
+  }
+
+  a {
+    color: var(--theme-color-primary);
+  }
+}
+
+@include font-label();

@@ -7,23 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import './components/buttons';
+@import './icon-button-mixin.scss';
 
-:host {
-  display: inline-block;
-  vertical-align: middle;
-
-  &.disabled {
-    pointer-events: none;
-  }
-
-  .icon-button {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  button:not(:disabled) {
-    cursor: pointer;
-  }
-}
+@include base-icon-button;

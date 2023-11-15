@@ -43,7 +43,7 @@ frameworks={{
   vue: SourceVueSplitButtonIcons
 }}></Playground>
 
-## Properties (ix-split-button)
+## Properties
 
 ### Props
 
@@ -52,13 +52,3 @@ frameworks={{
 ### Events
 
 <Events />
-
-## Properties (ix-split-button-item)
-
-### Props
-
-<ItemProps />
-
-### Events
-
-<ItemEvents />

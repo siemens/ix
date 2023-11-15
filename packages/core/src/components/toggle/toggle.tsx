@@ -12,18 +12,21 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
-  Listen,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-toggle',
   styleUrl: 'toggle.scss',
-  scoped: true,
+  shadow: true,
 })
-export class CuiToggle {
+export class Toggle {
+  @Element() hostElement!: HTMLIxToggleElement;
+
   /**
    * Whether the slide-toggle element is checked or not.
    */
@@ -37,13 +40,7 @@ export class CuiToggle {
   /**
    * If true the control is in indeterminate state
    */
-  @Prop() indeterminate = false;
-
-  /**
-   * Basic and status colors from color palette
-   * @deprecated Will be removed in 2.0.0
-   */
-  @Prop() color = 'accent';
+  @Prop({ mutable: true, reflect: true }) indeterminate = false;
 
   /**
    * Text for on state
@@ -70,39 +67,12 @@ export class CuiToggle {
    */
   @Event() checkedChange: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLIxToggleElement;
-
-  @Listen('keydown', { target: 'window' })
-  async onKeyDown(event: KeyboardEvent) {
-    const targetElement = event.target as HTMLElement;
-
-    if (!this.hostElement.contains(targetElement)) {
-      return;
+  onCheckedChange(newChecked: boolean) {
+    if (this.indeterminate) {
+      this.indeterminate = false;
     }
-
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      this.emitChange(event);
-    }
-  }
-
-  private emitChange(event: Event) {
-    if (this.disabled || this.indeterminate) {
-      return;
-    }
-
-    event.stopPropagation();
-    event.preventDefault();
-
-    this.checked = !this.checked;
+    this.checked = newChecked;
     this.checkedChange.emit(this.checked);
-  }
-
-  private getText() {
-    if (this.indeterminate || this.checked === undefined) {
-      return this.textIndeterminate;
-    }
-
-    return this.checked ? this.textOn : this.textOff;
   }
 
   render() {
@@ -110,32 +80,36 @@ export class CuiToggle {
       <Host
         class={{
           disabled: this.disabled,
-          checked: this.checked,
-          indeterminate: this.indeterminate || this.checked === undefined,
         }}
+        onClick={() => this.onCheckedChange(!this.checked)}
       >
-        <label class="switch" tabindex={this.disabled ? -1 : 0}>
-          <input
-            tabindex="-1"
-            type="checkbox"
-            checked={this.checked}
-            disabled={this.disabled}
-            indeterminate={this.indeterminate || this.checked === undefined}
-            id={this.hostElement.id}
-            onChange={(e) => this.emitChange(e)}
-          />
-          <span class="slider">
-            <span class="slider-track"></span>
-          </span>
+        <input
+          disabled={this.disabled}
+          indeterminate={this.indeterminate}
+          checked={this.checked}
+          role="switch"
+          tabindex={0}
+          type="checkbox"
+          aria-checked={a11yBoolean(this.checked)}
+          onChange={(event) =>
+            this.onCheckedChange((event.target as any).checked)
+          }
+        ></input>
+        <label class="switch" tabIndex={-1}>
+          <span class="slider"></span>
         </label>
         {!this.hideText ? (
-          <span
-            title={this.getText()}
-            class="text"
-            onClick={(e) => this.emitChange(e)}
-          >
-            {this.getText()}
-          </span>
+          <Fragment>
+            {!this.indeterminate ? (
+              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
+                {this.checked ? this.textOn : this.textOff}
+              </span>
+            ) : (
+              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
+                {this.textIndeterminate}
+              </span>
+            )}
+          </Fragment>
         ) : null}
       </Host>
     );

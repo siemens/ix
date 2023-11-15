@@ -7,52 +7,114 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import 'common-variables';
-@import 'mixins/hover';
-@import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
+@import 'mixins/shadow-dom/hover';
+
+$itemPadding: 0.5rem;
+$itemPaddingRight: 1.5rem;
+$focusBorder: 0.0625rem;
+
+@mixin applyItemWidth($padding, $paddingRight) {
+  width: calc(100% - #{$padding} - #{$paddingRight} - #{2 * $focusBorder});
+
+  padding: 0 $padding;
+  padding-right: $paddingRight;
+}
 
 :host {
-  display: block;
+  --ix-dropdown-item-checked-color: var(--theme-color-primary);
+  @include ix-component;
+  display: flex;
+  flex-direction: row;
 
-  &.icon-only {
-    min-width: 0;
+  position: relative;
+  height: 2.5rem;
+  width: auto;
+  overflow: hidden;
+  cursor: pointer;
 
-    .dropdown-item > .glyph {
-      margin-inline-end: 0;
-    }
-
-    .dropdown-item {
-      padding: $tiny-space $small-space;
-
-      @include focus-visible {
-        border-color: #199fff;
-      }
-    }
+  .dropdown-item {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    height: calc(100% - 2px);
+    @include applyItemWidth($itemPadding, $itemPaddingRight);
+    border: $focusBorder solid transparent;
+    white-space: nowrap;
   }
 
-  :focus {
-    background-color: transparent;
-    color: var(--theme-menu-item--color);
+  .dropdown-item.no-checked-field {
+    @include applyItemWidth(1rem, $itemPaddingRight);
   }
 
-  .checkmark {
-    position: absolute;
-    left: $small-space;
+  .dropdown-item:focus-visible {
+    border-color: var(--theme-color-focus-bdr);
   }
 
-  &.checked {
-    background-color: var(--theme-select-list-item--background--selected);
+  .dropdown-item-checked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    width: 1rem;
+    min-width: 1rem;
+    margin-right: 0.25rem;
+
+    color: var(--ix-dropdown-item-checked-color);
   }
 
-  .label {
-    @include ellipsis;
+  .dropdown-item-icon {
+    margin-right: 0.25rem;
+    color: var(--theme-color-soft-text);
   }
 
-  &.disabled {
-    pointer-events: none;
+  .dropdown-item-text {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dropdown-item:focus-visible {
+    outline: 1px solid yellow;
+  }
+
+  .submenu-icon {
+    margin-left: auto;
   }
 }
 
-::slotted(ix-icon) {
-  margin-inline-start: auto;
+:host(.icon-only) {
+  .dropdown-item-icon {
+    margin-right: 0px;
+  }
+
+  .dropdown-item-checked {
+    display: none;
+  }
+
+  .dropdown-item {
+    @include applyItemWidth(0.5rem, 0.5rem);
+  }
+}
+
+:host(.submenu) {
+  .dropdown-item {
+    @include applyItemWidth($itemPadding, 0.5rem);
+  }
+}
+
+@include ghost-hover-pressed;
+
+:host(.disabled) {
+  pointer-events: none;
+  color: var(--theme-color-weak-text) !important;
+
+  .dropdown-item-icon {
+    color: var(--theme-color-weak-text) !important;
+  }
 }

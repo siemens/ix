@@ -12,7 +12,7 @@ import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
 @Component({
-  selector: 'app-example',
+  selector: 'app-example-instance',
   template: '<ix-button (click)="openModal()">Show modal</ix-button>',
 })
 export default class ModalByInstance {
@@ -21,7 +21,6 @@ export default class ModalByInstance {
   async openModal() {
     await this.modalService.open({
       content: ModalByInstanceExample,
-      title: '',
       data: 'Some data',
     });
   }

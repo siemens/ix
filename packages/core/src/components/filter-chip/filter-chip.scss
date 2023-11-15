@@ -10,34 +10,21 @@
 @import 'common-variables';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
-  display: flex;
+  @include ix-component;
+
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   height: $large-space;
   padding-left: $small-space;
-  border: var(--theme-focus--border-thickness) solid var(--theme-chip-primary-outline--border-color);
+  border: var(--theme-focus--border-thickness) solid
+    var(--theme-chip-primary-outline--border-color);
   border-radius: $x-large-space;
   background-color: var(--theme-color-ghost);
   color: var(--theme-chip-primary-outline--color);
-
-  @include hover {
-    background-color: var(--theme-color-ghost-primary--hover);
-    border-color: var(--theme-chip-primary-outline--border-color--hover);
-    color: var(--theme-chip-primary-outline--color--hover);
-  }
-
-  @include active {
-    background-color: var(--theme-color-ghost-primary--active);
-    border-color: var(--theme-chip-primary-outline--border-color--active);
-    color: var(--theme-chip-primary-outline--color--active);
-  }
-
-  @include focus-visible {
-    outline: var(--theme-color-focus-bdr) solid var(--theme-focus--border-thickness);
-    outline-offset: -0.125rem;
-  }
 
   .slot-container {
     @include ellipsis;
@@ -49,17 +36,43 @@
     }
   }
 
-  .btn-oval {
+  ix-icon-button {
     height: $large-space;
-    width: $large-space;
-    min-width: $large-space;
-    margin-left: $tiny-space;
-    padding: 0;
-    vertical-align: top;
+    margin-left: 0.25rem;
 
     @include focus-visible {
       outline: none;
-      border-color: #199fff;
     }
   }
+}
+
+:host(.disabled) {
+  border: var(--theme-focus--border-thickness) solid
+    var(--theme-color-component-4);
+  color: var(--theme-color-weak-text);
+  padding-right: $small-space;
+
+  cursor: default;
+}
+
+:host(.readonly) {
+  padding-right: $small-space;
+}
+
+@include host-hover {
+  background-color: var(--theme-color-ghost-primary--hover);
+  border-color: var(--theme-chip-primary-outline--border-color--hover);
+  color: var(--theme-chip-primary-outline--color--hover);
+}
+
+@include host-active {
+  background-color: var(--theme-color-ghost-primary--active);
+  border-color: var(--theme-chip-primary-outline--border-color--active);
+  color: var(--theme-chip-primary-outline--color--active);
+}
+
+@include host-focus-visible {
+  outline: var(--theme-color-focus-bdr) solid
+    var(--theme-focus--border-thickness);
+  outline-offset: -0.125rem;
 }

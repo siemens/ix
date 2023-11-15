@@ -12,7 +12,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Pill {
   @Element() el: HTMLIxPillElement;
@@ -56,32 +56,56 @@ export class Pill {
   @Prop() alignLeft = false;
 
   render() {
+    let customStyle = {};
+
+    if (this.variant === 'custom') {
+      customStyle = {
+        color: this.color,
+        [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
+      };
+    }
     return (
       <Host
-        class={{
-          outline: this.outline,
-          'align-left': this.alignLeft,
-        }}
         style={
           this.variant === 'custom'
             ? {
-                color: this.color,
-                backgroundColor: this.background,
+                '--ix-icon-button-color': this.color,
               }
             : {}
         }
         title={this.el.textContent}
+        class={{
+          'align-left': this.alignLeft,
+        }}
       >
-        <ix-icon
+        <div
+          style={{ ...customStyle }}
           class={{
-            'with-icon': true,
-            hidden: this.icon === undefined || this.icon === '',
+            container: true,
+            outline: this.outline,
+            inactive: false,
+            alarm: this.variant === 'alarm',
+            critical: this.variant === 'critical',
+            info: this.variant === 'info',
+            neutral: this.variant === 'neutral',
+            primary: this.variant === 'primary',
+            success: this.variant === 'success',
+            warning: this.variant === 'warning',
+            closable: false,
+            icon: !!this.icon,
           }}
-          name={this.icon}
-          size={'16'}
-        />
-        <div class="slot">
-          <slot></slot>
+        >
+          <ix-icon
+            class={{
+              'with-icon': true,
+              hidden: this.icon === undefined || this.icon === '',
+            }}
+            name={this.icon}
+            size={'16'}
+          />
+          <span class="slot-container">
+            <slot></slot>
+          </span>
         </div>
       </Host>
     );

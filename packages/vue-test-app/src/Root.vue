@@ -12,6 +12,7 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
+import ActionCard from './preview-examples/action-card.vue';
 import AGGrid from './preview-examples/aggrid.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
@@ -20,12 +21,20 @@ import BreadcrumbNextItems from './preview-examples/breadcrumb-next-items.vue';
 import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate.vue';
 import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
-import ButtonSelected from './preview-examples/button-selected.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
+import MenuCategory from './preview-examples/menu-category.vue';
 import Chip from './preview-examples/chip.vue';
+import Slider from './preview-examples/slider.vue';
+import SliderTrace from './preview-examples/slider-trace.vue';
+import SliderMarker from './preview-examples/slider-marker.vue';
+import SliderError from './preview-examples/slider-error.vue';
+import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
+import ContentHeader from './preview-examples/content-header.vue';
+import DateDropdown from "./preview-examples/date-dropdown.vue";
+import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.vue";
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -62,10 +71,9 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
-import PageHeaderNoBack from './preview-examples/page-header-no-back.vue';
-import PageHeader from './preview-examples/page-header.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
+import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
@@ -91,10 +99,12 @@ import Toggle from './preview-examples/toggle.vue';
 import Tooltip from './preview-examples/tooltip.vue';
 import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
-import Validation from './preview-examples/validation.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
+import Grid from './preview-examples/grid.vue';
+import GridSize from './preview-examples/grid-size.vue';
+import GridPadding from './preview-examples/grid-padding.vue';
 
 const routes: any = {
   '/': App,
@@ -102,7 +112,6 @@ const routes: any = {
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/buttons': Buttons,
   '/preview/button-with-icon': ButtonWithIcon,
-  '/preview/button-selected': ButtonSelected,
   '/preview/button-group': ButtonGroup,
   '/preview/blind': Blind,
   '/preview/breadcrumb': Breadcrumb,
@@ -111,6 +120,8 @@ const routes: any = {
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/aggrid': AGGrid,
   '/preview/chip': Chip,
+  '/preview/date-dropdown': DateDropdown,
+  '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
@@ -160,7 +171,6 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
-  '/preview/validation': Validation,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/basic-navigation': BasicNavigation,
@@ -168,8 +178,10 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/tooltip': Tooltip,
-  '/preview/page-header': PageHeader,
-  '/preview/page-header-no-back': PageHeaderNoBack,
+  '/preview/push-card': PushCard,
+  '/preview/action-card': ActionCard,
+  '/preview/page-header': ContentHeader,
+  '/preview/page-header-no-back': ContentHeaderNoBack,
   '/preview/empty-state': EmptyState,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
@@ -184,6 +196,14 @@ const routes: any = {
   '/testing/navigation': NavigationTest,
   '/testing/navigation/link1': NavigationTest,
   '/testing/navigation/link2': NavigationTest,
+  '/preview/menu-category': MenuCategory,
+  '/preview/slider': Slider,
+  '/preview/slider-trace': SliderTrace,
+  '/preview/slider-marker': SliderMarker,
+  '/preview/slider-error': SliderError,
+  '/preview/grid': Grid,
+  '/preview/grid-size': GridSize,
+  '/preview/grid-padding': GridPadding,
 };
 
 const currentPath = ref(window.location.pathname);

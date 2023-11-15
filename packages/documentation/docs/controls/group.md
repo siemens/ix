@@ -6,9 +6,6 @@ import Events from './../auto-generated/ix-group/events.md';
 import ItemProps from './../auto-generated/ix-group-item/props.md';
 import ItemEvents from './../auto-generated/ix-group-item/events.md';
 
-import DropdownItemProps from './../auto-generated/ix-group-dropdown-item/props.md';
-import DropdownItemEvents from './../auto-generated/ix-group-dropdown-item/events.md';
-
 import SourceGroup from './../auto-generated/previews/web-component/group.md'
 import SourceGroupSuppressed from './../auto-generated/previews/web-component/group-header-suppressed.md'
 import SourceGroupCustomEntry from './../auto-generated/previews/web-component/group-custom-entry.md'
@@ -106,13 +103,3 @@ frameworks={{
 ### Events
 
 <ItemEvents />
-
-## Properties (ix-group-dropdown-item)
-
-### Props
-
-<DropdownItemProps />
-
-### Events
-
-<DropdownItemEvents />

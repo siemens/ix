@@ -16,6 +16,8 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { BaseButton, BaseButtonProps } from '../button/base-button';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @since 1.5.0
@@ -23,9 +25,25 @@ import {
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',
-  scoped: true,
+  shadow: true,
 })
 export class Pagination {
+  private readonly baseButtonConfig: BaseButtonProps = {
+    variant: 'secondary',
+    outline: false,
+    ghost: true,
+    iconOnly: true,
+    iconOval: false,
+    disabled: false,
+    icon: '',
+    loading: false,
+    selected: false,
+    type: 'button',
+    extraClasses: {
+      ['w-auto']: true,
+    },
+  };
+
   private readonly maxCountPages = 7;
 
   @Element() hostElement!: HTMLIxPaginationElement;
@@ -82,12 +100,6 @@ export class Pagination {
    */
   @Event() itemCountChanged: EventEmitter<number>;
 
-  get pageInput() {
-    return this.hostElement.querySelector(
-      '.advanced-pagination input.form-control'
-    );
-  }
-
   private selectPage(index: number) {
     if (index < 0) {
       this.selectedPage = 0;
@@ -117,17 +129,16 @@ export class Pagination {
   }
 
   private getPageButton(index: number) {
-    return (
-      <ix-index-button
-        variant="Primary"
-        onClick={() => {
-          this.selectPage(index);
-        }}
-        selected={this.selectedPage === index}
-      >
-        {index + 1}
-      </ix-index-button>
-    );
+    const baseButtonProps: BaseButtonProps = {
+      ...this.baseButtonConfig,
+      onClick: () => this.selectPage(index),
+      selected: this.selectedPage === index,
+      ariaAttributes: {
+        'aria-pressed': a11yBoolean(this.selectedPage === index),
+      },
+    };
+
+    return <BaseButton {...baseButtonProps}>{index + 1}</BaseButton>;
   }
 
   private renderPageButtons() {
@@ -144,23 +155,18 @@ export class Pagination {
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
 
     if (hasOverflowStart) {
+      const baseButtonProps = {
+        ...this.baseButtonConfig,
+        onClick: () => {
+          if (hasOverflowEnd) {
+            this.selectPage(this.selectedPage - Math.max(0, 2 * pageCount + 1));
+          } else {
+            this.selectPage(this.count - this.maxCountPages);
+          }
+        },
+      };
       pageButtons.push(this.getPageButton(0));
-      pageButtons.push(
-        <ix-index-button
-          variant="Secondary"
-          onClick={() => {
-            if (hasOverflowEnd) {
-              this.selectPage(
-                this.selectedPage - Math.max(0, 2 * pageCount + 1)
-              );
-            } else {
-              this.selectPage(this.count - this.maxCountPages);
-            }
-          }}
-        >
-          ...
-        </ix-index-button>
-      );
+      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
 
       if (hasOverflowEnd) {
         start = this.count - this.maxCountPages + 2;
@@ -184,22 +190,17 @@ export class Pagination {
     }
 
     if (hasOverflowEnd) {
-      pageButtons.push(
-        <ix-index-button
-          variant="Secondary"
-          onClick={() => {
-            if (hasOverflowStart) {
-              this.selectPage(
-                this.selectedPage + Math.max(0, 2 * pageCount + 1)
-              );
-            } else {
-              this.selectPage(this.maxCountPages - 1);
-            }
-          }}
-        >
-          ...
-        </ix-index-button>
-      );
+      const baseButtonProps = {
+        ...this.baseButtonConfig,
+        onClick: () => {
+          if (hasOverflowStart) {
+            this.selectPage(this.selectedPage + Math.max(0, 2 * pageCount + 1));
+          } else {
+            this.selectPage(this.maxCountPages - 1);
+          }
+        },
+      };
+      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
       pageButtons.push(this.getPageButton(this.count - 1));
     }
 
@@ -212,15 +213,15 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === 0}
           ghost
-          icon="chevron-left-small"
+          icon={'chevron-left-small'}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
         {this.advanced ? (
           <div class="advanced-pagination">
-            {this.i18nPage}
+            <ix-typography variant="default">{this.i18nPage}</ix-typography>
             <input
-              class="form-control"
+              class="form-control page-selection"
               type="number"
               min="1"
               max={this.count}
@@ -231,7 +232,9 @@ export class Pagination {
               }}
             />
             <span class="total-count">
-              {this.i18nOf} {this.count}
+              <ix-typography variant="default">
+                {this.i18nOf} {this.count}
+              </ix-typography>
             </span>
           </div>
         ) : (
@@ -241,20 +244,23 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === this.count - 1}
           ghost
-          icon="chevron-right-small"
+          icon={'chevron-right-small'}
           onClick={() => this.increase()}
         ></ix-icon-button>
 
         {this.advanced && this.showItemCount ? (
           <span class="item-count">
-            {this.i18nItems}
+            <ix-typography variant="default">{this.i18nItems}</ix-typography>
             <ix-select
               hideListHeader
               i18nPlaceholder=""
               i18nSelectListHeader=""
-              selected-indices={this.itemCount}
-              onItemSelectionChange={(e) => {
-                const count = Number.parseInt(e.detail[0]);
+              value={`${this.itemCount}`}
+              onValueChange={(e) => {
+                const count = Number.parseInt(
+                  Array.isArray(e.detail) ? e.detail[0] : e.detail
+                );
+
                 this.itemCountChanged.emit(count);
               }}
             >

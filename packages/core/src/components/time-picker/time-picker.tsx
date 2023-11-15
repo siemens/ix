@@ -9,7 +9,6 @@
 
 import {
   Component,
-  Element,
   Event,
   EventEmitter,
   h,
@@ -26,11 +25,9 @@ export type TimePickerCorners = DateTimeCardCorners;
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',
-  scoped: true,
+  shadow: true,
 })
 export class TimePicker {
-  @Element() hostElement!: HTMLIxTimePickerElement;
-
   /**
    * Format of time string
    *
@@ -309,7 +306,7 @@ export class TimePicker {
       <Host>
         <ix-date-time-card individual={this.individual} corners={this.corners}>
           <div class="header" slot="header">
-            <div class="title">Time</div>
+            <ix-typography variant="default-title">Time</ix-typography>
           </div>
 
           <div class="clock">
@@ -318,8 +315,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { hours: true })}
                 ghost
-                icon="chevron-up"
-                variant="Primary"
+                icon={'chevron-up'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -343,8 +340,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { hours: true })}
                 ghost
-                icon="chevron-down"
-                variant="Primary"
+                icon={'chevron-down'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -360,8 +357,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { minutes: true })}
                 ghost
-                icon="chevron-up"
-                variant="Primary"
+                icon={'chevron-up'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -385,8 +382,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { minutes: true })}
                 ghost
-                icon="chevron-down"
-                variant="Primary"
+                icon={'chevron-down'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -402,8 +399,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('up', { seconds: true })}
                 ghost
-                icon="chevron-up"
-                variant="Primary"
+                icon={'chevron-up'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <input
@@ -427,8 +424,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.updateInput('down', { seconds: true })}
                 ghost
-                icon="chevron-down"
-                variant="Primary"
+                icon={'chevron-down'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
@@ -444,8 +441,8 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-up"
-                variant="Primary"
+                icon={'chevron-up'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
               <div class="time-reference">{this.timeReference}</div>
@@ -453,13 +450,12 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeReference()}
                 ghost
-                icon="chevron-down"
-                variant="Primary"
+                icon={'chevron-down'}
+                variant="primary"
                 class="arrows"
               ></ix-icon-button>
             </div>
           </div>
-
           <div class={{ button: true, hidden: hideIndividual }}>
             <ix-button
               onClick={() => this.done.emit(this._time.toFormat(this.format))}

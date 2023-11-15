@@ -9,4 +9,18 @@
 
 :host {
   display: block;
+  position: relative;
+
+  > ix-dropdown-item {
+    width: 100%;
+  }
+
+  .select-item-checked {
+    background-color: var(--theme-select-list-item--background--selected);
+    --ix-dropdown-item-checked-color: var(--theme-color-std-text);
+  }
+}
+
+:host(.d-none) {
+  display: none;
 }

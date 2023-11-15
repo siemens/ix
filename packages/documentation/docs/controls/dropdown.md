@@ -30,7 +30,7 @@ import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-ico
 ## Usage
 
 <Playground
-name="dropdown" height="18rem"
+name="dropdown" height="28rem"
 frameworks={{
   react: SourceReactDropdown,
   angular: SourceAngularDropdown,
@@ -89,7 +89,3 @@ frameworks={{
 ### Props
 
 <ItemProps />
-
-### Events
-
-<ItemEvents />

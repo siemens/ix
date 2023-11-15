@@ -7,25 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Method,
-  Prop,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
 
 @Component({
   tag: 'ix-toast-container',
-  scoped: true,
+  styleUrl: './styles/toast-container.scss',
+  shadow: true,
 })
 export class ToastContainer {
-  @Element() host!: HTMLIxToastContainerElement;
-
   /**
    */
   @Prop() containerId = 'toast-container';
@@ -82,8 +73,8 @@ export class ToastContainer {
 
     toast.toastTitle = config.title;
     toast.type = config.type;
-    toast.autoClose = config.autoClose;
-    toast.autoCloseDelay = config.autoCloseDelay;
+    toast.autoClose = config.autoClose ?? true;
+    toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
     toast.iconColor = config.iconColor;
     toast.addEventListener(
@@ -100,7 +91,9 @@ export class ToastContainer {
       toast.appendChild(config.message);
     }
 
-    this.hostContainer.appendChild(toast);
+    setTimeout(() => {
+      this.hostContainer.appendChild(toast);
+    });
 
     return {
       onClose,
@@ -111,6 +104,15 @@ export class ToastContainer {
   }
 
   render() {
-    return <Host></Host>;
+    return (
+      <Host
+        class={{
+          'toast-container--bottom-right': this.position === 'bottom-right',
+          'toast-container--top-right': this.position === 'top-right',
+        }}
+      >
+        {/* <slot></slot> */}
+      </Host>
+    );
   }
 }

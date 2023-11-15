@@ -8,7 +8,7 @@
  */
 
 import { Component, Element, h, Host } from '@stencil/core';
-import { closeModal, dismissModal } from '../modal/modal-utils';
+import { closeModal, dismissModal } from '../utils/modal';
 
 @Component({
   tag: 'ix-modal-example',
@@ -33,7 +33,7 @@ export class ModalExample {
             <ix-icon-button
               data-close-button
               ghost
-              icon="close"
+              icon={'close'}
               onClick={() => this.dismiss()}
             ></ix-icon-button>
           </div>

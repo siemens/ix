@@ -21,7 +21,7 @@ import anime from 'animejs';
 @Component({
   tag: 'ix-map-navigation-overlay',
   styleUrl: 'map-navigation-overlay.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MapNavigationOverlay {
   private static readonly slowTime = 500;
@@ -101,7 +101,7 @@ export class MapNavigationOverlay {
           <ix-icon-button
             class="overlay-close"
             ghost
-            icon="close"
+            icon={'close'}
             size="24"
             onClick={() => this.closeOverlay()}
           ></ix-icon-button>

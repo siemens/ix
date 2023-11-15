@@ -8,43 +8,57 @@
  */
 
 @import 'common-variables';
+@import 'mixins/shadow-dom/component';
 
-.card {
-  background-color: var(--theme-menu--background);
-  width: 100%;
-  box-shadow: none;
-  border: none;
-  border-radius: unset;
+:host {
+  @include ix-component;
 
-  &.individual {
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1),
-      0 4px 8px 0 rgba(0, 0, 0, 0.1),
-      0 12px 18px 0px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--theme-menu--border-color);
-    border-radius: 4px;
-  }
-
-  &.left {
-    border-radius: 4px 0 0 4px;
-    height: 100%;
-  }
-
-  &.right {
-    border-radius: 0 4px 4px 0;
-    height: 100%;
-  }
-
-  .header {
-    padding: $default-space;
-  }
-
-  .separator {
-    border: 1px solid var(--theme-datepicker-separator--background);
+  .card {
+    background-color: var(--theme-menu--background);
     width: 100%;
-  }
+    box-shadow: none;
+    border: none;
+    border-radius: unset;
+    display: flex;
+    flex-direction: column;
 
-  .content {
-    height: 100%;
-    padding: 0px $default-space $default-space $default-space;
+    &.standaloneAppearance {
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
+        0 12px 18px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    &.rounded {
+      border-radius: 4px;
+    }
+
+    &.left {
+      border-radius: 4px 0 0 4px;
+      height: 100%;
+    }
+
+    &.right {
+      border-radius: 0 4px 4px 0;
+      height: 100%;
+    }
+
+    .header {
+      padding: $default-space;
+      flex: 0 1 auto;
+    }
+
+    .separator {
+      border: 1px solid var(--theme-datepicker-separator--background);
+      width: 100%;
+      flex: 0 1 auto;
+    }
+
+    .content {
+      padding: 0 $medium-space $medium-space $medium-space;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 }

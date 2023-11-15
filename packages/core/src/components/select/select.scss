@@ -8,21 +8,28 @@
  */
 
 @import 'common-variables';
-@import 'mixins/fonts';
+@import 'legacy/mixins/fonts';
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
+@import 'mixins/shadow-dom/component';
 
 :host {
+  @include ix-component;
+
   display: inline-block;
   position: relative;
+  min-height: 2rem;
   height: auto;
   border-radius: var(--theme-input--border-radius);
+
+  .d-none {
+    display: none;
+  }
 
   .select {
     position: relative;
     display: flex;
     align-items: center;
-    height: auto;
     background-color: var(--theme-input--background);
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
@@ -38,13 +45,38 @@
     &:focus-within {
       background-color: var(--theme-input--background--focus);
       border-color: var(--theme-input--border-color--focus);
-      outline: 1px solid #119fff !important;
+      outline: 1px solid #119fff;
       outline-offset: var(--theme-input--focus--outline-offset);
     }
   }
 
   .select.readonly {
     box-shadow: none !important;
+    border: none;
+    border-radius: 0px;
+    border-bottom: var(--theme-input--border-thickness) solid
+      var(--theme-color-weak-bdr);
+
+    &,
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+    }
+
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      outline: none;
+    }
+
+    input {
+      color: var(--theme-color-weak-text);
+    }
+
+    input:focus,
+    input:focus-visible {
+      outline: none;
+    }
   }
 
   .hidden {
@@ -63,6 +95,7 @@
     position: relative;
     align-items: flex-start;
     width: 100%;
+    height: 100%;
 
     .chips {
       position: relative;
@@ -103,39 +136,8 @@
     }
   }
 
-  .chevron-down-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    min-width: 2rem;
-    height: 2rem;
-
-    @include hover {
-      color: var(--theme-color-dynamic--hover);
-    }
-
-    @include active {
-      color: var(--theme-color-dynamic--hover);
-    }
-  }
-
-  .editable {
-    .chevron-down-container {
-      @include hover {
-        color: var(--theme-color-std-text);
-        background-color: var(
-          --theme-btn-invisible-secondary--background--hover
-        );
-      }
-
-      @include active {
-        color: var(--theme-color-std-text);
-        background-color: var(
-          --theme-btn-invisible-secondary--background--active
-        );
-      }
-    }
+  .dropdown-visible {
+    --ix-icon-button-color: var(--theme-color-dynamic--hover);
   }
 
   .add-item {
@@ -152,6 +154,6 @@
     align-items: center;
     height: $default-control-height;
     color: var(--theme-select-list-item-hint--color);
-    margin: 0 $small-space 0 $x-large-space;
+    margin: 0 $small-space 0 1rem;
   }
 }

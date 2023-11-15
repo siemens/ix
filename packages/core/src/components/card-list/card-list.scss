@@ -1,0 +1,141 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/shadow-dom/component';
+
+$CardList__Title__Height: 1.5rem;
+
+:host {
+  @include ix-component;
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0.5rem;
+
+  .CardList_Title {
+    display: flex;
+    position: relative;
+    height: $CardList__Title__Height;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .CardList__Title__Button {
+    margin-right: 1rem;
+    transition: var(--theme-default-time) transform ease-in-out;
+  }
+
+  .CardList__Title__Button__Collapsed {
+    transform: rotate(-90deg);
+  }
+
+  .CardList__Title__Show__All {
+    align-self: center;
+    margin-left: auto;
+    margin-right: 0px;
+  }
+
+  .CardList__Content {
+    display: flex;
+    position: relative;
+    height: calc(100% - #{$CardList__Title__Height});
+    width: 100%;
+    gap: 1.5rem;
+    transition: var(--theme-default-time) ease-in-out;
+    overflow: auto;
+  }
+
+  .CardList__Content__Collapsed {
+    min-height: 0px;
+    max-height: 0px;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .CardList__Style__Flexbox__Scroll {
+    flex-wrap: wrap;
+  }
+
+  .CardList__Style__Infinite__Scroll {
+    flex-wrap: nowrap;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .CardList__Overflow {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
+    mask-image: var(--ix-card-list-overflow, none);
+  }
+
+  .Show__All__Card {
+    display: flex;
+    position: relative;
+
+    align-self: flex-start;
+    justify-self: center;
+
+    max-width: 11.25rem;
+    min-width: 11.25rem;
+    width: 11.25rem;
+
+    min-height: 11.25rem;
+    max-height: 11.25rem;
+    height: 11.25rem;
+
+    --ix-card-border-color: var(--theme-color-primary);
+    color: var(--theme-color-primary);
+  }
+
+  .CardList__Style__Infinite__Scroll .Show__All__Card {
+    margin-top: 2.375rem;
+  }
+
+  .CardList__Style__Flexbox__Scroll .Show__All__Card {
+    margin-bottom: 2.375rem;
+  }
+
+  .Show__All__Card:hover {
+    background-color: var(--theme-color-ghost--hover);
+  }
+
+  .Show__All__Card:active {
+    background-color: var(--theme-color-ghost--active);
+  }
+
+  .Show__All__Card__Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Show__All__Card__Icon {
+    display: flex;
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Show__All__Card__Text {
+    margin-bottom: 0px;
+    margin-top: auto;
+  }
+}
