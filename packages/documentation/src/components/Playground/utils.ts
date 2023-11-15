@@ -84,6 +84,20 @@ async function openHtmlStackBlitz(
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
+  const sourcesMatches: RegExpMatchArray | null =
+    renderFirstExample.sourceCode.match(
+      /<!-- Sources -->([\s\S]*?)<!-- Sources -->/
+    );
+  const sources: string = sourcesMatches ? sourcesMatches[1].trim() : '';
+
+  const sourceCodeMatches: RegExpMatchArray | null =
+    renderFirstExample.sourceCode.match(
+      /<!-- Preview code -->([\s\S]*?)<!-- Preview code -->/
+    );
+  const sourceCode: string = sourceCodeMatches
+    ? sourceCodeMatches[1].trim()
+    : '';
+
   const files = {};
   additionalFiles.forEach((file) => {
     files[`src/${file.filename}`] = file.sourceCode;
@@ -100,10 +114,9 @@ async function openHtmlStackBlitz(
         'src/styles/grid.css': grid,
         'src/styles/modal-sizes.css': modal_sizes,
         'src/styles/theme-switcher.css': theme_switcher,
-        'src/index.html': index_html.replace(
-          '<!-- IX_INJECT_SOURCE_CODE -->',
-          renderFirstExample.sourceCode
-        ),
+        'src/index.html': index_html
+          .replace('<!-- IX_INJECT_SOURCES -->', sources)
+          .replace('<!-- IX_INJECT_SOURCE_CODE -->', sourceCode),
         'src/main.js': main_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
