@@ -60,27 +60,15 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [
-    placeholder_logo,
-    grid,
-    modal_sizes,
-    theme_switcher,
-    index_html,
-    main_js,
-    package_json,
-    vite_config_ts,
-    license,
-  ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/html/src/components/placeholder-logo.js`,
-    `${baseUrl}code-runtime/html/src/styles/grid.css`,
-    `${baseUrl}code-runtime/html/src/styles/modal-sizes.css`,
-    `${baseUrl}code-runtime/html/src/styles/theme-switcher.css`,
-    `${baseUrl}code-runtime/html/src/index.html`,
-    `${baseUrl}code-runtime/html/src/main.js`,
-    `${baseUrl}code-runtime/html/package.json`,
-    `${baseUrl}code-runtime/html/vite.config.ts`,
-    `${baseUrl}code-runtime/html/LICENSE.md`,
-  ]);
+  const [styles, index_html, main_js, package_json, vite_config_ts, license] =
+    await loadSourceCodeFromStatic([
+      `${baseUrl}code-runtime/html/src/styles/styles.css`,
+      `${baseUrl}code-runtime/html/src/index.html`,
+      `${baseUrl}code-runtime/html/src/main.js`,
+      `${baseUrl}code-runtime/html/package.json`,
+      `${baseUrl}code-runtime/html/vite.config.ts`,
+      `${baseUrl}code-runtime/html/LICENSE.md`,
+    ]);
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
@@ -110,10 +98,7 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
-        'src/components/placeholder-logo.js': placeholder_logo,
-        'src/styles/grid.css': grid,
-        'src/styles/modal-sizes.css': modal_sizes,
-        'src/styles/theme-switcher.css': theme_switcher,
+        'src/styles/styles.css': styles,
         'src/index.html': index_html
           .replace('<!-- IX_INJECT_SOURCES -->', sources)
           .replace('<!-- IX_INJECT_SOURCE_CODE -->', sourceCode),
@@ -139,10 +124,7 @@ async function openAngularStackBlitz(
     app_component_html,
     app_component_ts,
     app_module_ts,
-    placeholder_logo,
-    grid,
-    modal_sizes,
-    theme_switcher,
+    styles,
     index_html,
     main_ts,
     styles_css,
@@ -156,10 +138,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
-    `${baseUrl}code-runtime/angular/src/styles/placeholder-logo.css`,
-    `${baseUrl}code-runtime/angular/src/styles/grid.css`,
-    `${baseUrl}code-runtime/angular/src/styles/modal-sizes.css`,
-    `${baseUrl}code-runtime/angular/src/styles/theme-switcher.css`,
+    `${baseUrl}code-runtime/angular/src/styles/styles.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.css`,
@@ -217,10 +196,7 @@ export const DECLARE = [
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
-        'src/styles/placeholder-logo.css': placeholder_logo,
-        'src/styles/grid.css': grid,
-        'src/styles/modal-sizes.css': modal_sizes,
-        'src/styles/theme-switcher.css': theme_switcher,
+        'src/styles/styles.css': styles,
         'src/index.html': index_html,
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
@@ -243,10 +219,7 @@ async function openReactStackBlitz(
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
-    placeholder_logo,
-    grid,
-    modal_sizes,
-    theme_switcher,
+    styles,
     app_tsx,
     index_html,
     index_tsx,
@@ -254,10 +227,7 @@ async function openReactStackBlitz(
     tsconfig_json,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/react/src/styles/placeholder-logo.css`,
-    `${baseUrl}code-runtime/react/src/styles/grid.css`,
-    `${baseUrl}code-runtime/react/src/styles/modal-sizes.css`,
-    `${baseUrl}code-runtime/react/src/styles/theme-switcher.css`,
+    `${baseUrl}code-runtime/react/src/styles/styles.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
     `${baseUrl}code-runtime/react/public/index.html`,
     `${baseUrl}code-runtime/react/src/index.tsx`,
@@ -293,10 +263,7 @@ async function openReactStackBlitz(
       description: 'iX react playground',
       files: {
         ...files,
-        'src/styles/placeholder-logo.css': placeholder_logo,
-        'src/styles/grid.css': grid,
-        'src/styles/modal-sizes.css': modal_sizes,
-        'src/styles/theme-switcher.css': theme_switcher,
+        'src/styles/styles.css': styles,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'public/index.html': index_html,
@@ -319,10 +286,7 @@ async function openVueStackBlitz(
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
-    placeholder_logo,
-    grid,
-    modal_sizes,
-    theme_switcher,
+    styles,
     app_vue,
     main_ts,
     env_d_ts,
@@ -332,10 +296,7 @@ async function openVueStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/vue/src/styles/placeholder-logo.css`,
-    `${baseUrl}code-runtime/vue/src/styles/grid.css`,
-    `${baseUrl}code-runtime/vue/src/styles/modal-sizes.css`,
-    `${baseUrl}code-runtime/vue/src/styles/theme-switcher.css`,
+    `${baseUrl}code-runtime/vue/src/styles/styles.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
     `${baseUrl}code-runtime/vue/src/main.ts`,
     `${baseUrl}code-runtime/vue/env.d.ts`,
@@ -370,10 +331,7 @@ async function openVueStackBlitz(
       description: 'iX vue playground',
       files: {
         ...files,
-        'src/styles/placeholder-logo.css': placeholder_logo,
-        'src/styles/grid.css': grid,
-        'src/styles/modal-sizes.css': modal_sizes,
-        'src/styles/theme-switcher.css': theme_switcher,
+        'src/styles/styles.css': styles,
         'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
         'index.html': index_html,

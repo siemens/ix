@@ -11,9 +11,4 @@
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
-@import './styles/placeholder-logo.css';
-
-body {
-  height: 100vh;
-  width: 100vw;
-}
+@import './styles/styles.css';
