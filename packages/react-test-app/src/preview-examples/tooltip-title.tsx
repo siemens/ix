@@ -13,7 +13,7 @@ import React from 'react';
 export default () => {
   return (
     <div style={{ padding: '4rem' }}>
-      <IxButton data-tooltip="myTooltip">Hover or focus me</IxButton>
+      <IxButton data-tooltip="myTooltip">Hover me</IxButton>
       <IxTooltip for="[data-tooltip='myTooltip']" titleContent="My Tooltip">
         <IxIcon slot="title-icon" name="rocket" />
         Some example content

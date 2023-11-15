@@ -13,7 +13,7 @@ import { IxButton, IxTooltip } from '@siemens/ix-vue';
 
 <template>
   <div :style="{ padding: '4rem' }">
-    <IxButton data-tooltip="myTooltip">Hover or focus me</IxButton>
+    <IxButton data-tooltip="myTooltip">Hover me</IxButton>
     <IxTooltip for="[data-tooltip='myTooltip']">
       Some example content
     </IxTooltip>
