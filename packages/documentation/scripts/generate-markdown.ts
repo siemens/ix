@@ -170,14 +170,36 @@ const tasks = new Listr<Context>(
           );
           let formattedSource = rawSource;
 
-          if (rawSource.includes('<!-- Preview code -->')) {
-            const [__, source] = rawSource.split('<!-- Preview code -->');
-            formattedSource = source
-              .split('\n')
-              .map((line) => line.replace(/[ ]{4}/, ''))
-              .join('\n')
-              .trimEnd();
-          }
+          const sourcesMatches: RegExpMatchArray | null = formattedSource.match(
+            /<!-- Sources -->([\s\S]*?)<!-- Sources -->/
+          );
+          const sources: string = sourcesMatches
+            ? sourcesMatches[1]
+                .trim()
+                .split('\n')
+                .map((line) => line.replace(/[ ]{4}/, ''))
+                .join('\n')
+                .trimEnd()
+            : '';
+
+          const sourceCodeMatches: RegExpMatchArray | null =
+            formattedSource.match(
+              /<!-- Preview code -->([\s\S]*?)<!-- Preview code -->/
+            );
+          const sourceCode: string = sourceCodeMatches
+            ? sourceCodeMatches[1]
+                .trim()
+                .split('\n')
+                .map((line) => line.replace(/[ ]{4}/, ''))
+                .join('\n')
+                .trimEnd()
+            : '';
+
+          formattedSource = `${
+            sources
+              ? `\n<!-- Include in Header -->\n${sources}\n<!-- Include in Header -->\n\n`
+              : '\n'
+          }${sourceCode}`;
 
           const fileName = path.parse(example);
 
