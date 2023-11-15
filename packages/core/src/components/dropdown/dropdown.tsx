@@ -155,6 +155,7 @@ export class Dropdown {
       this.hostElement.parentNode,
       'ix-dropdown'
     );
+
     if (parentDropdown) {
       for (let entry of dropdownDisposer.values()) {
         if (entry.element === parentDropdown) {
@@ -371,11 +372,17 @@ export class Dropdown {
   }
 
   private isAnchorSubmenu() {
-    const anchor = this.anchorElement?.closest('ix-dropdown-item');
+    let anchor = this.anchorElement?.closest('ix-dropdown-item');
+
     if (!anchor) {
+      if (this.anchorElement && this.anchorElement.shadowRoot) {
+        anchor =
+          this.anchorElement.shadowRoot.querySelector('ix-dropdown-item');
+
+        return !!anchor;
+      }
       return false;
     }
-
     return true;
   }
 
@@ -496,11 +503,16 @@ export class Dropdown {
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
 
-    if (
-      this.isAnchorSubmenu() &&
-      this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
-      (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
+    if (this.isAnchorSubmenu()) {
+      const shadowDropDownComponent =
+        this.anchorElement.shadowRoot.querySelector('ix-dropdown-item');
+
+      if (this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM') {
+        (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
+      } else if (shadowDropDownComponent && this.anchorElement.id) {
+        shadowDropDownComponent.isSubMenu = true;
+      }
+      this.hostElement.setAttribute(this.trigger.toString(), '');
     }
   }
 

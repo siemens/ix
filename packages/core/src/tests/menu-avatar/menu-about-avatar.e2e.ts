@@ -54,4 +54,12 @@ regressionTest.describe('menu-avatar', () => {
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('submenu', async ({ page }) => {
+    await page.goto('menu-avatar/submenu');
+    const menu = page.locator('ix-menu');
+    await menu.locator('ix-menu-avatar').click();
+    await menu.locator('ix-menu-avatar-item').first().click();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

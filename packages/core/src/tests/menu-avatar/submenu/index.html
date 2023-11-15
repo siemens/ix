@@ -1,0 +1,43 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-avatar top="Name" initials="PS">
+          <ix-dropdown-item id="dd-item" icon="globe" label="DropDownItem"></ix-dropdown-item>
+          <ix-menu-avatar-item id="ma-item" icon="globe" label="MenuAvatarItem"></ix-menu-avatar-item>
+        </ix-menu-avatar>
+      </ix-menu>
+    </ix-basic-navigation>
+
+    <ix-dropdown trigger="dd-item">
+      <ix-dropdown-item label="1"></ix-dropdown-item>
+      <ix-dropdown-item label="2"></ix-dropdown-item>
+    </ix-dropdown>
+
+    <ix-dropdown trigger="ma-item">
+      <ix-dropdown-item label="1"></ix-dropdown-item>
+      <ix-dropdown-item label="2"></ix-dropdown-item>
+    </ix-dropdown>
+    <script>
+      document.querySelector('ix-basic-navigation').breakpoints = [
+        'small',
+        'medium',
+      ];
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

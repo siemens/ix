@@ -83,6 +83,18 @@ export class MenuAvatar {
     this.showContextMenu = elements.length !== 0;
   }
 
+  componentWillRender() {
+    const elementsWithIds = this.hostElement.querySelectorAll('[id]');
+    const elementIds = Array.from(elementsWithIds).map((e) => e.id);
+
+    for (let i of elementIds) {
+      const element = document.querySelector('[' + i.toString() + ']');
+      if (element) {
+        (element as HTMLElement).style.zIndex = `var(--theme-z-index-sticky)`;
+      }
+    }
+  }
+
   render() {
     return (
       <Host slot="ix-menu-avatar">
