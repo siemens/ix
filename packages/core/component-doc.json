@@ -5492,6 +5492,27 @@
       },
       "props": [
         {
+          "name": "a11yLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "a11y-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "color",
           "type": "string",
           "mutable": false,
@@ -5548,27 +5569,6 @@
           "reflectToAttr": false,
           "docs": "Icon name",
           "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "ixAriaLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "ix-aria-label",
-          "reflectToAttr": false,
-          "docs": "Accessibility label for the icon button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.7.0"
-            }
-          ],
           "values": [
             {
               "type": "string"

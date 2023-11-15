@@ -25,9 +25,11 @@ export class IconButton {
 
   /**
    * Accessibility label for the icon button
-   * @since 1.7.0
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 2.1.0
    */
-  @Prop() ixAriaLabel: string;
+  @Prop({ attribute: 'a11y-label' }) a11yLabel: string;
 
   /**
    * Variant of button
@@ -117,8 +119,8 @@ export class IconButton {
   render() {
     const baseButtonProps: BaseButtonProps = {
       ariaAttributes: {
-        'aria-label': this.ixAriaLabel
-          ? this.ixAriaLabel
+        'aria-label': this.a11yLabel
+          ? this.a11yLabel
           : getFallbackLabelFromIconName(this.icon),
       },
       variant: this.variant,
