@@ -162,6 +162,7 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
 
 @NgModule({
   declarations: [
+    AppComponent,
     AboutAndLegal,
     ActionCard,
     Aggrid,
