@@ -1,11 +1,7 @@
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+body {
+  width: 100vw;
+  height: 100vh;
+}
 
 .placeholder-logo {
   float: left;
@@ -17,4 +13,16 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+
+.dropdown-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 20rem;
+}
+
+.dropdown-button > ix-dropdown-button {
+  margin-bottom: 0.5rem;
 }
