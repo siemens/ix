@@ -66,6 +66,8 @@ describe('icon-button', () => {
       `,
     });
 
+    await page.waitForChanges();
+
     const btn = page.doc
       .querySelector('ix-icon-button')
       .shadowRoot.querySelector('button');
@@ -75,7 +77,6 @@ describe('icon-button', () => {
 
     expect(btn).toBeDefined();
     expect(shadowButton).toBeNull();
-    await page.waitForChanges();
   });
 
   describe('a11y', () => {

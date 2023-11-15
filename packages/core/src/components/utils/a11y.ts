@@ -52,6 +52,7 @@ export const getFallbackLabelFromIconName = (iconName: string) => {
 
   return label;
 };
+
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
   ignoreAttributes: A11yAttributeName[] = []
