@@ -11,25 +11,37 @@ LICENSE file in the root directory of this source tree.
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
+<style>
+.example {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 20rem;
+}
+
+.example > ix-dropdown-button {
+  margin-bottom: 0.5rem;
+}
+</style>
+
 <template>
-  <IxDropdownButton label="Dropdown" icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
-  <IxDropdownButton label="Dropdown" outline icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
-  <IxDropdownButton label="Dropdown" ghost icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
-  <IxDropdownButton
-    label="Dropdown"
-    disabled
-    icon="checkboxes"
-  >
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
+  <div class="example">
+    <IxDropdownButton label="Dropdown" icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="Dropdown" outline icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="Dropdown" ghost icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="Dropdown" disabled icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+  </div>
 </template>
