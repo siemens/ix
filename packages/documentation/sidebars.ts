@@ -36,6 +36,10 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
+          id: 'roadmap',
+        },
+        {
+          type: 'doc',
           id: 'installation/CHANGELOG',
         },
       ],

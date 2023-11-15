@@ -45,6 +45,7 @@
     "@stencil/core": "^3.2.1",
     "@types/luxon": "^3.3.0",
     "animejs": "~3.2.1",
+    "dayjs": "^1.11.9",
     "hyperlist": "^1.0.0",
     "luxon": "^3.3.0"
   },

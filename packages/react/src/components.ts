@@ -22,6 +22,7 @@ import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/compo
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -110,6 +111,7 @@ export const IxCategoryFilter = /*@__PURE__*/createReactComponent<JSX.IxCategory
 export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipElement>('ix-chip', undefined, undefined, defineIxChip);
 export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColElement>('ix-col', undefined, undefined, defineIxCol);
 export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHeader, HTMLIxContentHeaderElement>('ix-content-header', undefined, undefined, defineIxContentHeader);
+export const IxDateDropdown = /*@__PURE__*/createReactComponent<JSX.IxDateDropdown, HTMLIxDateDropdownElement>('ix-date-dropdown', undefined, undefined, defineIxDateDropdown);
 export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker', undefined, undefined, defineIxDatePicker);
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker', undefined, undefined, defineIxDatetimePicker);
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider', undefined, undefined, defineIxDivider);
