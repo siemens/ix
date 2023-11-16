@@ -11,8 +11,6 @@ LICENSE file in the root directory of this source tree.
 import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
-<style src="./styles/placeholder-logo.css"></style>
-
 <template>
   <IxMapNavigation
     applicationName="Test Application"

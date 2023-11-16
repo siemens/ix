@@ -17,8 +17,6 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
-<style src="./styles/placeholder-logo.css"></style>
-
 <template>
   <IxBasicNavigation>
     <div className="placeholder-logo" slot="logo"></div>

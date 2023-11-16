@@ -9,8 +9,6 @@
 
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
-// Example styling for documentation
-import './styles/placeholder-logo.css';
 
 export default () => {
   return (
