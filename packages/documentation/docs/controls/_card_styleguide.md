@@ -21,6 +21,11 @@ Push cards contain a notification value in addition to the icon, heading, and su
 
 ![Card types](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4953&mode=design&t=RDimbEsIHFIXIByo-1)
 
+## Customization
+We also offer a card container component that enables designers to display various types of content, such as images, charts or key data. Some small rules apply: Background images can stretch over the the complete size of the container, whereas the card content must maintain a default padding of at least <kbd>1rem</kbd>.
+
+![Card examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1329%3A26613&mode=design&t=sOZRNgWt7R52iLSF-1)
+
 ## Variants
 Cards are available in nine variants: Outline, filled, alarm, critical, warning, success, info, neutral and primary. Each variant emphasizes different aspects to guide the user's attention. These variants differ visually through the presence of an outline and a distinct container fill color, but they all follow the same interaction pattern. Typically we use the outline variant as the default choice as we find this creates a more balanced and subtle appearance for users.
 
