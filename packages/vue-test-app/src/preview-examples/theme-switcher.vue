@@ -16,7 +16,6 @@ import {
   IxRow,
   IxSelect
 } from '@siemens/ix-vue';
-import './styles/theme-switcher.css';
 import { onMounted } from 'vue';
 
 const themes = ['theme-classic-light', 'theme-classic-dark'];
@@ -63,7 +62,7 @@ const systemChange = (event: Event) => {
 </script>
 
 <template>
-  <IxLayoutGrid class="ThemeSwitcher">
+  <IxLayoutGrid>
     <IxRow>
       <IxCol :size="'2'">
         <span>Light/Dark</span>

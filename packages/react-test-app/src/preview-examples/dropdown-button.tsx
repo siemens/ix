@@ -11,53 +11,37 @@ import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
-  const dropdownButtonStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    position: 'relative',
-    maxWidth: '20rem',
-  };
-
-  const dropdownItemStyle = {
-    marginBottom: '0.5rem',
-  };
-
   return (
-    <>
+    <div className="dropdown-button">
       <IxDropdownButton
         label="Dropdown"
         icon="checkboxes"
-        style={dropdownButtonStyle}
       >
-        <IxDropdownItem label="Item 1" style={dropdownItemStyle}></IxDropdownItem>
-        <IxDropdownItem label="Item 2" style={dropdownItemStyle}></IxDropdownItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
         outline
         icon="checkboxes"
-        style={dropdownButtonStyle}
       >
-        <IxDropdownItem label="Item 1" style={dropdownItemStyle}></IxDropdownItem>
-        <IxDropdownItem label="Item 2" style={dropdownItemStyle}></IxDropdownItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
         ghost
         icon="checkboxes"
-        style={dropdownButtonStyle}
       >
-        <IxDropdownItem label="Item 1" style={dropdownItemStyle}></IxDropdownItem>
-        <IxDropdownItem label="Item 2" style={dropdownItemStyle}></IxDropdownItem>
+        <IxDropdownItem label="Item 1"></IxDropdownItem>
+        <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
       <IxDropdownButton
         label="Dropdown"
         disabled
         icon="checkboxes"
-        style={dropdownButtonStyle}
       ></IxDropdownButton>
-    </>
+    </div>
   );
 };
 

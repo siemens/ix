@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <div class="example">
+    <div class="chip">
       <ix-chip closable outline> Primary </ix-chip>
       <ix-chip icon="print">Primary with icon</ix-chip>
       <ix-chip icon="print" style="width: 10rem" closable> Primary </ix-chip>
@@ -37,20 +37,5 @@ import { Component } from '@angular/core';
       </ix-chip>
     </div>
   `,
-  styles: [
-    `
-      .example {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        max-width: 20rem;
-      }
-
-      .example > ix-chip {
-        margin-bottom: 0.5rem;
-      }
-    `,
-  ],
 })
 export default class Chip {}

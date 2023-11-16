@@ -11,22 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
-<style>
-.example {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-width: 20rem;
-}
-
-.example > ix-dropdown-button {
-  margin-bottom: 0.5rem;
-}
-</style>
-
 <template>
-  <div class="example">
+  <div class="dropdown-button">
     <IxDropdownButton label="Dropdown" icon="checkboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>

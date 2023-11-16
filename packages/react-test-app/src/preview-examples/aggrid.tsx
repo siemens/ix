@@ -9,9 +9,6 @@
 
 import { GridOptions } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import React from 'react';
 
 const gridOptions = {

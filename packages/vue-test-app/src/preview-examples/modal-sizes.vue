@@ -34,22 +34,14 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped src="./styles/modal-sizes.css"></style>
-
 <template>
-  <div class="modal-sizes-example">
+  <div class="modal-sizes">
     <IxButton v-for="size in sizes" :key="size" @click="open(size)">
       Show modal size {{ size }}
     </IxButton>
-
-    <IxModal
-      v-if="show && currentSize"
-      :size="currentSize"
-      @close="show = false"
-    >
-      <IxButton @click="closeModal">
-        Modal with size {{ currentSize }}
-      </IxButton>
-    </IxModal>
   </div>
+
+  <IxModal v-if="show && currentSize" :size="currentSize" @close="show = false">
+    <IxButton @click="closeModal"> Modal with size {{ currentSize }} </IxButton>
+  </IxModal>
 </template>

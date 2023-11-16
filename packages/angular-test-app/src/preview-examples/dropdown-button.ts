@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <div class="example">
+    <div class="dropdown-button">
       <ix-dropdown-button label="Dropdown" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
@@ -29,20 +29,5 @@ import { Component } from '@angular/core';
       </ix-dropdown-button>
     </div>
   `,
-  styles: [
-    `
-      .example {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        max-width: 20rem;
-      }
-
-      .example > ix-dropdown-button {
-        margin-bottom: 0.5rem;
-      }
-    `,
-  ],
 })
 export default class Dropdown {}

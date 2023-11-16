@@ -17,7 +17,6 @@ import {
   IxSelectItem,
 } from '@siemens/ix-react';
 import React, { ChangeEvent, useState } from 'react';
-import './styles/theme-switcher.css';
 
 export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
@@ -43,7 +42,7 @@ export default () => {
   };
 
   return (
-    <IxLayoutGrid className="ThemeSwitcher">
+    <IxLayoutGrid>
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>

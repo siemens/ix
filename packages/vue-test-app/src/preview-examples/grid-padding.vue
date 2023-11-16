@@ -11,12 +11,10 @@ LICENSE file in the root directory of this source tree.
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles/grid.css"></style>
-
 <template>
-  <div class="example-parent">
+  <div class="grid">
     <h4>Grid with margin</h4>
-    <IxLayoutGrid className='example-grid'>
+    <IxLayoutGrid>
       <IxRow>
         <IxCol><IxTypography format="display">1</IxTypography></IxCol>
         <IxCol><IxTypography format="display">2</IxTypography></IxCol>
@@ -34,7 +32,7 @@ import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
     </IxLayoutGrid>
 
     <h4>Grid without margin</h4>
-    <IxLayoutGrid noMargin className='example-grid'>
+    <IxLayoutGrid noMargin>
       <IxRow>
         <IxCol><IxTypography format="display">1</IxTypography></IxCol>
         <IxCol><IxTypography format="display">2</IxTypography></IxCol>

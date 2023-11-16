@@ -12,7 +12,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <>
+    <div className="dropdown-button">
       <IxDropdownButton label="" icon="checkboxes">
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
@@ -30,6 +30,6 @@ export default () => {
         disabled
         icon="checkboxes"
       ></IxDropdownButton>
-    </>
+    </div>
   );
 };

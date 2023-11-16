@@ -8,9 +8,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { GridOptions } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3';
 

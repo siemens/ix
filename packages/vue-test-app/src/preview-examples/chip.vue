@@ -11,32 +11,18 @@ LICENSE file in the root directory of this source tree.
 import { IxChip } from '@siemens/ix-vue';
 </script>
 
-<style>
-.example {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-width: 20rem;
-}
-
-.example > ix-chip {
-  margin-bottom: 0.5rem;
-}
-</style>
-
 <template>
-  <div className="example">
+  <div class="chip">
     <IxChip closable outline> Primary </IxChip>
     <IxChip icon="print">Primary with icon</IxChip>
-    <IxChip icon="print" style="width: 10rem" closable> Primary </IxChip>
+    <IxChip icon="print" closable> Primary </IxChip>
 
     <IxChip variant="critical" closable outline> Alarm </IxChip>
     <IxChip variant="alarm" icon="print"> Alarm with icon </IxChip>
-    <IxChip variant="alarm" icon="print" style="width: 10rem" closable>
+    <IxChip variant="alarm" icon="print" closable>
       Alarm
     </IxChip>
-    <IxChip variant="warning" icon="print" style="width: 10rem" closable>
+    <IxChip variant="warning" icon="print" closable>
       Alarm
     </IxChip>
     <IxChip
@@ -44,7 +30,6 @@ import { IxChip } from '@siemens/ix-vue';
       color="green"
       variant="custom"
       icon="print"
-      style="width: 10rem"
       closable
     >
       Custom

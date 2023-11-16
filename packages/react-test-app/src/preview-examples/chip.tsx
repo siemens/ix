@@ -8,41 +8,31 @@
  */
 
 import { IxChip } from '@siemens/ix-react';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 export default () => {
-  const example: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    position: 'relative',
-    maxWidth: '20rem',
-  };
-  const ixChip: CSSProperties = {
-    marginBottom: '0.5rem',
-  };
   return (
-    <div style={example}>
-      <IxChip style={ixChip} closable outline>
+    <div className='chip'>
+      <IxChip closable outline>
         Primary
       </IxChip>
-      <IxChip icon="print" style={ixChip}>
+      <IxChip icon="print">
         Primary with icon
       </IxChip>
-      <IxChip icon="print" style={{ width: '10rem', ...ixChip }} closable>
+      <IxChip icon="print" closable>
         Primary
       </IxChip>
 
-      <IxChip variant="critical" style={ixChip} closable outline>
+      <IxChip variant="critical" closable outline>
         Alarm
       </IxChip>
-      <IxChip variant="alarm" icon="print" style={ixChip}>
+      <IxChip variant="alarm" icon="print">
         Alarm with icon
       </IxChip>
       <IxChip
         variant="alarm"
         icon="print"
-        style={{ width: '10rem', ...ixChip }}
+
         closable
       >
         Alarm
@@ -50,7 +40,7 @@ export default () => {
       <IxChip
         variant="warning"
         icon="print"
-        style={{ width: '10rem', ...ixChip }}
+
         closable
       >
         Alarm
@@ -60,7 +50,7 @@ export default () => {
         color="green"
         variant="custom"
         icon="print"
-        style={{ width: '10rem', ...ixChip }}
+
         closable
       >
         Custom

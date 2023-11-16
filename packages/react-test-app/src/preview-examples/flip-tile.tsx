@@ -13,7 +13,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <div className="example">
+    <div className="flip-tile">
       <IxFlipTile>
         <div slot="header">Flip header</div>
 

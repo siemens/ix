@@ -13,7 +13,7 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <div className="example">
+  <div class="flip-tile">
     <IxFlipTile>
       <div slot="header">Flip header</div>
 

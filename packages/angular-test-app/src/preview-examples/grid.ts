@@ -12,6 +12,5 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './grid.html',
-  styleUrls: ['../styles/grid.css'],
 })
 export default class Grid {}

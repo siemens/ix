@@ -12,7 +12,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <div className="example">
+    <div className="kpi">
       <IxKpi label="Motor speed" value="Nominal"></IxKpi>
       <IxKpi label="Motor speed" value="{122.6}" unit="rpm"></IxKpi>
       <IxKpi label="Motor speed" value="{122.6}" state="alarm"></IxKpi>

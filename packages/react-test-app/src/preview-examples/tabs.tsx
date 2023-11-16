@@ -16,13 +16,7 @@ export default () => {
   const changeTab = (tabId: number) => setSelectedTab(tabId);
 
   return (
-    <div
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-      }}
-    >
+    <div className='tabs'>
       <IxTabs selected={selectedTab}>
         <IxTabItem onClick={() => changeTab(0)}>Tab 1</IxTabItem>
         <IxTabItem onClick={() => changeTab(1)}>Tab 2</IxTabItem>

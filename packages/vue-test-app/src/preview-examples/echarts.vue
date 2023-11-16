@@ -139,6 +139,6 @@ const options = {
   <VueECharts
     :option="options"
     :theme="theme"
-    style="display: block; position: relative; width: 100%; height: 40rem"
+    class="echarts"
   ></VueECharts>
 </template>
