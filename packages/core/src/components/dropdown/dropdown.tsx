@@ -134,49 +134,6 @@ export class Dropdown {
     this.openBind = this.open.bind(this);
   }
 
-  closestPassShadow(node: Node, selector: string) {
-    if (!node) {
-      return null;
-    }
-
-    if (node instanceof ShadowRoot) {
-      return this.closestPassShadow(node.host, selector);
-    }
-
-    if (node instanceof HTMLElement) {
-      if (node.matches(selector)) {
-        return node;
-      } else {
-        return this.closestPassShadow(node.parentNode, selector);
-      }
-    }
-
-    return this.closestPassShadow(node.parentNode, selector);
-  }
-
-  closestHasAttributePassShadow(node: Node, attributeName: string) {
-    if (!node) {
-      return null;
-    }
-
-    if (node instanceof ShadowRoot) {
-      return this.closestHasAttributePassShadow(node.host, attributeName);
-    }
-
-    if (node instanceof HTMLElement) {
-      if (node.hasAttribute(attributeName)) {
-        return node;
-      } else {
-        return this.closestHasAttributePassShadow(
-          node.parentNode,
-          attributeName
-        );
-      }
-    }
-
-    return this.closestHasAttributePassShadow(node.parentNode, attributeName);
-  }
-
   get dropdownItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-dropdown-item'));
   }
