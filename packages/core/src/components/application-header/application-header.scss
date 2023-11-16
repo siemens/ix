@@ -6,8 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+ @import 'mixins/shadow-dom/component';
+ @import 'mixins/break-points';
 
 :host {
+  @include ix-component;
+
   display: flex;
   align-items: center;
   position: relative;
@@ -25,7 +29,12 @@
   z-index: var(--theme-z-index-fixed);
 
   .name {
-    margin-left: 2.5rem;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    max-width: 50%;
+    margin-left: 1.5rem;
     margin-right: 2.5rem;
     color: var(--theme-app-header--color);
   }
@@ -41,8 +50,33 @@
   }
 
   .content {
+    display: flex;
+    position: relative;
+    flex-direction: row;
     margin-left: auto;
     margin-right: 0px;
+  }
+
+  .dropdown {
+    overflow: visible;
+  }
+
+  .dropdown-content {
+    padding: 1rem;
+  }
+
+  ix-icon-button.hidden {
+    visibility: collapse;
+  }
+
+  @include media-breakpoint-match('sm') {
+    .logo {
+      display: none;
+    }
+  }
+
+  ::slotted(ix-avatar) {
+    margin-left: 1rem;
   }
 }
 

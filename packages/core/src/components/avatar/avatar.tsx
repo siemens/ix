@@ -40,7 +40,15 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+} from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { closestElement } from '../utils/shadow-dom';
 
@@ -74,6 +82,14 @@ export class Avatar {
     this.isClosestApplicationHeader = closest !== null;
   }
 
+  private resolveAvatarTrigger() {
+    return new Promise<HTMLElement>((resolve) => {
+      readTask(() =>
+        resolve(this.hostElement.shadowRoot.querySelector('button'))
+      );
+    });
+  }
+
   render() {
     if (this.isClosestApplicationHeader) {
       return (
@@ -98,6 +114,9 @@ export class Avatar {
               )}
             </li>
           </BaseButton>
+          <ix-dropdown trigger={this.resolveAvatarTrigger()}>
+            <slot></slot>
+          </ix-dropdown>
         </Host>
       );
     }

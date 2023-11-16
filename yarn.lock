@@ -4856,28 +4856,27 @@
     eslint-utils "^3.0.0"
     tsutils "3.0.0"
 
-"@stencil-community/postcss@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@stencil-community/postcss/-/postcss-2.1.0.tgz#3e0316c1802ed5d85ffe1939ffcfa760d06bbf48"
-  integrity sha512-M09F6BSfYe/Pu6TraSbtqyUY3WBlfWiWFSvTIfwJx0gCV+YOvU+0TTmnxEZIkEVeF7kMwLe8BoOIzyl4MyvnLg==
+"@stencil-community/postcss@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@stencil-community/postcss/-/postcss-2.2.0.tgz#58b0bd993d26a6d9809b070310d5091e4a35d375"
+  integrity sha512-PuPdjqgF6HdvSLwS6fpLf1TRzd3bd6zqpsICCUA0u9sxPnwrsIpx1xYyA/K9hSWrmyUg0WhHPvkX9k26N5DCnw==
   dependencies:
-    autoprefixer "^10.3.6"
-    postcss "~8.3.8"
+    postcss "~8.4.27"
 
-"@stencil/angular-output-target@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/@stencil/angular-output-target/-/angular-output-target-0.5.0.tgz#5fd70c80ed12f9f67c2ceb2d03267602c76dadef"
-  integrity sha512-U2I6dZdL8hvnogafG9IwtYRaAns5fQMacjee/3WNMRMYagrpz7R6cDdX4O0U8q6jks1ej91GchgZsQOVE9UcKg==
+"@stencil/angular-output-target@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@stencil/angular-output-target/-/angular-output-target-0.8.3.tgz#1f65b1476e64aced531a0d46d5c63bf5f2cc4521"
+  integrity sha512-I/QO1sEx09WWUaNlA30EBhlXYftOSfSBTwYBwC65qlpHDIlD5WU3EAtKhU5IphfwhxnD63kvOoU1YvTUXFHNng==
 
 "@stencil/core@3.2.1":
   version "3.2.1"
   resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
   integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
 
-"@stencil/core@^3.2.1":
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.2.tgz#cf3b4ffb7992d0197aa1987dbc5236c4eb98cb6b"
-  integrity sha512-wXb9cVWL0T3cTwYLveekdTFCRGx6+9hpVDEXna+N8K8OPoW6xtFAHRLv+LjOM7k59PkA8MG3IinAfV7Y+xa0Hw==
+"@stencil/core@^4.7.2":
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.7.2.tgz#e83db6a79b2e30d56848c860314124588b02e178"
+  integrity sha512-sPPDYrXiTbfeUF5CCyfqysXK/yfTHC4xYR1+nHzGkS2vhRSBOLp0oPuB+xkJLKA+K2ZqDJUxpOnDxy1CLWwBXA==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
@@ -4887,20 +4886,20 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
-"@stencil/react-output-target@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@stencil/react-output-target/-/react-output-target-0.4.0.tgz#cb237541149a254898495e25d8c9e01f161c5e11"
-  integrity sha512-X7XW6aHSU7ZypkFj4wX/XL7ROj2GXcdTL+Emo1mKNg5laBcuTVtt8zPR4ERG/grq8ec8wav+FxBuSlQ3cH0qcg==
+"@stencil/react-output-target@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@stencil/react-output-target/-/react-output-target-0.5.3.tgz#2a7186b7ba6c8721f92f4200e414b70854030d79"
+  integrity sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==
 
-"@stencil/sass@~3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@stencil/sass/-/sass-3.0.0.tgz#3f13a9cb79cbe31b42ec5b6577731fe4b944c69d"
-  integrity sha512-P9NuT5G2ncy+BkQ0fAS+KDuwN+BlDr17yEAHCaEejGZDXK4hhhsxjm0ea8KCwEdDbzui4GDF6DS3VNDtUB6Hzg==
+"@stencil/sass@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.7.tgz#7f8225cd0122b3c517c0f9007ed0cd98cf82ea3d"
+  integrity sha512-HcBjrh2CJ6aJnkOrBNSVyf1+x3FnUneYFk44rcx/jDK6Lx7R4w0dXMEsIR5MXqtROYWonZt7WtR8wsM1vcD+6w==
 
-"@stencil/vue-output-target@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/@stencil/vue-output-target/-/vue-output-target-0.7.0.tgz#664b4942186ec7258a3202168669b27b2b4bf424"
-  integrity sha512-iPEgnT2z6HsfWVRWVZk5C1AaMZnbJjB+c/hvtWoO7B3aErTJB8Up6oFk/t3IRsr12aNuZ4fUra0FEDx9WweH0Q==
+"@stencil/vue-output-target@^0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@stencil/vue-output-target/-/vue-output-target-0.8.7.tgz#a65d7e2027bbbd34566a8bfcbeed424c3e1e1a48"
+  integrity sha512-hgOzbKKgLdCFrhLpmaw/qQrPSXl6hZ09K+j3p/iWh3esq6sxnwuW1PJKLniwkT4Z/JlDIk6stGPGQYi+WE5I2Q==
 
 "@storybook/addon-actions@7.5.3":
   version "7.5.3"
@@ -18507,7 +18506,7 @@ postcss@^8.4.20:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@^8.4.27:
+postcss@^8.4.27, postcss@~8.4.27:
   version "8.4.31"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.31.tgz#92b451050a9f914da6755af352bdc0192508656d"
   integrity sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==

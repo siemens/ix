@@ -7,7 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+} from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
@@ -94,6 +103,18 @@ export class ApplicationHeader {
     menuController.toggle();
   }
 
+  private resolveContextMenuButton() {
+    return new Promise<HTMLElement>((resolve) =>
+      readTask(() =>
+        resolve(
+          this.hostElement.shadowRoot.querySelector(
+            '[data-context-menu]'
+          ) as HTMLElement
+        )
+      )
+    );
+  }
+
   render() {
     return (
       <Host
@@ -111,7 +132,25 @@ export class ApplicationHeader {
         </div>
         <div class="name">{this.name}</div>
         <div class="content">
-          <slot></slot>
+          {this.breakpoint === 'sm' ? (
+            <Fragment>
+              <ix-icon-button
+                data-context-menu
+                icon="more-menu"
+                ghost
+              ></ix-icon-button>
+              <ix-dropdown
+                class="dropdown"
+                trigger={this.resolveContextMenuButton()}
+              >
+                <div class="dropdown-content">
+                  <slot></slot>
+                </div>
+              </ix-dropdown>
+            </Fragment>
+          ) : (
+            <slot></slot>
+          )}
           <slot name="ix-application-header-avatar"></slot>
         </div>
       </Host>
