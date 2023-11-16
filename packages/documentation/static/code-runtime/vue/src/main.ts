@@ -11,7 +11,7 @@ import { ixPlugin } from '@siemens/ix-vue';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import { createApp } from 'vue';
 import App from './App.vue';
-import './styles/global.css';
+import './styles/styles.css';
 
 const app = createApp(App);
 
