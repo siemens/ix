@@ -7,10 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import './styles/styles.css';
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import './styles/styles.css';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 

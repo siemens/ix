@@ -7,8 +7,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import './styles/styles.css';
