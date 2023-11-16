@@ -60,14 +60,6 @@ ix-blind {
 }
 
 
-.echarts {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 40rem
-}
-
-
 .flip-tile {
   display: flex;
   flex-direction: row;

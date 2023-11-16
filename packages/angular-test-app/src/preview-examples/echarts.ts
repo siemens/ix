@@ -15,7 +15,12 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   template: `
-    <div echarts [options]="options" class="echarts" [theme]="theme"></div>
+    <div
+      echarts
+      [options]="options"
+      [theme]="theme"
+      style="display: block; position: relative; width: 100%; height: 40rem"
+    ></div>
   `,
 })
 export default class BarChartComponent implements OnInit {

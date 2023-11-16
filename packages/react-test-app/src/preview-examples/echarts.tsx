@@ -136,9 +136,9 @@ export default function BarChart() {
 
   return (
     <ReactEcharts
-      className='echarts'
       option={options}
       theme={theme}
+      style={{ display: "block", position: "relative", width: "100%", height: "40rem" }}
     />
   );
 }
