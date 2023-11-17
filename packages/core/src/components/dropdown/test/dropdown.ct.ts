@@ -99,3 +99,28 @@ function expectToBeVisible(elements: Locator[], index: number) {
     })
   );
 }
+
+test.describe('nested dropdown tests', () => {
+  const button1Text = 'Triggerbutton1';
+  const button2Text = 'Triggerbutton2';
+
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+      <button id="trigger1">${button1Text}</button>
+      <ix-dropdown trigger="trigger1">
+        <button id="trigger2">${button2Text}</button>
+        <ix-dropdown trigger="trigger2">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      </ix-dropdown>
+    `);
+  });
+
+  test('can open nested dropdown', async ({ page }) => {
+    await page.getByText(button1Text).click();
+    await page.getByText(button2Text).click();
+    const nestedDropdownItem = page.locator('ix-dropdown-item');
+
+    await expect(nestedDropdownItem).toHaveClass(/hydrated/);
+  });
+});

@@ -12,3 +12,4 @@ runs:
           packages/**/www
           packages/**/loader
           packages/**/build
+          packages/**/components

@@ -39,3 +39,11 @@ test('replace icon with spinner while loading', async ({ mount, page }) => {
   await expect(button.locator('ix-spinner')).toBeVisible();
   await expect(button.locator('ix-icon')).not.toBeVisible();
 });
+
+test('should not fire event when disabled', async ({ mount, page }) => {
+  await mount(`<ix-button disabled>Content</ix-button>`);
+  const button = page.locator('ix-button');
+
+  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveCSS('pointer-events', 'none');
+});

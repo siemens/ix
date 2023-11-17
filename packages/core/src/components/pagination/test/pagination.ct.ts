@@ -45,3 +45,30 @@ test('open show number of page dropdown', async ({ mount, page }) => {
 
   await expect(dropdown).toBeVisible();
 });
+
+test('should dispatch items count change', async ({ mount, page }) => {
+  await mount(`
+    <ix-pagination advanced>
+    </ix-pagination>
+  `);
+  const pagination = page.locator('ix-pagination');
+
+  const itemChanged = pagination.evaluate((elm) => {
+    return new Promise<number>((resolve) => {
+      elm.addEventListener('itemCountChanged', (e: CustomEvent) =>
+        resolve(e.detail)
+      );
+    });
+  });
+
+  await pagination
+    .getByRole('button')
+    .filter({ hasText: 'chevron-down-small' })
+    .click();
+
+  await pagination.locator('ix-dropdown-item').nth(3).click();
+  await expect(pagination.locator('ix-dropdown')).not.toBeVisible();
+
+  await expect(pagination).toHaveClass(/hydrated/);
+  expect(await itemChanged).toBe(40);
+});

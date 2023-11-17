@@ -18,6 +18,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 @Component({
   tag: 'ix-tabs',
@@ -62,12 +63,22 @@ export class Tabs {
   @State() totalItems = 0;
   @State() currentScrollAmount = 0;
   @State() scrollAmount = 100;
-  @State() styleNextArrow = {};
-  @State() stylePreviousArrow = {};
 
   @State() scrollActionAmount = 0;
 
   private windowStartSize = window.innerWidth;
+
+  private get arrowLeftElement() {
+    return this.hostElement.shadowRoot.querySelector(
+      '[data-arrow-left]'
+    ) as HTMLElement;
+  }
+
+  private get arrowRightElement() {
+    return this.hostElement.shadowRoot.querySelector(
+      '[data-arrow-right]'
+    ) as HTMLElement;
+  }
 
   private clickAction: {
     timeout: NodeJS.Timeout;
@@ -225,11 +236,10 @@ export class Tabs {
     return true;
   }
 
-  componentDidRender() {
+  componentWillLoad() {
     const tabs = this.getTabs();
-    this.totalItems = tabs.length;
 
-    tabs.forEach((element, index) => {
+    tabs.map((element, index) => {
       if (this.small) element.setAttribute('small', 'true');
 
       if (this.rounded) element.setAttribute('rounded', 'true');
@@ -239,16 +249,36 @@ export class Tabs {
         'selected',
         index === this.selected ? 'true' : 'false'
       );
+
       element.setAttribute('placement', this.placement);
     });
   }
 
+  componentDidRender() {
+    const tabs = this.getTabs();
+    this.totalItems = tabs.length;
+
+    tabs.map((element, index) => {
+      element.setAttribute(
+        'selected',
+        index === this.selected ? 'true' : 'false'
+      );
+    });
+  }
+
   componentWillRender() {
-    requestAnimationFrame(() => {
+    requestAnimationFrameNoNgZone(() => {
       const showNextArrow = this.showNextArrow();
       const previousArrow = this.showPreviousArrow();
-      this.styleNextArrow = this.getArrowStyle(showNextArrow);
-      this.stylePreviousArrow = this.getArrowStyle(previousArrow);
+
+      Object.assign(
+        this.arrowLeftElement.style,
+        this.getArrowStyle(previousArrow)
+      );
+      Object.assign(
+        this.arrowRightElement.style,
+        this.getArrowStyle(showNextArrow)
+      );
     });
   }
 
@@ -282,7 +312,7 @@ export class Tabs {
       <Host>
         <div
           class="arrow"
-          style={this.stylePreviousArrow}
+          data-arrow-left
           onClick={() => this.move(this.scrollAmount, true)}
         >
           <ix-icon name={'chevron-left-small'}></ix-icon>
@@ -302,7 +332,7 @@ export class Tabs {
         </div>
         <div
           class="arrow right"
-          style={this.styleNextArrow}
+          data-arrow-right
           onClick={() => this.move(-this.scrollAmount, true)}
         >
           <ix-icon name={'chevron-right-small'}></ix-icon>

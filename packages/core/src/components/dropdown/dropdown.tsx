@@ -23,11 +23,11 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Method,
   Prop,
   Watch,
 } from '@stencil/core';
+import { OnListener } from '../utils/listener';
 import { AlignedPlacement } from './placement';
 
 /**
@@ -36,7 +36,12 @@ import { AlignedPlacement } from './placement';
 export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 
 type DisposeDropdown = () => void;
-const dropdownDisposer = new Map<string, DisposeDropdown>();
+type DropdownDisposerEntry = {
+  element: HTMLIxDropdownElement;
+  child: HTMLIxDropdownElement;
+  dispose: DisposeDropdown;
+};
+const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
 let sequenceId = 0;
 
 @Component({
@@ -140,7 +145,43 @@ export class Dropdown {
       console.warn('Dropdown with duplicated id detected');
     }
 
-    dropdownDisposer.set(this.localUId, this.close.bind(this));
+    dropdownDisposer.set(this.localUId, {
+      dispose: this.close.bind(this),
+      element: this.hostElement,
+      child: null,
+    });
+
+    const parentDropdown = this.closestPassShadow(
+      this.hostElement.parentNode,
+      'ix-dropdown'
+    );
+    if (parentDropdown) {
+      for (let entry of dropdownDisposer.values()) {
+        if (entry.element === parentDropdown) {
+          entry.child = this.hostElement;
+        }
+      }
+    }
+  }
+
+  closestPassShadow(node, selector) {
+    if (!node) {
+      return null;
+    }
+
+    if (node instanceof ShadowRoot) {
+      return this.closestPassShadow(node.host, selector);
+    }
+
+    if (node instanceof HTMLElement) {
+      if (node.matches(selector)) {
+        return node;
+      } else {
+        return this.closestPassShadow(node.parentNode, selector);
+      }
+    }
+
+    return this.closestPassShadow(node.parentNode, selector);
   }
 
   get dropdownItems() {
@@ -252,9 +293,13 @@ export class Dropdown {
     }
 
     if (newShow) {
-      dropdownDisposer.forEach((dispose, id) => {
-        if (id !== this.localUId && !this.isAnchorSubmenu()) {
-          dispose();
+      dropdownDisposer.forEach((entry, id) => {
+        if (
+          id !== this.localUId &&
+          !this.isAnchorSubmenu() &&
+          entry.child !== this.hostElement
+        ) {
+          entry.dispose();
         }
       });
     }
@@ -274,9 +319,7 @@ export class Dropdown {
     }
   }
 
-  @Listen('click', {
-    target: 'window',
-  })
+  @OnListener<Dropdown>('click', (self) => self.show)
   clickOutside(event: PointerEvent) {
     const target = event.target as HTMLElement;
 
@@ -316,9 +359,7 @@ export class Dropdown {
     }
   }
 
-  @Listen('keydown', {
-    target: 'window',
-  })
+  @OnListener<Dropdown>('keydown', (self) => self.show)
   keydown(event: KeyboardEvent) {
     if (this.show === true && event.code === 'Escape') {
       this.close();

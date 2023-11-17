@@ -47,6 +47,12 @@ export class PushCard {
    */
   @Prop() variant: PushCardVariant = 'insight';
 
+  /**
+   * Collapse the card
+   * @since 2.1.0
+   */
+  @Prop() collapse: boolean = true;
+
   render() {
     const color: TypographyColors =
       this.variant === 'insight' || this.variant === 'notification'
@@ -69,7 +75,7 @@ export class PushCard {
             </ix-typography>
             <ix-typography color={color}>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion>
+          <ix-card-accordion collapse={this.collapse}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>

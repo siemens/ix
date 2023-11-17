@@ -19,6 +19,7 @@ import {
 import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
+import { OnListener } from '../utils/listener';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -73,8 +74,14 @@ export class Modal {
 
   /**
    * Use ESC to dismiss the modal
+   * @deprecated - Use closeOnEscape instead
    */
   @Prop() keyboard = true;
+
+  /**
+   * If set to true the modal can be closed by pressing the Escape key
+   */
+  @Prop() closeOnEscape = true;
 
   /**
    * Dialog close
@@ -86,6 +93,13 @@ export class Modal {
    */
   @Event() dialogDismiss: EventEmitter;
 
+  @OnListener<Modal>('keydown', (self) => !self.closeOnEscape || !self.keyboard)
+  onKey(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+    }
+  }
+
   get dialog() {
     return this.hostElement.shadowRoot.querySelector('dialog');
   }
@@ -93,7 +107,7 @@ export class Modal {
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
-    let transformY = this.centered ? '-50' : 40;
+    let transformY = this.centered ? '-50%' : 40;
 
     anime({
       targets: this.dialog,
@@ -108,7 +122,7 @@ export class Modal {
   private slideOutModal(completeCallback: Function) {
     const duration = this.animation ? Animation.mediumTime : 0;
 
-    let transformY = this.centered ? '-50' : 40;
+    let transformY = this.centered ? '-50%' : 40;
 
     anime({
       targets: this.dialog,
@@ -142,7 +156,7 @@ export class Modal {
    */
   @Method()
   async showModal() {
-    this.dialog?.showModal();
+    setTimeout(() => this.dialog.showModal());
   }
 
   /**
@@ -217,11 +231,9 @@ export class Modal {
             aria-modal={a11yBoolean(true)}
             aria-describedby={this.ariaAttributes['aria-describedby']}
             aria-labelledby={this.ariaAttributes['aria-labelledby']}
-            class={`modal modal-size-${this.size}`}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape' && this.keyboard === false) {
-                e.preventDefault();
-              }
+            class={{
+              modal: true,
+              [`modal-size-${this.size}`]: true,
             }}
             onClick={(event) => this.onModalClick(event)}
             onCancel={(e) => {
