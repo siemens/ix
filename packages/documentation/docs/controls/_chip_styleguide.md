@@ -50,3 +50,8 @@ Chips can take a default, hover, focused or active state. The states vary in bac
 - Don't overuse chips, as it can lead to a cluttered interface and overwhelm users.
 - Don`t use different styles for chips with similar purposes or meanings to avoid creating inconsistency.
 - Don't use chips if no interaction with the chip is offered. Use pills instead.
+
+
+## Related patterns
+
+- [Pill](./pill.md)
