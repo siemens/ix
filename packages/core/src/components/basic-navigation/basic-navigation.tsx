@@ -37,6 +37,7 @@ export class BasicNavigation {
     this.contextProvider?.emit({
       hideHeader: this.hideHeader,
       host: 'basic-navigation',
+      appSwitch: false,
     });
 
     this.breakpoint = applicationLayoutService.breakpoint;
@@ -90,6 +91,7 @@ export class BasicNavigation {
       {
         hideHeader: this.hideHeader,
         host: 'basic-navigation',
+        appSwitch: false,
       }
     );
 

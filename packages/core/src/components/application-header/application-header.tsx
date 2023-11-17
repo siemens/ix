@@ -37,6 +37,7 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
+  @State() appSwitch = false;
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
@@ -53,6 +54,7 @@ export class ApplicationHeader {
       }
 
       this.breakpoint = applicationLayoutService.breakpoint;
+      this.appSwitch = ctx.appSwitch;
     });
 
     this.menuDisposable = menuController.expandChange.on((show) => {
@@ -121,12 +123,21 @@ export class ApplicationHeader {
         class={{ [`breakpoint-${this.breakpoint}`]: true }}
         slot="application-header"
       >
-        {this.breakpoint === 'sm' && this.suppressResponsive === false ? (
+        {this.breakpoint === 'sm' && this.suppressResponsive === false && (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
           ></ix-burger-menu>
-        ) : null}
+        )}
+        {this.appSwitch &&
+          this.breakpoint !== 'sm' &&
+          this.suppressResponsive === false && (
+            <ix-icon-button
+              icon="apps"
+              ghost
+              class="app-switch"
+            ></ix-icon-button>
+          )}
         <div class="logo">
           <slot name="logo"></slot>
         </div>

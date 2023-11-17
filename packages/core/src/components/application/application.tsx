@@ -59,6 +59,11 @@ export class Application {
     applicationLayoutService.setBreakpoints(breakpoints);
   }
 
+  /**
+   * Enable app switching feature
+   */
+  @Prop() appSwitch = false;
+
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
 
@@ -93,6 +98,7 @@ export class Application {
         hideHeader: false,
         host: 'basic-navigation',
         sidebar: this.applicationSidebarSlotted,
+        appSwitch: this.appSwitch,
       }
     );
 
@@ -140,6 +146,7 @@ export class Application {
       hideHeader: false,
       host: 'basic-navigation',
       sidebar: this.applicationSidebarSlotted,
+      appSwitch: this.appSwitch,
     });
   }
 

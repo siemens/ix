@@ -111,6 +111,10 @@ export namespace Components {
     }
     interface IxApplication {
         /**
+          * Enable app switching feature
+         */
+        "appSwitch": boolean;
+        /**
           * Supported layouts
          */
         "breakpoints": Breakpoint[];
@@ -4069,6 +4073,10 @@ declare namespace LocalJSX {
         "variant"?: ActionCardVariant;
     }
     interface IxApplication {
+        /**
+          * Enable app switching feature
+         */
+        "appSwitch"?: boolean;
         /**
           * Supported layouts
          */

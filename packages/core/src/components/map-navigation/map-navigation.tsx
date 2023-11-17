@@ -90,6 +90,7 @@ export class MapNavigation {
     useContextProvider(this.hostElement, ApplicationLayoutContext, {
       hideHeader: false,
       host: 'map-navigation',
+      appSwitch: false,
     });
   }
 

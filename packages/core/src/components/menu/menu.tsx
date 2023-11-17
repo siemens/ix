@@ -140,6 +140,7 @@ export class Menu {
    */
   @Event() mapExpandChange: EventEmitter<boolean>;
 
+  @State() appSwitch = false;
   @State() showPinned = false;
   @State() mapExpand = true;
   @State() activeTab: HTMLIxMenuItemElement | null;
@@ -284,6 +285,7 @@ export class Menu {
         }
 
         this.onBreakpointChange(applicationLayoutService.breakpoint);
+        this.appSwitch = ctx.appSwitch;
       },
       true
     );
@@ -597,15 +599,24 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <ix-burger-menu
-            onClick={async () => this.toggleMenu()}
-            expanded={this.expand}
-            ixAriaLabel={this.i18nExpandSidebar}
-            pinned={this.showPinned}
-            class={{
-              'burger-menu': true,
-            }}
-          ></ix-burger-menu>
+          <div class={'menu-buttons'}>
+            <ix-burger-menu
+              onClick={async () => this.toggleMenu()}
+              expanded={this.expand}
+              ixAriaLabel={this.i18nExpandSidebar}
+              pinned={this.showPinned}
+              class={{
+                'burger-menu': true,
+              }}
+            ></ix-burger-menu>
+            {this.breakpoint === 'sm' && this.appSwitch && (
+              <ix-icon-button
+                icon="apps"
+                ghost
+                class="app-switch"
+              ></ix-icon-button>
+            )}
+          </div>
           <div class="menu-avatar">
             <slot name="ix-menu-avatar"></slot>
           </div>

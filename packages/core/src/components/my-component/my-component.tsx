@@ -17,7 +17,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-application>
+        <ix-application appSwitch={true}>
           <ix-application-header name="Test Test TestTestTestTestTestTestTestTestTest1">
             <ix-icon-button icon="rocket" ghost></ix-icon-button>
             <ix-icon-button icon="rocket" ghost></ix-icon-button>
