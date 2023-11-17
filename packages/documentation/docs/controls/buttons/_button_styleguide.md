@@ -21,8 +21,8 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
 - **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event.
 
-## Behaviour in context
-- **Interaction:** Buttons can be triggered by selecting anywhere within the button container. When buttons are focused, they can be triggered by pressing  <kbd>Space</kbd>.
+## Behavior in context
+- **Interaction:** Buttons can be triggered by selecting anywhere within the button container. When buttons are focused, they can be triggered by pressing  `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
 - **Button groups:** Buttons can be grouped based on their relationship. A button group can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons.
@@ -37,7 +37,7 @@ Buttons have five states: Default, hover, active, disabled and focused. In disab
 
 - Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
 - Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
-- Do use a default margin between adjacent buttons of at least <kbd>0.5rem</kbd>
+- Do use a default margin between adjacent buttons of at least `0.5rem`
 - Do adjust default and outline button width to label length or container width 
 - Don't extend your ghost button width beyond the label's available width
 - Don't only rely on buttons when many actions/functions are necessary (consider dropdowns, split buttons or moving some functionality to a drawer or a dialog)
