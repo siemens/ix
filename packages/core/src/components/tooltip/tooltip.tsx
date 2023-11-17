@@ -216,6 +216,21 @@ export class Tooltip {
     return Array.from(document.querySelectorAll(this.for));
   }
 
+  private updateAriaDescribedBy(element: Element, describedBy: string) {
+    const oldDescribedBy = element.getAttribute('aria-describedby');
+
+    if (oldDescribedBy.indexOf(describedBy) != -1) {
+      return;
+    }
+
+    const newDescribedBy = `${oldDescribedBy} ${describedBy}`;
+    element.setAttribute('aria-describedby', newDescribedBy);
+  }
+
+  private getTooltipId() {
+    return this.hostElement.id || 'ix-tooltip-' + this.id;
+  }
+
   private registerTriggerListener() {
     const elements = this.queryAnchorElements();
     elements.forEach((e) => {
@@ -223,7 +238,7 @@ export class Tooltip {
       e.addEventListener('mouseleave', this.onLeaveElementBind);
       e.addEventListener('focusin', this.onEnterElementBind);
       e.addEventListener('focusout', this.onLeaveElementBind);
-      e.setAttribute('aria-describedby', 'ix-tooltip-' + this.id);
+      this.updateAriaDescribedBy(e, this.getTooltipId());
     });
   }
 
@@ -244,6 +259,10 @@ export class Tooltip {
     }
   }
 
+  componentWillLoad() {
+    this.registerTriggerListener();
+  }
+
   componentDidLoad() {
     if (this.interactive) {
       this.tooltipCloseTimeInMS = 150;
@@ -260,7 +279,6 @@ export class Tooltip {
       subtree: true,
     });
 
-    this.registerTriggerListener();
     this.registerTooltipListener();
   }
 
@@ -279,7 +297,7 @@ export class Tooltip {
         class={{
           visible: this.visible,
         }}
-        id={`ix-tooltip-${this.id}`}
+        id={this.getTooltipId()}
         role="tooltip"
       >
         <div class={'tooltip-title'}>
