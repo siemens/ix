@@ -15,6 +15,7 @@
     "@siemens/ix-icons": "^2.0.0",
     "@siemens/ix-aggrid": "~2.0.4",
     "ag-grid-vue3": "^28.2.1",
+    "dayjs": "^1.11.10",
     "vue": "^3.2.45",
     "web-vitals": "^2.1.4",
     "vue-hooks-form": "^0.3.0"
