@@ -629,7 +629,6 @@ export class DatetimeInput {
         <ix-dropdown
           trigger={isSecondInput ? this.toInputDiv : this.fromInputDiv}
           closeBehavior="outside"
-          // onClick={(event) => event.stopPropagation()}
           class="dropdown"
         >
           <ix-datetime-picker-rework
