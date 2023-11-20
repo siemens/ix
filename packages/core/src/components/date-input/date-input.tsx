@@ -136,7 +136,6 @@ export class DateInput {
 
   /**
    * Triggers if the date selection changes.
-
    */
   @Event() dateChange: EventEmitter<DateChangeEventRework>;
 
@@ -149,25 +148,25 @@ export class DateInput {
    * Triggers if one of the inputs changes
    * @emits DateInputEvent
    */
-  @Event() ixOnChange: EventEmitter<DateInputEvent>;
+  @Event() ixChange: EventEmitter<DateInputEvent>;
 
   /**
    * Triggers if one of the inputs gets focus
    * @emits DateInputEvent
    */
-  @Event() ixOnFocus: EventEmitter<DateInputEvent>;
+  @Event() ixFocus: EventEmitter<DateInputEvent>;
 
   /**
    * Triggers if one of the inputs loses focus
    * @emits DateInputEvent
    */
-  @Event() ixOnBlur: EventEmitter<DateInputEvent>;
+  @Event() ixBlur: EventEmitter<DateInputEvent>;
 
   /**
    * Triggers if the inputs get cleared by pressing the clear button
    * @emits void
    */
-  @Event() ixOnClear: EventEmitter<void>;
+  @Event() ixClear: EventEmitter<void>;
 
   /**
    * Gets the current input
@@ -211,7 +210,7 @@ export class DateInput {
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
 
-    this.ixOnFocus.emit({
+    this.ixFocus.emit({
       InputName: this.getFocusedInputName(),
       Event: event,
     });
@@ -224,7 +223,7 @@ export class DateInput {
       return;
     }
 
-    this.ixOnBlur.emit({
+    this.ixBlur.emit({
       InputName: this.getFocusedInputName(),
       Event: event,
     });
@@ -251,7 +250,7 @@ export class DateInput {
     this.secondInput.value = '';
 
     this.firstInput.focus();
-    this.ixOnClear.emit();
+    this.ixClear.emit();
     this.updateValidity();
   };
 
@@ -266,7 +265,7 @@ export class DateInput {
   }
 
   onInputChange(event: InputEvent, input: string) {
-    this.ixOnChange.emit({
+    this.ixChange.emit({
       InputName: input,
       Event: event,
     });

@@ -4149,22 +4149,22 @@ declare namespace LocalJSX {
           * Triggers if one of the inputs loses focus
           * @emits DateInputEvent
          */
-        "onIxOnBlur"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
+        "onIxBlur"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
         /**
           * Triggers if one of the inputs changes
           * @emits DateInputEvent
          */
-        "onIxOnChange"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
+        "onIxChange"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
         /**
           * Triggers if the inputs get cleared by pressing the clear button
           * @emits void
          */
-        "onIxOnClear"?: (event: IxDateInputCustomEvent<void>) => void;
+        "onIxClear"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Triggers if one of the inputs gets focus
           * @emits DateInputEvent
          */
-        "onIxOnFocus"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
+        "onIxFocus"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
         /**
           * If true a date range can be selected (from/to).
          */
@@ -4385,22 +4385,22 @@ declare namespace LocalJSX {
           * Triggers if one of the inputs loses focus
           * @emits DatetimeInputEvent
          */
-        "onIxOnBlur"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
+        "onIxBlur"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
         /**
           * Triggers every time one of the inputs changes
           * @emits DatetimeInputChangeEvent
          */
-        "onIxOnChange"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
+        "onIxChange"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
         /**
           * Triggers if the inputs get cleared by pressing the clear button
           * @emits string with the name of the input that was cleared
          */
-        "onIxOnClear"?: (event: IxDatetimeInputCustomEvent<string>) => void;
+        "onIxClear"?: (event: IxDatetimeInputCustomEvent<string>) => void;
         /**
           * Triggers if one of the inputs gets focus
           * @emits DatetimeInputEvent
          */
-        "onIxOnFocus"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
+        "onIxFocus"?: (event: IxDatetimeInputCustomEvent<DatetimeInputEvent>) => void;
         /**
           * Triggers if the second date selection changes.
           * @emits string

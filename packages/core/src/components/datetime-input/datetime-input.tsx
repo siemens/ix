@@ -245,25 +245,25 @@ export class DatetimeInput {
    *
    * @emits DatetimeInputChangeEvent
    */
-  @Event() ixOnChange: EventEmitter<DatetimeInputEvent>;
+  @Event() ixChange: EventEmitter<DatetimeInputEvent>;
 
   /**
    * Triggers if one of the inputs gets focus
    * @emits DatetimeInputEvent
    */
-  @Event() ixOnFocus: EventEmitter<DatetimeInputEvent>;
+  @Event() ixFocus: EventEmitter<DatetimeInputEvent>;
 
   /**
    * Triggers if one of the inputs loses focus
    * @emits DatetimeInputEvent
    */
-  @Event() ixOnBlur: EventEmitter<DatetimeInputEvent>;
+  @Event() ixBlur: EventEmitter<DatetimeInputEvent>;
 
   /**
    * Triggers if the inputs get cleared by pressing the clear button
    * @emits string with the name of the input that was cleared
    */
-  @Event() ixOnClear: EventEmitter<string>;
+  @Event() ixClear: EventEmitter<string>;
 
   /**
    * Gets the current input
@@ -301,7 +301,7 @@ export class DatetimeInput {
   private onInputFocus = (event: FocusEvent) => {
     this.focusedInput = event.target as HTMLInputElement;
 
-    this.ixOnFocus.emit({
+    this.ixFocus.emit({
       InputName: this.getFocusedInputName(),
       Event: event,
     });
@@ -314,7 +314,7 @@ export class DatetimeInput {
       return;
     }
 
-    this.ixOnBlur.emit({
+    this.ixBlur.emit({
       InputName: this.getFocusedInputName(),
       Event: event,
     });
@@ -362,13 +362,13 @@ export class DatetimeInput {
       this._toTime = undefined;
 
       this.toDateInput.focus();
-      this.ixOnClear.emit('to');
+      this.ixClear.emit('to');
     } else {
       this._fromDate = undefined;
       this._fromTime = undefined;
 
       this.fromDateInput.focus();
-      this.ixOnClear.emit('from');
+      this.ixClear.emit('from');
     }
   };
 
@@ -447,7 +447,7 @@ export class DatetimeInput {
   }
 
   private onInputChange(event: Event) {
-    this.ixOnChange.emit({
+    this.ixChange.emit({
       InputName: this.getFocusedInputName(),
       Event: event,
     });
