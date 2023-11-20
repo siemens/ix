@@ -21,6 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import dayjs from 'dayjs';
 import { IxDatePickerReworkCustomEvent } from 'src/components';
 import { DateChangeEventRework } from '../date-picker-rework/date-picker-rework';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
@@ -196,6 +197,7 @@ export class DateInput {
   private datePicker!: HTMLIxDatePickerReworkElement;
   private validator: Validator<DateValidatorParam>;
   private wasValidated: boolean;
+  private dropdownButtonAriaLabel: string;
 
   private getFocusedInputName(): string {
     if (this.focusedInput === this.firstInput) {
@@ -234,6 +236,11 @@ export class DateInput {
   ) {
     this._from = event.detail.from;
     this._to = event.detail.to;
+
+    const ariaLabelFormat = 'dddd MMMM D, YYYY';
+    this.dropdownButtonAriaLabel = `Change Date,
+      ${this._from && dayjs(this._from, this.format).format(ariaLabelFormat)} -
+      ${this._to && dayjs(this._to, this.format).format(ariaLabelFormat)}`;
 
     this.dateChange.emit({
       from: this._from,
@@ -425,7 +432,11 @@ export class DateInput {
             ></ix-icon-button>
           </span>
           <span class="icon-button">
-            <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
+            <ix-icon-button
+              ghost
+              icon="chevron-down-small"
+              aria-label={this.dropdownButtonAriaLabel}
+            ></ix-icon-button>
           </span>
         </div>
         <ix-dropdown
