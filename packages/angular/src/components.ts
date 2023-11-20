@@ -473,7 +473,7 @@ The event payload contains information about the selected date range. @event und
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorHandlingMessage', 'textSelectDate', 'to', 'validators', 'weekStartIndex'],
+  inputs: ['corners', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
   methods: ['getCurrentInput']
 })
 @Component({
@@ -481,14 +481,14 @@ The event payload contains information about the selected date range. @event und
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorHandlingMessage', 'textSelectDate', 'to', 'validators', 'weekStartIndex'],
+  inputs: ['corners', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
 })
 export class IxDateInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'ixOnChange', 'ixOnFocus', 'ixOnBlur', 'ixOnClear']);
+    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'ixChange', 'ixFocus', 'ixBlur', 'ixClear']);
   }
 }
 
@@ -508,19 +508,19 @@ export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Triggers if one of the inputs changes @emits DateInputEvent
    */
-  ixOnChange: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  ixChange: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
   /**
    * Triggers if one of the inputs gets focus @emits DateInputEvent
    */
-  ixOnFocus: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  ixFocus: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
   /**
    * Triggers if one of the inputs loses focus @emits DateInputEvent
    */
-  ixOnBlur: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  ixBlur: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
   /**
    * Triggers if the inputs get cleared by pressing the clear button @emits void
    */
-  ixOnClear: EventEmitter<CustomEvent<void>>;
+  ixClear: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -573,7 +573,7 @@ Only triggered if datepicker is in range mode @since 1.1.0
 
 
 @ProxyCmp({
-  inputs: ['dateFormat', 'fromDate', 'fromTime', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+  inputs: ['dateFormat', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
   methods: ['getCurrentInput']
 })
 @Component({
@@ -581,14 +581,14 @@ Only triggered if datepicker is in range mode @since 1.1.0
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'fromDate', 'fromTime', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+  inputs: ['dateFormat', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
 })
 export class IxDatetimeInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'ixOnChange', 'ixOnFocus', 'ixOnBlur', 'ixOnClear']);
+    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'ixChange', 'ixFocus', 'ixBlur', 'ixClear']);
   }
 }
 
@@ -620,19 +620,19 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
    * Triggers every time one of the inputs changes @emits DatetimeInputChangeEvent
    */
-  ixOnChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  ixChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
   /**
    * Triggers if one of the inputs gets focus @emits DatetimeInputEvent
    */
-  ixOnFocus: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  ixFocus: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
   /**
    * Triggers if one of the inputs loses focus @emits DatetimeInputEvent
    */
-  ixOnBlur: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  ixBlur: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
   /**
    * Triggers if the inputs get cleared by pressing the clear button @emits string with the name of the input that was cleared
    */
-  ixOnClear: EventEmitter<CustomEvent<string>>;
+  ixClear: EventEmitter<CustomEvent<string>>;
 }
 
 

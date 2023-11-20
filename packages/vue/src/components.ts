@@ -276,16 +276,16 @@ export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput>('ix-da
   'to',
   'minDate',
   'maxDate',
-  'textSelectDate',
+  'i18nSelectDate',
   'weekStartIndex',
-  'suppressErrorHandlingMessage',
+  'suppressErrorMessage',
   'validators',
   'dateChange',
   'dateSelect',
-  'ixOnChange',
-  'ixOnFocus',
-  'ixOnBlur',
-  'ixOnClear'
+  'ixChange',
+  'ixFocus',
+  'ixBlur',
+  'ixClear'
 ]);
 
 
@@ -324,18 +324,19 @@ export const IxDatetimeInput = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput
   'toTime',
   'showTimeReference',
   'timeReference',
-  'textSelectDate',
+  'i18nSelectDate',
   'weekStartIndex',
   'validators',
+  'suppressErrorMessage',
   'fromDateChange',
   'toDateChange',
   'fromTimeChange',
   'toTimeChange',
   'dateSelect',
-  'ixOnChange',
-  'ixOnFocus',
-  'ixOnBlur',
-  'ixOnClear'
+  'ixChange',
+  'ixFocus',
+  'ixBlur',
+  'ixClear'
 ]);
 
 

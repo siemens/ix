@@ -2595,7 +2595,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "3.0.0"
+          "text": "2.1.0"
         }
       ],
       "encapsulation": "shadow",
@@ -2689,6 +2689,23 @@
           "required": false
         },
         {
+          "name": "i18nSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of the button that confirms date selection.",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "label",
           "type": "string",
           "mutable": false,
@@ -2768,7 +2785,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "If true a date-range can be selected (from/to).",
+          "docs": "If true a date range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2780,10 +2797,10 @@
           "required": false
         },
         {
-          "name": "suppressErrorHandlingMessage",
+          "name": "suppressErrorMessage",
           "type": "boolean",
           "mutable": false,
-          "attr": "suppress-error-handling-message",
+          "attr": "suppress-error-message",
           "reflectToAttr": false,
           "docs": "Suppresses the error message that displays below the input if validation failed.",
           "docsTags": [],
@@ -2791,23 +2808,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textSelectDate",
-          "type": "string",
-          "mutable": false,
-          "attr": "text-select-date",
-          "reflectToAttr": false,
-          "docs": "Text of the button that confirms date selection.",
-          "docsTags": [],
-          "default": "'Done'",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -2904,7 +2904,7 @@
           "docsTags": []
         },
         {
-          "event": "ixOnBlur",
+          "event": "ixBlur",
           "detail": "DateInputEvent",
           "bubbles": true,
           "cancelable": true,
@@ -2918,7 +2918,7 @@
           ]
         },
         {
-          "event": "ixOnChange",
+          "event": "ixChange",
           "detail": "DateInputEvent",
           "bubbles": true,
           "cancelable": true,
@@ -2932,7 +2932,7 @@
           ]
         },
         {
-          "event": "ixOnClear",
+          "event": "ixClear",
           "detail": "void",
           "bubbles": true,
           "cancelable": true,
@@ -2946,7 +2946,7 @@
           ]
         },
         {
-          "event": "ixOnFocus",
+          "event": "ixFocus",
           "detail": "DateInputEvent",
           "bubbles": true,
           "cancelable": true,
@@ -3323,7 +3323,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "3.0.0"
+          "text": "2.1.0"
         }
       ],
       "encapsulation": "shadow",
@@ -3417,6 +3417,23 @@
           "required": false
         },
         {
+          "name": "i18nSelectDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "i-1-8n-select-date",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "label",
           "type": "string",
           "mutable": false,
@@ -3434,20 +3451,24 @@
         },
         {
           "name": "labelPosition",
-          "type": "\"above\" | \"inline\"",
+          "type": "\"inside\" | \"left\" | \"top\"",
           "mutable": false,
           "attr": "label-position",
           "reflectToAttr": false,
           "docs": "Position of the label",
           "docsTags": [],
-          "default": "'above'",
+          "default": "'top'",
           "values": [
             {
-              "value": "above",
+              "value": "inside",
               "type": "string"
             },
             {
-              "value": "inline",
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "top",
               "type": "string"
             }
           ],
@@ -3560,7 +3581,7 @@
           "mutable": false,
           "attr": "show-time-reference",
           "reflectToAttr": false,
-          "docs": "Show time reference input\nTime reference is default aligned with @see {this.timeFormat}",
+          "docs": "Show time reference input\nPer default time reference is aligned with @see {this.timeFormat}",
           "docsTags": [],
           "default": "undefined",
           "values": [
@@ -3572,17 +3593,17 @@
           "required": false
         },
         {
-          "name": "textSelectDate",
-          "type": "string",
+          "name": "suppressErrorMessage",
+          "type": "boolean",
           "mutable": false,
-          "attr": "text-select-date",
+          "attr": "suppress-error-message",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
+          "docs": "Suppresses the error message that displays below the input if validation failed.",
           "docsTags": [],
-          "default": "'Done'",
+          "default": "false",
           "values": [
             {
-              "type": "string"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -3757,7 +3778,7 @@
           ]
         },
         {
-          "event": "ixOnBlur",
+          "event": "ixBlur",
           "detail": "DatetimeInputEvent",
           "bubbles": true,
           "cancelable": true,
@@ -3771,7 +3792,7 @@
           ]
         },
         {
-          "event": "ixOnChange",
+          "event": "ixChange",
           "detail": "DatetimeInputEvent",
           "bubbles": true,
           "cancelable": true,
@@ -3785,7 +3806,7 @@
           ]
         },
         {
-          "event": "ixOnClear",
+          "event": "ixClear",
           "detail": "string",
           "bubbles": true,
           "cancelable": true,
@@ -3799,7 +3820,7 @@
           ]
         },
         {
-          "event": "ixOnFocus",
+          "event": "ixFocus",
           "detail": "DatetimeInputEvent",
           "bubbles": true,
           "cancelable": true,
