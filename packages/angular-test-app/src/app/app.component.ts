@@ -11,36 +11,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: ` 
-  <form
-    class="needs-validation"
-    [ngClass]="{ 'was-validated': wasValidated }"
-    no-validate
-    (submit)="onSubmit($event)"
-  >
-    <ix-layout-grid>
-      <ix-row>
-        <ix-col size="8">
-          <ix-date-input></ix-date-input>
-          <div class="valid-feedback">Looks good!</div>
-        </ix-col>
-      </ix-row>
-      <ix-row>
-        <ix-col>
-          <ix-button type="submit">Submit form</ix-button>
-        </ix-col>
-      </ix-row>
-    </ix-layout-grid>
-  </form> 
-`,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  wasValidated = false;
-
-  onSubmit(event: SubmitEvent) {
-    event.preventDefault();
-
-    this.wasValidated = true;
-  }
+  title = 'angular-test-app';
 }
