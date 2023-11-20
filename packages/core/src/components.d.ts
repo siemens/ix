@@ -544,7 +544,7 @@ export namespace Components {
         "to": string | null;
     }
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface IxDateInput {
         /**
@@ -2937,7 +2937,7 @@ declare global {
         new (): HTMLIxDateDropdownElement;
     };
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
     }
@@ -4098,7 +4098,7 @@ declare namespace LocalJSX {
         "to"?: string | null;
     }
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface IxDateInput {
         /**
@@ -6528,7 +6528,7 @@ declare module "@stencil/core" {
              */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             /**
-             * @since 3.0.0
+             * @since 2.1.0
              */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
