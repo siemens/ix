@@ -182,7 +182,7 @@ export class DatetimeInput {
   /**
    * Text of date select button
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() i18nSelectDate = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -199,6 +199,11 @@ export class DatetimeInput {
     'withinMinMax',
     'validTime',
   ];
+
+  /**
+   * Suppresses the error message that displays below the input if validation failed.
+   */
+  @Prop() suppressErrorMessage: boolean = false;
 
   /**
    * Triggers if the first date selection changes.
@@ -675,7 +680,9 @@ export class DatetimeInput {
               this.onFromDateChange,
               this.onFromTimeChange
             )}
-        <div class="invalid-feedback">{this.errorMessage}</div>
+        {!this.suppressErrorMessage && (
+          <div class="invalid-feedback">{this.errorMessage}</div>
+        )}
       </Host>
     );
   }

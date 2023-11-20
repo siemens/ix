@@ -565,6 +565,10 @@ export namespace Components {
          */
         "getCurrentInput": () => Promise<DateChangeEventRework>;
         /**
+          * Text of the button that confirms date selection.
+         */
+        "i18nSelectDate": string;
+        /**
           * Label for the input
          */
         "label": string;
@@ -587,11 +591,7 @@ export namespace Components {
         /**
           * Suppresses the error message that displays below the input if validation failed.
          */
-        "suppressErrorHandlingMessage": boolean;
-        /**
-          * Text of the button that confirms date selection.
-         */
-        "textSelectDate": string;
+        "suppressErrorMessage": boolean;
         /**
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
@@ -743,6 +743,10 @@ export namespace Components {
          */
         "getCurrentInput": () => Promise<DatetimeInputValues>;
         /**
+          * Text of date select button
+         */
+        "i18nSelectDate": string;
+        /**
           * Label for the input
          */
         "label": string;
@@ -779,9 +783,9 @@ export namespace Components {
          */
         "showTimeReference": any;
         /**
-          * Text of date select button
+          * Suppresses the error message that displays below the input if validation failed.
          */
-        "textSelectDate": string;
+        "suppressErrorMessage": boolean;
         /**
           * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
@@ -4114,6 +4118,10 @@ declare namespace LocalJSX {
          */
         "from"?: string | undefined;
         /**
+          * Text of the button that confirms date selection.
+         */
+        "i18nSelectDate"?: string;
+        /**
           * Label for the input
          */
         "label"?: string;
@@ -4164,11 +4172,7 @@ declare namespace LocalJSX {
         /**
           * Suppresses the error message that displays below the input if validation failed.
          */
-        "suppressErrorHandlingMessage"?: boolean;
-        /**
-          * Text of the button that confirms date selection.
-         */
-        "textSelectDate"?: string;
+        "suppressErrorMessage"?: boolean;
         /**
           * The selected end date. If the the date-picker is not in range mode this property has no impact. Format has to match the `format` property.
          */
@@ -4343,6 +4347,10 @@ declare namespace LocalJSX {
          */
         "fromTime"?: string;
         /**
+          * Text of date select button
+         */
+        "i18nSelectDate"?: string;
+        /**
           * Label for the input
          */
         "label"?: string;
@@ -4424,9 +4432,9 @@ declare namespace LocalJSX {
          */
         "showTimeReference"?: any;
         /**
-          * Text of date select button
+          * Suppresses the error message that displays below the input if validation failed.
          */
-        "textSelectDate"?: string;
+        "suppressErrorMessage"?: boolean;
         /**
           * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */

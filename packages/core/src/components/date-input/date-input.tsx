@@ -112,7 +112,7 @@ export class DateInput {
   /**
    * Text of the button that confirms date selection.
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() i18nSelectDate = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -123,7 +123,7 @@ export class DateInput {
   /**
    * Suppresses the error message that displays below the input if validation failed.
    */
-  @Prop() suppressErrorHandlingMessage: boolean = false;
+  @Prop() suppressErrorMessage: boolean = false;
 
   /**
    * Array of validators that are active when the date input is part of a form
@@ -451,7 +451,9 @@ export class DateInput {
             onClick={(event) => event.stopPropagation()}
           ></ix-date-picker-rework>
         </ix-dropdown>
-        <div class="invalid-feedback">{this.errorMessage}</div>
+        {!this.suppressErrorMessage && (
+          <div class="invalid-feedback">{this.errorMessage}</div>
+        )}
       </Host>
     );
   }
