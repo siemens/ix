@@ -25,6 +25,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { OnListener } from '../utils/listener';
 
 type ArrowPosition = {
   top?: string;
@@ -250,10 +251,8 @@ export class Tooltip {
     hostElement.addEventListener('focusout', () => this.onTooltipHide());
   }
 
-  @Listen('keydown', {
-    target: 'window',
-  })
-  keydown(event: KeyboardEvent) {
+  @OnListener<Tooltip>('keydown', (self) => self.visible)
+  async onKeydown(event: KeyboardEvent) {
     if (event.code === 'Escape') {
       this.onTooltipHide();
     }

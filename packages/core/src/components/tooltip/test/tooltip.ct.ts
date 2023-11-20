@@ -46,4 +46,16 @@ test.describe('a11y', () => {
     const button = page.locator('ix-button');
     await expect(button).toHaveAttribute('aria-describedby', 'info custom-id');
   });
+
+  test('closes on ESC', async ({ mount, page }) => {
+    await mount(`
+      <ix-tooltip for=".test">tooltip</ix-tooltip>
+      <ix-button class="test"></ix-button>
+    `);
+    const button = page.locator('ix-button');
+    await button.hover();
+    page.keyboard.down('Escape');
+    const tooltip = page.locator('ix-tooltip');
+    await expect(tooltip).not.toBeVisible();
+  });
 });
