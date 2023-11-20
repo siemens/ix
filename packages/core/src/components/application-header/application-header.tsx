@@ -21,7 +21,7 @@ import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
-import { useContextConsumer } from '../utils/context';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
@@ -38,13 +38,16 @@ export class ApplicationHeader {
    */
   @Prop() name: string;
 
-  @State() appSwitch = false;
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
+
+  private applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
 
   componentWillLoad() {
     useContextConsumer(this.hostElement, ApplicationLayoutContext, (ctx) => {
@@ -55,7 +58,7 @@ export class ApplicationHeader {
       }
 
       this.breakpoint = applicationLayoutService.breakpoint;
-      this.appSwitch = ctx.appSwitch;
+      this.applicationLayoutContext = ctx;
     });
 
     this.menuDisposable = menuController.expandChange.on((show) => {
@@ -130,11 +133,13 @@ export class ApplicationHeader {
             expanded={this.menuExpanded}
           ></ix-burger-menu>
         )}
-        {this.appSwitch &&
+        {this.applicationLayoutContext.appSwitchConfig &&
           this.breakpoint !== 'sm' &&
           this.suppressResponsive === false && (
             <ix-icon-button
-              onClick={showAppSwitch}
+              onClick={() =>
+                showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
+              }
               icon="apps"
               ghost
               class="app-switch"

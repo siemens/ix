@@ -7,10 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { AppSwitchConfiguration } from '../application-layout/context';
 import { showModal } from '../modal';
 
-export async function showAppSwitch() {
-  const result = await showModal({
-    content: 'test',
+export async function showAppSwitch(config: AppSwitchConfiguration) {
+  const modal = document.createElement('ix-application-switch-modal');
+  modal.config = config;
+  showModal({
+    content: modal,
+    size: '840',
+    closeOnBackdropClick: true,
   });
 }

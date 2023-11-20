@@ -30,6 +30,28 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance']
+})
+@Component({
+  selector: 'ix-application',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
+})
+export class IxApplication {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxApplication extends Components.IxApplication {}
+
+
+@ProxyCmp({
   inputs: ['name']
 })
 @Component({
@@ -408,6 +430,27 @@ export class IxCol {
 
 
 export declare interface IxCol extends Components.IxCol {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxContent extends Components.IxContent {}
 
 
 @ProxyCmp({

@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
+import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+import { AppSwitchConfiguration as AppSwitchConfiguration1 } from "./components.d";
 import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
@@ -47,6 +49,8 @@ import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
+export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+export { AppSwitchConfiguration as AppSwitchConfiguration1 } from "./components.d";
 export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
@@ -109,11 +113,14 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxApplication {
         /**
-          * Enable app switching feature
+          * Define application switch configuration
          */
-        "appSwitch": boolean;
+        "appSwitchConfig": AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -140,6 +147,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
+        "config": AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -154,6 +162,9 @@ export namespace Components {
          */
         "initials": string;
     }
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -459,6 +470,9 @@ export namespace Components {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -1311,6 +1325,9 @@ export namespace Components {
          */
         "url": string;
     }
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -2627,6 +2644,9 @@ declare global {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxApplicationElement extends Components.IxApplication, HTMLStencilElement {
     }
     var HTMLIxApplicationElement: {
@@ -2660,6 +2680,9 @@ declare global {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
     };
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
     var HTMLIxBasicNavigationElement: {
@@ -2848,6 +2871,9 @@ declare global {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
     var HTMLIxContentElement: {
@@ -3290,6 +3316,9 @@ declare global {
         "navigationToggled": boolean;
         "contextMenuClick": void;
     }
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4081,11 +4110,14 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxApplication {
         /**
-          * Enable app switching feature
+          * Define application switch configuration
          */
-        "appSwitch"?: boolean;
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -4112,6 +4144,7 @@ declare namespace LocalJSX {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -4126,6 +4159,9 @@ declare namespace LocalJSX {
          */
         "initials"?: string;
     }
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -4478,6 +4514,9 @@ declare namespace LocalJSX {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -5433,6 +5472,9 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    /**
+     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -6747,6 +6789,9 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
@@ -6755,6 +6800,9 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
+            /**
+             * @deprecated Use ix-application as an successor of ix-basic-navigation
+             */
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
@@ -6787,6 +6835,9 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
@@ -6856,6 +6907,9 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * @deprecated Use ix-application as an successor of ix-basic-navigation
+             */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;

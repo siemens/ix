@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @import 'mixins/shadow-dom/component';
+@import 'mixins/hover';
 
 :host {
   @include ix-component;
@@ -15,5 +16,51 @@
   .content {
     padding: 2rem;
     padding-right: 0;
+  }
+
+  .content-apps {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-height: 50vh;
+    margin-right: 0.25rem;
+  }
+}
+
+:host {
+  .AppEntry {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    flex: 1 1 calc(45%);
+    cursor: pointer;
+    border: 0.0625rem solid transparent;
+  }
+
+  .AppEntry.Selected {
+    background-color: var(--theme-color-ghost--selected);
+    border: var(--theme-dynamic-bdr-1);
+  }
+
+  .AppEntry {
+    @include ghost-hover-pressed;
+  }
+
+  .AppEntry:focus-visible {
+    border: 1px solid var(--theme-color-focus-bdr);
+  }
+
+  .AppName {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .AppIcon {
+    width: 48px;
+    height: 48px;
   }
 }

@@ -22,6 +22,9 @@ import anime from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
 
+/**
+ * @deprecated Use ix-application as an successor of ix-basic-navigation
+ */
 @Component({
   tag: 'ix-map-navigation',
   styleUrl: 'map-navigation.scss',
@@ -90,7 +93,6 @@ export class MapNavigation {
     useContextProvider(this.hostElement, ApplicationLayoutContext, {
       hideHeader: false,
       host: 'map-navigation',
-      appSwitch: false,
     });
   }
 

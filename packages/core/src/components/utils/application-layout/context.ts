@@ -14,14 +14,29 @@ export const closestIxMenu = (element: Element) => {
   return menuElement;
 };
 
+type Target = '_self' | '_blank' | '_parent' | '_top' | (string & {});
+
+// TODO Define better name of configuration interface
+export type AppSwitchConfiguration = {
+  textAppSwitch: string;
+  currentAppId: string;
+  apps: {
+    id: string;
+    name: string;
+    description: string;
+    url: string;
+    target: Target;
+    iconSrc: string;
+  }[];
+};
+
 export const ApplicationLayoutContext = createContext<{
   hideHeader: boolean;
   host: 'basic-navigation' | 'map-navigation' | null;
-  appSwitch: boolean;
+  appSwitchConfig?: AppSwitchConfiguration;
   sidebar?: boolean;
 }>('application-layout-context', {
   hideHeader: false,
   host: null,
   sidebar: false,
-  appSwitch: false,
 });

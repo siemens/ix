@@ -15,6 +15,9 @@ import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @deprecated Use ix-application as an successor of ix-basic-navigation
+ */
 @Component({
   tag: 'ix-basic-navigation',
   styleUrl: 'basic-navigation.scss',
@@ -37,7 +40,6 @@ export class BasicNavigation {
     this.contextProvider?.emit({
       hideHeader: this.hideHeader,
       host: 'basic-navigation',
-      appSwitch: false,
     });
 
     this.breakpoint = applicationLayoutService.breakpoint;
@@ -91,7 +93,6 @@ export class BasicNavigation {
       {
         hideHeader: this.hideHeader,
         host: 'basic-navigation',
-        appSwitch: false,
       }
     );
 

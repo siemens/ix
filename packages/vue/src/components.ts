@@ -6,6 +6,7 @@ import { defineContainer } from './vue-component-lib/utils';
 import type { JSX } from '@siemens/ix/components';
 
 import { defineCustomElement as defineIxActionCard } from '@siemens/ix/components/ix-action-card.js';
+import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
 import { defineCustomElement as defineIxBasicNavigation } from '@siemens/ix/components/ix-basic-navigation.js';
@@ -21,6 +22,7 @@ import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
+import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
@@ -103,6 +105,15 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
   'heading',
   'subheading',
   'selected'
+]);
+
+
+export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('ix-application', defineIxApplication, [
+  'theme',
+  'themeSystemAppearance',
+  'forceBreakpoint',
+  'breakpoints',
+  'appSwitchConfig'
 ]);
 
 
@@ -239,6 +250,9 @@ export const IxCol = /*@__PURE__*/ defineContainer<JSX.IxCol>('ix-col', defineIx
   'sizeMd',
   'sizeLg'
 ]);
+
+
+export const IxContent = /*@__PURE__*/ defineContainer<JSX.IxContent>('ix-content', defineIxContent);
 
 
 export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader>('ix-content-header', defineIxContentHeader, [
