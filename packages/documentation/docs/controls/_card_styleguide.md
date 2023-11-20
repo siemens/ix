@@ -6,7 +6,7 @@ Cards are interactive elements. The entire container is clickable and triggers a
 1. Icon
 2. Notification
 3. Heading
-4. SubHeading
+4. Subheading
 5. Expandable
 6. Container
 7. Expanding content
