@@ -17,6 +17,7 @@ import {
   readTask,
   State,
 } from '@stencil/core';
+import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
@@ -133,6 +134,7 @@ export class ApplicationHeader {
           this.breakpoint !== 'sm' &&
           this.suppressResponsive === false && (
             <ix-icon-button
+              onClick={showAppSwitch}
               icon="apps"
               ghost
               class="app-switch"

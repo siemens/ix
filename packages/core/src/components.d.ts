@@ -139,6 +139,8 @@ export namespace Components {
     }
     interface IxApplicationSidebar {
     }
+    interface IxApplicationSwitchModal {
+    }
     /**
      * @since 2.0.0
      */
@@ -2643,6 +2645,12 @@ declare global {
         prototype: HTMLIxApplicationSidebarElement;
         new (): HTMLIxApplicationSidebarElement;
     };
+    interface HTMLIxApplicationSwitchModalElement extends Components.IxApplicationSwitchModal, HTMLStencilElement {
+    }
+    var HTMLIxApplicationSwitchModalElement: {
+        prototype: HTMLIxApplicationSwitchModalElement;
+        new (): HTMLIxApplicationSwitchModalElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -3946,6 +3954,7 @@ declare global {
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-application-sidebar": HTMLIxApplicationSidebarElement;
+        "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
@@ -4101,6 +4110,8 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface IxApplicationSidebar {
+    }
+    interface IxApplicationSwitchModal {
     }
     /**
      * @since 2.0.0
@@ -6627,6 +6638,7 @@ declare namespace LocalJSX {
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
         "ix-application-sidebar": IxApplicationSidebar;
+        "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
@@ -6738,6 +6750,7 @@ declare module "@stencil/core" {
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
+            "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             /**
              * @since 2.0.0
              */

@@ -14,6 +14,18 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  applicationSwitchConfig = {
+    textAppSwitch: 'Aendere die Applikation',
+    apps: [
+      {
+        id: 'app-1',
+        name: 'Example App 1',
+        url: 'https://www.google.de',
+        target: '_blank',
+      },
+    ],
+  };
+
   render() {
     return (
       <Host>
@@ -41,8 +53,7 @@ export class MyComponent {
             <ix-menu-item>Test</ix-menu-item>
           </ix-menu>
           <ix-content>
-            Test
-            <ix-avatar></ix-avatar>
+            {/* <ix-application-switch-modal></ix-application-switch-modal> */}
           </ix-content>
         </ix-application>
       </Host>
