@@ -28,7 +28,7 @@ The scroll card list style displays the content items from left to right next to
 
 ## Behavior in context
 - **Interaction**: Users expand and collapse card list content by clicking on the icon button with the chevron in the header section. When the card list is expanded, content below the card list is pushed downwards.
-- **"Show all" button**:  Sometimes card lists only need to show the most important or most recent items. Clicking on the "Show All" button in the header section shows all items. Typically, these items are displayed on a new page.
+- **"Show all" button**:  Sometimes card lists only need to show the most important or most recent items. Clicking on the "Show all" button in the header section shows all items. Typically, these items are displayed on a new page.
 - **"Show more" card**: The number of visible items inside a list can be limited to reduce the user's cognitive load. The "Show more" card indicates  that more information is available. Selecting the card either displays the next chunk of items or shows all items on a new page, similar to the "Show all" button pattern.
 
 ## Dos and don'ts
