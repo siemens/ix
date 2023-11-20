@@ -435,7 +435,6 @@ export class DateInput {
           class="dropdown"
         >
           <ix-date-picker-rework
-            tabIndex={0}
             ref={(ref) =>
               (this.datePicker = ref as HTMLIxDatePickerReworkElement)
             }

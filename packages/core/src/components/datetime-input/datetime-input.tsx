@@ -633,7 +633,6 @@ export class DatetimeInput {
         >
           <ix-datetime-picker-rework
             onClick={(event) => event.stopPropagation()}
-            tabIndex={0}
             ref={(ref) =>
               (this.datePicker = ref as HTMLIxDatetimePickerReworkElement)
             }
