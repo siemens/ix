@@ -103,7 +103,10 @@ const themeConfig =
           },
           {
             label: 'Cookie notice',
-            href: 'https://www.siemens.com/cookie-notice',
+            href: '/cookie-notice',
+          },
+          {
+            html: '<a class="footer__link-item" href="javascript:void(0)" onClick="UC_UI.showSecondLayer();">Privacy Settings</a>',
           },
           {
             label: 'Terms of use',
@@ -112,9 +115,6 @@ const themeConfig =
           {
             label: 'Digital ID',
             href: 'https://www.siemens.com/digital-id',
-          },
-          {
-            html: '<a class="footer__link-item" href="javascript:void(0)" onClick="UC_UI.showSecondLayer();">Privacy Settings</a>',
           },
         ],
       },

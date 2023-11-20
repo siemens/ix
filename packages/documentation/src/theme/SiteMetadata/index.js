@@ -123,7 +123,6 @@ export default function SiteMetadata() {
       <Head>
         <script src="//w3.siemens.com/ote/ote_config.js" no-cors></script>
         <script src="//w3.siemens.com/ote/global/ote.js"></script>
-        {/* Prod */}
         <script src="https://assets.adobedtm.com/5dfc7d97c6fb/7699a47b720a/launch-2157063140e5.min.js" async></script>
       </Head>
     </>
