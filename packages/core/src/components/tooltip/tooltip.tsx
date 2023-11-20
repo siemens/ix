@@ -20,7 +20,6 @@ import {
   Element,
   h,
   Host,
-  Listen,
   Method,
   Prop,
   State,

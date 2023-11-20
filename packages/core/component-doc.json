@@ -11657,14 +11657,7 @@
         }
       ],
       "parts": [],
-      "listeners": [
-        {
-          "event": "keydown",
-          "target": "window",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "./src/components/tree",
