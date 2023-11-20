@@ -170,7 +170,7 @@ export class DatetimeInput {
 
   /**
    * Show time reference input
-   * Time reference is default aligned with @see {this.timeFormat}
+   * Per default time reference is aligned with @see {this.timeFormat}
    */
   @Prop() showTimeReference = undefined;
 
