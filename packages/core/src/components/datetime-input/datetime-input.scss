@@ -9,6 +9,11 @@
 @import 'mixins/shadow-dom/component';
 @import 'components/form/input';
 
+:host(.label-flex) {
+  display: flex;
+  flex-direction: row;
+}
+
 :host(.invalid) {
   .invalid-feedback {
     display: block;
@@ -55,13 +60,21 @@
       align-items: center;
     }
 
+    &.left-position {
+      margin-right: 1rem;
+    }
+
+    &.inside-position {
+      margin-left: 0.625rem;
+    }
+
     &.label {
       padding-left: 0.25rem;
     }
+  }
 
-    &.label-color {
-      color: var(--theme-color-soft-text);
-    }
+  .label-color {
+    color: var(--theme-color-soft-text);
   }
 
   .range-input-container {
@@ -76,6 +89,10 @@
 
   .second-input {
     margin-inline-start: 0.625rem;
+  }
+
+  .datetime-input-wrapper {
+    width: 100%;
   }
 
   .datetime-input {

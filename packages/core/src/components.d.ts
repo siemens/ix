@@ -722,7 +722,7 @@ export namespace Components {
         "standaloneAppearance": any;
     }
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface IxDatetimeInput {
         /**
@@ -753,7 +753,7 @@ export namespace Components {
         /**
           * Position of the label
          */
-        "labelPosition": 'above' | 'inline';
+        "labelPosition": 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -2968,7 +2968,7 @@ declare global {
         new (): HTMLIxDateTimeCardElement;
     };
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
     }
@@ -4331,7 +4331,7 @@ declare namespace LocalJSX {
         "standaloneAppearance"?: any;
     }
     /**
-     * @since 3.0.0
+     * @since 2.1.0
      */
     interface IxDatetimeInput {
         /**
@@ -4357,7 +4357,7 @@ declare namespace LocalJSX {
         /**
           * Position of the label
          */
-        "labelPosition"?: 'above' | 'inline';
+        "labelPosition"?: 'top' | 'left' | 'inside';
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -6543,7 +6543,7 @@ declare module "@stencil/core" {
             "ix-date-picker-rework": LocalJSX.IxDatePickerRework & JSXBase.HTMLAttributes<HTMLIxDatePickerReworkElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             /**
-             * @since 3.0.0
+             * @since 2.1.0
              */
             "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;

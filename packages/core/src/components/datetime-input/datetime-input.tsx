@@ -59,7 +59,7 @@ type TimeChangeCallback = (
 ) => void;
 
 /**
- * @since 3.0.0
+ * @since 2.1.0
  */
 @Component({
   tag: 'ix-datetime-input',
@@ -77,7 +77,7 @@ export class DatetimeInput {
   /**
    * Position of the label
    */
-  @Prop() labelPosition: 'above' | 'inline' = 'above';
+  @Prop() labelPosition: 'top' | 'left' | 'inside' = 'top';
 
   /**
    * Set range size
@@ -535,15 +535,28 @@ export class DatetimeInput {
     timeChangeCallback: TimeChangeCallback,
     isSecondInput: boolean = false
   ): any {
+    let labelID: string;
+
+    if (this.range && !isSecondInput) {
+      labelID = 'date-input-label-1';
+    } else if (isSecondInput) {
+      labelID = 'date-input-label-2';
+    } else {
+      labelID = 'date-input-label';
+    }
+
     return (
       <Fragment>
         <div
           class={{
+            'datetime-input-wrapper': !this.range,
             'second-input': isSecondInput,
           }}
         >
           {this.range && (
-            <span class="label-color">{isSecondInput ? 'To' : 'From'}</span>
+            <span class="label-color" id={labelID}>
+              {isSecondInput ? 'To' : 'From'}
+            </span>
           )}
           <div
             class="datetime-input"
@@ -554,7 +567,10 @@ export class DatetimeInput {
                 this.fromInputDiv = ref;
               }
             }}
+            aria-labelledby={labelID}
           >
+            {/* renders if position is inside */}
+            {this.renderLabel(true)}
             <input
               ref={(ref) => {
                 if (isSecondInput) {
@@ -668,10 +684,39 @@ export class DatetimeInput {
     );
   }
 
+  renderLabel(isInsideInput: boolean): any {
+    if (
+      !this.label ||
+      this.range ||
+      (isInsideInput && !(this.labelPosition === 'inside')) ||
+      (!isInsideInput && this.labelPosition === 'inside')
+    ) {
+      return '';
+    }
+
+    return (
+      <span
+        id="date-input-label"
+        class={{
+          'vertical-align':
+            this.labelPosition === 'left' || this.labelPosition === 'inside',
+          'left-position': this.labelPosition === 'left',
+          'inside-position': this.labelPosition === 'inside',
+          'label-color': true,
+        }}
+      >
+        {this.label}
+      </span>
+    );
+  }
+
   render() {
     return (
-      <Host>
-        {!this.range && <label>{this.label}</label>}
+      <Host
+        class={{ 'label-flex': !this.range && this.labelPosition === 'left' }}
+      >
+        {/* renders if position is top/left */}
+        {this.renderLabel(false)}
         {this.range
           ? this.renderRangeInput()
           : this.renderInput(

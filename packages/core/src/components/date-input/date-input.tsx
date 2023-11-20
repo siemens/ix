@@ -390,6 +390,7 @@ export class DateInput {
             this.labelPosition === 'left' || this.labelPosition === 'inside',
           'left-position': this.labelPosition === 'left',
           'inside-position': this.labelPosition === 'inside',
+          'label-color': true,
         }}
       >
         {this.label}
