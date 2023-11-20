@@ -36,7 +36,7 @@ Cards are available in nine variants: Outline, filled, alarm, critical, warning,
 - **Icon**: Cards can, but don't have to, include an icon. The icon is positioned in the top-left corner of the container.
 - **Notification**: By default, push cards display a notification value at the top of the container. This value is logically related to the items displayed in the expanding content area.
 - **Heading**: Cards can, but don't have to, include a heading. The heading is aligned to the top-left corner of the container.
-- **SubHeading**: Cards can, but don't have to, include a subHeading. The subheading is aligned to the top-left corner of the container and positioned below the heading.
+- **Subheading**: Cards can, but don't have to, include a subheading. The subheading is aligned to the top-left corner of the container and positioned below the heading.
 
 ## Behavior in context
 
