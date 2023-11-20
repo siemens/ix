@@ -133,12 +133,12 @@ export class ApplicationHeader {
             expanded={this.menuExpanded}
           ></ix-burger-menu>
         )}
-        {this.applicationLayoutContext.appSwitchConfig &&
+        {this.applicationLayoutContext?.appSwitchConfig &&
           this.breakpoint !== 'sm' &&
           this.suppressResponsive === false && (
             <ix-icon-button
               onClick={() =>
-                showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
+                showAppSwitch(this.applicationLayoutContext?.appSwitchConfig)
               }
               icon="apps"
               ghost
