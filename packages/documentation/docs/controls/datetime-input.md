@@ -16,9 +16,9 @@ import SourceDatetimeValidation from './../auto-generated/previews/web-component
 import SourceReactDatetimeValidation from './../auto-generated/previews/react/datetime-input-validation.md'
 import SourceAngularDatetimeValidation from './../auto-generated/previews/angular/datetime-input-validation.ts.md'
 
-# Datetime input
+# Date time input
 
-## Range Selection
+## Range selection
 
 <Playground
 name="datetime-input-range" height="35rem"
@@ -30,7 +30,7 @@ frameworks={{
   vue: SourceVueDatetimeInputRange
 }}></Playground>
 
-## Single Selection
+## Single selection
 
 <Playground
 name="datetime-input" height="35rem"

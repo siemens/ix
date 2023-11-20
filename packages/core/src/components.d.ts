@@ -779,7 +779,7 @@ export namespace Components {
          */
         "showSeconds": boolean;
         /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * Show time reference input Per default time reference is aligned with @see {this.timeFormat}
          */
         "showTimeReference": any;
         /**
@@ -4428,7 +4428,7 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * Show time reference input Per default time reference is aligned with @see {this.timeFormat}
          */
         "showTimeReference"?: any;
         /**
