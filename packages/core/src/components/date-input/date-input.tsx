@@ -66,7 +66,7 @@ export class DateInput {
   @Prop() format: string = 'YYYY/MM/DD';
 
   /**
-   * If true a date-range can be selected (from/to).
+   * If true a date range can be selected (from/to).
    */
   @Prop() range: boolean = true;
 

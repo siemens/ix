@@ -581,7 +581,7 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * If true a date-range can be selected (from/to).
+          * If true a date range can be selected (from/to).
          */
         "range": boolean;
         /**
@@ -4158,7 +4158,7 @@ declare namespace LocalJSX {
          */
         "onIxOnFocus"?: (event: IxDateInputCustomEvent<DateInputEvent>) => void;
         /**
-          * If true a date-range can be selected (from/to).
+          * If true a date range can be selected (from/to).
          */
         "range"?: boolean;
         /**
