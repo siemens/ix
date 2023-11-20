@@ -81,9 +81,9 @@ export class MapNavigation {
     return this.hostElement.shadowRoot.querySelector('#overlay');
   }
 
-  componentDidRender() {
+  constructor() {
     this.appendMenu();
-    this.closeOverlay();
+    this.closeSidebar();
   }
 
   componentWillLoad() {
