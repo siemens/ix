@@ -27,6 +27,7 @@ Chip variants:
 - **Closable**: When set, the chip contains a close button that removes the entire chip when selected. This feature is only applicable to active chips so users can easily remove specific chips when necessary.
 - **Icon**: Chips can include an icon within the element which is positioned before the chip's label.
 - **Color**: Customize font and icon color for chip. This allows users to specify a unique font color in combination with a custom background color (only applicable when the variant is set to 'custom').
+- **Width**: Typically content length determines chip width with a minimum width of '2rem'. Chip width can be set to a specific value.
 
 ## Behavior 
 
@@ -34,6 +35,7 @@ Chip variants:
 - **Multi-selection**: Chips can visualize multi-selection and filter actions. This helps users to easily identify and understand their choices.
 - **Placement**: We typically place chips inline with other objects to inform users about their state, within tables or grouped together to show selected options and filters. We do not place chips within input and filter components as they have their own chip component variation, the input chip. Currently, input chips are not implemented as independent components.
 - **Dismiss**: When users select close, chips are dismissed from the list or interface and are removed visually.
+- **Text truncation**: When a width is set for chips, long labels are truncated to fit the available space.
 
 
 ## States  
