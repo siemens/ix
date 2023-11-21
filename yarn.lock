@@ -3399,11 +3399,6 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@siemens/ix-echarts@latest":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@siemens/ix-echarts/-/ix-echarts-2.0.3.tgz#2c14f5365a91f08d7b513536afdedc6214568505"
-  integrity sha512-S9NPpAYRyEKGGb/ruGnpB12ywwUgsUATc4sXvXLNHaHSxAnIKw6Tz86+bR/GkdB4kTgyoFbmVpeRzXEQ/BNsyg==
-
 "@siemens/ix-icons@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@siemens/ix-icons/-/ix-icons-2.0.1.tgz#bebfa13d5f9069410b9afd025ceb08b44baf93b2"
@@ -7891,9 +7886,9 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-echarts-for-react@latest:
+echarts-for-react@~3.0.2:
   version "3.0.2"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/echarts-for-react/-/echarts-for-react-3.0.2.tgz#ac5859157048a1066d4553e34b328abb24f2b7c1"
+  resolved "https://registry.yarnpkg.com/echarts-for-react/-/echarts-for-react-3.0.2.tgz#ac5859157048a1066d4553e34b328abb24f2b7c1"
   integrity sha512-DRwIiTzx8JfwPOVgGttDytBqdp5VzCSyMRIxubgU/g2n9y3VLUmF2FK7Icmg/sNVkv4+rktmrLN9w22U2yy3fA==
   dependencies:
     fast-deep-equal "^3.1.3"
@@ -7906,14 +7901,6 @@ echarts@^5.4.1:
   dependencies:
     tslib "2.3.0"
     zrender "5.4.1"
-
-echarts@latest:
-  version "5.4.3"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/echarts/-/echarts-5.4.3.tgz#f5522ef24419164903eedcfd2b506c6fc91fb20c"
-  integrity sha512-mYKxLxhzy6zyTi/FaEbJMOZU1ULGEQHaeIeuMR5L+JnJTpz+YR03mnnpBhbR4+UYJAgiXgpyTVLffPAjOTLkZA==
-  dependencies:
-    tslib "2.3.0"
-    zrender "5.4.4"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -13646,9 +13633,9 @@ ng-packagr@^14.2.0:
   optionalDependencies:
     esbuild "^0.15.0"
 
-ngx-echarts@14.0.0:
+ngx-echarts@~14.0.0:
   version "14.0.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/ngx-echarts/-/ngx-echarts-14.0.0.tgz#6f6e03ae1d41f7805e302d293f8d0df2ef01180b"
+  resolved "https://registry.yarnpkg.com/ngx-echarts/-/ngx-echarts-14.0.0.tgz#6f6e03ae1d41f7805e302d293f8d0df2ef01180b"
   integrity sha512-Q8J/DXiWqYM2vqTfQq16A7KyxbWECZSiAApS0rBjsAJCPjG/VZogUe0snZ/i3mA6bV3vYm41imTYOaH+Rl97QA==
   dependencies:
     tslib "^2.3.0"
@@ -19118,9 +19105,9 @@ vue-demi@^0.13.11:
   resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
   integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
-vue-echarts@latest:
+vue-echarts@~6.6.1:
   version "6.6.1"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/vue-echarts/-/vue-echarts-6.6.1.tgz#5b0398427ea98ba33175bdc80f34af4ce8f27ee4"
+  resolved "https://registry.yarnpkg.com/vue-echarts/-/vue-echarts-6.6.1.tgz#5b0398427ea98ba33175bdc80f34af4ce8f27ee4"
   integrity sha512-EpreTzlNeJ+eaUn0AhXEmKJk98xJGecgTqAdyZovoXWnhTxnlW2HuBM0ei3y8rLw1JCUabf8/sYvxjlr8SzBKQ==
   dependencies:
     resize-detector "^0.3.0"
@@ -19842,13 +19829,6 @@ zrender@5.4.1:
   version "5.4.1"
   resolved "https://registry.npmjs.org/zrender/-/zrender-5.4.1.tgz#892f864b885c71e1dc25dcb3c7a4ba42678d3f11"
   integrity sha512-M4Z05BHWtajY2241EmMPHglDQAJ1UyHQcYsxDNzD9XLSkPDqMq4bB28v9Pb4mvHnVQ0GxyTklZ/69xCFP6RXBA==
-  dependencies:
-    tslib "2.3.0"
-
-zrender@5.4.4:
-  version "5.4.4"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/zrender/-/zrender-5.4.4.tgz#8854f1d95ecc82cf8912f5a11f86657cb8c9e261"
-  integrity sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==
   dependencies:
     tslib "2.3.0"
 
