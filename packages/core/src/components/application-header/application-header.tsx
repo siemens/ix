@@ -158,6 +158,7 @@ export class ApplicationHeader {
                 ghost
               ></ix-icon-button>
               <ix-dropdown
+                data-overflow-dropdown
                 class="dropdown"
                 trigger={this.resolveContextMenuButton()}
               >

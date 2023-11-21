@@ -61,12 +61,13 @@ export class MyComponent {
             </ix-dropdown-button>
 
             <ix-dropdown trigger={'test123'}>
-              <ix-dropdown-item label="Sub 1"></ix-dropdown-item>
+              <ix-dropdown-item label="Sub 1 123 123 123"></ix-dropdown-item>
               <ix-dropdown-item label="Sub 2"></ix-dropdown-item>
             </ix-dropdown>
 
             <ix-avatar>
-              <ix-dropdown-item>Test</ix-dropdown-item>
+              <ix-dropdown-item>Sub 1 123 123 123</ix-dropdown-item>
+              <ix-dropdown-item>Sub 2</ix-dropdown-item>
             </ix-avatar>
           </ix-application-header>
           <ix-menu>
