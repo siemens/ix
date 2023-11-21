@@ -40,6 +40,7 @@ $menuItemPadding: 0.875rem;
   .tab-icon {
     color: var(--theme-nav-item-primary-icon--color);
     position: relative;
+    pointer-events: none;
   }
 
   .tab:focus-visible {
