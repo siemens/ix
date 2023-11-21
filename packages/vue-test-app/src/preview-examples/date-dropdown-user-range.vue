@@ -33,5 +33,3 @@ const dateDropdownOptions = [
 <template>
   <IxDateDropdown :dateRangeOptions="dateDropdownOptions" />
 </template>
-
-<style scoped></style>

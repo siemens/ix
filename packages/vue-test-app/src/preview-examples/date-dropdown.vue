@@ -5,5 +5,3 @@ import { IxDateDropdown } from '@siemens/ix-vue';
 <template>
   <IxDateDropdown />
 </template>
-
-<style scoped></style>
