@@ -11,6 +11,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
+import { getFallbackLabelFromIconName } from '../utils/a11y';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -21,6 +22,14 @@ export type IconButtonVariant = ButtonVariant;
 })
 export class IconButton {
   @Element() hostElement: HTMLIxIconButtonElement;
+
+  /**
+   * Accessibility label for the icon button
+   * Will be set as aria-label on the nested HTML button element
+   *
+   * @since 2.1.0
+   */
+  @Prop({ attribute: 'a11y-label' }) a11yLabel: string;
 
   /**
    * Variant of button
@@ -109,6 +118,11 @@ export class IconButton {
 
   render() {
     const baseButtonProps: BaseButtonProps = {
+      ariaAttributes: {
+        'aria-label': this.a11yLabel
+          ? this.a11yLabel
+          : getFallbackLabelFromIconName(this.icon),
+      },
       variant: this.variant,
       outline: this.outline,
       ghost: this.ghost,

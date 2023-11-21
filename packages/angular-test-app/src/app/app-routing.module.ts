@@ -21,6 +21,7 @@ import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import Card from 'src/preview-examples/card';
 import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
@@ -358,6 +359,7 @@ const routes: Routes = [
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
+      { path: 'card', component: Card },
       { path: 'card-list', component: CardList },
       { path: 'page-header', component: PageHeader },
       { path: 'page-header-no-back', component: PageHeaderNoBack },
