@@ -12,7 +12,7 @@ import { DateTime } from 'luxon';
 import { DateTimeCard } from '../../date-time-card/date-time-card';
 import { DatePicker } from '../date-picker';
 
-describe('date-picker without range', () => {
+describe('date-picker-rework without range', () => {
   it('should have default date selected', async () => {
     const page = await newSpecPage({
       components: [DateTimeCard, DatePicker],
@@ -51,7 +51,7 @@ describe('date-picker without range', () => {
   });
 });
 
-describe('date-picker WITH range', () => {
+describe('date-picker-rework WITH range', () => {
   it('should have default date selected', async () => {
     const page = await newSpecPage({
       components: [DateTimeCard, DatePicker],

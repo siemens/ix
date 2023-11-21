@@ -45,6 +45,8 @@ import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import DateDropdown from '../preview-examples/date-dropdown';
+import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
@@ -193,6 +195,8 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    DateDropdown,
+    DateDropdownUserRange,
     ContentHeaderNoBack,
     ContentHeader,
     DatepickerRange,

@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
-import Aggrid from '../preview-examples/aggrid';
+import AgGrid from '../preview-examples/aggrid';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
@@ -41,6 +41,8 @@ import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import DateDropdown from '../preview-examples/date-dropdown';
+import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
@@ -192,7 +194,7 @@ const routes: Routes = [
       },
       {
         path: 'aggrid',
-        component: Aggrid,
+        component: AgGrid,
       },
       {
         path: 'avatar-image',
@@ -301,6 +303,14 @@ const routes: Routes = [
       {
         path: 'chip',
         component: Chip,
+      },
+      {
+        path: 'date-dropdown',
+        component: DateDropdown,
+      },
+      {
+        path: 'date-dropdown-user-range',
+        component: DateDropdownUserRange,
       },
       {
         path: 'content-header-no-back',

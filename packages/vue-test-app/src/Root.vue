@@ -41,6 +41,8 @@ import CardList from './preview-examples/card-list.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import DateDropdown from "./preview-examples/date-dropdown.vue";
+import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.vue";
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Divider from './preview-examples/divider.vue';
 import Datepicker from './preview-examples/datepicker.vue';
@@ -183,6 +185,8 @@ const routes: any = {
 '/preview/checkbox-indeterminate': CheckboxIndeterminate,
 '/preview/checkbox': Checkbox,
 '/preview/chip': Chip,
+'/preview/date-dropdown': DateDropdown,
+'/preview/date-dropdown-user-range': DateDropdownUserRange,
 '/preview/content-header-no-back': ContentHeaderNoBack,
 '/preview/content-header': ContentHeader,
 '/preview/datepicker-range': DatepickerRange,

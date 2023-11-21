@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date dropdown user range example</title>
+    <!-- Sources -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+    <!-- Sources -->
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-date-dropdown></ix-date-dropdown>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+    <script>
+      document.querySelector('ix-date-dropdown').dateRangeOptions = [
+        {
+          label: 'No time limit',
+          getValue: () => {
+            return {from: undefined, to: window.dayjs()}
+          }
+        },
+        {
+          label: 'Today',
+          getValue: () => {
+            const today = window.dayjs();
+            return { from: today, to: today };
+          },
+          },
+          {
+            label: 'Last 7 days',
+              getValue: () => {
+            const today = window.dayjs();
+            return { from: today.subtract(7, 'day'), to: today };
+          },
+        },
+      ]
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

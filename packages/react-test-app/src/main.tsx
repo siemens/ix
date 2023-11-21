@@ -47,6 +47,8 @@ import Checkbox from './preview-examples/checkbox';
 import Chip from './preview-examples/chip';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
 import ContentHeader from './preview-examples/content-header';
+import DateDropdown from './preview-examples/date-dropdown';
+import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datepicker from './preview-examples/datepicker';
 import Datetimepicker from './preview-examples/datetimepicker';
@@ -192,6 +194,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/checkbox-indeterminate" element={<CheckboxIndeterminate />} />
         <Route path="/preview/checkbox" element={<Checkbox />} />
         <Route path="/preview/chip" element={<Chip />} />
+        <Route path="/preview/date-dropdown" element={<DateDropdown/>}/>
+        <Route path="/preview/date-dropdown-user-range" element={<DateDropdownUserRange/>}/>
         <Route path="/preview/content-header-no-back" element={<ContentHeaderNoBack />} />
         <Route path="/preview/content-header" element={<ContentHeader />} />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
