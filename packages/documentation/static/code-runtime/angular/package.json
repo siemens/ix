@@ -23,6 +23,7 @@
     "@siemens/ix-echarts": "latest",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "dayjs": "^1.11.9",
     "zone.js": "~0.12.0",
     "ag-grid-angular": "^29.1.0",
     "ag-grid-community": "^29.1.0",

@@ -19,6 +19,7 @@
     "ag-grid-vue3": "^28.2.1",
     "vue-echarts": "latest",
     "echarts": "latest",
+    "dayjs": "^1.11.9",
     "vue": "^3.2.45",
     "web-vitals": "^2.1.4",
     "vue-hooks-form": "^0.3.0"

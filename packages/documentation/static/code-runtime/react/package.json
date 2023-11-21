@@ -19,6 +19,7 @@
     "@siemens/ix-echarts": "latest",
     "ag-grid-community": "^29.1.0",
     "ag-grid-react": "^29.1.0",
+    "dayjs": "^1.11.9",
     "echarts-for-react": "latest",
     "echarts": "latest"
   },
