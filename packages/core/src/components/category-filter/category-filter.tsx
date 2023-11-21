@@ -391,7 +391,8 @@ export class CategoryFilter {
     this.categoryChanged.emit(category);
   }
 
-  private resetFilter() {
+  private resetFilter(e: Event) {
+    e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
     this.emitFilterEvent();
@@ -623,7 +624,7 @@ export class CategoryFilter {
   private getResetButton() {
     return (
       <ix-icon-button
-        onClick={() => this.resetFilter()}
+        onClick={(e) => this.resetFilter(e)}
         class={{
           'reset-button': true,
           'hide-reset-button':
@@ -682,6 +683,7 @@ export class CategoryFilter {
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
+                      onClick={(e) => e.stopPropagation()}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
