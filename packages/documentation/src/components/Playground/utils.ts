@@ -60,11 +60,11 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [styles, index_html, main_js, package_json, vite_config_ts, license] =
+  const [styles, index_html, init_js, package_json, vite_config_ts, license] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/html/src/styles/styles.css`,
       `${baseUrl}code-runtime/html/src/index.html`,
-      `${baseUrl}code-runtime/html/src/main.js`,
+      `${baseUrl}code-runtime/html/src/init.js`,
       `${baseUrl}code-runtime/html/package.json`,
       `${baseUrl}code-runtime/html/vite.config.ts`,
       `${baseUrl}code-runtime/html/LICENSE.md`,
@@ -89,7 +89,7 @@ async function openHtmlStackBlitz(
           '<!-- IX_INJECT_SOURCE_CODE -->',
           renderFirstExample.sourceCode
         ),
-        'src/main.js': main_js,
+        'src/init.js': init_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
         'LICENSE.md': license,

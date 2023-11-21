@@ -14,7 +14,7 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Theme switcher example</title>
   </head>
-  <body class="theme-classic-dark">
+  <body class="theme-brand-dark">
     <!-- Preview code -->
     <ix-layout-grid>
       <ix-row>
@@ -47,7 +47,7 @@ LICENSE file in the root directory of this source tree.
       import { themeSwitcher } from '@siemens/ix';
 
       (async function () {
-        const themes = ['theme-classic-light', 'theme-classic-dark'];
+        const themes = ['theme-classic-light', 'theme-brand-dark'];
         let selectedTheme = themes[1];
 
         setTimeout(() => {
@@ -89,6 +89,6 @@ LICENSE file in the root directory of this source tree.
       })();
     </script>
     <!-- Preview code -->
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./init.js"></script>
   </body>
 </html>
