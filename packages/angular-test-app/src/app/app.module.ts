@@ -28,6 +28,7 @@ import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import Card from 'src/preview-examples/card';
 import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
@@ -237,6 +238,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     ModalByInstanceExample,
     PushCard,
     ActionCard,
+    Card,
     CardList,
     EmptyState,
     EmptyStateCompact,
