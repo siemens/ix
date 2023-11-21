@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { themeSwitcher } from '@siemens/ix';
 import sdk from '@stackblitz/sdk';
 import { TargetFramework } from './framework-types';
 
@@ -72,6 +73,13 @@ async function openHtmlStackBlitz(
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
+  // insert current theme
+  const theme = themeSwitcher.getCurrentTheme();
+  const sourceCode = renderFirstExample.sourceCode.replace(
+    /(<body class=")[^"]*(")/,
+    `$1${theme}$2`
+  );
+
   const files = {};
   additionalFiles.forEach((file) => {
     files[`src/${file.filename}`] = file.sourceCode;
@@ -87,7 +95,7 @@ async function openHtmlStackBlitz(
         'src/styles/styles.css': styles,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
-          renderFirstExample.sourceCode
+          sourceCode
         ),
         'src/init.js': init_js,
         'package.json': package_json,
@@ -135,6 +143,13 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
     `${baseUrl}code-runtime/angular/LICENSE.md`,
   ]);
+
+  // insert current theme
+  const theme = themeSwitcher.getCurrentTheme();
+  const newIndexHtml = index_html.replace(
+    /(<body class=")[^"]*(")/,
+    `$1${theme}$2`
+  );
 
   const declareComponents = [];
   additionalFiles.forEach(({ filename, sourceCode }) => {
@@ -184,7 +199,7 @@ export const DECLARE = [
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
         'src/styles/styles.css': styles,
-        'src/index.html': index_html,
+        'src/index.html': newIndexHtml,
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
         'angular.json': angular_json,
@@ -223,6 +238,13 @@ async function openReactStackBlitz(
     `${baseUrl}code-runtime/react/LICENSE.md`,
   ]);
 
+  // insert current theme
+  const theme = themeSwitcher.getCurrentTheme();
+  const newIndexHtml = index_html.replace(
+    /(<body class=")[^"]*(")/,
+    `$1${theme}$2`
+  );
+
   const [renderFirstExample] = sourceFiles;
 
   const patchAppTs = () => {
@@ -253,7 +275,7 @@ async function openReactStackBlitz(
         'src/styles/styles.css': styles,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
-        'public/index.html': index_html,
+        'public/index.html': newIndexHtml,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         'LICENSE.md': license,
@@ -294,6 +316,13 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/LICENSE.md`,
   ]);
 
+  // insert current theme
+  const theme = themeSwitcher.getCurrentTheme();
+  const newIndexHtml = index_html.replace(
+    /(<body class=")[^"]*(")/,
+    `$1${theme}$2`
+  );
+
   const [renderFirstExample] = sourceFiles;
 
   const patchAppTs = () => {
@@ -321,7 +350,7 @@ async function openVueStackBlitz(
         'src/styles/styles.css': styles,
         'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
-        'index.html': index_html,
+        'index.html': newIndexHtml,
         'env.d.ts': env_d_ts,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
