@@ -352,19 +352,21 @@ export class DateInput {
         <span class={{ 'vertical-align': true, disabled: this.disabled }}>
           <ix-icon name="arrow-right"></ix-icon>
         </span>
-        <input
-          disabled={this.disabled}
-          id="secondInput"
-          ref={(ref) => (this.secondInput = ref as HTMLInputElement)}
-          type="text"
-          class="form-control"
-          placeholder={this.format}
-          onFocus={this.onInputFocus}
-          onBlur={this.onInputBlur}
-          value={this._to}
-          onInput={(event) => this.onToInputChange(event)}
-          required
-        />
+        <div class="fill-width">
+          <input
+            disabled={this.disabled}
+            id="secondInput"
+            ref={(ref) => (this.secondInput = ref as HTMLInputElement)}
+            type="text"
+            class="form-control"
+            placeholder={this.format}
+            onFocus={this.onInputFocus}
+            onBlur={this.onInputBlur}
+            value={this._to}
+            onInput={(event) => this.onToInputChange(event)}
+            required
+          />
+        </div>
       </Fragment>
     );
   }
@@ -377,7 +379,7 @@ export class DateInput {
           ref={(ref) => (this.firstInput = ref as HTMLInputElement)}
           id="firstInput"
           type="text"
-          class="form-control"
+          class="form-control fill-width"
           placeholder={this.format}
           onFocus={this.onInputFocus}
           onBlur={this.onInputBlur}

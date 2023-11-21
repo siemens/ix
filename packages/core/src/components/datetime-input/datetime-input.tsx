@@ -594,23 +594,25 @@ export class DatetimeInput {
               value={isSecondInput ? this._toDate : this._fromDate}
               onInput={(event) => dateInputChangeCallback(event)}
             />
-            <input
-              disabled={this.disabled}
-              ref={(ref) => {
-                if (isSecondInput) {
-                  this.toTimeInput = ref;
-                } else {
-                  this.fromTimeInput = ref;
-                }
-              }}
-              type="text"
-              class="form-control"
-              placeholder={this.timeFormat}
-              onFocus={this.onInputFocus}
-              onBlur={this.onInputBlur}
-              value={isSecondInput ? this._toTime : this._fromTime}
-              onInput={(event) => timeInputChangeCallback(event)}
-            />
+            <div class="fill-width">
+              <input
+                disabled={this.disabled}
+                ref={(ref) => {
+                  if (isSecondInput) {
+                    this.toTimeInput = ref;
+                  } else {
+                    this.fromTimeInput = ref;
+                  }
+                }}
+                type="text"
+                class="form-control"
+                placeholder={this.timeFormat}
+                onFocus={this.onInputFocus}
+                onBlur={this.onInputBlur}
+                value={isSecondInput ? this._toTime : this._fromTime}
+                onInput={(event) => timeInputChangeCallback(event)}
+              />
+            </div>
             <span
               class={{
                 'icon-button': true,

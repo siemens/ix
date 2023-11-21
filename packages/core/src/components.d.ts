@@ -552,6 +552,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * Disables the input.
+         */
+        "disabled": boolean;
+        /**
           * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
          */
         "format": string;
@@ -597,7 +601,7 @@ export namespace Components {
          */
         "to": string | undefined;
         /**
-          * Array of validators that are active when the date input is part of a form
+          * Array of validators that are active when the date input is part of a form.
          */
         "validators": InputValidator[] | string[];
         /**
@@ -729,6 +733,10 @@ export namespace Components {
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "dateFormat": string;
+        /**
+          * Disables the input.
+         */
+        "disabled": boolean;
         /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `dateFormat`
          */
@@ -4110,6 +4118,10 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
+          * Disables the input.
+         */
+        "disabled"?: boolean;
+        /**
           * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
          */
         "format"?: string;
@@ -4178,7 +4190,7 @@ declare namespace LocalJSX {
          */
         "to"?: string | undefined;
         /**
-          * Array of validators that are active when the date input is part of a form
+          * Array of validators that are active when the date input is part of a form.
          */
         "validators"?: InputValidator[] | string[];
         /**
@@ -4338,6 +4350,10 @@ declare namespace LocalJSX {
           * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "dateFormat"?: string;
+        /**
+          * Disables the input.
+         */
+        "disabled"?: boolean;
         /**
           * Picker date. If the picker is in range mode this property is the start date.  Format is based on `dateFormat`
          */

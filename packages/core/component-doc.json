@@ -2656,6 +2656,23 @@
           "required": false
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disables the input.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "format",
           "type": "string",
           "mutable": false,
@@ -2834,7 +2851,7 @@
           "type": "InputValidator[] | string[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Array of validators that are active when the date input is part of a form",
+          "docs": "Array of validators that are active when the date input is part of a form.",
           "docsTags": [],
           "default": "[\n    'validDate',\n    'toAfterFrom',\n    'withinMinMax',\n  ]",
           "values": [
@@ -3379,6 +3396,23 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disables the input.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,

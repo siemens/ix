@@ -155,6 +155,12 @@
 
     input {
       border: 0;
+      max-width: 6.5rem;
+    }
+
+    .fill-width {
+      width: 100%;
+      max-width: 100%;
     }
 
     .icon-button {

@@ -473,7 +473,7 @@ The event payload contains information about the selected date range. @event und
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
+  inputs: ['corners', 'disabled', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
   methods: ['getCurrentInput']
 })
 @Component({
@@ -481,7 +481,7 @@ The event payload contains information about the selected date range. @event und
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
+  inputs: ['corners', 'disabled', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
 })
 export class IxDateInput {
   protected el: HTMLElement;
@@ -573,7 +573,7 @@ Only triggered if datepicker is in range mode @since 1.1.0
 
 
 @ProxyCmp({
-  inputs: ['dateFormat', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+  inputs: ['dateFormat', 'disabled', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
   methods: ['getCurrentInput']
 })
 @Component({
@@ -581,7 +581,7 @@ Only triggered if datepicker is in range mode @since 1.1.0
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+  inputs: ['dateFormat', 'disabled', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
 })
 export class IxDatetimeInput {
   protected el: HTMLElement;
