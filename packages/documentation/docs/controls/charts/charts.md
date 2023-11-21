@@ -34,7 +34,7 @@ import '@siemens/ix-echarts';
 ## Usage
 
 <Playground
-height="20rem"
+height="50rem"
 name="echarts"
 frameworks={{
   react: ReactSourceEcharts,
