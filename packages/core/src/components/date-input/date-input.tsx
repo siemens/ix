@@ -127,13 +127,18 @@ export class DateInput {
   @Prop() suppressErrorMessage: boolean = false;
 
   /**
-   * Array of validators that are active when the date input is part of a form
+   * Array of validators that are active when the date input is part of a form.
    */
   @Prop() validators: InputValidator[] | string[] = [
     'validDate',
     'toAfterFrom',
     'withinMinMax',
   ];
+
+  /**
+   * Disables the input.
+   */
+  @Prop() disabled: boolean = false;
 
   /**
    * Triggers if the date selection changes.
@@ -332,6 +337,7 @@ export class DateInput {
     return (
       <Fragment>
         <input
+          disabled={this.disabled}
           id="firstInput"
           ref={(ref) => (this.firstInput = ref as HTMLInputElement)}
           type="text"
@@ -343,10 +349,11 @@ export class DateInput {
           onInput={(event) => this.onFromInputChange(event)}
           required
         />
-        <span class="vertical-align">
+        <span class={{ 'vertical-align': true, disabled: this.disabled }}>
           <ix-icon name="arrow-right"></ix-icon>
         </span>
         <input
+          disabled={this.disabled}
           id="secondInput"
           ref={(ref) => (this.secondInput = ref as HTMLInputElement)}
           type="text"
@@ -366,6 +373,7 @@ export class DateInput {
     return (
       <Fragment>
         <input
+          disabled={this.disabled}
           ref={(ref) => (this.firstInput = ref as HTMLInputElement)}
           id="firstInput"
           type="text"
@@ -411,7 +419,7 @@ export class DateInput {
         {/* renders if position is top/left */}
         {this.renderLabel(false)}
         <div
-          class="date-input"
+          class={{ 'date-input': true, disabled: this.disabled }}
           aria-labelledby="date-input-label"
           ref={(ref) => (this.dateInputDiv = ref)}
         >
@@ -427,12 +435,13 @@ export class DateInput {
             <ix-icon-button
               ghost
               icon="clear"
-              class={{ hidden: !this._from && !this._to }}
+              class={{ hidden: this.disabled || (!this._from && !this._to) }}
               onClick={this.clear}
             ></ix-icon-button>
           </span>
           <span class="icon-button">
             <ix-icon-button
+              disabled={this.disabled}
               ghost
               icon="chevron-down-small"
               aria-label={this.dropdownButtonAriaLabel}
@@ -440,7 +449,7 @@ export class DateInput {
           </span>
         </div>
         <ix-dropdown
-          trigger={this.dateInputDiv}
+          trigger={!this.disabled && this.dateInputDiv}
           closeBehavior="outside"
           onClick={(event) => event.stopPropagation()}
           class="dropdown"

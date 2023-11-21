@@ -206,6 +206,11 @@ export class DatetimeInput {
   @Prop() suppressErrorMessage: boolean = false;
 
   /**
+   * Disables the input.
+   */
+  @Prop() disabled: boolean = false;
+
+  /**
    * Triggers if the first date selection changes.
    *
    * @emits string
@@ -559,7 +564,7 @@ export class DatetimeInput {
             </span>
           )}
           <div
-            class="datetime-input"
+            class={{ 'datetime-input': true, disabled: this.disabled }}
             ref={(ref) => {
               if (isSecondInput) {
                 this.toInputDiv = ref;
@@ -572,6 +577,7 @@ export class DatetimeInput {
             {/* renders if position is inside */}
             {this.renderLabel(true)}
             <input
+              disabled={this.disabled}
               ref={(ref) => {
                 if (isSecondInput) {
                   this.toDateInput = ref;
@@ -589,6 +595,7 @@ export class DatetimeInput {
               onInput={(event) => dateInputChangeCallback(event)}
             />
             <input
+              disabled={this.disabled}
               ref={(ref) => {
                 if (isSecondInput) {
                   this.toTimeInput = ref;
@@ -615,6 +622,7 @@ export class DatetimeInput {
                 icon="clear"
                 class={{
                   hidden:
+                    this.disabled ||
                     (isSecondInput && !this._toDate && !this._toTime) ||
                     (!isSecondInput && !this._fromDate && !this._fromTime),
                 }}
@@ -622,12 +630,19 @@ export class DatetimeInput {
               ></ix-icon-button>
             </span>
             <span class="icon-button">
-              <ix-icon-button ghost icon="chevron-down-small"></ix-icon-button>
+              <ix-icon-button
+                disabled={this.disabled}
+                ghost
+                icon="chevron-down-small"
+              ></ix-icon-button>
             </span>
           </div>
         </div>
         <ix-dropdown
-          trigger={isSecondInput ? this.toInputDiv : this.fromInputDiv}
+          trigger={
+            !this.disabled &&
+            (isSecondInput ? this.toInputDiv : this.fromInputDiv)
+          }
           closeBehavior="outside"
           class="dropdown"
         >
