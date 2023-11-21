@@ -115,7 +115,6 @@ async function openAngularStackBlitz(
   additionalFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
-    app_component_css,
     app_component_html,
     app_component_ts,
     app_module_ts,
@@ -129,7 +128,6 @@ async function openAngularStackBlitz(
     tsconfig_json,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/angular/src/app/app.component.css`,
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
@@ -194,7 +192,6 @@ export const DECLARE = [
       description: 'iX angular playground',
       files: {
         'src/app/declare-component.ts': declare_component_ts,
-        'src/app/app.component.css': app_component_css,
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
