@@ -149,7 +149,7 @@ LICENSE file in the root directory of this source tree.
       };
 
       registerTheme(echarts);
-      const theme = document.body.className.replace('theme-', '');
+      const theme = document.body.className.replace('theme-', ''); // brand-dark, brand-light, classic-dark or classic-light
       var myChart = echarts.init(document.querySelector('#main'), theme);
 
       // Draw the chart

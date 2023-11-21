@@ -24,7 +24,7 @@ import { EChartsOption } from 'echarts';
   `,
 })
 export default class BarChartComponent implements OnInit {
-  theme = 'classic-dark'; // brand-dark, brand-light, classic-dark or classic-light
+  theme = document.body.className.replace('theme-', ''); // brand-dark, brand-light, classic-dark or classic-light
 
   options: EChartsOption = {
     tooltip: {

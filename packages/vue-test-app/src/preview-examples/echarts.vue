@@ -13,7 +13,7 @@ import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts';
 import { registerTheme } from '@siemens/ix-echarts';
 
-const theme = 'classic-dark'; // brand-dark, brand-light, classic-dark or classic-light
+const theme = document.body.className.replace('theme-', ''); // brand-dark, brand-light, classic-dark or classic-light
 
 onMounted(() => {
   registerTheme(echarts);
