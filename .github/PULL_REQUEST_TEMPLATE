@@ -25,14 +25,14 @@ GitHub Issue Number: #<ISSUE NUMBER>
 
 A pull request can only be merged if all of these conditions are met (where applicable):
 
-- [ ] Accessibility (a11y) features were implemented
-- [ ] Internationalization (i18n) - no hard coded strings
-- [ ] Responsiveness - components handle viewport changes and content overflow gracefully
-- [ ] Documentation was reviewed/updated (`yarn docs`)
-- [ ] Unit tests were added/updated and pass (`yarn test`)
-- [ ] Visual regression tests were added/updated and pass (`yarn visual-regression`)
-- [ ] Static code analysis passes (`yarn lint`)
-- [ ] Successful compilation (`yarn build`, changes pushed)
+- [ ] 🦮 Accessibility (a11y) features were implemented
+- [ ] 🗺️ Internationalization (i18n) - no hard coded strings
+- [ ] 📲 Responsiveness - components handle viewport changes and content overflow gracefully
+- [ ] 📄 Documentation was reviewed/updated (`yarn docs`)
+- [ ] 🧪 Unit tests were added/updated and pass (`yarn test`)
+- [ ] 📸 Visual regression tests were added/updated and pass (`yarn visual-regression`)
+- [ ] 🧐 Static code analysis passes (`yarn lint`)
+- [ ] 🏗️ Successful compilation (`yarn build`, changes pushed)
 
 ## 👨‍💻 Help & support
 
