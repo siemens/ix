@@ -57,6 +57,7 @@ export class MenuAbout {
     return Array.from(this.el.querySelectorAll('ix-menu-about-item'));
   }
 
+  @Watch('activeTabLabel')
   private setTab(label: string) {
     this.activeTabLabel = label;
     this.aboutItems.forEach((i) => {
@@ -83,12 +84,6 @@ export class MenuAbout {
 
   private updateLabels() {
     this.labels = this.aboutItems.map((i) => i.label);
-  }
-
-  @Watch('activeTabLabel')
-  watchActiveTabLabel(value: string) {
-    // Wait a DOM render cycle to get changed labels
-    setTimeout(() => this.setTab(value));
   }
 
   private getSelectedTabIndex(label: string) {
