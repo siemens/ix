@@ -1759,7 +1759,7 @@
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
-          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docs": "Custom background color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
@@ -1792,7 +1792,7 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
