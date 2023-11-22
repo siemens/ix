@@ -33,3 +33,7 @@ A pull request can only be merged if all of these conditions are met (where appl
 - [ ] Visual regression tests were added/updated and pass (`yarn visual-regression`)
 - [ ] Static code analysis passes (`yarn lint`)
 - [ ] Successful compilation (`yarn build`, changes pushed)
+
+## Help & support
+
+<!-- If you need help with anything related to your PR please let us know in this section -->
