@@ -17,6 +17,9 @@
 
     .content__label {
       color: var(--theme-color-soft-text);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     .content__value {
