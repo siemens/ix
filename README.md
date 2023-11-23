@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![ix][product-screenshot]](https://example.com)
+![ix][product-screenshot]
 
 Siemens Industrial Experience is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 

@@ -45,7 +45,7 @@ Before you ask a question, it is best to search for existing [Issues](https://gi
 
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
-- Create an [Siemens Community](https://community.siemens.com/c/ix/) post.
+- Create a [Siemens Community](https://community.siemens.com/c/ix/) post.
 - Provide as much context as you can about what you're running into.
 - Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
 
@@ -77,8 +77,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 <!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <>.
-<!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <lukas.maurer@siemens.com> or <daniel.leroux@siemens.com>.
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
@@ -90,7 +89,7 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 Once it's filed:
 
 - The project team will label the issue accordingly.
-- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` tag will not be addressed until they are reproduced.
+- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` tag will not be addressed until the steps to reproduce it have been provided.
 - If the team is able to reproduce the issue, it will be marked `type: bug`, as well as possibly other tags (such as `type: enhancement`), and the issue will be left to be [implemented by someone](#your-first-code-contribution).
 - If the issue is labeled as `planned` its already tracked in our internal sprint backlog.
 
@@ -151,7 +150,7 @@ The experience of integrating web components directly into existing applications
 Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/overview)
 
 > Please be aware you can not modify angular, react and vue components directly.
-> Some files are marked with a jsdocs `/* auto-generated react proxies */` this files will be overwritten by each build!
+> Some files are marked with a jsdocs `/* auto-generated react proxies */`. These files will be overwritten by each build!
 
 #### Modifying Files
 
@@ -171,31 +170,35 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 
 1. Run `pnpm start --filter @siemens/ix` from within the `root` directory.
 2. A browser should open at `http://localhost:3333/`.
-3. From here, navigate to `/packages/core/src/components/my-component/my-component.tsx` to test and preview your changes.
+3. Edit and safe `/packages/core/src/components/my-component/my-component.tsx` to review your changes.
 
 #### Angular
 
 1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:4200/previews/button`.
-3. From here, navigate to `packages/angular-test-app/src/preview-examples` to test and preview your changes.
+3. Edit or add an example in `packages/angular-test-app/src/preview-examples`.
+4. Navigate to `http://localhost:4200/previews/{your-example-file-name}` to review your changes.
 
 #### React
 
 1. Run `pnpm start --filter @siemens/react-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:5173/previews/buttons`.
-3. From here, navigate to `packages/react-test-app/src/preview-examples/buttons` to test and preview your changes.
+3. Edit or add an example in `packages/react-test-app/src/preview-examples/buttons`.
+4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
 
 #### Vue
 
 1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:5173/previews/buttons`.
-3. From here, navigate to `packages/vue-test-app/src/preview-examples/buttons` to test and preview your changes.
+3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
+4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
 
 #### Web Components
 
 1. Run `pnpm start --filter @siemens/html-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:5173/preview-examples/buttons.html`.
-3. From here, navigate to `packages/vue-test-app/src/preview-examples/buttons` to test and preview your changes.
+3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
+4. Navigate to `http://localhost:5173/preview-examples/{your-example-file-name}.html` to test and preview your changes.
 
 #### Lint changes
 
