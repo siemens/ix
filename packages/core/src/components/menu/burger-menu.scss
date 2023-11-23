@@ -48,6 +48,7 @@ $focus-bdr-width: 0.0625rem;
 .burger-menu-button {
   width: 40px;
   padding: 0;
+  cursor: pointer;
 }
 
 @include host-active {
