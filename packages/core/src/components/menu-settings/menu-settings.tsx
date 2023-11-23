@@ -16,6 +16,7 @@ import {
   h,
   Host,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 
@@ -50,9 +51,7 @@ export class MenuAbout {
     name: string;
   }>;
 
-  get settingsItems(): HTMLIxMenuSettingsItemElement[] {
-    return Array.from(this.el.querySelectorAll('ix-menu-settings-item'));
-  }
+  @State() settingsItems: HTMLIxMenuSettingsItemElement[];
 
   private setTab(label: string) {
     this.activeTabLabel = label;
@@ -66,9 +65,25 @@ export class MenuAbout {
   }
 
   componentWillLoad() {
+    this.settingsItems = Array.from(
+      this.el.querySelectorAll('ix-menu-settings-item')
+    );
+
     if (this.settingsItems.length) {
       this.setTab(this.activeTabLabel || this.settingsItems[0].label);
     }
+
+    this.settingsItems.forEach((item) => {
+      item.addEventListener('labelChange', (e: CustomEvent) => {
+        this.settingsItems = Array.from(
+          this.el.querySelectorAll('ix-menu-settings-item')
+        );
+
+        if (e.detail.oldLabel === this.activeTabLabel) {
+          this.activeTabLabel = e.detail.newLabel;
+        }
+      });
+    });
   }
 
   componentDidLoad() {
@@ -84,9 +99,7 @@ export class MenuAbout {
     return this.settingsItems.map(({ label }) => {
       return (
         <ix-tab-item
-          class={{
-            active: label === this.activeTabLabel,
-          }}
+          selected={label === this.activeTabLabel}
           onClick={() => this.setTab(label)}
         >
           {label}
