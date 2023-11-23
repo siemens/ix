@@ -308,7 +308,7 @@ Must be one of the following:
 1. [Create a new pull request](https://github.com/siemens/ix/compare) with the `main` branch as the `base`. You may need to click on `compare across forks` to find your changes.
 2. See the [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) GitHub help article for more information.
 3. Please fill out the provided Pull Request template to the best of your ability and include any issues that are related.
-4. Create a [changesets](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
+4. Create a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
 
 ## Attribution
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
