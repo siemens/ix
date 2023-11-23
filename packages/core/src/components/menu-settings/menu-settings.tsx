@@ -26,6 +26,8 @@ import {
   shadow: true,
 })
 export class MenuAbout {
+  @Element() el!: HTMLIxMenuSettingsElement;
+
   /**
    * active tab
    */
@@ -40,8 +42,6 @@ export class MenuAbout {
    * Internal
    */
   @Prop() show = false;
-
-  @Element() el!: HTMLIxMenuSettingsElement;
 
   /**
    * Popover closed
@@ -61,6 +61,19 @@ export class MenuAbout {
       if (i.label === this.activeTabLabel) {
         i.style.display = 'block';
       }
+    });
+  }
+
+  private getTabItems() {
+    return this.settingsItems.map(({ label }) => {
+      return (
+        <ix-tab-item
+          selected={label === this.activeTabLabel}
+          onClick={() => this.setTab(label)}
+        >
+          {label}
+        </ix-tab-item>
+      );
     });
   }
 
@@ -93,19 +106,6 @@ export class MenuAbout {
   @Watch('activeTabLabel')
   watchActiveTabLabel(value: string) {
     this.setTab(value);
-  }
-
-  private getTabItems() {
-    return this.settingsItems.map(({ label }) => {
-      return (
-        <ix-tab-item
-          selected={label === this.activeTabLabel}
-          onClick={() => this.setTab(label)}
-        >
-          {label}
-        </ix-tab-item>
-      );
-    });
   }
 
   render() {
