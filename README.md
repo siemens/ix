@@ -1,11 +1,5 @@
 <a name="readme-top"></a>
 
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -32,32 +26,12 @@
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#🤝-contributing">Contributing</a></li>
-    <li><a href="#👨‍💻-maintainers">Contact</a></li>
-    <li><a href="#📝-license">License</a></li>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![ix][product-screenshot]
-
 Siemens Industrial Experience is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
-### Built with
+### 📦 Flexible components
 
 Build based on native Web Components.
 Adopt major frameworks for seamless integration into your project.
@@ -67,11 +41,9 @@ Adopt major frameworks for seamless integration into your project.
 [![Vue][Vue.js]][Vue-url]
 [![Angular][Angular.io]][Angular-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- GETTING STARTED -->
-## Getting Started
+## 🚀 Getting Started
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
 
@@ -82,14 +54,10 @@ Contributions are what make the open source community such an amazing place to l
 
 Checkout our [contribution guidelines](/CONTRIBUTING.md)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## 👨‍💻 Maintainers
 
 - Daniel Leroux <daniel.leroux@siemens.com>
 - Lukas Maurer <lukas.maurer@siemens.com>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 📝 License
 

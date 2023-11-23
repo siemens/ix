@@ -7,8 +7,8 @@ body:
       value: |
         Thank you for taking the time to fill out this bug report!
         Make sure to not violate these rules:
-        - Do not leak any internal company information!
-        - Do not post internal links or code snippets!
+        - Do not leak any internal company information.
+        - Do not post internal links or code snippets.
 
   - type: textarea
     id: what-happened
