@@ -75,7 +75,7 @@ export class DatetimeInput {
   @Prop() label: string;
 
   /**
-   * Position of the label
+   * Position of the text set in the `label` property relative to the input field.
    */
   @Prop() labelPosition: 'top' | 'left' | 'inside' = 'top';
 

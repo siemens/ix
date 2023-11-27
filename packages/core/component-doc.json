@@ -2744,7 +2744,7 @@
           "mutable": false,
           "attr": "label-position",
           "reflectToAttr": false,
-          "docs": "Position of the label",
+          "docs": "Position of the text set in the `label` property relative to the input field.",
           "docsTags": [],
           "default": "'top'",
           "values": [
