@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENxSE file in the root directory of this source tree.
  */
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, State } from '@stencil/core';
 import { AppSwitchConfiguration } from '../utils/application-layout/context';
 
 @Component({
@@ -15,36 +15,48 @@ import { AppSwitchConfiguration } from '../utils/application-layout/context';
   scoped: true,
 })
 export class MyComponent {
-  applicationSwitchConfig: AppSwitchConfiguration = {
+  @State() applicationSwitchConfig: AppSwitchConfiguration = {
     textAppSwitch: 'Aendere die Applikation',
     currentAppId: 'app-2',
-    apps: [
-      {
-        id: 'app-1',
-        name: 'Example App 1',
-        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-        url: 'https://www.google.de',
-        description: 'Test',
-        target: '_self',
-      },
-      {
-        id: 'app-2',
-        name: 'Example App 222',
-        description: 'Test',
-        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-        url: 'https://www.google.de',
-        target: '_self',
-      },
-      ...Array.from({ length: 20 }).map((_, index) => ({
-        id: `app-x-${index}`,
-        name: `Generated App ${index}`,
-        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-        description: `Generated Desc ${index}`,
-        url: 'https://www.google.de',
-        target: '_self',
-      })),
-    ],
+    apps: [],
   };
+
+  componentDidLoad() {
+    setTimeout(() => {
+      console.log('timeout');
+      this.applicationSwitchConfig = {
+        ...this.applicationSwitchConfig,
+        apps: [
+          {
+            id: 'app-1',
+            name: 'Example App 1',
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            url: 'https://www.google.de',
+            description: 'Test',
+            target: '_self',
+          },
+          {
+            id: 'app-2',
+            name: 'Example App 222',
+            description: 'Test',
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            url: 'https://www.google.de',
+            target: '_self',
+          },
+          ...Array.from({ length: 20 }).map((_, index) => ({
+            id: `app-x-${index}`,
+            name: `Generated App ${index}`,
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            description: `Generated Desc ${index}`,
+            url: 'https://www.google.de',
+            target: '_self',
+          })),
+        ],
+      };
+
+      console.log(this.applicationSwitchConfig);
+    }, 5000);
+  }
 
   render() {
     return (

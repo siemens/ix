@@ -50,16 +50,21 @@ export class ApplicationHeader {
   >;
 
   componentWillLoad() {
-    useContextConsumer(this.hostElement, ApplicationLayoutContext, (ctx) => {
-      if (ctx?.host === 'map-navigation') {
-        this.suppressResponsive = true;
-        this.breakpoint = 'md';
-        return;
-      }
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        if (ctx?.host === 'map-navigation') {
+          this.suppressResponsive = true;
+          this.breakpoint = 'md';
+          return;
+        }
 
-      this.breakpoint = applicationLayoutService.breakpoint;
-      this.applicationLayoutContext = ctx;
-    });
+        this.breakpoint = applicationLayoutService.breakpoint;
+        this.applicationLayoutContext = ctx;
+      },
+      true
+    );
 
     this.menuDisposable = menuController.expandChange.on((show) => {
       this.menuExpanded = show;

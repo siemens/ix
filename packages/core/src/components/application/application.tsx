@@ -148,6 +148,7 @@ export class Application {
   @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
+    console.log('change', this.appSwitchConfig);
     this.contextProvider.emit({
       hideHeader: false,
       host: 'basic-navigation',
