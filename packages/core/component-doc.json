@@ -2804,7 +2804,7 @@
           "reflectToAttr": false,
           "docs": "If true a date range can be selected (from/to).",
           "docsTags": [],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -3489,7 +3489,7 @@
           "mutable": false,
           "attr": "label-position",
           "reflectToAttr": false,
-          "docs": "Position of the label",
+          "docs": "Position of the text set in the `label` property relative to the input field.",
           "docsTags": [],
           "default": "'top'",
           "values": [
@@ -3549,7 +3549,7 @@
           "reflectToAttr": false,
           "docs": "Set range size",
           "docsTags": [],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
