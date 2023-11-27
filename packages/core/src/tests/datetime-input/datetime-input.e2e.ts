@@ -22,4 +22,14 @@ regressionTest.describe('datetime input', () => {
     await page.getByPlaceholder('YYYY/MM/DD').nth(0).click();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('labelPosition', async ({ page }) => {
+    await page.goto('datetime-input/label-position');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('disabled', async ({ page }) => {
+    await page.goto('datetime-input/disabled');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
