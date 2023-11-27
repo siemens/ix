@@ -333,6 +333,16 @@ export class DateInput {
     hiddenInput.form.addEventListener('submit', this.setInputValidity);
   }
 
+  componentDidRender() {
+    const inputs = this.hostElement.shadowRoot.querySelectorAll('input');
+    inputs.forEach((input) => {
+      input.setAttribute(
+        'size',
+        input.getAttribute('placeholder').length as unknown as string
+      );
+    });
+  }
+
   renderRangeInput(): any {
     return (
       <Fragment>

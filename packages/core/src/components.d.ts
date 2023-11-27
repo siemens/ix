@@ -759,7 +759,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Position of the label
+          * Position of the text set in the `label` property relative to the input field.
          */
         "labelPosition": 'top' | 'left' | 'inside';
         /**
@@ -4371,7 +4371,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Position of the label
+          * Position of the text set in the `label` property relative to the input field.
          */
         "labelPosition"?: 'top' | 'left' | 'inside';
         /**

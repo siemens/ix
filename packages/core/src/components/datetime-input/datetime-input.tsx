@@ -533,6 +533,16 @@ export class DatetimeInput {
     hiddenInput.form.addEventListener('submit', this.setInputValidity);
   }
 
+  componentDidRender() {
+    const inputs = this.hostElement.shadowRoot.querySelectorAll('input');
+    inputs.forEach((input) => {
+      input.setAttribute(
+        'size',
+        input.getAttribute('placeholder').length as unknown as string
+      );
+    });
+  }
+
   private renderInput(
     dateInputChangeCallback: InputChangeCallback,
     timeInputChangeCallback: InputChangeCallback,
