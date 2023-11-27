@@ -70,7 +70,7 @@ export class DatePickerRework {
   /**
    * If true a date-range can be selected (from/to).
    */
-  @Prop() range: boolean = true;
+  @Prop() range: boolean = false;
 
   /**
    * Corner style

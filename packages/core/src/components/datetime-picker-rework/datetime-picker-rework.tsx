@@ -30,7 +30,7 @@ export class DatetimePickerRework {
   /**
    * If true a date-range can be selected (from/to).
    */
-  @Prop() range = true;
+  @Prop() range = false;
 
   /**
    * Show hour input

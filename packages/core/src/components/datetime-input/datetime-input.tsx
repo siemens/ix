@@ -82,7 +82,7 @@ export class DatetimeInput {
   /**
    * Set range size
    */
-  @Prop() range = true;
+  @Prop() range = false;
 
   /**
    * Show hour input
