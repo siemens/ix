@@ -22,7 +22,6 @@ test.describe('datetime picker tests single', () => {
     await mount(
       `
       <ix-datetime-picker-rework
-        range="false"
         from="1990/03/29"
         time="09:10:12"
         week-start-index="1"

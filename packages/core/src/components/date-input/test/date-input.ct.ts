@@ -18,7 +18,7 @@ const getDateInputObj = (page: Page) => {
 
 test.describe('date input tests single', () => {
   test.beforeEach(async ({ mount }) => {
-    await mount(`<ix-date-input range="false"></ix-date-input>`);
+    await mount(`<ix-date-input></ix-date-input>`);
   });
 
   test('renders', async ({ page }) => {

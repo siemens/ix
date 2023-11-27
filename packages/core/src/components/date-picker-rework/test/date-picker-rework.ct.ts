@@ -61,7 +61,7 @@ test('translation', async ({ mount, page }) => {
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker-rework from="2023/09/05" range="false"></ix-date-picker-rework>`
+      `<ix-date-picker-rework from="2023/09/05"></ix-date-picker-rework>`
     );
   });
 
@@ -152,7 +152,7 @@ test.describe('date picker tests single', () => {
 test.describe('date picker tests range', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker-rework from="2023/09/05" to="2023/09/10"></ix-date-picker-rework>`
+      `<ix-date-picker-rework from="2023/09/05" to="2023/09/10" range="true"></ix-date-picker-rework>`
     );
   });
 

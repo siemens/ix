@@ -18,7 +18,7 @@ const getDatetimeInputObj = (page: Page) => {
 
 test.describe('datetime input tests single', () => {
   test.beforeEach(async ({ mount }) => {
-    await mount(`<ix-datetime-input range="false"></ix-datetime-input>`);
+    await mount(`<ix-datetime-input></ix-datetime-input>`);
   });
 
   test('renders', async ({ page }) => {
