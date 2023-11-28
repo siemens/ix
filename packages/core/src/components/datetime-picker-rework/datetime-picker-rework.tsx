@@ -67,7 +67,7 @@ export class DatetimePickerRework {
 
   /**
    * Date format string.
-   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
@@ -75,7 +75,7 @@ export class DatetimePickerRework {
 
   /**
    * Time format string.
-   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
@@ -133,10 +133,10 @@ export class DatetimePickerRework {
   @Prop() weekStartIndex = 0;
 
   /**
-   * DayJS locale object used for translation.
-   * See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
+   * Format of time string
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
-  @Prop() dayJsLocale: ILocale;
+  @Prop() locale: string = undefined;
 
   /**
    * Time change
@@ -207,6 +207,7 @@ export class DatetimePickerRework {
                 maxDate={this.maxDate}
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
+                locale={this.locale}
               ></ix-date-picker-rework>
             </ix-col>
 

@@ -31,7 +31,7 @@ test.describe('time picker tests', () => {
       </ix-time-picker-rework>
       <ix-time-picker-rework
       time="10:11:12 AM"
-      format="hh:mm:ss A"
+      format="hh:mm:ss a"
       >
       </ix-time-picker-rework>`
     );

@@ -18,24 +18,21 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import dayjs, { UnitType } from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 export type TimePickerCorners = DateTimeCardCorners;
 
-dayjs.extend(customParseFormat);
-
 interface TimePickerDescriptor {
-  unit: 'hours' | 'minutes' | 'seconds';
+  unit: 'hour' | 'minute' | 'second';
   placeholder: string;
   hidden: boolean;
 }
 
 interface TimeOutputFormat {
-  hours: string;
-  minutes: string;
-  seconds: string;
+  hour: string;
+  minute: string;
+  second: string;
 }
 
 /**
@@ -49,11 +46,11 @@ interface TimeOutputFormat {
 export class TimePickerRework {
   /**
    * Format of time string
-   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
-  @Prop() format: string = 'HH:mm:ss';
+  @Prop() format: string = 'TT';
 
   /**
    * Corner style
@@ -86,12 +83,12 @@ export class TimePickerRework {
    *
    * @since 1.1.0
    */
-  @Prop() time: string = dayjs().format(this.format);
+  @Prop() time: string = DateTime.now().toFormat(this.format);
 
   @Watch('time')
   watchTimePropHandler(newValue: string) {
-    this._time = dayjs(newValue, this.format, true);
-    if (!this._time.isValid()) {
+    this._time = DateTime.fromFormat(newValue, this.format);
+    if (!this._time.isValid) {
       throw new Error('Format is not supported or not correct');
     }
   }
@@ -118,51 +115,55 @@ export class TimePickerRework {
    */
   @Event() timeChange: EventEmitter<string>;
 
-  @State() private _time: dayjs.Dayjs;
+  @State() private _time: DateTime;
   @State() private _timeRef: 'AM' | 'PM' | undefined;
   @State() private _formattedTime: TimeOutputFormat;
 
-  constructor() {
-    this._time = dayjs(this.time, this.format);
+  componentWillLoad() {
+    this._time = DateTime.fromFormat(this.time, this.format);
 
-    if (!this._time.isValid()) {
+    if (!this._time.isValid) {
       console.error(
         'Invalid time format. The configured format does not match the format of the passed time.'
       );
       return;
     }
 
-    this._timeRef = this.format.includes('A')
-      ? (dayjs(this.time, this.format).format('A') as 'AM' | 'PM')
+    this._timeRef = this.format.includes('a')
+      ? (DateTime.fromFormat(this.time, this.format).toFormat('a') as
+          | 'AM'
+          | 'PM')
       : undefined;
     this.formatTime();
+
+    console.dir(this);
   }
 
   @Watch('_time')
   formatTime() {
-    const [hour, minutes, seconds] = this._time
-      .format(this.format)
+    const [hour, minute, second] = this._time
+      .toFormat(this.format)
       .split(' ')[0]
       .split(':');
 
     this._formattedTime = {
-      hours: hour,
-      minutes: minutes,
-      seconds: seconds,
+      hour: hour,
+      minute: minute,
+      second: second,
     };
   }
 
   @Watch('_time')
   onInternalTimeChange() {
-    this.timeChange.emit(this._time.format(this.format));
-    if (this._timeRef) this._timeRef = this._time.format('A') as 'AM' | 'PM';
+    this.timeChange.emit(this._time.toFormat(this.format));
+    if (this._timeRef) this._timeRef = this._time.toFormat('a') as 'AM' | 'PM';
   }
 
-  timeUpdate(unit: UnitType, value: number): number {
-    let maxValue = dayjs().endOf('day').get(unit);
+  timeUpdate(unit: 'hour' | 'minute' | 'second', value: number): number {
+    let maxValue = DateTime.now().endOf('day').get(unit);
 
-    if (this._timeRef === 'PM' && unit === 'hours') value += 12;
-    if (this._timeRef === 'AM' && unit === 'hours') maxValue = 12;
+    if (this._timeRef === 'PM' && unit === 'hour') value += 12;
+    if (this._timeRef === 'AM' && unit === 'hour') maxValue = 12;
 
     if (value > maxValue) {
       value = maxValue;
@@ -170,15 +171,19 @@ export class TimePickerRework {
       value = 0;
     }
 
-    this._time = this._time.set(unit, value);
+    this._time = this._time.set({
+      [unit]: value,
+    });
     return value;
   }
 
   changeTimeReference() {
     this._timeRef = this._timeRef === 'AM' ? 'PM' : 'AM';
 
-    if (!this._time.format('A').includes(this._timeRef)) {
-      this._time = this._time.add(12, 'hour');
+    if (!this._time.toFormat('a').includes(this._timeRef)) {
+      this._time = this._time.plus({
+        hour: 12,
+      });
     }
   }
 
@@ -187,23 +192,23 @@ export class TimePickerRework {
    */
   @Method()
   async getCurrentTime() {
-    return this._time.format(this.format);
+    return this._time.toFormat(this.format);
   }
 
   render() {
     let timepickerInformation: TimePickerDescriptor[] = [
       {
-        unit: 'hours',
+        unit: 'hour',
         placeholder: 'HH',
         hidden: !this.showHours,
       },
       {
-        unit: 'minutes',
+        unit: 'minute',
         placeholder: 'MM',
         hidden: !this.showMinutes,
       },
       {
-        unit: 'seconds',
+        unit: 'second',
         placeholder: 'SS',
         hidden: !this.showSeconds,
       },
@@ -212,6 +217,10 @@ export class TimePickerRework {
     timepickerInformation = timepickerInformation.filter(
       (item) => !item.hidden
     );
+
+    timepickerInformation.forEach((d, i) => {
+      console.log(this._formattedTime, this._formattedTime[d.unit]);
+    });
 
     return (
       <Host>
@@ -229,7 +238,9 @@ export class TimePickerRework {
                   <ix-icon-button
                     size="16"
                     onClick={() =>
-                      (this._time = this._time.add(1, descriptor.unit))
+                      (this._time = this._time.plus({
+                        [descriptor.unit]: 1,
+                      }))
                     }
                     ghost
                     icon="chevron-up"
@@ -251,7 +262,9 @@ export class TimePickerRework {
                       if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
 
                       const value = e.key === 'ArrowUp' ? 1 : -1;
-                      this._time = this._time.add(value, descriptor.unit);
+                      this._time = this._time.plus({
+                        [descriptor.unit]: value,
+                      });
                       e.preventDefault();
                     }}
                     onChange={(e: any) => {
@@ -266,7 +279,9 @@ export class TimePickerRework {
                   <ix-icon-button
                     size="16"
                     onClick={() =>
-                      (this._time = this._time.subtract(1, descriptor.unit))
+                      (this._time = this._time.minus({
+                        [descriptor.unit]: 1,
+                      }))
                     }
                     ghost
                     icon="chevron-down"
@@ -317,7 +332,7 @@ export class TimePickerRework {
           <div class={{ button: true, hidden: !this.standaloneAppearance }}>
             <ix-button
               onClick={() =>
-                this.timeSelect.emit(this._time.format(this.format))
+                this.timeSelect.emit(this._time.toFormat(this.format))
               }
             >
               {this.textSelectTime}

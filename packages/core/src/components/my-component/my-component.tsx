@@ -7,6 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 import { Component, h, Host } from '@stencil/core';
+import { DateTime } from 'luxon';
 
 @Component({
   tag: 'my-component',
@@ -14,7 +15,31 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
+  private today = DateTime.now();
+  private format = 'yyyy/LL/dd';
+
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-date-dropdown
+          initialSelectedDateRangeName="last-7"
+          customRangeAllowed={true}
+          dateRangeOptions={[
+            {
+              id: 'last-7',
+              label: 'Last 7 days',
+              from: this.today
+                .minus({
+                  day: 7,
+                })
+                .toFormat(this.format),
+              to: this.today.toFormat(this.format),
+            },
+          ]}
+          onDateRangeChange={console.log}
+          onDateRangeSelect={(e) => console.log('select', e)}
+        ></ix-date-dropdown>
+      </Host>
+    );
   }
 }

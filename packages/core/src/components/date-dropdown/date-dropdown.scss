@@ -11,7 +11,9 @@
 
 :host {
   @include ix-component;
-  display: block;
+  display: inline-block;
+  position: relative;
+
   @media (max-width: 48em) {
     .min-width {
       width: min-content;

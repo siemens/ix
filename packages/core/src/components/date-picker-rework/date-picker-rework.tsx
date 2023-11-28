@@ -22,21 +22,8 @@ import {
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
-import dayjs, { Dayjs } from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import isLeapYear from 'dayjs/plugin/isLeapYear';
-import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
-import localeData from 'dayjs/plugin/localeData';
-import weekday from 'dayjs/plugin/weekday';
-import weekOfYear from 'dayjs/plugin/weekOfYear';
+import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
-
-dayjs.extend(customParseFormat);
-dayjs.extend(isoWeeksInYear);
-dayjs.extend(isLeapYear);
-dayjs.extend(localeData);
-dayjs.extend(weekday);
-dayjs.extend(weekOfYear);
 
 export type DateChangeEvent = {
   from: string;
@@ -63,9 +50,9 @@ export class DatePickerRework {
 
   /**
    * Date format string.
-   * See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
-  @Prop() format: string = 'YYYY/MM/DD';
+  @Prop() format: string = 'yyyy/LL/dd';
 
   /**
    * If true a date-range can be selected (from/to).
@@ -88,12 +75,12 @@ export class DatePickerRework {
   @Watch('from')
   watchFromPropHandler(newValue: string) {
     this.currFromDate = newValue
-      ? dayjs(newValue, this.format, true)
+      ? DateTime.fromFormat(newValue, this.format)
       : undefined;
 
-    if (this.currFromDate?.isValid()) {
-      this.selectedYear = this.currFromDate.year();
-      this.selectedMonth = this.currFromDate.month();
+    if (this.currFromDate?.isValid) {
+      this.selectedYear = this.currFromDate.year;
+      this.selectedMonth = this.currFromDate.month - 1;
     }
   }
 
@@ -107,11 +94,13 @@ export class DatePickerRework {
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    this.currToDate = newValue ? dayjs(newValue, this.format, true) : undefined;
+    this.currToDate = newValue
+      ? DateTime.fromFormat(newValue, this.format)
+      : undefined;
 
-    if (this.currToDate?.isValid()) {
-      this.selectedYear = this.currToDate.year();
-      this.selectedMonth = this.currToDate.month();
+    if (this.currToDate?.isValid) {
+      this.selectedYear = this.currToDate.year;
+      this.selectedMonth = this.currToDate.month - 1;
     }
   }
 
@@ -147,14 +136,12 @@ export class DatePickerRework {
   @Prop() weekStartIndex = 0;
 
   /**
-   * DayJS locale object used for translation.
-   * See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
+   * Format of time string
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
-  @Prop() dayJsLocale: ILocale;
-
-  @Watch('dayJsLocale')
-  watchDayJsLocalePropHandler(newValue: ILocale) {
-    dayjs.locale(newValue);
+  @Prop() locale: string = undefined;
+  @Watch('locale')
+  onLocaleChange() {
     this.setTranslations();
   }
 
@@ -189,11 +176,11 @@ export class DatePickerRework {
    */
   @Method()
   async getCurrentDate() {
-    const _from = this.currFromDate?.isValid()
-      ? this.currFromDate.format(this.format)
+    const _from = this.currFromDate?.isValid
+      ? this.currFromDate?.toFormat(this.format)
       : undefined;
-    const _to = this.currToDate?.isValid()
-      ? this.currToDate?.format(this.format)
+    const _to = this.currToDate?.isValid
+      ? this.currToDate?.toFormat(this.format)
       : undefined;
 
     if (this.range) {
@@ -209,8 +196,8 @@ export class DatePickerRework {
     };
   }
 
-  @State() currFromDate: Dayjs;
-  @State() currToDate: Dayjs;
+  @State() currFromDate: DateTime;
+  @State() currToDate: DateTime;
 
   @State() selectedYear: number;
   @State() tempYear: number;
@@ -272,10 +259,7 @@ export class DatePickerRework {
   }
 
   private getDaysInCurrentMonth(): number {
-    return dayjs()
-      .month(this.selectedMonth)
-      .year(this.selectedYear)
-      .daysInMonth();
+    return DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth;
   }
 
   onDayBlur() {
@@ -287,19 +271,20 @@ export class DatePickerRework {
   }
 
   componentWillLoad() {
-    dayjs.locale(this.dayJsLocale);
     this.setTranslations();
 
-    this.currFromDate =
-      this.from !== undefined ? dayjs(this.from, this.format, true) : undefined;
-    this.currToDate =
-      this.to !== undefined ? dayjs(this.to, this.format, true) : undefined;
+    this.currFromDate = this.from
+      ? DateTime.fromFormat(this.from, this.format)
+      : undefined;
+    this.currToDate = this.to
+      ? DateTime.fromFormat(this.to, this.format)
+      : undefined;
 
-    const year = this.currFromDate?.year() ?? dayjs().year();
+    const year = this.currFromDate?.year ?? DateTime.now().year;
     this.startYear = year - 5;
     this.endYear = year + 5;
 
-    this.selectedMonth = this.currFromDate?.month() ?? dayjs().month();
+    this.selectedMonth = (this.currFromDate?.month ?? DateTime.now().month) - 1;
     this.selectedYear = year;
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
@@ -322,11 +307,15 @@ export class DatePickerRework {
 
   private setTranslations() {
     this.dayNames = this.rotateWeekDayNames(
-      dayjs.weekdays(),
+      Info.weekdays('long', {
+        locale: this.locale,
+      }),
       this.weekStartIndex
     );
 
-    this.monthNames = dayjs.months();
+    this.monthNames = Info.months('long', {
+      locale: this.locale,
+    });
   }
 
   /**
@@ -355,23 +344,23 @@ export class DatePickerRework {
 
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
-    const month = dayjs().month(this.selectedMonth).year(this.selectedYear);
+    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
-    let startWeek = monthStart.week();
-    let endWeek = monthEnd.week();
-    let monthStartWeekDayIndex = monthStart.weekday();
-    let monthEndWeekDayIndex = monthEnd.weekday();
+    let startWeek = monthStart.weekNumber;
+    let endWeek = monthEnd.weekNumber;
+    let monthStartWeekDayIndex = monthStart.weekday - 1;
+    let monthEndWeekDayIndex = monthEnd.weekday - 1;
 
     if (this.weekStartIndex !== 0) {
       // Find the positions where to start/stop counting the day-numbers based on which day the week starts
-      const weekdays = dayjs.weekdays();
-      const monthStartWeekDayName = weekdays[monthStart.weekday()];
+      const weekdays = Info.weekdays();
+      const monthStartWeekDayName = weekdays[monthStart.day];
 
       monthStartWeekDayIndex = this.dayNames.findIndex(
         (d) => d === monthStartWeekDayName
       );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday()];
+      const monthEndWeekDayName = weekdays[monthEnd.day];
       monthEndWeekDayIndex = this.dayNames.findIndex(
         (d) => d === monthEndWeekDayName
       );
@@ -379,12 +368,12 @@ export class DatePickerRework {
 
     let correctLastWeek = false;
     if (endWeek === 1) {
-      endWeek = monthEnd.isoWeeksInYear() + 1;
+      endWeek = monthEnd.weeksInWeekYear + 1;
       correctLastWeek = true;
     }
 
     let correctFirstWeek = false;
-    if (startWeek === monthEnd.isoWeeksInYear()) {
+    if (startWeek === monthEnd.weeksInWeekYear + 1) {
       startWeek = 1;
       correctFirstWeek = true;
     }
@@ -417,7 +406,7 @@ export class DatePickerRework {
     }
 
     if (correctFirstWeek) {
-      calendar[0].weekNumber = monthEnd.isoWeeksInYear();
+      calendar[0].weekNumber = monthEnd.weeksInWeekYear;
     }
 
     this.calendar = calendar;
@@ -478,7 +467,7 @@ export class DatePickerRework {
   }
 
   private selectDay(selectedDay: number) {
-    const date = dayjs(
+    const date = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
 
@@ -499,7 +488,7 @@ export class DatePickerRework {
     }
 
     // Swap from/to if the second date is before the current date
-    if (date.isBefore(this.currFromDate)) {
+    if (date < this.currFromDate) {
       this.currToDate = this.currFromDate;
       this.currFromDate = date;
       this.onDateChange();
@@ -526,32 +515,32 @@ export class DatePickerRework {
       return;
     }
 
-    const todayObj = dayjs();
-    const selectedDayObj = dayjs(
+    const todayObj = DateTime.now();
+    const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
     );
 
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
-      today: todayObj.isSame(selectedDayObj, 'day'),
+      today: todayObj.hasSame(selectedDayObj, 'day'),
       selected:
-        this.currFromDate?.isSame(selectedDayObj, 'day') ||
-        this.currToDate?.isSame(selectedDayObj, 'day'),
+        this.currFromDate?.hasSame(selectedDayObj, 'day') ||
+        this.currToDate?.hasSame(selectedDayObj, 'day'),
       range:
-        selectedDayObj.isAfter(this.currFromDate, 'day') &&
+        selectedDayObj.startOf('day') > this.currFromDate?.startOf('day') &&
         this.currToDate !== undefined &&
-        selectedDayObj.isBefore(this.currToDate, 'day'),
+        selectedDayObj.startOf('day') < this.currToDate?.startOf('day'),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
   }
 
   private isWithinMinMaxYear(year: number): boolean {
     const minDateYear = this.minDate
-      ? dayjs(this.minDate, this.format, true).year()
+      ? DateTime.fromFormat(this.minDate, this.format).year
       : undefined;
     const maxDateYear = this.maxDate
-      ? dayjs(this.maxDate, this.format, true).year()
+      ? DateTime.fromFormat(this.maxDate, this.format).year
       : undefined;
     const isBefore = minDateYear ? year < minDateYear : false;
     const isAfter = maxDateYear ? year > maxDateYear : false;
@@ -561,32 +550,36 @@ export class DatePickerRework {
 
   private isWithinMinMaxMonth(month: number): boolean {
     const minDateObj = this.minDate
-      ? dayjs(this.minDate, this.format, true)
+      ? DateTime.fromFormat(this.minDate, this.format)
       : undefined;
     const maxDateObj = this.maxDate
-      ? dayjs(this.maxDate, this.format, true)
+      ? DateTime.fromFormat(this.maxDate, this.format)
       : undefined;
-    const minDateMonth = minDateObj?.month();
-    const maxDateMonth = maxDateObj?.month();
+    const minDateMonth = minDateObj?.month;
+    const maxDateMonth = maxDateObj?.month;
     const isBefore = minDateMonth
-      ? this.tempYear === minDateObj.year() && month < minDateMonth
+      ? this.tempYear === minDateObj.year && month < minDateMonth
       : false;
     const isAfter = maxDateMonth
-      ? this.tempYear === maxDateObj.year() && month > maxDateMonth
+      ? this.tempYear === maxDateObj.year && month > maxDateMonth
       : false;
 
     return !isBefore && !isAfter;
   }
 
-  private isWithinMinMaxDate(date: Dayjs): boolean {
+  private isWithinMinMaxDate(date: DateTime): boolean {
     const _minDate = this.minDate
-      ? dayjs(this.minDate, this.format, true)
+      ? DateTime.fromFormat(this.minDate, this.format)
       : undefined;
     const _maxDate = this.maxDate
-      ? dayjs(this.maxDate, this.format, true)
+      ? DateTime.fromFormat(this.maxDate, this.format)
       : undefined;
-    const isBefore = _minDate ? date.isBefore(_minDate, 'day') : false;
-    const isAfter = _maxDate ? date.isAfter(_maxDate, 'day') : false;
+    const isBefore = _minDate
+      ? date.startOf('day') < _minDate.startOf('day')
+      : false;
+    const isAfter = _maxDate
+      ? date.startOf('day') > _maxDate.startOf('day')
+      : false;
 
     return !isBefore && !isAfter;
   }
@@ -727,6 +720,7 @@ export class DatePickerRework {
                     <div
                       key={day}
                       id={`day-cell-${day}`}
+                      date-calender-day
                       class={this.getDayClasses(day)}
                       onClick={() => this.selectDay(day)}
                       onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}

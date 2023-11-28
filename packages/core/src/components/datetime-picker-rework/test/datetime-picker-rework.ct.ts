@@ -24,7 +24,9 @@ test.describe('datetime picker tests single', () => {
       <ix-datetime-picker-rework
         range="false"
         from="1990/03/29"
+        date-format="yyyy/LL/dd"
         time="09:10:12"
+        time-format="HH:mm:ss"
         week-start-index="1"
       ></ix-datetime-picker-rework>
       `

@@ -54,7 +54,7 @@
       margin-left: 4px;
       margin-right: 4px;
 
-      &:focus {
+      &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
         outline-offset: var(--theme-btn--focus--outline-offset);
       }
@@ -122,7 +122,7 @@
       height: 40px;
       cursor: pointer;
 
-      &:focus {
+      &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
         outline-offset: var(--theme-btn--focus--outline-offset);
       }

@@ -9,28 +9,11 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-declare global {
-  interface Window {
-    dayjs_locale_de: any;
-  }
-}
-
 const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker-rework';
 const getDateObj = async (page: Page) => {
   return await page.$$eval(DATE_PICKER_REWORK_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentDate()));
   });
-};
-
-const addScript = async (page: Page, scriptPath: string) => {
-  return page.evaluate((scriptPath) => {
-    return new Promise<void>((resolve) => {
-      const script = document.createElement('script');
-      script.onload = () => resolve();
-      script.src = scriptPath;
-      document.head.appendChild(script);
-    });
-  }, scriptPath);
 };
 
 test('renders', async ({ mount, page }) => {
@@ -44,13 +27,10 @@ test('translation', async ({ mount, page }) => {
     `<ix-date-picker-rework from="2023/01/01"></ix-date-picker-rework>`
   );
 
-  await addScript(page, 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js');
-  await addScript(page, 'https://cdn.jsdelivr.net/npm/dayjs@1/locale/de.js');
-
   await page.$eval(
     DATE_PICKER_REWORK_SELECTOR,
     (el: HTMLIxDatePickerReworkElement) => {
-      el.dayJsLocale = window.dayjs_locale_de;
+      el.locale = 'de';
     }
   );
 
@@ -100,7 +80,11 @@ test.describe('date picker tests single', () => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByRole('button').filter({ hasText: 'chevron-left' }).click();
-    await page.getByText(/^31$/).nth(1).click();
+    await page
+      .locator('.calendar-item:not(.week-number)')
+      .getByText(/^31$/)
+      .nth(0)
+      .click();
 
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/08/31',
@@ -116,17 +100,20 @@ test.describe('date picker tests single', () => {
       .filter({ hasText: /^September 2023$/ })
       .locator('span')
       .click();
+
     await page
       .locator('div')
       .filter({ hasText: /^2021$/ })
       .first()
       .click();
+
     await page
       .locator('div')
       .filter({ hasText: /^January 2021$/ })
       .first()
       .click();
-    await page.getByText(/^1$/).nth(1).click();
+
+    await page.getByText(/^1$/).nth(0).click();
 
     expect((await getDateObj(page))[0]).toEqual({
       from: '2021/01/01',

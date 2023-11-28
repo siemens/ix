@@ -2601,7 +2601,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "my-component"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -2626,6 +2627,9 @@
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -12699,8 +12703,34 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-date-picker-rework",
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-date-picker-rework",
+          "ix-date-picker"
+        ],
+        "ix-date-picker-rework": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],

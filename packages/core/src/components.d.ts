@@ -492,11 +492,10 @@ export namespace Components {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default ''
          */
         "customRangeAllowed": boolean;
         /**
-          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions": DateDropdownOption[];
         /**
@@ -506,7 +505,7 @@ export namespace Components {
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
          */
-        "from": string | null;
+        "from": string;
         /**
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
           * @returns The selected date range.
@@ -514,7 +513,6 @@ export namespace Components {
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default ''
          */
         "initialSelectedDateRangeName": string;
         /**
@@ -530,9 +528,21 @@ export namespace Components {
          */
         "range": boolean;
         /**
+          * Text for custom dropdown item. Will be used for translation.
+         */
+        "textCustomItem": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "textDoneButton": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "textNoRange": string;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
-        "to": string | null;
+        "to": string;
     }
     interface IxDatePicker {
         /**
@@ -592,11 +602,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
-         */
-        "dayJsLocale": ILocale;
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
         /**
@@ -608,6 +614,10 @@ export namespace Components {
           * Get the currently selected date-range.
          */
         "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "locale": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -724,19 +734,19 @@ export namespace Components {
     }
     interface IxDatetimePickerRework {
         /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat": string;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
-         */
-        "dayJsLocale": ILocale;
         /**
           * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "locale": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -779,7 +789,7 @@ export namespace Components {
          */
         "time": string;
         /**
-          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat": string;
@@ -2060,7 +2070,7 @@ export namespace Components {
          */
         "corners": TimePickerCorners1;
         /**
-          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "format": string;
@@ -3875,11 +3885,10 @@ declare namespace LocalJSX {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default ''
          */
         "customRangeAllowed"?: boolean;
         /**
-          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions"?: DateDropdownOption[];
         /**
@@ -3889,10 +3898,9 @@ declare namespace LocalJSX {
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
          */
-        "from"?: string | null;
+        "from"?: string;
         /**
           * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default ''
          */
         "initialSelectedDateRangeName"?: string;
         /**
@@ -3910,13 +3918,29 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
+          * This event is emitted when the date range is confirmed within the component. The event payload contains information about the selected date range.
+         */
+        "onDateRangeSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
         /**
+          * Text for custom dropdown item. Will be used for translation.
+         */
+        "textCustomItem"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "textDoneButton"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "textNoRange"?: string;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
-        "to"?: string | null;
+        "to"?: string;
     }
     interface IxDatePicker {
         /**
@@ -3992,11 +4016,7 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
-         */
-        "dayJsLocale"?: ILocale;
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
         /**
@@ -4004,6 +4024,10 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "from"?: string | undefined;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -4155,19 +4179,19 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePickerRework {
         /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat"?: string;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
-         */
-        "dayJsLocale"?: ILocale;
         /**
           * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -4225,7 +4249,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat"?: string;
@@ -5606,7 +5630,7 @@ declare namespace LocalJSX {
          */
         "corners"?: TimePickerCorners1;
         /**
-          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "format"?: string;
