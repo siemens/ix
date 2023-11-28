@@ -495,6 +495,10 @@ export namespace Components {
          */
         "customRangeAllowed": boolean;
         /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+         */
+        "dateRangeId": string;
+        /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions": DateDropdownOption[];
@@ -508,13 +512,8 @@ export namespace Components {
         "from": string;
         /**
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
-          * @returns The selected date range.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
-        /**
-          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-         */
-        "initialSelectedDateRangeName": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -3888,6 +3887,10 @@ declare namespace LocalJSX {
          */
         "customRangeAllowed"?: boolean;
         /**
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+         */
+        "dateRangeId"?: string;
+        /**
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions"?: DateDropdownOption[];
@@ -3900,10 +3903,6 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
-          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-         */
-        "initialSelectedDateRangeName"?: string;
-        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate"?: string;
@@ -3913,14 +3912,8 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
-          * @event 
-          * @private
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
-        /**
-          * This event is emitted when the date range is confirmed within the component. The event payload contains information about the selected date range.
-         */
-        "onDateRangeSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
           * If true a range of dates can be selected.
          */
