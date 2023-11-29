@@ -1,5 +1,4 @@
-Chips area small, interactive component that represents a piece of information or an action in a compact and visually appealing manner. It allows users to quickly identify and understand the available options or choices without overwhelming them with excessive text or cluttered interfaces. 
-Typically, a chip contains concise text and might contain an icon. They can be dismissible, or clickable.
+Chips are components used to display small pieces of information in a compact and visually appealing way. Typically chips contain a concise label and sometimes an icon, and they are clickable and closable.
 
 ![Chip overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149%3A41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
  
@@ -10,58 +9,51 @@ Typically, a chip contains concise text and might contain an icon. They can be d
 
 
 ## Variants
-Chip variants allow designers to apply different colors based on their purpose, importance, or context within the interface. Chip variants are typically used to convey different levels of importance, classes, or status to users.
+With our chip variants, you can apply different colors based on their purpose, importance or context. We use chip variants to show class, status and levels of importance. The custom variant is often used for chips that visualize a high number of different categories, but does not permit color specification for hover and active states.
 
+Chip variants: 
 
-Multiple chip  variants are available: 
-
-- **Primary**: Variant for high visual emphasis
-- **State-related variants**: Alarm, critical, warning, success, info, neutral
-- **Variant for specification**: Custom chip is a variant of the specification that offers customization options and allows for personalized content or functionality
-
-
+- **Primary**: For high visual emphasis
+- **State-related variants**: Alarm, critical, warning, success, info and neutral
+- **Custom**: For a customized background and label color 
 
 ![Chip variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1201%3A9512&mode=design&t=ruQOzpPQJMKwnk8f-1)
 
 
 ## Options
-- **Active**: Specifies the interactivity of the chip. When set to false, user input such as mouse states and keyboard navigation will be disabled, and the close button will not be visible.
-- **Background**: Custom color for chip. Can use it for only custom variant to give our user flexibility and to customize their variant for different purpose.
-- **Outline**: For lower visual emphasis
-- **Closable**: Clicking the X symbol removes the entire chip. However, this feature is only applicable to active chips, ensuring that users can easily remove specific chips when necessary.
-- **Icon**: Chips can, but don't have to, include an icon within the element. The icon is positioned before the chip label.
-- **Color**: Custom font color and icon color for chip allows users to specify a unique font color for the chip component. However, this option is only applicable when the variant is set to 'custom'. 
+- **Active**: Specifies chip interactivity. When set to false, user input such as mouse-over and keyboard navigation are disabled and the close button is not visible.
+- **Background**: Use to set a custom background color when you require more flexibility in styling the chip. Only available for the custom chip variant.
+- **Outline**: Use for lower visual emphasis.
+- **Closable**: When set, the chip contains a close button that removes the entire chip when selected. This feature is only applicable to active chips so users can easily remove specific chips when necessary.
+- **Icon**: Chips can include an icon within the element which is positioned before the chip's label.
+- **Color**: Customize font and icon color for chip. This allows users to specify a unique font color in combination with a custom background color (only applicable when the variant is set to 'custom').
+- **Width**: Typically content length determines chip width with a minimum width of '2rem'. Chip width can be set to a specific value.
 
 ## Behavior 
 
-- **Reactive**: Can react or change their appearance or behavior based on user actions. For example updates occur as a response to system actions, providing real-time information about changes or events happening within the system.
-
-- **Multi-selection**: Chips can visualize multi selection and filter action, and represents of the selected options, helping users easily identify and understand their choices.
-
-- **Placement**: Input chips are currently not implemented as independent components, but rather placed outside of the parent component. They are specifically used within the category filter and multi-selection input field.
-.
-
-- **Dismiss**: User clicks on the close button, the chip is dismissed from the list or interface. The dismissed  is removed visually, providing a sense of completion or removal.
+- **Reactive**: Chips react or change their appearance or behavior based on user actions. For example, updates occur as a response to system actions, providing real-time information about system changes or events.
+- **Multi-selection**: Chips can visualize multi-selection and filter actions. This helps users to easily identify and understand their choices.
+- **Placement**: We typically place chips inline with other objects to inform users about their state, within tables or grouped together to show selected options and filters. We do not place chips within input and filter components as they have their own chip component variation, the input chip. Currently, input chips are not implemented as independent components.
+- **Dismiss**: When users select close, chips are dismissed from the list or interface and are removed visually.
+- **Text truncation**: When a width is set for chips, long labels are truncated to fit the available space.
 
 
 ## States  
 
-For all chips variant default, hover, focused and active state exist.
-
-The custom is the exception 
-
+Chips take a default, hover, focused or active state with a varying background color. For the custom chip variant, the specified colors for font and background are applied to all states.
 
 ![Chip states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1246%3A6190&mode=design&t=GHOok90R6TcaUrYi-1)
 
+## Dos and Don'ts
 
-## Dos and Don'ts: 
+- Do use chips to tag and categorize so users can easily organize and filter content 
+- Do ensure proper color contrast between chip background and text/icon with the custom variant to support readability
+- Do consider chip spacing for easy tapping or selecting with mobiles and desktops
+- Don't overuse chips as this leads to cluttered and overwhelming interfaces
+- Don't use different styles for chips with the same or similar use
+- Don't use chips without any interaction (we recommend pills instead)
 
-- Do use chips for tagging and categorization, allowing users to easily organize and filter content. 
 
-- Do ensure proper color contrast between the chip background and the text/icon when using custom variant of the chips to improve readability. 
+## Related patterns
 
-- Do consider the spacing of chips to ensure they are easy to tap or click on mobile and desktop interfaces.
-
-- Don't overuse chips, as it can lead to a cluttered interface and overwhelm users.
-
-- Don`t use different styles for chips with similar purposes or meanings to avoid creating inconsistency.
+- [Pill](./pill.md)

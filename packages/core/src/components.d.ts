@@ -388,7 +388,7 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
         /**
@@ -396,7 +396,7 @@ export namespace Components {
          */
         "closable": boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "color": string | undefined;
         /**
@@ -3466,7 +3466,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
         /**
@@ -3474,7 +3474,7 @@ declare namespace LocalJSX {
          */
         "closable"?: boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "color"?: string | undefined;
         /**
