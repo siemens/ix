@@ -37,6 +37,7 @@ import ButtonGrey from './preview-examples/button-grey.vue';
 import ButtonLoading from './preview-examples/button-loading.vue';
 import ButtonSecondary from './preview-examples/button-secondary.vue';
 import ButtonTextIcon from './preview-examples/button-text-icon.vue';
+import Card from './preview-examples/card.vue';
 import CardList from './preview-examples/card-list.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
@@ -179,6 +180,7 @@ const routes: any = {
 '/preview/button-text-icon': ButtonTextIcon,
 '/preview/button-with-icon': ButtonWithIcon,
 '/preview/buttons': Buttons,
+'/preview/card': Card,
 '/preview/card-list': CardList,
 '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
 '/preview/category-filter': CategoryFilter,
