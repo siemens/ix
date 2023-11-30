@@ -4834,10 +4834,10 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
-ag-grid-angular@^29.1.0:
-  version "29.1.0"
-  resolved "https://registry.npmjs.org/ag-grid-angular/-/ag-grid-angular-29.1.0.tgz#e5a428b885ebc408c8f02bff9e5fbcaab8e5a23d"
-  integrity sha512-Kp3mRsWeRbiyaeN5WulifavqibsFjPtoOqkBMSnwzhecEadvbxN2RPn0K8nsCFWMVl/V0yhrhadviqT9jpKhFg==
+ag-grid-angular@^30.0.0:
+  version "30.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-30.2.1.tgz#44de06205e0ca4b8a38afcbb4d6e5fb1404b1f8c"
+  integrity sha512-wDYs4UWmkgboEFJ18TRLxTyQ1u60cPm4rxlrhU18z0iE8720dJHdFZUME8FOgjTrcla9DheXXSCjkS0TItO65A==
   dependencies:
     tslib "^2.3.0"
 
@@ -4846,15 +4846,10 @@ ag-grid-community@30.2.0:
   resolved "https://registry.npmjs.org/ag-grid-community/-/ag-grid-community-30.2.0.tgz#b831fc99df1bfee6f73669fd8b7d3e9bd4012e22"
   integrity sha512-Gd6GXmtzEQSCDloBdRxxCDqnjTBRAOf/zzlaxxyyVBJgc+cePuNgGdplRUhT/rwIiDwvyuoynvxelVE/iYdXsA==
 
-ag-grid-community@^28.2.1, ag-grid-community@~28.2.1:
-  version "28.2.1"
-  resolved "https://registry.npmjs.org/ag-grid-community/-/ag-grid-community-28.2.1.tgz#50778cb2254ee79497222781909d8364007dd91e"
-  integrity sha512-DMZh/xD/FqYP17qJ1M92PolTYe+hrKuEaf+A4h13O6qn2x/xZQrTRGW5DgnQLR/uLMe1XXZQPKR3UKgAlKo69A==
-
-ag-grid-community@^29.1.0:
-  version "29.1.0"
-  resolved "https://registry.npmjs.org/ag-grid-community/-/ag-grid-community-29.1.0.tgz#acf74ecb9018d9ee3b2a7e468ffba595e6621606"
-  integrity sha512-QJZi1qP7fpK/sxXbEFZWR3/Jf3HVRK0Xm3Tw55tn0ehNdkuSxRBOmOvjE3lPWqgRlT2rcL1xmjdqM4mpB1fobQ==
+ag-grid-community@^30.2.0:
+  version "30.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-30.2.1.tgz#a83d153ad1dbec46402ebe89f74ebb4b0710b3c7"
+  integrity sha512-1slonXskJbbI9ybhTx//4YKfJpZVAEnHL8dui1rQJRSXKByUi+/f7XtvkLsbgBkawoWbqvRAySjYtvz80+kBfA==
 
 ag-grid-react@^29.1.0:
   version "29.1.0"
@@ -4863,13 +4858,10 @@ ag-grid-react@^29.1.0:
   dependencies:
     prop-types "^15.8.1"
 
-ag-grid-vue3@^28.2.1:
-  version "28.2.1"
-  resolved "https://registry.npmjs.org/ag-grid-vue3/-/ag-grid-vue3-28.2.1.tgz#a43464a1f681dbf0f1d8724e7446c827fd54f09d"
-  integrity sha512-n7+l51zFCZm3SVT2pI0lVVwL8gsDPebqNLfEy4DS17OlV5IL7c1eNXRosv/QMu+YHOEMVcwFRWH380nIjVF/+w==
-  dependencies:
-    ag-grid-community "~28.2.1"
-    vue "^3.0.0"
+ag-grid-vue3@^30.1.0:
+  version "30.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-vue3/-/ag-grid-vue3-30.2.1.tgz#05e542e60823b6742bfbb9b37efa7d0c46f118af"
+  integrity sha512-uIsBv5H7Nu6ao1V7cuReVj27gFdlK4kfvo/4M6AWmYswghMpc1GwzczZNV8HUypGcwxONW9YSfr8zabYQNGcAg==
 
 agent-base@6, agent-base@^6.0.2:
   version "6.0.2"
@@ -19133,7 +19125,7 @@ vue-tsc@^1.0.24:
     "@volar/vue-language-core" "1.0.24"
     "@volar/vue-typescript" "1.0.24"
 
-vue@^3.0.0, vue@^3.2.45:
+vue@^3.2.45:
   version "3.2.45"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.45.tgz#94a116784447eb7dbd892167784619fef379b3c8"
   integrity sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==
