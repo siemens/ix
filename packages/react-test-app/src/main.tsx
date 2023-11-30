@@ -39,6 +39,7 @@ import ButtonSecondary from './preview-examples/button-secondary';
 import ButtonTextIcon from './preview-examples/button-text-icon';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import Buttons from './preview-examples/buttons';
+import Card from './preview-examples/card';
 import CardList from './preview-examples/card-list';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions';
 import CategoryFilter from './preview-examples/category-filter';
@@ -188,6 +189,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/button-text-icon" element={<ButtonTextIcon />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
         <Route path="/preview/buttons" element={<Buttons />} />
+        <Route path="/preview/card" element={<Card />} />
         <Route path="/preview/card-list" element={<CardList />} />
         <Route path="/preview/category-filter-suggestions" element={<CategoryFilterSuggestions />} />
         <Route path="/preview/category-filter" element={<CategoryFilter />} />

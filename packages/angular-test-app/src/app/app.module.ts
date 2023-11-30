@@ -37,6 +37,7 @@ import ButtonSecondary from '../preview-examples/button-secondary';
 import ButtonTextIcon from '../preview-examples/button-text-icon';
 import ButtonWithIcon from '../preview-examples/button-with-icon';
 import Buttons from '../preview-examples/buttons';
+import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
@@ -189,6 +190,7 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     ButtonTextIcon,
     ButtonWithIcon,
     Buttons,
+    Card,
     CardList,
     CategoryFilterSuggestions,
     CategoryFilter,
