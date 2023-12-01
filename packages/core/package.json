@@ -37,7 +37,7 @@
     "test:spec": "stencil test --spec",
     "test:ct": "playwright test --config playwright-ct.config.ts --reporter list",
     "test:coverage": "stencil test --spec --coverage",
-    "test:e2e": "playwright test --reporter html -u",
+    "test:e2e": "playwright test --reporter html",
     "test:e2e:list": "playwright test --reporter list",
     "playwright.docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/packages/core -it mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
