@@ -2520,6 +2520,10 @@ export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
 }
+export interface IxMenuSettingsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsItemElement;
+}
 export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMessageBarElement;
@@ -5064,6 +5068,14 @@ declare namespace LocalJSX {
           * Label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<{
+    name: string;
+    oldLabel: string;
+    newLabel: string;
+  }>) => void;
     }
     interface IxMessageBar {
         /**
