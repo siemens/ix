@@ -344,7 +344,12 @@
           "mutable": false,
           "reflectToAttr": false,
           "docs": "Supported layouts",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -794,14 +799,18 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-card-list",
+        "ix-date-dropdown",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-datetime-picker",
+        "ix-datetime-picker-rework",
         "ix-dropdown-button",
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-upload"
       ],
       "dependencies": [
@@ -814,10 +823,19 @@
         "ix-card-list": [
           "ix-button"
         ],
+        "ix-date-dropdown": [
+          "ix-button"
+        ],
         "ix-date-picker": [
           "ix-button"
         ],
+        "ix-date-picker-rework": [
+          "ix-button"
+        ],
         "ix-datetime-picker": [
+          "ix-button"
+        ],
+        "ix-datetime-picker-rework": [
           "ix-button"
         ],
         "ix-dropdown-button": [
@@ -836,6 +854,9 @@
           "ix-button"
         ],
         "ix-time-picker": [
+          "ix-button"
+        ],
+        "ix-time-picker-rework": [
           "ix-button"
         ],
         "ix-upload": [
@@ -1103,7 +1124,30 @@
           "ix-card-accordion"
         ]
       },
-      "props": [],
+      "props": [
+        {
+          "name": "collapse",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "collapse",
+          "reflectToAttr": false,
+          "docs": "Collapse the card",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -1715,7 +1759,7 @@
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
-          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docs": "Custom background color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
@@ -1748,7 +1792,7 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
@@ -1877,9 +1921,19 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-date-dropdown": [
+          "ix-col"
+        ],
+        "ix-datetime-picker-rework": [
+          "ix-col"
+        ]
+      },
       "props": [
         {
           "name": "size",
@@ -2274,6 +2328,266 @@
       "listeners": []
     },
     {
+      "dirPath": "./src/components/date-dropdown",
+      "filePath": "./src/components/date-dropdown/date-dropdown.tsx",
+      "fileName": "date-dropdown.tsx",
+      "readmePath": "./src/components/date-dropdown/readme.md",
+      "usagesDir": "./src/components/date-dropdown/usage",
+      "tag": "ix-date-dropdown",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-dropdown-button",
+        "ix-dropdown",
+        "ix-layout-grid",
+        "ix-row",
+        "ix-col",
+        "ix-dropdown-item",
+        "ix-date-picker",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "ix-date-dropdown": [
+          "ix-dropdown-button",
+          "ix-dropdown",
+          "ix-layout-grid",
+          "ix-row",
+          "ix-col",
+          "ix-dropdown-item",
+          "ix-date-picker",
+          "ix-button"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ]
+      },
+      "props": [
+        {
+          "name": "customRangeAllowed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "custom-range-allowed",
+          "reflectToAttr": false,
+          "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "''"
+            }
+          ],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "dateRangeOptions",
+          "type": "DateDropdownOption[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    label: 'No time limit',\n    getValue: (): DateRangeOption => {\n      // Calculate the date range here\n      return { from: undefined, to: today };\n    },\n  },\n  // ... other predefined date range options ...",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "DateDropdownOption[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
+          "docsTags": [],
+          "default": "'YYYY-MM-DD'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "mutable": false,
+          "attr": "from",
+          "reflectToAttr": false,
+          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "initialSelectedDateRangeName",
+          "type": "string",
+          "mutable": false,
+          "attr": "initial-selected-date-range-name",
+          "reflectToAttr": false,
+          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
+          "docsTags": [
+            {
+              "name": "default",
+              "text": "''"
+            }
+          ],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "max-date",
+          "reflectToAttr": false,
+          "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "minDate",
+          "type": "string",
+          "mutable": false,
+          "attr": "min-date",
+          "reflectToAttr": false,
+          "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "range",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "range",
+          "reflectToAttr": false,
+          "docs": "If true a range of dates can be selected.",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "mutable": false,
+          "attr": "to",
+          "reflectToAttr": false,
+          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "getDateRange",
+          "returns": {
+            "type": "Promise<DateRangeChangeEvent>",
+            "docs": "The selected date range."
+          },
+          "signature": "getDateRange() => Promise<DateRangeChangeEvent>",
+          "parameters": [],
+          "docs": "Retrieves the currently selected date range from the component.\nThis method returns the selected date range as a `DateChangeEvent` object.",
+          "docsTags": [
+            {
+              "name": "returns",
+              "text": "The selected date range."
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "dateRangeChange",
+          "detail": "{ from: string; to: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "EventEmitter for date range change events.\n\nThis event is emitted when the date range changes within the component.\nThe event payload contains information about the selected date range.",
+          "docsTags": [
+            {
+              "name": "event"
+            },
+            {
+              "name": "private"
+            }
+          ]
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/date-picker",
       "filePath": "./src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -2286,6 +2600,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-date-dropdown",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -2307,6 +2622,9 @@
         "ix-button": [
           "ix-spinner"
         ],
+        "ix-date-dropdown": [
+          "ix-date-picker"
+        ],
         "ix-datetime-picker": [
           "ix-date-picker"
         ]
@@ -2314,7 +2632,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -2332,6 +2650,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],
@@ -2366,7 +2688,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
@@ -3237,7 +3559,9 @@
       "dependents": [
         "ix-breadcrumb",
         "ix-category-filter",
+        "ix-date-dropdown",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
@@ -3252,7 +3576,13 @@
         "ix-category-filter": [
           "ix-dropdown"
         ],
+        "ix-date-dropdown": [
+          "ix-dropdown"
+        ],
         "ix-date-picker": [
+          "ix-dropdown"
+        ],
+        "ix-date-picker-rework": [
           "ix-dropdown"
         ],
         "ix-dropdown-button": [
@@ -3510,7 +3840,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-date-dropdown"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -3527,6 +3859,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-date-dropdown": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -3758,6 +4093,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-breadcrumb",
+        "ix-date-dropdown",
         "ix-menu-avatar-item",
         "ix-menu-category",
         "ix-select",
@@ -3767,6 +4103,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-breadcrumb": [
+          "ix-dropdown-item"
+        ],
+        "ix-date-dropdown": [
           "ix-dropdown-item"
         ],
         "ix-menu-avatar-item": [
@@ -5045,6 +5384,7 @@
         "ix-chip",
         "ix-content-header",
         "ix-date-picker",
+        "ix-date-picker-rework",
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
@@ -5063,6 +5403,7 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-toast"
       ],
       "dependencies": [
@@ -5088,6 +5429,9 @@
           "ix-icon-button"
         ],
         "ix-date-picker": [
+          "ix-icon-button"
+        ],
+        "ix-date-picker-rework": [
           "ix-icon-button"
         ],
         "ix-drawer": [
@@ -5144,11 +5488,35 @@
         "ix-time-picker": [
           "ix-icon-button"
         ],
+        "ix-time-picker-rework": [
+          "ix-icon-button"
+        ],
         "ix-toast": [
           "ix-icon-button"
         ]
       },
       "props": [
+        {
+          "name": "a11yLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "a11y-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "color",
           "type": "string",
@@ -5866,9 +6234,19 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-date-dropdown": [
+          "ix-layout-grid"
+        ],
+        "ix-datetime-picker-rework": [
+          "ix-layout-grid"
+        ]
+      },
       "props": [
         {
           "name": "columns",
@@ -7129,6 +7507,28 @@
           "required": false
         },
         {
+          "name": "showLogoutButton",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-logout-button",
+          "reflectToAttr": false,
+          "docs": "Control the visibility of the logout button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "top",
           "type": "string",
           "mutable": false,
@@ -7826,14 +8226,37 @@
           "required": false
         },
         {
+          "name": "closeOnEscape",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "close-on-escape",
+          "reflectToAttr": false,
+          "docs": "If set to true the modal can be closed by pressing the Escape key",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "keyboard",
           "type": "boolean",
           "mutable": false,
           "attr": "keyboard",
           "reflectToAttr": false,
           "docs": "Use ESC to dismiss the modal",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "- Use closeOnEscape instead"
+            }
+          ],
           "default": "true",
+          "deprecation": "- Use closeOnEscape instead",
           "values": [
             {
               "type": "boolean"
@@ -8542,6 +8965,28 @@
       },
       "props": [
         {
+          "name": "collapse",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "collapse",
+          "reflectToAttr": false,
+          "docs": "Collapse the card",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "heading",
           "type": "string",
           "mutable": false,
@@ -8681,9 +9126,19 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-date-dropdown",
+        "ix-datetime-picker-rework"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-date-dropdown": [
+          "ix-row"
+        ],
+        "ix-datetime-picker-rework": [
+          "ix-row"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -10227,7 +10682,7 @@
       "props": [
         {
           "name": "corners",
-          "type": "\"left\" | \"right\" | \"rounded\"",
+          "type": "\"left\" | \"right\" | \"rounded\" | \"straight\"",
           "mutable": false,
           "attr": "corners",
           "reflectToAttr": false,
@@ -10245,6 +10700,10 @@
             },
             {
               "value": "rounded",
+              "type": "string"
+            },
+            {
+              "value": "straight",
               "type": "string"
             }
           ],
@@ -11471,6 +11930,7 @@
         "ix-push-card",
         "ix-slider",
         "ix-time-picker",
+        "ix-time-picker-rework",
         "ix-tooltip"
       ],
       "dependencies": [],
@@ -11512,6 +11972,9 @@
           "ix-typography"
         ],
         "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-time-picker-rework": [
           "ix-typography"
         ],
         "ix-tooltip": [

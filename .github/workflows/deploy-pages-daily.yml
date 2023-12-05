@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages (DEV Version)
 
 on:
-  schedule:
-    - cron: '0 6 * * 1-4'
   workflow_dispatch:
+  # schedule:
+  #   - cron: '0 6 * * 1-4'
 
 permissions:
   contents: write

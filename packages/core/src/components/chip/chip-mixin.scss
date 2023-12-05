@@ -106,6 +106,11 @@ $border-radius: 100px;
     }
   }
 
+  .container.outline {
+      border-width: 1px;
+      border-style: solid;
+  }
+
   @each $color in $predefined-chips {
     .container.#{$color} {
       color: var(--theme-color-#{$color}--contrast);
@@ -160,7 +165,7 @@ $border-radius: 100px;
 
       &.outline {
         color: var(--theme-chip-outline--color);
-        border: solid 1px var(--theme-color-#{$color});
+        border-color: var(--theme-color-#{$color});
 
         @if $interaction {
           &:hover::after {
