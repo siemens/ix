@@ -1520,11 +1520,17 @@ export class IxMenuSettingsItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
 
-export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {}
+export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {
+  /**
+   * Label changed
+   */
+  labelChange: EventEmitter<CustomEvent<{ name: string; oldLabel: string; newLabel: string; }>>;
+}
 
 
 @ProxyCmp({
