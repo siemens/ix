@@ -1842,6 +1842,20 @@ export namespace Components {
          */
         "value": any;
     }
+    interface IxSidePanel {
+        /**
+          * State of the side-panel
+         */
+        "expanded": boolean;
+        /**
+          * Title of the side panel
+         */
+        "paneTitle": string;
+        /**
+          * Placement of the sidebar
+         */
+        "position": 'top' | 'left' | 'bottom' | 'right';
+    }
     /**
      * @since 2.0.0
      */
@@ -3163,6 +3177,12 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    interface HTMLIxSidePanelElement extends Components.IxSidePanel, HTMLStencilElement {
+    }
+    var HTMLIxSidePanelElement: {
+        prototype: HTMLIxSidePanelElement;
+        new (): HTMLIxSidePanelElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -3391,6 +3411,7 @@ declare global {
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
+        "ix-side-panel": HTMLIxSidePanelElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
@@ -5365,6 +5386,20 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
+    interface IxSidePanel {
+        /**
+          * State of the side-panel
+         */
+        "expanded"?: boolean;
+        /**
+          * Title of the side panel
+         */
+        "paneTitle"?: string;
+        /**
+          * Placement of the sidebar
+         */
+        "position"?: 'top' | 'left' | 'bottom' | 'right';
+    }
     /**
      * @since 2.0.0
      */
@@ -6061,6 +6096,7 @@ declare namespace LocalJSX {
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
+        "ix-side-panel": IxSidePanel;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
@@ -6247,6 +6283,7 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
+            "ix-side-panel": LocalJSX.IxSidePanel & JSXBase.HTMLAttributes<HTMLIxSidePanelElement>;
             /**
              * @since 2.0.0
              */
