@@ -72,6 +72,7 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
 import Pill from './preview-examples/pill.vue';
+import PillVariants from './preview-examples/pill-variants.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -144,6 +145,7 @@ const routes: any = {
   '/preview/input-with-icon': InputWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/pill': Pill,
+  '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
