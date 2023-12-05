@@ -69,6 +69,7 @@ import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
 import Pill from './preview-examples/pill';
+import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
@@ -201,6 +202,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
         <Route path="/preview/pill" element={<Pill />} />
+        <Route path="/preview/pill-variants" element={<PillVariants />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />

@@ -91,6 +91,7 @@ export class Pill {
             primary: this.variant === 'primary',
             success: this.variant === 'success',
             warning: this.variant === 'warning',
+            custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
           }}
