@@ -38,7 +38,6 @@
     "ts-node": "^10.9.1"
   },
   "peerDependencies": {
-    "@siemens/ix": "~2.0.4",
-    "ag-grid-community": "^28 || ^29 || ^30"
+    "@siemens/ix": "~2.0.4"
   }
 }
