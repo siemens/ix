@@ -512,7 +512,8 @@ export class Dropdown {
       } else if (shadowDropDownComponent && this.anchorElement.id) {
         shadowDropDownComponent.isSubMenu = true;
       }
-      this.hostElement.setAttribute(this.trigger.toString(), '');
+
+      this.hostElement.style.zIndex = `var(--theme-z-index-sticky)`;
     }
   }
 
