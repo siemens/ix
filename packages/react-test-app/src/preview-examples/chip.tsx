@@ -16,9 +16,11 @@ export default () => {
       <IxChip closable outline>
         Primary
       </IxChip>
+
       <IxChip icon="print">
         Primary with icon
       </IxChip>
+
       <IxChip icon="print" closable>
         Primary
       </IxChip>
@@ -26,31 +28,32 @@ export default () => {
       <IxChip variant="critical" closable outline>
         Alarm
       </IxChip>
+
       <IxChip variant="alarm" icon="print">
         Alarm with icon
       </IxChip>
+
       <IxChip
         variant="alarm"
         icon="print"
-
         closable
       >
         Alarm
       </IxChip>
+
       <IxChip
         variant="warning"
         icon="print"
-
         closable
       >
         Alarm
       </IxChip>
+
       <IxChip
         background="purple"
         color="green"
         variant="custom"
         icon="print"
-
         closable
       >
         Custom
