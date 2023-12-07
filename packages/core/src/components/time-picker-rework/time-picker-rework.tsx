@@ -218,10 +218,6 @@ export class TimePickerRework {
       (item) => !item.hidden
     );
 
-    timepickerInformation.forEach((d, i) => {
-      console.log(this._formattedTime, this._formattedTime[d.unit]);
-    });
-
     return (
       <Host>
         <ix-date-time-card

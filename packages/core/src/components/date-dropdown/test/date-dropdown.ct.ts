@@ -6,17 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 import { DateTime } from 'luxon';
 import { DateDropdownOption } from '../date-dropdown';
 
 const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
-const getDateRange = async (page: Page) => {
-  return await page.$$eval(DATE_DROPDOWN_SELECTOR, (elements) => {
-    return Promise.all(elements.map((elem) => elem.getDateRange()));
-  });
-};
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
@@ -26,7 +21,7 @@ test('renders', async ({ mount, page }) => {
 
 test.describe('date dropdown tests', () => {
   test.beforeEach(async ({ mount, page }) => {
-    await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+    await mount(`<ix-date-dropdown from="2023/11/01"></ix-date-dropdown>`);
 
     const today = DateTime.now();
     const format = 'yyyy/LL/dd';
