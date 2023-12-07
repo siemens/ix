@@ -45,7 +45,7 @@ function replaceStyleFilepath({
   framework: TargetFramework;
 }) {
   if (framework === TargetFramework.ANGULAR) {
-    sourceCode = sourceCode.replace('../../../styles', './');
+    sourceCode = sourceCode.replace('../../../styles', '.');
   } else {
     sourceCode = sourceCode.replace('../../../styles', './styles');
   }
