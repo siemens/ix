@@ -8,12 +8,14 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { IxToggleButton } from '@siemens/ix-vue';
+import { IxIconToggleButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/icon-toggle-button.css"></style>
+
 <template>
-  <IxToggleButton ghost icon="checkboxes"></IxToggleButton>
-  <IxToggleButton ghost pressed icon="checkboxes"></IxToggleButton>
-  <IxToggleButton ghost disabled icon="checkboxes"></IxToggleButton>
-  <IxToggleButton ghost disabled loading icon="checkboxes"></IxToggleButton>
+  <IxIconToggleButton ghost icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost pressed icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost disabled icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost disabled loading icon="checkboxes"></IxIconToggleButton>
 </template>

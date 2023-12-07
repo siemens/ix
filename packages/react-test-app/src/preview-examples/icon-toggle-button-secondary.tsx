@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import '../../../styles/icon-toggle-button.css'
+
 import { IxIconToggleButton } from '@siemens/ix-react';
 import React from 'react';
 

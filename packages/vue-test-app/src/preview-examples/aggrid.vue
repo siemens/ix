@@ -54,6 +54,8 @@ const gridOptions = {
 } as GridOptions;
 </script>
 
+<style scoped src="../../../styles/aggrid.css"></style>
+
 <template>
   <AgGridVue
     style="height: 12rem; width: 100%"

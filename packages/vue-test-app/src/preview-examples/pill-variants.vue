@@ -9,22 +9,20 @@
 
 <script setup lang="ts">
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
-
-const styled = {
-  minWidth: '7rem',
-};
 </script>
+
+<style scoped src="../../../styles/pill-variants.css"></style>
 
 <template>
   <IxLayoutGrid>
     <IxRow>
       <IxCol>
-        <IxPill variant="primary" icon="info" :style="styled">
+        <IxPill variant="primary" icon="info">
           Primary
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="primary" icon="info" outline :style="styled">
+        <IxPill variant="primary" icon="info" outline>
           Primary
         </IxPill>
       </IxCol>
@@ -32,10 +30,10 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="alarm" icon="info" :style="styled"> Alarm </IxPill>
+        <IxPill variant="alarm" icon="info"> Alarm </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="alarm" icon="info" outline :style="styled">
+        <IxPill variant="alarm" icon="info" outline>
           Alarm
         </IxPill>
       </IxCol>
@@ -43,12 +41,12 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="critical" icon="info" :style="styled">
+        <IxPill variant="critical" icon="info">
           Critical
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="critical" icon="info" outline :style="styled">
+        <IxPill variant="critical" icon="info" outline>
           Critical
         </IxPill>
       </IxCol>
@@ -56,12 +54,12 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="warning" icon="info" :style="styled">
+        <IxPill variant="warning" icon="info">
           Warning
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="warning" icon="info" outline :style="styled">
+        <IxPill variant="warning" icon="info" outline>
           Warning
         </IxPill>
       </IxCol>
@@ -69,12 +67,12 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="success" icon="info" :style="styled">
+        <IxPill variant="success" icon="info">
           Success
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="success" icon="info" outline :style="styled">
+        <IxPill variant="success" icon="info" outline>
           Success
         </IxPill>
       </IxCol>
@@ -82,10 +80,10 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="info" icon="info" :style="styled"> Info </IxPill>
+        <IxPill variant="info" icon="info"> Info </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="info" icon="info" outline :style="styled">
+        <IxPill variant="info" icon="info" outline>
           Info
         </IxPill>
       </IxCol>
@@ -93,12 +91,12 @@ const styled = {
 
     <IxRow>
       <IxCol>
-        <IxPill variant="neutral" icon="info" :style="styled">
+        <IxPill variant="neutral" icon="info">
           Neutral
         </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="neutral" icon="info" outline :style="styled">
+        <IxPill variant="neutral" icon="info" outline>
           Neutral
         </IxPill>
       </IxCol>
@@ -111,7 +109,6 @@ const styled = {
           color="color-soft-text"
           background="purple"
           icon="info"
-          :style="styled"
         >
           Custom
         </IxPill>
@@ -123,7 +120,6 @@ const styled = {
           background="purple"
           icon="info"
           outline
-          :style="styled"
         >
           Custom
         </IxPill>
