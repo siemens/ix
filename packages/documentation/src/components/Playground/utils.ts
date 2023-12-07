@@ -37,6 +37,27 @@ function getSourceCodeFile({
   }
 }
 
+function replaceStyleFilepath({
+  sourceCode,
+  framework,
+}: {
+  sourceCode: string;
+  framework: TargetFramework;
+}) {
+  if (framework === TargetFramework.ANGULAR) {
+    sourceCode = sourceCode.replace('../../../styles', '../styles');
+  } else {
+    sourceCode = sourceCode.replace('../../../styles', './styles');
+  }
+
+  return sourceCode;
+}
+
+function replaceTheme({ sourceCode }: { sourceCode: string }) {
+  const theme: string = themeSwitcher.getCurrentTheme();
+  return sourceCode.replace(/(<body class=")[^"]*(")/, `$1${theme}$2`);
+}
+
 export function openGitHubFile({
   name,
   framework,
@@ -67,7 +88,6 @@ async function openHtmlStackBlitz(
     init_js,
     package_json,
     vite_config_ts,
-    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/html/src/styles/global.css`,
@@ -75,18 +95,21 @@ async function openHtmlStackBlitz(
     `${baseUrl}code-runtime/html/src/init.js`,
     `${baseUrl}code-runtime/html/package.json`,
     `${baseUrl}code-runtime/html/vite.config.ts`,
-    `${baseUrl}code-runtime/html/src/info.js`,
     `${baseUrl}code-runtime/html/LICENSE.md`,
   ]);
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
-  // insert current theme
-  const theme = themeSwitcher.getCurrentTheme();
-  const sourceCode = renderFirstExample.sourceCode.replace(
-    /(<body class=")[^"]*(")/,
-    `$1${theme}$2`
-  );
+  var sourceCode: string = renderFirstExample.sourceCode;
+
+  // set theme
+  sourceCode = replaceTheme({ sourceCode });
+
+  // set style filepath
+  sourceCode = replaceStyleFilepath({
+    sourceCode,
+    framework: TargetFramework.JAVASCRIPT,
+  });
 
   const files = {};
   additionalFiles.forEach((file) => {
@@ -108,7 +131,6 @@ async function openHtmlStackBlitz(
         'src/init.js': init_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
-        'src/info.js': info,
         'LICENSE.md': license,
       },
     },
@@ -135,7 +157,6 @@ async function openAngularStackBlitz(
     package_json,
     tsconfig_app_json,
     tsconfig_json,
-    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
@@ -149,16 +170,11 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/package.json`,
     `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
-    `${baseUrl}code-runtime/angular/src/app/info.js`,
     `${baseUrl}code-runtime/angular/LICENSE.md`,
   ]);
 
-  // insert current theme
-  const theme = themeSwitcher.getCurrentTheme();
-  const newIndexHtml = index_html.replace(
-    /(<body class=")[^"]*(")/,
-    `$1${theme}$2`
-  );
+  // set theme
+  const newIndexHtml: string = replaceTheme({ sourceCode: index_html });
 
   const declareComponents = [];
   additionalFiles.forEach(({ filename, sourceCode }) => {
@@ -193,6 +209,13 @@ export const DECLARE = [
 
   const exampleFiles = {};
   additionalFiles.forEach(({ filename, sourceCode }) => {
+    if (filename.endsWith('.ts')) {
+      // set style filepath
+      sourceCode = replaceStyleFilepath({
+        sourceCode,
+        framework: TargetFramework.ANGULAR,
+      });
+    }
     exampleFiles[`src/app/${filename}`] = sourceCode;
   });
 
@@ -214,7 +237,6 @@ export const DECLARE = [
         'package.json': package_json,
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
-        'src/app/info.js': info,
         'LICENSE.md': license,
         ...exampleFiles,
       },
@@ -236,7 +258,6 @@ async function openReactStackBlitz(
     index_tsx,
     package_json,
     tsconfig_json,
-    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/react/src/styles/global.css`,
@@ -245,16 +266,11 @@ async function openReactStackBlitz(
     `${baseUrl}code-runtime/react/src/index.tsx`,
     `${baseUrl}code-runtime/react/package.json`,
     `${baseUrl}code-runtime/react/tsconfig.json`,
-    `${baseUrl}code-runtime/react/src/info.js`,
     `${baseUrl}code-runtime/react/LICENSE.md`,
   ]);
 
-  // insert current theme
-  const theme = themeSwitcher.getCurrentTheme();
-  const newIndexHtml = index_html.replace(
-    /(<body class=")[^"]*(")/,
-    `$1${theme}$2`
-  );
+  // set theme
+  const newIndexHtml: string = replaceTheme({ sourceCode: index_html });
 
   const [renderFirstExample] = sourceFiles;
 
@@ -273,6 +289,13 @@ async function openReactStackBlitz(
   const files: Record<string, string> = {};
 
   sourceFiles.forEach(({ filename, sourceCode }) => {
+    if (filename.endsWith('.tsx')) {
+      // set style filepath
+      sourceCode = replaceStyleFilepath({
+        sourceCode,
+        framework: TargetFramework.REACT,
+      });
+    }
     files[`src/${filename}`] = sourceCode;
   });
 
@@ -289,7 +312,6 @@ async function openReactStackBlitz(
         'public/index.html': newIndexHtml,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
-        'src/info.js': info,
         'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run start"
@@ -315,7 +337,6 @@ async function openVueStackBlitz(
     package_json,
     tsconfig_json,
     vite_config_ts,
-    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/vue/src/styles/global.css`,
@@ -326,16 +347,11 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
-    `${baseUrl}code-runtime/vue/src/info.js`,
     `${baseUrl}code-runtime/vue/LICENSE.md`,
   ]);
 
-  // insert current theme
-  const theme = themeSwitcher.getCurrentTheme();
-  const newIndexHtml = index_html.replace(
-    /(<body class=")[^"]*(")/,
-    `$1${theme}$2`
-  );
+  // set theme
+  const newIndexHtml: string = replaceTheme({ sourceCode: index_html });
 
   const [renderFirstExample] = sourceFiles;
 
@@ -351,6 +367,13 @@ async function openVueStackBlitz(
   const files: Record<string, string> = {};
 
   sourceFiles.forEach(({ filename, sourceCode }) => {
+    if (filename.endsWith('.vue')) {
+      // set style filepath
+      sourceCode = replaceStyleFilepath({
+        sourceCode,
+        framework: TargetFramework.VUE,
+      });
+    }
     files[`src/${filename}`] = sourceCode;
   });
 
@@ -369,7 +392,6 @@ async function openVueStackBlitz(
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': vite_config_ts,
-        'src/info.js': info,
         'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run dev"
