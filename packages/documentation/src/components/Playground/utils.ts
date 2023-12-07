@@ -67,6 +67,7 @@ async function openHtmlStackBlitz(
     init_js,
     package_json,
     vite_config_ts,
+    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/html/src/styles/global.css`,
@@ -74,6 +75,7 @@ async function openHtmlStackBlitz(
     `${baseUrl}code-runtime/html/src/init.js`,
     `${baseUrl}code-runtime/html/package.json`,
     `${baseUrl}code-runtime/html/vite.config.ts`,
+    `${baseUrl}code-runtime/html/src/info.json`,
     `${baseUrl}code-runtime/html/LICENSE.md`,
   ]);
 
@@ -106,6 +108,7 @@ async function openHtmlStackBlitz(
         'src/init.js': init_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
+        'src/info.json': info,
         'LICENSE.md': license,
       },
     },
@@ -132,6 +135,7 @@ async function openAngularStackBlitz(
     package_json,
     tsconfig_app_json,
     tsconfig_json,
+    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
@@ -145,6 +149,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/package.json`,
     `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
+    `${baseUrl}code-runtime/angular/src/app/info.json`,
     `${baseUrl}code-runtime/angular/LICENSE.md`,
   ]);
 
@@ -209,6 +214,7 @@ export const DECLARE = [
         'package.json': package_json,
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
+        'src/app/info.json': info,
         'LICENSE.md': license,
         ...exampleFiles,
       },
@@ -230,6 +236,7 @@ async function openReactStackBlitz(
     index_tsx,
     package_json,
     tsconfig_json,
+    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/react/src/styles/global.css`,
@@ -238,6 +245,7 @@ async function openReactStackBlitz(
     `${baseUrl}code-runtime/react/src/index.tsx`,
     `${baseUrl}code-runtime/react/package.json`,
     `${baseUrl}code-runtime/react/tsconfig.json`,
+    `${baseUrl}code-runtime/react/src/info.json`,
     `${baseUrl}code-runtime/react/LICENSE.md`,
   ]);
 
@@ -281,6 +289,7 @@ async function openReactStackBlitz(
         'public/index.html': newIndexHtml,
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
+        'src/info.json': info,
         'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run start"
@@ -306,6 +315,7 @@ async function openVueStackBlitz(
     package_json,
     tsconfig_json,
     vite_config_ts,
+    info,
     license,
   ] = await loadSourceCodeFromStatic([
     `${baseUrl}code-runtime/vue/src/styles/global.css`,
@@ -316,6 +326,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
+    `${baseUrl}code-runtime/react/src/info.json`,
     `${baseUrl}code-runtime/vue/LICENSE.md`,
   ]);
 
@@ -358,6 +369,7 @@ async function openVueStackBlitz(
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': vite_config_ts,
+        'src/info.json': info,
         'LICENSE.md': license,
         '.stackblitzrc': `{
           "startCommand": "yarn run dev"
