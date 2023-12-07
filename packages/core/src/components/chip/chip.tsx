@@ -55,12 +55,14 @@ export class Chip {
   @Prop() icon: string;
 
   /**
-   * Custom color for pill. Only working for `variant='custom'`
+   * Custom background color.
+   * Only has an effect on chips with `variant='custom'`
    */
   @Prop() background: string | undefined;
 
   /**
-   * Custom font color for pill. Only working for `variant='custom'`
+   * Custom font and icon color.
+   * Only has an effect on chips with `variant='custom'`
    */
   @Prop() color: string | undefined;
 
@@ -134,6 +136,7 @@ export class Chip {
             primary: this.variant === 'primary',
             success: this.variant === 'success',
             warning: this.variant === 'warning',
+            custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
           }}

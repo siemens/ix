@@ -22,12 +22,12 @@ Before you start designing your specific icon set for your application, consider
 
 - Do not create alternatives to existing iX icons just for the sake of your own look
 
-- Ask other designers within your company about the existance of an icion, to prevent creation of duplicates
+- Ask other designers within your company about the existence of an icon, to prevent creation of duplicates
 
 - Finally: Entrust a professional designer with the task of designing an icon
 
 ### Technical requirements
-Icons in iX are monochromiatic. They will be colored during runtime, depending on the context they are being used in. For more technical requirements see the "Code" tab above.
+Icons in iX are monochromatic. They will be colored during runtime, depending on the context they are being used in. For more technical requirements see the "Code" tab above.
 
 ### Formal requirements
 New icons should follow the app icon guidelines below for a consistent look & feel across applications. For Siemens applications it is mandatory to follow these guidelines.
@@ -128,5 +128,6 @@ These guidelines extend the basic guidelines on [Siemens brandville](https://bra
 - Resize this instance to 512×512 (target size for development integration)
 - Check if the scaling works properly (check scaling settings, if not)
 - Export the instance as SVG
+- Check the SVG code and remove any title attributes (`<title> ... </title>`) to make sure no unintentional tooltips appear on the icon
 - Make sure the name of the SVG file matches the icon name to avoid confusion
 - Hand the SVG over to your development
