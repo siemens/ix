@@ -89,6 +89,7 @@ import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue'
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import Pill from './preview-examples/pill.vue';
+import PillVariants from './preview-examples/pill-variants.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -253,6 +254,7 @@ const routes: any = {
 '/preview/pagination-advanced': PaginationAdvanced,
 '/preview/pagination': Pagination,
 '/preview/pill': Pill,
+'/preview/pill-variants': PillVariants,
 '/preview/popover-news': PopoverNews,
 '/preview/push-card': PushCard,
 '/preview/radio-button': RadioButton,

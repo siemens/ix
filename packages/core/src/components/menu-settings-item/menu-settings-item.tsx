@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  Watch,
+} from '@stencil/core';
 
 @Component({
   tag: 'ix-menu-settings-item',
@@ -19,6 +27,24 @@ export class MenuSettingsItem {
    * Label
    */
   @Prop() label: string;
+
+  /**
+   * Label changed
+   */
+  @Event() labelChange: EventEmitter<{
+    name: string;
+    oldLabel: string;
+    newLabel: string;
+  }>;
+
+  @Watch('label')
+  watchLabel(newValue: string, oldValue: string) {
+    this.labelChange.emit({
+      name: 'ix-menu-settings-item',
+      oldLabel: oldValue,
+      newLabel: newValue,
+    });
+  }
 
   render() {
     return (

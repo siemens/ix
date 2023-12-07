@@ -112,6 +112,7 @@ import Modal from './preview-examples/modal';
 import PaginationAdvanced from './preview-examples/pagination-advanced';
 import Pagination from './preview-examples/pagination';
 import Pill from './preview-examples/pill';
+import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
@@ -262,6 +263,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/pagination-advanced" element={<PaginationAdvanced />} />
         <Route path="/preview/pagination" element={<Pagination />} />
         <Route path="/preview/pill" element={<Pill />} />
+        <Route path="/preview/pill-variants" element={<PillVariants />} />
         <Route path="/preview/popover-news" element={<PopoverNews />} />
         <Route path="/preview/push-card" element={<PushCard />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />

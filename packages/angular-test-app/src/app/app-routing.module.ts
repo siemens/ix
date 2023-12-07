@@ -108,6 +108,7 @@ import ModalSizes from '../preview-examples/modal-sizes';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pill from '../preview-examples/pill';
+import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
 import PushCard from '../preview-examples/push-card';
 import RadioButton from '../preview-examples/radio-button';
@@ -578,6 +579,7 @@ const routes: Routes = [
         path: 'pill',
         component: Pill,
       },
+      { path: 'pill-variants', component: PillVariants },
       {
         path: 'popover-news',
         component: PopoverNews,
