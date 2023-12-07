@@ -17,9 +17,7 @@ regressionTest.describe('dropdown', () => {
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('overflow', async ({ page }) => {
@@ -33,9 +31,7 @@ regressionTest.describe('dropdown', () => {
     }, menuHandle);
 
     await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.02,
-    });
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('tigger events', async ({ page }) => {
@@ -44,9 +40,7 @@ regressionTest.describe('dropdown', () => {
     await page.locator('input').focus();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('disabled', async ({ page }) => {
@@ -55,9 +49,7 @@ regressionTest.describe('dropdown', () => {
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('handle multiple', async ({ page }) => {
@@ -69,7 +61,7 @@ regressionTest.describe('dropdown', () => {
     await page.locator('#trigger-b').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 
   regressionTest('zoom', async ({ page }) => {
@@ -84,6 +76,6 @@ regressionTest.describe('dropdown', () => {
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 });
