@@ -12,7 +12,6 @@ import { GridOptions } from 'ag-grid-community';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../styles/aggrid.css`],
   template: `
     <ag-grid-angular
       style="height: 12rem; width: 100%"

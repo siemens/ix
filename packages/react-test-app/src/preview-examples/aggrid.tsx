@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../styles/aggrid.css'
-
 import { GridOptions } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
