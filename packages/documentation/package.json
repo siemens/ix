@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "pnpm run download-theme && pnpm run generate-markdown && docusaurus start",
+    "start": "pnpm run download-theme && pnpm run generate-markdown && docusaurus start -h 127.0.0.1",
     "build": "pnpm run download-theme && pnpm run generate-markdown && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

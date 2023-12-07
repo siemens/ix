@@ -2,6 +2,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Playground from '@site/src/components/PlaygroundV2';
 
+import PropsHeaderJavaScript from './../auto-generated/ix-modal-header/props.md'
+import EventsHeaderJavaScript from './../auto-generated/ix-modal-header/events.md'
+
+
 # Modal
 
 ## Sizes
@@ -101,6 +105,14 @@ files={{
 ### API
 
 [See](https://github.com/siemens/ix/blob/main/packages/core/src/components/utils/modal/modal.ts)
+
+#### Modal header
+
+##### Props
+<PropsHeaderJavaScript />
+
+##### Events
+<EventsHeaderJavaScript />
 
 ## Loading
 
