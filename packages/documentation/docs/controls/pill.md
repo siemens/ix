@@ -12,6 +12,12 @@ name="pill" height="24rem"
 examplesByName>
 </Playground>
 
+## Variants
+<Playground
+name="pill-variants" height="24rem"
+examplesByName>
+</Playground>
+
 ## Properties
 
 ### Props

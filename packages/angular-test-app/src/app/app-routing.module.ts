@@ -82,6 +82,7 @@ import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
+import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -306,6 +307,7 @@ const routes: Routes = [
       { path: 'message-bar', component: MessageBar },
       { path: 'pagination', component: Pagination },
       { path: 'pill', component: Pill },
+      { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'select-editable', component: SelectEditable },

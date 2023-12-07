@@ -214,11 +214,11 @@ importers:
         specifier: ^2.0.0
         version: 2.0.1
       ag-grid-angular:
-        specifier: ^29.1.0
-        version: 29.3.5(@angular/common@14.3.0)(@angular/core@14.3.0)(ag-grid-community@29.3.5)
+        specifier: ^30.0.0
+        version: 30.2.1(@angular/common@14.3.0)(@angular/core@14.3.0)(ag-grid-community@30.2.0)
       ag-grid-community:
-        specifier: ^29.1.0
-        version: 29.3.5
+        specifier: ^30.2.0
+        version: 30.2.0
       rxjs:
         specifier: ~7.5.0
         version: 7.5.7
@@ -298,7 +298,7 @@ importers:
         version: 2.0.1
       '@stencil-community/eslint-plugin':
         specifier: ^0.5.0
-        version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.53.0)(typescript@4.9.5)
+        version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@4.9.5)
       '@stencil-community/postcss':
         specifier: ^2.1.0
         version: 2.2.0(@stencil/core@3.4.2)
@@ -331,10 +331,10 @@ importers:
         version: 4.2.4
       '@typescript-eslint/eslint-plugin':
         specifier: ^5
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.55.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5
-        version: 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       animate.css:
         specifier: ~4.1.1
         version: 4.1.1
@@ -604,16 +604,16 @@ importers:
         version: 18.2.14
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.45.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.55.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5.45.0
-        version: 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       eslint-config-ix:
         specifier: '*'
         version: link:../eslint-config-ix
       eslint-plugin-react:
         specifier: ^7.31.11
-        version: 7.33.2(eslint@8.53.0)
+        version: 7.33.2(eslint@8.55.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -657,11 +657,11 @@ importers:
         specifier: workspace:*
         version: link:../react
       ag-grid-community:
-        specifier: ^29.1.0
-        version: 29.3.5
+        specifier: ^30.2.0
+        version: 30.2.0
       ag-grid-react:
         specifier: ^29.1.0
-        version: 29.3.5(ag-grid-community@29.3.5)(react-dom@18.2.0)(react@18.2.0)
+        version: 29.3.5(ag-grid-community@30.2.0)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -705,16 +705,16 @@ importers:
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.45.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.55.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
         specifier: ^5.45.0
-        version: 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+        version: 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       eslint-config-ix:
         specifier: '*'
         version: link:../eslint-config-ix
       eslint-plugin-vue:
         specifier: ^9.9.0
-        version: 9.18.0(eslint@8.53.0)
+        version: 9.18.0(eslint@8.55.0)
       rimraf:
         specifier: ^3.0.2
         version: 3.0.2
@@ -737,11 +737,11 @@ importers:
         specifier: workspace:*
         version: link:../vue
       ag-grid-community:
-        specifier: ^28.2.1
-        version: 28.2.1
+        specifier: ^30.2.0
+        version: 30.2.0
       ag-grid-vue3:
-        specifier: ^28.2.1
-        version: 28.2.1(typescript@4.9.5)
+        specifier: ^30.1.0
+        version: 30.2.1(ag-grid-community@30.2.0)(vue@3.3.7)
       vue:
         specifier: ^3.2.45
         version: 3.3.7(typescript@4.9.5)
@@ -5425,13 +5425,13 @@ packages:
       eslint: 8.52.0
       eslint-visitor-keys: 3.4.3
 
-  /@eslint-community/eslint-utils@4.4.0(eslint@8.53.0):
+  /@eslint-community/eslint-utils@4.4.0(eslint@8.55.0):
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
     dependencies:
-      eslint: 8.53.0
+      eslint: 8.55.0
       eslint-visitor-keys: 3.4.3
     dev: true
 
@@ -5455,8 +5455,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@eslint/eslintrc@2.1.3:
-    resolution: {integrity: sha512-yZzuIG+jnVu6hNSzFEN07e8BxF3uAzYtQb6uDkaYZLo6oYZDCq454c5kB8zxnzfCYyP4MIuyBn10L0DqwujTmA==}
+  /@eslint/eslintrc@2.1.4:
+    resolution: {integrity: sha512-269Z39MS6wVJtsoUl10L60WdkhJVdPG24Q4eZTH3nnF6lpvSShEK3wQjDX9JRWAUPvPh7COouPpU9IrqaZFvtQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       ajv: 6.12.6
@@ -5476,8 +5476,8 @@ packages:
     resolution: {integrity: sha512-mjZVbpaeMZludF2fsWLD0Z9gCref1Tk4i9+wddjRvpUNqqcndPkBD09N/Mapey0b3jaXbLm2kICwFv2E64QinA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  /@eslint/js@8.53.0:
-    resolution: {integrity: sha512-Kn7K8dx/5U6+cT1yEhpX1w4PCSg0M+XyRILPgvwcEBjerFWCwQj5sbr3/VmxqV0JGHCBCzyd6LxypEuehypY1w==}
+  /@eslint/js@8.55.0:
+    resolution: {integrity: sha512-qQfo2mxH5yVom1kacMtZZJFVdW+E70mqHMJvVg6WTLo+VBuQJ4TojZlfWBjK0ve5BdEeNAVxOsl/nvNMpJOaJA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
@@ -6518,7 +6518,7 @@ packages:
     resolution: {integrity: sha512-3m6C7f8pnR5KXys/Hqx2x6ylnpqOak6HtnZI6T5keEO0yT+E4Spkw37VEbdwuC+2oxmjdgq6YZEgiKX7hM1GmQ==}
     dev: false
 
-  /@stencil-community/eslint-plugin@0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.53.0)(typescript@4.9.5):
+  /@stencil-community/eslint-plugin@0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@4.9.5):
     resolution: {integrity: sha512-KLn+//K7EalP5GvP1iu8ORMFEWRlLEkwPxQSuS84jkIALFZMa9fbJoNlqeg0St6xZudhRNHlC5iq+7/X6hLpLw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -6528,11 +6528,11 @@ packages:
       eslint-plugin-react: ^7.0.0
       typescript: ^4.9.4
     dependencies:
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.53.0)(typescript@4.9.5)
-      '@typescript-eslint/parser': 5.62.0(eslint@8.53.0)(typescript@4.9.5)
-      eslint: 8.53.0
-      eslint-plugin-react: 7.33.2(eslint@8.53.0)
-      eslint-utils: 3.0.0(eslint@8.53.0)
+      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.55.0)(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@8.55.0)(typescript@4.9.5)
+      eslint: 8.55.0
+      eslint-plugin-react: 7.33.2(eslint@8.55.0)
+      eslint-utils: 3.0.0(eslint@8.55.0)
       tsutils: 3.0.0(typescript@4.9.5)
       typescript: 4.9.5
     dev: true
@@ -7350,7 +7350,7 @@ packages:
     dev: true
     optional: true
 
-  /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.53.0)(typescript@4.9.5):
+  /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.55.0)(typescript@4.9.5):
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -7362,12 +7362,12 @@ packages:
         optional: true
     dependencies:
       '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/type-utils': 5.62.0(eslint@8.53.0)(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+      '@typescript-eslint/type-utils': 5.62.0(eslint@8.55.0)(typescript@4.9.5)
+      '@typescript-eslint/utils': 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       debug: 4.3.4
-      eslint: 8.53.0
+      eslint: 8.55.0
       graphemer: 1.4.0
       ignore: 5.2.4
       natural-compare-lite: 1.4.0
@@ -7378,7 +7378,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser@5.62.0(eslint@8.53.0)(typescript@4.9.5):
+  /@typescript-eslint/parser@5.62.0(eslint@8.55.0)(typescript@4.9.5):
     resolution: {integrity: sha512-VlJEV0fOQ7BExOsHYAGrgbEiZoi8D+Bl2+f6V2RrXerRSylnp+ZBHmPvaIa8cz0Ajx7WO7Z5RqfgYg7ED1nRhA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -7392,7 +7392,7 @@ packages:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
       debug: 4.3.4
-      eslint: 8.53.0
+      eslint: 8.55.0
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -7406,7 +7406,7 @@ packages:
       '@typescript-eslint/visitor-keys': 5.62.0
     dev: true
 
-  /@typescript-eslint/type-utils@5.62.0(eslint@8.53.0)(typescript@4.9.5):
+  /@typescript-eslint/type-utils@5.62.0(eslint@8.55.0)(typescript@4.9.5):
     resolution: {integrity: sha512-xsSQreu+VnfbqQpW5vnCJdq1Z3Q0U31qiWmRhr98ONQmcp/yhiPJFPq8MXiJVLiksmOKSjIldZzkebzHuCGzew==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -7417,9 +7417,9 @@ packages:
         optional: true
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.62.0(eslint@8.53.0)(typescript@4.9.5)
+      '@typescript-eslint/utils': 5.62.0(eslint@8.55.0)(typescript@4.9.5)
       debug: 4.3.4
-      eslint: 8.53.0
+      eslint: 8.55.0
       tsutils: 3.21.0(typescript@4.9.5)
       typescript: 4.9.5
     transitivePeerDependencies:
@@ -7452,19 +7452,19 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/utils@5.62.0(eslint@8.53.0)(typescript@4.9.5):
+  /@typescript-eslint/utils@5.62.0(eslint@8.55.0)(typescript@4.9.5):
     resolution: {integrity: sha512-n8oxjeb5aIbPFEtmQxQYOLI0i9n5ySBEY/ZEHHZqKQSFnxio1rv6dthascc9dLuwrL0RC5mPCxB7vnAVGAYWAQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.53.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.55.0)
       '@types/json-schema': 7.0.14
       '@types/semver': 7.5.4
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
-      eslint: 8.53.0
+      eslint: 8.55.0
       eslint-scope: 5.1.1
       semver: 7.5.4
     transitivePeerDependencies:
@@ -7941,51 +7941,43 @@ packages:
       regex-parser: 2.2.11
     dev: true
 
-  /ag-grid-angular@29.3.5(@angular/common@14.3.0)(@angular/core@14.3.0)(ag-grid-community@29.3.5):
-    resolution: {integrity: sha512-UWDZvDSrS9Z+LFZ1G0HFOeamITD8kEHgO9eooJV4DxSmYoBGMGruLZV1QIPhjQwBVe8ib5TWw3Q1erSf/bcVSw==}
+  /ag-grid-angular@30.2.1(@angular/common@14.3.0)(@angular/core@14.3.0)(ag-grid-community@30.2.0):
+    resolution: {integrity: sha512-wDYs4UWmkgboEFJ18TRLxTyQ1u60cPm4rxlrhU18z0iE8720dJHdFZUME8FOgjTrcla9DheXXSCjkS0TItO65A==}
     peerDependencies:
       '@angular/common': '>= 12.0.0'
       '@angular/core': '>= 12.0.0'
-      ag-grid-community: ~29.3.5
+      ag-grid-community: ~30.2.1
     dependencies:
       '@angular/common': 14.3.0(@angular/core@14.3.0)(rxjs@7.5.7)
       '@angular/core': 14.3.0(rxjs@7.5.7)(zone.js@0.11.8)
-      ag-grid-community: 29.3.5
+      ag-grid-community: 30.2.0
       tslib: 2.6.2
-    dev: false
-
-  /ag-grid-community@28.2.1:
-    resolution: {integrity: sha512-DMZh/xD/FqYP17qJ1M92PolTYe+hrKuEaf+A4h13O6qn2x/xZQrTRGW5DgnQLR/uLMe1XXZQPKR3UKgAlKo69A==}
-    dev: false
-
-  /ag-grid-community@29.3.5:
-    resolution: {integrity: sha512-LxUo21f2/CH31ACEs1C7Q/ggGGI1fQPSTB4aY5OThmM+lBkygZ7QszBE8jpfgWOIjvjdtcdIeQbmbjkHeMsA7A==}
     dev: false
 
   /ag-grid-community@30.2.0:
     resolution: {integrity: sha512-Gd6GXmtzEQSCDloBdRxxCDqnjTBRAOf/zzlaxxyyVBJgc+cePuNgGdplRUhT/rwIiDwvyuoynvxelVE/iYdXsA==}
-    dev: true
 
-  /ag-grid-react@29.3.5(ag-grid-community@29.3.5)(react-dom@18.2.0)(react@18.2.0):
+  /ag-grid-react@29.3.5(ag-grid-community@30.2.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Eg0GJ8hEBuxdVaN5g+qITOzhw0MGL9avL0Oaajr+p7QRtq2pIFHLZSknWsCBzUTjidiu75WZMKwlZjtGEuafdQ==}
     peerDependencies:
       ag-grid-community: ~29.3.5
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      ag-grid-community: 29.3.5
+      ag-grid-community: 30.2.0
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /ag-grid-vue3@28.2.1(typescript@4.9.5):
-    resolution: {integrity: sha512-n7+l51zFCZm3SVT2pI0lVVwL8gsDPebqNLfEy4DS17OlV5IL7c1eNXRosv/QMu+YHOEMVcwFRWH380nIjVF/+w==}
+  /ag-grid-vue3@30.2.1(ag-grid-community@30.2.0)(vue@3.3.7):
+    resolution: {integrity: sha512-uIsBv5H7Nu6ao1V7cuReVj27gFdlK4kfvo/4M6AWmYswghMpc1GwzczZNV8HUypGcwxONW9YSfr8zabYQNGcAg==}
+    peerDependencies:
+      ag-grid-community: ~30.2.1
+      vue: ^3.0.0
     dependencies:
-      ag-grid-community: 28.2.1
+      ag-grid-community: 30.2.0
       vue: 3.3.7(typescript@4.9.5)
-    transitivePeerDependencies:
-      - typescript
     dev: false
 
   /agent-base@6.0.2:
@@ -12234,7 +12226,7 @@ packages:
       synckit: 0.8.5
     dev: false
 
-  /eslint-plugin-react@7.33.2(eslint@8.53.0):
+  /eslint-plugin-react@7.33.2(eslint@8.55.0):
     resolution: {integrity: sha512-73QQMKALArI8/7xGLNI/3LylrEYrlKZSb5C9+q3OtOewTnMQi5cT+aE9E41sLCmli3I9PGGmD1yiZydyo4FEPw==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -12245,7 +12237,7 @@ packages:
       array.prototype.tosorted: 1.1.2
       doctrine: 2.1.0
       es-iterator-helpers: 1.0.15
-      eslint: 8.53.0
+      eslint: 8.55.0
       estraverse: 5.3.0
       jsx-ast-utils: 3.3.5
       minimatch: 3.1.2
@@ -12268,19 +12260,19 @@ packages:
       eslint: 8.52.0
     dev: false
 
-  /eslint-plugin-vue@9.18.0(eslint@8.53.0):
+  /eslint-plugin-vue@9.18.0(eslint@8.55.0):
     resolution: {integrity: sha512-yUM8a2OD/7Qs0PiugkRaxgz5KBRvzMvWShity2UvVFAN0yk8029mGpTdg/TNARPiYzp335mEwDHwcAR8tQNe4g==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.53.0)
-      eslint: 8.53.0
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.55.0)
+      eslint: 8.55.0
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.0.13
       semver: 7.5.4
-      vue-eslint-parser: 9.3.2(eslint@8.53.0)
+      vue-eslint-parser: 9.3.2(eslint@8.55.0)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -12300,13 +12292,13 @@ packages:
       esrecurse: 4.3.0
       estraverse: 5.3.0
 
-  /eslint-utils@3.0.0(eslint@8.53.0):
+  /eslint-utils@3.0.0(eslint@8.55.0):
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.53.0
+      eslint: 8.55.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -12365,15 +12357,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /eslint@8.53.0:
-    resolution: {integrity: sha512-N4VuiPjXDUa4xVeV/GC/RV3hQW9Nw+Y463lkWaKKXKYMvmRiRDAtfpuPFLN+E1/6ZhyR8J2ig+eVREnYgUsiag==}
+  /eslint@8.55.0:
+    resolution: {integrity: sha512-iyUUAM0PCKj5QpwGfmCAG9XXbZCWsqP/eWAWrG/W0umvjuLRBECwSFdt+rCntju0xEH7teIABPwXpahftIaTdA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.53.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.55.0)
       '@eslint-community/regexpp': 4.10.0
-      '@eslint/eslintrc': 2.1.3
-      '@eslint/js': 8.53.0
+      '@eslint/eslintrc': 2.1.4
+      '@eslint/js': 8.55.0
       '@humanwhocodes/config-array': 0.11.13
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
@@ -24689,14 +24681,14 @@ packages:
       vue: 3.3.7(typescript@4.9.5)
     dev: false
 
-  /vue-eslint-parser@9.3.2(eslint@8.53.0):
+  /vue-eslint-parser@9.3.2(eslint@8.55.0):
     resolution: {integrity: sha512-q7tWyCVaV9f8iQyIA5Mkj/S6AoJ9KBN8IeUSf3XEmBrOtxOZnfTg5s4KClbZBCK3GtnT/+RyCLZyDHuZwTuBjg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
     dependencies:
       debug: 4.3.4
-      eslint: 8.53.0
+      eslint: 8.55.0
       eslint-scope: 7.2.2
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
