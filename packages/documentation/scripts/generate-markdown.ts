@@ -173,27 +173,13 @@ const tasks = new Listr<Context>(
           const sourcesMatches: RegExpMatchArray | null = formattedSource.match(
             /<!-- Sources -->([\s\S]*?)<!-- Sources -->/
           );
-          const sources: string = sourcesMatches
-            ? sourcesMatches[1]
-                .trim()
-                .split('\n')
-                .map((line) => line.replace(/[ ]{4}/, ''))
-                .join('\n')
-                .trimEnd()
-            : '';
+          const sources: string = getString(sourcesMatches);
 
           const sourceCodeMatches: RegExpMatchArray | null =
             formattedSource.match(
               /<!-- Preview code -->([\s\S]*?)<!-- Preview code -->/
             );
-          const sourceCode: string = sourceCodeMatches
-            ? sourceCodeMatches[1]
-                .trim()
-                .split('\n')
-                .map((line) => line.replace(/[ ]{4}/, ''))
-                .join('\n')
-                .trimEnd()
-            : '';
+          const sourceCode: string = getString(sourceCodeMatches);
 
           formattedSource = `${
             sources
@@ -355,6 +341,17 @@ async function getRawStingContent(path: string) {
   content = content.replace(/\n*$/, '');
 
   return content;
+}
+
+function getString(matches: RegExpMatchArray | null) {
+  return matches
+    ? matches[1]
+        .trim()
+        .split('\n')
+        .map((line) => line.replace(/[ ]{4}/, ''))
+        .join('\n')
+        .trimEnd()
+    : '';
 }
 
 /**
