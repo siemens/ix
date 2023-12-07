@@ -61,15 +61,21 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
-  const [styles, index_html, init_js, package_json, vite_config_ts, license] =
-    await loadSourceCodeFromStatic([
-      `${baseUrl}code-runtime/html/src/styles/styles.css`,
-      `${baseUrl}code-runtime/html/src/index.html`,
-      `${baseUrl}code-runtime/html/src/init.js`,
-      `${baseUrl}code-runtime/html/package.json`,
-      `${baseUrl}code-runtime/html/vite.config.ts`,
-      `${baseUrl}code-runtime/html/LICENSE.md`,
-    ]);
+  const [
+    global_css,
+    index_html,
+    init_js,
+    package_json,
+    vite_config_ts,
+    license,
+  ] = await loadSourceCodeFromStatic([
+    `${baseUrl}code-runtime/html/src/styles/global.css`,
+    `${baseUrl}code-runtime/html/src/index.html`,
+    `${baseUrl}code-runtime/html/src/init.js`,
+    `${baseUrl}code-runtime/html/package.json`,
+    `${baseUrl}code-runtime/html/vite.config.ts`,
+    `${baseUrl}code-runtime/html/LICENSE.md`,
+  ]);
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
 
@@ -92,7 +98,7 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
-        'src/styles/styles.css': styles,
+        'src/styles/global.css': global_css,
         'src/index.html': index_html.replace(
           '<!-- IX_INJECT_SOURCE_CODE -->',
           sourceCode
@@ -118,7 +124,7 @@ async function openAngularStackBlitz(
     app_component_html,
     app_component_ts,
     app_module_ts,
-    styles,
+    global_css,
     index_html,
     main_ts,
     styles_css,
@@ -131,7 +137,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
-    `${baseUrl}code-runtime/angular/src/styles/styles.css`,
+    `${baseUrl}code-runtime/angular/src/styles/global.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.css`,
@@ -195,7 +201,7 @@ export const DECLARE = [
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
-        'src/styles/styles.css': styles,
+        'src/styles/global.css': global_css,
         'src/index.html': newIndexHtml,
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
@@ -218,7 +224,7 @@ async function openReactStackBlitz(
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
-    styles,
+    global_css,
     app_tsx,
     index_html,
     index_tsx,
@@ -226,7 +232,7 @@ async function openReactStackBlitz(
     tsconfig_json,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/react/src/styles/styles.css`,
+    `${baseUrl}code-runtime/react/src/styles/global.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
     `${baseUrl}code-runtime/react/public/index.html`,
     `${baseUrl}code-runtime/react/src/index.tsx`,
@@ -269,7 +275,7 @@ async function openReactStackBlitz(
       description: 'iX react playground',
       files: {
         ...files,
-        'src/styles/styles.css': styles,
+        'src/styles/global.css': global_css,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'public/index.html': newIndexHtml,
@@ -292,7 +298,7 @@ async function openVueStackBlitz(
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
   const [
-    styles,
+    global_css,
     app_vue,
     main_ts,
     env_d_ts,
@@ -302,7 +308,7 @@ async function openVueStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/vue/src/styles/styles.css`,
+    `${baseUrl}code-runtime/vue/src/styles/global.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
     `${baseUrl}code-runtime/vue/src/main.ts`,
     `${baseUrl}code-runtime/vue/env.d.ts`,
@@ -344,7 +350,7 @@ async function openVueStackBlitz(
       description: 'iX vue playground',
       files: {
         ...files,
-        'src/styles/styles.css': styles,
+        'src/styles/global.css': global_css,
         'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
         'index.html': newIndexHtml,
