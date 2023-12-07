@@ -326,7 +326,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
-    `${baseUrl}code-runtime/react/src/info.json`,
+    `${baseUrl}code-runtime/vue/src/info.json`,
     `${baseUrl}code-runtime/vue/LICENSE.md`,
   ]);
 
