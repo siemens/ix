@@ -8,7 +8,7 @@
  */
 
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
-import './preview-examples/styles/styles.css';
+import './preview-examples/styles/global.css';
 
 (async () => {
   await applyPolyfills();
