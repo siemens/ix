@@ -6,7 +6,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class SidePanel {
-  @Element() hostElement;
+  @Element() hostElement: HTMLIxSidePanelElement;
 
   /**
    * Title of the side panel
@@ -25,6 +25,7 @@ export class SidePanel {
 
   private expandIcon: string = '';
   private minimizeIcon: string = '';
+  private isHorizontal: boolean;
 
   constructor() {
     switch (this.position) {
@@ -46,17 +47,25 @@ export class SidePanel {
         break;
     }
 
+    this.isHorizontal = this.position === 'bottom' || this.position === 'top';
     this.hostElement.style.setProperty(this.position, '0');
     return;
   }
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          expanded: this.expanded,
+          'host-horizontal': this.isHorizontal,
+          'host-vertical': !this.isHorizontal,
+        }}
+      >
         <aside
           class={{
             expanded: this.expanded,
-            'side-pane': true,
+            'side-panel-horizontal': this.isHorizontal,
+            'side-panel-vertical': !this.isHorizontal,
           }}
         >
           <div class="container">

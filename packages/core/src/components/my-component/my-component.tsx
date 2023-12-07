@@ -15,6 +15,24 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class MyComponent {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-basic-navigation>
+          <ix-menu expand={true} style={{ borderRight: 'solid 1px' }}>
+            <ix-menu-item home icon="home">
+              Home
+            </ix-menu-item>
+            <ix-menu-item icon="globe">Normal Tab</ix-menu-item>
+            <ix-menu-category label="Top level Category" icon="rocket">
+              <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+              <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+            </ix-menu-category>
+          </ix-menu>
+          <ix-side-panel position="bottom"></ix-side-panel>
+          <ix-side-panel position="top"></ix-side-panel>
+          <ix-side-panel position="right"></ix-side-panel>
+        </ix-basic-navigation>
+      </Host>
+    );
   }
 }
