@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run generate-markdown && docusaurus start",
+    "start": "npm run generate-markdown && docusaurus start -h 127.0.0.1",
     "build": "npm run generate-markdown && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
