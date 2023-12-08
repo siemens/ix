@@ -3866,6 +3866,40 @@
       },
       "props": [
         {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "mutable": false,
