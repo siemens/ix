@@ -6,7 +6,7 @@ Cards are interactive elements. The entire container is clickable and triggers a
 1. Icon
 2. Notification
 3. Heading
-4. SubHeading
+4. Subheading
 5. Expandable
 6. Container
 7. Expanding content
@@ -22,7 +22,7 @@ Push cards contain a notification value in addition to the icon, heading, and su
 ![Card types](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4953&mode=design&t=RDimbEsIHFIXIByo-1)
 
 ## Customization
-We also offer a card container component that enables designers to display various types of content, such as images, charts or key data. Some small rules apply: Background images can stretch over the the complete size of the container, whereas the card content must maintain a default padding of at least <kbd>1rem</kbd>.
+We also offer a card container component that enables designers to display various types of content, such as images, charts or key data. Some small rules apply: Background images can stretch over the complete size of the container, whereas the card content must maintain a default padding of at least `1rem`.
 
 ![Card examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1329%3A26613&mode=design&t=sOZRNgWt7R52iLSF-1)
 
@@ -36,7 +36,7 @@ Cards are available in nine variants: Outline, filled, alarm, critical, warning,
 - **Icon**: Cards can, but don't have to, include an icon. The icon is positioned in the top-left corner of the container.
 - **Notification**: By default, push cards display a notification value at the top of the container. This value is logically related to the items displayed in the expanding content area.
 - **Heading**: Cards can, but don't have to, include a heading. The heading is aligned to the top-left corner of the container.
-- **SubHeading**: Cards can, but don't have to, include a subHeading. The subheading is aligned to the top-left corner of the container and positioned below the heading.
+- **Subheading**: Cards can, but don't have to, include a subheading. The subheading is aligned to the top-left corner of the container and positioned below the heading.
 
 ## Behavior in context
 
