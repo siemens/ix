@@ -1,4 +1,5 @@
-Pill components used to display statuses or categorie within the interface. It containes a small, rounded shaped container with text or icons inside. They can be clickable and closable.
+Pills can be used to display a small detail of content and can help to create a subtle sense of urgency or attract the attention of the user. 
+
 
 ![Pill overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377%3A3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
 
@@ -8,7 +9,7 @@ Pill components used to display statuses or categorie within the interface. It c
 
 ## Variants
 
-Our pill variants offer the flexibility to assign various colors, reflecting their purpose, importance, or context. By using different pill variants, we can effectively convey class, status, and levels of significance. However, it's important to note that the custom variant, although suitable for visualizing numerous categories, does not support color specification for hover and active states.
+Pill variants allow designers to apply different colors based on their purpose, importance or context within the interface. Pill variants are typically used to convey different levels of importance, classes or status to users. However, it's important to note that the custom variant, although suitable for visualizing numerous categories.
 
 Pill variants:
 
@@ -30,20 +31,28 @@ Pill variants:
 
 ## Behavior
 
-- **Displaying labels**: Pill represent certain items or content. They provide a clear and concise way to categorize or identify information.
-- **Organizing content**: Help organize content by grouping related items together. They provide a visual separation and structure to make it easier for users to navigate or understand the information presented.
-- **Multi-selection**: Pills can visualize multi-selection and filter actions. This helps users to easily identify and understand their choices.
-- **Dismiss**: When users select close, pills are dismissed from the list or interface and are removed visually.
+- **Placement**: The pill component is positioned inline with other elements to convey their status, often within tables or grouped to display selected choices and filters. It's advised not to incorporate pills within input and filter components, as these have their own version known as the input chip. Currently, input pill are not implemented as independent components. Similar items user can find as an optional pill within the tab and navigation menu items.
 - **Text truncation**: When a width is set for pills, long labels are truncated to fit the available space.
+
 
 ## States
 
-Pills don't have states.
+Pills are read-only. 
+
 
 ## Dos and Don'ts
 
-Do use them to communicate labels, selections, and categories.
-Do use pills to indicate the status or characteristics of an item. For example, they can display different states like "New," "Featured," to highlight specific items.
-Do use them to highlighting selected options, in some cases, can be used to visually highlight selected options. For example, in a form or configuration settings, pill can display the chosen settings or preferences for easy reference.
-Don't overuse pills, because it can be confusing for users to understand their purpose and differentiate between different types of pills.
-Don't use pills to display additional specific information as this will result in cluttered content.
+- o use pills to communicate labels and categories.
+- Do use pills to indicate the status or characteristics of an item.
+- Do use them to highlighting selected options, in some cases, can be used to visually highlight selected options. For example, in a form or configuration settings, pill can display the chosen settings or preferences for easy reference.
+- Don't overuse pills as this leads to cluttered and overwhelming interfaces.
+- Don't use different styles for pills with the same or similar use.
+- Don't use pills if users can interact with the component (e.g. dismiss, close), use chips instead.
+
+
+## Related patterns
+
+- [Chip](chip.md)
+
+
+
