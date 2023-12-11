@@ -124,7 +124,7 @@ export class TimePickerRework {
 
     if (!this._time.isValid) {
       console.error(
-        'Invalid time format. The configured format does not match the format of the passed time.'
+        `Invalid time format. The configured format does not match the format of the passed time. ${this._time.invalidReason}: ${this._time.invalidExplanation}`
       );
       return;
     }
@@ -135,8 +135,6 @@ export class TimePickerRework {
           | 'PM')
       : undefined;
     this.formatTime();
-
-    console.dir(this);
   }
 
   @Watch('_time')
