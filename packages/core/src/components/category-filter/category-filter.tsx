@@ -710,6 +710,7 @@ export class CategoryFilter {
                       this.disabled ||
                       this.category !== undefined,
                   }}
+                  autocomplete="off"
                   name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
