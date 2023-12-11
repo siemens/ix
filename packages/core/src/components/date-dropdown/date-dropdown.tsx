@@ -88,7 +88,7 @@ export class DateDropdown {
    * Used to set the initial select date range as well as the button name,
    * if not set or no according date range label is found, nothing will be selected
    */
-  @Prop() dateRangeId: string;
+  @Prop() dateRangeId = 'custom';
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -337,8 +337,8 @@ export class DateDropdown {
                       onDateRangeChange={(e) => e.stopPropagation()}
                       format={this.format}
                       range={this.range}
-                      from={this.from || this.currentRangeValue.from}
-                      to={this.to || this.currentRangeValue.to}
+                      from={this.from || this.currentRangeValue?.from}
+                      to={this.to || this.currentRangeValue?.to}
                       minDate={this.minDate}
                       maxDate={this.maxDate}
                     ></ix-date-picker-rework>

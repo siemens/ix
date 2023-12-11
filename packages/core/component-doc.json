@@ -2403,6 +2403,7 @@
           "reflectToAttr": false,
           "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
           "docsTags": [],
+          "default": "'custom'",
           "values": [
             {
               "type": "string"
