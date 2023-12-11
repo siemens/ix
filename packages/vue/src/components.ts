@@ -343,6 +343,7 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'disabled',
   'label',
   'icon',
+  'closeBehavior',
   'placement'
 ]);
 
@@ -632,7 +633,8 @@ export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>(
 
 
 export const IxMenuSettingsItem = /*@__PURE__*/ defineContainer<JSX.IxMenuSettingsItem>('ix-menu-settings-item', defineIxMenuSettingsItem, [
-  'label'
+  'label',
+  'labelChange'
 ]);
 
 

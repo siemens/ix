@@ -894,6 +894,11 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        /**
           * Disable button
          */
         "disabled": boolean;
@@ -2519,6 +2524,10 @@ export interface IxMenuAvatarItemCustomEvent<T> extends CustomEvent<T> {
 export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
+}
+export interface IxMenuSettingsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsItemElement;
 }
 export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4343,6 +4352,11 @@ declare namespace LocalJSX {
      */
     interface IxDropdownButton {
         /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        /**
           * Disable button
          */
         "disabled"?: boolean;
@@ -5064,6 +5078,14 @@ declare namespace LocalJSX {
           * Label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<{
+    name: string;
+    oldLabel: string;
+    newLabel: string;
+  }>) => void;
     }
     interface IxMessageBar {
         /**

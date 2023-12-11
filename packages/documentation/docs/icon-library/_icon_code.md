@@ -41,6 +41,7 @@ import Icons from '@site/src/components/Icons';
 - Each icon is a single SVG file, Sprites are not supported yet
 - The icon has a size of 512✕512 (width, height and viewBox)
 - All color information within the SVG will be ignored
+- Remove any title attributes (`<title> ... </title>`) to make sure no unintentional tooltips appear on the icon
 - For visual and formal requirements see guidelines tab above
 
 ```tsx
