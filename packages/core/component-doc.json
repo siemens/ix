@@ -2802,7 +2802,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "If true a date range can be selected (from/to).",
+          "docs": "If true a date range can be selected/entered (from/to).",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -3547,7 +3547,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "Set range size",
+          "docs": "If true a datetime range can be selected/entered (from/to).",
           "docsTags": [],
           "default": "false",
           "values": [
