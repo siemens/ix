@@ -80,7 +80,7 @@ export class DatetimeInput {
   @Prop() labelPosition: 'top' | 'left' | 'inside' = 'top';
 
   /**
-   * Set range size
+   * If true a datetime range can be selected/entered (from/to).
    */
   @Prop() range = false;
 
