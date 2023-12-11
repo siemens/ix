@@ -1,4 +1,4 @@
-Pills are components used to display a small pieces of information in a compact and visually appealing way. Typically pills contain a concise label and sometimes an icon, and they aren't clickable or closable.
+Pills are components used to display small pieces of information in a compact and visually appealing way. Typically pills contain a concise label and sometimes an icon, and they aren't clickable or closable.
 
 
 ![Pill overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377%3A3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
@@ -29,7 +29,7 @@ Pill variants:
 
 ## Behavior
 
-- **Placement**: We usually position pills inline with other elements to convey their status or category. We do not place pills within input and filter components, as these have their own version known as the input chip. It is possible to add components similar to pills to tabs and navigation menu items. These counter or notification components are provided as component options. 
+- **Placement**: We usually position pills inline with other elements to convey their status or category. We do not place pills within input and filter components as these components have similar components already built-in. It is possible to add components similar to pills to tabs and navigation menu items. These counter or notification components are provided as component options. 
 - **Text truncation**: When a width is set for pills, long labels are truncated to fit the available space.
 
 ## States
