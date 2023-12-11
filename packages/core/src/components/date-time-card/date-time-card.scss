@@ -22,10 +22,13 @@
     display: flex;
     flex-direction: column;
 
-    &.individual {
+    &.standaloneAppearance {
       box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
-        0 12px 18px 0px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--theme-menu--border-color);
+        0 12px 18px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    &.rounded {
       border-radius: 4px;
     }
 
@@ -51,7 +54,7 @@
     }
 
     .content {
-      padding: 0px $default-space $default-space $default-space;
+      padding: 0 $medium-space $medium-space $medium-space;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;

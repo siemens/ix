@@ -82,6 +82,7 @@ $default-event-list-item-height: 2.5rem;
       max-height: var(--event-list-item-height, 100%);
       white-space: var(--event-list-item-content-white-space, inherit);
       overflow: hidden;
+      padding-inline-end: $small-space;
     }
 
     .chevron-icon {

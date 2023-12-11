@@ -325,7 +325,8 @@ Change `Primary` and `Secondary` to lower case `primary` and `secondary`
 **_Now_**
 
 ```typescript
-@Event() close: EventEmitter<{
+@Event()
+close: EventEmitter<{
   nativeEvent: MouseEvent;
   name: string;
 }>;

@@ -21,6 +21,7 @@ import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import Card from 'src/preview-examples/card';
 import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
@@ -29,6 +30,8 @@ import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
+import DateDropdown from 'src/preview-examples/date-dropdown';
+import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
@@ -79,6 +82,7 @@ import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
+import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -232,6 +236,14 @@ const routes: Routes = [
         component: Chip,
       },
       {
+        path: 'date-dropdown',
+        component: DateDropdown,
+      },
+      {
+        path: 'date-dropdown-user-range',
+        component: DateDropdownUserRange,
+      },
+      {
         path: 'datepicker',
         component: Datepicker,
       },
@@ -295,6 +307,7 @@ const routes: Routes = [
       { path: 'message-bar', component: MessageBar },
       { path: 'pagination', component: Pagination },
       { path: 'pill', component: Pill },
+      { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'select-editable', component: SelectEditable },
@@ -348,6 +361,7 @@ const routes: Routes = [
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
       { path: 'action-card', component: ActionCard },
+      { path: 'card', component: Card },
       { path: 'card-list', component: CardList },
       { path: 'page-header', component: PageHeader },
       { path: 'page-header-no-back', component: PageHeaderNoBack },
