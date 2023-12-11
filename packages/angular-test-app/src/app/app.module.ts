@@ -90,6 +90,7 @@ import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
+import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -195,6 +196,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     MessageBar,
     Pagination,
     Pill,
+    PillVariants,
     PopoverNews,
     Radiobutton,
     SelectEditable,
