@@ -2346,42 +2346,35 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-dropdown-button",
+        "ix-button",
         "ix-dropdown",
         "ix-layout-grid",
         "ix-row",
         "ix-col",
         "ix-dropdown-item",
-        "ix-date-picker",
-        "ix-button"
+        "ix-date-picker-rework"
       ],
       "dependencyGraph": {
         "ix-date-dropdown": [
-          "ix-dropdown-button",
+          "ix-button",
           "ix-dropdown",
           "ix-layout-grid",
           "ix-row",
           "ix-col",
           "ix-dropdown-item",
-          "ix-date-picker",
-          "ix-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-dropdown"
+          "ix-date-picker-rework"
         ],
         "ix-button": [
           "ix-spinner"
         ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-date-picker": [
+        "ix-date-picker-rework": [
           "ix-date-time-card",
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ]
       },
       "props": [
@@ -2392,12 +2385,7 @@
           "attr": "custom-range-allowed",
           "reflectToAttr": false,
           "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -2408,11 +2396,27 @@
           "required": false
         },
         {
+          "name": "dateRangeId",
+          "type": "string",
+          "mutable": false,
+          "attr": "date-range-id",
+          "reflectToAttr": false,
+          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "dateRangeOptions",
           "type": "DateDropdownOption[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    label: 'No time limit',\n    getValue: (): DateRangeOption => {\n      // Calculate the date range here\n      return { from: undefined, to: today };\n    },\n  },\n  // ... other predefined date range options ...",
+          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    id: 'some unique id',\n    label: 'Name of the range',\n    from: undefined, to: '2023/03/29'\n  },\n  // ... other predefined date range options ...",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -2431,7 +2435,7 @@
           "reflectToAttr": false,
           "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [],
-          "default": "'YYYY-MM-DD'",
+          "default": "'yyyy/LL/dd'",
           "values": [
             {
               "type": "string"
@@ -2448,29 +2452,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "initialSelectedDateRangeName",
-          "type": "string",
-          "mutable": false,
-          "attr": "initial-selected-date-range-name",
-          "reflectToAttr": false,
-          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
-          "default": "''",
           "values": [
             {
               "type": "string"
@@ -2529,6 +2510,57 @@
           "required": false
         },
         {
+          "name": "textCustomItem",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-custom-item",
+          "reflectToAttr": false,
+          "docs": "Text for custom dropdown item. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Custom...'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textDoneButton",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-done-button",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textNoRange",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-no-range",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'No range set'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "to",
           "type": "string",
           "mutable": false,
@@ -2536,7 +2568,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
           "values": [
             {
               "type": "string"
@@ -2551,35 +2582,23 @@
           "name": "getDateRange",
           "returns": {
             "type": "Promise<DateRangeChangeEvent>",
-            "docs": "The selected date range."
+            "docs": ""
           },
           "signature": "getDateRange() => Promise<DateRangeChangeEvent>",
           "parameters": [],
           "docs": "Retrieves the currently selected date range from the component.\nThis method returns the selected date range as a `DateChangeEvent` object.",
-          "docsTags": [
-            {
-              "name": "returns",
-              "text": "The selected date range."
-            }
-          ]
+          "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ id: string; from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
           "docs": "EventEmitter for date range change events.\n\nThis event is emitted when the date range changes within the component.\nThe event payload contains information about the selected date range.",
-          "docsTags": [
-            {
-              "name": "event"
-            },
-            {
-              "name": "private"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -2600,9 +2619,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-dropdown",
-        "ix-datetime-picker",
-        "my-component"
+        "ix-datetime-picker"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -2623,13 +2640,7 @@
         "ix-button": [
           "ix-spinner"
         ],
-        "ix-date-dropdown": [
-          "ix-date-picker"
-        ],
         "ix-datetime-picker": [
-          "ix-date-picker"
-        ],
-        "my-component": [
           "ix-date-picker"
         ]
       },
@@ -3844,9 +3855,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -3863,9 +3872,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-date-dropdown": [
-          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -12703,34 +12709,8 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [
-        "ix-date-picker-rework",
-        "ix-date-picker"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-date-picker-rework",
-          "ix-date-picker"
-        ],
-        "ix-date-picker-rework": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-date-picker": [
-          "ix-date-time-card",
-          "ix-icon-button",
-          "ix-button",
-          "ix-dropdown"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [],
       "methods": [],
       "events": [],

@@ -439,7 +439,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'maxDate', 'minDate', 'range', 'textCustomItem', 'textDoneButton', 'textNoRange', 'to'],
   methods: ['getDateRange']
 })
 @Component({
@@ -447,7 +447,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'maxDate', 'minDate', 'range', 'textCustomItem', 'textDoneButton', 'textNoRange', 'to'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
@@ -466,7 +466,7 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
    * EventEmitter for date range change events.
 
 This event is emitted when the date range changes within the component.
-The event payload contains information about the selected date range. @event undefined,@private undefined
+The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }

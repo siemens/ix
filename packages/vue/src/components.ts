@@ -257,9 +257,12 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'to',
   'minDate',
   'maxDate',
-  'initialSelectedDateRangeName',
+  'dateRangeId',
   'customRangeAllowed',
   'dateRangeOptions',
+  'textCustomItem',
+  'textDoneButton',
+  'textNoRange',
   'dateRangeChange'
 ]);
 
