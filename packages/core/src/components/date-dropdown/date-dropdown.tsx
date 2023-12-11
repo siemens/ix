@@ -256,6 +256,10 @@ export class DateDropdown {
       return this.textNoRange;
     }
 
+    if (!this.dateRangeOptions || this.dateRangeOptions?.length === 0) {
+      return this.textNoRange;
+    }
+
     const option = this.dateRangeOptions.find(
       (option) => option.id === this.selectedDateRangeId
     );
