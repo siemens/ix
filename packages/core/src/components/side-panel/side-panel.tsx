@@ -28,6 +28,8 @@ export class SidePanel {
   private isHorizontal: boolean;
 
   constructor() {
+    this.isHorizontal = this.position === 'bottom' || this.position === 'top';
+
     switch (this.position) {
       case 'left':
         this.expandIcon = 'double-chevron-left';
@@ -44,10 +46,9 @@ export class SidePanel {
       case 'top':
         this.expandIcon = 'double-chevron-down';
         this.minimizeIcon = 'double-chevron-up';
-        break;
+        return;
     }
 
-    this.isHorizontal = this.position === 'bottom' || this.position === 'top';
     this.hostElement.style.setProperty(this.position, '0');
     return;
   }

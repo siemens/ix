@@ -28,9 +28,8 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
-          <ix-side-panel position="bottom"></ix-side-panel>
           <ix-side-panel position="top"></ix-side-panel>
-          <ix-side-panel position="right"></ix-side-panel>
+          <p>dadadasd</p>
         </ix-basic-navigation>
       </Host>
     );

@@ -8,13 +8,13 @@ $side-pane-expanded-width: 16rem;
 :host {
   @include ix-component;
   background-color: var(--theme-nav--background);
-  position: fixed;
 
   .side-pane-horizontal {
 
   }
 
   .side-panel-vertical {
+    display: block;
     height: 100%;
 
     .container {
