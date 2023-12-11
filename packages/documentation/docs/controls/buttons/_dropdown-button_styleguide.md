@@ -17,7 +17,7 @@ Dropdown buttons are button elements that allow users to select from a list of o
 - **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These are typically called *secondary* in UX.
 - **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. They may also be used for conditional actions like "Change preferences" or "View details".
 - **Disabled:** Dropdown buttons can be disabled (see also dropdown button states).
-- **Icon:** Icons can also be displayed with dropdown button labels.
+- **Icon:** Icons can be displayed with dropdown button labels or without.
 - **Label:** Set a label for the dropdown button. Labels should be short (two to three words) and contain a verb.
 - **Placement:** Define where the flyout appears which is triggered when the button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
 Give more info on placement options???
@@ -25,7 +25,7 @@ Give more info on placement options???
 ## States
 Dropdown buttons have five states: Default, hover, active, disabled and focused. In active state, dropdown buttons show a dropdown with the available options. In disabled state, dropdown buttons are visually displayed but don't offer any user interaction. The visual appearance of the states is the same as the ix-button component.
 
-## Does and don'ts
+## Does and Don'ts
 - Do use dropdown buttons when the selection of an option triggers an action. Otherwise, use a select component.
 - Don't use dropdown buttons when a frequent or most-important action exists. Use a standard button or a split button instead.
 

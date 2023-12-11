@@ -33,14 +33,14 @@ Buttons have five states: Default, hover, active, disabled and focused. In disab
 
 ![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
-## Dos and don'ts
+## Dos and Don'ts
 
 - Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
 - Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
 - Do use a default margin between adjacent buttons of at least `0.5rem`
 - Do adjust default and outline button width to label length or container width 
 - Don't extend your ghost button width beyond the label's available width
-- Don't only rely on buttons when many actions/functions are necessary (consider dropdowns, split buttons or moving some functionality to a drawer or a dialog)
+- Don't only rely on standard buttons when many actions/functions are necessary (consider dropdowns, split buttons or moving some functionality to a drawer or a dialog)
 - Don't use buttons for navigation
 
 

@@ -11,7 +11,7 @@ Variants, options and states of the ix-button component apply. Only additional s
 - **Size:** Icon buttons can have three different sizes. We typically use the extra small size (12) within very small parent components, the small size (16) within any standard parent components (e.g. to clear search input) and the default size (24) for standalone application.
 - **Color:** The color of the icon displayed on an icon button is adjustable. In our applications, we only adjust the icon color when we place icon buttons on backgrounds with an unusual color to maintain proper contrast between the elements.
 
-## Dos and don'ts
+## Dos and Don'ts
 - Do use icons which transport a clear meaning to the user within the given context. Don't use icon buttons if such an icon is not available. Use a standard button instead
 - Don't use icon buttons in large numbers. Use a toolbar instead
 
