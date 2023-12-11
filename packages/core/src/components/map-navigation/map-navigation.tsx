@@ -23,7 +23,7 @@ import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
 
 /**
- * @deprecated Use ix-application as an successor of ix-basic-navigation
+ * @deprecated Use ix-application as an successor of ix-map-navigation
  */
 @Component({
   tag: 'ix-map-navigation',

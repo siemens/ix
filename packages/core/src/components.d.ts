@@ -1326,7 +1326,7 @@ export namespace Components {
         "url": string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated Use ix-application as an successor of ix-map-navigation
      */
     interface IxMapNavigation {
         /**
@@ -3317,7 +3317,7 @@ declare global {
         "contextMenuClick": void;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated Use ix-application as an successor of ix-map-navigation
      */
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5473,7 +5473,7 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated Use ix-application as an successor of ix-map-navigation
      */
     interface IxMapNavigation {
         /**
@@ -6908,7 +6908,7 @@ declare module "@stencil/core" {
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
-             * @deprecated Use ix-application as an successor of ix-basic-navigation
+             * @deprecated Use ix-application as an successor of ix-map-navigation
              */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
