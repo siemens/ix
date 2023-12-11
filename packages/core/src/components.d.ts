@@ -402,7 +402,7 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
         /**
@@ -410,7 +410,7 @@ export namespace Components {
          */
         "closable": boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "color": string | undefined;
         /**
@@ -893,6 +893,11 @@ export namespace Components {
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -2520,6 +2525,10 @@ export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
 }
+export interface IxMenuSettingsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsItemElement;
+}
 export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMessageBarElement;
@@ -3776,7 +3785,7 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
         /**
@@ -3784,7 +3793,7 @@ declare namespace LocalJSX {
          */
         "closable"?: boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
          */
         "color"?: string | undefined;
         /**
@@ -4342,6 +4351,11 @@ declare namespace LocalJSX {
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -5064,6 +5078,14 @@ declare namespace LocalJSX {
           * Label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<{
+    name: string;
+    oldLabel: string;
+    newLabel: string;
+  }>) => void;
     }
     interface IxMessageBar {
         /**

@@ -31,6 +31,7 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
+  @State() showDropdown: boolean;
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty: boolean;
@@ -241,6 +242,7 @@ export class CategoryFilter {
         break;
 
       case 'ArrowDown':
+        this.showDropdown = true;
         this.focusNextItem();
         e.preventDefault();
         break;
@@ -389,7 +391,8 @@ export class CategoryFilter {
     this.categoryChanged.emit(category);
   }
 
-  private resetFilter() {
+  private resetFilter(e: Event) {
+    e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
     this.emitFilterEvent();
@@ -621,7 +624,7 @@ export class CategoryFilter {
   private getResetButton() {
     return (
       <ix-icon-button
-        onClick={() => this.resetFilter()}
+        onClick={(e) => this.resetFilter(e)}
         class={{
           'reset-button': true,
           'hide-reset-button':
@@ -680,6 +683,7 @@ export class CategoryFilter {
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
+                      onClick={(e) => e.stopPropagation()}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
@@ -706,6 +710,7 @@ export class CategoryFilter {
                       this.disabled ||
                       this.category !== undefined,
                   }}
+                  name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
                   ref={(el) => (this.textInput = el)}
@@ -722,10 +727,11 @@ export class CategoryFilter {
           ''
         ) : (
           <ix-dropdown
+            show={this.showDropdown}
             closeBehavior="outside"
             offset={{ mainAxis: 2 }}
-            trigger={this.textInput}
-            triggerEvent={['click', 'focus']}
+            anchor={this.textInput}
+            trigger={this.hostElement}
             header={this.getDropdownHeader()}
           >
             {this.renderDropdownContent()}
