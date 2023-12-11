@@ -1,4 +1,4 @@
-Dropdown buttons are button elements that allow users to select from a list of options by clicking on a button and revealing a dropdown. Clicking on one of the exposed options triggers the respective action. We typically use dropdown buttons when no default action is available.
+Dropdown buttons are button elements that allow users to select from a list of options by clicking on a button and revealing a dropdown. Clicking on one of the exposed options triggers the respective action. We typically use dropdown buttons when no default action is available. Dropdown buttons group similar or related actions.
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1292-6853&mode=design&t=iFGHiYzINQes2FVC-11)
 
@@ -7,17 +7,9 @@ Dropdown buttons are button elements that allow users to select from a list of o
 3. Chevron
 4. Button icon
 
-## Variants
-
-- **Primary dropdown button:** In our applications, we most often use the primary dropdown button variant.
-- **Secondary dropdown button:** The secondary button variant has a greyscale appearance to distinguish it from the primary dropdown button. 
+Variants, options and states of the ix-button component apply. Only additional or deviating specifications are listed here.
 
 ## Options
-- **Default:** Use for the most important or most-likely next action within the user interface. We use these sparingly, and recommend only one per layout. These are typically called *primary* buttons in UX. 
-- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These are typically called *secondary* in UX.
-- **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. They may also be used for conditional actions like "Change preferences" or "View details".
-- **Disabled:** Dropdown buttons can be disabled (see also dropdown button states).
-- **Icon:** Icons can be displayed with dropdown button labels or without.
 - **Label:** Set a label for the dropdown button. Labels should be short (two to three words) and contain a verb.
 - **Placement:** Define where the flyout appears which is triggered when the button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
 Give more info on placement options???

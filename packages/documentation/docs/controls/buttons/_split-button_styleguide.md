@@ -1,37 +1,35 @@
-Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. We typically use split buttons when a default action is available but more option need to be offered.
+Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more option need to be offered. Split buttons group similar or related actions.
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1292-6853&mode=design&t=iFGHiYzINQes2FVC-11)
 
 1. Button container
 2. Button label
 3. Chevron
-4. Button icon
+4. Dropdown button icon
 
-## Variants
-
-- **Primary split button:** In our applications, we most often use the primary split button variant.
-- **Secondary split button:** The secondary button variant has a greyscale appearance to distinguish it from the primary split button. 
+Variants, options and states of the ix-button and the ix-dropdown-button components apply. Only additional, deviating or detailing specifications are listed here.
 
 ## Options
-- **Default:** Use for the most important or most-likely next action within the user interface. We use these sparingly, and recommend only one per layout. These are typically called *primary* buttons in UX. 
-- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These are typically called *secondary* in UX.
-- **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. They may also be used for conditional actions like "Change preferences" or "View details".
-- **Disabled:** Split buttons can be disabled (see also split button states).
-- **Icon:** Icons can be displayed with split button labels or without.
-- **Label:** Set a label for the dropdown button. Labels should be short (two to three words) and contain a verb.
-- **Placement:** Define where the flyout appears which is triggered when the button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
+- **Label:** Set a label for the button component (left side). Labels should be short (two to three words) and contain a verb.
+- **Placement:** Define where the flyout appears which is triggered when the dropdown button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
 Give more info on placement options???
-- **splitIcon:** 
+- **splitIcon:** We typically use a chevron icon on the dropdown button, but a custom icon can be set.
 
 ## States
-Dropdown buttons have five states: Default, hover, active, disabled and focused. In active state, dropdown buttons show a dropdown with the available options. In disabled state, dropdown buttons are visually displayed but don't offer any user interaction. The visual appearance of the states is the same as the ix-button component.
+Split buttons have five states: Default, hover, active, disabled and focused. States are applied to left and the right part of the split button independently. The visual appearance and the behavior of the states is the same as for the buttons and dropdown buttons.
+
+## Behavior in context
+- When users press an option from the dropdown list, the action is triggered. The label of the button on the left side stays static. 
+- 
 
 ## Does and Don'ts
-- Do use dropdown buttons when the selection of an option triggers an action. Otherwise, use a select component.
-- Don't use dropdown buttons when a frequent or most-important action exists. Use a standard button or a split button instead.
+- Do use split buttons when when a frequent or most-important action exists
+- Don't use split buttons for unrelated actions
+- Don't duplicate the default option in the dropdown
+
 
 ## Related patterns
-- [Button](.\button.md)
-- [Dropdown](.\controls\dropdown.md) Path?
-- [Select](.\select.md) Path?
-- [Split button](split-button.md) Path?
+- [Button](button.md)
+- [Dropdown](..\dropdown.md)
+- [Select](..\select.md)
+- [Split button](split-button.md)
