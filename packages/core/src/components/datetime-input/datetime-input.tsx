@@ -538,7 +538,10 @@ export class DatetimeInput {
     inputs.forEach((input) => {
       input.setAttribute(
         'size',
-        input.getAttribute('placeholder').length as unknown as string
+        String(
+          input.getAttribute('placeholder').length +
+            Number(input.style.paddingLeft) * 2
+        )
       );
     });
   }
