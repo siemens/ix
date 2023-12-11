@@ -15,4 +15,12 @@
   width: 100vw;
   height: 100vh;
   padding: 0rem 0rem 0rem 0rem;
+
+  .tst {
+    justify-content: space-between;
+  }
+
+  ix-row {
+    flex-grow: 1;
+  }
 }

@@ -49,7 +49,7 @@ export class SidePanel {
         return;
     }
 
-    this.hostElement.style.setProperty(this.position, '0');
+    //this.hostElement.style.setProperty(this.position, '0');
     return;
   }
 

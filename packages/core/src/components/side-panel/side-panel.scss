@@ -16,6 +16,8 @@ $side-pane-expanded-width: 16rem;
   .side-panel-vertical {
     display: block;
     height: 100%;
+    margin: 32px;
+
 
     .container {
       display: flex;

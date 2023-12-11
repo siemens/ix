@@ -18,6 +18,7 @@ export class MyComponent {
     return (
       <Host>
         <ix-basic-navigation>
+          <p>dasd</p>
           <ix-menu expand={true} style={{ borderRight: 'solid 1px' }}>
             <ix-menu-item home icon="home">
               Home
@@ -28,8 +29,35 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
-          <ix-side-panel position="top"></ix-side-panel>
-          <p>dadadasd</p>
+          <p>dasdad</p>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              width: '100%',
+              alignItems: 'stretch',
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <ix-side-panel position="top"></ix-side-panel>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'stretch',
+                flexGrow: '1',
+                justifyContent: 'space-between',
+              }}
+            >
+              <ix-side-panel position="right"></ix-side-panel>
+              <ix-side-panel position="left"></ix-side-panel>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <ix-side-panel position="bottom"></ix-side-panel>
+            </div>
+          </div>
         </ix-basic-navigation>
       </Host>
     );
