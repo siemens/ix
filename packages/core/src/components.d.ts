@@ -22,7 +22,6 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-import { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -59,7 +58,6 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-export { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker-rework/datetime-picker-rework";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -615,84 +613,18 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat": string;
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `done` event
          */
         "eventDelimiter": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from": string;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate": string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate": string;
-        /**
-          * Set range size
-         */
-        "range": boolean;
-        /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference": any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate": string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time": string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat": string;
-        /**
-          * Set time reference
-         */
-        "timeReference": 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to": string | null;
-    }
-    interface IxDatetimePickerRework {
-        /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat": string;
-        /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
@@ -751,7 +683,7 @@ export namespace Components {
          */
         "timeReference": 'AM' | 'PM';
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
@@ -2367,10 +2299,6 @@ export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
 }
-export interface IxDatetimePickerReworkCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxDatetimePickerReworkElement;
-}
 export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDrawerElement;
@@ -2716,12 +2644,6 @@ declare global {
     var HTMLIxDatetimePickerElement: {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
-    };
-    interface HTMLIxDatetimePickerReworkElement extends Components.IxDatetimePickerRework, HTMLStencilElement {
-    }
-    var HTMLIxDatetimePickerReworkElement: {
-        prototype: HTMLIxDatetimePickerReworkElement;
-        new (): HTMLIxDatetimePickerReworkElement;
     };
     /**
      * @since 1.4.0
@@ -3249,7 +3171,6 @@ declare global {
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
-        "ix-datetime-picker-rework": HTMLIxDatetimePickerReworkElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
@@ -3927,103 +3848,18 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat"?: string;
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `done` event
          */
         "eventDelimiter"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from"?: string;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate"?: string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate"?: string;
-        /**
-          * Date change
-          * @since 1.1.0
-         */
-        "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
-        /**
-          * Date selection event is fired after confirm button is pressend
-          * @since 1.1.0
-         */
-        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
-        /**
-          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
-         */
-        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
-        /**
-          * Time change
-          * @since 1.1.0
-         */
-        "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
-        /**
-          * Set range size
-         */
-        "range"?: boolean;
-        /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference"?: any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate"?: string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time"?: string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat"?: string;
-        /**
-          * Set time reference
-         */
-        "timeReference"?: 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to"?: string | null;
-    }
-    interface IxDatetimePickerRework {
-        /**
-          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat"?: string;
-        /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from"?: string | undefined;
@@ -4045,17 +3881,22 @@ declare namespace LocalJSX {
           * Date change
           * @since 1.1.0
          */
-        "onDateChange"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent1>) => void;
+        "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent1>) => void;
+        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
+        /**
+          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
+          * @deprecated Use `this.dateChange`
+         */
+        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * Time change
           * @since 1.1.0
          */
-        "onTimeChange"?: (event: IxDatetimePickerReworkCustomEvent<string>) => void;
+        "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -4097,7 +3938,7 @@ declare namespace LocalJSX {
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
@@ -5844,7 +5685,6 @@ declare namespace LocalJSX {
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
-        "ix-datetime-picker-rework": IxDatetimePickerRework;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
@@ -5977,7 +5817,6 @@ declare module "@stencil/core" {
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
-            "ix-datetime-picker-rework": LocalJSX.IxDatetimePickerRework & JSXBase.HTMLAttributes<HTMLIxDatetimePickerReworkElement>;
             /**
              * @since 1.4.0
              */
