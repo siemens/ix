@@ -187,6 +187,8 @@ const tasks = new Listr<Context>(
               : '\n'
           }${sourceCode}`;
 
+          formattedSource = replaceStylePath(formattedSource);
+
           const fileName = path.parse(example);
 
           return fs.writeFile(
@@ -204,9 +206,12 @@ const tasks = new Listr<Context>(
         const examples = ctx.reactExamples;
 
         examples.map(async (example) => {
-          const rawSource = await getRawStingContent(
+          var rawSource = await getRawStingContent(
             path.join(reactTestAppPath, example)
           );
+
+          rawSource = replaceStylePath(rawSource);
+
           return fs.writeFile(
             path.join(docsExampleReactPath, `${path.parse(example).name}.md`),
             wrap(rawSource, 'tsx')
@@ -234,9 +239,11 @@ const tasks = new Listr<Context>(
           }
 
           if (example.endsWith('.ts')) {
-            const rawSource = await getRawStingContent(
+            var rawSource = await getRawStingContent(
               path.join(angularTestAppPath, example)
             );
+
+            rawSource = replaceStylePath(rawSource, true);
 
             return fs.writeFile(
               path.join(docsExampleAngularPath, `${example}.md`),
@@ -254,9 +261,12 @@ const tasks = new Listr<Context>(
         const examples = ctx.vueExamples;
 
         examples.map(async (example) => {
-          const rawSource = await getRawStingContent(
+          var rawSource = await getRawStingContent(
             path.join(vueTestAppPath, example)
           );
+
+          rawSource = replaceStylePath(rawSource);
+
           return fs.writeFile(
             path.join(docsExampleVuePath, `${path.parse(example).name}.md`),
             wrap(rawSource, 'html')
@@ -341,6 +351,13 @@ async function getRawStingContent(path: string) {
   content = content.replace(/\n*$/, '');
 
   return content;
+}
+
+function replaceStylePath(sourceCode: string, sameFolder: boolean = false) {
+  return sourceCode.replace(
+    '../../../documentation/static/styles',
+    sameFolder ? '.' : './styles'
+  );
 }
 
 function getString(matches: RegExpMatchArray | null) {
