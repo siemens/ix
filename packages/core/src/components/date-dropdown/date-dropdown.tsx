@@ -132,17 +132,17 @@ export class DateDropdown {
   /**
    * Text for custom dropdown item. Will be used for translation.
    */
-  @Prop() textCustomItem = 'Custom...';
+  @Prop({ attribute: 'i18n-custom-item' }) i18nCustomItem = 'Custom...';
 
   /**
    * Text for the done button. Will be used for translation.
    */
-  @Prop() textDoneButton = 'Done';
+  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
    * Text for the done button. Will be used for translation.
    */
-  @Prop() textNoRange = 'No range set';
+  @Prop({ attribute: 'i18n-no-range' }) i18nNoRange = 'No range set';
 
   /** @internal */
   @Prop() today = DateTime.now().toISO();
@@ -257,11 +257,11 @@ export class DateDropdown {
     }
 
     if (!this.selectedDateRangeId) {
-      return this.textNoRange;
+      return this.i18nNoRange;
     }
 
     if (!this.dateRangeOptions || this.dateRangeOptions?.length === 0) {
-      return this.textNoRange;
+      return this.i18nNoRange;
     }
 
     const option = this.dateRangeOptions.find(
@@ -272,7 +272,7 @@ export class DateDropdown {
       console.error(
         `Cannot find range option with id ${this.selectedDateRangeId}`
       );
-      return this.textNoRange;
+      return this.i18nNoRange;
     }
 
     return option.label;
@@ -323,7 +323,7 @@ export class DateDropdown {
                 ))}
                 <div hidden={!this.customRangeAllowed}>
                   <ix-dropdown-item
-                    label={this.textCustomItem}
+                    label={this.i18nCustomItem}
                     checked={this.selectedDateRangeId === 'custom'}
                     onClick={() => this.onRangeListSelect('custom')}
                   ></ix-dropdown-item>
@@ -357,7 +357,7 @@ export class DateDropdown {
                           this.onDateSelect(this.currentRangeValue);
                         }}
                       >
-                        {this.textDoneButton}
+                        {this.i18nDone}
                       </ix-button>
                     </div>
                   </Fragment>

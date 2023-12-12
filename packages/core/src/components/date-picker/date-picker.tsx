@@ -121,8 +121,16 @@ export class DatePicker {
    * Text of the button that confirms date selection.
    *
    * @since 1.1.0
+   * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() textSelectDate: string;
+
+  /**
+   * Text of date select button
+   *
+   * @since 2.1.0
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -784,7 +792,7 @@ export class DatePicker {
             }}
           >
             <ix-button onClick={() => this.onDone()}>
-              {this.textSelectDate}
+              {this.textSelectDate || this.i18nDone}
             </ix-button>
           </div>
         </ix-date-time-card>

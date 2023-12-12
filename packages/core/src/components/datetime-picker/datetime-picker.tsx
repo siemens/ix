@@ -118,8 +118,16 @@ export class DatetimePicker {
    * Text of date select button
    *
    * @since 1.1.0
+   * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() textSelectDate: string;
+
+  /**
+   * Text of date select button
+   *
+   * @since 2.1.0
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
@@ -248,7 +256,7 @@ export class DatetimePicker {
                 class="btn-select-date btn-md-width"
                 onClick={() => this.onDone()}
               >
-                {this.textSelectDate}
+                {this.textSelectDate || this.i18nDone}
               </ix-button>
             </ix-col>
           </ix-row>
