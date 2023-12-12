@@ -14,10 +14,9 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 
-body {
+html {
   width: 100vw;
-  max-width: 100%;
-  height: fit-content;
+  height: 100vh;
 }
 
 /* placeholder-logo for usage in all files */
