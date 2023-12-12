@@ -135,7 +135,7 @@ function FileTabs(props: {
 
   return (
     <>
-      <IxTabs>
+      <IxTabs style={{marginBottom: "0.5rem"}}>
         {props.files.map((source) => {
           return (
             <IxTabItem
