@@ -16,7 +16,7 @@ import SourceVueDatepickerRange from './../auto-generated/previews/vue/datepicke
 import SourceDatepickerLocale from './../auto-generated/previews/web-component/datepicker.md'
 import SourceReactDatepickerLocale from './../auto-generated/previews/react/datepicker.md'
 import SourceAngularDatepickerLocale from './../auto-generated/previews/angular/datepicker.ts.md'
-import SourceVueDatepickerLocale from './../auto-generated/previews/vue/datepicker.ts.md'
+import SourceVueDatepickerLocale from './../auto-generated/previews/vue/datepicker-locale.md'
 
 # Date picker
 
