@@ -35,9 +35,6 @@ interface TimeOutputFormat {
   second: string;
 }
 
-/**
- * @internal
- */
 @Component({
   tag: 'ix-time-picker',
   styleUrl: 'time-picker.scss',

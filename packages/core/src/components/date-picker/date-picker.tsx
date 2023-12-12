@@ -37,9 +37,6 @@ interface CalendarWeek {
   dayNumbers: number[];
 }
 
-/**
- * @internal
- */
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',

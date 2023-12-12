@@ -20,9 +20,6 @@ export type DateTimeDateChangeEvent =
   | string
   | Omit<DateTimeSelectEvent, 'time'>;
 
-/**
- * @internal
- */
 @Component({
   tag: 'ix-datetime-picker',
   styleUrl: 'datetime-picker.scss',

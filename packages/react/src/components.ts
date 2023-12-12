@@ -23,6 +23,8 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
 import { defineCustomElement as defineIxDropdown } from '@siemens/ix/components/ix-dropdown.js';
@@ -80,6 +82,7 @@ import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/comp
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
+import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxToggle } from '@siemens/ix/components/ix-toggle.js';
@@ -109,6 +112,8 @@ export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipEl
 export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColElement>('ix-col', undefined, undefined, defineIxCol);
 export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHeader, HTMLIxContentHeaderElement>('ix-content-header', undefined, undefined, defineIxContentHeader);
 export const IxDateDropdown = /*@__PURE__*/createReactComponent<JSX.IxDateDropdown, HTMLIxDateDropdownElement>('ix-date-dropdown', undefined, undefined, defineIxDateDropdown);
+export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker', undefined, undefined, defineIxDatePicker);
+export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker', undefined, undefined, defineIxDatetimePicker);
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider', undefined, undefined, defineIxDivider);
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer', undefined, undefined, defineIxDrawer);
 export const IxDropdown = /*@__PURE__*/createReactComponent<JSX.IxDropdown, HTMLIxDropdownElement>('ix-dropdown', undefined, undefined, defineIxDropdown);
@@ -166,6 +171,7 @@ export const IxSplitButtonItem = /*@__PURE__*/createReactComponent<JSX.IxSplitBu
 export const IxTabItem = /*@__PURE__*/createReactComponent<JSX.IxTabItem, HTMLIxTabItemElement>('ix-tab-item', undefined, undefined, defineIxTabItem);
 export const IxTabs = /*@__PURE__*/createReactComponent<JSX.IxTabs, HTMLIxTabsElement>('ix-tabs', undefined, undefined, defineIxTabs);
 export const IxTile = /*@__PURE__*/createReactComponent<JSX.IxTile, HTMLIxTileElement>('ix-tile', undefined, undefined, defineIxTile);
+export const IxTimePicker = /*@__PURE__*/createReactComponent<JSX.IxTimePicker, HTMLIxTimePickerElement>('ix-time-picker', undefined, undefined, defineIxTimePicker);
 export const IxToast = /*@__PURE__*/createReactComponent<JSX.IxToast, HTMLIxToastElement>('ix-toast', undefined, undefined, defineIxToast);
 export const IxToastContainer = /*@__PURE__*/createReactComponent<JSX.IxToastContainer, HTMLIxToastContainerElement>('ix-toast-container', undefined, undefined, defineIxToastContainer);
 export const IxToggle = /*@__PURE__*/createReactComponent<JSX.IxToggle, HTMLIxToggleElement>('ix-toggle', undefined, undefined, defineIxToggle);
