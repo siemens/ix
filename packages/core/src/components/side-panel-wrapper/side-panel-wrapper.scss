@@ -1,8 +1,47 @@
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
+@import '~animate.css/animate.min';
+
 :host {
+  @include ix-component;
+
+
   display: flex;
+  position: absolute;
   flex-direction: column;
   height: 100%;
   width: 100%;
+
+  .mobile-full-screen-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $font-size-l;
+  }
+
+  .mobile-full-screen-area {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 2;
+    background-color: var(--theme-nav--background);
+    padding: 0 1.2rem;
+  }
+
+  .content-area {
+    display: flex;
+    flex-grow: 1;
+    color: black;
+    z-index: 1;
+  }
+
+  .content-area_absolute {
+    position: absolute;
+  }
 
   @media screen and (min-width: 768px) {
     .verticalSidePanel {
@@ -20,6 +59,5 @@
       justify-content: space-between;
     }
   }
-
 
 }

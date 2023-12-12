@@ -1859,9 +1859,17 @@ export namespace Components {
     | '50%'
     | '100%';
         /**
+          * Floating or inline style
+         */
+        "inline": boolean;
+        /**
           * Toggle
          */
         "miniContent": boolean;
+        /**
+          * TODO: !!!
+         */
+        "mobile": boolean;
         /**
           * Title of the side panel
          */
@@ -1871,11 +1879,21 @@ export namespace Components {
          */
         "position": SidePanelPosition;
     }
+    interface IxSidePanelContentArea {
+    }
     interface IxSidePanelWrapper {
         /**
           * Sets the behaviour of the component, either it should be an inline or a floating component
          */
         "behaviour": 'inline' | 'floating';
+        /**
+          * Close the side panel, especially for the floating version
+         */
+        "closeSidePanel": () => Promise<void>;
+        /**
+          * Open the side panel, especially for the floating version
+         */
+        "setOpenSidePanel": () => Promise<void>;
     }
     /**
      * @since 2.0.0
@@ -3208,6 +3226,12 @@ declare global {
         prototype: HTMLIxSidePanelElement;
         new (): HTMLIxSidePanelElement;
     };
+    interface HTMLIxSidePanelContentAreaElement extends Components.IxSidePanelContentArea, HTMLStencilElement {
+    }
+    var HTMLIxSidePanelContentAreaElement: {
+        prototype: HTMLIxSidePanelContentAreaElement;
+        new (): HTMLIxSidePanelContentAreaElement;
+    };
     interface HTMLIxSidePanelWrapperElement extends Components.IxSidePanelWrapper, HTMLStencilElement {
     }
     var HTMLIxSidePanelWrapperElement: {
@@ -3443,6 +3467,7 @@ declare global {
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-side-panel": HTMLIxSidePanelElement;
+        "ix-side-panel-content-area": HTMLIxSidePanelContentAreaElement;
         "ix-side-panel-wrapper": HTMLIxSidePanelWrapperElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
@@ -5435,9 +5460,17 @@ declare namespace LocalJSX {
     | '50%'
     | '100%';
         /**
+          * Floating or inline style
+         */
+        "inline"?: boolean;
+        /**
           * Toggle
          */
         "miniContent"?: boolean;
+        /**
+          * TODO: !!!
+         */
+        "mobile"?: boolean;
         /**
           * Event
          */
@@ -5450,6 +5483,8 @@ declare namespace LocalJSX {
           * Placement of the sidebar
          */
         "position"?: SidePanelPosition;
+    }
+    interface IxSidePanelContentArea {
     }
     interface IxSidePanelWrapper {
         /**
@@ -6154,6 +6189,7 @@ declare namespace LocalJSX {
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-side-panel": IxSidePanel;
+        "ix-side-panel-content-area": IxSidePanelContentArea;
         "ix-side-panel-wrapper": IxSidePanelWrapper;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
@@ -6342,6 +6378,7 @@ declare module "@stencil/core" {
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-side-panel": LocalJSX.IxSidePanel & JSXBase.HTMLAttributes<HTMLIxSidePanelElement>;
+            "ix-side-panel-content-area": LocalJSX.IxSidePanelContentArea & JSXBase.HTMLAttributes<HTMLIxSidePanelContentAreaElement>;
             "ix-side-panel-wrapper": LocalJSX.IxSidePanelWrapper & JSXBase.HTMLAttributes<HTMLIxSidePanelWrapperElement>;
             /**
              * @since 2.0.0

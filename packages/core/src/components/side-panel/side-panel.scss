@@ -7,18 +7,28 @@ $side-pane-expanded-width: 16rem;
 $side-pane-mini-content-width: 76px;
 
 :host {
-  display: flex;
   @include ix-component;
+
+  display: flex;
+  position: relative;
   background-color: var(--theme-nav--background);
 
   .side-panel-horizontal {
     background-color: var(--theme-nav--background);
-
-    height: 32px;
     width: 100%;
   }
 
+  .side-panel-content {
+    padding: 0 1rem;
+  }
+
+  aside {
+    z-index: 10;
+  }
+
   @media (max-width: 767px) {
+    width: 100%;
+
     .side-panel-vertical {
       background-color: var(--theme-nav--background);
       width: 100%;
@@ -28,19 +38,21 @@ $side-pane-mini-content-width: 76px;
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
+      align-items: center;
+      font-size: $font-size-l;
+      padding: 0.5rem 1.2rem;
     }
   }
 
   @media (min-width: 768px) {
+    width: unset;
+
     .side-panel-vertical {
       background-color: var(--theme-nav--background);
-
       height: 100%;
-      width: 32px;
+      width: 100%;
 
       &:not(.expanded) {
-        width: 100%;
-
         .container {
           display: flex;
           flex-direction: column;
@@ -58,7 +70,7 @@ $side-pane-mini-content-width: 76px;
         .container {
           display: flex;
           flex-direction: row;
-          width: 100%;
+          align-items: center;
         }
       }
 

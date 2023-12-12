@@ -40,6 +40,11 @@ export class MyComponent {
             <ix-side-panel slot="left"></ix-side-panel>
             <ix-side-panel slot="right"></ix-side-panel>
             <ix-side-panel slot="bottom"></ix-side-panel>
+            <ix-side-panel-content-area slot="content">
+              <h1>Test Heading</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
+            </ix-side-panel-content-area>
           </ix-side-panel-wrapper>
         </ix-basic-navigation>
       </Host>

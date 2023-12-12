@@ -5,14 +5,12 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
 
 type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
-const mobileBreakpoint: number = 767;
 type ExpandedChangeEvent = {
   position: string;
   expanded: boolean;
@@ -32,6 +30,11 @@ export class SidePanel {
   @Prop() paneTitle: string = 'Pane title';
 
   /**
+   * Floating or inline style
+   */
+  @Prop({ mutable: true, reflect: true }) inline: boolean = true;
+
+  /**
    * The maximum size of the sidebar, when it is expanded
    */
   @Prop() expandedSize:
@@ -42,7 +45,7 @@ export class SidePanel {
     | '600px'
     | '33%'
     | '50%'
-    | '100%' = '320px';
+    | '100%' = '240px';
 
   /**
    * Toggle
@@ -64,9 +67,13 @@ export class SidePanel {
    */
   @Event() expandedChange: EventEmitter<ExpandedChangeEvent>;
 
+  /**
+   * TODO: !!!
+   */
+  @Prop({ mutable: true }) mobile: boolean = null;
+
   @State() private expandIcon: string = '';
   @State() private minimizeIcon: string = '';
-  @State() private mobileMode: boolean = false;
 
   private isHorizontal: boolean;
 
@@ -81,25 +88,31 @@ export class SidePanel {
   determineSidePanelIcons() {
     switch (this.position) {
       case 'left':
-        this.expandIcon = 'double-chevron-left';
-        this.minimizeIcon = 'double-chevron-right';
+        this.expandIcon = this.mobile
+          ? 'double-chevron-up'
+          : 'double-chevron-left';
+        this.minimizeIcon = this.mobile
+          ? 'double-chevron-down'
+          : 'double-chevron-right';
         this.setBorder('right');
         return;
       case 'right':
-        this.expandIcon = 'double-chevron-right';
-        this.minimizeIcon = 'double-chevron-left';
+        this.expandIcon = this.mobile
+          ? 'double-chevron-down'
+          : 'double-chevron-right';
+        this.minimizeIcon = this.mobile
+          ? 'double-chevron-up'
+          : 'double-chevron-left';
         this.setBorder('left');
         break;
       case 'bottom':
         this.expandIcon = 'double-chevron-down';
         this.minimizeIcon = 'double-chevron-up';
-        this.hostElement.style.setProperty('box-shadow', '0px 0px 10px black');
         this.setBorder('top');
         break;
       case 'top':
         this.expandIcon = 'double-chevron-up';
         this.minimizeIcon = 'double-chevron-down';
-        this.hostElement.style.setProperty('box-shadow', '0px 0px 10px black');
         this.setBorder('bottom');
         return;
     }
@@ -114,27 +127,28 @@ export class SidePanel {
 
   componentWillRender() {
     this.determineSidePanelIcons();
-    this.onWindowResize();
 
     this.hostElement.style.setProperty(this.position, '0');
   }
 
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    if (window.innerWidth <= mobileBreakpoint) {
-      this.mobileMode = true;
-      if (this.position === 'left') {
-        this.expandIcon = 'double-chevron-up';
-        this.minimizeIcon = 'double-chevron-down';
-      } else if (this.position === 'right') {
-        this.expandIcon = 'double-chevron-down';
-        this.minimizeIcon = 'double-chevron-up';
+  @Watch('mobile')
+  onMobileModeChange() {
+    if (this.mobile) {
+      if (this.isHorizontal) {
+        this.hostElement.style.setProperty('box-shadow', '0px 0px 0px re');
+      } else {
+        this.hostElement.style.setProperty('width', '100%');
       }
+      this.expanded = false;
     } else {
-      this.mobileMode = false;
-      this.determineSidePanelIcons();
+      if (this.isHorizontal) {
+        this.hostElement.style.setProperty('box-shadow', '0px 0px 10px red');
+      } else {
+        this.hostElement.style.setProperty('width', 'unset');
+      }
+      this.expanded = false;
     }
-    console.log(this.mobileMode);
+    this.determineSidePanelIcons();
   }
 
   @Watch('expanded')
@@ -144,7 +158,7 @@ export class SidePanel {
       expanded: this.expanded,
     });
 
-    if (this.mobileMode) {
+    if (this.mobile && !this.isHorizontal) {
       return;
     }
 
@@ -158,7 +172,7 @@ export class SidePanel {
       if (this.miniContent) {
         this.hostElement.style.setProperty(dimension, '76px');
       } else {
-        this.hostElement.style.setProperty(dimension, '32px');
+        this.hostElement.style.setProperty(dimension, 'unset');
       }
     }
   }
@@ -173,6 +187,7 @@ export class SidePanel {
             'side-panel-horizontal': this.isHorizontal,
             'side-panel-vertical': !this.isHorizontal,
           }}
+          hidden={!this.inline && !this.expanded}
         >
           <div class="container">
             <ix-icon-button
@@ -184,12 +199,15 @@ export class SidePanel {
             ></ix-icon-button>
             <span
               class="rotate"
-              hidden={this.miniContent && !this.expanded && !this.mobileMode}
+              hidden={this.miniContent && !this.expanded && !this.mobile}
             >
               {this.paneTitle}
             </span>
           </div>
-          <div hidden={this.mobileMode || !this.expanded}>
+          <div
+            class="side-panel-content"
+            hidden={this.mobile || !this.expanded}
+          >
             <slot></slot>
           </div>
         </aside>
