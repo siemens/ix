@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxChip } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/chip.css"></style>
+
 <template>
   <div class="chip">
     <IxChip closable outline> Primary </IxChip>

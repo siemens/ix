@@ -1,0 +1,11 @@
+.dropdown-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 20rem;
+}
+
+.dropdown-button > ix-dropdown-button {
+  margin-bottom: 0.5rem;
+}

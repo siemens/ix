@@ -15,6 +15,8 @@ const selectedTab = ref(0);
 const changeTab = (tabId: number) => (selectedTab.value = tabId);
 </script>
 
+<style scoped src="../../../styles/tabs.css"></style>
+
 <template>
   <div class="tabs">
     <IxTabs :selected="selectedTab">

@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/toggle-button.css"></style>
+
 <template>
   <IxToggleButton outline>Normal</IxToggleButton>
   <IxToggleButton outline>Pressed</IxToggleButton>

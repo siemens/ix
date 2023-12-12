@@ -1,0 +1,11 @@
+.chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 20rem;
+}
+
+.chip > ix-chip {
+  margin-bottom: 0.5rem;
+}

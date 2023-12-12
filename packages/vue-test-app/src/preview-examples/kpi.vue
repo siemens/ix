@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxKpi } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/kpi.css"></style>
+
 <template>
   <div class="kpi">
     <IxKpi label="Motor speed" value="Nominal"></IxKpi>

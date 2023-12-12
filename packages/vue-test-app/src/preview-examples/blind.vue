@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxBlind } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/blind.css"></style>
+
 <template>
   <IxBlind label="Example">
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy

@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/tile.css"></style>
+
 <template>
   <div className="example">
     <IxTile size="small">92.8 °C</IxTile>

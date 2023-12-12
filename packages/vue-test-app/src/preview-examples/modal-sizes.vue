@@ -34,6 +34,8 @@ const closeModal = () => {
 };
 </script>
 
+<style scoped src="../../../styles/modal-sizes.css"></style>
+
 <template>
   <div class="modal-sizes">
     <IxButton v-for="size in sizes" :key="size" @click="open(size)">

@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts"></script>
 
+<style scoped src="../../../styles/radio-button.css"></style>
+
 <template>
   <div class="radio-button">
     <input defaultChecked id="checkbox_1_1" name="group_1" type="radio" />

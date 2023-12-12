@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/dropdown-button.css"></style>
+
 <template>
   <div class="dropdown-button">
     <IxDropdownButton label="" icon="checkboxes">

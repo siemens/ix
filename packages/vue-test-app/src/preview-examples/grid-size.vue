@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="../../../styles/grid.css"></style>
+
 <template>
   <div class="grid">
     <h4>Column 6 takes up more space to a max of 12 columns total</h4>
