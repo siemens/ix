@@ -44,6 +44,13 @@ function replaceStyleFilepath({
   sourceCode: string;
   framework: TargetFramework;
 }) {
+  var styleFileName: string | undefined;
+  const regex = /documentation\/static\/styles\/(.*\.(css|scss))/;
+  const match = sourceCode.match(regex);
+  if (match && match.length > 1) {
+    styleFileName = match[1];
+  }
+
   if (framework === TargetFramework.ANGULAR) {
     sourceCode = sourceCode.replace(
       '../../../documentation/static/styles',
@@ -56,7 +63,7 @@ function replaceStyleFilepath({
     );
   }
 
-  return sourceCode;
+  return { sourceCode, styleFileName };
 }
 
 function replaceTheme({ sourceCode }: { sourceCode: string }) {
@@ -112,10 +119,21 @@ async function openHtmlStackBlitz(
   sourceCode = replaceTheme({ sourceCode });
 
   // set style filepath
-  sourceCode = replaceStyleFilepath({
-    sourceCode,
-    framework: TargetFramework.JAVASCRIPT,
-  });
+  const { sourceCode: adaptedSourceCode, styleFileName } = replaceStyleFilepath(
+    {
+      sourceCode,
+      framework: TargetFramework.JAVASCRIPT,
+    }
+  );
+  sourceCode = adaptedSourceCode;
+
+  // get style file
+  const styleFile = {};
+  if (styleFileName) {
+    styleFile[`src/styles/${styleFileName}`] = (
+      await loadSourceCodeFromStatic([`${baseUrl}styles/${styleFileName}`])
+    )[0];
+  }
 
   const files = {};
   additionalFiles.forEach((file) => {
@@ -138,6 +156,7 @@ async function openHtmlStackBlitz(
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
         'LICENSE.md': license,
+        ...styleFile,
       },
     },
     {
@@ -179,8 +198,6 @@ async function openAngularStackBlitz(
     `${baseUrl}LICENSE.md`,
   ]);
 
-  console.log(baseUrl);
-
   // set theme
   const newIndexHtml: string = replaceTheme({ sourceCode: index_html });
 
@@ -216,16 +233,31 @@ export const DECLARE = [
 ];`;
 
   const exampleFiles = {};
-  additionalFiles.forEach(({ filename, sourceCode }) => {
-    if (filename.endsWith('.ts')) {
-      // set style filepath
-      sourceCode = replaceStyleFilepath({
-        sourceCode,
-        framework: TargetFramework.ANGULAR,
-      });
+  const styleFiles = {};
+  const fileProcessingPromises = additionalFiles.map(
+    async ({ filename, sourceCode }) => {
+      if (filename.endsWith('.ts')) {
+        // set style filepath
+        const { sourceCode: adaptedSourceCode, styleFileName } =
+          replaceStyleFilepath({
+            sourceCode,
+            framework: TargetFramework.ANGULAR,
+          });
+        sourceCode = adaptedSourceCode;
+
+        // get style file
+        if (styleFileName) {
+          styleFiles[`src/app/${styleFileName}`] = (
+            await loadSourceCodeFromStatic([
+              `${baseUrl}styles/${styleFileName}`,
+            ])
+          )[0];
+        }
+      }
+      exampleFiles[`src/app/${filename}`] = sourceCode;
     }
-    exampleFiles[`src/app/${filename}`] = sourceCode;
-  });
+  );
+  await Promise.all(fileProcessingPromises);
 
   sdk.openProject(
     {
@@ -247,6 +279,7 @@ export const DECLARE = [
         'tsconfig.json': tsconfig_json,
         'LICENSE.md': license,
         ...exampleFiles,
+        ...styleFiles,
       },
     },
     {
@@ -295,17 +328,31 @@ async function openReactStackBlitz(
   };
 
   const files: Record<string, string> = {};
+  const styleFiles = {};
+  const fileProcessingPromises = sourceFiles.map(
+    async ({ filename, sourceCode }) => {
+      if (filename.endsWith('.tsx')) {
+        // set style filepath
+        const { sourceCode: adaptedSourceCode, styleFileName } =
+          replaceStyleFilepath({
+            sourceCode,
+            framework: TargetFramework.REACT,
+          });
+        sourceCode = adaptedSourceCode;
 
-  sourceFiles.forEach(({ filename, sourceCode }) => {
-    if (filename.endsWith('.tsx')) {
-      // set style filepath
-      sourceCode = replaceStyleFilepath({
-        sourceCode,
-        framework: TargetFramework.REACT,
-      });
+        // get style file
+        if (styleFileName) {
+          styleFiles[`src/styles/${styleFileName}`] = (
+            await loadSourceCodeFromStatic([
+              `${baseUrl}styles/${styleFileName}`,
+            ])
+          )[0];
+        }
+      }
+      files[`src/${filename}`] = sourceCode;
     }
-    files[`src/${filename}`] = sourceCode;
-  });
+  );
+  await Promise.all(fileProcessingPromises);
 
   sdk.openProject(
     {
@@ -321,6 +368,7 @@ async function openReactStackBlitz(
         'package.json': package_json,
         'tsconfig.json': tsconfig_json,
         'LICENSE.md': license,
+        ...styleFiles,
         '.stackblitzrc': `{
           "startCommand": "yarn run start"
         }`,
@@ -347,7 +395,7 @@ async function openVueStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/vue/src/styles/global.css`,
+    `${baseUrl}styles/global.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
     `${baseUrl}code-runtime/vue/src/main.ts`,
     `${baseUrl}code-runtime/vue/env.d.ts`,
@@ -373,17 +421,31 @@ async function openVueStackBlitz(
   };
 
   const files: Record<string, string> = {};
+  const styleFiles = {};
+  const fileProcessingPromises = sourceFiles.map(
+    async ({ filename, sourceCode }) => {
+      if (filename.endsWith('.vue')) {
+        // set style filepath
+        const { sourceCode: adaptedSourceCode, styleFileName } =
+          replaceStyleFilepath({
+            sourceCode,
+            framework: TargetFramework.VUE,
+          });
+        sourceCode = adaptedSourceCode;
 
-  sourceFiles.forEach(({ filename, sourceCode }) => {
-    if (filename.endsWith('.vue')) {
-      // set style filepath
-      sourceCode = replaceStyleFilepath({
-        sourceCode,
-        framework: TargetFramework.VUE,
-      });
+        // get style file
+        if (styleFileName) {
+          styleFiles[`src/styles/${styleFileName}`] = (
+            await loadSourceCodeFromStatic([
+              `${baseUrl}styles/${styleFileName}`,
+            ])
+          )[0];
+        }
+      }
+      files[`src/${filename}`] = sourceCode;
     }
-    files[`src/${filename}`] = sourceCode;
-  });
+  );
+  await Promise.all(fileProcessingPromises);
 
   sdk.openProject(
     {
@@ -401,6 +463,7 @@ async function openVueStackBlitz(
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': vite_config_ts,
         'LICENSE.md': license,
+        ...styleFiles,
         '.stackblitzrc': `{
           "startCommand": "yarn run dev"
         }`,
