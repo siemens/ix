@@ -1,5 +1,7 @@
 Link buttons are simple button components that lead users to another location within the application or outside of it. Link buttons contain a chevron and a text label. 
 
+![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1484-38642&mode=design&t=97WS5dUS2rk3MCp2-11)
+
 1. Chevron
 2. Label
 
@@ -23,6 +25,8 @@ Link buttons are simple button components that lead users to another location wi
 
 ## States
 Link buttons can take five states: Default, hover, active, disabled and focused. On hover, the link destination is shown. In disabled state, link buttons are visually displayed but don't offer any user interaction.
+
+![States](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1484-38785&mode=design&t=97WS5dUS2rk3MCp2-11)
 
 ## Dos and Don'ts
 - Do use link buttons for navigation
