@@ -23,7 +23,9 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -264,6 +266,30 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
 ]);
 
 
+export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput>('ix-date-input', defineIxDateInput, [
+  'label',
+  'labelPosition',
+  'format',
+  'range',
+  'corners',
+  'from',
+  'to',
+  'minDate',
+  'maxDate',
+  'i18nSelectDate',
+  'weekStartIndex',
+  'suppressErrorMessage',
+  'validators',
+  'disabled',
+  'dateChange',
+  'dateSelect',
+  'ixChange',
+  'ixFocus',
+  'ixBlur',
+  'ixClear'
+]);
+
+
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
   'format',
   'range',
@@ -279,6 +305,40 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'dateRangeChange',
   'done',
   'dateSelect'
+]);
+
+
+export const IxDatetimeInput = /*@__PURE__*/ defineContainer<JSX.IxDatetimeInput>('ix-datetime-input', defineIxDatetimeInput, [
+  'label',
+  'labelPosition',
+  'range',
+  'showHour',
+  'showMinutes',
+  'showSeconds',
+  'minDate',
+  'maxDate',
+  'dateFormat',
+  'timeFormat',
+  'fromDate',
+  'toDate',
+  'fromTime',
+  'toTime',
+  'showTimeReference',
+  'timeReference',
+  'i18nSelectDate',
+  'weekStartIndex',
+  'validators',
+  'suppressErrorMessage',
+  'disabled',
+  'fromDateChange',
+  'toDateChange',
+  'fromTimeChange',
+  'toTimeChange',
+  'dateSelect',
+  'ixChange',
+  'ixFocus',
+  'ixBlur',
+  'ixClear'
 ]);
 
 

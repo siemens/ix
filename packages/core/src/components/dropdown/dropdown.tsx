@@ -254,6 +254,7 @@ export class Dropdown {
 
   private async registerListener(element: string | HTMLElement) {
     this.triggerElement = await this.resolveElement(element);
+
     if (this.triggerElement) {
       if (Array.isArray(this.triggerEvent)) {
         this.triggerEvent.forEach((triggerEvent) => {

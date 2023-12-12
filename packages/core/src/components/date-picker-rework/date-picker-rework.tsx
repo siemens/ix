@@ -38,7 +38,7 @@ dayjs.extend(localeData);
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 
-export type DateChangeEvent = {
+export type DateChangeEventRework = {
   from: string;
   to: string;
 };
@@ -70,7 +70,7 @@ export class DatePickerRework {
   /**
    * If true a date-range can be selected (from/to).
    */
-  @Prop() range: boolean = true;
+  @Prop() range: boolean = false;
 
   /**
    * Corner style
@@ -166,7 +166,7 @@ export class DatePickerRework {
    *
    * @since 2.0.0
    */
-  @Event() dateChange: EventEmitter<DateChangeEvent>;
+  @Event() dateChange: EventEmitter<DateChangeEventRework>;
 
   /**
    * Triggers if the date selection changes.
@@ -175,14 +175,14 @@ export class DatePickerRework {
    * @since 1.1.0
    * @deprecated Use `dateChange` (triggers on both modes)
    */
-  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
+  @Event() dateRangeChange: EventEmitter<DateChangeEventRework>;
 
   /**
    * Date selection confirmed via button action
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+  @Event() dateSelect: EventEmitter<DateChangeEventRework>;
 
   /**
    * Get the currently selected date-range.
@@ -254,8 +254,62 @@ export class DatePickerRework {
       case 'ArrowDown':
         _focusedDay = _focusedDay + 7;
         break;
+      case 'PageDown':
+        if (event.shiftKey) {
+          this.selectedYear++;
+        } else {
+          this.changeToAdjacentMonth(+1);
+        }
+        this.monthChangedFromFocus = true;
+        break;
+      case 'PageUp':
+        if (event.shiftKey) {
+          this.selectedYear--;
+        } else {
+          this.changeToAdjacentMonth(-1);
+        }
+        this.monthChangedFromFocus = true;
+        break;
+      case 'Home':
+        const startOfWeek = dayjs(
+          new Date(this.selectedYear, this.selectedMonth, _focusedDay)
+        ).startOf('week');
+        _focusedDay = startOfWeek.date();
+        const month = startOfWeek.month();
+
+        if (
+          (this.selectedMonth === 0 && month === 11) ||
+          this.selectedMonth > month
+        ) {
+          this.changeToAdjacentMonth(-1);
+          this.monthChangedFromFocus = true;
+        }
+        break;
+      case 'End':
+        const endOfWeek = dayjs(
+          new Date(this.selectedYear, this.selectedMonth, _focusedDay)
+        ).endOf('week');
+        _focusedDay = endOfWeek.date();
+        const endMonth = endOfWeek.month();
+
+        if (
+          (this.selectedMonth === 11 && endMonth === 0) ||
+          this.selectedMonth < endMonth
+        ) {
+          this.changeToAdjacentMonth(+1);
+          this.monthChangedFromFocus = true;
+        }
+        break;
       default:
         return;
+    }
+
+    if (
+      this.monthChangedFromFocus &&
+      _focusedDay > this.getDaysInCurrentMonth()
+    ) {
+      this.focusedDay = this.getDaysInCurrentMonth();
+      return;
     }
 
     if (_focusedDay > this.getDaysInCurrentMonth()) {
@@ -318,6 +372,8 @@ export class DatePickerRework {
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
     dayElem.focus();
+
+    this.monthChangedFromFocus = false;
   }
 
   private setTranslations() {
@@ -645,7 +701,7 @@ export class DatePickerRework {
             ></ix-icon-button>
             <div class="selector">
               <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
-                <span class="fontSize capitalize">
+                <span class="fontSize capitalize" aria-live="polite">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
@@ -716,7 +772,7 @@ export class DatePickerRework {
             <div class="calendar-item week-day"></div>
             {this.dayNames.map((name) => (
               <div key={name} class="calendar-item week-day">
-                {name.slice(0, 3)}
+                <abbr title={name}>{name.slice(0, 3)}</abbr>
               </div>
             ))}
             {this.calendar.map((week) => {

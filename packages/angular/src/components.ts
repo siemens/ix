@@ -473,6 +473,58 @@ The event payload contains information about the selected date range. @event und
 
 
 @ProxyCmp({
+  inputs: ['corners', 'disabled', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
+  methods: ['getCurrentInput']
+})
+@Component({
+  selector: 'ix-date-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['corners', 'disabled', 'format', 'from', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'suppressErrorMessage', 'to', 'validators', 'weekStartIndex'],
+})
+export class IxDateInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dateChange', 'dateSelect', 'ixChange', 'ixFocus', 'ixBlur', 'ixClear']);
+  }
+}
+
+
+import type { DateChangeEventRework as IIxDateInputDateChangeEventRework } from '@siemens/ix';
+import type { DateInputEvent as IIxDateInputDateInputEvent } from '@siemens/ix';
+
+export declare interface IxDateInput extends Components.IxDateInput {
+  /**
+   * Triggers if the date selection changes.
+   */
+  dateChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
+  /**
+   * Date selection confirmed via button action
+   */
+  dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
+  /**
+   * Triggers if one of the inputs changes @emits DateInputEvent
+   */
+  ixChange: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if one of the inputs gets focus @emits DateInputEvent
+   */
+  ixFocus: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if one of the inputs loses focus @emits DateInputEvent
+   */
+  ixBlur: EventEmitter<CustomEvent<IIxDateInputDateInputEvent>>;
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button @emits void
+   */
+  ixClear: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
   methods: ['getCurrentDate']
 })
@@ -517,6 +569,70 @@ Only triggered if datepicker is in range mode @since 1.1.0
    * Date selection confirmed via button action @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['dateFormat', 'disabled', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+  methods: ['getCurrentInput']
+})
+@Component({
+  selector: 'ix-datetime-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['dateFormat', 'disabled', 'fromDate', 'fromTime', 'i18nSelectDate', 'label', 'labelPosition', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'suppressErrorMessage', 'timeFormat', 'timeReference', 'toDate', 'toTime', 'validators', 'weekStartIndex'],
+})
+export class IxDatetimeInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['fromDateChange', 'toDateChange', 'fromTimeChange', 'toTimeChange', 'dateSelect', 'ixChange', 'ixFocus', 'ixBlur', 'ixClear']);
+  }
+}
+
+
+import type { DateTimeSelectEvent as IIxDatetimeInputDateTimeSelectEvent } from '@siemens/ix';
+import type { DatetimeInputEvent as IIxDatetimeInputDatetimeInputEvent } from '@siemens/ix';
+
+export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
+  /**
+   * Triggers if the first date selection changes. @emits string
+   */
+  fromDateChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the second date selection changes. @emits string
+   */
+  toDateChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the first time selection changes. @emits string
+   */
+  fromTimeChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Triggers if the second time selection changes. @emits string
+   */
+  toTimeChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Date selection confirmed via button action @emits DateTimeSelectEvent
+   */
+  dateSelect: EventEmitter<CustomEvent<IIxDatetimeInputDateTimeSelectEvent>>;
+  /**
+   * Triggers every time one of the inputs changes @emits DatetimeInputChangeEvent
+   */
+  ixChange: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if one of the inputs gets focus @emits DatetimeInputEvent
+   */
+  ixFocus: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if one of the inputs loses focus @emits DatetimeInputEvent
+   */
+  ixBlur: EventEmitter<CustomEvent<IIxDatetimeInputDatetimeInputEvent>>;
+  /**
+   * Triggers if the inputs get cleared by pressing the clear button @emits string with the name of the input that was cleared
+   */
+  ixClear: EventEmitter<CustomEvent<string>>;
 }
 
 
