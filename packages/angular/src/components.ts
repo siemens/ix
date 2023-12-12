@@ -439,7 +439,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'maxDate', 'minDate', 'range', 'textCustomItem', 'textDoneButton', 'textNoRange', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })
 @Component({
@@ -447,7 +447,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'maxDate', 'minDate', 'range', 'textCustomItem', 'textDoneButton', 'textNoRange', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
@@ -473,7 +473,7 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -481,7 +481,7 @@ The event payload contains information about the selected date range.
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
 })
 export class IxDatePicker {
   protected el: HTMLElement;
@@ -521,14 +521,14 @@ Only triggered if datepicker is in range mode @since 1.1.0
 
 
 @ProxyCmp({
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to']
+  inputs: ['dateFormat', 'eventDelimiter', 'from', 'i18nDone', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to'],
+  inputs: ['dateFormat', 'eventDelimiter', 'from', 'i18nDone', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to'],
 })
 export class IxDatetimePicker {
   protected el: HTMLElement;

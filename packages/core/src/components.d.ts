@@ -515,6 +515,18 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Text for custom dropdown item. Will be used for translation.
+         */
+        "i18nCustomItem": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nDone": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nNoRange": string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate": string;
@@ -526,18 +538,6 @@ export namespace Components {
           * If true a range of dates can be selected.
          */
         "range": boolean;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-         */
-        "textCustomItem": string;
-        /**
-          * Text for the done button. Will be used for translation.
-         */
-        "textDoneButton": string;
-        /**
-          * Text for the done button. Will be used for translation.
-         */
-        "textNoRange": string;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
@@ -567,6 +567,11 @@ export namespace Components {
          */
         "getCurrentDate": () => Promise<{ start: string; end: string; }>;
         /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone": string;
+        /**
           * @deprecated Will be removed in 2.0.0
          */
         "individual": boolean;
@@ -587,6 +592,7 @@ export namespace Components {
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate": string;
         /**
@@ -676,6 +682,11 @@ export namespace Components {
          */
         "from": string;
         /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone": string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
@@ -709,6 +720,7 @@ export namespace Components {
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate": string;
         /**
@@ -3907,6 +3919,18 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Text for custom dropdown item. Will be used for translation.
+         */
+        "i18nCustomItem"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nDone"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nNoRange"?: string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate"?: string;
@@ -3922,18 +3946,6 @@ declare namespace LocalJSX {
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
-        /**
-          * Text for custom dropdown item. Will be used for translation.
-         */
-        "textCustomItem"?: string;
-        /**
-          * Text for the done button. Will be used for translation.
-         */
-        "textDoneButton"?: string;
-        /**
-          * Text for the done button. Will be used for translation.
-         */
-        "textNoRange"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
@@ -3958,6 +3970,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "from"?: string | null;
+        /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone"?: string;
         /**
           * @deprecated Will be removed in 2.0.0
          */
@@ -3999,6 +4016,7 @@ declare namespace LocalJSX {
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate"?: string;
         /**
@@ -4100,6 +4118,11 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone"?: string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
@@ -4152,6 +4175,7 @@ declare namespace LocalJSX {
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate"?: string;
         /**

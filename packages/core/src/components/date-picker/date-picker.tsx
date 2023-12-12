@@ -112,8 +112,16 @@ export class DatePicker {
    * Text of date select button
    *
    * @since 1.1.0
+   * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() textSelectDate: string;
+
+  /**
+   * Text of date select button
+   *
+   * @since 2.1.0
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
   @State() yearValue = this.year;
   @State() today = DateTime.now();
@@ -587,7 +595,7 @@ export class DatePicker {
             class={{ button: true, hidden: !this.individual || !this.range }}
           >
             <ix-button onClick={() => this.onDone()}>
-              {this.textSelectDate}
+              {this.textSelectDate || this.i18nDone}
             </ix-button>
           </div>
         </ix-date-time-card>

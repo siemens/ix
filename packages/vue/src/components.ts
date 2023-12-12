@@ -260,9 +260,9 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'dateRangeId',
   'customRangeAllowed',
   'dateRangeOptions',
-  'textCustomItem',
-  'textDoneButton',
-  'textNoRange',
+  'i18nCustomItem',
+  'i18nDone',
+  'i18nNoRange',
   'dateRangeChange'
 ]);
 
@@ -278,6 +278,7 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'maxDate',
   'eventDelimiter',
   'textSelectDate',
+  'i18nDone',
   'dateChange',
   'dateRangeChange',
   'done',
@@ -301,6 +302,7 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'eventDelimiter',
   'timeReference',
   'textSelectDate',
+  'i18nDone',
   'done',
   'timeChange',
   'dateChange',

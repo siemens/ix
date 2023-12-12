@@ -2462,6 +2462,57 @@
           "required": false
         },
         {
+          "name": "i18nCustomItem",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-custom-item",
+          "reflectToAttr": false,
+          "docs": "Text for custom dropdown item. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Custom...'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nNoRange",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-no-range",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'No range set'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "maxDate",
           "type": "string",
           "mutable": false,
@@ -2505,57 +2556,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textCustomItem",
-          "type": "string",
-          "mutable": false,
-          "attr": "text-custom-item",
-          "reflectToAttr": false,
-          "docs": "Text for custom dropdown item. Will be used for translation.",
-          "docsTags": [],
-          "default": "'Custom...'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textDoneButton",
-          "type": "string",
-          "mutable": false,
-          "attr": "text-done-button",
-          "reflectToAttr": false,
-          "docs": "Text for the done button. Will be used for translation.",
-          "docsTags": [],
-          "default": "'Done'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textNoRange",
-          "type": "string",
-          "mutable": false,
-          "attr": "text-no-range",
-          "reflectToAttr": false,
-          "docs": "Text for the done button. Will be used for translation.",
-          "docsTags": [],
-          "default": "'No range set'",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -2738,6 +2738,28 @@
           "required": false
         },
         {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "individual",
           "type": "boolean",
           "mutable": false,
@@ -2830,9 +2852,13 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
@@ -3052,6 +3078,28 @@
           "required": false
         },
         {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "maxDate",
           "type": "string",
           "mutable": false,
@@ -3194,9 +3242,13 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
