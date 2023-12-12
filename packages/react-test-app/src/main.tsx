@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/global.css';
+import '../../documentation/static/styles/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import React from 'react';

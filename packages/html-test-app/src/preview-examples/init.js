@@ -9,7 +9,7 @@
 
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
-import '../styles/global.css';
+import '../../../documentation/static/styles/global.css';
 
 function loadAdditionalTheme() {
   const theme = __THEME__;
@@ -83,13 +83,13 @@ function setBodySizes() {
 
   detectThemeSwitching();
   setBodySizes();
-  addMarginToDemo();
+  /* addMarginToDemo(); */
   loadAdditionalTheme();
 
-  const header = document.head;
+  /* const header = document.head;
   const scrollbarStyle = document.createElement('style');
   scrollbarStyle.innerHTML = scrollbarOverwrite;
-  header.appendChild(scrollbarStyle);
+  header.appendChild(scrollbarStyle); */
 })();
 
 const scrollbarOverwrite = `
