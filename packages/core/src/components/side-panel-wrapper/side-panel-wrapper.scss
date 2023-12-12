@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    .verticalSidePanel {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .verticalSidePanel {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+
+}

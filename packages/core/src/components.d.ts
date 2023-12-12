@@ -1848,13 +1848,34 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "expandedSize": | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%'
+    | '100%';
+        /**
+          * Toggle
+         */
+        "miniContent": boolean;
+        /**
           * Title of the side panel
          */
         "paneTitle": string;
         /**
           * Placement of the sidebar
          */
-        "position": 'top' | 'left' | 'bottom' | 'right';
+        "position": SidePanelPosition;
+    }
+    interface IxSidePanelWrapper {
+        /**
+          * Sets the behaviour of the component, either it should be an inline or a floating component
+         */
+        "behaviour": 'inline' | 'floating';
     }
     /**
      * @since 2.0.0
@@ -2558,6 +2579,10 @@ export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
 }
+export interface IxSidePanelCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxSidePanelElement;
+}
 export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSliderElement;
@@ -3183,6 +3208,12 @@ declare global {
         prototype: HTMLIxSidePanelElement;
         new (): HTMLIxSidePanelElement;
     };
+    interface HTMLIxSidePanelWrapperElement extends Components.IxSidePanelWrapper, HTMLStencilElement {
+    }
+    var HTMLIxSidePanelWrapperElement: {
+        prototype: HTMLIxSidePanelWrapperElement;
+        new (): HTMLIxSidePanelWrapperElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -3412,6 +3443,7 @@ declare global {
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-side-panel": HTMLIxSidePanelElement;
+        "ix-side-panel-wrapper": HTMLIxSidePanelWrapperElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
@@ -5392,13 +5424,38 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "expandedSize"?: | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%'
+    | '100%';
+        /**
+          * Toggle
+         */
+        "miniContent"?: boolean;
+        /**
+          * Event
+         */
+        "onExpandedChange"?: (event: IxSidePanelCustomEvent<ExpandedChangeEvent>) => void;
+        /**
           * Title of the side panel
          */
         "paneTitle"?: string;
         /**
           * Placement of the sidebar
          */
-        "position"?: 'top' | 'left' | 'bottom' | 'right';
+        "position"?: SidePanelPosition;
+    }
+    interface IxSidePanelWrapper {
+        /**
+          * Sets the behaviour of the component, either it should be an inline or a floating component
+         */
+        "behaviour"?: 'inline' | 'floating';
     }
     /**
      * @since 2.0.0
@@ -6097,6 +6154,7 @@ declare namespace LocalJSX {
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-side-panel": IxSidePanel;
+        "ix-side-panel-wrapper": IxSidePanelWrapper;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
@@ -6284,6 +6342,7 @@ declare module "@stencil/core" {
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-side-panel": LocalJSX.IxSidePanel & JSXBase.HTMLAttributes<HTMLIxSidePanelElement>;
+            "ix-side-panel-wrapper": LocalJSX.IxSidePanelWrapper & JSXBase.HTMLAttributes<HTMLIxSidePanelWrapperElement>;
             /**
              * @since 2.0.0
              */
