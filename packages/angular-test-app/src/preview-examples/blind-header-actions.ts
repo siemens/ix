@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../styles/blind.css`],
+  styleUrls: [`../../../documentation/static/styles/blind.css`],
   template: `
     <ix-blind label="Example" icon="info">
       <ix-icon-button

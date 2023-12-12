@@ -45,9 +45,15 @@ function replaceStyleFilepath({
   framework: TargetFramework;
 }) {
   if (framework === TargetFramework.ANGULAR) {
-    sourceCode = sourceCode.replace('../../../styles', '.');
+    sourceCode = sourceCode.replace(
+      '../../../documentation/static/styles',
+      '.'
+    );
   } else {
-    sourceCode = sourceCode.replace('../../../styles', './styles');
+    sourceCode = sourceCode.replace(
+      '../../../documentation/static/styles',
+      './styles'
+    );
   }
 
   return sourceCode;
@@ -90,12 +96,12 @@ async function openHtmlStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/html/src/styles/global.css`,
+    `${baseUrl}styles/global.css`,
     `${baseUrl}code-runtime/html/src/index.html`,
     `${baseUrl}code-runtime/html/src/init.js`,
     `${baseUrl}code-runtime/html/package.json`,
     `${baseUrl}code-runtime/html/vite.config.ts`,
-    `${baseUrl}code-runtime/html/LICENSE.md`,
+    `${baseUrl}LICENSE.md`,
   ]);
 
   const [renderFirstExample, ...additionalFiles] = sourceFiles;
@@ -162,7 +168,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
-    `${baseUrl}code-runtime/angular/src/styles/global.css`,
+    `${baseUrl}styles/global.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.scss`,
@@ -170,8 +176,10 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/package.json`,
     `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
-    `${baseUrl}code-runtime/angular/LICENSE.md`,
+    `${baseUrl}LICENSE.md`,
   ]);
+
+  console.log(baseUrl);
 
   // set theme
   const newIndexHtml: string = replaceTheme({ sourceCode: index_html });
@@ -260,13 +268,13 @@ async function openReactStackBlitz(
     tsconfig_json,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/react/src/styles/global.css`,
+    `${baseUrl}styles/global.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
     `${baseUrl}code-runtime/react/public/index.html`,
     `${baseUrl}code-runtime/react/src/index.tsx`,
     `${baseUrl}code-runtime/react/package.json`,
     `${baseUrl}code-runtime/react/tsconfig.json`,
-    `${baseUrl}code-runtime/react/LICENSE.md`,
+    `${baseUrl}LICENSE.md`,
   ]);
 
   // set theme
@@ -347,7 +355,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/package.json`,
     `${baseUrl}code-runtime/vue/tsconfig.json`,
     `${baseUrl}code-runtime/vue/vite.config.ts`,
-    `${baseUrl}code-runtime/vue/LICENSE.md`,
+    `${baseUrl}LICENSE.md`,
   ]);
 
   // set theme

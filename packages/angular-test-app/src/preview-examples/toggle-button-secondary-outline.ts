@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../styles/toggle-button.css`],
+  styleUrls: [`../../../documentation/static/styles/toggle-button.css`],
   template: `
     <ix-toggle-button outline>Normal</ix-toggle-button>
     <ix-toggle-button outline pressed>Pressed</ix-toggle-button>

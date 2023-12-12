@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 import { IxBlind } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="../../../styles/blind.css"></style>
+<style scoped src="../../../documentation/static/styles/blind.css"></style>
 
 <template>
   <IxBlind icon="bulb" label="Insight" sublabel="sublabel">

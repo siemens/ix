@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../styles/radio-button.css';
+import '../../../documentation/static/styles/radio-button.css';
 
 import React from 'react';
 

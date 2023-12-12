@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../styles/kpi.css`],
+  styleUrls: [`../../../documentation/static/styles/kpi.css`],
   template: `
     <div class="kpi">
       <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
