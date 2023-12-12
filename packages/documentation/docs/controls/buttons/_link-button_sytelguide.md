@@ -1,0 +1,30 @@
+Link buttons are simple button components that lead users to another location within the application or outside of it. Link buttons contain a chevron and a text label. 
+
+1. Chevron
+2. Label
+
+## Options
+- **Disabled:** Link buttons can be disabled (see also button states). 
+- **Target:** To define where a link shall be opened, four options exist:
+
+| Value     | Description                                       |
+| --------- | ------------------------------------------------- |
+| `_self`   | opens the document in the same window/tab         |
+| `_blank`  | opens the document in a new window/tab            |
+| `_parent` | opens the document in the parent frame            |
+| `_top`    | opens the document in the full body of the window |
+(Reference: https://www.w3schools.com/html/html_links.asp)
+- **URL:** Specify the link destination.
+
+## Behavior in context
+- **Interaction:** Link buttons can be triggered by pressing anywhere within the button area. When link buttons are focused, they can be triggered by pressing `Enter`.
+- **Placement:** We typically place link buttons below or next to related content but not within paragraphs. You can place multiple link buttons on top of each other to create a link list.
+- **Line length:** Link buttons don't support line break or text truncation. Link button texts are displayed in one line. In case of insufficient space, the complete link text is not visible.
+
+## States
+Link buttons can take five states: Default, hover, active, disabled and focused. On hover, the link destination is shown. In disabled state, link buttons are visually displayed but don't offer any user interaction.
+
+## Dos and Don'ts
+- Do use link buttons for navigation
+- Don't use link buttons to indicate actions
+- Don't place link buttons within a paragraph

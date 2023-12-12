@@ -19,10 +19,10 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Icon:** Icons can also be displayed with button labels.
 - **Disabled:** Buttons can be disabled (see also button states).
 - **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
-- **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event.
+- **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event. Apply this type to make a submit button more accessible.
 
 ## Behavior in context
-- **Interaction:** Buttons can be triggered by selecting anywhere within the button container. When buttons are focused, they can be triggered by pressing  `Space`.
+- **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
 - **Button groups:** Buttons can be grouped based on their relationship. A button group can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons.
@@ -40,10 +40,8 @@ Buttons have five states: Default, hover, active, disabled and focused. In disab
 - Do use a default margin between adjacent buttons of at least `0.5rem`
 - Do adjust default and outline button width to label length or container width 
 - Don't extend your ghost button width beyond the label's available width
-- Don't only rely on standard buttons when many actions/functions are necessary (consider dropdowns, split buttons or moving some functionality to a drawer or a dialog)
+- Don't only rely on standard buttons when many actions/functions are necessary, consider dropdown, split or menu buttons or moving some functionality to a panel or a dialog
 - Don't use buttons for navigation
-
-
 
 ## Related patterns:
 
