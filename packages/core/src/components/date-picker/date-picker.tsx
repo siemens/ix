@@ -150,8 +150,20 @@ export class DatePicker {
    */
   @Prop() individual: boolean = true;
 
+  /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   * @deprecated Not used anymore see `this.dateChange`
+   */
+  @Prop() eventDelimiter = ' - ';
+
   /** @internal */
   @Prop() standaloneAppearance = true;
+
+  /** @internal */
+  @Prop() today = DateTime.now().toISO();
 
   /**
    * Triggers if the date selection changes.
@@ -182,15 +194,6 @@ export class DatePicker {
    * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
    */
   @Event() done: EventEmitter<string>;
-
-  /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   * @deprecated Not used anymore see `this.dateChange`
-   */
-  @Prop() eventDelimiter = ' - ';
 
   /**
    * Get the currently selected date-range.
@@ -283,6 +286,10 @@ export class DatePicker {
     return DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth;
   }
 
+  private getDateTimeNow() {
+    return DateTime.fromISO(this.today);
+  }
+
   onDayBlur() {
     this.isDayFocus = false;
   }
@@ -301,11 +308,12 @@ export class DatePicker {
       ? DateTime.fromFormat(this.to, this.format)
       : undefined;
 
-    const year = this.currFromDate?.year ?? DateTime.now().year;
+    const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
     this.startYear = year - 5;
     this.endYear = year + 5;
 
-    this.selectedMonth = (this.currFromDate?.month ?? DateTime.now().month) - 1;
+    this.selectedMonth =
+      (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;
     this.selectedYear = year;
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
@@ -552,7 +560,7 @@ export class DatePicker {
       return;
     }
 
-    const todayObj = DateTime.now();
+    const todayObj = this.getDateTimeNow();
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
     );

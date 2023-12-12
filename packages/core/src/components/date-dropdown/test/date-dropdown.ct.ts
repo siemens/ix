@@ -118,7 +118,7 @@ test.describe('date dropdown tests', () => {
     const customItem = dateDropDownButton.getByText('Custom...');
     await customItem.click();
 
-    const datepicker = dateDropDownButton.locator('ix-date-picker-rework');
+    const datepicker = dateDropDownButton.locator('ix-date-picker');
     await expect(datepicker).toBeVisible();
 
     const startDay = datepicker

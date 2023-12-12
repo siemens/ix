@@ -20,6 +20,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { DateTime } from 'luxon';
 
 export type DateDropdownOption = {
   id: string;
@@ -142,6 +143,9 @@ export class DateDropdown {
    * Text for the done button. Will be used for translation.
    */
   @Prop() textNoRange = 'No range set';
+
+  /** @internal */
+  @Prop() today = DateTime.now().toISO();
 
   /**
    * EventEmitter for date range change events.
@@ -345,6 +349,7 @@ export class DateDropdown {
                       to={this.to || this.currentRangeValue?.to}
                       minDate={this.minDate}
                       maxDate={this.maxDate}
+                      today={this.today}
                     ></ix-date-picker>
                     <div class="pull-right">
                       <ix-button

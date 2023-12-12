@@ -260,6 +260,7 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'textCustomItem',
   'textDoneButton',
   'textNoRange',
+  'today',
   'dateRangeChange'
 ]);
 
