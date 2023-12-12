@@ -1,4 +1,5 @@
 @import 'common-variables';
+@import 'mixins/text-truncation';
 
 :host(.keyValue) {
   display: flex;
@@ -15,11 +16,15 @@
     flex-grow: 1;
     align-items: flex-start;
 
+    &,
+    .content__label,
+    .content__value {
+      @include ellipsis;
+      max-width: 100%;
+    }
+
     .content__label {
       color: var(--theme-color-soft-text);
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
 
     .content__value {
