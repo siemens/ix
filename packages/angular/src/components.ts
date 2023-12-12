@@ -473,54 +473,6 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
-  methods: ['getCurrentDate']
-})
-@Component({
-  selector: 'ix-date-picker',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
-})
-export class IxDatePicker {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'done', 'dateSelect']);
-  }
-}
-
-
-import type { LegacyDateChangeEvent as IIxDatePickerLegacyDateChangeEvent } from '@siemens/ix';
-import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/ix';
-
-export declare interface IxDatePicker extends Components.IxDatePicker {
-  /**
-   * Date change event
-
-If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
-   */
-  dateChange: EventEmitter<CustomEvent<IIxDatePickerLegacyDateChangeEvent>>;
-  /**
-   * Date range change.
-Only triggered if datepicker is in range mode @since 1.1.0
-   */
-  dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
-  /**
-   * Date selection confirmed via button action @deprecated Will be removed in 2.0.0. Use `dateSelect`
-   */
-  done: EventEmitter<CustomEvent<string>>;
-  /**
-   * Date selection confirmed via button action @since 1.1.0
-   */
-  dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
-}
-
-
-@ProxyCmp({
   inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to']
 })
 @Component({
@@ -2032,39 +1984,6 @@ export class IxTile {
 
 
 export declare interface IxTile extends Components.IxTile {}
-
-
-@ProxyCmp({
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
-  methods: ['getCurrentTime']
-})
-@Component({
-  selector: 'ix-time-picker',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
-})
-export class IxTimePicker {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['done', 'timeChange']);
-  }
-}
-
-
-export declare interface IxTimePicker extends Components.IxTimePicker {
-  /**
-   * Time event
-   */
-  done: EventEmitter<CustomEvent<string>>;
-  /**
-   * Time change event
-   */
-  timeChange: EventEmitter<CustomEvent<string>>;
-}
 
 
 @ProxyCmp({

@@ -23,7 +23,6 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
-import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -82,7 +81,6 @@ import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/comp
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
-import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
 import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxToggle } from '@siemens/ix/components/ix-toggle.js';
@@ -264,24 +262,6 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'textDoneButton',
   'textNoRange',
   'dateRangeChange'
-]);
-
-
-export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
-  'format',
-  'range',
-  'individual',
-  'corners',
-  'from',
-  'to',
-  'minDate',
-  'maxDate',
-  'eventDelimiter',
-  'textSelectDate',
-  'dateChange',
-  'dateRangeChange',
-  'done',
-  'dateSelect'
 ]);
 
 
@@ -810,22 +790,6 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
 
 export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [
   'size'
-]);
-
-
-export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
-  'format',
-  'corners',
-  'individual',
-  'showHour',
-  'showMinutes',
-  'showSeconds',
-  'time',
-  'showTimeReference',
-  'timeReference',
-  'textSelectTime',
-  'done',
-  'timeChange'
 ]);
 
 

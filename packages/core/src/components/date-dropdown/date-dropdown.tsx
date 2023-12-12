@@ -328,7 +328,7 @@ export class DateDropdown {
               <ix-col class="no-margin">
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
-                    <ix-date-picker-rework
+                    <ix-date-picker
                       standaloneAppearance={false}
                       onDateChange={(e) => {
                         e.stopPropagation();
@@ -345,7 +345,7 @@ export class DateDropdown {
                       to={this.to || this.currentRangeValue?.to}
                       minDate={this.minDate}
                       maxDate={this.maxDate}
-                    ></ix-date-picker-rework>
+                    ></ix-date-picker>
                     <div class="pull-right">
                       <ix-button
                         onClick={() => {

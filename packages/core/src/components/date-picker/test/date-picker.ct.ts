@@ -9,7 +9,7 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker-rework';
+const DATE_PICKER_REWORK_SELECTOR = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
   return await page.$$eval(DATE_PICKER_REWORK_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentDate()));
@@ -17,19 +17,17 @@ const getDateObj = async (page: Page) => {
 };
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-picker-rework></ix-date-picker-rework>`);
+  await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DATE_PICKER_REWORK_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
 test('translation', async ({ mount, page }) => {
-  await mount(
-    `<ix-date-picker-rework from="2023/01/01"></ix-date-picker-rework>`
-  );
+  await mount(`<ix-date-picker from="2023/01/01"></ix-date-picker>`);
 
   await page.$eval(
     DATE_PICKER_REWORK_SELECTOR,
-    (el: HTMLIxDatePickerReworkElement) => {
+    (el: HTMLIxDatePickerElement) => {
       el.locale = 'de';
     }
   );
@@ -41,7 +39,7 @@ test('translation', async ({ mount, page }) => {
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker-rework from="2023/09/05" range="false"></ix-date-picker-rework>`
+      `<ix-date-picker from="2023/09/05" range="false"></ix-date-picker>`
     );
   });
 
@@ -139,7 +137,7 @@ test.describe('date picker tests single', () => {
 test.describe('date picker tests range', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-date-picker-rework from="2023/09/05" to="2023/09/10"></ix-date-picker-rework>`
+      `<ix-date-picker from="2023/09/05" to="2023/09/10"></ix-date-picker>`
     );
   });
 

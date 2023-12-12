@@ -186,8 +186,9 @@ export class DateTimePicker {
     this.dateChange.emit(date);
 
     const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.start;
-    this._to = currentDateTime.end;
+    // this._from = currentDateTime.start;
+    // this._to = currentDateTime.end;
+    console.log(currentDateTime);
   }
 
   private async onTimeChange(event: CustomEvent<string>) {

@@ -159,8 +159,8 @@ export class DatetimePickerRework {
    */
   @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
 
-  private datePickerElement: HTMLIxDatePickerReworkElement;
-  private timePickerElement: HTMLIxTimePickerReworkElement;
+  private datePickerElement: HTMLIxDatePickerElement;
+  private timePickerElement: HTMLIxTimePickerElement;
 
   private async onDone() {
     const date = await this.datePickerElement.getCurrentDate();
@@ -195,7 +195,7 @@ export class DatetimePickerRework {
         <ix-layout-grid class="no-padding">
           <ix-row>
             <ix-col class="no-padding">
-              <ix-date-picker-rework
+              <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
                 range={this.range}
@@ -208,22 +208,22 @@ export class DatetimePickerRework {
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
                 locale={this.locale}
-              ></ix-date-picker-rework>
+              ></ix-date-picker>
             </ix-col>
 
             <ix-col class="no-padding">
-              <ix-time-picker-rework
+              <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
                 corners="right"
                 standaloneAppearance={false}
-                showHours={this.showHour}
+                showHour={this.showHour}
                 showMinutes={this.showMinutes}
                 showSeconds={this.showSeconds}
                 onTimeChange={(event) => this.onTimeChange(event)}
                 format={this.timeFormat}
                 time={this.time}
-              ></ix-time-picker-rework>
+              ></ix-time-picker>
             </ix-col>
           </ix-row>
           <ix-row>
