@@ -136,6 +136,7 @@ export class Chip {
             primary: this.variant === 'primary',
             success: this.variant === 'success',
             warning: this.variant === 'warning',
+            custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
           }}
