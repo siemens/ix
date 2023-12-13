@@ -1,10 +1,10 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
@@ -14,7 +14,6 @@ import { onMounted, ref } from 'vue';
 
 type TreeData = {
   name: string;
-  icon: string;
 };
 
 const model = ref<TreeModel<TreeData>>();
@@ -24,7 +23,6 @@ onMounted(() => {
     root: {
       id: 'root',
       data: {
-        icon: '',
         name: '',
       },
       hasChildren: true,
@@ -34,7 +32,6 @@ onMounted(() => {
       id: 'sample',
       data: {
         name: 'Sample',
-        icon: 'star',
       },
       hasChildren: true,
       children: ['sample-child-1', 'sample-child-2'],
@@ -43,7 +40,6 @@ onMounted(() => {
       id: 'sample-child-1',
       data: {
         name: 'Sample Child 1',
-        icon: 'cut',
       },
       hasChildren: false,
       children: [],
@@ -52,7 +48,6 @@ onMounted(() => {
       id: 'sample-child-2',
       data: {
         name: 'Sample Child 2',
-        icon: 'print',
       },
       hasChildren: false,
       children: [],

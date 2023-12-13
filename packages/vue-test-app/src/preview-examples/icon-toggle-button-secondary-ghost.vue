@@ -1,19 +1,21 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
-import { IxToggleButton } from '@siemens/ix-vue';
+import { IxIconToggleButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles-auto-gen/icon-toggle-button.css"></style>
+
 <template>
-  <IxToggleButton ghost></IxToggleButton>
-  <IxToggleButton ghost pressed></IxToggleButton>
-  <IxToggleButton ghost disabled></IxToggleButton>
-  <IxToggleButton ghost disabled loading></IxToggleButton>
+  <IxIconToggleButton ghost icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost pressed icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost disabled icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton ghost disabled loading icon="checkboxes"></IxIconToggleButton>
 </template>

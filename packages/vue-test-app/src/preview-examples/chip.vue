@@ -1,32 +1,30 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
 import { IxChip } from '@siemens/ix-vue';
-
-const styled = {
-  width: '10rem',
-};
 </script>
 
+<style scoped src="./styles-auto-gen/chip.css"></style>
+
 <template>
-  <div className="example">
+  <div class="chip">
     <IxChip closable outline> Primary </IxChip>
     <IxChip icon="print">Primary with icon</IxChip>
-    <IxChip icon="print" :style="styled" closable> Primary </IxChip>
+    <IxChip icon="print" closable> Primary </IxChip>
 
     <IxChip variant="critical" closable outline> Alarm </IxChip>
     <IxChip variant="alarm" icon="print"> Alarm with icon </IxChip>
-    <IxChip variant="alarm" icon="print" :style="styled" closable>
+    <IxChip variant="alarm" icon="print" closable>
       Alarm
     </IxChip>
-    <IxChip variant="warning" icon="print" :style="styled" closable>
+    <IxChip variant="warning" icon="print" closable>
       Alarm
     </IxChip>
     <IxChip
@@ -34,7 +32,6 @@ const styled = {
       color="green"
       variant="custom"
       icon="print"
-      :style="styled"
       closable
     >
       Custom

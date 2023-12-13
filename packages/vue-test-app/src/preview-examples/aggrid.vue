@@ -1,10 +1,10 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
@@ -55,10 +55,10 @@ const gridOptions = {
 </script>
 
 <template>
-  <div
+  <AgGridVue
     style="height: 12rem; width: 100%"
-    className="ag-theme-alpine-dark ag-theme-ix"
+    class="ag-theme-alpine-dark ag-theme-ix"
+    :gridOptions="gridOptions"
   >
-    <AgGridVue :gridOptions="gridOptions" />
-  </div>
+  </AgGridVue>
 </template>

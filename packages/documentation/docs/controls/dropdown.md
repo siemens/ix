@@ -21,9 +21,12 @@ import SourceAngularDropdown from './../auto-generated/previews/angular/dropdown
 import SourceAngularDropdownIcon from './../auto-generated/previews/angular/dropdown-icon.ts.md'
 import SourceAngularDropdownQuickActionsTs from './../auto-generated/previews/angular/dropdown-quick-actions.ts.md'
 import SourceAngularDropdownQuickActionsHtml from './../auto-generated/previews/angular/dropdown-quick-actions.html.md'
+import SourceAngularDropdownSubmenu from './../auto-generated/previews/angular/dropdown-submenu.ts.md'
 
 import SourceVueDropdown from './../auto-generated/previews/vue/dropdown.md'
 import SourceVueDropdownIcon from './../auto-generated/previews/vue/dropdown-icon.md'
+import SourceVueDropdownQuickActions from './../auto-generated/previews/vue/dropdown-quick-actions.md'
+import SourceVueDropdownSubmenu from './../auto-generated/previews/vue/dropdown-submenu.md'
 
 # Dropdown
 
@@ -57,11 +60,12 @@ frameworks={{
 name="dropdown-quick-actions" height="22rem"
 frameworks={{
   react: SourceReactDropdownQuickActions,
-      angular: {
-        "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsTs,
-        "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsHtml
-    },
-  javascript: SourceDropdownQuickActions
+  angular: {
+    "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsHtml,
+    "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsTs
+  },
+  javascript: SourceDropdownQuickActions,
+  vue: SourceVueDropdownQuickActions
 }}></Playground>
 
 ### Dropdown with submenu
@@ -70,8 +74,9 @@ frameworks={{
 name="dropdown-submenu" height="22rem"
 frameworks={{
   react: SourceReactDropdownSubmenu,
-  angular: SourceDropdownSubmenu,
-  javascript: SourceDropdownSubmenu
+  angular: SourceAngularDropdownSubmenu,
+  javascript: SourceDropdownSubmenu,
+  vue: SourceVueDropdownSubmenu
 }}></Playground>
 
 ## Properties (ix-dropdown)

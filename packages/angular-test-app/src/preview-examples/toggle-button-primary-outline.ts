@@ -11,15 +11,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./styles-auto-gen/toggle-button.css'],
   template: `
-    <ix-toggle-button outline variant="Primary">Normal</ix-toggle-button>
-    <ix-toggle-button outline pressed variant="Primary">
+    <ix-toggle-button outline variant="primary">Normal</ix-toggle-button>
+    <ix-toggle-button outline pressed variant="primary">
       Pressed
     </ix-toggle-button>
-    <ix-toggle-button outline disabled variant="Primary">
+    <ix-toggle-button outline disabled variant="primary">
       Disabled
     </ix-toggle-button>
-    <ix-toggle-button outline disabled loading variant="Primary">
+    <ix-toggle-button outline disabled loading variant="primary">
       Loading
     </ix-toggle-button>
   `,

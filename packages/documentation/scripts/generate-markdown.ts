@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import fs from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
@@ -169,14 +170,24 @@ const tasks = new Listr<Context>(
           );
           let formattedSource = rawSource;
 
-          if (rawSource.includes('<!-- Preview code -->')) {
-            const [__, source] = rawSource.split('<!-- Preview code -->');
-            formattedSource = source
-              .split('\n')
-              .map((line) => line.replace(/[ ]{4}/, ''))
-              .join('\n')
-              .trimEnd();
-          }
+          const sourcesMatches: RegExpMatchArray | null = formattedSource.match(
+            /<!-- Sources -->([\s\S]*?)<!-- Sources -->/
+          );
+          const sources: string = getString(sourcesMatches);
+
+          const sourceCodeMatches: RegExpMatchArray | null =
+            formattedSource.match(
+              /<!-- Preview code -->([\s\S]*?)<!-- Preview code -->/
+            );
+          const sourceCode: string = getString(sourceCodeMatches);
+
+          formattedSource = `${
+            sources
+              ? `\n<!-- Include in Header -->\n${sources}\n<!-- Include in Header -->\n\n`
+              : '\n'
+          }${sourceCode}`;
+
+          formattedSource = replaceStylePath(formattedSource);
 
           const fileName = path.parse(example);
 
@@ -195,9 +206,12 @@ const tasks = new Listr<Context>(
         const examples = ctx.reactExamples;
 
         examples.map(async (example) => {
-          const rawSource = await getRawStingContent(
+          var rawSource = await getRawStingContent(
             path.join(reactTestAppPath, example)
           );
+
+          rawSource = replaceStylePath(rawSource);
+
           return fs.writeFile(
             path.join(docsExampleReactPath, `${path.parse(example).name}.md`),
             wrap(rawSource, 'tsx')
@@ -225,9 +239,11 @@ const tasks = new Listr<Context>(
           }
 
           if (example.endsWith('.ts')) {
-            const rawSource = await getRawStingContent(
+            var rawSource = await getRawStingContent(
               path.join(angularTestAppPath, example)
             );
+
+            rawSource = replaceStylePath(rawSource, true);
 
             return fs.writeFile(
               path.join(docsExampleAngularPath, `${example}.md`),
@@ -245,9 +261,12 @@ const tasks = new Listr<Context>(
         const examples = ctx.vueExamples;
 
         examples.map(async (example) => {
-          const rawSource = await getRawStingContent(
+          var rawSource = await getRawStingContent(
             path.join(vueTestAppPath, example)
           );
+
+          rawSource = replaceStylePath(rawSource);
+
           return fs.writeFile(
             path.join(docsExampleVuePath, `${path.parse(example).name}.md`),
             wrap(rawSource, 'html')
@@ -323,7 +342,30 @@ const tasks = new Listr<Context>(
 
 async function getRawStingContent(path: string) {
   const response = await fs.readFile(path);
-  return response.toString();
+  let content = response.toString();
+
+  // Remove the top comment (either HTML or CSS style) and any newlines that follow it
+  content = content.replace(/(<!--[\s\S]*?-->|\/\*[\s\S]*?\*\/)\n*/, '');
+
+  // Remove any newlines at the end of the string
+  content = content.replace(/\n*$/, '');
+
+  return content;
+}
+
+function replaceStylePath(sourceCode: string, sameFolder: boolean = false) {
+  return sourceCode.replace('./styles-auto-gen', sameFolder ? '.' : './styles');
+}
+
+function getString(matches: RegExpMatchArray | null) {
+  return matches
+    ? matches[1]
+        .trim()
+        .split('\n')
+        .map((line) => line.replace(/[ ]{4}/, ''))
+        .join('\n')
+        .trimEnd()
+    : '';
 }
 
 /**
@@ -335,10 +377,13 @@ function wrap(
   newLinesStart = 1
 ) {
   const markdownHeader = `<!--
-SPDX-FileCopyrightText: 2023 Siemens AG
+  SPDX-FileCopyrightText: 2023 Siemens AG
 
-SPDX-License-Identifier: MIT
--->`;
+  SPDX-License-Identifier: MIT
+
+  This source code is licensed under the MIT license found in the
+  LICENSE file in the root directory of this source tree.
+  -->`;
 
   return `${markdownHeader}\n\n\`\`\`${language}${Array.from({
     length: newLinesStart,

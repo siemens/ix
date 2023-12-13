@@ -11,23 +11,31 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./styles-auto-gen/icon-toggle-button.css'],
   template: `
-    <ix-icon-toggle-button variant="Primary" ghost></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
+      ghost
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      variant="primary"
       ghost
       pressed
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
       ghost
       disabled
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
       ghost
       disabled
       loading
+      icon="checkboxes"
     ></ix-icon-toggle-button>
   `,
 })

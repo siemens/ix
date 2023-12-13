@@ -24,6 +24,7 @@ import ApiToastServiceAngular from './\_toast/angular/toast-service.html.md';
 import ApiToastConfigAngular from './\_toast/angular/toast-config.md';
 
 import ApiToastConfigReact from './\_toast/react/toast-config.md';
+import ApiToastConfigVue from './\_toast/vue/toast-config.md';
 
 # Toast
 
@@ -79,5 +80,10 @@ frameworks={{
   <TabItem value="JavaScript">
     <h3>ToastConfig</h3>
     <ApiToastConfigJavaScript />
+  </TabItem>
+
+  <TabItem value="Vue">
+    <h3>ToastConfig</h3>
+    <ApiToastConfigVue />
   </TabItem>
 </Tabs>

@@ -2,18 +2,17 @@
 SPDX-FileCopyrightText: 2023 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Vertical tabs example</title>
-    <style>
-      ix-basic-navigation {
-        width: 100vw;
-        height: 100vh;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu category example</title>
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
@@ -27,7 +26,7 @@ SPDX-License-Identifier: MIT
         </ix-menu-category>
       </ix-menu>
     </ix-basic-navigation>
-    <!-- Preview code -->
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-menu');
@@ -35,6 +34,7 @@ SPDX-License-Identifier: MIT
         menu.breakpoints = ['medium'];
       })();
     </script>
+    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

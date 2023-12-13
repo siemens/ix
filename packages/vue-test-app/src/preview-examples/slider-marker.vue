@@ -1,10 +1,10 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
@@ -19,7 +19,7 @@
 
   <IxSlider :min="0" :max="50" :step="10" :marker="[0, 10, 20, 30, 40, 50]">
     <span slot="label-start">0</span>
-    <span slot="label-end">100</span>
+    <span slot="label-end">50</span>
   </IxSlider>
 </template>
 

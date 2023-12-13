@@ -32,5 +32,3 @@ const dateDropdownOptions = [
 <template>
   <IxDateDropdown :dateRangeOptions="dateDropdownOptions" date-range-id="last-7" format="LL/dd/yyyy"/>
 </template>
-
-<style scoped></style>

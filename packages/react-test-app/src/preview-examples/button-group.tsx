@@ -13,11 +13,11 @@ import React from 'react';
 export default () => (
   <>
     <div className="btn-group">
-      <IxButton variant="primary" outline>
+      <IxButton outline>
         Left
       </IxButton>
-      <IxButton variant="primary">Middle</IxButton>
-      <IxButton variant="primary" outline>
+      <IxButton>Middle</IxButton>
+      <IxButton outline>
         Right
       </IxButton>
     </div>

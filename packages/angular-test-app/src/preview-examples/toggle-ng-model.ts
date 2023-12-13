@@ -10,9 +10,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-example',
+  selector: 'app-example-ng-model',
   template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
 })
 export default class Toggle {
-  checked = false
+  checked = false;
 }

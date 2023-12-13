@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import { useLocation } from '@docusaurus/router';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -18,6 +19,7 @@ import Demo, { DemoProps } from '../Demo';
 import { TargetFramework } from './framework-types';
 import './playground.scss';
 import { openGitHubFile, openStackBlitz } from './utils';
+import { themeSwitcher } from '@siemens/ix';
 
 type MdxContent = ({}) => {};
 
@@ -32,8 +34,10 @@ function ButtonOpenIframe({ name }: { name: string }) {
       oval
       title="Open in new tab"
       onClick={() => {
+        const theme = themeSwitcher.getCurrentTheme()
+
         window.open(
-          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=theme-brand-dark`,
+          `${baseUrl}webcomponent-examples/dist/preview-examples/${name}.html?theme=${theme}`,
           '_blank'
         );
       }}
@@ -131,9 +135,8 @@ function FileTabs(props: {
 
   return (
     <>
-      <IxTabs>
+      <IxTabs style={{marginBottom: "0.5rem"}}>
         {props.files.map((source) => {
-          const SourceNode = source.node as any;
           return (
             <IxTabItem
               key={source.filename}

@@ -9,9 +9,15 @@
   },
   "dependencies": {
     "vue": "^3.2.6",
-    "@siemens/ix": "latest",
-    "@siemens/ix-icons": "latest",
-    "@siemens/ix-vue": "latest"
+    "@siemens/ix": "~2.0.4",
+    "@siemens/ix-vue": "~2.0.4",
+    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-aggrid": "~2.0.4",
+    "@siemens/ix-echarts": "~2.0.4",
+    "ag-grid-community": "^30.2.0",
+    "ag-grid-vue3": "^28.2.1",
+    "vue-echarts": "~6.6.1",
+    "echarts": "^5.4.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

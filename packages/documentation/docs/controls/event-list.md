@@ -59,7 +59,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListHeight,
   angular: SourceAngularEventListHeight,
-  javascript: SourceVueEventListHeight
+  javascript: SourceEventListHeight,
+  vue: SourceVueEventListHeight
 }}></Playground>
 
 ### Compact
@@ -70,7 +71,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListCompact,
   angular: SourceAngularEventListCompact,
-  javascript: SourceVueEventListCompact
+  javascript: SourceEventListCompact,
+  vue: SourceVueEventListCompact
 }}></Playground>
 
 ## Properties (ix-event-list)

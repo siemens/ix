@@ -18,7 +18,6 @@ export default () => {
         <IxIconButton
           class="m-1"
           icon="info"
-          variant="secondary"
         ></IxIconButton>
         <IxIconButton class="m-1" icon="info" outline></IxIconButton>
         <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
@@ -35,7 +34,6 @@ export default () => {
           class="m-1"
           icon="info"
           oval
-          variant="secondary"
         ></IxIconButton>
         <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
         <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>
