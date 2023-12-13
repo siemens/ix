@@ -1,0 +1,16 @@
+{
+  "name": "example-styles",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/copy.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@siemens/html-test-app": "~2.0.4",
+    "angular-test-app": "~2.0.4",
+    "react-test-app": "~2.0.4",
+    "vue-test-app": "~2.0.4"
+  }
+}

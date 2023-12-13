@@ -28,7 +28,6 @@
     "clean": "npx rimraf ./**/node_modules",
     "turbo": "dotenv -- turbo",
     "lint": "dotenv -- turbo run lint",
-    "generate-example-styles": "node ./scripts/copy.js",
     "generate-documentation-version": "yarn workspace documentation run generate-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "node ./scripts/release.js",

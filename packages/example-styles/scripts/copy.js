@@ -42,10 +42,22 @@ function copyFiles(sourceDir, targetDirs) {
     });
 }
 
-const destinationDirs = ['./packages/angular-test-app/src/preview-examples/styles-auto-gen', './packages/html-test-app/src/preview-examples/styles-auto-gen', './packages/react-test-app/src/preview-examples/styles-auto-gen', './packages/vue-test-app/src/preview-examples/styles-auto-gen']
+const htmlRootPath = path.join('..', 'html-test-app')
+const angularRootPath = path.join('..', 'angular-test-app')
+const reactRootPath = path.join('..', 'react-test-app')
+const vueRootPath = path.join('..', 'vue-test-app')
+
+const stylesPath = path.join("src", "preview-examples", "styles-auto-gen")
+
+const htmlDestination = path.join(htmlRootPath, stylesPath)
+const angularDestination = path.join(angularRootPath, stylesPath)
+const reactDestination = path.join(reactRootPath, stylesPath)
+const vueDestination = path.join(vueRootPath, stylesPath)
+
+const destinationDirs = [htmlDestination, angularDestination, reactDestination, vueDestination]
 
 // delete folder contents
 destinationDirs.forEach(dir => deleteFolderContents(dir));
 
 // copy files
-copyFiles('./packages/styles-test-apps', destinationDirs);
+copyFiles(path.join(".", "src"), destinationDirs);
