@@ -134,6 +134,8 @@ export class Dropdown {
   constructor() {
     this.toggleBind = this.toggle.bind(this);
     this.openBind = this.open.bind(this);
+    this.focusInBind = this.focusIn.bind(this);
+    this.focusOutBind = this.focusOut.bind(this);
   }
 
   get dropdownItems() {

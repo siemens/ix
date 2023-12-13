@@ -16,9 +16,26 @@ import { AppSwitchConfiguration } from '../utils/application-layout/context';
 })
 export class MyComponent {
   @State() applicationSwitchConfig: AppSwitchConfiguration = {
-    textAppSwitch: 'Aendere die Applikation',
+    textAppSwitch: 'Switch to Application',
     currentAppId: 'app-2',
-    apps: [],
+    apps: [
+      {
+        id: 'app-1',
+        name: 'Example App 1',
+        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+        url: 'https://www.google.de',
+        description: 'Test',
+        target: '_self',
+      },
+      {
+        id: 'app-2',
+        name: 'Example App 222',
+        description: 'Test',
+        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+        url: 'https://www.google.de',
+        target: '_self',
+      },
+    ],
   };
 
   componentDidLoad() {

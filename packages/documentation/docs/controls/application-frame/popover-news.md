@@ -1,8 +1,3 @@
----
-sidebar_position: 7
-title: Popover news
----
-
 import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 
