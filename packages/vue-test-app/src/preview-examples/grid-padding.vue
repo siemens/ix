@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="../../../documentation/static/styles/grid.css"></style>
+<style scoped src="./styles-auto-gen/grid.css"></style>
 
 <template>
   <div class="grid">

@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../documentation/static/styles/tabs.css`],
+  styleUrls: ['./styles-auto-gen/tabs.css'],
   template: `
     <div class="tabs">
       <ix-tabs [selected]="selectedTab">

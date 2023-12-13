@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../documentation/static/styles/card.css`],
+  styleUrls: ['./styles-auto-gen/card.css'],
   templateUrl: './card.html',
 })
 export default class Card {

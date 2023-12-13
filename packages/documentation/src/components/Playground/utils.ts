@@ -37,31 +37,20 @@ function getSourceCodeFile({
   }
 }
 
-function replaceStyleFilepath({
-  sourceCode,
-  framework,
-}: {
-  sourceCode: string;
-  framework: TargetFramework;
-}) {
+function replaceStyleFilepath(sourceCode: string, sameFolder: boolean = false) {
+  // get style file name
   var styleFileName: string | undefined;
-  const regex = /documentation\/static\/styles\/(.*\.(css|scss))/;
+  const regex = /styles-auto-gen\/(.*\.(css|scss))/;
   const match = sourceCode.match(regex);
   if (match && match.length > 1) {
     styleFileName = match[1];
   }
 
-  if (framework === TargetFramework.ANGULAR) {
-    sourceCode = sourceCode.replace(
-      '../../../documentation/static/styles',
-      '.'
-    );
-  } else {
-    sourceCode = sourceCode.replace(
-      '../../../documentation/static/styles',
-      './styles'
-    );
-  }
+  // adapt path
+  sourceCode = sourceCode.replace(
+    './styles-auto-gen',
+    sameFolder ? '.' : './styles'
+  );
 
   return { sourceCode, styleFileName };
 }
@@ -95,6 +84,8 @@ async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/web-components/styles-auto-gen/`;
+
   const [
     global_css,
     index_html,
@@ -103,7 +94,7 @@ async function openHtmlStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}styles/global.css`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/html/src/index.html`,
     `${baseUrl}code-runtime/html/src/init.js`,
     `${baseUrl}code-runtime/html/package.json`,
@@ -119,19 +110,15 @@ async function openHtmlStackBlitz(
   sourceCode = replaceTheme({ sourceCode });
 
   // set style filepath
-  const { sourceCode: adaptedSourceCode, styleFileName } = replaceStyleFilepath(
-    {
-      sourceCode,
-      framework: TargetFramework.JAVASCRIPT,
-    }
-  );
+  const { sourceCode: adaptedSourceCode, styleFileName } =
+    replaceStyleFilepath(sourceCode);
   sourceCode = adaptedSourceCode;
 
   // get style file
   const styleFile = {};
   if (styleFileName) {
     styleFile[`src/styles/${styleFileName}`] = (
-      await loadSourceCodeFromStatic([`${baseUrl}styles/${styleFileName}`])
+      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
     )[0];
   }
 
@@ -170,6 +157,8 @@ async function openAngularStackBlitz(
   name: string,
   additionalFiles: { filename: string; sourceCode: string }[]
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/angular/styles-auto-gen/`;
+
   const [
     app_component_html,
     app_component_ts,
@@ -187,7 +176,7 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
-    `${baseUrl}styles/global.css`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
     `${baseUrl}code-runtime/angular/src/styles.scss`,
@@ -239,18 +228,13 @@ export const DECLARE = [
       if (filename.endsWith('.ts')) {
         // set style filepath
         const { sourceCode: adaptedSourceCode, styleFileName } =
-          replaceStyleFilepath({
-            sourceCode,
-            framework: TargetFramework.ANGULAR,
-          });
+          replaceStyleFilepath(sourceCode, true);
         sourceCode = adaptedSourceCode;
 
         // get style file
         if (styleFileName) {
           styleFiles[`src/app/${styleFileName}`] = (
-            await loadSourceCodeFromStatic([
-              `${baseUrl}styles/${styleFileName}`,
-            ])
+            await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
           )[0];
         }
       }
@@ -292,6 +276,8 @@ async function openReactStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/react/styles-auto-gen/`;
+
   const [
     global_css,
     app_tsx,
@@ -301,7 +287,7 @@ async function openReactStackBlitz(
     tsconfig_json,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}styles/global.css`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/react/src/App.tsx`,
     `${baseUrl}code-runtime/react/public/index.html`,
     `${baseUrl}code-runtime/react/src/index.tsx`,
@@ -334,18 +320,13 @@ async function openReactStackBlitz(
       if (filename.endsWith('.tsx')) {
         // set style filepath
         const { sourceCode: adaptedSourceCode, styleFileName } =
-          replaceStyleFilepath({
-            sourceCode,
-            framework: TargetFramework.REACT,
-          });
+          replaceStyleFilepath(sourceCode);
         sourceCode = adaptedSourceCode;
 
         // get style file
         if (styleFileName) {
           styleFiles[`src/styles/${styleFileName}`] = (
-            await loadSourceCodeFromStatic([
-              `${baseUrl}styles/${styleFileName}`,
-            ])
+            await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
           )[0];
         }
       }
@@ -384,6 +365,8 @@ async function openVueStackBlitz(
   baseUrl: string,
   sourceFiles: { filename: string; sourceCode: string }[]
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/vue/styles-auto-gen/`;
+
   const [
     global_css,
     app_vue,
@@ -395,7 +378,7 @@ async function openVueStackBlitz(
     vite_config_ts,
     license,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}styles/global.css`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/vue/src/App.vue`,
     `${baseUrl}code-runtime/vue/src/main.ts`,
     `${baseUrl}code-runtime/vue/env.d.ts`,
@@ -427,18 +410,13 @@ async function openVueStackBlitz(
       if (filename.endsWith('.vue')) {
         // set style filepath
         const { sourceCode: adaptedSourceCode, styleFileName } =
-          replaceStyleFilepath({
-            sourceCode,
-            framework: TargetFramework.VUE,
-          });
+          replaceStyleFilepath(sourceCode);
         sourceCode = adaptedSourceCode;
 
         // get style file
         if (styleFileName) {
           styleFiles[`src/styles/${styleFileName}`] = (
-            await loadSourceCodeFromStatic([
-              `${baseUrl}styles/${styleFileName}`,
-            ])
+            await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
           )[0];
         }
       }

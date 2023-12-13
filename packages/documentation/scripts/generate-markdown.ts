@@ -354,10 +354,7 @@ async function getRawStingContent(path: string) {
 }
 
 function replaceStylePath(sourceCode: string, sameFolder: boolean = false) {
-  return sourceCode.replace(
-    '../../../documentation/static/styles',
-    sameFolder ? '.' : './styles'
-  );
+  return sourceCode.replace('./styles-auto-gen', sameFolder ? '.' : './styles');
 }
 
 function getString(matches: RegExpMatchArray | null) {

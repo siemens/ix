@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../documentation/static/styles/kpi.css';
+import './styles-auto-gen/kpi.css';
 
 import { IxKpi } from '@siemens/ix-react';
 import React from 'react';

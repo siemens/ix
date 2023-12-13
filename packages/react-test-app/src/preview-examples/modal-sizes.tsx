@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../documentation/static/styles/modal-sizes.css';
+import './styles-auto-gen/modal-sizes.css';
 
 import { IxModalSize } from '@siemens/ix';
 import { IxButton, Modal, ModalRef, showModal } from '@siemens/ix-react';

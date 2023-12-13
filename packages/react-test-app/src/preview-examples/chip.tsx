@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../documentation/static/styles/chip.css';
+import './styles-auto-gen/chip.css';
 
 import { IxChip } from '@siemens/ix-react';
 import React from 'react';

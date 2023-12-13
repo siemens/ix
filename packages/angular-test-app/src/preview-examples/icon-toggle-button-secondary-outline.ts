@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../documentation/static/styles/icon-toggle-button.css`],
+  styleUrls: ['./styles-auto-gen/icon-toggle-button.css'],
   template: `
     <ix-icon-toggle-button outline icon="checkboxes"></ix-icon-toggle-button>
     <ix-icon-toggle-button

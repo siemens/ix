@@ -15,7 +15,7 @@ const selectedTab = ref(0);
 const changeTab = (tabId: number) => (selectedTab.value = tabId);
 </script>
 
-<style scoped src="../../../documentation/static/styles/tabs.css"></style>
+<style scoped src="./styles-auto-gen/tabs.css"></style>
 
 <template>
   <div class="tabs">

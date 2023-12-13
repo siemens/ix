@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../documentation/static/styles/tile.css'
+import './styles-auto-gen/tile.css'
 
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-react';
 import React from 'react';

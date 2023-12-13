@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts"></script>
 
-<style scoped src="../../../documentation/static/styles/radio-button.css"></style>
+<style scoped src="./styles-auto-gen/radio-button.css"></style>
 
 <template>
   <div class="radio-button">

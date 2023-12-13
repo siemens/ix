@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '../../../documentation/static/styles/blind.css'
+import './styles-auto-gen/blind.css'
 
 import {
   IxBlind,

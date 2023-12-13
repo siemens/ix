@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 import { IxPill } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="../../../documentation/static/styles/icon-toggle-button.css"></style>
+<style scoped src="./styles-auto-gen/icon-toggle-button.css"></style>
 
 <template>
   <IxPill variant="custom" color="white" background="purple"> Label </IxPill>

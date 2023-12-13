@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: [`../../../documentation/static/styles/flip-tile.css`],
+  styleUrls: ['./styles-auto-gen/flip-tile.css'],
   template: `
     <div class="flip-tile">
       <ix-flip-tile>
