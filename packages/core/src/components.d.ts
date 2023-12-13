@@ -803,6 +803,11 @@ export namespace Components {
      */
     interface IxDropdownButton {
         /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        /**
           * Disable button
          */
         "disabled": boolean;
@@ -4074,6 +4079,11 @@ declare namespace LocalJSX {
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
