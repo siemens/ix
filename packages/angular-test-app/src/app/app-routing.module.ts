@@ -45,6 +45,7 @@ import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
 import Datepicker from '../preview-examples/datepicker';
+import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
 import Divider from '../preview-examples/divider';
@@ -322,6 +323,10 @@ const routes: Routes = [
       {
         path: 'content-header',
         component: ContentHeader,
+      },
+      {
+        path: 'datepicker-locale',
+        component: DatepickerLocale,
       },
       {
         path: 'datepicker-range',

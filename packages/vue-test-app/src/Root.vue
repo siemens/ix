@@ -47,6 +47,7 @@ import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.v
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Divider from './preview-examples/divider.vue';
 import Datepicker from './preview-examples/datepicker.vue';
+import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
 import DrawerFullHeight from './preview-examples/drawer-full-height.vue';
 import Drawer from './preview-examples/drawer.vue';
@@ -194,6 +195,7 @@ const routes: any = {
 '/preview/content-header': ContentHeader,
 '/preview/datepicker-range': DatepickerRange,
 '/preview/datepicker': Datepicker,
+'/preview/datepicker-locale': DatepickerLocale,
 '/preview/datetimepicker': Datetimepicker,
 '/preview/divider': Divider,
 '/preview/drawer-full-height': DrawerFullHeight,

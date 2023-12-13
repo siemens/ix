@@ -1,35 +1,34 @@
 <script setup lang="ts">
 import { IxDateDropdown } from '@siemens/ix-vue';
-import dayjs from 'dayjs';
+
+const today = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+});
+
+const lastSevenDays = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
 
 const dateDropdownOptions = [
   {
-    label: 'No time limit',
-    getValue: () => {
-      const today = dayjs();
-      return { from: undefined, to: today };
-    },
-  },
-  {
-    label: 'Today',
-    getValue: () => {
-      const today = dayjs();
-      return { from: today, to: today };
-    },
-  },
-  {
+    id: 'last-7',
     label: 'Last 7 days',
-    getValue: () => {
-      const today = dayjs();
-      return {
-        from: today.subtract(7, 'day') as dayjs.Dayjs,
-        to: today,
-      };
-    },
+    from: lastSevenDays,
+    to: today,
+  },
+  {
+    id: 'today',
+    label: 'Today',
+    from: today,
+    to: today,
   },
 ];
 </script>
 
 <template>
-  <IxDateDropdown :dateRangeOptions="dateDropdownOptions" />
+  <IxDateDropdown :dateRangeOptions="dateDropdownOptions" date-range-id="last-7" format="LL/dd/yyyy"/>
 </template>
