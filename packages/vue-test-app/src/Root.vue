@@ -106,6 +106,7 @@ import NavigationTest from './testing/NavigationTest.vue';
 import Grid from './preview-examples/grid.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
+import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 
 const routes: any = {
   '/': App,
@@ -124,6 +125,7 @@ const routes: any = {
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
+  '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/drawer-full-height': DrawerFullHeight,

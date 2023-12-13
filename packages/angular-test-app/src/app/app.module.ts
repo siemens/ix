@@ -40,6 +40,7 @@ import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import Datepicker from 'src/preview-examples/datepicker';
+import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
 import Drawer from 'src/preview-examples/drawer';
@@ -264,6 +265,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     GridSize,
     GridPadding,
     ModalSizes,
+    DatepickerLocale,
   ],
   imports: [
     BrowserModule,

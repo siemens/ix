@@ -39,6 +39,7 @@ import PageHeader from './preview-examples/content-header';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import Datepicker from './preview-examples/datepicker';
+import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
@@ -160,6 +161,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<DateDropdownUserRange />}
         />
         <Route path="/preview/datepicker" element={<Datepicker />} />
+        <Route
+          path="/preview/datepicker-locale"
+          element={<DatepickerLocale />}
+        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
         <Route

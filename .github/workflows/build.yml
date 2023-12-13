@@ -106,19 +106,3 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/lint
-
-  lint-commit-message:
-    runs-on: ubuntu-latest
-    needs: [install]
-    container:
-      image: node:18.12.1
-      env:
-        DEBIAN_FRONTEND: noninteractive
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/actions/install
-      - name: Validate all commits from PR
-        if: github.event_name == 'pull_request'
-        run: yarn commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
