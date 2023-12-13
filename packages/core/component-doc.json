@@ -625,7 +625,12 @@
           "mutable": false,
           "reflectToAttr": false,
           "docs": "Supported layouts",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -1174,16 +1179,13 @@
         "ix-card-list",
         "ix-date-dropdown",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-datetime-picker",
-        "ix-datetime-picker-rework",
         "ix-dropdown-button",
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-upload"
       ],
       "dependencies": [
@@ -1202,13 +1204,7 @@
         "ix-date-picker": [
           "ix-button"
         ],
-        "ix-date-picker-rework": [
-          "ix-button"
-        ],
         "ix-datetime-picker": [
-          "ix-button"
-        ],
-        "ix-datetime-picker-rework": [
           "ix-button"
         ],
         "ix-dropdown-button": [
@@ -1227,9 +1223,6 @@
           "ix-button"
         ],
         "ix-time-picker": [
-          "ix-button"
-        ],
-        "ix-time-picker-rework": [
           "ix-button"
         ],
         "ix-upload": [
@@ -2352,7 +2345,7 @@
           "mutable": false,
           "attr": "background",
           "reflectToAttr": false,
-          "docs": "Custom color for pill. Only working for `variant='custom'`",
+          "docs": "Custom background color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
@@ -2395,7 +2388,7 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
           "docsTags": [],
           "values": [
             {
@@ -2546,14 +2539,14 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
           "ix-col"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-col"
         ]
       },
@@ -3078,35 +3071,25 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-dropdown-button",
+        "ix-button",
         "ix-dropdown",
         "ix-layout-grid",
         "ix-row",
         "ix-col",
         "ix-dropdown-item",
-        "ix-date-picker",
-        "ix-button"
+        "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-dropdown": [
-          "ix-dropdown-button",
+          "ix-button",
           "ix-dropdown",
           "ix-layout-grid",
           "ix-row",
           "ix-col",
           "ix-dropdown-item",
-          "ix-date-picker",
-          "ix-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-dropdown"
+          "ix-date-picker"
         ],
         "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
           "ix-spinner"
         ],
         "ix-date-picker": [
@@ -3114,6 +3097,9 @@
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ]
       },
       "props": [
@@ -3129,16 +3115,33 @@
           "attr": "custom-range-allowed",
           "reflectToAttr": false,
           "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "dateRangeId",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "date-range-id",
+          "reflectToAttr": false,
+          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
+          "docsTags": [],
+          "default": "'custom'",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -3160,7 +3163,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    label: 'No time limit',\n    getValue: (): DateRangeOption => {\n      // Calculate the date range here\n      return { from: undefined, to: today };\n    },\n  },\n  // ... other predefined date range options ...",
+          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    id: 'some unique id',\n    label: 'Name of the range',\n    from: undefined, to: '2023/03/29'\n  },\n  // ... other predefined date range options ...",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -3189,7 +3192,7 @@
               "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
             }
           ],
-          "default": "'YYYY-MM-DD'",
+          "default": "'yyyy/LL/dd'",
           "values": [
             {
               "type": "string"
@@ -3202,7 +3205,7 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string | null",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -3211,7 +3214,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
           "values": [
             {
               "type": "string"
@@ -3221,7 +3223,7 @@
           "required": false
         },
         {
-          "name": "initialSelectedDateRangeName",
+          "name": "i18nCustomItem",
           "type": "string",
           "complexType": {
             "original": "string",
@@ -3229,16 +3231,55 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "initial-selected-date-range-name",
+          "attr": "i18n-custom-item",
           "reflectToAttr": false,
-          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
-          "docsTags": [
+          "docs": "Text for custom dropdown item. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Custom...'",
+          "values": [
             {
-              "name": "default",
-              "text": "''"
+              "type": "string"
             }
           ],
-          "default": "''",
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nNoRange",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-no-range",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'No range set'",
           "values": [
             {
               "type": "string"
@@ -3315,7 +3356,7 @@
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | null",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -3324,7 +3365,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
           "values": [
             {
               "type": "string"
@@ -3339,7 +3379,7 @@
           "name": "getDateRange",
           "returns": {
             "type": "Promise<DateRangeChangeEvent>",
-            "docs": "The selected date range."
+            "docs": ""
           },
           "complexType": {
             "signature": "() => Promise<DateRangeChangeEvent>",
@@ -3360,22 +3400,17 @@
           "signature": "getDateRange() => Promise<DateRangeChangeEvent>",
           "parameters": [],
           "docs": "Retrieves the currently selected date range from the component.\nThis method returns the selected date range as a `DateChangeEvent` object.",
-          "docsTags": [
-            {
-              "name": "returns",
-              "text": "The selected date range."
-            }
-          ]
+          "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ id: string; from: string; to: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateRangeChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ id: string; from: string; to: string; }",
             "references": {
               "DateRangeChangeEvent": {
                 "location": "local",
@@ -3387,14 +3422,7 @@
           "cancelable": true,
           "composed": true,
           "docs": "EventEmitter for date range change events.\n\nThis event is emitted when the date range changes within the component.\nThe event payload contains information about the selected date range.",
-          "docsTags": [
-            {
-              "name": "event"
-            },
-            {
-              "name": "private"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -3502,9 +3530,14 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "Not used anymore see `this.dateChange`"
             }
           ],
           "default": "' - '",
+          "deprecation": "Not used anymore see `this.dateChange`",
           "values": [
             {
               "type": "string"
@@ -3539,21 +3572,47 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string | null",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
+          "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.format)",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
           "values": [
             {
               "type": "string"
@@ -3577,14 +3636,36 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
+              "text": "Not supported since 2.0.0."
             }
           ],
           "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
+          "deprecation": "Not supported since 2.0.0.",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -3653,7 +3734,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "If true a range of dates can be selected.",
+          "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -3675,14 +3756,18 @@
           "mutable": false,
           "attr": "text-select-date",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
+          "docs": "Text of the button that confirms date selection.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
@@ -3695,24 +3780,50 @@
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | null",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docs": "The selected end date. If the the date-picker-rework is not in range mode this property has no impact.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -3723,11 +3834,11 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ start: string; end: string; }>",
+            "type": "Promise<{ from: string; to: string; }>",
             "docs": ""
           },
           "complexType": {
-            "signature": "() => Promise<{ start: string; end: string; }>",
+            "signature": "() => Promise<{ from: string; to: string; }>",
             "parameters": [],
             "references": {
               "Promise": {
@@ -3735,40 +3846,39 @@
                 "id": "global::Promise"
               }
             },
-            "return": "Promise<{ start: string; end: string; }>"
+            "return": "Promise<{ from: string; to: string; }>"
           },
-          "signature": "getCurrentDate() => Promise<{ start: string; end: string; }>",
+          "signature": "getCurrentDate() => Promise<{ from: string; to: string; }>",
           "parameters": [],
-          "docs": "Get the current DateTime",
+          "docs": "Get the currently selected date-range.",
           "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "complexType": {
-            "original": "LegacyDateChangeEvent",
-            "resolved": "string | { from: string; to: string; }",
+            "original": "DateChangeEvent",
+            "resolved": "{ from: string; to: string; }",
             "references": {
-              "LegacyDateChangeEvent": {
+              "DateChangeEvent": {
                 "location": "local",
                 "path": "/Users/daniel/dev/oss/ix/packages/core/src/components/date-picker/date-picker.tsx",
-                "id": "src/components/date-picker/date-picker.tsx::LegacyDateChangeEvent"
+                "id": "src/components/date-picker/date-picker.tsx::DateChangeEvent"
               }
             }
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.",
+          "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
           "docsTags": [
             {
-              "name": "deprecated",
-              "text": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+              "name": "since",
+              "text": "2.0.0"
             }
-          ],
-          "deprecation": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+          ]
         },
         {
           "event": "dateRangeChange",
@@ -3787,11 +3897,11 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Date range change.\nOnly triggered if datepicker is in range mode",
+          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0"
+              "text": "2.0.0"
             }
           ]
         },
@@ -3835,10 +3945,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use `dateSelect`"
+              "text": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
             }
           ],
-          "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
+          "deprecation": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
         }
       ],
       "styles": [],
@@ -3860,12 +3970,18 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-layout-grid",
+        "ix-row",
+        "ix-col",
         "ix-date-picker",
         "ix-time-picker",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-datetime-picker": [
+          "ix-layout-grid",
+          "ix-row",
+          "ix-col",
           "ix-date-picker",
           "ix-time-picker",
           "ix-button"
@@ -3901,12 +4017,8 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee",
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
             {
               "name": "since",
               "text": "1.1.0"
@@ -3937,9 +4049,14 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "Not used anymore see `done` event"
             }
           ],
           "default": "' - '",
+          "deprecation": "Not used anymore see `done` event",
           "values": [
             {
               "type": "string"
@@ -3952,20 +4069,69 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
+          "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
+          "default": "undefined",
           "values": [
             {
               "type": "string"
@@ -4037,7 +4203,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "Set range size",
+          "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -4061,7 +4227,7 @@
           "reflectToAttr": false,
           "docs": "Show hour input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -4083,7 +4249,7 @@
           "reflectToAttr": false,
           "docs": "Show minutes input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -4105,7 +4271,7 @@
           "reflectToAttr": false,
           "docs": "Show seconds input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -4161,9 +4327,13 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
@@ -4209,18 +4379,14 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee",
+          "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            },
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "'TT'",
+          "default": "'HH:mm:ss'",
           "values": [
             {
               "type": "string"
@@ -4259,24 +4425,50 @@
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | null",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -4327,7 +4519,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Date selection event is fired after confirm button is pressend",
+          "docs": "Datetime selection event is fired after confirm button is pressed",
           "docsTags": [
             {
               "name": "since",
@@ -4347,7 +4539,13 @@
           "cancelable": true,
           "composed": true,
           "docs": "Done event\n\nSet `doneEventDelimiter` to null or undefine to get the typed event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `this.dateChange`"
+            }
+          ],
+          "deprecation": "Use `this.dateChange`"
         },
         {
           "event": "timeChange",
@@ -4663,7 +4861,6 @@
         "ix-category-filter",
         "ix-date-dropdown",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
@@ -4689,9 +4886,6 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-date-picker-rework": [
           "ix-dropdown"
         ],
         "ix-dropdown-button": [
@@ -5032,7 +5226,6 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-date-dropdown",
         "my-component"
       ],
       "dependencies": [
@@ -5052,14 +5245,50 @@
         "ix-icon-button": [
           "ix-spinner"
         ],
-        "ix-date-dropdown": [
-          "ix-dropdown-button"
-        ],
         "my-component": [
           "ix-dropdown-button"
         ]
       },
       "props": [
+        {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "complexType": {
+            "original": "'inside' | 'outside' | 'both' | boolean",
+            "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -6914,7 +7143,6 @@
         "ix-chip",
         "ix-content-header",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
@@ -6934,7 +7162,6 @@
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-toast",
         "my-component"
       ],
@@ -6964,9 +7191,6 @@
           "ix-icon-button"
         ],
         "ix-date-picker": [
-          "ix-icon-button"
-        ],
-        "ix-date-picker-rework": [
           "ix-icon-button"
         ],
         "ix-drawer": [
@@ -7026,9 +7250,6 @@
         "ix-time-picker": [
           "ix-icon-button"
         ],
-        "ix-time-picker-rework": [
-          "ix-icon-button"
-        ],
         "ix-toast": [
           "ix-icon-button"
         ],
@@ -7037,6 +7258,32 @@
         ]
       },
       "props": [
+        {
+          "name": "a11yLabel",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "a11y-label",
+          "reflectToAttr": false,
+          "docs": "Accessibility label for the icon button\nWill be set as aria-label on the nested HTML button element",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "color",
           "type": "string",
@@ -7919,14 +8166,14 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
           "ix-layout-grid"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-layout-grid"
         ]
       },
@@ -8138,7 +8385,7 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "Use ix-application as an successor of ix-basic-navigation"
+          "text": "Use ix-application as an successor of ix-map-navigation"
         }
       ],
       "encapsulation": "shadow",
@@ -8170,7 +8417,7 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "Use ix-application as an successor of ix-basic-navigation",
+      "deprecation": "Use ix-application as an successor of ix-map-navigation",
       "props": [
         {
           "name": "applicationName",
@@ -10296,7 +10543,22 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "labelChange",
+          "detail": "{ name: string; oldLabel: string; newLabel: string; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "{\n    name: string;\n    oldLabel: string;\n    newLabel: string;\n  }",
+            "resolved": "{ name: string; oldLabel: string; newLabel: string; }",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Label changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -11677,14 +11939,14 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
           "ix-row"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-row"
         ]
       },
@@ -13619,7 +13881,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string",
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -13650,11 +13912,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
+              "text": "Not supported since 2.0.0."
             }
           ],
           "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
+          "deprecation": "Not supported since 2.0.0.",
           "values": [
             {
               "type": "boolean"
@@ -13676,7 +13938,7 @@
           "reflectToAttr": false,
           "docs": "Show hour input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -13698,7 +13960,7 @@
           "reflectToAttr": false,
           "docs": "Show minutes input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -13720,7 +13982,7 @@
           "reflectToAttr": false,
           "docs": "Show seconds input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -13731,10 +13993,10 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "boolean",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "boolean",
+            "resolved": "boolean",
             "references": {}
           },
           "mutable": true,
@@ -13744,13 +14006,40 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0 time reference is default aligned with formt tt"
+              "text": "1.1.0 time reference is default aligned with format tt"
+            },
+            {
+              "name": "deprecated",
+              "text": "Since 2.0.0 time reference will be displayed depending on format."
             }
           ],
           "default": "undefined",
+          "deprecation": "Since 2.0.0 time reference will be displayed depending on format.",
           "values": [
             {
-              "type": "any"
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "standaloneAppearance",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "standalone-appearance",
+          "reflectToAttr": false,
+          "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -13784,6 +14073,28 @@
           "required": false
         },
         {
+          "name": "textTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "text-time",
+          "reflectToAttr": false,
+          "docs": "Text for top label",
+          "docsTags": [],
+          "default": "'Time'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -13794,7 +14105,7 @@
           "mutable": false,
           "attr": "time",
           "reflectToAttr": false,
-          "docs": "Select time with format string",
+          "docs": "Select time with format string\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -13814,16 +14125,15 @@
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
           "complexType": {
-            "original": "'AM' | 'PM'",
+            "original": "'AM' | 'PM' | undefined",
             "resolved": "\"AM\" | \"PM\"",
             "references": {}
           },
-          "mutable": true,
+          "mutable": false,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "DateTime.fromFormat(\n    this.time,\n    this.format\n  ).toFormat('a') as 'PM' | 'AM'",
           "values": [
             {
               "value": "AM",
@@ -13858,7 +14168,7 @@
           },
           "signature": "getCurrentTime() => Promise<string>",
           "parameters": [],
-          "docs": "Get current time",
+          "docs": "Get the current time based on the wanted format",
           "docsTags": []
         }
       ],
@@ -13875,7 +14185,13 @@
           "cancelable": true,
           "composed": true,
           "docs": "Time event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 3.0.0. Use `time-select` event."
+            }
+          ],
+          "deprecation": "Will be removed in 3.0.0. Use `time-select` event."
         },
         {
           "event": "timeChange",
@@ -13889,6 +14205,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Time change event",
+          "docsTags": []
+        },
+        {
+          "event": "timeSelect",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Time event",
           "docsTags": []
         }
       ],
@@ -15204,7 +15534,6 @@
         "ix-push-card",
         "ix-slider",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-tooltip"
       ],
       "dependencies": [],
@@ -15249,9 +15578,6 @@
           "ix-typography"
         ],
         "ix-time-picker": [
-          "ix-typography"
-        ],
-        "ix-time-picker-rework": [
           "ix-typography"
         ],
         "ix-tooltip": [
@@ -16282,12 +16608,12 @@
       "path": "src/components/css-grid/css-grid.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
-      "declaration": "{\n  label: string;\n  getValue: () => any;\n}",
+      "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
@@ -16296,20 +16622,10 @@
       "docstring": "",
       "path": "src/components/date-time-card/date-time-card.tsx"
     },
-    "src/components/date-picker/date-picker.tsx::LegacyDateChangeEvent": {
-      "declaration": "export type LegacyDateChangeEvent = DateChangeEvent | string;",
-      "docstring": "",
-      "path": "src/components/date-picker/date-picker.tsx"
-    },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-picker/date-picker.tsx"
-    },
-    "src/components/date-picker-rework/date-picker-rework.tsx::DateChangeEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n}",
-      "docstring": "",
-      "path": "src/components/date-picker-rework/date-picker-rework.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeDateChangeEvent": {
       "declaration": "export type DateTimeDateChangeEvent =\n  | string\n  | Omit<DateTimeSelectEvent, 'time'>;",
@@ -16320,16 +16636,6 @@
       "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
-    },
-    "src/components/datetime-picker-rework/datetime-picker-rework.tsx::DateTimeDateChangeEvent": {
-      "declaration": "export type DateTimeDateChangeEvent =\n  | string\n  | Omit<DateTimeSelectEvent, 'time'>;",
-      "docstring": "",
-      "path": "src/components/datetime-picker-rework/datetime-picker-rework.tsx"
-    },
-    "src/components/datetime-picker-rework/datetime-picker-rework.tsx::DateTimeSelectEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
-      "docstring": "",
-      "path": "src/components/datetime-picker-rework/datetime-picker-rework.tsx"
     },
     "src/components/dropdown/placement.ts::AlignedPlacement": {
       "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
@@ -16410,11 +16716,6 @@
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
       "path": "src/components/time-picker/time-picker.tsx"
-    },
-    "src/components/time-picker-rework/time-picker-rework.tsx::TimePickerCorners": {
-      "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
-      "docstring": "",
-      "path": "src/components/time-picker-rework/time-picker-rework.tsx"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
       "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",

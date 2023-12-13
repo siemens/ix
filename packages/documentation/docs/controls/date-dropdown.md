@@ -30,10 +30,10 @@ import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/dat
 <Playground
   name="date-dropdown-user-range" height="35rem"
   frameworks={{
-  react: SourceReactDateDropdownUserRange,
-  angular: SourceAngularDateDropdownUserRange,
-  javascript: SourceDateDropdownUserRange,
-  vue: SourceVueDateDropdownUserRange
+    react: SourceReactDateDropdownUserRange,
+    angular: SourceAngularDateDropdownUserRange,
+    javascript: SourceDateDropdownUserRange,
+    vue: SourceVueDateDropdownUserRange
 }}></Playground>
 
 ## Properties

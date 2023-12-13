@@ -119,6 +119,12 @@ export default function SiteMetadata() {
           <meta key={i} {...metadatum} />
         ))}
       </Head>
+
+      <Head>
+        <script src="//w3.siemens.com/ote/ote_config.js" no-cors></script>
+        <script src="//w3.siemens.com/ote/global/ote.js"></script>
+        <script src="https://assets.adobedtm.com/5dfc7d97c6fb/7699a47b720a/launch-2157063140e5.min.js" async></script>
+      </Head>
     </>
   );
 }
