@@ -8,7 +8,7 @@
  */
 
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { ModalService } from '@siemens/ix-angular';
+import { IxModalSize, ModalService } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
@@ -21,7 +21,7 @@ export default class ModalSizes {
 
   constructor(private readonly modalService: ModalService) {}
 
-  async open(size: any) {
+  async open(size: IxModalSize) {
     await this.modalService.open({
       content: this.customModalRef,
       data: size,
