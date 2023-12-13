@@ -16510,7 +16510,7 @@ requires-port@^1.0.0:
 
 resize-detector@^0.3.0:
   version "0.3.0"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/resize-detector/-/resize-detector-0.3.0.tgz#fe495112e184695500a8f51e0389f15774cb1cfc"
+  resolved "https://registry.yarnpkg.com/resize-detector/-/resize-detector-0.3.0.tgz#fe495112e184695500a8f51e0389f15774cb1cfc"
   integrity sha512-R/tCuvuOHQ8o2boRP6vgx8hXCCy87H1eY9V5imBYeVNyNVpuL9ciReSccLj2gDcax9+2weXy3bc8Vv+NRXeEvQ==
 
 resolve-cwd@^3.0.0:
@@ -17189,7 +17189,7 @@ sitemap@^7.1.1:
 
 size-sensor@^1.0.1:
   version "1.0.2"
-  resolved "https://captain.rtf.siemens.net/artifactory/api/npm/mindedge-npm/size-sensor/-/size-sensor-1.0.2.tgz#b8f8da029683cf2b4e22f12bf8b8f0a1145e8471"
+  resolved "https://registry.yarnpkg.com/size-sensor/-/size-sensor-1.0.2.tgz#b8f8da029683cf2b4e22f12bf8b8f0a1145e8471"
   integrity sha512-2NCmWxY7A9pYKGXNBfteo4hy14gWu47rg5692peVMst6lQLPKrVjhY+UTEsPI5ceFRJSl3gVgMYaUi/hKuaiKw==
 
 slash@^3.0.0:
