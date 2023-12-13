@@ -4834,11 +4834,6 @@ ag-grid-angular@^30.0.0:
   dependencies:
     tslib "^2.3.0"
 
-ag-grid-community@30.2.0:
-  version "30.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-30.2.0.tgz#b831fc99df1bfee6f73669fd8b7d3e9bd4012e22"
-  integrity sha512-Gd6GXmtzEQSCDloBdRxxCDqnjTBRAOf/zzlaxxyyVBJgc+cePuNgGdplRUhT/rwIiDwvyuoynvxelVE/iYdXsA==
-
 ag-grid-community@^30.2.0:
   version "30.2.1"
   resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-30.2.1.tgz#a83d153ad1dbec46402ebe89f74ebb4b0710b3c7"
