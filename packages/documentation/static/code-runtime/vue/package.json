@@ -16,7 +16,6 @@
     "@siemens/ix-echarts": "~2.0.4",
     "ag-grid-community": "^30.2.0",
     "ag-grid-vue3": "^28.2.1",
-    "dayjs": "^1.11.9",
     "vue-echarts": "~6.6.1",
     "echarts": "^5.4.1"
   },
