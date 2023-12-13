@@ -31,13 +31,17 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
-          <ix-side-panel-wrapper>
-            <ix-side-panel slot="top">
+          <ix-side-panel-wrapper behaviour="inline">
+            <ix-side-panel expanded={true} slot="top">
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-side-panel>
-            <ix-side-panel slot="left"></ix-side-panel>
+            <ix-side-panel slot="left">
+              <h1>Test Heading</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
+            </ix-side-panel>
             <ix-side-panel slot="right"></ix-side-panel>
             <ix-side-panel slot="bottom"></ix-side-panel>
             <ix-side-panel-content-area slot="content">

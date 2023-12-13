@@ -22,7 +22,7 @@ export class SidePanelWrapper {
   /**
    * Sets the behaviour of the component, either it should be an inline or a floating component
    */
-  @Prop() behaviour: 'inline' | 'floating' = 'floating';
+  @Prop() behaviour: 'inline' | 'floating' = 'inline';
 
   /**
    * TODO: !!!
@@ -37,9 +37,18 @@ export class SidePanelWrapper {
   private expandedPanelPosition: string = '';
   private mobileMode: boolean = false;
 
+  private sidePanels: {
+    [position: string]: HTMLIxSidePanelElement | null;
+  } = {};
+
+  componentWillLoad() {
+    this.onWindowResize();
+  }
+
   componentWillRender() {
     const sidePanels = this.getSidePanels();
     sidePanels.forEach((sidePanelElement) => {
+      this.sidePanels[sidePanelElement.position] = sidePanelElement;
       sidePanelElement.inline = this.behaviour === 'inline';
     });
 
@@ -50,12 +59,11 @@ export class SidePanelWrapper {
   onWindowResize() {
     const newMode = window.innerWidth <= mobileBreakpoint;
     if (this.mobileMode != newMode) {
-      const sidePanels = this.getSidePanels();
       this.mobileMode = newMode;
 
-      sidePanels.forEach((sidePanelElement) => {
-        sidePanelElement.mobile = this.mobileMode;
-      });
+      for (var key in this.sidePanels) {
+        this.sidePanels[key].mobile = this.mobileMode;
+      }
     }
   }
 

@@ -9,6 +9,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import anime from "animejs";
 
 type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
 type ExpandedChangeEvent = {
@@ -32,7 +33,7 @@ export class SidePanel {
   /**
    * Floating or inline style
    */
-  @Prop({ mutable: true, reflect: true }) inline: boolean = true;
+  @Prop() inline: boolean = true;
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -70,7 +71,8 @@ export class SidePanel {
   /**
    * TODO: !!!
    */
-  @Prop({ mutable: true }) mobile: boolean = null;
+  @Prop({ mutable: true, reflect: true }) mobile: boolean =
+    window.innerWidth < 767;
 
   @State() private expandIcon: string = '';
   @State() private minimizeIcon: string = '';
@@ -81,8 +83,11 @@ export class SidePanel {
     this.position =
       (this.hostElement.getAttribute('slot') as SidePanelPosition) ||
       this.position;
-
     this.isHorizontal = this.position === 'bottom' || this.position === 'top';
+
+    if (this.expanded) {
+      this.onExpandedChange();
+    }
   }
 
   determineSidePanelIcons() {
@@ -133,7 +138,12 @@ export class SidePanel {
 
   @Watch('mobile')
   onMobileModeChange() {
-    if (this.mobile) {
+    if (!this.inline) {
+      this.expanded = false;
+      return;
+    }
+
+    if (this.mobile && this.inline) {
       if (this.isHorizontal) {
         this.hostElement.style.setProperty('box-shadow', '0px 0px 0px re');
       } else {
@@ -177,9 +187,26 @@ export class SidePanel {
     }
   }
 
+  private animateOverlayFadeIn() {
+
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.hostElement,
+        duration: 150,
+        translateX: [-240, 0],
+        opacity: [0, 1],
+        easing: 'linear',
+        begin: () => {
+
+          this.expanded = !this.expanded;
+        },
+      });
+    });
+  }
+
   render() {
     return (
-      <Host>
+      <Host hidden={!this.inline && (!this.expanded || this.mobile)}>
         <aside
           class={{
             expanded: this.expanded,
@@ -187,14 +214,25 @@ export class SidePanel {
             'side-panel-horizontal': this.isHorizontal,
             'side-panel-vertical': !this.isHorizontal,
           }}
-          hidden={!this.inline && !this.expanded}
         >
-          <div class="container">
+          <div
+            class={{
+              container: true,
+              floating: !this.inline,
+            }}
+          >
             <ix-icon-button
-              icon={this.expanded ? this.expandIcon : this.minimizeIcon}
+              icon={
+                !this.inline
+                  ? 'close'
+                  : this.expanded
+                  ? this.expandIcon
+                  : this.minimizeIcon
+              }
               ghost
               onClick={() => {
-                this.expanded = !this.expanded;
+                this.animateOverlayFadeIn();
+                //this.expanded = !this.expanded;
               }}
             ></ix-icon-button>
             <span

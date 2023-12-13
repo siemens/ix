@@ -16,6 +16,17 @@ $side-pane-mini-content-width: 76px;
   .side-panel-horizontal {
     background-color: var(--theme-nav--background);
     width: 100%;
+
+    &.expanded {
+      .floating {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.2rem;
+      }
+    }
+
   }
 
   .side-panel-content {
@@ -71,6 +82,12 @@ $side-pane-mini-content-width: 76px;
           display: flex;
           flex-direction: row;
           align-items: center;
+        }
+
+        .floating {
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          padding: 0 1.2rem;
         }
       }
 
