@@ -31,7 +31,7 @@
   font: var(--theme-text-l-single);
 }
 
-.ApiTable .row.with--border {
+.ApiTable .row.with--border:not(:last-child) {
   border-bottom: var(--theme-weak-bdr-2);
 }
 

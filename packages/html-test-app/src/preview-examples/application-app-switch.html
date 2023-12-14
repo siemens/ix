@@ -9,7 +9,7 @@ SPDX-License-Identifier: MIT
   <body class="theme-classic-dark">
     <!-- Preview code -->
     <ix-application>
-      <ix-application-header name="My Application">
+      <ix-application-header name="Calculator App">
         <placeholder-logo slot="logo"></placeholder-logo>
       </ix-application-header>
       <ix-menu>
@@ -28,22 +28,22 @@ SPDX-License-Identifier: MIT
       const application = document.querySelector('ix-application');
       application.appSwitchConfig = {
         textAppSwitch: 'Switch to Application',
-        currentAppId: 'app-2',
+        currentAppId: 'demo-app-2',
         apps: [
           {
-            id: 'app-1',
-            name: 'Example App 1',
+            id: 'demo-app-1',
+            name: 'Floor App',
             iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-            url: 'https://www.google.de',
-            description: 'Test',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for floor app',
             target: '_self',
           },
           {
-            id: 'app-2',
-            name: 'Example App 222',
-            description: 'Test',
+            id: 'demo-app-2',
+            name: 'Calculator App',
             iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-            url: 'https://www.google.de',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for floor app',
             target: '_self',
           },
         ],

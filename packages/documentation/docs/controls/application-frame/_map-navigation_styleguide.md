@@ -4,7 +4,7 @@ Map navigation is a combination of infrastructural components that form a layout
 
 The map navigation has:
 - (1) [App header](#app-header): included in the panel to save space for the map content
-- (2) [Navigation menu](./vertical-tabs.md): navigation component
+- (2) [Navigation menu](./application-menu.md): navigation component
 - (3) Context panel: provides additional information, navigation and controls to configure map content
 - (4) Map content: shows map-like content, P&I diagrams or other plans
 - (5) Control: expands and collapses the context panel

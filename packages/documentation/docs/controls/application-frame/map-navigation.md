@@ -1,6 +1,5 @@
 ---
-sidebar_position: 6
-title: Map navigation
+sidebar_position: 11
 ---
 
 import Playground from '@site/src/components/Playground'
@@ -12,8 +11,8 @@ import DocsCode from './\_map-navigation_code.md';
 
 import Tags from './../../auto-generated/ix-map-navigation/tags.md';
 
-<Tags />
+# Map Navigation (deprecated)
 
-# Map Navigation
+<Tags />
 
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

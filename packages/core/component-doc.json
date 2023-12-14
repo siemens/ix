@@ -394,7 +394,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "logo - Location of the Logo"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
@@ -455,7 +460,12 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "logo",
+          "docs": "Location of the Logo"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -2884,6 +2894,10 @@
         {
           "name": "since",
           "text": "2.1.0"
+        },
+        {
+          "name": "slot",
+          "text": "header - Display content on the top of the content page"
         }
       ],
       "encapsulation": "shadow",
@@ -2900,7 +2914,12 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "header",
+          "docs": "Display content on the top of the content page"
+        }
+      ],
       "parts": [],
       "listeners": []
     },

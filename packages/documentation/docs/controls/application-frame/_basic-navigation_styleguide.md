@@ -7,7 +7,7 @@ Basic navigation is a combination of essential infrastructure components forming
 
 Basic navigation has:
 - (1) App header: component at the top of the application
-- (2) [Navigation menu](./vertical-tabs.md): component for navigation
+- (2) [Navigation menu](./application-menu.md): component for navigation
 - (3) App content
 
 ### App header
@@ -45,7 +45,8 @@ Basic navigation automatically adapts, by default, to the three breakpoints. Dep
 - Clicking the icon displays the navigation menu as an overlay
 
 ### Example
-<Playground name="menu-layouts" height="30rem" noMargin frameworks={{}}></Playground>
+
+<Playground name="application-breakpoints" height="30rem" noMargin frameworks={{}}></Playground>
 
 ## Dos and Don’ts
 - Don't place additional components inside the application header for Siemens applications

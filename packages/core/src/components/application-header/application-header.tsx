@@ -25,6 +25,9 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @slot logo - Location of the Logo
+ */
 @Component({
   tag: 'ix-application-header',
   styleUrl: 'application-header.scss',

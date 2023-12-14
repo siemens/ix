@@ -14,6 +14,7 @@ import AvatarProps from './../../auto-generated/ix-menu-avatar/props.md';
 import AvatarEvents from './../../auto-generated/ix-menu-avatar/events.md';
 import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md';
 import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
+import AvatarTags from './../../auto-generated/ix-menu-avatar/tags.md';
 
 import SourceMenu from './../../auto-generated/previews/web-component/vertical-tabs.md'
 import SourceMenuCategory from './../../auto-generated/previews/web-component/menu-category.md'
@@ -67,6 +68,8 @@ frameworks={{
 }}></Playground>
 
 ## Avatar
+
+<AvatarTags />
 
 <Playground
 name="vertical-tabs-with-avatar" height="30rem" noMargin

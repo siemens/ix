@@ -1,6 +1,5 @@
 ---
-sidebar_position: 0
-title: Basic navigation
+sidebar_position: 10
 ---
 
 import Playground from '@site/src/components/Playground'
@@ -11,8 +10,8 @@ import DocsCode from './\_basic-navigation_code.md';
 
 import Tags from './../../auto-generated/ix-basic-navigation/tags.md';
 
-<Tags />
+# Basic Navigation (deprecated)
 
-# Basic Navigation
+<Tags />
 
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

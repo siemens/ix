@@ -59,7 +59,11 @@ frameworks={{
 }}>
 </Playground>
 
+## Header
 
+You can add the avatar also to the header which enables the feature that the button is clickable.
+
+<Playground name="application-header" examplesByName noMargin height="18rem"></Playground>
 
 ## Properties
 
