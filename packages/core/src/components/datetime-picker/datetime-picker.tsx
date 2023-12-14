@@ -25,26 +25,26 @@ export type DateTimeDateChangeEvent =
   styleUrl: 'datetime-picker.scss',
   shadow: true,
 })
-export class DateTimePicker {
+export class DatetimePicker {
   /**
-   * Set range size
+   * If true a date-range can be selected (from/to).
    */
   @Prop() range = true;
 
   /**
    * Show hour input
    */
-  @Prop() showHour = false;
+  @Prop() showHour = true;
 
   /**
    * Show minutes input
    */
-  @Prop() showMinutes = false;
+  @Prop() showMinutes = true;
 
   /**
    * Show seconds input
    */
-  @Prop() showSeconds = false;
+  @Prop() showSeconds = true;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -64,7 +64,7 @@ export class DateTimePicker {
 
   /**
    * Date format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
@@ -72,30 +72,27 @@ export class DateTimePicker {
 
   /**
    * Time format string.
-   * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    *
    * @since 1.1.0
    */
-  @Prop() timeFormat: string = 'TT';
+  @Prop() timeFormat: string = 'HH:mm:ss';
 
   /**
-   * Picker date. If the picker is in range mode this property is the start date.
-   *
-   * Format is based on `format`
+   * The selected starting date. If the picker is not in range mode this is the selected date.
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
-  @Prop() from: string;
+  @Prop() from: string | undefined;
 
   /**
-   * Picker date. If the picker is in range mode this property is the end date.
-   * If the picker is not in range mode leave this value `null`
-   *
-   * Format is based on `format`
+   * The selected end date. If the the picker is not in range mode this property has no impact.
+   * Format has to match the `format` property.
    *
    * @since 1.1.0
    */
-  @Prop() to: string | null = null;
+  @Prop() to: string | undefined;
 
   /**
    * Select time with format string
@@ -113,14 +110,6 @@ export class DateTimePicker {
   @Prop() showTimeReference = undefined;
 
   /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   */
-  @Prop() eventDelimiter = ' - ';
-
-  /**
    * Set time reference
    */
   @Prop() timeReference: 'AM' | 'PM';
@@ -129,13 +118,45 @@ export class DateTimePicker {
    * Text of date select button
    *
    * @since 1.1.0
+   * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate = 'Done';
+  @Prop() textSelectDate: string;
+
+  /**
+   * Text of date select button
+   *
+   * @since 2.1.0
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   *
+   * @since 2.0.0
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
+   * Format of time string
+   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   */
+  @Prop() locale: string = undefined;
+
+  /**
+   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
+   * This combination can be configured over the delimiter
+   *
+   * @since 1.1.0
+   * @deprecated Not used anymore see `done` event
+   */
+  @Prop() eventDelimiter = ' - ';
 
   /**
    * Done event
    *
    * Set `doneEventDelimiter` to null or undefine to get the typed event
+   * @deprecated Use `this.dateChange`
    */
   @Event() done: EventEmitter<string>;
 
@@ -154,7 +175,7 @@ export class DateTimePicker {
   @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Date selection event is fired after confirm button is pressend
+   * Datetime selection event is fired after confirm button is pressed
    *
    * @since 1.1.0
    */
@@ -163,87 +184,83 @@ export class DateTimePicker {
   private datePickerElement: HTMLIxDatePickerElement;
   private timePickerElement: HTMLIxTimePickerElement;
 
-  private _from: string;
-  private _to: string;
-  private _time: string;
-
-  private onDone() {
-    this.done.emit(
-      [this._from, this._to ?? '', this._time].join(this.eventDelimiter)
-    );
+  private async onDone() {
+    const date = await this.datePickerElement.getCurrentDate();
+    const time = await this.timePickerElement.getCurrentTime();
 
     this.dateSelect.emit({
-      from: this._from,
-      to: this._to,
-      time: this._time,
+      from: date.from,
+      to: date.to,
+      time: time,
     });
+
+    this.done.emit([date.from, date.to ?? '', time].join(this.eventDelimiter));
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: date } = event;
     this.dateChange.emit(date);
-
-    const currentDateTime = await this.datePickerElement.getCurrentDate();
-    this._from = currentDateTime.start;
-    this._to = currentDateTime.end;
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
     event.preventDefault();
     event.stopPropagation();
+
     const { detail: time } = event;
     this.timeChange.emit(time);
-
-    const currentDateTime = await this.timePickerElement.getCurrentTime();
-    this._time = currentDateTime;
-  }
-
-  componentDidLoad() {
-    this._from = this.from;
-    this._to = this.to;
-    this._time = this.time;
   }
 
   render() {
     return (
       <Host>
-        <div class="flex">
-          <div class="separator"></div>
-          <ix-date-picker
-            ref={(ref) => (this.datePickerElement = ref)}
-            corners="left"
-            individual={false}
-            range={this.range}
-            onDateChange={(event) => this.onDateChange(event)}
-            from={this.from}
-            to={this.to}
-            format={this.dateFormat}
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            eventDelimiter={this.eventDelimiter}
-          ></ix-date-picker>
+        <ix-layout-grid class="no-padding">
+          <ix-row>
+            <ix-col class="no-padding">
+              <ix-date-picker
+                ref={(ref) => (this.datePickerElement = ref)}
+                corners="left"
+                range={this.range}
+                onDateChange={(event) => this.onDateChange(event)}
+                from={this.from}
+                to={this.to}
+                format={this.dateFormat}
+                minDate={this.minDate}
+                maxDate={this.maxDate}
+                weekStartIndex={this.weekStartIndex}
+                standaloneAppearance={false}
+                locale={this.locale}
+              ></ix-date-picker>
+            </ix-col>
 
-          <ix-time-picker
-            ref={(ref) => (this.timePickerElement = ref)}
-            corners="right"
-            individual={false}
-            showHour={this.showHour}
-            showMinutes={this.showMinutes}
-            showSeconds={this.showSeconds}
-            showTimeReference={this.showTimeReference}
-            onTimeChange={(event) => this.onTimeChange(event)}
-            time={this.time}
-            format={this.timeFormat}
-            timeReference={this.timeReference}
-          ></ix-time-picker>
-          <div class="separator"></div>
-        </div>
-
-        <ix-button class="btn-select-date" onClick={() => this.onDone()}>
-          {this.textSelectDate}
-        </ix-button>
+            <ix-col class="no-padding">
+              <ix-time-picker
+                class="min-width"
+                ref={(ref) => (this.timePickerElement = ref)}
+                corners="right"
+                standaloneAppearance={false}
+                showHour={this.showHour}
+                showMinutes={this.showMinutes}
+                showSeconds={this.showSeconds}
+                onTimeChange={(event) => this.onTimeChange(event)}
+                format={this.timeFormat}
+                time={this.time}
+              ></ix-time-picker>
+            </ix-col>
+          </ix-row>
+          <ix-row>
+            <ix-col>
+              <ix-button
+                class="btn-select-date btn-md-width"
+                onClick={() => this.onDone()}
+              >
+                {this.textSelectDate || this.i18nDone}
+              </ix-button>
+            </ix-col>
+          </ix-row>
+        </ix-layout-grid>
       </Host>
     );
   }

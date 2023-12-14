@@ -501,6 +501,7 @@ export class Select {
                 : ''}
               <div class="trigger">
                 <input
+                  autocomplete="off"
                   data-testid="input"
                   disabled={this.disabled}
                   readOnly={this.readonly}

@@ -39,6 +39,7 @@ import PageHeader from './preview-examples/content-header';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import Datepicker from './preview-examples/datepicker';
+import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
@@ -69,6 +70,7 @@ import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
 import Pill from './preview-examples/pill';
+import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
@@ -159,6 +161,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<DateDropdownUserRange />}
         />
         <Route path="/preview/datepicker" element={<Datepicker />} />
+        <Route
+          path="/preview/datepicker-locale"
+          element={<DatepickerLocale />}
+        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
         <Route
@@ -201,6 +207,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
         <Route path="/preview/pill" element={<Pill />} />
+        <Route path="/preview/pill-variants" element={<PillVariants />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />

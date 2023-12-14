@@ -9,7 +9,7 @@
 import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
 
-const TIME_PICKER_SELECTOR = 'ix-time-picker-rework';
+const TIME_PICKER_SELECTOR = 'ix-time-picker';
 const getTimeObjs = async (page: Page) => {
   return await page.$$eval(TIME_PICKER_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentTime()));
@@ -17,7 +17,7 @@ const getTimeObjs = async (page: Page) => {
 };
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-time-picker-rework></ix-time-picker-rework>`);
+  await mount(`<ix-time-picker></ix-time-picker>`);
   const datePicker = page.locator(TIME_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
@@ -25,15 +25,15 @@ test('renders', async ({ mount, page }) => {
 test.describe('time picker tests', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-time-picker-rework
+      `<ix-time-picker
       time="09:10:11"
       >
-      </ix-time-picker-rework>
-      <ix-time-picker-rework
+      </ix-time-picker>
+      <ix-time-picker
       time="10:11:12 AM"
-      format="hh:mm:ss A"
+      format="hh:mm:ss a"
       >
-      </ix-time-picker-rework>`
+      </ix-time-picker>`
     );
   });
 
