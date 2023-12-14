@@ -51,7 +51,7 @@ export function pulseOnElement(queryFunction) {
     }
 
     70% {
-      transform: scale(1);
+      transform: scale(1.25);
       box-shadow: 0 0 0 10px rgba(0, 204, 204, 0);
     }
 
