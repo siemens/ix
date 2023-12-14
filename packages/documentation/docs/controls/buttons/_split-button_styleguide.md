@@ -13,13 +13,18 @@ Variants, options and states of the ix-button and the ix-dropdown-button compone
 ## Options
 - **Disabled:** The disabled option can be applied to the complete component. There is no option to disabled each part of the split button independently.
 - **Label:** Set a label for the button component (left side). Labels should be short (two to three words) and contain a verb.
-- **Placement:** Define where the flyout appears which is triggered when the dropdown button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
-Give more info on placement options???
-- **SplitIcon:** We typically use a chevron icon on the dropdown button, but a custom icon can be set.
+- **Placement:** Define where the flyout appears which is triggered when the dropdown button is active. You can choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there is not enough space for the chosen setting, the placement is corrected automatically.
+
+![Placement example](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
+1. Bottom-end placement
+2. Bottom-start placement
+
+
+- **SplitIcon:** We typically use a chevron icon on the dropdown button, but a custom icon can be set. A common alternative to the chevron is the "more-menu" icon.
 - The options **loading** and **type** are not available for split buttons.
 
 ## Behavior in context
-- **Interaction:** When users press an option from the dropdown list, the action is triggered. The label of the button on the left side stays static. 
+- **Interaction:** When users press an option from the dropdown list, the action is triggered. Typically the label of the button on the left side stays static. Beware that updating the left side with the last triggered action may lead to layout changes (e.g. button width) and requires updating the dropdown with the remove action.
 
 ## States
 Split buttons have five states: Default, hover, active, disabled and focused. States are applied to left and the right part of the split button independently except for the disabled state. The visual appearance and the behavior of the states is the same as for the ix-button and the ix-dropdown-button.

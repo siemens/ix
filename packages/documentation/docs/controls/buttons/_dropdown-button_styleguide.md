@@ -11,7 +11,12 @@ Variants, options and states of the ix-button component apply. Only additional o
 
 ## Options
 - **Label:** Set a label for the dropdown button. Labels should be short (two to three words) and contain a verb.
-- **Placement:** Define where the flyout appears which is triggered when the button is active. Depending on the length of the labels within the flyout and the placement of the dropdown button on the screen, you can choose different placements. 
+- **Placement:** Define where the dropdown appears which is triggered when the button is active. You can choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there is not enough space for the chosen setting, the placement is corrected automatically.
+
+![Placement example](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
+1. Bottom-end placement
+2. Bottom-start placement
+
 - For options of the dropdown triggered when pressing the button, please refer to the dropdown documentation page.
 - The options **loading** and **type** are not available for split buttons.
 

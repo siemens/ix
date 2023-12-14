@@ -29,7 +29,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 ## States
 
-Buttons have five states: Default, hover, active, disabled and focused. In disabled state, buttons are visually displayed but don't offer any user interaction.
+Buttons have six states: Default, hover, active, disabled, loading and focused. In disabled state, buttons are visually displayed but don't offer any user interaction.
 
 ![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
