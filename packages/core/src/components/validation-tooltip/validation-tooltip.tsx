@@ -75,7 +75,9 @@ export class ValidationTooltip {
   }
 
   private destroyAutoUpdate() {
-    this.tooltipElement.style.display = 'none';
+    if (this.tooltipElement) {
+      this.tooltipElement.style.display = 'none';
+    }
 
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
