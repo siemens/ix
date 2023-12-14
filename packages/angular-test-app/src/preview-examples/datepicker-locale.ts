@@ -11,6 +11,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './date-dropdown.html',
+  templateUrl: './datepicker-locale.html',
 })
-export default class DateDropdownUserRange {}
+export default class DatepickerLocale {
+  locale: 'de' | 'en' | (string & {}) = 'de';
+
+  setLocale(event: Event) {
+    const { detail } = event as CustomEvent<string>;
+
+    this.locale = detail;
+  }
+}

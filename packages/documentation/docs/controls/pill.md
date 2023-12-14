@@ -1,29 +1,8 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import DocsTabs from '@site/src/components/DocsTabs';
 
-import Props from './../auto-generated/ix-pill/props.md';
-import Events from './../auto-generated/ix-pill/events.md';
+import DocsUx from './\_pill_styleguide.md'
+import DocsCode from './\_pill_code.md'
 
 # Pill
 
-## Usage
-
-<Playground
-name="pill" height="24rem"
-examplesByName>
-</Playground>
-
-## Variants
-<Playground
-name="pill-variants" height="24rem"
-examplesByName>
-</Playground>
-
-## Properties
-
-### Props
-
-<Props />
-
-### Events
-
-<Events />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />

@@ -5,6 +5,8 @@ import Playground from '@site/src/components/PlaygroundV2';
 import PropsHeaderJavaScript from './../auto-generated/ix-modal-header/props.md'
 import EventsHeaderJavaScript from './../auto-generated/ix-modal-header/events.md'
 
+import ModalConfig from './../auto-generated/utils/core/ModalConfig.md'
+import ModalInstance from './../auto-generated/utils/core/ModalInstance.md'
 
 # Modal
 
@@ -104,10 +106,24 @@ files={{
 
 ### API
 
-[See](https://github.com/siemens/ix/blob/main/packages/core/src/components/utils/modal/modal.ts)
-
 #### Modal header
 
+##### Props
+
+<PropsHeaderJavaScript />
+
+##### Events
+
+<EventsHeaderJavaScript />
+
+#### Modal config
+
+<ModalConfig />
+
+#### Modal instance
+<ModalInstance />
+
+#### Modal header
 ##### Props
 <PropsHeaderJavaScript />
 
