@@ -54,7 +54,7 @@ export class ApplicationHeader {
     config: AppSwitchConfiguration
   ) => void;
 
-  private applicationLayoutContext: ContextType<
+  @State() applicationLayoutContext: ContextType<
     typeof ApplicationLayoutContext
   >;
 

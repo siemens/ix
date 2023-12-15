@@ -15,17 +15,17 @@ import { AppSwitchConfiguration } from '../utils/application-layout/context';
   scoped: true,
 })
 export class MyComponent {
-  @State() applicationSwitchConfig: AppSwitchConfiguration = {
-    currentAppId: 'app-2',
-    apps: [],
-    i18nLoadingApps: 'Die APPS DO!',
-    i18nAppSwitch: 'xXX',
-  };
+  @State() applicationSwitchConfig: AppSwitchConfiguration;
 
   componentDidLoad() {
     setTimeout(() => {
       this.applicationSwitchConfig = {
-        ...this.applicationSwitchConfig,
+        ...{
+          currentAppId: 'app-2',
+          apps: [],
+          i18nLoadingApps: 'Die APPS DO!',
+          i18nAppSwitch: 'xXX',
+        },
         apps: [
           {
             id: 'app-1',

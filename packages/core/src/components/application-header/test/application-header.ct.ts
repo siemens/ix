@@ -95,14 +95,167 @@ test.describe('cross app navigation', () => {
 
     await appSwitchButton.click();
 
-    // TODO rmeove
-    await page.waitForTimeout(500);
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+
+    const modalHeader = page.locator('ix-modal-header');
+    await expect(modalHeader).toHaveText(/some other language/);
+
+    const modalContent = page.locator('ix-modal-content');
+    const appEntries = modalContent.locator('.AppEntry');
+
+    await expect(appEntries).toHaveCount(2);
+  });
+
+  test(`should show app switch apps (config async)`, async ({
+    page,
+    mount,
+  }) => {
+    await page.evaluate(() => {
+      window.addEventListener('context-request', (evt: any) => {
+        console.dir(evt.callback);
+        evt.callback({
+          hideHeader: false,
+          host: null,
+          sidebar: false,
+          appSwitchConfig: null,
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+    await mount(
+      `
+      <ix-application>
+        <ix-application-header name="test">
+        </ix-application-header>
+      </ix-application>
+      `
+    );
+
+    const application = page.locator('ix-application');
+    const header = page.locator('ix-application-header');
+    const appSwitchButton = header.locator('ix-icon-button.app-switch');
+
+    await expect(header).toHaveClass(/hydrated/);
+    await expect(appSwitchButton).not.toBeVisible();
+
+    await application.evaluate((app) => {
+      (app as any).appSwitchConfig = {
+        i18nAppSwitch: 'some other language',
+        apps: [
+          {
+            id: '1',
+            description: 'description 1',
+            iconSrc: '',
+            name: 'app name 1',
+            target: '_blank',
+            url: 'url-01',
+          },
+          {
+            id: '2',
+            description: 'description 2',
+            iconSrc: '',
+            name: 'app name 1',
+            target: '_blank',
+            url: 'url-02',
+          },
+        ],
+        currentAppId: '2',
+      };
+    });
+
+    await appSwitchButton.click();
 
     const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
 
     const modalHeader = page.locator('ix-modal-header');
     await expect(modalHeader).toHaveText(/some other language/);
+
+    const modalContent = page.locator('ix-modal-content');
+    const appEntries = modalContent.locator('.AppEntry');
+
+    await expect(appEntries).toHaveCount(2);
+  });
+
+  test(`should show app switch apps (apps async)`, async ({ page, mount }) => {
+    await page.evaluate(() => {
+      window.addEventListener('context-request', (evt: any) => {
+        evt.callback({
+          hideHeader: false,
+          host: null,
+          sidebar: false,
+          appSwitchConfig: {
+            i18nAppSwitch: 'some other language',
+            i18nLoadingApps: 'LOADING APPS TEXT',
+            apps: [],
+            currentAppId: '2',
+          },
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+    await mount(
+      `
+      <ix-application>
+        <ix-application-header name="test">
+        </ix-application-header>
+      </ix-application>
+      `
+    );
+
+    const application = page.locator('ix-application');
+    await application.evaluate((app) => {
+      (app as any).appSwitchConfig = {
+        i18nAppSwitch: 'some other language',
+        i18nLoadingApps: 'LOADING APPS TEXT',
+        apps: [],
+        currentAppId: '2',
+      };
+    });
+
+    const header = page.locator('ix-application-header');
+    const appSwitchButton = header.locator('ix-icon-button.app-switch');
+
+    await expect(header).toHaveClass(/hydrated/);
+    await expect(appSwitchButton).toBeVisible();
+
+    await appSwitchButton.click();
+
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+
+    const modalHeader = page.locator('ix-modal-header');
+    await expect(modalHeader).toHaveText(/some other language/);
+
+    const appSwitchModal = page.locator('ix-application-switch-modal');
+    const appSwitchSpinner = appSwitchModal.getByText('LOADING APPS TEXT');
+
+    await expect(appSwitchSpinner).toBeVisible();
+
+    await application.evaluate((app) => {
+      (app as any).appSwitchConfig = {
+        i18nAppSwitch: 'some other language',
+        i18nLoadingApps: 'LOADING APPS TEXT',
+        apps: [
+          {
+            id: '1',
+            description: 'description 1',
+            iconSrc: '',
+            name: 'app name 1',
+            target: '_blank',
+            url: 'url-01',
+          },
+          {
+            id: '2',
+            description: 'description 2',
+            iconSrc: '',
+            name: 'app name 1',
+            target: '_blank',
+            url: 'url-02',
+          },
+        ],
+        currentAppId: '2',
+      };
+    });
 
     const modalContent = page.locator('ix-modal-content');
     const appEntries = modalContent.locator('.AppEntry');
