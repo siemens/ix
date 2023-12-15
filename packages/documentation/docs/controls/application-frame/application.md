@@ -10,6 +10,12 @@ import Playground from '@site/src/components/Playground';
 # Application
 <Tags />
 
+The ix-application component acts as a centralized hub for configuring aspects of your web-application, such as screen breakpoints, theming and  app switch configuration. By consolidating these configuration points, it simplifies the management of application-wide settings and ensures a consistent user interface across different scenarios.
+
+The component itself is designed with modularity in mind. It can be seamlessly integrated with other components such as ix-application-header, ix-menu, ix-content, and more. This modular approach allows you to mix and match components based on your specific application requirements, providing flexibility and customization options.
+
+It's important to note that the ix-application component focuses solely on layouting and does not dictate visual design.
+
 ## Usage
 
 TODO: React, Angular and Vue Example
