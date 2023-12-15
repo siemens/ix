@@ -36,6 +36,6 @@ Split buttons have five states: Default, hover, active, disabled and focused. St
 
 ## Related patterns
 - [Button](button.md)
-- [Dropdown](..\dropdown.md)
-- [Select](..\select.md)
+- [Dropdown](../dropdown.md)
+- [Select](../select.md)
 - [Split button](split-button.md)
