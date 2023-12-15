@@ -16,8 +16,8 @@ Variants, options and states of the ix-button and the ix-icon-button components 
 Toggle buttons have five states: Default, hover, active, disabled, loading and focused. All states are also available for pressed toggled buttons.
 
 ## Dos and Don'ts
-- Do use toggle buttons when users can switch between more than two exclusive option
-- Do use toggle buttons when two opposing option don't follow the on/off metaphor
+- Do use toggle buttons when users can switch between more than two exclusive options
+- Do use toggle buttons when two opposing options don't follow the on/off metaphor
 - Don't use toggle buttons 
 
 ## Related patterns

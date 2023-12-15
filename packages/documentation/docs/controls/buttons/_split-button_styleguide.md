@@ -1,4 +1,4 @@
-Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more option need to be offered. Split buttons group similar or related actions.
+Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
 
@@ -11,7 +11,7 @@ Split buttons are button elements that allow users to either trigger an action w
 Variants, options and states of the ix-button and the ix-dropdown-button components apply. Only additional, deviating or detailing specifications are listed here.
 
 ## Options
-- **Disabled:** The disabled option can be applied to the complete component. There is no option to disabled each part of the split button independently.
+- **Disabled:** The disabled option can be applied to the complete component. There is no option to disable each part of the split button independently.
 - **Label:** Set a label for the button component (left side). Labels should be short (two to three words) and contain a verb.
 - **Placement:** Define where the flyout appears which is triggered when the dropdown button is active. You can choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there is not enough space for the chosen setting, the placement is corrected automatically.
 
