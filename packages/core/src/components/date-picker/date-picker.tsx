@@ -136,13 +136,15 @@ export class DatePicker {
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
    *
-   * @since 2.0.0
+   * @since 2.1.0
    */
   @Prop() weekStartIndex = 0;
 
   /**
    * Format of time string
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   *
+   * @since 2.1.0
    */
   @Prop() locale: string = undefined;
   @Watch('locale')
@@ -174,7 +176,7 @@ export class DatePicker {
    * Triggers if the date selection changes.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    *
-   * @since 2.0.0
+   * @since 2.1.0
    */
   @Event() dateChange: EventEmitter<DateChangeEvent>;
 
@@ -182,7 +184,7 @@ export class DatePicker {
    * Triggers if the date selection changes.
    * Only triggered if date-picker-rework is in range mode.
    *
-   * @since 2.0.0
+   * @since 2.1.0
    */
   @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
 
