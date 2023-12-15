@@ -16,31 +16,14 @@ import { AppSwitchConfiguration } from '../utils/application-layout/context';
 })
 export class MyComponent {
   @State() applicationSwitchConfig: AppSwitchConfiguration = {
-    textAppSwitch: 'Switch to Application',
     currentAppId: 'app-2',
-    apps: [
-      {
-        id: 'app-1',
-        name: 'Example App 1',
-        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-        url: 'https://www.google.de',
-        description: 'Test',
-        target: '_self',
-      },
-      {
-        id: 'app-2',
-        name: 'Example App 222',
-        description: 'Test',
-        iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
-        url: 'https://www.google.de',
-        target: '_self',
-      },
-    ],
+    apps: [],
+    i18nLoadingApps: 'Die APPS DO!',
+    i18nAppSwitch: 'xXX',
   };
 
   componentDidLoad() {
     setTimeout(() => {
-      console.log('timeout');
       this.applicationSwitchConfig = {
         ...this.applicationSwitchConfig,
         apps: [
@@ -58,7 +41,7 @@ export class MyComponent {
             description: 'Test',
             iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
             url: 'https://www.google.de',
-            target: '_self',
+            target: '_blank',
           },
           ...Array.from({ length: 20 }).map((_, index) => ({
             id: `app-x-${index}`,
@@ -66,12 +49,11 @@ export class MyComponent {
             iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
             description: `Generated Desc ${index}`,
             url: 'https://www.google.de',
-            target: '_self',
+            target: 'SuperTest',
           })),
         ],
       };
-
-      console.log(this.applicationSwitchConfig);
+      console.log('Update Started!');
     }, 5000);
   }
 

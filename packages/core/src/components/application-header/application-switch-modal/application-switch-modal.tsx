@@ -8,16 +8,38 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import { AppSwitchConfiguration } from 'src/components';
+import {
+  AppSwitchConfiguration,
+  AppSwitchConfigurationTarget,
+} from '../../utils/application-layout/context';
 
 function ApplicationItem(props: {
   name: string;
   description: string;
   iconSrc: string;
   url: string;
-  target: string;
+  target: AppSwitchConfigurationTarget;
   selected: boolean;
 }) {
+  function isExternal(target: AppSwitchConfigurationTarget) {
+    if (
+      target !== '_blank' &&
+      target !== '_parent' &&
+      target !== '_self' &&
+      target !== '_top'
+    ) {
+      // Check if its one of the target keywords
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a?retiredLocale=de#target
+      return true;
+    }
+
+    if (target === '_blank') {
+      return true;
+    }
+
+    return false;
+  }
+
   return (
     <button
       class={{
@@ -30,7 +52,16 @@ function ApplicationItem(props: {
         <img class="AppIcon" src={props.iconSrc}></img>
       </div>
       <div class="AppName">
-        <ix-typography format="h4">{props.name}</ix-typography>
+        <ix-typography format="h4">
+          {props.name}
+          {isExternal(props.target) && (
+            <ix-icon
+              size="12"
+              name="open-external"
+              color="color-soft-text"
+            ></ix-icon>
+          )}
+        </ix-typography>
         <ix-typography format="label-sm" color="soft">
           {props.description}
         </ix-typography>
@@ -59,10 +90,19 @@ export class ApplicationSwitchModal {
     return (
       <Host>
         <ix-modal-header icon="apps">
-          {this.config?.textAppSwitch || 'Switch to Application'}
+          {this.config?.i18nAppSwitch || 'Switch to Application'}
         </ix-modal-header>
         <ix-modal-content class="content">
           <div class="content-apps">
+            {(!this.config || this.config?.apps.length === 0) && (
+              <div class="loading">
+                <ix-spinner size="medium" variant="primary"></ix-spinner>
+                <span>
+                  {this.config?.i18nLoadingApps ||
+                    'Loading available applications...'}
+                </span>
+              </div>
+            )}
             {this.config?.apps.map((appEntry) => (
               <ApplicationItem
                 name={appEntry.name}

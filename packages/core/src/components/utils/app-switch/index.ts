@@ -13,9 +13,17 @@ import { showModal } from '../modal';
 export async function showAppSwitch(config: AppSwitchConfiguration) {
   const modal = document.createElement('ix-application-switch-modal');
   modal.config = config;
-  showModal({
+  const result = await showModal({
     content: modal,
     size: '840',
     closeOnBackdropClick: true,
   });
+
+  const appSwitchElement = result.htmlElement.querySelector(
+    'ix-application-switch-modal'
+  );
+
+  return (updateAppSwitchConfig: AppSwitchConfiguration) => {
+    appSwitchElement.config = updateAppSwitchConfig;
+  };
 }

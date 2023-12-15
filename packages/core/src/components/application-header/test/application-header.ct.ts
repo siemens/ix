@@ -58,7 +58,7 @@ test.describe('cross app navigation', () => {
           host: null,
           sidebar: false,
           appSwitchConfig: {
-            textAppSwitch: 'some other language',
+            i18nAppSwitch: 'some other language',
             apps: [
               {
                 id: '1',

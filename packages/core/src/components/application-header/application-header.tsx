@@ -19,7 +19,10 @@ import {
 } from '@stencil/core';
 import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
-import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  ApplicationLayoutContext,
+  AppSwitchConfiguration,
+} from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
@@ -47,6 +50,9 @@ export class ApplicationHeader {
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
+  private callbackUpdateAppSwitchModal?: (
+    config: AppSwitchConfiguration
+  ) => void;
 
   private applicationLayoutContext: ContextType<
     typeof ApplicationLayoutContext
@@ -65,6 +71,8 @@ export class ApplicationHeader {
 
         this.breakpoint = applicationLayoutService.breakpoint;
         this.applicationLayoutContext = ctx;
+
+        this.tryUpdateAppSwitch();
       },
       true
     );
@@ -129,6 +137,22 @@ export class ApplicationHeader {
     );
   }
 
+  private tryUpdateAppSwitch() {
+    if (!this.callbackUpdateAppSwitchModal) {
+      return;
+    }
+
+    this.callbackUpdateAppSwitchModal(
+      this.applicationLayoutContext?.appSwitchConfig
+    );
+  }
+
+  private async showAppSwitch() {
+    this.callbackUpdateAppSwitchModal = await showAppSwitch(
+      this.applicationLayoutContext?.appSwitchConfig
+    );
+  }
+
   render() {
     return (
       <Host
@@ -145,9 +169,7 @@ export class ApplicationHeader {
           this.breakpoint !== 'sm' &&
           this.suppressResponsive === false && (
             <ix-icon-button
-              onClick={() =>
-                showAppSwitch(this.applicationLayoutContext?.appSwitchConfig)
-              }
+              onClick={() => this.showAppSwitch()}
               icon="apps"
               ghost
               class="app-switch"

@@ -26,6 +26,16 @@
     max-height: 50vh;
     margin-right: 0.25rem;
   }
+
+  .loading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    ix-spinner {
+      margin-right: 1rem;
+    }
+  }
 }
 
 :host {
@@ -57,6 +67,10 @@
   .AppName {
     display: flex;
     flex-direction: column;
+  }
+
+  .AppName ix-icon {
+    margin-left: 1rem;
   }
 
   .AppIcon {
