@@ -1,6 +1,5 @@
 import Playground from '@site/src/components/Playground';
 import Props from './../../auto-generated/ix-button/props.md';
-import PropsIcon from './../../auto-generated/ix-icon-button/props.md';
 
 import WebComponentButtons from './../../auto-generated/previews/web-component/buttons.md'
 import WebComponentButtonSecondary from './../../auto-generated/previews/web-component/button-secondary.md'
@@ -10,12 +9,10 @@ import WebComponentButtonGreySecondary from './../../auto-generated/previews/web
 import WebComponentButtonGreyGhost from './../../auto-generated/previews/web-component/button-grey-ghost.md'
 import WebComponentButtonTextIcon from './../../auto-generated/previews/web-component/button-text-icon.md'
 import WebComponentButtonGroup from './../../auto-generated/previews/web-component/button-group.md'
-import WebComponentButtonIcon from './../../auto-generated/previews/web-component/button-with-icon.md'
 import WebComponentButtonLoading from './../../auto-generated/previews/web-component/button-loading.md'
 
 import ReactButtons from './../../auto-generated/previews/react/buttons.md'
 import ReactButtonGroup from './../../auto-generated/previews/react/button-group.md'
-import ReactButtonIcon from './../../auto-generated/previews/react/button-with-icon.md'
 import ReactButtonSecondary from './../../auto-generated/previews/react/button-secondary.md'
 import ReactButtonGhost from './../../auto-generated/previews/react/button-ghost.md'
 import ReactButtonGrey from './../../auto-generated/previews/react/button-grey.md'
@@ -26,7 +23,6 @@ import ReactButtonLoading from './../../auto-generated/previews/react/button-loa
 
 import AngularButtons from './../../auto-generated/previews/angular/buttons.ts.md'
 import AngularButtonGroup from './../../auto-generated/previews/angular/button-group.ts.md'
-import AngularButtonIcon from './../../auto-generated/previews/angular/button-with-icon.ts.md'
 import AngularButtonSecondary from './../../auto-generated/previews/angular/button-secondary.ts.md'
 import AngularButtonGhost from './../../auto-generated/previews/angular/button-ghost.ts.md'
 import AngularButtonGrey from './../../auto-generated/previews/angular/button-grey.ts.md'
@@ -37,7 +33,6 @@ import AngularButtonLoading from './../../auto-generated/previews/angular/button
 
 import VueButtons from './../../auto-generated/previews/vue/buttons.md'
 import VueButtonGroup from './../../auto-generated/previews/vue/button-group.md'
-import VueButtonIcon from './../../auto-generated/previews/vue/button-with-icon.md'
 import VueButtonSecondary from './../../auto-generated/previews/vue/button-secondary.md'
 import VueButtonGhost from './../../auto-generated/previews/vue/button-ghost.md'
 import VueButtonGrey from './../../auto-generated/previews/vue/button-grey.md'
@@ -174,18 +169,6 @@ frameworks={{
   vue: VueButtonTextIcon
 }}></Playground>
 
-### Icon button
-
-<Playground
-name="button-with-icon"
-hideInitalCodePreview
-frameworks={{
-  react: ReactButtonIcon,
-  angular: AngularButtonIcon,
-  javascript: WebComponentButtonIcon,
-  vue: VueButtonIcon
-}}></Playground>
-
 ### Loading button
 
 <Playground
@@ -201,7 +184,3 @@ frameworks={{
 ## Properties (ix-button)
 
 <Props />
-
-## Properties (ix-icon-button)
-
-<PropsIcon />

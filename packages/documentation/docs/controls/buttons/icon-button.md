@@ -1,5 +1,5 @@
 ---
-title: Icon buttons
+title: Icon button
 ---
 
 import DocsTabs from '@site/src/components/DocsTabs';
