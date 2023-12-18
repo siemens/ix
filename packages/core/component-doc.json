@@ -2785,7 +2785,12 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "default": "undefined",
           "values": [
             {
@@ -2911,7 +2916,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.0.0"
+              "text": "2.1.0"
             }
           ],
           "default": "0",
@@ -2948,7 +2953,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.0.0"
+              "text": "2.1.0"
             }
           ]
         },
@@ -2962,7 +2967,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.0.0"
+              "text": "2.1.0"
             }
           ]
         },
@@ -3150,7 +3155,12 @@
           "attr": "locale",
           "reflectToAttr": false,
           "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "default": "undefined",
           "values": [
             {
@@ -3413,7 +3423,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.0.0"
+              "text": "2.1.0"
             }
           ],
           "default": "0",
@@ -11062,7 +11072,12 @@
           "attr": "text-time",
           "reflectToAttr": false,
           "docs": "Text for top label",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "default": "'Time'",
           "values": [
             {
