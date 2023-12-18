@@ -52,9 +52,10 @@ export const config: Config = {
     scopedSlotTextContentFix: true,
   },
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/'],
+    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
+    browserHeadless: 'new',
   },
   namespace: 'siemens-ix',
   globalStyle: './scss/ix.scss',
