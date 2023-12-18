@@ -221,10 +221,10 @@
       "props": [
         {
           "name": "appSwitchConfig",
-          "type": "{ textAppSwitch: string; currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: Target; iconSrc: string; }[]; }",
+          "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }",
           "complexType": {
             "original": "AppSwitchConfiguration",
-            "resolved": "{ textAppSwitch: string; currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: Target; iconSrc: string; }[]; }",
+            "resolved": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }",
             "references": {
               "AppSwitchConfiguration": {
                 "location": "import",
@@ -239,7 +239,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "{ textAppSwitch: string; currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: Target; iconSrc: string; }[]; }"
+              "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }"
             }
           ],
           "optional": false,
@@ -12821,6 +12821,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-application-switch-modal",
         "ix-avatar",
         "ix-breadcrumb-item",
         "ix-burger-menu",
@@ -12835,6 +12836,9 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-application-switch-modal": [
+          "ix-spinner"
+        ],
         "ix-avatar": [
           "ix-spinner"
         ],
@@ -16747,14 +16751,9 @@
       "path": "src/components/utils/breakpoints.ts"
     },
     "src/components/utils/application-layout/context.ts::AppSwitchConfiguration": {
-      "declaration": "{\n  textAppSwitch: string;\n  currentAppId: string;\n  apps: {\n    id: string;\n    name: string;\n    description: string;\n    url: string;\n    target: Target;\n    iconSrc: string;\n  }[];\n}",
+      "declaration": "{\n  currentAppId: string;\n  apps: {\n    id: string;\n    name: string;\n    description: string;\n    url: string;\n    target: AppSwitchConfigurationTarget;\n    iconSrc: string;\n  }[];\n  i18nAppSwitch?: string;\n  i18nLoadingApps?: string;\n}",
       "docstring": "",
       "path": "src/components/utils/application-layout/context.ts"
-    },
-    "src/components.d.ts::AppSwitchConfiguration": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components.d.ts"
     },
     "src/components/category-filter/filter-state.ts::FilterState": {
       "declaration": "any",
