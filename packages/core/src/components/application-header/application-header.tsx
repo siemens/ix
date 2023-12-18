@@ -26,6 +26,7 @@ import {
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
+import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
@@ -47,6 +48,8 @@ export class ApplicationHeader {
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
+
+  @State() isSlotted = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
@@ -89,6 +92,8 @@ export class ApplicationHeader {
 
       this.breakpoint = mode;
     });
+
+    this.updateIsSlottedContent();
   }
 
   componentDidLoad() {
@@ -153,6 +158,17 @@ export class ApplicationHeader {
     );
   }
 
+  private slotUpdated(): void {
+    this.updateIsSlottedContent();
+  }
+
+  private updateIsSlottedContent() {
+    const slotElement =
+      this.hostElement.shadowRoot.querySelector('.content slot');
+
+    this.isSlotted = hasSlottedElements(slotElement);
+  }
+
   render() {
     return (
       <Host
@@ -183,6 +199,10 @@ export class ApplicationHeader {
           {this.breakpoint === 'sm' ? (
             <Fragment>
               <ix-icon-button
+                class={{
+                  ['context-menu']: true,
+                  ['context-menu-visible']: this.isSlotted,
+                }}
                 data-context-menu
                 icon="more-menu"
                 ghost
@@ -193,12 +213,12 @@ export class ApplicationHeader {
                 trigger={this.resolveContextMenuButton()}
               >
                 <div class="dropdown-content">
-                  <slot></slot>
+                  <slot onSlotchange={() => this.slotUpdated()}></slot>
                 </div>
               </ix-dropdown>
             </Fragment>
           ) : (
-            <slot></slot>
+            <slot onSlotchange={() => this.slotUpdated()}></slot>
           )}
           <slot name="ix-application-header-avatar"></slot>
         </div>

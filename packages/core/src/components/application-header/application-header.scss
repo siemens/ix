@@ -70,8 +70,12 @@
     padding: 1rem;
   }
 
-  ix-icon-button.hidden {
-    visibility: collapse;
+  .context-menu {
+    display: none;
+  }
+
+  .context-menu.context-menu-visible {
+    display: block;
   }
 
   @include media-breakpoint-match('sm') {
