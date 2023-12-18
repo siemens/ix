@@ -239,6 +239,7 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'icon',
   'background',
   'color',
+  'chipColor',
   'outline',
   'closeChip'
 ]);
@@ -414,6 +415,7 @@ export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-ev
 
 export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
   'color',
+  'itemColor',
   'selected',
   'disabled',
   'chevron',
@@ -492,6 +494,7 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'icon',
   'size',
   'color',
+  'iconColor',
   'disabled',
   'type',
   'loading'
@@ -563,6 +566,7 @@ export const IxMapNavigationOverlay = /*@__PURE__*/ defineContainer<JSX.IxMapNav
   'name',
   'icon',
   'color',
+  'iconColor',
   'closeClick'
 ]);
 
@@ -722,6 +726,7 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'icon',
   'background',
   'color',
+  'pillColor',
   'alignLeft'
 ]);
 
@@ -932,6 +937,7 @@ export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-
   'variant',
   'format',
   'color',
+  'textColor',
   'bold',
   'textDecoration'
 ]);

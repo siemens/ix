@@ -65,8 +65,16 @@ export class IconButton {
 
   /**
    * Color of icon in  button
+   *
+   * @deprecated since 2.1.0 use `icon-color`
    */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() color: string;
+
+  /**
+   * Color of icon in  button
+   */
+  @Prop() iconColor: string;
 
   /**
    * Disabled
@@ -131,7 +139,7 @@ export class IconButton {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
-      iconColor: this.color,
+      iconColor: this.iconColor ?? this.color,
       iconSize: this.size,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),

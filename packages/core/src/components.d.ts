@@ -415,11 +415,16 @@ export namespace Components {
          */
         "background": string | undefined;
         /**
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+         */
+        "chipColor": string | undefined;
+        /**
           * Show close icon
          */
         "closable": boolean;
         /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * @deprecated since 2.1.0 use `chip-color`
          */
         "color": string | undefined;
         /**
@@ -952,12 +957,18 @@ export namespace Components {
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @see https://ix.siemens.io/docs/theming/colors/
+          * @deprecated since 2.1.0 use `item-color`
          */
         "color": string;
         /**
           * Disable event list item
          */
         "disabled": boolean;
+        /**
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
+         */
+        "itemColor": string;
         /**
           * Show event list item as selected
          */
@@ -1091,6 +1102,7 @@ export namespace Components {
         "a11yLabel": string;
         /**
           * Color of icon in  button
+          * @deprecated since 2.1.0 use `icon-color`
          */
         "color": string;
         /**
@@ -1105,6 +1117,10 @@ export namespace Components {
           * Icon name
          */
         "icon": string;
+        /**
+          * Color of icon in  button
+         */
+        "iconColor": string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1279,15 +1295,23 @@ export namespace Components {
          */
         "toggleSidebar": (show?: boolean) => Promise<void>;
     }
+    /**
+     * @deprecated since 2.1.0
+     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
+          * @deprecated since 2.1.0. Use `icon-color`
          */
         "color": string;
         /**
           * Icon of overlay
          */
         "icon": string;
+        /**
+          * Color of icon
+         */
+        "iconColor": string;
         /**
           * Title of overlay
          */
@@ -1658,6 +1682,7 @@ export namespace Components {
         "background": string | undefined;
         /**
           * Custom font color for pill. Only working for `variant='custom'`
+          * @deprecated since 2.1.0 use `pill-color`
          */
         "color": string | undefined;
         /**
@@ -1668,6 +1693,10 @@ export namespace Components {
           * Show pill as outline
          */
         "outline": boolean;
+        /**
+          * Custom font color for pill. Only working for `variant='custom'`
+         */
+        "pillColor": string | undefined;
         /**
           * Pill variant
          */
@@ -2183,12 +2212,17 @@ export namespace Components {
         "bold": boolean;
         /**
           * Text color based on theme variables
+          * @deprecated since 2.1.0 use property `text-color`
          */
         "color": TypographyColors;
         /**
           * Text format
          */
         "format": TypographyFormat;
+        /**
+          * Text color based on theme variables
+         */
+        "textColor": TypographyColors;
         /**
           * Text decoration
          */
@@ -3172,6 +3206,9 @@ declare global {
     interface HTMLIxMapNavigationOverlayElementEventMap {
         "closeClick": any;
     }
+    /**
+     * @deprecated since 2.1.0
+     */
     interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4293,11 +4330,16 @@ declare namespace LocalJSX {
          */
         "background"?: string | undefined;
         /**
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+         */
+        "chipColor"?: string | undefined;
+        /**
           * Show close icon
          */
         "closable"?: boolean;
         /**
           * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * @deprecated since 2.1.0 use `chip-color`
          */
         "color"?: string | undefined;
         /**
@@ -4879,12 +4921,18 @@ declare namespace LocalJSX {
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @see https://ix.siemens.io/docs/theming/colors/
+          * @deprecated since 2.1.0 use `item-color`
          */
         "color"?: string;
         /**
           * Disable event list item
          */
         "disabled"?: boolean;
+        /**
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @see https://ix.siemens.io/docs/theming/colors/
+         */
+        "itemColor"?: string;
         /**
           * Event list item click
          */
@@ -5046,6 +5094,7 @@ declare namespace LocalJSX {
         "a11yLabel"?: string;
         /**
           * Color of icon in  button
+          * @deprecated since 2.1.0 use `icon-color`
          */
         "color"?: string;
         /**
@@ -5060,6 +5109,10 @@ declare namespace LocalJSX {
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Color of icon in  button
+         */
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -5226,15 +5279,23 @@ declare namespace LocalJSX {
          */
         "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
     }
+    /**
+     * @deprecated since 2.1.0
+     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
+          * @deprecated since 2.1.0. Use `icon-color`
          */
         "color"?: string;
         /**
           * Icon of overlay
          */
         "icon"?: string;
+        /**
+          * Color of icon
+         */
+        "iconColor"?: string;
         /**
           * Title of overlay
          */
@@ -5647,6 +5708,7 @@ declare namespace LocalJSX {
         "background"?: string | undefined;
         /**
           * Custom font color for pill. Only working for `variant='custom'`
+          * @deprecated since 2.1.0 use `pill-color`
          */
         "color"?: string | undefined;
         /**
@@ -5657,6 +5719,10 @@ declare namespace LocalJSX {
           * Show pill as outline
          */
         "outline"?: boolean;
+        /**
+          * Custom font color for pill. Only working for `variant='custom'`
+         */
+        "pillColor"?: string | undefined;
         /**
           * Pill variant
          */
@@ -6250,12 +6316,17 @@ declare namespace LocalJSX {
         "bold"?: boolean;
         /**
           * Text color based on theme variables
+          * @deprecated since 2.1.0 use property `text-color`
          */
         "color"?: TypographyColors;
         /**
           * Text format
          */
         "format"?: TypographyFormat;
+        /**
+          * Text color based on theme variables
+         */
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
@@ -6609,6 +6680,9 @@ declare module "@stencil/core" {
              * @deprecated Use ix-application as an successor of ix-map-navigation
              */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
+            /**
+             * @deprecated since 2.1.0
+             */
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;

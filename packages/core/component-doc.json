@@ -2352,6 +2352,27 @@
           "required": false
         },
         {
+          "name": "chipColor",
+          "type": "string",
+          "complexType": {
+            "original": "string | undefined",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "chip-color",
+          "reflectToAttr": false,
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "closable",
           "type": "boolean",
           "complexType": {
@@ -2385,7 +2406,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `chip-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `chip-color`",
           "values": [
             {
               "type": "string"
@@ -6116,8 +6143,13 @@
             {
               "name": "see",
               "text": "https://ix.siemens.io/docs/theming/colors/"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `item-color`"
             }
           ],
+          "deprecation": "since 2.1.0 use `item-color`",
           "values": [
             {
               "type": "string"
@@ -6142,6 +6174,32 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemColor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "item-color",
+          "reflectToAttr": false,
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [
+            {
+              "name": "see",
+              "text": "https://ix.siemens.io/docs/theming/colors/"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -7288,7 +7346,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Color of icon in  button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `icon-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `icon-color`",
           "values": [
             {
               "type": "string"
@@ -7352,6 +7416,27 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Color of icon in  button",
           "docsTags": [],
           "values": [
             {
@@ -8677,7 +8762,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "since 2.1.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
@@ -8696,6 +8786,7 @@
           "ix-map-navigation-overlay"
         ]
       },
+      "deprecation": "since 2.1.0",
       "props": [
         {
           "name": "color",
@@ -8709,7 +8800,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Color of icon",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `icon-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0. Use `icon-color`",
           "values": [
             {
               "type": "string"
@@ -8730,6 +8827,27 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Icon of overlay",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Color of icon",
           "docsTags": [],
           "values": [
             {
@@ -11576,7 +11694,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Custom font color for pill. Only working for `variant='custom'`",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `pill-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `pill-color`",
           "values": [
             {
               "type": "string"
@@ -11623,6 +11747,27 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pillColor",
+          "type": "string",
+          "complexType": {
+            "original": "string | undefined",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pill-color",
+          "reflectToAttr": false,
+          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -15617,7 +15762,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Text color based on theme variables",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use property `text-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use property `text-color`",
           "values": [
             {
               "value": "alarm",
@@ -15693,6 +15844,66 @@
             },
             {
               "type": "TypographyFormatCode"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textColor",
+          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "complexType": {
+            "original": "TypographyColors",
+            "resolved": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+            "references": {
+              "TypographyColors": {
+                "location": "local",
+                "path": "src/components/typography/typography.tsx",
+                "id": "src/components/typography/typography.tsx::TypographyColors"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "text-color",
+          "reflectToAttr": false,
+          "docs": "Text color based on theme variables",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-soft",
+              "type": "string"
+            },
+            {
+              "value": "inv-std",
+              "type": "string"
+            },
+            {
+              "value": "inv-weak",
+              "type": "string"
+            },
+            {
+              "value": "soft",
+              "type": "string"
+            },
+            {
+              "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "weak",
+              "type": "string"
             }
           ],
           "optional": false,
