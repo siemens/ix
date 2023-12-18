@@ -4,7 +4,7 @@ import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
 import ReactSourceAggrid from './../auto-generated/previews/react/aggrid.md'
 import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.md'
 
-# AG Grid
+# Grid (AG Grid)
 
 Siemens Industrial Experience provides a theme for the populer data grid library [AG Grid](https://www.ag-grid.com).
 This lets you harness the power of AG Grid with seemless intergration into the Siemens Industrial Experience styleguide.

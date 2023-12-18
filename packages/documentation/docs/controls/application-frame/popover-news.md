@@ -1,6 +1,5 @@
 ---
 sidebar_position: 9
-title: Map navigation
 ---
 
 import Playground from '@site/src/components/Playground'

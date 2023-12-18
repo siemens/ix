@@ -16,9 +16,13 @@ The component itself is designed with modularity in mind. It can be seamlessly i
 
 It's important to note that the ix-application component focuses solely on layouting and does not dictate visual design.
 
-## Usage
+## Example
 
 TODO: React, Angular and Vue Example
+
+TODO: Verlinken von Unterkomponenten
+
+TODO: Erklaeren dass das Beispiel wirklich nur ein Beispiel von dem zusammenspiel mehrer komponenten ist
 
 <Playground name="application" examplesByName height="30rem" noMargin></Playground>
 
