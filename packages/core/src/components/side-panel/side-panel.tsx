@@ -9,7 +9,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import anime from "animejs";
+import anime from 'animejs';
 
 type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
 type ExpandedChangeEvent = {
@@ -99,7 +99,6 @@ export class SidePanel {
         this.minimizeIcon = this.mobile
           ? 'double-chevron-down'
           : 'double-chevron-right';
-        this.setBorder('right');
         return;
       case 'right':
         this.expandIcon = this.mobile
@@ -108,26 +107,16 @@ export class SidePanel {
         this.minimizeIcon = this.mobile
           ? 'double-chevron-up'
           : 'double-chevron-left';
-        this.setBorder('left');
         break;
       case 'bottom':
         this.expandIcon = 'double-chevron-down';
         this.minimizeIcon = 'double-chevron-up';
-        this.setBorder('top');
         break;
       case 'top':
         this.expandIcon = 'double-chevron-up';
         this.minimizeIcon = 'double-chevron-down';
-        this.setBorder('bottom');
         return;
     }
-  }
-
-  setBorder(direction: string) {
-    this.hostElement.style.setProperty(
-      'border-' + direction,
-      '1px solid rgba(224, 245, 255, 0.25)'
-    );
   }
 
   componentWillRender() {
@@ -138,26 +127,7 @@ export class SidePanel {
 
   @Watch('mobile')
   onMobileModeChange() {
-    if (!this.inline) {
-      this.expanded = false;
-      return;
-    }
-
-    if (this.mobile && this.inline) {
-      if (this.isHorizontal) {
-        this.hostElement.style.setProperty('box-shadow', '0px 0px 0px re');
-      } else {
-        this.hostElement.style.setProperty('width', '100%');
-      }
-      this.expanded = false;
-    } else {
-      if (this.isHorizontal) {
-        this.hostElement.style.setProperty('box-shadow', '0px 0px 10px red');
-      } else {
-        this.hostElement.style.setProperty('width', 'unset');
-      }
-      this.expanded = false;
-    }
+    this.expanded = false;
     this.determineSidePanelIcons();
   }
 
@@ -172,47 +142,66 @@ export class SidePanel {
       return;
     }
 
-    const dimension: 'height' | 'width' = this.isHorizontal
-      ? 'height'
-      : 'width';
-
     if (this.expanded) {
-      this.hostElement.style.setProperty(dimension, this.expandedSize);
-    } else {
-      if (this.miniContent) {
-        this.hostElement.style.setProperty(dimension, '76px');
+      if (this.isHorizontal) {
+        this.animateHorizontalFadeIn(parseInt(this.expandedSize, 10));
       } else {
-        this.hostElement.style.setProperty(dimension, 'unset');
+        this.animateVerticalFadeIn(parseInt(this.expandedSize, 10));
+      }
+    } else {
+      if (this.isHorizontal) {
+        this.animateHorizontalFadeIn(32);
+      } else {
+        if (this.miniContent) {
+          this.animateVerticalFadeIn(76);
+        } else {
+          this.animateVerticalFadeIn(32);
+        }
       }
     }
   }
 
-  private animateOverlayFadeIn() {
-
+  private animateVerticalFadeIn(size: number) {
     requestAnimationFrame(() => {
       anime({
         targets: this.hostElement,
-        duration: 150,
-        translateX: [-240, 0],
-        opacity: [0, 1],
+        duration: 300,
+        width: size,
         easing: 'linear',
-        begin: () => {
+      });
+    });
+  }
 
-          this.expanded = !this.expanded;
-        },
+  private animateHorizontalFadeIn(size: number) {
+    requestAnimationFrame(() => {
+      anime({
+        targets: this.hostElement,
+        duration: 300,
+        height: size,
+        easing: 'linear',
       });
     });
   }
 
   render() {
     return (
-      <Host hidden={!this.inline && (!this.expanded || this.mobile)}>
+      <Host
+        hidden={!this.inline && (!this.expanded || this.mobile)}
+        class={{
+          'mobile-overlay': this.expanded && this.mobile,
+        }}
+      >
         <aside
           class={{
-            expanded: this.expanded,
+            expanded: this.expanded && !this.mobile,
+            'box-shadow': this.inline && !this.mobile,
             'mini-content': this.miniContent,
             'side-panel-horizontal': this.isHorizontal,
             'side-panel-vertical': !this.isHorizontal,
+            'border-top': this.position === 'top',
+            'border-right': this.position === 'right',
+            'border-left': this.position === 'left',
+            'border-bottom': this.position === 'bottom',
           }}
         >
           <div
@@ -231,21 +220,14 @@ export class SidePanel {
               }
               ghost
               onClick={() => {
-                this.animateOverlayFadeIn();
-                //this.expanded = !this.expanded;
+                this.expanded = !this.expanded;
               }}
             ></ix-icon-button>
-            <span
-              class="rotate"
-              hidden={this.miniContent && !this.expanded && !this.mobile}
-            >
+            <span class="rotate" hidden={this.miniContent && !this.expanded}>
               {this.paneTitle}
             </span>
           </div>
-          <div
-            class="side-panel-content"
-            hidden={this.mobile || !this.expanded}
-          >
+          <div class="side-panel-content" hidden={!this.expanded}>
             <slot></slot>
           </div>
         </aside>

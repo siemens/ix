@@ -83,29 +83,6 @@ export class SidePanelWrapper {
     this.expanded = false;
   }
 
-  handleExpandChange(expandDetail: { position: string; expanded: boolean }) {
-    const slotElement: any = this.hostElement.shadowRoot.querySelector(
-      'slot[name=' + expandDetail.position + ']'
-    );
-    const childrenElements = slotElement.assignedElements()[0].innerHTML;
-    const mobileContentArea = this.hostElement.shadowRoot.querySelector(
-      '#mobile-full-screen-area'
-    );
-
-    const contentArea = mobileContentArea.querySelector(
-      '#mobile-full-screen-content'
-    );
-
-    contentArea.innerHTML = childrenElements;
-    mobileContentArea.appendChild(contentArea);
-
-    this.expanded = expandDetail.expanded;
-    this.expandedPanelPosition = expandDetail.position;
-    this.overlayHeading = this.getSidePanel(
-      this.expandedPanelPosition
-    ).paneTitle;
-  }
-
   getSidePanel(position: string): HTMLIxSidePanelElement {
     return this.hostElement.querySelector(`[slot="${position}"]`);
   }
@@ -122,59 +99,41 @@ export class SidePanelWrapper {
   }
 
   render() {
-    return (
-      <Host
-        onExpandedChange={(expandDetail) => {
-          this.handleExpandChange(expandDetail.detail);
-        }}
-        style={{ height: '100%', width: '100%' }}
-      >
-        <div
-          id="mobile-full-screen-area"
-          class="mobile-full-screen-area"
-          style={{
-            display: this.expanded && this.mobileMode ? 'block' : 'none',
-          }}
-        >
-          <div class="mobile-full-screen-header">
-            <p>{this.overlayHeading}</p>
-            <ix-icon-button
-              ghost
-              icon="close"
-              size="16"
-              variant="primary"
-              onClick={(_) => {
-                this.expanded = !this.expanded;
-                this.setExpandedState();
-              }}
-            ></ix-icon-button>
-          </div>
-          <div id="mobile-full-screen-content"></div>
-        </div>
-        <div
-          style={{
-            zIndex: this.mobileMode ? 'unset' : '10',
-          }}
-        >
-          <slot name="top"></slot>
-        </div>
-        <div class="verticalSidePanel" style={{ backgroundColor: 'white' }}>
+    /*
+    <div class="row-floating">
           <slot name="left"></slot>
-          {this.behaviour === 'inline' ? (
-            <div class="content-area">
-              <slot name="content"></slot>
-            </div>
-          ) : null}
+          <div class="col-floating">
+            <slot name="top"></slot>
+            <slot name="bottom"></slot>
+          </div>
           <slot name="right"></slot>
         </div>
-        <div style={{ zIndex: this.mobileMode ? 'unset' : '10' }}>
+     */
+
+    /*
+    <div class="col-floating">
+          <slot name="top"></slot>
+
+          <div class="row-floating">
+            <slot name="left"></slot>
+            <slot name="right"></slot>
+          </div>
+
           <slot name="bottom"></slot>
         </div>
-        {this.behaviour === 'floating' ? (
-          <div class="content-area content-area_absolute">
-            <slot name="content"></slot>
+     */
+    return (
+      <Host style={{ height: '100%', width: '100%' }}>
+        <div class="col-floating">
+          <div>
+            <slot name="top"></slot>
+            <slot name="left"></slot>
           </div>
-        ) : null}
+          <div>
+            <slot name="right"></slot>
+            <slot name="bottom"></slot>
+          </div>
+        </div>
       </Host>
     );
   }
