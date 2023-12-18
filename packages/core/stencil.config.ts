@@ -130,7 +130,7 @@ export const config: Config = {
         const docsJson = JSON.stringify(docs, null, 2);
 
         // Remove all paths from component doc
-        const patchedJson = removeProperties(JSON.parse(docsJson), [
+        const patchedJson = normalizeProperties(JSON.parse(docsJson), [
           'dirPath',
           'filePath',
           'readmePath',
@@ -152,12 +152,12 @@ export const config: Config = {
   ],
 };
 
-function removeProperties(obj: JsonDocs, deleteProps: string[]) {
+function normalizeProperties(obj: JsonDocs, deleteProps: string[]) {
   for (const key in obj) {
     if (obj[key] && typeof obj[key] === 'object') {
-      removeProperties(obj[key], deleteProps);
+      normalizeProperties(obj[key], deleteProps);
     } else if (deleteProps.includes(key)) {
-      obj[key] = 'deleted';
+      obj[key] = path.relative(__dirname, obj[key]);
     }
   }
 
