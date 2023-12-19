@@ -8,7 +8,6 @@ import Events from './../auto-generated/ix-date-picker/events.md';
 
 <Playground
 name="datepicker-range" height="35rem"
-hideInitalCodePreview
 examplesByName></Playground>
 
 ## Single Selection
