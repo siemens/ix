@@ -573,6 +573,7 @@ export namespace Components {
         "individual": boolean;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
          */
         "locale": string;
         /**
@@ -604,7 +605,7 @@ export namespace Components {
         "today": string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
@@ -643,6 +644,7 @@ export namespace Components {
         "i18nDone": string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
          */
         "locale": string;
         /**
@@ -703,7 +705,7 @@ export namespace Components {
         "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
@@ -1965,6 +1967,7 @@ export namespace Components {
         "textSelectTime": string;
         /**
           * Text for top label
+          * @since 2.1.0
          */
         "textTime": string;
         /**
@@ -3807,6 +3810,7 @@ declare namespace LocalJSX {
         "individual"?: boolean;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
          */
         "locale"?: string;
         /**
@@ -3821,12 +3825,12 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * Triggers if the date selection changes. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -3858,7 +3862,7 @@ declare namespace LocalJSX {
         "today"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
@@ -3897,6 +3901,7 @@ declare namespace LocalJSX {
         "i18nDone"?: string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
          */
         "locale"?: string;
         /**
@@ -3977,7 +3982,7 @@ declare namespace LocalJSX {
         "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
@@ -5352,6 +5357,7 @@ declare namespace LocalJSX {
         "textSelectTime"?: string;
         /**
           * Text for top label
+          * @since 2.1.0
          */
         "textTime"?: string;
         /**
