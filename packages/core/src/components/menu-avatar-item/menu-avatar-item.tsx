@@ -17,7 +17,7 @@ import {
 } from '@stencil/core';
 
 /**
- * @deprecated Using the ix-application-header together with the avatar functionality
+ * @deprecated Use ix-application-header and it's  avatar functionality instead
  */
 @Component({
   tag: 'ix-menu-avatar-item',
