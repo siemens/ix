@@ -189,7 +189,7 @@ export class ValidationTooltip {
     this.observer?.disconnect();
     this.destroyAutoUpdate();
 
-    this.formElement.removeEventListener('submit', this.onSubmitBind);
+    this.formElement?.removeEventListener('submit', this.onSubmitBind);
     this.inputElement.removeEventListener('focus', this.onInputFocusBind);
   }
 
