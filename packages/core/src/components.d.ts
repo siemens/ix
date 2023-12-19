@@ -155,7 +155,7 @@ export namespace Components {
         "initials": string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
      */
     interface IxBasicNavigation {
         /**
@@ -1259,7 +1259,7 @@ export namespace Components {
         "url": string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-map-navigation
+     * @deprecated ix-map-navigation is deprecated in favor of ix-application
      */
     interface IxMapNavigation {
         /**
@@ -1430,7 +1430,7 @@ export namespace Components {
         "show": boolean;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's avatar functionality instead
      */
     interface IxMenuAvatar {
         /**
@@ -1462,7 +1462,7 @@ export namespace Components {
         "top": string;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's  avatar functionality instead
      */
     interface IxMenuAvatarItem {
         /**
@@ -2589,7 +2589,7 @@ declare global {
         new (): HTMLIxAvatarElement;
     };
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
      */
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
@@ -3187,7 +3187,7 @@ declare global {
         "contextMenuClick": void;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-map-navigation
+     * @deprecated ix-map-navigation is deprecated in favor of ix-application
      */
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3289,7 +3289,7 @@ declare global {
         "logoutClick": any;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's avatar functionality instead
      */
     interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarElement, ev: IxMenuAvatarCustomEvent<HTMLIxMenuAvatarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3309,7 +3309,7 @@ declare global {
         "itemClick": MouseEvent;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's  avatar functionality instead
      */
     interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarItemElement, ev: IxMenuAvatarItemCustomEvent<HTMLIxMenuAvatarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4028,7 +4028,7 @@ declare namespace LocalJSX {
         "initials"?: string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-basic-navigation
+     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
      */
     interface IxBasicNavigation {
         /**
@@ -5255,7 +5255,7 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     /**
-     * @deprecated Use ix-application as an successor of ix-map-navigation
+     * @deprecated ix-map-navigation is deprecated in favor of ix-application
      */
     interface IxMapNavigation {
         /**
@@ -5421,7 +5421,7 @@ declare namespace LocalJSX {
         "show"?: boolean;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's avatar functionality instead
      */
     interface IxMenuAvatar {
         /**
@@ -5457,7 +5457,7 @@ declare namespace LocalJSX {
         "top"?: string;
     }
     /**
-     * @deprecated Using the ix-application-header together with the avatar functionality
+     * @deprecated Use ix-application-header and it's  avatar functionality instead
      */
     interface IxMenuAvatarItem {
         /**
@@ -6572,7 +6572,7 @@ declare module "@stencil/core" {
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
             /**
-             * @deprecated Use ix-application as an successor of ix-basic-navigation
+             * @deprecated ix-basic-navigation is deprecated in favor of ix-application
              */
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
@@ -6677,7 +6677,7 @@ declare module "@stencil/core" {
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
-             * @deprecated Use ix-application as an successor of ix-map-navigation
+             * @deprecated ix-map-navigation is deprecated in favor of ix-application
              */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
             /**
@@ -6689,11 +6689,11 @@ declare module "@stencil/core" {
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
             /**
-             * @deprecated Using the ix-application-header together with the avatar functionality
+             * @deprecated Use ix-application-header and it's avatar functionality instead
              */
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
             /**
-             * @deprecated Using the ix-application-header together with the avatar functionality
+             * @deprecated Use ix-application-header and it's  avatar functionality instead
              */
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
             /**
