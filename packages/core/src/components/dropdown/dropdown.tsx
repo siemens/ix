@@ -473,8 +473,8 @@ export class Dropdown {
   async componentDidLoad() {
     this.changedTrigger(this.trigger, null);
 
-    // Event listener to check of a dropdown is inside another dropdown
-    // chancel the event will prevent the closing of the parent dropdown
+    // Event listener to check if a dropdown is inside another dropdown
+    // cancellation of the event will prevent the closing of the parent dropdown
     this.hostElement.addEventListener('check-nested-dropdown', (e) => {
       e.preventDefault();
       e.stopPropagation();
