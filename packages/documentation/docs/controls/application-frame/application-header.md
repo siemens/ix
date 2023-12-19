@@ -11,7 +11,7 @@ import Playground from '@site/src/components/Playground';
 
 <Tags />
 
-When working with the ix-application-header component, you have the flexibility to position elements within its content area. The content area is specifically aligned to the right side of the header, allowing you to strategically place and organize various elements.
+The ix-application-header can host custom content which will be displayed on the far right side of the header.
 
 ## Usage
 
