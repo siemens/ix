@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.8.2",
+    "version": "4.9.0",
     "typescriptVersion": "5.2.2"
   },
   "components": [
@@ -4815,13 +4815,9 @@
             "signature": "(show?: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show Overwrite toggle state with boolean"
-                  }
-                ],
-                "text": "Overwrite toggle state with boolean"
+                "name": "show",
+                "type": "boolean",
+                "docs": "Overwrite toggle state with boolean"
               }
             ],
             "references": {
@@ -4833,7 +4829,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleDrawer(show?: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": "Overwrite toggle state with boolean"
+            }
+          ],
           "docs": "Toggle or define show state of drawer",
           "docsTags": [
             {
@@ -8600,40 +8602,24 @@
             "signature": "(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "name"
-                  }
-                ],
-                "text": ""
+                "name": "name",
+                "type": "string",
+                "docs": ""
               },
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "component"
-                  }
-                ],
-                "text": ""
+                "name": "component",
+                "type": "HTMLElement",
+                "docs": ""
               },
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "icon"
-                  }
-                ],
-                "text": ""
+                "name": "icon",
+                "type": "string",
+                "docs": ""
               },
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "color"
-                  }
-                ],
-                "text": ""
+                "name": "color",
+                "type": "string",
+                "docs": ""
               }
             ],
             "references": {
@@ -8649,7 +8635,28 @@
             "return": "Promise<void>"
           },
           "signature": "openOverlay(name: string, component: HTMLElement, icon?: string, color?: string) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "docs": ""
+            },
+            {
+              "name": "component",
+              "type": "HTMLElement",
+              "docs": ""
+            },
+            {
+              "name": "icon",
+              "type": "string",
+              "docs": ""
+            },
+            {
+              "name": "color",
+              "type": "string",
+              "docs": ""
+            }
+          ],
           "docs": "Open a overlay inside content area",
           "docsTags": [
             {
@@ -8685,13 +8692,9 @@
             "signature": "(show?: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show new visibility state"
-                  }
-                ],
-                "text": "new visibility state"
+                "name": "show",
+                "type": "boolean",
+                "docs": "new visibility state"
               }
             ],
             "references": {
@@ -8703,7 +8706,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleSidebar(show?: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": "new visibility state"
+            }
+          ],
           "docs": "Change the visibility of the sidebar",
           "docsTags": [
             {
@@ -9303,13 +9312,9 @@
             "signature": "(show: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show"
-                  }
-                ],
-                "text": ""
+                "name": "show",
+                "type": "boolean",
+                "docs": ""
               }
             ],
             "references": {
@@ -9321,7 +9326,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleAbout(show: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": ""
+            }
+          ],
           "docs": "Toggle About tabs",
           "docsTags": [
             {
@@ -9340,13 +9351,9 @@
             "signature": "(show?: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show"
-                  }
-                ],
-                "text": ""
+                "name": "show",
+                "type": "boolean",
+                "docs": ""
               }
             ],
             "references": {
@@ -9358,7 +9365,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleMapExpand(show?: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": ""
+            }
+          ],
           "docs": "Toggle map sidebar expand",
           "docsTags": [
             {
@@ -9377,13 +9390,9 @@
             "signature": "(show?: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show"
-                  }
-                ],
-                "text": ""
+                "name": "show",
+                "type": "boolean",
+                "docs": ""
               }
             ],
             "references": {
@@ -9395,7 +9404,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleMenu(show?: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": ""
+            }
+          ],
           "docs": "Toggle menu",
           "docsTags": [
             {
@@ -9414,13 +9429,9 @@
             "signature": "(show: boolean) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "show"
-                  }
-                ],
-                "text": ""
+                "name": "show",
+                "type": "boolean",
+                "docs": ""
               }
             ],
             "references": {
@@ -9432,7 +9443,13 @@
             "return": "Promise<void>"
           },
           "signature": "toggleSettings(show: boolean) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "show",
+              "type": "boolean",
+              "docs": ""
+            }
+          ],
           "docs": "Toggle Settings tabs",
           "docsTags": [
             {
@@ -11023,8 +11040,9 @@
             "signature": "<T = any>(reason: T) => Promise<void>",
             "parameters": [
               {
-                "tags": [],
-                "text": ""
+                "name": "reason",
+                "type": "T",
+                "docs": ""
               }
             ],
             "references": {
@@ -11040,7 +11058,13 @@
             "return": "Promise<void>"
           },
           "signature": "closeModal<T = any>(reason: T) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "reason",
+              "type": "T",
+              "docs": ""
+            }
+          ],
           "docs": "Close the dialog",
           "docsTags": []
         },
@@ -11054,8 +11078,9 @@
             "signature": "<T = any>(reason?: T) => Promise<void>",
             "parameters": [
               {
-                "tags": [],
-                "text": ""
+                "name": "reason",
+                "type": "T",
+                "docs": ""
               }
             ],
             "references": {
@@ -11071,7 +11096,13 @@
             "return": "Promise<void>"
           },
           "signature": "dismissModal<T = any>(reason?: T) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "reason",
+              "type": "T",
+              "docs": ""
+            }
+          ],
           "docs": "Dismiss the dialog",
           "docsTags": []
         },
@@ -14676,13 +14707,9 @@
             "signature": "(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "config"
-                  }
-                ],
-                "text": ""
+                "name": "config",
+                "type": "ToastConfig",
+                "docs": ""
               }
             ],
             "references": {
@@ -14708,7 +14735,13 @@
             "return": "Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>"
           },
           "signature": "showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "config",
+              "type": "ToastConfig",
+              "docs": ""
+            }
+          ],
           "docs": "Display a toast message",
           "docsTags": [
             {
@@ -16249,13 +16282,9 @@
             "signature": "(obj: any) => Promise<void>",
             "parameters": [
               {
-                "tags": [
-                  {
-                    "name": "param",
-                    "text": "obj"
-                  }
-                ],
-                "text": ""
+                "name": "obj",
+                "type": "any",
+                "docs": ""
               }
             ],
             "references": {
@@ -16267,7 +16296,13 @@
             "return": "Promise<void>"
           },
           "signature": "setFilesToUpload(obj: any) => Promise<void>",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "obj",
+              "type": "any",
+              "docs": ""
+            }
+          ],
           "docs": "Set files",
           "docsTags": [
             {
