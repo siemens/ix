@@ -49,7 +49,7 @@ export class ApplicationHeader {
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
 
-  @State() isSlotted = false;
+  @State() hasSlottedElements = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
@@ -158,15 +158,11 @@ export class ApplicationHeader {
     );
   }
 
-  private slotUpdated(): void {
-    this.updateIsSlottedContent();
-  }
-
   private updateIsSlottedContent() {
     const slotElement =
       this.hostElement.shadowRoot.querySelector('.content slot');
 
-    this.isSlotted = hasSlottedElements(slotElement);
+    this.hasSlottedElements = hasSlottedElements(slotElement);
   }
 
   render() {
@@ -201,7 +197,7 @@ export class ApplicationHeader {
               <ix-icon-button
                 class={{
                   ['context-menu']: true,
-                  ['context-menu-visible']: this.isSlotted,
+                  ['context-menu-visible']: this.hasSlottedElements,
                 }}
                 data-context-menu
                 icon="more-menu"
@@ -213,12 +209,14 @@ export class ApplicationHeader {
                 trigger={this.resolveContextMenuButton()}
               >
                 <div class="dropdown-content">
-                  <slot onSlotchange={() => this.slotUpdated()}></slot>
+                  <slot
+                    onSlotchange={() => this.updateIsSlottedContent()}
+                  ></slot>
                 </div>
               </ix-dropdown>
             </Fragment>
           ) : (
-            <slot onSlotchange={() => this.slotUpdated()}></slot>
+            <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
           )}
           <slot name="ix-application-header-avatar"></slot>
         </div>
