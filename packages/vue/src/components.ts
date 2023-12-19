@@ -75,6 +75,9 @@ import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
+import { defineCustomElement as defineIxSidePanel } from '@siemens/ix/components/ix-side-panel.js';
+import { defineCustomElement as defineIxSidePanelContentArea } from '@siemens/ix/components/ix-side-panel-content-area.js';
+import { defineCustomElement as defineIxSidePanelWrapper } from '@siemens/ix/components/ix-side-panel-wrapper.js';
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
@@ -737,6 +740,27 @@ export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-
   'selected',
   'hover',
   'itemClick'
+]);
+
+
+export const IxSidePanel = /*@__PURE__*/ defineContainer<JSX.IxSidePanel>('ix-side-panel', defineIxSidePanel, [
+  'paneTitle',
+  'inline',
+  'expandedSize',
+  'miniContent',
+  'expanded',
+  'position',
+  'mobile',
+  'expandedChange'
+]);
+
+
+export const IxSidePanelContentArea = /*@__PURE__*/ defineContainer<JSX.IxSidePanelContentArea>('ix-side-panel-content-area', defineIxSidePanelContentArea);
+
+
+export const IxSidePanelWrapper = /*@__PURE__*/ defineContainer<JSX.IxSidePanelWrapper>('ix-side-panel-wrapper', defineIxSidePanelWrapper, [
+  'behaviour',
+  'variant'
 ]);
 
 

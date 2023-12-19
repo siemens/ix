@@ -5,14 +5,22 @@
 
 :host {
   @include ix-component;
-
-
   display: flex;
   position: absolute;
   height: 100%;
   width: 100%;
 
-  .row-floating {
+  .side-panes-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
+  .side-pane-wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .row {
     height: 100%;
     width: 100%;
     display: flex;
@@ -20,10 +28,31 @@
     justify-content: space-between;
   }
 
-  .col-floating {
+  .col {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     justify-content: space-between;
   }
+
+  .col-floating {
+    position: absolute;
+    z-index: 10;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .absolute {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+
 }

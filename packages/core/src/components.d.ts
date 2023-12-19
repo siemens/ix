@@ -1846,11 +1846,11 @@ export namespace Components {
         /**
           * State of the side-panel
          */
-        "expanded": boolean;
+        "expandPane": boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
-        "expandedSize": | '240px'
+        "expandedPaneSize": | '240px'
     | '320px'
     | '360px'
     | '480px'
@@ -1861,11 +1861,11 @@ export namespace Components {
         /**
           * Floating or inline style
          */
-        "inline": boolean;
+        "floating": boolean;
         /**
-          * Toggle
+          * Floating or inline style
          */
-        "miniContent": boolean;
+        "inline": boolean;
         /**
           * TODO: !!!
          */
@@ -1878,22 +1878,34 @@ export namespace Components {
           * Placement of the sidebar
          */
         "position": SidePanelPosition;
+        /**
+          * Toggle
+         */
+        "showPreviewContent": boolean;
     }
     interface IxSidePanelContentArea {
     }
     interface IxSidePanelWrapper {
         /**
-          * Sets the behaviour of the component, either it should be an inline or a floating component
-         */
-        "behaviour": 'inline' | 'floating';
-        /**
           * Close the side panel, especially for the floating version
          */
         "closeSidePanel": () => Promise<void>;
         /**
-          * Open the side panel, especially for the floating version
+          * Determines if the side panes behave floating
          */
-        "setOpenSidePanel": () => Promise<void>;
+        "floating": boolean;
+        /**
+          * Determines if the side panes behave inline
+         */
+        "inline": boolean;
+        /**
+          * Open the side panel
+         */
+        "setOpenSidePanel": (position: string) => Promise<void>;
+        /**
+          * Choose the variant of the panes
+         */
+        "variant": '1' | '2';
     }
     /**
      * @since 2.0.0
@@ -5447,11 +5459,11 @@ declare namespace LocalJSX {
         /**
           * State of the side-panel
          */
-        "expanded"?: boolean;
+        "expandPane"?: boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
-        "expandedSize"?: | '240px'
+        "expandedPaneSize"?: | '240px'
     | '320px'
     | '360px'
     | '480px'
@@ -5462,11 +5474,11 @@ declare namespace LocalJSX {
         /**
           * Floating or inline style
          */
-        "inline"?: boolean;
+        "floating"?: boolean;
         /**
-          * Toggle
+          * Floating or inline style
          */
-        "miniContent"?: boolean;
+        "inline"?: boolean;
         /**
           * TODO: !!!
          */
@@ -5483,14 +5495,26 @@ declare namespace LocalJSX {
           * Placement of the sidebar
          */
         "position"?: SidePanelPosition;
+        /**
+          * Toggle
+         */
+        "showPreviewContent"?: boolean;
     }
     interface IxSidePanelContentArea {
     }
     interface IxSidePanelWrapper {
         /**
-          * Sets the behaviour of the component, either it should be an inline or a floating component
+          * Determines if the side panes behave floating
          */
-        "behaviour"?: 'inline' | 'floating';
+        "floating"?: boolean;
+        /**
+          * Determines if the side panes behave inline
+         */
+        "inline"?: boolean;
+        /**
+          * Choose the variant of the panes
+         */
+        "variant"?: '1' | '2';
     }
     /**
      * @since 2.0.0

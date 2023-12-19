@@ -1845,6 +1845,78 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 
 @ProxyCmp({
+  inputs: ['expanded', 'expandedSize', 'inline', 'miniContent', 'mobile', 'paneTitle', 'position']
+})
+@Component({
+  selector: 'ix-side-panel',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['expanded', 'expandedSize', 'inline', 'miniContent', 'mobile', 'paneTitle', 'position'],
+})
+export class IxSidePanel {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandedChange']);
+  }
+}
+
+
+export declare interface IxSidePanel extends Components.IxSidePanel {
+  /**
+   * Event
+   */
+  expandedChange: EventEmitter<CustomEvent<ExpandedChangeEvent>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-side-panel-content-area',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxSidePanelContentArea {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxSidePanelContentArea extends Components.IxSidePanelContentArea {}
+
+
+@ProxyCmp({
+  inputs: ['behaviour', 'variant'],
+  methods: ['setOpenSidePanel', 'closeSidePanel']
+})
+@Component({
+  selector: 'ix-side-panel-wrapper',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['behaviour', 'variant'],
+})
+export class IxSidePanelWrapper {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxSidePanelWrapper extends Components.IxSidePanelWrapper {}
+
+
+@ProxyCmp({
   inputs: ['disabled', 'error', 'marker', 'max', 'min', 'step', 'trace', 'traceReference', 'value']
 })
 @Component({

@@ -20,39 +20,61 @@ export class SidePanelWrapper {
   @Element() hostElement: HTMLIxSidePanelWrapperElement;
 
   /**
-   * Sets the behaviour of the component, either it should be an inline or a floating component
+   * Determines if the side panes behave inline
    */
-  @Prop() behaviour: 'inline' | 'floating' = 'inline';
+  @Prop() inline: boolean = true;
 
   /**
-   * TODO: !!!
+   * Determines if the side panes behave floating
    */
+  @Prop() floating: boolean = false;
+
+  /**
+   * Choose the variant of the panes
+   */
+  @Prop() variant: '1' | '2' = '1';
+
   @State() expanded: boolean = false;
-
-  /**
-   * TODO: !!!
-   */
-  @State() overlayHeading: string = '';
-
-  private expandedPanelPosition: string = '';
-  private mobileMode: boolean = false;
+  @State() mobileMode: boolean = false;
 
   private sidePanels: {
     [position: string]: HTMLIxSidePanelElement | null;
   } = {};
 
-  componentWillLoad() {
-    this.onWindowResize();
-  }
-
   componentWillRender() {
     const sidePanels = this.getSidePanels();
     sidePanels.forEach((sidePanelElement) => {
       this.sidePanels[sidePanelElement.position] = sidePanelElement;
-      sidePanelElement.inline = this.behaviour === 'inline';
+      sidePanelElement.inline = this.inline;
     });
 
     this.onWindowResize();
+  }
+
+  componentDidRender() {
+    this.configureLayout();
+  }
+
+  configureLayout() {
+    const sidePanels = this.getSidePanels();
+    sidePanels.forEach((sidePanelElement) => {
+      let zIndex: string = '1';
+      const isBottomTop =
+        sidePanelElement.position === 'top' ||
+        sidePanelElement.position === 'bottom';
+
+      if (this.variant === '1') {
+        if (!isBottomTop) {
+          zIndex = '2';
+        }
+      } else {
+        if (isBottomTop) {
+          zIndex = '2';
+        }
+      }
+
+      sidePanelElement.style.zIndex = zIndex;
+    });
   }
 
   @Listen('resize', { target: 'window' })
@@ -60,19 +82,15 @@ export class SidePanelWrapper {
     const newMode = window.innerWidth <= mobileBreakpoint;
     if (this.mobileMode != newMode) {
       this.mobileMode = newMode;
-
-      for (var key in this.sidePanels) {
-        this.sidePanels[key].mobile = this.mobileMode;
-      }
     }
   }
 
   /**
-   * Open the side panel, especially for the floating version
+   * Open the side panel
    */
   @Method()
-  public setOpenSidePanel() {
-    this.expanded = true;
+  public setOpenSidePanel(position: string) {
+    this.sidePanels[position].expandPane = true;
   }
 
   /**
@@ -83,57 +101,70 @@ export class SidePanelWrapper {
     this.expanded = false;
   }
 
-  getSidePanel(position: string): HTMLIxSidePanelElement {
-    return this.hostElement.querySelector(`[slot="${position}"]`);
-  }
-
   getSidePanels() {
     return this.hostElement.querySelectorAll('ix-side-panel');
   }
 
-  setExpandedState() {
-    const sidePanel: HTMLIxSidePanelElement = this.getSidePanel(
-      this.expandedPanelPosition
-    );
-    sidePanel.expanded = this.expanded;
-  }
-
   render() {
-    /*
-    <div class="row-floating">
-          <slot name="left"></slot>
-          <div class="col-floating">
-            <slot name="top"></slot>
-            <slot name="bottom"></slot>
-          </div>
-          <slot name="right"></slot>
-        </div>
-     */
-
-    /*
-    <div class="col-floating">
-          <slot name="top"></slot>
-
-          <div class="row-floating">
-            <slot name="left"></slot>
-            <slot name="right"></slot>
-          </div>
-
-          <slot name="bottom"></slot>
-        </div>
-     */
     return (
       <Host style={{ height: '100%', width: '100%' }}>
-        <div class="col-floating">
-          <div>
-            <slot name="top"></slot>
+        {this.variant == '1' && !this.mobileMode ? (
+          <ix-row class="row">
             <slot name="left"></slot>
-          </div>
-          <div>
+            <ix-col class="col">
+              <slot name="top"></slot>
+              <slot name="content"></slot>
+              <slot name="bottom"></slot>
+            </ix-col>
             <slot name="right"></slot>
-            <slot name="bottom"></slot>
+          </ix-row>
+        ) : null}
+        {this.variant == '2' && !this.mobileMode ? (
+          <div class="side-pane-wrapper">
+            <ix-row
+              class={{
+                col: true,
+                'col-floating': this.floating,
+              }}
+            >
+              <slot name="top"></slot>
+              <ix-col class="row">
+                <div class="side-pane-wrapper">
+                  <slot name="left"></slot>
+                </div>
+                {this.inline ? (
+                  <div class="content">
+                    <slot name="content"></slot>
+                  </div>
+                ) : null}
+                <div class="side-pane-wrapper">
+                  <slot name="right"></slot>
+                </div>
+              </ix-col>
+              <slot name="bottom"></slot>
+            </ix-row>
+            {this.floating ? (
+              <div class="content absolute">
+                <slot name="content"></slot>
+              </div>
+            ) : null}
           </div>
-        </div>
+        ) : null}
+        {this.mobileMode ? (
+          <ix-col class="col">
+            <div>
+              <slot name="top"></slot>
+              <slot name="left"></slot>
+            </div>
+            <div class="content-area">
+              <slot name="content"></slot>
+            </div>
+            <div>
+              <slot name="right"></slot>
+              <slot name="bottom"></slot>
+            </div>
+          </ix-col>
+        ) : null}
       </Host>
     );
   }

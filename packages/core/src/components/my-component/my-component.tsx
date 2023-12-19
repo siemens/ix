@@ -31,7 +31,7 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
-          <ix-side-panel-wrapper behaviour="inline">
+          <ix-side-panel-wrapper floating={true}>
             <ix-side-panel slot="top" paneTitle="TOP">
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
@@ -44,10 +44,16 @@ export class MyComponent {
             </ix-side-panel>
             <ix-side-panel slot="right" paneTitle="RIGHT"></ix-side-panel>
             <ix-side-panel slot="bottom" paneTitle="BOTTOM"></ix-side-panel>
-            <ix-side-panel-content-area slot="content">
+            <ix-side-panel-content-area
+              style={{ backgroundColor: 'blue' }}
+              slot="content"
+            >
+              <h1>Test Heading</h1>
+              <h1>Test Heading</h1>
+              <h1>Test Heading</h1>
+              <h1>Test Heading</h1>
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
-              <ix-button>PUSH ME</ix-button>
             </ix-side-panel-content-area>
           </ix-side-panel-wrapper>
         </ix-basic-navigation>
