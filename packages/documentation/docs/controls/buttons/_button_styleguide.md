@@ -25,7 +25,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
-- **Button groups:** Buttons can be grouped based on their relationship. A button group can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons.
+- **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons. We typically cluster buttons if actions/functions are related but not excluding each other. Otherwise you can consider using a `button group`. 
 
 ## States
 

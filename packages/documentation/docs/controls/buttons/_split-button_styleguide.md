@@ -24,7 +24,7 @@ Variants, options and states of the ix-button and the ix-dropdown-button compone
 - The options **loading** and **type** are not available for split buttons.
 
 ## Behavior in context
-- **Interaction:** When users press an option from the dropdown list, the action is triggered. Typically the label of the button on the left side stays static. Beware that updating the left side with the last triggered action may lead to layout changes (e.g. button width) and requires updating the dropdown with the remove action.
+- **Interaction:** When users press an option from the dropdown list, the action is triggered. Typically the label of the button on the left side stays static. Beware that updating the left side with the last triggered action may lead to layout changes (e.g. button width) and requires updating the dropdown by adding the action that was removed from the button face.
 
 ## States
 Split buttons have five states: Default, hover, active, disabled and focused. States are applied to left and the right part of the split button independently except for the disabled state. The visual appearance and the behavior of the states is the same as for the ix-button and the ix-dropdown-button.

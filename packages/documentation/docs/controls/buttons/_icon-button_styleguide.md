@@ -9,7 +9,7 @@ Variants, options and states of the ix-button component apply. Only additional, 
 
 ## Options
 - **Color:** The color of the icon displayed on an icon button is adjustable. In our applications, we only adjust the icon color when we place icon buttons on backgrounds with an unusual color to maintain proper contrast between the elements.
-- **Oval:** The shape of icon button containers can be adjusted from square to oval. The recommended shape of icon buttons depends on the shape of the parent component. We typically use square icon buttons within rectangular components or in a button group and oval icon buttons within oval components.
+- **Oval:** The shape of icon button containers can be adjusted from square to oval. The recommended shape of icon buttons depends on the shape of the parent component. We typically use square icon buttons within rectangular components or in a button cluster and oval icon buttons within oval components.
 - **Size:** Icon buttons can have three different sizes. We typically use the extra small size (12) within very small parent components, the small size (16) within any standard parent components (e.g. to clear search input) and the default size (24) for standalone application.
 
 ## Dos and Don'ts

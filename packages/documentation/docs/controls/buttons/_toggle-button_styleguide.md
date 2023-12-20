@@ -1,4 +1,4 @@
-Toggle buttons are button elements which allow the user to activate/deactivate a function. Toggle buttons with and without text labels are available. We typically use toggle buttons within button groups when users can chose between more than two options or when two available option don't follow the on/off metaphor. 
+Toggle buttons are button elements which allow the user to activate/deactivate a function. Toggle buttons with and without text labels are available. We typically use toggle buttons within button groups when users can chose between more than two options or when two available options don't follow the on/off metaphor. 
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
 
@@ -18,7 +18,6 @@ Toggle buttons have five states: Default, hover, active, disabled, loading and f
 ## Dos and Don'ts
 - Do use toggle buttons when users can switch between more than two exclusive options
 - Do use toggle buttons when two opposing options don't follow the on/off metaphor
-- Don't use toggle buttons 
 
 ## Related patterns
 
