@@ -7,17 +7,14 @@
   @include ix-component;
   display: flex;
   position: absolute;
-  height: 100%;
-  width: 100%;
 
   .side-panes-wrapper {
     height: 100%;
     width: 100%;
   }
 
-  .side-pane-wrapper {
+  .side-pane-wrapper-vertical {
     display: flex;
-    flex-grow: 1;
   }
 
   .row {
@@ -50,9 +47,6 @@
 
   .absolute {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
   }
 
 }

@@ -4,7 +4,6 @@ import {
   h,
   Host,
   Listen,
-  Method,
   Prop,
   State,
 } from '@stencil/core';
@@ -22,19 +21,18 @@ export class SidePanelWrapper {
   /**
    * Determines if the side panes behave inline
    */
-  @Prop() inline: boolean = true;
+  @Prop() inline: boolean = false;
 
   /**
    * Determines if the side panes behave floating
    */
-  @Prop() floating: boolean = false;
+  @Prop() floating: boolean = true;
 
   /**
    * Choose the variant of the panes
    */
   @Prop() variant: '1' | '2' = '1';
 
-  @State() expanded: boolean = false;
   @State() mobileMode: boolean = false;
 
   private sidePanels: {
@@ -42,16 +40,22 @@ export class SidePanelWrapper {
   } = {};
 
   componentWillRender() {
-    const sidePanels = this.getSidePanels();
-    sidePanels.forEach((sidePanelElement) => {
-      this.sidePanels[sidePanelElement.position] = sidePanelElement;
-      sidePanelElement.inline = this.inline;
-    });
+    if (this.inline && this.floating) {
+      console.error('Inline and floating can not be set at once!');
+      return;
+    }
 
     this.onWindowResize();
   }
 
   componentDidRender() {
+    const sidePanels = this.getSidePanels();
+    sidePanels.forEach((sidePanelElement) => {
+      this.sidePanels[sidePanelElement.position] = sidePanelElement;
+      sidePanelElement.inline = this.inline;
+      sidePanelElement.floating = this.floating;
+    });
+
     this.configureLayout();
   }
 
@@ -63,7 +67,10 @@ export class SidePanelWrapper {
         sidePanelElement.position === 'top' ||
         sidePanelElement.position === 'bottom';
 
-      if (this.variant === '1') {
+      if (this.mobileMode) {
+        sidePanelElement.style.removeProperty('z-index');
+        return;
+      } else if (this.variant === '1') {
         if (!isBottomTop) {
           zIndex = '2';
         }
@@ -85,22 +92,6 @@ export class SidePanelWrapper {
     }
   }
 
-  /**
-   * Open the side panel
-   */
-  @Method()
-  public setOpenSidePanel(position: string) {
-    this.sidePanels[position].expandPane = true;
-  }
-
-  /**
-   * Close the side panel, especially for the floating version
-   */
-  @Method()
-  public closeSidePanel() {
-    this.expanded = false;
-  }
-
   getSidePanels() {
     return this.hostElement.querySelectorAll('ix-side-panel');
   }
@@ -112,24 +103,39 @@ export class SidePanelWrapper {
           <ix-row class="row">
             <slot name="left"></slot>
             <ix-col class="col">
-              <slot name="top"></slot>
-              <slot name="content"></slot>
-              <slot name="bottom"></slot>
+              <div>
+                <slot name="top"></slot>
+              </div>
+              {this.inline ? (
+                <div class="content">
+                  <slot name="content"></slot>
+                </div>
+              ) : null}
+              <div>
+                <slot name="bottom"></slot>
+              </div>
             </ix-col>
             <slot name="right"></slot>
+            {this.floating ? (
+              <div class="content absolute">
+                <slot name="content"></slot>
+              </div>
+            ) : null}
           </ix-row>
         ) : null}
         {this.variant == '2' && !this.mobileMode ? (
-          <div class="side-pane-wrapper">
-            <ix-row
+          <div class="side-panes-wrapper">
+            <ix-col
               class={{
                 col: true,
                 'col-floating': this.floating,
               }}
             >
-              <slot name="top"></slot>
-              <ix-col class="row">
-                <div class="side-pane-wrapper">
+              <div>
+                <slot name="top"></slot>
+              </div>
+              <div class="row">
+                <div class="side-pane-wrapper-vertical">
                   <slot name="left"></slot>
                 </div>
                 {this.inline ? (
@@ -137,17 +143,19 @@ export class SidePanelWrapper {
                     <slot name="content"></slot>
                   </div>
                 ) : null}
-                <div class="side-pane-wrapper">
+                <div class="side-pane-wrapper-vertical">
                   <slot name="right"></slot>
                 </div>
-              </ix-col>
-              <slot name="bottom"></slot>
-            </ix-row>
-            {this.floating ? (
-              <div class="content absolute">
-                <slot name="content"></slot>
               </div>
-            ) : null}
+              <div>
+                <slot name="bottom"></slot>
+              </div>
+              {this.floating ? (
+                <div class="content absolute">
+                  <slot name="content"></slot>
+                </div>
+              ) : null}
+            </ix-col>
           </div>
         ) : null}
         {this.mobileMode ? (
@@ -156,7 +164,7 @@ export class SidePanelWrapper {
               <slot name="top"></slot>
               <slot name="left"></slot>
             </div>
-            <div class="content-area">
+            <div class="content">
               <slot name="content"></slot>
             </div>
             <div>

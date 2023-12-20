@@ -8,17 +8,16 @@ $side-pane-mini-content-width: 76px;
 
 :host {
   @include ix-component;
+  background-color: var(--theme-nav--background);
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  position: relative;
 
   .top-bottom-pane {
-    background-color: var(--theme-nav--background);
     flex-grow: 1;
   }
 
   .left-right-pane {
-    background-color: var(--theme-nav--background);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -37,7 +36,6 @@ $side-pane-mini-content-width: 76px;
   }
 
   .left-right-pane-mobil {
-    background-color: var(--theme-nav--background);
     display: flex;
     flex-direction: row-reverse;
   }
@@ -61,11 +59,48 @@ $side-pane-mini-content-width: 76px;
     justify-content: space-between;
     padding: 0.5rem 1.2rem;
   }
+
+  .side-pane-content {
+    padding: 0.5rem 1.2rem;
+  }
+
+  .box-shadow {
+    box-shadow: 0 0 15px black;
+  }
+
+  .mobile-border-top {
+    border-bottom: 1px solid rgba(224, 245, 255, 0.25);
+  }
+
+  .mobile-border-bottom {
+    border-top: 1px solid rgba(224, 245, 255, 0.25);
+  }
+
+  @mixin set-border($position) {
+    @if $position {
+      border-#{$position}: 1px solid rgba(224, 245, 255, 0.25);
+    }
+  }
+
+  .right-pane-border {
+    @include set-border(left);
+  }
+
+  .left-pane-border {
+    @include set-border(right);
+  }
+
+  .top-pane-border {
+    @include set-border(bottom);
+  }
+
+  .bottom-pane-border {
+    @include set-border(top);
+  }
 }
 
 :host(.mobile-overlay) {
   width: 100%;
-  background-color: var(--theme-nav--background);;
   position: absolute;
   z-index: 100;
 }

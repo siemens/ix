@@ -17,13 +17,7 @@ type ExpandedChangeEvent = {
   position: string;
   expanded: boolean;
 };
-
-const oppositeEdge = {
-  top: 'Bottom',
-  right: 'Left',
-  bottom: 'Top',
-  left: 'Right',
-};
+const ANIMATION_DURATION = 300;
 
 @Component({
   tag: 'ix-side-panel',
@@ -41,12 +35,12 @@ export class SidePanel {
   /**
    * Floating or inline style
    */
-  @Prop() inline: boolean = true;
+  @Prop() inline: boolean = false;
 
   /**
    * Floating or inline style
    */
-  @Prop() floating: boolean = !this.inline;
+  @Prop() floating: boolean = false;
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -81,17 +75,11 @@ export class SidePanel {
    */
   @Event() expandedChange: EventEmitter<ExpandedChangeEvent>;
 
-  /**
-   * TODO: !!!
-   */
-  @Prop({ mutable: true, reflect: true }) mobile: boolean =
-    window.innerWidth < 767;
-
   @State() private expandIcon: string = '';
   @State() private showContent: boolean = false;
   @State() private minimizeIcon: string = '';
-  @State() private isMobileTop: boolean =
-    (this.position === 'top' || this.position === 'left') && this.mobile;
+  @State() private isMobileTop: boolean;
+  @State() private mobile: boolean = window.innerWidth < 767;
 
   private isBottomTopPane: boolean;
   private isLeftRightPane: boolean;
@@ -99,52 +87,60 @@ export class SidePanel {
   private previousHeight: string = null;
 
   componentWillLoad() {
+    this.initializePosition();
+    this.setIcons();
+
+    if (this.expandPane) {
+      this.onExpandedChange();
+    }
+  }
+
+  private initializePosition() {
     this.position =
       (this.hostElement.getAttribute('slot') as SidePanelPosition) ||
       this.position;
     this.isBottomTopPane =
       this.position === 'bottom' || this.position === 'top';
     this.isLeftRightPane = !this.isBottomTopPane;
-
-    this.determineSidePanelIcons();
-
-    if (this.expandPane) {
-      this.onExpandedChange();
-    }
-
-    const borderPosition = oppositeEdge[this.position];
-    this.hostElement.style[`border${borderPosition}`] =
-      '1px solid rgba(224, 245, 255, 0.25)';
-    this.hostElement.style.boxShadow = '0px 0px 15px black';
+    this.isMobileTop = this.position === 'top' || this.position === 'left';
   }
 
-  determineSidePanelIcons() {
+  setIcons() {
+    const { expandIcon, minimizeIcon } = this.getIconNames();
+    this.expandIcon = expandIcon;
+    this.minimizeIcon = minimizeIcon;
+  }
+
+  private getIconNames(): { expandIcon: string; minimizeIcon: string } {
+    let expandIcon = '';
+    let minimizeIcon = '';
+
     switch (this.position) {
       case 'left':
-        this.expandIcon = this.mobile
-          ? 'double-chevron-up'
-          : 'double-chevron-left';
-        this.minimizeIcon = this.mobile
+        expandIcon = this.mobile ? 'double-chevron-up' : 'double-chevron-left';
+        minimizeIcon = this.mobile
           ? 'double-chevron-down'
           : 'double-chevron-right';
-        return;
+        break;
       case 'right':
-        this.expandIcon = this.mobile
+        expandIcon = this.mobile
           ? 'double-chevron-down'
           : 'double-chevron-right';
-        this.minimizeIcon = this.mobile
+        minimizeIcon = this.mobile
           ? 'double-chevron-up'
           : 'double-chevron-left';
         break;
       case 'bottom':
-        this.expandIcon = 'double-chevron-down';
-        this.minimizeIcon = 'double-chevron-up';
+        expandIcon = 'double-chevron-down';
+        minimizeIcon = 'double-chevron-up';
         break;
       case 'top':
-        this.expandIcon = 'double-chevron-up';
-        this.minimizeIcon = 'double-chevron-down';
-        return;
+        expandIcon = 'double-chevron-up';
+        minimizeIcon = 'double-chevron-down';
+        break;
     }
+
+    return { expandIcon, minimizeIcon };
   }
 
   @Watch('expandPane')
@@ -152,6 +148,15 @@ export class SidePanel {
     if (this.expandPane) {
       this.previousHeight = this.hostElement.offsetHeight.toString();
       this.previousWidth = this.hostElement.offsetWidth.toString();
+
+      //fallback, if initially expanded
+      if (!this.mobile) {
+        if (this.previousWidth === '0') {
+          this.previousWidth = '32px';
+          this.previousHeight = '32px';
+        }
+      }
+
       const expandPaneSize = this.mobile ? '100%' : this.expandedPaneSize;
 
       if (this.isBottomTopPane || this.mobile) {
@@ -172,7 +177,7 @@ export class SidePanel {
 
   @Listen('resize', { target: 'window' })
   onWindowResize() {
-    const newMode = window.innerWidth <= 787;
+    const newMode = window.innerWidth <= 767;
     if (this.mobile != newMode) {
       this.mobile = newMode;
     }
@@ -180,13 +185,15 @@ export class SidePanel {
 
   @Watch('mobile')
   onMobileChange(): void {
-    this.expandPane = false;
     this.resetLayoutState();
+    this.setIcons();
+    this.expandPane = false;
   }
 
   resetLayoutState() {
     this.previousWidth = null;
     this.previousHeight = null;
+    this.showContent = false;
     this.hostElement.style.removeProperty('height');
     this.hostElement.style.removeProperty('width');
   }
@@ -195,7 +202,7 @@ export class SidePanel {
     requestAnimationFrame(() => {
       anime({
         targets: this.hostElement,
-        duration: 300,
+        duration: ANIMATION_DURATION,
         width: size,
         easing: 'linear',
         begin: () => {
@@ -206,6 +213,8 @@ export class SidePanel {
         complete: () => {
           if (this.expandPane) {
             this.showContent = true;
+          } else {
+            this.hostElement.style.removeProperty('width');
           }
         },
       });
@@ -216,7 +225,7 @@ export class SidePanel {
     requestAnimationFrame(() => {
       anime({
         targets: this.hostElement,
-        duration: 300,
+        duration: ANIMATION_DURATION,
         height: size,
         easing: 'linear',
         begin: () => {
@@ -227,27 +236,47 @@ export class SidePanel {
         complete: () => {
           if (this.expandPane) {
             this.showContent = true;
+          } else {
+            this.hostElement.style.removeProperty('height');
           }
         },
       });
     });
   }
 
+  hiddePane(): boolean {
+    if (this.inline) {
+      return false;
+      //floating and mobile --> mobile panes at top and bottom
+    } else if (this.floating && this.mobile) {
+      return false;
+      //floating at normal screen --> panes are hidden if they are not expanded
+    } else if (this.floating && this.expandPane && !this.mobile) {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
     return (
       <Host
-        hidden={!this.inline && (!this.expandPane || this.mobile)}
+        hidden={this.hiddePane()}
         class={{
           'mobile-overlay': this.expandPane && this.mobile,
-          'top-expand': this.expandPane && this.isMobileTop,
-          'bottom-expand': this.expandPane && !this.isMobileTop,
+          'top-expand': this.expandPane && this.isMobileTop && this.mobile,
+          'bottom-expand': this.expandPane && !this.isMobileTop && this.mobile,
         }}
       >
         <aside
           class={{
+            [`${this.position}-pane-border`]: !this.mobile,
             'top-bottom-pane': this.isBottomTopPane && !this.mobile,
             'left-right-pane': this.isLeftRightPane && !this.mobile,
             'left-right-pane-mobile': this.isLeftRightPane && this.mobile,
+            'box-shadow': this.floating && !this.mobile,
+            'mobile-border-top': this.isMobileTop && this.mobile,
+            'mobile-border-bottom': !this.isMobileTop && this.mobile,
           }}
         >
           <div
@@ -283,7 +312,7 @@ export class SidePanel {
               {this.paneTitle}
             </span>
           </div>
-          <div class="side-panel-content" hidden={!this.showContent}>
+          <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>
           </div>
         </aside>

@@ -1867,10 +1867,6 @@ export namespace Components {
          */
         "inline": boolean;
         /**
-          * TODO: !!!
-         */
-        "mobile": boolean;
-        /**
           * Title of the side panel
          */
         "paneTitle": string;
@@ -1887,10 +1883,6 @@ export namespace Components {
     }
     interface IxSidePanelWrapper {
         /**
-          * Close the side panel, especially for the floating version
-         */
-        "closeSidePanel": () => Promise<void>;
-        /**
           * Determines if the side panes behave floating
          */
         "floating": boolean;
@@ -1898,10 +1890,6 @@ export namespace Components {
           * Determines if the side panes behave inline
          */
         "inline": boolean;
-        /**
-          * Open the side panel
-         */
-        "setOpenSidePanel": (position: string) => Promise<void>;
         /**
           * Choose the variant of the panes
          */
@@ -5479,10 +5467,6 @@ declare namespace LocalJSX {
           * Floating or inline style
          */
         "inline"?: boolean;
-        /**
-          * TODO: !!!
-         */
-        "mobile"?: boolean;
         /**
           * Event
          */
