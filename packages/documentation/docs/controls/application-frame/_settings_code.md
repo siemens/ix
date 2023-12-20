@@ -4,21 +4,10 @@ import Props from './../../auto-generated/ix-menu-settings/props.md';
 import Events from './../../auto-generated/ix-menu-settings/events.md';
 import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
 
-import SourceSettings from './../../auto-generated/previews/web-component/settings.md'
-import SourceReactSettings from './../../auto-generated/previews/react/settings.md'
-import SourceAngularSettings from './../../auto-generated/previews/angular/settings.ts.md'
-import SourceVueSettings from './../../auto-generated/previews/vue/settings.md'
-
 ## Usage
 
 <Playground
-name="settings" height="30rem" noMargin
-frameworks={{
-  react: SourceReactSettings,
-  angular: SourceAngularSettings,
-  javascript: SourceSettings,
-  vue: SourceVueSettings
-}}>
+name="settings" height="30rem" noMargin examplesByName>
 </Playground>
 
 ## Properties (ix-menu-settings)
