@@ -8,7 +8,8 @@
  */
 
 import {
-  IxBasicNavigation,
+  IxApplication,
+  IxApplicationHeader,
   IxMenu,
   IxMenuSettings,
   IxMenuSettingsItem,
@@ -25,14 +26,16 @@ export default () => {
   }, []);
 
   return (
-    <IxBasicNavigation>
-      <div className="placeholder-logo" slot="logo"></div>
+    <IxApplication>
+      <IxApplicationHeader>
+        <div className="placeholder-logo" slot="logo"></div>
+      </IxApplicationHeader>
       <IxMenu ref={ref}>
         <IxMenuSettings>
           <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>
           <IxMenuSettingsItem label="Example Setting 2"></IxMenuSettingsItem>
         </IxMenuSettings>
       </IxMenu>
-    </IxBasicNavigation>
+    </IxApplication>
   );
 };
