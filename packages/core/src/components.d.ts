@@ -163,8 +163,7 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Supported layouts
-          * @example ['sm', 'md']
+          * Supported layouts e.g ['sm', 'md']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -956,7 +955,7 @@ export namespace Components {
         "chevron": boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
           * @deprecated since 2.1.0 use `item-color`
          */
         "color": string;
@@ -966,7 +965,7 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
          */
         "itemColor": string;
         /**
@@ -1509,8 +1508,8 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Icon name from
-          * @siemens /ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon": string;
         /**
@@ -1518,8 +1517,8 @@ export namespace Components {
          */
         "notifications": number;
         /**
-          * Icon name from
-          * @siemens /ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
           * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
@@ -1760,7 +1759,6 @@ export namespace Components {
         /**
           * Hide list header
           * @since 1.5.0
-          * @
          */
         "hideListHeader": boolean;
         /**
@@ -1844,7 +1842,7 @@ export namespace Components {
         "min": number;
         /**
           * Legal number intervals
-          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step": number;
         /**
@@ -4036,8 +4034,7 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Supported layouts
-          * @example ['sm', 'md']
+          * Supported layouts e.g ['sm', 'md']
          */
         "breakpoints"?: Breakpoint[];
         /**
@@ -4920,7 +4917,7 @@ declare namespace LocalJSX {
         "chevron"?: boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
           * @deprecated since 2.1.0 use `item-color`
          */
         "color"?: string;
@@ -4930,7 +4927,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
          */
         "itemColor"?: string;
         /**
@@ -5508,8 +5505,8 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Icon name from
-          * @siemens /ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
         /**
@@ -5517,8 +5514,8 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
-          * Icon name from
-          * @siemens /ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
           * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
@@ -5786,7 +5783,6 @@ declare namespace LocalJSX {
         /**
           * Hide list header
           * @since 1.5.0
-          * @
          */
         "hideListHeader"?: boolean;
         /**
@@ -5890,7 +5886,7 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Legal number intervals
-          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step"?: number;
         /**

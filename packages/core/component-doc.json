@@ -620,13 +620,8 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts",
-          "docsTags": [
-            {
-              "name": "example",
-              "text": "['sm', 'md']"
-            }
-          ],
+          "docs": "Supported layouts e.g ['sm', 'md']",
+          "docsTags": [],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -6143,7 +6138,7 @@
           "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
           "docsTags": [
             {
-              "name": "see",
+              "name": "link",
               "text": "https://ix.siemens.io/docs/theming/colors/"
             },
             {
@@ -6195,7 +6190,7 @@
           "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
           "docsTags": [
             {
-              "name": "see",
+              "name": "link",
               "text": "https://ix.siemens.io/docs/theming/colors/"
             }
           ],
@@ -10419,11 +10414,11 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Icon name from",
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
           "docsTags": [
             {
-              "name": "siemens",
-              "text": "/ix-icons"
+              "name": "link",
+              "text": "https://ix.siemens.io/docs/icon-library/icons"
             }
           ],
           "values": [
@@ -10466,11 +10461,11 @@
           "mutable": false,
           "attr": "tab-icon",
           "reflectToAttr": false,
-          "docs": "Icon name from",
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
           "docsTags": [
             {
-              "name": "siemens",
-              "text": "/ix-icons"
+              "name": "link",
+              "text": "https://ix.siemens.io/docs/icon-library/icons"
             },
             {
               "name": "deprecated",
@@ -12243,9 +12238,6 @@
             {
               "name": "since",
               "text": "1.5.0"
-            },
-            {
-              "name": ""
             }
           ],
           "default": "false",
@@ -12838,7 +12830,7 @@
           "docs": "Legal number intervals",
           "docsTags": [
             {
-              "name": "see",
+              "name": "link",
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
             }
           ],

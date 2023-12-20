@@ -60,8 +60,7 @@ export class BasicNavigation {
   }
 
   /**
-   * Supported layouts
-   * @example ['sm', 'md']
+   * Supported layouts e.g ['sm', 'md']
    */
   @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
   @Watch('breakpoints')
