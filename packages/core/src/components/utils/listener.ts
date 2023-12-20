@@ -83,7 +83,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     proto.disconnectedCallback = function () {
       const host = getElement(this);
 
-      host[`__ix__${methodName}`].destroy();
+      host[`__ix__${methodName}`]?.destroy();
       host[`__ix__${methodName}`] = null;
       return disconnectedCallback && disconnectedCallback.call(this);
     };

@@ -89,7 +89,9 @@ export class MenuAboutNews {
             this.closePopover.emit();
           }}
         ></ix-icon-button>
-        <slot></slot>
+        <div class="slot-container">
+          <slot></slot>
+        </div>
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
             <ix-button
