@@ -7,15 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/* eslint-disable no-undef */
 import { render } from '@testing-library/react';
 import React from 'react';
-import Content from './undefined-error';
+import Content from './validation-tooltip-null-error';
 
-describe(`undefined-error`, () => {
+describe(`null-error`, () => {
   it(`basic`, () => {
     const { getByText } = render(<Content />);
 
-    const button = getByText('Open');
-    button.click();
+    const input = getByText('Name');
+    input.click();
   });
 });
