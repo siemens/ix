@@ -14,7 +14,7 @@ import { Component, h, Host, State } from '@stencil/core';
   scoped: true,
 })
 export class MyComponent {
-  ref: HTMLIxSidePanelElement = null;
+  ref: HTMLIxSidePaneElement = null;
   sidePanelWrapperRef: any = null;
 
   @State() tstNumber: number = 10;
@@ -36,35 +36,35 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
-          <ix-side-panel-wrapper
+          <ix-side-pane-group
             ref={(r) => {
               this.sidePanelWrapperRef = r;
             }}
           >
-            <ix-side-panel slot="top" expandPane={true} paneTitle="TOP">
+            <ix-side-pane slot="top" expandPane={true} paneTitle="TOP">
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
-            </ix-side-panel>
-            <ix-side-panel paneTitle="LEFT" expandPane={true} slot="left">
+            </ix-side-pane>
+            <ix-side-pane paneTitle="LEFT" expandPane={true} slot="left">
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
-            </ix-side-panel>
-            <ix-side-panel
+            </ix-side-pane>
+            <ix-side-pane
               expandPane={true}
               ref={(r) => {
                 this.ref = r;
               }}
               slot="right"
               paneTitle="RIGHT"
-            ></ix-side-panel>
-            <ix-side-panel
+            ></ix-side-pane>
+            <ix-side-pane
               slot="bottom"
               paneTitle="BOTTOM"
               expandPane={true}
-            ></ix-side-panel>
-            <ix-side-panel-content-area
+            ></ix-side-pane>
+            <ix-side-pane-content-area
               style={{ backgroundColor: 'blue' }}
               slot="content"
             >
@@ -82,8 +82,8 @@ export class MyComponent {
               >
                 PUSH ME
               </ix-button>
-            </ix-side-panel-content-area>
-          </ix-side-panel-wrapper>
+            </ix-side-pane-content-area>
+          </ix-side-pane-group>
         </ix-basic-navigation>
       </Host>
     );

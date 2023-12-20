@@ -1842,9 +1842,9 @@ export namespace Components {
          */
         "value": any;
     }
-    interface IxSidePanel {
+    interface IxSidePane {
         /**
-          * State of the side-panel
+          * State of the side-pane
          */
         "expandPane": boolean;
         /**
@@ -1879,9 +1879,9 @@ export namespace Components {
          */
         "showPreviewContent": boolean;
     }
-    interface IxSidePanelContentArea {
+    interface IxSidePaneContentArea {
     }
-    interface IxSidePanelWrapper {
+    interface IxSidePaneGroup {
         /**
           * Determines if the side panes behave floating
          */
@@ -2597,9 +2597,9 @@ export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
 }
-export interface IxSidePanelCustomEvent<T> extends CustomEvent<T> {
+export interface IxSidePaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxSidePanelElement;
+    target: HTMLIxSidePaneElement;
 }
 export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3220,23 +3220,23 @@ declare global {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
-    interface HTMLIxSidePanelElement extends Components.IxSidePanel, HTMLStencilElement {
+    interface HTMLIxSidePaneElement extends Components.IxSidePane, HTMLStencilElement {
     }
-    var HTMLIxSidePanelElement: {
-        prototype: HTMLIxSidePanelElement;
-        new (): HTMLIxSidePanelElement;
+    var HTMLIxSidePaneElement: {
+        prototype: HTMLIxSidePaneElement;
+        new (): HTMLIxSidePaneElement;
     };
-    interface HTMLIxSidePanelContentAreaElement extends Components.IxSidePanelContentArea, HTMLStencilElement {
+    interface HTMLIxSidePaneContentAreaElement extends Components.IxSidePaneContentArea, HTMLStencilElement {
     }
-    var HTMLIxSidePanelContentAreaElement: {
-        prototype: HTMLIxSidePanelContentAreaElement;
-        new (): HTMLIxSidePanelContentAreaElement;
+    var HTMLIxSidePaneContentAreaElement: {
+        prototype: HTMLIxSidePaneContentAreaElement;
+        new (): HTMLIxSidePaneContentAreaElement;
     };
-    interface HTMLIxSidePanelWrapperElement extends Components.IxSidePanelWrapper, HTMLStencilElement {
+    interface HTMLIxSidePaneGroupElement extends Components.IxSidePaneGroup, HTMLStencilElement {
     }
-    var HTMLIxSidePanelWrapperElement: {
-        prototype: HTMLIxSidePanelWrapperElement;
-        new (): HTMLIxSidePanelWrapperElement;
+    var HTMLIxSidePaneGroupElement: {
+        prototype: HTMLIxSidePaneGroupElement;
+        new (): HTMLIxSidePaneGroupElement;
     };
     /**
      * @since 2.0.0
@@ -3466,9 +3466,9 @@ declare global {
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
-        "ix-side-panel": HTMLIxSidePanelElement;
-        "ix-side-panel-content-area": HTMLIxSidePanelContentAreaElement;
-        "ix-side-panel-wrapper": HTMLIxSidePanelWrapperElement;
+        "ix-side-pane": HTMLIxSidePaneElement;
+        "ix-side-pane-content-area": HTMLIxSidePaneContentAreaElement;
+        "ix-side-pane-group": HTMLIxSidePaneGroupElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
@@ -5443,9 +5443,9 @@ declare namespace LocalJSX {
          */
         "value": any;
     }
-    interface IxSidePanel {
+    interface IxSidePane {
         /**
-          * State of the side-panel
+          * State of the side-pane
          */
         "expandPane"?: boolean;
         /**
@@ -5470,7 +5470,7 @@ declare namespace LocalJSX {
         /**
           * Event
          */
-        "onExpandedChange"?: (event: IxSidePanelCustomEvent<ExpandedChangeEvent>) => void;
+        "onExpandedChange"?: (event: IxSidePaneCustomEvent<ExpandedChangeEvent>) => void;
         /**
           * Title of the side panel
          */
@@ -5484,9 +5484,9 @@ declare namespace LocalJSX {
          */
         "showPreviewContent"?: boolean;
     }
-    interface IxSidePanelContentArea {
+    interface IxSidePaneContentArea {
     }
-    interface IxSidePanelWrapper {
+    interface IxSidePaneGroup {
         /**
           * Determines if the side panes behave floating
          */
@@ -6196,9 +6196,9 @@ declare namespace LocalJSX {
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
-        "ix-side-panel": IxSidePanel;
-        "ix-side-panel-content-area": IxSidePanelContentArea;
-        "ix-side-panel-wrapper": IxSidePanelWrapper;
+        "ix-side-pane": IxSidePane;
+        "ix-side-pane-content-area": IxSidePaneContentArea;
+        "ix-side-pane-group": IxSidePaneGroup;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
@@ -6385,9 +6385,9 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
-            "ix-side-panel": LocalJSX.IxSidePanel & JSXBase.HTMLAttributes<HTMLIxSidePanelElement>;
-            "ix-side-panel-content-area": LocalJSX.IxSidePanelContentArea & JSXBase.HTMLAttributes<HTMLIxSidePanelContentAreaElement>;
-            "ix-side-panel-wrapper": LocalJSX.IxSidePanelWrapper & JSXBase.HTMLAttributes<HTMLIxSidePanelWrapperElement>;
+            "ix-side-pane": LocalJSX.IxSidePane & JSXBase.HTMLAttributes<HTMLIxSidePaneElement>;
+            "ix-side-pane-content-area": LocalJSX.IxSidePaneContentArea & JSXBase.HTMLAttributes<HTMLIxSidePaneContentAreaElement>;
+            "ix-side-pane-group": LocalJSX.IxSidePaneGroup & JSXBase.HTMLAttributes<HTMLIxSidePaneGroupElement>;
             /**
              * @since 2.0.0
              */

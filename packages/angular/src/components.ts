@@ -1845,16 +1845,16 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
 
 
 @ProxyCmp({
-  inputs: ['expanded', 'expandedSize', 'inline', 'miniContent', 'mobile', 'paneTitle', 'position']
+  inputs: ['expandPane', 'expandedPaneSize', 'floating', 'inline', 'paneTitle', 'position', 'showPreviewContent']
 })
 @Component({
-  selector: 'ix-side-panel',
+  selector: 'ix-side-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['expanded', 'expandedSize', 'inline', 'miniContent', 'mobile', 'paneTitle', 'position'],
+  inputs: ['expandPane', 'expandedPaneSize', 'floating', 'inline', 'paneTitle', 'position', 'showPreviewContent'],
 })
-export class IxSidePanel {
+export class IxSidePane {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1864,12 +1864,34 @@ export class IxSidePanel {
 }
 
 
-export declare interface IxSidePanel extends Components.IxSidePanel {
+export declare interface IxSidePane extends Components.IxSidePane {
   /**
    * Event
    */
   expandedChange: EventEmitter<CustomEvent<ExpandedChangeEvent>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['floating', 'inline', 'variant']
+})
+@Component({
+  selector: 'ix-side-pane-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['floating', 'inline', 'variant'],
+})
+export class IxSidePaneGroup {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxSidePaneGroup extends Components.IxSidePaneGroup {}
 
 
 @ProxyCmp({
@@ -1891,29 +1913,6 @@ export class IxSidePanelContentArea {
 
 
 export declare interface IxSidePanelContentArea extends Components.IxSidePanelContentArea {}
-
-
-@ProxyCmp({
-  inputs: ['behaviour', 'variant'],
-  methods: ['setOpenSidePanel', 'closeSidePanel']
-})
-@Component({
-  selector: 'ix-side-panel-wrapper',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['behaviour', 'variant'],
-})
-export class IxSidePanelWrapper {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxSidePanelWrapper extends Components.IxSidePanelWrapper {}
 
 
 @ProxyCmp({

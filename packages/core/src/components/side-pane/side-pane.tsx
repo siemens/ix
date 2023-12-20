@@ -1,3 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import {
   Component,
   Element,
@@ -20,12 +28,12 @@ type ExpandedChangeEvent = {
 const ANIMATION_DURATION = 300;
 
 @Component({
-  tag: 'ix-side-panel',
-  styleUrl: 'side-panel.scss',
+  tag: 'ix-side-pane',
+  styleUrl: 'side-pane.scss',
   shadow: true,
 })
-export class SidePanel {
-  @Element() hostElement: HTMLIxSidePanelElement;
+export class SidePane {
+  @Element() hostElement: HTMLIxSidePaneElement;
 
   /**
    * Title of the side panel
@@ -61,7 +69,7 @@ export class SidePanel {
   @Prop() showPreviewContent: boolean = false;
 
   /**
-   * State of the side-panel
+   * State of the side-pane
    */
   @Prop({ mutable: true, reflect: true }) expandPane: boolean = false;
 

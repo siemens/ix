@@ -1,3 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import {
   Component,
   Element,
@@ -11,32 +19,32 @@ import {
 const mobileBreakpoint: number = 767;
 
 @Component({
-  tag: 'ix-side-panel-wrapper',
-  styleUrl: 'side-panel-wrapper.scss',
+  tag: 'ix-side-pane-group',
+  styleUrl: 'side-pane-group.scss',
   shadow: true,
 })
-export class SidePanelWrapper {
-  @Element() hostElement: HTMLIxSidePanelWrapperElement;
+export class SidePaneGroup {
+  @Element() hostElement: HTMLIxSidePaneGroupElement;
 
   /**
    * Determines if the side panes behave inline
    */
-  @Prop() inline: boolean = false;
+  @Prop() inline: boolean = true;
 
   /**
    * Determines if the side panes behave floating
    */
-  @Prop() floating: boolean = true;
+  @Prop() floating: boolean = false;
 
   /**
    * Choose the variant of the panes
    */
-  @Prop() variant: '1' | '2' = '1';
+  @Prop() variant: '1' | '2' = '2';
 
   @State() mobileMode: boolean = false;
 
   private sidePanels: {
-    [position: string]: HTMLIxSidePanelElement | null;
+    [position: string]: HTMLIxSidePaneElement | null;
   } = {};
 
   componentWillRender() {
@@ -93,7 +101,7 @@ export class SidePanelWrapper {
   }
 
   getSidePanels() {
-    return this.hostElement.querySelectorAll('ix-side-panel');
+    return this.hostElement.querySelectorAll('ix-side-pane');
   }
 
   render() {

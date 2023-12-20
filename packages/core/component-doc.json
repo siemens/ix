@@ -1933,7 +1933,7 @@
       "dependents": [
         "ix-date-dropdown",
         "ix-datetime-picker-rework",
-        "ix-side-panel-wrapper"
+        "ix-side-pane-group"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -1943,7 +1943,7 @@
         "ix-datetime-picker-rework": [
           "ix-col"
         ],
-        "ix-side-panel-wrapper": [
+        "ix-side-pane-group": [
           "ix-col"
         ]
       },
@@ -5414,7 +5414,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-select",
-        "ix-side-panel",
+        "ix-side-pane",
         "ix-split-button",
         "ix-time-picker",
         "ix-time-picker-rework",
@@ -5496,7 +5496,7 @@
         "ix-select": [
           "ix-icon-button"
         ],
-        "ix-side-panel": [
+        "ix-side-pane": [
           "ix-icon-button"
         ],
         "ix-split-button": [
@@ -9160,7 +9160,7 @@
       "dependents": [
         "ix-date-dropdown",
         "ix-datetime-picker-rework",
-        "ix-side-panel-wrapper"
+        "ix-side-pane-group"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -9170,7 +9170,7 @@
         "ix-datetime-picker-rework": [
           "ix-row"
         ],
-        "ix-side-panel-wrapper": [
+        "ix-side-pane-group": [
           "ix-row"
         ]
       },
@@ -9634,12 +9634,12 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/side-panel",
-      "filePath": "./src/components/side-panel/side-panel.tsx",
-      "fileName": "side-panel.tsx",
-      "readmePath": "./src/components/side-panel/readme.md",
-      "usagesDir": "./src/components/side-panel/usage",
-      "tag": "ix-side-panel",
+      "dirPath": "./src/components/side-pane",
+      "filePath": "./src/components/side-pane/side-pane.tsx",
+      "fileName": "side-pane.tsx",
+      "readmePath": "./src/components/side-pane/readme.md",
+      "usagesDir": "./src/components/side-pane/usage",
+      "tag": "ix-side-pane",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -9652,24 +9652,24 @@
         "ix-icon-button"
       ],
       "dependencyGraph": {
-        "ix-side-panel": [
+        "ix-side-pane": [
           "ix-icon-button"
         ],
         "ix-icon-button": [
           "ix-spinner"
         ],
         "my-component": [
-          "ix-side-panel"
+          "ix-side-pane"
         ]
       },
       "props": [
         {
-          "name": "expanded",
+          "name": "expandPane",
           "type": "boolean",
           "mutable": true,
-          "attr": "expanded",
+          "attr": "expand-pane",
           "reflectToAttr": true,
-          "docs": "State of the side-panel",
+          "docs": "State of the side-pane",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9681,10 +9681,10 @@
           "required": false
         },
         {
-          "name": "expandedSize",
+          "name": "expandedPaneSize",
           "type": "\"100%\" | \"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
           "mutable": false,
-          "attr": "expanded-size",
+          "attr": "expanded-pane-size",
           "reflectToAttr": false,
           "docs": "The maximum size of the sidebar, when it is expanded",
           "docsTags": [],
@@ -9727,29 +9727,12 @@
           "required": false
         },
         {
-          "name": "inline",
+          "name": "floating",
           "type": "boolean",
           "mutable": false,
-          "attr": "inline",
+          "attr": "floating",
           "reflectToAttr": false,
           "docs": "Floating or inline style",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "miniContent",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "mini-content",
-          "reflectToAttr": false,
-          "docs": "Toggle",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9761,14 +9744,14 @@
           "required": false
         },
         {
-          "name": "mobile",
+          "name": "inline",
           "type": "boolean",
-          "mutable": true,
-          "attr": "mobile",
-          "reflectToAttr": true,
-          "docs": "TODO: !!!",
+          "mutable": false,
+          "attr": "inline",
+          "reflectToAttr": false,
+          "docs": "Floating or inline style",
           "docsTags": [],
-          "default": "window.innerWidth < 767",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9823,6 +9806,23 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "showPreviewContent",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-preview-content",
+          "reflectToAttr": false,
+          "docs": "Toggle",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],
@@ -9850,41 +9850,12 @@
       ]
     },
     {
-      "dirPath": "./src/components/side-panel-content-area",
-      "filePath": "./src/components/side-panel-content-area/side-panel-content-area.tsx",
-      "fileName": "side-panel-content-area.tsx",
-      "readmePath": "./src/components/side-panel-content-area/readme.md",
-      "usagesDir": "./src/components/side-panel-content-area/usage",
-      "tag": "ix-side-panel-content-area",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
-      "dependencies": [],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-side-panel-content-area"
-        ]
-      },
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "./src/components/side-panel-wrapper",
-      "filePath": "./src/components/side-panel-wrapper/side-panel-wrapper.tsx",
-      "fileName": "side-panel-wrapper.tsx",
-      "readmePath": "./src/components/side-panel-wrapper/readme.md",
-      "usagesDir": "./src/components/side-panel-wrapper/usage",
-      "tag": "ix-side-panel-wrapper",
+      "dirPath": "./src/components/side-pane-group",
+      "filePath": "./src/components/side-pane-group/side-pane-group.tsx",
+      "fileName": "side-pane-group.tsx",
+      "readmePath": "./src/components/side-pane-group/readme.md",
+      "usagesDir": "./src/components/side-pane-group/usage",
+      "tag": "ix-side-pane-group",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -9898,32 +9869,44 @@
         "ix-col"
       ],
       "dependencyGraph": {
-        "ix-side-panel-wrapper": [
+        "ix-side-pane-group": [
           "ix-row",
           "ix-col"
         ],
         "my-component": [
-          "ix-side-panel-wrapper"
+          "ix-side-pane-group"
         ]
       },
       "props": [
         {
-          "name": "behaviour",
-          "type": "\"floating\" | \"inline\"",
+          "name": "floating",
+          "type": "boolean",
           "mutable": false,
-          "attr": "behaviour",
+          "attr": "floating",
           "reflectToAttr": false,
-          "docs": "Sets the behaviour of the component, either it should be an inline or a floating component",
+          "docs": "Determines if the side panes behave floating",
           "docsTags": [],
-          "default": "'inline'",
+          "default": "true",
           "values": [
             {
-              "value": "floating",
-              "type": "string"
-            },
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "inline",
+          "reflectToAttr": false,
+          "docs": "Determines if the side panes behave inline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
             {
-              "value": "inline",
-              "type": "string"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -9937,7 +9920,7 @@
           "reflectToAttr": false,
           "docs": "Choose the variant of the panes",
           "docsTags": [],
-          "default": "'2'",
+          "default": "'1'",
           "values": [
             {
               "value": "1",
@@ -9952,30 +9935,7 @@
           "required": false
         }
       ],
-      "methods": [
-        {
-          "name": "closeSidePanel",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "closeSidePanel() => Promise<void>",
-          "parameters": [],
-          "docs": "Close the side panel, especially for the floating version",
-          "docsTags": []
-        },
-        {
-          "name": "setOpenSidePanel",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "signature": "setOpenSidePanel() => Promise<void>",
-          "parameters": [],
-          "docs": "Open the side panel, especially for the floating version",
-          "docsTags": []
-        }
-      ],
+      "methods": [],
       "events": [],
       "styles": [],
       "slots": [],
@@ -9988,6 +9948,29 @@
           "passive": true
         }
       ]
+    },
+    {
+      "dirPath": "./src/components/side-pane-content-area",
+      "filePath": "./src/components/side-pane-content-area/side-pane-content-area.tsx",
+      "fileName": "side-pane-content-area.tsx",
+      "readmePath": "./src/components/side-pane-content-area/readme.md",
+      "usagesDir": "./src/components/side-pane-content-area/usage",
+      "tag": "ix-side-panel-content-area",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "./src/components/slider",
@@ -13095,10 +13078,9 @@
         "ix-menu",
         "ix-menu-item",
         "ix-menu-category",
-        "ix-side-panel-wrapper",
-        "ix-side-panel",
-        "ix-button",
-        "ix-side-panel-content-area"
+        "ix-side-pane-group",
+        "ix-side-pane",
+        "ix-button"
       ],
       "dependencyGraph": {
         "my-component": [
@@ -13106,10 +13088,9 @@
           "ix-menu",
           "ix-menu-item",
           "ix-menu-category",
-          "ix-side-panel-wrapper",
-          "ix-side-panel",
-          "ix-button",
-          "ix-side-panel-content-area"
+          "ix-side-pane-group",
+          "ix-side-pane",
+          "ix-button"
         ],
         "ix-basic-navigation": [
           "ix-application-header"
@@ -13135,11 +13116,11 @@
           "ix-typography",
           "ix-divider"
         ],
-        "ix-side-panel-wrapper": [
+        "ix-side-pane-group": [
           "ix-row",
           "ix-col"
         ],
-        "ix-side-panel": [
+        "ix-side-pane": [
           "ix-icon-button"
         ],
         "ix-button": [
