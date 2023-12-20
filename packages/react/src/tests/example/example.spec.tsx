@@ -12,10 +12,10 @@ import React from 'react';
 import Content from './example';
 
 describe(`example`, () => {
-  it(`example`, () => {
+  it(`basic`, () => {
     const { getByText } = render(<Content />);
 
-    const input = getByText('Hallo');
-    input.click();
+    const button = getByText('Hallo');
+    button.click();
   });
 });
