@@ -71,12 +71,12 @@ export class SidePane {
   /**
    * State of the side-pane
    */
-  @Prop({ mutable: true, reflect: true }) expandPane: boolean = false;
+  @Prop({mutable: true, reflect: true}) expandPane: boolean = false;
 
   /**
    * Placement of the sidebar
    */
-  @Prop({ mutable: true, reflect: true }) position: SidePanelPosition = 'top';
+  @Prop({mutable: true, reflect: true}) position: SidePanelPosition = 'top';
 
   /**
    * Event
@@ -114,7 +114,7 @@ export class SidePane {
   }
 
   setIcons() {
-    const { expandIcon, minimizeIcon } = this.getIconNames();
+    const {expandIcon, minimizeIcon} = this.getIconNames();
     this.expandIcon = expandIcon;
     this.minimizeIcon = minimizeIcon;
   }
@@ -148,7 +148,7 @@ export class SidePane {
         break;
     }
 
-    return { expandIcon, minimizeIcon };
+    return {expandIcon, minimizeIcon};
   }
 
   @Watch('expandPane')
@@ -183,7 +183,7 @@ export class SidePane {
     }
   }
 
-  @Listen('resize', { target: 'window' })
+  @Listen('resize', {target: 'window'})
   onWindowResize() {
     const newMode = window.innerWidth <= 767;
     if (this.mobile != newMode) {
@@ -283,8 +283,11 @@ export class SidePane {
             'left-right-pane': this.isLeftRightPane && !this.mobile,
             'left-right-pane-mobile': this.isLeftRightPane && this.mobile,
             'box-shadow': this.floating && !this.mobile,
-            'mobile-border-top': this.isMobileTop && this.mobile,
-            'mobile-border-bottom': !this.isMobileTop && this.mobile,
+            'mobile-border-top':
+              this.isMobileTop && this.mobile && !this.expandPane,
+            'mobile-border-bottom':
+              !this.isMobileTop && this.mobile && !this.expandPane,
+            'mobile-expanded': this.expandPane && this.mobile,
           }}
         >
           <div

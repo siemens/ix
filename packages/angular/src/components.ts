@@ -1873,6 +1873,27 @@ export declare interface IxSidePane extends Components.IxSidePane {
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-side-pane-content-area',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxSidePaneContentArea {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxSidePaneContentArea extends Components.IxSidePaneContentArea {}
+
+
+@ProxyCmp({
   inputs: ['floating', 'inline', 'variant']
 })
 @Component({
@@ -1892,27 +1913,6 @@ export class IxSidePaneGroup {
 
 
 export declare interface IxSidePaneGroup extends Components.IxSidePaneGroup {}
-
-
-@ProxyCmp({
-})
-@Component({
-  selector: 'ix-side-panel-content-area',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxSidePanelContentArea {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxSidePanelContentArea extends Components.IxSidePanelContentArea {}
 
 
 @ProxyCmp({

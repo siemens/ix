@@ -25,6 +25,10 @@ $side-pane-mini-content-width: 76px;
     flex-grow: 1;
   }
 
+  .mobile-expanded {
+    height: 100%;
+  }
+
   .left-right-pane {
     display: flex;
     flex-direction: column;

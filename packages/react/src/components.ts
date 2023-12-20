@@ -76,8 +76,8 @@ import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-ro
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
 import { defineCustomElement as defineIxSidePane } from '@siemens/ix/components/ix-side-pane.js';
+import { defineCustomElement as defineIxSidePaneContentArea } from '@siemens/ix/components/ix-side-pane-content-area.js';
 import { defineCustomElement as defineIxSidePaneGroup } from '@siemens/ix/components/ix-side-pane-group.js';
-import { defineCustomElement as defineIxSidePanelContentArea } from '@siemens/ix/components/ix-side-panel-content-area.js';
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
@@ -168,8 +168,8 @@ export const IxRow = /*@__PURE__*/createReactComponent<JSX.IxRow, HTMLIxRowEleme
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select', undefined, undefined, defineIxSelect);
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item', undefined, undefined, defineIxSelectItem);
 export const IxSidePane = /*@__PURE__*/createReactComponent<JSX.IxSidePane, HTMLIxSidePaneElement>('ix-side-pane', undefined, undefined, defineIxSidePane);
+export const IxSidePaneContentArea = /*@__PURE__*/createReactComponent<JSX.IxSidePaneContentArea, HTMLIxSidePaneContentAreaElement>('ix-side-pane-content-area', undefined, undefined, defineIxSidePaneContentArea);
 export const IxSidePaneGroup = /*@__PURE__*/createReactComponent<JSX.IxSidePaneGroup, HTMLIxSidePaneGroupElement>('ix-side-pane-group', undefined, undefined, defineIxSidePaneGroup);
-export const IxSidePanelContentArea = /*@__PURE__*/createReactComponent<JSX.IxSidePanelContentArea, HTMLIxSidePanelContentAreaElement>('ix-side-panel-content-area', undefined, undefined, defineIxSidePanelContentArea);
 export const IxSlider = /*@__PURE__*/createReactComponent<JSX.IxSlider, HTMLIxSliderElement>('ix-slider', undefined, undefined, defineIxSlider);
 export const IxSpinner = /*@__PURE__*/createReactComponent<JSX.IxSpinner, HTMLIxSpinnerElement>('ix-spinner', undefined, undefined, defineIxSpinner);
 export const IxSplitButton = /*@__PURE__*/createReactComponent<JSX.IxSplitButton, HTMLIxSplitButtonElement>('ix-split-button', undefined, undefined, defineIxSplitButton);

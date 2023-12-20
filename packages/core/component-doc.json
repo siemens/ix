@@ -9850,6 +9850,35 @@
       ]
     },
     {
+      "dirPath": "./src/components/side-pane-content-area",
+      "filePath": "./src/components/side-pane-content-area/side-pane-content-area.tsx",
+      "fileName": "side-pane-content-area.tsx",
+      "readmePath": "./src/components/side-pane-content-area/readme.md",
+      "usagesDir": "./src/components/side-pane-content-area/usage",
+      "tag": "ix-side-pane-content-area",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "my-component"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-side-pane-content-area"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "./src/components/side-pane-group",
       "filePath": "./src/components/side-pane-group/side-pane-group.tsx",
       "fileName": "side-pane-group.tsx",
@@ -9886,7 +9915,7 @@
           "reflectToAttr": false,
           "docs": "Determines if the side panes behave floating",
           "docsTags": [],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9903,7 +9932,7 @@
           "reflectToAttr": false,
           "docs": "Determines if the side panes behave inline",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -9920,7 +9949,7 @@
           "reflectToAttr": false,
           "docs": "Choose the variant of the panes",
           "docsTags": [],
-          "default": "'1'",
+          "default": "'2'",
           "values": [
             {
               "value": "1",
@@ -9948,29 +9977,6 @@
           "passive": true
         }
       ]
-    },
-    {
-      "dirPath": "./src/components/side-pane-content-area",
-      "filePath": "./src/components/side-pane-content-area/side-pane-content-area.tsx",
-      "fileName": "side-pane-content-area.tsx",
-      "readmePath": "./src/components/side-pane-content-area/readme.md",
-      "usagesDir": "./src/components/side-pane-content-area/usage",
-      "tag": "ix-side-panel-content-area",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
     },
     {
       "dirPath": "./src/components/slider",
@@ -13080,7 +13086,8 @@
         "ix-menu-category",
         "ix-side-pane-group",
         "ix-side-pane",
-        "ix-button"
+        "ix-button",
+        "ix-side-pane-content-area"
       ],
       "dependencyGraph": {
         "my-component": [
@@ -13090,7 +13097,8 @@
           "ix-menu-category",
           "ix-side-pane-group",
           "ix-side-pane",
-          "ix-button"
+          "ix-button",
+          "ix-side-pane-content-area"
         ],
         "ix-basic-navigation": [
           "ix-application-header"

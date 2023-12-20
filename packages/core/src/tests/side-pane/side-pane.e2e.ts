@@ -7,18 +7,42 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest.describe('action card: basic', () => {
-  regressionTest('should not have visual regressions', async ({ page }) => {
+regressionTest.describe('side-pane: basic', () => {
+  regressionTest('should be inline, not expanded', async ({ page }) => {
     await page.goto('side-pane/basic');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('should have selected state', async ({ page }) => {
+  regressionTest('should be inline, expanded', async ({ page }) => {
+    await page.goto('side-pane/inline-expanded');
+    await page.waitForTimeout(1000);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('should be floating, expanded', async ({ page }) => {
     await page.goto('side-pane/floating');
+    await page.waitForTimeout(1000);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile', async ({ page }) => {
+    await page.goto('side-pane/mobile');
+    await page.setViewportSize(viewPorts.sm);
+    await page.waitForTimeout(1000);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('mobile, expanded', async ({ page }) => {
+    await page.goto('side-pane/mobile-expanded');
+    await page.setViewportSize(viewPorts.sm);
+    await page.locator('ix-icon-button').first().click();
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
