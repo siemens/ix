@@ -15,8 +15,6 @@ The ix-application-header can host custom content which will be displayed on the
 
 ## Usage
 
-TODO: React, Angular and Vue Example
-
 <Playground name="application-header" examplesByName noMargin height="18rem"></Playground>
 
 ### Avatar

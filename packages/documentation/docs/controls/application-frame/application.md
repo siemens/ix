@@ -18,24 +18,15 @@ It's important to note that the ix-application component focuses solely on layou
 
 ## Example
 
-TODO: React, Angular and Vue Example
-
-TODO: Verlinken von Unterkomponenten
-
-TODO: Erklaeren dass das Beispiel wirklich nur ein Beispiel von dem zusammenspiel mehrer komponenten ist
+The code snippet blow shows a example of a combination of different components like `ix-application-header` or `ix-content`.
 
 <Playground name="application" examplesByName height="30rem" noMargin></Playground>
 
 ### Breakpoints
 
-TODO: React, Angular and Vue Example
-
 <Playground name="application-breakpoints" height="30rem" noMargin examplesByName></Playground>
 
 ### App switch
-
-TODO: Maybe short introduction of the feature from developer side
-TODO: React, Angular and Vue Example
 
 The navigation to another application is implemented via `window.open` (https://developer.mozilla.org/en-US/docs/Web/API/Window/open). Therefore you can control if the navigation should happen inside the current browser context `target: '_self'` or inside a new tab `target: '_blank'` (more information about target can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target))
 

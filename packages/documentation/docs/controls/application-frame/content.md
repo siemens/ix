@@ -13,9 +13,7 @@ import Playground from '@site/src/components/Playground';
 
 ## Usage
 
-TODO: Maybe short introduction that the ix-content component can be used as content area for pages (see example for application). 
-
-TODO: React, Angular, Vue examples
+The `ix-content` is usually used as layouting component on a single page.
 
 <Playground name="content" examplesByName height="18rem" noMargin></Playground>
 
