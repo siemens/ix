@@ -498,12 +498,12 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
    * Triggers if the date selection changes.
-Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.0.0
+Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.1.0
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Triggers if the date selection changes.
-Only triggered if date-picker-rework is in range mode. @since 2.0.0
+Only triggered if date-picker-rework is in range mode. @since 2.1.0
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**

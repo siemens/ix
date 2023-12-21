@@ -118,6 +118,8 @@ export class TimePicker {
 
   /**
    * Text for top label
+   *
+   * @since 2.1.0
    */
   @Prop() textTime: string = 'Time';
 
