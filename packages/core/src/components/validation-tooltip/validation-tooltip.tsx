@@ -67,7 +67,7 @@ export class ValidationTooltip {
   }
 
   get formElement() {
-    return this.inputElement.form;
+    return this.inputElement?.form;
   }
 
   get tooltipElement(): HTMLElement {
@@ -190,7 +190,7 @@ export class ValidationTooltip {
     this.destroyAutoUpdate();
 
     this.formElement?.removeEventListener('submit', this.onSubmitBind);
-    this.inputElement.removeEventListener('focus', this.onInputFocusBind);
+    this.inputElement?.removeEventListener('focus', this.onInputFocusBind);
   }
 
   @Watch('isInputValid')
