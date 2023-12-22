@@ -108,12 +108,14 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import Upload from './preview-examples/upload';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/preview/upload" element={<Upload />} />
         <Route path="/preview/checkbox" element={<Checkbox />} />
         <Route
           path="/preview/checkbox-indeterminate"
