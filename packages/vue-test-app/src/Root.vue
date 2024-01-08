@@ -79,6 +79,9 @@ import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
 import Select from './preview-examples/select.vue';
 import Settings from './preview-examples/settings.vue';
+import SidePaneGroupFloating from "./preview-examples/side-pane-group-floating.vue";
+import SidePaneGroupInline from "./preview-examples/side-pane-group-inline.vue";
+import SidePaneGroupPreviewContent from "./preview-examples/side-pane-group-preview-content.vue";
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
 import SplitbuttonIcons from './preview-examples/split-button-icons.vue';
@@ -148,6 +151,9 @@ const routes: any = {
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
+  '/preview/side-pane-group-floating': SidePaneGroupFloating,
+  '/preview/side-pane-group-inline': SidePaneGroupInline,
+  '/preview/side-pane-group-preview-content': SidePaneGroupPreviewContent,
   '/preview/spinner': Spinner,
   '/preview/spinner-large': SpinnerLarge,
   '/preview/split-button': Splitbutton,

@@ -20,8 +20,8 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 
-type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
-type ExpandedChangeEvent = {
+export type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
+export type ExpandedChangeEvent = {
   position: string;
   expanded: boolean;
 };
@@ -64,19 +64,19 @@ export class SidePane {
     | '100%' = '240px';
 
   /**
-   * Toggle
+   * Toggle either the preview content is shown or not
    */
   @Prop() showPreviewContent: boolean = false;
 
   /**
    * State of the side-pane
    */
-  @Prop({mutable: true, reflect: true}) expandPane: boolean = false;
+  @Prop({ mutable: true, reflect: true }) expandPane: boolean = false;
 
   /**
    * Placement of the sidebar
    */
-  @Prop({mutable: true, reflect: true}) position: SidePanelPosition = 'top';
+  @Prop({ mutable: true, reflect: true }) position: SidePanelPosition = 'top';
 
   /**
    * Event
@@ -95,6 +95,10 @@ export class SidePane {
   private previousHeight: string = null;
 
   componentWillLoad() {
+    if (this.showPreviewContent && this.isBottomTopPane) {
+      console.warn('Preview content is only available on vertical side panes!');
+    }
+
     this.initializePosition();
     this.setIcons();
 
@@ -114,7 +118,7 @@ export class SidePane {
   }
 
   setIcons() {
-    const {expandIcon, minimizeIcon} = this.getIconNames();
+    const { expandIcon, minimizeIcon } = this.getIconNames();
     this.expandIcon = expandIcon;
     this.minimizeIcon = minimizeIcon;
   }
@@ -148,7 +152,7 @@ export class SidePane {
         break;
     }
 
-    return {expandIcon, minimizeIcon};
+    return { expandIcon, minimizeIcon };
   }
 
   @Watch('expandPane')
@@ -160,8 +164,8 @@ export class SidePane {
       //fallback, if initially expanded
       if (!this.mobile) {
         if (this.previousWidth === '0') {
-          this.previousWidth = '32px';
-          this.previousHeight = '32px';
+          this.previousWidth = this.showPreviewContent ? '76px' : '32px';
+          this.previousHeight = this.showPreviewContent ? '76px' : '32px';
         }
       }
 
@@ -181,9 +185,14 @@ export class SidePane {
         this.animateVerticalFadeIn(this.previousWidth);
       }
     }
+
+    this.expandedChange.emit({
+      position: this.position,
+      expanded: this.expandPane,
+    });
   }
 
-  @Listen('resize', {target: 'window'})
+  @Listen('resize', { target: 'window' })
   onWindowResize() {
     const newMode = window.innerWidth <= 767;
     if (this.mobile != newMode) {
@@ -266,6 +275,15 @@ export class SidePane {
     return true;
   }
 
+  hidePaneContent() {
+    if (this.showPreviewContent && this.isLeftRightPane && !this.mobile) {
+      return false;
+    } else if (this.showContent) {
+      return false;
+    }
+    return true;
+  }
+
   render() {
     return (
       <Host
@@ -274,6 +292,11 @@ export class SidePane {
           'mobile-overlay': this.expandPane && this.mobile,
           'top-expand': this.expandPane && this.isMobileTop && this.mobile,
           'bottom-expand': this.expandPane && !this.isMobileTop && this.mobile,
+          'preview-content':
+            this.isLeftRightPane &&
+            !this.expandPane &&
+            !this.mobile &&
+            this.showPreviewContent,
         }}
       >
         <aside
@@ -318,12 +341,17 @@ export class SidePane {
                 rotate:
                   !this.expandPane && !this.mobile && this.isLeftRightPane,
               }}
-              hidden={this.showPreviewContent && !this.expandPane}
+              hidden={
+                this.showPreviewContent &&
+                !this.mobile &&
+                !this.expandPane &&
+                this.isLeftRightPane
+              }
             >
               {this.paneTitle}
             </span>
           </div>
-          <div class="side-pane-content" hidden={!this.showContent}>
+          <div class="side-pane-content" hidden={this.hidePaneContent()}>
             <slot></slot>
           </div>
         </aside>

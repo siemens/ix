@@ -34,6 +34,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
+import { ExpandedChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
@@ -73,6 +74,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
+export { ExpandedChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
@@ -1875,7 +1877,7 @@ export namespace Components {
          */
         "position": SidePanelPosition;
         /**
-          * Toggle
+          * Toggle either the preview content is shown or not
          */
         "showPreviewContent": boolean;
     }
@@ -5480,7 +5482,7 @@ declare namespace LocalJSX {
          */
         "position"?: SidePanelPosition;
         /**
-          * Toggle
+          * Toggle either the preview content is shown or not
          */
         "showPreviewContent"?: boolean;
     }

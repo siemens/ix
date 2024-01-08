@@ -1864,11 +1864,13 @@ export class IxSidePane {
 }
 
 
+import type { ExpandedChangeEvent as IIxSidePaneExpandedChangeEvent } from '@siemens/ix';
+
 export declare interface IxSidePane extends Components.IxSidePane {
   /**
    * Event
    */
-  expandedChange: EventEmitter<CustomEvent<ExpandedChangeEvent>>;
+  expandedChange: EventEmitter<CustomEvent<IIxSidePaneExpandedChangeEvent>>;
 }
 
 

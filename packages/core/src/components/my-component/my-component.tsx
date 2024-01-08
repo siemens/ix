@@ -33,13 +33,18 @@ export class MyComponent {
               <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
             </ix-menu-category>
           </ix-menu>
+
           <ix-side-pane-group inline>
             <ix-side-pane paneTitle="TOP" slot="top" expandPane={true}>
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-side-pane>
-            <ix-side-pane paneTitle="LEFT" slot="left" expandPane={true}>
+            <ix-side-pane
+              paneTitle="LEFT"
+              slot="left"
+              showPreviewContent={true}
+            >
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>

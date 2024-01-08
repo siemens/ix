@@ -124,3 +124,8 @@ $side-pane-mini-content-width: 76px;
 :host(.bottom-expand) {
   bottom: 0;
 }
+
+:host(.preview-content) {
+  width: 76px;
+  overflow: hidden;
+}

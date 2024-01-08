@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    name="viewport"
+  />
+  <title>Stencil Component Starter</title>
+  <style>
+    ix-basic-navigation {
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+<body>
+  <!--Preview code-->
+  <ix-side-pane-group inline>
+    <ix-side-pane paneTitle="TOP" slot="top">
+      <h1>Test Heading</h1>
+      <p>This is a test content with a button</p>
+      <ix-button>PUSH ME</ix-button>
+    </ix-side-pane>
+    <ix-side-pane paneTitle="LEFT" slot="left">
+      <h1>Test Heading</h1>
+      <p>This is a test content with a button</p>
+      <ix-button>PUSH ME</ix-button>
+    </ix-side-pane>
+    <ix-side-pane paneTitle="RIGHT" slot="right"></ix-side-pane>
+    <ix-side-pane paneTitle="BOTTOM" slot="bottom"></ix-side-pane>
+    <ix-side-pane-content-area slot="content">
+      <h1>Test Heading</h1>
+      <h1>Test Heading</h1>
+      <h1>Test Heading</h1>
+      <h1>Test Heading</h1>
+      <h1>Test Heading</h1>
+      <p>This is a test content with a button</p>
+      <ix-button>PUSH ME</ix-button>
+    </ix-side-pane-content-area>
+  </ix-side-pane-group>
+  <!--Preview code-->
+<script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+</body>
+</html>

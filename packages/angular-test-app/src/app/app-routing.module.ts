@@ -90,6 +90,8 @@ import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
+import SidePaneGroupInline from "../preview-examples/side-pane-group-inline";
+import SidePaneGroupFloating from "../preview-examples/side-pane-group-floating";
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
 import SliderMarker from 'src/preview-examples/slider-marker';
@@ -313,6 +315,8 @@ const routes: Routes = [
       { path: 'select-ng-model', component: SelectNgModel },
       { path: 'select', component: Select },
       { path: 'settings', component: Settings },
+      { path: 'side-pane-group-inline', component: SidePaneGroupInline },
+      { path: 'side-pane-group-floating', component: SidePaneGroupFloating },
       { path: 'spinner', component: Spinner },
       { path: 'spinner-large', component: SpinnerLarge },
       { path: 'split-button-icons', component: SplitButtonIcons },

@@ -9813,7 +9813,7 @@
           "mutable": false,
           "attr": "show-preview-content",
           "reflectToAttr": false,
-          "docs": "Toggle",
+          "docs": "Toggle either the preview content is shown or not",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9932,7 +9932,7 @@
           "reflectToAttr": false,
           "docs": "Determines if the side panes behave inline",
           "docsTags": [],
-          "default": "true",
+          "default": "false",
           "values": [
             {
               "type": "boolean"

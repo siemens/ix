@@ -29,7 +29,7 @@ export class SidePaneGroup {
   /**
    * Determines if the side panes behave inline
    */
-  @Prop() inline: boolean = true;
+  @Prop() inline: boolean = false;
 
   /**
    * Determines if the side panes behave floating
@@ -43,10 +43,6 @@ export class SidePaneGroup {
 
   @State() mobileMode: boolean = false;
 
-  private sidePanels: {
-    [position: string]: HTMLIxSidePaneElement | null;
-  } = {};
-
   componentWillRender() {
     if (this.inline && this.floating) {
       console.error('Inline and floating can not be set at once!');
@@ -59,7 +55,6 @@ export class SidePaneGroup {
   componentDidRender() {
     const sidePanels = this.getSidePanels();
     sidePanels.forEach((sidePanelElement) => {
-      this.sidePanels[sidePanelElement.position] = sidePanelElement;
       sidePanelElement.inline = this.inline;
       sidePanelElement.floating = this.floating;
     });
