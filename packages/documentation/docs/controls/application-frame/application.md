@@ -18,7 +18,7 @@ It's important to note that the ix-application component focuses solely on layou
 
 ## Example
 
-The code snippet blow shows a example of a combination of different components like `ix-application-header` or `ix-content`.
+The code snippet blow shows an example of a combination of different components like `ix-application-header` or `ix-content`.
 
 <Playground name="application" examplesByName height="30rem" noMargin></Playground>
 
