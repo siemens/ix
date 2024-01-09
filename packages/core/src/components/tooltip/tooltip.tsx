@@ -108,8 +108,9 @@ export class Tooltip {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
-    this.visible = true;
-    this.computeTooltipPosition(anchorElement);
+    this.computeTooltipPosition(anchorElement).then(() => {
+      this.visible = true;
+    });
   }
 
   /** @internal */
@@ -160,50 +161,55 @@ export class Tooltip {
     if (!target) {
       return;
     }
-    this.disposeAutoUpdate = autoUpdate(
-      target,
-      this.hostElement,
-      async () => {
-        setTimeout(async () => {
-          const computeResponse = await computePosition(
-            target,
-            this.hostElement,
-            {
-              strategy: 'fixed',
-              placement: this.placement,
-              middleware: [
-                shift(),
-                offset(8),
-                arrow({
-                  element: this.arrowElement,
-                }),
-                flip({
-                  fallbackStrategy: 'initialPlacement',
-                  padding: 10,
-                }),
-              ],
+
+    return new Promise<void>((resolve) => {
+      this.disposeAutoUpdate = autoUpdate(
+        target,
+        this.hostElement,
+        async () => {
+          setTimeout(async () => {
+            const computeResponse = await computePosition(
+              target,
+              this.hostElement,
+              {
+                strategy: 'fixed',
+                placement: this.placement,
+                middleware: [
+                  shift(),
+                  offset(8),
+                  arrow({
+                    element: this.arrowElement,
+                  }),
+                  flip({
+                    fallbackStrategy: 'initialPlacement',
+                    padding: 10,
+                  }),
+                ],
+              }
+            );
+
+            if (computeResponse.middlewareData.arrow) {
+              const arrowPosition = this.computeArrowPosition(computeResponse);
+              Object.assign(this.arrowElement.style, arrowPosition);
             }
-          );
 
-          if (computeResponse.middlewareData.arrow) {
-            const arrowPosition = this.computeArrowPosition(computeResponse);
-            Object.assign(this.arrowElement.style, arrowPosition);
-          }
+            const { x, y } = computeResponse;
+            Object.assign(this.hostElement.style, {
+              left: x !== null ? `${x}px` : '',
+              top: y !== null ? `${y}px` : '',
+            });
 
-          const { x, y } = computeResponse;
-          Object.assign(this.hostElement.style, {
-            left: x !== null ? `${x}px` : '',
-            top: y !== null ? `${y}px` : '',
+            resolve();
           });
-        });
-      },
-      {
-        ancestorResize: true,
-        ancestorScroll: true,
-        elementResize: true,
-        animationFrame: this.animationFrame,
-      }
-    );
+        },
+        {
+          ancestorResize: true,
+          ancestorScroll: true,
+          elementResize: true,
+          animationFrame: this.animationFrame,
+        }
+      );
+    });
   }
 
   private clearHideTimeout() {
