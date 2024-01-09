@@ -108,9 +108,8 @@ export class Tooltip {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
-    this.computeTooltipPosition(anchorElement).then(() => {
-      this.visible = true;
-    });
+    await this.computeTooltipPosition(anchorElement);
+    this.visible = true;
   }
 
   /** @internal */
