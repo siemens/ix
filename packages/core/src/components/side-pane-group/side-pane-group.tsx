@@ -20,6 +20,7 @@ export class SidePaneGroup {
 
   /**
    * Determines if the side panes behave inline
+   * Behaviour with string?
    */
   @Prop() inline: boolean = false;
 

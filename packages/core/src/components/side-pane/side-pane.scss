@@ -82,16 +82,16 @@ $side-pane-mini-content-width: 76px;
   }
 
   .mobile-border-top {
-    border-bottom: 1px solid rgba(224, 245, 255, 0.25);
+    border-bottom: 1px solid var(--theme-color-soft-bdr);
   }
 
   .mobile-border-bottom {
-    border-top: 1px solid rgba(224, 245, 255, 0.25);
+    border-top: 1px solid var(--theme-color-soft-bdr);
   }
 
   @mixin set-border($position) {
     @if $position {
-      border-#{$position}: 1px solid rgba(224, 245, 255, 0.25);
+      border-#{$position}: 1px solid var(--theme-color-soft-bdr);
     }
   }
 

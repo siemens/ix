@@ -1897,7 +1897,7 @@ export namespace Components {
          */
         "floating": boolean;
         /**
-          * Determines if the side panes behave inline
+          * Determines if the side panes behave inline Behaviour with string?
          */
         "inline": boolean;
         /**
@@ -5510,7 +5510,7 @@ declare namespace LocalJSX {
          */
         "floating"?: boolean;
         /**
-          * Determines if the side panes behave inline
+          * Determines if the side panes behave inline Behaviour with string?
          */
         "inline"?: boolean;
         /**
