@@ -85,7 +85,7 @@ const themeConfig =
             href: 'https://community.siemens.com/c/ix',
           },
           {
-            label: 'Siemens Developer Portal',
+            label: 'Siemens Xcelerator Developer Portal',
             href: 'https://developer.siemens.com',
           },
         ],
