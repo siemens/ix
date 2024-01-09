@@ -225,7 +225,7 @@ export class Tooltip {
   private updateAriaDescribedBy(element: Element, describedBy: string) {
     const oldDescribedBy = element.getAttribute('aria-describedby');
 
-    if (oldDescribedBy.indexOf(describedBy) != -1) {
+    if (oldDescribedBy?.indexOf(describedBy) != -1) {
       return;
     }
 
