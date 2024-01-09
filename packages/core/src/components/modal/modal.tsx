@@ -19,6 +19,7 @@ import {
 import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
+import { OnListener } from '../utils/listener';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -73,8 +74,14 @@ export class Modal {
 
   /**
    * Use ESC to dismiss the modal
+   * @deprecated - Use closeOnEscape instead
    */
   @Prop() keyboard = true;
+
+  /**
+   * If set to true the modal can be closed by pressing the Escape key
+   */
+  @Prop() closeOnEscape = true;
 
   /**
    * Dialog close
@@ -85,6 +92,13 @@ export class Modal {
    * Dialog cancel
    */
   @Event() dialogDismiss: EventEmitter;
+
+  @OnListener<Modal>('keydown', (self) => !self.closeOnEscape || !self.keyboard)
+  onKey(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+    }
+  }
 
   get dialog() {
     return this.hostElement.shadowRoot.querySelector('dialog');
@@ -243,11 +257,6 @@ export class Modal {
             class={{
               modal: true,
               [`modal-size-${this.size}`]: true,
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape' && this.keyboard === false) {
-                e.preventDefault();
-              }
             }}
             onClick={(event) => this.onModalClick(event)}
             onCancel={(e) => {

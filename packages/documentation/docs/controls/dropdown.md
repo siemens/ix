@@ -58,8 +58,8 @@ name="dropdown-quick-actions" height="22rem"
 frameworks={{
   react: SourceReactDropdownQuickActions,
       angular: {
-        "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsTs,
-        "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsHtml
+        "dropdown-quick-actions.html": SourceAngularDropdownQuickActionsHtml,
+        "dropdown-quick-actions.ts": SourceAngularDropdownQuickActionsTs
     },
   javascript: SourceDropdownQuickActions
 }}></Playground>
