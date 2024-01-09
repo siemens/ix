@@ -6,17 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Prop,
-  State,
-} from '@stencil/core';
-
-const mobileBreakpoint: number = 767;
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { applicationLayoutService } from '../utils/application-layout';
+import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
 
 @Component({
   tag: 'ix-side-pane-group',
@@ -41,15 +33,25 @@ export class SidePaneGroup {
    */
   @Prop() variant: '1' | '2' = '2';
 
-  @State() mobileMode: boolean = false;
+  /**
+   * Supported layouts
+   */
+  @Prop() breakpoints: Breakpoint[] = ['sm', 'md'];
+
+  @State() isMobile: boolean = false;
+
+  componentWillLoad() {
+    applicationLayoutService.setBreakpoints(this.breakpoints);
+    applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
+  }
 
   componentWillRender() {
     if (this.inline && this.floating) {
       console.error('Inline and floating can not be set at once!');
       return;
     }
-
-    this.onWindowResize();
   }
 
   componentDidRender() {
@@ -65,12 +67,12 @@ export class SidePaneGroup {
   configureLayout() {
     const sidePanels = this.getSidePanels();
     sidePanels.forEach((sidePanelElement) => {
-      let zIndex: string = '1';
+      let zIndex = '1';
       const isBottomTop =
         sidePanelElement.position === 'top' ||
         sidePanelElement.position === 'bottom';
 
-      if (this.mobileMode) {
+      if (this.isMobile) {
         sidePanelElement.style.removeProperty('z-index');
         return;
       } else if (this.variant === '1') {
@@ -87,22 +89,14 @@ export class SidePaneGroup {
     });
   }
 
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    const newMode = window.innerWidth <= mobileBreakpoint;
-    if (this.mobileMode != newMode) {
-      this.mobileMode = newMode;
-    }
-  }
-
   getSidePanels() {
     return this.hostElement.querySelectorAll('ix-side-pane');
   }
 
   render() {
     return (
-      <Host style={{ height: '100%', width: '100%' }}>
-        {this.variant == '1' && !this.mobileMode ? (
+      <Host>
+        {this.variant == '1' && !this.isMobile ? (
           <ix-row class="row">
             <slot name="left"></slot>
             <ix-col class="col">
@@ -126,7 +120,7 @@ export class SidePaneGroup {
             ) : null}
           </ix-row>
         ) : null}
-        {this.variant == '2' && !this.mobileMode ? (
+        {this.variant == '2' && !this.isMobile ? (
           <div class="side-panes-wrapper">
             <ix-col
               class={{
@@ -161,7 +155,7 @@ export class SidePaneGroup {
             </ix-col>
           </div>
         ) : null}
-        {this.mobileMode ? (
+        {this.isMobile ? (
           <ix-col class="col">
             <div>
               <slot name="top"></slot>

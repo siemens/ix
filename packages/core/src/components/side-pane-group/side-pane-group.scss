@@ -15,6 +15,8 @@
   @include ix-component;
   display: flex;
   position: absolute;
+  width: 100%;
+  height: 100%;
 
   .side-panes-wrapper {
     height: 100%;

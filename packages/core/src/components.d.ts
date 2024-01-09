@@ -1846,6 +1846,10 @@ export namespace Components {
     }
     interface IxSidePane {
         /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
+        /**
           * State of the side-pane
          */
         "expandPane": boolean;
@@ -1884,6 +1888,10 @@ export namespace Components {
     interface IxSidePaneContentArea {
     }
     interface IxSidePaneGroup {
+        /**
+          * Supported layouts
+         */
+        "breakpoints": Breakpoint[];
         /**
           * Determines if the side panes behave floating
          */
@@ -5447,6 +5455,10 @@ declare namespace LocalJSX {
     }
     interface IxSidePane {
         /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
+        /**
           * State of the side-pane
          */
         "expandPane"?: boolean;
@@ -5489,6 +5501,10 @@ declare namespace LocalJSX {
     interface IxSidePaneContentArea {
     }
     interface IxSidePaneGroup {
+        /**
+          * Supported layouts
+         */
+        "breakpoints"?: Breakpoint[];
         /**
           * Determines if the side panes behave floating
          */

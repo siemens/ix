@@ -13,19 +13,20 @@ import {
   EventEmitter,
   h,
   Host,
-  Listen,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import { applicationLayoutService } from '../utils/application-layout';
+import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
+import Animation from "../utils/animation";
 
 export type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangeEvent = {
   position: string;
   expanded: boolean;
 };
-const ANIMATION_DURATION = 300;
 
 @Component({
   tag: 'ix-side-pane',
@@ -71,12 +72,17 @@ export class SidePane {
   /**
    * State of the side-pane
    */
-  @Prop({ mutable: true, reflect: true }) expandPane: boolean = false;
+  @Prop({ mutable: true }) expandPane: boolean = false;
 
   /**
    * Placement of the sidebar
    */
-  @Prop({ mutable: true, reflect: true }) position: SidePanelPosition = 'top';
+  @Prop({ mutable: true }) position: SidePanelPosition = 'top';
+
+  /**
+   * Supported layouts
+   */
+  @Prop() breakpoints: Breakpoint[] = ['sm', 'md'];
 
   /**
    * Event
@@ -87,7 +93,7 @@ export class SidePane {
   @State() private showContent: boolean = false;
   @State() private minimizeIcon: string = '';
   @State() private isMobileTop: boolean;
-  @State() private mobile: boolean = window.innerWidth < 767;
+  @State() private isMobile: boolean = false;
 
   private isBottomTopPane: boolean;
   private isLeftRightPane: boolean;
@@ -105,6 +111,11 @@ export class SidePane {
     if (this.expandPane) {
       this.onExpandedChange();
     }
+
+    applicationLayoutService.setBreakpoints(this.breakpoints);
+    applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
   }
 
   private initializePosition() {
@@ -129,16 +140,18 @@ export class SidePane {
 
     switch (this.position) {
       case 'left':
-        expandIcon = this.mobile ? 'double-chevron-up' : 'double-chevron-left';
-        minimizeIcon = this.mobile
+        expandIcon = this.isMobile
+          ? 'double-chevron-up'
+          : 'double-chevron-left';
+        minimizeIcon = this.isMobile
           ? 'double-chevron-down'
           : 'double-chevron-right';
         break;
       case 'right':
-        expandIcon = this.mobile
+        expandIcon = this.isMobile
           ? 'double-chevron-down'
           : 'double-chevron-right';
-        minimizeIcon = this.mobile
+        minimizeIcon = this.isMobile
           ? 'double-chevron-up'
           : 'double-chevron-left';
         break;
@@ -162,22 +175,22 @@ export class SidePane {
       this.previousWidth = this.hostElement.offsetWidth.toString();
 
       //fallback, if initially expanded
-      if (!this.mobile) {
+      if (!this.isMobile) {
         if (this.previousWidth === '0') {
           this.previousWidth = this.showPreviewContent ? '76px' : '32px';
           this.previousHeight = this.showPreviewContent ? '76px' : '32px';
         }
       }
 
-      const expandPaneSize = this.mobile ? '100%' : this.expandedPaneSize;
+      const expandPaneSize = this.isMobile ? '100%' : this.expandedPaneSize;
 
-      if (this.isBottomTopPane || this.mobile) {
+      if (this.isBottomTopPane || this.isMobile) {
         this.animateHorizontalFadeIn(expandPaneSize);
       } else {
         this.animateVerticalFadeIn(expandPaneSize);
       }
     } else {
-      if (this.mobile) {
+      if (this.isMobile) {
         this.resetLayoutState();
       } else if (this.isBottomTopPane) {
         this.animateHorizontalFadeIn(this.previousHeight);
@@ -192,15 +205,7 @@ export class SidePane {
     });
   }
 
-  @Listen('resize', { target: 'window' })
-  onWindowResize() {
-    const newMode = window.innerWidth <= 767;
-    if (this.mobile != newMode) {
-      this.mobile = newMode;
-    }
-  }
-
-  @Watch('mobile')
+  @Watch('isMobile')
   onMobileChange(): void {
     this.resetLayoutState();
     this.setIcons();
@@ -219,7 +224,7 @@ export class SidePane {
     requestAnimationFrame(() => {
       anime({
         targets: this.hostElement,
-        duration: ANIMATION_DURATION,
+        duration: Animation.mediumTime,
         width: size,
         easing: 'linear',
         begin: () => {
@@ -242,7 +247,7 @@ export class SidePane {
     requestAnimationFrame(() => {
       anime({
         targets: this.hostElement,
-        duration: ANIMATION_DURATION,
+        duration: Animation.mediumTime,
         height: size,
         easing: 'linear',
         begin: () => {
@@ -265,10 +270,10 @@ export class SidePane {
     if (this.inline) {
       return false;
       //floating and mobile --> mobile panes at top and bottom
-    } else if (this.floating && this.mobile) {
+    } else if (this.floating && this.isMobile) {
       return false;
       //floating at normal screen --> panes are hidden if they are not expanded
-    } else if (this.floating && this.expandPane && !this.mobile) {
+    } else if (this.floating && this.expandPane && !this.isMobile) {
       return false;
     }
 
@@ -276,7 +281,7 @@ export class SidePane {
   }
 
   hidePaneContent() {
-    if (this.showPreviewContent && this.isLeftRightPane && !this.mobile) {
+    if (this.showPreviewContent && this.isLeftRightPane && !this.isMobile) {
       return false;
     } else if (this.showContent) {
       return false;
@@ -289,44 +294,47 @@ export class SidePane {
       <Host
         hidden={this.hiddePane()}
         class={{
-          'mobile-overlay': this.expandPane && this.mobile,
-          'top-expand': this.expandPane && this.isMobileTop && this.mobile,
-          'bottom-expand': this.expandPane && !this.isMobileTop && this.mobile,
+          'mobile-overlay': this.expandPane && this.isMobile,
+          'top-expand': this.expandPane && this.isMobileTop && this.isMobile,
+          'bottom-expand':
+            this.expandPane && !this.isMobileTop && this.isMobile,
           'preview-content':
             this.isLeftRightPane &&
             !this.expandPane &&
-            !this.mobile &&
+            !this.isMobile &&
             this.showPreviewContent,
         }}
+        aria-hidden={!this.hiddePane()}
+        aria-expanded={this.expandPane}
       >
         <aside
           class={{
-            [`${this.position}-pane-border`]: !this.mobile,
-            'top-bottom-pane': this.isBottomTopPane && !this.mobile,
-            'left-right-pane': this.isLeftRightPane && !this.mobile,
-            'left-right-pane-mobile': this.isLeftRightPane && this.mobile,
-            'box-shadow': this.floating && !this.mobile,
+            [`${this.position}-pane-border`]: !this.isMobile,
+            'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
+            'left-right-pane': this.isLeftRightPane && !this.isMobile,
+            'left-right-pane-mobile': this.isLeftRightPane && this.isMobile,
+            'box-shadow': this.floating && !this.isMobile,
             'mobile-border-top':
-              this.isMobileTop && this.mobile && !this.expandPane,
+              this.isMobileTop && this.isMobile && !this.expandPane,
             'mobile-border-bottom':
-              !this.isMobileTop && this.mobile && !this.expandPane,
-            'mobile-expanded': this.expandPane && this.mobile,
+              !this.isMobileTop && this.isMobile && !this.expandPane,
+            'mobile-expanded': this.expandPane && this.isMobile,
           }}
         >
           <div
             class={{
               'title-inline-collapsed':
-                !this.expandPane && !this.mobile && this.inline,
+                !this.expandPane && !this.isMobile && this.inline,
               'title-inline-expanded':
-                this.expandPane && !this.mobile && this.inline,
-              'title-mobile': this.mobile,
+                this.expandPane && !this.isMobile && this.inline,
+              'title-mobile': this.isMobile,
               'title-floating': this.floating,
             }}
           >
             <ix-icon-button
               icon={
                 this.expandPane
-                  ? this.mobile || this.floating
+                  ? this.isMobile || this.floating
                     ? 'close'
                     : this.expandIcon
                   : this.minimizeIcon
@@ -339,11 +347,11 @@ export class SidePane {
             <span
               class={{
                 rotate:
-                  !this.expandPane && !this.mobile && this.isLeftRightPane,
+                  !this.expandPane && !this.isMobile && this.isLeftRightPane,
               }}
               hidden={
                 this.showPreviewContent &&
-                !this.mobile &&
+                !this.isMobile &&
                 !this.expandPane &&
                 this.isLeftRightPane
               }
