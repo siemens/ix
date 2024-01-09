@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
-import { UploadFileState } from 'src/components/upload/upload-file-state';
+import { UploadFileState } from '../../components/upload/upload-file-state';
 
 regressionTest.describe('upload', () => {
   regressionTest('basic', async ({ page }) => {
