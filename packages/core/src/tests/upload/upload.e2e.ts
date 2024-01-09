@@ -8,8 +8,8 @@
  */
 
 import { expect } from '@playwright/test';
-import { UploadFileState } from '@siemens/ix';
 import { regressionTest } from '@utils/test';
+import { UploadFileState } from 'src/components/upload/upload-file-state';
 
 regressionTest.describe('upload', () => {
   regressionTest('basic', async ({ page }) => {
