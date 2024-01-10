@@ -5461,6 +5461,7 @@ declare namespace LocalJSX {
           * Event
          */
         "onExpandPaneChange"?: (event: IxSidePaneCustomEvent<ExpandPaneChangeEvent>) => void;
+        "onPaneChange"?: (event: IxSidePaneCustomEvent<string>) => void;
         /**
           * Title of the side panel
          */

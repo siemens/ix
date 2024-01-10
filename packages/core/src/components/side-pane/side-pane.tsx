@@ -79,6 +79,11 @@ export class SidePane {
    */
   @Event() expandPaneChange: EventEmitter<ExpandPaneChangeEvent>;
 
+  /**
+   * @internal
+   */
+  @Event() paneChange: EventEmitter<string>;
+
   @State() private expandIcon: string = '';
   @State() private showContent: boolean = false;
   @State() private minimizeIcon: string = '';
@@ -105,7 +110,10 @@ export class SidePane {
     return this.position === 'top' || this.position === 'left';
   }
 
+
+
   componentWillLoad() {
+    this.paneChange.emit(this.position);
     this.inline = this.behaviour === 'inline';
     this.floating = this.behaviour === 'floating';
 

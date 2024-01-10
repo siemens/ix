@@ -6,7 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  forceUpdate,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
@@ -53,8 +62,16 @@ export class SidePaneGroup {
     });
   }
 
+  @Listen('paneChange')
+  onPaneChange() {
+    console.log('!!!');
+    this.configureLayout();
+    forceUpdate(this.hostElement);
+  }
+
   configureLayout() {
     const sidePanels = this.sidePanels;
+    console.log(this.sidePanels);
     sidePanels.forEach((sidePanelElement) => {
       let zIndex = '1';
       const isBottomTop =
