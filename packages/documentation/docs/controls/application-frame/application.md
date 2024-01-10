@@ -5,7 +5,7 @@ sidebar_position: 0
 import Tags from './../../auto-generated/ix-application/tags.md';
 import Props from './../../auto-generated/ix-application/props.md';
 import Events from './../../auto-generated/ix-application/events.md';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Application
 <Tags />

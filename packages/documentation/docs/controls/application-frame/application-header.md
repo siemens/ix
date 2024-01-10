@@ -5,7 +5,7 @@ sidebar_position: 1
 import Tags from './../../auto-generated/ix-application-header/tags.md';
 import Slots from './../../auto-generated/ix-application-header/slots.md';
 import Props from './../../auto-generated/ix-application-header/props.md';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Header
 
