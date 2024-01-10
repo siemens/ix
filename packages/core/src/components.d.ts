@@ -34,7 +34,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
-import { ExpandedChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
+import { ExpandPaneChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
@@ -74,7 +74,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
-export { ExpandedChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
+export { ExpandPaneChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
@@ -1846,9 +1846,9 @@ export namespace Components {
     }
     interface IxSidePane {
         /**
-          * Supported layouts
+          * Behaviour of the side pane
          */
-        "breakpoints": Breakpoint[];
+        "behaviour": 'floating' | 'inline';
         /**
           * State of the side-pane
          */
@@ -1864,14 +1864,6 @@ export namespace Components {
     | '33%'
     | '50%'
     | '100%';
-        /**
-          * Floating or inline style
-         */
-        "floating": boolean;
-        /**
-          * Floating or inline style
-         */
-        "inline": boolean;
         /**
           * Title of the side panel
          */
@@ -1889,17 +1881,9 @@ export namespace Components {
     }
     interface IxSidePaneGroup {
         /**
-          * Supported layouts
+          * Behaviour of the side pane
          */
-        "breakpoints": Breakpoint[];
-        /**
-          * Determines if the side panes behave floating
-         */
-        "floating": boolean;
-        /**
-          * Determines if the side panes behave inline Behaviour with string?
-         */
-        "inline": boolean;
+        "behaviour": 'floating' | 'inline';
         /**
           * Choose the variant of the panes
          */
@@ -5455,9 +5439,9 @@ declare namespace LocalJSX {
     }
     interface IxSidePane {
         /**
-          * Supported layouts
+          * Behaviour of the side pane
          */
-        "breakpoints"?: Breakpoint[];
+        "behaviour"?: 'floating' | 'inline';
         /**
           * State of the side-pane
          */
@@ -5474,17 +5458,9 @@ declare namespace LocalJSX {
     | '50%'
     | '100%';
         /**
-          * Floating or inline style
-         */
-        "floating"?: boolean;
-        /**
-          * Floating or inline style
-         */
-        "inline"?: boolean;
-        /**
           * Event
          */
-        "onExpandedChange"?: (event: IxSidePaneCustomEvent<ExpandedChangeEvent>) => void;
+        "onExpandPaneChange"?: (event: IxSidePaneCustomEvent<ExpandPaneChangeEvent>) => void;
         /**
           * Title of the side panel
          */
@@ -5502,17 +5478,9 @@ declare namespace LocalJSX {
     }
     interface IxSidePaneGroup {
         /**
-          * Supported layouts
+          * Behaviour of the side pane
          */
-        "breakpoints"?: Breakpoint[];
-        /**
-          * Determines if the side panes behave floating
-         */
-        "floating"?: boolean;
-        /**
-          * Determines if the side panes behave inline Behaviour with string?
-         */
-        "inline"?: boolean;
+        "behaviour"?: 'floating' | 'inline';
         /**
           * Choose the variant of the panes
          */

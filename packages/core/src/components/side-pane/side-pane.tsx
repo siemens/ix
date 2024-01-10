@@ -18,12 +18,12 @@ import {
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
+import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
-import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
-import Animation from "../utils/animation";
+import { matchBreakpoint } from '../utils/breakpoints';
 
 export type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';
-export type ExpandedChangeEvent = {
+export type ExpandPaneChangeEvent = {
   position: string;
   expanded: boolean;
 };
@@ -42,14 +42,9 @@ export class SidePane {
   @Prop() paneTitle: string = 'Pane title';
 
   /**
-   * Floating or inline style
+   * Behaviour of the side pane
    */
-  @Prop() inline: boolean = false;
-
-  /**
-   * Floating or inline style
-   */
-  @Prop() floating: boolean = false;
+  @Prop() behaviour: 'floating' | 'inline' = 'inline';
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -77,55 +72,56 @@ export class SidePane {
   /**
    * Placement of the sidebar
    */
-  @Prop({ mutable: true }) position: SidePanelPosition = 'top';
-
-  /**
-   * Supported layouts
-   */
-  @Prop() breakpoints: Breakpoint[] = ['sm', 'md'];
+  @Prop() position: SidePanelPosition = 'top';
 
   /**
    * Event
    */
-  @Event() expandedChange: EventEmitter<ExpandedChangeEvent>;
+  @Event() expandPaneChange: EventEmitter<ExpandPaneChangeEvent>;
 
   @State() private expandIcon: string = '';
   @State() private showContent: boolean = false;
   @State() private minimizeIcon: string = '';
-  @State() private isMobileTop: boolean;
   @State() private isMobile: boolean = false;
 
-  private isBottomTopPane: boolean;
-  private isLeftRightPane: boolean;
   private previousWidth: string = null;
   private previousHeight: string = null;
+  private inline: boolean = null;
+  private floating: boolean = null;
+
+  get pos() {
+    return this.hostElement.getAttribute('slot') as SidePanelPosition;
+  }
+
+  get isBottomTopPane() {
+    return this.position === 'bottom' || this.position === 'top';
+  }
+
+  get isLeftRightPane() {
+    return this.position === 'left' || this.position === 'right';
+  }
+
+  get isMobileTop() {
+    return this.position === 'top' || this.position === 'left';
+  }
 
   componentWillLoad() {
+    this.inline = this.behaviour === 'inline';
+    this.floating = this.behaviour === 'floating';
+
     if (this.showPreviewContent && this.isBottomTopPane) {
       console.warn('Preview content is only available on vertical side panes!');
     }
 
-    this.initializePosition();
     this.setIcons();
 
     if (this.expandPane) {
       this.onExpandedChange();
     }
 
-    applicationLayoutService.setBreakpoints(this.breakpoints);
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
-  }
-
-  private initializePosition() {
-    this.position =
-      (this.hostElement.getAttribute('slot') as SidePanelPosition) ||
-      this.position;
-    this.isBottomTopPane =
-      this.position === 'bottom' || this.position === 'top';
-    this.isLeftRightPane = !this.isBottomTopPane;
-    this.isMobileTop = this.position === 'top' || this.position === 'left';
   }
 
   setIcons() {
@@ -199,7 +195,7 @@ export class SidePane {
       }
     }
 
-    this.expandedChange.emit({
+    this.expandPaneChange.emit({
       position: this.position,
       expanded: this.expandPane,
     });

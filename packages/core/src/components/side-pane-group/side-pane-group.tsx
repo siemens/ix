@@ -8,7 +8,7 @@
  */
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
-import { Breakpoint, matchBreakpoint } from '../utils/breakpoints';
+import { matchBreakpoint } from '../utils/breakpoints';
 
 @Component({
   tag: 'ix-side-pane-group',
@@ -19,54 +19,42 @@ export class SidePaneGroup {
   @Element() hostElement: HTMLIxSidePaneGroupElement;
 
   /**
-   * Determines if the side panes behave inline
-   * Behaviour with string?
+   * Behaviour of the side pane
    */
-  @Prop() inline: boolean = false;
-
-  /**
-   * Determines if the side panes behave floating
-   */
-  @Prop() floating: boolean = false;
+  @Prop() behaviour: 'floating' | 'inline' = 'inline';
 
   /**
    * Choose the variant of the panes
    */
   @Prop() variant: '1' | '2' = '2';
 
-  /**
-   * Supported layouts
-   */
-  @Prop() breakpoints: Breakpoint[] = ['sm', 'md'];
-
   @State() isMobile: boolean = false;
 
+  private inline: boolean = null;
+  private floating: boolean = null;
+
+  get sidePanels() {
+    return this.hostElement.querySelectorAll('ix-side-pane');
+  }
+
   componentWillLoad() {
-    applicationLayoutService.setBreakpoints(this.breakpoints);
+    this.inline = this.behaviour === 'inline';
+    this.floating = this.behaviour === 'floating';
+
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
   }
 
-  componentWillRender() {
-    if (this.inline && this.floating) {
-      console.error('Inline and floating can not be set at once!');
-      return;
-    }
-  }
-
   componentDidRender() {
-    const sidePanels = this.getSidePanels();
+    const sidePanels = this.sidePanels;
     sidePanels.forEach((sidePanelElement) => {
-      sidePanelElement.inline = this.inline;
-      sidePanelElement.floating = this.floating;
+      sidePanelElement.behaviour = this.behaviour;
     });
-
-    this.configureLayout();
   }
 
   configureLayout() {
-    const sidePanels = this.getSidePanels();
+    const sidePanels = this.sidePanels;
     sidePanels.forEach((sidePanelElement) => {
       let zIndex = '1';
       const isBottomTop =
@@ -88,10 +76,6 @@ export class SidePaneGroup {
 
       sidePanelElement.style.zIndex = zIndex;
     });
-  }
-
-  getSidePanels() {
-    return this.hostElement.querySelectorAll('ix-side-pane');
   }
 
   render() {

@@ -18,20 +18,20 @@ export class MyComponent {
   ref: HTMLIxSidePaneElement = null;
   sidePanelWrapperRef: any = null;
 
-  @State() hideLeft: boolean = true;
+  @State() hideLeft: boolean = false;
 
   onButtonClick() {
-    const ixSidePaneGroup = document.querySelector('ix-side-pane-group');
+    // const ixSidePaneGroup = document.querySelector('ix-side-pane-group');
+    //
+    // const ixSidePane = document.createElement('ix-side-pane');
+    // ixSidePane.setAttribute('paneTitle', 'LEFT');
+    // ixSidePane.setAttribute('inline', 'true');
+    // ixSidePane.setAttribute('hidden', 'false');
+    // ixSidePane.setAttribute('showPreviewContent', 'true');
+    //
+    // ixSidePaneGroup.appendChild(ixSidePane);
 
-    const ixSidePane = document.createElement('ix-side-pane');
-    ixSidePane.setAttribute('paneTitle', 'LEFT');
-    ixSidePane.setAttribute('inline', 'true');
-    ixSidePane.setAttribute('hidden', 'false');
-    ixSidePane.setAttribute('showPreviewContent', 'true');
-
-    ixSidePaneGroup.appendChild(ixSidePane);
-
-    //this.hideLeft = !this.hideLeft;
+    this.hideLeft = !this.hideLeft;
   }
 
   render() {
@@ -56,18 +56,47 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-side-pane-group inline variant="1">
-            <ix-side-pane paneTitle="TOP" slot="top" expandPane={true}>
+          <ix-side-pane-group behaviour="inline">
+            <ix-side-pane
+              paneTitle="TOP"
+              slot="top"
+              position="top"
+              expandPane={true}
+            >
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-side-pane>
 
+            {this.hideLeft && (
+              <ix-side-pane
+                paneTitle="LEFT"
+                position="left"
+                slot="left"
+                expandPane={true}
+              >
+                <h1>Test Heading from LEFT</h1>
+              </ix-side-pane>
+            )}
+
+            <ix-side-pane
+              paneTitle="BOTTOM"
+              position="bottom"
+              slot="bottom"
+              expandPane={true}
+            >
+              <h1>Test Heading from BOTTOM</h1>
+            </ix-side-pane>
+
             <ix-side-pane
               paneTitle="RIGHT"
+              position="right"
               slot="right"
               expandPane={true}
-            ></ix-side-pane>
+            >
+              <h1>Test Heading from RIGHT</h1>
+            </ix-side-pane>
+
             <ix-side-pane-content-area slot="content">
               <h1>Test Heading</h1>
               <h1>Test Heading</h1>
