@@ -1,0 +1,59 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic navigation example</title>
+    <script type="module" crossorigin src="../assets/application-breakpoints.d303d5b8.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/index.e885955d.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.969e71da.js">
+    <link rel="stylesheet" href="../assets/index.06f395a9.css">
+    <link rel="stylesheet" href="../assets/init.70db4281.css">
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-application application-name="Application name">
+      <ix-application-header name="My Application">
+        <placeholder-logo slot="logo"></placeholder-logo>
+
+        <ix-dropdown-button variant="secondary" label="Select config" ghost>
+          <ix-dropdown-item label="Config 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Config 3"></ix-dropdown-item>
+        </ix-dropdown-button>
+
+        <ix-avatar>
+          <ix-dropdown-item label="Action 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 2"></ix-dropdown-item>
+          <ix-dropdown-item label="Action 3"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+      <ix-content>
+        <ix-content-header
+          slot="header"
+          header-title="Choose breakpoint"
+        >
+        </ix-content-header>
+        <input id="small" type="radio" name="layout" value="sm" />
+        <label for="small">Small</label>
+
+        <input id="medium" type="radio" name="layout" value="md" checked />
+        <label for="medium">Medium</label>
+
+        <input id="large" type="radio" name="layout" value="lg" />
+        <label for="large">Large</label>
+      </ix-content>
+    </ix-application>
+    
+    <!-- Preview code -->
+    
+  </body>
+</html>
