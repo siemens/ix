@@ -32,16 +32,16 @@ jobs:
           scope: '@siemens'
           always-auth: 'true'
 
-      - name: 'Download and link @siemens/ix-brand-theme'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
-          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
-        run: |
-          mkdir .tmp-brand
-          cd .tmp-brand
-          npm install @siemens/ix-brand-theme@2.0.0 --no-save --legacy-peer-deps
-          cd ..
-          cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
+      # - name: 'Download and link @siemens/ix-brand-theme'
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+      #   run: |
+      #     mkdir .tmp-brand
+      #     cd .tmp-brand
+      #     npm install @siemens/ix-brand-theme@2.0.0 --no-save --legacy-peer-deps
+      #     cd ..
+      #     cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
 
       - name: 'Build documentation for dev instance'
         uses: ./.github/workflows/actions/build
