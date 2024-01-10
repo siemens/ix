@@ -18,6 +18,9 @@ import {
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @deprecated Use ix-application-header and it's avatar functionality instead
+ */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
@@ -81,6 +84,18 @@ export class MenuAvatar {
     }
     const elements = getSlottedElements(slot);
     this.showContextMenu = elements.length !== 0;
+  }
+
+  componentWillRender() {
+    const elementsWithIds = this.hostElement.querySelectorAll('[id]');
+    const elementIds = Array.from(elementsWithIds).map((e) => e.id);
+
+    for (let i of elementIds) {
+      const element = document.querySelector('[' + i.toString() + ']');
+      if (element) {
+        (element as HTMLElement).style.zIndex = `var(--theme-z-index-sticky)`;
+      }
+    }
   }
 
   render() {

@@ -95,7 +95,6 @@ export class Select {
    * Hide list header
    *
    * @since 1.5.0
-   @
    */
   @Prop() hideListHeader = false;
 
@@ -501,6 +500,7 @@ export class Select {
                 : ''}
               <div class="trigger">
                 <input
+                  autocomplete="off"
                   data-testid="input"
                   disabled={this.disabled}
                   readOnly={this.readonly}

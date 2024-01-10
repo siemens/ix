@@ -108,9 +108,7 @@ test('multiple selection', async ({ mount, page }) => {
   const item1 = element.locator('ix-select-item').nth(0);
   const item3 = element.locator('ix-select-item').nth(2);
   await item1.click();
-  await page.locator('[data-select-dropdown]').click();
   await item3.click();
-  await page.locator('[data-select-dropdown]').click();
 
   await expect(item1.locator('ix-icon')).toBeVisible();
   await expect(item3.locator('ix-icon')).toBeVisible();

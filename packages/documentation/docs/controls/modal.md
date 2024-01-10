@@ -10,8 +10,8 @@ import SourceAngularModal from './../auto-generated/previews/angular/modal-by-te
 import SourceAngularModalByInstance from './../auto-generated/previews/angular/modal-by-instance.ts.md'
 import SourceAngularModalByInstanceContent from './../auto-generated/previews/angular/modal-by-instance-content.ts.md'
 
-import PropsJavaScript from './../auto-generated/ix-modal/props.md'
-import EventsJavaScript from './../auto-generated/ix-modal/events.md'
+import PropsHeaderJavaScript from './../auto-generated/ix-modal-header/props.md'
+import EventsHeaderJavaScript from './../auto-generated/ix-modal-header/events.md'
 
 import ApiModalConfigAngular from './\_modal/angular/modal-config.md'
 import ApiModalServiceAngular from './\_modal/angular/modal-service.html.md'
@@ -129,11 +129,18 @@ frameworks={{
 
 ### API
 
-#### Modal Config
+#### Modal config
 <ModalConfig />
 
-#### Modal Instance
+#### Modal instance
 <ModalInstance />
+
+#### Modal header
+##### Props
+<PropsHeaderJavaScript />
+
+##### Events
+<EventsHeaderJavaScript />
 
 ## Loading
 

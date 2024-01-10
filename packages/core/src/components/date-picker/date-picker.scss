@@ -22,6 +22,13 @@
     justify-content: space-between;
   }
 
+  .disabled-item {
+    pointer-events: none;
+    background-color: var(--theme-datepicker-day--background--disabled);
+    color: var(--theme-datepicker-day--color--disabled);
+    cursor: default;
+  }
+
   .selector {
     flex-basis: 100%;
     display: flex;
@@ -41,6 +48,16 @@
 
     .capitalize {
       text-transform: capitalize;
+    }
+
+    .month-dropdown-item {
+      margin-left: 4px;
+      margin-right: 4px;
+
+      &:focus-visible {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
     }
 
     .arrowYear {
@@ -104,6 +121,11 @@
       width: 40px;
       height: 40px;
       cursor: pointer;
+
+      &:focus-visible {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
 
       &.today {
         border: 1px solid var(--theme-datepicker-today--border-color);
@@ -179,7 +201,6 @@
           background-color: var(--theme-datepicker-day--background--disabled);
           color: var(--theme-datepicker-day--color--disabled);
           cursor: default;
-          pointer-events: none;
         }
       }
 
@@ -266,7 +287,7 @@
       &.week-number {
         font-size: 10px;
         line-height: 14px;
-        color: var(--theme-datepicker-ix--color);
+        color: var(--theme-datepicker-weekday--color);
         border: none;
         background: none;
         cursor: initial;
