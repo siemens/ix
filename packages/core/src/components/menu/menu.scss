@@ -151,6 +151,11 @@ $menu-expanded-width: 16rem;
     margin: 0.5rem 0 0 0.5rem;
   }
 
+  .menu-buttons .burger-menu,
+  .menu-buttons .app-switch {
+    margin-left: 0.125rem;
+  }
+
   .menu-buttons > :last-child {
     margin-bottom: 1rem;
   }
