@@ -115,7 +115,7 @@ export function useContextConsumer<
     },
   };
 }
-export type ContextProvider<C extends Context<{}> = Context<unknown>> = {
+export type ContextProvider<C extends Context<{}> = Context<any>> = {
   emit: (context: ContextType<C>) => void;
 };
 

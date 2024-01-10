@@ -89,7 +89,7 @@ const config: Config = {
             figmaPlugin({
               baseUrl: `${baseUrl}figma`,
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
-              error_image: 'img/figma_error.png',
+              error_image: path.join('..', 'img', 'figma_error.png'),
               apiToken: process.env.FIGMA_API_TOKEN!,
               rimraf: true,
             }),
@@ -149,7 +149,7 @@ const config: Config = {
               href: 'https://community.siemens.com/c/ix',
             },
             {
-              label: 'Siemens Developer Portal',
+              label: 'Siemens Xcelerator Developer Portal',
               href: 'https://developer.siemens.com',
             },
           ],

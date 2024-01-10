@@ -13,5 +13,5 @@ import {Card, CardList} from '@site/src/components/Card';
   <Card label="Industrial icon system" link="icon-library/icons" icon="language" />
   <Card label="Styles" link="theming/colors" icon="bulb"/>
   <Card label="Font System" link="theming/fonts" icon="book"/>
-  <Card label="Components" link="controls/navigation/basic-navigation" icon="configuration" />
+  <Card label="Components" link="controls/application-frame/application" icon="configuration" />
 </CardList>

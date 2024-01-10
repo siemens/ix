@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Breakpoint, matchBreakpoint } from '../breakpoints';
+import { debounce } from '../debounce';
 import { TypedEvent } from '../typed-event';
 
 class ApplicationLayoutService {
@@ -16,11 +17,12 @@ class ApplicationLayoutService {
   #breakpoint: Breakpoint = 'lg';
 
   #isDetectionEnabled = true;
+  debouncedOnResize = debounce(this.onResize.bind(this), 50);
 
   constructor() {
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', this.onResize.bind(this));
-      this.onResize();
+      window.addEventListener('resize', this.debouncedOnResize.bind(this));
+      this.debouncedOnResize();
     }
   }
 
