@@ -6,12 +6,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 @import 'common-variables';
 @import 'mixins/shadow-dom/component';
 
 :host {
   @include ix-component;
-  display: block;
+  display: inline-block;
+  position: relative;
+
   @media (max-width: 48em) {
     .min-width {
       width: min-content;

@@ -2,6 +2,8 @@ name: Deploy to GitHub Pages (DEV Version)
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1-4'
 
 permissions:
   contents: write
@@ -30,15 +32,18 @@ jobs:
           scope: '@siemens'
           always-auth: 'true'
 
-      - name: 'Download and link @siemens/ix-brand-theme'
+      - name: 'Download @siemens/ix-brand-theme'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
-          NPM_TOKEN: ${{ secrets.READ_CSC_TOKEN }}
+          TOKEN: ${{ secrets.READ_CSC_TOKEN }}
         run: |
+          PIPELINE_ROOT_DIR=$(pwd)
           mkdir .tmp-brand
           cd .tmp-brand
-          npm install @siemens/ix-brand-theme@2.0.0 --no-save --legacy-peer-deps
-          cd ..
+          curl https://code.siemens.com/api/v4/projects/249177/packages/npm/@siemens/ix-brand-theme/-/@siemens/ix-brand-theme-2.0.0.tgz -H "Authorization: Bearer $TOKEN" --output theme.tgz
+          tar -xvzf theme.tgz -C $PIPELINE_ROOT_DIR/node_modules/@siemens
+          cd $PIPELINE_ROOT_DIR/node_modules/@siemens
+          mv package ix-brand-theme
+          cd $PIPELINE_ROOT_DIR
           cp -R ./node_modules/@siemens/ix-brand-theme ./packages/html-test-app/src/public/additional-theme
 
       - name: 'Build documentation for dev instance'

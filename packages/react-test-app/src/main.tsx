@@ -21,6 +21,10 @@ import './index.css';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
 import AGGrid from './preview-examples/aggrid';
+import Application from './preview-examples/application';
+import ApplicationAppSwitch from './preview-examples/application-app-switch';
+import ApplicationBreakpoints from './preview-examples/application-breakpoints';
+import ApplicationHeader from './preview-examples/application-header';
 import BasicNavigation from './preview-examples/basic-navigation';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
 import Blind from './preview-examples/blind';
@@ -35,10 +39,12 @@ import CardList from './preview-examples/card-list';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
+import Content from './preview-examples/content';
 import PageHeader from './preview-examples/content-header';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import Datepicker from './preview-examples/datepicker';
+import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
@@ -107,13 +113,29 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import Upload from './preview-examples/upload';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/preview/upload" element={<Upload />} />
         <Route path="/preview/checkbox" element={<Checkbox />} />
+        <Route path="/preview/application" element={<Application />} />
+        <Route
+          path="/preview/application-breakpoints"
+          element={<ApplicationBreakpoints />}
+        />
+        <Route
+          path="/preview/application-app-switch"
+          element={<ApplicationAppSwitch />}
+        />
+        <Route
+          path="/preview/application-header"
+          element={<ApplicationHeader />}
+        />
+        <Route path="/preview/content" element={<Content />} />
         <Route
           path="/preview/checkbox-indeterminate"
           element={<CheckboxIndeterminate />}
@@ -160,6 +182,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<DateDropdownUserRange />}
         />
         <Route path="/preview/datepicker" element={<Datepicker />} />
+        <Route
+          path="/preview/datepicker-locale"
+          element={<DatepickerLocale />}
+        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
         <Route

@@ -106,9 +106,20 @@ import NavigationTest from './testing/NavigationTest.vue';
 import Grid from './preview-examples/grid.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
+import DatepickerLocale from './preview-examples/datepicker-locale.vue';
+import content from './preview-examples/content.vue';
+import Application from './preview-examples/application.vue';
+import ApplicationHeader from './preview-examples/application-header.vue';
+import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
+import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 
 const routes: any = {
   '/': App,
+  '/preview/application': Application,
+  '/preview/application-header': ApplicationHeader,
+  '/preview/application-breakpoints': ApplicationBreakpoints,
+  '/preview/application-app-switch': ApplicationAppSwitch,
+  '/preview/content': content,
   '/preview/checkbox': Checkbox,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/buttons': Buttons,
@@ -124,6 +135,7 @@ const routes: any = {
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
+  '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/drawer-full-height': DrawerFullHeight,

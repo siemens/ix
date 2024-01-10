@@ -33,7 +33,7 @@ Chip variants:
 
 - **Reactive**: Chips react or change their appearance or behavior based on user actions. For example, updates occur as a response to system actions, providing real-time information about system changes or events.
 - **Multi-selection**: Chips can visualize multi-selection and filter actions. This helps users to easily identify and understand their choices.
-- **Placement**: We typically place chips inline with other objects to inform users about their state, within tables or grouped together to show selected options and filters. We do not place chips within input and filter components as they have their own chip component variation, the input chip. Currently, input chips are not implemented as independent components.
+- **Placement**: We typically place chips inline with other objects to inform users about their state, within tables or grouped together to show selected options and filters. We do not place chips within input and filter components as these components have similar components already built-in.
 - **Dismiss**: When users select close, chips are dismissed from the list or interface and are removed visually.
 - **Text truncation**: When a width is set for chips, long labels are truncated to fit the available space.
 
