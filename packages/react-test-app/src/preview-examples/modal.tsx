@@ -16,7 +16,7 @@ import {
   ModalRef,
   showModal,
 } from '@siemens/ix-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 function CustomModal() {
   const modalRef = useRef<ModalRef>(null);
@@ -48,12 +48,6 @@ export default () => {
       content: <CustomModal />,
     });
   }
-
-  useEffect(() => {
-    showModal({
-      content: <CustomModal />,
-    });
-  }, []);
 
   return (
     <>
