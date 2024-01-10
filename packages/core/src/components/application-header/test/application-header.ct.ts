@@ -301,9 +301,7 @@ test.describe('cross app navigation', () => {
 
     const avatar = page.locator('ix-avatar');
 
-    const moreMenuButton = page
-      .getByRole('button')
-      .filter({ hasText: 'more-menu' });
+    const moreMenuButton = page.locator('.context-menu');
 
     const beforeAvatarButton = page
       .getByRole('button')
