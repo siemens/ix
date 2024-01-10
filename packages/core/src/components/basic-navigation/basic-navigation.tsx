@@ -15,6 +15,9 @@ import { ContextProvider, useContextProvider } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @deprecated ix-basic-navigation is deprecated in favor of ix-application
+ */
 @Component({
   tag: 'ix-basic-navigation',
   styleUrl: 'basic-navigation.scss',
@@ -57,8 +60,7 @@ export class BasicNavigation {
   }
 
   /**
-   * Supported layouts
-   * @example ['sm', 'md']
+   * Supported layouts e.g ['sm', 'md']
    */
   @Prop() breakpoints: Breakpoint[] = ['sm', 'md', 'lg'];
   @Watch('breakpoints')

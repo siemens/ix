@@ -17,6 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 /**
  * @since 2.0.0
@@ -62,7 +63,10 @@ export class ModalHeader {
   private parentDialog: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.parentDialog = this.hostElement.closest('ix-modal');
+    this.parentDialog = closestPassShadow(
+      this.hostElement,
+      'ix-modal'
+    ) as HTMLIxModalElement;
     this.onIconChange(this.icon);
   }
 

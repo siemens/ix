@@ -34,14 +34,6 @@ import { AlignedPlacement } from './placement';
  * @internal
  */
 export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
-
-type DisposeDropdown = () => void;
-type DropdownDisposerEntry = {
-  element: HTMLIxDropdownElement;
-  child: HTMLIxDropdownElement;
-  dispose: DisposeDropdown;
-};
-const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
 let sequenceId = 0;
 
 @Component({
@@ -68,7 +60,7 @@ export class Dropdown {
    * Define an element that triggers the dropdown.
    * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
-  @Prop() trigger: string | HTMLElement;
+  @Prop() trigger: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Define an anchor element
@@ -137,55 +129,13 @@ export class Dropdown {
   private focusInBind: any;
   private focusOutBind: any;
 
-  private localUId = `dropdown-${sequenceId++}-${new Date().valueOf()}`;
+  private localUId = `dropdown-${sequenceId++}`;
 
   constructor() {
     this.toggleBind = this.toggle.bind(this);
     this.openBind = this.open.bind(this);
     this.focusInBind = this.focusIn.bind(this);
     this.focusOutBind = this.focusOut.bind(this);
-
-    if (dropdownDisposer.has(this.localUId)) {
-      console.warn('Dropdown with duplicated ID detected');
-    }
-
-    dropdownDisposer.set(this.localUId, {
-      dispose: this.close.bind(this),
-      element: this.hostElement,
-      child: null,
-    });
-
-    const parentDropdown = this.closestPassShadow(
-      this.hostElement.parentNode,
-      'ix-dropdown'
-    );
-    if (parentDropdown) {
-      for (let entry of dropdownDisposer.values()) {
-        if (entry.element === parentDropdown) {
-          entry.child = this.hostElement;
-        }
-      }
-    }
-  }
-
-  closestPassShadow(node, selector) {
-    if (!node) {
-      return null;
-    }
-
-    if (node instanceof ShadowRoot) {
-      return this.closestPassShadow(node.host, selector);
-    }
-
-    if (node instanceof HTMLElement) {
-      if (node.matches(selector)) {
-        return node;
-      } else {
-        return this.closestPassShadow(node.parentNode, selector);
-      }
-    }
-
-    return this.closestPassShadow(node.parentNode, selector);
   }
 
   get dropdownItems() {
@@ -223,6 +173,8 @@ export class Dropdown {
         this.triggerElement.addEventListener('focusin', this.openBind);
         break;
     }
+
+    this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
   }
 
   private removeEventListenersFor(
@@ -250,9 +202,13 @@ export class Dropdown {
         triggerElement.removeEventListener('focusin', this.openBind);
         break;
     }
+
+    this.triggerElement.removeAttribute('data-ix-dropdown-trigger');
   }
 
-  private async registerListener(element: string | HTMLElement) {
+  private async registerListener(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
       if (Array.isArray(this.triggerEvent)) {
@@ -265,7 +221,9 @@ export class Dropdown {
     }
   }
 
-  private async unregisterListener(element: string | HTMLElement) {
+  private async unregisterListener(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
     const trigger = await this.resolveElement(element);
     if (Array.isArray(this.triggerEvent)) {
       this.triggerEvent.forEach((triggerEvent) => {
@@ -276,8 +234,14 @@ export class Dropdown {
     }
   }
 
-  private resolveElement(element: string | HTMLElement): Promise<Element> {
-    if (typeof element !== 'string') {
+  private resolveElement(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ): Promise<Element> {
+    if (element instanceof Promise) {
+      return element;
+    }
+
+    if (typeof element === 'object') {
       return Promise.resolve(element);
     }
 
@@ -312,24 +276,12 @@ export class Dropdown {
         this.applyDropdownPosition();
       }
     }
-
-    if (newShow) {
-      dropdownDisposer.forEach((entry, id) => {
-        if (
-          id !== this.localUId &&
-          !this.isAnchorSubmenu() &&
-          entry.child !== this.hostElement
-        ) {
-          entry.dispose();
-        }
-      });
-    }
   }
 
   @Watch('trigger')
   changedTrigger(
-    newTriggerValue: string | HTMLElement,
-    oldTriggerValue: string | HTMLElement
+    newTriggerValue: string | HTMLElement | Promise<HTMLElement>,
+    oldTriggerValue: string | HTMLElement | Promise<HTMLElement>
   ) {
     if (newTriggerValue) {
       this.registerListener(newTriggerValue);
@@ -348,25 +300,19 @@ export class Dropdown {
       return;
     }
 
-    if (
-      this.show === false ||
-      this.closeBehavior === false ||
-      this.anchorElement?.contains(target) ||
-      this.triggerElement?.contains(target)
-    ) {
+    if (this.show === false || this.closeBehavior === false) {
       return;
     }
 
     const clickInsideDropdown = this.isClickInsideDropdown(event);
-
     switch (this.closeBehavior) {
       case 'outside':
-        if (!clickInsideDropdown || this.anchor === target) {
+        if (!clickInsideDropdown) {
           this.close();
         }
         break;
       case 'inside':
-        if (clickInsideDropdown && this.hostElement !== target) {
+        if (clickInsideDropdown) {
           this.close();
         }
         break;
@@ -387,10 +333,6 @@ export class Dropdown {
     }
   }
 
-  private isNestedDropdown(element: Element) {
-    return element.closest('ix-dropdown');
-  }
-
   private isAnchorSubmenu() {
     const anchor = this.anchorElement?.closest('ix-dropdown-item');
     if (!anchor) {
@@ -401,10 +343,10 @@ export class Dropdown {
   }
 
   private toggle(event: Event) {
-    event.preventDefault();
+    const target = event.target as HTMLElement;
 
-    if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event.stopPropagation();
+    if (this.isDropdownInsideAnotherDropdown(target)) {
+      event.preventDefault();
     }
 
     const { defaultPrevented } = this.showChanged.emit(!this.show);
@@ -415,10 +357,10 @@ export class Dropdown {
   }
 
   private open(event: Event) {
-    event.preventDefault();
+    const target = event.target as HTMLElement;
 
-    if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event.stopPropagation();
+    if (this.isDropdownInsideAnotherDropdown(target)) {
+      event.preventDefault();
     }
 
     const { defaultPrevented } = this.showChanged.emit(true);
@@ -515,8 +457,28 @@ export class Dropdown {
     );
   }
 
+  private isDropdownInsideAnotherDropdown(element: HTMLElement) {
+    return (
+      element.hasAttribute('data-ix-dropdown-trigger') &&
+      !element.dispatchEvent(
+        new CustomEvent('check-nested-dropdown', {
+          bubbles: true,
+          composed: true,
+          cancelable: true,
+        })
+      )
+    );
+  }
+
   async componentDidLoad() {
     this.changedTrigger(this.trigger, null);
+
+    // Event listener to check if a dropdown is inside another dropdown
+    // cancellation of the event will prevent the closing of the parent dropdown
+    this.hostElement.addEventListener('check-nested-dropdown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
   }
 
   async componentDidRender() {
@@ -547,10 +509,6 @@ export class Dropdown {
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
     }
-
-    if (dropdownDisposer.has(this.localUId)) {
-      dropdownDisposer.delete(this.localUId);
-    }
   }
 
   /**
@@ -564,6 +522,7 @@ export class Dropdown {
   render() {
     return (
       <Host
+        data-ix-dropdown={this.localUId}
         ref={(ref) => (this.dropdownRef = ref)}
         class={{
           'dropdown-menu': true,
@@ -578,7 +537,7 @@ export class Dropdown {
         role="list"
       >
         <div style={{ display: 'contents' }}>
-          {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
+          {this.header && <div class="dropdown-header">{this.header}</div>}
 
           <slot></slot>
         </div>

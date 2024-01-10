@@ -22,6 +22,9 @@ import anime from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
 
+/**
+ * @deprecated ix-map-navigation is deprecated in favor of ix-application
+ */
 @Component({
   tag: 'ix-map-navigation',
   styleUrl: 'map-navigation.scss',
