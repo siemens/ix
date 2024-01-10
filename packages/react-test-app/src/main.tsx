@@ -103,12 +103,12 @@ import Tooltip from './preview-examples/tooltip';
 import TooltipTitle from './preview-examples/tooltip-title';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
+import Upload from './preview-examples/upload';
 import Validation from './preview-examples/validation';
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
-import Upload from './preview-examples/upload';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>

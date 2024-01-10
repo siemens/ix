@@ -15,11 +15,13 @@ import {
   Host,
   Method,
   Prop,
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { OnListener } from '../utils/listener';
+import { waitForElement } from '../utils/waitForElement';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -93,6 +95,8 @@ export class Modal {
    */
   @Event() dialogDismiss: EventEmitter;
 
+  @State() modalVisible = false;
+
   @OnListener<Modal>('keydown', (self) => !self.closeOnEscape || !self.keyboard)
   onKey(e: KeyboardEvent) {
     if (e.key === 'Escape') {
@@ -104,28 +108,28 @@ export class Modal {
     return this.hostElement.shadowRoot.querySelector('dialog');
   }
 
-  waitForDialog(): Promise<HTMLDialogElement> {
-    return new Promise((resolve) => {
-      const startTime = Date.now();
+  // waitForDialog(): Promise<HTMLDialogElement> {
+  //   return new Promise((resolve) => {
+  //     const startTime = Date.now();
 
-      const checkDialog = () => {
-        const dialog = this.hostElement.shadowRoot.querySelector('dialog');
+  //     const checkDialog = () => {
+  //       const dialog = this.hostElement.shadowRoot.querySelector('dialog');
 
-        if (dialog) {
-          resolve(dialog);
-        } else {
-          if (Date.now() - startTime < 3000) {
-            setTimeout(checkDialog, 100);
-          } else {
-            console.error('Modal not found');
-            resolve(null);
-          }
-        }
-      };
+  //       if (dialog) {
+  //         resolve(dialog);
+  //       } else {
+  //         if (Date.now() - startTime < 3000) {
+  //           setTimeout(checkDialog, 100);
+  //         } else {
+  //           console.error('Modal not found');
+  //           resolve(null);
+  //         }
+  //       }
+  //     };
 
-      checkDialog();
-    });
-  }
+  //     checkDialog();
+  //   });
+  // }
 
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
@@ -179,7 +183,16 @@ export class Modal {
    */
   @Method()
   async showModal() {
-    setTimeout(async () => (await this.waitForDialog()).showModal());
+    try {
+      const dialog = await waitForElement<HTMLDialogElement>(
+        'dialog',
+        this.hostElement.shadowRoot
+      );
+      this.modalVisible = true;
+      dialog.showModal();
+    } catch (e) {
+      console.error('HTMLDialogElement not existing');
+    }
   }
 
   /**
@@ -197,6 +210,7 @@ export class Modal {
     }
 
     this.slideOutModal(() => {
+      this.modalVisible = false;
       this.dialog.close(
         JSON.stringify(
           {
@@ -245,6 +259,7 @@ export class Modal {
     return (
       <Host
         class={{
+          visible: this.modalVisible,
           'no-backdrop': this.backdrop === false,
           'align-center': this.centered,
         }}
