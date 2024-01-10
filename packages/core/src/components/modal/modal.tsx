@@ -108,29 +108,6 @@ export class Modal {
     return this.hostElement.shadowRoot.querySelector('dialog');
   }
 
-  // waitForDialog(): Promise<HTMLDialogElement> {
-  //   return new Promise((resolve) => {
-  //     const startTime = Date.now();
-
-  //     const checkDialog = () => {
-  //       const dialog = this.hostElement.shadowRoot.querySelector('dialog');
-
-  //       if (dialog) {
-  //         resolve(dialog);
-  //       } else {
-  //         if (Date.now() - startTime < 3000) {
-  //           setTimeout(checkDialog, 100);
-  //         } else {
-  //           console.error('Modal not found');
-  //           resolve(null);
-  //         }
-  //       }
-  //     };
-
-  //     checkDialog();
-  //   });
-  // }
-
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
