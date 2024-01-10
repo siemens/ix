@@ -59,7 +59,11 @@ frameworks={{
 }}>
 </Playground>
 
+## Header
 
+You can also add the avatar to the header which will turn it into a clickable button.
+
+<Playground name="application-header" examplesByName noMargin height="18rem"></Playground>
 
 ## Properties
 

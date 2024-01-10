@@ -12,6 +12,10 @@ import { RouterModule, Routes } from '@angular/router';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
+import ApplicationExample from 'src/preview-examples/application';
+import ApplicationAppSwitchExample from 'src/preview-examples/application-app-switch';
+import ApplicationBreakpointExample from 'src/preview-examples/application-breakpoints';
+import ApplicationHeaderExample from 'src/preview-examples/application-header';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
 import Blind from 'src/preview-examples/blind';
@@ -28,6 +32,7 @@ import CategoryFilterSuggestions from 'src/preview-examples/category-filter-sugg
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentExample from 'src/preview-examples/content';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
@@ -160,6 +165,26 @@ const routes: Routes = [
   {
     path: 'preview',
     children: [
+      {
+        path: 'application',
+        component: ApplicationExample,
+      },
+      {
+        path: 'application-breakpoints',
+        component: ApplicationBreakpointExample,
+      },
+      {
+        path: 'application-app-switch',
+        component: ApplicationAppSwitchExample,
+      },
+      {
+        path: 'application-header',
+        component: ApplicationHeaderExample,
+      },
+      {
+        path: 'content',
+        component: ContentExample,
+      },
       {
         path: 'buttons',
         component: Buttons,
