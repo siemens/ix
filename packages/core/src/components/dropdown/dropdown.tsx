@@ -351,13 +351,15 @@ export class Dropdown {
   private toggle(event: Event) {
     const target = event.target as HTMLElement;
 
+    let dropdownIsInsideAnother: boolean = false
     if (this.isDropdownInsideAnotherDropdown(target)) {
       event.preventDefault();
+      dropdownIsInsideAnother = true
     }
 
     const { defaultPrevented } = this.showChanged.emit(!this.show);
 
-    if (!defaultPrevented) {
+    if (!defaultPrevented && (!dropdownIsInsideAnother || !this.show)) {
       this.show = !this.show;
     }
   }
