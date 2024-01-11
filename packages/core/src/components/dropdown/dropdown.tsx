@@ -357,7 +357,7 @@ export class Dropdown {
 
     const { defaultPrevented } = this.showChanged.emit(!this.show);
 
-    if (!defaultPrevented && !this.show) {
+    if (!defaultPrevented) {
       this.show = !this.show;
     }
   }
