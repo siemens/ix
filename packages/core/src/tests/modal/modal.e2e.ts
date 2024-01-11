@@ -99,7 +99,6 @@ test('modal with dropdown', async ({ mount, page }) => {
       `);
 
       const modal = page.locator('ix-modal');
-      await modal.evaluate((modal) => (modal as any).showModal());
       await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
       await page.waitForTimeout(1000);
