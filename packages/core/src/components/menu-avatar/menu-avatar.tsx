@@ -14,6 +14,7 @@ import {
   h,
   Host,
   Prop,
+  readTask,
   State,
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
@@ -98,6 +99,14 @@ export class MenuAvatar {
     }
   }
 
+  private resolveAvatarTrigger() {
+    return new Promise<HTMLElement>((resolve) => {
+      readTask(() =>
+        resolve(this.hostElement.shadowRoot.querySelector('button'))
+      );
+    });
+  }
+
   render() {
     return (
       <Host slot="ix-menu-avatar">
@@ -119,11 +128,11 @@ export class MenuAvatar {
           </div>
         </button>
         <ix-dropdown
-          trigger={this.hostElement}
+          trigger={this.resolveAvatarTrigger()}
           placement={'right-start'}
           hidden={!this.showContextMenu && !this.showLogoutButton}
           offset={{
-            mainAxis: 16,
+            mainAxis: 9,
           }}
         >
           <slot onSlotchange={() => this.onSlotChange()}></slot>
